@@ -13,21 +13,21 @@ class VsiteList extends MX_Controller {
 
 		$CI =& get_instance();
 		
-	    // We load the BlueOnyx helper library first of all, as we heavily depend on it:
-	    $this->load->helper('blueonyx');
-	    init_libraries();
+		// We load the BlueOnyx helper library first of all, as we heavily depend on it:
+		$this->load->helper('blueonyx');
+		init_libraries();
 
-  		// Need to load 'BxPage' for page rendering:
-  		$this->load->library('BxPage');
+		// Need to load 'BxPage' for page rendering:
+		$this->load->library('BxPage');
 		$MX =& get_instance();
 
-	    // Get $sessionId and $loginName from Cookie (if they are set):
-	    $sessionId = $CI->input->cookie('sessionId');
-	    $loginName = $CI->input->cookie('loginName');
-	    $locale = $CI->input->cookie('locale');
+		// Get $sessionId and $loginName from Cookie (if they are set):
+		$sessionId = $CI->input->cookie('sessionId');
+		$loginName = $CI->input->cookie('loginName');
+		$locale = $CI->input->cookie('locale');
 
-	    // Line up the ducks for CCE-Connection:
-	    include_once('ServerScriptHelper.php');
+		// Line up the ducks for CCE-Connection:
+		include_once('ServerScriptHelper.php');
 		$serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
 		$cceClient = $serverScriptHelper->getCceClient();
 		$user = $cceClient->getObject("User", array("name" => $loginName));
@@ -52,13 +52,23 @@ class VsiteList extends MX_Controller {
 		}
 		else {
 
+			// Known PHP versions:
+			$known_php_versions = array(
+									'PHPOS' => '',
+									'PHP53' => '5.3',
+									'PHP54' => '5.4',
+									'PHP55' => '5.5',
+									'PHP56' => '5.6'
+									);
+
+
 			// Start with an empty siteList:
 			$siteList = array();
 
 			$exact = array();
 			if (!$Capabilities->getAllowed('systemAdministrator')) {
 					// If the user is not 'admin', then we only show Vsites that this user owns:
-			        $exact = array_merge($exact, array('createdUser' => $loginName));  
+					$exact = array_merge($exact, array('createdUser' => $loginName));  
 			}
 
 			// Get a list of Vsite OID's:
@@ -76,6 +86,7 @@ class VsiteList extends MX_Controller {
 				foreach ($AutoFeaturesList as $key => $value) {
 					$featureOID = $cceClient->get($site, $value);
 					if ($value == "PHP") {
+						$vsiteSettings['PHP_version'] = $featureOID['version'];
 						if ($featureOID['mod_ruid_enabled'] == "1") {
 							$vsiteSettings['FEATURE']['RUID'] = $featureOID['mod_ruid_enabled'];
 						}
@@ -107,13 +118,13 @@ class VsiteList extends MX_Controller {
 				$siteList[0][$numsite] = $vsiteSettings['fqdn'];
 				$siteList[1][$numsite] = $vsiteSettings['ipaddr'];
 
-		        // Display the Owner of the Vsite:
-		        if ($vsiteSettings['createdUser'] == "") {
-		        		$createdUser = "admin";
-		        }
-		        else {
-		        	$createdUser = $vsiteSettings['createdUser'];
-		        } 
+				// Display the Owner of the Vsite:
+				if ($vsiteSettings['createdUser'] == "") {
+						$createdUser = "admin";
+				}
+				else {
+					$createdUser = $vsiteSettings['createdUser'];
+				} 
 				$siteList[2][$numsite] = $createdUser;
 
 				// Suspend icon:
@@ -125,9 +136,45 @@ class VsiteList extends MX_Controller {
 				}
 				$siteList[3][$numsite] = $suspended;
 
+				// Find out which PHP version the server uses:
+				$system_php = $cceClient->getObject('PHP');
+
+				// Get all known PHP versions together:
+				$all_php_versions = array('PHPOS' => $system_php['PHP_version_os']);
+				$all_php_versions_reverse = array($system_php['PHP_version_os'] => 'PHPOS');
+
+				foreach ($known_php_versions as $NSkey => $NSvalue) {
+					if ($NSkey != 'PHPOS') { 
+						$extraPHPs[$NSkey] = $cceClient->get($system_php["OID"], $NSkey);
+						if ($extraPHPs[$NSkey]['present'] != "1") {
+							unset($extraPHPs[$NSkey]);
+						}
+					}
+				}
+
+				$all_selectable_php_versions['PHPOS'] = $system_php['PHP_version_os'];
+				foreach ($extraPHPs as $NSkey => $NSvalue) {
+					if ($NSvalue['present'] == '1') {
+						$all_php_versions[$NSvalue['NAMESPACE']] = $NSvalue['version'];
+						$all_php_versions_reverse[$NSvalue['version']] = $NSvalue['NAMESPACE'];
+						if ($NSvalue['enabled'] == '1') {
+							$all_selectable_php_versions[$NSvalue['NAMESPACE']] = $NSvalue['version'];
+						}
+					}
+				}
+
 				// Feature-List Icons:
 				$iconlist = array();
 				foreach ($vsiteSettings['FEATURE'] as $key => $value) {
+
+					// Expose the used PHP version:
+					$php_suffix = "";
+					if (isset($vsiteSettings['PHP_version'])) {
+						if ($vsiteSettings['PHP_version'] != "") {
+							$php_suffix = " " . $known_php_versions[$vsiteSettings['PHP_version']];
+						}
+					}
+
 					if ($key == "SSL") { $F_text = "SSL"; $F_tooltip = "SSL"; }
 					elseif ($key == "MYSQL_Vsite") { $F_text = "SQL"; $F_tooltip = "MySQL or MariaDB"; }
 					elseif ($key == "Java") { $F_text = "JSP"; $F_tooltip = "JSP";  }
@@ -135,10 +182,10 @@ class VsiteList extends MX_Controller {
 					elseif ($key == "CGI") { $F_text = "CGI"; $F_tooltip = "CGI";  }
 					elseif ($key == "SSI") { $F_text = "SSI"; $F_tooltip = "SSI";  }
 					elseif ($key == "ApacheBandwidth") { $F_text = "Limit"; $F_tooltip = "Bandwidth Limits";  }
-					elseif ($key == "PHP") { $F_text = "PHP"; $F_tooltip = "PHP (DSO)"; }
-					elseif ($key == "RUID") { $F_text = "PHP+"; $F_tooltip = "PHP (DSO) + mod_ruid2"; }
-					elseif ($key == "suPHP") { $F_text = "suPHP"; $F_tooltip = "suPHP"; }
-					elseif ($key == "FPM") { $F_text = "PHP-FPM"; $F_tooltip = "PHP via FPM/FastCGI"; }
+					elseif ($key == "PHP") { $F_text = "PHP$php_suffix"; $F_tooltip = "PHP$php_suffix (DSO)"; }
+					elseif ($key == "RUID") { $F_text = "PHP$php_suffix+"; $F_tooltip = "PHP$php_suffix (DSO) + mod_ruid2"; }
+					elseif ($key == "suPHP") { $F_text = "suPHP$php_suffix"; $F_tooltip = "suPHP$php_suffix"; }
+					elseif ($key == "FPM") { $F_text = "PHP-FPM$php_suffix"; $F_tooltip = "PHP$php_suffix via FPM/FastCGI"; }
 					elseif ($key == "FTPNONADMIN") { $F_text = "FTP"; $F_tooltip = "FTP"; }
 					elseif ($key == "AnonFtp") { $F_text = "anonFTP"; $F_tooltip = "Anonymous FTP"; }
 					else { $F_text = $key; $F_tooltip = $key; }
@@ -175,7 +222,7 @@ class VsiteList extends MX_Controller {
 			}
 		}
 
-	    //-- Generate page:
+		//-- Generate page:
 
 		// Prepare Page:
 		$factory = $serverScriptHelper->getHtmlComponentFactory("base-vsite", "/vsite/vsiteList");
@@ -204,27 +251,27 @@ class VsiteList extends MX_Controller {
 				$(document).ready(function () {
 
 				  $("#dialog").dialog({
-				    modal: true,
-				    bgiframe: true,
-				    width: 500,
-				    height: 280,
-				    autoOpen: false
+					modal: true,
+					bgiframe: true,
+					width: 500,
+					height: 280,
+					autoOpen: false
 				  });
 
 				  $(".lb").click(function (e) {
-				    e.preventDefault();
-				    var hrefAttribute = $(this).attr("href");
+					e.preventDefault();
+					var hrefAttribute = $(this).attr("href");
 
-				    $("#dialog").dialog(\'option\', \'buttons\', {
-				      "' . $i18n->getHtml("[[palette.remove]]") . '": function () {
-				        window.location.href = hrefAttribute;
-				      },
-				      "' . $i18n->getHtml("[[palette.cancel]]") . '": function () {
-				        $(this).dialog("close");
-				      }
-				    });
+					$("#dialog").dialog(\'option\', \'buttons\', {
+					  "' . $i18n->getHtml("[[palette.remove]]") . '": function () {
+						window.location.href = hrefAttribute;
+					  },
+					  "' . $i18n->getHtml("[[palette.cancel]]") . '": function () {
+						$(this).dialog("close");
+					  }
+					});
 
-				    $("#dialog").dialog("open");
+					$("#dialog").dialog("open");
 
 				  });
 				});
@@ -238,28 +285,28 @@ class VsiteList extends MX_Controller {
 		$block =& $factory->getPagedBlock("virtualSiteList", array($defaultPage));
 
 		$scrollList = $factory->getScrollList("virtualSiteList", array("fqdn", "ipAddr", "createdUser", "listSuspended", "Features", " "), $siteList); 
-	    $scrollList->setAlignments(array("left", "right", "center", "center", "center", "right"));
-	    $scrollList->setDefaultSortedIndex('0');
-	    $scrollList->setSortOrder('ascending');
-	    $scrollList->setSortDisabled(array('5'));
-	    $scrollList->setPaginateDisabled(FALSE);
-	    $scrollList->setSearchDisabled(FALSE);
-	    $scrollList->setSelectorDisabled(FALSE);
-	    $scrollList->enableAutoWidth(FALSE);
-	    $scrollList->setInfoDisabled(FALSE);
-	    $scrollList->setColumnWidths(array("200", "120", "80", "80", "223", "35")); // Max: 739px
+		$scrollList->setAlignments(array("left", "right", "center", "center", "center", "right"));
+		$scrollList->setDefaultSortedIndex('0');
+		$scrollList->setSortOrder('ascending');
+		$scrollList->setSortDisabled(array('5'));
+		$scrollList->setPaginateDisabled(FALSE);
+		$scrollList->setSearchDisabled(FALSE);
+		$scrollList->setSelectorDisabled(FALSE);
+		$scrollList->enableAutoWidth(FALSE);
+		$scrollList->setInfoDisabled(FALSE);
+		$scrollList->setColumnWidths(array("200", "120", "80", "80", "223", "35")); // Max: 739px
 
-	    // Print administrative information for resellers:
-	    if (!$Capabilities->getAllowed('systemAdministrator')) {
+		// Print administrative information for resellers:
+		if (!$Capabilities->getAllowed('systemAdministrator')) {
 			$vsite_disk = 0;  
 			$vsite_user = 0;
 			$num_vsites = 0;  
 			foreach($vsites as $vsites_oid) {  
-			    $vsite = $cceClient->get($vsites_oid);  
-			    $vsite2 = $cceClient->get($vsites_oid, "Disk");
-			    $vsite_user += $vsite['maxusers'];  
-			    $vsite_disk += $vsite2['quota'];
-			    $num_vsites++;
+				$vsite = $cceClient->get($vsites_oid);  
+				$vsite2 = $cceClient->get($vsites_oid, "Disk");
+				$vsite_user += $vsite['maxusers'];  
+				$vsite_disk += $vsite2['quota'];
+				$num_vsites++;
 			}  
 			list($user_oid) = $cceClient->find('User', array('name' => $loginName));  
 			$sites = $cceClient->get($user_oid, 'Sites');  
@@ -328,21 +375,21 @@ class VsiteList extends MX_Controller {
 		$page_body[] = $block->toHtml();
 
 		// Add hidden Modal for Delete-Confirmation:
-        $page_body[] = '
+		$page_body[] = '
 			<div class="display_none">
-			    		<div id="dialog" class="dialog_content narrow no_dialog_titlebar" title="' . $i18n->getHtml("[[base-vsite.siteRemoveConfirmNeutral]]") . '">
-			                <div class="block">
-			                        <div class="section">
-			                                <h1>' . $i18n->getHtml("[[base-vsite.siteRemoveConfirmNeutral]]") . '</h1>
-			                                <div class="dashed_line"></div>
-			                                <p>' . $i18n->getHtml("[[base-vsite.removeConfirmInfo]]") . '</p>
-			                        </div>
-			                </div>
-			        	</div>
+						<div id="dialog" class="dialog_content narrow no_dialog_titlebar" title="' . $i18n->getHtml("[[base-vsite.siteRemoveConfirmNeutral]]") . '">
+							<div class="block">
+									<div class="section">
+											<h1>' . $i18n->getHtml("[[base-vsite.siteRemoveConfirmNeutral]]") . '</h1>
+											<div class="dashed_line"></div>
+											<p>' . $i18n->getHtml("[[base-vsite.removeConfirmInfo]]") . '</p>
+									</div>
+							</div>
+						</div>
 			</div>';
 
 		// Out with the page:
-	    $BxPage->render($page_module, $page_body);
+		$BxPage->render($page_module, $page_body);
 
 	}		
 }

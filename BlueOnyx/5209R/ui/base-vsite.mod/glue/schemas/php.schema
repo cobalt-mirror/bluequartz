@@ -2,6 +2,11 @@
 <!-- Copyright 2006-2015, Team BlueOnyx. All rights reserved. -->
 
 <class name="PHP" version="3.2" createacl="ruleCapable(adminUser)">
+       <property name="PHP_version_os"
+            type="scalar"
+            default=""
+            writeacl="ruleCapable(adminUser)"
+        />
        <property name="PHP_version"
             type="scalar"
             default=""
@@ -20,6 +25,16 @@
        <property name="safe_mode"
             type="scalar"
             default="On"
+            writeacl="ruleCapable(adminUser)"
+        />
+       <property name="safe_mode_exception"
+            type="boolean"
+            default="1"
+            writeacl="ruleCapable(adminUser)"
+        />
+       <property name="register_globals_exception"
+            type="boolean"
+            default="1"
             writeacl="ruleCapable(adminUser)"
         />
         <property name="safe_mode_gid"
@@ -130,3 +145,47 @@
 
 </class>
 
+<class name="PHP" namespace="PHP53" version="1.0" createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)">
+    <property
+        name="present" type="boolean" default="0" readacl="ruleCapable(adminUser)"
+    />
+    <property
+        name="enabled" type="boolean" default="0" readacl="ruleCapable(adminUser)"
+    />
+    <property
+        name="version" type="scalar" default="" optional="true" readacl="ruleCapable(adminUser)"
+    />
+</class>
+<class name="PHP" namespace="PHP54" version="1.0" createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)">
+    <property
+        name="present" type="boolean" default="0" readacl="ruleCapable(adminUser)"
+    />
+    <property
+        name="enabled" type="boolean" default="0" readacl="ruleCapable(adminUser)"
+    />
+    <property
+        name="version" type="scalar" default="" optional="true" readacl="ruleCapable(adminUser)"
+    />
+</class>
+<class name="PHP" namespace="PHP55" version="1.0" createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)">
+    <property
+        name="present" type="boolean" default="0" readacl="ruleCapable(adminUser)"
+    />
+    <property
+        name="enabled" type="boolean" default="0" readacl="ruleCapable(adminUser)"
+    />
+    <property
+        name="version" type="scalar" default="" optional="true" readacl="ruleCapable(adminUser)"
+    />
+</class>
+<class name="PHP" namespace="PHP56" version="1.0" createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)">
+    <property
+        name="present" type="boolean" default="0" readacl="ruleCapable(adminUser)"
+    />
+    <property
+        name="enabled" type="boolean" default="0" readacl="ruleCapable(adminUser)"
+    />
+    <property
+        name="version" type="scalar" default="" optional="true" readacl="ruleCapable(adminUser)"
+    />
+</class>

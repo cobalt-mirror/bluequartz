@@ -995,3 +995,66 @@ msgstr "PHP (DSO) + mod_ruid2"
 msgid "cap_resellerFPM"
 msgstr "FPM/FastCGI"
 
+#
+### Added for support of multiple PHP versions:
+#
+
+msgid "PHP_version_Field"
+msgstr "[[base-apache.PHP_version_Field]]"
+
+msgid "PHP_version_Field_help"
+msgstr "[[base-apache.PHP_version_Field_help]]"
+
+msgid "setDefaultPHPVersion"
+msgstr "[[base-apache.setDefaultPHPVersion]]"
+
+msgid "setDefaultPHPVersion_help"
+msgstr "[[base-apache.setDefaultPHPVersion_help]]"
+
+msgid "extraPHPversions"
+msgstr "[[base-apache.extraPHPversions]]"
+
+msgid "extraPHPversions_help"
+msgstr "[[base-apache.extraPHPversions_help]]"
+
+msgid "register_globals_exception"
+msgstr "[[base-apache.register_globals_exception]]"
+
+msgid "register_globals_exception_help"
+msgstr "[[base-apache.register_globals_exception_help]]"
+
+msgid "adminSites_new"
+msgstr "[[base-vsite.adminSites]] (Reseller)"
+
+msgid "CapManageSite"
+msgstr "[[base-vsite.cap_manageSite]]"
+
+msgid "CapManageSite_help"
+msgstr "Dit maakt reseller gerelateerde mogelijkheden voor deze account. Als dit selectievakje is aangevinkt, dan is deze gebruiker heeft de mogelijkheid om virtuele sites en gebruikers aan te maken, te beheren en te verwijderen. Hij kan zoveel virtuele sites en gebruikers, zoals gedefinieerd in de onderstaande instellingen te creëren. Bovendien kunt u hem de toegang tot bepaalde functies voor deze virtuele locaties toe te kennen. Zoals PHP, MySQL, FTP en ga zo maar door."
+
+msgid "CapSiteDNS"
+msgstr "[[base-dns.cap_siteDNS]]"
+
+msgid "CapSiteDNS_help"
+msgstr "Extra functie voor resellers: Als dit selectievakje is aangevinkt, dan is deze gebruiker kan ook de DNS-records voor de virtuele sites die onder zijn controle te beheren."
+
+msgid "advancedSettingsTab"
+msgstr "Geavanceerde instellingen"
+
+msgid "adminOptions_new"
+msgstr "[[base-vsite.adminOptions]] (Gebruik met uiterste voorzichtigheid!)"
+
+msgid "adminOptions_desc"
+msgstr "Hieronder is een lijst van de extra mogelijkheden die een serverbeheerder kan worden verleend. Voor Reseller geen van deze relevant zijn en mag niet worden gebruikt. Gebruik dan deze mogelijkheden met uiterste voorzichtigheid en vooroordelen. Als u System-Administrator and/or Root-toegang verlenen, dan is de serverbeheerder in kwestie ontvangt volledige en onbeperkte controle over de server. Gelijk aan de admin of root gebruiker van de server. Indien gewenst kunt u een serverbeheerder verschillende niveaus van toegang dat delen van de GUI zichtbaar te maken aan hem dat meestal zijn alleen zichtbaar voor de System-Administrator (admin-account) toe te kennen. Nogmaals: Gebruik deze met uiterste voorzichtigheid en geen resellers toegang tot deze functies niet kennen - tenzij het absoluut onvermijdelijk is."
+
+msgid "attemptToDisableUsedPHP"
+msgstr "Deze versie van PHP kan niet worden uitgeschakeld, omdat Apache momenteel wordt gebruikt als standaard PHP versie. Schakel Apache naar een andere standaard PHP versie eerst. Dan proberen om de PHP-versie opnieuw uit te schakelen en het zou moeten werken."
+
+###
+
+msgid "PHP_version_os"
+msgstr "PHP Version (OS):"
+
+msgid "PHP_version_os_help"
+msgstr "Dit toont de PHP-versie van het onderliggende besturingssysteem. Uw openbare webserver draait momenteel met een optionele PHP van een andere versie. Daarom is deze OS verstrekt PHP-versie is momenteel niet beschikbaar voor het draaien van virtuele sites, als derde partij PHP (of één van hen - als je meerdere hebt geïnstalleerd) zijn die voorrang heeft."
+

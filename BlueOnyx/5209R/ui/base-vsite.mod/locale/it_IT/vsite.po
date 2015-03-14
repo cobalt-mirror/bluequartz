@@ -997,3 +997,66 @@ msgstr "PHP (DSO) + mod_ruid2"
 msgid "cap_resellerFPM"
 msgstr "FPM/FastCGI"
 
+#
+### Added for support of multiple PHP versions:
+#
+
+msgid "PHP_version_Field"
+msgstr "[[base-apache.PHP_version_Field]]"
+
+msgid "PHP_version_Field_help"
+msgstr "[[base-apache.PHP_version_Field_help]]"
+
+msgid "setDefaultPHPVersion"
+msgstr "[[base-apache.setDefaultPHPVersion]]"
+
+msgid "setDefaultPHPVersion_help"
+msgstr "[[base-apache.setDefaultPHPVersion_help]]"
+
+msgid "extraPHPversions"
+msgstr "[[base-apache.extraPHPversions]]"
+
+msgid "extraPHPversions_help"
+msgstr "[[base-apache.extraPHPversions_help]]"
+
+msgid "register_globals_exception"
+msgstr "[[base-apache.register_globals_exception]]"
+
+msgid "register_globals_exception_help"
+msgstr "[[base-apache.register_globals_exception_help]]"
+
+msgid "adminSites_new"
+msgstr "[[base-vsite.adminSites]] (Reseller)"
+
+msgid "CapManageSite"
+msgstr "[[base-vsite.cap_manageSite]]"
+
+msgid "CapManageSite_help"
+msgstr "In questo modo le capacità rivenditore correlati per questo account. Se questa casella è spuntata, quindi l'utente ha la possibilità di creare, gestire ed eliminare i siti virtuali e utenti. Egli può creare il numero di siti virtuali e utenti, come definito nelle impostazioni di seguito. Inoltre è possibile lo concedere l'accesso ad alcune funzionalità di questi siti virtuali. Come PHP, MySQL, FTP e così via."
+
+msgid "CapSiteDNS"
+msgstr "[[base-dns.cap_siteDNS]]"
+
+msgid "CapSiteDNS_help"
+msgstr "Funzioni aggiuntive per i rivenditori: se questa casella è spuntata, quindi l'utente può gestire i record DNS per i siti virtuali che sono sotto il suo controllo."
+
+msgid "advancedSettingsTab"
+msgstr "Impostazioni avanzate"
+
+msgid "adminOptions_new"
+msgstr "[[base-vsite.adminOptions]] (Usare con estrema cautela!)"
+
+msgid "adminOptions_desc"
+msgstr "Di seguito è riportato un elenco di funzionalità aggiuntive che possono essere concesse a un amministratore di server. Per Reseller nessuno di questi sono rilevanti e non deve essere utilizzato. Si prega di utilizzare queste funzionalità con estrema cautela e pregiudizi. Se si concede System-amministratore and/or accesso root, l'amministratore del server in questione riceve il pieno controllo e senza limiti sul server. Pari per l'utente amministratore o root del server. Se lo si desidera è possibile concedere un amministratore di server diversi livelli di accesso che fanno parte del GUI visibile a lui che di solito sono visibili solo al Sistema-amministratore (admin-conto). Ancora: Si prega di utilizzare questo con estrema cautela e non concedono i rivenditori l'accesso a queste caratteristiche - a meno che non sia assolutamente inevitabile."
+
+msgid "attemptToDisableUsedPHP"
+msgstr "Questa versione di PHP non può essere disattivato perché Apache sta utilizzando come versione predefinita PHP. Si prega di passare a un altro Apache versione di PHP predefinita. Poi provare a disattivare nuovamente la versione di PHP e dovrebbe funzionare."
+
+###
+
+msgid "PHP_version_os"
+msgstr "PHP Version (OS):"
+
+msgid "PHP_version_os_help"
+msgstr "Questo mostra la versione PHP del sistema operativo sottostante. Il server web pubblico è in esecuzione con PHP optional di una versione diversa. Quindi questo sistema operativo fornito versione di PHP non è attualmente disponibile per l'esecuzione di siti virtuali, come il terzo PHP (o uno di loro - se si dispone di più installato) stanno prendendo la precedenza."
+

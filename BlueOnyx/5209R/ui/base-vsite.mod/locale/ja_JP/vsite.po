@@ -1054,3 +1054,66 @@ msgstr "PHP (DSO) + mod_ruid2"
 msgid "cap_resellerFPM"
 msgstr "FPM/FastCGI"
 
+#
+### Added for support of multiple PHP versions:
+#
+
+msgid "PHP_version_Field"
+msgstr "[[base-apache.PHP_version_Field]]"
+
+msgid "PHP_version_Field_help"
+msgstr "[[base-apache.PHP_version_Field_help]]"
+
+msgid "setDefaultPHPVersion"
+msgstr "[[base-apache.setDefaultPHPVersion]]"
+
+msgid "setDefaultPHPVersion_help"
+msgstr "[[base-apache.setDefaultPHPVersion_help]]"
+
+msgid "extraPHPversions"
+msgstr "[[base-apache.extraPHPversions]]"
+
+msgid "extraPHPversions_help"
+msgstr "[[base-apache.extraPHPversions_help]]"
+
+msgid "register_globals_exception"
+msgstr "[[base-apache.register_globals_exception]]"
+
+msgid "register_globals_exception_help"
+msgstr "[[base-apache.register_globals_exception_help]]"
+
+msgid "adminSites_new"
+msgstr "[[base-vsite.adminSites]]（リセラー）"
+
+msgid "CapManageSite"
+msgstr "[[base-vsite.cap_manageSite]]"
+
+msgid "CapManageSite_help"
+msgstr "これは、このアカウントの販売代理店関連機能を有効にします。このチェックボックスがチェックされている場合、このユーザーは、仮想サイトとユーザを作成、管理および削除する機能があります。彼は、以下の設定で定義されているように多くの仮想サイトとユーザーを作成することができます。さらに、あなたは彼にこれらの仮想のサイトの特定の機能へのアクセスを許可することができます。 PHP、MySQLは、FTPなどというようにそのような。"
+
+msgid "CapSiteDNS"
+msgstr "[[base-dns.cap_siteDNS]]"
+
+msgid "CapSiteDNS_help"
+msgstr "再販業者のための追加機能：このチェックボックスがチェックされている場合、このユーザーはまた、彼の制御下にある仮想サイトのDNSレコードを管理することができます。"
+
+msgid "advancedSettingsTab"
+msgstr "エキスパート設定"
+
+msgid "adminOptions_new"
+msgstr "[[base-vsite.adminOptions]]（細心の注意を払って使用してください！）"
+
+msgid "adminOptions_desc"
+msgstr "以下は、サーバー管理者に付与できる追加機能の一覧です。これらのリセラーなしに関連するため、使用しないでください。細心の注意と偏見でこれらの機能を使用してください。あなたはシステム管理者and/orルートアクセス権を付与した場合、問題のサーバの管理者は、サーバーを完全かつ無制限の制御を受け取る。サーバーの管理者またはrootユーザーに等しい。必要に応じて、通常はシステム管理者（adminアカウント）にのみ表示され、彼に、GUIの部分が見えるようにアクセスのサーバ管理者のさまざまなレベルを付与することができます。再び：細心の注意を払ってこれを使用すると、これらの機能への再販業者のアクセスを許可しないでください - それは絶対に避けられない場合を除きます。"
+
+msgid "attemptToDisableUsedPHP"
+msgstr "Apacheは現在、デフォルトのPHPバージョンとしてそれを使用しているため、PHPのこのバージョンは無効にすることはできません。最初に別のデフォルトのPHPのバージョンにApacheを切り替えてください。その後、再びPHPのバージョンを無効にしようと、それが動作するはずです。"
+
+###
+
+msgid "PHP_version_os"
+msgstr "PHPバージョン（OS）："
+
+msgid "PHP_version_os_help"
+msgstr "これは基礎となるオペレーティングシステムのPHPのバージョンを示しています。あなたの公共のウェブサーバーは、現在、別のバージョンの任意のPHPで実行されています。そのためPHPのバージョンを提供し、このOSが第三者PHPとして、現在の仮想サイトを実行するには使用できません（またはそのうちの一つ - あなたが複数インストールしている場合）の優先順位を取っている。"
+

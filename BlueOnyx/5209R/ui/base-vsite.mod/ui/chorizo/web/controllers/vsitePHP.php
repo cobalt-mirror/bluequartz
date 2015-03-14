@@ -77,6 +77,14 @@ class vsitePHP extends MX_Controller {
 		//-- Prepare data:
 		//
 
+        // Known PHP versions:
+        $known_php_versions = array(
+                                'PHP53' => '5.3',
+                                'PHP54' => '5.4',
+                                'PHP55' => '5.5',
+                                'PHP56' => '5.6'
+                                );
+
 		// Get data for the Vsite:
 		$vsite = $cceClient->getObject('Vsite', array('name' => $group));
 
@@ -86,11 +94,41 @@ class vsitePHP extends MX_Controller {
 		// Get PHPVsite for this Vsite:
 		$systemObj = $cceClient->getObject('Vsite', array('name' => $group), "PHPVsite");
 
-		// Find out which PHP version we use:
+		// Find out which PHP version the server uses:
 		$system_php = $cceClient->getObject('PHP');
 		$platform = $system_php["PHP_version"];
 
-		if (($platform >= "5.3") && ($system_php["show_safemode"] == "0")) {
+		// Get all known PHP versions together:
+        $all_php_versions = array('PHPOS' => $system_php['PHP_version_os']);
+        $all_php_versions_reverse = array($system_php['PHP_version_os'] => 'PHPOS');
+
+        foreach ($known_php_versions as $NSkey => $NSvalue) {
+            $extraPHPs[$NSkey] = $cceClient->get($system_php["OID"], $NSkey);
+            if ($extraPHPs[$NSkey]['present'] != "1") {
+                unset($extraPHPs[$NSkey]);
+            }
+        }
+
+        $all_selectable_php_versions['PHPOS'] = $system_php['PHP_version_os'];
+        foreach ($extraPHPs as $NSkey => $NSvalue) {
+            if ($NSvalue['present'] == '1') {
+                $all_php_versions[$NSvalue['NAMESPACE']] = $NSvalue['version'];
+                $all_php_versions_reverse[$NSvalue['version']] = $NSvalue['NAMESPACE'];
+                if ($NSvalue['enabled'] == '1') {
+                    $all_selectable_php_versions[$NSvalue['NAMESPACE']] = $NSvalue['version'];
+                }
+            }
+        }
+
+		// Find out which PHP version the Vsite is supposed to use:
+		if ($vsite_php['version'] == "") {
+			$usedPHPversion = $all_selectable_php_versions['PHPOS'];
+		}
+		else {
+			$usedPHPversion = $all_selectable_php_versions[$vsite_php['version']];
+		}
+
+		if (($usedPHPversion >= "5.3") && ($system_php["show_safemode"] == "0")) {
 		    // We need to hide some legacy PHP settings that no longer work in PHP-5.3 or better:
 		    $pageID53 = "Hidden";
 		}
@@ -98,7 +136,7 @@ class vsitePHP extends MX_Controller {
 		    $pageID53 = "defaultPage";
 		}
 
-		if (($platform >= "5.4") && ($system_php["show_safemode"] == "0")) {
+		if (($usedPHPversion >= "5.4") && ($system_php["show_safemode"] == "0")) {
 		    // We need to hide some legacy PHP settings that no longer work in PHP-5.3 or better:
 		    $pageID54 = "Hidden";
 		}
@@ -212,7 +250,7 @@ class vsitePHP extends MX_Controller {
 				$attributes['safe_mode_allowed_env_vars'] = implode(',', $new_safe_mode_allowed_env_vars);
 			}
 
-			if ($platform >= "5.3") {
+			if ($usedPHPversion >= "5.3") {
 				// We reset these to our safe defaults just to make sure:
 				$attributes['safe_mode_allowed_env_vars'] = implode(',', $safe_mode_allowed_env_vars_minimal);
 				$attributes['safe_mode_protected_env_vars'] = 'LD_LIBRARY_PATH';
@@ -220,7 +258,7 @@ class vsitePHP extends MX_Controller {
 
 			// We need to *really* make sure 'register_globals' is set to "Off" on
 			// PHP versions of PHP-5.4 and above, or we get nasty error messages:
-			if ($platform >= "5.4") {
+			if ($usedPHPversion >= "5.4") {
 			    $attributes['register_globals'] = "Off";
 			}
 
@@ -351,6 +389,15 @@ class vsitePHP extends MX_Controller {
 			    $factory->getLabel("force_update"),
 			    "hidden"
 			);
+
+	        // PHP_version being used by this Vsite:
+	        $PHP_version_Field = $factory->getTextField("PHP_version", $usedPHPversion, "r");
+	        $PHP_version_Field->setOptional ('silent');
+	        $block->addFormField(
+	            $PHP_version_Field,
+	            $factory->getLabel("PHP_version_Field"),
+	            $defaultPage
+	        );
 
 			// Register Globals:
 			if ($systemObj["register_globals"] == 'Off') {
@@ -761,8 +808,8 @@ class vsitePHP extends MX_Controller {
 }
 
 /*
-Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 All Rights Reserved.
 
 1. Redistributions of source code must retain the above copyright 

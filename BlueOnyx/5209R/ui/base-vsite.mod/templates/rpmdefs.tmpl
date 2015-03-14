@@ -86,6 +86,7 @@ information for [VENDOR]-[SERVICE].
 # glue post-install
 if [ -S /usr/sausalito/cced.socket ]; then
     /usr/sausalito/sbin/free_admin_alias.pl
+    /usr/sausalito/sbin/cced.init restart
 fi
 
 <end glue>
@@ -134,6 +135,44 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Fri Mar 13 2015 Michael Stauber <mstauber@solarspeed.net> 4.2-0BX28
+- Added support for multiple PHP versions at the same time. That required
+  some extensive changes to base-apache and base-vsite.
+- Additionally the 'Server Administators' page to add/edit extra admins was
+  overhauled in appearance to make it more intuitive about what needs to be 
+  done to create Resellers
+- Modified ui/chorizo/web/controllers/manageAdmin.php for better Reseller mgmt.
+- Modified constructor/import_php_ini_settings.pl to detect presence of extra
+  PHP versions to populate CODB with the required information about them.
+- Modified glue/conf/vsite.conf to add new and modified handler runs.
+- Modified glue/schemas/php.schema to add new CODB database fields.
+- Modified glue/handlers/php_handler.pl to make it aware of multiple PHP version
+  support and to deal with different PHP-FPM pools. Traditional Solarspeed PHP
+  package support was removed entirely and has been replaced with a new method.
+- Modified glue/handlers/php_vsite_handler.pl to make it aware of multiple PHP 
+  version support and to deal with different PHP-FPM pools. Additionally suPHP
+  also learned to deal with different PHP versions wherever applicable.
+- Added glue/handlers/php_fpm-checker.pl, which runs at the end of PHP related
+  transactions and makes sure that the correct PHP-FPM pools are running.
+- Added glue/handlers/php_toggler.pl to handle removal of extra PHP packages.
+  If a Vsite is using an extra PHP package and that PHP is either disabled or
+  removed, then this handler will take care of it.
+- Modified ui/chorizo/web/controllers/phpconfig.php to show OS related PHP
+  version and to allow us to switch Apache to an optional third party PHP.
+  Additionally a selector was added that allows us to enable/disable any extra
+  PHP version that is present on the server. A checkbox to allow a 'Register
+  Globals' exception was added to allow optional third party PHP-5.3 PKGs to
+  toggle the 'Register Globals' settings for Vsites that use PHP-5.3.
+- Modified ui/chorizo/web/controllers/vsiteList.php to show which version of
+  PHP is used if a Vsite has PHP enabled. This allows to quickly identify which
+  Vsite is using which third party PHP version.
+- Modified ui/chorizo/web/controllers/vsitePHP.php to add a text field that shows 
+  currently used PHP version on this Vsite. Also made the 'Register Globals'
+  selector visible again if a third party PHP-5.3 is installed, is enabled and
+  actually used for this Vsite.
+- Updated all locales with the new strings.
+- For now added an unconditional restart of CCEd.init to post-install. We need it.
 
 * Fri Feb 27 2015 Michael Stauber <mstauber@solarspeed.net> 4.1-0BX27
 - Edited glue/handlers/Vsite.pm to remove 'admin' from ProtectedEmailAliases.

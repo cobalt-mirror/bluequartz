@@ -2,12 +2,8 @@
 # $Id: import_php_ini_settings.pl
 #
 # This script parses php.ini and brings CODB up to date on how PHP is configured.
-# Can easily be extended to parse third party php.ini's through an optional config file.
+# This also handles third party extra-PHP installs.
 #
-# If your 3rd party PHP installs into /home/mycompany/php/ and your php.ini is located 
-# in /home/mycompany/php/etc/php.ini, then create a /etc/thirdparty_php file and put 
-# the complete path to your php.ini into it. By doing so this script will ignore the
-# default /etc/php.ini and will use the one you specified in /etc/thirdparty_php
 # Additionally it updates the PHP-FPM master pool file if needed.
 
 # Debugging switch:
@@ -15,22 +11,20 @@ $DEBUG = "0";
 
 # Uncomment correct type:
 $whatami = "constructor";
-#$whatami = "handler";
 
 # Location of php.ini:
 $php_ini = "/etc/php.ini";
+
+# Location of the config file for Apache PHP DSO:
+$php_dso_conf = '/etc/httpd/conf.modules.d/10-php.conf';
+
+$php_dso_location = '/usr/lib64/httpd/modules/libphp5.so';
 
 #
 #### No configureable options below!
 #
 
-# Location of config file in which 3rd party vendors can
-# specify where their 3rd party PHP's php.ini is located:
-#
-# IMPORTANT: Do NOT modify the line below, as this script WILL
-# be updated through YUM from time to time. Which overwrites 
-# any changes you make in here!
-$thirdparty = "/etc/thirdparty_php";
+$extra_PHP_basepath = '/home/solarspeed/';
 
 use CCE;
 use Data::Dumper;
@@ -48,41 +42,68 @@ else {
     $cce->connectuds();
 }
 
-# Check for presence of third party PHP config file:
-if (-f $thirdparty) {
-	open (F, $thirdparty) || die "Could not open $thirdparty: $!";
-	while ($line = <F>) {
-		chomp($line);
-		next if $line =~ /^\s*$/;               # skip blank lines
-		next if $line =~ /^#$/;               	# skip comments
-		if ($line =~ /^\/(.*)\/php\.ini$/) {
-			$php_ini = $line;
+#
+## Check for presence of third party extra PHP versions:
+#
+
+# Known PHP versions:
+%known_php_versions = (
+						'PHP53' => '5.3',
+						'PHP54' => '5.4',
+						'PHP55' => '5.5',
+						'PHP56' => '5.6'
+						);
+
+# Check if known extra PHP versions are present. If so, update CODB accordingly:
+@PHPObject = $cce->find('PHP');
+if (defined($PHPObject[0])) {
+	($ok, $PHP) = $cce->get($PHPObject[0]);
+	for $phpVer (keys %known_php_versions) {
+		$phpFpmPath = $extra_PHP_basepath . "php-" . $known_php_versions{$phpVer} . "/sbin/php-fpm";
+		$phpBinaryPath = $extra_PHP_basepath . "php-" . $known_php_versions{$phpVer} . "/bin/php";
+		if ( -f $phpBinaryPath) {
+			$reportedVersion = `$phpBinaryPath -v|grep "(cli)"|awk {'print \$2'}`;
+			chomp($reportedVersion);
+			$known_php_versions_reverse{$reportedVersion} = $phpVer;
 		}
-		if ($line =~ /^\/(.*)\/etc\/php\.ini$/) {
-			$thirdpartydir = "/" . $1 . "/bin";
+		if (( -f $phpFpmPath) && ( -f $phpBinaryPath)) {
+			($ok) = $cce->set($PHPObject[0], "$phpVer", { 'present' => '1', 'version' => $reportedVersion });
+		}
+		else {
+			($ok) = $cce->set($PHPObject[0], "$phpVer", { 'present' => '0', 'enabled' => '0', 'version' => "" });
 		}
 	}
-	close(F);
 }
 else {
-	# In this case the variable is actually misnamed and we use the path to the onboard PHP:
-	$thirdpartydir = "/usr/bin";
+	$cce->bye('FAIL');
+	exit(1);
 }
 
-# Find out which version of PHP we are running and store it in CCE:
-$PHP_version = `$thirdpartydir/php -v|/bin/grep ^PHP | /bin/awk '\{print \$2\}'`;
+# Find out which version of PHP the OS is running and store it in CCE:
+$PHP_version = `/usr/bin/php -v|/bin/grep ^PHP | /bin/awk '\{print \$2\}'`;
 chomp($PHP_version);
+($ok) = $cce->set($PHPObject[0], '', { 'PHP_version_os' => $PHP_version });
 
-# Fix third party php-cgi location in /etc/suphp.conf:
-if ((-f "$thirdpartydir/php-cgi") && (-f "/etc/suphp.conf")) {
+# Check if the OS supplied PHP is any different than the PHP that Apache DSO is currently using:
+if ($PHP_version ne $PHP->{PHP_version}) {
+	$thirdPartyCGI = $extra_PHP_basepath . "php-" . $known_php_versions{$known_php_versions_reverse{$PHP->{PHP_version}}} . "/bin/php-cgi";
+	$new_php_dso_location = $extra_PHP_basepath . "php-" . $known_php_versions{$known_php_versions_reverse{$PHP->{PHP_version}}} . "/lib/httpd/libphp5.so";
+}
+else {
+	$thirdPartyCGI = "/usr/bin/php-cgi";
+	$new_php_dso_location = $php_dso_location;
+}
+
+# Update default php-cgi location in /etc/suphp.conf: (Actually we don't do this anymore.)
+if ((-f "$thirdPartyCGI") && (-f "/etc/suphp.conf")) {
 	umask(0077);
 	my $stage = "/etc/suphp.conf~";
 	open(HTTPD, "/etc/suphp.conf");
 	unlink($stage);
 	sysopen(STAGE, $stage, 1|O_CREAT|O_EXCL, 0600) || die;
 	while(<HTTPD>) {
-		s/^x-httpd-suphp="(.*)"/x-httpd-suphp="php:$thirdpartydir\/php-cgi"/g;
-		s/^x-httpd-suphpthirdparty="(.*)"/x-httpd-suphpthirdparty="php:$thirdpartydir\/php-cgi"/g;
+		#s/^x-httpd-suphp="(.*)"/x-httpd-suphp="php:$thirdPartyCGI"/g;
+		s/^x-httpd-suphp="(.*)"/x-httpd-suphp="php:\/usr\/bin\/php-cgi"/g;
 		print STAGE;
 	}
 	close(STAGE);
@@ -94,13 +115,43 @@ if ((-f "$thirdpartydir/php-cgi") && (-f "/etc/suphp.conf")) {
 	}
 }
 
+# Update the path to the Apache PHP DSO in the Apache module config:
+if ((-f "$php_dso_conf") && ( -f "$new_php_dso_location")) {
+	umask(0077);
+	my $stage = "$php_dso_conf~";
+	open(HTTPD, "$php_dso_conf");
+	unlink($stage);
+	sysopen(STAGE, $stage, 1|O_CREAT|O_EXCL, 0600) || die;
+	while(<HTTPD>) {
+		s/LoadModule php5_module (.*)/LoadModule php5_module $new_php_dso_location/g;
+		print STAGE;
+	}
+	close(STAGE);
+	close(HTTPD);
+	chmod(0644, $stage);
+	if(-s $stage) {
+		move($stage,"$php_dso_conf");
+		chmod(0644, "$php_dso_conf"); # paranoia
+	}
+}
+
 # Config file present?
+#
+# PLEASE NOTE:
+#
+# /etc/php.ini is the main PHP ini. All changes and settings go into it. ALWAYS!
+# 
+# BUT: As we might have several extra PHP versions installed (and one of them might even
+#      be the new default one!) we need to walk through all extra PHP php.ini files to
+#	   update them with our key/value pairs for all items of interest.
+#
+
 if (-f $php_ini) {
 
 	# Array of PHP config switches that we want to update in CCE:
 	&items_of_interest;
 
-	# Read, parse and hash php.ini:
+	# Read, parse and hash /etc/php.ini:
 	&ini_read;
 
 	# Verify input and set defaults if needed:
@@ -259,7 +310,7 @@ sub feedthemonster {
 		# Object not yet in CCE. Creating new one and forcing re-write of php.ini by setting "force_update":
 		($ok) = $cce->create('PHP', {
 			'applicable' => 'server',
-			'PHP_version' => $PHP_version,
+			'PHP_version_os' => $PHP_version,
 			'safe_mode' => $CONFIG{"safe_mode"},  
 			'safe_mode_allowed_env_vars' => $CONFIG{"safe_mode_allowed_env_vars"},   
 			'safe_mode_exec_dir' => $CONFIG{"safe_mode_exec_dir"},   
@@ -286,7 +337,7 @@ sub feedthemonster {
 		($sys_oid) = $cce->find('PHP', {'applicable' => 'server'});
 		($ok, $sys) = $cce->get($sys_oid);
 		($ok) = $cce->set($sys_oid, '',{
-			'PHP_version' => $PHP_version,  
+			'PHP_version_os' => $PHP_version,  
 			'safe_mode' => $CONFIG{"safe_mode"},  
 			'safe_mode_allowed_env_vars' => $CONFIG{"safe_mode_allowed_env_vars"},   
 			'safe_mode_exec_dir' => $CONFIG{"safe_mode_exec_dir"},   

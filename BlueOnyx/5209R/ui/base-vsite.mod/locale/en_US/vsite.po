@@ -1042,3 +1042,66 @@ msgstr "PHP (DSO) + mod_ruid2"
 msgid "cap_resellerFPM"
 msgstr "FPM/FastCGI"
 
+#
+### Added for support of multiple PHP versions:
+#
+
+msgid "PHP_version_Field"
+msgstr "[[base-apache.PHP_version_Field]]"
+
+msgid "PHP_version_Field_help"
+msgstr "[[base-apache.PHP_version_Field_help]]"
+
+msgid "setDefaultPHPVersion"
+msgstr "[[base-apache.setDefaultPHPVersion]]"
+
+msgid "setDefaultPHPVersion_help"
+msgstr "[[base-apache.setDefaultPHPVersion_help]]"
+
+msgid "extraPHPversions"
+msgstr "[[base-apache.extraPHPversions]]"
+
+msgid "extraPHPversions_help"
+msgstr "[[base-apache.extraPHPversions_help]]"
+
+msgid "register_globals_exception"
+msgstr "[[base-apache.register_globals_exception]]"
+
+msgid "register_globals_exception_help"
+msgstr "[[base-apache.register_globals_exception_help]]"
+
+msgid "adminSites_new"
+msgstr "[[base-vsite.adminSites]] (Reseller)"
+
+msgid "CapManageSite"
+msgstr "[[base-vsite.cap_manageSite]]"
+
+msgid "CapManageSite_help"
+msgstr "This enables reseller related capabilities for this account. If this checkbox is ticked, then this user has the capability to create, administer and delete virtual sites and users. He can create as many virtual sites and users as defined in the settings below. Additionally you can grant him access to certain features for these virtual sites. Such as PHP, MySQL, FTP and so on."
+
+msgid "CapSiteDNS"
+msgstr "[[base-dns.cap_siteDNS]]"
+
+msgid "CapSiteDNS_help"
+msgstr "Additional feature for resellers: If this checkbox is ticked, then this user can also manage the DNS records for the virtual sites that are under his control."
+
+msgid "advancedSettingsTab"
+msgstr "Expert Settings"
+
+msgid "adminOptions_new"
+msgstr "[[base-vsite.adminOptions]] (Use with extreme caution!)"
+
+msgid "adminOptions_desc"
+msgstr "Below is a list of additional capabilities that can be granted to a server administrator. For Reseller none of these are relevant and should not be used. Please use these capabilities with extreme caution and prejudice. If you grant System-Administrator and/or Root Access, then the server administrator in question receives full and unlimited control over the server. Equal to the admin or root user of the server. If desired you can grant a server administrator various levels of access that make parts of the GUI visible to him that are usually only visible to the System-Administrator (admin-account). Again: Please use this with extreme caution and do not grant resellers access to these features - unless it is absolutely unavoidable."
+
+msgid "attemptToDisableUsedPHP"
+msgstr "This version of PHP cannot be disabled because Apache is currently using it as default PHP version. Please switch Apache to another default PHP version first. Then try to disable the PHP version again and it should work."
+
+###
+
+msgid "PHP_version_os"
+msgstr "PHP Version (OS):"
+
+msgid "PHP_version_os_help"
+msgstr "This shows the PHP version of the underlying operating system. Your public web server is currently running with an optional PHP of a different version. Therefore this OS provided PHP version is currently not available for running virtual sites, as the third party PHP (or one of them - if you have multiple installed) are taking precedence."
+

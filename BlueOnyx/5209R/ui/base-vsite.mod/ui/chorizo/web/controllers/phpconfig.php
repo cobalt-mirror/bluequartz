@@ -52,7 +52,6 @@ class Phpconfig extends MX_Controller {
 		//
 
 		$CODBDATA = $cceClient->getObject("PHP");
-
 		$platform = $CODBDATA["PHP_version"];
 
 		//
@@ -64,6 +63,17 @@ class Phpconfig extends MX_Controller {
 	    $extra_headers =array();
 	    $ci_errors = array();
 	    $my_errors = array();
+
+		// Known PHP versions:
+		$known_php_versions = array(
+								'PHP53' => '5.3',
+								'PHP54' => '5.4',
+								'PHP55' => '5.5',
+								'PHP56' => '5.6'
+								);
+
+		// Start clean:
+		$enabledExtraPHPversions = array();
 
 		// Shove submitted input into $form_data after passing it through the XSS filter:
 		$form_data = $CI->input->post(NULL, TRUE);
@@ -147,7 +157,19 @@ class Phpconfig extends MX_Controller {
 			// Make sure that 'register_globals' is off on PHP versions of 5.4 or greater:
 			if ($platform >= "5.4") {
 			    $attributes['register_globals'] = "Off";
-			}			
+			}
+
+			// Handle default PHP version change for Apache:
+			if (isset($attributes['setDefaultPHPVersion'])) {
+				$attributes['PHP_version'] = $attributes['setDefaultPHPVersion'];
+				unset($attributes['setDefaultPHPVersion']);
+			}
+
+			// Handle Extra PHP versions:
+			if (isset($attributes['extraPHPversions'])) {
+				$enabledExtraPHPversions = scalar_to_array($attributes['extraPHPversions']);
+				unset($attributes['extraPHPversions']);
+			}
 		}
 
 		//
@@ -160,7 +182,15 @@ class Phpconfig extends MX_Controller {
 		// If we have no errors and have POST data, we submit to CODB:
 		if ((count($errors) == "0") && ($CI->input->post(NULL, TRUE))) {
 
-			// We have no errors. We submit to CODB.
+			// Enable / Disable PHP Extra versions:
+			foreach ($known_php_versions as $NSkey => $NSvalue) {
+				if (in_array($NSkey, $enabledExtraPHPversions)) {
+					$cceClient->setObject("PHP", array('enabled' => '1'), "$NSkey" );
+				}
+				else {
+					$cceClient->setObject("PHP", array('enabled' => '0'), "$NSkey" );
+				}
+			}
 
 	  		// Actual submit to CODB:
 	  		$cceClient->setObject("PHP", $attributes);
@@ -185,6 +215,9 @@ class Phpconfig extends MX_Controller {
 		//
 		//-- Own page logic:
 		//
+
+		$CODBDATA = $cceClient->getObject("PHP");
+		$platform = $CODBDATA["PHP_version"];
 
 		//
 	    //-- Generate page:
@@ -217,7 +250,7 @@ class Phpconfig extends MX_Controller {
 		//--- php_ini_security_settings
 		//
 
-		// PHP_version:
+		// PHP_version being used by Apache:
 		$PHP_version_Field = $factory->getTextField("PHP_version", $CODBDATA['PHP_version'], "r");
 		$PHP_version_Field->setOptional ('silent');
 		$block->addFormField(
@@ -225,6 +258,97 @@ class Phpconfig extends MX_Controller {
 		    $factory->getLabel("PHP_version"),
 		    "php_ini_security_settings"
 		);
+
+		if ($CODBDATA['PHP_version_os'] != $CODBDATA['PHP_version']) {
+			// PHP_version of the OS:
+			$PHP_version_os_Field = $factory->getTextField("PHP_version_os", $CODBDATA['PHP_version_os'], "r");
+			$PHP_version_os_Field->setOptional ('silent');
+			$block->addFormField(
+			    $PHP_version_os_Field,
+			    $factory->getLabel("PHP_version_os"),
+			    "php_ini_security_settings"
+			);
+		}
+
+		foreach ($known_php_versions as $NSkey => $NSvalue) {
+			$extraPHPs[$NSkey] = $cceClient->get($CODBDATA['OID'], $NSkey);
+			if ($extraPHPs[$NSkey]['present'] != "1") {
+				unset($extraPHPs[$NSkey]);
+			}
+		}
+
+		// Assemble data for getSetSelector() for enabling/disabling PHP versions:
+		if (count($extraPHPs) > "0") {
+
+			$all_php_versions = array('PHPOS' => $CODBDATA['PHP_version_os']);
+			$all_php_versions_reverse = array($CODBDATA['PHP_version_os'] => 'PHPOS');
+
+			$all_available_php_versions = array();
+			$all_available_php_versions_labels = array();
+			$permitted_php_versions = array();
+			$permitted_php_versions_labels = array();
+			$all_selectable_php_versions = array();
+
+			foreach ($extraPHPs as $NSkey => $NSvalue) {
+				if ($NSvalue['present'] == '1') {
+					$all_available_php_versions[] = $NSvalue['NAMESPACE'];
+					$all_available_php_versions_labels[] = $NSvalue['version'];
+					$all_php_versions[$NSvalue['NAMESPACE']] = $NSvalue['version'];
+					$all_php_versions_reverse[$NSvalue['version']] = $NSvalue['NAMESPACE'];
+					if ($NSvalue['enabled'] == '1') {
+						$permitted_php_versions[$NSvalue['NAMESPACE']] = '1';
+						$permitted_php_versions_labels[$NSvalue['NAMESPACE']] = $NSvalue['version'];
+						$all_selectable_php_versions[] = $NSvalue['NAMESPACE'];
+					}
+					else {
+						$permitted_php_versions[$NSvalue['NAMESPACE']] = '0';
+					}
+				}
+			}
+
+			$extraPHPversions =& $factory->getSetSelector('extraPHPversions',
+					$cceClient->array_to_scalar($permitted_php_versions_labels), 
+					$cceClient->array_to_scalar($all_available_php_versions_labels),
+					'allowedPHPversions', 'disallowedPHPversions',
+					"rw", 
+					$cceClient->array_to_scalar($all_selectable_php_versions),
+					$cceClient->array_to_scalar(array_keys($permitted_php_versions))
+				);
+
+			$extraPHPversions->setOptional(true);
+		}
+
+		// Add a pulldown that allows to change the default PHP version of Apache to
+		// one of the extra PHP versions:
+		$setDefaultPHPVersion_select = $factory->getMultiChoice("setDefaultPHPVersion", array_values($all_php_versions));
+		$setDefaultPHPVersion_select->setSelected($CODBDATA['PHP_version'], true);
+		$block->addFormField($setDefaultPHPVersion_select, $factory->getLabel("setDefaultPHPVersion"), "php_ini_security_settings");
+
+		// Display the getSetSelector():
+		if (count($extraPHPs) > "0") {
+			$block->addFormField($extraPHPversions, 
+					$factory->getLabel('extraPHPversions'),
+					"php_ini_security_settings"
+				);
+
+			// Hmmm .... not ideal. Need to throw in a spacer or the getSetSelector() displays oddly:
+			$block->addFormField(
+				$factory->getRawHTML("Spacer", '<IMG BORDER="0" WIDTH="120" HEIGHT="0" SRC="/libImage/spaceHolder.gif">'),
+				$factory->getLabel("Spacer"),
+				"php_ini_security_settings"
+			);
+
+			// If a PHP-5.3 is present, we show the checkbox that allows to sets its 'register_globals_exception' to on:
+			if (isset($extraPHPs['PHP53'])) {
+				if ($permitted_php_versions['PHP53'] == '1') {
+					$block->addFormField(
+						$factory->getBoolean('register_globals_exception', $CODBDATA['register_globals_exception'], "rw"),
+						$factory->getLabel('register_globals_exception'), 
+						"php_ini_security_settings"
+						);
+				}
+			}
+		}
 
 		// php.ini location:
 		$php_ini_location_Field = $factory->getTextField("php_ini_location", $CODBDATA['php_ini_location'], "r");

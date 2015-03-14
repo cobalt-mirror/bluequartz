@@ -36,13 +36,7 @@ use Base::Httpd qw(httpd_get_vhost_conf_file);
 my $cce = new CCE;
 my $conf = '/var/lib/cobalt';
 
-# Location of config file in which 3rd party vendors can
-# specify where their 3rd party PHP's php.ini is located:
-#
-# IMPORTANT: Do NOT modify the line below, as this script WILL
-# be updated through YUM from time to time. Which overwrites
-# any changes you make in here!
-$thirdparty = "/etc/thirdparty_php";
+$extra_PHP_basepath = '/home/solarspeed/';
 
 # Location of php.ini - may get overridden by thirdparty_check():
 $php_ini = "/etc/php.ini";
@@ -60,8 +54,9 @@ if ($whatami eq "handler") {
 
     # Get Object PHP from CODB to find out which PHP version we use:
     @sysoids = $cce->find('PHP');
-    ($ok, $mySystem) = $cce->get($sysoids[0]);
-    $platform = $mySystem->{'PHP_version'};
+    $PHP_server_OID = $sysoids[0];
+    ($ok, $PHP) = $cce->get($PHP_server_OID);
+    $platform = $PHP->{'PHP_version'};
     if ($platform >= "5.3") {
         # More modern PHP found:
         $legacy_php = "0";
@@ -75,6 +70,63 @@ if ($whatami eq "handler") {
     @system_oid = $cce->find('System');
     ($ok, $tzdata) = $cce->get($system_oid[0], "Time");
     $timezone = $tzdata->{'timeZone'};
+
+    #
+    ## Check for presence of third party extra PHP versions:
+    #
+
+    # Known PHP versions:
+    %known_php_versions = (
+                            'PHP53' => '5.3',
+                            'PHP54' => '5.4',
+                            'PHP55' => '5.5',
+                            'PHP56' => '5.6'
+                            );
+
+    # Known PHP-FPM pool ports:
+    %known_pool_ports = (
+                            'PHPOS' => '9000',
+                            'PHP53' => '8953',
+                            'PHP54' => '8954',
+                            'PHP55' => '8955',
+                            'PHP56' => '8956'
+                            );
+
+    # Check if known extra PHP versions are present. If so, update CODB accordingly:
+    if (defined($PHP_server_OID)) {
+        for $phpVer (keys %known_php_versions) {
+            $phpFpmPath = $extra_PHP_basepath . "php-" . $known_php_versions{$phpVer} . "/sbin/php-fpm";
+            $phpBinaryPath = $extra_PHP_basepath . "php-" . $known_php_versions{$phpVer} . "/bin/php";
+            $known_php_inis{$phpVer} = $extra_PHP_basepath . "php-" . $known_php_versions{$phpVer} . "/etc/php.ini";
+            $reportedVersion = `$phpBinaryPath -v|grep "(cli)"|awk {'print \$2'}`;
+            chomp($reportedVersion);
+            $seen_php_versions{$phpVer} = $reportedVersion;
+            $seen_php_versions{$reportedVersion} = $phpVer;
+            # Add FPM pool files to the mix:
+            $xpool_file = '/etc/php-fpm-' . $known_php_versions{$phpVer} . '.d/www.conf';
+            $xpool_directory = '/etc/php-fpm-' . $known_php_versions{$phpVer} . '.d/';
+            if ( -f $xpool_file ) {
+                $known_php_fpm_pool_files{$phpVer} = $xpool_file;
+                $known_php_fpm_pool_directories{$phpVer} = $xpool_directory;
+                $known_php_fpm_pool_services{$phpVer} = 'php-fpm-' . $known_php_versions{$phpVer};
+            }
+            else {
+                &debug_msg("Not adding $xpool_file as it's not there! \n");
+            }
+        }
+    }
+    else {
+        $cce->bye('FAIL');
+        exit(1);
+    }
+
+    # Add the OS related PHP into the mix as well:
+    $known_php_inis{'PHPOS'} = $php_ini;
+    $seen_php_versions{'PHPOS'} = $PHP->{'PHP_version_os'};
+    $seen_php_versions{$PHP->{'PHP_version_os'}} = 'PHPOS';
+    $known_php_fpm_pool_files{'PHPOS'} = '/etc/php-fpm.d/www.conf';
+    $known_php_fpm_pool_directories{'PHPOS'} = '/etc/php-fpm.d/';
+    $known_php_fpm_pool_services{'PHPOS'} = 'php-fpm';
 
     # Check for presence of third party config file:
     &thirdparty_check;
@@ -91,6 +143,8 @@ if ($whatami eq "handler") {
 
     # Get PHP:
     ($ok, $vsite_php) = $cce->get($oid, "PHP");
+
+    &debug_msg("Vsite is supposed to be using $vsite_php->{'version'} and " . $seen_php_versions{$vsite_php->{'version'}} . " \n");
 
     # Find out what 'open_basedir' needs to be set to:
     &open_basedir_handling;
@@ -110,6 +164,11 @@ if ($whatami eq "handler") {
         $basedir_vsite = $vsite->{"basedir"};
         $custom_php_ini_path = $vsite->{'basedir'} . "/php.ini";
         
+        # If it exists, use the php.ini of the version of PHP specified:
+        if ( -f $known_php_inis{$vsite_php->{'version'}}) {
+            $php_ini = $known_php_inis{$vsite_php->{'version'}};
+        }
+
         if ($vsite_php->{'suPHP_enabled'} == "1") {
 
             # If there is already a custom php.ini, delete it first:
@@ -126,7 +185,7 @@ if ($whatami eq "handler") {
 
             # Run a search and replace through Vsite php.ini to update it with the PHP
             # settings configured for this site:
-            &debug_msg("Configuring $custom_php_ini_path through php_vsite_handler.pl \n");
+            &debug_msg("Configuring $custom_php_ini_path through php_vsite_handler.pl, using $php_ini as template. \n");
             &edit_php_ini;
 
             # Protect Vsite php.ini against modification.
@@ -353,24 +412,19 @@ sub debug_msg {
 
 sub thirdparty_check {
     # Check for presence of third party config file:
-    if (-f $thirdparty) {
-        open (F, $thirdparty) || die "Could not open $thirdparty: $!";
-        while ($line = <F>) {
-            chomp($line);
-            next if $line =~ /^\s*$/;                   # skip blank lines
-            next if $line =~ /^#$/;                     # skip comments
-            if ($line =~ /^\/(.*)\/php\.ini$/) {
-                $php_ini = $line;
-            }  
-        }
-        close(F); 
-    }
+    $php_ini = $known_php_inis{$seen_php_versions{$platform}};
+    &debug_msg("Using php.ini $php_ini " . " for platform " . $seen_php_versions{$platform} . "\n");
+
 }
 
 sub edit_php_ini {
 
-    if ($platform >= "5.4") {
+    if ($vsite_php->{'version'} ne "PHP53") {
+        &debug_msg("PHP version is $vsite_php->{'version'} - turning 'register_globals' off.\n");
         $vsite_php_settings->{"register_globals"} = "Off";
+    }
+    else {
+        &debug_msg("Keeping 'register_globals' as it is as we're using: " . $vsite_php->{'version'} . "\n");
     }
 
     if ($legacy_php == "0") {
@@ -443,12 +497,12 @@ sub open_basedir_handling {
     # Get 'open_basedir' settings for this Vsite:
     @vsite_php_settings_temporary = split(":", $vsite_php_settings->{"open_basedir"});
     # Get 'open_basedir' settings for the entire server:
-    @my_server_php_settings_temp = split(":", $mySystem->{'open_basedir'});
+    @my_server_php_settings_temp = split(":", $PHP->{'open_basedir'});
     # Merge them:
     @vsite_php_settings_temp_joined = (@vsite_php_settings_temporary, @my_server_php_settings_temp);
 
     # For debugging:
-    &debug_msg("Server settings for 'open_basedir': $mySystem->{'open_basedir'} \n");
+    &debug_msg("Server settings for 'open_basedir': $PHP->{'open_basedir'} \n");
     &debug_msg("User additions for 'open_basedir' : $vsite_php_settings->{'open_basedir'} \n");
 
     # Remove duplicates from merged array:
@@ -500,6 +554,10 @@ sub handle_fpm_pools {
     # Get group just to be sure:
     $pool_group = $vsite->{"name"};
 
+    # Pool directory:
+    &debug_msg("Using " . $vsite_php->{'version'} . " pool directory: $known_php_fpm_pool_directories{$vsite_php->{'version'}} \n");
+    $pool_directory = $known_php_fpm_pool_directories{$vsite_php->{'version'}};
+
     # Pool Port:
     # Assign a port number based on the GID of the Vsite.
     # Our GID's for siteX start at 1001, so we need to add
@@ -519,14 +577,23 @@ sub handle_fpm_pools {
     }
 
     # Location of the PHP-FPM pool file:
-    $pool_file = "/etc/php-fpm.d/$pool_group.conf";
-
-    if ($vsite_php->{'fpm_enabled'} == "0") {
-        &debug_msg("Deleting PHP-FPM pool config $pool_file through php_vsite_handler.pl \n");
-        # Delete Pool file:
-        system("/bin/rm -f $pool_file");
+    $pool_file_wildcard = '/etc/php-fpm*.d/';
+    if (-d $pool_directory) {
+        $pool_file = $pool_directory . "$pool_group.conf";
     }
     else {
+        $pool_file = "/etc/php-fpm.d/$pool_group.conf";
+    }
+
+    if ($vsite_php->{'fpm_enabled'} == "0") {
+        &debug_msg("Deleting PHP-FPM pool config $pool_file_wildcard$pool_group.conf through php_vsite_handler.pl \n");
+        # Delete Pool file from all pools:
+        system("/bin/rm -f $pool_file_wildcard$pool_group.conf");
+    }
+    else {
+
+        &debug_msg("Removing $pool_file_wildcard$pool_group.conf \n");
+        system("/bin/rm -f $pool_file_wildcard$pool_group.conf");
 
         &debug_msg("Creating PHP-FPM pool config $pool_file through php_vsite_handler.pl \n");
         
@@ -591,6 +658,14 @@ sub handle_fpm_pools {
             }
         }
 
+        if ($vsite_php->{'version'} ne "PHP53") {
+            &debug_msg("PHP version is $vsite_php->{'version'} - turning 'register_globals' off.\n");
+            $vsite_php_settings->{"register_globals"} = "Off";
+        }
+        else {
+            &debug_msg("Keeping 'register_globals' as it is as we're using: " . $vsite_php->{'version'} . "\n");
+        }
+
         if ($vsite_php_settings->{"register_globals"} ne "") {
             $pool_conf .= 'php_admin_flag[register_globals] = ' . $vsite_php_settings->{"register_globals"} . "\n"; 
         }
@@ -606,7 +681,7 @@ sub handle_fpm_pools {
         }
 
         if ($vsite_php_settings->{"post_max_size"} ne "") {
-            $pool_conf .= 'php_admin_value[post_max_size] =' . $vsite_php_settings->{"post_max_size"} . "\n"; 
+            $pool_conf .= 'php_admin_value[post_max_size] = ' . $vsite_php_settings->{"post_max_size"} . "\n"; 
         }
         if ($vsite_php_settings->{"upload_max_filesize"} ne "") {
             $pool_conf .= 'php_admin_value[upload_max_filesize] = ' . $vsite_php_settings->{"upload_max_filesize"} . "\n"; 
@@ -634,12 +709,10 @@ sub handle_fpm_pools {
             $cce->bye('FAIL', '[[base-apache.cantEditVhost]]');
             exit(1);
         }
+
+        system("/usr/bin/chmod 644 $pool_file");
+
     }
-
-    # Restart PHP-FPM:
-    &debug_msg("Reloading PHP-FPM through php_vsite_handler.pl \n");
-    service_run_init('php-fpm', 'reload');
-
 }
 
 sub pool_printer {
