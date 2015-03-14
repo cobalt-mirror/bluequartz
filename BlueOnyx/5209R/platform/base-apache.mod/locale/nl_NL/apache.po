@@ -434,3 +434,11 @@ msgstr "[[base-apache.amPHPFPMNameTag]] 5.6"
 msgid "amPHPFPM56NotRunning"
 msgstr "De service [[base-apache.amPHPFPM56NameTag]] draait niet en kon niet worden hervat. Kijk dan op de logfiles voor foutmeldingen in verband met deze service en run 'systemctl status php-fpm-5.6.service' als root vanaf de opdrachtregel om het probleem op te lossen. Als u nog steeds geen toegang tot de [[base-apache.amPHPFPM56NameTag]], kunt u terecht op [[base-sauce-basic.techSupportURL]] voor technische ondersteuning."
 
+##
+
+msgid "PHP_version"
+msgstr "[[base-apache.PHP_version_Field]]"
+
+msgid "PHP_version_help"
+msgstr "[[base-apache.PHP_version_Field_help]]"
+

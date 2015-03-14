@@ -480,3 +480,10 @@ msgstr "[[base-apache.amPHPFPMNameTag]] 5.6"
 msgid "amPHPFPM56NotRunning"
 msgstr "Servicen [[base-apache.amPHPFPM56NameTag]] kører ikke, og kunne ikke genstartes. Husk at tjekke logfiler for fejlmeddelelser relateret til denne tjeneste og køre 'systemctl status php-fpm-5.6.service' som root fra kommandolinjen for at finde problemet. Hvis du stadig ikke kan få adgang til [[base-apache.amPHPFPM56NameTag]], kan du besøge [[base-sauce-basic.techSupportURL]] til teknisk support."
 
+##
+
+msgid "PHP_version"
+msgstr "[[base-apache.PHP_version_Field]]"
+
+msgid "PHP_version_help"
+msgstr "[[base-apache.PHP_version_Field_help]]"
