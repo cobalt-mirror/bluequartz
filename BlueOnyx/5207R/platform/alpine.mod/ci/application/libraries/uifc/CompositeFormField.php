@@ -102,7 +102,7 @@ class CompositeFormField extends FormField {
 
     // Sadly we have to use "box grid_16" here. Without works fine in FireFox and Safari. 
     // But IE then craps out and misformats the next field that's below our Composite.
-    $result = '<!-- Composite: Start -->' . "\n" . '<div class="box grid_16">' . "\n" . '   <div class="columns">' . "\n";
+    $result = '<!-- Composite: Start -->' . "\n" . '<div class="box2 grid_16">' . "\n" . '   <div class="columns">' . "\n";
 
     $delimiter = $this->getDelimiter();
     $formFields = $this->getFormFields();

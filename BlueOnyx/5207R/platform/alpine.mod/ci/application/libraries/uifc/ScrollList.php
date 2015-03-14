@@ -100,7 +100,7 @@ class ScrollList extends HtmlComponentFactory {
   // description: set the message to be displayed when the list is empty
   // param: msg: an I18n tag of the form [[domain.messageId]] for interpolation
   function setEmptyMessage($msg = "") {
-	   $this->emptyMsg = $msg;
+     $this->emptyMsg = $msg;
   }
 
   // description: get all buttons added to the list
@@ -409,7 +409,7 @@ class ScrollList extends HtmlComponentFactory {
                                   <tr>' . "\n";
 
     foreach($this->entryLabels as $key) {
-      $result .= '                                    <th style="width: 100%;"><label for="' . $key . '" title="' . $this->i18n->getWrapped($key . '_help') . '" class="tooltip hover">' . $this->i18n->getHtml($key) . '</label></th>' . "\n";
+      $result .= '                                    <th class="datatable_head"><label for="' . $key . '" title="' . $this->i18n->getWrapped($key . '_help') . '" class="tooltip hover">' . $this->i18n->getHtml($key) . '</label></th>' . "\n";
     }
 
     $result .= '
@@ -447,6 +447,7 @@ class ScrollList extends HtmlComponentFactory {
         }
       }
 
+      $columHeaders = array();
       while ($x_numColumns != $numColumns) {
 
         // find out alignment
@@ -456,6 +457,7 @@ class ScrollList extends HtmlComponentFactory {
         // get the width for this column (if specified):
         if (isset($this->columnWidths)) {
           $columnWidths = $this->getColumnWidths();
+
           if (isset($columnWidths[$x_numColumns])) {
             $width = $columnWidths[$x_numColumns];
             if (preg_match('/(.*)%/', $width)) {
@@ -464,15 +466,12 @@ class ScrollList extends HtmlComponentFactory {
             else {
               $suffix = "px";
             }
-            $result .= '                  <td style="vertical-align:middle; text-align:' . $alignment . '; width: ' . $width . $suffix . ';">' . $this->entries[$x_numColumns][$x_numRows] . '</td>' . "\n";          
-          }
-          else {
-            $result .= '                  <td style="vertical-align:middle; text-align:' . $alignment . ';">' . $this->entries[$x_numColumns][$x_numRows] . '</td>' . "\n";
+            $columnIdentifier = 'dt_' . $x_numColumns;
+            $columHeaders[$this->id][$columnIdentifier]["width"] = $width . $suffix;
+            $columHeaders[$this->id][$columnIdentifier]["alignment"] = $alignment;
           }
         }
-        else {
-          $result .= '                  <td style="vertical-align:middle; text-align:' . $alignment . ';">' . $this->entries[$x_numColumns][$x_numRows] . '</td>' . "\n";
-        }
+        $result .= '                  <td class="' . $alignment . ' dt_' . $x_numColumns . '">' . $this->entries[$x_numColumns][$x_numRows] . '</td>' . "\n";
         $x_numColumns++;
       }
       $x_numRows++;
@@ -484,6 +483,33 @@ class ScrollList extends HtmlComponentFactory {
                                 </table>
                         </div>
                 </div>';
+
+    // Set extra headers for colum width (if applicable);
+    if (isset($columHeaders)) {
+      foreach ($columHeaders as $Tkey => $Tvalue) {
+        if (count($Tvalue) > "0") {
+
+          // Main Style:
+          $tableExtraWidthHeader = "<style>\n";
+          $tableExtraWidthHeader .= ".dataTables_wrapper table {\n";
+          $tableExtraWidthHeader .= "  display: table;\n";
+          $tableExtraWidthHeader .= "  width: 100% !important;\n";
+          $tableExtraWidthHeader .= "}\n";
+          $tableExtraWidthHeader .= "\n";
+
+          // Loop through all columns and create styles for them, too:
+          foreach ($Tvalue as $Wkey => $Wvalue) {
+            $tableExtraWidthHeader .= "#" . $this->id . " ." . $Wkey . " {\n";
+            $tableExtraWidthHeader .= "  width: " . $Wvalue['width'] . " !important;\n";
+            $tableExtraWidthHeader .= "  text-align: " . $Wvalue['alignment'] . ";\n";
+            $tableExtraWidthHeader .= "}\n";
+          }
+          $tableExtraWidthHeader .= "</style>\n";
+        }
+      }
+      // Push the extra CSS-headers out:
+      $this->BxPage->setExtraHeaders($tableExtraWidthHeader);
+    }
 
     // Sort the entries
     if(!isset($this->sortedIndex)) {
@@ -717,8 +743,8 @@ class ScrollList extends HtmlComponentFactory {
 }
 
 /*
-Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 All Rights Reserved.
 
 1. Redistributions of source code must retain the above copyright 

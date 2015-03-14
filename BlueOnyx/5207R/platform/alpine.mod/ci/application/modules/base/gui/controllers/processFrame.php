@@ -243,6 +243,11 @@ class ProcessFrame extends MX_Controller {
 			$BxPage->setExtraHeaders('<SCRIPT LANGUAGE="javascript">setTimeout("window.location.reload();", 7000);</SCRIPT>');
 		}
 
+		// Make sure the $message is not empty!
+		if ($message == "") {
+			$message = "[[palette.500text]]";
+		}
+
 		$block->addFormField(
 		  $factory->getTextField("messageField", $i18n->interpolate($message), "r"),
 		  $factory->getLabel("messageField"),
@@ -304,8 +309,8 @@ class ProcessFrame extends MX_Controller {
 	}		
 }
 /*
-Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 All Rights Reserved.
 
 1. Redistributions of source code must retain the above copyright 
