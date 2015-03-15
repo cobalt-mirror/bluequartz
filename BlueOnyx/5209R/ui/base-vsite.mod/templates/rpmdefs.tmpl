@@ -136,6 +136,13 @@ fi
 
 <begin $CHANGELOG>
 
+* Sat Mar 14 2015 Michael Stauber <mstauber@solarspeed.net> 4.2-0BX30
+- Updated requirements for module to include everything that the third party
+  PHP needs. We no longer need to fit 5209R onto a CD, so we can as well
+  include some baggage to streamline PKG installs. Especially as the various
+  PHP packages all have the same dependencies and would each need to contain
+  the baggage (or need to YUM install them).
+
 * Sat Mar 14 2015 Michael Stauber <mstauber@solarspeed.net> 4.2-0BX29
 - Bugfix in glue/sbin/vsite_destroy.pl: It was using the wrong UID and GID to
   create the /tmp/paletteStatus/ directory and contends. Switched to 'admserv'.
