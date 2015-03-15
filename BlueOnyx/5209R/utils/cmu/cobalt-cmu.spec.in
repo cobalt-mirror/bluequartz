@@ -3,7 +3,7 @@
 Summary: Cobalt Migration Utility
 Name: [PRODUCT]-cmu
 Version: [VERSION]
-Release: 0BX01%{?dist}
+Release: 0BX02%{?dist}
 Vendor: Team BlueOnyx
 License: Sun modified BSD
 Group: Applications/Archiving
@@ -64,6 +64,12 @@ rm -rf $RPM_BUILD_ROOT
 %attr(644,root,man) /usr/man/*/*
 
 %changelog
+
+* Sun Mar 15 2015 Michael Stauber <mstauber@solarspeed.net>
+- version 2.93-0BX02
+- As 5209R got extended with support for various PHP versions
+  we need to remove the PHP 'version' field on imports on older
+  platforms, as they don't have it.
 
 * Sat Jan 31 2015 Michael Stauber <mstauber@solarspeed.net>
 - version 2.93-0BX01
