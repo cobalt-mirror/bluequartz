@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=vsite
 
 VERSION=4.2
-RELEASE=0BX30
+RELEASE=0BX31
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -20,7 +20,7 @@ BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=no
 
-REQUIRES= base-email-capstone sausalito-i18n sausalito-cce-server base-admserv-capstone perl-handler-utils mod_suphp mod_authnz_external ImageMagick icu libicu-devel libmcrypt libmhash libmhash-devel libssh2 libssh2-devel libssh2-docs aspell postgresql postgresql-libs freetds freetds-doc
+REQUIRES= base-email-capstone sausalito-i18n sausalito-cce-server base-admserv-capstone perl-handler-utils mod_suphp mod_authnz_external ImageMagick icu libicu-devel libmcrypt libmhash libmhash-devel libssh2 libssh2-devel libssh2-docs aspell postgresql postgresql-libs freetds freetds-doc libdb4
 OBSOLETES= nuonce-hostsfix
 
 #########
