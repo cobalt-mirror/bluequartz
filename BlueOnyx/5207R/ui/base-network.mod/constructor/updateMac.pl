@@ -29,6 +29,13 @@ foreach my $oid (@oids) {
     $DEBUG && print STDERR "mac address for device $device: $mac\n";
     my ($ok) = $cce->set($oid, '', { 'mac' => $mac });
   }
+ 
+  # For 5209R (as ifconfig has a new format):
+  if ($data =~ m/ether ($hex:$hex:$hex:$hex:$hex:$hex)/) {
+    my $mac = $1;
+    $DEBUG && print STDERR "mac address for device $device: $mac\n";
+    my ($ok) = $cce->set($oid, '', { 'mac' => $mac });
+  }
 }
 
 $cce->bye('SUCCESS');
