@@ -23,10 +23,9 @@ my %am_states = am_get_statecodes();
 $enabled = Sauce::Service::service_get_init($service);
 &debug_msg("Service $service is enabled. \n");
 
-if ($enabled eq "0") {
-    Sauce::Service::service_set_init($service, 'on');
-    Sauce::Service::service_run_init($service, 'restart');
-    &debug_msg("Service $service was not enabled. But it is enabled now and has been started.\n");
+if (($enabled eq "0") || (! -d '/home/solarspeed/php-5.3')) {
+    $cce->bye('SUCCESS');
+    exit $am_states{AM_STATE_NOINFO};
 }
 
 # Check Status:

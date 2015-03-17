@@ -1,7 +1,7 @@
 Summary: Active Monitor support for base-apache-am
 Name: base-apache-am
 Version: 1.0.6
-Release: 0BX01%{?dist}
+Release: 0BX02%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -25,6 +25,10 @@ This package contains binaries and scripts used by the Active Monitor
 subsystem for base-apache-am.  
 
 %changelog
+
+* Mon Mar 16 2015 Michael Stauber <mstauber@solarspeed.net> 1.0.6-0BX02
+- Small fix to AM scripts for the extra PHP versions. If no extra PHP is
+  present, we exit with noInfo instead.
 
 * Fri Mar 13 2015 Michael Stauber <mstauber@solarspeed.net> 1.0.6-0BX01
 - Added monitoring for PHP-FPM of extra PHP versions.
