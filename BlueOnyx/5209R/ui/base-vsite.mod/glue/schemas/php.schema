@@ -147,45 +147,45 @@
 
 <class name="PHP" namespace="PHP53" version="1.0" createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)">
     <property
-        name="present" type="boolean" default="0" readacl="ruleCapable(adminUser)"
+        name="present" type="boolean" default="0" 
     />
     <property
-        name="enabled" type="boolean" default="0" readacl="ruleCapable(adminUser)"
+        name="enabled" type="boolean" default="0" 
     />
     <property
-        name="version" type="scalar" default="" optional="true" readacl="ruleCapable(adminUser)"
+        name="version" type="scalar" default="" optional="true" 
     />
 </class>
 <class name="PHP" namespace="PHP54" version="1.0" createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)">
     <property
-        name="present" type="boolean" default="0" readacl="ruleCapable(adminUser)"
+        name="present" type="boolean" default="0" 
     />
     <property
-        name="enabled" type="boolean" default="0" readacl="ruleCapable(adminUser)"
+        name="enabled" type="boolean" default="0" 
     />
     <property
-        name="version" type="scalar" default="" optional="true" readacl="ruleCapable(adminUser)"
+        name="version" type="scalar" default="" optional="true" 
     />
 </class>
 <class name="PHP" namespace="PHP55" version="1.0" createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)">
     <property
-        name="present" type="boolean" default="0" readacl="ruleCapable(adminUser)"
+        name="present" type="boolean" default="0" 
     />
     <property
-        name="enabled" type="boolean" default="0" readacl="ruleCapable(adminUser)"
+        name="enabled" type="boolean" default="0" 
     />
     <property
-        name="version" type="scalar" default="" optional="true" readacl="ruleCapable(adminUser)"
+        name="version" type="scalar" default="" optional="true" 
     />
 </class>
 <class name="PHP" namespace="PHP56" version="1.0" createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)">
     <property
-        name="present" type="boolean" default="0" readacl="ruleCapable(adminUser)"
+        name="present" type="boolean" default="0" 
     />
     <property
-        name="enabled" type="boolean" default="0" readacl="ruleCapable(adminUser)"
+        name="enabled" type="boolean" default="0" 
     />
     <property
-        name="version" type="scalar" default="" optional="true" readacl="ruleCapable(adminUser)"
+        name="version" type="scalar" default="" optional="true" 
     />
 </class>
