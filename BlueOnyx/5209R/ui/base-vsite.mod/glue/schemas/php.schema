@@ -24,7 +24,7 @@
         />
        <property name="safe_mode"
             type="scalar"
-            default="On"
+            default="Off"
             writeacl="ruleCapable(adminUser)"
         />
        <property name="safe_mode_exception"
@@ -83,25 +83,25 @@
         />
        <property name="allow_url_fopen"
             type="scalar"
-            default=""
+            default="Off"
             optional="true"
             writeacl="ruleCapable(adminUser)"
         />
        <property name="allow_url_include"
             type="scalar"
-            default=""
+            default="Off"
             optional="true"
             writeacl="ruleCapable(adminUser)"
         />
        <property name="upload_max_filesize"
             type="scalar"
-            default=""
+            default="2M"
             optional="true"
             writeacl="ruleCapable(adminUser)"
         />
        <property name="post_max_size"
             type="scalar"
-            default=""
+            default="8M"
             optional="true"
             writeacl="ruleCapable(adminUser)"
         />

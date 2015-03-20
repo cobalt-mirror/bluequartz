@@ -8,6 +8,10 @@
 
 # Debugging switch:
 $DEBUG = "0";
+if ($DEBUG)
+{
+        use Sys::Syslog qw( :DEFAULT setlogsock);
+}
 
 # Uncomment correct type:
 $whatami = "constructor";
@@ -56,6 +60,18 @@ else {
 
 # Check if known extra PHP versions are present. If so, update CODB accordingly:
 @PHPObject = $cce->find('PHP');
+
+# Get 'System' Object:
+@system_oid = $cce->find('System');
+($ok, $System) = $cce->get($system_oid[0]);
+
+# Create 'PHP' Object if it's not there yet:
+if (!defined($PHPObject[0])) {
+	&debug_msg("No 'PHP' Object present yet! Creating it!\n");
+	($ok) = $cce->create('PHP');
+	@PHPObject = $cce->find('PHP');
+}
+
 if (defined($PHPObject[0])) {
 	($ok, $PHP) = $cce->get($PHPObject[0]);
 	for $phpVer (keys %known_php_versions) {
@@ -75,6 +91,7 @@ if (defined($PHPObject[0])) {
 	}
 }
 else {
+	&debug_msg("No 'PHP' Object present! \n");
 	$cce->bye('FAIL');
 	exit(1);
 }
@@ -193,18 +210,18 @@ sub ini_read {
 	close(F);
 
 	# At this point we have all switches from php.ini cleanly in a hash, split in key / value pairs.
-	# To read how "safe_mode" is set we query $CONFIG{'safe_mode'} for example. 
+	# To read how "memory_limit" is set we query $CONFIG{'memory_limit'} for example. 
 
 	# For debugging only:
 	if ($DEBUG > "1") {
 		while (my($k,$v) = each %CONFIG) {
-			print "$k => $v\n";
+			&debug_msg("$k => $v\n");
 		}
 	}
 
 	# For debugging only:
 	if ($DEBUG == "1") {
-		print "safe mode: " . $CONFIG{'safe_mode'} . "\n";
+		&debug_msg("memory_limit: " . $CONFIG{'memory_limit'} . "\n");
 	}
 
 }
@@ -212,12 +229,9 @@ sub ini_read {
 sub verify {
 
 	# Find out if we have ever run before:
-	@oids = $cce->find('PHP', {'applicable' => 'server'});
-	if ($#oids < 0) {
+	$first_run = "0";
+	if ($System->{'isLicenseAccepted'} eq "0") {
 		$first_run = "1";
-	}
-	else {
-		$first_run = "0";    
 	}
 
 	# Go through list of config switches we're interested in:
@@ -240,17 +254,26 @@ sub verify {
 			if (($entry eq "safe_mode_allowed_env_vars") && ($first_run eq "1")) {
 				$CONFIG{"$entry"} = "PHP_,_HTTP_HOST,_SCRIPT_NAME,_SCRIPT_FILENAME,_DOCUMENT_ROOT,_REMOTE_ADDR,_SOWNER";
 			}
+			if (($entry eq "post_max_size") && ($CONFIG{"$entry"} eq "")) {
+				$CONFIG{"$entry"} = "2M";
+			}
+			if (($entry eq "upload_max_filesize") && ($CONFIG{"$entry"} eq "")) {
+				$CONFIG{"$entry"} = "8M";
+			}
+			if ($DEBUG == "1") {
+				print $entry . " has no value!\n";
+			}
 		}
-		if ($first_run eq "1") {
+		if (($first_run eq "1") || ($System->{'productBuild'} ne "5106R")) {
 			# If we're indeed running for the first time, make sure safe defaults
 			# are set for all our remaining switches of most importance:
-			$CONFIG{"safe_mode"} = "On";
+			$CONFIG{"safe_mode"} = "Off";
 			$CONFIG{"register_globals"} = "Off";
 			$CONFIG{"allow_url_fopen"} = "Off";
 		}
 		# For debugging only:
 		if ($DEBUG == "1") {
-			print $entry . " = " . $CONFIG{"$entry"} . "\n";
+			&debug_msg($entry . " = " . $CONFIG{"$entry"} . "\n");
 		}
     }
 
@@ -305,11 +328,13 @@ sub feedthemonster {
 	}
 	$CONFIG{"safe_mode_allowed_env_vars"} = join(",", @safe_mode_allowed_env_vars);
 
-	@oids = $cce->find('PHP', {'applicable' => 'server'});
+	@oids = $cce->find('PHP');
 	if ($#oids < 0) {
 		# Object not yet in CCE. Creating new one and forcing re-write of php.ini by setting "force_update":
+		&debug_msg("CLASS 'PHP' not found! Creating it!!! \n");
 		($ok) = $cce->create('PHP', {
 			'applicable' => 'server',
+			'PHP_version' => $PHP_version,
 			'PHP_version_os' => $PHP_version,
 			'safe_mode' => $CONFIG{"safe_mode"},  
 			'safe_mode_allowed_env_vars' => $CONFIG{"safe_mode_allowed_env_vars"},   
@@ -334,8 +359,12 @@ sub feedthemonster {
 	}
 	else {
 		# Object already present in CCE. Updating it, NOT forcing a rewrite of php.ini.
-		($sys_oid) = $cce->find('PHP', {'applicable' => 'server'});
+		($sys_oid) = $cce->find('PHP');
 		($ok, $sys) = $cce->get($sys_oid);
+		&debug_msg("CLASS 'PHP' was found! (Object $system_oid) Using it!!! \n");
+		if ($sys->{'PHP_version'} eq "") {
+			($ok) = $cce->set($sys_oid, '',{ 'PHP_version' => $PHP_version });
+		}
 		($ok) = $cce->set($sys_oid, '',{
 			'PHP_version_os' => $PHP_version,  
 			'safe_mode' => $CONFIG{"safe_mode"},  
@@ -393,6 +422,17 @@ sub fpm_init {
 			($ok) = $cce->set($sys_oid, '',{ 'force_update' => time() });
 		}
 	}
+}
+
+sub debug_msg {
+    if ($DEBUG) {
+        my $msg = shift;
+        $user = $ENV{'USER'};
+        setlogsock('unix');
+        openlog($0,'','user');
+        syslog('info', "$ARGV[0]: $msg");
+        closelog;
+    }
 }
 
 $cce->bye('SUCCESS');

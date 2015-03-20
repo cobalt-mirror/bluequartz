@@ -67,8 +67,11 @@ if ($whatami eq "handler") {
         $legacy_php = "1";
     }
 
-    # Get system Timezone out of CODB:
+    # Get 'System' Object:
     @system_oid = $cce->find('System');
+    ($ok, $System) = $cce->get($system_oid[0]);
+
+    # Get system Timezone out of CODB:
     ($ok, $tzdata) = $cce->get($system_oid[0], "Time");
     $timezone = $tzdata->{'timeZone'};
 
@@ -198,8 +201,8 @@ if ($whatami eq "handler") {
             $new_vsite_php_settings_writeoff->{'register_globals'} = 'On';
         }
 
-        &debug_msg("Populating new Vsite's PHPVsite with defaults from Server's PHP config.\n");
-        ($ok) = $cce->set($oid, 'PHPVsite', $new_vsite_php_settings_writeoff);
+        #&debug_msg("Populating new Vsite's PHPVsite with defaults from Server's PHP config.\n");
+        #($ok) = $cce->set($oid, 'PHPVsite', $new_vsite_php_settings_writeoff);
     }
 
     # We're creating or modifying the main server PHP object:
@@ -281,6 +284,12 @@ sub ini_read {
 
     # At this point we have all switches from php.ini cleanly in a hash, split in key / value pairs.
     # To read how "safe_mode" is set we query $CONFIG{'safe_mode'} for example. 
+
+    if ($System->{'productBuild'} ne "5106R") {
+        # If we're indeed running for the first time, make sure safe defaults
+        # are set for all our remaining switches of most importance:
+        $CONFIG{"safe_mode"} = "Off";
+    }
 
 }
 
@@ -459,13 +468,9 @@ sub update_vsites {
 
     # Walk through all Vsites:
     for my $vsite (@vhosts) {
-    ($ok, my $my_vsite) = $cce->get($vsite);
-
-    &debug_msg("Updating PHP settings for Vsite $my_vsite->{fqdn} \n");
-
-    ($ok) = $cce->set($vsite, 'PHPVsite',{
-            'force_update' => time()
-        });
+        ($ok, my $my_vsite) = $cce->get($vsite);
+        &debug_msg("Updating PHP settings for Vsite $my_vsite->{fqdn} \n");
+        ($ok) = $cce->set($vsite, 'PHPVsite',{ 'force_update' => time() });
     }
 }
 
