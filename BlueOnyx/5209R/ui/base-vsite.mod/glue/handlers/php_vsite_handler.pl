@@ -102,6 +102,7 @@ if ($whatami eq "handler") {
             chomp($reportedVersion);
             $seen_php_versions{$phpVer} = $reportedVersion;
             $seen_php_versions{$reportedVersion} = $phpVer;
+            $phpPEARpath{$phpVer} = $extra_PHP_basepath . "php-" . $known_php_versions{$phpVer} . "/share/pear";
             # Add FPM pool files to the mix:
             $xpool_file = '/etc/php-fpm-' . $known_php_versions{$phpVer} . '.d/www.conf';
             $xpool_directory = '/etc/php-fpm-' . $known_php_versions{$phpVer} . '.d/';
@@ -124,6 +125,7 @@ if ($whatami eq "handler") {
     $known_php_inis{'PHPOS'} = $php_ini;
     $seen_php_versions{'PHPOS'} = $PHP->{'PHP_version_os'};
     $seen_php_versions{$PHP->{'PHP_version_os'}} = 'PHPOS';
+    $phpPEARpath{'PHPOS'} = "/usr/share/pear";
     $known_php_fpm_pool_files{'PHPOS'} = '/etc/php-fpm.d/www.conf';
     $known_php_fpm_pool_directories{'PHPOS'} = '/etc/php-fpm.d/';
     $known_php_fpm_pool_services{'PHPOS'} = 'php-fpm';
@@ -143,6 +145,10 @@ if ($whatami eq "handler") {
 
     # Get PHP:
     ($ok, $vsite_php) = $cce->get($oid, "PHP");
+
+    if ((!defined $vsite_php->{'version'}) || ($vsite_php->{'version'} eq "")) {
+        $vsite_php->{'version'} = $seen_php_versions{$PHP->{'PHP_version'}};
+    }
 
     &debug_msg("Vsite is supposed to be using $vsite_php->{'version'} and " . $seen_php_versions{$vsite_php->{'version'}} . " \n");
 
@@ -494,6 +500,18 @@ sub open_basedir_handling {
 
     # Get 'open_basedir' settings for this Vsite:
     @vsite_php_settings_temporary = split(":", $vsite_php_settings->{"open_basedir"});
+
+    # PEAR speciality:
+    &debug_msg("PEAR path should be: " . $phpPEARpath{$vsite_php->{"version"}} . " for PHP version " . $vsite_php->{"version"} . " \n");
+
+    # Remove all known PEAR path additions (to add the right one later):
+    for $thisPEAR (keys %phpPEARpath) {
+        if (in_array(\@vsite_php_settings_temporary, $phpPEARpath{$thisPEAR})) {
+            &debug_msg("PEAR: Removing $phpPEARpath{$thisPEAR} \n");
+            @vsite_php_settings_temporary = grep { $_ != $phpPEARpath{$thisPEAR} } @vsite_php_settings_temporary;
+        }
+    }
+
     # Get 'open_basedir' settings for the entire server:
     @my_server_php_settings_temp = split(":", $PHP->{'open_basedir'});
     # Merge them:
@@ -510,14 +528,26 @@ sub open_basedir_handling {
     # We need to remove any site path references from open_basedir, because they could be from the wrong site,
     # like during a cmuImport, when it inherited the path it had on the server it was exported from.
     foreach $entry (@vsite_php_settings_temp) {
-    $entry =~ s/\/home\/.sites\/(.*)\/(.*)\///;
-    if ($entry) {
-        push(@vsite_php_settings_new, $entry);
-        &debug_msg("Pushing $entry \n");
+        $entry =~ s/\/home\/.sites\/(.*)\/(.*)\///;
+        if ($entry) {
+            push(@vsite_php_settings_new, $entry);
+            &debug_msg("Pushing $entry \n");
+        }
+        else {
+            &debug_msg("Not pushing $entry \n");
+        }
     }
-    else {
-        &debug_msg("Not pushing $entry \n");
-    }
+
+    # Check if the given PEAR directory is actually there:
+    if (-d $phpPEARpath{$vsite_php->{"version"}}) {
+        $pear_path = $phpPEARpath{$vsite_php->{"version"}};
+        &debug_msg("PEAR additions for 'open_basedir' : $pear_path \n");
+
+        # Check if we have that already included in 'open_basedir' (we shouldn't):
+        if (!in_array(\@vsite_php_settings_new, $pear_path)) {
+            # Not in yet? Add it:
+            push @vsite_php_settings_new, $pear_path;
+        }
     }
 
     # Assemble the output:
@@ -718,6 +748,12 @@ sub pool_printer {
     print $out $pool_conf;
     return 1;
 }
+
+sub in_array {
+     my ($arr,$search_for) = @_;
+     my %items = map {$_ => 1} @$arr; # create a hash out of the array values
+     return (exists($items{$search_for}))?1:0;
+ }
 
 $cce->bye('SUCCESS');
 exit(0);

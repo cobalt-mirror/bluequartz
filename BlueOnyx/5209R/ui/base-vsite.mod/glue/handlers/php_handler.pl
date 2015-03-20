@@ -367,7 +367,7 @@ sub edit_php_ini {
 
     # Just to be really sure:
     unless (($PHP->{"open_basedir"} =~ m#/usr/sausalito/configs/php/#) && ($PHP->{"open_basedir"} =~ m#/tmp/#) && ($PHP->{"open_basedir"} =~ m#/var/lib/php/session/#)) {
-    &debug_msg("Fixing 'open_basedir': It is missing our 'must have' entries. Restoring it to the defaults. \n");
+        &debug_msg("Fixing 'open_basedir': It is missing our 'must have' entries. Restoring it to the defaults. \n");
         $PHP->{"open_basedir"} = "/tmp/:/var/lib/php/session/:/usr/sausalito/configs/php/";
     }
 
