@@ -95,6 +95,12 @@ sub edit_sshd_config {
             $sshd_settings->{"PermitRootLogin"} = "yes";
         }
     }
+    else {
+        # If the license is not yet accepted, 'root' login by SSH is allowed. This is somewhat
+        # unsafe, but aides in troubleshooting in YUM based installs if no 'admin' account was
+        # auto-created due to Quota not being available. This is sort of a trade off.
+        $sshd_settings->{"PermitRootLogin"} = "yes";
+    }
 
     if ($sshd_settings->{"XPasswordAuthentication"} eq "0") {
         $sshd_settings->{"XPasswordAuthentication"} = "no";
