@@ -86,16 +86,14 @@ sub restart_sshd {
 sub edit_sshd_config {
 
     # Convert selected CODB bool values (0|1) to config file values (No|no|Yes|yes):
-    if ($System->{isLicenseAccepted} eq "1") {
-        # Only modify the 'PermitRootLogin' settings if the initial setup has been completed.
-        if ($sshd_settings->{"PermitRootLogin"} eq "0") {
-            $sshd_settings->{"PermitRootLogin"} = "no";
-        }
-        else {
-            $sshd_settings->{"PermitRootLogin"} = "yes";
-        }
+    if ($sshd_settings->{"PermitRootLogin"} eq "0") {
+        $sshd_settings->{"PermitRootLogin"} = "no";
     }
     else {
+        $sshd_settings->{"PermitRootLogin"} = "yes";
+    }
+
+    if ($System->{isLicenseAccepted} eq "0") {
         # If the license is not yet accepted, 'root' login by SSH is allowed. This is somewhat
         # unsafe, but aides in troubleshooting in YUM based installs if no 'admin' account was
         # auto-created due to Quota not being available. This is sort of a trade off.
