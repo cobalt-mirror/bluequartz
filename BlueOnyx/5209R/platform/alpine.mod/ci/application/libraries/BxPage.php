@@ -620,6 +620,7 @@ class BxPage extends MX_Controller {
 				}
 				$parent_root = $active_menu_item;
 				$ignore_items = array();
+
 				// Use function MenuChildren to get a sorted list of children for our menu entries:
 				$root_children_sort_order = MenuChildren($active_menu_item, $ignore_items, $_SiteMap_items, $access);
 			}
@@ -735,6 +736,39 @@ class BxPage extends MX_Controller {
   			//- End: Horizontal Menu Assembly
 
 			//- Start: Vertical Menu Assembly
+
+			//
+			// - Regular user: Manually add logout menu entry:
+			//
+			if (count($access) == "0") {
+				// User has no extended rights and is a regular user. In that case we
+				// manually append the 'logout' menu entry at the end of his $_SiteMap_items
+				// for the lefthand menu:
+				$_SiteMap_items['base_logout'] = array(
+											            'id' => 'base_logout',
+											            'description' => '[[palette.logoutHelp]]',
+											            'label' => '[[palette.logout]]',
+											            'type' => 'logout',
+											            'url' => '/logout/true', 
+											            'window' => '',
+											            'imageOff' => '',
+											            'imageOn' => '',
+											            'requiresChildren' => '',
+											            'children' => '',
+											            'module' => '',
+											            'icon' => 'locked',
+											            'icononly' => '',
+											            'parents' => array(
+											                            'id' => 'base_personalProfile',
+											                            'order' => '9000',
+											                            'access' => ''
+											                )
+        											);
+				// We also append this manually added menu entry to the 'children' of his
+				// 'base_personalProfile' menu tree:
+				$_SiteMap_items['base_personalProfile']['children'][9000] = 'base_logout';
+			}
+
 			// Use function MenuChildren to get a sorted list of children for our menu entries:
 			$root_children_sort_order = MenuChildren($active_menu_item, array(), $_SiteMap_items, $access);
 
@@ -800,7 +834,17 @@ class BxPage extends MX_Controller {
 								$side_html_menu .= "<li><a href='javascript: void 0' $my_data_dialog>&nbsp;</a>"; // </li>								
 							}
 							elseif (!array_key_exists($active_menu_item_for_display, $submenu_entry)) {
-								$side_html_menu .= "<li><a href='$u' $my_data_dialog title=\"" . $description_cleaned . "\"><img width='24' height='24' src='/.adm/images/icons/small/grey/" . $horiz_icon . ".png'/>$menutext</a>"; // </li>
+								//--- Start: Handle 'base_logout' Dialog popup:
+								if ($_SiteMap_items[$MenuItem]['id'] == "base_logout") {
+									// For 'base_logout' we also need to fire the dialog for logout confirmation:
+									$xtra_class = 'class="dialog_button" data-dialog="dialog_logout" ';
+								}
+								else {
+									// Keep that empty for anything else:
+									$xtra_class = '';
+								}
+								//--- Stop: Handle 'base_logout' Dialog popup
+								$side_html_menu .= "<li><a href='$u'" . $xtra_class . " $my_data_dialog title=\"" . $description_cleaned . "\"><img width='24' height='24' src='/.adm/images/icons/small/grey/" . $horiz_icon . ".png'/>$menutext</a>"; // </li>
 							}
 							else {
 								$side_html_menu .= "<li><a href='$u' class=\"pjax btn btn-modal tooltip hover\" title=\"" . $description_cleaned . "\"><img width='24' height='24' src='/.adm/images/icons/small/grey/" . $horiz_icon . ".png'/>$menutext</a>\n"; // </li>
