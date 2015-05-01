@@ -103,6 +103,12 @@ information for [VENDOR]-[SERVICE].
 
 <begin $CHANGELOG>
 
+* Fri May 01 2015 Michael Stauber <mstauber@solarspeed.net> 3.0.0-1BX08
+- Converted indentation to spaces.
+- Modified ui/chorizo/web/controllers/serverDiskUsage.php to throw in
+  a Class check to make sure we're really only parsing Vsite objects for
+  Vsite disk usage. That makes sure we have all the required indexes.
+
 * Tue Feb 03 2015 Michael Stauber <mstauber@solarspeed.net> 3.0.0-1BX07
 - Extended glue/handlers/Disk.pl with debugging routine.
 
