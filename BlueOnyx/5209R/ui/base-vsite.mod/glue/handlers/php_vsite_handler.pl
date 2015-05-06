@@ -450,7 +450,10 @@ sub edit_php_ini {
                 'mail.add_x_header' => 'On',
                 'sendmail_path' => '/usr/sausalito/sbin/phpsendmail',
                 'auto_prepend_file' => '/usr/sausalito/configs/php/set_php_headers.php',
-                'date.timezone' => "'" . $timezone . "'"
+                'date.timezone' => "'" . $timezone . "'",
+                'mysql.default_socket' => '/var/lib/mysql/mysql.sock',
+                'mysqli.default_socket' => '/var/lib/mysql/mysql.sock',
+                'pdo_mysql.default_socket' => '/var/lib/mysql/mysql.sock'
         };
     }
     else {
@@ -473,7 +476,10 @@ sub edit_php_ini {
                 'mail.add_x_header' => 'On',
                 'sendmail_path' => '/usr/sausalito/sbin/phpsendmail',
                 'auto_prepend_file' => '/usr/sausalito/configs/php/set_php_headers.php',
-                'date.timezone' => "'" . $timezone . "'" 
+                'date.timezone' => "'" . $timezone . "'",
+                'mysql.default_socket' => '/var/lib/mysql/mysql.sock',
+                'mysqli.default_socket' => '/var/lib/mysql/mysql.sock',
+                'pdo_mysql.default_socket' => '/var/lib/mysql/mysql.sock'
         };
     }
 

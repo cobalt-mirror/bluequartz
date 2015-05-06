@@ -136,6 +136,16 @@ fi
 
 <begin $CHANGELOG>
 
+* Tue May 05 2015 Michael Stauber <mstauber@solarspeed.net> 4.2-0BX36
+- Our php.ini's needs the parameters for the location of the MySQL socket
+  defined. This is kinda important for RoundCube and causing many issues
+  for clients if left undefined. Hence our constructors and handlers will
+  now automatically check if these parameters are configured and if they
+  are not, then defaults will be set.
+- Modified constructor/import_php_ini_settings.pl
+- Modified glue/handlers/php_handler.pl
+- Modified glue/handlers/php_vsite_handler.pl
+
 * Tue Apr 28 2015 Michael Stauber <mstauber@solarspeed.net> 4.2-0BX35
 - Modified ui/chorizo/web/controllers/vsiteList.php as the icon for Email
   on the featurelist was actually inverted. It was shown when Email was off.
