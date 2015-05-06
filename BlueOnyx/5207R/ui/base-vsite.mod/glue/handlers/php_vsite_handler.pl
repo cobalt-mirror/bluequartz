@@ -149,9 +149,9 @@ if ($whatami eq "handler") {
         # suPHP disabled. Delete custom php.ini:
         $custom_php_ini_path = $vsite->{'basedir'} . "/php.ini";
         if (-f $custom_php_ini_path) {
-        system("/usr/bin/chattr -i $custom_php_ini_path");
-        system("/bin/rm -f $custom_php_ini_path");
-        &debug_msg("Deleting $custom_php_ini_path through php_vsite_handler.pl \n");
+            system("/usr/bin/chattr -i $custom_php_ini_path");
+            system("/bin/rm -f $custom_php_ini_path");
+            &debug_msg("Deleting $custom_php_ini_path through php_vsite_handler.pl \n");
         }
         #
         ### Find out if this Vsite has Subdomains and if so, remove their a php.ini:
@@ -221,54 +221,54 @@ sub edit_vhost {
         if ($legacy_php == "1") {
             # These options only apply to PHP versions prior to PHP-5.3:
             if ($vsite_php_settings->{"safe_mode"} ne "") {
-            $script_conf .= 'php_admin_flag safe_mode ' . $vsite_php_settings->{"safe_mode"} . "\n"; 
+                $script_conf .= 'php_admin_flag safe_mode ' . $vsite_php_settings->{"safe_mode"} . "\n"; 
             }
             if ($vsite_php_settings->{"safe_mode_gid"} ne "") {
-            $script_conf .= 'php_admin_flag safe_mode_gid ' . $vsite_php_settings->{"safe_mode_gid"} . "\n";
+                $script_conf .= 'php_admin_flag safe_mode_gid ' . $vsite_php_settings->{"safe_mode_gid"} . "\n";
             }
             if ($vsite_php_settings->{"safe_mode_allowed_env_vars"} ne "") {
-            $script_conf .= 'php_admin_value safe_mode_allowed_env_vars ' . $vsite_php_settings->{"safe_mode_allowed_env_vars"} . "\n"; 
+                $script_conf .= 'php_admin_value safe_mode_allowed_env_vars ' . $vsite_php_settings->{"safe_mode_allowed_env_vars"} . "\n"; 
             }
             if ($vsite_php_settings->{"safe_mode_exec_dir"} ne "") {
-            $script_conf .= 'php_admin_value safe_mode_exec_dir ' . $vsite_php_settings->{"safe_mode_exec_dir"} . "\n"; 
+                $script_conf .= 'php_admin_value safe_mode_exec_dir ' . $vsite_php_settings->{"safe_mode_exec_dir"} . "\n"; 
             }
 
             if ($vsite_php_settings->{"safe_mode_include_dir"} ne "") {
-            $script_conf .= 'php_admin_value safe_mode_include_dir ' . $vsite_php_settings->{"safe_mode_include_dir"} . "\n"; 
+                $script_conf .= 'php_admin_value safe_mode_include_dir ' . $vsite_php_settings->{"safe_mode_include_dir"} . "\n"; 
             }
             if ($vsite_php_settings->{"safe_mode_protected_env_vars"} ne "") {
-            $script_conf .= 'php_admin_value safe_mode_protected_env_vars ' . $vsite_php_settings->{"safe_mode_protected_env_vars"} . "\n"; 
+                $script_conf .= 'php_admin_value safe_mode_protected_env_vars ' . $vsite_php_settings->{"safe_mode_protected_env_vars"} . "\n"; 
             }
         }
 
         if ($vsite_php_settings->{"register_globals"} ne "") {
-        $script_conf .= 'php_admin_flag register_globals ' . $vsite_php_settings->{"register_globals"} . "\n"; 
+            $script_conf .= 'php_admin_flag register_globals ' . $vsite_php_settings->{"register_globals"} . "\n"; 
         }
         if ($vsite_php_settings->{"allow_url_fopen"} ne "") {
             $script_conf .= 'php_admin_flag allow_url_fopen ' . $vsite_php_settings->{"allow_url_fopen"} . "\n"; 
         }
         if ($vsite_php_settings->{"allow_url_include"} ne "") {
-        $script_conf .= 'php_admin_flag allow_url_include ' . $vsite_php_settings->{"allow_url_include"} . "\n"; 
+            $script_conf .= 'php_admin_flag allow_url_include ' . $vsite_php_settings->{"allow_url_include"} . "\n"; 
         }
 
         if ($vsite_php_settings->{"open_basedir"} ne "") {
-        $script_conf .= 'php_admin_value open_basedir ' . $vsite_php_settings->{"open_basedir"} . "\n";
+            $script_conf .= 'php_admin_value open_basedir ' . $vsite_php_settings->{"open_basedir"} . "\n";
         }
 
         if ($vsite_php_settings->{"post_max_size"} ne "") {
-        $script_conf .= 'php_admin_value post_max_size ' . $vsite_php_settings->{"post_max_size"} . "\n"; 
+            $script_conf .= 'php_admin_value post_max_size ' . $vsite_php_settings->{"post_max_size"} . "\n"; 
         }
         if ($vsite_php_settings->{"upload_max_filesize"} ne "") {
-        $script_conf .= 'php_admin_value upload_max_filesize ' . $vsite_php_settings->{"upload_max_filesize"} . "\n"; 
+            $script_conf .= 'php_admin_value upload_max_filesize ' . $vsite_php_settings->{"upload_max_filesize"} . "\n"; 
         }
         if ($vsite_php_settings->{"max_execution_time"} ne "") {
-        $script_conf .= 'php_admin_value max_execution_time ' . $vsite_php_settings->{"max_execution_time"} . "\n"; 
+            $script_conf .= 'php_admin_value max_execution_time ' . $vsite_php_settings->{"max_execution_time"} . "\n"; 
         }
         if ($vsite_php_settings->{"max_input_time"} ne "") {
-        $script_conf .= 'php_admin_value max_input_time ' . $vsite_php_settings->{"max_input_time"} . "\n"; 
+            $script_conf .= 'php_admin_value max_input_time ' . $vsite_php_settings->{"max_input_time"} . "\n"; 
         }
         if ($vsite_php_settings->{"memory_limit"} ne "") {
-        $script_conf .= 'php_admin_value memory_limit ' . $vsite_php_settings->{"memory_limit"} . "\n"; 
+            $script_conf .= 'php_admin_value memory_limit ' . $vsite_php_settings->{"memory_limit"} . "\n"; 
         }
 
         # Email related:
@@ -344,14 +344,14 @@ sub change_owner {
     $new_GID = $vsite->{"name"};
 
     if (($new_owner ne "") && ($webdir ne "") && ($vsite_basedir ne "")) {
-    # Chown this sites /web to the prefered UID and also re-set the GID while we're at it:
-    system("/bin/chown -R $new_owner:$new_GID $webdir");
-    # Also chown the basedir of the site to this users UID, but don't do it recursively:
-    system("/bin/chown $new_owner:$new_GID $vsite_basedir");
-    # If we have subdomains under /vhosts, we need to chown them as well:
-    if (-d "$vsite_basedir/vhosts") {
-        system("/bin/chown -R $new_owner:$new_GID $vsite_basedir/vhosts");
-    }
+        # Chown this sites /web to the prefered UID and also re-set the GID while we're at it:
+        system("/bin/chown -R $new_owner:$new_GID $webdir");
+        # Also chown the basedir of the site to this users UID, but don't do it recursively:
+        system("/bin/chown $new_owner:$new_GID $vsite_basedir");
+        # If we have subdomains under /vhosts, we need to chown them as well:
+        if (-d "$vsite_basedir/vhosts") {
+            system("/bin/chown -R $new_owner:$new_GID $vsite_basedir/vhosts");
+        }
     }
 }
 
@@ -405,8 +405,10 @@ sub edit_php_ini {
                 'mail.add_x_header' => 'On',
                 'sendmail_path' => '/usr/sausalito/sbin/phpsendmail',
                 'auto_prepend_file' => '/usr/sausalito/configs/php/set_php_headers.php',
-                'date.timezone' => "'" . $timezone . "'"
-
+                'date.timezone' => "'" . $timezone . "'",
+                'mysql.default_socket' => '/var/lib/mysql/mysql.sock',
+                'mysqli.default_socket' => '/var/lib/mysql/mysql.sock',
+                'pdo_mysql.default_socket' => '/var/lib/mysql/mysql.sock'
         };
     }
     else {
@@ -430,7 +432,10 @@ sub edit_php_ini {
                 'mail.add_x_header' => 'On',
                 'sendmail_path' => '/usr/sausalito/sbin/phpsendmail',
                 'auto_prepend_file' => '/usr/sausalito/configs/php/set_php_headers.php',
-                'date.timezone' => "'" . $timezone . "'" 
+                'date.timezone' => "'" . $timezone . "'",
+                'mysql.default_socket' => '/var/lib/mysql/mysql.sock',
+                'mysqli.default_socket' => '/var/lib/mysql/mysql.sock',
+                'pdo_mysql.default_socket' => '/var/lib/mysql/mysql.sock'
         };
     }
 
@@ -473,14 +478,14 @@ sub open_basedir_handling {
     # We need to remove any site path references from open_basedir, because they could be from the wrong site,
     # like during a cmuImport, when it inherited the path it had on the server it was exported from.
     foreach $entry (@vsite_php_settings_temp) {
-    $entry =~ s/\/home\/.sites\/(.*)\/(.*)\///;
-    if ($entry) {
-        push(@vsite_php_settings_new, $entry);
-        &debug_msg("Pushing $entry \n");
-    }
-    else {
-        &debug_msg("Not pushing $entry \n");
-    }
+        $entry =~ s/\/home\/.sites\/(.*)\/(.*)\///;
+        if ($entry) {
+            push(@vsite_php_settings_new, $entry);
+            &debug_msg("Pushing $entry \n");
+        }
+        else {
+            &debug_msg("Not pushing $entry \n");
+        }
     }
 
     # Assemble the output:

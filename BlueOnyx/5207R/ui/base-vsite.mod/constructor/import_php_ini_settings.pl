@@ -1,8 +1,6 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
-# $Id: import_php_ini_settings.pl, v1.1.0.4 Tue 16 Jun 2009 09:08:46 AM EDT mstauber Exp $
-# Copyright 2006-2009 Solarspeed Ltd. All rights reserved.
-# Copyright 2006-2010 Team BlueOnyx. All rights reserved.
-
+# $Id: import_php_ini_settings.pl
+#
 # This script parses php.ini and brings CODB up to date on how PHP is configured.
 # Can easily be extended to parse third party php.ini's through an optional config file.
 #
@@ -55,13 +53,13 @@ if (-f $thirdparty) {
     while ($line = <F>) {
         chomp($line);
         next if $line =~ /^\s*$/;               # skip blank lines
-        next if $line =~ /^#$/;               	# skip comments
+        next if $line =~ /^#$/;                 # skip comments
         if ($line =~ /^\/(.*)\/php\.ini$/) {
-		$php_ini = $line;
-	}
+            $php_ini = $line;
+        }
         if ($line =~ /^\/(.*)\/etc\/php\.ini$/) {
-		$thirdpartydir = "/" . $1 . "/bin";
-	}
+            $thirdpartydir = "/" . $1 . "/bin";
+        }
     }
     close(F);
 }
@@ -82,39 +80,39 @@ if ((-f "$thirdpartydir/php-cgi") && (-f "/etc/suphp.conf")) {
     unlink($stage);
     sysopen(STAGE, $stage, 1|O_CREAT|O_EXCL, 0600) || die;
     while(<HTTPD>) {
-	s/^x-httpd-suphp="(.*)"/x-httpd-suphp="php:$thirdpartydir\/php-cgi"/g;
-	s/^x-httpd-suphpthirdparty="(.*)"/x-httpd-suphpthirdparty="php:$thirdpartydir\/php-cgi"/g;
-	print STAGE;
+        s/^x-httpd-suphp="(.*)"/x-httpd-suphp="php:$thirdpartydir\/php-cgi"/g;
+        s/^x-httpd-suphpthirdparty="(.*)"/x-httpd-suphpthirdparty="php:$thirdpartydir\/php-cgi"/g;
+        print STAGE;
     }
     close(STAGE);
     close(HTTPD);
     chmod(0644, $stage);
     if(-s $stage) {
-	move($stage,"/etc/suphp.conf");
-	chmod(0644, "/etc/suphp.conf"); # paranoia
+        move($stage,"/etc/suphp.conf");
+        chmod(0644, "/etc/suphp.conf"); # paranoia
     }
 }
 
 # Config file present?
 if (-f $php_ini) {
 
-	# Array of PHP config switches that we want to update in CCE:
-	&items_of_interest;
+    # Array of PHP config switches that we want to update in CCE:
+    &items_of_interest;
 
-	# Read, parse and hash php.ini:
-        &ini_read;
+    # Read, parse and hash php.ini:
+    &ini_read;
         
-        # Verify input and set defaults if needed:
-        &verify;
+    # Verify input and set defaults if needed:
+    &verify;
         
-        # Shove ouput into CCE:
-        &feedthemonster;
+    # Shove ouput into CCE:
+    &feedthemonster;
 }
 else {
-	# Ok, we have a problem: No php.ini found.
-	# So we just weep silently and exit. 
-	$cce->bye('FAIL', "$php_ini not found!");
-	exit(1);
+    # Ok, we have a problem: No php.ini found.
+    # So we just weep silently and exit. 
+    $cce->bye('FAIL', "$php_ini not found!");
+    exit(1);
 }
 
 $cce->bye('SUCCESS');
@@ -126,16 +124,16 @@ sub ini_read {
 
     while ($line = <F>) {
         chomp($line);
-        next if $line =~ /^\s*$/;               	# skip blank lines
-        next if $line =~ /^\;*$/;               	# skip comment lines
-        next if $line =~ /^url_rewriter(.*)$/;    	# skip line starting with url_rewriter.tags
-        if ($line =~ /^([A-Za-z_\.]\w*)/) {		
-	    $line =~s/\s//g; 				# Remove spaces
-	    $line =~s/;(.*)$//g; 			# Remove trailing comments in lines
-	    $line =~s/\"//g; 				# Remove double quotation marks
+        next if $line =~ /^\s*$/;                   # skip blank lines
+        next if $line =~ /^\;*$/;                   # skip comment lines
+        next if $line =~ /^url_rewriter(.*)$/;      # skip line starting with url_rewriter.tags
+        if ($line =~ /^([A-Za-z_\.]\w*)/) {     
+            $line =~s/\s//g;                # Remove spaces
+            $line =~s/;(.*)$//g;            # Remove trailing comments in lines
+            $line =~s/\"//g;                # Remove double quotation marks
 
-            @row = split (/=/, $line);			# Split row at the equal sign
-    	    $CONFIG{$row[0]} = $row[1];			# Hash the splitted row elements
+            @row = split (/=/, $line);          # Split row at the equal sign
+            $CONFIG{$row[0]} = $row[1];         # Hash the splitted row elements
         }
     }
     close(F);
@@ -145,14 +143,14 @@ sub ini_read {
 
     # For debugging only:
     if ($DEBUG > "1") {
-	while (my($k,$v) = each %CONFIG) {
-    	    print "$k => $v\n";
-	}
+        while (my($k,$v) = each %CONFIG) {
+                print "$k => $v\n";
+        }
     }
 
     # For debugging only:
     if ($DEBUG == "1") {
-	print "safe mode: " . $CONFIG{'safe_mode'} . "\n";
+        print "safe mode: " . $CONFIG{'safe_mode'} . "\n";
     }
 
 }
@@ -162,61 +160,61 @@ sub verify {
     # Find out if we have ever run before:
     @oids = $cce->find('PHP', {'applicable' => 'server'});
     if ($#oids < 0) {
-	$first_run = "1";
+        $first_run = "1";
     }
     else {
-	$first_run = "0";    
+        $first_run = "0";    
     }
 
     # Go through list of config switches we're interested in:
     foreach $entry (@whatweneed) {
-	if (!$CONFIG{"$entry"}) {
-	    # Found key without value - setting defaults for those that need it:
-	    if ($entry eq "allow_url_include") {
-		$CONFIG{"$entry"} = "Off";
-	    }
-	    if ($entry eq "safe_mode_include_dir") {
-		$CONFIG{"$entry"} = "/usr/sausalito/configs/php/";
-	    }
-	    if (($entry eq "disable_functions") && ($first_run eq "1")) {
-		#$CONFIG{"$entry"} = "exec,system,passthru,shell_exec,popen,escapeshellcmd,proc_open,proc_nice,ini_restore";
-		$CONFIG{"$entry"} = "exec,system,passthru,shell_exec,proc_open,proc_nice,ini_restore";
-	    }
-	    if (($entry eq "open_basedir") && ($first_run eq "1")) {
-		$CONFIG{"$entry"} = "/tmp/:/var/lib/php/session/:/usr/sausalito/configs/php/";
-	    }
-	    if (($entry eq "safe_mode_allowed_env_vars") && ($first_run eq "1")) {
-		$CONFIG{"$entry"} = "PHP_,_HTTP_HOST,_SCRIPT_NAME,_SCRIPT_FILENAME,_DOCUMENT_ROOT,_REMOTE_ADDR,_SOWNER";
-	    }
-	}
-	if ($first_run eq "1") {
-	    # If we're indeed running for the first time, make sure safe defaults
-	    # are set for all our remaining switches of most importance:
-	    $CONFIG{"safe_mode"} = "On";
-	    $CONFIG{"register_globals"} = "Off";
-	    $CONFIG{"allow_url_fopen"} = "Off";
-	
-	}
-	# For debugging only:
-        if ($DEBUG == "1") {
-	    print $entry . " = " . $CONFIG{"$entry"} . "\n";
-	}
+        if (!$CONFIG{"$entry"}) {
+            # Found key without value - setting defaults for those that need it:
+            if ($entry eq "allow_url_include") {
+                $CONFIG{"$entry"} = "Off";
+            }
+            if ($entry eq "safe_mode_include_dir") {
+                $CONFIG{"$entry"} = "/usr/sausalito/configs/php/";
+            }
+            if (($entry eq "disable_functions") && ($first_run eq "1")) {
+                #$CONFIG{"$entry"} = "exec,system,passthru,shell_exec,popen,escapeshellcmd,proc_open,proc_nice,ini_restore";
+                $CONFIG{"$entry"} = "exec,system,passthru,shell_exec,proc_open,proc_nice,ini_restore";
+            }
+            if (($entry eq "open_basedir") && ($first_run eq "1")) {
+                $CONFIG{"$entry"} = "/tmp/:/var/lib/php/session/:/usr/sausalito/configs/php/";
+            }
+            if (($entry eq "safe_mode_allowed_env_vars") && ($first_run eq "1")) {
+                $CONFIG{"$entry"} = "PHP_,_HTTP_HOST,_SCRIPT_NAME,_SCRIPT_FILENAME,_DOCUMENT_ROOT,_REMOTE_ADDR,_SOWNER";
+            }
+        }
+        if ($first_run eq "1") {
+            # If we're indeed running for the first time, make sure safe defaults
+            # are set for all our remaining switches of most importance:
+            $CONFIG{"safe_mode"} = "On";
+            $CONFIG{"register_globals"} = "Off";
+            $CONFIG{"allow_url_fopen"} = "Off";
+        
+        }
+        # For debugging only:
+            if ($DEBUG == "1") {
+            print $entry . " = " . $CONFIG{"$entry"} . "\n";
+        }
     }
 
     # If we have base-squirrelmail.mod installed, we make sure that 'popen' and 'escapeshellcmd' are not present in 'disable_functions':
     if (-f "/etc/httpd/conf.d/squirrelmail.conf") {
-	@old_disable_functions = split(/,/, $CONFIG{"disable_functions"});
-	foreach $value (@old_disable_functions) {
-	    # Transform to lower case:
-	    $value =~ tr/A-Z/a-z/;
-	    # Weed out undersired options:
-	    unless (($value eq "popen") || ($value eq "escapeshellcmd") || ($value eq "")) {
-		# Push the rest to new array:
-    		push(@new_disable_functions, $value);
-	    }
-	}
-	# Turn the cleaned array back to a string:
-	$CONFIG{"disable_functions"} = join(",", @new_disable_functions);
+        @old_disable_functions = split(/,/, $CONFIG{"disable_functions"});
+        foreach $value (@old_disable_functions) {
+            # Transform to lower case:
+            $value =~ tr/A-Z/a-z/;
+            # Weed out undersired options:
+            unless (($value eq "popen") || ($value eq "escapeshellcmd") || ($value eq "")) {
+                # Push the rest to new array:
+                push(@new_disable_functions, $value);
+            }
+        }
+        # Turn the cleaned array back to a string:
+        $CONFIG{"disable_functions"} = join(",", @new_disable_functions);
     }
 }
 
@@ -257,81 +255,122 @@ sub feedthemonster {
     @oids = $cce->find('PHP', {'applicable' => 'server'});
     if ($#oids < 0) {
         # Object not yet in CCE. Creating new one and forcing re-write of php.ini by setting "force_update":
-	($ok) = $cce->create('PHP', {
-	    'applicable' => 'server',
-	    'PHP_version' => $PHP_version,
-	    'safe_mode' => $CONFIG{"safe_mode"},  
-	    'safe_mode_allowed_env_vars' => $CONFIG{"safe_mode_allowed_env_vars"},   
-	    'safe_mode_exec_dir' => $CONFIG{"safe_mode_exec_dir"},   
-	    'safe_mode_gid' => $CONFIG{"safe_mode_gid"},   
-	    'safe_mode_include_dir' => $CONFIG{"safe_mode_include_dir"},  
-	    'safe_mode_protected_env_vars' => $CONFIG{"safe_mode_protected_env_vars"},  
-    	    'register_globals' => $CONFIG{"register_globals"},  
-	    'allow_url_fopen' => $CONFIG{"allow_url_fopen"},   
-	    'allow_url_include' => $CONFIG{"allow_url_include"},  
-	    'disable_classes' => $CONFIG{"disable_classes"},   
-	    'disable_functions' => $CONFIG{"disable_functions"},  
-	    'open_basedir' => $CONFIG{"open_basedir"},   
-	    'post_max_size' => $CONFIG{"post_max_size"},   
-	    'upload_max_filesize'  => $CONFIG{"upload_max_filesize"},  
-	    'max_execution_time' => $CONFIG{"max_execution_time"},   
-	    'max_input_time' => $CONFIG{"max_input_time"},   
-	    'memory_limit' => $CONFIG{"memory_limit"},   
-	    'php_ini_location' => $php_ini,  
-	    'force_update' => time()  
+        ($ok) = $cce->create('PHP', {
+            'applicable' => 'server',
+            'PHP_version' => $PHP_version,
+            'safe_mode' => $CONFIG{"safe_mode"},  
+            'safe_mode_allowed_env_vars' => $CONFIG{"safe_mode_allowed_env_vars"},   
+            'safe_mode_exec_dir' => $CONFIG{"safe_mode_exec_dir"},   
+            'safe_mode_gid' => $CONFIG{"safe_mode_gid"},   
+            'safe_mode_include_dir' => $CONFIG{"safe_mode_include_dir"},  
+            'safe_mode_protected_env_vars' => $CONFIG{"safe_mode_protected_env_vars"},  
+            'register_globals' => $CONFIG{"register_globals"},  
+            'allow_url_fopen' => $CONFIG{"allow_url_fopen"},   
+            'allow_url_include' => $CONFIG{"allow_url_include"},  
+            'disable_classes' => $CONFIG{"disable_classes"},   
+            'disable_functions' => $CONFIG{"disable_functions"},  
+            'open_basedir' => $CONFIG{"open_basedir"},   
+            'post_max_size' => $CONFIG{"post_max_size"},   
+            'upload_max_filesize'  => $CONFIG{"upload_max_filesize"},  
+            'max_execution_time' => $CONFIG{"max_execution_time"},   
+            'max_input_time' => $CONFIG{"max_input_time"},   
+            'memory_limit' => $CONFIG{"memory_limit"},   
+            'php_ini_location' => $php_ini,  
+            'force_update' => time()  
         });
     }
     else {
-        # Object already present in CCE. Updating it, NOT forcing a rewrite of php.ini.
+        # Object already present in CCE. Updating it, and forcing a rewrite of php.ini.
         ($sys_oid) = $cce->find('PHP', {'applicable' => 'server'});
         ($ok, $sys) = $cce->get($sys_oid);
         ($ok) = $cce->set($sys_oid, '',{
-	    'PHP_version' => $PHP_version,  
-	    'safe_mode' => $CONFIG{"safe_mode"},  
-	    'safe_mode_allowed_env_vars' => $CONFIG{"safe_mode_allowed_env_vars"},   
-	    'safe_mode_exec_dir' => $CONFIG{"safe_mode_exec_dir"},   
-	    'safe_mode_gid' => $CONFIG{"safe_mode_gid"},   
-	    'safe_mode_include_dir' => $CONFIG{"safe_mode_include_dir"},  
-	    'safe_mode_protected_env_vars' => $CONFIG{"safe_mode_protected_env_vars"},  
-    	    'register_globals' => $CONFIG{"register_globals"},  
-	    'allow_url_fopen' => $CONFIG{"allow_url_fopen"},   
-	    'allow_url_include' => $CONFIG{"allow_url_include"},  
-	    'disable_classes' => $CONFIG{"disable_classes"},   
-	    'disable_functions' => $CONFIG{"disable_functions"},  
-	    'open_basedir' => $CONFIG{"open_basedir"},   
-	    'post_max_size' => $CONFIG{"post_max_size"},   
-	    'upload_max_filesize' => $CONFIG{"upload_max_filesize"},  
-	    'max_execution_time' => $CONFIG{"max_execution_time"},   
-	    'max_input_time' => $CONFIG{"max_input_time"},   
-	    'memory_limit' => $CONFIG{"memory_limit"},   
-	    'php_ini_location' => $php_ini  
+            'PHP_version' => $PHP_version,  
+            'safe_mode' => $CONFIG{"safe_mode"},  
+            'safe_mode_allowed_env_vars' => $CONFIG{"safe_mode_allowed_env_vars"},   
+            'safe_mode_exec_dir' => $CONFIG{"safe_mode_exec_dir"},   
+            'safe_mode_gid' => $CONFIG{"safe_mode_gid"},   
+            'safe_mode_include_dir' => $CONFIG{"safe_mode_include_dir"},  
+            'safe_mode_protected_env_vars' => $CONFIG{"safe_mode_protected_env_vars"},  
+            'register_globals' => $CONFIG{"register_globals"},  
+            'allow_url_fopen' => $CONFIG{"allow_url_fopen"},   
+            'allow_url_include' => $CONFIG{"allow_url_include"},  
+            'disable_classes' => $CONFIG{"disable_classes"},   
+            'disable_functions' => $CONFIG{"disable_functions"},  
+            'open_basedir' => $CONFIG{"open_basedir"},   
+            'post_max_size' => $CONFIG{"post_max_size"},   
+            'upload_max_filesize' => $CONFIG{"upload_max_filesize"},  
+            'max_execution_time' => $CONFIG{"max_execution_time"},   
+            'max_input_time' => $CONFIG{"max_input_time"},   
+            'memory_limit' => $CONFIG{"memory_limit"},   
+            'php_ini_location' => $php_ini
         });
+
+        if (($CONFIG{"mysql.default_socket"} eq "") || ($CONFIG{"mysqli.default_socket"} eq "") || ($CONFIG{"pdo_mysql.default_socket"} eq "") ||
+            (!$CONFIG{"mysql.default_socket"}) || (!$CONFIG{"mysqli.default_socket"}) || (!$CONFIG{"pdo_mysql.default_socket"})) {
+            # MySQL socket configuration is either missing from php.ini, or not complete.
+            # Force a write out of a modified php.ini that is complete:
+            ($ok) = $cce->set($sys_oid, '', { 'force_update' => time() });
+        }
     }
 }
 
 sub items_of_interest {
     # List of config switches that we're interested in:
     @whatweneed = ( 
-	'safe_mode', 
-	'safe_mode_allowed_env_vars', 
-	'safe_mode_exec_dir', 
-	'safe_mode_gid', 
-	'safe_mode_include_dir', 
-	'safe_mode_protected_env_vars',	
-	'register_globals', 
-	'allow_url_fopen', 
-	'allow_url_include', 
-	'disable_classes', 
-	'disable_functions', 
-	'open_basedir', 
-	'post_max_size', 
-	'upload_max_filesize',
-	'max_execution_time',
-	'max_input_time',
-	'memory_limit'
-	);
+        'safe_mode', 
+        'safe_mode_allowed_env_vars', 
+        'safe_mode_exec_dir', 
+        'safe_mode_gid', 
+        'safe_mode_include_dir', 
+        'safe_mode_protected_env_vars', 
+        'register_globals', 
+        'allow_url_fopen', 
+        'allow_url_include', 
+        'disable_classes', 
+        'disable_functions', 
+        'open_basedir', 
+        'post_max_size', 
+        'upload_max_filesize',
+        'max_execution_time',
+        'max_input_time',
+        'memory_limit'
+    );
 }
 
 $cce->bye('SUCCESS');
 exit(0);
 
+# 
+# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# All Rights Reserved.
+# 
+# 1. Redistributions of source code must retain the above copyright 
+#    notice, this list of conditions and the following disclaimer.
+# 
+# 2. Redistributions in binary form must reproduce the above copyright 
+#    notice, this list of conditions and the following disclaimer in 
+#    the documentation and/or other materials provided with the 
+#    distribution.
+# 
+# 3. Neither the name of the copyright holder nor the names of its 
+#    contributors may be used to endorse or promote products derived 
+#    from this software without specific prior written permission.
+# 
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
+# COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+# POSSIBILITY OF SUCH DAMAGE.
+# 
+# You acknowledge that this software is not designed or intended for 
+# use in the design, construction, operation or maintenance of any 
+# nuclear facility.
+# 
