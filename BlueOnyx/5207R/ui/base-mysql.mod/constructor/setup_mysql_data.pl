@@ -5,6 +5,7 @@
 # Perl libraries, all Sausalito
 use lib qw(/usr/sausalito/perl);
 use CCE;
+use Sauce::Service;
 
 $cce = new CCE;
 $cce->connectuds();
@@ -25,8 +26,8 @@ if (!defined($mysql_main[0])) {
 # Firstboot:
 @oids = $cce->find('System');
 if (not @oids) {
-        $cce->bye('FAIL');
-        exit 1;
+    $cce->bye('FAIL');
+    exit 1;
 }
 
 $firstboot = "0";
@@ -35,13 +36,28 @@ if ($obj->{isLicenseAccepted} == "0") {
     $firstboot = "1";
 }
 
-
 if ($firstboot eq "1") {
     ($ok) = $cce->set($oids[0], 'mysql',{
-            "enabled" => "1",
-            "onoff" => time()
-
+        "enabled" => "1",
+        "onoff" => time()
     });
+}
+
+# Disable old_passwords=0 if present:
+$old_passwords = `cat /etc/my.cnf|grep old_passwords=1|wc -l`;
+chomp($old_passwords);
+if ($old_passwords eq "1") {
+    # Fix my.cnf to disable old_passwords:
+    system("/bin/sed -i -e 's#old_passwords=1#old_passwords=0#' /etc/my.cnf");
+
+    # Get Status of MySQLd/MariaDB:
+    ($ok, $mysql) = $cce->get($oids[0], "mysql");
+    $enable = $mysql->{'enabled'};
+
+    # If MySQLd/MariaDB is enabled, restart it:
+    if ( $enable eq "1" ) {
+        $tmp = Sauce::Service::service_run_init('mysqld', 'restart');
+    }
 }
 
 $cce->bye('SUCCESS');

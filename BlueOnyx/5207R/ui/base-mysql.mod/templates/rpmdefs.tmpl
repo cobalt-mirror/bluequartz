@@ -115,6 +115,12 @@ information for [VENDOR]-[SERVICE].
 
 <begin $CHANGELOG>
 
+* Tue May 05 2015 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX14
+- Modified constructor/setup_mysql_data.pl to detect if /etc/my.cnf has
+  'old_passwords=1' configured. If so, turn it off and restart MySQLd.
+  This is done to make BlueOnyx compatible again with RoundCube, which
+  needs the longer password hashes that this provides.
+
 * Thu Feb 12 2015 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX13
 - Modified glue/handlers/mod_mysql.pl to throw out my.cnf editing.
 - Modified ui/chorizo/web/controllers/mysqlconfig.php to handle my.cnf
