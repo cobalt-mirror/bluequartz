@@ -1,5 +1,5 @@
 <!-- Author: Michael Stauber mstauber@solarspeed.net -->
-<!-- Copyright 2006-2010, Team BlueOnyx. All rights reserved. -->
+<!-- Copyright 2006-2015, Team BlueOnyx. All rights reserved. -->
 
 <class name="PHP" version="3.2" createacl="ruleCapable(adminUser)">
        <property name="PHP_version"
@@ -108,12 +108,19 @@
             optional="true"
             writeacl="ruleCapable(adminUser)"
         />
+       <property name="max_input_vars"
+            type="int"
+            default="1000"
+            optional="false"
+            writeacl="ruleCapable(adminUser)"
+        />
        <property name="memory_limit"
             type="scalar"
             default="16M"
             optional="true"
             writeacl="ruleCapable(adminUser)"
         />
+
        <property name="force_update"
             type="scalar"
             default=""

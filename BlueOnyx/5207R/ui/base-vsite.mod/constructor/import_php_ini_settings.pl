@@ -186,6 +186,10 @@ sub verify {
             if (($entry eq "safe_mode_allowed_env_vars") && ($first_run eq "1")) {
                 $CONFIG{"$entry"} = "PHP_,_HTTP_HOST,_SCRIPT_NAME,_SCRIPT_FILENAME,_DOCUMENT_ROOT,_REMOTE_ADDR,_SOWNER";
             }
+            if ($entry eq "max_input_vars") {
+                # Set default:
+                $CONFIG{"$entry"} = '1000';
+            }
         }
         if ($first_run eq "1") {
             # If we're indeed running for the first time, make sure safe defaults
@@ -274,6 +278,7 @@ sub feedthemonster {
             'upload_max_filesize'  => $CONFIG{"upload_max_filesize"},  
             'max_execution_time' => $CONFIG{"max_execution_time"},   
             'max_input_time' => $CONFIG{"max_input_time"},   
+            'max_input_vars' => $CONFIG{"max_input_vars"},
             'memory_limit' => $CONFIG{"memory_limit"},   
             'php_ini_location' => $php_ini,  
             'force_update' => time()  
@@ -300,7 +305,8 @@ sub feedthemonster {
             'post_max_size' => $CONFIG{"post_max_size"},   
             'upload_max_filesize' => $CONFIG{"upload_max_filesize"},  
             'max_execution_time' => $CONFIG{"max_execution_time"},   
-            'max_input_time' => $CONFIG{"max_input_time"},   
+            'max_input_time' => $CONFIG{"max_input_time"},
+            'max_input_vars' => $CONFIG{"max_input_vars"},
             'memory_limit' => $CONFIG{"memory_limit"},   
             'php_ini_location' => $php_ini
         });
@@ -333,6 +339,7 @@ sub items_of_interest {
         'upload_max_filesize',
         'max_execution_time',
         'max_input_time',
+        'max_input_vars',
         'memory_limit'
     );
 }

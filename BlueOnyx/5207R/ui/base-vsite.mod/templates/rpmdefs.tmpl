@@ -135,6 +135,26 @@ fi
 
 <begin $CHANGELOG>
 
+* Thu May 07 2015  Michael Stauber <mstauber@solarspeed.net> 4.0-0BX22
+- Made the PHP parameter 'max_input_vars' editable. Both on a server and
+  Vsite level. Default is '1000' as per the stock PHP configuration.
+- Modified constructor/import_php_ini_settings.pl
+- Modified glue/handlers/php_handler.pl
+- Modified glue/handlers/php_vsite_handler.pl
+- Modified glue/schemas/php.schema
+- Modified glue/schemas/php_vsite.schema
+- Modified locale/da_DK/vsite.po
+- Modified locale/de_DE/vsite.po
+- Modified locale/en_US/vsite.po
+- Modified locale/es_ES/vsite.po
+- Modified locale/fr_FR/vsite.po
+- Modified locale/it_IT/vsite.po
+- Modified locale/ja_JP/vsite.po
+- Modified locale/nl_NL/vsite.po
+- Modified locale/pt_PT/vsite.po
+- Modified ui/chorizo/web/controllers/phpconfig.php
+- Modified ui/chorizo/web/controllers/vsitePHP.php
+
 * Tue May 05 2015  Michael Stauber <mstauber@solarspeed.net> 4.0-0BX21
 - Our php.ini needs the parameters for the location of the MySQL socket
   defined. This is kinda important for RoundCube and causing many issues

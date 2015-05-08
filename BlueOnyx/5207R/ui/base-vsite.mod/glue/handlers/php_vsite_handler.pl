@@ -178,8 +178,10 @@ $cce->bye('SUCCESS');
 exit(0);
 
 sub restart_apache {
-    # Restarts Apache - soft restart:
-    service_run_init('httpd', 'reload');
+    # Restarts Apache - hard restart:
+    service_run_init('httpd', 'stop');
+    sleep(3);
+    service_run_init('httpd', 'start');
 }
 
 sub edit_vhost {
@@ -192,89 +194,92 @@ sub edit_vhost {
 
         if ($vsite_php->{"enabled"} eq "1") {
 
-        # Making sure 'safe_mode_include_dir' has the bare minimum defaults:
-        @smi_temporary = split(":", $vsite_php_settings->{"safe_mode_include_dir"});
-        @smi_baremetal_minimums = ('/usr/sausalito/configs/php/', '.');
-        @smi_temp_joined = (@smi_temporary, @smi_baremetal_minimums);
-        
-        # Remove duplicates:
-        foreach my $var ( @smi_temp_joined ){
-            if ( ! grep( /$var/, @safe_mode_include_dir ) ){
-                push(@safe_mode_include_dir, $var );
+            # Making sure 'safe_mode_include_dir' has the bare minimum defaults:
+            @smi_temporary = split(":", $vsite_php_settings->{"safe_mode_include_dir"});
+            @smi_baremetal_minimums = ('/usr/sausalito/configs/php/', '.');
+            @smi_temp_joined = (@smi_temporary, @smi_baremetal_minimums);
+            
+            # Remove duplicates:
+            foreach my $var ( @smi_temp_joined ){
+                if ( ! grep( /$var/, @safe_mode_include_dir ) ){
+                    push(@safe_mode_include_dir, $var );
+                }
             }
-        }
-        $vsite_php_settings->{"safe_mode_include_dir"} = join(":", @safe_mode_include_dir);
+            $vsite_php_settings->{"safe_mode_include_dir"} = join(":", @safe_mode_include_dir);
 
-        # Making sure 'safe_mode_allowed_env_vars' has the bare minimum defaults:
-        @smaev_temporary = split(",", $vsite_php_settings->{"safe_mode_allowed_env_vars"});
-        @smi_baremetal_minimums = ('PHP_','_HTTP_HOST','_SCRIPT_NAME','_SCRIPT_FILENAME','_DOCUMENT_ROOT','_REMOTE_ADDR','_SOWNER');
-        @smaev_temp_joined = (@smaev_temporary, @smi_baremetal_minimums);
-        
-        # Remove duplicates:
-        foreach my $var ( @smaev_temp_joined ){
-            if ( ! grep( /$var/, @safe_mode_allowed_env_vars ) ){
-                push(@safe_mode_allowed_env_vars, $var );
+            # Making sure 'safe_mode_allowed_env_vars' has the bare minimum defaults:
+            @smaev_temporary = split(",", $vsite_php_settings->{"safe_mode_allowed_env_vars"});
+            @smi_baremetal_minimums = ('PHP_','_HTTP_HOST','_SCRIPT_NAME','_SCRIPT_FILENAME','_DOCUMENT_ROOT','_REMOTE_ADDR','_SOWNER');
+            @smaev_temp_joined = (@smaev_temporary, @smi_baremetal_minimums);
+            
+            # Remove duplicates:
+            foreach my $var ( @smaev_temp_joined ){
+                if ( ! grep( /$var/, @safe_mode_allowed_env_vars ) ){
+                    push(@safe_mode_allowed_env_vars, $var );
+                }
             }
-        }
-        $vsite_php_settings->{"safe_mode_allowed_env_vars"} = join(",", @safe_mode_allowed_env_vars);
+            $vsite_php_settings->{"safe_mode_allowed_env_vars"} = join(",", @safe_mode_allowed_env_vars);
 
-        if ($legacy_php == "1") {
-            # These options only apply to PHP versions prior to PHP-5.3:
-            if ($vsite_php_settings->{"safe_mode"} ne "") {
-                $script_conf .= 'php_admin_flag safe_mode ' . $vsite_php_settings->{"safe_mode"} . "\n"; 
-            }
-            if ($vsite_php_settings->{"safe_mode_gid"} ne "") {
-                $script_conf .= 'php_admin_flag safe_mode_gid ' . $vsite_php_settings->{"safe_mode_gid"} . "\n";
-            }
-            if ($vsite_php_settings->{"safe_mode_allowed_env_vars"} ne "") {
-                $script_conf .= 'php_admin_value safe_mode_allowed_env_vars ' . $vsite_php_settings->{"safe_mode_allowed_env_vars"} . "\n"; 
-            }
-            if ($vsite_php_settings->{"safe_mode_exec_dir"} ne "") {
-                $script_conf .= 'php_admin_value safe_mode_exec_dir ' . $vsite_php_settings->{"safe_mode_exec_dir"} . "\n"; 
+            if ($legacy_php == "1") {
+                # These options only apply to PHP versions prior to PHP-5.3:
+                if ($vsite_php_settings->{"safe_mode"} ne "") {
+                    $script_conf .= 'php_admin_flag safe_mode ' . $vsite_php_settings->{"safe_mode"} . "\n"; 
+                }
+                if ($vsite_php_settings->{"safe_mode_gid"} ne "") {
+                    $script_conf .= 'php_admin_flag safe_mode_gid ' . $vsite_php_settings->{"safe_mode_gid"} . "\n";
+                }
+                if ($vsite_php_settings->{"safe_mode_allowed_env_vars"} ne "") {
+                    $script_conf .= 'php_admin_value safe_mode_allowed_env_vars ' . $vsite_php_settings->{"safe_mode_allowed_env_vars"} . "\n"; 
+                }
+                if ($vsite_php_settings->{"safe_mode_exec_dir"} ne "") {
+                    $script_conf .= 'php_admin_value safe_mode_exec_dir ' . $vsite_php_settings->{"safe_mode_exec_dir"} . "\n"; 
+                }
+
+                if ($vsite_php_settings->{"safe_mode_include_dir"} ne "") {
+                    $script_conf .= 'php_admin_value safe_mode_include_dir ' . $vsite_php_settings->{"safe_mode_include_dir"} . "\n"; 
+                }
+                if ($vsite_php_settings->{"safe_mode_protected_env_vars"} ne "") {
+                    $script_conf .= 'php_admin_value safe_mode_protected_env_vars ' . $vsite_php_settings->{"safe_mode_protected_env_vars"} . "\n"; 
+                }
             }
 
-            if ($vsite_php_settings->{"safe_mode_include_dir"} ne "") {
-                $script_conf .= 'php_admin_value safe_mode_include_dir ' . $vsite_php_settings->{"safe_mode_include_dir"} . "\n"; 
+            if ($vsite_php_settings->{"register_globals"} ne "") {
+                $script_conf .= 'php_admin_flag register_globals ' . $vsite_php_settings->{"register_globals"} . "\n"; 
             }
-            if ($vsite_php_settings->{"safe_mode_protected_env_vars"} ne "") {
-                $script_conf .= 'php_admin_value safe_mode_protected_env_vars ' . $vsite_php_settings->{"safe_mode_protected_env_vars"} . "\n"; 
+            if ($vsite_php_settings->{"allow_url_fopen"} ne "") {
+                $script_conf .= 'php_admin_flag allow_url_fopen ' . $vsite_php_settings->{"allow_url_fopen"} . "\n"; 
             }
-        }
+            if ($vsite_php_settings->{"allow_url_include"} ne "") {
+                $script_conf .= 'php_admin_flag allow_url_include ' . $vsite_php_settings->{"allow_url_include"} . "\n"; 
+            }
 
-        if ($vsite_php_settings->{"register_globals"} ne "") {
-            $script_conf .= 'php_admin_flag register_globals ' . $vsite_php_settings->{"register_globals"} . "\n"; 
-        }
-        if ($vsite_php_settings->{"allow_url_fopen"} ne "") {
-            $script_conf .= 'php_admin_flag allow_url_fopen ' . $vsite_php_settings->{"allow_url_fopen"} . "\n"; 
-        }
-        if ($vsite_php_settings->{"allow_url_include"} ne "") {
-            $script_conf .= 'php_admin_flag allow_url_include ' . $vsite_php_settings->{"allow_url_include"} . "\n"; 
-        }
+            if ($vsite_php_settings->{"open_basedir"} ne "") {
+                $script_conf .= 'php_admin_value open_basedir ' . $vsite_php_settings->{"open_basedir"} . "\n";
+            }
 
-        if ($vsite_php_settings->{"open_basedir"} ne "") {
-            $script_conf .= 'php_admin_value open_basedir ' . $vsite_php_settings->{"open_basedir"} . "\n";
-        }
+            if ($vsite_php_settings->{"post_max_size"} ne "") {
+                $script_conf .= 'php_admin_value post_max_size ' . $vsite_php_settings->{"post_max_size"} . "\n"; 
+            }
+            if ($vsite_php_settings->{"upload_max_filesize"} ne "") {
+                $script_conf .= 'php_admin_value upload_max_filesize ' . $vsite_php_settings->{"upload_max_filesize"} . "\n"; 
+            }
+            if ($vsite_php_settings->{"max_execution_time"} ne "") {
+                $script_conf .= 'php_admin_value max_execution_time ' . $vsite_php_settings->{"max_execution_time"} . "\n"; 
+            }
+            if ($vsite_php_settings->{"max_input_time"} ne "") {
+                $script_conf .= 'php_admin_value max_input_time ' . $vsite_php_settings->{"max_input_time"} . "\n"; 
+            }
+            if ($vsite_php_settings->{"max_input_vars"} ne "") {
+                $script_conf .= 'php_admin_value max_input_vars ' . $vsite_php_settings->{"max_input_vars"} . "\n"; 
+            }
+            if ($vsite_php_settings->{"memory_limit"} ne "") {
+                $script_conf .= 'php_admin_value memory_limit ' . $vsite_php_settings->{"memory_limit"} . "\n"; 
+            }
 
-        if ($vsite_php_settings->{"post_max_size"} ne "") {
-            $script_conf .= 'php_admin_value post_max_size ' . $vsite_php_settings->{"post_max_size"} . "\n"; 
-        }
-        if ($vsite_php_settings->{"upload_max_filesize"} ne "") {
-            $script_conf .= 'php_admin_value upload_max_filesize ' . $vsite_php_settings->{"upload_max_filesize"} . "\n"; 
-        }
-        if ($vsite_php_settings->{"max_execution_time"} ne "") {
-            $script_conf .= 'php_admin_value max_execution_time ' . $vsite_php_settings->{"max_execution_time"} . "\n"; 
-        }
-        if ($vsite_php_settings->{"max_input_time"} ne "") {
-            $script_conf .= 'php_admin_value max_input_time ' . $vsite_php_settings->{"max_input_time"} . "\n"; 
-        }
-        if ($vsite_php_settings->{"memory_limit"} ne "") {
-            $script_conf .= 'php_admin_value memory_limit ' . $vsite_php_settings->{"memory_limit"} . "\n"; 
-        }
-
-        # Email related:
-        $script_conf .= 'php_admin_flag mail.add_x_header On' . "\n";
-        $script_conf .= 'php_admin_value sendmail_path /usr/sausalito/sbin/phpsendmail' . "\n";
-        $script_conf .= 'php_admin_value auto_prepend_file /usr/sausalito/configs/php/set_php_headers.php' . "\n";
+            # Email related:
+            $script_conf .= 'php_admin_flag mail.add_x_header On' . "\n";
+            $script_conf .= 'php_admin_value sendmail_path /usr/sausalito/sbin/phpsendmail' . "\n";
+            $script_conf .= 'php_admin_value auto_prepend_file /usr/sausalito/configs/php/set_php_headers.php' . "\n";
 
         }
 
@@ -401,6 +406,7 @@ sub edit_php_ini {
                 'upload_max_filesize' => $vsite_php_settings->{"upload_max_filesize"},
                 'max_execution_time' => $vsite_php_settings->{"max_execution_time"}, 
                 'max_input_time' => $vsite_php_settings->{"max_input_time"}, 
+                'max_input_vars' => $vsite_php_settings->{"max_input_vars"}, 
                 'memory_limit' => $vsite_php_settings->{"memory_limit"},
                 'mail.add_x_header' => 'On',
                 'sendmail_path' => '/usr/sausalito/sbin/phpsendmail',
@@ -428,6 +434,7 @@ sub edit_php_ini {
                 'upload_max_filesize' => $vsite_php_settings->{"upload_max_filesize"},
                 'max_execution_time' => $vsite_php_settings->{"max_execution_time"}, 
                 'max_input_time' => $vsite_php_settings->{"max_input_time"}, 
+                'max_input_vars' => $vsite_php_settings->{"max_input_vars"}, 
                 'memory_limit' => $vsite_php_settings->{"memory_limit"},
                 'mail.add_x_header' => 'On',
                 'sendmail_path' => '/usr/sausalito/sbin/phpsendmail',

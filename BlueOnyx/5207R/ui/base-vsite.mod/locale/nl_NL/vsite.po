@@ -1058,3 +1058,11 @@ msgstr "PHP Version (OS):"
 msgid "PHP_version_os_help"
 msgstr "Dit toont de PHP-versie van het onderliggende besturingssysteem. Uw openbare webserver draait momenteel met een optionele PHP van een andere versie. Daarom is deze OS verstrekt PHP-versie is momenteel niet beschikbaar voor het draaien van virtuele sites, als derde partij PHP (of één van hen - als je meerdere hebt geïnstalleerd) zijn die voorrang heeft."
 
+###
+
+msgid "max_input_vars"
+msgstr "Max ingang vars:"
+
+msgid "max_input_vars_help"
+msgstr "Dit bepaalt hoeveel inputvariabelen kunnen worden aanvaard (limiet wordt afzonderlijk toegepast op $ _GET, $ _POST en $ _COOKIE superglobal). Het gebruik van deze richtlijn vermindert de mogelijkheid van een denial of service-aanvallen die hash botsingen gebruiken. Als er meer variabelen dan die door deze richtlijn wordt een E_WARNING uitgegeven, en verdere input variabelen worden afgekapt van de aanvraag. Indien ingesteld op onbeperkt ingang vars -1 zijn toegestaan. Standaard: 1000."
+

@@ -1126,3 +1126,11 @@ msgstr "PHP-Version (OS):"
 msgid "PHP_version_os_help"
 msgstr "Dies zeigt die PHP-Version des Betriebssystems. Ihr Apache Web-Server benutzt jedoch derzeit eine andere PHP-Version aus einem optionalen Zusatz-Paket. Deswegen steht diese vom Betriebssystem zur Verfügung gestellte PHP-Version nicht für virtuelle Sites zur Verfügung, da PHP-Versionen aus optionalen Paketen Vorrang haben."
 
+###
+
+msgid "max_input_vars"
+msgstr "Max input vars:"
+
+msgid "max_input_vars_help"
+msgstr "Wie viele Eingabe-Variablen maximal angenommen werden (dieses Limit wird auf die Superglobalen $_GET, $_POST und $_COOKIE separat angewandt). Diese Direktive verhindert die Nutzung von Hashtable Kollisionen für eine Denial of Service Attacke. Wenn mehr Eingabe-Variablen gesendet werden, als mit dieser Direktive erlaubt, wird ein Fehler der Stufe E_WARNING geworfen und weitere Eingabe-Variablen werden nicht angenommen. Wird dieser Wert auf -1 gesetzt, so sind beliebig viele Input Variablen erlaubt. Standard: 1000."
+
