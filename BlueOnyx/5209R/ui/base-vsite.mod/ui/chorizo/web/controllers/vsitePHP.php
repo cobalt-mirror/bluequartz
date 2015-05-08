@@ -287,6 +287,7 @@ class vsitePHP extends MX_Controller {
                         "allow_url_include" => $attributes['allow_url_include'],
                         "max_execution_time" => $attributes['max_execution_time'],
                         "max_input_time" => $attributes['max_input_time'],
+                        "max_input_vars" => $attributes['max_input_vars'],
                         "memory_limit" => $attributes['memory_limit'],
                 ));
 
@@ -310,6 +311,7 @@ class vsitePHP extends MX_Controller {
                         "allow_url_include" => $attributes['allow_url_include'],
                         "max_execution_time" => $attributes['max_execution_time'],
                         "max_input_time" => $attributes['max_input_time'],
+                        "max_input_vars" => $attributes['max_input_vars'],
                         "memory_limit" => $attributes['memory_limit']
                 ));
             }
