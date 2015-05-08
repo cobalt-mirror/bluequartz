@@ -700,6 +700,9 @@ class vsitePHP extends MX_Controller {
             $block->addFormField($max_input_time_choices_select,$factory->getLabel("max_input_time"), $defaultPage);
 
             // max_input_vars:
+            if (!isset($systemObj["max_input_vars"])) { 
+                $systemObj["max_input_vars"] = '1000'; 
+            }
             $max_input_vars_Field = $factory->getInteger("max_input_vars", $systemObj["max_input_vars"], "-1", "65535");
             $max_input_vars_Field->setWidth(5);
             $max_input_vars_Field->showBounds(1);

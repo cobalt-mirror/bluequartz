@@ -86,6 +86,7 @@ information for [VENDOR]-[SERVICE].
 # glue post-install
 if [ -S /usr/sausalito/cced.socket ]; then
     /usr/sausalito/sbin/free_admin_alias.pl
+    /usr/sausalito/sbin/cced.init restart
 fi
 
 <end glue>
@@ -134,6 +135,11 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Thu May 07 2015  Michael Stauber <mstauber@solarspeed.net> 4.0-0BX23
+- Added missing CCEd restart.
+- Small fix in ui/chorizo/web/controllers/phpconfig.php
+- Small fix in ui/chorizo/web/controllers/vsitePHP.php
 
 * Thu May 07 2015  Michael Stauber <mstauber@solarspeed.net> 4.0-0BX22
 - Made the PHP parameter 'max_input_vars' editable. Both on a server and

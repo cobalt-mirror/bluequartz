@@ -488,6 +488,9 @@ class Phpconfig extends MX_Controller {
         $block->addFormField($max_input_time_choices_select,$factory->getLabel("max_input_time"), "php_ini_security_settings");
 
         // max_input_vars:
+        if (!isset($CODBDATA["max_input_vars"])) { 
+            $CODBDATA["max_input_vars"] = '1000'; 
+        }
         $max_input_vars_Field = $factory->getInteger("max_input_vars", $CODBDATA["max_input_vars"], "-1", "65535");
         $max_input_vars_Field->setWidth(5);
         $max_input_vars_Field->showBounds(1);
