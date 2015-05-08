@@ -123,6 +123,12 @@
             optional="true"
             writeacl="ruleCapable(adminUser)"
         />
+       <property name="max_input_vars"
+            type="int"
+            default="1000"
+            optional="false"
+            writeacl="ruleCapable(adminUser)"
+        />
        <property name="memory_limit"
             type="scalar"
             default="16M"

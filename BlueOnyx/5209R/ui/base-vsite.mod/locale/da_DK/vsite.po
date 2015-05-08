@@ -1236,3 +1236,11 @@ msgstr "PHP Version (OS):"
 msgid "PHP_version_os_help"
 msgstr "Dette viser PHP version af det underliggende operativsystem. Din offentlige webserver kører i øjeblikket med en valgfri PHP på en anden version. Derfor er denne OS forudsat PHP version er i øjeblikket ikke tilgængelig til at køre virtuelle steder, som den tredje part PHP (eller en af ​​dem - hvis du har flere installeret) tager forrang."
 
+###
+
+msgid "max_input_vars"
+msgstr "Max input vars:"
+
+msgid "max_input_vars_help"
+msgstr "Dette definerer, hvor mange input variabler kan accepteres (grænse anvendes på $ _GET, $ _POST og $ _COOKIE superglobale separat). Brug af dette direktiv afbøder muligheden for denial of service-angreb, der bruger hash kollisioner. Hvis der er flere input variable end angivet i dette direktiv, er en E_WARNING udstedt, og yderligere input variable er afskåret fra anmodningen. Hvis sat til -1 ubegrænsede input vars er tilladt. Standard 1000."
+

@@ -260,6 +260,10 @@ sub verify {
             if (($entry eq "upload_max_filesize") && ($CONFIG{"$entry"} eq "")) {
                 $CONFIG{"$entry"} = "8M";
             }
+            if (($entry eq "max_input_vars") && ($CONFIG{"$entry"} eq "")) {
+                # Set default:
+                $CONFIG{"$entry"} = '1000';
+            }
             if ($DEBUG == "1") {
                 print $entry . " has no value!\n";
             }
@@ -351,7 +355,8 @@ sub feedthemonster {
             'post_max_size' => $CONFIG{"post_max_size"},   
             'upload_max_filesize'  => $CONFIG{"upload_max_filesize"},  
             'max_execution_time' => $CONFIG{"max_execution_time"},   
-            'max_input_time' => $CONFIG{"max_input_time"},   
+            'max_input_time' => $CONFIG{"max_input_time"},
+            'max_input_vars' => $CONFIG{"max_input_vars"},
             'memory_limit' => $CONFIG{"memory_limit"},   
             'php_ini_location' => $php_ini,  
             'force_update' => time()  
@@ -382,7 +387,8 @@ sub feedthemonster {
             'post_max_size' => $CONFIG{"post_max_size"},   
             'upload_max_filesize' => $CONFIG{"upload_max_filesize"},  
             'max_execution_time' => $CONFIG{"max_execution_time"},   
-            'max_input_time' => $CONFIG{"max_input_time"},   
+            'max_input_time' => $CONFIG{"max_input_time"},
+            'max_input_vars' => $CONFIG{"max_input_vars"},
             'memory_limit' => $CONFIG{"memory_limit"},   
             'php_ini_location' => $php_ini  
         });
@@ -415,6 +421,7 @@ sub items_of_interest {
         'upload_max_filesize',
         'max_execution_time',
         'max_input_time',
+        'max_input_vars',
         'memory_limit'
     );
 }

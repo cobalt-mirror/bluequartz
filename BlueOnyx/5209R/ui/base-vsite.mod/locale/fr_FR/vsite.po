@@ -1149,3 +1149,11 @@ msgstr "Version de PHP (OS):"
 msgid "PHP_version_os_help"
 msgstr "Cela montre la version PHP du système d'exploitation sous-jacent. Votre serveur web public est en cours d'exécution avec un PHP option d'une version différente. Par conséquent, cette OS fourni version de PHP est actuellement pas disponible pour la gestion de sites virtuels, que le tiers PHP (ou l'un d'entre eux - si vous avez plusieurs installé) prennent le pas."
 
+###
+
+msgid "max_input_vars"
+msgstr "Max input vars:"
+
+msgid "max_input_vars_help"
+msgstr "Le nombre de variables d'entrée pouvant être acceptées (cette limite est appliquée aux variables superglobales $_GET, $_POST et $_COOKIE, séparément). L'utilisation de cette directive permet de limiter les possibilités d'attaque par déni de service utilisant des collisions de hashages. S'il y a plusieurs de variables en entrée que le nombre spécifié par cette directive, une alerte de type E_WARNING sera émise, et les variables en trop seront supprimées de la requête. Si défini à -1 vars d'entrée illimités sont permis. Par défaut: 1000."
+

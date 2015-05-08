@@ -192,6 +192,7 @@ if ($whatami eq "handler") {
                 'upload_max_filesize' => $PHP->{"upload_max_filesize"},
                 'max_execution_time' => $PHP->{"max_execution_time"}, 
                 'max_input_time' => $PHP->{"max_input_time"}, 
+                'max_input_vars' => $PHP->{"max_input_vars"}, 
                 'memory_limit' => $PHP->{"memory_limit"},
                 'force_update' => time()
         };
@@ -324,6 +325,7 @@ sub items_of_interest {
         'upload_max_filesize',
         'max_execution_time',
         'max_input_time',
+        'max_input_vars',
         'memory_limit',
         'mail.add_x_header',
         'sendmail_path',
@@ -408,6 +410,7 @@ sub edit_php_ini {
             'upload_max_filesize' => $PHP->{"upload_max_filesize"},
             'max_execution_time' => $PHP->{"max_execution_time"}, 
             'max_input_time' => $PHP->{"max_input_time"}, 
+            'max_input_vars' => $PHP->{"max_input_vars"}, 
             'memory_limit' => $PHP->{"memory_limit"}, 
             'mail.add_x_header' => 'On',
             'sendmail_path' => '/usr/sausalito/sbin/phpsendmail',
@@ -437,6 +440,7 @@ sub edit_php_ini {
             'upload_max_filesize' => $PHP->{"upload_max_filesize"},
             'max_execution_time' => $PHP->{"max_execution_time"}, 
             'max_input_time' => $PHP->{"max_input_time"}, 
+            'max_input_vars' => $PHP->{"max_input_vars"}, 
             'memory_limit' => $PHP->{"memory_limit"},
             'mail.add_x_header' => 'On',
             'sendmail_path' => '/usr/sausalito/sbin/phpsendmail',
@@ -597,6 +601,9 @@ sub handle_fpm_master_pool {
     }
     if ($PHP->{"max_input_time"} ne "") {
         $pool_conf .= 'php_admin_value[max_input_time] = ' . $PHP->{"max_input_time"} . "\n"; 
+    }
+    if ($PHP->{"max_input_vars"} ne "") {
+        $pool_conf .= 'php_admin_value[max_input_vars] = ' . $PHP->{"max_input_vars"} . "\n"; 
     }
     if ($PHP->{"memory_limit"} ne "") {
         $pool_conf .= 'php_admin_value[memory_limit] = ' . $PHP->{"memory_limit"} . "\n"; 

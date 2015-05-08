@@ -228,8 +228,10 @@ $cce->bye('SUCCESS');
 exit(0);
 
 sub restart_apache {
-    # Restarts Apache - soft restart:
-    service_run_init('httpd', 'reload');
+    # Restarts Apache - hard restart:
+    service_run_init('httpd', 'stop');
+    sleep(3);
+    service_run_init('httpd', 'start');
 }
 
 sub edit_vhost {
@@ -316,6 +318,9 @@ sub edit_vhost {
     }
     if ($vsite_php_settings->{"max_input_time"} ne "") {
         $script_conf .= 'php_admin_value max_input_time ' . $vsite_php_settings->{"max_input_time"} . "\n"; 
+    }
+    if ($vsite_php_settings->{"max_input_vars"} ne "") {
+        $script_conf .= 'php_admin_value max_input_vars ' . $vsite_php_settings->{"max_input_vars"} . "\n"; 
     }
     if ($vsite_php_settings->{"memory_limit"} ne "") {
         $script_conf .= 'php_admin_value memory_limit ' . $vsite_php_settings->{"memory_limit"} . "\n"; 
@@ -446,6 +451,7 @@ sub edit_php_ini {
                 'upload_max_filesize' => $vsite_php_settings->{"upload_max_filesize"},
                 'max_execution_time' => $vsite_php_settings->{"max_execution_time"}, 
                 'max_input_time' => $vsite_php_settings->{"max_input_time"}, 
+                'max_input_vars' => $vsite_php_settings->{"max_input_vars"}, 
                 'memory_limit' => $vsite_php_settings->{"memory_limit"},
                 'mail.add_x_header' => 'On',
                 'sendmail_path' => '/usr/sausalito/sbin/phpsendmail',
@@ -472,6 +478,7 @@ sub edit_php_ini {
                 'upload_max_filesize' => $vsite_php_settings->{"upload_max_filesize"},
                 'max_execution_time' => $vsite_php_settings->{"max_execution_time"}, 
                 'max_input_time' => $vsite_php_settings->{"max_input_time"}, 
+                'max_input_vars' => $vsite_php_settings->{"max_input_vars"}, 
                 'memory_limit' => $vsite_php_settings->{"memory_limit"},
                 'mail.add_x_header' => 'On',
                 'sendmail_path' => '/usr/sausalito/sbin/phpsendmail',
@@ -725,6 +732,9 @@ sub handle_fpm_pools {
         }
         if ($vsite_php_settings->{"max_input_time"} ne "") {
             $pool_conf .= 'php_admin_value[max_input_time] = ' . $vsite_php_settings->{"max_input_time"} . "\n"; 
+        }
+        if ($vsite_php_settings->{"max_input_vars"} ne "") {
+            $pool_conf .= 'php_admin_value[max_input_vars] = ' . $vsite_php_settings->{"max_input_vars"} . "\n"; 
         }
         if ($vsite_php_settings->{"memory_limit"} ne "") {
             $pool_conf .= 'php_admin_value[memory_limit] = ' . $vsite_php_settings->{"memory_limit"} . "\n"; 
