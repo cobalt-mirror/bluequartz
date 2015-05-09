@@ -118,6 +118,11 @@ fi
 
 <begin $CHANGELOG>
 
+* Sat May 09 2015 Michael Stauber <mstauber@solarspeed.net> 1.1.0-0BX06
+- Modified ui/chorizo/web/controllers/snmpconfig.php to make the SNMP
+  community names mandatory. The R/O community must be set because
+  Active Monitor uses SNMPwalk against it to check if SNMP is up.
+
 * Fri Jan 30 2015 Michael Stauber <mstauber@solarspeed.net> 1.1.0-0BX05
 - Bugfix in glue/handlers/snmp.pl. Missing curly bracket.
 
