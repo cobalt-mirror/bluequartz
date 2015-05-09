@@ -103,6 +103,14 @@ information for [VENDOR]-[SERVICE].
 
 <begin $CHANGELOG>
 
+* Sat May 09 2015 Michael Stauber <mstauber@solarspeed.net> 3.0.0-1BX09
+- We were using 'df -k' in Base::Disk to determine disk usage. We actually
+  need to use 'df -kP' for POSIX compatible output without linefeeds after
+  really long device names. Also added more debugging mechanisms.
+- Modified glue/handlers/Disk.pm
+- Modified glue/handlers/df.pl
+- Modified perl/Disk.pm
+
 * Fri May 01 2015 Michael Stauber <mstauber@solarspeed.net> 3.0.0-1BX08
 - Converted indentation to spaces.
 - Modified ui/chorizo/web/controllers/serverDiskUsage.php to throw in

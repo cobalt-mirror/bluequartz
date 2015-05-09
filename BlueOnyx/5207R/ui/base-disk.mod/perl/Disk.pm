@@ -44,7 +44,16 @@ package Base::Disk;
 use lib qw(/usr/sausalito/perl /usr/sausalito/handlers/base/disk);
 use vars qw(@ISA @EXPORT_OK $DEBUG);
 
-$DEBUG = 0;
+use locale;
+use POSIX qw(locale_h); # Imports setlocale() and the LC_ constants.
+setlocale(LC_NUMERIC, "en_US") or die "Locale en_US not available";
+
+# Debugging switch:
+$DEBUG = "0";
+if ($DEBUG)
+{
+        use Sys::Syslog qw( :DEFAULT setlogsock);
+}
 
 require Exporter;
 @ISA    = qw(Exporter);
@@ -152,7 +161,8 @@ sub disk_get_usage_info
     # column headers to be used as hash keys
     my @headers = qw(name size used free capacity mount);
 
-    my @df = `df -k`;
+    my @df = `df -kP`;
+
     shift @df;  # get rid of the header
 
     my %devices;
@@ -171,8 +181,24 @@ sub disk_get_usage_info
         $hash->{$i}->{PercentUsed} = $info->{capacity};
         $hash->{$i}->{MountPoint} = $info->{mount};
 
+        &debug_msg("Base::Disk: Processing: ($i : $size)\n");
+        &debug_msg("Base::Disk: Size: " . $info->{size} . "\n");
+        &debug_msg("Base::Disk: Used: " . $info->{used} . "\n");
+        &debug_msg("Base::Disk: Available: " . $info->{capacity} . "\n");
+        &debug_msg("Base::Disk: MountPoint: " . $info->{mount} . "\n");
     }
     return $hash;
+}
+
+sub debug_msg {
+    if ($DEBUG) {
+        my $msg = shift;
+        $user = $ENV{'USER'};
+        setlogsock('unix');
+        openlog($0,'','user');
+        syslog('info', "$ARGV[0]: $msg");
+        closelog;
+    }
 }
 
 =pod

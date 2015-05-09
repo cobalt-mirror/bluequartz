@@ -1,6 +1,4 @@
 #!/usr/bin/perl -I/usr/sausalito/perl -I.
-# $Id: df.pl 259 2004-01-03 06:28:40Z shibuya $
-# Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 #
 # original author: Kevin K.M. Chiu
 # rewritten by: someone else
@@ -11,6 +9,13 @@
 use CCE;
 use Base::Disk qw(disk_get_usage_info);
 
+# Debugging switch:
+$DEBUG = "0";
+if ($DEBUG)
+{
+        use Sys::Syslog qw( :DEFAULT setlogsock);
+}
+
 my $cce = new CCE('Domain' => 'base-disk');
 $cce->connectfd();
 
@@ -19,6 +24,7 @@ my $disk = $cce->event_object();
 # don't bother if the disk isn't mounted
 if (not $disk->{mounted})
 {
+    &debug_msg("SUCCESS: Not mounted, exiting. \n");
     $cce->bye('SUCCESS');
     exit(0);
 }
@@ -28,18 +34,20 @@ my $usage_info = disk_get_usage_info($disk->{mountPoint});
 
 if ($usage_info == undef)
 {
+    &debug_msg("FAIL: [[base-disk.cantExecuteDf]] \n");
     $cce->bye('FAIL', '[[base-disk.cantExecuteDf]]');
     exit(1);
 }
 
 # write result to CCE
+&debug_msg("Setting for " . $disk->{device} . ": total: " . $usage_info->{$disk->{device}}->{Total} . " - used: " . $usage_info->{$disk->{device}}->{Used} . " \n");
 my ($ok) = $cce->set($cce->event_oid(), '', 
                 {
                     'total' => $usage_info->{$disk->{device}}->{Total},
                     'used' => $usage_info->{$disk->{device}}->{Used}
                 });
 
-if(!$ok) 
+if (!$ok) 
 {
     $cce->bye('FAIL', 'cantUpdateDiskInfo', { 'device' => $disk->{device} });
     exit(1);
@@ -47,22 +55,50 @@ if(!$ok)
 
 $cce->bye('SUCCESS');
 exit(0);
-# Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
+
+sub debug_msg {
+    if ($DEBUG) {
+        my $msg = shift;
+        $user = $ENV{'USER'};
+        setlogsock('unix');
+        openlog($0,'','user');
+        syslog('info', "$ARGV[0]: $msg");
+        closelog;
+    }
+}
+
 # 
-# Redistribution and use in source and binary forms, with or without 
-# modification, are permitted provided that the following conditions are met:
+# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2003 Sun Microsystems, Inc. 
+# All Rights Reserved.
 # 
-# -Redistribution of source code must retain the above copyright notice, 
-# this list of conditions and the following disclaimer.
+# 1. Redistributions of source code must retain the above copyright 
+#     notice, this list of conditions and the following disclaimer.
 # 
-# -Redistribution in binary form must reproduce the above copyright notice, 
-# this list of conditions and the following disclaimer in the documentation  
-# and/or other materials provided with the distribution.
+# 2. Redistributions in binary form must reproduce the above copyright 
+#     notice, this list of conditions and the following disclaimer in 
+#     the documentation and/or other materials provided with the 
+#     distribution.
 # 
-# Neither the name of Sun Microsystems, Inc. or the names of contributors may 
-# be used to endorse or promote products derived from this software without 
-# specific prior written permission.
+# 3. Neither the name of the copyright holder nor the names of its 
+#     contributors may be used to endorse or promote products derived 
+#     from this software without specific prior written permission.
 # 
-# This software is provided "AS IS," without a warranty of any kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY EXCLUDED. SUN MICROSYSTEMS, INC. ("SUN") AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
+# COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+# POSSIBILITY OF SUCH DAMAGE.
 # 
-# You acknowledge that  this software is not designed or intended for use in the design, construction, operation or maintenance of any nuclear facility.
+# You acknowledge that this software is not designed or intended for 
+# use in the design, construction, operation or maintenance of any 
+# nuclear facility.
+# 
