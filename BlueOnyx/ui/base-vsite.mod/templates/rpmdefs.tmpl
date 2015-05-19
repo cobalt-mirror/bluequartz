@@ -137,6 +137,11 @@ fi
 
 <begin $CHANGELOG>
 
+* Tue May 19 2015 Michael Stauber <mstauber@solarspeed.net> 3.1-0BX26
+- Modified glue/sbin/phpsendmail to change it to a Perl script and added
+  provisions to make it tie into Milter GeoIP if the AV-SPAM is installed.
+  That way we can not only log, but also prevent SPAM sending of PHP scripts.
+
 * Thu Mar 27 2014 Michael Stauber <mstauber@solarspeed.net> 3.1-0BX25
 - Locale string update for 'maxVsiteAlreadyMade' in all languages.
 
