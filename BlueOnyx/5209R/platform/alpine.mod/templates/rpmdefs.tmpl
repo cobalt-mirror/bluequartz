@@ -136,6 +136,12 @@ fi
 
 <begin $CHANGELOG>
 
+* Thu May 21 2015 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX045
+- Modified ci/application/modules/base/login/controllers/login.php to
+  set auto-detected locale immediately to cookie. This is the only way
+  how we can get i18n behave correctly for Japanese users on the login
+  page prior to authentication.
+
 * Sat Mar 28 2015 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX044
 - Modified ci/application/libraries/BxPage.php to manually tack on the Logout
   menu entry to the end of 'Personal Profile' for regular users.
