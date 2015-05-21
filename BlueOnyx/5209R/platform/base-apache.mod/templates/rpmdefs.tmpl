@@ -203,6 +203,15 @@ fi
 
 <begin $CHANGELOG>
 
+* Thu May 21 2015 Michael Stauber <mstauber@solarspeed.net> 2.1.1-0BX27
+- The USERWEBS Chorizo-Extensions threw a 'undefined index' error message
+  when the 'Vsite' . 'PHP' Object of a Vsite wasn't there yet. There is a
+  certain race condition where this might happen. So I extended these
+  Extensions with some checks for this.
+- Modified ui/chorizo/extensions/40_USERWEBS.php.create.Vsite
+- Modified ui/chorizo/extensions/40_USERWEBS.php.defaults.Vsite
+- Modified ui/chorizo/extensions/40_USERWEBS.php.modifyWeb.Vsite
+
 * Thu May 07 2015 Michael Stauber <mstauber@solarspeed.net> 2.1.1-0BX26
 - Modified glue/handlers/virtual_host.pl
 - Slightly modified the cipher suites in ssl.conf again. We can now use

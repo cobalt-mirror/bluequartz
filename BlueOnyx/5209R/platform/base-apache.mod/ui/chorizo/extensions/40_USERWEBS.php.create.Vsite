@@ -1,7 +1,7 @@
 <?php
 // $Id: 40_USERWEBS.php.create.Vsite
-// Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-// Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+// Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+// Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 //
 // ui extension to set settings for user webs on Vsite creation
 
@@ -37,10 +37,10 @@ class USERWEBSExtension extends UIExtension
             $pageId = $cce_info['PAGED_BLOCK_DEFAULT_PAGE'];
         }
         
-	    $container->addFormField(
-			$factory->getBoolean('userwebs', $defaults['enabled']),
-		    $factory->getLabel('userwebs'),
-		    $pageId
+        $container->addFormField(
+            $factory->getBoolean('userwebs', $defaults['enabled']),
+            $factory->getLabel('userwebs'),
+            $pageId
             );
     }
 
@@ -58,8 +58,10 @@ class USERWEBSExtension extends UIExtension
 
         // But turn 'userwebs' off if suPHP or 'PHP-FPM' is enabled for a Vsite:
         $featurePHP = $cce->get($cce_info['CCE_OID'], 'PHP');
-        if (($featurePHP['suPHP_enabled'] == "1") || ($featurePHP['fpm_enabled'] == "1")) {
-                $USERWEBS_enabled = "0";
+        if ((isset($featurePHP['suPHP_enabled'])) && (isset($featurePHP['fpm_enabled']))) {
+            if (($featurePHP['suPHP_enabled'] == "1") || ($featurePHP['fpm_enabled'] == "1")) {
+                    $USERWEBS_enabled = "0";
+            }
         }
 
         // Tell CCE about it:
@@ -68,5 +70,3 @@ class USERWEBSExtension extends UIExtension
         $errors = array_merge($errors, $cce->errors());
     }
 }
-
-
