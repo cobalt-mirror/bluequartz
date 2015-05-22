@@ -123,9 +123,10 @@ class PHPExtension extends UIExtension
             }
             if (isset($defaults['version'])) {
                 if ($defaults['version'] == '') {
-                    $defaults['version'] = $Master_PHP['PHP_version'];
+                    $defaults['version'] = array_search($Master_PHP['PHP_version'], $all_php_versions);
                 }
             }
+
             $PHP_version_Field_select->setSelected($all_php_versions[$defaults['version']], true);
             $container->addFormField($PHP_version_Field_select, $factory->getLabel("PHP_version_Field"), $pageId);
 

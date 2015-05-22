@@ -203,6 +203,14 @@ fi
 
 <begin $CHANGELOG>
 
+* Thu May 21 2015 Michael Stauber <mstauber@solarspeed.net> 2.1.1-0BX28
+- Modified ui/chorizo/extensions/10_PHP.php.modifyWeb.Vsite. If a server
+  had no extra PHP packages installed and there were legacy Vsites on it
+  from before the support of multiple PHP versions, then we would get an
+  'undefined index' for the used PHP version of that Vsite. The used PHP
+  version is now correctly extracted from the list of all available PHP
+  versions and is inserted correctly.
+
 * Thu May 21 2015 Michael Stauber <mstauber@solarspeed.net> 2.1.1-0BX27
 - The USERWEBS Chorizo-Extensions threw a 'undefined index' error message
   when the 'Vsite' . 'PHP' Object of a Vsite wasn't there yet. There is a
