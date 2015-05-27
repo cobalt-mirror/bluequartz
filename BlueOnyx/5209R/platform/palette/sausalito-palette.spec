@@ -1,7 +1,7 @@
 Summary: Cobalt UI Library
 Name: sausalito-palette
 Version: 0.9.9
-Release: 0BX04%{?dist}
+Release: 0BX05%{?dist}
 Vendor: Project BlueOnyx
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -58,6 +58,9 @@ fi
 /usr/share/doc/blueonyx-release-520XR/*
 
 %changelog
+
+* Tue May 26 2015 Michael Stauber <mstauber@solarspeed.net> 0.9.9-0BX05
+- Extended locales for the new GeoIP UIFC element.
 
 * Sun Jul 13 2014 Michael Stauber <mstauber@solarspeed.net> 0.9.9-0BX04
 - Small locale fixes.
