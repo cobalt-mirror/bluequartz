@@ -3748,3 +3748,46 @@ msgstr "Remove all"
 
 msgid "itemsCount"
 msgstr "items selected"
+
+#
+### Added for GeoIP:
+#
+
+msgid "eu" 
+msgstr "Europe (Please note that 'EU' and 'AP' codes are only used when a specific country code has not been designated. The 'EU' and 'AP' codes are used when a set of IP addresses has end users all over Europe or Asia and Australasia. Blocking or accepting by 'EU' or 'AP' will only affect a small portion of IP addresses. Instead, you should list the countries you want individually.)"
+
+msgid "ap" 
+msgstr "Asia/Pacific Region (Please note that 'EU' and 'AP' codes are only used when a specific country code has not been designated. The 'EU' and 'AP' codes are used when a set of IP addresses has end users all over Europe or Asia and Australasia. Blocking or accepting by 'EU' or 'AP' will only affect a small portion of IP addresses. Instead, you should list the countries you want individually.)"
+
+msgid "a1" 
+msgstr "Anonymous Proxy"
+
+msgid "a2" 
+msgstr "Satellite Provider"
+
+msgid "o1" 
+msgstr "Other Country"
+
+msgid "EU" 
+msgstr "Europe"
+
+msgid "NA" 
+msgstr "North America"
+
+msgid "SA" 
+msgstr "South America"
+
+msgid "AS" 
+msgstr "Asia"
+
+msgid "OC" 
+msgstr "Oceania"
+
+msgid "AF" 
+msgstr "Africa"
+
+msgid "AN" 
+msgstr "Antarctica"
+
+msgid "XX" 
+msgstr "Satellite Providers"

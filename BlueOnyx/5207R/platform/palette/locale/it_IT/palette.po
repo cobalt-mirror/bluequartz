@@ -3686,3 +3686,46 @@ msgstr "Rimuovere tutti"
 msgid "itemsCount"
 msgstr "articoli selezionati"
 
+#
+### Added for GeoIP:
+#
+
+msgid "eu"
+msgstr "Europa (Nota prego che 'EU' e codici 'AP' vengono utilizzati solo quando un codice di paese specifico non è stato designato. L''Unione europea' e vengono utilizzati i codici 'AP' quando una serie di indirizzi IP ha utenti finali in tutta Europa o Asia e Oceania. Bloccare o accettare da 'EU' o 'AP' interesseranno solo una piccola parte di indirizzi IP. Invece, si dovrebbe elencare i paesi che si desidera individualmente.)"
+
+msgid "ap"
+msgstr "Asia/Pacific Regione (Nota prego che 'EU' e codici 'AP' vengono utilizzati solo quando un codice di paese specifico non è stato designato. L''Unione europea' e vengono utilizzati i codici 'AP' quando una serie di indirizzi IP ha utenti finali in tutta Europa o in Asia e Australasia. Bloccare o accettare da 'EU' o 'AP' interesserà solo una piccola parte di indirizzi IP. Invece, si dovrebbe elencare i paesi che si desidera individualmente.)"
+
+msgid "a1"
+msgstr "Proxy Anonimo"
+
+msgid "a2"
+msgstr "Provider Satellite"
+
+msgid "o1"
+msgstr "Altro paese"
+
+msgid "EU"
+msgstr "Europa"
+
+msgid "NA"
+msgstr "Nord America"
+
+msgid "SA"
+msgstr "Sud America"
+
+msgid "AS"
+msgstr "Asia"
+
+msgid "OC"
+msgstr "Oceania"
+
+msgid "AF"
+msgstr "Africa"
+
+msgid "AN"
+msgstr "Antartide"
+
+msgid "XX"
+msgstr "Fornitori di servizi satellitari"
+

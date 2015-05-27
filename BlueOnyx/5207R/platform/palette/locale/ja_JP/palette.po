@@ -3768,3 +3768,47 @@ msgstr "すべて削除"
 
 msgid "itemsCount"
 msgstr "選択した項目"
+
+#
+### Added for GeoIP:
+#
+
+msgid "eu"
+msgstr "ヨーロッパ（特定の国コードが指定されていないときに「EU」と「AP」コードのみを使用しています。「EU」と「AP」のコードが使用されているIPアドレスのセットは、ヨーロッパ各地のエンドユーザーを持つ場合に注意またはくださいアジアとオーストラリアは「EU」または「AP」によって遮断または受け入れることはIPアドレスのみの小さな部分に影響を与えます。その代わりに、あなたが個別に必要な国をリストする必要があります。）"
+
+msgid "ap"
+msgstr "Asia/Pacific地域（特定の国コードは、IPアドレスのセットは、ヨーロッパ各地のエンドユーザーがいるときに「EU」と「AP」のコードが使用されます。指定されていないときに「EU」と「AP」コードのみを使用しております。あるいはアジアとオーストラリアが。ブロッキングまたは「EU」または「AP」で受け付けるIPアドレスのみの小さな部分に影響を与えます。その代わりに、あなたが個別に必要な国をリストする必要があります。）"
+
+msgid "a1"
+msgstr "匿名プロキシ"
+
+msgid "a2"
+msgstr "衛星プロバイダ"
+
+msgid "o1"
+msgstr "その他の国"
+
+msgid "EU"
+msgstr "ヨーロッパ"
+
+msgid "NA"
+msgstr "北米"
+
+msgid "SA"
+msgstr "南アメリカ"
+
+msgid "AS"
+msgstr "アジア"
+
+msgid "OC"
+msgstr "オセアニア"
+
+msgid "AF"
+msgstr "アフリカ"
+
+msgid "AN"
+msgstr "南極大陸"
+
+msgid "XX"
+msgstr "衛星プロバイダ"
+
