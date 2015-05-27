@@ -1,0 +1,3769 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Meaulnes Legler <blue@waveweb.ch>\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#
+# These strings are used throughout the UI and are necessarily general in nature.
+#
+
+msgid "sort"
+msgstr "Trier"
+
+msgid "sort_help"
+msgstr "Cliquer ici pour trier la liste par cette colonne."
+
+msgid "add"
+msgstr "Ajouter"
+
+msgid "add_help"
+msgstr "Cliquer ici pour ajouter un élément."
+
+msgid "modify"
+msgstr "Modifier"
+
+msgid "modify_help"
+msgstr "Cliquer ici pour modifier cet élément."
+
+msgid "modify_disabled_help"
+msgstr "Cet élément ne peut pas être modifié."
+
+msgid "remove"
+msgstr "Supprimer"
+
+msgid "remove_help"
+msgstr "Cliquer ici pour supprimer cet élément."
+
+msgid "remove_disabled_help"
+msgstr "Cet élément ne peut pas être supprimé."
+
+msgid "back"
+msgstr "Retour"
+
+msgid "back_help"
+msgstr "Cliquer ici pour revenir à la page précédente."
+
+msgid "forward"
+msgstr "Prochain"
+
+msgid "forward_help"
+msgstr "Cliquer ici pour aller à la page suivante."
+
+msgid "save"
+msgstr "Enregistrer"
+
+msgid "save_help"
+msgstr "Cliquer ici pour enregistrer les modifications apportées à cette page."
+
+msgid "cancel"
+msgstr "Annuler"
+
+msgid "cancel_help"
+msgstr "Cliquer ici pour annuler toutes les modifications apportées à cette page."
+
+msgid "detail"
+msgstr "Détails"
+
+msgid "detail_help"
+msgstr "Cliquer ici pour voir plus de détails sur ce point."
+
+msgid "defaultEmptyMessage"
+msgstr "Désolé, vous n'avez pas saisi de valeur pour [[VAR.name]]. [[VAR.rule]]"
+
+msgid "defaultInvalidMessage"
+msgstr "Désolé, [[VAR.invalidValue]] n'est pas une valeur correcte pour [[VAR.name]]. [[VAR.rule]]"
+
+msgid "cceDown"
+msgstr "Un composant système essentiel (CCE) est ne fonctionne actuellement pas. Veuillez réessayer à nouveau dans quelques instants."
+
+msgid "emptyList"
+msgstr "Cette liste est actuellement vide."
+
+msgid "entryCountPlural"
+msgstr "[[VAR.count]] entrées"
+
+msgid "entryCountSingular"
+msgstr "[[VAR.count]] entrée"
+
+msgid "entryRange"
+msgstr "de [[VAR.from]] à [[VAR.to]]"
+
+msgid "logout"
+msgstr "Déconnexion"
+
+msgid "logoutHelp"
+msgstr "Cliquer ici pour se déconnecter du système."
+
+msgid "logoutConfirm"
+msgstr "Etes-vous sûr de vouloir vous déconnecter du système?"
+
+msgid "browser"
+msgstr "<défini par les options du navigateur>"
+
+msgid "localeLanguage"
+msgstr "[[VAR.language]]"
+
+msgid "localeLanguageCountry"
+msgstr "[[VAR.language]] ([[VAR.country]])"
+
+msgid "import"
+msgstr "Importer"
+
+msgid "import_help"
+msgstr "Ceci lancera votre Carnet d'Adresses et vous permettra de sélectionner des adresses e-mail à utiliser dans ce champ."
+
+msgid "navigationTitle"
+msgstr "[[VAR.userName]] connecté sur [[VAR.hostName]]"
+
+msgid "noItems"
+msgstr "_______ Vide _______"
+
+msgid "optional"
+msgstr "optionnel"
+
+msgid "repeat"
+msgstr "Saisir à nouveau"
+
+msgid "statusSignalFailure"
+msgstr "Échec"
+
+msgid "statusSignalFailure_help"
+msgstr "Ceci n'a pas réussi."
+
+msgid "statusSignalNew"
+msgstr "Nouveau"
+
+msgid "statusSignalNew_help"
+msgstr "Cet élément est nouveau."
+
+msgid "statusSignalOld"
+msgstr "Vieux"
+
+msgid "statusSignalOld_help"
+msgstr "Cet élément est vieux."
+
+msgid "statusSignalReplied"
+msgstr "Répondit"
+
+msgid "statusSignalReplied_help"
+msgstr "Cet élément a répondu à"
+
+msgid "statusSignalNone"
+msgstr "Statut non disponible"
+
+msgid "statusSignalNone_help"
+msgstr "Cet élément n'a pas d'indicateur."
+
+msgid "statusSignalDisabled"
+msgstr "Élément non permis"
+
+msgid "statusSignalDisabled_help"
+msgstr "Cet élément est désactivé."
+
+msgid "statusSignalNoMonitor"
+msgstr "Surveillance pas activée"
+
+msgid "statusSignalNoMonitor_help"
+msgstr "Cet élément n'est pas surveillé."
+
+msgid "statusSignalPending"
+msgstr "Actuellement opérationnel"
+
+msgid "statusSignalPending_help"
+msgstr "Cet élément n'est actuellement pas opérationnel."
+
+msgid "statusSignalNormal"
+msgstr "Normal"
+
+msgid "statusSignalNormal_help"
+msgstr "Cet élément est normal."
+
+msgid "statusSignalProblem"
+msgstr "Problème"
+
+msgid "statusSignalProblem_help"
+msgstr "Cet élément a un problème."
+
+msgid "statusSignalSevereProblem"
+msgstr "Problème grave"
+
+msgid "statusSignalSevereProblem_help"
+msgstr "Cet élément a un problème grave."
+
+msgid "statusSignalSuccess"
+msgstr "Succès"
+
+msgid "statusSignalSuccess_help"
+msgstr "Cet élément a réussi."
+
+msgid "noInstances"
+msgstr "Désolé, mais l'opération a échoué. Le système n'a pas pu trouver une instance de la classe [[VAR.class]] à modifier."
+
+msgid "tooManyInstances"
+msgstr "Désolé, mais l'opération a échoué. Le système a trouvé plus d'une instance de la classe [[VAR.class]] à modifier."
+
+msgid "uninstall"
+msgstr "Désinstaller"
+
+msgid "uninstall_help"
+msgstr "Cliquer ici pour désinstaller un élément."
+
+msgid "uninstall_disabled_help"
+msgstr "Cet élément ne peut pas être désinstallé."
+
+msgid "wait"
+msgstr "Veuillez attendre que les modifications aient été terminées."
+
+#
+# status page stuff
+#
+
+msgid "messageField"
+msgstr "État de la tâche"
+
+msgid "messageField_help"
+msgstr "Ce champ indique l'état actuel de la tâche à effectuer."
+
+msgid "progressField"
+msgstr "Progression de la tâche"
+
+msgid "progressField_help"
+msgstr "Affiche la progression de la tâche à effectuer."
+
+msgid "submessageField"
+msgstr "État de la sous-tâche"
+
+msgid "submessageField_help"
+msgstr "Ce champ indique l'état actuel de la sous-tâche à effectuer."
+
+msgid "subprogressField"
+msgstr "Progression de la sous-tâche"
+
+msgid "subprogressField_help"
+msgstr "Affiche la progression de la sous-tâche à effectuer."
+
+#
+# MultiFileUpload Stuff
+#
+
+msgid "noFiles"
+msgstr "_______ Aucun fichier _______"
+
+msgid "addAttachment"
+msgstr "Ajouter"
+
+msgid "addAttachment_help"
+msgstr "Ajouter un fichier à la liste."
+
+msgid "removeAttachment"
+msgstr "Supprimer"
+
+msgid "removeAttachment_help"
+msgstr "Supprimer un fichier de la liste."
+
+msgid "MultiFileUploadWindow"
+msgstr "Ajouter le fichier à télécharger"
+
+msgid "MultiFileUploadWindow_description"
+msgstr ""
+
+msgid "fileToAttach"
+msgstr "Fichier"
+
+msgid "fileToAttach_help"
+msgstr "Sélectionner un fichier à télécharger et cliquer sur le bouton « [[basic-palette.addAttachmentButton]] » pour continuer ou appuyer sur « [[basic-palette.cancel]] » pour fermer cette fenêtre."
+
+msgid "fileUpload_invalid"
+msgstr "Désolé, vous n'avez pas sélectionné de fichier à télécharger."
+
+msgid "addAttachmentButton"
+msgstr "Soumettre"
+
+msgid "addAttachmentButton_help"
+msgstr "Cliquer ici après avoir sélectionné le fichier que vous souhaitez télécharger."
+
+msgid "errorGettingFile"
+msgstr "Erreur de téléchargement"
+
+msgid "errorOccuredWhilereceivingFile"
+msgstr "Désolé, une erreur s'est produite lors de la réception du fichier. Veuillez essayer à nouveau."
+
+#
+# Numerics
+#
+msgid "integerBounds"
+msgstr "([[VAR.minBound]] - [[VAR.maxBound]])"
+
+#
+# Time Stuff
+#
+
+# possible VARs: date
+msgid "date"
+msgstr "[[VAR.date]]"
+
+# possible VARs: hour, amPm
+msgid "hour"
+msgstr "[[VAR.hour]]"
+
+# possible VARs: minute
+msgid "minute"
+msgstr "[[VAR.minute]]"
+
+# possible VARs: year
+msgid "year"
+msgstr "[[VAR.year]]"
+
+# possible VARs: month, date, year, hour, minute, amPm
+msgid "dateTimeFormat"
+msgstr "[[VAR.month]] [[VAR.date]] [[VAR.year]] [[VAR.12Hour]]:[[VAR.minute]] [[VAR.amPm]]"
+
+# possible VARs: month, date, year
+msgid "dateFormat"
+msgstr "[[VAR.month]] [[VAR.date]] [[VAR.year]]"
+
+# possible VARs: hour, minute, amPm
+msgid "timeFormat"
+msgstr "[[VAR.hour]]:[[VAR.minute]] [[VAR.amPm]]"
+
+msgid "am"
+msgstr "AM"
+
+msgid "pm"
+msgstr "PM"
+
+msgid "01month"
+msgstr "Janvier"
+
+msgid "02month"
+msgstr "Février"
+
+msgid "03month"
+msgstr "Mars"
+
+msgid "04month"
+msgstr "Avril"
+
+msgid "05month"
+msgstr "Mai"
+
+msgid "06month"
+msgstr "Juin"
+
+msgid "07month"
+msgstr "Juillet"
+
+msgid "08month"
+msgstr "Août"
+
+msgid "09month"
+msgstr "Septembre"
+
+msgid "10month"
+msgstr "Octobre"
+
+msgid "11month"
+msgstr "Novembre"
+
+msgid "12month"
+msgstr "Décembre"
+
+msgid "0000Hour"
+msgstr "00"
+
+msgid "0100Hour"
+msgstr "1"
+
+msgid "0200Hour"
+msgstr "2"
+
+msgid "0300Hour"
+msgstr "3"
+
+msgid "0400Hour"
+msgstr "4"
+
+msgid "0500Hour"
+msgstr "5"
+
+msgid "0600Hour"
+msgstr "6"
+
+msgid "0700Hour"
+msgstr "7"
+
+msgid "0800Hour"
+msgstr "8"
+
+msgid "0900Hour"
+msgstr "9"
+
+msgid "1000Hour"
+msgstr "10"
+
+msgid "1100Hour"
+msgstr "11"
+
+msgid "1200Hour"
+msgstr "12"
+
+msgid "1300Hour"
+msgstr "13"
+
+msgid "1400Hour"
+msgstr "14"
+
+msgid "1500Hour"
+msgstr "15"
+
+msgid "1600Hour"
+msgstr "16"
+
+msgid "1700Hour"
+msgstr "17"
+
+msgid "1800Hour"
+msgstr "18"
+
+msgid "1900Hour"
+msgstr "19"
+
+msgid "2000Hour"
+msgstr "20"
+
+msgid "2100Hour"
+msgstr "21"
+
+msgid "2200Hour"
+msgstr "22"
+
+msgid "2300Hour"
+msgstr "23"
+
+# -- Months (short):
+
+msgid "01month_short"
+msgstr "Jan"
+
+msgid "02month_short"
+msgstr "Fév"
+
+msgid "03month_short"
+msgstr "Mar"
+
+msgid "04month_short"
+msgstr "Avr"
+
+msgid "05month_short"
+msgstr "Mai"
+
+msgid "06month_short"
+msgstr "Jun"
+
+msgid "07month_short"
+msgstr "Jul"
+
+msgid "08month_short"
+msgstr "Aoû"
+
+msgid "09month_short"
+msgstr "Sep"
+
+msgid "10month_short"
+msgstr "Oct"
+
+msgid "11month_short"
+msgstr "Nov"
+
+msgid "12month_short"
+msgstr "Déc"
+
+#-- Weekdays (long):
+
+msgid "sunday"
+msgstr "Dimanche"
+
+msgid "monday"
+msgstr "Lundi"
+
+msgid "tuesday"
+msgstr "Mardi"
+
+msgid "wednesday"
+msgstr "Mercredi"
+
+msgid "thursday"
+msgstr "Jeudi"
+
+msgid "friday"
+msgstr "Vendredi"
+
+msgid "saturday"
+msgstr "Samedi"
+
+#-- Weekdays (short):
+
+msgid "sunday_short"
+msgstr "Di"
+
+msgid "monday_short"
+msgstr "Lu"
+
+msgid "tuesday_short"
+msgstr "Ma"
+
+msgid "wednesday_short"
+msgstr "Me"
+
+msgid "thursday_short"
+msgstr "Je"
+
+msgid "friday_short"
+msgstr "Ve"
+
+msgid "saturday_short"
+msgstr "Sa"
+
+#
+# Time Zone Stuff
+#
+
+msgid "Africa"
+msgstr "Afrique"
+
+msgid "Antarctica"
+msgstr "Antarctique"
+
+msgid "Asia"
+msgstr "Asie"
+
+msgid "Atlantic"
+msgstr "Océan Atlantique"
+
+msgid "Europe"
+msgstr "Europe"
+
+msgid "Indian"
+msgstr "Océan Indien"
+
+msgid "NorthAmerica"
+msgstr "Amérique du Nord"
+
+msgid "Oceania"
+msgstr "Océanie (avec Australie)"
+
+msgid "SouthAmerica"
+msgstr "Amérique du Sud"
+
+msgid "UTC"
+msgstr "Décalages UTC"
+
+msgid "NorthAmerica/AG"
+msgstr "Antigua et Barbuda"
+
+msgid "America/St_Johns"
+msgstr "St. Johns"
+
+msgid "NorthAmerica/BS"
+msgstr "Bahamas"
+
+msgid "America/Nassau"
+msgstr "Nassau"
+
+msgid "NorthAmerica/BB"
+msgstr "Barbade (Barbados)"
+
+msgid "America/Barbados"
+msgstr "Barbade (Barbados)"
+
+msgid "NorthAmerica/BZ"
+msgstr "Belize"
+
+msgid "America/Belize"
+msgstr "Belize"
+
+msgid "NorthAmerica/CR"
+msgstr "Costa Rica"
+
+msgid "America/Costa_Rica"
+msgstr "Costa Rica"
+
+msgid "NorthAmerica/CU"
+msgstr "Cuba"
+
+msgid "America/Havana"
+msgstr "La Havane"
+
+msgid "NorthAmerica/DM"
+msgstr "Dominique"
+
+msgid "America/Dominica"
+msgstr "Dominique"
+
+msgid "NorthAmerica/DO"
+msgstr "République dominicaine"
+
+msgid "America/Santo_Domingo"
+msgstr "Santo Domingo"
+
+msgid "NorthAmerica/SV"
+msgstr "El Salvador"
+
+msgid "America/El_Salvador"
+msgstr "El Salvador"
+
+msgid "NorthAmerica/GL"
+msgstr "Groenland"
+
+msgid "America/Godthab"
+msgstr "Godthab"
+
+msgid "NorthAmerica/GD"
+msgstr "Grenade"
+
+msgid "America/Grenada"
+msgstr "Grenade"
+
+msgid "NorthAmerica/GT"
+msgstr "Guatemala"
+
+msgid "America/Guatemala"
+msgstr "Guatemala"
+
+msgid "NorthAmerica/HT"
+msgstr "Haïti"
+
+msgid "America/Port-au-Prince"
+msgstr "Port-au-Prince"
+
+msgid "NorthAmerica/HN"
+msgstr "Honduras"
+
+msgid "America/Tegucigalpa"
+msgstr "Tegucigalpa"
+
+msgid "NorthAmerica/JM"
+msgstr "Jamaïque"
+
+msgid "America/Jamaica"
+msgstr "Jamaïque"
+
+msgid "Navajo"
+msgstr "Navajo"
+
+msgid "NorthAmerica/NI"
+msgstr "Nicaragua"
+
+msgid "America/Managua"
+msgstr "Managua"
+
+msgid "NorthAmerica/MX"
+msgstr "Mexique"
+
+msgid "NorthAmerica/PA"
+msgstr "Panama"
+
+msgid "America/Panama"
+msgstr "Panama"
+
+msgid "NorthAmerica/PR"
+msgstr "Puerto Rico"
+
+msgid "America/Puerto_Rico"
+msgstr "Puerto Rico"
+
+msgid "NorthAmerica/KN"
+msgstr "Saint-Kitts-et-Nevis"
+
+msgid "America/St_Kitts"
+msgstr "St. Kitts"
+
+msgid "NorthAmerica/LC"
+msgstr "Sainte-Lucie"
+
+msgid "America/St_Lucia"
+msgstr "Sainte-Lucie"
+
+msgid "NorthAmerica/PM"
+msgstr "Saint-Pierre et Miquelon"
+
+msgid "America/Miquelon"
+msgstr "Miquelon"
+
+msgid "NorthAmerica/VC"
+msgstr "Saint-Vincent-et-les-Grenadines"
+
+msgid "America/St_Vincent"
+msgstr "Saint-Vincent"
+
+msgid "NorthAmerica/TT"
+msgstr "Trinité-et-Tobago"
+
+msgid "America/Port_of_Spain"
+msgstr "Port of Spain"
+
+msgid "NorthAmerica/TC"
+msgstr "Îles Turques et Caïques"
+
+msgid "America/Grand_Turk"
+msgstr "Grand Turk"
+
+msgid "Europe/AL"
+msgstr "Albanie"
+
+msgid "Europe/Tirane"
+msgstr "Tirana"
+
+msgid "Europe/AD"
+msgstr "Andorre"
+
+msgid "Europe/Andorra"
+msgstr "Andorre"
+
+msgid "Europe/AT"
+msgstr "Autriche"
+
+msgid "Europe/Vienna"
+msgstr "Vienne"
+
+msgid "Europe/BY"
+msgstr "Biélorussie"
+
+msgid "Europe/Minsk"
+msgstr "Minsk"
+
+msgid "Europe/BE"
+msgstr "Belgique"
+
+msgid "Europe/Brussels"
+msgstr "Bruxelles"
+
+msgid "Europe/BA"
+msgstr "Bosnie-Herzégovine"
+
+msgid "Europe/Sarajevo"
+msgstr "Sarajevo"
+
+msgid "Europe/BG"
+msgstr "Bulgarie"
+
+msgid "Europe/Sofia"
+msgstr "Sofia"
+
+msgid "Europe/HR"
+msgstr "Croatie"
+
+msgid "Europe/Zagreb"
+msgstr "Zagreb"
+
+msgid "Europe/CZ"
+msgstr "République tchèque"
+
+msgid "Europe/Prague"
+msgstr "Prague"
+
+msgid "Europe/DK"
+msgstr "Danemark"
+
+msgid "Europe/Copenhagen"
+msgstr "Copenhague"
+
+msgid "Europe/EE"
+msgstr "Estonie"
+
+msgid "Europe/Tallinn"
+msgstr "Tallinn"
+
+msgid "Europe/FI"
+msgstr "Finlande"
+
+msgid "Europe/Helsinki"
+msgstr "Helsinki"
+
+msgid "Europe/FR"
+msgstr "France"
+
+msgid "Europe/Paris"
+msgstr "Paris"
+
+msgid "Europe/DE"
+msgstr "Allemagne"
+
+msgid "Europe/Berlin"
+msgstr "Berlin"
+
+msgid "Europe/GR"
+msgstr "Grèce"
+
+msgid "Europe/Athens"
+msgstr "Athènes"
+
+msgid "Europe/HU"
+msgstr "Hongrie"
+
+msgid "Europe/Budapest"
+msgstr "Budapest"
+
+msgid "Europe/IS"
+msgstr "Islande"
+
+msgid "Europe/IE"
+msgstr "Irlande"
+
+msgid "Europe/Dublin"
+msgstr "Dublin"
+
+msgid "Europe/IT"
+msgstr "Italie"
+
+msgid "Europe/Rome"
+msgstr "Rome"
+
+msgid "Europe/LV"
+msgstr "Lettonie"
+
+msgid "Europe/Riga"
+msgstr "Riga"
+
+msgid "Europe/LI"
+msgstr "Liechtenstein"
+
+msgid "Europe/Vaduz"
+msgstr "Vaduz"
+
+msgid "Europe/LT"
+msgstr "Lituanie"
+
+msgid "Europe/Vilnius"
+msgstr "Vilnius"
+
+msgid "Europe/LU"
+msgstr "Luxembourg"
+
+msgid "Europe/Luxembourg"
+msgstr "Luxembourg"
+
+msgid "Europe/MK"
+msgstr "Macédoine"
+
+msgid "Europe/Skopje"
+msgstr "Skopje"
+
+msgid "Europe/MT"
+msgstr "Malte"
+
+msgid "Europe/Malta"
+msgstr "Malte"
+
+msgid "Europe/MD"
+msgstr "Moldavie"
+
+msgid "Europe/Chisinau"
+msgstr "Chisinau"
+
+msgid "Europe/MC"
+msgstr "Monaco"
+
+msgid "Europe/Monaco"
+msgstr "Monaco"
+
+msgid "Europe/NL"
+msgstr "Pays-Bas"
+
+msgid "Europe/Amsterdam"
+msgstr "Amsterdam"
+
+msgid "Europe/NO"
+msgstr "Norvège"
+
+msgid "Europe/Oslo"
+msgstr "Oslo"
+
+msgid "Europe/PL"
+msgstr "Pologne"
+
+msgid "Europe/Warsaw"
+msgstr "Varsovie"
+
+msgid "Europe/PT"
+msgstr "Portugal"
+
+msgid "Europe/Lisbon"
+msgstr "Lisbonne"
+
+msgid "Europe/RO"
+msgstr "Roumanie"
+
+msgid "Europe/Bucharest"
+msgstr "Bucarest"
+
+msgid "Europe/SM"
+msgstr "San Marino"
+
+msgid "Europe/San_Marino"
+msgstr "San Marino"
+
+msgid "Europe/YU"
+msgstr "Serbie-et-Monténégro"
+
+msgid "Europe/Belgrade"
+msgstr "Belgrade"
+
+msgid "Europe/SK"
+msgstr "Slovaquie"
+
+msgid "Europe/Bratislava"
+msgstr "Bratislava"
+
+msgid "Europe/SI"
+msgstr "Slovénie"
+
+msgid "Europe/Ljubljana"
+msgstr "Ljubljana"
+
+msgid "Europe/ES"
+msgstr "Espagne"
+
+msgid "Europe/Madrid"
+msgstr "Madrid"
+
+msgid "Europe/SE"
+msgstr "Suède"
+
+msgid "Europe/Stockholm"
+msgstr "Stockholm"
+
+msgid "Europe/CH"
+msgstr "Suisse"
+
+msgid "Europe/Zurich"
+msgstr "Zurich"
+
+msgid "Europe/VA"
+msgstr "Cité du Vatican"
+
+msgid "Europe/Vatican"
+msgstr "Vatican"
+
+msgid "Asia/AF"
+msgstr "Afghanistan"
+
+msgid "Asia/Kabul"
+msgstr "Kaboul"
+
+msgid "Asia/AM"
+msgstr "Arménie"
+
+msgid "Asia/Yerevan"
+msgstr "Erevan"
+
+msgid "Asia/AZ"
+msgstr "Azerbaïdjan"
+
+msgid "Asia/Baku"
+msgstr "Bakou"
+
+msgid "Asia/BH"
+msgstr "Bahreïn"
+
+msgid "Asia/Bahrain"
+msgstr "Bahreïn"
+
+msgid "Asia/BD"
+msgstr "Bangladesh"
+
+msgid "Asia/Dacca"
+msgstr "Dacca"
+
+msgid "Asia/BT"
+msgstr "Bhoutan"
+
+msgid "Asia/Thimbu"
+msgstr "Thimbu"
+
+msgid "Asia/BN"
+msgstr "Brunei"
+
+msgid "Asia/Brunei"
+msgstr "Brunei"
+
+msgid "Asia/KH"
+msgstr "Cambodge"
+
+msgid "Asia/Phnom_Penh"
+msgstr "Phnom Penh"
+
+msgid "Asia/CY"
+msgstr "Chypre"
+
+msgid "Asia/Nicosia"
+msgstr "Nicosie"
+
+msgid "Asia/GE"
+msgstr "Géorgie"
+
+msgid "Asia/Tbilisi"
+msgstr "Tbilissi"
+
+msgid "Asia/IN"
+msgstr "Inde"
+
+msgid "Asia/Calcutta"
+msgstr "Calcutta"
+
+msgid "Asia/IR"
+msgstr "Iran"
+
+msgid "Asia/Tehran"
+msgstr "Téhéran"
+
+msgid "Asia/RQ"
+msgstr "Irak"
+
+msgid "Asia/Baghdad"
+msgstr "Bagdad"
+
+msgid "Asia/JO"
+msgstr "Jordan"
+
+msgid "Asia/Amman"
+msgstr "Amman"
+
+msgid "Asia/KP"
+msgstr "Corée du Nord"
+
+msgid "Asia/Pyongyang"
+msgstr "Pyongyang"
+
+msgid "Asia/KR"
+msgstr "Corée du Sud"
+
+msgid "Asia/Seoul"
+msgstr "Séoul"
+
+msgid "Asia/KW"
+msgstr "Koweït"
+
+msgid "Asia/Kuwait"
+msgstr "Koweït"
+
+msgid "Asia/KG"
+msgstr "Kirghizistan"
+
+msgid "Asia/Bishkek"
+msgstr "Bishkek"
+
+msgid "Asia/LA"
+msgstr "Laos"
+
+msgid "Asia/Vientiane"
+msgstr "Vientiane"
+
+msgid "Asia/LB"
+msgstr "Liban"
+
+msgid "Asia/Beirut"
+msgstr "Beyrouth"
+
+msgid "Asia/MO"
+msgstr "Macao"
+
+msgid "Asia/Macao"
+msgstr "Macao"
+
+msgid "Asia/MN"
+msgstr "Mongolie"
+
+msgid "Asia/Ulan_Bator"
+msgstr "Oulan-Bator"
+
+msgid "Asia/MM"
+msgstr "Myanmar"
+
+msgid "Asia/Rangoon"
+msgstr "Rangoon"
+
+msgid "Asia/NP"
+msgstr "Népal"
+
+msgid "Asia/Katmandu"
+msgstr "Katmandou"
+
+msgid "Asia/OM"
+msgstr "Oman"
+
+msgid "Asia/Muscat"
+msgstr "Mascate"
+
+msgid "Asia/PK"
+msgstr "Pakistan"
+
+msgid "Asia/Karachi"
+msgstr "Karachi"
+
+msgid "Asia/PH"
+msgstr "Philippines"
+
+msgid "Asia/Manila"
+msgstr "Manille"
+
+msgid "Asia/QA"
+msgstr "Qatar"
+
+msgid "Asia/Qatar"
+msgstr "Qatar"
+
+msgid "Asia/SA"
+msgstr "Arabie Saoudite"
+
+msgid "Asia/Riyadh"
+msgstr "Riyad"
+
+msgid "Asia/SG"
+msgstr "Singapour"
+
+msgid "Asia/Singapore"
+msgstr "Singapour"
+
+msgid "Asia/LK"
+msgstr "Sri Lanka"
+
+msgid "Asia/Colombo"
+msgstr "Colombo"
+
+msgid "Asia/SY"
+msgstr "Syrie"
+
+msgid "Asia/Damascus"
+msgstr "Damas"
+
+msgid "Asia/TW"
+msgstr "Taiwan"
+
+msgid "Asia/Taipei"
+msgstr "Taipei"
+
+msgid "Asia/TJ"
+msgstr "Tadjikistan"
+
+msgid "Asia/Dushanbe"
+msgstr "Douchanbé"
+
+msgid "Asia/TH"
+msgstr "Thaïlande"
+
+msgid "Asia/Bangkok"
+msgstr "Bangkok"
+
+msgid "Asia/TR"
+msgstr "Turquie"
+
+msgid "Asia/Istanbul"
+msgstr "Istanbul"
+
+msgid "Asia/TM"
+msgstr "Turkménistan"
+
+msgid "Asia/Ashkhabad"
+msgstr "Achkhabad"
+
+msgid "Asia/AE"
+msgstr "Émirats arabes unis"
+
+msgid "Asia/Dubai"
+msgstr "Dubaï"
+
+msgid "Asia/UZ"
+msgstr "Ouzbékistan"
+
+msgid "Asia/Tashkent"
+msgstr "Tachkent"
+
+msgid "Asia/VN"
+msgstr "Vietnam"
+
+msgid "Asia/Saigon"
+msgstr "Ho Chi Minh-Ville"
+
+msgid "Asia/YE"
+msgstr "Yémen"
+
+msgid "Asia/Aden"
+msgstr "Aden"
+
+msgid "Africa/DZ"
+msgstr "Algérie"
+
+msgid "Africa/Algiers"
+msgstr "Alger"
+
+msgid "Africa/AO"
+msgstr "Angola"
+
+msgid "Africa/Luanda"
+msgstr "Luanda"
+
+msgid "Africa/BF"
+msgstr "Burkina Faso"
+
+msgid "Africa/Ouagadougou"
+msgstr "Ouagadougou"
+
+msgid "Africa/BJ"
+msgstr "Bénin"
+
+msgid "Africa/Porto-Novo"
+msgstr "Porto-Novo"
+
+msgid "Africa/BW"
+msgstr "Botswana"
+
+msgid "Africa/Gaborone"
+msgstr "Gaborone"
+
+msgid "Africa/BI"
+msgstr "Burundi"
+
+msgid "Africa/Bujumbura"
+msgstr "Bujumbura"
+
+msgid "Africa/CM"
+msgstr "Cameroun"
+
+msgid "Africa/Douala"
+msgstr "Douala"
+
+msgid "Africa/CV"
+msgstr "Cap-Vert"
+
+msgid "Africa/CF"
+msgstr "République centrafricaine"
+
+msgid "Africa/Bangui"
+msgstr "Bangui"
+
+msgid "Africa/ES"
+msgstr "Ceuta et Melilla (Espagne)"
+
+msgid "Africa/Ceuta"
+msgstr "Ceuta"
+
+msgid "Africa/TD"
+msgstr "Tchad"
+
+msgid "Africa/Ndjamena"
+msgstr "Ndjamena"
+
+msgid "Africa/CG"
+msgstr "Congo, République du"
+
+msgid "Africa/Brazzaville"
+msgstr "Brazzaville"
+
+msgid "Africa/CI"
+msgstr "Côte d'Ivoire"
+
+msgid "Africa/Abidjan"
+msgstr "Abidjan"
+
+msgid "Africa/DJ"
+msgstr "Djibouti"
+
+msgid "Africa/Djibouti"
+msgstr "Djibouti"
+
+msgid "Africa/EG"
+msgstr "Égypte"
+
+msgid "Africa/Cairo"
+msgstr "Le Caire"
+
+msgid "Africa/GQ"
+msgstr "Guinée équatoriale"
+
+msgid "Africa/Malabo"
+msgstr "Malabo"
+
+msgid "Africa/ER"
+msgstr "Erythrée"
+
+msgid "Africa/Asmera"
+msgstr "Asmera"
+
+msgid "Africa/ET"
+msgstr "Ethiopie"
+
+msgid "Africa/Addis_Ababa"
+msgstr "Addis-Abeba"
+
+msgid "Africa/GA"
+msgstr "Gabon"
+
+msgid "Africa/Libreville"
+msgstr "Libreville"
+
+msgid "Africa/GM"
+msgstr "Gambie"
+
+msgid "Africa/Banjul"
+msgstr "Banjul"
+
+msgid "Africa/GH"
+msgstr "Ghana"
+
+msgid "Africa/Accra"
+msgstr "Accra"
+
+msgid "Africa/GN"
+msgstr "Guinée"
+
+msgid "Africa/Conakry"
+msgstr "Conakry"
+
+msgid "Africa/GW"
+msgstr "Guinée-Bissau"
+
+msgid "Africa/Bissau"
+msgstr "Bissau"
+
+msgid "Africa/KE"
+msgstr "Kenya"
+
+msgid "Africa/Nairobi"
+msgstr "Nairobi"
+
+msgid "Africa/LS"
+msgstr "Lesotho"
+
+msgid "Africa/Maseru"
+msgstr "Maseru"
+
+msgid "Africa/LR"
+msgstr "Liberia"
+
+msgid "Africa/Monrovia"
+msgstr "Monrovia"
+
+msgid "Africa/LY"
+msgstr "Libye"
+
+msgid "Africa/Tripoli"
+msgstr "Tripoli"
+
+msgid "Africa/ML"
+msgstr "Mali"
+
+msgid "Africa/Bamako"
+msgstr "Bamako"
+
+msgid "Africa/MR"
+msgstr "Mauritanie"
+
+msgid "Africa/Nouakchott"
+msgstr "Nouakchott"
+
+msgid "Africa/MA"
+msgstr "Maroc"
+
+msgid "Africa/Casablanca"
+msgstr "Casablanca"
+
+msgid "Africa/MZ"
+msgstr "Mozambique"
+
+msgid "Africa/Maputo"
+msgstr "Maputo"
+
+msgid "Africa/NA"
+msgstr "Namibie"
+
+msgid "Africa/Windhoek"
+msgstr "Windhoek"
+
+msgid "Africa/NE"
+msgstr "Niger"
+
+msgid "Africa/Niamey"
+msgstr "Niamey"
+
+msgid "Africa/NG"
+msgstr "Nigeria"
+
+msgid "Africa/Lagos"
+msgstr "Lagos"
+
+msgid "Africa/RW"
+msgstr "Rwanda"
+
+msgid "Africa/Kigali"
+msgstr "Kigali"
+
+msgid "Africa/ST"
+msgstr "Sao Tomé-et-Principe"
+
+msgid "Africa/Sao_Tome"
+msgstr "Sao Tomé"
+
+msgid "Africa/SN"
+msgstr "Sénégal"
+
+msgid "Africa/Dakar"
+msgstr "Dakar"
+
+msgid "Africa/SL"
+msgstr "Sierra Leone"
+
+msgid "Africa/Freetown"
+msgstr "Freetown"
+
+msgid "Africa/SO"
+msgstr "Somalie"
+
+msgid "Africa/Mogadishu"
+msgstr "Mogadiscio"
+
+msgid "Africa/ZA"
+msgstr "Afrique du Sud"
+
+msgid "Africa/Johannesburg"
+msgstr "Johannesburg"
+
+msgid "Africa/SD"
+msgstr "Soudan"
+
+msgid "Africa/Khartoum"
+msgstr "Khartoum"
+
+msgid "Africa/SZ"
+msgstr "Swaziland"
+
+msgid "Africa/Mbabane"
+msgstr "Mbabane"
+
+msgid "Africa/TZ"
+msgstr "Tanzanie"
+
+msgid "Africa/Dar_es_Salaam"
+msgstr "Dar es Salaam"
+
+msgid "Africa/TG"
+msgstr "Togo"
+
+msgid "Africa/Lome"
+msgstr "Lomé"
+
+msgid "Africa/TN"
+msgstr "Tunisie"
+
+msgid "Africa/Tunis"
+msgstr "Tunis"
+
+msgid "Africa/UG"
+msgstr "Ouganda"
+
+msgid "Africa/Kampala"
+msgstr "Kampala"
+
+msgid "Africa/EH"
+msgstr "Sahara occidental"
+
+msgid "Africa/El_Aaiun"
+msgstr "El Aaiun"
+
+msgid "Africa/ZM"
+msgstr "Zambie"
+
+msgid "Africa/Lusaka"
+msgstr "Lusaka"
+
+msgid "Africa/ZW"
+msgstr "Zimbabwe"
+
+msgid "Africa/Harare"
+msgstr "Harare"
+
+msgid "SouthAmerica/AR"
+msgstr "Argentine"
+
+msgid "America/Buenos_Aires"
+msgstr "Buenos Aires"
+
+msgid "SouthAmerica/BO"
+msgstr "Bolivie"
+
+msgid "America/La_Paz"
+msgstr "La Paz"
+
+msgid "SouthAmerica/CO"
+msgstr "Colombie"
+
+msgid "America/Bogota"
+msgstr "Bogota"
+
+msgid "SouthAmerica/EC"
+msgstr "Equateur"
+
+msgid "America/Guayaquil"
+msgstr "Guayaquil"
+
+msgid "SouthAmerica/GF"
+msgstr "Guyane française"
+
+msgid "America/Cayenne"
+msgstr "Cayenne"
+
+msgid "SouthAmerica/GY"
+msgstr "Guyane"
+
+msgid "America/Guyana"
+msgstr "Guyane"
+
+msgid "SouthAmerica/PY"
+msgstr "Paraguay"
+
+msgid "America/Asuncion"
+msgstr "Asuncion"
+
+msgid "SouthAmerica/PE"
+msgstr "Pérou"
+
+msgid "America/Lima"
+msgstr "Lima"
+
+msgid "SouthAmerica/SR"
+msgstr "Suriname"
+
+msgid "America/Paramaribo"
+msgstr "Paramaribo"
+
+msgid "SouthAmerica/UY"
+msgstr "Uruguay"
+
+msgid "America/Montevideo"
+msgstr "Montevideo"
+
+msgid "SouthAmerica/VE"
+msgstr "Venezuela"
+
+msgid "America/Caracas"
+msgstr "Caracas"
+
+msgid "Oceania/AS"
+msgstr "Samoa américaines"
+
+msgid "Pacific/Pago_Pago"
+msgstr "Pago Pago"
+
+msgid "Oceania/FJ"
+msgstr "Fidji"
+
+msgid "Pacific/Fiji"
+msgstr "Fidji"
+
+msgid "Oceania/CL"
+msgstr "L'île de Pâques (Chili)"
+
+msgid "Pacific/Easter"
+msgstr "De Pâques"
+
+msgid "Oceania/CK"
+msgstr "Îles Cook"
+
+msgid "Pacific/Rarotonga"
+msgstr "Rarotonga"
+
+msgid "Oceania/EC"
+msgstr "Galapagos (Equateur)"
+
+msgid "Pacific/Galapagos"
+msgstr "Galapagos"
+
+msgid "Oceania/GU"
+msgstr "Guam"
+
+msgid "Pacific/Guam"
+msgstr "Guam"
+
+msgid "Oceania/NR"
+msgstr "Nauru"
+
+msgid "Pacific/Nauru"
+msgstr "Nauru"
+
+msgid "Oceania/NC"
+msgstr "Nouvelle-Calédonie"
+
+msgid "Pacific/Noumea"
+msgstr "Nouméa"
+
+msgid "Oceania/NU"
+msgstr "Niue"
+
+msgid "Pacific/Niue"
+msgstr "Niue"
+
+msgid "Oceania/NF"
+msgstr "Norfolk"
+
+msgid "Pacific/Norfolk"
+msgstr "Norfolk"
+
+msgid "Oceania/MP"
+msgstr "Îles Mariannes du Nord"
+
+msgid "Pacific/Saipan"
+msgstr "Saipan"
+
+msgid "Oceania/PW"
+msgstr "Palau"
+
+msgid "Pacific/Palau"
+msgstr "Palau"
+
+msgid "Oceania/PG"
+msgstr "Papouasie-Nouvelle-Guinée"
+
+msgid "Pacific/Port_Moresby"
+msgstr "Port Moresby"
+
+msgid "Oceania/PN"
+msgstr "Pitcairn"
+
+msgid "Pacific/Pitcairn"
+msgstr "Pitcairn"
+
+msgid "Oceania/SB"
+msgstr "Îles Salomon"
+
+msgid "Pacific/Guadalcanal"
+msgstr "Guadalcanal"
+
+msgid "Oceania/TK"
+msgstr "Tokelau"
+
+msgid "Pacific/Fakaofo"
+msgstr "Fakaofo"
+
+msgid "Oceania/TO"
+msgstr "Tonga"
+
+msgid "Pacific/Tongatapu"
+msgstr "Tongatapu"
+
+msgid "Oceania/TV"
+msgstr "Tuvalu"
+
+msgid "Pacific/Funafuti"
+msgstr "Funafuti"
+
+msgid "Oceania/VU"
+msgstr "Vanuatu"
+
+msgid "Pacific/Efate"
+msgstr "Efate"
+
+msgid "Oceania/EH"
+msgstr "Samoa-Occidental"
+
+msgid "Pacific/Apia"
+msgstr "Apia"
+
+msgid "Oceania/WF"
+msgstr "Wallis-et-Futuna"
+
+msgid "Pacific/Wallis"
+msgstr "Wallis"
+
+msgid "Atlantic/BM"
+msgstr "Bermudes"
+
+msgid "Atlantic/Bermuda"
+msgstr "Bermudes"
+
+msgid "Atlantic/ES"
+msgstr "Canaries, Îles (Espagne)"
+
+msgid "Atlantic/Canary"
+msgstr "Canaries"
+
+msgid "Atlantic/FO"
+msgstr "Îles Féroé"
+
+msgid "Atlantic/Faeroe"
+msgstr "Féroé"
+
+msgid "Atlantic/FK"
+msgstr "Îles Falkland (Malvinas)"
+
+msgid "Atlantic/Stanley"
+msgstr "Stanley"
+
+msgid "Atlantic/CV"
+msgstr "Cap-Vert"
+
+msgid "Atlantic/Cape_Verde"
+msgstr "Cap-Vert"
+
+msgid "Atlantic/IS"
+msgstr "Islande"
+
+msgid "Atlantic/Reykjavik"
+msgstr "Reykjavik"
+
+msgid "Atlantic/SH"
+msgstr "Sainte-Hélène"
+
+msgid "Atlantic/St_Helena"
+msgstr "Sainte-Hélène"
+
+msgid "Atlantic/SJ"
+msgstr "Les îles Svalbard et Jan Mayen"
+
+msgid "Atlantic/Jan_Mayen"
+msgstr "Jan Mayen"
+
+msgid "Indian/UK"
+msgstr "Iles Chagos (UK)"
+
+msgid "Indian/Chagos"
+msgstr "Chagos"
+
+msgid "Indian/CX"
+msgstr "Christmas Island"
+
+msgid "Indian/Christmas"
+msgstr "Noël"
+
+msgid "Indian/KM"
+msgstr "Comores"
+
+msgid "Indian/CC"
+msgstr "Cocos (Keeling)"
+
+msgid "Indian/Cocos"
+msgstr "Cocos"
+
+msgid "Indian/Comoro"
+msgstr "Comores"
+
+msgid "Indian/FR"
+msgstr "Terres australes françaises"
+
+msgid "Indian/Kerguelen"
+msgstr "Kerguelen"
+
+msgid "Indian/MG"
+msgstr "Madagascar"
+
+msgid "Indian/Antananarivo"
+msgstr "Antananarivo"
+
+msgid "Indian/MV"
+msgstr "Maldives"
+
+msgid "Indian/Maldives"
+msgstr "Maldives"
+
+msgid "Indian/MU"
+msgstr "Maurice"
+
+msgid "Indian/Mauritius"
+msgstr "Maurice"
+
+msgid "Indian/RE"
+msgstr "Reunion"
+
+msgid "Indian/Reunion"
+msgstr "Reunion"
+
+msgid "Indian/SC"
+msgstr "Seychelles"
+
+msgid "Indian/Mahe"
+msgstr "Mahe"
+
+msgid "NorthAmerica/US"
+msgstr "États-Unis"
+
+msgid "US/Samoa"
+msgstr "Samoa"
+
+msgid "US/Aleutian"
+msgstr "Îles Aléoutiennes"
+
+msgid "US/Hawaii"
+msgstr "Hawaii"
+
+msgid "US/Alaska"
+msgstr "Alaskan Time (Heure de l'Alaska)"
+
+msgid "US/Pacific"
+msgstr "Pacific Time (Heure du Pacifique)"
+
+msgid "US/Arizona"
+msgstr "Arizona"
+
+msgid "US/Mountain"
+msgstr "Mountain Time (Heure des Rocheuses)"
+
+msgid "US/Central"
+msgstr "Central Time (Heure USA Centre)"
+
+msgid "US/East-Indiana"
+msgstr "Est Indiana"
+
+msgid "US/Eastern"
+msgstr "Eastern Time (Heure USA Est)"
+
+msgid "NorthAmerica/CA"
+msgstr "Canada"
+
+msgid "Canada/Pacific"
+msgstr "Pacific Time (Heure du Pacifique)"
+
+msgid "Canada/Yukon"
+msgstr "Yukon Time (Heure du Yukon)"
+
+msgid "Canada/Central"
+msgstr "Central Time (Heure Centre Canada)"
+
+msgid "Canada/Eastern"
+msgstr "Eastern Time (Heure Canada Est)"
+
+msgid "Canada/Mountain"
+msgstr "Mountain Time (Heure des Rocheuses)"
+
+msgid "Canada/Newfoundland"
+msgstr "Terre-Neuve"
+
+msgid "Canada/Saskatchewan"
+msgstr "Saskatchewan"
+
+msgid "Canada/East-Saskatchewan"
+msgstr "Est Saskatchewan"
+
+msgid "Canada/Atlantic"
+msgstr "Atlantique"
+
+msgid "Mexico/BajaNorte"
+msgstr "Baja Norte"
+
+msgid "Mexico/BajaSur"
+msgstr "Baja Sur"
+
+msgid "Mexico/General"
+msgstr "Mexique"
+
+msgid "Europe/RU"
+msgstr "Russie (fuseaux horaires européens)"
+
+msgid "Europe/Kaliningrad"
+msgstr "Kaliningrad"
+
+msgid "Europe/Moscow"
+msgstr "Moscou"
+
+msgid "Europe/Samara"
+msgstr "Samara"
+
+msgid "Europe/UA"
+msgstr "Ukraine"
+
+msgid "Europe/Kiev"
+msgstr "Kiev"
+
+msgid "Europe/Simferopol"
+msgstr "Simferopol"
+
+msgid "Europe/UK"
+msgstr "Royaume-Uni"
+
+msgid "Europe/Belfast"
+msgstr "Belfast"
+
+msgid "Europe/London"
+msgstr "Londres"
+
+msgid "Asia/RU"
+msgstr "Russie (fuseaux horaires asiatiques)"
+
+msgid "Asia/Yekaterinburg"
+msgstr "Ekaterinbourg"
+
+msgid "Asia/Novosibirsk"
+msgstr "Novosibirsk"
+
+msgid "Asia/Omsk"
+msgstr "Omsk"
+
+msgid "Asia/Krasnoyarsk"
+msgstr "Krasnoyarsk"
+
+msgid "Asia/Irkutsk"
+msgstr "Irkutsk"
+
+msgid "Asia/Yakutsk"
+msgstr "Yakutsk"
+
+msgid "Asia/Vladivostok"
+msgstr "Vladivostok"
+
+msgid "Asia/Magadan"
+msgstr "Magadan"
+
+msgid "Asia/Kamchatka"
+msgstr "Kamchatka"
+
+msgid "Asia/Anadyr"
+msgstr "Anadyr"
+
+msgid "Asia/ID"
+msgstr "Indonésie"
+
+msgid "Asia/Jakarta"
+msgstr "Jakarta"
+
+msgid "Asia/Jayapura"
+msgstr "Jayapura"
+
+msgid "Asia/Ujung_Pandang"
+msgstr "Ujung Pandang"
+
+msgid "Asia/CN"
+msgstr "Chine"
+
+msgid "Asia/Chungking"
+msgstr "Chungking"
+
+msgid "Asia/Harbin"
+msgstr "Harbin"
+
+msgid "Asia/Hong_Kong"
+msgstr "Hong Kong"
+
+msgid "Asia/Kashgar"
+msgstr "Kashgar"
+
+msgid "Asia/Shanghai"
+msgstr "Shanghai"
+
+msgid "Asia/Urumqi"
+msgstr "Urumqi"
+
+msgid "Asia/IL"
+msgstr "Israël"
+
+msgid "Asia/Gaza"
+msgstr "Gaza"
+
+msgid "Asia/Jerusalem"
+msgstr "Jérusalem"
+
+msgid "Asia/JP"
+msgstr "Japon"
+
+msgid "Asia/Ishigaki"
+msgstr "Ishigaki"
+
+msgid "Asia/Tokyo"
+msgstr "Tokyo"
+
+msgid "Asia/MY"
+msgstr "Malaisie"
+
+msgid "Asia/Kuala_Lumpur"
+msgstr "Kuala Lumpur"
+
+msgid "Asia/Kuching"
+msgstr "Kuching"
+
+msgid "Asia/KZ"
+msgstr "Kazakhstan"
+
+msgid "Asia/Almaty"
+msgstr "Almaty"
+
+msgid "Asia/Aqtau"
+msgstr "Aqtau"
+
+msgid "Asia/Aqtobe"
+msgstr "Aqtobe"
+
+msgid "Africa/CD"
+msgstr "Congo, République démocratique du"
+
+msgid "Africa/Kinshasa"
+msgstr "Kinshasa"
+
+msgid "Africa/Lubumbashi"
+msgstr "Lubumbashi"
+
+msgid "SouthAmerica/BR"
+msgstr "Brésil"
+
+msgid "Brazil/Acre"
+msgstr "Acre"
+
+msgid "Brazil/DeNoronha"
+msgstr "De Noronha"
+
+msgid "Brazil/East"
+msgstr "Est du Brésil"
+
+msgid "Brazil/West"
+msgstr "Ouest du Brésil"
+
+msgid "SouthAmerica/CH"
+msgstr "Chili"
+
+msgid "Chile/Continental"
+msgstr "Chili"
+
+msgid "Chile/EasterIsland"
+msgstr "Île de Pâques"
+
+msgid "Oceania/AU"
+msgstr "Australie"
+
+msgid "Australia/Perth"
+msgstr "Perth"
+
+msgid "Australia/Darwin"
+msgstr "Darwin"
+
+msgid "Australia/Adelaide"
+msgstr "Adelaide"
+
+msgid "Australia/Brisbane"
+msgstr "Brisbane"
+
+msgid "Australia/Sydney"
+msgstr "Sydney"
+
+msgid "Australia/Broken_Hill"
+msgstr "Broken Hill"
+
+msgid "Australia/Queensland"
+msgstr "Queensland"
+
+msgid "Australia/Lindeman"
+msgstr "Lindeman"
+
+msgid "Australia/Lord_Howe"
+msgstr "Lord Howe"
+
+msgid "Australia/Canberra"
+msgstr "Canberra"
+
+msgid "Australia/Melbourne"
+msgstr "Melbourne"
+
+msgid "Australia/Hobart"
+msgstr "Hobart"
+
+msgid "Oceania/US"
+msgstr "Îles américaines dans le Pacifique Sud"
+
+msgid "Pacific/Johnston"
+msgstr "Johnston"
+
+msgid "Pacific/Midway"
+msgstr "Midway"
+
+msgid "Pacific/Wake"
+msgstr "Pacific Wake"
+
+msgid "Oceania/MH"
+msgstr "Îles Marshall"
+
+msgid "Pacific/Kwajalein"
+msgstr "Pacific Kwajalein"
+
+msgid "Pacific/Majuro"
+msgstr "Pacific Majuro"
+
+msgid "Oceania/NZ"
+msgstr "Nouvelle-Zélande"
+
+msgid "Pacific/Auckland"
+msgstr "Auckland"
+
+msgid "Pacific/Chatham"
+msgstr "Pacific Chatham"
+
+msgid "Oceania/FM"
+msgstr "Micronésie"
+
+msgid "Pacific/Kosrae"
+msgstr "Kosrae"
+
+msgid "Pacific/Ponape"
+msgstr "Pacific Ponape"
+
+msgid "Pacific/Truk"
+msgstr "Pacific Truk"
+
+msgid "Pacific/Yap"
+msgstr "Pacific Yap"
+
+msgid "Oceania/KI"
+msgstr "Kirbati"
+
+msgid "Pacific/Enderbury"
+msgstr "Pacific Enderbury"
+
+msgid "Pacific/Kiritimati"
+msgstr "Pacific Kiritimati"
+
+msgid "Pacific/Tarawa"
+msgstr "Pacific Tarawa"
+
+msgid "Oceania/PF"
+msgstr "Polynésie française"
+
+msgid "Pacific/Gambier"
+msgstr "Pacific Gambier"
+
+msgid "Pacific/Marquesas"
+msgstr "Pacific Marquesas"
+
+msgid "Pacific/Tahiti"
+msgstr "Tahiti"
+
+msgid "Antarctica/AQ"
+msgstr "Antarctique"
+
+msgid "Antarctica/Casey"
+msgstr "Casey"
+
+msgid "Antarctica/DumontDUrville"
+msgstr "Dumont D'Urville"
+
+msgid "Antarctica/Mawson"
+msgstr "Mawson"
+
+msgid "Antarctica/McMurdo"
+msgstr "McMurdo"
+
+msgid "Antarctica/Palmer"
+msgstr "Palmer"
+
+msgid "Antarctica/South_Pole"
+msgstr "Pôle Sud"
+
+msgid "Atlantic/PT"
+msgstr "Îles portugaises d'Atlantique"
+
+msgid "Atlantic/Azores"
+msgstr "Açores"
+
+msgid "Atlantic/Madeira"
+msgstr "Madère"
+
+msgid "UTC/UTC"
+msgstr "Décalages UTC"
+
+msgid "Etc/UTC"
+msgstr "UTC"
+
+msgid "Etc/GMT+1"
+msgstr "UTC +1:00"
+
+msgid "Etc/GMT+2"
+msgstr "UTC +2:00"
+
+msgid "Etc/GMT+3"
+msgstr "UTC +3:00"
+
+msgid "Etc/GMT+4"
+msgstr "UTC +4:00"
+
+msgid "Etc/GMT+5"
+msgstr "UTC +5:00"
+
+msgid "Etc/GMT+6"
+msgstr "UTC +6:00"
+
+msgid "Etc/GMT+7"
+msgstr "UTC +7:00"
+
+msgid "Etc/GMT+8"
+msgstr "UTC +8:00"
+
+msgid "Etc/GMT+9"
+msgstr "UTC +9:00"
+
+msgid "Etc/GMT+10"
+msgstr "UTC +10:00"
+
+msgid "Etc/GMT+11"
+msgstr "UTC +11:00"
+
+msgid "Etc/GMT+12"
+msgstr "UTC +12:00"
+
+msgid "Etc/GMT-1"
+msgstr "UTC-1: 00"
+
+msgid "Etc/GMT-2"
+msgstr "UTC-2: 00"
+
+msgid "Etc/GMT-3"
+msgstr "UTC-3: 00"
+
+msgid "Etc/GMT-4"
+msgstr "UTC-4: 00"
+
+msgid "Etc/GMT-5"
+msgstr "UTC-5: 00"
+
+msgid "Etc/GMT-6"
+msgstr "UTC-6: 00"
+
+msgid "Etc/GMT-7"
+msgstr "UTC-7: 00"
+
+msgid "Etc/GMT-8"
+msgstr "UTC-8: 00"
+
+msgid "Etc/GMT-9"
+msgstr "UTC-9: 00"
+
+msgid "Etc/GMT-10"
+msgstr "UTC-10: 00"
+
+msgid "Etc/GMT-11"
+msgstr "UTC-11: 00"
+
+msgid "Etc/GMT-12"
+msgstr "UTC-12: 00"
+
+msgid "Etc/GMT-13"
+msgstr "UTC-13: 00"
+
+msgid "Etc/GMT-14"
+msgstr "UTC-14: 00"
+
+#
+# ISO 3166 Country Code
+#
+
+msgid "ad"
+msgstr "Andorre"
+
+msgid "ae"
+msgstr "Émirats arabes unis"
+
+msgid "af"
+msgstr "Afghanistan"
+
+msgid "ag"
+msgstr "Antigua-et-Barbuda"
+
+msgid "ai"
+msgstr "Anguilla"
+
+msgid "al"
+msgstr "Albanie"
+
+msgid "AM"
+msgstr "Arménie"
+
+msgid "an"
+msgstr "Antilles néerlandaises"
+
+msgid "ao"
+msgstr "Angola"
+
+msgid "aq"
+msgstr "Antarctique"
+
+msgid "ar"
+msgstr "Argentine"
+
+msgid "as"
+msgstr "Samoa américaines"
+
+msgid "at"
+msgstr "Autriche"
+
+msgid "au"
+msgstr "Australie"
+
+msgid "aw"
+msgstr "Aruba"
+
+msgid "az"
+msgstr "Azerbaïdjan"
+
+msgid "ba"
+msgstr "Bosnie-Herzégovine"
+
+msgid "bb"
+msgstr "Barbade"
+
+msgid "bd"
+msgstr "Bangladesh"
+
+msgid "be"
+msgstr "Belgique"
+
+msgid "bf"
+msgstr "Burkina Faso"
+
+msgid "bg"
+msgstr "Bulgarie"
+
+msgid "bh"
+msgstr "Bahreïn"
+
+msgid "bi"
+msgstr "Burundi"
+
+msgid "bj"
+msgstr "Bénin"
+
+msgid "bm"
+msgstr "Bermudes"
+
+msgid "bn"
+msgstr "Brunei Darussalam"
+
+msgid "bo"
+msgstr "Bolivie"
+
+msgid "br"
+msgstr "Brésil"
+
+msgid "bs"
+msgstr "Bahamas"
+
+msgid "bt"
+msgstr "Bhoutan"
+
+msgid "bv"
+msgstr "Île Bouvet"
+
+msgid "bw"
+msgstr "Botswana"
+
+msgid "by"
+msgstr "Biélorussie"
+
+msgid "bz"
+msgstr "Belize"
+
+msgid "ca"
+msgstr "Canada"
+
+msgid "cc"
+msgstr "Cocos (Keeling)"
+
+msgid "cf"
+msgstr "République centrafricaine"
+
+msgid "cg"
+msgstr "Congo"
+
+msgid "ch"
+msgstr "Suisse"
+
+msgid "ci"
+msgstr "Côte-d'Ivoire (Cote D'Ivoire)"
+
+msgid "ck"
+msgstr "Îles Cook"
+
+msgid "cl"
+msgstr "Chili"
+
+msgid "cm"
+msgstr "Cameroun"
+
+msgid "cn"
+msgstr "Chine"
+
+msgid "co"
+msgstr "Colombie"
+
+msgid "cr"
+msgstr "Costa Rica"
+
+msgid "cs"
+msgstr "Ancienne Tchécoslovaquie"
+
+msgid "cu"
+msgstr "Cuba"
+
+msgid "cv"
+msgstr "Cap-Vert"
+
+msgid "cx"
+msgstr "Christmas Island"
+
+msgid "cy"
+msgstr "Chypre"
+
+msgid "cz"
+msgstr "République tchèque"
+
+msgid "de"
+msgstr "Allemagne"
+
+msgid "dj"
+msgstr "Djibouti"
+
+msgid "dk"
+msgstr "Danemark"
+
+msgid "dm"
+msgstr "Dominique"
+
+msgid "do"
+msgstr "République dominicaine"
+
+msgid "dz"
+msgstr "Algérie"
+
+msgid "ec"
+msgstr "Equateur"
+
+msgid "ee"
+msgstr "Estonie"
+
+msgid "eg"
+msgstr "Égypte"
+
+msgid "eh"
+msgstr "Sahara occidental"
+
+msgid "er"
+msgstr "Erythrée"
+
+msgid "es"
+msgstr "Espagne"
+
+msgid "et"
+msgstr "Ethiopie"
+
+msgid "fi"
+msgstr "Finlande"
+
+msgid "fj"
+msgstr "Fidji"
+
+msgid "fk"
+msgstr "Islands Falkland"
+
+msgid "fm"
+msgstr "Micronésie"
+
+msgid "fo"
+msgstr "Îles Féroé"
+
+msgid "fr"
+msgstr "France"
+
+msgid "fx"
+msgstr "France (continent européen)"
+
+msgid "ga"
+msgstr "Gabon"
+
+msgid "gb"
+msgstr "Grande-Bretagne"
+
+msgid "gd"
+msgstr "Grenade"
+
+msgid "ge"
+msgstr "Géorgie"
+
+msgid "gf"
+msgstr "Guyane française"
+
+msgid "gh"
+msgstr "Ghana"
+
+msgid "gi"
+msgstr "Gibraltar"
+
+msgid "gl"
+msgstr "Groenland"
+
+msgid "gm"
+msgstr "Gambie"
+
+msgid "gn"
+msgstr "Guinée"
+
+msgid "gp"
+msgstr "Guadeloupe (française)"
+
+msgid "gq"
+msgstr "Guinée équatoriale"
+
+msgid "gr"
+msgstr "Grèce"
+
+msgid "gs"
+msgstr "S.Georgia et S.Sandwich Isles (Géorgie du Sud-et-les Îles Sandwich du Sud)"
+
+msgid "gt"
+msgstr "Guatemala"
+
+msgid "gu"
+msgstr "Guam (USA)"
+
+msgid "gw"
+msgstr "Guinée Bissau"
+
+msgid "gy"
+msgstr "Guyane"
+
+msgid "hk"
+msgstr "Hong Kong"
+
+msgid "hm"
+msgstr "Heard et McDonald Isles (Îles Heard-et-MacDonald)"
+
+msgid "hn"
+msgstr "Honduras"
+
+msgid "hr"
+msgstr "Croatie"
+
+msgid "ht"
+msgstr "Haïti"
+
+msgid "hu"
+msgstr "Hongrie"
+
+msgid "id"
+msgstr "Indonésie"
+
+msgid "ie"
+msgstr "Irlande"
+
+msgid "il"
+msgstr "Israël"
+
+msgid "in"
+msgstr "Inde"
+
+msgid "io"
+msgstr "Territoire britannique de l'océan Indien"
+
+msgid "iq"
+msgstr "Irak"
+
+msgid "ir"
+msgstr "Iran"
+
+msgid "is"
+msgstr "Islande"
+
+msgid "it"
+msgstr "Italie"
+
+msgid "jm"
+msgstr "Jamaïque"
+
+msgid "jo"
+msgstr "Jordan"
+
+msgid "jp"
+msgstr "Japon"
+
+msgid "ke"
+msgstr "Kenya"
+
+msgid "kg"
+msgstr "Kirghizistan"
+
+msgid "kh"
+msgstr "Cambodge"
+
+msgid "ki"
+msgstr "Kiribati"
+
+msgid "km"
+msgstr "Comores"
+
+msgid "kn"
+msgstr "Saint-Kitts-et-Nevis Anguilla"
+
+msgid "kp"
+msgstr "Corée du Nord"
+
+msgid "kr"
+msgstr "Corée du Sud"
+
+msgid "kw"
+msgstr "Koweït"
+
+msgid "ky"
+msgstr "Îles Caïmans"
+
+msgid "kz"
+msgstr "Kazakhstan"
+
+msgid "la"
+msgstr "Laos"
+
+msgid "lb"
+msgstr "Liban"
+
+msgid "lc"
+msgstr "Sainte-Lucie"
+
+msgid "li"
+msgstr "Liechtenstein"
+
+msgid "lk"
+msgstr "Sri Lanka"
+
+msgid "lr"
+msgstr "Liberia"
+
+msgid "ls"
+msgstr "Lesotho"
+
+msgid "lt"
+msgstr "Lituanie"
+
+msgid "lu"
+msgstr "Luxembourg"
+
+msgid "lv"
+msgstr "Lettonie"
+
+msgid "ly"
+msgstr "Libye"
+
+msgid "ma"
+msgstr "Maroc"
+
+msgid "mc"
+msgstr "Monaco"
+
+msgid "md"
+msgstr "Moldavie"
+
+msgid "mg"
+msgstr "Madagascar"
+
+msgid "mh"
+msgstr "Îles Marshall"
+
+msgid "mk"
+msgstr "Macédoine"
+
+msgid "ml"
+msgstr "Mali"
+
+msgid "mm"
+msgstr "Myanmar"
+
+msgid "mn"
+msgstr "Mongolie"
+
+msgid "mo"
+msgstr "Macao"
+
+msgid "mp"
+msgstr "Îles Mariannes du Nord"
+
+msgid "mq"
+msgstr "Martinique (F)"
+
+msgid "mr"
+msgstr "Mauritanie"
+
+msgid "ms"
+msgstr "Montserrat"
+
+msgid "mt"
+msgstr "Malte"
+
+msgid "mu"
+msgstr "Maurice"
+
+msgid "mv"
+msgstr "Maldives"
+
+msgid "mw"
+msgstr "Malawi"
+
+msgid "mx"
+msgstr "Mexique"
+
+msgid "my"
+msgstr "Malaisie"
+
+msgid "mz"
+msgstr "Mozambique"
+
+msgid "na"
+msgstr "Namibie"
+
+msgid "nc"
+msgstr "Nouvelle-Calédonie (F)"
+
+msgid "ne"
+msgstr "Niger"
+
+msgid "nf"
+msgstr "Île Norfolk"
+
+msgid "ng"
+msgstr "Nigeria"
+
+msgid "ni"
+msgstr "Nicaragua"
+
+msgid "nl"
+msgstr "Pays-Bas"
+
+msgid "no"
+msgstr "Norvège"
+
+msgid "np"
+msgstr "Népal"
+
+msgid "nr"
+msgstr "Nauru"
+
+msgid "nt"
+msgstr "Zone Neutre"
+
+msgid "nu"
+msgstr "Niue"
+
+msgid "nz"
+msgstr "Nouvelle-Zélande"
+
+msgid "om"
+msgstr "Oman"
+
+msgid "pa"
+msgstr "Panama"
+
+msgid "pe"
+msgstr "Pérou"
+
+msgid "pf"
+msgstr "Polynésie (Français)"
+
+msgid "pg"
+msgstr "Papouasie-Nouvelle-Guinée"
+
+msgid "ph"
+msgstr "Philippines"
+
+msgid "pk"
+msgstr "Pakistan"
+
+msgid "pl"
+msgstr "Pologne"
+
+msgid "PM"
+msgstr "Saint-Pierre-et-Miquelon"
+
+msgid "pn"
+msgstr "Pitcairn"
+
+msgid "pr"
+msgstr "Puerto Rico"
+
+msgid "pt"
+msgstr "Portugal"
+
+msgid "pw"
+msgstr "Palau"
+
+msgid "py"
+msgstr "Paraguay"
+
+msgid "qa"
+msgstr "Qatar"
+
+msgid "re"
+msgstr "La Réunion (F)"
+
+msgid "ro"
+msgstr "Roumanie"
+
+msgid "ru"
+msgstr "Fédération de Russie"
+
+msgid "rw"
+msgstr "Rwanda"
+
+msgid "sa"
+msgstr "Arabie Saoudite"
+
+msgid "sb"
+msgstr "Îles Salomon"
+
+msgid "sc"
+msgstr "Seychelles"
+
+msgid "sd"
+msgstr "Soudan"
+
+msgid "se"
+msgstr "Suède"
+
+msgid "sg"
+msgstr "Singapour"
+
+msgid "sh"
+msgstr "Sainte-Hélène"
+
+msgid "si"
+msgstr "Slovénie"
+
+msgid "sj"
+msgstr "Îles Svalbard et Jan Mayen"
+
+msgid "sk"
+msgstr "République slovaque"
+
+msgid "sl"
+msgstr "Sierra Leone"
+
+msgid "sm"
+msgstr "San Marino"
+
+msgid "sn"
+msgstr "Sénégal"
+
+msgid "so"
+msgstr "Somalie"
+
+msgid "sr"
+msgstr "Suriname"
+
+msgid "st"
+msgstr "Saint-Tomé (Sao Tomé) et Principe"
+
+msgid "su"
+msgstr "Ex-URSS"
+
+msgid "sv"
+msgstr "El Salvador"
+
+msgid "sy"
+msgstr "Syrie"
+
+msgid "sz"
+msgstr "Swaziland"
+
+msgid "tc"
+msgstr "Îles Turques et Caïques"
+
+msgid "td"
+msgstr "Tchad"
+
+msgid "tf"
+msgstr "Terres australes françaises"
+
+msgid "tg"
+msgstr "Togo"
+
+msgid "th"
+msgstr "Thaïlande"
+
+msgid "tj"
+msgstr "Tadjikistan"
+
+msgid "tk"
+msgstr "Tokelau"
+
+msgid "tm"
+msgstr "Turkménistan"
+
+msgid "tn"
+msgstr "Tunisie"
+
+msgid "to"
+msgstr "Tonga"
+
+msgid "tp"
+msgstr "Timor oriental"
+
+msgid "tr"
+msgstr "Turquie"
+
+msgid "tt"
+msgstr "Trinité-et-Tobago"
+
+msgid "tv"
+msgstr "Tuvalu"
+
+msgid "tw"
+msgstr "Taiwan"
+
+msgid "tz"
+msgstr "Tanzanie"
+
+msgid "ua"
+msgstr "Ukraine"
+
+msgid "ug"
+msgstr "Ouganda"
+
+msgid "uk"
+msgstr "Royaume-Uni"
+
+msgid "um"
+msgstr "USA Îles mineures éloignées"
+
+msgid "us"
+msgstr "États-Unis"
+
+msgid "uy"
+msgstr "Uruguay"
+
+msgid "uz"
+msgstr "Ouzbékistan"
+
+msgid "va"
+msgstr "Cité du Vatican"
+
+msgid "vc"
+msgstr "Saint-Vincent-et-Grenadines"
+
+msgid "ve"
+msgstr "Venezuela"
+
+msgid "vg"
+msgstr "Îles Vierges britanniques"
+
+msgid "vi"
+msgstr "Îles Vierges des États-Unis"
+
+msgid "vn"
+msgstr "Vietnam"
+
+msgid "vu"
+msgstr "Vanuatu"
+
+msgid "wf"
+msgstr "Wallis-et-Futuna"
+
+msgid "ws"
+msgstr "Samoa"
+
+msgid "ye"
+msgstr "Yémen"
+
+msgid "yt"
+msgstr "Mayotte"
+
+msgid "yu"
+msgstr "Yougoslavie"
+
+msgid "za"
+msgstr "Afrique du Sud"
+
+msgid "zm"
+msgstr "Zambie"
+
+msgid "zr"
+msgstr "Congo, République démocratique du"
+
+msgid "zw"
+msgstr "Zimbabwe"
+
+#
+# ISO 639 Language Code
+#
+
+msgid "lang_aa"
+msgstr "Afar"
+
+msgid "lang_ab"
+msgstr "Abkhaze"
+
+msgid "lang_af"
+msgstr "Afrikaans"
+
+msgid "lang_am"
+msgstr "Amharique"
+
+msgid "lang_ar"
+msgstr "Arabe"
+
+msgid "lang_as"
+msgstr "Assamais"
+
+msgid "lang_ay"
+msgstr "Aymara"
+
+msgid "lang_az"
+msgstr "Azerbaïdjan"
+
+msgid "lang_ba"
+msgstr "Bashkir"
+
+msgid "lang_be"
+msgstr "Biélorussie"
+
+msgid "lang_bg"
+msgstr "Bulgare"
+
+msgid "lang_bh"
+msgstr "Bihari"
+
+msgid "lang_bi"
+msgstr "Bislama"
+
+msgid "lang_bn"
+msgstr "Bengali; Bangla"
+
+msgid "lang_bo"
+msgstr "Tibet"
+
+msgid "lang_br"
+msgstr "Breton"
+
+msgid "lang_ca"
+msgstr "Catalan"
+
+msgid "lang_co"
+msgstr "Corse"
+
+msgid "lang_cs"
+msgstr "Tchèque"
+
+msgid "lang_cy"
+msgstr "Gallois"
+
+msgid "lang_da"
+msgstr "Danois"
+
+msgid "lang_de"
+msgstr "Allemand"
+
+msgid "lang_dz"
+msgstr "Bhutani"
+
+msgid "lang_el"
+msgstr "Grecque"
+
+msgid "lang_en"
+msgstr "Anglais"
+
+msgid "lang_eo"
+msgstr "Esperanto"
+
+msgid "lang_es"
+msgstr "Espagnol"
+
+msgid "lang_et"
+msgstr "Estonien"
+
+msgid "lang_eu"
+msgstr "Basque"
+
+msgid "lang_fa"
+msgstr "Farsi, persan"
+
+msgid "lang_fi"
+msgstr "Finnish"
+
+msgid "lang_fj"
+msgstr "Fidji"
+
+msgid "lang_fo"
+msgstr "Féroïen"
+
+msgid "lang_fr"
+msgstr "Français"
+
+msgid "lang_fy"
+msgstr "Frison"
+
+msgid "lang_ga"
+msgstr "Irish; gaélique"
+
+msgid "lang_gd"
+msgstr "Ecossais; gaélique"
+
+msgid "lang_gl"
+msgstr "Galicien"
+
+msgid "lang_gn"
+msgstr "Guarani"
+
+msgid "lang_gu"
+msgstr "Gujarati"
+
+msgid "lang_ha"
+msgstr "Hausa"
+
+msgid "lang_he"
+msgstr "Hébreu"
+
+msgid "lang_hi"
+msgstr "Hindi"
+
+msgid "lang_hr"
+msgstr "Croate"
+
+msgid "lang_hu"
+msgstr "Hongrois"
+
+msgid "lang_hy"
+msgstr "Arménien"
+
+msgid "lang_ia"
+msgstr "Interlingua"
+
+msgid "lang_ie"
+msgstr "Interlingue"
+
+msgid "lang_ik"
+msgstr "Inupiak"
+
+msgid "lang_in"
+msgstr "Indonésien"
+
+msgid "lang_is"
+msgstr "Islandais"
+
+msgid "lang_it"
+msgstr "Italien"
+
+msgid "lang_ja"
+msgstr "Japonais"
+
+msgid "lang_ji"
+msgstr "Yiddish"
+
+msgid "lang_jv"
+msgstr "Javanais"
+
+msgid "lang_ka"
+msgstr "Georgian"
+
+msgid "lang_kk"
+msgstr "Kazakh"
+
+msgid "lang_kl"
+msgstr "Groenlandais"
+
+msgid "lang_km"
+msgstr "Cambodgienne"
+
+msgid "lang_kn"
+msgstr "Kannada"
+
+msgid "lang_ko"
+msgstr "Corée"
+
+msgid "lang_ks"
+msgstr "Kashmiri"
+
+msgid "lang_ku"
+msgstr "Kurde"
+
+msgid "lang_ky"
+msgstr "Kirghiz"
+
+msgid "lang_la"
+msgstr "Latin"
+
+msgid "lang_ln"
+msgstr "Lingala"
+
+msgid "lang_lo"
+msgstr "Laothian"
+
+msgid "lang_lt"
+msgstr "Lituanien"
+
+msgid "lang_lv"
+msgstr "Letton, letton"
+
+msgid "lang_mg"
+msgstr "Malgache"
+
+msgid "lang_mi"
+msgstr "Maori"
+
+msgid "lang_mk"
+msgstr "Macédonien"
+
+msgid "lang_ml"
+msgstr "Malayalam"
+
+msgid "lang_mn"
+msgstr "Mongol"
+
+msgid "lang_mo"
+msgstr "Moldave"
+
+msgid "lang_mr"
+msgstr "Marathi"
+
+msgid "lang_ms"
+msgstr "Malay"
+
+msgid "lang_mt"
+msgstr "Maltais"
+
+msgid "lang_my"
+msgstr "Birmane"
+
+msgid "lang_na"
+msgstr "Nauru"
+
+msgid "lang_ne"
+msgstr "Nepali"
+
+msgid "lang_nl"
+msgstr "Néerlandais"
+
+msgid "lang_no"
+msgstr "Norwegian"
+
+msgid "lang_oc"
+msgstr "Occitan"
+
+msgid "lang_om"
+msgstr "Afan (Oromo)"
+
+msgid "lang_or"
+msgstr "Oriya"
+
+msgid "lang_pa"
+msgstr "Punjabi"
+
+msgid "lang_pl"
+msgstr "Polonais"
+
+msgid "lang_ps"
+msgstr "Pachto; Pushto"
+
+msgid "lang_pt"
+msgstr "Portugais"
+
+msgid "lang_qu"
+msgstr "Quechua"
+
+msgid "lang_rm"
+msgstr "Rhèto-roman"
+
+msgid "lang_rn"
+msgstr "Kurundi"
+
+msgid "lang_ro"
+msgstr "Roumain"
+
+msgid "lang_ru"
+msgstr "Russie"
+
+msgid "lang_rw"
+msgstr "Kinyarwanda"
+
+msgid "lang_sa"
+msgstr "Sanskrit"
+
+msgid "lang_sd"
+msgstr "Sindhi"
+
+msgid "lang_sg"
+msgstr "Sangho"
+
+msgid "lang_sh"
+msgstr "Serbo-croate"
+
+msgid "lang_si"
+msgstr "Singhalese"
+
+msgid "lang_sk"
+msgstr "Slovaque"
+
+msgid "lang_sl"
+msgstr "Slovène"
+
+msgid "lang_sm"
+msgstr "Samoan"
+
+msgid "lang_sn"
+msgstr "Shona"
+
+msgid "lang_so"
+msgstr "Somalie"
+
+msgid "lang_sq"
+msgstr "Albanais"
+
+msgid "lang_sr"
+msgstr "Serbe"
+
+msgid "lang_ss"
+msgstr "Siswati"
+
+msgid "lang_st"
+msgstr "Sesotho"
+
+msgid "lang_su"
+msgstr "Sundanese"
+
+msgid "lang_sv"
+msgstr "Swedish"
+
+msgid "lang_sw"
+msgstr "Swahili"
+
+msgid "lang_ta"
+msgstr "Tamil"
+
+msgid "lang_te"
+msgstr "Telugu"
+
+msgid "lang_tg"
+msgstr "Tadjik"
+
+msgid "lang_th"
+msgstr "Thai"
+
+msgid "lang_ti"
+msgstr "Tigrinya"
+
+msgid "lang_tk"
+msgstr "Turkmène"
+
+msgid "lang_tl"
+msgstr "Tagalog"
+
+msgid "lang_tn"
+msgstr "Setswana"
+
+msgid "lang_to"
+msgstr "Tonga"
+
+msgid "lang_tr"
+msgstr "Turque"
+
+msgid "lang_ts"
+msgstr "Tsonga"
+
+msgid "lang_tt"
+msgstr "Tatar"
+
+msgid "lang_tw"
+msgstr "Twi"
+
+msgid "lang_uk"
+msgstr "Ukrainienne"
+
+msgid "lang_ur"
+msgstr "Urdu"
+
+msgid "lang_uz"
+msgstr "Ouzbek"
+
+msgid "lang_vi"
+msgstr "Vietnamien"
+
+msgid "lang_vo"
+msgstr "Volapuk"
+
+msgid "lang_wo"
+msgstr "Wolof"
+
+msgid "lang_xh"
+msgstr "Xhosa"
+
+msgid "lang_yo"
+msgstr "Yoruba"
+
+msgid "lang_zh"
+msgstr "Chinois"
+
+msgid "lang_zu"
+msgstr "Zulu"
+
+#
+#Translation for specific locales
+#
+
+# Start: basic 'validator' checks
+
+msgid "locale_zh_CN"
+msgstr "Chinois simplifié"
+
+msgid "locale_zh_TW"
+msgstr "Chinois traditionnel"
+
+msgid "pwCheckStr"
+msgstr "Test de qualité du mot de passe"
+
+# New strings for BlueOnyx NG:
+
+msgid "val_required"
+msgstr "Ce champ est obligatoire."
+
+msgid "val_remote"
+msgstr "Veuillez corriger ce champ."
+
+msgid "val_email"
+msgstr "Veuillez saisir une adresse e-mail valide."
+
+msgid "val_date"
+msgstr "Veuillez taper une date valide."
+
+msgid "val_dateISO"
+msgstr "Veuillez taper une date valide (ISO)."
+
+msgid "val_number"
+msgstr "Veuillez taper un numéro valide."
+
+msgid "val_digits"
+msgstr "Veuillez ne taper que des chiffres."
+
+msgid "val_creditcard"
+msgstr "Veuillez taper un numéro de carte de crédit valide."
+
+msgid "val_equalTo"
+msgstr "Veuillez saisir la même valeur à nouveau."
+
+msgid "val_accept"
+msgstr "Veuillez saisir une valeur avec une extension valide."
+
+msgid "val_maxlength"
+msgstr "Vous avez saisi plus de caractères que permis."
+
+msgid "val_minlength"
+msgstr "Vous n'avez pas saisi assez de caractères."
+
+msgid "val_rangelength"
+msgstr "La valeur saisie est hors de la plage autorisée."
+
+msgid "val_range"
+msgstr "Veuillez taper une valeur qui est à l'intérieur de la plage autorisée."
+
+msgid "val_max"
+msgstr "La valeur saisie est trop grande."
+
+msgid "val_min"
+msgstr "La valeur saisie est trop petite."
+
+msgid "val_url"
+msgstr "Veuillez saisir une URL valide."
+
+# End: basic 'validator' checks
+
+# Start: Extended 'validator' checks
+
+msgid "val_is_required"
+msgstr "Le champ [[VAR.field]] est nécessaire."
+
+# End: Extended 'validator' checks
+
+# Start: Style Switcher
+
+msgid "layout"
+msgstr "Mise en page"
+
+msgid "fluid"
+msgstr "Fluide"
+
+msgid "fixed"
+msgstr "Fixe"
+
+msgid "menus"
+msgstr "Menus"
+
+msgid "side"
+msgstr "Latéral"
+
+msgid "top"
+msgstr "Top"
+
+msgid "slide"
+msgstr "Glissant"
+
+msgid "theme"
+msgstr "Thème"
+
+msgid "dark"
+msgstr "Sombre"
+
+msgid "light"
+msgstr "Clair"
+
+msgid "BGs"
+msgstr "Arrière-plans"
+
+msgid "silver"
+msgstr "Argent"
+
+msgid "wood"
+msgstr "Bois"
+
+msgid "squares"
+msgstr "Carrés"
+
+msgid "noise"
+msgstr "Bruissement et neige"
+
+msgid "stripes"
+msgstr "Rayures"
+
+msgid "metal"
+msgstr "Métal"
+
+msgid "boxes"
+msgstr "Boîtes"
+
+msgid "punched"
+msgstr "Perforé"
+
+msgid "honeycomb"
+msgstr "nid d'abeilles"
+
+msgid "timber"
+msgstr "Boiseries"
+
+# End: Style Switcher
+
+msgid "autogrow_expanding"
+msgstr "Ce champ ne cesse de s'élargir, tout comme sur Facebook."
+
+msgid "autogrow_prefill"
+msgstr "Vous continuez à taper, je grandis ..."
+
+msgid "page_render_part_one"
+msgstr "Page affichée en"
+
+msgid "page_render_part_two"
+msgstr "secondes"
+
+# Start: Calendar stuff
+
+msgid "next"
+msgstr "Suivant"
+
+msgid "previous"
+msgstr "Précédent"
+
+msgid "done"
+msgstr "Accompli"
+
+msgid "today"
+msgstr "Aujourd'hui"
+
+# End: Calendar stuff
+
+# Start: Adminica Icon helptexts:
+
+msgid "icon_toggle"
+msgstr "Basculer cet élément."
+
+msgid "icon_grabber"
+msgstr "Déplacer cet élément."
+
+msgid "icon_window"
+msgstr "Ouvrir dans une nouvelle fenêtre du navigateur."
+
+msgid "icon_show_all_tabs"
+msgstr "Regrouper tous les onglets et afficher toutes leurs informations dans un seul onglet."
+
+# End: Adminica Icon helptexts
+
+# Start: Error page localization:
+
+msgid "401title"
+msgstr "Autorisation requise"
+
+msgid "401text"
+msgstr "Le serveur n'a pas pu vérifier si vous êtes autorisé à accéder au document que vous avez demandé. Soit vous avez fourni une fausse identification (par exemple un mauvais mot de passe) ou votre navigateur ne peut pas fournir les informations d'identification requises. (401: Authorization Required)"
+
+msgid "403title"
+msgstr "Interdit"
+
+msgid "403text"
+msgstr "Vous n'avez pas la permission d'accéder au fichier demandé sur ce serveur. (403: Forbidden)"
+
+msgid "404title"
+msgstr "Fichier introuvable"
+
+msgid "404text"
+msgstr "L'URL demandée n'a pas été trouvée sur ce serveur. (404: File Not Found)"
+
+msgid "500title"
+msgstr "Erreur interne du serveur"
+
+msgid "500text"
+msgstr "Le serveur a rencontré une erreur interne et a été incapable de compléter votre demande. (500: Internal Server Error)"
+
+msgid "pageNotDoneYetTitle"
+msgstr "Erreur de transition"
+
+msgid "pageNotDoneYetText"
+msgstr "La page GUI que vous tentez d'accéder n'est pas encore convertie en BlueOnyx 5207R ou 5208R. Veuillez faire une mise à jour YUM et également cocher la case « Mises à jour de logiciels » pour mises à jour de tous les PKGs installés. Si cela ne résout pas le problème, veuillez contactez le fournisseur du logiciel que vous avez essayé d'utiliser lorsque l'erreur s'est produite."
+
+# End: Error page localization
+
+# Start: Datatables
+
+msgid "sProcessing"
+msgstr "Traitement en cours..."
+
+msgid "sLengthMenu"
+msgstr "Afficher _MENU_ éléments"
+
+msgid "sZeroRecords"
+msgstr "Pas d'enregistrements disponibles"
+
+msgid "sInfo"
+msgstr "De _START_ à _END_ de _TOTAL_ éléments"
+
+msgid "sInfoEmpty"
+msgstr "Affichage de 0 à 0 de 0 éléments"
+
+msgid "sInfoFiltered"
+msgstr "(filtré de _MAX_ éléments au total)"
+
+msgid "sSearch"
+msgstr "Rechercher :"
+
+msgid "sFirst"
+msgstr "Premier"
+
+msgid "sLast"
+msgstr "Dernier"
+
+msgid "sPrevious"
+msgstr "[[palette.previous]]"
+
+msgid "sNext"
+msgstr "[[palette.next]]"
+
+# End: Datatables
+
+msgid "Yes"
+msgstr "Oui"
+
+msgid "No"
+msgstr "Non"
+
+msgid "enabled"
+msgstr "Cet élément est activé."
+
+msgid "disabled"
+msgstr "Cet élément est désactivé."
+
+msgid "notprivileged"
+msgstr "Vous n'avez pas les privilèges de modifier cet élément."
+
+msgid "disabled_short"
+msgstr "Désactivé"
+
+msgid "enabled_short"
+msgstr "Activé"
+
+msgid "demo_mode_short"
+msgstr "Démo"
+
+msgid "demo_mode"
+msgstr "Ce serveur fonctionne en mode démo. L'enregistrement de modifications a été désactivé sur certaines pages."
+
+## New Countries:
+
+msgid "ax"
+msgstr "Îles Åland"
+
+msgid "bl"
+msgstr "Saint Barthélemy"
+
+msgid "bq"
+msgstr "Bonaire, Saint-Eustache et Saba"
+
+msgid "cd"
+msgstr "Congo, la République démocratique du"
+
+msgid "cw"
+msgstr "Curaçao"
+
+msgid "gg"
+msgstr "Guernesey"
+
+msgid "im"
+msgstr "Isle of Man"
+
+msgid "je"
+msgstr "Jersey"
+
+msgid "me"
+msgstr "Monténégro"
+
+msgid "mf"
+msgstr "Saint-Martin (partie française)"
+
+msgid "rs"
+msgstr "Serbie"
+
+msgid "ss"
+msgstr "Sud-Soudan"
+
+msgid "sx"
+msgstr "Saint-Martin (partie hollandaise)"
+
+msgid "tl"
+msgstr "Timor-Leste"
+
+msgid "ps"
+msgstr "Palestine"
+
+## Updated Password Check:
+
+msgid "pw_way_too_short"
+msgstr "Il est bien trop court !"
+
+msgid "pw_too_short"
+msgstr "Il est trop court !"
+
+msgid "pw_not_nuff_different"
+msgstr "Il ne contient pas assez de caractères différents."
+
+msgid "pw_all_whitespace"
+msgstr "Il n'y a que des espaces !"
+
+msgid "pw_too_simple"
+msgstr "Il est trop simpliste ou trop systématique !"
+
+msgid "pw_insurance_number"
+msgstr "Il ressemble à un numéro de sécurité sociale !"
+
+msgid "pw_dictionary_word"
+msgstr "Il est basé sur un mot du dictionnaire !"
+
+msgid "pw_reversed_dictionary_word"
+msgstr "Il est basé sur un mot du dictionnaire inversé !"
+
+msgid "pw_strong_password"
+msgstr "Mot de passe solide."
+
+msgid "pw_not_identical"
+msgstr "Les deux mots de passe saisis ne sont pas identiques."
+
+msgid "addAll"
+msgstr "Ajouter tous les"
+
+msgid "removeAll"
+msgstr "Retirez tous les"
+
+msgid "itemsCount"
+msgstr "éléments sélectionnés"
