@@ -24,11 +24,14 @@ if (-f "/home/solarspeed/milter-geoip/bin/libs/phpsendmail_include.pl") {
     }
 }
 
+# Get the Bash $* equivalent:
+$options = join(" " , @ARGV);
+
 # Log the activity into /var/log/maillog with all the info we have gathered:
 system("/usr/bin/logger -p mail.info sendmail-wrapper-php: site=$HTTP_HOST, client=$REMOTE_ADDR, script=$PWD$SCRIPT_NAME, uid=$UID, user=$OWNER");
 
 # Actually send the email by passing it to Sendmail:
-system("/usr/sbin/sendmail -t -i $*");
+system("/usr/sbin/sendmail -t -i $options");
 
 # 
 # Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
