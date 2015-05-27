@@ -542,6 +542,18 @@ class HtmlComponentFactory {
     return $country;
   } 
 
+  // description: manufacture an GeoIP object
+  // param: id: id of the object
+  // param: value: selected values of the object
+  // param: access: access of the object. Optional
+  // returns: an GeoIP object
+  function getGeoIP($id, $value, $access = "rw") {
+    include_once("uifc/GeoIP.php");
+    $geoip = new GeoIP($this->BxPage, $id, $value, $this->i18n);
+    $geoip->setAccess($access);
+    return $geoip;
+  } 
+
   // description: manufacture an EmailAddressList object
   // param: id: id of the object
   // param: value: value of the object
@@ -1146,8 +1158,8 @@ class HtmlComponentFactory {
 }
 
 /*
-Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 Copyright (c) 2003 Sun Microsystems, Inc. 
 All Rights Reserved.
 
