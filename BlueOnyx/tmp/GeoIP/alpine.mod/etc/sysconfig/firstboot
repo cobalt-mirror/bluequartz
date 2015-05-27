@@ -1,8 +1,0 @@
-#
-# $Id: firstboot
-#
-# configuration parameters for the first boot after a build
-# currently only whether to try dhcp or not, but can be easily expanded
-#
-
-TRYDHCP=no
