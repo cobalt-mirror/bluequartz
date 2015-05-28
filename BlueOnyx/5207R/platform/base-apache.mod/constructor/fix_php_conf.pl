@@ -66,9 +66,20 @@ if ($check_net eq "1") {
     $top_module_path = $known_php_versions{$phpVer} . "/share/pear/Net";
     $pear_path = $known_php_versions{$phpVer} . "/bin/pear";
     if ((!-d $module_path) && (-f $pear_path)) {
+
+      if ($phpVer eq "PHPOS") {
+        system("cp /etc/php.ini /etc/php.ini.bak");
+        system("cat /etc/php.ini|grep -v ^open_basedir > /etc/php.ini");
+      }
+
+      # Do the PEAR install:
       system("$pear_path install channel://pear.php.net/Net_IDNA2-0.1.1 > /dev/null");
       # Fix permissions recursively, because the PEAR-installer doesn't. WTF! YGBSM!!
       system("chmod -R 755 $top_module_path");
+
+      if ($phpVer eq "PHPOS") {
+        system("mv /etc/php.ini.bak /etc/php.ini");
+      }
     }
   }
 }
