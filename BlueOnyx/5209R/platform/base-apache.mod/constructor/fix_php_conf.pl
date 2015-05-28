@@ -6,8 +6,8 @@
 # manually turn it on ... and not everywhere.
 #
 # Depends on:
-#		System.hostname
-#		System.domainname
+#   System.hostname
+#   System.domainname
 
 my $confdir = '/etc/httpd/conf.d';
 
@@ -24,7 +24,7 @@ my $stage = "$confdir/php.conf~";
 open(HTTPD, "$confdir/php.conf");
 unlink($stage);
 sysopen(STAGE, $stage, 1|O_CREAT|O_EXCL, 0600) || die;
-while(<HTTPD>) {
+while (<HTTPD>) {
   s/^AddHandler\s/#AddHandler /g;
   s/^AddType\s/#AddType /g;
   s/^DirectoryIndex\s/#DirectoryIndex /g;
@@ -37,12 +37,42 @@ close(STAGE);
 close(HTTPD);
 
 chmod(0644, $stage);
-if(-s $stage) {
+if (-s $stage) {
   move($stage,"$confdir/php.conf");
   chmod(0644, "$confdir/php.conf"); # paranoia
   $apache_ok = "1";
 } else {
   $apache_ok = "0";
+}
+
+#
+## Install the required PEAR module for all versions of PHP that are currently present:
+#
+
+# Known PHP versions:
+%known_php_versions = (
+                        'PHPOS' => '/usr',
+                        'PHP'   => '/home/solarspeed/php',
+                        'PHP53' => '/home/solarspeed/php-5.3',
+                        'PHP54' => '/home/solarspeed/php-5.4',
+                        'PHP55' => '/home/solarspeed/php-5.5',
+                        'PHP56' => '/home/solarspeed/php-5.6'
+                        );
+
+# Only run this if we're online and pear.php.net can be pinged:
+$check_net = `ping -c 1 -w 1 pear.php.net|grep "1 received"|wc -l`;
+chomp($check_net);
+if ($check_net eq "1") {
+  for $phpVer (keys %known_php_versions) {
+    $module_path = $known_php_versions{$phpVer} . "/share/pear/Net/IDNA2";
+    $top_module_path = $known_php_versions{$phpVer} . "/share/pear/Net";
+    $pear_path = $known_php_versions{$phpVer} . "/bin/pear";
+    if ((!-d $module_path) && (-f $pear_path)) {
+      system("$pear_path install channel://pear.php.net/Net_IDNA2-0.1.1 > /dev/null");
+      # Fix permissions recursively, because the PEAR-installer doesn't. WTF! YGBSM!!
+      system("chmod -R 755 $top_module_path");
+    }
+  }
 }
 
 if ($apache_ok == "1") {
