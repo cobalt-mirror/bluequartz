@@ -46,11 +46,12 @@ for $vsite (@vhosts) {
 
     ($ok, $my_vsite) = $cce->get($vsite);
     ($ok, $xvsite_SSL) = $cce->get($vsite, 'SSL');
+    ($ok, $xvsite_PHP) = $cce->get($vsite, 'PHP');
 
     if ($xvsite_SSL->{'enabled'} == "1") {
-    	print "Vsite $my_vsite->{fqdn} has SSL enabled. Toggling it off and back on.\n";
-    	($ok) = $cce->set($vsite, 'SSL', { 'enabled' => '0' });
-    	($ok) = $cce->set($vsite, 'SSL', { 'enabled' => '1' });
+        print "Vsite $my_vsite->{fqdn} has SSL enabled. Toggling it off and back on.\n";
+        ($ok) = $cce->set($vsite, 'SSL', { 'enabled' => '0' });
+        ($ok) = $cce->set($vsite, 'SSL', { 'enabled' => '1' });
         ($ok) = $cce->set($vsite, 'PHPVsite',{ 'force_update' => time()});
         ($ok) = $cce->set($vsite, '',{
             'webAliases' => ''
@@ -64,12 +65,18 @@ for $vsite (@vhosts) {
            });
         ($ok) = $cce->set($vsite, '',{
             'mailAliases' => $my_vsite->{mailAliases}
+           });
+        ($ok) = $cce->set($vsite, 'PHP',{
+            'enabled' => '0'
+           });
+        ($ok) = $cce->set($vsite, 'PHP',{
+            'enabled' => $xvsite_PHP->{enabled}
            });
     }
     if ($xvsite_SSL->{'enabled'} == "0") {
-    	print "Vsite $my_vsite->{fqdn} does not have SSL enabled. Toggling it on and back off.\n";
-    	($ok) = $cce->set($vsite, 'SSL', { 'enabled' => '1' });
-    	($ok) = $cce->set($vsite, 'SSL', { 'enabled' => '0' });
+        print "Vsite $my_vsite->{fqdn} does not have SSL enabled. Toggling it on and back off.\n";
+        ($ok) = $cce->set($vsite, 'SSL', { 'enabled' => '1' });
+        ($ok) = $cce->set($vsite, 'SSL', { 'enabled' => '0' });
         ($ok) = $cce->set($vsite, 'PHPVsite',{ 'force_update' => time()});
         ($ok) = $cce->set($vsite, '',{
             'webAliases' => ''
@@ -83,6 +90,12 @@ for $vsite (@vhosts) {
            });
         ($ok) = $cce->set($vsite, '',{
             'mailAliases' => $my_vsite->{mailAliases}
+           });
+        ($ok) = $cce->set($vsite, 'PHP',{
+            'enabled' => '0'
+           });
+        ($ok) = $cce->set($vsite, 'PHP',{
+            'enabled' => $xvsite_PHP->{enabled}
            });
     }
 }
@@ -92,8 +105,8 @@ $cce->bye('SUCCESS');
 exit(0);
 
 # 
-# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 

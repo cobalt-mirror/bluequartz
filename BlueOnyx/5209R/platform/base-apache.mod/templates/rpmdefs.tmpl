@@ -142,7 +142,8 @@ fi
 
 # Run SSL_fixer.pl to enforce writing of updated SSL Vhost configs:
 if [ -f /usr/sausalito/sbin/SSL_fixer.pl ]; then
-  /usr/sausalito/sbin/SSL_fixer.pl
+  # We no longer need this at this time.
+  #/usr/sausalito/sbin/SSL_fixer.pl
 fi
 
 # Run Swatch to get Apache back up if SSL_fixer.pl let it fell on its face:
@@ -202,6 +203,13 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Wed May 28 2015 Michael Stauber <mstauber@solarspeed.net> 2.1.1-0BX30
+- Modified glue/conf/Apache.conf to run webscripting.pl on SSL changes.
+- Modified glue/sbin/SSL_fixer.pl to toggle PHP as well. 
+  Or our PHP settings go walking.
+- Modified templates/rpmdefs.tmpl to no longer run glue/sbin/SSL_fixer.pl
+  as we can now do without.
 
 * Wed May 27 2015 Michael Stauber <mstauber@solarspeed.net> 2.1.1-0BX29
 - Modified constructor/fix_php_conf.pl to automatically PECL install the 
