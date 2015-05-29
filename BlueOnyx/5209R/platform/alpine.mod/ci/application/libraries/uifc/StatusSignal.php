@@ -25,7 +25,7 @@ class StatusSignal extends HtmlComponent {
   // description: constructor
   // param: page: the Page object this object lives in
   // param: status: "none", "normal", "problem", "severeProblem", "new", 
-  //	"disabled" "noMonitor" "replied", "old", 
+  //  "disabled" "noMonitor" "replied", "old", 
   //    "success", "failure", "pending"
   // param: url: the url to which to link. Optional
   function StatusSignal($page, $status, $url = "", $i18n) {
@@ -114,76 +114,76 @@ class StatusSignal extends HtmlComponent {
 
     switch($this->getStatus()) {
       case "none":
-      	$imageProperty = "noneIcon";
-      	$descriptionId = "statusSignalNone";
-      	$mouseoverId = "statusSignalNone_help";
-      	break;
+        $imageProperty = "noneIcon";
+        $descriptionId = "statusSignalNone";
+        $mouseoverId = "statusSignalNone_help";
+        break;
 
       case "disabled":
-      	$imageProperty = "disabledIcon";
-      	$descriptionId = "statusSignalDisabled";
+        $imageProperty = "disabledIcon";
+        $descriptionId = "statusSignalDisabled";
         $mouseoverId = "statusSignalDisabled_help";
-      	break;
+        break;
 
       case "noMonitor":
-      	$imageProperty = "noMonitorIcon";
-      	$descriptionId = "statusSignalNoMonitor";
+        $imageProperty = "noMonitorIcon";
+        $descriptionId = "statusSignalNoMonitor";
         $mouseoverId = "statusSignalNoMonitor_help";
-      	break;
+        break;
 
       case "normal":
-      	$imageProperty = "normalIcon";
-      	$descriptionId = "statusSignalNormal";
+        $imageProperty = "normalIcon";
+        $descriptionId = "statusSignalNormal";
         $mouseoverId = "statusSignalNormal_help";
-      	break;
+        break;
 
       case "problem":
-      	$imageProperty = "problemIcon";
-      	$descriptionId = "statusSignalProblem";
-      	$mouseoverId = "statusSignalProblem_help";
-      	break;
+        $imageProperty = "problemIcon";
+        $descriptionId = "statusSignalProblem";
+        $mouseoverId = "statusSignalProblem_help";
+        break;
 
       case "severeProblem":
-      	$imageProperty = "severeProblemIcon";
-      	$descriptionId = "statusSignalSevereProblem";
-      	$mouseoverId = "statusSignalSevereProblem_help";
-      	break;
+        $imageProperty = "severeProblemIcon";
+        $descriptionId = "statusSignalSevereProblem";
+        $mouseoverId = "statusSignalSevereProblem_help";
+        break;
 
       case "new":
-      	$imageProperty = "newIcon";
-      	$descriptionId = "statusSignalNew";
+        $imageProperty = "newIcon";
+        $descriptionId = "statusSignalNew";
         $mouseoverId = "statusSignalNew_help";
-      	break;
+        break;
 
       case "replied":
-      	$imageProperty = "repliedIcon";
-      	$descriptionId = "statusSignalReplied";
+        $imageProperty = "repliedIcon";
+        $descriptionId = "statusSignalReplied";
         $mouseoverId = "statusSignalReplied_help";
-      	break;
+        break;
 
       case "old":
-      	$imageProperty = "oldIcon";
-      	$descriptionId = "statusSignalOld";
+        $imageProperty = "oldIcon";
+        $descriptionId = "statusSignalOld";
         $mouseoverId = "statusSignalOld_help";
-      	break;
+        break;
 
       case "success":
-      	$imageProperty = "successIcon";
-      	$descriptionId = "statusSignalSuccess";
-      	$mouseoverId = "statusSignalSuccess_help";
-      	break;
+        $imageProperty = "successIcon";
+        $descriptionId = "statusSignalSuccess";
+        $mouseoverId = "statusSignalSuccess_help";
+        break;
 
       case "failure":
-      	$imageProperty = "failureIcon";
-      	$descriptionId = "statusSignalFailure";
-      	$mouseoverId = "statusSignalFailure_help";
-      	break;
+        $imageProperty = "failureIcon";
+        $descriptionId = "statusSignalFailure";
+        $mouseoverId = "statusSignalFailure_help";
+        break;
 
       case "pending":
-      	$imageProperty = "pendingIcon";
-      	$descriptionId = "statusSignalPending";
-      	$mouseoverId = "statusSignalPending_help";
-      	break;
+        $imageProperty = "pendingIcon";
+        $descriptionId = "statusSignalPending";
+        $mouseoverId = "statusSignalPending_help";
+        break;
     }
 
 //

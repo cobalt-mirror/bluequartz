@@ -68,8 +68,8 @@ class Stylist {
       $file = $allFiles[$i];
       $ext = substr($file, -4, 4);
       if($ext == ".xml" || $ext == ".XML")
-	// find our id from file name
-	$resourceIds[] = substr($file, strlen($styleDir)+1, strlen($file)-strlen($styleDir)-5);
+  // find our id from file name
+  $resourceIds[] = substr($file, strlen($styleDir)+1, strlen($file)-strlen($styleDir)-5);
     }
 
     return $resourceIds;
@@ -103,15 +103,15 @@ class Stylist {
     for($i = 0; $i < count($extensions); $i++)
       // search through the hierarchies of locales
       for($j = 0; $j < count($locales); $j++) {
-	$fileName = "$styleDir/$resourceId.$extensions[$i]";
+  $fileName = "$styleDir/$resourceId.$extensions[$i]";
 
-	// add locale to the end of the file name if necessary
-	if($locales[$j] != "")
-	  $fileName .= ".$locales[$j]";
+  // add locale to the end of the file name if necessary
+  if($locales[$j] != "")
+    $fileName .= ".$locales[$j]";
 
-	// return the name stored in the file if it exists
-	if(is_file($fileName))
-	  return $this->_Stylist_getResourceId($fileName, $localePreference);
+  // return the name stored in the file if it exists
+  if(is_file($fileName))
+    return $this->_Stylist_getResourceId($fileName, $localePreference);
       }
 
     // not found

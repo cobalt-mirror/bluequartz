@@ -16,16 +16,16 @@ exit(0);
 
 sub remove_web
 {
-	my $user = shift;
+    my $user = shift;
 
- 	# remove web directory
-	my @user = getpwnam($user);
+    # remove web directory
+    my @user = getpwnam($user);
 
-	# be safe and make sure we got something and the home dir is not /
-	if (scalar(@user) && $user[7] =~ /^\/.+$/)
-	{
-    		system('/bin/rm', '-rf', "$user[7]/web");
-	}
+    # be safe and make sure we got something and the home dir is not /
+    if (scalar(@user) && $user[7] =~ /^\/.+$/)
+    {
+            system('/bin/rm', '-rf', "$user[7]/web");
+    }
 }
 
 
@@ -36,16 +36,16 @@ sub remove_web
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 
-#	 notice, this list of conditions and the following disclaimer.
+#    notice, this list of conditions and the following disclaimer.
 # 
 # 2. Redistributions in binary form must reproduce the above copyright 
-#	 notice, this list of conditions and the following disclaimer in 
-#	 the documentation and/or other materials provided with the 
-#	 distribution.
+#    notice, this list of conditions and the following disclaimer in 
+#    the documentation and/or other materials provided with the 
+#    distribution.
 # 
 # 3. Neither the name of the copyright holder nor the names of its 
-#	 contributors may be used to endorse or promote products derived 
-#	 from this software without specific prior written permission.
+#    contributors may be used to endorse or promote products derived 
+#    from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
 # "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 

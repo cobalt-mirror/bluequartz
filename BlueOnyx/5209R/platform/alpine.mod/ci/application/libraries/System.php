@@ -57,8 +57,8 @@ class System {
             }
             else 
             {
-	            $_System_expandedConfigHash = $cfg->getConfig();
-	            $_System_isConfigRead = true;
+              $_System_expandedConfigHash = $cfg->getConfig();
+              $_System_isConfigRead = true;
             }
         }
         return $_System_expandedConfigHash[$key];

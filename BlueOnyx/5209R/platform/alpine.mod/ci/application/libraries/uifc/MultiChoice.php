@@ -163,7 +163,7 @@ class MultiChoice extends FormField {
         $this->setSelected($index, $option->isSelected());
     } 
     else {
-	    $this->setSelected($index, $selected);
+      $this->setSelected($index, $selected);
     }
   }
 
@@ -272,10 +272,10 @@ class MultiChoice extends FormField {
     $options = $this->getOptions();
     for($i = 0; $i < count($options); $i++)
       if(in_array($options[$i]->getValue(), $values))
-      	// needs to set the real object here, not the copy of it
-      	$this->options[$i]->setSelected(true);
+        // needs to set the real object here, not the copy of it
+        $this->options[$i]->setSelected(true);
             else
-      	$this->options[$i]->setSelected(false);
+        $this->options[$i]->setSelected(false);
   }
 
   function toHtml($style = "") {
@@ -293,8 +293,8 @@ class MultiChoice extends FormField {
     $noComposite = true;
     for($i = 0; $i < count($options); $i++) {
         if(count($options[$i]->getFormFields()) > 0) {
-	        $noComposite = false;
-	        break;
+          $noComposite = false;
+          break;
         }
     }
 
@@ -343,8 +343,8 @@ class MultiChoice extends FormField {
         }
 
         // check for user data
-      	// user data is in HTTP_POST_VARS
-      	global $HTTP_POST_VARS;
+        // user data is in HTTP_POST_VARS
+        global $HTTP_POST_VARS;
         $selected = array();
         if($this->isDataPreserved() && isset($HTTP_POST_VARS[$id]))
             $selected = stringToArray($HTTP_POST_VARS[$id]);
@@ -488,11 +488,11 @@ class MultiChoice extends FormField {
               // put child fields on different lines
               // if there are more than 1 of them or if the first one has label
               if (!$isSingleLine && count($childFields) > 0) {
-  	            $result .= "\n";
+                $result .= "\n";
 
-  	            // make all the form fields of the options
-  	            for($j = 0; $j < count($childFields); $j++) {
-  	                $childField =& $childFields[$j];
+                // make all the form fields of the options
+                for($j = 0; $j < count($childFields); $j++) {
+                    $childField =& $childFields[$j];
                     $childLabel =& $option->getFormFieldLabel($childField);
 
                     // The Checkbox is not ticked. Now this is special!
@@ -544,11 +544,11 @@ class MultiChoice extends FormField {
                     }
 
                     // Print out the children FormFields:
-  	                $childFieldHtml = $childField->toHtml();
-  	                $childFieldId = $childField->getId();
+                    $childFieldHtml = $childField->toHtml();
+                    $childFieldId = $childField->getId();
 
-  	                $result .= $childFieldHtml;
-  	            }
+                    $result .= $childFieldHtml;
+                }
               }
           }
         }
@@ -659,9 +659,9 @@ class MultiChoice extends FormField {
         if ($selectionMode == "checkbox") {
             $checkboxesJavascript = "";
             for($i = 0; $i < count($options); $i++) {
-	            // link checkboxes to hidden value
-	            $fieldId = (count($options) == 1 && $i == 0) ? $id : $id."[$i]";
-	            $checkboxesJavascript .= "element.checkboxes[element.checkboxes.length] = document.$formId.$fieldId;\n";
+              // link checkboxes to hidden value
+              $fieldId = (count($options) == 1 && $i == 0) ? $id : $id."[$i]";
+              $checkboxesJavascript .= "element.checkboxes[element.checkboxes.length] = document.$formId.$fieldId;\n";
             }
         }
         $realId = "";

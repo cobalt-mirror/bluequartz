@@ -79,7 +79,7 @@ class Page {
   // description: set Javascript to be performed when the page loads
   // param: js: a string of Javascript code
   function setOnLoad($js) {
-	$this->onLoad = $js;
+  $this->onLoad = $js;
   }
 
   // description: get the stylist that stylize the page
@@ -146,7 +146,7 @@ class Page {
     $lang=$this->i18n->getLocales();
     header("Content-language: $lang[0]");
     if(($encoding=$this->i18n->getProperty("encoding","palette"))!="none")
-	header("Content-type: text/html; charset=$encoding");
+  header("Content-type: text/html; charset=$encoding");
 
     // log activity if necessary
     $logLoad = "";

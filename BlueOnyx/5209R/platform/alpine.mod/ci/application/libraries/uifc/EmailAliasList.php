@@ -22,8 +22,8 @@ class EmailAliasList extends EmailAddressList {
 
   
   function EmailAddressList ($page, $id, $value, $invalidMessage, $emptyMessage) {
-  	// superclass constructor
-  	$this->EmailAddressList($page, $id, $value, $invalidMessage, $emptyMessage);
+    // superclass constructor
+    $this->EmailAddressList($page, $id, $value, $invalidMessage, $emptyMessage);
   }
 
   // Sets the current label

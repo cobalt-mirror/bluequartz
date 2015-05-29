@@ -2,27 +2,27 @@
 // $Id: UIExtension.php
 // UIExtension.php
 /*
-	This class defines the interface for the UIExtension class.  This
-	class should not be used directly but should instead be extended
-	in a module for services that wish to take advantage of the built-in
-	feature detection in Sausalito.  Refer to the spec at
-	http://glazed.sfbay.sun.com/cvs/web/products/ptlobos/ under the heading
-	Automatic Feature Detection Specification.
+    This class defines the interface for the UIExtension class.  This
+    class should not be used directly but should instead be extended
+    in a module for services that wish to take advantage of the built-in
+    feature detection in Sausalito.  Refer to the spec at
+    http://glazed.sfbay.sun.com/cvs/web/products/ptlobos/ under the heading
+    Automatic Feature Detection Specification.
 */
 
 if(defined("UIEXTENSION_PHP"))
 {
-	return 1;
+    return 1;
 }
 define("UIEXTENSION_PHP", 1);
 
 class UIExtension
 {
-	// the prototype for the display function
-	// function display(&$ServerScriptHelper, &$container, $parameters);
+    // the prototype for the display function
+    // function display(&$ServerScriptHelper, &$container, $parameters);
 
-	// the prototype for the handle function
-	// function handle(&$ServerScriptHelper, &$errors, $parameters);
+    // the prototype for the handle function
+    // function handle(&$ServerScriptHelper, &$errors, $parameters);
 }
 
 /*

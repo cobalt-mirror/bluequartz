@@ -14,30 +14,30 @@ $cce->connectuds();
 $yum = `ps axf|grep yum|grep -v grep|wc -l`;
 
 if (-e "/etc/yum.repos.d/sl.repo") {
-	# Do we have $releasever in sl.repo? 
-	$ver = `cat /etc/yum.repos.d/sl.repo |grep releasever|wc -l`;
+    # Do we have $releasever in sl.repo? 
+    $ver = `cat /etc/yum.repos.d/sl.repo |grep releasever|wc -l`;
 }
 else {
-	# No sl.repo found:
-	$ver = "0";
+    # No sl.repo found:
+    $ver = "0";
 }
 
 # Execute if YUM is not running:
 if ($yum == "0") {
-	# But only if we have an sl.repo with $releasever in it:
-	if ($ver ne "0") {
-		# Clean YUM cache:
-		system("yum clean all >/dev/null 2>&1");
-	}
+    # But only if we have an sl.repo with $releasever in it:
+    if ($ver ne "0") {
+        # Clean YUM cache:
+        system("yum clean all >/dev/null 2>&1");
+    }
 }
 
 # Fix sl.repo:
 if (-e "/etc/yum.repos.d/sl.repo") {
-	system("sed -i 's/\$releasever/6x/g' /etc/yum.repos.d/sl.repo");
+    system("sed -i 's/\$releasever/6x/g' /etc/yum.repos.d/sl.repo");
 }
 # Fix sl-other.repo:
 if (-e "/etc/yum.repos.d/sl-other.repo") {
-	system("sed -i 's/\$releasever/6x/g' /etc/yum.repos.d/sl-other.repo");
+    system("sed -i 's/\$releasever/6x/g' /etc/yum.repos.d/sl-other.repo");
 }
 
 $cce->bye('SUCCESS');
@@ -50,16 +50,16 @@ exit(0);
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 
-#	 notice, this list of conditions and the following disclaimer.
+#    notice, this list of conditions and the following disclaimer.
 # 
 # 2. Redistributions in binary form must reproduce the above copyright 
-#	 notice, this list of conditions and the following disclaimer in 
-#	 the documentation and/or other materials provided with the 
-#	 distribution.
+#    notice, this list of conditions and the following disclaimer in 
+#    the documentation and/or other materials provided with the 
+#    distribution.
 # 
 # 3. Neither the name of the copyright holder nor the names of its 
-#	 contributors may be used to endorse or promote products derived 
-#	 from this software without specific prior written permission.
+#    contributors may be used to endorse or promote products derived 
+#    from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
 # "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 

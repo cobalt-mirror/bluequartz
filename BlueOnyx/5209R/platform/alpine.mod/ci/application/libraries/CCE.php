@@ -445,6 +445,7 @@ class CCE {
     $varline = rtrim($varline);
     CCE::ccephp_new($snd_line . " " . $varline);
     $this->OID = '';
+//    error_log("SET-Result: " . print_rp($this->self));
     return $this->self['success'];
   }
 
@@ -544,6 +545,10 @@ class CCE {
     // Parse response:
     if ($this->self['success'] == '1') {
       // Return OID of the new Object:
+      if (!isset($this->self['oidlist']['0'])) {
+        // Return '0' to indicate that we failed:
+        return '0';
+      }
       return $this->self['oidlist']['0'];
     }
     else {
