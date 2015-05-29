@@ -13,77 +13,77 @@
  **/
 
 /*
-	===============================================================================================
-	 USAGE
-	===============================================================================================
-	
-	Load the library as normal:
-	-----------------------------------------------------------------------------------------------
-	$this->load->library('cssmin');
-	-----------------------------------------------------------------------------------------------
-	
-	Minify a string like so:
-	-----------------------------------------------------------------------------------------------
-	$this->cssmin->minify( file_get_contents('styles.css') );
-	-----------------------------------------------------------------------------------------------
-	
-	
-	There are two options:
-	
-	'preserveComments'
-	Boolean flag for preserving comments.  Only comments starting with /*! are preserved. 
-	Defaults to true.
-	
-	'relativePath'
-	String that will be prepended to all relative URIs in import/url declarations.  
-	Defaults to null.
-	
-	
-	The options can either be set globally using the config function:
-	-----------------------------------------------------------------------------------------------
-	$cssmin_options = array(
-		  'preserveComments'=> TRUE,
-		  'relativePath'=> 'http://www.example.com/styles/images/'
-	);
-	
-	$this->cssmin->config($cssmin_options);
-	-----------------------------------------------------------------------------------------------
-	
-	
-	Or on individual calls to the minify function:
-	-----------------------------------------------------------------------------------------------
-	$this->cssmin->minify( $string, FALSE, $path );
-	-----------------------------------------------------------------------------------------------
-	
-	NOTE: Global settings override settings in individual calls.
-	===============================================================================================
+    ===============================================================================================
+     USAGE
+    ===============================================================================================
+    
+    Load the library as normal:
+    -----------------------------------------------------------------------------------------------
+    $this->load->library('cssmin');
+    -----------------------------------------------------------------------------------------------
+    
+    Minify a string like so:
+    -----------------------------------------------------------------------------------------------
+    $this->cssmin->minify( file_get_contents('styles.css') );
+    -----------------------------------------------------------------------------------------------
+    
+    
+    There are two options:
+    
+    'preserveComments'
+    Boolean flag for preserving comments.  Only comments starting with /*! are preserved. 
+    Defaults to true.
+    
+    'relativePath'
+    String that will be prepended to all relative URIs in import/url declarations.  
+    Defaults to null.
+    
+    
+    The options can either be set globally using the config function:
+    -----------------------------------------------------------------------------------------------
+    $cssmin_options = array(
+          'preserveComments'=> TRUE,
+          'relativePath'=> 'http://www.example.com/styles/images/'
+    );
+    
+    $this->cssmin->config($cssmin_options);
+    -----------------------------------------------------------------------------------------------
+    
+    
+    Or on individual calls to the minify function:
+    -----------------------------------------------------------------------------------------------
+    $this->cssmin->minify( $string, FALSE, $path );
+    -----------------------------------------------------------------------------------------------
+    
+    NOTE: Global settings override settings in individual calls.
+    ===============================================================================================
 */
  
  class cssmin {
- 	
- 	public function cssmin()
- 	{
- 		log_message('debug', 'CSSMin library initialized.');
- 	}
- 	
- 	
- 	public function config($config)
- 	{
-		foreach ($config as $key => $value)
-		{
-			$this->$key = $value;
-		}
- 	
- 	}
- 	
- 	public function minify($css, $preserveComments = TRUE, $relativePath = null)
- 	{	
- 		$c = ( isset($this->preserveComments) ) ? $this->preserveComments : $preserveComments;
- 		$p = ( isset($this->relativePath) ) ? $this->relativePath : $relativePath;
+    
+    public function cssmin()
+    {
+        log_message('debug', 'CSSMin library initialized.');
+    }
+    
+    
+    public function config($config)
+    {
+        foreach ($config as $key => $value)
+        {
+            $this->$key = $value;
+        }
+    
+    }
+    
+    public function minify($css, $preserveComments = TRUE, $relativePath = null)
+    {   
+        $c = ( isset($this->preserveComments) ) ? $this->preserveComments : $preserveComments;
+        $p = ( isset($this->relativePath) ) ? $this->relativePath : $relativePath;
 
- 		$min = new Minify_CSS();
- 		return $min->minify($css, array('preserveComments'=> $c, 'prependRelativePath' => $p));
- 	}
+        $min = new Minify_CSS();
+        return $min->minify($css, array('preserveComments'=> $c, 'prependRelativePath' => $p));
+    }
  
  }
 

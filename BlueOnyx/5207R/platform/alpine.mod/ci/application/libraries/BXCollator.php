@@ -82,41 +82,41 @@ class BXCollator {
 
       // partition
       while($greaterIndex < $lesserIndex) {
-	// find the first element greater than pivot from the start
-	while($greaterIndex < $endIndex) {
-	  $greaterValue = $keys[$greaterIndex]->getCollatableValue();
+  // find the first element greater than pivot from the start
+  while($greaterIndex < $endIndex) {
+    $greaterValue = $keys[$greaterIndex]->getCollatableValue();
 
-	  $result = $keys[$pivotIndex]->collate($greaterValue, $pivotValue, $this);
-	  if($result == ">" || $result == "=")
-	    break;
+    $result = $keys[$pivotIndex]->collate($greaterValue, $pivotValue, $this);
+    if($result == ">" || $result == "=")
+      break;
 
-	  $greaterIndex++;
-	}
+    $greaterIndex++;
+  }
 
         // find the first element lesser than pivot from the end
         while($lesserIndex > $startIndex) {
-	  $lesserValue = $keys[$lesserIndex]->getCollatableValue();
+    $lesserValue = $keys[$lesserIndex]->getCollatableValue();
 
-	  if($keys[$pivotIndex]->collate($lesserValue, $pivotValue, $this) == "<")
-	    break;
+    if($keys[$pivotIndex]->collate($lesserValue, $pivotValue, $this) == "<")
+      break;
 
-	  $lesserIndex--;
-	}
+    $lesserIndex--;
+  }
 
-	// swap
-	if($greaterIndex < $lesserIndex) {
-	  // keys
-	  $tmp = $keys[$greaterIndex];
-	  $keys[$greaterIndex] = $keys[$lesserIndex];
-	  $keys[$lesserIndex] = $tmp;
+  // swap
+  if($greaterIndex < $lesserIndex) {
+    // keys
+    $tmp = $keys[$greaterIndex];
+    $keys[$greaterIndex] = $keys[$lesserIndex];
+    $keys[$lesserIndex] = $tmp;
 
-	  // values
-	  if($isValues) {
-	    $tmp = $values[$greaterIndex];
-	    $values[$greaterIndex] = $values[$lesserIndex];
-	    $values[$lesserIndex] = $tmp;
-	  }
-	}
+    // values
+    if($isValues) {
+      $tmp = $values[$greaterIndex];
+      $values[$greaterIndex] = $values[$lesserIndex];
+      $values[$lesserIndex] = $tmp;
+    }
+  }
       }
 
       // swap key with pivot
@@ -126,16 +126,16 @@ class BXCollator {
 
       // swap value with pivot
       if($isValues) {
-	$tmp = $values[$greaterIndex];
-	$values[$greaterIndex] = $values[$pivotIndex];
-	$values[$pivotIndex] = $tmp;
+  $tmp = $values[$greaterIndex];
+  $values[$greaterIndex] = $values[$pivotIndex];
+  $values[$pivotIndex] = $tmp;
       }
 
       // make new jobs if needed
       if($startIndex < $greaterIndex-1)
-	$jobs[] = $startIndex.":".($greaterIndex-1);
+  $jobs[] = $startIndex.":".($greaterIndex-1);
       if($greaterIndex+1 < $endIndex)
-	$jobs[] = ($greaterIndex+1).":".$endIndex;
+  $jobs[] = ($greaterIndex+1).":".$endIndex;
     }
   }
 }

@@ -5,7 +5,7 @@
  */
 
 class Curl {
-	
+    
     private $CI;                // CodeIgniter instance
     
     private $responce;          // Contains the cURL responce for debug
@@ -52,33 +52,33 @@ class Curl {
     // $url = '', $params = array(), $options = array()
     public function simple_post($url, $params = array(), $options = array())
     { 
-		$this->create($url);
+        $this->create($url);
         
-		$this->post($params, $options);
+        $this->post($params, $options);
         
-		return $this->execute();
+        return $this->execute();
     }
  
     // Send a post request on its way with optional parameters (and get output)
     // $url = '', $params = array(), $options = array()
     public function simple_put($url, $params = array(), $options = array())
     { 
-		$this->create($url);
+        $this->create($url);
         
-		$this->put($params, $options);
+        $this->put($params, $options);
         
-		return $this->execute();
+        return $this->execute();
     }
  
     // Send a post request on its way with optional parameters (and get output)
     // $url = '', $params = array(), $options = array()
     public function simple_delete($url)
     { 
-		$this->create($url);
-    	
-		$this->http_method('delete');
-			        
-		return $this->execute();
+        $this->create($url);
+        
+        $this->http_method('delete');
+                    
+        return $this->execute();
     }
     
     public function simple_ftp_get($url, $file_path, $username = '', $password = '')
@@ -95,7 +95,7 @@ class Curl {
             
             if($password != '')
             {
-            	$auth_string .= ':'.$password;
+                $auth_string .= ':'.$password;
             }
             
             // Add the user auth string after the protocol
@@ -158,18 +158,18 @@ class Curl {
     
     public function http_header($header_string)
     {
-		$this->headers[] = $header_string;
+        $this->headers[] = $header_string;
     }
     
     public function http_method($method)
     {
-    	$this->options[CURLOPT_CUSTOMREQUEST] = strtoupper($method);
+        $this->options[CURLOPT_CUSTOMREQUEST] = strtoupper($method);
         return $this;
     }
     
     public function http_login($username = '', $password = '', $type = 'any')
     {
-		$this->option(CURLOPT_HTTPAUTH, constant('CURLAUTH_'.strtoupper($type) ));
+        $this->option(CURLOPT_HTTPAUTH, constant('CURLAUTH_'.strtoupper($type) ));
         $this->option(CURLOPT_USERPWD, $username.':'.$password);
         return $this;
     }
@@ -202,7 +202,7 @@ class Curl {
     }
     
     public function option($code, $value) {
-    	$this->options[$code] = $value;
+        $this->options[$code] = $value;
         return $this;
     }
     
@@ -233,10 +233,10 @@ class Curl {
         if(!isset($this->options[CURLOPT_FOLLOWLOCATION]))    $this->options[CURLOPT_FOLLOWLOCATION] = TRUE;
         if(!isset($this->options[CURLOPT_FAILONERROR]))       $this->options[CURLOPT_FAILONERROR] = TRUE;
 
-		if(!empty($this->headers))
-		{
-			$this->option(CURLOPT_HTTPHEADER, $this->headers); 
-		}
+        if(!empty($this->headers))
+        {
+            $this->option(CURLOPT_HTTPHEADER, $this->headers); 
+        }
 
         $this->options();
 
@@ -276,10 +276,10 @@ class Curl {
     
         if($this->error_string)
         {
-    	    echo "=============================================<br/>\n";
-    	    echo "<h3>Errors</h3>";
-    	    echo "<strong>Code:</strong> ".$this->error_code."<br/>\n";
-    	    echo "<strong>Message:</strong> ".$this->error_string."<br/>\n";
+            echo "=============================================<br/>\n";
+            echo "<h3>Errors</h3>";
+            echo "<strong>Code:</strong> ".$this->error_code."<br/>\n";
+            echo "<strong>Message:</strong> ".$this->error_string."<br/>\n";
         }
     
         echo "=============================================<br/>\n";
@@ -287,7 +287,7 @@ class Curl {
         echo "<pre>";
         print_r($this->info);
         echo "</pre>";
-	}
+    }
     
     private function set_defaults()
     {

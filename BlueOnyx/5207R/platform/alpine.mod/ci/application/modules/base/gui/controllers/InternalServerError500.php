@@ -2,116 +2,116 @@
 
 class InternalServerError500 extends MX_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/gui
-	 *	- or -  
-	 * 		http://example.com/index.php/gui/index
-	 *	- or -
-	 * 		http://example.com/gui/
-	 *
-	 * Past the login page this loads the GUI framework.
-	 *
-	 */
+    /**
+     * Index Page for this controller.
+     *
+     * Maps to the following URL
+     *      http://example.com/index.php/gui
+     *  - or -  
+     *      http://example.com/index.php/gui/index
+     *  - or -
+     *      http://example.com/gui/
+     *
+     * Past the login page this loads the GUI framework.
+     *
+     */
 
-	public function index() {
+    public function index() {
 
-		// Start with blank debug info:
-		$debug = "";
+        // Start with blank debug info:
+        $debug = "";
 
-		$CI =& get_instance();
+        $CI =& get_instance();
 
-	    // We load the BlueOnyx helper library first of all, as we heavily depend on it:
-	    $CI->load->helper('blueonyx');
-	    init_libraries();
+        // We load the BlueOnyx helper library first of all, as we heavily depend on it:
+        $CI->load->helper('blueonyx');
+        init_libraries();
 
-	    // Profiling and Benchmarking:
-	    bx_profiler(FALSE);
+        // Profiling and Benchmarking:
+        bx_profiler(FALSE);
 
-	    // Get $sessionId and $loginName from Cookie (if they are set):
-	    $sessionId = $CI->input->cookie('sessionId');
-	    $loginName = $CI->input->cookie('loginName');
+        // Get $sessionId and $loginName from Cookie (if they are set):
+        $sessionId = $CI->input->cookie('sessionId');
+        $loginName = $CI->input->cookie('loginName');
 
-	    // Get the IP address of the user accessing the GUI:
-	    $userip = $CI->input->ip_address();
+        // Get the IP address of the user accessing the GUI:
+        $userip = $CI->input->ip_address();
 
-	    // locale and charset setup:
-	    $ini_langs = initialize_languages(FALSE);
-	    $locale = $ini_langs['locale'];
-	    $localization = $ini_langs['localization'];
-	    $charset = $ini_langs['charset'];
+        // locale and charset setup:
+        $ini_langs = initialize_languages(FALSE);
+        $locale = $ini_langs['locale'];
+        $localization = $ini_langs['localization'];
+        $charset = $ini_langs['charset'];
 
-		$domain = 'palette';
+        $domain = 'palette';
 
-	    // Set headers:
-	    $this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate");
-	    $this->output->set_header("Cache-Control: post-check=0, pre-check=0");
-	    $this->output->set_header("Pragma: no-cache"); 
-	    $this->output->set_header("Content-language: $localization");
-	    $this->output->set_header("Content-type: text/html; charset=$charset");
+        // Set headers:
+        $this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate");
+        $this->output->set_header("Cache-Control: post-check=0, pre-check=0");
+        $this->output->set_header("Pragma: no-cache"); 
+        $this->output->set_header("Content-language: $localization");
+        $this->output->set_header("Content-type: text/html; charset=$charset");
 
-		$title = PoorMansBabelFish("401title", $locale, $domain);
-		$text = PoorMansBabelFish("401text", $locale, $domain);
+        $title = PoorMansBabelFish("401title", $locale, $domain);
+        $text = PoorMansBabelFish("401text", $locale, $domain);
 
-		// Login failed. We need to show the login form again with error message.
-		// Therefore we pre-populate the $data array with defaults:
+        // Login failed. We need to show the login form again with error message.
+        // Therefore we pre-populate the $data array with defaults:
 
-		$data_head = array(
-			'charset' => $charset,
-			'localization' => $localization,
-			'page_title' => $title,
-			'layout' => "layout_fixed.css",
-			'extra_headers' => "",
-			'overlay' => ""
-		);
-		
-		$page_body = '
-			<div id="pjax">
-					<div id="wrapper">
-						<div class="isolate">
-							<div class="center">
-								<div class="main_container full_size container_16 clearfix">
-									<div class="box grid_16 tabs">
-										<ul class="tab_header clearfix">
-											<li><a href="#tabs-1">' . $title . '</a></li>
-										</ul>
-										<div class="controls">
-											<a href="#" class="toggle"></a>
-										</div>
-										<div class="toggle_container">
-											<div id="tabs-1" class="block">
-												<div class="section">
-													
-													<h1>' . $title . '</h1>
-													<p>' . $text . '</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<a id="login_logo" href="/gui/"><span>
-      								BlueOnyx
-							    </span></a>
-							</div>
-						</div>
-					<div class="display_none">
-			</div>';
+        $data_head = array(
+            'charset' => $charset,
+            'localization' => $localization,
+            'page_title' => $title,
+            'layout' => "layout_fixed.css",
+            'extra_headers' => "",
+            'overlay' => ""
+        );
+        
+        $page_body = '
+            <div id="pjax">
+                    <div id="wrapper">
+                        <div class="isolate">
+                            <div class="center">
+                                <div class="main_container full_size container_16 clearfix">
+                                    <div class="box grid_16 tabs">
+                                        <ul class="tab_header clearfix">
+                                            <li><a href="#tabs-1">' . $title . '</a></li>
+                                        </ul>
+                                        <div class="controls">
+                                            <a href="#" class="toggle"></a>
+                                        </div>
+                                        <div class="toggle_container">
+                                            <div id="tabs-1" class="block">
+                                                <div class="section">
+                                                    
+                                                    <h1>' . $title . '</h1>
+                                                    <p>' . $text . '</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a id="login_logo" href="/gui/"><span>
+                                    BlueOnyx
+                                </span></a>
+                            </div>
+                        </div>
+                    <div class="display_none">
+            </div>';
 
-		$data_body = array(
-			'page_body' => $page_body
-		);
+        $data_body = array(
+            'page_body' => $page_body
+        );
 
-		$data_foot = array(
-		);
+        $data_foot = array(
+        );
 
-		// Show the HTML Page:
-		$this->load->view('neutral_header_view', $data_head);
-		$this->load->view('gui_view', $data_body);
-		$this->load->view('neutral_footer_view', $data_foot);
+        // Show the HTML Page:
+        $this->load->view('neutral_header_view', $data_head);
+        $this->load->view('gui_view', $data_body);
+        $this->load->view('neutral_footer_view', $data_foot);
 
-	}
+    }
 }
 
 /* End of file gui.php */

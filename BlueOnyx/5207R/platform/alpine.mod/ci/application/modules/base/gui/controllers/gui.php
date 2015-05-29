@@ -2,33 +2,33 @@
 
 class Gui extends MX_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/gui
-	 *	- or -  
-	 * 		http://example.com/index.php/gui/index
-	 *	- or -
-	 * 		http://example.com/gui/
-	 *
-	 * Past the login page this loads the GUI framework.
-	 *
-	 */
+    /**
+     * Index Page for this controller.
+     *
+     * Maps to the following URL
+     *      http://example.com/index.php/gui
+     *  - or -  
+     *      http://example.com/index.php/gui/index
+     *  - or -
+     *      http://example.com/gui/
+     *
+     * Past the login page this loads the GUI framework.
+     *
+     */
 
-	public function index() {
+    public function index() {
 
-  		// Need to load 'BxPage' for page rendering:
-  		$this->load->library('BxPage');
+        // Need to load 'BxPage' for page rendering:
+        $this->load->library('BxPage');
 
-	    // Generate page:
-	    $page_module = 'gui';
-	    $page_body[] = '<div>Hello World!</div>';
-	    $page_body[] = '<div>This is \'ServerManagement\'.</div><br><br>';
-	    $BxPage = new BxPage();
-	    $BxPage->render($page_module, $page_body);
+        // Generate page:
+        $page_module = 'gui';
+        $page_body[] = '<div>Hello World!</div>';
+        $page_body[] = '<div>This is \'ServerManagement\'.</div><br><br>';
+        $BxPage = new BxPage();
+        $BxPage->render($page_module, $page_body);
 
-	}		
+    }       
 }
 
 /* End of file gui.php */

@@ -113,27 +113,27 @@ class UrlList extends FormField {
 
       $result = "";
       for($i = 0; $i < count($values); $i++) {
-      	// add delimiter if necessary
-      	if($i > 0) {
-      	  $result .= ", ";
+        // add delimiter if necessary
+        if($i > 0) {
+          $result .= ", ";
         }
 
-      	$value = $values[$i];
+        $value = $values[$i];
 
-      	// label equals value if there is no label
-      	if(count($labels) <= $i || $labels[$i] == "") {
-      	  $label = $value;
+        // label equals value if there is no label
+        if(count($labels) <= $i || $labels[$i] == "") {
+          $label = $value;
         }
-      	else {
-      	  $label = $labels[$i];
-        }
-
-      	$target = "";
-      	if(count($targets) > $i) {
-      	  $target = "TARGET=\"$targets[$i]\"";
+        else {
+          $label = $labels[$i];
         }
 
-      	$result .= "<A HREF=\"$value\" $target>$label</A>";
+        $target = "";
+        if(count($targets) > $i) {
+          $target = "TARGET=\"$targets[$i]\"";
+        }
+
+        $result .= "<A HREF=\"$value\" $target>$label</A>";
       }
     }
     else {

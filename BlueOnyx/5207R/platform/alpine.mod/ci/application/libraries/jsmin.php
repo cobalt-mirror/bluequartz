@@ -6,10 +6,10 @@
  * Description:
  * Minifies JavaScript
  *
- * @package		CodeIgniter
- * @subpackage	Libraries
- * @category	Javascript Minification
- * @author		Tony Dewan <tonydewan.com>
+ * @package   CodeIgniter
+ * @subpackage  Libraries
+ * @category  Javascript Minification
+ * @author    Tony Dewan <tonydewan.com>
  **/
 
 /**
@@ -82,8 +82,8 @@ class JSMin {
 
   public function __construct($input = '') {
   
-  	log_message('debug', 'JSMin library initialized.');
-  	
+    log_message('debug', 'JSMin library initialized.');
+    
     $this->input       = str_replace("\r\n", "\n", $input);
     $this->inputLength = strlen($this->input);
   }

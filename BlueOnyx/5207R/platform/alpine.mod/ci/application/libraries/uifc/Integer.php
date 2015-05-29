@@ -73,7 +73,7 @@ class Integer extends Number {
   }
 
   function setWidth($w) {
-	$this->width = $w;
+  $this->width = $w;
   }
 
   function &getDefaultStyle($stylist="") {

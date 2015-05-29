@@ -4,7 +4,7 @@
 
 global $isImageButtonDefined;
 if($isImageButtonDefined)
-	return;
+    return;
 $isImageButtonDefined = true;
 
 include_once("uifc/Button.php");
@@ -12,151 +12,151 @@ include_once("uifc/ImageLabel.php");
 
 class ImageButton extends Button {
 
-	var $label;
-	//
-	// public methods
-	//
+    var $label;
+    //
+    // public methods
+    //
 
-	// description: constructor
-	// param: page: the Page object this object lives in
-	// param: action: the string used within HREF attribute of the A tag
-	function ImageButton($page, $action, $image, $lbl, $desc) {
-		$i18n = $page->getI18n();
-		$label = $i18n->get($lbl);
-		$description = $i18n->getWrapped($desc);
+    // description: constructor
+    // param: page: the Page object this object lives in
+    // param: action: the string used within HREF attribute of the A tag
+    function ImageButton($page, $action, $image, $lbl, $desc) {
+        $i18n = $page->getI18n();
+        $label = $i18n->get($lbl);
+        $description = $i18n->getWrapped($desc);
 
-	    // Set our Label and Description in cleartext, too:
-	    if (isset($page->Label)) {
-	      $page->Label['label'] = $label;
-	      $page->Label['description'] = $description;
-	  	}
+        // Set our Label and Description in cleartext, too:
+        if (isset($page->Label)) {
+          $page->Label['label'] = $label;
+          $page->Label['description'] = $description;
+        }
 
-		$this->Button($page, $action, 
-				new ImageLabel($page, $image, $label, $description), 
-				new ImageLabel($page, $image, $label, $description)
-			);
-	}
+        $this->Button($page, $action, 
+                new ImageLabel($page, $image, $label, $description), 
+                new ImageLabel($page, $image, $label, $description)
+            );
+    }
 
-	function toHtml($style = "") {
-		$page =& $this->getPage();
-		$i18n = $page->getI18n();
+    function toHtml($style = "") {
+        $page =& $this->getPage();
+        $i18n = $page->getI18n();
 
-	  	if($style == null || $style->getPropertyNumber() == 0)
-	    		$style = $this->getDefaultStyle($page->getStylist());
+        if($style == null || $style->getPropertyNumber() == 0)
+                $style = $this->getDefaultStyle($page->getStylist());
 
-		$isDisabled = $this->isDisabled();
+        $isDisabled = $this->isDisabled();
 
-	  	// find the right style target
-	  	$target = $isDisabled ? "disabled" : "normal";
+        // find the right style target
+        $target = $isDisabled ? "disabled" : "normal";
 
-	  	// find out style properties
-		if ($isDisabled) {
+        // find out style properties
+        if ($isDisabled) {
 
-			$i18n =& $page->getI18n();
-			$langs = $i18n->getLocales();
+            $i18n =& $page->getI18n();
+            $langs = $i18n->getLocales();
 
-			$labelvars = get_object_vars($this->label);
+            $labelvars = get_object_vars($this->label);
 
-			if (isset($page->Label['label'])) {
-				$htmlLabel = '<span>' . $page->Label['label'] . '</span>';
-			}
-			else {
-				$htmlLabel = '';
-			}
+            if (isset($page->Label['label'])) {
+                $htmlLabel = '<span>' . $page->Label['label'] . '</span>';
+            }
+            else {
+                $htmlLabel = '';
+            }
 
-			if (isset($page->Label['description'])) {
-				$LabelDesc = $page->Label['description'];
-				$fooltip = ' tooltip';
-			}
-			else {
-				$LabelDesc = '';
-				$fooltip = '';
-			}
+            if (isset($page->Label['description'])) {
+                $LabelDesc = $page->Label['description'];
+                $fooltip = ' tooltip';
+            }
+            else {
+                $LabelDesc = '';
+                $fooltip = '';
+            }
 
-			$targetFrame = $this->targetFrame;
-			if ($targetFrame) {
-				$targetString = " TARGET=\"$targetFrame\" ";
-			}
-			else {
-				$targetString = "";
-			}
+            $targetFrame = $this->targetFrame;
+            if ($targetFrame) {
+                $targetString = " TARGET=\"$targetFrame\" ";
+            }
+            else {
+                $targetString = "";
+            }
 
-			$URL = $this->getAction();
-			if ($URL != "") {
-				$data_link = ' data-link="' . $URL . '"';
-				$linkable = ' link_button';
-			}
-			else {
-				$data_link = '';
-				$linkable = '';
-			}
+            $URL = $this->getAction();
+            if ($URL != "") {
+                $data_link = ' data-link="' . $URL . '"';
+                $linkable = ' link_button';
+            }
+            else {
+                $data_link = '';
+                $linkable = '';
+            }
 
-			$out = '
-			                <button title="' . $LabelDesc . '" class="light close_dialog ' . $fooltip . ' right img_icon' . $targetString . $linkable . '" disabled="disabled"' . $data_link . '>
-			                  <img src="/.adm/images/icons/small/grey/' . $labelvars['image'] . '.png"></img>
-			                    ' . $htmlLabel . '
-			                </button>'; 
-			return $out;      
+            $out = '
+                            <button title="' . $LabelDesc . '" class="light close_dialog ' . $fooltip . ' right img_icon' . $targetString . $linkable . '" disabled="disabled"' . $data_link . '>
+                              <img src="/.adm/images/icons/small/grey/' . $labelvars['image'] . '.png"></img>
+                                ' . $htmlLabel . '
+                            </button>'; 
+            return $out;      
 
-		} // end if ($isDisabled)
-		
-		// button not disabled
-		$action = $this->getAction();
-		$label =& $this->getLabel();
-		$description = $label->getDescription(); 
+        } // end if ($isDisabled)
+        
+        // button not disabled
+        $action = $this->getAction();
+        $label =& $this->getLabel();
+        $description = $label->getDescription(); 
 
-		// log activity if necessary
-		$system = new System();
-		if ($system->getConfig("logPath") != "") {
-			$labelText = $label->getLabel(); 
-		}  // end if ($system->getConfig("logPath")...
+        // log activity if necessary
+        $system = new System();
+        if ($system->getConfig("logPath") != "") {
+            $labelText = $label->getLabel(); 
+        }  // end if ($system->getConfig("logPath")...
 
-		$labelvars = get_object_vars($this->label);
+        $labelvars = get_object_vars($this->label);
 
-		if (isset($page->Label['label'])) {
-			$htmlLabel = '<span>' . $page->Label['label'] . '</span>';
-		}
-		else {
-			$htmlLabel = '';
-		}
+        if (isset($page->Label['label'])) {
+            $htmlLabel = '<span>' . $page->Label['label'] . '</span>';
+        }
+        else {
+            $htmlLabel = '';
+        }
 
-		if (isset($page->Label['description'])) {
-			$LabelDesc = $page->Label['description'];
-		}
-		else {
-			$LabelDesc = '';
-		}
+        if (isset($page->Label['description'])) {
+            $LabelDesc = $page->Label['description'];
+        }
+        else {
+            $LabelDesc = '';
+        }
 
-		// restore description if necessary
-		if($description) {
-			$label->setDescription($description);
-		}
+        // restore description if necessary
+        if($description) {
+            $label->setDescription($description);
+        }
 
-		$targetFrame = $this->targetFrame;
-		if ($targetFrame) {
-			$targetString = " TARGET=\"$targetFrame\" ";
-		}
-		else {
-			$targetString = "";
-		}
+        $targetFrame = $this->targetFrame;
+        if ($targetFrame) {
+            $targetString = " TARGET=\"$targetFrame\" ";
+        }
+        else {
+            $targetString = "";
+        }
 
-		$URL = $this->getAction();
-		if ($URL != "") {
-			$data_link = ' data-link="' . $URL . '"';
-			$linkable = ' link_button';
-		}
-		else {
-			$data_link = '';
-			$linkable = '';
-		}
+        $URL = $this->getAction();
+        if ($URL != "") {
+            $data_link = ' data-link="' . $URL . '"';
+            $linkable = ' link_button';
+        }
+        else {
+            $data_link = '';
+            $linkable = '';
+        }
 
-		$out = '
-		                <button title="' . $LabelDesc . '" class="close_dialog tooltip right img_icon' . $targetString . $linkable . '"' . $data_link . '>
-		                  <img src="/.adm/images/icons/small/white/' . $labelvars['image'] . '.png"></img>
-		                    ' . $htmlLabel . '
-		                </button>'; 
-		return $out;      
-	}
+        $out = '
+                        <button title="' . $LabelDesc . '" class="close_dialog tooltip right img_icon' . $targetString . $linkable . '"' . $data_link . '>
+                          <img src="/.adm/images/icons/small/white/' . $labelvars['image'] . '.png"></img>
+                            ' . $htmlLabel . '
+                        </button>'; 
+        return $out;      
+    }
 }
 
 /*

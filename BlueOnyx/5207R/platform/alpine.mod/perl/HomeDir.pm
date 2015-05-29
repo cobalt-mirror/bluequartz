@@ -57,10 +57,10 @@ use vars qw(@ISA @EXPORT_OK);
 
 @ISA = qw(Exporter);
 @EXPORT_OK = qw(
-		homedir_get_group_dir homedir_get_user_dir
-		homedir_create_group_link homedir_create_user_link
-		homedir_setup_admin_home homedir_setup_user_home
-		);
+        homedir_get_group_dir homedir_get_user_dir
+        homedir_create_group_link homedir_create_user_link
+        homedir_setup_admin_home homedir_setup_user_home
+        );
 
 use lib qw(/usr/sausalito/perl);
 use File::Path;
@@ -77,17 +77,17 @@ use I18n;
 use vars qw($HOME_ROOT $SITE_DIR $USER_DIR);
 $is_home_separate = "1";
 if (! -f "/etc/fstab") {
-	$HOME_ROOT = '/';
+    $HOME_ROOT = '/';
 }
 else {
-	$is_home_separate = `cat /etc/fstab|grep /home|wc -l`;
-	chomp($is_home_separate);
+    $is_home_separate = `cat /etc/fstab|grep /home|wc -l`;
+    chomp($is_home_separate);
 }
 if ($is_home_separate eq "1") {
-	$HOME_ROOT = '/home';
+    $HOME_ROOT = '/home';
 }
 else {
-	$HOME_ROOT = '/';
+    $HOME_ROOT = '/';
 }
 $SITE_DIR = 'sites';
 $USER_DIR = 'users';
@@ -129,32 +129,32 @@ defaults to /home.
 
 sub homedir_get_group_dir
 {
-	my $group = shift;
-	my $alt_root = shift; # where the sites home dir should be
+    my $group = shift;
+    my $alt_root = shift; # where the sites home dir should be
 
-	# alt root must be relative to / if given
-	if ($alt_root && (index($alt_root, '/') != 0)) {
-		return '';
-	}
+    # alt root must be relative to / if given
+    if ($alt_root && (index($alt_root, '/') != 0)) {
+        return '';
+    }
 
-	if ($group) {
-		my $group_path = '';
-		if ($alt_root) {
-			$group_path = "$alt_root/$group_dir";
-			return _hash_path($group_path, $group);
-		} else {
-			my $home_dir = _check_cce_group($group);
-	   
-			if ($home_dir eq '') {
-				$group_path = "$HOME_ROOT/$group_dir";
-				$home_dir = _hash_path($group_path, $group);
-			}
-			return $home_dir;
-		}
-	}
+    if ($group) {
+        my $group_path = '';
+        if ($alt_root) {
+            $group_path = "$alt_root/$group_dir";
+            return _hash_path($group_path, $group);
+        } else {
+            my $home_dir = _check_cce_group($group);
+       
+            if ($home_dir eq '') {
+                $group_path = "$HOME_ROOT/$group_dir";
+                $home_dir = _hash_path($group_path, $group);
+            }
+            return $home_dir;
+        }
+    }
 
-	# error if $group is ''
-	return '';
+    # error if $group is ''
+    return '';
 }
 
 =pod
@@ -191,33 +191,33 @@ as well.  C<$alt_root> should begin with "/".
 
 sub homedir_get_user_dir
 {
-	my $user = shift;
-	my $user_group = shift;
-	my $alt_root = shift;  # in case on external storage
+    my $user = shift;
+    my $user_group = shift;
+    my $alt_root = shift;  # in case on external storage
 
-	# check for errors
-	if (($user eq '') || ($alt_root && (index($alt_root, '/') != 0))) {
-		return ''; 
-	}
+    # check for errors
+    if (($user eq '') || ($alt_root && (index($alt_root, '/') != 0))) {
+        return ''; 
+    }
 
-	my $root_dir = '';
-	if ($user_group) {
-		my $group_root = '';
-		if ($alt_root) {
-			$group_root = "$alt_root/$group_dir";
-			$root_dir = _hash_path($group_root, $user_group);
-		} else {
-			$root_dir = _check_cce_group($user_group);
-			if ($root_dir eq '') {
-				$group_root = "$HOME_ROOT/$group_dir";
-				$root_dir = _hash_path($group_root, $user_group);
-			}
-		}
-	} else {
-		$root_dir = ($alt_root ? $alt_root : $HOME_ROOT);
-	}
+    my $root_dir = '';
+    if ($user_group) {
+        my $group_root = '';
+        if ($alt_root) {
+            $group_root = "$alt_root/$group_dir";
+            $root_dir = _hash_path($group_root, $user_group);
+        } else {
+            $root_dir = _check_cce_group($user_group);
+            if ($root_dir eq '') {
+                $group_root = "$HOME_ROOT/$group_dir";
+                $root_dir = _hash_path($group_root, $user_group);
+            }
+        }
+    } else {
+        $root_dir = ($alt_root ? $alt_root : $HOME_ROOT);
+    }
 
-	return _hash_path("$root_dir/$user_dir", $user);
+    return _hash_path("$root_dir/$user_dir", $user);
 }
 
 =pod
@@ -257,24 +257,24 @@ The generated symlink locations  will look like the following:
 
 sub homedir_create_group_link
 {
-	my ($site, $alt_name, $alt_root) = @_;
+    my ($site, $alt_name, $alt_root) = @_;
 
-	# check for valid parameters
-	if (!$site || !$alt_name || ($alt_root && index($alt_root, '/') != 0)) {
-		return ();
-	}
+    # check for valid parameters
+    if (!$site || !$alt_name || ($alt_root && index($alt_root, '/') != 0)) {
+        return ();
+    }
 
-	my $link_target = homedir_get_group_dir($site, $alt_root);
-	$link_target =~ s/^(\/.+)(\/\.$SITE_DIR\/.*)$/\.\.$2/;
-	if (!$alt_root && $1) {
-		$alt_root = $1;
-	}
+    my $link_target = homedir_get_group_dir($site, $alt_root);
+    $link_target =~ s/^(\/.+)(\/\.$SITE_DIR\/.*)$/\.\.$2/;
+    if (!$alt_root && $1) {
+        $alt_root = $1;
+    }
 
-	my $link_path = ($alt_root ? $alt_root : $HOME_ROOT);
-	$link_path .= "/$SITE_DIR";
-	$link_path .= "/$alt_name";
-	
-	return ($link_path, $link_target);
+    my $link_path = ($alt_root ? $alt_root : $HOME_ROOT);
+    $link_path .= "/$SITE_DIR";
+    $link_path .= "/$alt_name";
+    
+    return ($link_path, $link_target);
 }
 
 =pod
@@ -285,100 +285,100 @@ sub homedir_create_group_link
 
 sub homedir_create_user_link
 {
-	my ($user, $site, $alt_root) = @_;
+    my ($user, $site, $alt_root) = @_;
 
-	if (!$user || ($alt_root && index($alt_root, '/') != 0)) {
-		return ();
-	}
+    if (!$user || ($alt_root && index($alt_root, '/') != 0)) {
+        return ();
+    }
 
-	my $link_target = homedir_get_user_dir($user, $site, $alt_root);
-	$link_target =~ s/^\/.+(\/\.$USER_DIR\/.*)$/\.\.$1/;
+    my $link_target = homedir_get_user_dir($user, $site, $alt_root);
+    $link_target =~ s/^\/.+(\/\.$USER_DIR\/.*)$/\.\.$1/;
 
-	my $link_path = '';
-	
-	if ($site) {
-		$link_path = homedir_get_group_dir($site, $alt_root);
-	} else {
-		$link_path = ($alt_root ? $alt_root : $HOME_ROOT);
-	}
-	
-	$link_path .= "/$USER_DIR";
-	$link_path .= "/$user";
+    my $link_path = '';
+    
+    if ($site) {
+        $link_path = homedir_get_group_dir($site, $alt_root);
+    } else {
+        $link_path = ($alt_root ? $alt_root : $HOME_ROOT);
+    }
+    
+    $link_path .= "/$USER_DIR";
+    $link_path .= "/$user";
 
-	return ($link_path, $link_target);
+    return ($link_path, $link_target);
 }
 
 sub homedir_setup_admin_home
 {
-	my $user = shift;
+    my $user = shift;
 
-	#
-	# for raqs the only thing to do is get rid of the web directory
-	# in the user skeleton, this probably shouldn't need to be done
-	# but someone needs to sit down and think about the best solution
-	# to the differentiation between server administrators and regular
-	# users
-	#
-	my ($uid, $home_dir) = (getpwnam($user->{name}))[2, 7];
-	
-	system('/bin/rm', '-rf', "$home_dir/web");
+    #
+    # for raqs the only thing to do is get rid of the web directory
+    # in the user skeleton, this probably shouldn't need to be done
+    # but someone needs to sit down and think about the best solution
+    # to the differentiation between server administrators and regular
+    # users
+    #
+    my ($uid, $home_dir) = (getpwnam($user->{name}))[2, 7];
+    
+    system('/bin/rm', '-rf', "$home_dir/web");
 
-	# make sure the directories get the correct permissions
-	Sauce::Util::chmodfile(0700, $home_dir);
-	Sauce::Util::chownfile($uid, $user->{gid}, $home_dir);
-	
-	# recursive chown of homedir
-	Sauce::Util::modifytree($home_dir);
-	system('/bin/chown', '-R', "$uid:$user->{gid}", $home_dir);
+    # make sure the directories get the correct permissions
+    Sauce::Util::chmodfile(0700, $home_dir);
+    Sauce::Util::chownfile($uid, $user->{gid}, $home_dir);
+    
+    # recursive chown of homedir
+    Sauce::Util::modifytree($home_dir);
+    system('/bin/chown', '-R', "$uid:$user->{gid}", $home_dir);
 
-	return 1;
+    return 1;
 }
 
 sub homedir_setup_user_home
 {
-	my $user = shift;
+    my $user = shift;
 
-	my ($uid, $home_dir) = (getpwnam($user->{name}))[2, 7];
+    my ($uid, $home_dir) = (getpwnam($user->{name}))[2, 7];
 
-	# the old sauce auto-created "Network Trash Folder"
-	my $ntf = "${home_dir}/Network Trash Folder";
-	Sauce::Util::makedirectory($ntf, 02751);
-	Sauce::Util::chownfile($uid, $user->{gid}, $ntf);
-	Sauce::Util::chmodfile(02751, $ntf);
-	
-	# the old sauce auto-created "Private"
-	$ntf = "${home_dir}/Private";
-	Sauce::Util::makedirectory($ntf, 02700);
-	Sauce::Util::chownfile($uid, $user->{gid}, $ntf);
-	Sauce::Util::chmodfile(02700, $ntf);
-	
-	# create a default index.html file for the user's public directory
-	$ntf = "${home_dir}/web";
-	Sauce::Util::makedirectory($ntf, 02775);
-	Sauce::Util::chownfile($uid, $user->{gid}, $ntf);
-	Sauce::Util::chmodfile(02775, $ntf);
-	
-	my $indexFile = "${home_dir}/web/index.html";
-	if(!(-e $indexFile)) {
-		Sauce::Util::modifyfile("${home_dir}/web/index.html");
-		open(INDEX, ">${home_dir}/web/index.html");
-		print INDEX '<HTML><BODY>Default user page</BODY></HTML>';
-		close(INDEX);
-	}
+    # the old sauce auto-created "Network Trash Folder"
+    my $ntf = "${home_dir}/Network Trash Folder";
+    Sauce::Util::makedirectory($ntf, 02751);
+    Sauce::Util::chownfile($uid, $user->{gid}, $ntf);
+    Sauce::Util::chmodfile(02751, $ntf);
+    
+    # the old sauce auto-created "Private"
+    $ntf = "${home_dir}/Private";
+    Sauce::Util::makedirectory($ntf, 02700);
+    Sauce::Util::chownfile($uid, $user->{gid}, $ntf);
+    Sauce::Util::chmodfile(02700, $ntf);
+    
+    # create a default index.html file for the user's public directory
+    $ntf = "${home_dir}/web";
+    Sauce::Util::makedirectory($ntf, 02775);
+    Sauce::Util::chownfile($uid, $user->{gid}, $ntf);
+    Sauce::Util::chmodfile(02775, $ntf);
+    
+    my $indexFile = "${home_dir}/web/index.html";
+    if(!(-e $indexFile)) {
+        Sauce::Util::modifyfile("${home_dir}/web/index.html");
+        open(INDEX, ">${home_dir}/web/index.html");
+        print INDEX '<HTML><BODY>Default user page</BODY></HTML>';
+        close(INDEX);
+    }
 
-	Sauce::Util::chownfile($uid, $user->{gid}, 
-			       "${home_dir}/web/index.html");   
-	Sauce::Util::chmodfile(0664, "${home_dir}/web/index.html");
-	
-	# make sure the directories get the correct permissions
-	Sauce::Util::chmodfile(02771, $home_dir);
-	Sauce::Util::chownfile($uid, $user->{gid}, $home_dir);
-	
-	# recursive chown of homedir
-	Sauce::Util::modifytree($home_dir);
-	system('/bin/chown', '-R', "$uid:$user->{gid}", $home_dir);
+    Sauce::Util::chownfile($uid, $user->{gid}, 
+                   "${home_dir}/web/index.html");   
+    Sauce::Util::chmodfile(0664, "${home_dir}/web/index.html");
+    
+    # make sure the directories get the correct permissions
+    Sauce::Util::chmodfile(02771, $home_dir);
+    Sauce::Util::chownfile($uid, $user->{gid}, $home_dir);
+    
+    # recursive chown of homedir
+    Sauce::Util::modifytree($home_dir);
+    system('/bin/chown', '-R', "$uid:$user->{gid}", $home_dir);
 
-	return 1;
+    return 1;
 }
 
 # only private methods below, not for use outside of the module
@@ -387,55 +387,55 @@ sub homedir_setup_user_home
 # where the directory should lie in the filesystem
 sub _hash_path
 {
-	my ($directory, $sys_name) = @_;
+    my ($directory, $sys_name) = @_;
 
-	# only hash sys_name
-	my $sum = 1;
-	my $temp = $sys_name;
-	for (my $j = 0; $j < length($temp); $j++) {
-		$ch = chop($temp);
-	
-		# give vowels less weight since they are usually more common
-		if ($ch =~ /^[aeiou]$/) {
-			$sum *= ord($ch) / 10;
-		} else {
-			$sum *= ord($ch);
-		}
-	}
+    # only hash sys_name
+    my $sum = 1;
+    my $temp = $sys_name;
+    for (my $j = 0; $j < length($temp); $j++) {
+        $ch = chop($temp);
+    
+        # give vowels less weight since they are usually more common
+        if ($ch =~ /^[aeiou]$/) {
+            $sum *= ord($ch) / 10;
+        } else {
+            $sum *= ord($ch);
+        }
+    }
 
-	# this seems to give good distributions
-	my $hash_bucket = $sum % 151;
+    # this seems to give good distributions
+    my $hash_bucket = $sum % 151;
 
-	return "$directory/$hash_bucket/$sys_name";
+    return "$directory/$hash_bucket/$sys_name";
 }
 
 sub _check_cce_group
 {
-	my $group = shift;
+    my $group = shift;
    
-	if (!$group) {
-		return ''; 
-	}
+    if (!$group) {
+        return ''; 
+    }
 
-	# see if this group is in CCE
-	my $cce = new CCE;
-	$cce->connectuds();
-	my $home_dir = '';
-	
-	my ($site_oid) = $cce->find('Vsite', { 'name' => $group });
-	if ($site_oid) {
-		my ($ok, $vsite) = $cce->get($site_oid);
-		if ($vsite->{basedir} && (index($vsite->{basedir}, '/') == 0)) {
-			$home_dir = $vsite->{basedir};
-		} elsif ($vsite->{volume} &&
-			 (index($vsite->{volume}, '/') == 0)) {
-			my $group_path = "$vsite->{volume}/$group_dir";
-			$home_dir = _hash_path($group_path, $group);
-		}
-	}
+    # see if this group is in CCE
+    my $cce = new CCE;
+    $cce->connectuds();
+    my $home_dir = '';
+    
+    my ($site_oid) = $cce->find('Vsite', { 'name' => $group });
+    if ($site_oid) {
+        my ($ok, $vsite) = $cce->get($site_oid);
+        if ($vsite->{basedir} && (index($vsite->{basedir}, '/') == 0)) {
+            $home_dir = $vsite->{basedir};
+        } elsif ($vsite->{volume} &&
+             (index($vsite->{volume}, '/') == 0)) {
+            my $group_path = "$vsite->{volume}/$group_dir";
+            $home_dir = _hash_path($group_path, $group);
+        }
+    }
 
-	$cce->bye();
-	return $home_dir;
+    $cce->bye();
+    return $home_dir;
 }
 
 1;
@@ -446,16 +446,16 @@ sub _check_cce_group
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 
-#	 notice, this list of conditions and the following disclaimer.
+#    notice, this list of conditions and the following disclaimer.
 # 
 # 2. Redistributions in binary form must reproduce the above copyright 
-#	 notice, this list of conditions and the following disclaimer in 
-#	 the documentation and/or other materials provided with the 
-#	 distribution.
+#    notice, this list of conditions and the following disclaimer in 
+#    the documentation and/or other materials provided with the 
+#    distribution.
 # 
 # 3. Neither the name of the copyright holder nor the names of its 
-#	 contributors may be used to endorse or promote products derived 
-#	 from this software without specific prior written permission.
+#    contributors may be used to endorse or promote products derived 
+#    from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
 # "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 

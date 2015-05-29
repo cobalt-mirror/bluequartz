@@ -22,49 +22,49 @@ $isProductDefined = true;
 
 class Product {
 
-	// private vars
-	var $type;     // product type as returned by getProductType
-	var $cce;  
+    // private vars
+    var $type;     // product type as returned by getProductType
+    var $cce;  
 
-	// creates a Product object 
-	// params: cce reference
-	// returns: nothing
-	function Product(& $cce) {
-		$this->cce = & $cce;
-	}
+    // creates a Product object 
+    // params: cce reference
+    // returns: nothing
+    function Product(& $cce) {
+        $this->cce = & $cce;
+    }
 
-	// tells you if you have a product in the raq family
-	// more generic than getProductType 
-	// params: none
-	// returns:  boolean
-	function isRaq () {
-		if ( !$this->type ) 
-			$this->getProductType();
+    // tells you if you have a product in the raq family
+    // more generic than getProductType 
+    // params: none
+    // returns:  boolean
+    function isRaq () {
+        if ( !$this->type ) 
+            $this->getProductType();
 
-		if ( $this->type == "RAQ" || $this->type =="CACHERAQ" )
-			return true;
-		else
-			return false;	
-	}
+        if ( $this->type == "RAQ" || $this->type =="CACHERAQ" )
+            return true;
+        else
+            return false;   
+    }
 
-	// gets the product code from cce and converts to known type,
-	// this should return something 
-	// e.g. raq, qube..
-	function getProductType () {
-		$system = $this->cce->getObject("System", array(), "");
-		$productCode = $system["productBuild"];
+    // gets the product code from cce and converts to known type,
+    // this should return something 
+    // e.g. raq, qube..
+    function getProductType () {
+        $system = $this->cce->getObject("System", array(), "");
+        $productCode = $system["productBuild"];
 
-		if ( preg_match("/[0-9]+R$/", $productCode) ) 
-			$this->type = "RAQ";
-		else if ( preg_match("/[0-9]+WG$/", $productCode) ) 
-			$this->type = "QUBE";
-		else if ( preg_match("/[0-9]+CR$/", $productCode) ) 
-			$this->type = "CACHERAQ";
-		else
-			$this->type = "UNKNOWN";
-	
-		return $this->type;		
-	}
+        if ( preg_match("/[0-9]+R$/", $productCode) ) 
+            $this->type = "RAQ";
+        else if ( preg_match("/[0-9]+WG$/", $productCode) ) 
+            $this->type = "QUBE";
+        else if ( preg_match("/[0-9]+CR$/", $productCode) ) 
+            $this->type = "CACHERAQ";
+        else
+            $this->type = "UNKNOWN";
+    
+        return $this->type;     
+    }
 
 }
 

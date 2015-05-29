@@ -389,7 +389,7 @@ class SetSelector extends FormField {
 
     for ($i = 0; $i < count($allEntries); $i++){
       if(!in_array($allEntries[$i], $values)){
-      	array_push($entries, $allEntries[$i]);
+        array_push($entries, $allEntries[$i]);
         array_push($entriesVals, $allEntriesVals[$i]);
       }
     }

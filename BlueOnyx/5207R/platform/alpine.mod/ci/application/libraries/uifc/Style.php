@@ -119,13 +119,13 @@ class Style {
     $this->stylist =& $stylist;
   }
 
-	// description: return an array of just the target names of all properties
+  // description: return an array of just the target names of all properties
   public function getTargetNames() {
-  	$prop = $this->getPropertyIds();
-  	foreach($prop as $p) {
-  		$t[] = $p[1];
-  	}
-  	return(array_unique($t));
+    $prop = $this->getPropertyIds();
+    foreach($prop as $p) {
+      $t[] = $p[1];
+    }
+    return(array_unique($t));
   }
 
   public function getVariant() {

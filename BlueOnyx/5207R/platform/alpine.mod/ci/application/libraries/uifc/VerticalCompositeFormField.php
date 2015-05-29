@@ -20,8 +20,8 @@ class VerticalCompositeFormField extends CompositeFormField {
 
   // description: constructor
   function VerticalCompositeFormField() {
-  	$this->CompositeFormField();
-  	$this->setAlignment("CENTER");
+    $this->CompositeFormField();
+    $this->setAlignment("CENTER");
   }
 
   // description: set horizontal alignment of the vertical row of form fields
