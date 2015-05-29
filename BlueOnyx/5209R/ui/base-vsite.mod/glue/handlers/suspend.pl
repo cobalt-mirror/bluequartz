@@ -1,7 +1,5 @@
 #!/usr/bin/perl -I/usr/sausalito/perl -I/usr/sausalito/handlers/base/vsite
-# Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
-# Copyright 2008-2009 Team BlueOnyx. All rights reserved.
-# $Id: suspend.pl,v 1.3.2.3 Wed 12 Aug 2009 05:38:13 PM CEST mstauber Exp $
+# $Id: suspend.pl
 #
 # Handle most of the site related stuff that needs to happen when a site 
 # is suspended.
@@ -26,8 +24,8 @@ my $vsite = $cce->event_object();
 # disable my VirtualHost and reset site_preview:
 my ($vhost) = $cce->findx('VirtualHost', { 'name' => $vsite->{name} });
 my ($ok) = $cce->set($vhost, '', { 
-		'enabled' => ($vsite->{suspend} ? 0 : 1)
-	});
+        'enabled' => ($vsite->{suspend} ? 0 : 1)
+    });
 
 if (not $ok) {
     $cce->bye('FAIL', '[[base-vsite.cantDisableVhost]]');
@@ -45,28 +43,28 @@ else {
 # suspend/unsuspend all site users
 my @users = ();
 if ($vsite->{suspend}) {
-	#
-	# site being suspended, so find all site members that are currently
-	# enabled
-	#
-	@users = $cce->findx('User',
-			{ 'site' => $vsite->{name}, 'enabled' => 1 });
+    #
+    # site being suspended, so find all site members that are currently
+    # enabled
+    #
+    @users = $cce->findx('User',
+            { 'site' => $vsite->{name}, 'enabled' => 1 });
 
-	# Disable site_preview:
-	my ($ok) = $cce->set($vhost, '', { 'site_preview' => '0' });
+    # Disable site_preview:
+    my ($ok) = $cce->set($vhost, '', { 'site_preview' => '0' });
 } 
 else {
-	#
-	# site being unsuspended, so find all site members who
-	# should be reenabled
-	#
-	@users = $cce->findx('User',
-			{ 'site' => $vsite->{name}, 'ui_enabled' => 1 });
+    #
+    # site being unsuspended, so find all site members who
+    # should be reenabled
+    #
+    @users = $cce->findx('User',
+            { 'site' => $vsite->{name}, 'ui_enabled' => 1 });
 
-	# Enable site_preview again if it was active for the site:
-	if ($vsite->{site_preview} == "1") {
-	    my ($ok) = $cce->set($vhost, '', { 'site_preview' => '1' });
-	}
+    # Enable site_preview again if it was active for the site:
+    if ($vsite->{site_preview} == "1") {
+        my ($ok) = $cce->set($vhost, '', { 'site_preview' => '1' });
+    }
 }
 
 for my $user (@users) {
@@ -96,22 +94,39 @@ for my $user (@users) {
 
 $cce->bye('SUCCESS');
 exit(0);
-# Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
+
 # 
-# Redistribution and use in source and binary forms, with or without 
-# modification, are permitted provided that the following conditions are met:
+# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2003 Sun Microsystems, Inc. 
+# All Rights Reserved.
 # 
-# -Redistribution of source code must retain the above copyright notice, 
-# this list of conditions and the following disclaimer.
+# 1. Redistributions of source code must retain the above copyright 
+#     notice, this list of conditions and the following disclaimer.
 # 
-# -Redistribution in binary form must reproduce the above copyright notice, 
-# this list of conditions and the following disclaimer in the documentation  
-# and/or other materials provided with the distribution.
+# 2. Redistributions in binary form must reproduce the above copyright 
+#     notice, this list of conditions and the following disclaimer in 
+#     the documentation and/or other materials provided with the 
+#     distribution.
 # 
-# Neither the name of Sun Microsystems, Inc. or the names of contributors may 
-# be used to endorse or promote products derived from this software without 
-# specific prior written permission.
+# 3. Neither the name of the copyright holder nor the names of its 
+#     contributors may be used to endorse or promote products derived 
+#     from this software without specific prior written permission.
 # 
-# This software is provided "AS IS," without a warranty of any kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY EXCLUDED. SUN MICROSYSTEMS, INC. ("SUN") AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
+# COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+# POSSIBILITY OF SUCH DAMAGE.
 # 
-# You acknowledge that  this software is not designed or intended for use in the design, construction, operation or maintenance of any nuclear facility.
+# You acknowledge that this software is not designed or intended for 
+# use in the design, construction, operation or maintenance of any 
+# nuclear facility.
+# 

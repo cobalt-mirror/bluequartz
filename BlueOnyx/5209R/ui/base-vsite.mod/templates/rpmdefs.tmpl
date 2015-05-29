@@ -136,6 +136,13 @@ fi
 
 <begin $CHANGELOG>
 
+* Thu May 28 2015 Michael Stauber <mstauber@solarspeed.net> 4.2-0BX40
+- Fixed indentation in almost all scripts.
+- Modified ui/chorizo/web/controllers/vsiteAdd.php to fix the race
+  condition that happens during CREATE Vsite when WebApp Installer
+  and RoundCube with activated Autoinstall are present. Also includes
+  better error handling and reporting.
+
 * Wed May 27 2015 Michael Stauber <mstauber@solarspeed.net> 4.2-0BX39
 - Fixed glue/sbin/phpsendmail to pass a joined @ARGV instead of $*.
 

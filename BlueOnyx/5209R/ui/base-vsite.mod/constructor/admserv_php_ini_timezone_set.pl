@@ -41,9 +41,9 @@ if ($whatami eq "constructor") {
 
     # Update AdmServ php.ini:
     if (-f $php_ini) {
-	# Edit php.ini:
-	&edit_php_ini;
-	# Note to self: We do not restart AdmServ, as this could be tricky.
+    # Edit php.ini:
+    &edit_php_ini;
+    # Note to self: We do not restart AdmServ, as this could be tricky.
     }
 }
 
@@ -54,7 +54,7 @@ sub edit_php_ini {
 
     # Build output hash:
     $server_php_settings_writeoff = { 
-	'date.timezone' => "'" . $timezone . "'"
+    'date.timezone' => "'" . $timezone . "'"
     };
 
     # Write changes to php.ini using Sauce::Util::hash_edit_function. The really GREAT thing

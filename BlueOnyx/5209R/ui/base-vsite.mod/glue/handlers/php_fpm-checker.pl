@@ -67,73 +67,73 @@ if ($whatami eq "handler") {
                             );
 
     # Get OID of 'ActiveMonitor':
-	@AMOID = $cce->find('ActiveMonitor');
+    @AMOID = $cce->find('ActiveMonitor');
 
-	for $phpVer (keys %known_php_paths) {
+    for $phpVer (keys %known_php_paths) {
 
-		# Set 'ActiveMonitor' NameSpace:
-		$am_NameSpace = 'FPM' . $phpVer;
+        # Set 'ActiveMonitor' NameSpace:
+        $am_NameSpace = 'FPM' . $phpVer;
 
-		&debug_msg("Processing PHP-FPM check for $known_php_versions{$phpVer} \n");
-		if (-d '/home/solarspeed/php-' . $known_php_versions{$phpVer}) {
-			&debug_msg("Directory /home/solarspeed/php-$known_php_versions{$phpVer} exists. \n");
+        &debug_msg("Processing PHP-FPM check for $known_php_versions{$phpVer} \n");
+        if (-d '/home/solarspeed/php-' . $known_php_versions{$phpVer}) {
+            &debug_msg("Directory /home/solarspeed/php-$known_php_versions{$phpVer} exists. \n");
 
-			# Check for pools files in this pool:
+            # Check for pools files in this pool:
             $xcheck_file = $known_php_paths{$phpVer} . 'site*.conf';
             $xcheck = `ls -k1 $xcheck_file|wc -l`;
             chomp($xcheck);
             if ($xcheck eq '0') {
-				&debug_msg("Stopping PHP-FPM ($known_php_services{$phpVer}) and turning it off as no Vsite is using it.\n");
-				($ok) = $cce->set($AMOID[0], "$am_NameSpace", { 'enabled' => '0' });
-				service_set_init($known_php_services{$phpVer}, 'off');
-				service_run_init($known_php_services{$phpVer}, 'stop');
+                &debug_msg("Stopping PHP-FPM ($known_php_services{$phpVer}) and turning it off as no Vsite is using it.\n");
+                ($ok) = $cce->set($AMOID[0], "$am_NameSpace", { 'enabled' => '0' });
+                service_set_init($known_php_services{$phpVer}, 'off');
+                service_run_init($known_php_services{$phpVer}, 'stop');
             }
             else {
-				&debug_msg("Restarting PHP-FPM ($known_php_services{$phpVer}) and making sure it is enabled as Vsites are using it.\n");
-				($ok) = $cce->set($AMOID[0], "$am_NameSpace", { 'enabled' => '1' });
-				service_set_init($known_php_services{$phpVer}, 'on');
-				service_run_init($known_php_services{$phpVer}, 'restart');
+                &debug_msg("Restarting PHP-FPM ($known_php_services{$phpVer}) and making sure it is enabled as Vsites are using it.\n");
+                ($ok) = $cce->set($AMOID[0], "$am_NameSpace", { 'enabled' => '1' });
+                service_set_init($known_php_services{$phpVer}, 'on');
+                service_run_init($known_php_services{$phpVer}, 'restart');
 
-				# Note to self:
-				# =============
-				# condreload:	Not reloading if service is stopped
-				# condrestart:	Not restarting if service is stopped
-				# reload:		Not reloading if service is stopped
-				#
-				# So all we can really do is a bloody 'restart'. Way to go, Systemd!
+                # Note to self:
+                # =============
+                # condreload:   Not reloading if service is stopped
+                # condrestart:  Not restarting if service is stopped
+                # reload:       Not reloading if service is stopped
+                #
+                # So all we can really do is a bloody 'restart'. Way to go, Systemd!
             }
-		}
-		else {
-			&debug_msg("Stopping PHP-FPM ($known_php_services{$phpVer}) and turning it off as this PKG is not installed!\n");
-			($ok) = $cce->set($AMOID[0], "$am_NameSpace", { 'enabled' => '0' });
-			service_set_init($known_php_services{$phpVer}, 'off');
-			service_run_init($known_php_services{$phpVer}, 'stop');
-		}
-	}
-	# Unconditionally enable and restart master PHP-FPM:
-	($ok) = $cce->set($AMOID[0], "PHPFPMMASTER", { 'enabled' => '1' });
-	service_set_init('php-fpm', 'on');
-	service_run_init('php-fpm', 'restart');
+        }
+        else {
+            &debug_msg("Stopping PHP-FPM ($known_php_services{$phpVer}) and turning it off as this PKG is not installed!\n");
+            ($ok) = $cce->set($AMOID[0], "$am_NameSpace", { 'enabled' => '0' });
+            service_set_init($known_php_services{$phpVer}, 'off');
+            service_run_init($known_php_services{$phpVer}, 'stop');
+        }
+    }
+    # Unconditionally enable and restart master PHP-FPM:
+    ($ok) = $cce->set($AMOID[0], "PHPFPMMASTER", { 'enabled' => '1' });
+    service_set_init('php-fpm', 'on');
+    service_run_init('php-fpm', 'restart');
 
-	# Now the *real* catch: Check if they're running:
-	for $phpVer (keys %known_php_paths) {
-		if (-d '/home/solarspeed/php-' . $known_php_versions{$phpVer}) {
-			&debug_msg("Verifying FPM-Status for PHP-$known_php_versions{$phpVer}.\n");
+    # Now the *real* catch: Check if they're running:
+    for $phpVer (keys %known_php_paths) {
+        if (-d '/home/solarspeed/php-' . $known_php_versions{$phpVer}) {
+            &debug_msg("Verifying FPM-Status for PHP-$known_php_versions{$phpVer}.\n");
 
-			# Check for pools files in this pool:
+            # Check for pools files in this pool:
             $xcheck_file = $known_php_paths{$phpVer} . 'site*.conf';
             $xcheck = `ls -k1 $xcheck_file|wc -l`;
             chomp($xcheck);
             if ($xcheck gt '0') {
-            	$process_running = `ps -axf|grep "php-fpm: master process"|grep -v grep|grep $known_php_versions{$phpVer}|wc -l`;
-            	chomp($process_running);
-            	if ($process_running eq "0") {
-            		&debug_msg("Restarting PHP-FPM ($known_php_services{$phpVer}) as it failed startup.\n");
-            		service_run_init($known_php_services{$phpVer}, 'restart');
-            	}
+                $process_running = `ps -axf|grep "php-fpm: master process"|grep -v grep|grep $known_php_versions{$phpVer}|wc -l`;
+                chomp($process_running);
+                if ($process_running eq "0") {
+                    &debug_msg("Restarting PHP-FPM ($known_php_services{$phpVer}) as it failed startup.\n");
+                    service_run_init($known_php_services{$phpVer}, 'restart');
+                }
             }
-		}
-	}
+        }
+    }
 }
 
 $cce->bye('SUCCESS');

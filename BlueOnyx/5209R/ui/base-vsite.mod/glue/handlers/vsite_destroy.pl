@@ -29,66 +29,66 @@ $vsite = $cce->event_old();
 # check if any site members still exist
 if (($vsite->{name} ne '') &&
     (scalar($cce->find('User', { 'site' => $vsite->{name} })) > 0)) {
-	$cce->bye('FAIL', 'siteMembersFound');
-	exit(1);
+    $cce->bye('FAIL', 'siteMembersFound');
+    exit(1);
 }
 
 # depopulate dns records
 if ($vsite->{dns_auto}) 
 {
-	my @dns_records = $cce->find('DnsRecord', 
-			{ 
-				'hostname' => $vsite->{hostname}, 
-				'domainname' => $vsite->{domain} 
-			});
+    my @dns_records = $cce->find('DnsRecord', 
+            { 
+                'hostname' => $vsite->{hostname}, 
+                'domainname' => $vsite->{domain} 
+            });
 
-	for my $rec (@dns_records) {
-		$cce->destroy($rec);
-	}
+    for my $rec (@dns_records) {
+        $cce->destroy($rec);
+    }
 
-	# restart dns server
-	my $time = time();
-	($ok) = $cce->set($sysoid, "DNS", { 'commit' => $time });
+    # restart dns server
+    my $time = time();
+    ($ok) = $cce->set($sysoid, "DNS", { 'commit' => $time });
 
-	if (not $ok) 
-	{
-		$cce->warn('[[base-vsite.cantRestartDns]]');
-	}
+    if (not $ok) 
+    {
+        $cce->warn('[[base-vsite.cantRestartDns]]');
+    }
 }
 
 my ($vhost_oid) = $cce->find('VirtualHost', { 'name' => $vsite->{name} });
 ($ok) = $cce->destroy($vhost_oid);
 if (!$ok) {
-	$cce->bye('FAIL', 'VirtualHostNotFound');
-	exit(1);
+    $cce->bye('FAIL', 'VirtualHostNotFound');
+    exit(1);
 }
 
 # things to do if this is the last vsite using this IP
 unless (scalar($cce->find("Vsite", { 'ipaddr' => $vsite->{ipaddr} })))
 {
-	# find network object and disable and destroy
-	# only do this for aliases though
-	my ($network) = $cce->find('Network', 
-						{ 'ipaddr' => $vsite->{ipaddr}, 'real' => 0 });
-	if ($network)
-	{
-		$cce->set($network, '', { 'enabled' => 0 });
-		($ok) = $cce->destroy($network);
-		if (not $ok)
-		{
-			$cce->warn('[[base-vsite.cantDestroyNetwork]]');
-		}
-	}
+    # find network object and disable and destroy
+    # only do this for aliases though
+    my ($network) = $cce->find('Network', 
+                        { 'ipaddr' => $vsite->{ipaddr}, 'real' => 0 });
+    if ($network)
+    {
+        $cce->set($network, '', { 'enabled' => 0 });
+        ($ok) = $cce->destroy($network);
+        if (not $ok)
+        {
+            $cce->warn('[[base-vsite.cantDestroyNetwork]]');
+        }
+    }
 
-	# delete ftp virtual host
-	my ($oid) = $cce->find('FtpSite', { 'ipaddr' => $vsite->{ipaddr} });
-	if ($oid) {
-		($ok) = $cce->destroy($oid);
-		if (!$ok) {
-			$cce->bye('FAIL', 'duringDeleteFTPvirtualHost');
-			exit(1);
-		}
-	}
+    # delete ftp virtual host
+    my ($oid) = $cce->find('FtpSite', { 'ipaddr' => $vsite->{ipaddr} });
+    if ($oid) {
+        ($ok) = $cce->destroy($oid);
+        if (!$ok) {
+            $cce->bye('FAIL', 'duringDeleteFTPvirtualHost');
+            exit(1);
+        }
+    }
 }
 
 # delete system group
@@ -110,9 +110,9 @@ if ($base =~ /^\/.+/) {
 # Handle PHP-FPM:
 $fpm_pool_cfg = "/etc/php-fpm.d/" . $vsite->{name} . ".conf";
 if (-f $fpm_pool_cfg) {
-	# Vsite has a PHP-FPM pool which needs to go as well:
-	unlink($fpm_pool_cfg);
-	# Reload PHP-FPM:
+    # Vsite has a PHP-FPM pool which needs to go as well:
+    unlink($fpm_pool_cfg);
+    # Reload PHP-FPM:
     service_run_init('php-fpm', 'reload');
 }
 
@@ -126,16 +126,16 @@ exit(0);
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 
-#	 notice, this list of conditions and the following disclaimer.
+#    notice, this list of conditions and the following disclaimer.
 # 
 # 2. Redistributions in binary form must reproduce the above copyright 
-#	 notice, this list of conditions and the following disclaimer in 
-#	 the documentation and/or other materials provided with the 
-#	 distribution.
+#    notice, this list of conditions and the following disclaimer in 
+#    the documentation and/or other materials provided with the 
+#    distribution.
 # 
 # 3. Neither the name of the copyright holder nor the names of its 
-#	 contributors may be used to endorse or promote products derived 
-#	 from this software without specific prior written permission.
+#    contributors may be used to endorse or promote products derived 
+#    from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
 # "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 

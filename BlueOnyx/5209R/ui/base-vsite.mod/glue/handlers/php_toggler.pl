@@ -70,15 +70,15 @@ if ($whatami eq "handler") {
 
     # Check if known extra PHP versions are present.
     if (defined($PHP_server_OID)) {
-    	# Walk through all known PHP versions:
+        # Walk through all known PHP versions:
         for $phpVer (keys %known_php_versions) {
-        	# Poll CODB for the PHP version settings:
-        	($ok, $$phpVer) = $cce->get($PHP_server_OID, $phpVer);
+            # Poll CODB for the PHP version settings:
+            ($ok, $$phpVer) = $cce->get($PHP_server_OID, $phpVer);
 
-			$phpFpmPath = $extra_PHP_basepath . "php-" . $known_php_versions{$phpVer} . "/sbin/php-fpm";
-			$fpm_service = 'php-fpm-' . $known_php_versions{$phpVer};
-			$fpm_service_status = service_get_init($fpm_service);
-			$known_php_fpm_pool_dirs{$phpVer} = '/etc/php-fpm-' . $known_php_versions{$phpVer} . '.d/';
+            $phpFpmPath = $extra_PHP_basepath . "php-" . $known_php_versions{$phpVer} . "/sbin/php-fpm";
+            $fpm_service = 'php-fpm-' . $known_php_versions{$phpVer};
+            $fpm_service_status = service_get_init($fpm_service);
+            $known_php_fpm_pool_dirs{$phpVer} = '/etc/php-fpm-' . $known_php_versions{$phpVer} . '.d/';
 
             $phpBinaryPath = $extra_PHP_basepath . "php-" . $known_php_versions{$phpVer} . "/bin/php";
             $reportedVersion = `$phpBinaryPath -v|grep "(cli)"|awk {'print \$2'}`;
@@ -86,33 +86,33 @@ if ($whatami eq "handler") {
             $seen_php_versions{$phpVer} = $reportedVersion;
             $seen_php_versions{$reportedVersion} = $phpVer;
 
-        	if ($ok) {
-        		&debug_msg("Processing PHP version $phpVer ... \n");
-        		# Check if there is a disabled PHP version:
-        		if ($$phpVer->{'enabled'} eq "0") {
-        			&debug_msg("PHP version $phpVer - is disabled ... \n");
+            if ($ok) {
+                &debug_msg("Processing PHP version $phpVer ... \n");
+                # Check if there is a disabled PHP version:
+                if ($$phpVer->{'enabled'} eq "0") {
+                    &debug_msg("PHP version $phpVer - is disabled ... \n");
 
-        			# Check if Apache is using a disabled version as DSO:
-        			if ($reportedVersion eq $PHP_version) {
-        				&debug_msg("Apache itself is using PHP version $phpVer - Raising error. \n");
-						$cce->bye('FAIL', '[[base-vsite.attemptToDisableUsedPHP]]');
-						exit(1);
-        			}
+                    # Check if Apache is using a disabled version as DSO:
+                    if ($reportedVersion eq $PHP_version) {
+                        &debug_msg("Apache itself is using PHP version $phpVer - Raising error. \n");
+                        $cce->bye('FAIL', '[[base-vsite.attemptToDisableUsedPHP]]');
+                        exit(1);
+                    }
 
-        			# If so, check if any Vsite is using that version of PHP:
-        			(@vhosts) = $cce->findx('Vsite');
-        			foreach $vhost (@vhosts) {
-        				# Get PHP version that Vhosts are using:
-        				($ok, $xvsite_php) = $cce->get($vhost, 'PHP');
-        				# Check if it matches a disabled PHP version:
-        				if ($xvsite_php->{'version'} eq $phpVer) {
-        					&debug_msg("Vsite with OID $vhost was using PHP version $phpVer - Moving it back to OS provided PHP. \n");
-        					# It does? Move it back to the default OS provided PHP:
-    					    ($ok) = $cce->set($vhost, 'PHP', { 'version' => 'PHPOS' });
-        				}
-        			}
-        		}
-        	}
+                    # If so, check if any Vsite is using that version of PHP:
+                    (@vhosts) = $cce->findx('Vsite');
+                    foreach $vhost (@vhosts) {
+                        # Get PHP version that Vhosts are using:
+                        ($ok, $xvsite_php) = $cce->get($vhost, 'PHP');
+                        # Check if it matches a disabled PHP version:
+                        if ($xvsite_php->{'version'} eq $phpVer) {
+                            &debug_msg("Vsite with OID $vhost was using PHP version $phpVer - Moving it back to OS provided PHP. \n");
+                            # It does? Move it back to the default OS provided PHP:
+                            ($ok) = $cce->set($vhost, 'PHP', { 'version' => 'PHPOS' });
+                        }
+                    }
+                }
+            }
         }
     }
     else {

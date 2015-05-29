@@ -20,28 +20,28 @@ my $old_network = $cce->event_old();
 # and will be correct in case enabled and ipaddr are changing simultaneously
 my @vsites = $cce->find('Vsite', { 'ipaddr' => $old_network->{ipaddr} });
 my @networks = $cce->find('Network', 
-			{ 
-				'ipaddr' => $old_network->{ipaddr},
-				'enabled' => 1
-			 });
+            { 
+                'ipaddr' => $old_network->{ipaddr},
+                'enabled' => 1
+             });
 
 if (!$network->{enabled} && scalar(@vsites) && !scalar(@networks))
 {
-	# just fail if it is an alias
-	if (!$network->{real})
-	{
-		&fail($cce);
-	}
-	else
-	{
-		# interface is going down, try to migrate to alias on another real
-		# interface
-		my $candidate = &get_candidate_iface($cce);
-	
-		if (!$candidate) { &fail($cce); }
-		vsite_add_network_interface($cce, $old_network->{ipaddr}, $candidate);
-	}
-		
+    # just fail if it is an alias
+    if (!$network->{real})
+    {
+        &fail($cce);
+    }
+    else
+    {
+        # interface is going down, try to migrate to alias on another real
+        # interface
+        my $candidate = &get_candidate_iface($cce);
+    
+        if (!$candidate) { &fail($cce); }
+        vsite_add_network_interface($cce, $old_network->{ipaddr}, $candidate);
+    }
+        
 }
 elsif ($old_network->{ipaddr} && scalar(@vsites) &&
         $network->{ipaddr} ne $old_network->{ipaddr})
@@ -56,17 +56,17 @@ exit(0);
 
 sub get_candidate_iface
 {
-	if (! -f "/proc/user_beancounters") { 
-	        $DEFAULT_INTERFACE = 'eth0'; 
-	} 
-	else { 
-	        $DEFAULT_INTERFACE = 'venet0'; 
-	} 
+    if (! -f "/proc/user_beancounters") { 
+            $DEFAULT_INTERFACE = 'eth0'; 
+    } 
+    else { 
+            $DEFAULT_INTERFACE = 'venet0'; 
+    } 
 }
 
 sub fail
 {
-	my $cce = shift;
+    my $cce = shift;
 
     $cce->bye('FAIL', '[[base-vsite.vsiteUsingIpAddress]]');
     exit(1);
