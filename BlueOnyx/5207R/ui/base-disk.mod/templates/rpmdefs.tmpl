@@ -103,6 +103,11 @@ information for [VENDOR]-[SERVICE].
 
 <begin $CHANGELOG>
 
+* Tue Jun 02 2015 Michael Stauber <mstauber@solarspeed.net> 3.0.0-1BX10
+- Small fix in ui/chorizo/web/controllers/serverDiskUsage.php to prevent
+  'undefined index' errors if ccewrap is not working or get_quotas.pl
+  returns something unexpected.
+
 * Sat May 09 2015 Michael Stauber <mstauber@solarspeed.net> 3.0.0-1BX09
 - We were using 'df -k' in Base::Disk to determine disk usage. We actually
   need to use 'df -kP' for POSIX compatible output without linefeeds after

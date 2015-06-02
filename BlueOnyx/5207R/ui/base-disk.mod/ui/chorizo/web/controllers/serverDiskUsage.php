@@ -943,7 +943,12 @@ class ServerDiskUsage extends MX_Controller {
 
                 // we then use the sitename to figure out which
                 // entry from the repquota results we need...
-                $site_info = $sites[$name];
+                if (isset($sites[$name])) {
+                    $site_info = $sites[$name];
+                }
+                else {
+                    $site_info = $name;
+                }
                 // and lookup the usage info
                 $used = $site_info[1];
                 $quota = $site_info[2];
@@ -1060,7 +1065,7 @@ class ServerDiskUsage extends MX_Controller {
 
             $users[] = $pieces;
         }
-        
+
         $am_obj = $cceClient->getObject('ActiveMonitor', array(), 'Disk');
 
         for ($i = 0; ($i < count($users)); $i++) {
