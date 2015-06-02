@@ -1,6 +1,5 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
-# $Id: set_logrotate.pl,v 1.1 2001/11/30 02:44:33 pbaltz Exp $
-# Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+# $Id: set_logrotate.pl
 #
 # turn on/off log file rotation for sites, and adjust size if Vsite quota
 # changes
@@ -20,25 +19,25 @@ my $vsite = {};
 my ($ok, $disk);
 if ($cce->event_is_destroy())
 {
-	$vsite = $cce->event_old();
+    $vsite = $cce->event_old();
 }
 else
 {
-	$vsite = $cce->event_object();
+    $vsite = $cce->event_object();
 
-	if ($cce->event_is_create() && !$vsite->{name})
-	{
-		$cce->bye('DEFER');
-		exit(0);
-	}
+    if ($cce->event_is_create() && !$vsite->{name})
+    {
+        $cce->bye('DEFER');
+        exit(0);
+    }
 
-	($ok, $disk) = $cce->get($cce->event_oid(), 'Disk');
+    ($ok, $disk) = $cce->get($cce->event_oid(), 'Disk');
 
-	if (!$ok)
-	{
-		$cce->bye('FAIL', '[[base-sitestats.systemError]]');
-		exit(1);
-	}
+    if (!$ok)
+    {
+        $cce->bye('FAIL', '[[base-sitestats.systemError]]');
+        exit(1);
+    }
 }
 
 my $logrotate_file = "$LOGROTATE_DIR/$vsite->{name}";
@@ -46,23 +45,23 @@ my $logrotate_file = "$LOGROTATE_DIR/$vsite->{name}";
 # on destroy just get rid of the file
 if ($cce->event_is_destroy())
 {
-	Sauce::Util::unlinkfile($logrotate_file);
+    Sauce::Util::unlinkfile($logrotate_file);
 }
 else # create or quota change
 {
-	my $log_dir = homedir_get_group_dir($vsite->{name}, $vsite->{volume}) .
-					"/$LOG_DIR";
-	my $size = int($disk->{quota} / 10) || 1;
+    my $log_dir = homedir_get_group_dir($vsite->{name}, $vsite->{volume}) .
+                    "/$LOG_DIR";
+    my $size = int($disk->{quota} / 10) || 1;
 
-	# disk quota can be -1 to specify unlimited, so deal with it
-	if ($disk->{quota} == -1) { $size = $DEFAULT_SIZE; }
+    # disk quota can be -1 to specify unlimited, so deal with it
+    if ($disk->{quota} == -1) { $size = $DEFAULT_SIZE; }
 
-	if (!Sauce::Util::editfile($logrotate_file, *edit_logrotate, 
-				$log_dir, $size))
-	{
-		$cce->bye('FAIL', '[[base-sitestats.cantEnableLogrotate]]');
-		exit(1);
-	}
+    if (!Sauce::Util::editfile($logrotate_file, *edit_logrotate, 
+                $log_dir, $size))
+    {
+        $cce->bye('FAIL', '[[base-sitestats.cantEnableLogrotate]]');
+        exit(1);
+    }
 }
 
 $cce->bye('SUCCESS');
@@ -70,10 +69,10 @@ exit(0);
 
 sub edit_logrotate
 {
-	my($in, $out, $log_dir, $size) = @_;
+    my($in, $out, $log_dir, $size) = @_;
 
-	$size .= 'M';
-	my($rotate) = <<EOF;
+    $size .= 'M';
+    my($rotate) = <<EOF;
 $log_dir/mail.log {
    missingok
    compress
@@ -93,26 +92,43 @@ $log_dir/web.log {
 }
 EOF
 
-	print $out $rotate;
+    print $out $rotate;
 
-	return 1;
+    return 1;
 }
-# Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
+
 # 
-# Redistribution and use in source and binary forms, with or without 
-# modification, are permitted provided that the following conditions are met:
+# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2003 Sun Microsystems, Inc. 
+# All Rights Reserved.
 # 
-# -Redistribution of source code must retain the above copyright notice, 
-# this list of conditions and the following disclaimer.
+# 1. Redistributions of source code must retain the above copyright 
+#    notice, this list of conditions and the following disclaimer.
 # 
-# -Redistribution in binary form must reproduce the above copyright notice, 
-# this list of conditions and the following disclaimer in the documentation  
-# and/or other materials provided with the distribution.
+# 2. Redistributions in binary form must reproduce the above copyright 
+#    notice, this list of conditions and the following disclaimer in 
+#    the documentation and/or other materials provided with the 
+#    distribution.
 # 
-# Neither the name of Sun Microsystems, Inc. or the names of contributors may 
-# be used to endorse or promote products derived from this software without 
-# specific prior written permission.
+# 3. Neither the name of the copyright holder nor the names of its 
+#    contributors may be used to endorse or promote products derived 
+#    from this software without specific prior written permission.
 # 
-# This software is provided "AS IS," without a warranty of any kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY EXCLUDED. SUN MICROSYSTEMS, INC. ("SUN") AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
+# COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+# POSSIBILITY OF SUCH DAMAGE.
 # 
-# You acknowledge that  this software is not designed or intended for use in the design, construction, operation or maintenance of any nuclear facility.
+# You acknowledge that this software is not designed or intended for 
+# use in the design, construction, operation or maintenance of any 
+# nuclear facility.
+# 
