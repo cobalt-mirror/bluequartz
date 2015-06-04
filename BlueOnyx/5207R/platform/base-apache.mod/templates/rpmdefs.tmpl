@@ -124,10 +124,10 @@ if [ -f /etc/httpd/conf/vhosts/preview ]; then
 fi
 
 # Run SSL_fixer.pl to enforce writing of updated SSL Vhost configs:
-if [ -f /usr/sausalito/sbin/SSL_fixer.pl ]; then
+#if [ -f /usr/sausalito/sbin/SSL_fixer.pl ]; then
   # We no longer need this at this time. 
   #/usr/sausalito/sbin/SSL_fixer.pl
-fi
+#fi
 
 # Run Swatch to get Apache back up if SSL_fixer.pl let it fell on its face:
 if [ -f /usr/sbin/swatch ]; then
