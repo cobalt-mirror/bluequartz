@@ -16,6 +16,7 @@ expect {
         # use catch so we don't report errors on the exec,
         # only on the dialog itself
         catch {exec /sbin/service httpd restart >&/dev/null}
+        catch {exec killall -9 httpd >&/dev/null}
         sleep 5
         # redo test, fail if get an error again
         spawn telnet localhost $PORT
