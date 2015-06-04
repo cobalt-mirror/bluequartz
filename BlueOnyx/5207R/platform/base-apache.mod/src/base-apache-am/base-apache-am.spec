@@ -27,9 +27,9 @@ subsystem for base-apache-am.
 %changelog
 
 * Wed Jun 03 2015 Michael Stauber <mstauber@solarspeed.net> 1.0.4-0BX02
-- Modified src/base-apache-am/am_apache.exp to add a killall -9 httpd
-  to be sure no Apache child processes are around when we attempt a 
-  restart of Apache by Active Monitor.
+- Modified src/base-apache-am/am_apache.sh to run am_apache.pl as well.
+- Added src/base-apache-am/am_apache.pl to check if httpd processes
+  have detached from the master and kill them before am_apache.exp runs.
 
 * Thu Dec 12 2013 Michael Stauber <mstauber@solarspeed.net> 1.0.4-0BX01
 - As we added theability to change the default HTTP port, it is necessary
