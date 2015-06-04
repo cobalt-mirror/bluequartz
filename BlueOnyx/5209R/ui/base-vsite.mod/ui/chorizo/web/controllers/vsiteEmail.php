@@ -153,7 +153,7 @@ class vsiteEmail extends MX_Controller {
 
             // Handle AutoFeatures:
             $autoFeatures = new AutoFeatures($serverScriptHelper, $attributes);
-            $cce_info = array('CCE_OID' => $vsite['OID']);
+            $cce_info = array('CCE_OID' => $vsite['OID'], 'group' => $group, 'i18n' => $i18n);
             list($cce_info['CCE_SERVICES_OID']) = $cceClient->find('VsiteServices');
             $af_errors = $autoFeatures->handle('modifyEmail.Vsite', $cce_info);
             $errors = array_merge($errors, $af_errors);
@@ -221,16 +221,6 @@ class vsiteEmail extends MX_Controller {
             Log403Error("/gui/Forbidden403#2");
         }
 
-        //
-        //--- Add AutoFeatures:
-        //
-
-        $autoFeatures = new AutoFeatures($serverScriptHelper, $attributes);
-        $cce_info = array('CCE_OID' => $vsite['OID'], 'FIELD_ACCESS' => $access, 'IS_SITE_ADMIN' => $is_site_admin, 'group' => $group);
-        list($cce_info['CCE_SERVICES_OID']) = $cceClient->find('VsiteServices');
-        $cce_info['PAGED_BLOCK_DEFAULT_PAGE'] = $defaultPage;
-        $autoFeatures->display($block, 'modifyEmail.Vsite', $cce_info);
-
         // Enable & disable Email
         $block->addFormField(
             $factory->getBoolean("emailDisabled", $vsite["emailDisabled"], $access),
@@ -263,6 +253,16 @@ class vsiteEmail extends MX_Controller {
             $block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
             $block->addButton($factory->getCancelButton("/vsite/vsiteEmail?group=$group"));
         }
+
+        //
+        //--- Add AutoFeatures:
+        //
+
+        $autoFeatures = new AutoFeatures($serverScriptHelper, $attributes);
+        $cce_info = array('CCE_OID' => $vsite['OID'], 'FIELD_ACCESS' => $access, 'IS_SITE_ADMIN' => $is_site_admin, 'group' => $group);
+        list($cce_info['CCE_SERVICES_OID']) = $cceClient->find('VsiteServices');
+        $cce_info['PAGED_BLOCK_DEFAULT_PAGE'] = $defaultPage;
+        $autoFeatures->display($block, 'modifyEmail.Vsite', $cce_info);
 
         // Nice people say goodbye, or CCEd waits forever:
         $cceClient->bye();
