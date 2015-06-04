@@ -7,13 +7,14 @@ use CCE;
 my $cce = new CCE;
 $cce->connectuds();
 
-# Check how many Apache children are currently attached to PID #1:
+# Check how many Apache processes are currently attached around as 
+# primaries and not as children. There should be only one:
 $checker = `ps -axf|grep /usr/sbin/httpd|grep -v adm|grep -v '\_'|wc -l`;
 chomp($checker);
 
 ## Legend:
-#   0   Apache Dead
-#   1   Apache running OK
+#   0   Apache dead
+#   1   Apache probably running OK
 #  >1   Childs have detached (bad)
 
 if ($checker > "1") {
