@@ -8,17 +8,17 @@ my $cce = new CCE;
 $cce->connectuds();
 
 # Check how many Apache children are currently attached to PID #1:
-$checker = `ps -ef|grep /usr/sbin/httpd|grep -v adm|grep -v grep|awk -F " " '{print $3}'|grep "1"|wc -l`;
+$checker = `ps -axf|grep /usr/sbin/httpd|grep -v adm|grep -v '\_'|wc -l`;
 chomp($checker);
 
 ## Legend:
-#	0 	Apache Dead
-#	1	Apache running OK
+#   0   Apache Dead
+#   1   Apache running OK
 #  >1   Childs have detached (bad)
 
 if ($checker > "1") {
-	# Kill httpd (but not AdmServ!):
-	system("lsof -n /usr/sbin/httpd|grep -v adm|grep -v ^COMMAND|awk -F ' ' '{print $2}'|xargs kill -9 >&/dev/null");
+    # Kill httpd (but not AdmServ!):
+    system("ps axf|grep /usr/sbin/httpd|grep -v adm|grep -v grep|grep -v '\_'|awk -F ' ' '{print \$1}'|xargs kill -9 >&/dev/null");
 }
 
 $cce->bye('SUCCESS');
