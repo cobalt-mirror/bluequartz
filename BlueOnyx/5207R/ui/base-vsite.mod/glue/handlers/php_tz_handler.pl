@@ -75,32 +75,32 @@ if ($whatami eq "handler") {
 
     # Update Apache php.ini:
     if (-f $php_ini) {
-	# Edit php.ini:
-	&edit_php_ini;
+    # Edit php.ini:
+    &edit_php_ini;
 
-	# Restart Apache:	
-	&restart_apache;
+    # Restart Apache:   
+    &restart_apache;
     }
     else {
-	# Ok, we have a problem: No php.ini found.
-	# So we just weep silently and exit. 
-	$cce->bye('FAIL', "$php_ini not found!");
-	exit(1);
+    # Ok, we have a problem: No php.ini found.
+    # So we just weep silently and exit. 
+    $cce->bye('FAIL', "$php_ini not found!");
+    exit(1);
     }
 
     # Now the same for AdmServ's php.ini:
     $php_ini = $admserv_php_ini;
 
     if (-f $php_ini) {
-	# Edit php.ini:
-	&edit_php_ini;
-	# Note to self: No AdmServ reload or restart, as it could be dangerous!
+    # Edit php.ini:
+    &edit_php_ini;
+    # Note to self: No AdmServ reload or restart, as it could be dangerous!
     }
     else {
-	# Ok, we have a problem: No php.ini found.
-	# So we just weep silently and exit. 
-	$cce->bye('FAIL', "$php_ini not found!");
-	exit(1);
+    # Ok, we have a problem: No php.ini found.
+    # So we just weep silently and exit. 
+    $cce->bye('FAIL', "$php_ini not found!");
+    exit(1);
     }
 }
 
@@ -110,16 +110,16 @@ exit(0);
 sub thirdparty_check {
     # Check for presence of third party config file:
     if (-f $thirdparty) {
-	open (F, $thirdparty) || die "Could not open $thirdparty: $!";
-	while ($line = <F>) {
-    	    chomp($line);
-    	    next if $line =~ /^\s*$/;               	# skip blank lines
-    	    next if $line =~ /^#$/;               	# skip comments
-    	    if ($line =~ /^\/(.*)\/php\.ini$/) {
-		$php_ini = $line;
-	    }
-	}
-	close(F);
+    open (F, $thirdparty) || die "Could not open $thirdparty: $!";
+    while ($line = <F>) {
+            chomp($line);
+            next if $line =~ /^\s*$/;                   # skip blank lines
+            next if $line =~ /^#$/;                 # skip comments
+            if ($line =~ /^\/(.*)\/php\.ini$/) {
+        $php_ini = $line;
+        }
+    }
+    close(F);
     }
 }
 
@@ -139,7 +139,7 @@ sub edit_php_ini {
 
     # Build output hash for PHP-5.3 or newer:
     $server_php_settings_writeoff = { 
-	'date.timezone' => "'" . $timezone . "'"
+    'date.timezone' => "'" . $timezone . "'"
     };
 
     # Write changes to php.ini using Sauce::Util::hash_edit_function. The really GREAT thing

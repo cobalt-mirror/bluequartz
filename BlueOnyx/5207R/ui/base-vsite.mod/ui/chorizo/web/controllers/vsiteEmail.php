@@ -2,278 +2,278 @@
 
 class vsiteEmail extends MX_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Past the login page this loads the page for /vsite/vsiteEmail.
-	 *
-	 */
+    /**
+     * Index Page for this controller.
+     *
+     * Past the login page this loads the page for /vsite/vsiteEmail.
+     *
+     */
 
-	public function index() {
+    public function index() {
 
-		$CI =& get_instance();
-		
-	    // We load the BlueOnyx helper library first of all, as we heavily depend on it:
-	    $this->load->helper('blueonyx');
-	    init_libraries();
+        $CI =& get_instance();
+        
+        // We load the BlueOnyx helper library first of all, as we heavily depend on it:
+        $this->load->helper('blueonyx');
+        init_libraries();
 
-  		// Need to load 'BxPage' for page rendering:
-  		$this->load->library('BxPage');
-		$MX =& get_instance();
+        // Need to load 'BxPage' for page rendering:
+        $this->load->library('BxPage');
+        $MX =& get_instance();
 
-	    // Get $sessionId and $loginName from Cookie (if they are set):
-	    $sessionId = $CI->input->cookie('sessionId');
-	    $loginName = $CI->input->cookie('loginName');
-	    $locale = $CI->input->cookie('locale');
+        // Get $sessionId and $loginName from Cookie (if they are set):
+        $sessionId = $CI->input->cookie('sessionId');
+        $loginName = $CI->input->cookie('loginName');
+        $locale = $CI->input->cookie('locale');
 
-	    // Line up the ducks for CCE-Connection:
-	    include_once('ServerScriptHelper.php');
-		$serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-		$cceClient = $serverScriptHelper->getCceClient();
-		$user = $cceClient->getObject("User", array("name" => $loginName));
-		$i18n = new I18n("base-vsite", $user['localePreference']);
-		$system = $cceClient->getObject("System");
+        // Line up the ducks for CCE-Connection:
+        include_once('ServerScriptHelper.php');
+        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
+        $cceClient = $serverScriptHelper->getCceClient();
+        $user = $cceClient->getObject("User", array("name" => $loginName));
+        $i18n = new I18n("base-vsite", $user['localePreference']);
+        $system = $cceClient->getObject("System");
 
-		// Initialize Capabilities so that we can poll the access rights as well:
-		$Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        // Initialize Capabilities so that we can poll the access rights as well:
+        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
 
-		// -- Actual page logic start:
+        // -- Actual page logic start:
 
-		// Get URL strings:
-		$get_form_data = $CI->input->get(NULL, TRUE);
+        // Get URL strings:
+        $get_form_data = $CI->input->get(NULL, TRUE);
 
-		//
-		//-- Validate GET data:
-		//
+        //
+        //-- Validate GET data:
+        //
 
-		if (isset($get_form_data['group'])) {
-			// We have a delete transaction:
-			$group = $get_form_data['group'];
-		}
-		else {
-			// Don't play games with us!
-			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
-			Log403Error("/gui/Forbidden403#1");
-		}
+        if (isset($get_form_data['group'])) {
+            // We have a delete transaction:
+            $group = $get_form_data['group'];
+        }
+        else {
+            // Don't play games with us!
+            // Nice people say goodbye, or CCEd waits forever:
+            $cceClient->bye();
+            $serverScriptHelper->destructor();
+            Log403Error("/gui/Forbidden403#1");
+        }
 
-		//
-		//-- Access Rights Check for Vsite level pages:
-		// 
-		// 1.) Checks if the Group/Vsite exists.
-		// 2.) Checks if the user is systemAdministrator
-		// 3.) Checks if the user is Reseller of the given Group/Vsite
-		// 4.) Checks if the iser is siteAdmin of the given Group/Vsite
-		// Returns Forbidden403 if *none* of that is the case.
-		if (!$Capabilities->getGroupAdmin($group)) {
-			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
-			Log403Error("/gui/Forbidden403#2");
-		}
+        //
+        //-- Access Rights Check for Vsite level pages:
+        // 
+        // 1.) Checks if the Group/Vsite exists.
+        // 2.) Checks if the user is systemAdministrator
+        // 3.) Checks if the user is Reseller of the given Group/Vsite
+        // 4.) Checks if the iser is siteAdmin of the given Group/Vsite
+        // Returns Forbidden403 if *none* of that is the case.
+        if (!$Capabilities->getGroupAdmin($group)) {
+            // Nice people say goodbye, or CCEd waits forever:
+            $cceClient->bye();
+            $serverScriptHelper->destructor();
+            Log403Error("/gui/Forbidden403#2");
+        }
 
-		//
-		//-- Prepare data:
-		//
+        //
+        //-- Prepare data:
+        //
 
-		// Get data for the Vsite:
-		$vsite = $cceClient->getObject('Vsite', array('name' => $group));
+        // Get data for the Vsite:
+        $vsite = $cceClient->getObject('Vsite', array('name' => $group));
 
-		//
-		//--- Handle form validation:
-		//
+        //
+        //--- Handle form validation:
+        //
 
-	    // We start without any active errors:
-	    $errors = array();
-	    $extra_headers =array();
-	    $ci_errors = array();
-	    $my_errors = array();
+        // We start without any active errors:
+        $errors = array();
+        $extra_headers =array();
+        $ci_errors = array();
+        $my_errors = array();
 
-		// Shove submitted input into $form_data after passing it through the XSS filter:
-		$form_data = $CI->input->post(NULL, TRUE);
+        // Shove submitted input into $form_data after passing it through the XSS filter:
+        $form_data = $CI->input->post(NULL, TRUE);
 
-		// Form fields that are required to have input:
-		$required_keys = array();
+        // Form fields that are required to have input:
+        $required_keys = array();
 
-    	// Set up rules for form validation. These validations happen before we submit to CCE and further checks based on the schemas are done:
+        // Set up rules for form validation. These validations happen before we submit to CCE and further checks based on the schemas are done:
 
-		// Empty array for key => values we want to submit to CCE:
-    	$attributes = array();
+        // Empty array for key => values we want to submit to CCE:
+        $attributes = array();
 
-    	// Items we do NOT want to submit to CCE:
-    	$ignore_attributes = array("BlueOnyx_Info_Text");
-		if (is_array($form_data)) {
-			// Function GetFormAttributes() walks through the $form_data and returns us the $parameters we want to
-			// submit to CCE. It intelligently handles checkboxes, which only have "on" set when they are ticked.
-			// In that case it pulls the unticked status from the hidden checkboxes and addes them to $parameters.
-			// It also transformes the value of the ticked checkboxes from "on" to "1". 
-			//
-			// Additionally it generates the form_validation rules for CodeIgniter.
-			//
-			// params: $i18n				i18n Object of the error messages
-			// params: $form_data			array with form_data array from CI
-			// params: $required_keys		array with keys that must have data in it. Needed for CodeIgniter's error checks
-			// params: $ignore_attributes	array with items we want to ignore. Such as Labels.
-			// return: 						array with keys and values ready to submit to CCE.
-			$attributes = GetFormAttributes($i18n, $form_data, $required_keys, $ignore_attributes, $i18n);
-		}
-		//Setting up error messages:
-		$CI->form_validation->set_message('required', $i18n->get("[[palette.val_is_required]]", false, array("field" => "\"%s\"")));		
+        // Items we do NOT want to submit to CCE:
+        $ignore_attributes = array("BlueOnyx_Info_Text");
+        if (is_array($form_data)) {
+            // Function GetFormAttributes() walks through the $form_data and returns us the $parameters we want to
+            // submit to CCE. It intelligently handles checkboxes, which only have "on" set when they are ticked.
+            // In that case it pulls the unticked status from the hidden checkboxes and addes them to $parameters.
+            // It also transformes the value of the ticked checkboxes from "on" to "1". 
+            //
+            // Additionally it generates the form_validation rules for CodeIgniter.
+            //
+            // params: $i18n                i18n Object of the error messages
+            // params: $form_data           array with form_data array from CI
+            // params: $required_keys       array with keys that must have data in it. Needed for CodeIgniter's error checks
+            // params: $ignore_attributes   array with items we want to ignore. Such as Labels.
+            // return:                      array with keys and values ready to submit to CCE.
+            $attributes = GetFormAttributes($i18n, $form_data, $required_keys, $ignore_attributes, $i18n);
+        }
+        //Setting up error messages:
+        $CI->form_validation->set_message('required', $i18n->get("[[palette.val_is_required]]", false, array("field" => "\"%s\"")));        
 
-	    // Do we have validation related errors?
-	    if ($CI->form_validation->run() == FALSE) {
+        // Do we have validation related errors?
+        if ($CI->form_validation->run() == FALSE) {
 
-			if (validation_errors()) {
-				// Set CI related errors:
-				$ci_errors = array(validation_errors('<div class="alert dismissible alert_red"><img width="40" height="36" src="/.adm/images/icons/small/white/alarm_bell.png"><strong>', '</strong></div>'));
-			}		    
-			else {
-				// No errors. Pass empty array along:
-				$ci_errors = array();
-			}
-		}
+            if (validation_errors()) {
+                // Set CI related errors:
+                $ci_errors = array(validation_errors('<div class="alert dismissible alert_red"><img width="40" height="36" src="/.adm/images/icons/small/white/alarm_bell.png"><strong>', '</strong></div>'));
+            }           
+            else {
+                // No errors. Pass empty array along:
+                $ci_errors = array();
+            }
+        }
 
-		//
-		//--- Own error checks:
-		//
+        //
+        //--- Own error checks:
+        //
 
-		if ($CI->input->post(NULL, TRUE)) {
-		}
+        if ($CI->input->post(NULL, TRUE)) {
+        }
 
-		//
-		//--- At this point all checks are done. If we have no errors, we can submit the data to CODB:
-		//
+        //
+        //--- At this point all checks are done. If we have no errors, we can submit the data to CODB:
+        //
 
-		// Join the various error messages:
-		$errors = array_merge($ci_errors, $my_errors);
+        // Join the various error messages:
+        $errors = array_merge($ci_errors, $my_errors);
 
-		// If we have no errors and have POST data, we submit to CODB:
-		if ((count($errors) == "0") && ($CI->input->post(NULL, TRUE))) {
+        // If we have no errors and have POST data, we submit to CODB:
+        if ((count($errors) == "0") && ($CI->input->post(NULL, TRUE))) {
 
-			// Handle AutoFeatures:
-			$autoFeatures = new AutoFeatures($serverScriptHelper, $attributes);
-			$cce_info = array('CCE_OID' => $vsite['OID']);
-			list($cce_info['CCE_SERVICES_OID']) = $cceClient->find('VsiteServices');
-			$af_errors = $autoFeatures->handle('modifyEmail.Vsite', $cce_info);
-			$errors = array_merge($errors, $af_errors);
+            // Handle AutoFeatures:
+            $autoFeatures = new AutoFeatures($serverScriptHelper, $attributes);
+            $cce_info = array('CCE_OID' => $vsite['OID']);
+            list($cce_info['CCE_SERVICES_OID']) = $cceClient->find('VsiteServices');
+            $af_errors = $autoFeatures->handle('modifyEmail.Vsite', $cce_info);
+            $errors = array_merge($errors, $af_errors);
 
-			$cceClient->set($vsite['OID'], '', array(
-				"emailDisabled" => $attributes['emailDisabled'], 
-				"mailAliases" => $attributes['mailAliases'], 
-				"mailCatchAll" => $attributes['mailCatchAll'])
-				);
+            $cceClient->set($vsite['OID'], '', array(
+                "emailDisabled" => $attributes['emailDisabled'], 
+                "mailAliases" => $attributes['mailAliases'], 
+                "mailCatchAll" => $attributes['mailCatchAll'])
+                );
 
-			// CCE errors that might have happened during submit to CODB:
-			$CCEerrors = $cceClient->errors();
-			foreach ($CCEerrors as $object => $objData) {
-				// When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
-				$errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
-			}
+            // CCE errors that might have happened during submit to CODB:
+            $CCEerrors = $cceClient->errors();
+            foreach ($CCEerrors as $object => $objData) {
+                // When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
+                $errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
+            }
 
-			// No errors during submit? Reload page:
-			if (count($errors) == "0") {
-				$cceClient->bye();
-				$serverScriptHelper->destructor();
-				$redirect_URL = "/vsite/vsiteEmail?group=$group";
-				header("location: $redirect_URL");
-				exit;
-			}
-		}
+            // No errors during submit? Reload page:
+            if (count($errors) == "0") {
+                $cceClient->bye();
+                $serverScriptHelper->destructor();
+                $redirect_URL = "/vsite/vsiteEmail?group=$group";
+                header("location: $redirect_URL");
+                exit;
+            }
+        }
 
-		//
-	    //-- Generate page:
-	    //
+        //
+        //-- Generate page:
+        //
 
-		// Prepare Page:
-		$factory = $serverScriptHelper->getHtmlComponentFactory("base-vsite", "/vsite/vsiteEmail?group=$group");
-		$BxPage = $factory->getPage();
-		$BxPage->setErrors($errors);
-		$i18n = $factory->getI18n();
+        // Prepare Page:
+        $factory = $serverScriptHelper->getHtmlComponentFactory("base-vsite", "/vsite/vsiteEmail?group=$group");
+        $BxPage = $factory->getPage();
+        $BxPage->setErrors($errors);
+        $i18n = $factory->getI18n();
 
-		// Set Menu items:
-		$BxPage->setVerticalMenu('base_siteservices');
-		$BxPage->setVerticalMenuChild('base_sitemail');
-		$page_module = 'base_sitemanage';
+        // Set Menu items:
+        $BxPage->setVerticalMenu('base_siteservices');
+        $BxPage->setVerticalMenuChild('base_sitemail');
+        $page_module = 'base_sitemanage';
 
-		$defaultPage = "basicSettings";
-		$block =& $factory->getPagedBlock("siteEmailSettings", array($defaultPage));
-		$block->setLabel($factory->getLabel('siteEmailSettings', false, array('fqdn' => $vsite['fqdn'])));
+        $defaultPage = "basicSettings";
+        $block =& $factory->getPagedBlock("siteEmailSettings", array($defaultPage));
+        $block->setLabel($factory->getLabel('siteEmailSettings', false, array('fqdn' => $vsite['fqdn'])));
 
-		$block->setToggle("#");
-		$block->setSideTabs(FALSE);
-		$block->setDefaultPage($defaultPage);
+        $block->setToggle("#");
+        $block->setSideTabs(FALSE);
+        $block->setDefaultPage($defaultPage);
 
-		// Only 'manageSite' can modify things on this page.
-		// Site admins can view it for informational purposes.
-		if ($Capabilities->getAllowed('manageSite')) {
-		    $is_site_admin = FALSE;
-		    $access = 'rw';
-		}
-		elseif (($Capabilities->getAllowed('siteAdmin')) && ($group == $Capabilities->loginUser['site'])) {
-		    $access = 'r';
-		    $is_site_admin = TRUE;
-		}
-		else {
-			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
-			Log403Error("/gui/Forbidden403#2");
-		}
+        // Only 'manageSite' can modify things on this page.
+        // Site admins can view it for informational purposes.
+        if ($Capabilities->getAllowed('manageSite')) {
+            $is_site_admin = FALSE;
+            $access = 'rw';
+        }
+        elseif (($Capabilities->getAllowed('siteAdmin')) && ($group == $Capabilities->loginUser['site'])) {
+            $access = 'r';
+            $is_site_admin = TRUE;
+        }
+        else {
+            // Nice people say goodbye, or CCEd waits forever:
+            $cceClient->bye();
+            $serverScriptHelper->destructor();
+            Log403Error("/gui/Forbidden403#2");
+        }
 
-		//
-		//--- Add AutoFeatures:
-		//
+        // Enable & disable Email
+        $block->addFormField(
+            $factory->getBoolean("emailDisabled", $vsite["emailDisabled"], $access),
+            $factory->getLabel("emailDisabled"),
+            $defaultPage
+            );
 
-		$autoFeatures = new AutoFeatures($serverScriptHelper, $attributes);
-		$cce_info = array('CCE_OID' => $vsite['OID'], 'FIELD_ACCESS' => $access, 'IS_SITE_ADMIN' => $is_site_admin, 'group' => $group);
-		list($cce_info['CCE_SERVICES_OID']) = $cceClient->find('VsiteServices');
-		$cce_info['PAGED_BLOCK_DEFAULT_PAGE'] = $defaultPage;
-		$autoFeatures->display($block, 'modifyEmail.Vsite', $cce_info);
+        // Mail server aliases
+        $mailAliasesField = $factory->getDomainNameList("mailAliases", $vsite["mailAliases"], $access);
+        $mailAliasesField->setOptional(true);
+        $block->addFormField(
+                $mailAliasesField,
+                $factory->getLabel("mailAliases"), $defaultPage
+                );
 
-		// Enable & disable Email
-		$block->addFormField(
-			$factory->getBoolean("emailDisabled", $vsite["emailDisabled"], $access),
-			$factory->getLabel("emailDisabled"),
-			$defaultPage
-			);
+        // Site email catch-all
+        $mailCatchAllField = $factory->getTextField("mailCatchAll", $vsite["mailCatchAll"], $access);
+        $mailCatchAllField->setOptional(true);
+        $mailCatchAllField->setType('alphanum_plus');
+        $block->addFormField(
+                $mailCatchAllField,
+                $factory->getLabel("mailCatchAll"), $defaultPage
+                );
 
-		// Mail server aliases
-		$mailAliasesField = $factory->getDomainNameList("mailAliases", $vsite["mailAliases"], $access);
-		$mailAliasesField->setOptional(true);
-		$block->addFormField(
-		        $mailAliasesField,
-		        $factory->getLabel("mailAliases"), $defaultPage
-		        );
+        // Need to embed this or things get confused:
+        $block->addFormField($factory->getTextField('group', $group, ''), $defaultPage);
 
-		// Site email catch-all
-		$mailCatchAllField = $factory->getTextField("mailCatchAll", $vsite["mailCatchAll"], $access);
-		$mailCatchAllField->setOptional(true);
-		$mailCatchAllField->setType('alphanum_plus');
-		$block->addFormField(
-		        $mailCatchAllField,
-		        $factory->getLabel("mailCatchAll"), $defaultPage
-		        );
+        // Add the buttons for those who can edit this page:
+        if ($access == 'rw') {
+            $block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
+            $block->addButton($factory->getCancelButton("/vsite/vsiteEmail?group=$group"));
+        }
 
-		// Need to embed this or things get confused:
-		$block->addFormField($factory->getTextField('group', $group, ''), $defaultPage);
+        //
+        //--- Add AutoFeatures:
+        //
 
-		// Add the buttons for those who can edit this page:
-		if ($access == 'rw') {
-			$block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
-			$block->addButton($factory->getCancelButton("/vsite/vsiteEmail?group=$group"));
-		}
+        $autoFeatures = new AutoFeatures($serverScriptHelper, $attributes);
+        $cce_info = array('CCE_OID' => $vsite['OID'], 'FIELD_ACCESS' => $access, 'IS_SITE_ADMIN' => $is_site_admin, 'group' => $group);
+        list($cce_info['CCE_SERVICES_OID']) = $cceClient->find('VsiteServices');
+        $cce_info['PAGED_BLOCK_DEFAULT_PAGE'] = $defaultPage;
+        $autoFeatures->display($block, 'modifyEmail.Vsite', $cce_info);
 
-		// Nice people say goodbye, or CCEd waits forever:
-		$cceClient->bye();
-		$serverScriptHelper->destructor();
+        // Nice people say goodbye, or CCEd waits forever:
+        $cceClient->bye();
+        $serverScriptHelper->destructor();
 
-		$page_body[] = $block->toHtml();
+        $page_body[] = $block->toHtml();
 
-		// Out with the page:
-	    $BxPage->render($page_module, $page_body);
+        // Out with the page:
+        $BxPage->render($page_module, $page_body);
 
-	}		
+    }       
 }
 
 /*

@@ -136,6 +136,13 @@ fi
 
 <begin $CHANGELOG>
 
+* Wed Jun 03 2015 Michael Stauber <mstauber@solarspeed.net> 4.0-0BX26
+- Modified ui/chorizo/web/controllers/vsiteEmail.php to move AutoFeatures
+  'modifyEmail.Vsite' to the end of the FormField list where it actually
+  belongs.
+- Fixed indentation to spaces.
+- Changed Apache reload to restart for better reliability.
+
 * Wed May 27 2015 Michael Stauber <mstauber@solarspeed.net> 4.0-0BX25
 - Fixed glue/sbin/phpsendmail to pass a joined @ARGV instead of $*.
 

@@ -27,161 +27,161 @@ my $vsite_old = $cce->event_old();
 
 if ($cce->event_is_create() && !$vsite->{name})
 {
-	$cce->bye('DEFER');
-	exit(0);
+    $cce->bye('DEFER');
+    exit(0);
 }
 
 if ($cce->event_is_destroy())
 {
-	# delete all aliases for this site
-	my @aliases = $cce->find('ProtectedEmailAlias', 
-					{ 'site' => $vsite_old->{name} });
-	push @aliases, 
-		$cce->find('EmailAlias', { 'site' => $vsite_old->{name} });
+    # delete all aliases for this site
+    my @aliases = $cce->find('ProtectedEmailAlias', 
+                    { 'site' => $vsite_old->{name} });
+    push @aliases, 
+        $cce->find('EmailAlias', { 'site' => $vsite_old->{name} });
 
-	for my $alias (@aliases) {
-		my ($ok) = $cce->destroy($alias);
-		if (!$ok) {
-			$cce->bye('FAIL');
-			exit(1);
-		}
-	}
+    for my $alias (@aliases) {
+        my ($ok) = $cce->destroy($alias);
+        if (!$ok) {
+            $cce->bye('FAIL');
+            exit(1);
+        }
+    }
 } else {
-	my %new_aliases;
-	map { $new_aliases{$_} = '%1@' . $vsite->{fqdn} } 
-			$cce->scalar_to_array($vsite->{mailAliases});
+    my %new_aliases;
+    map { $new_aliases{$_} = '%1@' . $vsite->{fqdn} } 
+            $cce->scalar_to_array($vsite->{mailAliases});
 
-	# add catchall email alias
-	if ($vsite->{mailCatchAll})
-	{
-		$new_aliases{$vsite->{fqdn}} = $vsite->{mailCatchAll};
-	}
-	else
-	{
-		$new_aliases{$vsite->{fqdn}} = 'error:nouser No such user here';
-	}
+    # add catchall email alias
+    if ($vsite->{mailCatchAll})
+    {
+        $new_aliases{$vsite->{fqdn}} = $vsite->{mailCatchAll};
+    }
+    else
+    {
+        $new_aliases{$vsite->{fqdn}} = 'error:nouser No such user here';
+    }
 
-	# go through new aliases and create and destroy as necessary
-	for my $alias (keys(%new_aliases))
-	{
-		my ($oid) = $cce->find('ProtectedEmailAlias', 
-						{ 
-							'site' => $vsite->{name},
-							'fqdn' => $alias,
-							'alias' => ''
-						});
+    # go through new aliases and create and destroy as necessary
+    for my $alias (keys(%new_aliases))
+    {
+        my ($oid) = $cce->find('ProtectedEmailAlias', 
+                        { 
+                            'site' => $vsite->{name},
+                            'fqdn' => $alias,
+                            'alias' => ''
+                        });
 
-		if (!$oid)
-		{
-			# need to create
-			my ($ok) = $cce->create('ProtectedEmailAlias',
-							{
-								'site' => $vsite->{name},
-								'fqdn' => $alias,
-								'action' => $new_aliases{$alias},
-								'build_maps' => 0
-							});
-			if (!$ok)
-			{
-				$cce->bye('FAIL', 'cantCreateMailAlias',
-							{ 'alias' => $alias });
-				exit(1);
-			}
-		}
-		else
-		{
-			# make sure the alias is up to date
-			my ($ok) = $cce->set($oid, '',
-							{
-								'site' => $vsite->{name},
-								'fqdn' => $alias,
-								'action' => $new_aliases{$alias}
-							});
-			if (!$ok)
-			{
-				$cce->bye('FAIL', 'cantUpdateMailAlias',
-						{ 'alias' => $alias });
-				exit(1);
-			}
-		}
-	}
+        if (!$oid)
+        {
+            # need to create
+            my ($ok) = $cce->create('ProtectedEmailAlias',
+                            {
+                                'site' => $vsite->{name},
+                                'fqdn' => $alias,
+                                'action' => $new_aliases{$alias},
+                                'build_maps' => 0
+                            });
+            if (!$ok)
+            {
+                $cce->bye('FAIL', 'cantCreateMailAlias',
+                            { 'alias' => $alias });
+                exit(1);
+            }
+        }
+        else
+        {
+            # make sure the alias is up to date
+            my ($ok) = $cce->set($oid, '',
+                            {
+                                'site' => $vsite->{name},
+                                'fqdn' => $alias,
+                                'action' => $new_aliases{$alias}
+                            });
+            if (!$ok)
+            {
+                $cce->bye('FAIL', 'cantUpdateMailAlias',
+                        { 'alias' => $alias });
+                exit(1);
+            }
+        }
+    }
    
-	# delete old aliases that are no longer needed
-	if (exists($vsite_old->{mailAliases}))
-	{
-		my @old_aliases = $cce->scalar_to_array($vsite_old->{mailAliases});
+    # delete old aliases that are no longer needed
+    if (exists($vsite_old->{mailAliases}))
+    {
+        my @old_aliases = $cce->scalar_to_array($vsite_old->{mailAliases});
 
-		# delete old catch all if fqdn changed
-		if ($vsite_old->{fqdn})
-		{
-			push @old_aliases, $vsite_old->{fqdn};
-		}
+        # delete old catch all if fqdn changed
+        if ($vsite_old->{fqdn})
+        {
+            push @old_aliases, $vsite_old->{fqdn};
+        }
 
-		for my $alias (@old_aliases)
-		{
-			if (!exists($new_aliases{$alias}))
-			{
-				my ($destroy_oid) = $cce->find('ProtectedEmailAlias',
-								{
-									'site' => $vsite->{name},
-									'fqdn' => $alias,
-									'alias' => ''
-								});
-				my ($ok) = $cce->destroy($destroy_oid);
-				if (!$ok) {
-					$cce->bye('FAIL');
-					exit(1);
-				}
-			}
-		}
-	}
+        for my $alias (@old_aliases)
+        {
+            if (!exists($new_aliases{$alias}))
+            {
+                my ($destroy_oid) = $cce->find('ProtectedEmailAlias',
+                                {
+                                    'site' => $vsite->{name},
+                                    'fqdn' => $alias,
+                                    'alias' => ''
+                                });
+                my ($ok) = $cce->destroy($destroy_oid);
+                if (!$ok) {
+                    $cce->bye('FAIL');
+                    exit(1);
+                }
+            }
+        }
+    }
 
-	# update all user aliases associated with this site if the fqdn changed
-	if (!$cce->event_is_create() && $vsite_new->{fqdn})
-	{
-		my @aliases = $cce->find('ProtectedEmailAlias',
-							{
-								'site' => $vsite->{name},
-								'fqdn' => $vsite_old->{fqdn}
-							});
+    # update all user aliases associated with this site if the fqdn changed
+    if (!$cce->event_is_create() && $vsite_new->{fqdn})
+    {
+        my @aliases = $cce->find('ProtectedEmailAlias',
+                            {
+                                'site' => $vsite->{name},
+                                'fqdn' => $vsite_old->{fqdn}
+                            });
 
-		push @aliases, 
-			$cce->find('EmailAlias',
-				{
-					'site' => $vsite->{name},
-					'fqdn' => $vsite_old->{fqdn}
-				});
-	
-		&debug_msg("oids: " . join(', ', @aliases) . "\n");
-		for my $alias (@aliases)
-		{
-			my ($ok, $badkeys, @info) = $cce->set($alias, '', { 'fqdn' => $vsite->{fqdn} });
-			&debug_msg("set $alias, ok = $ok \n");
-			if (!$ok)
-			{
-				&debug_msg("[[base-vsite.cantUpdateUserMailAliases]]\n");
-				$cce->bye('FAIL', '[[base-vsite.cantUpdateUserMailAliases]]');
-				exit(1);
-			}
-		}
-	}
+        push @aliases, 
+            $cce->find('EmailAlias',
+                {
+                    'site' => $vsite->{name},
+                    'fqdn' => $vsite_old->{fqdn}
+                });
+    
+        &debug_msg("oids: " . join(', ', @aliases) . "\n");
+        for my $alias (@aliases)
+        {
+            my ($ok, $badkeys, @info) = $cce->set($alias, '', { 'fqdn' => $vsite->{fqdn} });
+            &debug_msg("set $alias, ok = $ok \n");
+            if (!$ok)
+            {
+                &debug_msg("[[base-vsite.cantUpdateUserMailAliases]]\n");
+                $cce->bye('FAIL', '[[base-vsite.cantUpdateUserMailAliases]]');
+                exit(1);
+            }
+        }
+    }
 
-	# update web aliases, if necessary
-	if (exists($vsite->{webAliases}))
-	{
-		# map into a hash and then take the keys to avoid duplicates
-		&debug_msg("webAliases: " . $vsite->{webAliases} . "\n");
-		my %web_aliases = map { $_ => 1 } $cce->scalar_to_array($vsite->{webAliases});
-		my @web_aliases = keys %web_aliases;
-		if (!httpd_set_server_aliases(\@web_aliases, $vsite->{name}))
-		{
-			&debug_msg("[[base-vsite.cantUpdateWebAliases]]\n");
-			$cce->bye('FAIL', '[[base-vsite.cantUpdateWebAliases]]');
-			exit(1);
-		}
+    # update web aliases, if necessary
+    if (exists($vsite->{webAliases}))
+    {
+        # map into a hash and then take the keys to avoid duplicates
+        &debug_msg("webAliases: " . $vsite->{webAliases} . "\n");
+        my %web_aliases = map { $_ => 1 } $cce->scalar_to_array($vsite->{webAliases});
+        my @web_aliases = keys %web_aliases;
+        if (!httpd_set_server_aliases(\@web_aliases, $vsite->{name}))
+        {
+            &debug_msg("[[base-vsite.cantUpdateWebAliases]]\n");
+            $cce->bye('FAIL', '[[base-vsite.cantUpdateWebAliases]]');
+            exit(1);
+        }
 
-		service_run_init('httpd', 'reload');
-	}
+        service_run_init('httpd', 'restart');
+    }
 }
 
 sub debug_msg {
@@ -205,16 +205,16 @@ exit(0);
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 
-#	 notice, this list of conditions and the following disclaimer.
+#    notice, this list of conditions and the following disclaimer.
 # 
 # 2. Redistributions in binary form must reproduce the above copyright 
-#	 notice, this list of conditions and the following disclaimer in 
-#	 the documentation and/or other materials provided with the 
-#	 distribution.
+#    notice, this list of conditions and the following disclaimer in 
+#    the documentation and/or other materials provided with the 
+#    distribution.
 # 
 # 3. Neither the name of the copyright holder nor the names of its 
-#	 contributors may be used to endorse or promote products derived 
-#	 from this software without specific prior written permission.
+#    contributors may be used to endorse or promote products derived 
+#    from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
 # "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 

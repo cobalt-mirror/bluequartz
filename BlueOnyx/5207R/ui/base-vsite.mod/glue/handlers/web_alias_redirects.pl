@@ -63,14 +63,14 @@ if ($whatami eq "handler") {
     # Event is create or modify:
     if ((($cce->event_is_create()) || ($cce->event_is_modify()))) {
 
-	# Edit the vhost container or die!:
-	if(!Sauce::Util::editfile(httpd_get_vhost_conf_file($vsite->{"name"}), *edit_vhost, $vsite->{"webAliases"})) {
-	    $cce->bye('FAIL', '[[base-apache.cantEditVhost]]');
-	    exit(1);
-	}
+    # Edit the vhost container or die!:
+    if(!Sauce::Util::editfile(httpd_get_vhost_conf_file($vsite->{"name"}), *edit_vhost, $vsite->{"webAliases"})) {
+        $cce->bye('FAIL', '[[base-apache.cantEditVhost]]');
+        exit(1);
+    }
 
-	# Restart Apache:
-	&restart_apache;
+    # Restart Apache:
+    &restart_apache;
     }
 }
 
@@ -78,8 +78,8 @@ $cce->bye('SUCCESS');
 exit(0);
 
 sub restart_apache {
-    # Restarts Apache - soft restart:
-    service_run_init('httpd', 'reload');
+    # Restarts Apache - hard restart:
+    service_run_init('httpd', 'restart');
 }
 
 sub edit_vhost {
@@ -114,23 +114,23 @@ END
     my $last;
     while(<$in>) {
         if ((/^RewriteRule/i) || (/^RewriteOptions/i)) { 
-    	    # If we get to this point, we're past the area of interest.
-    	    # We store it in the string $last and end the charade.
-    	    $last = $_; 
-    	    last; 
-    	}
+            # If we get to this point, we're past the area of interest.
+            # We store it in the string $last and end the charade.
+            $last = $_; 
+            last; 
+        }
 
         if (/^RewriteCond/) {
-    	    # If we find this line, we ignore it and later add our own.
-    	    $found = "1";
-	    next;
+            # If we find this line, we ignore it and later add our own.
+            $found = "1";
+        next;
         }
-	elsif ((/^[\r\n]/) && ($found eq "1")) {
-	    # We now found the empty line smack in the middle of our area of interest and ignore it.
-	    next;
-	}
+    elsif ((/^[\r\n]/) && ($found eq "1")) {
+        # We now found the empty line smack in the middle of our area of interest and ignore it.
+        next;
+    }
         else {
-    	    # Anything else stays and gets printed out straight away.
+            # Anything else stays and gets printed out straight away.
             print $out $_;
         }
     }
