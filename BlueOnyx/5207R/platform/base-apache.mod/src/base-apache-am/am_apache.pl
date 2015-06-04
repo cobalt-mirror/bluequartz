@@ -9,7 +9,7 @@ $cce->connectuds();
 
 # Check how many Apache processes are currently attached around as 
 # primaries and not as children. There should be only one:
-$checker = `ps -axf|grep /usr/sbin/httpd|grep -v adm|grep -v '\_'|wc -l`;
+$checker = `ps axf|grep /usr/sbin/httpd|grep -v adm|grep -v '\_'|wc -l`;
 chomp($checker);
 
 ## Legend:
