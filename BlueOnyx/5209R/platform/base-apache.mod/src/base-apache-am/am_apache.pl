@@ -7,9 +7,24 @@ use CCE;
 my $cce = new CCE;
 $cce->connectuds();
 
+if (-f "/usr/bin/systemctl") { 
+    $awk = '/usr/bin/awk';
+    $kill = '/usr/bin/kill';
+    $grep = '/usr/bin/grep';
+    $ps = '/usr/bin/ps';
+    $wc = '/usr/bin/wc';
+}
+else {
+    $awk = '/bin/awk';
+    $kill = '/bin/kill';
+    $grep = '/bin/grep';
+    $ps = '/bin/ps';
+    $wc = '/usr/bin/wc';
+}
+
 # Check how many Apache processes are currently attached around as 
 # primaries and not as children. There should be only one:
-$checker = `/usr/bin/ps axf|/usr/bin/grep /usr/sbin/httpd|/usr/bin/grep -v adm|/usr/bin/grep -v '\_'|/usr/bin/wc -l`;
+$checker = `$ps axf|$grep /usr/sbin/httpd|$grep -v adm|$grep -v '\_'|$wc -l`;
 chomp($checker);
 
 ## Legend:
@@ -19,15 +34,7 @@ chomp($checker);
 
 if ($checker > "1") {
     # Kill httpd (but not AdmServ!):
-    if (-f "/usr/bin/awk") {
-        $awk = '/usr/bin/awk';
-        $kill = '/usr/bin/kill';
-    }
-    else {
-        $awk = '/bin/awk';
-        $kill = '/bin/kill';
-    }
-    system("/usr/bin/ps axf|/usr/bin/grep /usr/sbin/httpd|/usr/bin/grep -v adm|/usr/bin/grep -v grep|/usr/bin/grep -v '\_'|$awk -F ' ' '{print \$1}'|/usr/bin/xargs $kill -9 >&/dev/null");
+    system("$ps axf|$grep /usr/sbin/httpd|$grep -v adm|$grep -v grep|$grep -v '\_'|$awk -F ' ' '{print \$1}'|/usr/bin/xargs $kill -9 >&/dev/null");
 }
 
 $cce->bye('SUCCESS');
