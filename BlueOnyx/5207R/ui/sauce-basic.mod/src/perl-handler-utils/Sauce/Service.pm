@@ -5,20 +5,13 @@ use vars qw(@ISA @EXPORT @EXPORT_OK);
 require Exporter;
 @ISA =    qw(Exporter);
 @EXPORT = qw(service_get_init  service_set_init  service_run_init 
-	     service_toggle_init
-	     service_get_inetd service_set_inetd service_restart_inetd
-	     service_get_multi_inetd service_set_multi_inetd
-	     service_get_xinetd service_set_xinetd service_restart_xinetd
-	     service_get_multi_xinetd service_set_multi_xinetd
-	     service_send_signal 
-	    );
-
-# Debugging switch:
-$DEBUG = "0";
-if ($DEBUG)
-{
-        use Sys::Syslog qw( :DEFAULT setlogsock);
-}
+         service_toggle_init
+         service_get_inetd service_set_inetd service_restart_inetd
+         service_get_multi_inetd service_set_multi_inetd
+         service_get_xinetd service_set_xinetd service_restart_xinetd
+         service_get_multi_xinetd service_set_multi_xinetd
+         service_send_signal 
+        );
 
 use lib '/usr/sausalito/perl';
 use Sauce::Util;
@@ -36,107 +29,90 @@ sub service_run_init
 # changes the init state. it does this in the background by default
 # arguments: file, arguments ('start', 'stop', or 'restart')
 {
-	my ($service, $arg, $options) = @_;
- 	my $pid;
+    my ($service, $arg, $options) = @_;
+    my $pid;
 
-	#
-	# only do this for httpd for now.  I know this is a hack, but
-	# better this than breaking every service restart
-	#
-	# check httpd is running $arg is reload
-	#
-	#$pidHttpd = `pidof httpd|wc -l`;
-	#chomp($pidHttpd);
-	#if ($service eq 'httpd' && $arg eq 'reload' && ($pidHttpd == "1")) {
-	if ($service eq 'httpd' && $arg eq 'reload') {
-		#my $ssc = new Sauce::Service::Client;
-		#if (!$ssc->connect()) {
-		#	return(0);
-		#}
-		#if (!$ssc->register_event($service, $arg)) {
-		#	return(0);
-		#}
-		#if (!$ssc->bye()) {
-		#	# this can actually never fail currently
-		#	return(0);
-		#}
-		#return(1);
-
-		&debug_msg("Fail2: [[base-apache.cantEditVhost]]\n");
-
-		if (-f "/usr/bin/systemctl") { 
-			# Got Systemd: 
-			&debug_msg("Running: systemctl $arg $service.service --no-block\n");
-			system("systemctl $arg $service.service --no-block"); 
-		} 
-		else { 
-			# Thank God, no Systemd: 
-			&debug_msg("Running: /sbin/service $service $arg\n");
-			system("/sbin/service $service $arg"); 
-		}
-		return(0);
-	}
-	if ($service eq 'crond') {
-		`killall -9 crond`;
-		# Restarts Service:
-		if (-f "/usr/bin/systemctl") { 
-			# Got Systemd: 
-			system("systemctl $arg $service.service --no-block"); 
-		} 
-		else { 
-			# Thank God, no Systemd: 
-			system("/sbin/service $service $arg"); 
-		}
-		#`/sbin/service $service $arg`;
-		return(0);
-	}
-	unless ($options =~ /\bnobg\b/) {
-	
-	    if ($pid = fork()) {
-			waitpid($pid, 0);
-			# Success, whether it really worked or not...
-			return 1;
-	    }
-	    close(STDIN);
-	    close(STDOUT);
-	    close(STDERR);
-	    exit 0 if fork();
-	}
-	    
-	if ($options =~ /\bnobg\b/)
-	{
-		# Restarts Service:
-		if (-f "/usr/bin/systemctl") { 
-			# Got Systemd: 
-			system("systemctl $arg $service.service --no-block"); 
-		} 
-		else { 
-			# Thank God, no Systemd: 
-			system("/sbin/service $service $arg"); 
-		}
-		#`/sbin/service $service $arg`;
-
-		# Return 1 on success instead of the standard unix command 0
-		if ($? == 0) {
-			return 1;
-		}
-		return 0;
-	}
-	else
-	{
-		# Restarts Service:
-		if (-f "/usr/bin/systemctl") { 
-			# Got Systemd: 
-			system("systemctl $arg $service.service --no-block"); 
-		} 
-		else { 
-			# Thank God, no Systemd: 
-			system("/sbin/service $service $arg"); 
-		}
-		#`/sbin/service $service $arg`;
-	}
-	
-	exit 0 unless ($options =~ /\bnobg\b/);
+    #
+    # only do this for httpd for now.  I know this is a hack, but
+    # better this than breaking every service restart
+    #
+    # check httpd is running $arg is reload
+    #
+    $pidHttpd = `pidof httpd|wc -l`;
+    chomp($pidHttpd);
+    #if ($service eq 'httpd' && $arg eq 'reload' && ($pidHttpd == "1")) {
+    if ($service eq 'httpd' && ($arg eq 'reload')) {
+        my $ssc = new Sauce::Service::Client;
+        if (!$ssc->connect()) {
+            return(0);
+        }
+        if (!$ssc->register_event($service, $arg)) {
+            return(0);
+        }
+        if (!$ssc->bye()) {
+            # this can actually never fail currently
+            return(0);
+        }
+        return(1);
+    }
+    if ($service eq 'crond') {
+        `killall -9 crond`;
+        # Restarts Service:
+        if (-f "/usr/bin/systemctl") { 
+            # Got Systemd: 
+            system("systemctl $arg $service.service --no-block"); 
+        } 
+        else { 
+            # Thank God, no Systemd: 
+            system("/sbin/service $service $arg"); 
+        }
+        #`/sbin/service $service $arg`;
+        return(0);
+    }
+    unless ($options =~ /\bnobg\b/) {
+    
+        if ($pid = fork()) {
+            waitpid($pid, 0);
+            # Success, whether it really worked or not...
+            return 1;
+        }
+        close(STDIN);
+        close(STDOUT);
+        close(STDERR);
+        exit 0 if fork();
+    }
+        
+    if ($options =~ /\bnobg\b/)
+    {
+        # Restarts Service:
+        if (-f "/usr/bin/systemctl") { 
+            # Got Systemd: 
+            system("systemctl $arg $service.service --no-block"); 
+        } 
+        else { 
+            # Thank God, no Systemd: 
+            system("/sbin/service $service $arg"); 
+        }
+        # Return 1 on success instead of the standard unix command 0
+        if ($? == 0) {
+            return 1;
+        }
+        return 0;
+    }
+    else
+    {
+        # Restarts Service:
+        if (-f "/usr/bin/systemctl") { 
+            # Got Systemd: 
+            system("systemctl $arg $service.service --no-block"); 
+        } 
+        else { 
+            # Thank God, no Systemd: 
+            system("/sbin/service $service $arg"); 
+        }
+    }
+    
+    exit 0 unless ($options =~ /\bnobg\b/);
 }
 
 sub service_toggle_init
@@ -158,101 +134,101 @@ sub service_get_init
 # get the state of the service in the given runlevel
 # arguments: state, runlevel (defaults to 3 if not specified)
 {
-	my ($service, $state) = @_;
-	$state ||= 3;
-	my $return = -1;
+    my ($service, $state) = @_;
+    $state ||= 3;
+    my $return = -1;
 
-	if (-f "/usr/bin/systemctl") {
-		# Got Systemd:
-		my $status = `/usr/bin/systemctl is-enabled $service`;
-		if ($status) {
-			$return = ($status =~ /^enabled/) ? 1 : 0;
-		}
-	}
-	else {
-		# Thank God, no Systemd:
-		my $status = `/sbin/chkconfig --list $service`;
-		if ($status) {
-			$return = ($status =~ /\b$state:on\b/) ? 1 : 0;
-		}
-	}
-	return $return;
+    if (-f "/usr/bin/systemctl") {
+        # Got Systemd:
+        my $status = `/usr/bin/systemctl is-enabled $service`;
+        if ($status) {
+            $return = ($status =~ /^enabled/) ? 1 : 0;
+        }
+    }
+    else {
+        # Thank God, no Systemd:
+        my $status = `/sbin/chkconfig --list $service`;
+        if ($status) {
+            $return = ($status =~ /\b$state:on\b/) ? 1 : 0;
+        }
+    }
+    return $return;
 }
 
 sub service_set_init
 # set the given service state to on or off
 # arguments: service name, state, list of runlevels
 {
-	my ($service, $state, @runlevels) = @_;
-	my $level;
-	
-	if (@runlevels) {
-		$level = ' --level ';
-		$level .= join('',@runlevels);
-		$state = 'off' unless $state eq 'on';
+    my ($service, $state, @runlevels) = @_;
+    my $level;
+    
+    if (@runlevels) {
+        $level = ' --level ';
+        $level .= join('',@runlevels);
+        $state = 'off' unless $state eq 'on';
 
-		# Define Systemd state:
-		my $SystemdState = 'disable';
-		if ($state eq "on") {
-			$SystemdState = 'enable';
-		}
+        # Define Systemd state:
+        my $SystemdState = 'disable';
+        if ($state eq "on") {
+            $SystemdState = 'enable';
+        }
 
-		# Set state:
-		if (-f "/usr/bin/systemctl") {
-			`/usr/bin/systemctl $SystemdState $service.service`;
-		}
-		else {
-			`/sbin/chkconfig $level $service $state`;
-		}
-	} else {
-		if (service_get_init($service) == -1) {
-			# Set state:
-			if (-f "/usr/bin/systemctl") {
-				`/usr/bin/systemctl enable $service.service`;
-			}
-			else {
-				`/sbin/chkconfig --add $service`;
-			}
-		}
-		my $cmd = ($state eq 'on') ? 'on' : 'off';
+        # Set state:
+        if (-f "/usr/bin/systemctl") {
+            `/usr/bin/systemctl $SystemdState $service.service`;
+        }
+        else {
+            `/sbin/chkconfig $level $service $state`;
+        }
+    } else {
+        if (service_get_init($service) == -1) {
+            # Set state:
+            if (-f "/usr/bin/systemctl") {
+                `/usr/bin/systemctl enable $service.service`;
+            }
+            else {
+                `/sbin/chkconfig --add $service`;
+            }
+        }
+        my $cmd = ($state eq 'on') ? 'on' : 'off';
 
-		# Define Systemd state:
-		my $SystemdXState = 'disable';
-		if ($cmd eq "on") {
-			$SystemdXState = 'enable';
-		}
-		# Set state:
-		if (-f "/usr/bin/systemctl") {
-			`/usr/bin/systemctl $SystemdXState $service.service`;
-		}
-		else {
-			`/sbin/chkconfig $service $cmd`;
-		}
-	}
+        # Define Systemd state:
+        my $SystemdXState = 'disable';
+        if ($cmd eq "on") {
+            $SystemdXState = 'enable';
+        }
+        # Set state:
+        if (-f "/usr/bin/systemctl") {
+            `/usr/bin/systemctl $SystemdXState $service.service`;
+        }
+        else {
+            `/sbin/chkconfig $service $cmd`;
+        }
+    }
 
-	#
-	# chkconfig returns 0 on success, while this routine should return
-	# 1 (the perl standard)
-	#
-	if ($? == 0) {
-		return 1;
-	}
-	return 0;
+    #
+    # chkconfig returns 0 on success, while this routine should return
+    # 1 (the perl standard)
+    #
+    if ($? == 0) {
+        return 1;
+    }
+    return 0;
 }
 
 sub service_get_inetd
 # get the state of the service in inetd.conf
 # arguments: service
 {
-	my $service = shift;
+    my $service = shift;
 
-	open(INETD, inetd_conf());
-	while (<INETD>) {
-		next unless /\s*(\#*)\s*$service\s/;
-		close(INETD);
-		return $1 =~ /\#/ ? 0 : 'on';
-	}
-	close(INETD);
+    open(INETD, inetd_conf());
+    while (<INETD>) {
+        next unless /\s*(\#*)\s*$service\s/;
+        close(INETD);
+        return $1 =~ /\#/ ? 0 : 'on';
+    }
+    close(INETD);
 }
 
 sub service_get_multi_inetd
@@ -261,68 +237,68 @@ sub service_get_multi_inetd
 # returns hash of settings/values
 {
         my @list = @_;
-	my $conf = inetd_conf();
-	my $services = ',' . join(',', @list) . ',';
-	my ($set, $service, %settings);
+    my $conf = inetd_conf();
+    my $services = ',' . join(',', @list) . ',';
+    my ($set, $service, %settings);
 
-	open(INETD, $conf);
-	while (<INETD>) {
-		next unless /\s*(\#*)\s*(\S+)\s/;
-		($set, $service) = ($1, $2);
-	        next unless $services =~ /,$service,/;
-		$settings{$service} = ($set =~ /\#/ ? 0 : 'on') unless $settings{$service};
-	}
-	close(INETD);
+    open(INETD, $conf);
+    while (<INETD>) {
+        next unless /\s*(\#*)\s*(\S+)\s/;
+        ($set, $service) = ($1, $2);
+            next unless $services =~ /,$service,/;
+        $settings{$service} = ($set =~ /\#/ ? 0 : 'on') unless $settings{$service};
+    }
+    close(INETD);
 
-	return %settings;
+    return %settings;
 }
 
 sub _edit_inetd
 {
-	my ($input, $output, $service, $enabled, $rate) = @_;
-	while (<$input>) {
-		if (/^[\s\#]*($service\s.*)/) {
-			my $service_record = $1;
-			$service_record =~ s/wait(\.*\d*)(\s)/wait\.$rate$2/ if ($rate);
+    my ($input, $output, $service, $enabled, $rate) = @_;
+    while (<$input>) {
+        if (/^[\s\#]*($service\s.*)/) {
+            my $service_record = $1;
+            $service_record =~ s/wait(\.*\d*)(\s)/wait\.$rate$2/ if ($rate);
 
-			print $output ($enabled eq 'on') ? $service_record : "# $service_record";
-			print $output "\n";
-			next;
-		}
-		print $output $_;
-	}
-	return 1;
+            print $output ($enabled eq 'on') ? $service_record : "# $service_record";
+            print $output "\n";
+            next;
+        }
+        print $output $_;
+    }
+    return 1;
 }
-	
+    
 sub _edit_multi_inetd
 {
-	my ($input, $output, %settings) = @_;
-	my $services = ',' . join(',', keys %settings) . ',';
-	my ($service, $rest);
-	
-	while (<$input>) {
-		if (/^[\s\#]*(\S+)(\s.*)/) {
-		       ($service, $rest) = ($1, $2);
-		       if ($services =~ /,$service,/) {
-			   print $output ($settings{$service} eq 'on') ? 
-			       "$service$rest" : "# $service$rest";  
-			   print $output "\n";
-			   next;
-		       }
-	        }
-		print $output $_;
-	}
-	return 1;
+    my ($input, $output, %settings) = @_;
+    my $services = ',' . join(',', keys %settings) . ',';
+    my ($service, $rest);
+    
+    while (<$input>) {
+        if (/^[\s\#]*(\S+)(\s.*)/) {
+               ($service, $rest) = ($1, $2);
+               if ($services =~ /,$service,/) {
+               print $output ($settings{$service} eq 'on') ? 
+                   "$service$rest" : "# $service$rest";  
+               print $output "\n";
+               next;
+               }
+            }
+        print $output $_;
+    }
+    return 1;
 }
-	
+    
 sub service_set_inetd
 # sets the state of the service in inetd.conf
 # arguments: service, state
 {
-	my ($service, $state, $rate) = @_;
+    my ($service, $state, $rate) = @_;
 
-	my $ret = Sauce::Util::editfile(inetd_conf(), *_edit_inetd, $service, $state, $rate);
-	chmod(inetd_perm(), inetd_conf());
+    my $ret = Sauce::Util::editfile(inetd_conf(), *_edit_inetd, $service, $state, $rate);
+    chmod(inetd_perm(), inetd_conf());
     return $ret;
 }
 
@@ -330,25 +306,25 @@ sub service_set_multi_inetd
 # set the state of the service in inetd.conf
 # arguments: hash of services/settings
 {
-	my $ret = Sauce::Util::editfile(inetd_conf(), *_edit_multi_inetd, @_);
-	chmod(inetd_perm(), inetd_conf());
-	return $ret;
+    my $ret = Sauce::Util::editfile(inetd_conf(), *_edit_multi_inetd, @_);
+    chmod(inetd_perm(), inetd_conf());
+    return $ret;
 }
 
 
 sub service_send_signal
 # send a signal to a process
 {
-	my ($service, $signal) = @_;
-	$signal =~ tr/[a-z]/[A-Z]/;
-	`killall -$signal $service`;
+    my ($service, $signal) = @_;
+    $signal =~ tr/[a-z]/[A-Z]/;
+    `killall -$signal $service`;
 }
 
 sub service_restart_inetd
 # send sighup to inetd so it rereads /etc/inetd.conf
 # this is a backwards compatibility routine. 
 {
-	service_send_signal('inetd', 'HUP');
+    service_send_signal('inetd', 'HUP');
 }
 
 
@@ -361,16 +337,16 @@ sub service_get_xinetd
 # get the state of the service in inetd.conf
 # arguments: service
 {
-	my $service = shift;
-	my $conf_file = xinetd_conf_dir() . "/$service";
+    my $service = shift;
+    my $conf_file = xinetd_conf_dir() . "/$service";
  
-	open(SERVICE, $conf_file);
-	while (<SERVICE>) {
-		next unless /^\s*(disable)\s/;
-		close(SERVICE);
-		return $_ =~ /yes/ ? 0 : 'on';
-	}
-	close(SERVICE);
+    open(SERVICE, $conf_file);
+    while (<SERVICE>) {
+        next unless /^\s*(disable)\s/;
+        close(SERVICE);
+        return $_ =~ /yes/ ? 0 : 'on';
+    }
+    close(SERVICE);
 }
  
 sub service_get_multi_xinetd
@@ -391,27 +367,27 @@ sub service_get_multi_xinetd
  
 sub _edit_xinetd
 {
-	    my ($input, $output, $service, $enabled, $rate) = @_;
-		my $instances_done = 'false';
+        my ($input, $output, $service, $enabled, $rate) = @_;
+        my $instances_done = 'false';
 
-    	while (<$input>) {
-			if (/^(\s*disable\s.*=)\s/) {
-				print $output ($enabled eq 'on') ? "$1 no" : "$1 yes";
-				print $output "\n";
-				next;
-			}
-			if (/^(\s*instances\s.*=)\s/ && $rate ne '') {
-				print $output "$1 $rate";
-				print $output "\n";
-				$instances_done = 'true';
-				next;
-			}
-			if (/^}$/ && $instances_done eq 'false' && $rate ne '') {
-				print $output "\tinstances = $rate";
-				print $output "\n}\n";
-				next;
-			}
-			print $output $_;
+        while (<$input>) {
+            if (/^(\s*disable\s.*=)\s/) {
+                print $output ($enabled eq 'on') ? "$1 no" : "$1 yes";
+                print $output "\n";
+                next;
+            }
+            if (/^(\s*instances\s.*=)\s/ && $rate ne '') {
+                print $output "$1 $rate";
+                print $output "\n";
+                $instances_done = 'true';
+                next;
+            }
+            if (/^}$/ && $instances_done eq 'false' && $rate ne '') {
+                print $output "\tinstances = $rate";
+                print $output "\n}\n";
+                next;
+            }
+            print $output $_;
         }
         return 1;
 }
@@ -447,19 +423,7 @@ sub service_restart_xinetd
 {
         service_send_signal('xinetd', 'HUP');
 }
-
-# For debugging:
-sub debug_msg {
-    if ($DEBUG) {
-        my $msg = shift;
-        $user = $ENV{'USER'};
-        setlogsock('unix');
-        openlog($0,'','user');
-        syslog('info', "$ARGV[0]: $msg");
-        closelog;
-    }
-}
-
+ 
 # 
 # Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
 # Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
@@ -467,16 +431,16 @@ sub debug_msg {
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 
-#	 notice, this list of conditions and the following disclaimer.
+#    notice, this list of conditions and the following disclaimer.
 # 
 # 2. Redistributions in binary form must reproduce the above copyright 
-#	 notice, this list of conditions and the following disclaimer in 
-#	 the documentation and/or other materials provided with the 
-#	 distribution.
+#    notice, this list of conditions and the following disclaimer in 
+#    the documentation and/or other materials provided with the 
+#    distribution.
 # 
 # 3. Neither the name of the copyright holder nor the names of its 
-#	 contributors may be used to endorse or promote products derived 
-#	 from this software without specific prior written permission.
+#    contributors may be used to endorse or promote products derived 
+#    from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
 # "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 

@@ -1,7 +1,7 @@
 Summary: Perl modules that contain useful utility functions for handlers.
 Name: perl-handler-utils
 Version: 1.4.0
-Release: 0BX03%{?dist}
+Release: 0BX04%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -33,6 +33,32 @@ This package contains a number of perl modules that contain useful
 utility functions for writing cced event handler scripts.
 
 %changelog
+
+* Sat Jun 06 2015 Michael Stauber <mstauber@solarspeed.net> 1.4.0-0BX04
+- Reloading 'httpd' is tricky for a multitude of reasons. One being that
+  systemctl doesn't reload when the service is stopped. Or we have the
+  case where Apache child processes have detached from the master.
+  Likewise we need to avoid restarting/reloading Apache in quick 
+  succession, which sadly is done by certain events that affect both
+  server wide settings and Vsite wide settings. Each causes a reload or
+  a restart. Sausalito has a Client/Daemon implementation in Sauce::Service
+  for this purpose. If Apache is triggered to be restarted or reloaded,
+  then this spawns a Client/Daemon that waits for a moment to see if there
+  is only one request, or multiple. At the end of all requests it performs
+  the desired action only once. This needed to be adapted to handle both
+  InitV and Systemd, which I just did. It also needed to be adapted to
+  really check if Apache is now running, or if a reload needed to be
+  upgraded to a restart if Apache is dead. It also kills off detached
+  child processes and does a restart (and health check) afterwards.
+  If we can, we will reload when a reload was called. If that doesn't
+  work, we will kill off Apache and restart it and then check if it is
+  really up. 
+- Modified Sauce/Service.pm to hand off Apache to Daemon/Client.
+- Modified Sauce/Service/Client.pm for better logging.
+- Extended Sauce/Service/Daemon.pm to do better logging, added health
+  checks, checks if services run properly and loads of special
+  provisions to deal with Apache to begin with. Also added support for
+  both InitV and Systemd.
 
 * Sun Jan 25 2015 Michael Stauber <mstauber@solarspeed.net> 1.4.0-0BX03
 - More Systemd related fixes. Use systemctl if present and if we're
