@@ -1,7 +1,7 @@
 Summary: Active Monitor support for base-apache-am
 Name: base-apache-am
 Version: 1.0.4
-Release: 0BX05%{?dist}
+Release: 0BX06%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -25,6 +25,10 @@ This package contains binaries and scripts used by the Active Monitor
 subsystem for base-apache-am.  
 
 %changelog
+
+* Sat Jun 06 2015 Michael Stauber <mstauber@solarspeed.net> 1.0.4-0BX06
+- Updated src/base-apache-am/am_apache.pl to use correct full paths for
+  binaries.
 
 * Sat Jun 06 2015 Michael Stauber <mstauber@solarspeed.net> 1.0.4-0BX05
 - Updated src/base-apache-am/am_apache.pl to use full paths.
