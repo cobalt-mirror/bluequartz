@@ -178,10 +178,8 @@ $cce->bye('SUCCESS');
 exit(0);
 
 sub restart_apache {
-    # Restarts Apache - hard restart:
-    service_run_init('httpd', 'stop');
-    sleep(3);
-    service_run_init('httpd', 'start');
+    # Restarts Apache - soft restart:
+    Sauce::Service::service_run_init('httpd', 'reload');
 }
 
 sub edit_vhost {
