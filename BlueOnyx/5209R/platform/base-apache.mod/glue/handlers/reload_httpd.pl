@@ -11,24 +11,13 @@ if ($DEBUG)
 }
 
 use CCE;
-#use Sauce::Service;
+use Sauce::Service;
 
 my $cce = new CCE;
 $cce->connectfd();
 
-#&debug_msg("Issuing service_run_init('httpd', 'reload')");
-#service_run_init('httpd', 'reload');
-
-if (-f "/usr/bin/systemctl") {
-        # Got Systemd:
-        &debug_msg("Running: systemctl reload httpd.service --no-block\n");
-        system("systemctl reload httpd.service --no-block");
-}
-else {
-        # Thank God, no Systemd:
-        &debug_msg("Running: /sbin/service httpd reload\n");
-        system("/sbin/service httpd reload");
-}
+&debug_msg("Issuing service_run_init('httpd', 'reload')");
+service_run_init('httpd', 'reload');
 
 $cce->bye('SUCCESS');
 exit(0);

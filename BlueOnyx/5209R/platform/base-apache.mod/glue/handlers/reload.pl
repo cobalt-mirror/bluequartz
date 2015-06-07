@@ -7,15 +7,14 @@ use CCE;
 my $cce = new CCE;
 $cce->connectfd();
 
-Sauce::Service::service_run_init('admserv', 'reload');
-
+#Sauce::Service::service_run_init('admserv', 'reload');
 # Please note: I disabled the AdmServ reload here, because
 # it also kicks in on Product Language Changes initiated
 # through the GUI. That is NOT desirable, as the reload
 # doesn't clear Semaphores and leaves AdmServ often dead
 # in the water. So it has to go for now for sake of better
 # reliability:
-#Sauce::Service::service_run_init('httpd', 'reload');
+Sauce::Service::service_run_init('httpd', 'reload');
 
 $cce->bye('SUCCESS');
 
