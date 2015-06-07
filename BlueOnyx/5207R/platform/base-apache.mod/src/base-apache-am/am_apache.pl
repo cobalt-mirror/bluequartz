@@ -9,7 +9,7 @@ $cce->connectuds();
 
 # Check how many Apache processes are currently attached around as 
 # primaries and not as children. There should be only one:
-$checker = `ps axf|grep /usr/sbin/httpd|grep -v adm|grep -v '\_'|wc -l`;
+$checker = `/usr/bin/ps axf|/usr/bin/grep /usr/sbin/httpd|/usr/bin/grep -v adm|/usr/bin/grep -v '\_'|/usr/bin/wc -l`;
 chomp($checker);
 
 ## Legend:
@@ -19,7 +19,15 @@ chomp($checker);
 
 if ($checker > "1") {
     # Kill httpd (but not AdmServ!):
-    system("ps axf|grep /usr/sbin/httpd|grep -v adm|grep -v grep|grep -v '\_'|awk -F ' ' '{print \$1}'|xargs kill -9 >&/dev/null");
+    if (-f "/usr/bin/awk") {
+        $awk = '/usr/bin/awk';
+        $kill = '/usr/bin/kill';
+    }
+    else {
+        $awk = '/bin/awk';
+        $kill = '/bin/kill';
+    }
+    system("/usr/bin/ps axf|/usr/bin/grep /usr/sbin/httpd|/usr/bin/grep -v adm|/usr/bin/grep -v grep|/usr/bin/grep -v '\_'|$awk -F ' ' '{print \$1}'|/usr/bin/xargs $kill -9 >&/dev/null");
 }
 
 $cce->bye('SUCCESS');
