@@ -295,15 +295,8 @@ sub ini_read {
 }
 
 sub restart_apache {
-    # Restarts Apache - hard restart:
-    if (-f "/usr/bin/systemctl") {
-        # Got Systemd:
-        system("systemctl restart httpd.service --no-block");
-    }
-    else {
-        # Thank God, no Systemd:
-        system("/sbin/service httpd restart");
-    }
+    # Restarts Apache - soft restart:
+    Sauce::Service::service_run_init('httpd', 'reload');
 }
 
 sub items_of_interest {

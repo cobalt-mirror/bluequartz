@@ -136,6 +136,14 @@ fi
 
 <begin $CHANGELOG>
 
+* Sat Jun 06 2015 Michael Stauber <mstauber@solarspeed.net> 4.2-0BX42
+- Modified glue/handlers/php_handler.pl to use Sauce::Service for reloading
+  Apache. 
+- Modified glue/handlers/php_vsite_handler.pl to use Sauce::Service for 
+  reloading Apache. 
+- Modified glue/handlers/php_tz_handler.pl to use Sauce::Service for 
+  reloading Apache. 
+
 * Wed Jun 03 2015 Michael Stauber <mstauber@solarspeed.net> 4.2-0BX41
 - Modified ui/chorizo/web/controllers/vsiteEmail.php to move AutoFeatures
   'modifyEmail.Vsite' to the end of the FormField list where it actually
