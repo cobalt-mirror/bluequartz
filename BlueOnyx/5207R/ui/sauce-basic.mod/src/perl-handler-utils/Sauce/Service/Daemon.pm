@@ -177,6 +177,21 @@ sub _spawn_child
     $SIG{ALRM} = 'DEFAULT';
     alarm(0);
 
+    if (-f "/usr/bin/systemctl") { 
+        $awk = '/usr/bin/awk';
+        $kill = '/usr/bin/kill';
+        $grep = '/usr/bin/grep';
+        $ps = '/usr/bin/ps';
+        $wc = '/usr/bin/wc';
+    }
+    else {
+        $awk = '/bin/awk';
+        $kill = '/bin/kill';
+        $grep = '/bin/grep';
+        $ps = '/bin/ps';
+        $wc = '/usr/bin/wc';
+    }
+
     # check credentials of person connecting
     my $cred = $client->sockopt(17);
     my ($other_pid, $other_uid, $other_gid) = unpack('ISS', $cred);
@@ -191,19 +206,19 @@ sub _spawn_child
     # check if this action needs to be upgraded to a start
     if (-f "/usr/bin/systemctl") { 
         # Got Systemd: 
-        $checker = `/usr/bin/ps axf|/usr/bin/grep /usr/sbin/httpd|/usr/bin/grep -v adm|/usr/bin/grep -v '\_'|/usr/bin/wc -l`;
+        $checker = `$ps axf|$grep /usr/sbin/httpd|$grep -v adm|$grep -v '\_'|$wc -l`;
         chomp($checker);
     }
     else {
         # Thank God, no Systemd: 
-        $checker = `/sbin/service $service status|grep running|wc -l`;
+        $checker = `/sbin/service $service status|$grep running|$wc -l`;
         chomp($checker);
     }
     if ($checker > "1") {
         $checker = "0";
     }
 
-    &_logmsg("1:checker reports: $service $checker \n");
+    &_logmsg("1:checker reports: $service $checker");
 
     if (($action ne 'stop') && ($action ne 'start') && ($checker eq '0')) {
         #
@@ -216,14 +231,14 @@ sub _spawn_child
         &_logmsg("child, $$, NOT upgrading $action to start");
     }
 
-    &_logmsg("Performing event: $service $action \n");
+    &_logmsg("Performing event: $service $action");
 
     if (($service eq "httpd") && (($action eq "reload") || ($action eq "restart") || ($action eq "start"))) {
-        &_logmsg("Special case ($service): $action\n");
+        &_logmsg("Special case ($service): $action");
 
         # Check how many Apache processes are currently attached around as 
         # primaries and not as children. There should be only one:
-        $xchecker = `/usr/bin/ps axf|/usr/bin/grep /usr/sbin/httpd|/usr/bin/grep -v adm|/usr/bin/grep -v '\_'|/usr/bin/wc -l`;
+        $xchecker = `$ps axf|$grep /usr/sbin/httpd|$grep -v adm|$grep -v '\_'|$wc -l`;
         chomp($xchecker);
 
         ## Legend:
@@ -233,16 +248,8 @@ sub _spawn_child
 
         if ($xchecker > "1") {
             # Kill httpd (but not AdmServ!):
-            &_logmsg("xchecker reported: $xchecker - killing httpd, but not admserv.\n");
-            if (-f "/usr/bin/awk") {
-                $awk = '/usr/bin/awk';
-                $kill = '/usr/bin/kill';
-            }
-            else {
-                $awk = '/bin/awk';
-                $kill = '/bin/kill';
-            }
-            system("/usr/bin/ps axf|/usr/bin/grep /usr/sbin/httpd|/usr/bin/grep -v adm|/usr/bin/grep -v grep|/usr/bin/grep -v '\_'|$awk -F ' ' '{print \$1}'|/usr/bin/xargs $kill -9 >&/dev/null");
+            &_logmsg("xchecker reported: $xchecker - killing httpd, but not admserv.");
+            system("$ps axf|$grep /usr/sbin/httpd|$grep -v adm|$grep -v grep|$grep -v '\_'|$awk -F ' ' '{print \$1}'|/usr/bin/xargs $kill -9 >&/dev/null");
         }
 
         # Perform action:
@@ -254,7 +261,7 @@ sub _spawn_child
             # Thank God, no Systemd: 
             system("/sbin/service $service $action"); 
         }
-        &_logmsg("Running /usr/sausalito/swatch/bin/am_apache.sh\n");
+        &_logmsg("Running /usr/sausalito/swatch/bin/am_apache.sh");
         system("/usr/sausalito/swatch/bin/am_apache.sh");
         sleep(5);
     }
@@ -275,18 +282,18 @@ sub _spawn_child
 
         # Check if service is running:
         if ($service eq "httpd") {
-            $checker = `/usr/bin/ps axf|/usr/bin/grep /usr/sbin/httpd|/usr/bin/grep -v adm|/usr/bin/grep -v '\_'|/usr/bin/wc -l`;
+            $checker = `$ps axf|$grep /usr/sbin/httpd|$grep -v adm|$grep -v '\_'|$wc -l`;
             chomp($checker);
         }
         else {
             if (-f "/usr/bin/systemctl") { 
                 # Got Systemd: 
-                my $checker = `/usr/bin/systemctl status $service|/usr/bin/grep "Active:"|/usr/bin/grep running|/usr/bin/wc -l`;
+                $checker = `/usr/bin/systemctl status $service|$grep "Active:"|$grep running|$wc -l`;
                 chomp($checker);
             }
             else {
                 # Thank God, no Systemd: 
-                my $checker = `/sbin/service $service status|/usr/bin/grep running|/usr/bin/wc -l`;
+                $checker = `/sbin/service $service status|$grep running|$wc -l`;
                 chomp($checker);
             }
         }
@@ -294,7 +301,7 @@ sub _spawn_child
             $checker = "0";
         }
 
-        &_logmsg("2:checker reports: $service " . $checker . "\n");
+        &_logmsg("2:checker reports: $service " . $checker . "");
 
         if (($action eq 'stop') && ($checker == "0")) {
             last;
@@ -313,10 +320,6 @@ sub _spawn_child
         }
     }
 
-    if ($action eq 'httpd') {
-        #system("/usr/sausalito/swatch/bin/am_apache.sh");
-    }
-    
     &_logmsg("child $$ finished $service $action");
     kill 'USR2', getppid();
     exit(0);
@@ -379,12 +382,12 @@ sub _check_queue
             # Check if service is running:
             if (-f "/usr/bin/systemctl") { 
                 # Got Systemd: 
-                $checker = `systemctl status $service|grep "Active:"|grep running|wc -l`;
+                $checker = `systemctl status $service|$grep "Active:"|$grep running|$wc -l`;
                 chomp($checker);
             }
             else {
                 # Thank God, no Systemd: 
-                $checker = `/sbin/service $service status|grep running|wc -l`;
+                $checker = `/sbin/service $service status|$grep running|$wc -l`;
                 chomp($checker);
             }
 
