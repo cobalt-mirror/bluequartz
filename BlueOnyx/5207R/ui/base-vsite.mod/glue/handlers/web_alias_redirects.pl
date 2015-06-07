@@ -78,8 +78,8 @@ $cce->bye('SUCCESS');
 exit(0);
 
 sub restart_apache {
-    # Restarts Apache - hard restart:
-    service_run_init('httpd', 'restart');
+    # Restarts Apache - soft restart:
+    service_run_init('httpd', 'reload');
 }
 
 sub edit_vhost {
