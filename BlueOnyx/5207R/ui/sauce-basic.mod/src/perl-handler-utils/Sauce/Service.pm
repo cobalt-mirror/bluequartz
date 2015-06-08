@@ -16,7 +16,21 @@ require Exporter;
 use lib '/usr/sausalito/perl';
 use Sauce::Util;
 use Sauce::Service::Client;
+
+# Debugging switch:
+$DEBUG = "0";
+if ($DEBUG)
+{
+        use Sys::Syslog qw( :DEFAULT setlogsock);
+}
+
 1;
+
+# PLEASE NOTE:
+#
+# For some reason we cannot use system("/sbin/service $service $arg") for
+# actions on EL6. But we can use system("systemctl ...") on EL7. 
+# Fun and games!
 
 sub inetd_conf { return '/etc/inetd.conf' };
 sub inetd_perm { return 0644; };
@@ -41,7 +55,8 @@ sub service_run_init
     $pidHttpd = `pidof httpd|wc -l`;
     chomp($pidHttpd);
     #if ($service eq 'httpd' && $arg eq 'reload' && ($pidHttpd == "1")) {
-    if ($service eq 'httpd' && ($arg eq 'reload')) {
+    if (($service eq 'httpd') && ($arg eq 'reload')) {
+        &debug_msg("Special case: $service $arg"); 
         my $ssc = new Sauce::Service::Client;
         if (!$ssc->connect()) {
             return(0);
@@ -64,9 +79,10 @@ sub service_run_init
         } 
         else { 
             # Thank God, no Systemd: 
-            system("/sbin/service $service $arg"); 
+            $wtf = `/sbin/service $service $arg`;
+            chomp($wtf);
+            &debug_msg("Result: $wtf"); 
         }
-        #`/sbin/service $service $arg`;
         return(0);
     }
     unless ($options =~ /\bnobg\b/) {
@@ -87,11 +103,15 @@ sub service_run_init
         # Restarts Service:
         if (-f "/usr/bin/systemctl") { 
             # Got Systemd: 
+            &debug_msg("Running: systemctl $arg $service.service --no-block"); 
             system("systemctl $arg $service.service --no-block"); 
         } 
         else { 
             # Thank God, no Systemd: 
-            system("/sbin/service $service $arg"); 
+            &debug_msg("Running: /sbin/service $service $arg"); 
+            $wtf = `/sbin/service $service $arg`;
+            chomp($wtf);
+            &debug_msg("Result: $wtf"); 
         }
         # Return 1 on success instead of the standard unix command 0
         if ($? == 0) {
@@ -104,11 +124,15 @@ sub service_run_init
         # Restarts Service:
         if (-f "/usr/bin/systemctl") { 
             # Got Systemd: 
-            system("systemctl $arg $service.service --no-block"); 
+            &debug_msg("Running: systemctl $arg $service.service --no-block"); 
+            system("systemctl $arg $service.service --no-block");
         } 
         else { 
             # Thank God, no Systemd: 
-            system("/sbin/service $service $arg"); 
+            &debug_msg("Running: /sbin/service $service $arg"); 
+            $wtf = `/sbin/service $service $arg`;
+            chomp($wtf);
+            &debug_msg("Result: $wtf"); 
         }
     }
     
@@ -120,12 +144,14 @@ sub service_toggle_init
 # arguments: $service, $newstate
 {
     my ($service, $new, $options) = @_;
-    if ($new) {
-      service_set_init($service, 'on');
-      service_run_init($service, 'restart', $options);
+    if (($new eq "1") || ($new eq "on")) {
+        &debug_msg("Running: service_set_init($service, 'on')"); 
+        service_set_init($service, 'on');
+        &debug_msg("Running: service_run_init($service, 'restart', $options)"); 
+        service_run_init($service, 'restart', $options);
     } else {
-      service_set_init($service, 'off');
-      service_run_init($service, 'stop', $options);
+        service_set_init($service, 'off');
+        service_run_init($service, 'stop', $options);
     }
 }
 
@@ -161,6 +187,13 @@ sub service_set_init
 {
     my ($service, $state, @runlevels) = @_;
     my $level;
+
+    if ($state eq "1") {
+        $state = 'on';
+    }
+    else {
+        $state = 'off';
+    }
     
     if (@runlevels) {
         $level = ' --level ';
@@ -422,6 +455,18 @@ sub service_restart_xinetd
 # this is a backwards compatibility routine.
 {
         service_send_signal('xinetd', 'HUP');
+}
+
+# Debug:
+sub debug_msg {
+    if ($DEBUG) {
+        my $msg = shift;
+        $user = $ENV{'USER'};
+        setlogsock('unix');
+        openlog($0,'','user');
+        syslog('info', "$ARGV[0]: $msg");
+        closelog;
+    }
 }
  
 # 
