@@ -13,7 +13,7 @@
 package Sauce::Service::Daemon;
 
 # Debugging switch:
-$DEBUG = "1";
+$DEBUG = "0";
 if ($DEBUG)
 {
         use Sys::Syslog qw( :DEFAULT setlogsock);
@@ -259,11 +259,10 @@ sub _spawn_child
         } 
         else { 
             # Thank God, no Systemd: 
-            system("/sbin/service $service $action"); 
+            `/sbin/service $service $action`;
         }
         &_logmsg("Running /usr/sausalito/swatch/bin/am_apache.sh");
-        system("/usr/sausalito/swatch/bin/am_apache.sh");
-        sleep(5);
+        `/usr/sausalito/swatch/bin/am_apache.sh`;
     }
     else {
 
@@ -274,7 +273,7 @@ sub _spawn_child
         } 
         else { 
             # Thank God, no Systemd: 
-            system("/sbin/service $service $action"); 
+            `/sbin/service $service $action`;
         }
     }
 
