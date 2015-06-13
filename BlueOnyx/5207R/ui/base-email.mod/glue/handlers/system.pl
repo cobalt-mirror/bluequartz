@@ -26,10 +26,9 @@ my $old = $cce->event_old();
 my $new = $cce->event_new();
 
 # make sure masqAddress is not set to localhost
-if ($obj->{masqAddress} =~ /^localhost$/i)
-{
+if ($obj->{masqAddress} =~ /^localhost$/i) {
     $cce->baddata($cce->event_oid(), 
-		  'masqAddress', 'masqAddressCantBeLocalhost');
+          'masqAddress', 'masqAddressCantBeLocalhost');
     $cce->bye('FAIL');
     exit(1);
 }
@@ -44,198 +43,216 @@ Sauce::Util::addrollbackcommand("/usr/bin/makemap hash $Email::VIRTUSER < $Email
 system("/usr/bin/newaliases");
 
 if (!Sauce::Util::replaceblock($Email::VIRTUSER,
-			       '# Cobalt System Section Begin',
-			       &make_virtuser_system($obj),
-			       '# Cobalt System Section End')
+                   '# Cobalt System Section Begin',
+                   &make_virtuser_system($obj),
+                   '# Cobalt System Section End')
     ) {
     $cce->warn('[[base-email.cantEditFile]]', { 'file' => $Email::VIRTUSER });
     $cce->bye('FAIL');
 }
 
 my $ret = Sauce::Util::editfile($Sendmail_sysconfig_file, *set_queue_time,
-				$obj, $cce);
+                $obj, $cce);
 if(! $ret ) {
     $cce->bye('FAIL', 'cantEditFile', {'file' => $Sendmail_sysconfig_file});
-} else {
+}
+else {
     $cce->bye("SUCCESS");
 }
 
 exit 0;
 
-sub make_sendmail_mc
-{
-	my $in  = shift;
-	my $out = shift;
+sub make_sendmail_mc {
+    my $in  = shift;
+    my $out = shift;
 
-	my $obj = shift;
+    my $obj = shift;
 
-	my $privacy_line;
-	my $maxMessageSize_line;
-	my $maxRecipientsPerMessage_line;
-	my $smartRelay_line;
-	my $hideHeaders_line;
-	my $masqDomain_line;
-	my $deliveryMode_line;
-	my $delayChecks_line;
+    my $privacy_line;
+    my $maxMessageSize_line;
+    my $maxRecipientsPerMessage_line;
+    my $smartRelay_line;
+    my $hideHeaders_line;
+    my $masqDomain_line;
+    my $deliveryMode_line;
+    my $delayChecks_line;
 
-	my %Printed_line = ( 
-		privacy => 0,
-		maxMessageSize => 0,
-		maxRecipientsPerMessage => 0,
-		smartRelay => 0,
-		hideHeaders => 0,
-		masqDomain => 0,
-		delayChecks => 0 );
-	my @Mailer_line = ();
-	
-	if( $obj->{privacy} ) {
-	    $privacy_line = "define(`confPRIVACY_FLAGS', `noexpn noexpn authwarnings')\n";
-	    
-	} else {
-	    $privacy_line = "define(`confPRIVACY_FLAGS', `authwarnings')\n";
-	}
+    my %Printed_line = ( 
+        privacy => 0,
+        maxMessageSize => 0,
+        maxRecipientsPerMessage => 0,
+        smartRelay => 0,
+        hideHeaders => 0,
+        masqDomain => 0,
+        delayChecks => 0 );
+    my @Mailer_line = ();
+    
+    if ($obj->{privacy} ) {
+        $privacy_line = "define(`confPRIVACY_FLAGS', `noexpn noexpn authwarnings')\n";
+        
+    }
+    else {
+        $privacy_line = "define(`confPRIVACY_FLAGS', `authwarnings')\n";
+    }
 
-	if ($obj->{queueTime} eq 'immediate') {
-	    $deliveryMode_line = "define(`confDELIVERY_MODE', `background')\n";
-	} else {
-	    $deliveryMode_line = "define(`confDELIVERY_MODE', `deferred')\n";
-	}
-	
-	if( $obj->{maxMessageSize} ) {
-	    # Max message size is in kilos. Sendmail needs bytes.
-	    $maxMessageSize_line = "define(`confMAX_MESSAGE_SIZE',". $obj->{maxMessageSize}*1024 .")\n";
-	} else {
-	    $maxMessageSize_line = "define(`confMAX_MESSAGE_SIZE',0)\n";
-	}
+    if ($obj->{queueTime} eq 'immediate') {
+        $deliveryMode_line = "define(`confDELIVERY_MODE', `background')\n";
+    }
+    else {
+        $deliveryMode_line = "define(`confDELIVERY_MODE', `deferred')\n";
+    }
+    
+    if ($obj->{maxMessageSize} ) {
+        # Max message size is in kilos. Sendmail needs bytes.
+        $maxMessageSize_line = "define(`confMAX_MESSAGE_SIZE',". $obj->{maxMessageSize}*1024 .")\n";
+    }
+    else {
+        $maxMessageSize_line = "define(`confMAX_MESSAGE_SIZE',0)\n";
+    }
 
-	if( $obj->{maxRecipientsPerMessage} ) {
-	    # Maximum number of recipients per SMTP envelope:
-	    $maxRecipientsPerMessage_line = "define(`confMAX_RCPTS_PER_MESSAGE',". $obj->{maxRecipientsPerMessage} .")\n";
-	} else {
-	    $maxRecipientsPerMessage_line = "define(`confMAX_RCPTS_PER_MESSAGE',0)\n";
-	}
+    if ($obj->{maxRecipientsPerMessage} ) {
+        # Maximum number of recipients per SMTP envelope:
+        $maxRecipientsPerMessage_line = "define(`confMAX_RCPTS_PER_MESSAGE',". $obj->{maxRecipientsPerMessage} .")\n";
+    }
+    else {
+        $maxRecipientsPerMessage_line = "define(`confMAX_RCPTS_PER_MESSAGE',0)\n";
+    }
 
-	if( $obj->{masqAddress} ) {
-		$masqDomain_line = "MASQUERADE_AS(`". $obj->{masqAddress} ."')\n"
-	} else {
-		$masqDomain_line = "MASQUERADE_AS(`')\n";
-	}
+    if ($obj->{masqAddress} ) {
+        $masqDomain_line = "MASQUERADE_AS(`". $obj->{masqAddress} ."')\n"
+    }
+    else {
+        $masqDomain_line = "MASQUERADE_AS(`')\n";
+    }
 
-	if( $obj->{smartRelay} ) {
-	    $smartRelay_line = "define(`SMART_HOST', `". $obj->{smartRelay} . "')\n";
-	} else {
-	    $smartRelay_line = "define(`SMART_HOST', `')\n";
-	}
+    if ($obj->{smartRelay} ) {
+        $smartRelay_line = "define(`SMART_HOST', `". $obj->{smartRelay} . "')\n";
+    }
+    else {
+        $smartRelay_line = "define(`SMART_HOST', `')\n";
+    }
 
-	if( $obj->{delayChecks} ) {
-	    $delayChecks_line = "FEATURE(delay_checks)dnl\n";
-	} else {
-	    $delayChecks_line = "dnl FEATURE(delay_checks)dnl\n";
-	}
+    if ($obj->{delayChecks} ) {
+        $delayChecks_line = "FEATURE(delay_checks)dnl\n";
+    }
+    else {
+        $delayChecks_line = "dnl FEATURE(delay_checks)dnl\n";
+    }
 
-	if( $obj->{hideHeaders} ) {
-	    $hideHeaders_line = "define(`confRECEIVED_HEADER',`by \$j \$?r with \$r\$. id \$i; \$b')dnl\n";
-	} else {
-	    $hideHeaders_line = "dnl define(`confRECEIVED_HEADER',`by \$j \$?r with \$r\$. id \$i; \$b')dnl\n";
-	}
+    if ($obj->{hideHeaders} ) {
+        $hideHeaders_line = "define(`confRECEIVED_HEADER',`by \$j \$?r with \$r\$. id \$i; \$b')dnl\n";
+    }
+    else {
+        $hideHeaders_line = "dnl define(`confRECEIVED_HEADER',`by \$j \$?r with \$r\$. id \$i; \$b')dnl\n";
+    }
 
-	my $mailer_lines = 0;
-	select $out;
-	while( <$in> ) {
-	    if( ( /^define\(`confPRIVACY_FLAGS'/o ||/^dnl define\(`confPRIVACY_FLAGS'/o ) && ! $Printed_line{'privacy'} ) {
-			$Printed_line{'privacy'}++;
-			print $privacy_line;
-	    } elsif ( /^define\(`confMAX_MESSAGE_SIZE'/o || /^dnl define\(`confMAX_MESSAGE_SIZE'/o ) { #`
-			$Printed_line{'maxMessageSize'}++;
-			print $maxMessageSize_line;
-	    } elsif (( /^define\(`confMAX_RCPTS_PER_MESSAGE'/o || /^dnl define\(`confMAX_RCPTS_PER_MESSAGE'/o ) && ! $Printed_line{'maxRecipientsPerMessage'}) {
-			$Printed_line{'maxRecipientsPerMessage'}++;
-			print $maxRecipientsPerMessage_line;
-	    } elsif ( /^define\(`SMART_HOST'/o || /^dnl define\(`SMART_HOST'/o ) { #`
-			$Printed_line{'smartRelay'}++;
-			print $smartRelay_line;
-	    } elsif ( /^MASQUERADE_AS/o || /^dnl MASQUERADE_AS/o ) {
-			$Printed_line{'masqDomain'}++;
-			print $masqDomain_line;
-	    } elsif ( /^define\(`confDELIVERY_MODE'/o || /dnl ^define\(`confDELIVERY_MODE'/o ) { #`
-			$Printed_line{'DeliveryMode'}++;
-			print $deliveryMode_line;
-	    } elsif ( /^FEATURE\(delay_checks/o || /^dnl FEATURE\(delay_checks/o ) {
-			$Printed_line{'delayChecks'}++;
-			print $delayChecks_line;
-	    } elsif ( /^MAILER\(/o ) {
-			$Mailer_line[$mailer_lines] = $_;
-			$mailer_lines++;
-		} elsif( ( /^define\(`confRECEIVED_HEADER'/o ||/^dnl define\(`confRECEIVED_HEADER'/o ) && ! $Printed_line{'hideHeaders'} ) {
-			$Printed_line{'hideHeaders'}++;
-			print $hideHeaders_line;
-	    } else {
-			print $_;
-	    }
-	}
+    my $mailer_lines = 0;
+    select $out;
+    while (<$in> ) {
+        if ((/^define\(`confPRIVACY_FLAGS'/o ||/^dnl define\(`confPRIVACY_FLAGS'/o ) && ! $Printed_line{'privacy'} ) {
+            $Printed_line{'privacy'}++;
+            print $privacy_line;
+        }
+        elsif ( /^define\(`confMAX_MESSAGE_SIZE'/o || /^dnl define\(`confMAX_MESSAGE_SIZE'/o ) { #`
+            $Printed_line{'maxMessageSize'}++;
+            print $maxMessageSize_line;
+        }
+        elsif (( /^define\(`confMAX_RCPTS_PER_MESSAGE'/o || /^dnl define\(`confMAX_RCPTS_PER_MESSAGE'/o ) && ! $Printed_line{'maxRecipientsPerMessage'}) {
+            $Printed_line{'maxRecipientsPerMessage'}++;
+            print $maxRecipientsPerMessage_line;
+        }
+        elsif ( /^define\(`SMART_HOST'/o || /^dnl define\(`SMART_HOST'/o ) { #`
+            $Printed_line{'smartRelay'}++;
+            print $smartRelay_line;
+        }
+        elsif ( /^MASQUERADE_AS/o || /^dnl MASQUERADE_AS/o ) {
+            $Printed_line{'masqDomain'}++;
+            print $masqDomain_line;
+        }
+        elsif ( /^define\(`confDELIVERY_MODE'/o || /dnl ^define\(`confDELIVERY_MODE'/o ) { #`
+            $Printed_line{'DeliveryMode'}++;
+            print $deliveryMode_line;
+        }
+        elsif ( /^FEATURE\(delay_checks/o || /^dnl FEATURE\(delay_checks/o ) {
+            $Printed_line{'delayChecks'}++;
+            print $delayChecks_line;
+        }
+        elsif ( /^MAILER\(/o ) {
+            $Mailer_line[$mailer_lines] = $_;
+            $mailer_lines++;
+        }
+        elsif( ( /^define\(`confRECEIVED_HEADER'/o ||/^dnl define\(`confRECEIVED_HEADER'/o ) && ! $Printed_line{'hideHeaders'} ) {
+            $Printed_line{'hideHeaders'}++;
+            print $hideHeaders_line;
+        }
+        else {
+            print $_;
+        }
+    }
 
-	foreach my $key ( keys %Printed_line ) {
-		if ($Printed_line{$key} == 0) {
-                        if ($key eq 'maxRecipientsPerMessage') {
-                            print $maxRecipientsPerMessage_line;
-                        } elsif ($key eq 'delayChecks') {
-                            print $delayChecks_line;
-                        } elsif ($key eq 'hideHeaders') {
-                            print $hideHeaders_line;
-                        } else {
-							$cce->warn("error_writing_sendmail_mc");
-							print STDERR "Writing sendmail_mc found $Printed_line{$key} occurences of $key\n";
-                       }
-		}
- 	}
+    foreach my $key ( keys %Printed_line ) {
+        if ($Printed_line{$key} == 0) {
+            if ($key eq 'maxRecipientsPerMessage') {
+                print $maxRecipientsPerMessage_line;
+            }
+            elsif ($key eq 'delayChecks') {
+                print $delayChecks_line;
+            }
+            elsif ($key eq 'hideHeaders') {
+                print $hideHeaders_line;
+            }
+            else {
+                $cce->warn("error_writing_sendmail_mc");
+                print STDERR "Writing sendmail_mc found $Printed_line{$key} occurences of $key\n";
+            }
+        }
+    }
 
-	if( $mailer_lines ) {
-		foreach my $line (@Mailer_line) {
-			print $line;
-		}
-	}
+    if ($mailer_lines) {
+        foreach my $line (@Mailer_line) {
+            print $line;
+        }
+    }
 
-	return 1;
+    return 1;
 }
 
-sub make_virtuser_system
-{
-	my $obj = shift;
-	my $out = "";
+sub make_virtuser_system {
+    my $obj = shift;
+    my $out = "";
 
-	my %routes = $cce->scalar_to_array( $obj->{routes} );
+    my %routes = $cce->scalar_to_array( $obj->{routes} );
 
-	while( my($domain,$target) = each %routes ) {
-		$out .= "@".$domain."\t%1@".$target."\n";
-	}
-	return $out;
+    while (my($domain,$target) = each %routes ) {
+        $out .= "@".$domain."\t%1@".$target."\n";
+    }
+    return $out;
 }
 
-sub set_queue_time
-{
-	my ($in, $out, $obj, $cce) = @_;
-	my $queue;
-	my $period = $obj->{queueTime};
+sub set_queue_time {
+    my ($in, $out, $obj, $cce) = @_;
+    my $queue;
+    my $period = $obj->{queueTime};
 
-	my $period_hash = {
-	        'immediate' => '15m',
-		'quarter-hourly' => '15m',
-		'half-hourly' => '30m',
-		'hourly' => '1h',
-		'quarter-daily' => '6h',
-		'daily' => '1d'
-	};
+    my $period_hash = {
+        'immediate' => '15m',
+        'quarter-hourly' => '15m',
+        'half-hourly' => '30m',
+        'hourly' => '1h',
+        'quarter-daily' => '6h',
+        'daily' => '1d'
+    };
 
-	$queue = $period_hash->{$period};
+    $queue = $period_hash->{$period};
 
-	while (<$in>) {
-		# skip the old entry we're searching for
-		if (/^QUEUE=/) {
-			$_ = "QUEUE=$queue\n";
-		}
-		print $out $_;
-	}
-	return 1;
+    while (<$in>) {
+        # skip the old entry we're searching for
+        if (/^QUEUE=/) {
+            $_ = "QUEUE=$queue\n";
+        }
+        print $out $_;
+    }
+    return 1;
 }
 
 # 
@@ -245,16 +262,16 @@ sub set_queue_time
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 
-#	 notice, this list of conditions and the following disclaimer.
+#    notice, this list of conditions and the following disclaimer.
 # 
 # 2. Redistributions in binary form must reproduce the above copyright 
-#	 notice, this list of conditions and the following disclaimer in 
-#	 the documentation and/or other materials provided with the 
-#	 distribution.
+#    notice, this list of conditions and the following disclaimer in 
+#    the documentation and/or other materials provided with the 
+#    distribution.
 # 
 # 3. Neither the name of the copyright holder nor the names of its 
-#	 contributors may be used to endorse or promote products derived 
-#	 from this software without specific prior written permission.
+#    contributors may be used to endorse or promote products derived 
+#    from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
 # "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 

@@ -1,7 +1,5 @@
 #!/usr/bin/perl -I. -I/usr/sausalito/perl -I/usr/sausalito/handlers/base/email
-# $Id: syncEmailService.pl Sat 10 Apr 2010 07:30:55 AM CEST mstauber $
-# Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
-# Copyright 2008-2014 Team BlueOnyx, All rights reserved.
+# $Id: syncEmailService.pl
 
 use Sauce::Util;
 use Sauce::Config;
@@ -55,12 +53,10 @@ chomp($fullbuild);
 # figure out our product
 my ($build, $model, $lang) = ($fullbuild =~ m/^build (\S+) for a (\S+) in (\S+)/);
 
-if ($model eq "5106R") {
-    # Create Diffie-Hellman file:
-    if (! -e "/usr/share/ssl/certs/sendmail.dh") {
-    system("/usr/bin/openssl dhparam -out /usr/share/ssl/certs/sendmail.dh 1024");
-    system("chmod 0600 /usr/share/ssl/certs/sendmail.dh");
-    }
+# Create 2048 bit Diffie-Hellman file:
+if (! -e "/usr/share/ssl/certs/sendmail-2048.dh") {
+    system("/usr/bin/openssl dhparam -out /usr/share/ssl/certs/sendmail-2048.dh 2048");
+    system("chmod 0600 /usr/share/ssl/certs/sendmail-2048.dh");
 }
 
 # dovecot settings first
@@ -142,7 +138,8 @@ if (-f "/lib/systemd/system/sendmail.service") {
 if ($run) {
     Sauce::Service::service_toggle_init('sendmail', 1);
     Sauce::Service::service_toggle_init('saslauthd', $obj->{enableSMTPAuth});
-} else {
+}
+else {
     Sauce::Service::service_toggle_init('sendmail', 0);
     Sauce::Service::service_toggle_init('saslauthd', 0);
 }
@@ -159,8 +156,7 @@ $cce->bye('SUCCESS');
 exit 0;
 
 
-sub make_dovecot_conf
-{
+sub make_dovecot_conf {
     my $in  = shift;
     my $out = shift;
 
@@ -188,15 +184,15 @@ sub make_dovecot_conf
     while (<$in>) {
         if (/protocols =/o) {
             print "protocols = $protocols\n";
-        } else {
+        }
+        else {
             print $_;
         }
     }
     return 1;
 }
 
-sub make_sendmail_mc
-{
+sub make_sendmail_mc {
     my $in  = shift;
     my $out = shift;
     my $obj = shift;
@@ -221,7 +217,7 @@ sub make_sendmail_mc
     if ($obj->{enableSubmissionPort}) {
         $submissionPort = "DAEMON_OPTIONS(`Port=submission, Name=MSA, M=Ea')\n";
     }
-     else {
+    else {
         $submissionPort = "dnl DAEMON_OPTIONS(`Port=submission, Name=MSA, M=Ea')\n";
     }
 
@@ -233,25 +229,28 @@ sub make_sendmail_mc
         $maxMessageSize_out = "define(`confMAX_MESSAGE_SIZE',0)dnl\n";
     }
 
-    # 5106R Diffie-Hellmann File:
-    if ($model eq "5106R") {
-       $DiffieHellmann = "define(`confDH_PARAMETERS',`/usr/share/ssl/certs/sendmail.dh')\n";
-    }
-    else {
-       $DiffieHellmann = "";
-    }
+    # Diffie-Hellmann File:
+    $DiffieHellmann = "define(`confDH_PARAMETERS',`/usr/share/ssl/certs/sendmail-2048.dh')\n";
+
+    # Configure LOCAL_CONFIG:
+    $local_config = 'LOCAL_CONFIG' . "\n";
+    $local_config .= 'O CipherList=EDH+CAMELLIA:EDH+aRSA:EECDH+aRSA+AESGCM:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH:+CAMELLIA256:+AES256:+CAMELLIA128:+AES128:+SSLv3:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!DSS:!RC4:!SEED:!ECDSA:CAMELLIA256-SHA:AES256-SHA:CAMELLIA128-SHA:AES128-SHA' . "\n";
+    $local_config .= 'O ServerSSLOptions=+SSL_OP_NO_SSLv2 +SSL_OP_NO_SSLv3 +SSL_OP_CIPHER_SERVER_PREFERENCE' . "\n";
+    $local_config .= 'O ClientSSLOptions=+SSL_OP_NO_SSLv2 +SSL_OP_NO_SSLv3' . "\n";
 
     # MaxRecipientsPerMessage
-        if( $obj->{maxRecipientsPerMessage} ) {
-            # Maximum number of recipients per SMTP envelope:
-            $maxRecipientsPerMessage_line = "define(`confMAX_RCPTS_PER_MESSAGE',". $obj->{maxRecipientsPerMessage} .")\n";
-        } else {
-            $maxRecipientsPerMessage_line = "define(`confMAX_RCPTS_PER_MESSAGE',0)\n";
-        }
+    if ($obj->{maxRecipientsPerMessage} ) {
+        # Maximum number of recipients per SMTP envelope:
+        $maxRecipientsPerMessage_line = "define(`confMAX_RCPTS_PER_MESSAGE',". $obj->{maxRecipientsPerMessage} .")\n";
+    }
+    else {
+        $maxRecipientsPerMessage_line = "define(`confMAX_RCPTS_PER_MESSAGE',0)\n";
+    }
 
 
     select $out;
     $Dh_found = "0";
+    $LC_found = "0";
     while (<$in>) {
         if (/^dnl DAEMON_OPTIONS\(\`Port=smtp, Name=MTA/o || /^DAEMON_OPTIONS\(\`Port=smtp, Name=MTA/o ) {
             print $smtpPort;
@@ -267,18 +266,23 @@ sub make_sendmail_mc
         }
         elsif ( /^define\(`confMAX_RCPTS_PER_MESSAGE'/o || /^dnl define\(`confMAX_RCPTS_PER_MESSAGE'/o ) { 
             print $maxRecipientsPerMessage_line;
-    }
-    elsif ( /^define\(\`confDH_PARAMETERS/o ) { 
-        # Do nothing and remove this line.
-    }
-    elsif ( /^MAILER\(procmail\)dnl/o ) {
-            print $_;
-        if (($model eq "5106R") && ($Dh_found == "0")) {
-        # Add the Diffie-Hellmann line:
-        print $DiffieHellmann;
-        $Dh_found = "1";
         }
-    }
+        elsif ( /^define\(\`confDH_PARAMETERS/o ) { 
+            # Do nothing and remove this line.
+        }
+        elsif ( /^MAILER\(procmail\)dnl/o ) {
+            print $_;
+            if ($Dh_found == "0") {
+                # Add the Diffie-Hellmann line:
+                print $DiffieHellmann;
+                $Dh_found = "1";
+            }
+            if ($LC_found == "0") {
+                # Add the LOCAL_CONFIG line:
+                print $local_config;
+                $LC_found = "1";
+            }
+        }
         else {
             print $_;
         }
@@ -383,8 +387,8 @@ sub debug_msg {
 }
 
 # 
-# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 
