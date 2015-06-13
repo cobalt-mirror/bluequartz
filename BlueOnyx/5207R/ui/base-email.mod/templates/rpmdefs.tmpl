@@ -123,6 +123,7 @@ fi
 # But only if this is an upgrade of an existing RPM and not a fresh install:
 if [ $1 -gt 1 ]; then
   if [ -f /usr/sbin/swatch ]; then
+    /usr/sausalito/constructor/base/email/syncEmailService.pl
     /usr/sbin/swatch
   fi
 fi
