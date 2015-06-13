@@ -123,6 +123,7 @@ fi
 # But only if this is an upgrade of an existing RPM and not a fresh install:
 if [ $1 -gt 1 ]; then
   if [ -f /usr/sbin/swatch ]; then
+    /usr/sausalito/constructor/base/email/syncEmailService.pl
     /usr/sbin/swatch
   fi
 fi
@@ -158,6 +159,14 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Fri Jun 12 2015 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX31
+- To deal with Logjam and OpenSSL related oddities we will now start using
+  2048 bit Diffie-Hellman certs. Additionally we disable SSLv3 and SSLv2 in
+  Sendmail as well and enforce stricter cipher usage.
+- Modified base-email.mod/constructor/syncEmailService.pl to deal with the
+  sendmail.mc / sendmail.cf related changes of this.
+- Minor code indentation changes in base-email.mod/glue/handlers/system.pl
 
 * Mon Mar 09 2015 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX30
 - Sendmail.cf wasn't rebuild after RBL changes.
