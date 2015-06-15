@@ -88,9 +88,9 @@ fi
 
 if [ -S /usr/sausalito/cced.socket ]; then
   if [ -f /usr/sausalito/sbin/cced.init ]; then
-    /usr/sausalito/sbin/cced.init rehash
+    /usr/sausalito/sbin/cced.init restart
   else
-    /sbin/service cced.init rehash
+    /sbin/service cced.init restart
   fi
 fi
 
