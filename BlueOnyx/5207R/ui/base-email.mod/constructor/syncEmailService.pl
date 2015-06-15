@@ -283,6 +283,10 @@ sub make_sendmail_mc {
                 $LC_found = "1";
             }
         }
+        elsif (( /^LOCAL_CONFIG$/o ) || (/^O CipherList(.*)$/o) || (/^O ServerSSLOptions(.*)$/o) || (/^O ClientSSLOptions(.*)$/o)) {
+            # If the information was already in sendmail.mc, then we ignore it as we're printing it again anyway.
+            next;
+        }
         else {
             print $_;
         }

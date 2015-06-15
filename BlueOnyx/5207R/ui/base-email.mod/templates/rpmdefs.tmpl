@@ -88,9 +88,9 @@ fi
 
 if [ -S /usr/sausalito/cced.socket ]; then
   if [ -f /usr/sausalito/sbin/cced.init ]; then
-    /usr/sausalito/sbin/cced.init rehash
+    /usr/sausalito/sbin/cced.init restart
   else
-    /sbin/service cced.init rehash
+    /sbin/service cced.init restart
   fi
 fi
 
@@ -159,6 +159,10 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Mon Jun 15 2015 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX32
+- Modified constructor/syncEmailService.pl to make sure the new additions
+  to sendmail.mc are printed only once.
 
 * Fri Jun 12 2015 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX31
 - To deal with Logjam and OpenSSL related oddities we will now start using
