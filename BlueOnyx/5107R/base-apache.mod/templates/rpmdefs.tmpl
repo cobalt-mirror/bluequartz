@@ -117,6 +117,7 @@ fi
 if [ -S /usr/sausalito/cced.socket ]; then
     /etc/init.d/cced.init restart
     /etc/init.d/httpd restart
+    /usr/sbin/swatch
 fi
 
 <end glue>
@@ -150,6 +151,11 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Mon Jun 15 2015 Michael Stauber <mstauber@solarspeed.net> 1.4.1-0BX15
+- Modified constructor/fix_php_conf.pl to install all required PEAR
+  modules and to append 'open_basedir' with the PEAR path to get it 
+  working.
 
 * Wed May 27 2015 Michael Stauber <mstauber@solarspeed.net> 1.4.1-0BX14
 - Modified constructor/fix_php_conf.pl to automatically PECL install the 

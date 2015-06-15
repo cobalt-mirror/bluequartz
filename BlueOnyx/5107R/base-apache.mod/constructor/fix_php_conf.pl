@@ -1,5 +1,5 @@
-#!/usr/bin/perl -w -I/usr/sausalito/perl -I.
-# $Id: fix_php_conf
+#!/usr/bin/perl -I/usr/sausalito/perl -I.
+# $Id: fix_php_conf. 
 #
 # This constructor takes a look at /etc/httpd/conf.d/php.conf and trims it down to
 # BlueOnyx's requirements. After all we only want PHP enabled on sites where we 
@@ -57,31 +57,88 @@ if(-s $stage) {
                         'PHP56' => '/home/solarspeed/php-5.6'
                         );
 
+# List of PEAR modules that we *need* to install:
+%required_modules = (
+                      'Net_IDNA2', 
+                      'Net_SMTP', 
+                      'Net_Sieve', 
+                      'Net_Socket', 
+                      'Mail_Mime', 
+                      'Auth_SASL' 
+                    );
+
+# Get the PHP object to find out what 'open_basedir' is set to:
+@PHP_oid = $cce->find('PHP');
+($ok, $php_settings) = $cce->get($PHP_oid[0]);
+@OBpaths = split(':', $php_settings->{'open_basedir'});
+
 # Only run this if we're online and pear.php.net can be pinged:
 $check_net = `ping -c 1 -w 1 pear.php.net|grep "1 received"|wc -l`;
 chomp($check_net);
+# Only run this if we can ping pear.php.net:
 if ($check_net eq "1") {
+  # Do this for all known PHP versions:
   for $phpVer (keys %known_php_versions) {
-    $module_path = $known_php_versions{$phpVer} . "/share/pear/Net/IDNA2";
-    $top_module_path = $known_php_versions{$phpVer} . "/share/pear/Net";
     $pear_path = $known_php_versions{$phpVer} . "/bin/pear";
-    if ((!-d $module_path) && (-f $pear_path)) {
-
-      if ($phpVer eq "PHPOS") {
-        system("cp /etc/php.ini /etc/php.ini.bak");
-        system("cat /etc/php.ini|grep -v ^open_basedir > /etc/php.ini");
+    $top_module_path = $known_php_versions{$phpVer} . "/share/pear";
+    # Special provisions for the PHP of the OS:
+    if ($phpVer eq "PHPOS") {
+      system("cp /etc/php.ini /etc/php.ini.bak");
+      system("cat /etc/php.ini|grep -v ^open_basedir > /etc/php.ini");
+    }
+    # Do this for all %required_modules:
+    for $module (keys %required_modules) {
+      if (-f $pear_path) {
+        $module_check = `$pear_path list|grep $module|wc -l`;
+        chomp($module_check);
+        if (($module_check == "0") && (-f $pear_path)) {
+          # Do the PEAR installs:
+          if ($module eq "Net_IDNA2") {
+            # Handle special case for Net_IDNA2 which is beta and needs this work around:
+            system("$pear_path install channel://pear.php.net/Net_IDNA2-0.1.1 --alldeps > /dev/null");
+          }
+          else {
+            # All others can be installed normally:
+            system("$pear_path install $module --alldeps > /dev/null");
+          }
+          # Fix permissions recursively, because the PEAR-installer doesn't. WTF! YGBSM!!
+          system("chmod -R 755 $top_module_path");
+        }
       }
+    }
+    if ($phpVer eq "PHPOS") {
+      # Move the unmodified php.ini of the OS back in place:
+      system("mv /etc/php.ini.bak /etc/php.ini");
+    }
+  }
+}
 
-      # Do the PEAR install:
-      system("$pear_path install channel://pear.php.net/Net_IDNA2-0.1.1 > /dev/null");
-      # Fix permissions recursively, because the PEAR-installer doesn't. WTF! YGBSM!!
-      system("chmod -R 755 $top_module_path");
+# Handle 'open_basedir':
+$open_basedir_addition = '';
+for $phpVer (keys %known_php_versions) {
+  $pear_path = $known_php_versions{$phpVer} . "/bin/pear";
+  $top_module_path = $known_php_versions{$phpVer} . "/share/pear";
 
-      if ($phpVer eq "PHPOS") {
-        system("mv /etc/php.ini.bak /etc/php.ini");
+  # Only do something if the module path is present:
+  if (-d $top_module_path) {
+    if (!in_array(\@OBpaths, $top_module_path)) {
+      if ((-d '/home/solarspeed/php') && ($phpVer ne 'PHPOS')) {
+        # If 'traditional' Solarspeed PHP is installed, add its path:
+        $open_basedir_addition = $top_module_path;
+      }
+      elsif ((!-d '/home/solarspeed/php') && ($phpVer eq 'PHPOS')) {
+        # If Solarspeed PHP is NOT installed and this is the OS PHP,
+        # then add the path of it:
+        $open_basedir_addition = $top_module_path;
       }
     }
   }
+}
+
+# If we need to add the PEAR path to 'open_basedir', then we do that as well:
+if ($open_basedir_addition ne "") {
+  $new_ob_line = $php_settings->{'open_basedir'} . ':' . $open_basedir_addition;
+  ($ok) = $cce->set($php_settings->{'OID'}, '', { 'open_basedir' => $new_ob_line});
 }
 
 if ($apache_ok == "1") {
@@ -92,6 +149,12 @@ else {
 }
 
 exit(0);
+
+sub in_array {
+    my ($arr,$search_for) = @_;
+    my %items = map {$_ => 1} @$arr; # create a hash out of the array values
+    return (exists($items{$search_for}))?1:0;
+}
 
 # 
 # Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
