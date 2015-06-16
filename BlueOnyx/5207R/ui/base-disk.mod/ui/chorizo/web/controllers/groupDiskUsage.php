@@ -304,10 +304,25 @@ class GroupDiskUsage extends MX_Controller {
         for ($i = 0; $i < count($users); $i++) {
             $user = $cceClient->get($users[$i]);
             $user_info = $users[$i];
-            
-            $name = $user_info[0];
-            $used = $user_info[1];
-            $quota = $user_info[2];
+
+            if (isset($user_info[0])) {
+                $name = $user_info[0];
+            }
+            else {
+                $name = "n/a";
+            }
+            if (isset($user_info[1])) {
+                $used = $user_info[1];
+            }
+            else {
+                $used = "0";
+            }
+            if (isset($user_info[2])) {
+                $quota = $user_info[2];
+            }
+            else {
+                $quota = "0";
+            }
 
             $used = sprintf("%.2f", $used / 1024); // convert into megs
             $quota = sprintf("%.2f", $quota / 1024); // convert into megs

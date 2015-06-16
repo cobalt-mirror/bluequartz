@@ -103,6 +103,12 @@ information for [VENDOR]-[SERVICE].
 
 <begin $CHANGELOG>
 
+* Tue Jun 16 2015 Michael Stauber <mstauber@solarspeed.net> 3.0.0-1BX11
+- Modified ui/chorizo/web/controllers/groupDiskUsage.php to prevent an
+  undefined index error message in case 2nd level disk quota are not
+  currently working. In that case we'll show disk used and quota limits
+  at 0.00 instead.
+
 * Tue Jun 02 2015 Michael Stauber <mstauber@solarspeed.net> 3.0.0-1BX10
 - Small fix in ui/chorizo/web/controllers/serverDiskUsage.php to prevent
   'undefined index' errors if ccewrap is not working or get_quotas.pl
