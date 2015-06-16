@@ -204,6 +204,12 @@ fi
 
 <begin $CHANGELOG>
 
+* Mon Jun 15 2015 Michael Stauber <mstauber@solarspeed.net> 2.1.1-0BX32
+- Modified constructor/fix_php_conf.pl to install all required PEAR
+  modules. We do not mess with open_basedir here, as base-vsite on
+  5209R handles that by itself and inserts the correct PEAR path to
+  open_basedir on Vsite PHP modifications.
+
 * Sat Jun 06 2015 Michael Stauber <mstauber@solarspeed.net> 2.1.1-0BX31
 - Modified handlers to consistently use Sauce::Service to reload Apache.
 
