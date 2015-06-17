@@ -86,14 +86,6 @@ if [ ! -d /etc/mail ]; then \
 	mkdir -p /etc/mail; \
 fi
 
-if [ -S /usr/sausalito/cced.socket ]; then
-  if [ -f /usr/sausalito/sbin/cced.init ]; then
-    /usr/sausalito/sbin/cced.init restart
-  else
-    /sbin/service cced.init restart
-  fi
-fi
-
 if [ $1 -gt 1 ]; then
     /usr/sausalito/bin/remove_domain.pl
 fi
@@ -119,13 +111,14 @@ if [ -f /var/run/dovecot/login/imap ]; then
 	/sbin/service dovecot restart
 fi
 
-# To make sure all email related services are really running we run Swatch.
-# But only if this is an upgrade of an existing RPM and not a fresh install:
-if [ $1 -gt 1 ]; then
-  if [ -f /usr/sbin/swatch ]; then
+# Restart CCEd and run Swatch for good measure:
+if [ -S /usr/sausalito/cced.socket ]; then
+    /etc/init.d/cced.init restart
+    if [ -f /usr/sbin/swatch ]; then
+      /usr/sbin/swatch
+    fi
+else
     /usr/sausalito/constructor/base/email/syncEmailService.pl
-    /usr/sbin/swatch
-  fi
 fi
 
 <end glue>
