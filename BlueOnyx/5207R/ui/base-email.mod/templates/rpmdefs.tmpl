@@ -160,6 +160,12 @@ fi
 
 <begin $CHANGELOG>
 
+* Tue Jun 16 2015 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX33
+- Another mod to constructor/syncEmailService.pl to allow two wildly 
+  supported (but weaker) extra ciphers to make sure that we can talk to
+  even the most crappy servers out there. As long as they still support
+  at least TLSv1.0. This isn't ideal, but will have to do for now.
+
 * Mon Jun 15 2015 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX32
 - Modified constructor/syncEmailService.pl to make sure the new additions
   to sendmail.mc are printed only once.

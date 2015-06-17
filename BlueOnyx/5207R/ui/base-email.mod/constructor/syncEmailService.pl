@@ -233,8 +233,68 @@ sub make_sendmail_mc {
     $DiffieHellmann = "define(`confDH_PARAMETERS',`/usr/share/ssl/certs/sendmail-2048.dh')\n";
 
     # Configure LOCAL_CONFIG:
+    # 
+    # Special note here for the CipherList:
+    #
+    # Ideally we only want secure cipgers. So we would enable HIGH and turn off all the rest.
+    # Bad idea. As crappy as TLS_RSA_WITH_RC4_128_SHA or TLS_RSA_WITH_RC4_128_MD5 are, we do
+    # need to allow them at a minimum as that is a fallback level which even the most decrepid
+    # mailservers ought to understand. So we enable HIGH, MEDIUM and LOW and then explicitly
+    # forbid anything that we consider too weak. The net result of this is that we (at the bare
+    # minimum) end up with something like this on a 5106R:
+    #
+    # TLS_DHE_RSA_WITH_AES_128_CBC_SHA - strong
+    # TLS_DHE_RSA_WITH_AES_256_CBC_SHA - strong
+    # TLS_RSA_WITH_AES_128_CBC_SHA - strong
+    # TLS_RSA_WITH_AES_256_CBC_SHA - strong
+    # TLS_RSA_WITH_RC4_128_MD5 - semi-strong
+    # TLS_RSA_WITH_RC4_128_SHA - semi-strong
+    #
+    # On other platforms (5107R, 5108R, 5207R, 5208R and 5209R) we end up with 15-18 unique 
+    # ciphers in total. None of them really bad and both TLS_RSA_WITH_RC4_128_SHA and
+    # TLS_RSA_WITH_RC4_128_MD5 are present to represent the bottom end of the spectrum.
+    #
+    # 5107R, 5108R, 5207R and 5208R:
+    #
+    # TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 - strong
+    # TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 - strong
+    # TLS_DHE_RSA_WITH_AES_256_CBC_SHA256 - strong
+    # TLS_DHE_RSA_WITH_AES_256_CBC_SHA - strong
+    # TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 - strong
+    # TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA - strong
+    # TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA - strong
+    # TLS_RSA_WITH_AES_128_CBC_SHA - strong
+    # TLS_RSA_WITH_AES_256_CBC_SHA256 - strong
+    # TLS_RSA_WITH_AES_256_CBC_SHA - strong
+    # TLS_RSA_WITH_AES_256_GCM_SHA384 - strong
+    # TLS_RSA_WITH_CAMELLIA_128_CBC_SHA - strong
+    # TLS_RSA_WITH_CAMELLIA_256_CBC_SHA - strong
+    # TLS_RSA_WITH_RC4_128_MD5 - semi-strong
+    # TLS_RSA_WITH_RC4_128_SHA - semi-strong
+    #
+    # 5209R:
+    #
+    # TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 - strong
+    # TLS_DHE_RSA_WITH_AES_128_CBC_SHA - strong
+    # TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 - strong
+    # TLS_DHE_RSA_WITH_AES_256_CBC_SHA256 - strong
+    # TLS_DHE_RSA_WITH_AES_256_CBC_SHA - strong
+    # TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 - strong
+    # TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA - strong
+    # TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA - strong
+    # TLS_RSA_WITH_AES_128_CBC_SHA256 - strong
+    # TLS_RSA_WITH_AES_128_CBC_SHA - strong
+    # TLS_RSA_WITH_AES_128_GCM_SHA256 - strong
+    # TLS_RSA_WITH_AES_256_CBC_SHA256 - strong
+    # TLS_RSA_WITH_AES_256_CBC_SHA - strong
+    # TLS_RSA_WITH_AES_256_GCM_SHA384 - strong
+    # TLS_RSA_WITH_CAMELLIA_128_CBC_SHA - strong
+    # TLS_RSA_WITH_CAMELLIA_256_CBC_SHA - strong
+    # TLS_RSA_WITH_RC4_128_MD5 - semi-strong
+    # TLS_RSA_WITH_RC4_128_SHA - semi-strong
+
     $local_config = 'LOCAL_CONFIG' . "\n";
-    $local_config .= 'O CipherList=EDH+CAMELLIA:EDH+aRSA:EECDH+aRSA+AESGCM:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH:+CAMELLIA256:+AES256:+CAMELLIA128:+AES128:+SSLv3:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!DSS:!RC4:!SEED:!ECDSA:CAMELLIA256-SHA:AES256-SHA:CAMELLIA128-SHA:AES128-SHA' . "\n";
+    $local_config .= 'O CipherList=HIGH:MEDIUM:LOW!aNULL:!eNULL:!3DES:!EXP:!PSK:!DSS:!SEED:!DES:!IDEA' . "\n";
     $local_config .= 'O ServerSSLOptions=+SSL_OP_NO_SSLv2 +SSL_OP_NO_SSLv3 +SSL_OP_CIPHER_SERVER_PREFERENCE' . "\n";
     $local_config .= 'O ClientSSLOptions=+SSL_OP_NO_SSLv2 +SSL_OP_NO_SSLv3' . "\n";
 
