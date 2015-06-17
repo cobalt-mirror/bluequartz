@@ -102,22 +102,17 @@ if (test $ISPRESENT = 0 ); then
   cat /etc/dovecot/conf.d/10-ssl.conf.bx > /etc/dovecot/conf.d/10-ssl.conf
 fi
 
-# If CCE is running we run this to set the intermediate cert if it is missing:
-if [ -S /usr/sausalito/cced.socket ]; then
-  /usr/sausalito/constructor/base/email/syncEmailService.pl
-fi
-
-if [ -f /var/run/dovecot/login/imap ]; then
-	/sbin/service dovecot restart
-fi
-
 # Restart CCEd and run Swatch for good measure:
 if [ -S /usr/sausalito/cced.socket ]; then
     /etc/init.d/cced.init restart
+    echo "Running constructor/base/email/syncEmailService.pl"
+    /usr/sausalito/constructor/base/email/syncEmailService.pl
     if [ -f /usr/sbin/swatch ]; then
+       echo "Running swatch"
       /usr/sbin/swatch
     fi
 else
+    echo "Running constructor/base/email/syncEmailService.pl"
     /usr/sausalito/constructor/base/email/syncEmailService.pl
 fi
 
