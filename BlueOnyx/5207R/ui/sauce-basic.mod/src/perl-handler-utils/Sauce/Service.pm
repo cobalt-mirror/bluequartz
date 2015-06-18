@@ -149,7 +149,9 @@ sub service_toggle_init
         &debug_msg("Running: service_run_init($service, 'restart', $options)"); 
         service_run_init($service, 'restart', $options);
     } else {
+        &debug_msg("Running: service_set_init($service, 'off')"); 
         service_set_init($service, 'off');
+        &debug_msg("Running: service_run_init($service, 'stop', $options)"); 
         service_run_init($service, 'stop', $options);
     }
 }
@@ -190,10 +192,10 @@ sub service_set_init
     if ($state eq "1") {
         $state = 'on';
     }
-    else {
+    if ($state eq "0") {
         $state = 'off';
     }
-    
+
     if (@runlevels) {
         $level = ' --level ';
         $level .= join('',@runlevels);
@@ -207,33 +209,41 @@ sub service_set_init
 
         # Set state:
         if (-f "/usr/bin/systemctl") {
+            &debug_msg("1. Running: /usr/bin/systemctl $SystemdState $service.service"); 
             `/usr/bin/systemctl $SystemdState $service.service`;
         }
         else {
+            &debug_msg("1. Running: /sbin/chkconfig $level $service $state"); 
             `/sbin/chkconfig $level $service $state`;
         }
     } else {
         if (service_get_init($service) == -1) {
             # Set state:
             if (-f "/usr/bin/systemctl") {
+                &debug_msg("2. Running: /usr/bin/systemctl enable $service.service"); 
                 `/usr/bin/systemctl enable $service.service`;
             }
             else {
+                &debug_msg("2. Running: /sbin/chkconfig --add $service");
                 `/sbin/chkconfig --add $service`;
             }
         }
-        my $cmd = ($state eq 'on') ? 'on' : 'off';
 
         # Define Systemd state:
         my $SystemdXState = 'disable';
-        if ($cmd eq "on") {
+        my $cmd = 'off';
+        if ($state eq "on") {
             $SystemdXState = 'enable';
+            $cmd = 'on';
         }
+
         # Set state:
         if (-f "/usr/bin/systemctl") {
+            &debug_msg("3. Running: /usr/bin/systemctl $SystemdXState $service.service");
             `/usr/bin/systemctl $SystemdXState $service.service`;
         }
         else {
+            &debug_msg("3. Running: /sbin/chkconfig $service $cmd");
             `/sbin/chkconfig $service $cmd`;
         }
     }
@@ -268,7 +278,7 @@ sub service_get_multi_inetd
 # arguments: list of settings
 # returns hash of settings/values
 {
-        my @list = @_;
+    my @list = @_;
     my $conf = inetd_conf();
     my $services = ',' . join(',', @list) . ',';
     my ($set, $service, %settings);
