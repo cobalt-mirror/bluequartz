@@ -85,12 +85,14 @@ if ($whatami eq "handler") {
             if ($xcheck eq '0') {
                 &debug_msg("Stopping PHP-FPM ($known_php_services{$phpVer}) and turning it off as no Vsite is using it.\n");
                 ($ok) = $cce->set($AMOID[0], "$am_NameSpace", { 'enabled' => '0' });
+                &debug_msg("Telling Sauce::Service to turn $known_php_services{$phpVer} off and to stop it.\n");
                 service_set_init($known_php_services{$phpVer}, 'off');
                 service_run_init($known_php_services{$phpVer}, 'stop');
             }
             else {
                 &debug_msg("Restarting PHP-FPM ($known_php_services{$phpVer}) and making sure it is enabled as Vsites are using it.\n");
                 ($ok) = $cce->set($AMOID[0], "$am_NameSpace", { 'enabled' => '1' });
+                &debug_msg("Telling Sauce::Service to turn $known_php_services{$phpVer} on and to restart it.\n");
                 service_set_init($known_php_services{$phpVer}, 'on');
                 service_run_init($known_php_services{$phpVer}, 'restart');
 
