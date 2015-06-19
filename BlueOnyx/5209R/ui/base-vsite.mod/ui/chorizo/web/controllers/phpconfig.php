@@ -692,7 +692,8 @@ class Phpconfig extends MX_Controller {
         // the new jQuery stuff into a hissy-fit. Hence we use getRawHTML(), pass php.ini through formspecialchars()
         // to make it safe for viewing and encapsulate the result into <pre></pre> tags:
 
-        $the_file_data = file_get_contents($CODBDATA['php_ini_location']);
+        $file_php_ini = $CODBDATA['php_ini_location'];
+        $ret = $serverScriptHelper->shell("/bin/cat $file_php_ini", $the_file_data, 'root', $sessionId);
         $ini_presenter = $factory->getRawHTML("php_ini", "<pre>" . formspecialchars($the_file_data) . "</pre>", "r");
         $block->addFormField(
           $ini_presenter,

@@ -136,6 +136,11 @@ fi
 
 <begin $CHANGELOG>
 
+* Fri Jun 19 2015 Michael Stauber <mstauber@solarspeed.net> 4.2-0BX44
+- Modified ui/chorizo/web/controllers/phpconfig.php to use CCEWrap to
+  get the contends of php.ini instead of file_get_contends() as our
+  systems php.ini now has 600 permissions.
+
 * Thu Jun 18 2015 Michael Stauber <mstauber@solarspeed.net> 4.2-0BX43
 - More debugging output added to glue/handlers/php_fpm-checker.pl
 
