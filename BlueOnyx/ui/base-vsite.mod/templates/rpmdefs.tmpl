@@ -137,6 +137,11 @@ fi
 
 <begin $CHANGELOG>
 
+* Fri Jun 19 2015 Michael Stauber <mstauber@solarspeed.net> 3.1-0BX28
+- Modified ui/web/php_server.php to use CCEWrap to get the contends of 
+  php.ini instead of file() as our systems php.ini might have 600 
+  permissions.
+
 * Wed May 27 2015 Michael Stauber <mstauber@solarspeed.net> 3.1-0BX27
 - Fixed glue/sbin/phpsendmail to pass a joined @ARGV instead of $*.
 

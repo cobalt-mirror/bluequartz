@@ -1,8 +1,8 @@
 <?php
 
 // Author: Michael Stauber <mstauber@solarspeed.net>
-// Copyright 2006-2008, Stauber Multimedia Design. All rights reserved.
-// Copyright 2008-2009, Team BlueOnyx. All rights reserved.
+// Copyright 2006-2012, Stauber Multimedia Design. All rights reserved.
+// Copyright 2008-2015, Team BlueOnyx. All rights reserved.
 
 include_once("ServerScriptHelper.php");
 
@@ -72,7 +72,7 @@ if ($systemObj["register_globals"] == 'Off') {
         $register_globals_choices=array("register_globals_no" => "Off", "register_globals_yes" => "On");
 }
 else {
-	//Strict, but safe default:
+    //Strict, but safe default:
         $register_globals_choices=array("register_globals_yes" => "On", "register_globals_no" => "Off");
 }
 
@@ -87,7 +87,7 @@ if ($systemObj["safe_mode"] == 'Off') {
         $safe_mode_choices=array("safe_mode_no" => "Off", "safe_mode_yes" => "On");
 }
 else {
-	//Strict, but safe default:
+    //Strict, but safe default:
         $safe_mode_choices=array("safe_mode_yes" => "On", "safe_mode_no" => "Off");
 }
 
@@ -407,10 +407,10 @@ $memory_limit_choices_select->setSelected($systemObj['memory_limit'], true);
 $block->addFormField($memory_limit_choices_select,$factory->getLabel("memory_limit"), "php_ini_security_settings");
 
 // Review php.ini:
-$datei_zwo = $systemObj["php_ini_location"];
-$array_zwo = file($datei_zwo);
-for($x=0;$x<count($array_zwo);$x++){
-	// Replace
+$file_php_ini = $systemObj["php_ini_location"];
+$ret = $serverScriptHelper->shell("/bin/cat $file_php_ini", $the_file_data, 'root', $sessionId);
+for($x=0;$x<count($the_file_data);$x++){
+    // Replace
         $array_zwo[$x] = nl2br($array_zwo[$x]); //#newline conversion
         $array_zwo[$x] = preg_replace('/\s\s+/', '', $array_zwo[$x]); //#strip spaces
 
@@ -430,29 +430,29 @@ for($x=0;$x<count($array_zwo);$x++){
                 $array_zwo[$x] = preg_replace('/safe_mode_gid=Off/', 'safe_mode_gid = '.$systemObj["safe_mode_gid"].' ', $array_zwo[$x]);
         }
         if(preg_match("/^safe_mode_include_dir/i",$array_zwo[$x], $regs)) {
-		$array_zwo[$x] = 'safe_mode_include_dir = '.$systemObj["safe_mode_include_dir"].'<br>';
+        $array_zwo[$x] = 'safe_mode_include_dir = '.$systemObj["safe_mode_include_dir"].'<br>';
         }
         if(preg_match("/^safe_mode_exec_dir/i",$array_zwo[$x], $regs)) {
-		$array_zwo[$x] = 'safe_mode_exec_dir = '.$systemObj["safe_mode_exec_dir"].'<br>';
+        $array_zwo[$x] = 'safe_mode_exec_dir = '.$systemObj["safe_mode_exec_dir"].'<br>';
         }
         if(preg_match("/^safe_mode_allowed_env_vars/i",$array_zwo[$x], $regs)) {
-		$array_zwo[$x] = 'safe_mode_allowed_env_vars = '.$systemObj["safe_mode_allowed_env_vars"].'<br>';
+        $array_zwo[$x] = 'safe_mode_allowed_env_vars = '.$systemObj["safe_mode_allowed_env_vars"].'<br>';
         }
         if(preg_match("/^safe_mode_protected_env_vars/i",$array_zwo[$x], $regs)) {
-		$array_zwo[$x] = 'safe_mode_protected_env_vars = '.$systemObj["safe_mode_protected_env_vars"].'<br>';
+        $array_zwo[$x] = 'safe_mode_protected_env_vars = '.$systemObj["safe_mode_protected_env_vars"].'<br>';
         }
         if(preg_match("/^open_basedir/i",$array_zwo[$x], $regs)) {
-		$array_zwo[$x] = 'open_basedir = '.$systemObj["open_basedir"].'<br>';
+        $array_zwo[$x] = 'open_basedir = '.$systemObj["open_basedir"].'<br>';
         }
         if(preg_match("/^disable_functions/i",$array_zwo[$x], $regs)) {
-		$array_zwo[$x] = 'disable_functions = '.$systemObj["disable_functions"].'<br>';
+        $array_zwo[$x] = 'disable_functions = '.$systemObj["disable_functions"].'<br>';
         }
         if(preg_match("/^disable_classes/i",$array_zwo[$x], $regs)) {
-		$array_zwo[$x] = 'disable_classes = '.$systemObj["disable_classes"].'<br>';
+        $array_zwo[$x] = 'disable_classes = '.$systemObj["disable_classes"].'<br>';
         }
-	// Replace end
-	$array_zwo[$x] = br2nl($array_zwo[$x]);
-	$the_file_data = $the_file_data.$array_zwo[$x];
+    // Replace end
+    $array_zwo[$x] = br2nl($array_zwo[$x]);
+    $the_file_data = $the_file_data.$array_zwo[$x];
 }
 
 $GLOBALS["_FormField_height"] = 40;
@@ -466,7 +466,7 @@ $block->addFormField(
 
 // Show "save" button - unless we're on the "expert mode", which is currently disabled:
 if ($_PagedBlock_selectedId_php_server_head != "php_ini_expert_mode") {
-	$block->addButton($factory->getSaveButton($page->getSubmitAction()));
+    $block->addButton($factory->getSaveButton($page->getSubmitAction()));
 }
 
 $serverScriptHelper->destructor();
@@ -481,4 +481,3 @@ function br2nl($str) {
 }
 
 ?>
-
