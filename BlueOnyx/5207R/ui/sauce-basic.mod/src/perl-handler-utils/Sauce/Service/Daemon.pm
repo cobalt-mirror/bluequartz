@@ -26,7 +26,7 @@ use IO::Socket;
 my $SOCKET = '/usr/sausalito/init_daemon.socket';
 my $TIMEOUT = 120;
 # how long should children attempt an event before giving up in seconds
-my $CHILD_TIMEOUT = 20;
+my $CHILD_TIMEOUT = 30;
 my $QUEUE_CHECK_INTERVAL = 5;
 my $INIT_DIR = '/etc/rc.d/init.d';
 my $last_event_time;
@@ -220,7 +220,7 @@ sub _spawn_child
 
     &_logmsg("1:checker reports: $service $checker");
 
-    if (($action ne 'stop') && ($action ne 'start') && ($checker eq '0')) {
+    if (($action ne 'stop') && ($action ne 'start') && ($action ne 'restart') && ($checker eq '0')) {
         #
         # not currently running, upgrade to a start 
         #
@@ -233,7 +233,8 @@ sub _spawn_child
 
     &_logmsg("Performing event: $service $action");
 
-    if (($service eq "httpd") && (($action eq "reload") || ($action eq "restart") || ($action eq "start"))) {
+    if ($service eq "httpd") {
+
         &_logmsg("Special case ($service): $action");
 
         # Check how many Apache processes are currently attached around as 
@@ -247,19 +248,41 @@ sub _spawn_child
         #  >1   Childs have detached (bad)
 
         if ($xchecker > "1") {
+            # Apache-Childs have detached from the master-process. Which is bad.
             # Kill httpd (but not AdmServ!):
             &_logmsg("xchecker reported: $xchecker - killing httpd, but not admserv.");
-            system("$ps axf|$grep /usr/sbin/httpd|$grep -v adm|$grep -v grep|$grep -v '\_'|$awk -F ' ' '{print \$1}'|/usr/bin/xargs $kill -9 >&/dev/null");
+            `$ps axf|$grep /usr/sbin/httpd|$grep -v adm|$grep -v grep|$grep -v '\_'|$awk -F ' ' '{print \$1}'|/usr/bin/xargs $kill -9 >&/dev/null`;
         }
 
         # Perform action:
         if (-f "/usr/bin/systemctl") { 
             # Got Systemd: 
-            system("/usr/bin/systemctl $action $service.service --no-block"); 
+            # Please note: For httpd we do not use systemctl with the --no-block option to
+            # enqueue the call. We issue it directly and wait for the result.
+            `/usr/bin/systemctl $action $service.service`; 
         } 
         else { 
             # Thank God, no Systemd: 
             `/sbin/service $service $action`;
+        }
+
+        # Running or check again to make sure Apache is running:
+        $xchecker = `$ps axf|$grep /usr/sbin/httpd|$grep -v adm|$grep -v '\_'|$wc -l`;
+        chomp($xchecker);
+        if ($xchecker == "0") {
+            # Apache is still reported as stopped. Reload didn't work. Upgrading to restart:
+            # Perform action:
+            $action = "restart";
+            if (-f "/usr/bin/systemctl") { 
+                # Got Systemd: 
+                # Please note: For httpd we do not use systemctl with the --no-block option to
+                # enqueue the call. We issue it directly and wait for the result.
+                `/usr/bin/systemctl $action $service.service`;
+            } 
+            else { 
+                # Thank God, no Systemd: 
+                `/sbin/service $service $action`;
+            }
         }
         &_logmsg("Running /usr/sausalito/swatch/bin/am_apache.sh");
         `/usr/sausalito/swatch/bin/am_apache.sh`;
@@ -269,7 +292,7 @@ sub _spawn_child
         # Perform action:
         if (-f "/usr/bin/systemctl") { 
             # Got Systemd: 
-            system("/usr/bin/systemctl $action $service.service --no-block"); 
+            `/usr/bin/systemctl $action $service.service --no-block`;
         } 
         else { 
             # Thank God, no Systemd: 

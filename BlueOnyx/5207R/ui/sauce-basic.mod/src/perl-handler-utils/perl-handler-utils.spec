@@ -1,7 +1,7 @@
 Summary: Perl modules that contain useful utility functions for handlers.
 Name: perl-handler-utils
 Version: 1.4.0
-Release: 0BX08%{?dist}
+Release: 0BX09%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -33,6 +33,16 @@ This package contains a number of perl modules that contain useful
 utility functions for writing cced event handler scripts.
 
 %changelog
+
+* Fri Jun 19 2015 Michael Stauber <mstauber@solarspeed.net> 1.4.0-0BX09
+- Modified Sauce/Service/Daemon.pm yet again for better httpd reloads.
+  We check if childs detached. Kill them if need be. Then we do a 
+  non-blocking reload. Check again if Apache is up. If not, we directly
+  upgrade from reload to restart and issue that (non-blocking) as well.
+  Lastly we run the Active Monitor am_apache.sh component. If need be,
+  we loop through this for friggin 30 seconds. And if THAT fails as well,
+  then we run a full Swatch at the end. If THAT doesn't get Apache up
+  again, then I don't know what else will.
 
 * Thu Jun 18 2015 Michael Stauber <mstauber@solarspeed.net> 1.4.0-0BX08
 - Bugfix in Sauce/Service.pm as it was disabling services that were 
