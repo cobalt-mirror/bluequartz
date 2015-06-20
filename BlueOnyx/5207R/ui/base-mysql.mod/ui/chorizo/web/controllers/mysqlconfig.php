@@ -2,355 +2,362 @@
 
 class Mysqlconfig extends MX_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Past the login page this loads the page for /mysql/mysqlconfig.
-	 *
-	 */
+    /**
+     * Index Page for this controller.
+     *
+     * Past the login page this loads the page for /mysql/mysqlconfig.
+     *
+     */
 
-	public function index() {
+    public function index() {
 
-		$CI =& get_instance();
+        $CI =& get_instance();
 
-	    // We load the BlueOnyx helper library first of all, as we heavily depend on it:
-	    $this->load->helper('blueonyx');
-	    init_libraries();
+        // We load the BlueOnyx helper library first of all, as we heavily depend on it:
+        $this->load->helper('blueonyx');
+        init_libraries();
 
-  		// Need to load 'BxPage' for page rendering:
-  		$this->load->library('BxPage');
-		$MX =& get_instance();
+        // Need to load 'BxPage' for page rendering:
+        $this->load->library('BxPage');
+        $MX =& get_instance();
 
-	    // Get $sessionId and $loginName from Cookie (if they are set):
-	    $sessionId = $CI->input->cookie('sessionId');
-	    $loginName = $CI->input->cookie('loginName');
-	    $locale = $CI->input->cookie('locale');
+        // Get $sessionId and $loginName from Cookie (if they are set):
+        $sessionId = $CI->input->cookie('sessionId');
+        $loginName = $CI->input->cookie('loginName');
+        $locale = $CI->input->cookie('locale');
 
-	    // Line up the ducks for CCE-Connection:
-	    include_once('ServerScriptHelper.php');
-		$serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-		$cceClient = $serverScriptHelper->getCceClient();
-		$user = $cceClient->getObject("User", array("name" => $loginName));
-		$i18n = new I18n("base-mysql", $user['localePreference']);
-		$system = $cceClient->getObject("System");
+        // Line up the ducks for CCE-Connection:
+        include_once('ServerScriptHelper.php');
+        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
+        $cceClient = $serverScriptHelper->getCceClient();
+        $user = $cceClient->getObject("User", array("name" => $loginName));
+        $i18n = new I18n("base-mysql", $user['localePreference']);
+        $system = $cceClient->getObject("System");
 
-		// Initialize Capabilities so that we can poll the access rights as well:
-		$Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        // Initialize Capabilities so that we can poll the access rights as well:
+        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
 
-		// -- Actual page logic start:
+        // -- Actual page logic start:
 
-		// Not serverNetwork? Bye, bye!
-		if (!$Capabilities->getAllowed('serverNetwork')) {
-			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
-			Log403Error("/gui/Forbidden403");
-		}
+        // Not serverNetwork? Bye, bye!
+        if (!$Capabilities->getAllowed('serverNetwork')) {
+            // Nice people say goodbye, or CCEd waits forever:
+            $cceClient->bye();
+            $serverScriptHelper->destructor();
+            Log403Error("/gui/Forbidden403");
+        }
 
-		//
-		//--- Get CODB-Object of interest: 
-		//
+        //
+        //--- Get CODB-Object of interest: 
+        //
 
-		$CODBDATA = $cceClient->getObject("System", array(), "MYSQLUSERS_DEFAULTS");
+        $CODBDATA = $cceClient->getObject("System", array(), "MYSQLUSERS_DEFAULTS");
 
-		//
-		//--- Handle form validation:
-		//
+        //
+        //--- Handle form validation:
+        //
 
-	    // We start without any active errors:
-	    $errors = array();
-	    $extra_headers =array();
-	    $ci_errors = array();
-	    $my_errors = array();
+        // We start without any active errors:
+        $errors = array();
+        $extra_headers =array();
+        $ci_errors = array();
+        $my_errors = array();
 
-		// Shove submitted input into $form_data after passing it through the XSS filter:
-		$form_data = $CI->input->post(NULL, TRUE);
+        // Shove submitted input into $form_data after passing it through the XSS filter:
+        $form_data = $CI->input->post(NULL, TRUE);
 
-		// Form fields that are required to have input:
-		$required_keys = array();
-    	// Set up rules for form validation. These validations happen before we submit to CCE and further checks based on the schemas are done:
+        // Form fields that are required to have input:
+        $required_keys = array();
+        // Set up rules for form validation. These validations happen before we submit to CCE and further checks based on the schemas are done:
 
-		// Empty array for key => values we want to submit to CCE:
-    	$attributes = array();
-    	// Items we do NOT want to submit to CCE:
-    	$ignore_attributes = array("BlueOnyx_Info_Text", "_");
-		if (is_array($form_data)) {
-			// Function GetFormAttributes() walks through the $form_data and returns us the $parameters we want to
-			// submit to CCE. It intelligently handles checkboxes, which only have "on" set when they are ticked.
-			// In that case it pulls the unticked status from the hidden checkboxes and addes them to $parameters.
-			// It also transformes the value of the ticked checkboxes from "on" to "1". 
-			//
-			// Additionally it generates the form_validation rules for CodeIgniter.
-			//
-			// params: $i18n				i18n Object of the error messages
-			// params: $form_data			array with form_data array from CI
-			// params: $required_keys		array with keys that must have data in it. Needed for CodeIgniter's error checks
-			// params: $ignore_attributes	array with items we want to ignore. Such as Labels.
-			// return: 						array with keys and values ready to submit to CCE.
-			$attributes = GetFormAttributes($i18n, $form_data, $required_keys, $ignore_attributes, $i18n);
-		}
-		//Setting up error messages:
-		$CI->form_validation->set_message('required', $i18n->get("[[palette.val_is_required]]", false, array("field" => "\"%s\"")));		
+        // Empty array for key => values we want to submit to CCE:
+        $attributes = array();
+        // Items we do NOT want to submit to CCE:
+        $ignore_attributes = array("BlueOnyx_Info_Text", "_");
+        if (is_array($form_data)) {
+            // Function GetFormAttributes() walks through the $form_data and returns us the $parameters we want to
+            // submit to CCE. It intelligently handles checkboxes, which only have "on" set when they are ticked.
+            // In that case it pulls the unticked status from the hidden checkboxes and addes them to $parameters.
+            // It also transformes the value of the ticked checkboxes from "on" to "1". 
+            //
+            // Additionally it generates the form_validation rules for CodeIgniter.
+            //
+            // params: $i18n                i18n Object of the error messages
+            // params: $form_data           array with form_data array from CI
+            // params: $required_keys       array with keys that must have data in it. Needed for CodeIgniter's error checks
+            // params: $ignore_attributes   array with items we want to ignore. Such as Labels.
+            // return:                      array with keys and values ready to submit to CCE.
+            $attributes = GetFormAttributes($i18n, $form_data, $required_keys, $ignore_attributes, $i18n);
+        }
+        //Setting up error messages:
+        $CI->form_validation->set_message('required', $i18n->get("[[palette.val_is_required]]", false, array("field" => "\"%s\"")));        
 
-	    // Do we have validation related errors?
-	    if ($CI->form_validation->run() == FALSE) {
+        // Do we have validation related errors?
+        if ($CI->form_validation->run() == FALSE) {
 
-			if (validation_errors()) {
-				// Set CI related errors:
-				$ci_errors = array(validation_errors('<div class="alert dismissible alert_red"><img width="40" height="36" src="/.adm/images/icons/small/white/alarm_bell.png"><strong>', '</strong></div>'));
-			}		    
-			else {
-				// No errors. Pass empty array along:
-				$ci_errors = array();
-			}
-		}
+            if (validation_errors()) {
+                // Set CI related errors:
+                $ci_errors = array(validation_errors('<div class="alert dismissible alert_red"><img width="40" height="36" src="/.adm/images/icons/small/white/alarm_bell.png"><strong>', '</strong></div>'));
+            }           
+            else {
+                // No errors. Pass empty array along:
+                $ci_errors = array();
+            }
+        }
 
-		//
-		//--- Own error checks:
-		//
+        //
+        //--- Own error checks:
+        //
 
-		if ($CI->input->post(NULL, TRUE)) {
-			$attributes['force_update'] = time();
-			$my_cnf_out = $attributes['my_cnf'];
-			unset($attributes['my_cnf']);
+        if (is_file("/usr/libexec/mariadb-wait-ready")) {
+            $my_cnf_file = "/etc/my.cnf.d/server.cnf";
+        }
+        else {
+            $my_cnf_file = "/etc/my.cnf";
+        }
 
-			// Write the new my.cnf:
-			write_file("/tmp/my.cnf", $my_cnf_out);
+        if ($CI->input->post(NULL, TRUE)) {
+            $attributes['force_update'] = time();
+            $my_cnf_out = $attributes['my_cnf'];
+            unset($attributes['my_cnf']);
 
-			$diff = "0";
-			if ((is_file("/usr/bin/diff")) && (is_file("/tmp/my.cnf"))) {
-				$diff = `/usr/bin/diff /etc/my.cnf /tmp/my.cnf | /usr/bin/wc -l`;
-			}
+            // Write the new my.cnf:
+            write_file("/tmp/my.cnf", $my_cnf_out);
 
-			if ($diff != "0") {
-				// If we want to activate the new my.cnf, we need to set "soltab" to "two".
-				// Only then the handler will take care of it. But we only do so if the new
-				// my.cnf's diff result is different from the existing /etc/my.cnf
-				$attributes['soltab'] = "two";
+            $diff = "0";
+            if ((is_file("/usr/bin/diff")) && (is_file("/tmp/my.cnf"))) {
+                $diff = `/usr/bin/diff $my_cnf_file /tmp/my.cnf | /usr/bin/wc -l`;
+            }
 
-				// Define who runs CCEwrap:
-				$runas = 'root';
-				$ret = $serverScriptHelper->shell("/bin/cp /tmp/my.cnf /etc/my.cnf", $nfk, 'root', $sessionId);
-				$ret = $serverScriptHelper->shell("/bin/chown root:root /etc/my.cnf", $nfk, 'root', $sessionId);
-				$ret = $serverScriptHelper->shell("/bin/rm -f /tmp/my.cnf", $nfk, 'root', $sessionId);
-			}
-		}
+            if ($diff != "0") {
+                // If we want to activate the new my.cnf, we need to set "soltab" to "two".
+                // Only then the handler will take care of it. But we only do so if the new
+                // my.cnf's diff result is different from the existing /etc/my.cnf
+                $attributes['soltab'] = "two";
 
-		//
-		//--- At this point all checks are done. If we have no errors, we can submit the data to CODB:
-		//
+                // Define who runs CCEwrap:
+                $runas = 'root';
+                $ret = $serverScriptHelper->shell("/bin/cp /tmp/my.cnf $my_cnf_file", $nfk, 'root', $sessionId);
+                $ret = $serverScriptHelper->shell("/bin/chown root:root $my_cnf_file", $nfk, 'root', $sessionId);
+                $ret = $serverScriptHelper->shell("/bin/rm -f /tmp/my.cnf", $nfk, 'root', $sessionId);
+            }
+        }
 
-		// Join the various error messages:
-		$errors = array_merge($ci_errors, $my_errors);
+        //
+        //--- At this point all checks are done. If we have no errors, we can submit the data to CODB:
+        //
 
-		// If we have no errors and have POST data, we submit to CODB:
-		if ((count($errors) == "0") && ($CI->input->post(NULL, TRUE))) {
+        // Join the various error messages:
+        $errors = array_merge($ci_errors, $my_errors);
 
-			// We have no errors. We submit to CODB.
+        // If we have no errors and have POST data, we submit to CODB:
+        if ((count($errors) == "0") && ($CI->input->post(NULL, TRUE))) {
 
-	  		// Actual submit to CODB:
-	  		$cceClient->setObject("System", $attributes, "MYSQLUSERS_DEFAULTS");
+            // We have no errors. We submit to CODB.
 
-			// CCE errors that might have happened during submit to CODB:
-			$CCEerrors = $cceClient->errors();
-			foreach ($CCEerrors as $object => $objData) {
-				// When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
-				$errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
-			}
+            // Actual submit to CODB:
+            $cceClient->setObject("System", $attributes, "MYSQLUSERS_DEFAULTS");
 
-			// No errors. Reload the entire page to load it with the updated values:
-			if ((count($errors) == "0")) {
-				header("Location: /mysql/mysqlconfig");
-				exit;
-			}
-			else {
-				$CODBDATA = $attributes;
-			}
-		}
+            // CCE errors that might have happened during submit to CODB:
+            $CCEerrors = $cceClient->errors();
+            foreach ($CCEerrors as $object => $objData) {
+                // When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
+                $errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
+            }
 
-		//
-		//-- Own page logic:
-		//
+            // No errors. Reload the entire page to load it with the updated values:
+            if ((count($errors) == "0")) {
+                header("Location: /mysql/mysqlconfig");
+                exit;
+            }
+            else {
+                $CODBDATA = $attributes;
+            }
+        }
 
-		//
-	    //-- Generate page:
-	    //
+        //
+        //-- Own page logic:
+        //
+
+        //
+        //-- Generate page:
+        //
 
 
-		// Prepare Page:
-		$factory = $serverScriptHelper->getHtmlComponentFactory("base-mysql", "/mysql/mysqlconfig");
-		$BxPage = $factory->getPage();
-		$BxPage->setErrors($errors);
-		$i18n = $factory->getI18n();
+        // Prepare Page:
+        $factory = $serverScriptHelper->getHtmlComponentFactory("base-mysql", "/mysql/mysqlconfig");
+        $BxPage = $factory->getPage();
+        $BxPage->setErrors($errors);
+        $i18n = $factory->getI18n();
 
-		$product = new Product($cceClient);
+        $product = new Product($cceClient);
 
-		// Set Menu items:
-		$BxPage->setVerticalMenu('base_controlpanel');
-		$BxPage->setVerticalMenuChild('base_mysqlconfig');
-		$page_module = 'base_sysmanage';
+        // Set Menu items:
+        $BxPage->setVerticalMenu('base_controlpanel');
+        $BxPage->setVerticalMenuChild('base_mysqlconfig');
+        $page_module = 'base_sysmanage';
 
-		$defaultPage = "MySQL_TAB_ONE";
+        $defaultPage = "MySQL_TAB_ONE";
 
-		$block =& $factory->getPagedBlock("mysql_header", array($defaultPage, 'MySQL_TAB_TWO'));
+        $block =& $factory->getPagedBlock("mysql_header", array($defaultPage, 'MySQL_TAB_TWO'));
 
-		$block->setToggle("#");
-		$block->setSideTabs(FALSE);
-		$block->setShowAllTabs("#");
-		$block->setDefaultPage($defaultPage);
+        $block->setToggle("#");
+        $block->setSideTabs(FALSE);
+        $block->setShowAllTabs("#");
+        $block->setDefaultPage($defaultPage);
 
-		//
-		//--- MySQL_TAB_ONE
-		//
+        //
+        //--- MySQL_TAB_ONE
+        //
 
-		// Add MySQL userdb switch:
-		$udb_switch = $CODBDATA['solsitemysql'];
-		$block->addFormField(
-		  $factory->getBoolean("solsitemysql", $udb_switch),
-		  $factory->getLabel("udb_switch"),
-		  'MySQL_TAB_ONE'
-		);
+        // Add MySQL userdb switch:
+        $udb_switch = $CODBDATA['solsitemysql'];
+        $block->addFormField(
+          $factory->getBoolean("solsitemysql", $udb_switch),
+          $factory->getLabel("udb_switch"),
+          'MySQL_TAB_ONE'
+        );
 
-		// Add divider:
-		$block->addFormField(
-		        $factory->addBXDivider("DIVIDER_ZERO", ""),
-		        $factory->getLabel("DIVIDER_ZERO", false),
-		        $defaultPage
-		        );
+        // Add divider:
+        $block->addFormField(
+                $factory->addBXDivider("DIVIDER_ZERO", ""),
+                $factory->getLabel("DIVIDER_ZERO", false),
+                $defaultPage
+                );
 
-		$my_TEXT = $i18n->getClean("[[base-mysql.MySQL_Info_Text]]");
-		$mysql_info_text = $factory->getTextField("_", $my_TEXT, 'r');
-		$mysql_info_text->setLabelType("nolabel");
-		$block->addFormField(
-		    $mysql_info_text,
-		    $factory->getLabel(" "),
-		    'MySQL_TAB_ONE'
-		    );
+        $my_TEXT = $i18n->getClean("[[base-mysql.MySQL_Info_Text]]");
+        $mysql_info_text = $factory->getTextField("_", $my_TEXT, 'r');
+        $mysql_info_text->setLabelType("nolabel");
+        $block->addFormField(
+            $mysql_info_text,
+            $factory->getLabel(" "),
+            'MySQL_TAB_ONE'
+            );
 
-		// Add divider:
-		$block->addFormField(
-		        $factory->addBXDivider("DIVIDER_ONE", ""),
-		        $factory->getLabel("DIVIDER_ONE", false),
-		        $defaultPage
-		        );
+        // Add divider:
+        $block->addFormField(
+                $factory->addBXDivider("DIVIDER_ONE", ""),
+                $factory->getLabel("DIVIDER_ONE", false),
+                $defaultPage
+                );
 
-		$SELECT = $CODBDATA['SELECT'];
-		$block->addFormField(
-		  $factory->getBoolean("SELECT", $SELECT),
-		  $factory->getLabel("SELECT"),
-		  'MySQL_TAB_ONE'
-		);
-		$INSERT = $CODBDATA['INSERT'];
-		$block->addFormField(
-		  $factory->getBoolean("INSERT", $INSERT),
-		  $factory->getLabel("INSERT"),
-		  'MySQL_TAB_ONE'
-		);
-		$UPDATE = $CODBDATA['UPDATE'];
-		$block->addFormField(
-		  $factory->getBoolean("UPDATE", $UPDATE),
-		  $factory->getLabel("UPDATE"),
-		  'MySQL_TAB_ONE'
-		);
-		$DELETE = $CODBDATA['DELETE'];
-		$block->addFormField(
-		  $factory->getBoolean("DELETE", $DELETE),
-		  $factory->getLabel("DELETE"),
-		  'MySQL_TAB_ONE'
-		);
-		$FILE = $CODBDATA['FILE'];
-		$block->addFormField(
-		  $factory->getBoolean("FILE", $FILE),
-		  $factory->getLabel("FILE"),
-		  'MySQL_TAB_ONE'
-		);
+        $SELECT = $CODBDATA['SELECT'];
+        $block->addFormField(
+          $factory->getBoolean("SELECT", $SELECT),
+          $factory->getLabel("SELECT"),
+          'MySQL_TAB_ONE'
+        );
+        $INSERT = $CODBDATA['INSERT'];
+        $block->addFormField(
+          $factory->getBoolean("INSERT", $INSERT),
+          $factory->getLabel("INSERT"),
+          'MySQL_TAB_ONE'
+        );
+        $UPDATE = $CODBDATA['UPDATE'];
+        $block->addFormField(
+          $factory->getBoolean("UPDATE", $UPDATE),
+          $factory->getLabel("UPDATE"),
+          'MySQL_TAB_ONE'
+        );
+        $DELETE = $CODBDATA['DELETE'];
+        $block->addFormField(
+          $factory->getBoolean("DELETE", $DELETE),
+          $factory->getLabel("DELETE"),
+          'MySQL_TAB_ONE'
+        );
+        $FILE = $CODBDATA['FILE'];
+        $block->addFormField(
+          $factory->getBoolean("FILE", $FILE),
+          $factory->getLabel("FILE"),
+          'MySQL_TAB_ONE'
+        );
 
-		// Add divider:
-		$block->addFormField(
-		        $factory->addBXDivider("DIVIDER_TWO", ""),
-		        $factory->getLabel("DIVIDER_TWO", false),
-		        $defaultPage
-		        );
+        // Add divider:
+        $block->addFormField(
+                $factory->addBXDivider("DIVIDER_TWO", ""),
+                $factory->getLabel("DIVIDER_TWO", false),
+                $defaultPage
+                );
 
-		$CREATE = $CODBDATA['CREATE'];
-		$block->addFormField(
-		  $factory->getBoolean("CREATE", $CREATE),
-		  $factory->getLabel("CREATE"),
-		  'MySQL_TAB_ONE'
-		);
-		$ALTER = $CODBDATA['ALTER'];
-		$block->addFormField(
-		  $factory->getBoolean("ALTER", $ALTER),
-		  $factory->getLabel("ALTER"),
-		  'MySQL_TAB_ONE'
-		);
-		$INDEX = $CODBDATA['INDEX'];
-		$block->addFormField(
-		  $factory->getBoolean("INDEX", $INDEX),
-		  $factory->getLabel("INDEX"),
-		  'MySQL_TAB_ONE'
-		);
-		$DROP = $CODBDATA['DROP'];
-		$block->addFormField(
-		  $factory->getBoolean("DROP", $DROP),
-		  $factory->getLabel("DROP"),
-		  'MySQL_TAB_ONE'
-		);
-		$TEMPORARY = $CODBDATA['TEMPORARY'];
-		$block->addFormField(
-		  $factory->getBoolean("TEMPORARY", $TEMPORARY),
-		  $factory->getLabel("TEMPORARY"),
-		  'MySQL_TAB_ONE'
-		);
+        $CREATE = $CODBDATA['CREATE'];
+        $block->addFormField(
+          $factory->getBoolean("CREATE", $CREATE),
+          $factory->getLabel("CREATE"),
+          'MySQL_TAB_ONE'
+        );
+        $ALTER = $CODBDATA['ALTER'];
+        $block->addFormField(
+          $factory->getBoolean("ALTER", $ALTER),
+          $factory->getLabel("ALTER"),
+          'MySQL_TAB_ONE'
+        );
+        $INDEX = $CODBDATA['INDEX'];
+        $block->addFormField(
+          $factory->getBoolean("INDEX", $INDEX),
+          $factory->getLabel("INDEX"),
+          'MySQL_TAB_ONE'
+        );
+        $DROP = $CODBDATA['DROP'];
+        $block->addFormField(
+          $factory->getBoolean("DROP", $DROP),
+          $factory->getLabel("DROP"),
+          'MySQL_TAB_ONE'
+        );
+        $TEMPORARY = $CODBDATA['TEMPORARY'];
+        $block->addFormField(
+          $factory->getBoolean("TEMPORARY", $TEMPORARY),
+          $factory->getLabel("TEMPORARY"),
+          'MySQL_TAB_ONE'
+        );
 
-		// Add divider:
-		$block->addFormField(
-		        $factory->addBXDivider("DIVIDER_THREE", ""),
-		        $factory->getLabel("DIVIDER_THREE", false),
-		        $defaultPage
-		        );
+        // Add divider:
+        $block->addFormField(
+                $factory->addBXDivider("DIVIDER_THREE", ""),
+                $factory->getLabel("DIVIDER_THREE", false),
+                $defaultPage
+                );
 
-		// Old code had a check here for version of MySQL, as these functions require MySQL5.
-		// Even 5106R now has MySQL5, so we can forego the check:
-		$access = 'rw';
+        // Old code had a check here for version of MySQL, as these functions require MySQL5.
+        // Even 5106R now has MySQL5, so we can forego the check:
+        $access = 'rw';
 
-		$CREATE_VIEW = $CODBDATA['CREATE_VIEW'];
-		$block->addFormField(
-		  $factory->getBoolean("CREATE_VIEW", $CREATE_VIEW, $access),
-		  $factory->getLabel("CREATE_VIEW"),
-		  'MySQL_TAB_ONE'
-		);
-		$SHOW_VIEW = $CODBDATA['SHOW_VIEW'];
-		$block->addFormField(
-		  $factory->getBoolean("SHOW_VIEW", $SHOW_VIEW, $access),
-		  $factory->getLabel("SHOW_VIEW"),
-		  'MySQL_TAB_ONE'
-		);
-		$CREATE_ROUTINE = $CODBDATA['CREATE_ROUTINE'];
-		$block->addFormField(
-		  $factory->getBoolean("CREATE_ROUTINE", $CREATE_ROUTINE, $access),
-		  $factory->getLabel("CREATE_ROUTINE"),
-		  'MySQL_TAB_ONE'
-		);
-		$ALTER_ROUTINE = $CODBDATA['ALTER_ROUTINE'];
-		$block->addFormField(
-		  $factory->getBoolean("ALTER_ROUTINE", $ALTER_ROUTINE, $access),
-		  $factory->getLabel("ALTER_ROUTINE"),
-		  'MySQL_TAB_ONE'
-		);
-		$EXECUTE = $CODBDATA['EXECUTE'];
-		$block->addFormField(
-		  $factory->getBoolean("EXECUTE", $EXECUTE, $access),
-		  $factory->getLabel("EXECUTE"),
-		  'MySQL_TAB_ONE'
-		);
+        $CREATE_VIEW = $CODBDATA['CREATE_VIEW'];
+        $block->addFormField(
+          $factory->getBoolean("CREATE_VIEW", $CREATE_VIEW, $access),
+          $factory->getLabel("CREATE_VIEW"),
+          'MySQL_TAB_ONE'
+        );
+        $SHOW_VIEW = $CODBDATA['SHOW_VIEW'];
+        $block->addFormField(
+          $factory->getBoolean("SHOW_VIEW", $SHOW_VIEW, $access),
+          $factory->getLabel("SHOW_VIEW"),
+          'MySQL_TAB_ONE'
+        );
+        $CREATE_ROUTINE = $CODBDATA['CREATE_ROUTINE'];
+        $block->addFormField(
+          $factory->getBoolean("CREATE_ROUTINE", $CREATE_ROUTINE, $access),
+          $factory->getLabel("CREATE_ROUTINE"),
+          'MySQL_TAB_ONE'
+        );
+        $ALTER_ROUTINE = $CODBDATA['ALTER_ROUTINE'];
+        $block->addFormField(
+          $factory->getBoolean("ALTER_ROUTINE", $ALTER_ROUTINE, $access),
+          $factory->getLabel("ALTER_ROUTINE"),
+          'MySQL_TAB_ONE'
+        );
+        $EXECUTE = $CODBDATA['EXECUTE'];
+        $block->addFormField(
+          $factory->getBoolean("EXECUTE", $EXECUTE, $access),
+          $factory->getLabel("EXECUTE"),
+          'MySQL_TAB_ONE'
+        );
 
-		// Add divider:
-		$block->addFormField(
-		        $factory->addBXDivider("DIVIDER_FOUR", ""),
-		        $factory->getLabel("DIVIDER_FOUR", false),
-		        $defaultPage
-		        );
+        // Add divider:
+        $block->addFormField(
+                $factory->addBXDivider("DIVIDER_FOUR", ""),
+                $factory->getLabel("DIVIDER_FOUR", false),
+                $defaultPage
+                );
 
         $MAX_QUERIES_PER_HOUR =& $factory->getInteger("MAX_QUERIES_PER_HOUR", $CODBDATA['MAX_QUERIES_PER_HOUR'], 0, 50000000);
         $MAX_QUERIES_PER_HOUR->showBounds(1);
@@ -358,7 +365,7 @@ class Mysqlconfig extends MX_Controller {
         $block->addFormField(
             $MAX_QUERIES_PER_HOUR,
             $factory->getLabel('MAX_QUERIES_PER_HOUR'),
-		 	'MySQL_TAB_ONE'
+            'MySQL_TAB_ONE'
             );
 
         $MAX_CONNECTIONS_PER_HOUR =& $factory->getInteger("MAX_CONNECTIONS_PER_HOUR", $CODBDATA['MAX_CONNECTIONS_PER_HOUR'], 0, 50000000);
@@ -367,7 +374,7 @@ class Mysqlconfig extends MX_Controller {
         $block->addFormField(
             $MAX_CONNECTIONS_PER_HOUR,
             $factory->getLabel('MAX_CONNECTIONS_PER_HOUR'),
-		 	'MySQL_TAB_ONE'
+            'MySQL_TAB_ONE'
             );
 
         $MAX_UPDATES_PER_HOUR =& $factory->getInteger("MAX_UPDATES_PER_HOUR", $CODBDATA['MAX_UPDATES_PER_HOUR'], 0, 50000000);
@@ -376,37 +383,37 @@ class Mysqlconfig extends MX_Controller {
         $block->addFormField(
             $MAX_UPDATES_PER_HOUR,
             $factory->getLabel('MAX_UPDATES_PER_HOUR'),
-		 	'MySQL_TAB_ONE'
+            'MySQL_TAB_ONE'
             );
 
-		//
-		//--- MySQL_TAB_TWO
-		//
+        //
+        //--- MySQL_TAB_TWO
+        //
 
-		$the_file_data = file_get_contents("/etc/my.cnf");
-		$block->addFormField(
-		  $factory->getTextBlock("my_cnf", $the_file_data),
-		  $factory->getLabel("my_cnf"),
-		  'MySQL_TAB_TWO'
-		);
+        $the_file_data = file_get_contents("$my_cnf_file");
+        $block->addFormField(
+          $factory->getTextBlock("my_cnf", $the_file_data),
+          $factory->getLabel("my_cnf"),
+          'MySQL_TAB_TWO'
+        );
 
-		//
-		//--- Add the buttons
-		//
+        //
+        //--- Add the buttons
+        //
 
-		$block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
-		$block->addButton($factory->getCancelButton("/mysql/mysqlconfig"));
+        $block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
+        $block->addButton($factory->getCancelButton("/mysql/mysqlconfig"));
 
-		// Nice people say goodbye, or CCEd waits forever:
-		$cceClient->bye();
-		$serverScriptHelper->destructor();
+        // Nice people say goodbye, or CCEd waits forever:
+        $cceClient->bye();
+        $serverScriptHelper->destructor();
 
-		$page_body[] = $block->toHtml();
+        $page_body[] = $block->toHtml();
 
-		// Out with the page:
-	    $BxPage->render($page_module, $page_body);
+        // Out with the page:
+        $BxPage->render($page_module, $page_body);
 
-	}		
+    }       
 }
 
 /*

@@ -115,6 +115,11 @@ information for [VENDOR]-[SERVICE].
 
 <begin $CHANGELOG>
 
+* Sat Jun 20 2015 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX15
+- EL7 actually doesn't use /etc/my.cnf but /etc/my.cnf.d/server.cnf.
+- Fixed ui/chorizo/web/controllers/mysqlconfig.php my.cnf location.
+- Converted UI indentation to spaces.
+
 * Tue May 05 2015 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX14
 - Modified constructor/setup_mysql_data.pl to detect if /etc/my.cnf has
   'old_passwords=1' configured. If so, turn it off and restart MySQLd.
