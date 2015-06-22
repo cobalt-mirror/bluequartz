@@ -204,12 +204,18 @@ fi
 
 <begin $CHANGELOG>
 
+* Sun Jun 21 2015 Michael Stauber <mstauber@solarspeed.net> 2.1.1-0BX35
+- Modified support for Perl and SSI in Vsites.
+- Modifed glue/handlers/webscripting.pl
+- Modifed glue/handlers/webscripting2.pl
+- Modifed glue/handlers/webscripting3.pl
+
 * Thu Jun 18 2015 Michael Stauber <mstauber@solarspeed.net> 2.1.1-0BX34
 - Modified glue/handlers/vhost_addrem.pl to remove the httpd restart.
   We do a reload via Sauce::Service at the end and that will suffice.
 
 * Wed Jun 17 2015 Michael Stauber <mstauber@solarspeed.net> 2.1.1-0BX33
-- Fixed bropen support for Perl and SSI in Vsites.
+- Fixed broken support for Perl and SSI in Vsites.
 - Modifed glue/handlers/webscripting.pl
 - Modifed glue/handlers/webscripting2.pl
 - Modifed glue/handlers/webscripting3.pl

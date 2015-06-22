@@ -112,11 +112,8 @@ sub edit_vhost
 
     if ($cgi->{enabled})
     {
-        $script_conf .= "AddHandler cgi-wrapper .cgi\nAddHandler cgi-wrapper .pl\n";
         $script_conf .= "<Directory $Vsite->{basedir}/web>\n";
-        $script_conf .= "    SetHandler perl-script\n";
-        $script_conf .= "    PerlResponseHandler ModPerl::Registry\n";
-        $script_conf .= "    PerlOptions +ParseHeaders\n";
+        $script_conf .= "    AddHandler cgi-script .cgi .pl\n";
         $script_conf .= "    Options +ExecCGI\n";
         $script_conf .= "</Directory>\n";
     }
