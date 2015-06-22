@@ -37,6 +37,13 @@ if ($checker > "1") {
     system("$ps axf|$grep /usr/sbin/httpd|$grep -v adm|$grep -v grep|$grep -v '\_'|$awk -F ' ' '{print \$1}'|/usr/bin/xargs $kill -9 >&/dev/null");
 }
 
+# Make sure httpd is enabled:
+$apache_status = service_get_init("httpd");
+if ($apache_status == "0") {
+    # It is not? Turn it on:
+    service_set_init("httpd", "on");
+}
+
 $cce->bye('SUCCESS');
 exit(0);
 
