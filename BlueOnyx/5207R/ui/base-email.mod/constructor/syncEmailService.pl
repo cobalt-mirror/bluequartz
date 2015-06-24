@@ -294,7 +294,7 @@ sub make_sendmail_mc {
     # TLS_RSA_WITH_RC4_128_SHA - semi-strong
 
     $local_config = 'LOCAL_CONFIG' . "\n";
-    $local_config .= 'O CipherList=HIGH:MEDIUM:LOW!aNULL:!eNULL:!3DES:!EXP:!PSK:!DSS:!SEED:!DES:!IDEA' . "\n";
+    $local_config .= 'O CipherList=HIGH:MEDIUM:LOW:!aNULL:!eNULL:!3DES:!EXP:!PSK:!DSS:!SEED:!DES:!IDEA' . "\n";
     $local_config .= 'O ServerSSLOptions=+SSL_OP_NO_SSLv2 +SSL_OP_NO_SSLv3 +SSL_OP_CIPHER_SERVER_PREFERENCE' . "\n";
     $local_config .= 'O ClientSSLOptions=+SSL_OP_NO_SSLv2 +SSL_OP_NO_SSLv3' . "\n";
 
