@@ -335,8 +335,8 @@ sub _spawn_child
 
         # check for timeout
         if ($i >= $CHILD_TIMEOUT) {
-            &_logmsg("child $$ unable to complete event $service $action. Running swatch and exiting");
-            `/usr/sbin/swatch`;
+            &_logmsg("child $$ unable to complete event $service $action. Running am_apache.sh and exiting");
+            `/usr/sausalito/swatch/bin/am_apache.sh`;
             # notify parent
             kill 'USR2', getppid();
             exit(1);
