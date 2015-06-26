@@ -1068,3 +1068,11 @@ msgstr "Max entrada vars:"
 msgid "max_input_vars_help"
 msgstr "Isso define quantas variáveis ​​de entrada pode ser aceite (limite é aplicada a $ _GET, $ _POST e $ _COOKIE superglobal separadamente). O uso deste directiva reduz a possibilidade de ataques de negação de serviço que utilizam colisões de hash. Se houver mais variáveis ​​de entrada do que o especificado por esta directiva, com E_WARNING é emitido, e outras variáveis ​​de entrada são truncados a partir da solicitação. Se for definido como -1 vars de entrada ilimitadas são permitidas. Padrão: 1000."
 
+###
+
+msgid "fpm_max_children"
+msgstr "Max Crianças (FPM)"
+
+msgid "fpm_max_children_help"
+msgstr "Esta opção define o limite para o número de solicitações simultâneas que serão servidos por cada piscina PHP-FPM. Ele funciona de forma semelhante à directiva MaxClients para Apache."
+

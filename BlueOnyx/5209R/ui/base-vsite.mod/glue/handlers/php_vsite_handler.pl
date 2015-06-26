@@ -615,6 +615,14 @@ sub handle_fpm_pools {
         $fpmPort = 9000;
     }
 
+    # Logic check for fpm_max_children: 
+    if (($PHP->{'fpm_max_children'} lt "1") || ($PHP->{'fpm_max_children'} gt "255")) {
+        $fpm_max_children = "15";
+    }
+    else {
+        $fpm_max_children = $PHP->{'fpm_max_children'};
+    }
+
     # Location of the PHP-FPM pool file:
     $pool_file_wildcard = '/etc/php-fpm*.d/';
     if (-d $pool_directory) {
@@ -635,7 +643,7 @@ sub handle_fpm_pools {
         system("/bin/rm -f $pool_file_wildcard$pool_group.conf");
 
         &debug_msg("Creating PHP-FPM pool config $pool_file through php_vsite_handler.pl \n");
-        
+
         #
         ### Define Pool config file contends:
         #
@@ -662,7 +670,7 @@ sub handle_fpm_pools {
         $pool_conf .= '' . "\n";
         $pool_conf .= '; Set to \'ondemand\' and set limits:' . "\n";
         $pool_conf .= 'pm = ondemand' . "\n";
-        $pool_conf .= 'pm.max_children = 5' . "\n";
+        $pool_conf .= 'pm.max_children = ' . $fpm_max_children . "\n";
         $pool_conf .= 'pm.process_idle_timeout = 10s' . "\n";
         $pool_conf .= 'pm.max_requests = 500' . "\n";
         $pool_conf .= '' . "\n";

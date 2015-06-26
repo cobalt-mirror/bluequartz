@@ -149,6 +149,12 @@
             writeacl="ruleCapable(adminUser)"
         />
 
+       <property name="fpm_max_children"
+            type="int"
+            default="15"
+            optional="false"
+            writeacl="ruleCapable(adminUser)"
+        />
 </class>
 
 <class name="PHP" namespace="PHP53" version="1.0" createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)">

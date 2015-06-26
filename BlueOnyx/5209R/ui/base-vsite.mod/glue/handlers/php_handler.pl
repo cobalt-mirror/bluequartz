@@ -502,6 +502,14 @@ sub handle_fpm_master_pool {
     $pool_group = 'apache';
 
     &debug_msg("Updating PHP-FPM pool config $pool_file through php_vsite_handler.pl \n");
+
+    # Logic check for fpm_max_children: 
+    if (($PHP->{'fpm_max_children'} lt "1") || ($PHP->{'fpm_max_children'} gt "255")) {
+        $fpm_max_children = "15";
+    }
+    else {
+        $fpm_max_children = $PHP->{'fpm_max_children'};
+    }
     
     #
     ### Define Pool config file contends:
@@ -529,7 +537,7 @@ sub handle_fpm_master_pool {
     $pool_conf .= '' . "\n";
     $pool_conf .= '; Set to \'ondemand\' and set limits:' . "\n";
     $pool_conf .= 'pm = ondemand' . "\n";
-    $pool_conf .= 'pm.max_children = 5' . "\n";
+    $pool_conf .= 'pm.max_children = ' . $fpm_max_children . "\n";
     $pool_conf .= 'pm.process_idle_timeout = 10s' . "\n";
     $pool_conf .= 'pm.max_requests = 500' . "\n";
     $pool_conf .= '' . "\n";

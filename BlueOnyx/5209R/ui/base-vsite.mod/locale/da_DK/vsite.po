@@ -1244,3 +1244,11 @@ msgstr "Max input vars:"
 msgid "max_input_vars_help"
 msgstr "Dette definerer, hvor mange input variabler kan accepteres (grænse anvendes på $ _GET, $ _POST og $ _COOKIE superglobale separat). Brug af dette direktiv afbøder muligheden for denial of service-angreb, der bruger hash kollisioner. Hvis der er flere input variable end angivet i dette direktiv, er en E_WARNING udstedt, og yderligere input variable er afskåret fra anmodningen. Hvis sat til -1 ubegrænsede input vars er tilladt. Standard 1000."
 
+###
+
+msgid "fpm_max_children"
+msgstr "Max Børn (FPM)"
+
+msgid "fpm_max_children_help"
+msgstr "Denne indstilling sætter grænser for antallet af samtidige anmodninger, der vil blive betjent af hver PHP-FPM pool. Det virker ligner direktivet MaxClients for Apache."
+

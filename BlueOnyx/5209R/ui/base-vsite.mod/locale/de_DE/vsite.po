@@ -1134,3 +1134,12 @@ msgstr "Max input vars:"
 msgid "max_input_vars_help"
 msgstr "Wie viele Eingabe-Variablen maximal angenommen werden (dieses Limit wird auf die Superglobalen $_GET, $_POST und $_COOKIE separat angewandt). Diese Direktive verhindert die Nutzung von Hashtable Kollisionen für eine Denial of Service Attacke. Wenn mehr Eingabe-Variablen gesendet werden, als mit dieser Direktive erlaubt, wird ein Fehler der Stufe E_WARNING geworfen und weitere Eingabe-Variablen werden nicht angenommen. Wird dieser Wert auf -1 gesetzt, so sind beliebig viele Input Variablen erlaubt. Standard: 1000."
 
+###
+
+msgid "fpm_max_children"
+msgstr "Max. Prozesse (FPM)"
+
+msgid "fpm_max_children_help"
+msgstr "Diese Option setzt die Begrenzung für die Anzahl von Kind-Prozessen, die von jeder PHP-FPM Pool maximal starten darf. Funktioniert ähnlich wie die MaxClients Richtlinie für Apache."
+
+

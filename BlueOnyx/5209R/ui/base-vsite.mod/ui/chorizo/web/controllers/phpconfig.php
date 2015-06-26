@@ -680,6 +680,18 @@ class Phpconfig extends MX_Controller {
         $memory_limit_choices_select->setSelected($CODBDATA['memory_limit'], true);
         $block->addFormField($memory_limit_choices_select,$factory->getLabel("memory_limit"), "php_ini_security_settings");
 
+        // fpm_max_children:
+        if (!isset($CODBDATA["fpm_max_children"])) { 
+            $CODBDATA["fpm_max_children"] = '15'; 
+        }
+        $fpm_max_children_Field = $factory->getInteger("fpm_max_children", $CODBDATA["fpm_max_children"], "1", "255");
+        $fpm_max_children_Field->setWidth(3);
+        $fpm_max_children_Field->showBounds(1);
+        $block->addFormField(
+            $fpm_max_children_Field,
+            $factory->getLabel("fpm_max_children"),
+            "php_ini_security_settings"
+        );
 
         //
         //--- php_ini_expert_mode
