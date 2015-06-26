@@ -813,11 +813,19 @@ class SummaryEmail extends MX_Controller {
         $mailAliases = array();
 
         if (isset($group) && $group != 'server') {
-            list($vsite) = $cceClient->find('Vsite', array('name' => $group));
-            $vsiteObj = $cceClient->get($vsite);
-            $mailAliases = scalar_to_array($vsiteObj['mailAliases']);
+            $vsite = $cceClient->find('Vsite', array('name' => $group));
+            if (isset($vsite[0])) {
+                $vsiteObj = $cceClient->get($vsite[0]);
+                $mailAliases = scalar_to_array($vsiteObj['mailAliases']);
+            }
+            else {
+                // Vsite Object doesn't exist.
+                // Nice people say goodbye, or CCEd waits forever:
+                $cceClient->bye();
+                $serverScriptHelper->destructor();
+                Log403Error("/gui/Forbidden403");
+            }
         }
-
         $dsp_mnt = $Full_Month_Locales[$this->getMonth()];
         if ($period == "month") {
             $display_period = $this->i18n->get("[[palette.$dsp_mnt]]") . " " . $this->getYear();

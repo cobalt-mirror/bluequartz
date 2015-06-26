@@ -127,6 +127,10 @@ fi
 
 <begin $CHANGELOG>
 
+* Fri Jun 26 2015 Michael Stauber <mstauber@solarspeed.net> 2.0-0BX11
+- Modified ui/chorizo/web/controllers/summaryEmail.php to prevent an
+  undefined index if the Vsite doesn't exist in CODB.
+
 * Tue Jun 02 2015 Michael Stauber <mstauber@solarspeed.net> 2.0-0BX10
 - Bugfix in ui/chorizo/web/controllers/summaryEmail.php
 - Also added UI Extensions 'Email.Stats' so that other modules may 
