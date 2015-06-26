@@ -1,5 +1,5 @@
 #!/usr/bin/perl -I/usr/sausalito/perl -I.
-# $Id: writeback_blueOnyx_conf.pl Fri 12 Jun 2009 07:10:43 PM CEST mstauber $
+# $Id: writeback_blueOnyx_conf.pl
 #
 # This handler is responsible for updating /etc/httpd/conf.d/blueonyx.conf
 
@@ -31,49 +31,52 @@ sub edit_blueonyx {
 
     my @Options = ();
     if ($web->{Options_Indexes} == "1") {
-	push(@Options, "Indexes");
+       push(@Options, "Indexes");
     }
     if ($web->{Options_SymLinksIfOwnerMatch} == "1") {
-    	push(@Options, "SymLinksIfOwnerMatch");
+        push(@Options, "SymLinksIfOwnerMatch");
     }
     if ($web->{Options_FollowSymLinks} == "1") {
-	push(@Options, "FollowSymLinks");
+        push(@Options, "FollowSymLinks");
     }
     if ($web->{Options_Includes} == "1") {
-	push(@Options, "Includes");
+        push(@Options, "Includes");
     }
     if ($web->{Options_MultiViews} == "1") {
-    	push(@Options, "MultiViews");
+        push(@Options, "MultiViews");
     }
+    $o_all = '';
     if ($web->{Options_All} == "1") {
-	push(@Options, "All");
+        $o_all = 'All ';
     }
 
     my @AllowOverride = ();
     if ($web->{AllowOverride_AuthConfig} == "1") {
-	push(@AllowOverride, "AuthConfig");
+        push(@AllowOverride, "AuthConfig");
     }
     if ($web->{AllowOverride_Indexes} == "1") {
-    	push(@AllowOverride, "Indexes");
+        push(@AllowOverride, "Indexes");
     }
     if ($web->{AllowOverride_Limit} == "1") {
-	push(@AllowOverride, "Limit");
+        push(@AllowOverride, "Limit");
     }
     if ($web->{AllowOverride_FileInfo} == "1") {
-    	push(@AllowOverride, "FileInfo");
+        push(@AllowOverride, "FileInfo");
     }
     if ($web->{AllowOverride_Options} == "1") {
-	push(@AllowOverride, "Options");
+        push(@AllowOverride, "Options");
     }
+
+    $all_present = '';
     if ($web->{AllowOverride_All} == "1") {
-	push(@AllowOverride, "All");
+        $all_present = 'All ';
     }
 
     $out_options = join(" ", @Options);
     $out_AllowOverride = join(" ", @AllowOverride);
     $script_conf .= "<Directory /home/.sites/>\n";
-    $script_conf .= "Options " . $out_options . "\n";
-    $script_conf .= "AllowOverride " . $out_AllowOverride . "\n";
+    $script_conf .= "Options " . $o_all . $out_options . "\n";
+    $script_conf .= "AllowOverride " . $all_present  . $out_AllowOverride . "\n";
     $script_conf .= "\n";
     $script_conf .= "# ignore .ht*\n";
 
@@ -104,3 +107,37 @@ sub edit_blueonyx {
 $cce->bye('SUCCESS');
 exit(0);
 
+# 
+# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# All Rights Reserved.
+# 
+# 1. Redistributions of source code must retain the above copyright 
+#     notice, this list of conditions and the following disclaimer.
+# 
+# 2. Redistributions in binary form must reproduce the above copyright 
+#     notice, this list of conditions and the following disclaimer in 
+#     the documentation and/or other materials provided with the 
+#     distribution.
+# 
+# 3. Neither the name of the copyright holder nor the names of its 
+#     contributors may be used to endorse or promote products derived 
+#     from this software without specific prior written permission.
+# 
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
+# COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+# POSSIBILITY OF SUCH DAMAGE.
+# 
+# You acknowledge that this software is not designed or intended for 
+# use in the design, construction, operation or maintenance of any 
+# nuclear facility.
+# 
