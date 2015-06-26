@@ -43,7 +43,7 @@ class ServerDiskUsage extends MX_Controller {
         // -- Actual page logic start:
 
         // Not 'serverStatsServerDisk'? Bye, bye!
-        if (!$Capabilities->getAllowed('serverStatsServerDisk')) {
+        if (!$Capabilities->getAllowed('serverShowActiveMonitor')) {
             // Nice people say goodbye, or CCEd waits forever:
             $cceClient->bye();
             $serverScriptHelper->destructor();
