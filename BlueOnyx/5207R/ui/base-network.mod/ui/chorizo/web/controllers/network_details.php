@@ -43,7 +43,7 @@ class Network_details extends MX_Controller {
 		// -- Actual page logic start:
 
 		// Not 'serverNetwork'? Bye, bye!
-		if (!$Capabilities->getAllowed('serverNetwork')) {
+		if (!$Capabilities->getAllowed('serverShowActiveMonitor')) {
 			// Nice people say goodbye, or CCEd waits forever:
 			$cceClient->bye();
 			$serverScriptHelper->destructor();
