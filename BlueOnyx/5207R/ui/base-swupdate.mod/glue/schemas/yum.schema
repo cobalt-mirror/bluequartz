@@ -3,6 +3,10 @@
 <!--                     Michael Stauber - Stauber Multimedia Design - http://www.solarspeed.net	-->
 <!--        Copyright 2006, NuOnce Networks & Stauber Multimedia Design. All rights reserved.		-->
 
+<typedef name="OnOff" type="re"
+    data="(^On$)|(^Off$)"
+/>
+
 <CLASS name="System" namespace="yum" version="1.2">
 
        <property name="yumguiEMAIL"
@@ -63,7 +67,7 @@
             writeacl="ruleCapable(managePackage)"
        />
        <property name="autoupdate"
-            type="scalar"
+            type="OnOff"
             default="Off"
             writeacl="ruleCapable(managePackage)"
         />
