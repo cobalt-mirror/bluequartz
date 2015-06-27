@@ -15,7 +15,7 @@ use Sauce::Util;
 $DEBUG = "0";
 if ($DEBUG)
 {
-		use Sys::Syslog qw( :DEFAULT setlogsock);
+        use Sys::Syslog qw( :DEFAULT setlogsock);
 }
 
 $cce = new CCE('Namespace' => "MYSQL_Vsite");
@@ -46,16 +46,16 @@ $event_is_modify = $cce->event_is_modify();
 # Get 'System' details:
 @system_main = $cce->find('System');
 if (!defined($system_main[0])) {
-	&debug_msg("Sorry, no 'System' object found in CCE!\n");
-	$cce->bye('FAIL', "Unable to find 'System' Object in CCE.");
-	exit(1);
+    &debug_msg("Sorry, no 'System' object found in CCE!\n");
+    $cce->bye('FAIL', "Unable to find 'System' Object in CCE.");
+    exit(1);
 }
 else {
-	# Build FQDN:
-	($ok, $my_system_main) = $cce->get($system_main[0]);
-	$my_host = $my_system_main->{'hostname'};
-	$my_domain = $my_system_main->{'domainname'};
-	$my_fqdn = $my_host . "." . $my_domain; 
+    # Build FQDN:
+    ($ok, $my_system_main) = $cce->get($system_main[0]);
+    $my_host = $my_system_main->{'hostname'};
+    $my_domain = $my_system_main->{'domainname'};
+    $my_fqdn = $my_host . "." . $my_domain; 
 }
 &debug_msg("system_main[0]: $system_main[0]\n");
 
@@ -63,8 +63,8 @@ else {
 &check_mysqld_status;
 &debug_msg("MySQLd status: $sts_mysqld \n");
 if ($sts_mysqld ne "RUNNING") {
-	$cce->bye('FAIL', "MySQL Server is not running");
-	exit(1);
+    $cce->bye('FAIL', "MySQL Server is not running");
+    exit(1);
 }
 
 
@@ -80,17 +80,17 @@ $siteMysql_db = $event_old->{'DB'};
 # Get main MySQL access settings out of 'MySQL':
 @mysql_main = $cce->find('MySQL');
 if (!defined($mysql_main[0])) {
-	&debug_msg("Sorry, no 'MySQL' object found in CCE!\n");
-	&debug_msg("Unable to fetch MySQL 'root' access details for MySQL.\n");
-	$cce->bye('FAIL', "Unable to fetch MySQL 'root' access details for MySQL from CCE. Please configure them under 'Network Settings', 'MySQL'.");
-	exit(1);
+    &debug_msg("Sorry, no 'MySQL' object found in CCE!\n");
+    &debug_msg("Unable to fetch MySQL 'root' access details for MySQL.\n");
+    $cce->bye('FAIL', "Unable to fetch MySQL 'root' access details for MySQL from CCE. Please configure them under 'Network Settings', 'MySQL'.");
+    exit(1);
 }
 else {
-	($ok, $mysql_main) = $cce->get($mysql_main[0]);
-	$sql_root = $mysql_main->{'sql_root'};
-	$root_pass = $mysql_main->{'sql_rootpassword'};
-	$sql_host = $mysql_main->{'sql_host'};
-	$sql_port = $mysql_main->{'sql_port'};
+    ($ok, $mysql_main) = $cce->get($mysql_main[0]);
+    $sql_root = $mysql_main->{'sql_root'};
+    $root_pass = $mysql_main->{'sql_rootpassword'};
+    $sql_host = $mysql_main->{'sql_host'};
+    $sql_port = $mysql_main->{'sql_port'};
 }
 
 &debug_msg("mysql_main: $mysql_main \n");
@@ -99,31 +99,31 @@ else {
 
 # Make sure we have all MySQL access details that we need (password is optional here):
 unless (($sql_root ne "") && ($sql_host ne "") && ($sql_port ne "")) {
-	&debug_msg("Unable to fetch MySQL 'root' access details for MySQL from CCE.\n");
-	$cce->bye('FAIL', "Unable to fetch MySQL 'root' access details for MySQL from CCE. Please configure them under 'Network Settings', 'MySQL'.");
-	exit(1);
+    &debug_msg("Unable to fetch MySQL 'root' access details for MySQL from CCE.\n");
+    $cce->bye('FAIL', "Unable to fetch MySQL 'root' access details for MySQL from CCE. Please configure them under 'Network Settings', 'MySQL'.");
+    exit(1);
 }
 else {
-	$mysql_host=$sql_host . ":" . $sql_port;
+    $mysql_host=$sql_host . ":" . $sql_port;
 }
 
 if ($cce->event_is_destroy()) {
-	&debug_msg("=================== Destroy Vsite ==============  \n");
-	# Site deletion, not to be confused with MySQL disable
-	&debug_msg("event_is_destroy \n");
-	if ($event_old->{'enabled'} == 1) {
-		&debug_msg("DB for this site is enabled. Destroying. \n");
-		&remove_db_and_user;
-	}
+    &debug_msg("=================== Destroy Vsite ==============  \n");
+    # Site deletion, not to be confused with MySQL disable
+    &debug_msg("event_is_destroy \n");
+    if ($event_old->{'enabled'} == 1) {
+        &debug_msg("DB for this site is enabled. Destroying. \n");
+        &remove_db_and_user;
+    }
 }
 
 if ($cce->event_is_modify()) {
-	&debug_msg("=================== Modify Vsite ==============  \n");
-	# Vsite Modification. Check if MySQL is set to be disabled:
-	&debug_msg("event_new: " . $event_new->{'enabled'} . "\n");
-	if ($event_new->{'enabled'} == 0) {
-		&remove_db_and_user;
-	}
+    &debug_msg("=================== Modify Vsite ==============  \n");
+    # Vsite Modification. Check if MySQL is set to be disabled:
+    &debug_msg("event_new: " . $event_new->{'enabled'} . "\n");
+    if ($event_new->{'enabled'} == 0) {
+        &remove_db_and_user;
+    }
 }
 
 $cce->bye('SUCCESS');
@@ -132,119 +132,120 @@ exit 0;
 ### Subs
 
 sub remove_db_and_user {
-	
-	## MySQL Server Connection Check
-	$dbh = DBI->connect(
-					"DBI:mysql:$siteMysql_db:$siteMysql_host:$siteMysql_port",
-					$sql_root, $root_pass,
-					{
-						RaiseError => 0,
-						PrintError => 0
-					}
-	);
-	&debug_msg("Dumper: " . Dumper($siteMysql_db, $siteMysql_host, $siteMysql_port, $sql_root, $root_pass) . "\n");
-	&debug_msg("Dumper: " . Dumper($dbh) . "\n");
-	
-	if (!$dbh) {
-		$message .= "Can not Connect MySQL database: $siteMysql ... might be gone already.\n";
-		$db_check_fail = 1;
-		$cce->bye('SUCCESS', $message);
-		exit(0);
-	}
-	
-	$query = "DROP DATABASE IF EXISTS $siteMysql_db";
-	&debug_msg("Dumper: " . Dumper($query) . "\n");
-	$return = $dbh->do($query);
-	&debug_msg("Dumper: " . Dumper($return) . "\n");
-	$dbh->disconnect;
-	
-	#
-	## Revoke privileges (Step #1):
-	#
-	$dbh = DBI->connect(
-					"DBI:mysql:mysql:$sql_host:$sql_port}",
-					$sql_root, $root_pass,
-					{
-						RaiseError => 0,
-						PrintError => 0
-					}
-	);
-	&debug_msg("Dumper: " . Dumper($sql_host, $sql_port, $sql_root, $root_pass) . "\n");
-	&debug_msg("Dumper: " . Dumper($dbh) . "\n");
-	
-	if (!$dbh) {
-		$message .= "Can not Connect MySQL Server\n";
-		$db_check_fail = 1;
-		$cce->bye('FAIL', $message);
-		exit(1);
-	}
+    
+    ## MySQL Server Connection Check
+    $dbh = DBI->connect(
+                    "DBI:mysql:$siteMysql_db:$siteMysql_host:$siteMysql_port",
+                    $sql_root, $root_pass,
+                    {
+                        RaiseError => 0,
+                        PrintError => 0
+                    }
+    );
+    &debug_msg("Dumper: " . Dumper($siteMysql_db, $siteMysql_host, $siteMysql_port, $sql_root, $root_pass) . "\n");
+    &debug_msg("Dumper: " . Dumper($dbh) . "\n");
+    
+    if (!$dbh) {
+        # In that case the DB might be gone already. But as this is what we wanted,
+        # we still exit with a 'SUCCESS' message and by not raising an error:
+        $db_check_fail = 1;
+        $cce->bye('SUCCESS');
+        exit(0);
+    }
+    
+    $query = "DROP DATABASE IF EXISTS $siteMysql_db";
+    &debug_msg("Dumper: " . Dumper($query) . "\n");
+    $return = $dbh->do($query);
+    &debug_msg("Dumper: " . Dumper($return) . "\n");
+    $dbh->disconnect;
+    
+    #
+    ## Revoke privileges (Step #1):
+    #
+    $dbh = DBI->connect(
+                    "DBI:mysql:mysql:$sql_host:$sql_port}",
+                    $sql_root, $root_pass,
+                    {
+                        RaiseError => 0,
+                        PrintError => 0
+                    }
+    );
+    &debug_msg("Dumper: " . Dumper($sql_host, $sql_port, $sql_root, $root_pass) . "\n");
+    &debug_msg("Dumper: " . Dumper($dbh) . "\n");
+    
+    if (!$dbh) {
+        $message .= "Can not Connect MySQL Server\n";
+        $db_check_fail = 1;
+        $cce->bye('FAIL', $message);
+        exit(1);
+    }
 
-	$query = "REVOKE ALL PRIVILEGES ON * . * FROM '$siteMysql_user'\@'$siteMysql_host';\n";
-	&debug_msg("Dumper: " . Dumper($query) . "\n");
-	$return = $dbh->do($query);
-	&debug_msg("Dumper: " . Dumper($return) . "\n");
+    $query = "REVOKE ALL PRIVILEGES ON * . * FROM '$siteMysql_user'\@'$siteMysql_host';\n";
+    &debug_msg("Dumper: " . Dumper($query) . "\n");
+    $return = $dbh->do($query);
+    &debug_msg("Dumper: " . Dumper($return) . "\n");
 
-	#
-	## Revoke privileges (Step #2):
-	#
-	$query = "REVOKE ALL PRIVILEGES ON `$siteMysql_db` . * FROM '$siteMysql_user'\@'$siteMysql_host';\n";
-	&debug_msg("Dumper: " . Dumper($query) . "\n");
-	$return = $dbh->do($query);
-	&debug_msg("Dumper: " . Dumper($return) . "\n");
-	
-	#
-	## Revoke privileges (Step #3):
-	#
-	$qeury = "REVOKE GRANT OPTION ON * . * FROM '$siteMysql_user'\@'$siteMysql_host';\n";
-	&debug_msg("Dumper: " . Dumper($query) . "\n");
-	$return = $dbh->do($query);
-	&debug_msg("Dumper: " . Dumper($return) . "\n");
+    #
+    ## Revoke privileges (Step #2):
+    #
+    $query = "REVOKE ALL PRIVILEGES ON `$siteMysql_db` . * FROM '$siteMysql_user'\@'$siteMysql_host';\n";
+    &debug_msg("Dumper: " . Dumper($query) . "\n");
+    $return = $dbh->do($query);
+    &debug_msg("Dumper: " . Dumper($return) . "\n");
+    
+    #
+    ## Revoke privileges (Step #3):
+    #
+    $qeury = "REVOKE GRANT OPTION ON * . * FROM '$siteMysql_user'\@'$siteMysql_host';\n";
+    &debug_msg("Dumper: " . Dumper($query) . "\n");
+    $return = $dbh->do($query);
+    &debug_msg("Dumper: " . Dumper($return) . "\n");
 
-	#
-	## Delete the sites MySQL user: 
-	#
-	$query = "DROP USER '$siteMysql_user'\@'$siteMysql_host';\n";
-	&debug_msg("Dumper: " . Dumper($query) . "\n");
-	$return = $dbh->do($query);
-	&debug_msg("Dumper: " . Dumper($return) . "\n");
-	
-	#
-	## Flush privileges:
-	#
-	$query = "FLUSH PRIVILEGES;";
-	&debug_msg("Dumper: " . Dumper($query) . "\n");
-	$return = $dbh->do($query);
-	&debug_msg("Dumper: " . Dumper($return) . "\n");
-	
-	$dbh->disconnect;
+    #
+    ## Delete the sites MySQL user: 
+    #
+    $query = "DROP USER '$siteMysql_user'\@'$siteMysql_host';\n";
+    &debug_msg("Dumper: " . Dumper($query) . "\n");
+    $return = $dbh->do($query);
+    &debug_msg("Dumper: " . Dumper($return) . "\n");
+    
+    #
+    ## Flush privileges:
+    #
+    $query = "FLUSH PRIVILEGES;";
+    &debug_msg("Dumper: " . Dumper($query) . "\n");
+    $return = $dbh->do($query);
+    &debug_msg("Dumper: " . Dumper($return) . "\n");
+    
+    $dbh->disconnect;
 }
 
 sub check_mysqld_status {
-	# Check if MySQLd is running:
-	$sts_mysqld = "UNKNOWN";
-	$cmd_mysqld = `pidof mysqld|wc -l`;
-	$cmd_mysqld = chomp($cmd_mysqld);
-	&debug_msg("MySQL status: " . $cmd_mysqld . "\n");
-	if ($cmd_mysqld eq "1") {
-		$sts_mysqld = "RUNNING";
-	}
+    # Check if MySQLd is running:
+    $sts_mysqld = "UNKNOWN";
+    $cmd_mysqld = `pidof mysqld|wc -l`;
+    $cmd_mysqld = chomp($cmd_mysqld);
+    &debug_msg("MySQL status: " . $cmd_mysqld . "\n");
+    if ($cmd_mysqld eq "1") {
+        $sts_mysqld = "RUNNING";
+    }
 }
 
 sub debug_msg {
-	if ($DEBUG) {
-		my $msg = shift;
-		$user = $ENV{'USER'};
-		setlogsock('unix');
-		openlog($0,'','user');
-		syslog('info', "$ARGV[0]: $msg");
-		closelog;
-	}
+    if ($DEBUG) {
+        my $msg = shift;
+        $user = $ENV{'USER'};
+        setlogsock('unix');
+        openlog($0,'','user');
+        syslog('info', "$ARGV[0]: $msg");
+        closelog;
+    }
 }
 
 # 
 # Copyright (c) 2010 Hideki Oride <oride@gachapom.jp>
-# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 

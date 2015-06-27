@@ -115,6 +115,11 @@ information for [VENDOR]-[SERVICE].
 
 <begin $CHANGELOG>
 
+* Fri Jun 26 2015 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX16
+- Modified glue/handlers/destroy_mysql_data.pl to remove the error message
+  that the DB might already be gone. As that was the goal, we do not really
+  need to warn about it.
+
 * Sat Jun 20 2015 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX15
 - EL7 actually doesn't use /etc/my.cnf but /etc/my.cnf.d/server.cnf.
 - Fixed ui/chorizo/web/controllers/mysqlconfig.php my.cnf location.
