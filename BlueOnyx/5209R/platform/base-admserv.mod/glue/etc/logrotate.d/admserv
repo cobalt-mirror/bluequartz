@@ -4,7 +4,7 @@
     notifempty
     sharedscripts
     postrotate
-	/bin/kill -HUP `cat /var/run/admserv.pid 2>/dev/null` 2> /dev/null || true
+	/bin/kill -HUP `pidof httpd.admsrv` 2> /dev/null || true
     endscript
 }
 
@@ -13,7 +13,7 @@
     notifempty
     sharedscripts
     postrotate
-	/bin/kill -HUP `cat /var/run/admserv.pid 2>/dev/null` 2> /dev/null || true
+	/bin/kill -HUP `pidof httpd.admsrv` 2> /dev/null || true
     endscript
 }
 
