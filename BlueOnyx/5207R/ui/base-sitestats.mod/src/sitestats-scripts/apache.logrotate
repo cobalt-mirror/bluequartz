@@ -1,17 +1,17 @@
 /var/log/httpd/access_log {
     daily
     prerotate
-	rm -rf /tmp/.logrotate_apache_access >/dev/null 2>&1
-	cp /var/log/httpd/access_log /tmp/.logrotate_apache_access >/dev/null 2>&1
+        rm -rf /tmp/.logrotate_apache_access >/dev/null 2>&1
+        cp /var/log/httpd/access_log /tmp/.logrotate_apache_access >/dev/null 2>&1
     endscript
     missingok
     notifempty
     sharedscripts
     postrotate
-	/bin/kill -HUP `cat /var/run/httpd.pid 2>/dev/null` 2> /dev/null ; /bin/kill -HUP `cat /var/run/httpd/httpd.pid 2>/dev/null` 2> /dev/null || true
-	/usr/local/sbin/split_logs web < /tmp/.logrotate_apache_access 
-	rm -f /tmp/.logrotate_apache_access >/dev/null 2>&1
-	/usr/bin/webalizer.pl
+        /bin/kill -HUP `pidof httpd` 2> /dev/null ; /bin/kill -HUP `pidof httpd` 2> /dev/null || true
+        /usr/local/sbin/split_logs web < /tmp/.logrotate_apache_access 
+        rm -f /tmp/.logrotate_apache_access >/dev/null 2>&1
+        /usr/bin/webalizer.pl
     endscript
 }
 
@@ -20,7 +20,7 @@
     notifempty
     sharedscripts
     postrotate
-	/bin/kill -HUP `cat /var/run/httpd.pid 2>/dev/null` 2> /dev/null ; /bin/kill -HUP `cat /var/run/httpd/httpd.pid 2>/dev/null` 2> /dev/null || true
+        /bin/kill -HUP `pidof httpd` 2> /dev/null ; /bin/kill -HUP `pidof httpd` 2> /dev/null || true
     endscript
 }
 
@@ -29,7 +29,7 @@
     notifempty
     sharedscripts
     postrotate
-	/bin/kill -HUP `cat /var/run/httpd.pid 2>/dev/null` 2> /dev/null ; /bin/kill -HUP `cat /var/run/httpd/httpd.pid 2>/dev/null` 2> /dev/null || true
+        /bin/kill -HUP `pidof httpd` 2> /dev/null ; /bin/kill -HUP `pidof httpd` 2> /dev/null || true
     endscript
 }
 
@@ -38,7 +38,7 @@
     notifempty
     sharedscripts
     postrotate
-	/bin/kill -HUP `cat /var/run/httpd.pid 2>/dev/null` 2> /dev/null ; /bin/kill -HUP `cat /var/run/httpd/httpd.pid 2>/dev/null` 2> /dev/null || true
+        /bin/kill -HUP `pidof httpd` 2> /dev/null ; /bin/kill -HUP `pidof httpd` 2> /dev/null || true
     endscript
 }
 
@@ -47,6 +47,6 @@
     notifempty
     sharedscripts
     postrotate
-	/bin/kill -HUP `cat /var/run/httpd.pid 2>/dev/null` 2> /dev/null ; /bin/kill -HUP `cat /var/run/httpd/httpd.pid 2>/dev/null` 2> /dev/null || true
+        /bin/kill -HUP `pidof httpd` 2> /dev/null ; /bin/kill -HUP `pidof httpd` 2> /dev/null || true
     endscript
 }

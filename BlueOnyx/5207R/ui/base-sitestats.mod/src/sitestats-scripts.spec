@@ -1,7 +1,7 @@
 Summary: Server and site statistics for web, ftp, email, and network traffic
 Name: base-sitestats-scripts
 Version: 1.0
-Release: 26BX30%{?dist}
+Release: 26BX31%{?dist}
 Vendor: Project BlueOnyx
 License: Sun modified BSD
 Group: System Environment/BlueOnax
@@ -38,6 +38,9 @@ if [ -f /bin/systemctl ]; then
 fi
 
 %changelog
+
+* Sat Jun 27 2015 Michael Stauber <mstauber@solarspeed.net> 1.0-26BX31
+- Modified sitestats-scripts/apache.logrotate to work with 5209R.
 
 * Sat Jun 20 2015 Michael Stauber <mstauber@solarspeed.net> 1.0-26BX30
 - Fixed src/sitestats-scripts/sitestats_purgeOmatic.pl
