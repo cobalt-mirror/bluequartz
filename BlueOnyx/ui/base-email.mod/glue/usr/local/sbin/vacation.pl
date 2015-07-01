@@ -106,9 +106,10 @@ else                 { exit;                   }
    # Super safe - email address malform checks
    # Error control - Fuzzy logic, TO:  MUST be valid else exit
    ## Check for @ and extract email address, if any 
-   if ($sendto !~ /@/i)                          { exit;         }
-   elsif ($sendto =~ /[\w_\.\-]+[@%][\w_\.\-]+/) { $sendto = $&; }
-   else                                          { exit;         }
+   # Next three lines commented out for Postlayer:
+   #if ($sendto !~ /@/i)                          { exit;         }
+   #elsif ($sendto =~ /[\w_\.\-]+[@%][\w_\.\-]+/) { $sendto = $&; }
+   #else                                          { exit;         }
 
    # Prevent local mail loop
    ## Ignore local email users, prevent loop
