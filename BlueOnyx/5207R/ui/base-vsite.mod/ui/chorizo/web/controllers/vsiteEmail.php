@@ -153,7 +153,7 @@ class vsiteEmail extends MX_Controller {
 
             // Handle AutoFeatures:
             $autoFeatures = new AutoFeatures($serverScriptHelper, $attributes);
-            $cce_info = array('CCE_OID' => $vsite['OID']);
+            $cce_info = array('CCE_OID' => $vsite['OID'], 'group' => $group, 'i18n' => $i18n);
             list($cce_info['CCE_SERVICES_OID']) = $cceClient->find('VsiteServices');
             $af_errors = $autoFeatures->handle('modifyEmail.Vsite', $cce_info);
             $errors = array_merge($errors, $af_errors);
