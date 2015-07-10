@@ -414,16 +414,8 @@ class Ticket extends MX_Controller {
                 }
             }
 
-            if ($attributes_clone['ticket_num_selector'] == 'new_ticket') {
-                // Prefix Ticket Subject with type of message and build number:
-                $attributes_clone['ticket_subject'] = 'Ticket(' . $system['productBuild'] . '): ' . $attributes_clone['ticket_subject'];
-                $cleaned_attributes['ticket_number'] = '';
-            }
-            else {
-                // Prefix Ticket Subject with type of message and build number and append ticket ID of existing ticket:
-                $attributes_clone['ticket_subject'] = 'Ticket(' . $system['productBuild'] . '): ' . $attributes_clone['ticket_subject'] . ' [#' . $attributes_clone['ticket_num_selector'] . ']';
-                $cleaned_attributes['ticket_number'] = $attributes_clone['ticket_num_selector'];
-            }
+            // Prefix Ticket Subject with type of message and build number and append ticket ID of existing ticket:
+            $attributes_clone['ticket_subject'] = 'Ticket(' . $system['productBuild'] . '): ' . $attributes_clone['ticket_subject'];
 
             // We use the raw 'ticketDescription', as GetFormAttributes() has stripped the formatting
             // turned it into a scalar. Which is not what we want to email:
@@ -652,26 +644,6 @@ class Ticket extends MX_Controller {
               $defaultPage
             );
 
-            // Allow to append to existing ticket if there are any:
-            if (!isset($existing_tickets)) {
-                $existing_tickets = array();
-            }
-            if (is_array($existing_tickets)) {
-
-                    $opt_new_ticket = array('new_ticket' => 'new_ticket');
-                    $ticket_selector = array_merge($opt_new_ticket, $existing_tickets);
-
-                    // Add pulldown for Ticket selector:
-                    $ticket_num_selector = $factory->getMultiChoice("ticket_num_selector", array_values($ticket_selector));
-                    $ticket_num_selector->setSelected('new_ticket', true);
-                    $ticket_num_selector->setOptional(false);
-                    $block->addFormField(
-                        $ticket_num_selector, 
-                        $factory->getLabel("ticket_num_selector"), 
-                        $defaultPage
-                    );
-            }
-
             $server_model = $factory->getTextField("server_model", $system['productName'] . ' (' . $system['productBuildString'] . ')', 'r');
             $server_model->setType("");
             $block->addFormField(
@@ -780,8 +752,8 @@ class Ticket extends MX_Controller {
     }       
 }
 /*
-Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 All Rights Reserved.
 
 1. Redistributions of source code must retain the above copyright 
