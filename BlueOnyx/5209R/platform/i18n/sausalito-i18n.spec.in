@@ -94,6 +94,11 @@ fi
 
 %changelog
 
+* Sun Jul 19 2015 Michael Stauber <mstauber@solarspeed.net> 0.81.2-0BX03
+- Modified php/i18n.c to make it PHP-5.4 compatible again.
+- This was largely done with the help from Greg Kuhnert.
+- Self explanatory: This module only works on EL7 BlueOnyx.
+
 * Thu Feb 05 2015 Michael Stauber <mstauber@solarspeed.net> 0.81.2-0BX02
 - Finally got cracklib to work. Yay.
 

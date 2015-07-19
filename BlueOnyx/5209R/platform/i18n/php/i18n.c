@@ -9,7 +9,7 @@
 #include "php_i18n.h"
 #include <cce/i18n.h>
 
-function_entry i18n_functions[] = {
+zend_function_entry i18n_functions[] = {
 	PHP_FE(i18n_new,	NULL)
 	PHP_FE(i18n_get,	NULL)
 	PHP_FE(i18n_get_js,	NULL)
@@ -65,7 +65,7 @@ php_i18n_close(i18n_handle *i18n)
 
 PHP_FUNCTION(i18n_new)
 {
-	pval *locale, *domain;
+	zval *locale, *domain;
 	int argc;
 	i18n_handle *i18n;
 	int index;
@@ -73,7 +73,7 @@ PHP_FUNCTION(i18n_new)
 	char *dom_str;
 
 	argc = ARG_COUNT(ht);
-	if ( argc !=2 || getParameters(ht, argc, &domain, &locale) == FAILURE ) {
+	if ( argc !=2 || zend_get_parameters(ht, argc, &domain, &locale) == FAILURE ) {
 		WRONG_PARAM_COUNT;
 	}
 
@@ -106,13 +106,13 @@ PHP_FUNCTION(i18n_new)
 
 PHP_FUNCTION( i18n_availlocales )
 {
-	pval *domain;
+	zval *domain;
 	int argc;
 	int type;
 	GSList *result;
 
 	argc = ARG_COUNT(ht);
-	if ( argc > 1 || getParameters(ht, argc, &domain) == FAILURE )
+	if ( argc > 1 || zend_get_parameters(ht, argc, &domain) == FAILURE )
 	{
 		WRONG_PARAM_COUNT;
 	}
@@ -134,14 +134,14 @@ PHP_FUNCTION( i18n_availlocales )
 
 PHP_FUNCTION( i18n_locales )
 {
-	pval *i18n_index, *domain;
+	zval *i18n_index, *domain;
 	int argc;
 	i18n_handle *i18n;
 	int type;
 	GSList *result;
 
 	argc = ARG_COUNT(ht);
-	if ( argc < 1 || argc > 2 || getParameters(ht, argc, &i18n_index,
+	if ( argc < 1 || argc > 2 || zend_get_parameters(ht, argc, &i18n_index,
 			&domain) == FAILURE )
 	{
 		WRONG_PARAM_COUNT;
@@ -171,7 +171,7 @@ PHP_FUNCTION( i18n_locales )
 
 PHP_FUNCTION( i18n_get_property )
 {
-	pval *i18n_index, *property, *domain, *language;
+	zval *i18n_index, *property, *domain, *language;
 	int argc;
 	/* Don't know why we need type yet. */
 	int type;
@@ -179,7 +179,7 @@ PHP_FUNCTION( i18n_get_property )
 	i18n_handle *i18n;
 
 	argc = ARG_COUNT(ht);
-	if ( argc < 3 || argc > 4 || getParameters(ht, argc, &i18n_index,
+	if ( argc < 3 || argc > 4 || zend_get_parameters(ht, argc, &i18n_index,
 			&property, &domain, &language) == FAILURE )
 	{
 		WRONG_PARAM_COUNT;
@@ -211,7 +211,7 @@ PHP_FUNCTION( i18n_get_property )
 
 PHP_FUNCTION(i18n_get_file)
 {
-	pval *i18n_index, *file;
+	zval *i18n_index, *file;
 	int argc;
 	/* Type is filled with the type number of a i18n_handle */
 	int type;
@@ -219,7 +219,7 @@ PHP_FUNCTION(i18n_get_file)
 	i18n_handle *i18n;
 
 	argc = ARG_COUNT(ht);
-	if ( argc != 2 || getParameters(ht, argc, &i18n_index,
+	if ( argc != 2 || zend_get_parameters(ht, argc, &i18n_index,
 			&file) == FAILURE )
 	{
 		WRONG_PARAM_COUNT;
@@ -241,7 +241,7 @@ PHP_FUNCTION(i18n_get_file)
 
 PHP_FUNCTION(i18n_interpolate)
 {
-	pval *i18n_index, *magicstr, *vars;
+	zval *i18n_index, *magicstr, *vars;
 	i18n_handle *i18n;
 	i18n_vars *i18n_vars;
 	int argc;
@@ -250,12 +250,12 @@ PHP_FUNCTION(i18n_interpolate)
 	
 	argc = ARG_COUNT(ht);
   if (argc == 2) {
-  	if (getParameters(ht, 2, &i18n_index, &magicstr) == FAILURE) {
+  	if (zend_get_parameters(ht, 2, &i18n_index, &magicstr) == FAILURE) {
     	WRONG_PARAM_COUNT;
     }
     i18n_vars = i18n_vars_new(); /* empty vars hash */
   } else if (argc == 3) {
-  	if (getParameters(ht, 3, &i18n_index, &magicstr, &vars) == FAILURE) {
+  	if (zend_get_parameters(ht, 3, &i18n_index, &magicstr, &vars) == FAILURE) {
     	WRONG_PARAM_COUNT;
     } else {
     	if (vars->type != IS_ARRAY) {
@@ -284,7 +284,7 @@ PHP_FUNCTION(i18n_interpolate)
 
 PHP_FUNCTION(i18n_interpolate_js)
 {
-	pval *i18n_index, *magicstr, *vars;
+	zval *i18n_index, *magicstr, *vars;
 	i18n_handle *i18n;
 	i18n_vars *i18n_vars;
 	int argc;
@@ -293,12 +293,12 @@ PHP_FUNCTION(i18n_interpolate_js)
 	
 	argc = ARG_COUNT(ht);
   if (argc == 2) {
-  	if (getParameters(ht, 2, &i18n_index, &magicstr) == FAILURE) {
+  	if (zend_get_parameters(ht, 2, &i18n_index, &magicstr) == FAILURE) {
     	WRONG_PARAM_COUNT;
     }
     i18n_vars = i18n_vars_new(); /* empty vars hash */
   } else if (argc == 3) {
-  	if (getParameters(ht, 3, &i18n_index, &magicstr, &vars) == FAILURE) {
+  	if (zend_get_parameters(ht, 3, &i18n_index, &magicstr, &vars) == FAILURE) {
     	WRONG_PARAM_COUNT;
     } else {
     	if (vars->type != IS_ARRAY) {
@@ -327,7 +327,7 @@ PHP_FUNCTION(i18n_interpolate_js)
 
 PHP_FUNCTION(i18n_interpolate_html)
 {
-	pval *i18n_index, *magicstr, *vars;
+	zval *i18n_index, *magicstr, *vars;
 	i18n_handle *i18n;
 	i18n_vars *i18n_vars;
 	int argc;
@@ -336,12 +336,12 @@ PHP_FUNCTION(i18n_interpolate_html)
 	
 	argc = ARG_COUNT(ht);
   if (argc == 2) {
-  	if (getParameters(ht, 2, &i18n_index, &magicstr) == FAILURE) {
+  	if (zend_get_parameters(ht, 2, &i18n_index, &magicstr) == FAILURE) {
     	WRONG_PARAM_COUNT;
     }
     i18n_vars = i18n_vars_new(); /* empty vars hash */
   } else if (argc == 3) {
-  	if (getParameters(ht, 3, &i18n_index, &magicstr, &vars) == FAILURE) {
+  	if (zend_get_parameters(ht, 3, &i18n_index, &magicstr, &vars) == FAILURE) {
     	WRONG_PARAM_COUNT;
     } else {
     	if (vars->type != IS_ARRAY) {
@@ -370,7 +370,7 @@ PHP_FUNCTION(i18n_interpolate_html)
 
 PHP_FUNCTION(i18n_get)
 {
-	pval *i18n_index, *tag, *domain, *vars;
+	zval *i18n_index, *tag, *domain, *vars;
 	i18n_handle *i18n;
 	i18n_vars *i18n_vars;
 	int argc;
@@ -380,7 +380,7 @@ PHP_FUNCTION(i18n_get)
 	
 
 	argc = ARG_COUNT(ht);
-	if (argc < 2 || argc > 4 || getParameters(ht, argc, &i18n_index,
+	if (argc < 2 || argc > 4 || zend_get_parameters(ht, argc, &i18n_index,
 			&tag, &domain, &vars) == FAILURE ) {
 		WRONG_PARAM_COUNT;
 	}
@@ -428,7 +428,7 @@ PHP_FUNCTION(i18n_get)
 
 PHP_FUNCTION(i18n_get_js)
 {
-	pval *i18n_index, *tag, *domain, *vars;
+	zval *i18n_index, *tag, *domain, *vars;
 	i18n_handle *i18n;
 	i18n_vars *i18n_vars;
 	int argc;
@@ -438,7 +438,7 @@ PHP_FUNCTION(i18n_get_js)
 	
 
 	argc = ARG_COUNT(ht);
-	if (argc < 2 || argc > 4 || getParameters(ht, argc, &i18n_index,
+	if (argc < 2 || argc > 4 || zend_get_parameters(ht, argc, &i18n_index,
 			&tag, &domain, &vars) == FAILURE ) {
 		WRONG_PARAM_COUNT;
 	}
@@ -486,7 +486,7 @@ PHP_FUNCTION(i18n_get_js)
 
 PHP_FUNCTION(i18n_get_html)
 {
-	pval *i18n_index, *tag, *domain, *vars;
+	zval *i18n_index, *tag, *domain, *vars;
 	i18n_handle *i18n;
 	i18n_vars *i18n_vars;
 	int argc;
@@ -496,7 +496,7 @@ PHP_FUNCTION(i18n_get_html)
 	
 
 	argc = ARG_COUNT(ht);
-	if (argc < 2 || argc > 4 || getParameters(ht, argc, &i18n_index,
+	if (argc < 2 || argc > 4 || zend_get_parameters(ht, argc, &i18n_index,
 			&tag, &domain, &vars) == FAILURE ) {
 		WRONG_PARAM_COUNT;
 	}
@@ -596,12 +596,12 @@ PHP_FUNCTION(i18n_strftime)
 {
 	i18n_handle *i18n;
 	char *result;
-	pval *i18n_index, *format, *time;
+	zval *i18n_index, *format, *time;
 	int argc, type;
 	char *format_str;
 
 	argc = ARG_COUNT(ht);
-	if( argc != 3 || getParameters(ht,argc,&i18n_index,&format,&time)==FAILURE){
+	if( argc != 3 || zend_get_parameters(ht,argc,&i18n_index,&format,&time)==FAILURE){
 		WRONG_PARAM_COUNT;
 	}
 

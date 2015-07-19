@@ -3,7 +3,7 @@
 Summary: Cobalt i18n library
 Name: sausalito-i18n
 Version: 0.81.2
-Release: 0BX02%{?dist}
+Release: 0BX03%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -12,7 +12,7 @@ Prefix: /usr/sausalito
 BuildRoot: /var/tmp/sausalito-i18n-root
 Requires: glib >= 1.2.7
 Requires: base-admserv-glue >= 1.0.1
-BuildRequires: php-devel
+BuildRequires: php-devel cracklib-devel
 
 %description
 sausalito-i18n is a wrapper library for i18n functions.
@@ -93,6 +93,10 @@ if [ -d "/usr/share/locale/ja_JP.utf8" ]; then
 fi
 
 %changelog
+
+* Sun Jul 19 2015 Michael Stauber <mstauber@solarspeed.net> 0.81.2-0BX03
+- Modified php/i18n.c to make it PHP-5.4 compatible again.
+- This was largely done with the help from Greg Kuhnert.
 
 * Thu Feb 05 2015 Michael Stauber <mstauber@solarspeed.net> 0.81.2-0BX02
 - Finally got cracklib to work. Yay.
