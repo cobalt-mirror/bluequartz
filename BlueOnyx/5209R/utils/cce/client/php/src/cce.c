@@ -12,7 +12,7 @@
 
 #include <php_cce.h>
 
-function_entry ccephp_functions[] = {
+zend_function_entry ccephp_functions[] = {
 	PHP_FE(ccephp_auth, NULL)
 	PHP_FE(ccephp_suspend, NULL)
 	PHP_FE(ccephp_resume, NULL)
@@ -106,7 +106,7 @@ PHP_FUNCTION( ccephp_new )
 
 PHP_FUNCTION( ccephp_connect )
 {
-	pval *index, *socket;
+	zval *index, *socket;
 	cce_handle_t *handle;
 	int argc;
 
@@ -116,7 +116,7 @@ PHP_FUNCTION( ccephp_connect )
 		WRONG_PARAM_COUNT;
 	}
 
-	if ( ! getParameters(ht, argc, &index, &socket) == FAILURE ) {
+	if ( ! zend_get_parameters(ht, argc, &index, &socket) == FAILURE ) {
 		WRONG_PARAM_COUNT;
 	}
 
@@ -135,14 +135,14 @@ PHP_FUNCTION( ccephp_connect )
 PHP_FUNCTION(ccephp_suspended)
 {
 	cce_handle_t *handle;
-	pval *index;
+	zval *index;
 	char *reason;
 
 	if (ARG_COUNT(ht) != 1) {
 		WRONG_PARAM_COUNT;
 	}
 
-	if (getParameters(ht, 1, &index) == FAILURE) {
+	if (zend_get_parameters(ht, 1, &index) == FAILURE) {
 		WRONG_PARAM_COUNT;
 	}
 
@@ -158,14 +158,14 @@ PHP_FUNCTION(ccephp_suspended)
 
 PHP_FUNCTION( ccephp_auth )
 {
-	pval *index, *user, *pass;
+	zval *index, *user, *pass;
 	int argc;
 	char *sessionId;
 	cce_handle_t *handle;
 
 		
 	argc = ARG_COUNT(ht);
-	if( argc != 3 || getParameters( ht, argc, &index, &user, &pass ) == FAILURE ) {
+	if( argc != 3 || zend_get_parameters( ht, argc, &index, &user, &pass ) == FAILURE ) {
 		WRONG_PARAM_COUNT;
 	}
 	convert_to_long(index);
@@ -185,13 +185,13 @@ PHP_FUNCTION( ccephp_auth )
 
 PHP_FUNCTION( ccephp_authkey )
 {
-	pval *index, *user, *sessionId;
+	zval *index, *user, *sessionId;
 	int argc;
 	int ret;
 	cce_handle_t *handle;
 	
 	argc = ARG_COUNT(ht);
-	if( argc != 3 || getParameters( ht, argc, &index, &user, &sessionId ) == FAILURE ) {
+	if( argc != 3 || zend_get_parameters( ht, argc, &index, &user, &sessionId ) == FAILURE ) {
 		WRONG_PARAM_COUNT;
 	}
 	convert_to_long(index);
@@ -214,7 +214,7 @@ PHP_FUNCTION( ccephp_authkey )
 
 PHP_FUNCTION( ccephp_get )
 {
-	pval *index, *oid, *space;
+	zval *index, *oid, *space;
 	cce_handle_t *handle;
 	cce_props_t *props;
 
@@ -224,7 +224,7 @@ PHP_FUNCTION( ccephp_get )
 		WRONG_PARAM_COUNT;
 	}
 
-	if( getParameters(ht, 3, &index, &oid, &space ) == FAILURE ) {
+	if( zend_get_parameters(ht, 3, &index, &oid, &space ) == FAILURE ) {
 		WRONG_PARAM_COUNT;
 	}
 	convert_to_long(index);
@@ -249,7 +249,7 @@ PHP_FUNCTION( ccephp_get )
 
 PHP_FUNCTION( ccephp_handler_get )
 {
-	pval *index, *oid, *space;
+	zval *index, *oid, *space;
 	cce_handle_t *handle;
 	cce_props_t *props;
 
@@ -259,7 +259,7 @@ PHP_FUNCTION( ccephp_handler_get )
 		WRONG_PARAM_COUNT;
 	}
 
-	if( getParameters(ht, 3, &index, &oid, &space ) == FAILURE ) {
+	if( zend_get_parameters(ht, 3, &index, &oid, &space ) == FAILURE ) {
 		WRONG_PARAM_COUNT;
 	}
 	convert_to_long(index);
@@ -309,7 +309,7 @@ PHP_FUNCTION(ccephp_find)
 		WRONG_PARAM_COUNT;
 	}
 
-	if( getParameters(ht, 5, 
+	if( zend_get_parameters(ht, 5, 
 		&index, &classname, &props, &sortkey, &sorttype) == FAILURE ) {
 		WRONG_PARAM_COUNT;
 	}
@@ -368,7 +368,7 @@ PHP_FUNCTION(ccephp_findx)
 		WRONG_PARAM_COUNT;
 	}
 
-	if (getParameters(ht, 6, &index, &classname, &props, &reprops, 
+	if (zend_get_parameters(ht, 6, &index, &classname, &props, &reprops, 
 	 &sorttype, &sortkey) == FAILURE ) {
 		WRONG_PARAM_COUNT;
 	}
@@ -414,14 +414,14 @@ PHP_FUNCTION(ccephp_findx)
 
 PHP_FUNCTION(ccephp_begin)
 {
-	pval *index;
+	zval *index;
 	cce_handle_t *handle;
 	
 	if( ARG_COUNT(ht) != 1 ) {
 		WRONG_PARAM_COUNT;
 	}
 
-	if( getParameters(ht, 1, &index) == FAILURE ) {
+	if( zend_get_parameters(ht, 1, &index) == FAILURE ) {
 		WRONG_PARAM_COUNT;
 	}
 
@@ -432,14 +432,14 @@ PHP_FUNCTION(ccephp_begin)
 
 PHP_FUNCTION(ccephp_commit)
 {
-	pval *index;
+	zval *index;
 	cce_handle_t *handle;
 	
 	if( ARG_COUNT(ht) != 1 ) {
 		WRONG_PARAM_COUNT;
 	}
 
-	if( getParameters(ht, 1, &index) == FAILURE ) {
+	if( zend_get_parameters(ht, 1, &index) == FAILURE ) {
 		WRONG_PARAM_COUNT;
 	}
 
@@ -450,14 +450,14 @@ PHP_FUNCTION(ccephp_commit)
 
 PHP_FUNCTION(ccephp_destroy)
 {
-	pval *index, *oid;
+	zval *index, *oid;
 	cce_handle_t *handle;
 	
 	if( ARG_COUNT(ht) != 2 ) {
 		WRONG_PARAM_COUNT;
 	}
 
-	if( getParameters(ht, 2, &index, &oid) == FAILURE ) {
+	if( zend_get_parameters(ht, 2, &index, &oid) == FAILURE ) {
 		WRONG_PARAM_COUNT;
 	}
 
@@ -471,7 +471,7 @@ PHP_FUNCTION(ccephp_destroy)
 
 PHP_FUNCTION(ccephp_errors)
 {
-	pval *index;
+	zval *index;
 	cce_handle_t *handle;
 	GSList *errors;
 
@@ -479,7 +479,7 @@ PHP_FUNCTION(ccephp_errors)
 		WRONG_PARAM_COUNT;
 	}
 
-	if( getParameters(ht, 1, &index) == FAILURE ) {
+	if( zend_get_parameters(ht, 1, &index) == FAILURE ) {
 		WRONG_PARAM_COUNT;
 	}
 
@@ -493,7 +493,7 @@ PHP_FUNCTION(ccephp_errors)
 
 PHP_FUNCTION( ccephp_create )
 {
-	pval *index, *class, *z_props;
+	zval *index, *class, *z_props;
 	cce_handle_t *handle;
 	cce_props_t *props;
 	char *class_str;
@@ -505,7 +505,7 @@ PHP_FUNCTION( ccephp_create )
 		WRONG_PARAM_COUNT;
 	}
 
-	if( getParameters(ht, 3, &index, &class, &z_props) == FAILURE ) {
+	if( zend_get_parameters(ht, 3, &index, &class, &z_props) == FAILURE ) {
 		WRONG_PARAM_COUNT;
 	}
 
@@ -535,7 +535,7 @@ PHP_FUNCTION( ccephp_create )
 
 PHP_FUNCTION( ccephp_set )
 {
-	pval *index, *oid, *namespace, *z_props;
+	zval *index, *oid, *namespace, *z_props;
 
 	char *name_str;
 	cce_handle_t *handle;
@@ -547,7 +547,7 @@ PHP_FUNCTION( ccephp_set )
 		WRONG_PARAM_COUNT;
 	}
 
-	if( getParameters(ht, 4, &index, &oid, &namespace, &z_props) == FAILURE ) {
+	if( zend_get_parameters(ht, 4, &index, &oid, &namespace, &z_props) == FAILURE ) {
 		WRONG_PARAM_COUNT;
 	}
 
@@ -579,7 +579,7 @@ PHP_FUNCTION( ccephp_set )
 
 PHP_FUNCTION( ccephp_names ) 
 {
-	pval *index, *arg;
+	zval *index, *arg;
 	cce_handle_t *handle;
 	GSList *result;
 
@@ -588,7 +588,7 @@ PHP_FUNCTION( ccephp_names )
 		WRONG_PARAM_COUNT;
 	}
 
-	if ( getParameters(ht, 2, &index, &arg) == FAILURE ) {
+	if ( zend_get_parameters(ht, 2, &index, &arg) == FAILURE ) {
 		WRONG_PARAM_COUNT;
 	}
 
@@ -616,13 +616,13 @@ PHP_FUNCTION( ccephp_names )
 PHP_FUNCTION( ccephp_bye )
 {
 	cce_handle_t *handle;
-	pval *index;
+	zval *index;
 
 	if( ARG_COUNT(ht) != 1 ) {
 		WRONG_PARAM_COUNT;
 	}
 
-	if( getParameters(ht, 1, &index) == FAILURE ) {
+	if( zend_get_parameters(ht, 1, &index) == FAILURE ) {
 		WRONG_PARAM_COUNT;
 	}
 
@@ -634,13 +634,13 @@ PHP_FUNCTION( ccephp_bye )
 PHP_FUNCTION( ccephp_endkey )
 {
 	cce_handle_t *handle;
-	pval *index;
+	zval *index;
 
 	if( ARG_COUNT(ht) != 1 ) {
 		WRONG_PARAM_COUNT;
 	}
 
-	if( getParameters(ht, 1, &index) == FAILURE ) {
+	if( zend_get_parameters(ht, 1, &index) == FAILURE ) {
 		WRONG_PARAM_COUNT;
 	}
 
@@ -653,13 +653,13 @@ PHP_FUNCTION( ccephp_endkey )
 PHP_FUNCTION( ccephp_whoami )
 {
 	cce_handle_t *handle;
-	pval *index;
+	zval *index;
 
 	if( ARG_COUNT(ht) != 1 ) {
 		WRONG_PARAM_COUNT;
 	}
 
-	if( getParameters(ht, 1, &index) == FAILURE ) {
+	if( zend_get_parameters(ht, 1, &index) == FAILURE ) {
 		WRONG_PARAM_COUNT;
 	}
 
@@ -671,7 +671,7 @@ PHP_FUNCTION( ccephp_whoami )
 
 PHP_FUNCTION( ccephp_bye_handle )
 {
-	pval *index, *reason, *message;
+	zval *index, *reason, *message;
 	cce_handle_t *handle;
 	char *message_str;
 	
@@ -679,7 +679,7 @@ PHP_FUNCTION( ccephp_bye_handle )
 		WRONG_PARAM_COUNT;
 	}
 
-	if( getParameters(ht, 3, &index, &reason, &message) ) {
+	if( zend_get_parameters(ht, 3, &index, &reason, &message) ) {
 		WRONG_PARAM_COUNT;
 	}
 
@@ -700,14 +700,14 @@ PHP_FUNCTION( ccephp_bye_handle )
 
 PHP_FUNCTION( ccephp_bad_data )
 {
-	pval *index, *oid, *space, *key, *reason;
+	zval *index, *oid, *space, *key, *reason;
 	cce_handle_t *handle;
 	
 	if( ARG_COUNT(ht) != 5 ) {
 		WRONG_PARAM_COUNT;
 	}
 
-	if(getParameters(ht, 5, &index, &oid, &space, &key, &reason) == FAILURE) {
+	if(zend_get_parameters(ht, 5, &index, &oid, &space, &key, &reason) == FAILURE) {
 		WRONG_PARAM_COUNT;
 	}
 
@@ -727,12 +727,12 @@ PHP_FUNCTION( ccephp_bad_data )
 
 PHP_FUNCTION( ccephp_suspend )
 {
-	pval *index, *reason;
+	zval *index, *reason;
 	int argc;
 	cce_handle_t *handle;
 
 	argc = ARG_COUNT(ht);
-	if (argc != 2 || getParameters(ht, argc, &index, &reason) == FAILURE)
+	if (argc != 2 || zend_get_parameters(ht, argc, &index, &reason) == FAILURE)
 	{
 		WRONG_PARAM_COUNT;
 	}
@@ -750,12 +750,12 @@ PHP_FUNCTION( ccephp_suspend )
 
 PHP_FUNCTION( ccephp_resume )
 {
-	pval *index;
+	zval *index;
 	int argc;
 	cce_handle_t *handle;
 
 	argc = ARG_COUNT(ht);
-	if (argc != 1 || getParameters(ht, argc, &index) == FAILURE)
+	if (argc != 1 || zend_get_parameters(ht, argc, &index) == FAILURE)
 	{
 		WRONG_PARAM_COUNT;
 	}
@@ -772,12 +772,12 @@ PHP_FUNCTION( ccephp_resume )
 
 PHP_FUNCTION( ccephp_is_rollback )
 {
-	pval *index;
+	zval *index;
 	int argc;
 	cce_handle_t *handle;
 
 	argc = ARG_COUNT(ht);
-	if (argc != 1 || getParameters(ht, argc, &index) == FAILURE)
+	if (argc != 1 || zend_get_parameters(ht, argc, &index) == FAILURE)
 	{
 		WRONG_PARAM_COUNT;
 	}
@@ -817,7 +817,7 @@ static cce_props_t * php_hash_to_props ( HashTable *ht )
 	int keytype;
 	ulong keylength;
 	char *keyname;
-	pval *keydata, **keydataptr;
+	zval *keydata, **keydataptr;
 
 	props = cce_props_new();
 

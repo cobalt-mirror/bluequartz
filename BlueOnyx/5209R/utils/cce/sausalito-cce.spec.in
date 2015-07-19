@@ -215,6 +215,13 @@ fi
 
 %changelog
 
+* Sun Jul 19 2015 Michael Stauber <mstauber@solarspeed.net> 0.99.2-1BX01
+- With the help from Greg Kuhnert we made cce.so PHP-5.4 ready again.
+- Modified client/php/src/cce.c
+- Modified client/php/src/Makefile
+- Modified dynamic.mk to bump version number to 0.99.2
+- Note: This CCE is now only compatible with EL7 based BlueOnyx or newer.
+
 * Thu Mar 05 2015 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX27
 - Overhauled all client/locales as this was a bit overdue.
 - Modified baseType Schemas to use internal error messages where applicable.

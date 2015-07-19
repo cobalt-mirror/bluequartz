@@ -17,25 +17,26 @@ CCEPHPCLASSDIR=$(CCE_INSTALLDIR)/ui/libPhp
 #CFLAGS += -Dbool=char -DHAS_BOOL -fPIC -D_REENTRANT 
 CFLAGS = -ggdb -Werror  -D_GNU_SOURCE -I/usr/include/glib-2.0/ -I/usr/$(LIBARCH)/glib-2.0/include -I/root/cce/include -I../include -I../../include -I../../../include `php-config --includes` -fPIC -Dbool=char -DHAS_BOOL -fPIC -D_REENTRANT
 SHCFLAGS = -shared -rdynamic  -Wl,-rpath,$(CCE_LIBDIR)
-INCLUDES += -I../include -I../../include `php-config --includes`
+INCLUDES += -I../include -I../../include \
+	`php-config --includes`
 LIBS += -L../../src -lcce 
 
 SRCS = cce.c
 OBJS = $(SRCS:.c=.do)
 
 .c.do:
-	if [ `uname -m` = "x86_64" ]; then if [ `cat /etc/build |grep 5209R|wc -l` = "1" ]; then echo -n "5209R: Not building PHP module"; else $(CC) $(CFLAGS) -c -o $@ $<; fi else $(CC) $(CFLAGS) -c -o $@ $<; fi
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 .SUFFIXES: .do
 
 all: $(SHARED_LIB)
 
 $(SHARED_LIB): $(OBJS)
-	if [ `uname -m` = "x86_64" ]; then if [ `cat /etc/build |grep 5209R|wc -l` = "1" ]; then echo -n "5209R: Not building PHP module"; else $(CC) $(SHCFLAGS) $^ -o cce.so $(LIBS); fi else $(CC) $(SHCFLAGS) $^ -o cce.so $(LIBS); fi
+	$(CC) $(SHCFLAGS) $^ -o cce.so $(LIBS)
 
 install: $(SHARED_LIB)
 	$(INSTALL) -d $(CCEPHPLIBDIR)
-	if [ `uname -m` = "x86_64" ]; then if [ `cat /etc/build |grep 5209R|wc -l` = "1" ]; then touch $(CCEPHPLIBDIR)/cce.so.dummy; else $(INSTALL) $(INST_BINFLAGS) cce.so $(CCEPHPLIBDIR); fi else $(INSTALL) $(INST_BINFLAGS) cce.so $(CCEPHPLIBDIR); fi
+	$(INSTALL) $(INST_BINFLAGS) cce.so $(CCEPHPLIBDIR)
 
 clean:
 	$(RM) -f $(OBJS) $(SHARED_LIB) .depend
