@@ -7,7 +7,7 @@ VENDORNAME='Team BlueOnyx'
 SERVICE=console
 
 VERSION=2.0.0
-RELEASE=0BX06
+RELEASE=0BX07
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -17,7 +17,7 @@ BUILDUI=new
 BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=no
-REQUIRES= whois
+#REQUIRES=
 
 #########
 # some useful defines
