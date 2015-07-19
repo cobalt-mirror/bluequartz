@@ -21,7 +21,7 @@ BUILDLOCALE=no
 BUILDSRC=no
 
 REQUIRES=httpd sausalito-cce-client >= 0.99.2-1BX01 sausalito-cce-server >= 0.99.2-1BX01 sausalito-i18n >= 0.81.2
-REQUIRES_GLUE=openssl httpd mod_ssl
+REQUIRES_GLUE=openssl httpd mod_ssl sausalito-cce-client >= 0.99.2-1BX01 sausalito-cce-server >= 0.99.2-1BX01 sausalito-i18n >= 0.81.2
 
 include /usr/sausalito/devel/module.mk
 
