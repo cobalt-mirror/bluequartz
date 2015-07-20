@@ -601,3 +601,43 @@ msgstr "Opdatering"
 msgid "BXupdate_help"
 msgstr "Dette er en opdatering til en pakke, du allerede har installeret."
 
+# ---
+
+msgid "UpdatesAvailablePackagesBody"
+msgstr "Der er opdateringer til rådighed for pakker, som du allerede har installeret."
+
+msgid "AutoUpdate"
+msgstr "Auto Opdater pkgs"
+
+msgid "AutoUpdate_help"
+msgstr "Hvis denne funktion er aktiveret valgte opdateringer vil blive installeret automatisk. Så snart en ny pakke til en af ​​de udvalgte programmer bliver tilgængelig, så opdateringen vil blive installeret automatisk. Bemærk, at visse pakker er temmelig komplekse og ikke-observerede automatiserede opdateringer kan bryde ting. Vi modvirke at bruge denne til automatisk at opdatere PHP pakker, da dette kan knække PHP forbrug på virtuelle websteder. Brug venligst denne funktion på dit eget skøn og risiko."
+
+msgid "AutoUpdateList"
+msgstr "Auto Opdater Pakker"
+
+msgid "AutoUpdateList_help"
+msgstr "Liste over pakker, der skal opdateres automatisk til den nyeste version. Alle pakker er anført i den venstre kolonne vil automatisk blive opdateret, når nye versioner bliver tilgængelige. Visse pakker vil altid opdatere automatisk og kan ikke fravælges. Bemærk, at visse pakker er temmelig komplekse og ikke-observerede automatiserede opdateringer kan bryde ting. Vi modvirke at bruge denne til automatisk at opdatere PHP pakker, da dette kan knække PHP forbrug på virtuelle websteder. Brug venligst denne funktion på dit eget skøn og risiko."
+
+msgid "amUpdatesNameTag"
+msgstr "Software opdateringer"
+
+msgid "amUpdatesGreen"
+msgstr "Alle installerede pakker er fuldt opdateret."
+
+msgid "amUpdatesYellow"
+msgstr "En vis pakke, du har installeret, er tilgængelig i forskellige versioner off NewLinQ. Du har den ældre version af denne pakke installeret. Overvej venligst at opgradere de installerede pakker til de nyeste tilgængelige versioner."
+
+msgid "amUpdatesRed"
+msgstr "Der er opdaterede pakker til rådighed for pakker, som du allerede har installeret. Opgrader de installerede pakker til de seneste tilgængelige versioner."
+
+msgid "AutoEmailSubject"
+msgstr "Pakke installere meddelelse"
+
+msgid "autoinstallEmail_desc"
+msgstr "Følgende pakker blev automatisk installeret på din BlueOnyx server:"
+
+msgid "autoupdateEmail_desc"
+msgstr "Følgende pakker blev automatisk opdateret til de nyeste versioner er tilgængelige på NewLinQ:"
+
+msgid "autoEmail_finalwords"
+msgstr "Gennemgå status for din server, og sørg for, at de installerede pakker udføre uden problemer."

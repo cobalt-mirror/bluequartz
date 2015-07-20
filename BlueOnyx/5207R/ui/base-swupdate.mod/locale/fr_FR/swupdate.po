@@ -639,3 +639,43 @@ msgstr "Mettre à jour"
 msgid "BXupdate_help"
 msgstr "Il s'agit d'une mise à jour pour un paquet que vous avez déjà installé."
 
+# ---
+
+msgid "UpdatesAvailablePackagesBody"
+msgstr "Il ya des mises à jour disponibles pour les packages que vous avez déjà installés."
+
+msgid "AutoUpdate"
+msgstr "Mise à jour automatique PKGs"
+
+msgid "AutoUpdate_help"
+msgstr "Si cette fonction est activée mises à jour sélectionnées seront installés automatiquement. Dès qu'un nouveau package pour l'une des applications sélectionnées devient disponible, la mise à jour sera installée automatiquement. S'il vous plaît noter que certains paquetages sont mises à jour automatisées plutôt complexes et non observées peuvent casser les choses. Nous déconseillons d'utiliser cette mise à jour automatiquement des paquets de PHP, car cela pourrait briser l'utilisation de PHP sur les sites virtuels. S'il vous plaît utiliser cette fonctionnalité à vos propres risques et périls."
+
+msgid "AutoUpdateList"
+msgstr "Auto Update Packages"
+
+msgid "AutoUpdateList_help"
+msgstr "Liste des paquets qui devraient être automatiquement mis à jour à la dernière version. Tous les paquets listés dans la colonne de gauche seront automatiquement mis à jour une fois les versions plus récentes deviennent disponibles. Certains paquets seront toujours mettre à jour automatiquement et ne peuvent pas être décochée. S'il vous plaît noter que certains paquetages sont mises à jour automatisées plutôt complexes et non observées peuvent casser les choses. Nous déconseillons d'utiliser cette mise à jour automatiquement des paquets de PHP, car cela pourrait briser l'utilisation de PHP sur les sites virtuels. S'il vous plaît utiliser cette fonctionnalité à vos propres risques et périls."
+
+msgid "amUpdatesNameTag"
+msgstr "Mises à jour logicielles"
+
+msgid "amUpdatesGreen"
+msgstr "Tous les paquets installés sont entièrement à jour."
+
+msgid "amUpdatesYellow"
+msgstr "Un certain package que vous avez installé est disponible en différentes versions hors NewLinQ. Vous avez l'ancienne version de ce package installé. S'il vous plaît envisager de mettre à jour les paquets installés pour les dernières versions disponibles."
+
+msgid "amUpdatesRed"
+msgstr "Il ya des paquets mis à jour disponibles pour les packages que vous avez déjà installés. S'il vous plaît mettre à jour les paquets installés vers les dernières versions disponibles."
+
+msgid "AutoEmailSubject"
+msgstr "Package d'installation notification"
+
+msgid "autoinstallEmail_desc"
+msgstr "Les paquets suivants ont été installés automatiquement sur votre serveur BlueOnyx:"
+
+msgid "autoupdateEmail_desc"
+msgstr "Les paquets suivants ont été automatiquement mis à jour vers les dernières versions disponibles sur NewLinQ:"
+
+msgid "autoEmail_finalwords"
+msgstr "S'il vous plaît vérifier l'état de votre serveur et assurez-vous que les paquets installés effectuer sans problèmes."

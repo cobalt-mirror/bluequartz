@@ -601,3 +601,43 @@ msgstr "Atualizar"
 msgid "BXupdate_help"
 msgstr "Esta é uma atualização para um pacote que você já tem instalado."
 
+# ---
+
+msgid "UpdatesAvailablePackagesBody"
+msgstr "Não há atualizações disponíveis para os pacotes que você já tem instalado."
+
+msgid "AutoUpdate"
+msgstr "Pkgs Atualizar Auto"
+
+msgid "AutoUpdate_help"
+msgstr "Se esse recurso é habilitado atualizações selecionadas serão instalados automaticamente. Assim que um novo pacote para um dos aplicativos selecionados se torna disponível, então a atualização será instalada automaticamente. Por favor, note que alguns pacotes são atualizações automáticas bastante complexas e não observadas podem quebrar as coisas. Nós desencorajamos usar isso para atualizar automaticamente os pacotes PHP, pois isso pode quebrar o uso do PHP em sites virtuais. Utilize este recurso em sua própria conta e risco."
+
+msgid "AutoUpdateList"
+msgstr "Pacotes de Atualização Automática"
+
+msgid "AutoUpdateList_help"
+msgstr "Lista de pacotes que devem ser automaticamente atualizado para a versão mais recente. Todos os pacotes listados na coluna da esquerda será atualizado automaticamente quando novas versões estiverem disponíveis. Alguns pacotes serão sempre atualizar automaticamente e não pode ser desmarcado. Por favor, note que alguns pacotes são atualizações automáticas bastante complexas e não observadas podem quebrar as coisas. Nós desencorajamos usar isso para atualizar automaticamente os pacotes PHP, pois isso pode quebrar o uso do PHP em sites virtuais. Utilize este recurso em sua própria conta e risco."
+
+msgid "amUpdatesNameTag"
+msgstr "Atualizações de Software"
+
+msgid "amUpdatesGreen"
+msgstr "Todos os pacotes instalados são totalmente atualizado."
+
+msgid "amUpdatesYellow"
+msgstr "Um certo pacote que você instalou está disponível em diferentes versões off NewLinQ. Você tem a versão mais antiga deste Package instalado. Por favor, considere atualizar os pacotes instalados para as últimas versões disponíveis."
+
+msgid "amUpdatesRed"
+msgstr "Há pacotes atualizados disponíveis para os pacotes que você já tem instalado. Por favor, atualize os pacotes instalados para as últimas versões disponíveis."
+
+msgid "AutoEmailSubject"
+msgstr "Pacote de instalação notificação"
+
+msgid "autoinstallEmail_desc"
+msgstr "Os seguintes pacotes foram instalados automaticamente no seu servidor BlueOnyx:"
+
+msgid "autoupdateEmail_desc"
+msgstr "Os seguintes pacotes foram automaticamente atualizados para as versões mais recentes disponíveis no NewLinQ:"
+
+msgid "autoEmail_finalwords"
+msgstr "Por favor, revise o status do seu servidor e certifique-se de que os pacotes instalados executar sem problemas."

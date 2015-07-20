@@ -600,3 +600,45 @@ msgstr "Update"
 
 msgid "BXupdate_help"
 msgstr "Dit is een update voor een pakket dat u al hebt geïnstalleerd."
+
+# ---
+
+msgid "UpdatesAvailablePackagesBody"
+msgstr "Er zijn updates beschikbaar zijn voor pakketten die u al hebt geïnstalleerd."
+
+msgid "AutoUpdate"
+msgstr "Auto Update PKGS"
+
+msgid "AutoUpdate_help"
+msgstr "Als deze functie is ingeschakeld geselecteerde updates worden automatisch geïnstalleerd. Zodra een nieuw pakket voor één van de geselecteerde programma's beschikbaar, dan wordt de update automatisch geïnstalleerd. Houd er rekening mee dat bepaalde pakketten zijn vrij complex en onopgemerkte geautomatiseerde updates kunnen dingen breken. We ontmoedigen om dit te gebruiken voor het automatisch updaten van PHP-pakketten, omdat dit PHP gebruik op virtuele locaties kunnen breken. Gebruik deze functie in uw eigen discretie en risico."
+
+msgid "AutoUpdateList"
+msgstr "Auto Update Packages"
+
+msgid "AutoUpdateList_help"
+msgstr "Lijst met pakketten die automatisch moeten worden bijgewerkt met de nieuwste versie. Alle in de linkerkolom vermelde pakketten wordt automatisch bijgewerkt zodra nieuwere versies beschikbaar komen. Sommige pakketten zullen altijd automatisch bijgewerkt en kan niet worden uitgeschakeld. Houd er rekening mee dat bepaalde pakketten zijn vrij complex en onopgemerkte geautomatiseerde updates kunnen dingen breken. We ontmoedigen om dit te gebruiken voor het automatisch updaten van PHP-pakketten, omdat dit PHP gebruik op virtuele locaties kunnen breken. Gebruik deze functie in uw eigen discretie en risico."
+
+msgid "amUpdatesNameTag"
+msgstr "Software Updates"
+
+msgid "amUpdatesGreen"
+msgstr "Alle geïnstalleerde pakketten zijn volledig up-to-date."
+
+msgid "amUpdatesYellow"
+msgstr "Een zekere pakket dat u hebt geïnstalleerd is verkrijgbaar in verschillende versies uit NewLinQ. Je hebt de oudere versie van dit pakket geïnstalleerd. Kunt u overwegen om de geïnstalleerde pakketten te upgraden naar de meest recente beschikbare versies."
+
+msgid "amUpdatesRed"
+msgstr "Er zijn bijgewerkte pakketten beschikbaar voor pakketten die u al hebt geïnstalleerd. Voer een upgrade van de geïnstalleerde pakketten naar de meest recente beschikbare versies."
+
+msgid "AutoEmailSubject"
+msgstr "Pakket kennisgeving installeren"
+
+msgid "autoinstallEmail_desc"
+msgstr "De volgende pakketten werden automatisch geïnstalleerd op uw BlueOnyx server:"
+
+msgid "autoupdateEmail_desc"
+msgstr "De volgende pakketten werden automatisch bijgewerkt naar de nieuwste versies beschikbaar NewLinQ:"
+
+msgid "autoEmail_finalwords"
+msgstr "Lees de status van uw server en zorg ervoor dat de geïnstalleerde pakketten uit te voeren zonder problemen."
+

@@ -601,3 +601,43 @@ msgstr "Aktualisierung"
 msgid "BXupdate_help"
 msgstr "Dies ist ein Update für ein Paket, welches Sie bereits installiert haben."
 
+# ---
+
+msgid "UpdatesAvailablePackagesBody"
+msgstr "Für bereits installierte Pakete sind aktualisierte Versionen auf NewLinQ verfügbar."
+
+msgid "AutoUpdate"
+msgstr "Automatische Paket-Aktualisierung"
+
+msgid "AutoUpdate_help"
+msgstr "Wenn diese Funktion aktiviert ist, so werden aktualisierte Versionen der ausgewählten Packete automatisch installiert. Bitte beachten Sie, dass einige Pakete recht komplex sind und ein automatisierte und unüberwachte Aktualisierung zu Fehlern führen kann. Wir raten daher, die automatische Aktualisierung nicht für kritische Anwendungen wie PHP zu verwenden, da sonst ggf. Webseiten nicht mehr funktionieren. Bitte verwenden Sie diese Funktion auf eigenes Risiko."
+
+msgid "AutoUpdateList"
+msgstr "Automatische Paket-Aktualisierung"
+
+msgid "AutoUpdateList_help"
+msgstr "Liste der Pakete, die automatisch auf die neueste Version aktualisiert werden soll. Alle in der linken Spalte aufgeführten Pakete werden automatisch aktualisiert sobald neue Versionen verfügbar werden. Einige Pakete werden immer automatisch aktualisiert und können nicht abgewählt werden. Bitte beachten Sie, dass einige Pakete recht komplex sind und ein automatisierte und unüberwachte Aktualisierung zu Fehlern führen kann. Wir raten daher, die automatische Aktualisierung nicht für kritische Anwendungen wie PHP zu verwenden, da sonst ggf. Webseiten nicht mehr funktionieren. Bitte verwenden Sie diese Funktion auf eigenes Risiko."
+
+msgid "amUpdatesNameTag"
+msgstr "Software Updates"
+
+msgid "amUpdatesGreen"
+msgstr "Alle installierten Pakete sind auf dem neuesten Stand."
+
+msgid "amUpdatesYellow"
+msgstr "Eine bestimmtes Paket welches bereits installiert ist, wird von NewLinQ in verschiedenen Versionen bereitgestellt. Sie haben eine ältere Version diese Paketes installiert. Bitte ziehen Sie in Erwägung, dieses Paket auf die neueste verfügbare Version zu aktualisieren."
+
+msgid "amUpdatesRed"
+msgstr "Über NewLinQ sind Aktualisierungen für Pakete verfügbar, die Sie bereits in älterer Version installiert haben. Bitte aktualisieren Sie die installierten Pakete auf den neuesten verfügbaren Versionen."
+
+msgid "AutoEmailSubject"
+msgstr "Benachrichtigung über Paket-Aktualisierungen"
+
+msgid "autoinstallEmail_desc"
+msgstr "Die folgenden Pakete wurden soeben automatisch auf Ihrem BlueOnyx Server installiert:"
+
+msgid "autoupdateEmail_desc"
+msgstr "Die folgenden Pakete auf Ihrem Server wurden automatisch auf die neueste auf NewLinQ verfügbare Version aktualisiert:"
+
+msgid "autoEmail_finalwords"
+msgstr "Bitte prüfen Sie den Status Ihres Servers und stellen Sie sicher, dass die neu installierte oder frisch aktualisierte Software einwandfrei läuft."
