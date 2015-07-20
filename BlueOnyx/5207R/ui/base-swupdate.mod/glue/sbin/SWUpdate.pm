@@ -5,14 +5,14 @@ package SWUpdate;
 require Exporter;
 @ISA    = qw(Exporter);
 @EXPORT = qw(swupdate_getsettings swupdate_unpack
-	     swupdate_download swupdate_verifyuntar
-	     swupdate_notify swupdate_version
-	     swupdate_parselist swupdate_add_pkginfo 
-	     swupdate_tmpdir swupdate_tmpfile
-	     swupdate_checkdepend swupdate_compare
-	     swupdate_install_pkginfo  swupdate_runscripts
-	     swupdate_scriptdir swupdate_splashdir swupdate_localename
-	     swupdate_fromccevers swupdate_rmunpacked);
+         swupdate_download swupdate_verifyuntar
+         swupdate_notify swupdate_version
+         swupdate_parselist swupdate_add_pkginfo 
+         swupdate_tmpdir swupdate_tmpfile
+         swupdate_checkdepend swupdate_compare
+         swupdate_install_pkginfo  swupdate_runscripts
+         swupdate_scriptdir swupdate_splashdir swupdate_localename
+         swupdate_fromccevers swupdate_rmunpacked);
 
 use POSIX;
 use URI::Escape;
@@ -49,16 +49,16 @@ my $host = hostname();
 # to/from cce versions
 sub toccevers
 {
-	my $ver = shift;
-	return 'v' . $ver unless $ver =~ /^v/;
-	return $ver;
+    my $ver = shift;
+    return 'v' . $ver unless $ver =~ /^v/;
+    return $ver;
 }
 
 sub swupdate_fromccevers
 {
-	my $ver = shift;
-	$ver =~ s/^v//;
-	return $ver;
+    my $ver = shift;
+    $ver =~ s/^v//;
+    return $ver;
 }
 
 # get file magic
@@ -73,15 +73,15 @@ sub get_product
 {
     my ($build, $product);
     if (open(BUILD, '/etc/build')) {
-	while (<BUILD>) {
-	    if (/build\s+(\S+)/) {
-		$build = $1;
-	    }
-	    if (/for\s+a\s+(\S+)\sin/) {
-		$product = $1;
-	    }
-	}
-	close(BUILD);
+        while (<BUILD>) {
+            if (/build\s+(\S+)/) {
+                $build = $1;
+            }
+            if (/for\s+a\s+(\S+)\sin/) {
+                $product = $1;
+            }
+        }
+        close(BUILD);
     }
     return ($product, $build);
 }
@@ -134,7 +134,7 @@ sub swupdate_tmpfile
     my $path = $tmp . '/' . $name . '.';
     my $i = $$;
     while (-e $path . $i) {
-	++$i;
+        ++$i;
     }
 
     $path .= $i;
@@ -165,11 +165,11 @@ sub set_proxy
     my ($cce, $sysoid, $swobj, $oid, $ok);
 
     if (not $server) {
-	$cce = new CCE;
-	$cce->connectuds();
-	($sysoid) = $cce->find('System');
-	($ok, $swobj) = $cce->get($sysoid, 'SWUpdate');
-	$cce->bye('SUCCESS');
+        $cce = new CCE;
+        $cce->connectuds();
+        ($sysoid) = $cce->find('System');
+        ($ok, $swobj) = $cce->get($sysoid, 'SWUpdate');
+        $cce->bye('SUCCESS');
     }
 
     # Get http and ftp proxy if they exist. If so, set correct environment
@@ -190,10 +190,11 @@ sub swupdate_getsettings
     my $cce;
 
     if ($cceref) {
-	$cce = $cceref;
-    } else {
-	$cce = new CCE;
-	$cce->connectuds();
+        $cce = $cceref;
+    }
+    else {
+        $cce = new CCE;
+        $cce->connectuds();
     }
 
     ($sysoid) = $cce->find('System');
@@ -201,9 +202,10 @@ sub swupdate_getsettings
     ($ok, $swobj) = $cce->get($sysoid, 'SWUpdate');
 
     if ($obj->{autoupdate} == 1) {
-	(@serverOids) = $cce->findNSorted('SWUpdateServer', 'orderPreference', {autoUpdate => 1});
-    } else {
-	(@serverOids) = $cce->findNSorted('SWUpdateServer', 'orderPreference');
+        (@serverOids) = $cce->findNSorted('SWUpdateServer', 'orderPreference', {autoUpdate => 1});
+    }
+    else {
+        (@serverOids) = $cce->findNSorted('SWUpdateServer', 'orderPreference');
     }
 
     $obj->{serialNumber} = $sysobj->{serialNumber};
@@ -214,16 +216,16 @@ sub swupdate_getsettings
     $obj->{location} = ();
     my $serverOid;
     foreach $serverOid (@serverOids) {
-	($ok, $server) = $cce->get($serverOid, '');
-	push @{$obj->{location_oid}}, $serverOid;
-	push @{$obj->{location_status}}, $server->{status};
-	push @{$obj->{location}}, $server->{location};
-	# Get notificationMode from the SWUpdate servers.
-	# All servers will share the same setting for this, so we
-	# we just take the first one.
-	if (!$obj->{notifymode}) {
-	    $obj->{notifymode} = $server->{notificationMode} eq 'UpdatesOnly' ? 'updates' : 'all';
-	}
+        ($ok, $server) = $cce->get($serverOid, '');
+        push @{$obj->{location_oid}}, $serverOid;
+        push @{$obj->{location_status}}, $server->{status};
+        push @{$obj->{location}}, $server->{location};
+        # Get notificationMode from the SWUpdate servers.
+        # All servers will share the same setting for this, so we
+        # we just take the first one.
+        if (!$obj->{notifymode}) {
+            $obj->{notifymode} = $server->{notificationMode} eq 'UpdatesOnly' ? 'updates' : 'all';
+        }
     }
 
     # figure out email addresses if necessary
@@ -233,9 +235,8 @@ sub swupdate_getsettings
     my @oids = $cce->find('Package', {'installState' => 'Installed'});
     my (@installed, $i);
     for ($i = 0; $i <= $#oids; $i++) {
-	($ok, $j) = $cce->get($oids[$i], '');
-	$installed[$i] = $j->{vendor} . ':' . $j->{name} . ':' . 
-	    swupdate_fromccevers($j->{version});
+        ($ok, $j) = $cce->get($oids[$i], '');
+        $installed[$i] = $j->{vendor} . ':' . $j->{name} . ':' . swupdate_fromccevers($j->{version});
     }
 
     $i = $cce->array_to_scalar(@installed);
@@ -245,16 +246,15 @@ sub swupdate_getsettings
     ($obj->{product}, $obj->{build}) = get_product();
 
     # check for problems
-    unless ($obj->{build} and $obj->{product} and
-	    $obj->{location}) {
-	my $info;
-	$info = ($obj->{location}) ? 'nosysinfo' : 'nolocation';
-	$cce->set($sysoid, 'SWUpdate', { 'status' => 'down' });
-	$cce->bye('SUCCESS') unless $cceref;
-	return (-1, $swobj->{status}, $info);
-
-    } else {
-	$cce->set($sysoid, 'SWUpdate', { 'status' => 'up' });
+    unless ($obj->{build} and $obj->{product} and $obj->{location}) {
+        my $info;
+        $info = ($obj->{location}) ? 'nosysinfo' : 'nolocation';
+        $cce->set($sysoid, 'SWUpdate', { 'status' => 'down' });
+        $cce->bye('SUCCESS') unless $cceref;
+        return (-1, $swobj->{status}, $info);
+    }
+    else {
+        $cce->set($sysoid, 'SWUpdate', { 'status' => 'up' });
     }
 
     $cce->bye('SUCCESS') unless $cceref;
@@ -275,45 +275,44 @@ sub swupdate_verifyuntar
     # first, check to see what file type it is
     $type = get_magic($file);
     my $local = $file;
-    if (($type =~ /PGP\s+armored\s+data\s+signed\s+message/) or
-	($type =~ /data$/)) {
+    if (($type =~ /PGP\s+armored\s+data\s+signed\s+message/) or ($type =~ /data$/)) {
+        # verify
+        `$gpg --verify $file > /dev/null 2>&1`;
+        if ($?) {
+            &debug_msg("ERROR: The PKG is contain a bad or unsupported security signature. You have the checkbox ticked that only signed PKGs can be installed and this PKG failed the signature check.\n");
+            return (-1, 'badsig');
+        }
 
-	# verify
-	`$gpg --verify $file > /dev/null 2>&1`;
-	if ($?) {
-	    &debug_msg("ERROR: The PKG is contain a bad or unsupported security signature. You have the checkbox ticked that only signed PKGs can be installed and this PKG failed the signature check.\n");
-	    return (-1, 'badsig');
-	}
-
-	# convert the file
-	`$gpg --output $local.tar $local > /dev/null 2>&1`;
-	$local .= '.tar' if -e "$local.tar";
-	$type = get_magic($local);
-    } elsif ($sigp) {
-	&debug_msg("ERROR: The PKG is not signed and you have the checkbox ticked that only signed PKGs can be installed.\n");
-	return (-1, 'nosig');
+        # convert the file
+        `$gpg --output $local.tar $local > /dev/null 2>&1`;
+        $local .= '.tar' if -e "$local.tar";
+        $type = get_magic($local);
     }
-	
+    elsif ($sigp) {
+        &debug_msg("ERROR: The PKG is not signed and you have the checkbox ticked that only signed PKGs can be installed.\n");
+        return (-1, 'nosig');
+    }
+        
     # now, see if it's compressed
     if ($type =~ /(\S+)\s+compressed/) {
-	my $prog = ($1 eq 'bzip2') ? $bunzip2 : $gunzip;
-	`$prog $local > $local.unzipped 2>/dev/null`;
-	$err = $?;
-	unlink($local);
-	$local .= '.unzipped';
-	if ($err) {
-	    unlink($local);
-	    &debug_msg("The PKG file could not be unzipped with either bzip2, bunzip2 or gunzip. It is probably damaged.\n");
-	    return (-1, 'nounzip');
-	}
-	$type = get_magic($local);
+        my $prog = ($1 eq 'bzip2') ? $bunzip2 : $gunzip;
+        `$prog $local > $local.unzipped 2>/dev/null`;
+        $err = $?;
+        unlink($local);
+        $local .= '.unzipped';
+        if ($err) {
+            unlink($local);
+            &debug_msg("The PKG file could not be unzipped with either bzip2, bunzip2 or gunzip. It is probably damaged.\n");
+            return (-1, 'nounzip');
+        }
+        $type = get_magic($local);
     }
 
     # it has to be a tar file
     unless ($type =~ /tar/) {
-	unlink($local);
-	&debug_msg("The PKG did not contain a tarball. It is probably damaged.\n");
-	return (-1, 'notar');
+        unlink($local);
+        &debug_msg("The PKG did not contain a tarball. It is probably damaged.\n");
+        return (-1, 'notar');
     }
 
     # untar the file now 
@@ -323,8 +322,8 @@ sub swupdate_verifyuntar
     $err = $?;
     unlink($local);
     if ($err) {
-	&debug_msg("The PKG could not be unpacked with TAR. It is probably damaged.\n");
-	return (-1, 'cantuntar');
+        &debug_msg("The PKG could not be unpacked with TAR. It is probably damaged.\n");
+        return (-1, 'cantuntar');
     }
     unlink($file);
     return (0);
@@ -333,13 +332,13 @@ sub swupdate_verifyuntar
 
 sub setProgress 
 {
-  my ($cce, $oid, $message, $progress) = @_;
-  my %settings;
+    my ($cce, $oid, $message, $progress) = @_;
+    my %settings;
 
-  $settings{message} = $message if defined($message);
-  $settings{progress} = $progress if defined($progress);
-  my ($ok) = $cce->set($oid, 'SWUpdate', \%settings);
-  return $ok;
+    $settings{message} = $message if defined($message);
+    $settings{progress} = $progress if defined($progress);
+    my ($ok) = $cce->set($oid, 'SWUpdate', \%settings);
+    return $ok;
 }
 
 # this unpacks a package and stuffs information into cce
@@ -357,10 +356,11 @@ sub swupdate_unpack
     `rm -rf $path`;
 
     if ($cceref) {
-	$cce = $cceref;
-    } else {
-	$cce = new CCE;
-	$cce->connectuds;
+        $cce = $cceref;
+    }
+    else {
+        $cce = new CCE;
+        $cce->connectuds;
     }
 
     # unpack the basic package.
@@ -370,21 +370,20 @@ sub swupdate_unpack
     my $size = -s $file;
     my ($err, $info) = swupdate_verifyuntar($file, $path, $sigp);
     if ($err) {
-	`rm -rf $path`;
-	setProgress($cce, $status, '[[base-swupdate.badFormat]]', 100) if $status;
-	$cce->bye('SUCCESS') unless $cceref;
-      &debug_msg("Verification of the PKG failed. Error message 'badFormat' was given.\n");
-	return ($err, $info);
+        `rm -rf $path`;
+        setProgress($cce, $status, '[[base-swupdate.badFormat]]', 100) if $status;
+        $cce->bye('SUCCESS') unless $cceref;
+          &debug_msg("Verification of the PKG failed. Error message 'badFormat' was given.\n");
+        return ($err, $info);
     }
 
     # install the info bits and tell apache to restart itself
-    unless (open(PL, "$path/packing_list") and 
-	    (%settings = read_pkgheader(\*PL, undef))) {
-	`rm -rf $path`;
-	setProgress($cce, $status, '[[base-swupdate.badPackage]]', 100) if $status;
-	$cce->bye('SUCCESS') unless $cceref;
-	&debug_msg("Verification of the PKG failed. Error message 'nopackinglist' was given.\n");
-	return (-1, 'nopackinglist');
+    unless (open(PL, "$path/packing_list") and (%settings = read_pkgheader(\*PL, undef))) {
+        `rm -rf $path`;
+        setProgress($cce, $status, '[[base-swupdate.badPackage]]', 100) if $status;
+        $cce->bye('SUCCESS') unless $cceref;
+        &debug_msg("Verification of the PKG failed. Error message 'nopackinglist' was given.\n");
+        return (-1, 'nopackinglist');
     }
     close(PL);
 
@@ -397,20 +396,19 @@ sub swupdate_unpack
 
     ($oid, $info) = swupdate_add_pkginfo($cce, \%settings, 'visible', $oid);
     if ($oid lt 0) {
-	`rm -rf $path`;
-	my $string = ($info eq 'alreadyinstalled') ? '[[base-swupdate.packageAlreadyInstalled]]' : '[[base-swupdate.badFormat]]';
-	setProgress($cce, $status, $string, 100) if $status;
+        `rm -rf $path`;
+        my $string = ($info eq 'alreadyinstalled') ? '[[base-swupdate.packageAlreadyInstalled]]' : '[[base-swupdate.badFormat]]';
+        setProgress($cce, $status, $string, 100) if $status;
         $cce->bye('SUCCESS') unless $cceref;
-	&debug_msg("Installation of PKG failed. Reason given: $info \n");
-    	return (-1, $info); 
+        &debug_msg("Installation of PKG failed. Reason given: $info \n");
+        return (-1, $info); 
     }
     $cce->bye('SUCCESS') unless $cceref;
 
     &debug_msg("Unpacking and verification of PKG complete. Moving contends to appropriate places for the install.\n");
     
     # move files into the appropriate place
-    swupdate_install_pkginfo("$path/pkginfo", $settings{vendor},
-			     $settings{name}, $settings{version});
+    swupdate_install_pkginfo("$path/pkginfo", $settings{vendor}, $settings{name}, $settings{version});
     return ($oid, \%settings);
 }
 
@@ -440,62 +438,63 @@ sub swupdate_normal_download
 
     my $auth = '';
     if (defined $uname && defined $passwd) {
-	$auth = "--http-user $uname --http-passwd $passwd";
+        $auth = "--http-user $uname --http-passwd $passwd";
     }
 
     return (-1, 'down', 'queryerror', \%error) unless
-	open(WGET, "$wgetBin -t 2 $auth -T 60 \"$location$get\" -O $file 2>&1 |");
+    open(WGET, "$wgetBin -t 2 $auth -T 60 \"$location$get\" -O $file 2>&1 |");
 
     while (<WGET>) {
-	if (/Host\s+not\s+found/i) {
-	    close(WGET);
-	    &debug_msg("WGET download of PKG failed. Reasin given: 'hostnotfound'. \n");
-	    return (-1, 'down', 'hostnotfound', \%error);
-	}
-	    
-	if (/404\s+Not\s+Found/i) {
-	    close(WGET);
-	    &debug_msg("WGET download of PKG failed. Reasin given: 'filenotfound'. \n");
-	    return (-1, 'down', 'filenotfound', \%error);
-	}
-      
-	if (/refused/i) {
-	    close(WGET);
-	    &debug_msg("WGET download of PKG failed. Reasin given: 'refusedconnect'. \n");
-	    return (-1, 'down', 'refusedconnect', \%error);
-	}
-	
-	if (/\[\s*(\d+)\%\]/) {
-	    $percent = $1;
-	    my $filePercent = ceil($1);
-	    &debug_msg("WGET download of PKG in progress. \n");
-	    setProgress($status, "[[base-swupdate.dlPercent,percent=$filePercent,file=$location]]", ceil($percent)) if $status;
-	}
+        if (/Host\s+not\s+found/i) {
+            close(WGET);
+            &debug_msg("WGET download of PKG failed. Reasin given: 'hostnotfound'. \n");
+            return (-1, 'down', 'hostnotfound', \%error);
+        }
+            
+        if (/404\s+Not\s+Found/i) {
+            close(WGET);
+            &debug_msg("WGET download of PKG failed. Reasin given: 'filenotfound'. \n");
+            return (-1, 'down', 'filenotfound', \%error);
+        }
+          
+        if (/refused/i) {
+            close(WGET);
+            &debug_msg("WGET download of PKG failed. Reasin given: 'refusedconnect'. \n");
+            return (-1, 'down', 'refusedconnect', \%error);
+        }
+        
+        if (/\[\s*(\d+)\%\]/) {
+            $percent = $1;
+            my $filePercent = ceil($1);
+            &debug_msg("WGET download of PKG in progress. \n");
+            setProgress($status, "[[base-swupdate.dlPercent,percent=$filePercent,file=$location]]", ceil($percent)) if $status;
+        }
     }
 
     # we didn't get a file. error out.
     unless (-f $file and -s $file) {
-	&debug_msg("WGET download of PKG failed. Reasin given: 'queryerror'. We did not get a file.\n");
-	return (-1, 'down', 'queryerror', \%error);
+        &debug_msg("WGET download of PKG failed. Reasin given: 'queryerror'. We did not get a file.\n");
+        return (-1, 'down', 'queryerror', \%error);
     }
 
     # we check for a couple strings if it's a text file
     $type = get_magic($file);    
     if ($type =~ /text/) {
-	if (open(FILE, $file)) {
-	    while (<FILE>) {
-		if (/No packages available/i) {
-			close(FILE);
-			&debug_msg("WGET download of PKG failed. Reasin given: 'nopkgavail'.\n");
-			return (-1, 'up', 'nopkgavail', \%error);
-		} elsif (/^ERROR/) {
-			close(FILE);
-			&debug_msg("WGET download of PKG failed. Reasin given: 'queryerror'.\n");
-			return (-1, 'down', 'queryerror', \%error);
-		}
-	    }
-	    close(FILE);
-	}
+        if (open(FILE, $file)) {
+            while (<FILE>) {
+                if (/No packages available/i) {
+                    close(FILE);
+                    &debug_msg("WGET download of PKG failed. Reasin given: 'nopkgavail'.\n");
+                    return (-1, 'up', 'nopkgavail', \%error);
+                }
+                elsif (/^ERROR/) {
+                    close(FILE);
+                    &debug_msg("WGET download of PKG failed. Reasin given: 'queryerror'.\n");
+                    return (-1, 'down', 'queryerror', \%error);
+                }
+            }
+            close(FILE);
+        }
     }
 
     # we got the file. 
@@ -511,170 +510,170 @@ sub read_pkgheader
     my %settings;
     
     if ($line =~ /^\[Package -- Version=1.0\]/i) {
-	$inpackage = 1;
-    } else {
-	while (<$file>) {
-	    next if /^\s*#/;
-	    if (/^\[Package -- Version=1.0\]/i) {
-		$inpackage = 1;
-		last;
-	    }
-	}
+        $inpackage = 1;
+    }
+    else {
+    while (<$file>) {
+            next if /^\s*#/;
+            if (/^\[Package -- Version=1.0\]/i) {
+            $inpackage = 1;
+            last;
+            }
+        }
     }
 
     return undef unless $inpackage;
     %settings = ();
     while (<$file>) {
-	next if /^\s*#/;
-	next unless /\S/;
-	last if /^\[\/Package\]/;
-	
-	if (/^Category:\s*(\S+)/i) {
-	    $settings{category} = $1;
-	    next;
-	}
+        next if /^\s*#/;
+        next unless /\S/;
+        last if /^\[\/Package\]/;
+        
+        if (/^Category:\s*(\S+)/i) {
+            $settings{category} = $1;
+            next;
+        }
 
-	if (/^Splash:\s*(.+)/i) {
-	    $settings{splashPages} = $1;
-	    next;
-	}
+        if (/^Splash:\s*(.+)/i) {
+            $settings{splashPages} = $1;
+            next;
+        }
 
-	if (/^EncryptionFormat:\s*(\S+)/i) {
-	    $settings{encryptionFormat} = $1;
-	    next;
-	}
+        if (/^EncryptionFormat:\s*(\S+)/i) {
+            $settings{encryptionFormat} = $1;
+            next;
+        }
 
-	if (/^FileName:\s*(\S+)/i) {
-	    $settings{fileName} = $1;
-	    next;
-	}
+        if (/^FileName:\s*(\S+)/i) {
+            $settings{fileName} = $1;
+            next;
+        }
 
-	if (/^Location:\s*(\S+)/i) {
-	    $settings{location} = $1; 
-	    next;
-	}
+        if (/^Location:\s*(\S+)/i) {
+            $settings{location} = $1; 
+            next;
+        }
 
-	if (/^Copyright:\s*(.+)/i) {
-	    $settings{copyright} .= $1;
-	    next;
-	}
-	
-	if (/^ShortDesc:\s*(.+)/i) {
-	    $settings{shortDesc} .= $1;
-	    next;
-	}
-	
-	if (/^LongDesc:\s*(.+)/i) {
-	    $settings{longDesc} .= $1;
-	    next;
-	}
+        if (/^Copyright:\s*(.+)/i) {
+            $settings{copyright} .= $1;
+            next;
+        }
+        
+        if (/^ShortDesc:\s*(.+)/i) {
+            $settings{shortDesc} .= $1;
+            next;
+        }
+        
+        if (/^LongDesc:\s*(.+)/i) {
+            $settings{longDesc} .= $1;
+            next;
+        }
 
-	if (/^License:\s*(.+)/i) {
-	    $settings{licenseDesc} .= $1;
-	    next;
-	}
+        if (/^License:\s*(.+)/i) {
+            $settings{licenseDesc} .= $1;
+            next;
+        }
 
-	if (/^Name:\s*(\S+)/i) {
-	    $settings{name} = $1;
-	    next;
-	}
+        if (/^Name:\s*(\S+)/i) {
+            $settings{name} = $1;
+            next;
+        }
 
-	if (/^NameTag:\s*(.+)\n/i) {
-	    $settings{nameTag} = $1;
-	    next;
-	}
+        if (/^NameTag:\s*(.+)\n/i) {
+            $settings{nameTag} = $1;
+            next;
+        }
 
-	if (/^Product:\s*(\S+)/i) {
-	    push @products, $1;
-	    next;
-	}
+        if (/^Product:\s*(\S+)/i) {
+            push @products, $1;
+            next;
+        }
 
-	if (/^PackageType:\s*(\S+)/i) {
-	    $settings{packageType} = $1 eq 'update' ? 'update' : 'complete';
-	    next;
-	}
+        if (/^PackageType:\s*(\S+)/i) {
+            $settings{packageType} = $1 eq 'update' ? 'update' : 'complete';
+            next;
+        }
 
-	if (/^Options:\s*(.+)\n/i) {
-	    $settings{options} = $1;
-	    next;
-	}
+        if (/^Options:\s*(.+)\n/i) {
+            $settings{options} = $1;
+            next;
+        }
 
-	if (/^Autoupdate:\s*(.+)\n/i) {
-	    $settings{autoupdate} = $1;
-	    next;
-	}
+        if (/^Autoupdate:\s*(.+)\n/i) {
+            $settings{autoupdate} = $1;
+            next;
+        }
 
-	if (/^Autoinstall:\s*(.+)\n/i) {
-	    $settings{autoinstall} = $1;
-	    next;
-	}
+        if (/^Autoinstall:\s*(.+)\n/i) {
+            $settings{autoinstall} = $1;
+            next;
+        }
 
-	
-	if (/^Size:\s*(\d+)/i) {
-	    $settings{size} = $1;
-	    next;
-	}
+        
+        if (/^Size:\s*(\d+)/i) {
+            $settings{size} = $1;
+            next;
+        }
 
-	if (/^InfoURL:\s*(\S+)/i) {
-	    $settings{url} = $1;
-	    next;
-	}
-	
-	if (/^InfoURLOptions:\s*(.+)\n/i) {
-	    $settings{urloptions} = $1;
-	    next;
-	}
-	
-	if (/^Vendor:\s*(\S+)/i) {
-	    $settings{vendor} = $1;
-	    next;
-	}
+        if (/^InfoURL:\s*(\S+)/i) {
+            $settings{url} = $1;
+            next;
+        }
+        
+        if (/^InfoURLOptions:\s*(.+)\n/i) {
+            $settings{urloptions} = $1;
+            next;
+        }
+        
+        if (/^Vendor:\s*(\S+)/i) {
+            $settings{vendor} = $1;
+            next;
+        }
 
-	if (/^VendorTag:\s*(.+)\n/i) {
-	    $settings{vendorTag} = $1;
-	    next;
-	}
+        if (/^VendorTag:\s*(.+)\n/i) {
+            $settings{vendorTag} = $1;
+            next;
+        }
 
-	if (/^Version:\s*(\S+)/i) {
-	    $settings{version} = toccevers($1); 
-	    next;
-	}
+        if (/^Version:\s*(\S+)/i) {
+            $settings{version} = toccevers($1); 
+            next;
+        }
 
-	if (/^VersionTag:\s*(.+)\n/i) {
-	    $settings{versionTag} = $1; 
-	    next;
-	}
+        if (/^VersionTag:\s*(.+)\n/i) {
+            $settings{versionTag} = $1; 
+            next;
+        }
 
-	#  vendor:package [><=] version
-	if (/^Depend:\s*(\S+):(\S+)\s*(?:([!>=<]*)\s*(\S+))*/i) {
-	    push @depend, "$1:$2:$3:$4";
-	    next;
-	}
+        #  vendor:package [><=] version
+        if (/^Depend:\s*(\S+):(\S+)\s*(?:([!>=<]*)\s*(\S+))*/i) {
+            push @depend, "$1:$2:$3:$4";
+            next;
+        }
 
-	if (/^VisibleDepend:\s*(\S+):(\S+)\s*(?:([!>=<]*)\s*(\S+))*/i) {
-	    push @visible, "$1:$2:$3:$4";
-	    next;
-	}
+        if (/^VisibleDepend:\s*(\S+):(\S+)\s*(?:([!>=<]*)\s*(\S+))*/i) {
+            push @visible, "$1:$2:$3:$4";
+            next;
+        }
 
-	# obsoletes
-	if (/^Obsoletes:\s*(\S+):(\S+)\s*(?:([>=<]*)\s*(\S+))*/i) {
-	    push @obsolete, "$1:$2:$3:$4";
-	    next;
-	}
+        # obsoletes
+        if (/^Obsoletes:\s*(\S+):(\S+)\s*(?:([>=<]*)\s*(\S+))*/i) {
+            push @obsolete, "$1:$2:$3:$4";
+            next;
+        }
 
-	if (/^RPM:\s*(\S+)/i) {
-	    push @rpms, $1;
-	    next;
-	} 
+        if (/^RPM:\s*(\S+)/i) {
+            push @rpms, $1;
+            next;
+        } 
 
-	if (/^SRPM:\s*(\S+)/i) {
-	    push @srpms, $1;
-	    next;
-	} 
+        if (/^SRPM:\s*(\S+)/i) {
+            push @srpms, $1;
+            next;
+        } 
 
     }
-    my $domain = swupdate_localename($settings{vendor}, $settings{name},
-				     $settings{version});
+    my $domain = swupdate_localename($settings{vendor}, $settings{name}, $settings{version});
     
     # prepend domains on a bunch of tags
     $settings{shortDesc} = prepend_domain($domain, $settings{shortDesc}) if $settings{shortDesc};
@@ -692,18 +691,18 @@ sub read_pkgheader
     $settings{RPMList} = CCE->array_to_scalar(@rpms) if @rpms;
     $settings{SRPMList} = CCE->array_to_scalar(@srpms) if @srpms;
 
-    if ($settings{autoupdate} =~ /Yes/i) { 
-	$settings{autoupdate} = "1"; 
+    if (($settings{autoupdate} =~ /Yes/i) || ($settings{autoupdate} eq "1")) { 
+        $settings{autoupdate} = "1"; 
     } 
     else { 
-	$settings{autoupdate} = "0"; 
+        $settings{autoupdate} = "0"; 
     }
 
-    if ($settings{autoinstall} =~ /Yes/i) { 
-	$settings{autoinstall} = "1"; 
+    if (($settings{autoinstall} =~ /Yes/i) || ($settings{autoinstall} eq "1")) { 
+        $settings{autoinstall} = "1"; 
     } 
     else { 
-	$settings{autoinstall} = "0"; 
+        $settings{autoinstall} = "0"; 
     }
 
     return %settings;
@@ -718,32 +717,30 @@ sub swupdate_parselist
     return -1 unless open(PL, $file);
 
     while (<PL>) {
-	next if /^\s*#/;
-	if (/\[PackageList -- Version=1.0\]/i) {
-	    $ok = 1;
-	    last;
-	}
-	next;
+        next if /^\s*#/;
+        if (/\[PackageList -- Version=1.0\]/i) {
+            $ok = 1;
+            last;
+        }
+        next;
     }
-	
+    
     unless ($ok) {
-	close(PL);
-	return -1;
+        close(PL);
+        return -1;
     }
 
     while (<PL>) {
-	my %package;
-	%package = read_pkgheader(\*PL, $_);
-	# make sure crucial information exists
-	if ($package{version} and $package{name} and $package{vendor} and 
-	    ($package{location} or $package{url})) {
-	    $package{installState} = 'Available';
-	    push @$packages, \%package;
-	}
+        my %package;
+        %package = read_pkgheader(\*PL, $_);
+        # make sure crucial information exists
+        if ($package{version} and $package{name} and $package{vendor} and ($package{location} or $package{url})) {
+            $package{installState} = 'Available';
+            push @$packages, \%package;
+        }
     }
     close(PL);
     return scalar(@$packages);
-
 }
 
 
@@ -754,13 +751,13 @@ sub swupdate_runscripts
 
     $fullpath = $path;
     if ($cmd) {
-	$fullpath .= '/' . $cmd;
+        $fullpath .= '/' . $cmd;
     }
     if (opendir(DIR, $fullpath)) {
-	while ($_ = readdir(DIR)) {
-	    next if /^\./;
-	    push @scripts, "$fullpath/$_";
-	}
+        while ($_ = readdir(DIR)) {
+            next if /^\./;
+            push @scripts, "$fullpath/$_";
+        }
     }
     closedir(DIR);
 
@@ -768,8 +765,8 @@ sub swupdate_runscripts
     # this is the package path. for the un-installation, it's the script
     # dir.
     foreach $cmd (sort @scripts) {
-	$err = system("cd $path; $cmd");
-	return -1 if $err;
+        $err = system("cd $path; $cmd");
+        return -1 if $err;
     }
     return 0;
 }
@@ -788,36 +785,37 @@ sub swupdate_compare
     my ($version, $eq, $lt, $gt);
 
     foreach $i (@depends) {
-	$i =~ /^(\S+):(\S+):(\S*):(\S*)/;
-	$version = $pkg->{$1}{$2};
-	$compare = $3;
+        $i =~ /^(\S+):(\S+):(\S*):(\S*)/;
+        $version = $pkg->{$1}{$2};
+        $compare = $3;
 
-	# handle the following cases:
-	# no package !         -- okay
-	# package !            -- not okay
-	# no package           -- not okay
-	# package              -- okay
-	next if ($compare =~ /!/) and not defined($version);
-	return -1 if defined($version) and ($compare eq '!');
-	return -1 unless defined($version);
-	next unless $compare;
+        # handle the following cases:
+        # no package !         -- okay
+        # package !            -- not okay
+        # no package           -- not okay
+        # package              -- okay
+        next if ($compare =~ /!/) and not defined($version);
+        return -1 if defined($version) and ($compare eq '!');
+        return -1 unless defined($version);
+        next unless $compare;
 
-	# we have to do version checks. 
-	if ($reverse) {
-	    $depversion = $version;
-	    $version = $4;
-	} else {
-	    $depversion = $4;
-	}
-	$eq = $lt = $gt = 0;
-	$sign = compareVersion($version, $depversion);
-	return $sign ? 0 : -1 if ($compare eq '!=');
+        # we have to do version checks. 
+        if ($reverse) {
+            $depversion = $version;
+            $version = $4;
+        }
+        else {
+            $depversion = $4;
+        }
+        $eq = $lt = $gt = 0;
+        $sign = compareVersion($version, $depversion);
+        return $sign ? 0 : -1 if ($compare eq '!=');
 
-	$eq = 1 if (($compare =~ /=/) and ($sign == 0));
-	$lt = 1 if (($compare =~ /</) and ($sign < 0)); 
-	$gt = 1 if (($compare =~ />/) and ($sign > 0));
-	next if ($eq or $lt or $gt);
-	return -1;
+        $eq = 1 if (($compare =~ /=/) and ($sign == 0));
+        $lt = 1 if (($compare =~ /</) and ($sign < 0)); 
+        $gt = 1 if (($compare =~ />/) and ($sign > 0));
+        next if ($eq or $lt or $gt);
+        return -1;
     }
     return 0;
 }
@@ -837,10 +835,11 @@ sub swupdate_checkdepend
     my ($cce, $i, $ok, @depends);
 
     if ($cceref) {
-	$cce = $cceref;
-    } else {
-	$cce = new CCE;
-	$cce->connectuds;
+        $cce = $cceref;
+    }
+    else {
+        $cce = new CCE;
+        $cce->connectuds;
     }
     
     # first, check against the product field if it's there.
@@ -873,40 +872,40 @@ sub swupdate_checkdepend
     my %search;
     $search{$pkg->{vendor}}{$pkg->{name}} = $pkg->{version};
     foreach $i (@oids) {
-	($ok, $obj) = $cce->get($i); 
-	if ($obj->{obsoleteList}) {
-	    my @list = $cce->scalar_to_array($obj->{obsoleteList});
-	    foreach $ok (@list) {
-		if (swupdate_compare([$ok], \%search) eq 0) {
-		    $cce->bye('SUCCESS') unless $cceref;
-		    return -2;
-		}
-	    }
-	}
-	$packages{$obj->{vendor}}{$obj->{name}} = $obj->{version};
+        ($ok, $obj) = $cce->get($i); 
+        if ($obj->{obsoleteList}) {
+            my @list = $cce->scalar_to_array($obj->{obsoleteList});
+            foreach $ok (@list) {
+                if (swupdate_compare([$ok], \%search) eq 0) {
+                    $cce->bye('SUCCESS') unless $cceref;
+                    return -2;
+                }
+            }
+        }
+        $packages{$obj->{vendor}}{$obj->{name}} = $obj->{version};
     }
     
     # everything's okay. see if there are any package dependencies 
     unless ($pkg->{dependencyList} or $pkg->{visibleList}) {
-	$cce->bye('SUCCESS') unless $cceref;
-	return 0;
+        $cce->bye('SUCCESS') unless $cceref;
+        return 0;
     }
     
     # need to do dependency checking
     # for visible dependencies, we return 1 on error.
     $ok = 0;
     if ($pkg->{visibleList}) {
-	@depends = $cce->scalar_to_array($pkg->{visibleList});
-	$ok = 1 if (swupdate_compare(\@depends, \%packages) lt 0);
+        @depends = $cce->scalar_to_array($pkg->{visibleList});
+        $ok = 1 if (swupdate_compare(\@depends, \%packages) lt 0);
     }
 
     # other dependencies return -1 on error.
     if ($pkg->{dependencyList}) {
-	@depends = $cce->scalar_to_array($pkg->{dependencyList});
-	$ok = -1 if (swupdate_compare(\@depends, \%packages) lt 0);
+        @depends = $cce->scalar_to_array($pkg->{dependencyList});
+        $ok = -1 if (swupdate_compare(\@depends, \%packages) lt 0);
     }
     $cce->bye('SUCCESS') unless $cceref;
-	
+    
     return $ok;
 }
 
@@ -921,36 +920,36 @@ sub swupdate_add_pkginfo {
 
     # see if package is installed
     ($OID) = $cce->find("Package", {'name' => $obj->{name},
-				    'vendor' => $obj->{vendor},
-				    'installState' => 'Installed'
-				    });
+                    'vendor' => $obj->{vendor},
+                    'installState' => 'Installed'
+                    });
     if ($OID) {
-	# installed - see if we have a newer version
-	($success, $installed) = $cce->get($OID, '');
-	return (-1, 'alreadyinstalled') if (compareVersion($obj->{version}, 
-				     $installed->{version}) <= 0);
+        # installed - see if we have a newer version
+        ($success, $installed) = $cce->get($OID, '');
+        return (-1, 'alreadyinstalled') if (compareVersion($obj->{version}, $installed->{version}) <= 0);
     }
 
     # see if the package already exists. if so, just overwrite it.
     ($OID) = $oldoid ? $oldoid : $cce->find('Package', {'name' => $obj->{name},
-				    	    'vendor' => $obj->{vendor},
-				    	    'version' => $obj->{version},
-				    	    'installState' => 'Available' }
-				            );
+                            'vendor' => $obj->{vendor},
+                            'version' => $obj->{version},
+                            'installState' => 'Available' }
+                            );
     
     # do a dependency check. set the isVisible flag if it fails.
     my $depend = swupdate_checkdepend($obj, $cce);
     $obj->{isVisible} = ($depend lt 0 and not $visible) ? 0 : 1;
     if ($OID gt 0) {
-	# wipe out any temp files that might be lying around if
-	# we successfully set the object.
-	my $myobj;
-	($success, $myobj) = $cce->get($OID, '');
-	($success) = $cce->set($OID, '', $obj);
-	swupdate_rmunpacked($myobj->{location}) if $success;
-    } else { 
-	($success) = $cce->create('Package', $obj);
-	$OID = $cce->oid();
+        # wipe out any temp files that might be lying around if
+        # we successfully set the object.
+        my $myobj;
+        ($success, $myobj) = $cce->get($OID, '');
+        ($success) = $cce->set($OID, '', $obj);
+        swupdate_rmunpacked($myobj->{location}) if $success;
+    }
+    else { 
+        ($success) = $cce->create('Package', $obj);
+        $OID = $cce->oid();
     }
     return $success ? $OID : (-1, 'badpkgfmt');
 }
@@ -964,63 +963,66 @@ sub swupdate_notify
     my ($subject, $body);
 
     if ($error eq 'nosysinfo') {
-	$subject = $host . ': ' . '[[base-swupdate.NoSystemInfoSubject]]';
-	$body = '[[base-swupdate.NoSystemInfoBody]]';
-
-    } elsif ($error eq 'nolocation') {
-	$subject = $host . ': ' . '[[base-swupdate.NoSWUpdateServerSubject]]';
-	$body = '[[base-swupdate.NoSWUpdateServerBody]]';
-
-    } elsif ($error eq 'nopkgavail') {
-	$subject = $host . ': ' . '[[base-swupdate.NoPackagesSubject]]';
-	$body = '[[base-swupdate.NoPackagesBody]]';
-
-    } elsif ($error =~ /(?:queryerror|filenotfound|hostnotfound|refusedconnect)/) {
-	$subject = $host . ': ' . '[[base-swupdate.QueryErrorSubject]]';
-	$body = '[[base-swupdate.NoPackageListBody,location=' . (ref $obj->{location} eq "ARRAY" ? $obj->{location}->[0] : $obj->{location}) . ']]';
-
-    } elsif ($error eq 'badpkgfmt') {
-	$subject = $host . ': ' . '[[base-swupdate.QueryErrorSubject]]';
-	$body = '[[base-swupdate.BadPackageFmtBody,location=' . (ref $obj->{location} eq "ARRAY" ? $obj->{location}->[0] : $obj->{location}) . ']]';
-
-    } elsif ($error) {
-	$subject = $host . ': ' . '[[base-swupdate.QueryErrorSubject]]';
-	$body = '[[base-swupdate.UnknownErrorBody,location=' . $obj->{location} . ',error='. $error . ']]';
-
-    } else {
-	# okay. 
-	my @array = @$obj;
-	my $ref;
-	
-	$subject = $host . ': ' . '[[base-swupdate.NewUpdatesSubject]]';
-	$body = "[[base-swupdate.NewUpdatesBody]]\n\n";
-	foreach $ref (@array) {
-	    my $name = $ref->{nameTag} ? $ref->{nameTag} : $ref->{name};
-	    my $vendor = $ref->{vendorTag} ? $ref->{vendorTag} : $ref->{vendor};
-	    my $version = ($ref->{versionTag}) ? $ref->{versionTag} : swupdate_fromccevers($ref->{version});
-	    $body .= "[[base-swupdate.nameField]]: $name\n";
-	    $body .= "[[base-swupdate.versionField]]: $version\n";
-	    $body .= "[[base-swupdate.vendorField]]: $vendor\n";
-	    $body .= "[[base-swupdate.copyrightField]]: $ref->{copyright}\n";
-	    $body .= "[[base-swupdate.typeField]]: [[base-swupdate.$ref->{packageType}]]\n";
-	    $body .= "[[base-swupdate.descriptionField]]: $ref->{shortDesc}\n\n";
-	}
+        $subject = $host . ': ' . '[[base-swupdate.NoSystemInfoSubject]]';
+        $body = '[[base-swupdate.NoSystemInfoBody]]';
+    }
+    elsif ($error eq 'nolocation') {
+        $subject = $host . ': ' . '[[base-swupdate.NoSWUpdateServerSubject]]';
+        $body = '[[base-swupdate.NoSWUpdateServerBody]]';
+    }
+    elsif ($error eq 'nopkgavail') {
+        $subject = $host . ': ' . '[[base-swupdate.NoPackagesSubject]]';
+        $body = '[[base-swupdate.NoPackagesBody]]';
+    }
+    elsif ($error =~ /(?:queryerror|filenotfound|hostnotfound|refusedconnect)/) {
+        $subject = $host . ': ' . '[[base-swupdate.QueryErrorSubject]]';
+        $body = '[[base-swupdate.NoPackageListBody,location=' . (ref $obj->{location} eq "ARRAY" ? $obj->{location}->[0] : $obj->{location}) . ']]';
+    }
+    elsif ($error eq 'badpkgfmt') {
+        $subject = $host . ': ' . '[[base-swupdate.QueryErrorSubject]]';
+        $body = '[[base-swupdate.BadPackageFmtBody,location=' . (ref $obj->{location} eq "ARRAY" ? $obj->{location}->[0] : $obj->{location}) . ']]';
+    }
+    elsif ($error) {
+        $subject = $host . ': ' . '[[base-swupdate.QueryErrorSubject]]';
+        $body = '[[base-swupdate.UnknownErrorBody,location=' . $obj->{location} . ',error='. $error . ']]';
+    }
+    else {
+        # okay. 
+        my @array = @$obj;
+        my $ref;
+        
+        $subject = $host . ': ' . '[[base-swupdate.NewUpdatesSubject]]';
+        $body = "[[base-swupdate.NewUpdatesBody]]\n\n";
+        foreach $ref (@array) {
+            my $name = $ref->{nameTag} ? $ref->{nameTag} : $ref->{name};
+            my $vendor = $ref->{vendorTag} ? $ref->{vendorTag} : $ref->{vendor};
+            my $version = ($ref->{versionTag}) ? $ref->{versionTag} : swupdate_fromccevers($ref->{version});
+            $body .= "[[base-swupdate.nameField]]: $name\n";
+            $body .= "[[base-swupdate.versionField]]: $version\n";
+            $body .= "[[base-swupdate.vendorField]]: $vendor\n";
+            $body .= "[[base-swupdate.copyrightField]]: $ref->{copyright}\n";
+            $body .= "[[base-swupdate.typeField]]: [[base-swupdate.$ref->{packageType}]]\n";
+            $body .= "[[base-swupdate.descriptionField]]: $ref->{shortDesc}\n\n";
+        }
     }
 
     if ($invocation eq 'ui' || $invocation eq 'autoupdate') {
-	if ($error) {
-	    # on errors, we want to spit out the body
-	    print($body."\n");
-	    exit 1;
-	} else {
-	    # otherwise, we want to spit out the subject
-	    print($subject."\n");
-	    exit 0;
-	}
-    } elsif ($invocation eq 'cron') {
-	swupdate_email($subject, $body, @emailaddrs) unless $info eq 'INFO';
-    } else {
-	swupdate_print('subject,body', $subject, $body);
+        if ($error) {
+            # on errors, we want to spit out the body
+            print($body."\n");
+            exit 1;
+        }
+        else {
+            # otherwise, we want to spit out the subject
+            print($subject."\n");
+            exit 0;
+        }
+    }
+    elsif ($invocation eq 'cron') {
+        swupdate_email($subject, $body, @emailaddrs) unless $info eq 'INFO';
+    }
+    else {
+        swupdate_print('subject,body', $subject, $body);
     }
 }
 
@@ -1044,13 +1046,11 @@ sub swupdate_print
 # which case we just email about new Packages marked as Update)
 ################################################################
 sub swupdate_email {
-  my ($subject, $body, @addrs) = @_;
-  my $address;
-  
-  foreach $address (@addrs) {
-      SendEmail::sendEmail($address, Sauce::Config::groupdir_owner, 
-			   $subject, $body);
-  }      
+    my ($subject, $body, @addrs) = @_;
+    my $address;
+    foreach $address (@addrs) {
+        SendEmail::sendEmail($address, Sauce::Config::groupdir_owner, $subject, $body);
+    }
 }
 
 
@@ -1070,34 +1070,34 @@ sub swupdate_install_pkginfo
     # make sure that we can reach the files. make sure that the permissions
     # are sane as well.
     if (-d "$dir/splash") {
-	`cd $dir/splash; tar cBf -  . | (cd $splash; tar xBf -)`;
-	`find $splash -type f | xargs chmod ug-s > /dev/null 2>&1`;
-	`find $splash \\( -type d -o -name index.cgi \\) | xargs chmod 755 > /dev/null 2>&1`;
+        `cd $dir/splash; tar cBf -  . | (cd $splash; tar xBf -)`;
+        `find $splash -type f | xargs chmod ug-s > /dev/null 2>&1`;
+        `find $splash \\( -type d -o -name index.cgi \\) | xargs chmod 755 > /dev/null 2>&1`;
     }
 
-     # now, move locales. we have to deal with the fact our conception
-     # of version strings is slightly different than the developers.
-     $version = swupdate_fromccevers($version);
-     if (opendir(LOCALEDIR, "$dir/locale")) {
-         while ($lang = readdir(LOCALEDIR)) {
-	     next if $lang =~ /^\./;
-             if (opendir(LOCALE, "$dir/locale/$lang")) {
-                 my $locale;
-                 while ($locale = readdir(LOCALE)) {
-		     next if $locale =~ /^\./;
-		     next unless $locale =~ /\.mo$/;
-		     $dest = "$localedir/$lang/LC_MESSAGES/${localename}.mo";
-		     `mkdir -p $localedir/$lang/LC_MESSAGES`;
-		     `chmod -R 0755 $localedir/$lang/LC_MESSAGES`;
-                     `cp $dir/locale/$lang/$locale $dest`;
-		     chmod (0644, $dest);
-		     last;
-                 }
-		 closedir(LOCALE);
-             }
-         }
-	 closedir(LOCALEDIR);
-     }
+    # now, move locales. we have to deal with the fact our conception
+    # of version strings is slightly different than the developers.
+    $version = swupdate_fromccevers($version);
+    if (opendir(LOCALEDIR, "$dir/locale")) {
+        while ($lang = readdir(LOCALEDIR)) {
+            next if $lang =~ /^\./;
+            if (opendir(LOCALE, "$dir/locale/$lang")) {
+                my $locale;
+                while ($locale = readdir(LOCALE)) {
+                    next if $locale =~ /^\./;
+                    next unless $locale =~ /\.mo$/;
+                    $dest = "$localedir/$lang/LC_MESSAGES/${localename}.mo";
+                    `mkdir -p $localedir/$lang/LC_MESSAGES`;
+                    `chmod -R 0755 $localedir/$lang/LC_MESSAGES`;
+                    `cp $dir/locale/$lang/$locale $dest`;
+                    chmod (0644, $dest);
+                    last;
+                }
+                closedir(LOCALE);
+            }
+        }
+        closedir(LOCALEDIR);
+    }
 }
 
 ################################################################
@@ -1109,25 +1109,24 @@ sub swupdate_install_pkginfo
 # -1   first < second
 ################################################################
 sub compareVersion {
-  my($firstVer, $secondVer) = @_;
-  $firstVer = swupdate_fromccevers($firstVer);
-  $secondVer = swupdate_fromccevers($secondVer);
+    my($firstVer, $secondVer) = @_;
+    $firstVer = swupdate_fromccevers($firstVer);
+    $secondVer = swupdate_fromccevers($secondVer);
 
     if (versioncmp($firstVer, $secondVer) == -1) {
-	return -1;
+        return -1;
     }
     elsif (versioncmp($firstVer, $secondVer) == 1) {
-	return 1;
+        return 1;
     }
     else {
-	return 0;
+        return 0;
     }
 }
   
 sub prepend_domain 
 {    
     my ($domain, $string) = @_;
-
     $string =~ s/\[\[([^\s\.]+)\]\]/\[\[${domain}\.$1\]\]/g;
     return $string;
 }
@@ -1143,22 +1142,38 @@ sub debug_msg {
     }           
 }
 
-# Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 # 
-# Redistribution and use in source and binary forms, with or without 
-# modification, are permitted provided that the following conditions are met:
+# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2003 Sun Microsystems, Inc. 
+# All Rights Reserved.
 # 
-# -Redistribution of source code must retain the above copyright notice, 
-# this list of conditions and the following disclaimer.
+# 1. Redistributions of source code must retain the above copyright 
+#     notice, this list of conditions and the following disclaimer.
 # 
-# -Redistribution in binary form must reproduce the above copyright notice, 
-# this list of conditions and the following disclaimer in the documentation  
-# and/or other materials provided with the distribution.
+# 2. Redistributions in binary form must reproduce the above copyright 
+#     notice, this list of conditions and the following disclaimer in 
+#     the documentation and/or other materials provided with the 
+#     distribution.
 # 
-# Neither the name of Sun Microsystems, Inc. or the names of contributors may 
-# be used to endorse or promote products derived from this software without 
-# specific prior written permission.
+# 3. Neither the name of the copyright holder nor the names of its 
+#     contributors may be used to endorse or promote products derived 
+#     from this software without specific prior written permission.
 # 
-# This software is provided "AS IS," without a warranty of any kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY EXCLUDED. SUN MICROSYSTEMS, INC. ("SUN") AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
+# COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+# POSSIBILITY OF SUCH DAMAGE.
 # 
-# You acknowledge that  this software is not designed or intended for use in the design, construction, operation or maintenance of any nuclear facility.
+# You acknowledge that this software is not designed or intended for 
+# use in the design, construction, operation or maintenance of any 
+# nuclear facility.
+# 

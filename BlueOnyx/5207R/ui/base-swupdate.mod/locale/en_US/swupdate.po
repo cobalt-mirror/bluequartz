@@ -638,3 +638,44 @@ msgstr "Update"
 
 msgid "BXupdate_help"
 msgstr "This is an update for a package that you already have installed."
+
+# ---
+
+msgid "UpdatesAvailablePackagesBody"
+msgstr "There are updates available for packages that you already have installed."
+
+msgid "AutoUpdate"
+msgstr "Auto Update PKGs"
+
+msgid "AutoUpdate_help"
+msgstr "If this feature is enabled selected updates will be installed automatically. As soon as a new package for one of the selected applications becomes available, then the update will be installed automatically. Please note that certain packages are rather complex and unobserved automated updates may break things. We discourage to use this for automatically updating PHP packages, as this might break PHP usage on virtual sites. Please use this feature at your own discretion and risk."
+
+msgid "AutoUpdateList"
+msgstr "Auto Update Packages"
+
+msgid "AutoUpdateList_help"
+msgstr "List of packages that should be automatically updated to the latest version. All packages listed in the lefthand column will be automatically updated once newer versions become available. Certain packages will always update automatically and cannot be deselected. Please note that certain packages are rather complex and unobserved automated updates may break things. We discourage to use this for automatically updating PHP packages, as this might break PHP usage on virtual sites. Please use this feature at your own discretion and risk."
+
+msgid "amUpdatesNameTag"
+msgstr "Software Updates"
+
+msgid "amUpdatesGreen"
+msgstr "All installed Packages are fully up to date."
+
+msgid "amUpdatesYellow"
+msgstr "A certain Package that you have installed is available in different versions off NewLinQ. You have the older version of this Package installed. Please consider to upgrade the installed Packages to the latest available versions."
+
+msgid "amUpdatesRed"
+msgstr "There are updated Packages available for Packages that you already have installed. Please upgrade the installed Packages to the latest available versions."
+
+msgid "AutoEmailSubject"
+msgstr "Package install notification"
+
+msgid "autoinstallEmail_desc"
+msgstr "The following Packages were automatically installed on your BlueOnyx server:"
+
+msgid "autoupdateEmail_desc"
+msgstr "The following Packages were automatically updated to the latest versions available on NewLinQ:"
+
+msgid "autoEmail_finalwords"
+msgstr "Please review the status of your server and make sure that the installed Packages perform without problems."

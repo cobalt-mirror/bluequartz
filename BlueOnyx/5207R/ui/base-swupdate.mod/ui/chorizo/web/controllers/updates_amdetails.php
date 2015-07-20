@@ -1,18 +1,18 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class CheckHandler extends MX_Controller {
+class Updates_amdetails extends MX_Controller {
 
     /**
      * Index Page for this controller.
      *
-     * Past the login page this loads the page for /swupdate/checkHandler.
+     * Past the login page this loads the page for /swupdate/updates_amdetails.
      *
      */
 
     public function index() {
 
         $CI =& get_instance();
-
+        
         // We load the BlueOnyx helper library first of all, as we heavily depend on it:
         $this->load->helper('blueonyx');
         init_libraries();
@@ -20,6 +20,9 @@ class CheckHandler extends MX_Controller {
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
         $MX =& get_instance();
+
+        // Load AM Detail Helper:
+        $this->load->helper('amdetail');
 
         // Get $sessionId and $loginName from Cookie (if they are set):
         $sessionId = $CI->input->cookie('sessionId');
@@ -39,60 +42,74 @@ class CheckHandler extends MX_Controller {
 
         // -- Actual page logic start:
 
-        // Not 'managePackage'? Bye, bye!
-        if (!$Capabilities->getAllowed('managePackage')) {
+        // Not 'serverShowActiveMonitor'? Bye, bye!
+        if (!$Capabilities->getAllowed('serverShowActiveMonitor')) {
             // Nice people say goodbye, or CCEd waits forever:
             $cceClient->bye();
             $serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403");
         }
 
-        //
-        //-- Do the deeds:
-        //
+        // -- Actual page logic start:
 
-        // Get URL params:
+        // We start without any active errors:
+        $errors = array();
+        $extra_headers =array();
+        $ci_errors = array();
+        $my_errors = array();
+
+        // Find out if we display without menu or with menu:
         $get_form_data = $CI->input->get(NULL, TRUE);
-
-        if (!isset($get_form_data['backUrl'])) {
-            // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
-            Log403Error("/gui/Forbidden403");
+        $fancy = FALSE;
+        if ($get_form_data['short'] == "1") {
+            $fancy = TRUE;
         }
 
-        // Check NewLinQ for new PKGs:
-        $i = $serverScriptHelper->shell("/usr/sausalito/sbin/grab_updates.pl -u", $ret, 'root', $sessionId);
-        // Set cookie to recall when we last did this:
-        setcookie("nl_check", time(), "0", "/");
+        // Prepare Page:
+        $factory = $serverScriptHelper->getHtmlComponentFactory("base-swupdate");
+        $BxPage = $factory->getPage();
+        $i18n = $factory->getI18n();
 
-        if ($i) {
-            $error = new Error($ret);
-            print($serverScriptHelper->toHandlerHtml($get_form_data['backUrl'], array($error), false));
-            exit;
+        // Set Menu items:
+        $BxPage->setVerticalMenu('base_monitor');
+        $BxPage->setVerticalMenuChild('base_amStatus');
+        if ($fancy == TRUE) {       
+            $BxPage->setOutOfStyle(TRUE);
         }
-        if (!isset($ret)) {
-            $ret = urlencode('[[base-swupdate.NoPackagesBody]]');
+        $page_module = 'base_sysmanage';
+        $defaultPage = "basicSettingsTab";
+
+        if ($fancy == TRUE) {
+            $page_body[] = '<br><div id="main_container" class="container_16">';
+        }
+
+        //
+        //--- Print Detail Block:
+        //
+
+        $page_body[] = am_detail_block($factory, $cceClient, "Updates", "[[base-swupdate.amUpdatesNameTag]]");
+
+        if ($fancy == TRUE) {
+            $page_body[] = '</div>';
         }
         else {
-            $ret = urlencode($ret);
+            // Full page display. Show "Back" Button:
+            $page_body[] = am_back($factory);
         }
 
         // Nice people say goodbye, or CCEd waits forever:
         $cceClient->bye();
         $serverScriptHelper->destructor();
 
-        //
-        //-- Return home:
-        //
+        // Out with the page:
+        $BxPage->setErrors($errors);
+        $BxPage->render($page_module, $page_body);
 
-        header("Location: " . $get_form_data['backUrl'] . "?msg=" . urlencode($ret));
-        exit;
     }
 }
 /*
-Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 All Rights Reserved.
 
 1. Redistributions of source code must retain the above copyright 

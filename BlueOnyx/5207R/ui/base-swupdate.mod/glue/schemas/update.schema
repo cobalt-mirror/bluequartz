@@ -92,6 +92,9 @@
 	<property name="autoinstall" type="boolean" default="0" 
 		 writeacl="ruleCapable(managePackage)"/>
 
+	<property name="autotrigger" type="scalar" default="" 
+		 writeacl="ruleCapable(managePackage)"/>
+
 	<property name="build" type="scalar" default="" 
 		 writeacl="ruleCapable(managePackage)"/>
 
@@ -193,6 +196,46 @@
 		writeacl="ruleCapable(modifyServerSWUpdate)"/>
 	<property name="uiCMD" type="scalar" default="" 
 		writeacl="ruleCapable(modifyServerSWUpdate)"/>
+
+	<!-- Auto-Update: -->
+    <property name="AutoUpdate"
+        type="boolean"
+        data="[0|1]"
+        default="0"
+        optional="false"
+        writeacl="ruleCapable(modifyServerSWUpdate)"
+    />
+    <property name="AutoUpdateList"
+        type="scalar"
+        array="true"
+        default=""
+        optional="true"
+        writeacl="ruleCapable(modifyServerSWUpdate)"
+    />
+
+</class>
+
+<!-- This is the AM Namespace for monitoring Updates -->
+<class name="ActiveMonitor"             namespace="Updates"  version="1.0">
+
+    <property name="enabled"            type="boolean"      default="1"/>
+    <property name="monitor"            writeACL="ruleCapable(serverActiveMonitor)" type="boolean"  default="1"/>
+
+    <property name="type"               type="scalar"       default="exec"/>
+    <property name="typeData"           type="scalar"       default="/usr/sausalito/swatch/bin/am_updates.pl"/>
+
+    <property name="greenMsg"           type="scalar"       default="[[base-swupdate.amUpdatesGreen]]"/>
+    <property name="yellowMsg"          type="scalar"       default="[[base-swupdate.amUpdatesYellow]]"/>
+    <property name="redMsg"             type="scalar"       default="[[base-swupdate.amUpdatesRed]]"/>
+
+    <property name="currentState"       type="amstate"      default="G"/>
+    <property name="lastChange"         type="uint"         default="0"/>
+    <property name="lastRun"            type="uint"         default="0"/>
+    <property name="currentMessage"     type="scalar"       default=""/>
+    <property name="nameTag"            type="scalar"       default="[[base-swupdate.amUpdatesNameTag]]"/>
+
+    <property name="URL"                type="scalar"       default="/base/swupdate/updates_amdetails.php"/>
+    <property name="UIGroup"            type="scalar"       default="system"/>
 </class>
 
 <!-----

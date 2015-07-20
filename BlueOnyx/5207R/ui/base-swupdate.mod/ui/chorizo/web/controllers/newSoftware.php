@@ -2,267 +2,307 @@
 
 class NewSoftware extends MX_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Past the login page this loads the page for /swupdate/newSoftware.
-	 *
-	 */
+    /**
+     * Index Page for this controller.
+     *
+     * Past the login page this loads the page for /swupdate/newSoftware.
+     *
+     */
 
-	public function index() {
+    public function index() {
 
-		$CI =& get_instance();
+        $CI =& get_instance();
 
-	    // We load the BlueOnyx helper library first of all, as we heavily depend on it:
-	    $this->load->helper('blueonyx');
-	    // This page also needs the helpers/updateLib_helper.php:
-	    $this->load->helper('updatelib');
-	    init_libraries();
+        // We load the BlueOnyx helper library first of all, as we heavily depend on it:
+        $this->load->helper('blueonyx');
+        // This page also needs the helpers/updateLib_helper.php:
+        $this->load->helper('updatelib');
+        init_libraries();
 
-  		// Need to load 'BxPage' for page rendering:
-  		$this->load->library('BxPage');
-		$MX =& get_instance();
+        // Need to load 'BxPage' for page rendering:
+        $this->load->library('BxPage');
+        $MX =& get_instance();
 
-	    // Get $sessionId and $loginName from Cookie (if they are set):
-	    $sessionId = $CI->input->cookie('sessionId');
-	    $loginName = $CI->input->cookie('loginName');
-	    $locale = $CI->input->cookie('locale');
+        // Get $sessionId and $loginName from Cookie (if they are set):
+        $sessionId = $CI->input->cookie('sessionId');
+        $loginName = $CI->input->cookie('loginName');
+        $locale = $CI->input->cookie('locale');
 
-	    // Line up the ducks for CCE-Connection:
-	    include_once('ServerScriptHelper.php');
-		$serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-		$cceClient = $serverScriptHelper->getCceClient();
-		$user = $cceClient->getObject("User", array("name" => $loginName));
-		$i18n = new I18n("base-swupdate", $user['localePreference']);
-		$system = $cceClient->getObject("System");
+        // Line up the ducks for CCE-Connection:
+        include_once('ServerScriptHelper.php');
+        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
+        $cceClient = $serverScriptHelper->getCceClient();
+        $user = $cceClient->getObject("User", array("name" => $loginName));
+        $i18n = new I18n("base-swupdate", $user['localePreference']);
+        $system = $cceClient->getObject("System");
 
-		// Initialize Capabilities so that we can poll the access rights as well:
-		$Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        // Initialize Capabilities so that we can poll the access rights as well:
+        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
 
-		// -- Actual page logic start:
+        // -- Actual page logic start:
 
-		// Not 'managePackage'? Bye, bye!
-		if (!$Capabilities->getAllowed('managePackage')) {
-			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
-			Log403Error("/gui/Forbidden403");
-		}
+        // Not 'managePackage'? Bye, bye!
+        if (!$Capabilities->getAllowed('managePackage')) {
+            // Nice people say goodbye, or CCEd waits forever:
+            $cceClient->bye();
+            $serverScriptHelper->destructor();
+            Log403Error("/gui/Forbidden403");
+        }
 
-		//
-		//--- Get CODB-Object of interest: 
-		//
+        //
+        //--- Get CODB-Object of interest: 
+        //
 
-		$CODBDATA = $cceClient->getObject("System", array(), "yum");
+        $CODBDATA = $cceClient->getObject("System", array(), "yum");
 
-		//
-		//--- Handle form validation:
-		//
+        //
+        //--- Handle form validation:
+        //
 
-	    // We start without any active errors:
-	    $errors = array();
-	    $extra_headers =array();
-	    $ci_errors = array();
-	    $my_errors = array();
+        // We start without any active errors:
+        $errors = array();
+        $extra_headers =array();
+        $ci_errors = array();
+        $my_errors = array();
 
-		// Shove submitted input into $form_data after passing it through the XSS filter:
-		$form_data = $CI->input->post(NULL, TRUE);
+        // Check for new PKGs on NewLinQ:
+        $refresh = '300';
+        $nl_check = $CI->input->cookie('nl_check');
+        if (($nl_check == "") || ($nl_check <= time()-$refresh)) {
+            $new_msg = array();
+            $i = $serverScriptHelper->shell("/usr/sausalito/sbin/grab_updates.pl -u", $ret, 'root', $sessionId);
+            setcookie("nl_check", time(), "0", "/");
+            if (!isset($ret)) {
+                $color = 'alert_green';
+                $msg = '[[base-swupdate.NoPackagesBody]]';
+            }
+            else {
+                $color = 'alert_red';
+                $msg = $ret;
+            }
+            $new_msg[] = '<div class="alert dismissible ' . $color . '"><img width="40" height="36" src="/.adm/images/icons/small/white/alarm_bell.png"><strong>' . $i18n->interpolateHtml($msg) . '<br><br><br></strong></div>';
+            $my_errors = array_merge($new_msg, $errors);          
+        }
+        else {
+            // Don't poll again if the cookie hasn't expired. Used CODB's last result:
+            // Do we have any PKGs listed in CODB that are visible and have the 'new' flag set?
+            $search = array('new' => '1', 'isVisible' => '1');
+            $oids = $cceClient->findNSorted("Package", 'version', $search);
+            if (count($oids) > "0") {
+                $msg = '[[base-swupdate.NewUpdatesSubject]]';
+                $color = 'alert_red';
+                $new_msg[] = '<div class="alert dismissible ' . $color . '"><img width="40" height="36" src="/.adm/images/icons/small/white/alarm_bell.png"><strong>' . $i18n->interpolateHtml($msg) . '<br><br><br></strong></div>';
+                $my_errors = array_merge($new_msg, $errors);          
+            }
+        }
 
-		// Form fields that are required to have input:
-		$required_keys = array();
-    	// Set up rules for form validation. These validations happen before we submit to CCE and further checks based on the schemas are done:
+        // Shove submitted input into $form_data after passing it through the XSS filter:
+        $form_data = $CI->input->post(NULL, TRUE);
 
-		// Empty array for key => values we want to submit to CCE:
-    	$attributes = array();
-    	// Items we do NOT want to submit to CCE:
-    	$ignore_attributes = array("BlueOnyx_Info_Text");
-		if (is_array($form_data)) {
-			// Function GetFormAttributes() walks through the $form_data and returns us the $parameters we want to
-			// submit to CCE. It intelligently handles checkboxes, which only have "on" set when they are ticked.
-			// In that case it pulls the unticked status from the hidden checkboxes and addes them to $parameters.
-			// It also transformes the value of the ticked checkboxes from "on" to "1". 
-			//
-			// Additionally it generates the form_validation rules for CodeIgniter.
-			//
-			// params: $i18n				i18n Object of the error messages
-			// params: $form_data			array with form_data array from CI
-			// params: $required_keys		array with keys that must have data in it. Needed for CodeIgniter's error checks
-			// params: $ignore_attributes	array with items we want to ignore. Such as Labels.
-			// return: 						array with keys and values ready to submit to CCE.
-			$attributes = GetFormAttributes($i18n, $form_data, $required_keys, $ignore_attributes, $i18n);
-		}
-		//Setting up error messages:
-		$CI->form_validation->set_message('required', $i18n->get("[[palette.val_is_required]]", false, array("field" => "\"%s\"")));		
+        // Form fields that are required to have input:
+        $required_keys = array();
+        // Set up rules for form validation. These validations happen before we submit to CCE and further checks based on the schemas are done:
 
-	    // Do we have validation related errors?
-	    if ($CI->form_validation->run() == FALSE) {
+        // Empty array for key => values we want to submit to CCE:
+        $attributes = array();
+        // Items we do NOT want to submit to CCE:
+        $ignore_attributes = array("BlueOnyx_Info_Text");
+        if (is_array($form_data)) {
+            // Function GetFormAttributes() walks through the $form_data and returns us the $parameters we want to
+            // submit to CCE. It intelligently handles checkboxes, which only have "on" set when they are ticked.
+            // In that case it pulls the unticked status from the hidden checkboxes and addes them to $parameters.
+            // It also transformes the value of the ticked checkboxes from "on" to "1". 
+            //
+            // Additionally it generates the form_validation rules for CodeIgniter.
+            //
+            // params: $i18n                i18n Object of the error messages
+            // params: $form_data           array with form_data array from CI
+            // params: $required_keys       array with keys that must have data in it. Needed for CodeIgniter's error checks
+            // params: $ignore_attributes   array with items we want to ignore. Such as Labels.
+            // return:                      array with keys and values ready to submit to CCE.
+            $attributes = GetFormAttributes($i18n, $form_data, $required_keys, $ignore_attributes, $i18n);
+        }
+        //Setting up error messages:
+        $CI->form_validation->set_message('required', $i18n->get("[[palette.val_is_required]]", false, array("field" => "\"%s\"")));        
 
-			if (validation_errors()) {
-				// Set CI related errors:
-				$ci_errors = array(validation_errors('<div class="alert dismissible alert_red"><img width="40" height="36" src="/.adm/images/icons/small/white/alarm_bell.png"><strong>', '</strong></div>'));
-			}		    
-			else {
-				// No errors. Pass empty array along:
-				$ci_errors = array();
-			}
-		}
+        // Do we have validation related errors?
+        if ($CI->form_validation->run() == FALSE) {
 
-		//
-		//--- Own error checks:
-		//
+            if (validation_errors()) {
+                // Set CI related errors:
+                $ci_errors = array(validation_errors('<div class="alert dismissible alert_red"><img width="40" height="36" src="/.adm/images/icons/small/white/alarm_bell.png"><strong>', '</strong></div>'));
+            }           
+            else {
+                // No errors. Pass empty array along:
+                $ci_errors = array();
+            }
+        }
 
-		if ($CI->input->post(NULL, TRUE)) {
-			if (isset($form_data['_serialized_errors'])) {
-				$my_errors = unserialize($form_data['_serialized_errors']);
-			}
-		}
+        //
+        //--- Own error checks:
+        //
 
-		$get_form_data = $CI->input->get(NULL, TRUE);
+        if ($CI->input->post(NULL, TRUE)) {
+            if (isset($form_data['_serialized_errors'])) {
+                $my_errors = unserialize($form_data['_serialized_errors']);
+            }
+        }
 
-		// Get the return message from the URL string - if present:
-		if (isset($get_form_data['msg'])) {
-			$redir_msg[] = '<div class="alert dismissible alert_green"><img width="40" height="36" src="/.adm/images/icons/small/white/alarm_bell.png"><strong>' . $i18n->interpolateHtml(urldecode($get_form_data['msg'])) . '<br><br><br></strong></div>';
-			$my_errors = array_merge($redir_msg, $errors);			
-		}
+        $get_form_data = $CI->input->get(NULL, TRUE);
 
-		//
-		//--- At this point all checks are done. If we have no errors, we can submit the data to CODB:
-		//
+        // Get the return message from the URL string - if present:
+        if (isset($get_form_data['msg'])) {
+            $redir_msg[] = '<div class="alert dismissible alert_green"><img width="40" height="36" src="/.adm/images/icons/small/white/alarm_bell.png"><strong>' . $i18n->interpolateHtml(urldecode($get_form_data['msg'])) . '<br><br><br></strong></div>';
+            $my_errors = array_merge($redir_msg, $errors);          
+        }
 
-		// Join the various error messages:
-		$errors = array_merge($ci_errors, $my_errors);
+        //
+        //--- At this point all checks are done. If we have no errors, we can submit the data to CODB:
+        //
 
-		//
-		//-- Own page logic:
-		//
+        // Join the various error messages:
+        $errors = array_merge($ci_errors, $my_errors);
 
-		//
-	    //-- Generate page:
-	    //
+        //
+        //-- Own page logic:
+        //
 
+        //
+        //-- Generate page:
+        //
 
-		// Prepare Page:
-		$factory = $serverScriptHelper->getHtmlComponentFactory("base-swupdate", "/swupdate/newSoftware");
-		$BxPage = $factory->getPage();
-		$BxPage->setErrors($errors);
-		$i18n = $factory->getI18n();
+        // Prepare Page:
+        $factory = $serverScriptHelper->getHtmlComponentFactory("base-swupdate", "/swupdate/newSoftware");
+        $BxPage = $factory->getPage();
+        $BxPage->setErrors($errors);
+        $i18n = $factory->getI18n();
 
-		$product = new Product($cceClient);
+        $product = new Product($cceClient);
 
-		// Set Menu items:
-		$BxPage->setVerticalMenu('base_software');
-		$BxPage->setVerticalMenuChild('base_softwareNew');
-		$page_module = 'base_software';
+        // Set Menu items:
+        $BxPage->setVerticalMenu('base_software');
+        $BxPage->setVerticalMenuChild('base_softwareNew');
+        $page_module = 'base_software';
 
-		$defaultPage = "yumTitle";
+        $defaultPage = "yumTitle";
 
-		$block =& $factory->getPagedBlock("availableListNew", array($defaultPage));
+        $block =& $factory->getPagedBlock("availableListNew", array($defaultPage));
 
-		$block->setToggle("#");
-		$block->setSideTabs(FALSE);
-		$block->setShowAllTabs("#");
-		$block->setDefaultPage($defaultPage);
+        $block->setToggle("#");
+        $block->setSideTabs(FALSE);
+        $block->setShowAllTabs("#");
+        $block->setDefaultPage($defaultPage);
 
-		// Add ButtonContainer and button to manually check for updates:
-		$yumCheck[] =  $factory->getRawHTML("checkNow", '<button title="' . $i18n->getWrapped("checkNow_help") . '" class="close_dialog tooltip right link_button waiter" data-link="/swupdate/checkHandler?backUrl=/swupdate/newSoftware" target="_self"><img src="/.adm/images/icons/small/white/refresh_3.png"><span>' . $i18n->getHtml("checkNow") . '</span></button>');
-		$manualInstallButton = $factory->getButton("/swupdate/manualInstall?backUrl=/swupdate/newSoftware", "manualInstall", "DEMO-OVERRIDE");
-		$manualInstallButton->setWaiter(FALSE);
-		$yumCheck[] = $manualInstallButton;
+        // Add ButtonContainer and button to manually check for updates:
+        $yumCheck[] =  $factory->getRawHTML("checkNow", '<button title="' . $i18n->getWrapped("checkNow_help") . '" class="close_dialog tooltip right link_button waiter" data-link="/swupdate/checkHandler?backUrl=/swupdate/newSoftware" target="_self"><img src="/.adm/images/icons/small/white/refresh_3.png"><span>' . $i18n->getHtml("checkNow") . '</span></button>');
+        $manualInstallButton = $factory->getButton("/swupdate/manualInstall?backUrl=/swupdate/newSoftware", "manualInstall", "DEMO-OVERRIDE");
+        $manualInstallButton->setWaiter(FALSE);
+        $yumCheck[] = $manualInstallButton;
 
-		$buttonContainer = $factory->getButtonContainer("", $yumCheck);
-		$block->addFormField(
-			$buttonContainer,
-			$factory->getLabel("yumCheck"),
-			$defaultPage
-		);
+        $buttonContainer = $factory->getButtonContainer("", $yumCheck);
+        $block->addFormField(
+            $buttonContainer,
+            $factory->getLabel("yumCheck"),
+            $defaultPage
+        );
 
-		//
-		//--- Available YUM updates:
-		//
+        //
+        //--- Available YUM updates:
+        //
 
-		// Set up ScrollList:
-  		$ScrollList = $factory->getScrollList("availableListNew", array("typeField", "nameField", "versionField", "vendorField", "descriptionField", "installField"), array()); 
-	    $ScrollList->setAlignments(array("center", "left", "left", "left", "left", "center"));
-	    $ScrollList->setDefaultSortedIndex('0');
-	    $ScrollList->setSortOrder('ascending');
-	    $ScrollList->setSortDisabled(array());
-	    $ScrollList->setPaginateDisabled(FALSE);
-	    $ScrollList->setSearchDisabled(FALSE);
-	    $ScrollList->setSelectorDisabled(FALSE);
-	    $ScrollList->enableAutoWidth(FALSE);
-	    $ScrollList->setInfoDisabled(FALSE);
-	    $ScrollList->setDisplay(25);
-	    $ScrollList->setColumnWidths(array("75", "115", "150", "180", "183", "35")); // Max: 739px
+        // Set up ScrollList:
+        $ScrollList = $factory->getScrollList("availableListNew", array("typeField", "nameField", "versionField", "vendorField", "descriptionField", "installField"), array()); 
+        $ScrollList->setAlignments(array("center", "left", "left", "left", "left", "center"));
+        $ScrollList->setDefaultSortedIndex('0');
+        $ScrollList->setSortOrder('ascending');
+        $ScrollList->setSortDisabled(array());
+        $ScrollList->setPaginateDisabled(FALSE);
+        $ScrollList->setSearchDisabled(FALSE);
+        $ScrollList->setSelectorDisabled(FALSE);
+        $ScrollList->enableAutoWidth(FALSE);
+        $ScrollList->setInfoDisabled(FALSE);
+        $ScrollList->setDisplay(25);
+        $ScrollList->setColumnWidths(array("75", "115", "150", "180", "183", "35")); // Max: 739px
 
-		// Do we have any updates or complete PKGs to install?
-		$search = array('installState' => 'Available', 'isVisible' => 1);
-		$oids = $cceClient->findNSorted("Package", 'version', $search);
+        // Do we have any updates or complete PKGs to install?
+        $search = array('installState' => 'Available', 'isVisible' => 1);
+        $oids = $cceClient->findNSorted("Package", 'version', $search);
 
-		for($i = 0; $i < count($oids); $i++) {
-		  $package = $cceClient->get($oids[$i]);
-		  if(preg_match("/(?:cobalt|sun)/i",$package["vendor"])){
-			continue;
-		  }
-		  $oid = &$oids[$i];
-		  $new = $package["new"] ? "new" : "old";
-		  $packageName = $package["nameTag"] ? $i18n->interpolate($package["nameTag"]) : $package["name"];
-		  $version = $package["versionTag"] ? $i18n->interpolate($package["versionTag"]) : substr($package["version"], 1);
-		  $vendorName = $package["vendorTag"] ? $i18n->interpolate($package["vendorTag"]) : $package["vendor"];
-		  $packageType = $package["packageType"];
-		  $description = $i18n->interpolate($package["shortDesc"]);
-		  $url = $package["url"];
-		  $options = updates_geturloptions($cceClient, $package["urloptions"]);
+        // Find all installed PKGs:
+        $i_search = array('installState' => 'Installed');
+        $i_oids = $cceClient->findNSorted("Package", 'version', $i_search);
+        $installed_package = array();
+        foreach ($i_oids as $key => $i_pkg_oid) {
+            $inst_pkg = $cceClient->get($i_pkg_oid);
+            // Build an array with all already installed PKGs and their versions:
+            $installed_package[$inst_pkg['name']] = $inst_pkg['version'];
+        }
 
-		  if (preg_match("/^file:/", $package["location"])) {
-		  	$removeButton = $factory->getRemoveButton("/swupdate/removeHandler?backUrl=/swupdate/newSoftware&packageOID=$oid");
-		  	$removeButton->setImageOnly(TRUE);
-		  }
-		  $detailButton = $factory->getDetailButton("/swupdate/download?backUrl=/swupdate/newSoftware&packageOID=$oid", "installField");
-		  $detailButton->setImageOnly(TRUE);
+        for($i = 0; $i < count($oids); $i++) {
+          $package = $cceClient->get($oids[$i]);
+          $oid = &$oids[$i];
+          $new = $package["new"] ? "new" : "old";
+          $packageName = $package["nameTag"] ? $i18n->interpolate($package["nameTag"]) : $package["name"];
+          $version = $package["versionTag"] ? $i18n->interpolate($package["versionTag"]) : substr($package["version"], 1);
+          $vendorName = $package["vendorTag"] ? $i18n->interpolate($package["vendorTag"]) : $package["vendor"];
+          $packageType = $package["packageType"];
+          $description = $i18n->interpolate($package["shortDesc"]);
+          $url = $package["url"];
+          $options = updates_geturloptions($cceClient, $package["urloptions"]);
 
-		  $composite = isset($removeButton) ? array($detailButton, $removeButton) : array($detailButton);
+          if (preg_match("/^file:/", $package["location"])) {
+            $removeButton = $factory->getRemoveButton("/swupdate/removeHandler?backUrl=/swupdate/newSoftware&packageOID=$oid");
+            $removeButton->setImageOnly(TRUE);
+          }
+          $detailButton = $factory->getDetailButton("/swupdate/download?backUrl=/swupdate/newSoftware&packageOID=$oid", "installField");
+          $detailButton->setImageOnly(TRUE);
 
-		  // Is this a new complete package? Or a new update?
-		  if (($new == "new") && ($packageType == "complete")) {
-		  	$status = '<button class="tiny text_only has_text tooltip hover" title="' . $i18n->getWrapped("[[base-swupdate.BXnewpkg_help]]") . '">' . $i18n->getHtml("[[base-swupdate.BXnewpkg]]") . '</button>';
-		  }
-		  elseif (($new == "new") && ($packageType == "update")) {
-		  	$status = '<button class="tiny text_only has_text tooltip hover" title="' . $i18n->getWrapped("[[base-swupdate.BXnewupdate_help]]") . '">' . $i18n->getHtml("[[base-swupdate.BXnewupdate]]") . '</button>';
-		  }
-		  elseif (($new == "old") && ($packageType == "complete")) {
-		  	$status = '<button class="tiny text_only has_text tooltip hover" title="' . $i18n->getWrapped("[[base-swupdate.BXpkg_help]]") . '">' . $i18n->getHtml("[[base-swupdate.BXpkg]]") . '</button>';
-		  }
-		  else {
-		  	$status = '<button class="tiny text_only has_text tooltip hover" title="' . $i18n->getWrapped("[[base-swupdate.BXupdate_help]]") . '">' . $i18n->getHtml("[[base-swupdate.BXupdate]]") . '</button>';
-		  }
+          $composite = isset($removeButton) ? array($detailButton, $removeButton) : array($detailButton);
 
-		  $ScrollList->addEntry(array(
-		    $status,
-		    $packageName,
-		    $version,
-		    $vendorName,
-		    $description,
-		    $factory->getCompositeFormField($composite)
-		  ));
-		}
+          // Is this a new complete package? Or a new update?
+          if (($new == "new") && ($packageType == "complete") && (!isset($installed_package[$package['name']]))) {
+            $status = '<button class="tiny text_only has_text tooltip hover" title="' . $i18n->getWrapped("[[base-swupdate.BXnewpkg_help]]") . '">' . $i18n->getHtml("[[base-swupdate.BXnewpkg]]") . '</button>';
+          }
+          elseif (($new == "new") && ($packageType == "update")) {
+            $status = '<button class="tiny text_only has_text tooltip hover" title="' . $i18n->getWrapped("[[base-swupdate.BXnewupdate_help]]") . '">' . $i18n->getHtml("[[base-swupdate.BXnewupdate]]") . '</button>';
+          }
+          elseif (($new == "new") && ($packageType == "complete") && (isset($installed_package[$package['name']]))) {
+            $status = '<button class="tiny text_only has_text tooltip hover" title="' . $i18n->getWrapped("[[base-swupdate.BXnewupdate_help]]") . '">' . $i18n->getHtml("[[base-swupdate.BXnewupdate]]") . '</button>';
+          }
+          elseif (($new == "old") && ($packageType == "complete")) {
+            $status = '<button class="tiny text_only has_text tooltip hover" title="' . $i18n->getWrapped("[[base-swupdate.BXpkg_help]]") . '">' . $i18n->getHtml("[[base-swupdate.BXpkg]]") . '</button>';
+          }
+          else {
+            $status = '<button class="tiny text_only has_text tooltip hover" title="' . $i18n->getWrapped("[[base-swupdate.BXupdate_help]]") . '">' . $i18n->getHtml("[[base-swupdate.BXupdate]]") . '</button>';
+          }
 
-		// Show the ScrollList for the Updates:
-		$block->addFormField(
-			$factory->getRawHTML("availableListNew", $ScrollList->toHtml()),
-			$factory->getLabel("availableListNew"),
-			$defaultPage
-		);
+          $ScrollList->addEntry(array(
+            $status,
+            $packageName,
+            $version,
+            $vendorName,
+            $description,
+            $factory->getCompositeFormField($composite)
+          ));
+        }
 
-		// Nice people say goodbye, or CCEd waits forever:
-		$cceClient->bye();
-		$serverScriptHelper->destructor();
+        // Show the ScrollList for the Updates:
+        $block->addFormField(
+            $factory->getRawHTML("availableListNew", $ScrollList->toHtml()),
+            $factory->getLabel("availableListNew"),
+            $defaultPage
+        );
 
-		$page_body[] = $block->toHtml();
+        // Nice people say goodbye, or CCEd waits forever:
+        $cceClient->bye();
+        $serverScriptHelper->destructor();
 
-		// Out with the page:
-	    $BxPage->render($page_module, $page_body);
+        $page_body[] = $block->toHtml();
 
-	}		
+        // Out with the page:
+        $BxPage->render($page_module, $page_body);
+
+    }       
 }
 /*
 Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET

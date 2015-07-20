@@ -59,6 +59,7 @@ information for [VENDOR]-[SERVICE].
 %attr(0644,root,root)%config /root/.gnupg/pubring.gpg
 %attr(0600,root,root)%config /root/.gnupg/secring.gpg
 %attr(0644,root,root)%config /root/.gnupg/trustdb.gpg
+%attr(0755,root,root)/usr/sausalito/swatch/bin/am_updates.pl
 [AUTOFILL]
 
 <end glue>
@@ -127,6 +128,32 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Sun Jul 19 2015 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX01
+- Modified 'Check Availability Now' to trigger on page load if we haven't
+  check it already within the last 5 minutes.
+- Converted indentation from tabs to spaces.
+- Modified glue/sbin/grab_updates.pl extensively to run updates on CODB
+  instead of wiping all 'Available' PKGs every time and then recreating
+  them. This saves us around 14-15 seconds of processing time.
+- Modified ui/chorizo/web/controllers/newSoftware.php further to show
+  if a PKG is an Update to a PKG that is already installed.
+- Overhauled formatting in SWUpdate.pm
+- Modified ui/chorizo/web/controllers/news.php to suppress the datatable
+  error if the RSS feed cannot be pulled. This needed some loving. The
+  error messages for failed RSS pulls/parsing also weren't pushed to 
+  BxPage. Fixed that as well. Also added a notification to that page if 
+  updates to already installed PKGs are available.
+- Modified glue/schemas/update.schema to change default 'updateInterval'
+  from 'Never' to 'Weekly'.
+- Added glue/am/am_updates.pl as Swatch component.
+- Added ui/chorizo/web/controllers/updates_amdetails.php for AM status.
+- Modified glue/schemas/update.schema with AM related schema entries.
+- Extended ui/chorizo/web/controllers/settings.php with ability to mark
+  installed Packages to receive automatic updates via NewLinQ.
+- Extended glue/sbin/grab_updates.pl to automatically install packages
+  that are valid autoupdates or have the autoinstall flag set.
+- Extended locales with new text for the new GUI and AM messages.
 
 * Fri Jun 26 2015 Michael Stauber <mstauber@solarspeed.net> 1.5.0-0BX06
 - Added requirement for 'file'.

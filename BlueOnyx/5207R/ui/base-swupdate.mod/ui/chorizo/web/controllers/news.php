@@ -2,166 +2,192 @@
 
 class News extends MX_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Past the login page this loads the page for /swupdate/news.
-	 *
-	 */
+    /**
+     * Index Page for this controller.
+     *
+     * Past the login page this loads the page for /swupdate/news.
+     *
+     */
 
-	public function index() {
+    public function index() {
 
-		$CI =& get_instance();
-		
-	    // We load the BlueOnyx helper library first of all, as we heavily depend on it:
-	    $this->load->helper('blueonyx');
-	    init_libraries();
+        $CI =& get_instance();
+        
+        // We load the BlueOnyx helper library first of all, as we heavily depend on it:
+        $this->load->helper('blueonyx');
+        init_libraries();
 
-  		// Need to load 'BxPage' for page rendering:
-  		$this->load->library('BxPage');
-		$MX =& get_instance();
+        // Need to load 'BxPage' for page rendering:
+        $this->load->library('BxPage');
+        $MX =& get_instance();
 
-	    // Get $sessionId and $loginName from Cookie (if they are set):
-	    $sessionId = $CI->input->cookie('sessionId');
-	    $loginName = $CI->input->cookie('loginName');
-	    $locale = $CI->input->cookie('locale');
+        // Get $sessionId and $loginName from Cookie (if they are set):
+        $sessionId = $CI->input->cookie('sessionId');
+        $loginName = $CI->input->cookie('loginName');
+        $locale = $CI->input->cookie('locale');
 
-	    // Line up the ducks for CCE-Connection:
-	    include_once('ServerScriptHelper.php');
-		$serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-		$cceClient = $serverScriptHelper->getCceClient();
-		$user = $cceClient->getObject("User", array("name" => $loginName));
-		$i18n = new I18n("base-yum", $user['localePreference']);
-		$system = $cceClient->getObject("System");
+        // Line up the ducks for CCE-Connection:
+        include_once('ServerScriptHelper.php');
+        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
+        $cceClient = $serverScriptHelper->getCceClient();
+        $user = $cceClient->getObject("User", array("name" => $loginName));
+        $i18n = new I18n("base-yum", $user['localePreference']);
+        $system = $cceClient->getObject("System");
 
-		// Initialize Capabilities so that we can poll the access rights as well:
-		$Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        // Initialize Capabilities so that we can poll the access rights as well:
+        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
 
-		// Required array setup:
-		$errors = array();
-		$extra_headers = array();
+        // Required array setup:
+        $errors = array();
+        $extra_headers = array();
 
-		// -- Actual page logic start:
+        // -- Actual page logic start:
 
-		// Not 'managePackage'? Bye, bye!
-		//print_rp($Capabilities->getAllowed('managePackage'));
-		if (!$Capabilities->getAllowed('managePackage')) {
-			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
-			Log403Error("/gui/Forbidden403");
-		}
-		else {
+        // Not 'managePackage'? Bye, bye!
+        //print_rp($Capabilities->getAllowed('managePackage'));
+        if (!$Capabilities->getAllowed('managePackage')) {
+            // Nice people say goodbye, or CCEd waits forever:
+            $cceClient->bye();
+            $serverScriptHelper->destructor();
+            Log403Error("/gui/Forbidden403");
+        }
+        else {
 
-	    //-- Generate page:
+            //
+            //-- Generate Software-Updates page:
+            //
 
-		// Prepare Page:
-		$factory = $serverScriptHelper->getHtmlComponentFactory("base-yum", "/swupdate/news");
-		$BxPage = $factory->getPage();
-		$i18n = $factory->getI18n();
+            // Don't poll via get_updates.pl. Instead use CODB's last result:
+            // Do we have any PKGs listed in CODB that are visible and have the 'new' flag set?
+            $update_errors = array();
+            $search = array('new' => '1', 'isVisible' => '1');
+            $oids = $cceClient->findNSorted("Package", 'version', $search);
+            if (count($oids) > "0") {
+                $msg = '[[base-swupdate.UpdatesAvailablePackagesBody]]';
+                $new_msg[] = '<a href="/swupdate/newSoftware"><div class="alert alert_light"><img width="40" height="36" src="/.adm/images/icons/small/white/alert_2.png"><strong>' . $i18n->interpolateHtml($msg) . '</strong></a></div>';
+                $update_errors = array_merge($new_msg, $errors);          
+            }
 
-		$BxPage->setExtraHeaders('
-				<script>
-					$(document).ready(function() {
-						$(".various").fancybox({
-							overlayColor: "#000",
-							fitToView	: false,
-							width		: "80%",
-							height		: "80%",
-							autoSize	: false,
-							fixed		: false,
-							closeClick	: false,
-							openEffect	: "none",
-							closeEffect	: "none"
-						});
-					});
-				</script>');
+            // Prepare Page:
+            $factory = $serverScriptHelper->getHtmlComponentFactory("base-yum", "/swupdate/news");
+            $BxPage = $factory->getPage();
+            $i18n = $factory->getI18n();
 
-		$BxPage->setVerticalMenu('base_swupdate');
-		$page_module = 'base_sysmanage';
+            //
+            //-- Generate News page:
+            //
 
-			// Location (URL) of the RSS feed:
-			$rsslocation = 'http://www.blueonyx.it/index.php?mact=CGFeedMaker,cntnt01,default,0&cntnt01feed=BlueOnyx-News&cntnt01showtemplate=false';
+            $BxPage->setExtraHeaders('
+                    <script>
+                        $(document).ready(function() {
+                            $(".various").fancybox({
+                                overlayColor: "#000",
+                                fitToView   : false,
+                                width       : "80%",
+                                height      : "80%",
+                                autoSize    : false,
+                                fixed       : false,
+                                closeClick  : false,
+                                openEffect  : "none",
+                                closeEffect : "none"
+                            });
+                        });
+                    </script>');
 
-			// Check if we are online:
-			if (areWeOnline($rsslocation)) {
-			    $online = "1";
-			}
-			else {
-			   $online = "0";
-			   $errors[] = '<div class="alert alert_light"><img width="40" height="36" src="/.adm/images/icons/small/white/alert_2.png"><strong>' . $i18n->getHtml("[[base-yum.ErrorMSGdesc]]") . '</strong></div>';
-			}
+            $BxPage->setVerticalMenu('base_swupdate');
+            $page_module = 'base_sysmanage';
 
-			if ($online == "1") {
+            // Location (URL) of the RSS feed:
+            $rsslocation = 'http://www.blueonyx.it/index.php?mact=CGFeedMaker,cntnt01,default,0&cntnt01feed=BlueOnyx-News&cntnt01showtemplate=false';
 
-			    // Process the RSS feed:
-			    $news = getRssfeed($rsslocation,"BlueOnyx News","auto",50,3);
+            // Check if we are online:
+            if (areWeOnline($rsslocation)) {
+                $online = "1";
+            }
+            else {
+               $online = "0";
+               $errors[] = '<div class="alert alert_light"><img width="40" height="36" src="/.adm/images/icons/small/white/alert_2.png"><strong>' . $i18n->getHtml("[[base-yum.ErrorMSGdesc]]") . '</strong></div>';
+            }
 
-			    // News are now stored in this format:
-			    //
-			    // $news["_bx_title"] : Titles
-			    // $news["_bx_date"]  : Date
-			    // $news["_bx_desc"]  : Short description
-			    // $news["_bx_link"]  : Link
+            if ($online == "1") {
 
-			    // Can't get News for whatever reason:
-			    if ($news["_bx_title"] == "n/a") {
-					// Although we can establish a connection to www.blueonyx.it, the RSS feed did not return expected results:
-	 				$errors[] = '<div class="alert dismissible alert_red"><img width="40" height="36" src="/.adm/images/icons/small/white/alarm_bell.png"><strong>' . $i18n->getHtml("[[base-yum.ErrorMSGdesc]]") . '</strong></div>';
-			    }
-			    else {
+                // Process the RSS feed:
+                $news = getRssfeed($rsslocation,"BlueOnyx News","auto",50,3);
 
-					// General parameters for the scroll list:
+                // News are now stored in this format:
+                //
+                // $news["_bx_title"] : Titles
+                // $news["_bx_date"]  : Date
+                // $news["_bx_desc"]  : Short description
+                // $news["_bx_link"]  : Link
 
-				    // Count number of news-entries:
-				    $bx_num = count($news["_bx_title"]);
+                if ((!isset($news["_bx_title"])) || (!is_array($news))) {
+                    // Although we can establish a connection to www.blueonyx.it, the RSS feed did not return expected results:
+                    $errors[] = '<div class="alert dismissible alert_red"><img width="40" height="36" src="/.adm/images/icons/small/white/alarm_bell.png"><strong>' . $i18n->getHtml("[[base-yum.ErrorMSGdesc]]") . '</strong></div>';
+                    $news = array();
+                }
+                // Can't get News for whatever reason:
+                elseif ($news["_bx_title"] == "n/a") {
+                    // Although we can establish a connection to www.blueonyx.it, the RSS feed did not return expected results:
+                    $errors[] = '<div class="alert dismissible alert_red"><img width="40" height="36" src="/.adm/images/icons/small/white/alarm_bell.png"><strong>' . $i18n->getHtml("[[base-yum.ErrorMSGdesc]]") . '</strong></div>';
+                }
+                else {
 
-				    // Build multidimensional array of our news:
-				    $news = array($news["_bx_title"], $news["_bx_desc"], $news["_bx_date"], $news["_bx_link"]);
+                    // General parameters for the scroll list:
 
-				    // Loop through array $news and extract the news to populate the scroll list rows:
-				    $num = "0";
-				    while ($num < $bx_num) {
-						// Create the image link button for the external news article URL:
-						preg_match_all("/articleid=(.*)&(.*)/Uism", $news[3][$num], $article_id);
-						$article = $article_id[1][0];
-						$exturl = $news[3][$num];
-						$news[3][$num] = '<a class="various" target="_blank" href="' . $exturl . '" data-fancybox-type="iframe">' . '<button class="fancybox tiny icon_only img_icon tooltip hover" title="' . $i18n->getWrapped("[[base-yum.openURL_help]]") .'"><img src="/.adm/images/icons/small/white/magnifying_glass.png"></button>' . '</a>';
-						$linkButton = $factory->getUrlButton($exturl);
-						$linkButton->setButtonSite("tiny");
-						$news[4][$num] = $linkButton->toHtml();
-						$num++;
-				    }
-				}
-			}
-		}
+                    // Count number of news-entries:
+                    $bx_num = count($news["_bx_title"]);
 
-		if (!isset($news)) {
-			$news = array();
-		}
+                    // Build multidimensional array of our news:
+                    $news = array($news["_bx_title"], $news["_bx_desc"], $news["_bx_date"], $news["_bx_link"]);
 
-		$scrollList = $factory->getScrollList("TheNews", array("title", "desc", "date", "internal", 'link'), $news); 
-	    $scrollList->setAlignments(array("left", "left", "center", "right", "right"));
-	    $scrollList->setDefaultSortedIndex('2');
-	    $scrollList->setSortOrder('descending');
-	    $scrollList->setSortDisabled(array('3', '4'));
-	    $scrollList->setPaginateDisabled(FALSE);
-	    $scrollList->setSearchDisabled(FALSE);
-	    $scrollList->setSelectorDisabled(FALSE);
-	    $scrollList->enableAutoWidth(FALSE);
-	    $scrollList->setInfoDisabled(FALSE);
-	    $scrollList->setColumnWidths(array("150", "75%", "100", "35", "35"));
+                    // Loop through array $news and extract the news to populate the scroll list rows:
+                    $num = "0";
+                    while ($num < $bx_num) {
+                        // Create the image link button for the external news article URL:
+                        preg_match_all("/articleid=(.*)&(.*)/Uism", $news[3][$num], $article_id);
+                        $article = $article_id[1][0];
+                        $exturl = $news[3][$num];
+                        $news[3][$num] = '<a class="various" target="_blank" href="' . $exturl . '" data-fancybox-type="iframe">' . '<button class="fancybox tiny icon_only img_icon tooltip hover" title="' . $i18n->getWrapped("[[base-yum.openURL_help]]") .'"><img src="/.adm/images/icons/small/white/magnifying_glass.png"></button>' . '</a>';
+                        $linkButton = $factory->getUrlButton($exturl);
+                        $linkButton->setButtonSite("tiny");
+                        $news[4][$num] = $linkButton->toHtml();
+                        $num++;
+                    }
+                }
+            }
+        }
 
-		// Nice people say goodbye, or CCEd waits forever:
-		$cceClient->bye();
-		$serverScriptHelper->destructor();
+        if (!isset($news)) {
+            $news = array();
+            //$errors[] = '<div class="alert dismissible alert_red"><img width="40" height="36" src="/.adm/images/icons/small/white/alarm_bell.png"><strong>' . $i18n->getHtml("[[base-yum.ErrorMSGdesc]]") . '</strong></div>';
+        }
 
-		$page_body[] = $scrollList->toHtml();
+        $scrollList = $factory->getScrollList("TheNews", array("title", "desc", "date", "internal", 'link'), $news); 
+        $scrollList->setAlignments(array("left", "left", "center", "right", "right"));
+        $scrollList->setDefaultSortedIndex('2');
+        $scrollList->setSortOrder('descending');
+        $scrollList->setSortDisabled(array('3', '4'));
+        $scrollList->setPaginateDisabled(FALSE);
+        $scrollList->setSearchDisabled(FALSE);
+        $scrollList->setSelectorDisabled(FALSE);
+        $scrollList->enableAutoWidth(FALSE);
+        $scrollList->setInfoDisabled(FALSE);
+        $scrollList->setColumnWidths(array("150", "75%", "100", "35", "35"));
 
-		// Out with the page:
-	    $BxPage->render($page_module, $page_body);
+        $errors = array_merge($errors, $update_errors);
+        $BxPage->setErrors($errors);
 
-	}		
+        // Nice people say goodbye, or CCEd waits forever:
+        $cceClient->bye();
+        $serverScriptHelper->destructor();
+
+        $page_body[] = $scrollList->toHtml();
+
+        // Out with the page:
+        $BxPage->render($page_module, $page_body);
+
+    }       
 }
 /*
 Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
