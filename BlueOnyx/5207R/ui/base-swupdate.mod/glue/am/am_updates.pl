@@ -115,7 +115,7 @@ foreach $package (@CODB_Available_PKGs_OID) {
 }
 
 # Check if what NL offers is newer than what we already have installed:
-$status = 'AM_STATE_NOINFO';
+$status = 'AM_STATE_GREEN';
 while ( my ($pkgname, $value) = each(%$CODB_Installed_PKGs_flat) ) {
     $name = $value->{'name'};
     $version = $value->{'version'};

@@ -60,7 +60,7 @@ class News extends MX_Controller {
             // Don't poll via get_updates.pl. Instead use CODB's last result:
             // Do we have any PKGs listed in CODB that are visible and have the 'new' flag set?
             $update_errors = array();
-            $search = array('new' => '1', 'isVisible' => '1');
+            $search = array('new' => '1', 'isVisible' => '1', 'installState' => 'Available');
             $oids = $cceClient->findNSorted("Package", 'version', $search);
             if (count($oids) > "0") {
                 $msg = '[[base-swupdate.UpdatesAvailablePackagesBody]]';
