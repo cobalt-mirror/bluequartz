@@ -17,7 +17,7 @@
 $DEBUG = "0";
 if ($DEBUG)
 {
-        use Sys::Syslog qw( :DEFAULT setlogsock);
+    use Sys::Syslog qw( :DEFAULT setlogsock);
 }
 
 $whatami = "handler";
@@ -202,9 +202,9 @@ if ($whatami eq "handler") {
             # suPHP disabled. Delete custom php.ini:
             $custom_php_ini_path = $vsite->{'basedir'} . "/php.ini";
             if (-f $custom_php_ini_path) {
-            system("/usr/bin/chattr -i $custom_php_ini_path");
-            system("/bin/rm -f $custom_php_ini_path");
-            &debug_msg("Deleting $custom_php_ini_path through php_vsite_handler.pl \n");
+                system("/usr/bin/chattr -i $custom_php_ini_path");
+                system("/bin/rm -f $custom_php_ini_path");
+                &debug_msg("Deleting $custom_php_ini_path through php_vsite_handler.pl \n");
             }
         }
 
@@ -744,6 +744,7 @@ sub handle_fpm_pools {
         }
         if ($vsite_php_settings->{"memory_limit"} ne "") {
             $pool_conf .= 'php_admin_value[memory_limit] = ' . $vsite_php_settings->{"memory_limit"} . "\n"; 
+            &debug_msg("Setting 'memory_limit' to $vsite_php_settings->{'memory_limit'} \n");
         }
 
         # Email related:
