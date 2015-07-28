@@ -126,8 +126,8 @@ fi
 # A lot of BX servers have ImageMagick installed, which in turn installs and activates the avahi-daemon.
 # This daemon is not really needed and certainly should not be running. Hence we stop it and turn it off:
 if [ -f /etc/avahi/avahi-daemon.conf ]; then
-        /sbin/service stop >/dev/null 2>&1
-        /sbin/chkconfig --level 2345 avahi-daemon off
+	systemctl disable avahi-daemon
+	systemctl stop avahi-daemon --no-block
 fi
 
 # Fix login links in preview config:
@@ -203,6 +203,11 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Mon Jul 27 2015 Michael Stauber <mstauber@solarspeed.net> 2.1.1-0BX37
+- Modified glue/httpd/security.conf to add the 'v' macro to the CustomLog
+  directive to log the accessed vhost as well. Darn sneaky Apache 2.4
+  change.
 
 * Fri Jun 26 2015 Michael Stauber <mstauber@solarspeed.net> 2.1.1-0BX36
 - Modified glue/handlers/writeback_blueOnyx_conf.pl as 'Option' and
