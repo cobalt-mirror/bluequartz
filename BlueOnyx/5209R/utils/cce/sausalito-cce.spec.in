@@ -215,6 +215,9 @@ fi
 
 %changelog
 
+* Tue Aug 11 2015 Hisao SHIBUYA <hisao@smack.jp> 0.99.2-1BX02
+- Crash cced with debug option issue.
+
 * Sun Jul 19 2015 Michael Stauber <mstauber@solarspeed.net> 0.99.2-1BX01
 - With the help from Greg Kuhnert we made cce.so PHP-5.4 ready again.
 - Modified client/php/src/cce.c

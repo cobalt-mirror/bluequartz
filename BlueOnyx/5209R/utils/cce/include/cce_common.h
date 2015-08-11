@@ -61,13 +61,13 @@ extern int txnstopflag;
  */
 #define DPRINTF(m, ...) 	\
 	do { \
-		time_t time(time_t *t); \
+		struct timeval time; \
 		struct tm *tm; \
-		time_t seconds; \
-		seconds = time(NULL); \
+		gettimeofday(&time, NULL); \
+		tm = localtime(&time.tv_sec); \
 		if (cce_debug_mask & (m)) { \
 			fprintf(stderr, "%02d:%02d:%02d.%ld [%li] (%s:%d): ", \
-				seconds, \
+				tm->tm_hour, tm->tm_min, tm->tm_sec, time.tv_usec, \
 				(long)getpid() , __FILE__ , __LINE__); \
 			fprintf(stderr, __VA_ARGS__); \
 		} \
