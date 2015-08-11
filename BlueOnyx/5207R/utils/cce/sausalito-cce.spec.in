@@ -207,6 +207,9 @@ fi
 
 %changelog
 
+* Tue Aug 11 2015 Hisao SHIBUYA <hisao@smack.jp> 0.99.1-1BX23
+- Crash cced with debug option issue.
+
 * Thu Mar 05 2015 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX22
 - Overhauled all client/locales as this was a bit overdue.
 - Modified baseType Schemas to use internal error messages where applicable.
