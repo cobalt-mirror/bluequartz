@@ -1,7 +1,7 @@
 Summary: System Watcher
 Name: swatch
 Version: XX_VER_XX
-Release: 0BX25%{?dist}
+Release: 0BX26%{?dist}
 Vendor: Project BlueOnyx
 License: BSD
 Group: System Environment/BlueOnyx
@@ -68,6 +68,9 @@ if [ -f /etc/swatch.conf.rpmnew ]; then
 fi 
 
 %changelog
+
+* Tue Sep 08 2015 Michael Stauber <mstauber@solarspeed.net> 3.0.2-0BX26
+- Small fix to MIME::Lite email function.
 
 * Mon Dec 08 2014 Michael Stauber <mstauber@solarspeed.net> 3.0.2-0BX25
 - Small fix in German locale.

@@ -16,17 +16,6 @@ use Encode qw(from_to);
 my $host = hostname();
 my $now = localtime time;
 
-###
-# Fix for /etc/mtab issue when Bind is running chrooted in a VPS:
-my $mtabissues = `cat /etc/mtab|grep deleted -c`;
-if ($mtabissues =~ /^0(.*)$/) {
-}
-else {
-        system("cat /etc/mtab |grep -v 'deleted' > /etc/mtab.new");
-        system("mv /etc/mtab.new /etc/mtab");
-}
-###
-
 my @statecodes = ("N", "G", "Y", "R"),
 my %params;
 &GetOptions("conf|c=s"  => \$params{'conf'});
@@ -194,7 +183,7 @@ if ($body) {
 
     # Build the message using MIME::Lite instead:
     my $send_msg = MIME::Lite->new(
-        From     => "root <root>",
+        From     => "root",
         To       => $to,
         Subject  => $subject,
         Data     => $body,
