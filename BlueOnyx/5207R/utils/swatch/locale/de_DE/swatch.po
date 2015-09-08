@@ -9,7 +9,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "cceDown"
-msgstr "Der Dienst CCEd.init läuft nicht. Bitte starten Sie diesen Dienst als 'root' mit '/etc/init.d/cced.init start' neu. Oder starten Sie den Server neu."
+msgstr "Der Dienst CCEd.init läuft nicht. Bitte starten Sie diesen Dienst als 'root' mit '/sbin/service cced.init restart' neu. Oder starten Sie den Server neu."
 
 msgid "defGreenMsg"
 msgstr "Diese Komponente arbeitet normal"
