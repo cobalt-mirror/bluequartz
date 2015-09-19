@@ -7,9 +7,9 @@ include /usr/sausalito/devel/defines.mk
 
 TOPDIR := $(shell pwd)
 
-V_MAJ=3
+V_MAJ=4
 V_MIN=0
-V_PATCH=2
+V_PATCH=0
 SWATCH_VERSION=$(V_MAJ).$(V_MIN).$(V_PATCH)
 
 CC = gcc
