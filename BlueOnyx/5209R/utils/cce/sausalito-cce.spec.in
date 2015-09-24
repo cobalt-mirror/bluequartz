@@ -79,7 +79,7 @@ mkdir -p $RPM_BUILD_ROOT/etc/rc.d/init.d
 mkdir -p $RPM_BUILD_ROOT/usr/lib/systemd/system
 mkdir -p $RPM_BUILD_ROOT/etc/pam.d
 mkdir -p $RPM_BUILD_ROOT/etc/security
-mkdir -p $RPM_BUILD_ROOT/var/lib/abl
+mkdir -p $RPM_BUILD_ROOT/var/lib/pam_abl
 mkdir -p $RPM_BUILD_ROOT/lib/security
 mkdir -p $RPM_BUILD_ROOT/etc/php.d
 make install PREFIX=$RPM_BUILD_ROOT CCETOPDIR=/usr/sausalito
@@ -116,9 +116,9 @@ make install PREFIX=$RPM_BUILD_ROOT CCETOPDIR=/usr/sausalito
 /lib64/security/*
 %endif
 
-/var/lib/abl
+/var/lib/pam_abl
 /usr/bin/pam_abl
-/usr/sausalito/bin/pam_abl_gui
+/usr/bin/pam_abl_test
 %config(noreplace) /etc/security/pam_abl.conf
 
 %files client
@@ -214,6 +214,18 @@ if [ "$1" -ge "1" ]; then
 fi
 
 %changelog
+
+* Thu Sep 24 2015 Michael Stauber <mstauber@solarspeed.net> 0.99.2-1BX02
+- Upgraded PAM_ABL to 0.6.0
+- Updated pam_abl init script
+- Updated /etc/pam.d/* config files as the 'check_config' option is now
+  deprecated. All other PAM config files needed for this are in the
+  updated base-console and are installed separately.
+- Supplied new pam_abl/conf/pam_abl.conf config file with disabled user
+  database. Blocking users can lead to a DOS attack. Blocking hosts is
+  fine and the way to go.
+- Updated ccewrap/ccewrap.conf to allow the GUI to call pam_abl and
+  pam_abl_test directly via CCEWrap.
 
 * Sun Jul 19 2015 Michael Stauber <mstauber@solarspeed.net> 0.99.2-1BX01
 - With the help from Greg Kuhnert we made cce.so PHP-5.4 ready again.

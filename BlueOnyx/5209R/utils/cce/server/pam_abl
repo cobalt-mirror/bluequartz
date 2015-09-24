@@ -1,6 +1,6 @@
 #!/bin/sh
-# $Id: pam_abl Fri 07 Aug 2009 09:45:52 AM CEST mstauber $
-# Copyright 2009 Team BlueOnyx. All rights reserved.
+# $Id: pam_abl Thu 24 Sep 2015 13:19:34 AM COT mstauber $
+# Copyright 2015 Team BlueOnyx. All rights reserved.
 #
 # pam_abl       This shell script doesn't start or stop any service.
 #               Instead it resets the pam_abl host and user database
@@ -24,7 +24,7 @@ case "$1" in
   start)
 	# Clearing pam_abl databases
 	echo -n "Clearing pam_abl databases: "
-	/usr/bin/pam_abl --okuser=* --okhost=*
+	rm -f /var/lib/pam_abl/*
 	RETVAL=$?
 	[ $RETVAL -eq 0 ] && success || failure
 	echo
@@ -32,7 +32,7 @@ case "$1" in
   stop)
 	# Clearing pam_abl databases
 	echo -n "Clearing pam_abl databases: "
-	/usr/bin/pam_abl --okuser=* --okhost=*
+	rm -f /var/lib/pam_abl/*
 	RETVAL=$?
         [ $RETVAL -eq 0 ] && success || failure
         echo
@@ -42,7 +42,9 @@ case "$1" in
 	RETVAL=$?
 	;;
   purge)
-	/usr/bin/pam_abl --purge > /dev/null 2>&1 &
+        # Clearing pam_abl databases
+        echo -n "Clearing pam_abl databases: "
+	rm /var/lib/pam_abl/*
 	RETVAL=$?
         [ $RETVAL -eq 0 ] && success || failure
         echo
