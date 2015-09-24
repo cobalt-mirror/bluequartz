@@ -142,8 +142,8 @@ class Events extends MX_Controller {
         }
 
         $defaultPage = "blocked_hosts";
-
-        $block =& $factory->getPagedBlock("pam_abl_blocked_users_and_hosts", array($defaultPage));
+        $header_text = $i18n->get("pam_abl_blocked_users_and_hosts") . " (" . $event_IP . ")";
+        $block =& $factory->getPagedBlock($header_text, array($defaultPage));
 
         $block->setToggle("#");
         $block->setSideTabs(FALSE);
