@@ -56,7 +56,6 @@ information for [VENDOR]-[SERVICE].
 <begin glue>
 [AUTOFILL]
 %attr(0755,-,-) /etc/cron.daily/pam_abl.sh
-%attr(0755,-,-) /usr/sausalito/sbin/pam_abl_import.pl
 %attr(0644,-,-) /usr/sausalito/configs/pam.d/el5/proftpd
 %attr(0644,-,-) /usr/sausalito/configs/pam.d/el5/system-auth
 %attr(0644,-,-) /usr/sausalito/configs/pam.d/el5/system-auth-cce
@@ -94,6 +93,7 @@ information for [VENDOR]-[SERVICE].
 # Restart CCEd unless we're updating through the GUI:
 if [ ! -f /tmp/yum.updating ]; then
     /usr/sausalito/sbin/cced.init rehash
+    /usr/sausalito/constructor/base/console/import_pam_abl_settings.pl
 fi
 
 # Restart CRONd:

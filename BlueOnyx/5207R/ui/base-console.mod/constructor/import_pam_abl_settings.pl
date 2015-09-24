@@ -156,7 +156,6 @@ sub verify {
 
         if ($CONFIG{"host_whitelist"})  {
             if ($CONFIG{"host_whitelist"} =~ /;/) {
-                print "Has semicolon!\n";
                 @hwl = split (/;/, $CONFIG{"host_whitelist"});
                 $CONFIG{"host_whitelist"} = $cce->array_to_scalar(@hwl);
                 $CONFIG{"host_whitelist"} =~s/%2F/\//g;

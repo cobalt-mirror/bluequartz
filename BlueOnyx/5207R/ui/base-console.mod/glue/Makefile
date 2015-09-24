@@ -5,7 +5,6 @@ endif
 include $(CCEBASE)/devel/defines.mk
 
 CRONS=cron.daily/pam_abl.sh
-SBIN=sbin/pam_abl_import.pl
 all:
 
 install:
@@ -21,10 +20,6 @@ install:
 	mkdir -p $(PREFIX)/etc/cron.daily
 	for file in $(CRONS); do \
 		$(INSTALL) $(INSTALL_DEFAULT) $$file $(PREFIX)/etc/cron.daily/; \
-	done
-	mkdir -p $(PREFIX)/usr/sausalito/sbin
-	for file in $(SBIN); do \
-		$(INSTALL) $(INSTALL_DEFAULT) $$file $(PREFIX)/usr/sausalito/sbin/; \
 	done
 	mkdir -p $(PREFIX)/usr/sausalito/configs
 	pam_files=`find pam.d -type f -not -path '*CVS*' -not -path '*/.*'`; \
