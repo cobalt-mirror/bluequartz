@@ -338,3 +338,10 @@ msgstr "Fecha"
 
 msgid "date_help"
 msgstr "Muestra la fecha y la hora del intento de acceso fallido."
+
+msgid "host_whitelist"
+msgstr "Lista blanca"
+
+msgid "host_whitelist_help"
+msgstr "Introduzca rangos de direcciones IP que usted nunca quiere ser bloqueado por PAM_ABL. Insumos válidos: dirección IP más máscara de red, una entrada por línea. Ejemplo: 192.168.0.0/16. Para permitir una sola dirección IP, introduzca la IP con un /32 al final. Ejemplo: 10.1.128.1/32"
+

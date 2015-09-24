@@ -341,4 +341,8 @@ msgstr "Dato"
 msgid "date_help"
 msgstr "Viser dato og tidspunkt for det mislykkede login-forsøg."
 
+msgid "host_whitelist"
+msgstr "Whitelist"
 
+msgid "host_whitelist_help"
+msgstr "Indtast IP-adresse intervaller, at du aldrig vil blive blokeret af PAM_ABL. Gyldige indgange: IP-adresse plus netmaske én post per linie. Eksempel: 192.168.0.0/16. At tillade en enkelt IP-adresse, skal du indtaste IP med en /32 i slutningen. Eksempel: 10.1.128.1/32"

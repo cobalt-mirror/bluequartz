@@ -338,3 +338,10 @@ msgstr "Datum"
 
 msgid "date_help"
 msgstr "Toont de datum en het tijdstip van de mislukte login poging."
+
+msgid "host_whitelist"
+msgstr "Whitelist"
+
+msgid "host_whitelist_help"
+msgstr "Voer het IP-adres reeksen die je nooit willen worden geblokkeerd door PAM_ABL. Geldige ingangen: IP-adres plus netmask, één per regel. Voorbeeld: 192.168.0.0/16. Om een ​​enkel IP-adres toe te staan, voert u het IP met een /32 aan het eind. Voorbeeld: 10.1.128.1/32"
+

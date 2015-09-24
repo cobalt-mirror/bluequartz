@@ -341,4 +341,9 @@ msgstr "Date"
 msgid "date_help"
 msgstr "Shows the date and time of the failed login attempt."
 
+msgid "host_whitelist"
+msgstr "Whitelist"
+
+msgid "host_whitelist_help"
+msgstr "Enter IP address ranges that you never want to be blocked by PAM_ABL. Valid inputs: IP address plus netmask, one entry per line. Example: 192.168.0.0/16. To allow a single IP address, enter the IP with a /32 at the end. Example: 10.1.128.1/32"
 

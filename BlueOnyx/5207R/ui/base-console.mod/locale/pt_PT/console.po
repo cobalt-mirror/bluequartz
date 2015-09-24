@@ -338,3 +338,9 @@ msgstr "Encontro"
 
 msgid "date_help"
 msgstr "Mostra a data ea hora da tentativa de login falhou."
+
+msgid "host_whitelist"
+msgstr "Whitelist"
+
+msgid "host_whitelist_help"
+msgstr "Digite o endereço de IP intervalos que você nunca quer ser bloqueada por PAM_ABL. As entradas válidas: endereço IP além de máscara de rede, uma entrada por linha. Exemplo: 192.168.0.0/16. Para permitir que um único endereço IP, digite o IP com um /32 no final. Exemplo: 10.1.128.1/32"

@@ -338,3 +338,10 @@ msgstr "期日"
 
 msgid "date_help"
 msgstr "失敗したログイン試行の日付と時刻を表示します。"
+
+msgid "host_whitelist"
+msgstr "ホワイトリスト"
+
+msgid "host_whitelist_help"
+msgstr "IPアドレスを入力して、PAM_ABLによってブロックされたくないことの範囲です。有効な入力：IPアドレスとネットマスク、1行に1つのエントリ。例：192.168.0.0/16。単一のIPアドレスを許可するには、最後に/32でIPアドレスを入力してください。例：10.1.128.1/32"
+

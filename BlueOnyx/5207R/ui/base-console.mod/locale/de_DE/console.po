@@ -340,3 +340,9 @@ msgstr "Datum"
 msgid "date_help"
 msgstr "Zeigt Datum und Uhrzeit der fehlgeschlagenen Anmeldeversuche."
 
+msgid "host_whitelist"
+msgstr "Whitelist"
+
+msgid "host_whitelist_help"
+msgstr "Geben Sie IP-Adressbereiche ein, die niemals von PAM_ABL blockiert werden sollen. Gültige Eingaben: IP-Adresse und Netzmaske, ein Eintrag pro Zeile. Beispiel: 192.168.0.0/16. Um eine einzige IP-Adresse zu blockieren, geben Sie die IP mit /32 am Ende ein. Beispiel: 10.1.128.1/32"
+
