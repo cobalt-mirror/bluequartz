@@ -308,3 +308,35 @@ msgstr "/var/log/admserv/adm_error"
 msgid "cap_menuServerSecurity"
 msgstr "Server Sicherheit"
 
+#------------
+
+msgid "events"
+msgstr "Event"
+
+msgid "events_help"
+msgstr "Über diesen Knopf können Sie weitere Details über die fehlgeschlagenen Anmeldeversuche von dieser IP-Adresse anzeigen lassen."
+
+msgid "service"
+msgstr "Service"
+
+msgid "service_help"
+msgstr "Hier wird der Dienst angezeigt, der während des fehlgeschlagenen Anmeldeversuches verwendet wurde."
+
+msgid "user"
+msgstr "Benutzer"
+
+msgid "user_help"
+msgstr "Hier wird der Benutzername angezeigt, der während des fehlgeschlagenen Anmeldeversuches verwendet wurde."
+
+msgid "type"
+msgstr "Type"
+
+msgid "type_help"
+msgstr "Hier wird die Authentifizierungsmethode angezeigt, der während des fehlgeschlagenen Anmeldeversuches verwendet wurde."
+
+msgid "date"
+msgstr "Datum"
+
+msgid "date_help"
+msgstr "Zeigt Datum und Uhrzeit der fehlgeschlagenen Anmeldeversuche."
+

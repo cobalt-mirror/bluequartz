@@ -308,3 +308,36 @@ msgstr "/var/log/admserv/adm_error"
 
 msgid "cap_menuServerSecurity"
 msgstr "Sécurité serveur"
+
+#------------
+
+msgid "events"
+msgstr "Événements"
+
+msgid "events_help"
+msgstr "Un clic sur ce bouton vous permet de voir les détails sur les tentatives de connexion infructueuses de cette adresse IP."
+
+msgid "service"
+msgstr "Service"
+
+msgid "service_help"
+msgstr "Cela montre le service qui a été utilisé lors de la tentative de connexion a échoué."
+
+msgid "user"
+msgstr "utilisateur"
+
+msgid "user_help"
+msgstr "Affiche le nom d'utilisateur qui a été utilisé lors de la tentative de connexion a échoué."
+
+msgid "type"
+msgstr "Type"
+
+msgid "type_help"
+msgstr "Affiche la méthode d'authentification qui a été utilisé lors de la tentative de connexion a échoué."
+
+msgid "date"
+msgstr "Date"
+
+msgid "date_help"
+msgstr "Affiche la date et l'heure de la tentative de connexion a échoué."
+

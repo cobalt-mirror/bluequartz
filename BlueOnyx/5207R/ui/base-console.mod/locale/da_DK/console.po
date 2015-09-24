@@ -309,3 +309,36 @@ msgstr "/var/log/admserv/adm_error"
 msgid "cap_menuServerSecurity"
 msgstr "Server Sikkerhed"
 
+#------------
+
+msgid "events"
+msgstr "Begivenheder"
+
+msgid "events_help"
+msgstr "Et klik på denne knap kan du se detaljer om de mislykkede login-forsøg fra denne IP-adresse."
+
+msgid "service"
+msgstr "Service"
+
+msgid "service_help"
+msgstr "Dette viser den tjeneste, der blev brugt under det mislykkede login-forsøg."
+
+msgid "user"
+msgstr "bruger"
+
+msgid "user_help"
+msgstr "Viser det brugernavn, der blev brugt under det mislykkede login-forsøg."
+
+msgid "type"
+msgstr "Type"
+
+msgid "type_help"
+msgstr "Viser den godkendelsesmetode, der blev anvendt under det mislykkede login-forsøg."
+
+msgid "date"
+msgstr "Dato"
+
+msgid "date_help"
+msgstr "Viser dato og tidspunkt for det mislykkede login-forsøg."
+
+

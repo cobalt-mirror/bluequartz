@@ -307,3 +307,34 @@ msgstr "/var/log/admserv/adm_error"
 msgid "cap_menuServerSecurity"
 msgstr "Segurança do Servidor"
 
+#------------
+
+msgid "events"
+msgstr "Eventos"
+
+msgid "events_help"
+msgstr "Um clique neste botão permite que você veja os detalhes sobre as tentativas de login a partir deste endereço IP."
+
+msgid "service"
+msgstr "Serviço"
+
+msgid "service_help"
+msgstr "Isso mostra o serviço que foi usado durante a tentativa de login falhou."
+
+msgid "user"
+msgstr "do utilizador"
+
+msgid "user_help"
+msgstr "Mostra o nome de usuário que foi usado durante a tentativa de login falhou."
+
+msgid "type"
+msgstr "Tipo"
+
+msgid "type_help"
+msgstr "Mostra o método de autenticação que foi usado durante a tentativa de login falhou."
+
+msgid "date"
+msgstr "Encontro"
+
+msgid "date_help"
+msgstr "Mostra a data ea hora da tentativa de login falhou."

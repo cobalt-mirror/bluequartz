@@ -306,3 +306,35 @@ msgstr "/var/log/admserv/adm_error"
 
 msgid "cap_menuServerSecurity"
 msgstr "サーバーのセキュリティ"
+
+#------------
+
+msgid "events"
+msgstr "イベント"
+
+msgid "events_help"
+msgstr "このボタンをクリックすると、あなたは、このIPアドレスからのログイン失敗の詳細を確認することができます。"
+
+msgid "service"
+msgstr "サービス"
+
+msgid "service_help"
+msgstr "これは失敗したログイン試行時に使用されたサービスを示しています。"
+
+msgid "user"
+msgstr "ユーザー"
+
+msgid "user_help"
+msgstr "失敗したログイン試行時に使用されたユーザー名が表示されます。"
+
+msgid "type"
+msgstr "タイプ"
+
+msgid "type_help"
+msgstr "失敗したログイン試行時に使用された認証方法を表示します。"
+
+msgid "date"
+msgstr "期日"
+
+msgid "date_help"
+msgstr "失敗したログイン試行の日付と時刻を表示します。"

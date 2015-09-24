@@ -307,3 +307,34 @@ msgstr "/var/log/admserv/adm_error"
 msgid "cap_menuServerSecurity"
 msgstr "Seguridad del servidor"
 
+#------------
+
+msgid "events"
+msgstr "Eventos"
+
+msgid "events_help"
+msgstr "Un clic en este botón le permite ver los detalles acerca de los intentos de conexión fallidos desde esta dirección IP."
+
+msgid "service"
+msgstr "Servicio"
+
+msgid "service_help"
+msgstr "Esto muestra el servicio que se utilizó durante el intento de inicio de sesión fallido."
+
+msgid "user"
+msgstr "usuario"
+
+msgid "user_help"
+msgstr "Muestra el nombre de usuario que se utilizó durante el intento de inicio de sesión fallido."
+
+msgid "type"
+msgstr "Escribe"
+
+msgid "type_help"
+msgstr "Muestra el método de autenticación que se utilizó durante el intento de inicio de sesión fallido."
+
+msgid "date"
+msgstr "Fecha"
+
+msgid "date_help"
+msgstr "Muestra la fecha y la hora del intento de acceso fallido."
