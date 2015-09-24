@@ -2,99 +2,99 @@
 
 class Console_logfiles extends MX_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Past the login page this loads the page for /console/console_logfiles.
-	 *
-	 */
+    /**
+     * Index Page for this controller.
+     *
+     * Past the login page this loads the page for /console/console_logfiles.
+     *
+     */
 
-	public function index() {
+    public function index() {
 
-		$CI =& get_instance();
-		
-	    // We load the BlueOnyx helper library first of all, as we heavily depend on it:
-	    $this->load->helper('blueonyx');
-	    init_libraries();
+        $CI =& get_instance();
+        
+        // We load the BlueOnyx helper library first of all, as we heavily depend on it:
+        $this->load->helper('blueonyx');
+        init_libraries();
 
-  		// Need to load 'BxPage' for page rendering:
-  		$this->load->library('BxPage');
-		$MX =& get_instance();
+        // Need to load 'BxPage' for page rendering:
+        $this->load->library('BxPage');
+        $MX =& get_instance();
 
-	    // Get $sessionId and $loginName from Cookie (if they are set):
-	    $sessionId = $CI->input->cookie('sessionId');
-	    $loginName = $CI->input->cookie('loginName');
-	    $locale = $CI->input->cookie('locale');
+        // Get $sessionId and $loginName from Cookie (if they are set):
+        $sessionId = $CI->input->cookie('sessionId');
+        $loginName = $CI->input->cookie('loginName');
+        $locale = $CI->input->cookie('locale');
 
-	    // Line up the ducks for CCE-Connection:
-	    include_once('ServerScriptHelper.php');
-		$serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-		$cceClient = $serverScriptHelper->getCceClient();
-		$user = $cceClient->getObject("User", array("name" => $loginName));
-		$i18n = new I18n("base-console", $user['localePreference']);
-		$system = $cceClient->getObject("System");
+        // Line up the ducks for CCE-Connection:
+        include_once('ServerScriptHelper.php');
+        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
+        $cceClient = $serverScriptHelper->getCceClient();
+        $user = $cceClient->getObject("User", array("name" => $loginName));
+        $i18n = new I18n("base-console", $user['localePreference']);
+        $system = $cceClient->getObject("System");
 
-		// Initialize Capabilities so that we can poll the access rights as well:
-		$Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        // Initialize Capabilities so that we can poll the access rights as well:
+        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
 
-		// -- Actual page logic start:
+        // -- Actual page logic start:
 
-		// Not serverConfig? Bye, bye!
-		if (!$Capabilities->getAllowed('serverConfig')) {
-			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
-			Log403Error("/gui/Forbidden403");
-		}
+        // Not serverConfig? Bye, bye!
+        if (!$Capabilities->getAllowed('serverConfig')) {
+            // Nice people say goodbye, or CCEd waits forever:
+            $cceClient->bye();
+            $serverScriptHelper->destructor();
+            Log403Error("/gui/Forbidden403");
+        }
 
-		//
-	    //-- Generate page:
-	    //
+        //
+        //-- Generate page:
+        //
 
-		// Prepare Page:
-		$factory = $serverScriptHelper->getHtmlComponentFactory("base-console", "/console/console_logfiles");
-		$BxPage = $factory->getPage();
-		$i18n = $factory->getI18n();
+        // Prepare Page:
+        $factory = $serverScriptHelper->getHtmlComponentFactory("base-console", "/console/console_logfiles");
+        $BxPage = $factory->getPage();
+        $i18n = $factory->getI18n();
 
-		// Set Menu items:
-		$BxPage->setVerticalMenu('base_security');
-		$BxPage->setVerticalMenuChild('base_console_logfiles');
-		$page_module = 'base_sysmanage';
+        // Set Menu items:
+        $BxPage->setVerticalMenu('base_security');
+        $BxPage->setVerticalMenuChild('base_console_logfiles');
+        $page_module = 'base_sysmanage';
 
-		//
-		//--- Basic Tab
-		//
+        //
+        //--- Basic Tab
+        //
 
-		$a_button = $factory->getFancyButton("/console/console_logfile_viewer?type=1", '/var/log/cron', "DEMO-OVERRIDE");
-		$b_button = $factory->getFancyButton("/console/console_logfile_viewer?type=2", '/var/log/maillog', "DEMO-OVERRIDE");
-		$c_button = $factory->getFancyButton("/console/console_logfile_viewer?type=3", '/var/log/messages', "DEMO-OVERRIDE");
-		$d_button = $factory->getFancyButton("/console/console_logfile_viewer?type=4", '/var/log/secure', "DEMO-OVERRIDE");
-		$buttonContainer_a = $factory->getButtonContainer("", array($a_button, $b_button, $c_button, $d_button));
+        $a_button = $factory->getFancyButton("/console/console_logfile_viewer?type=1", '/var/log/cron', "DEMO-OVERRIDE");
+        $b_button = $factory->getFancyButton("/console/console_logfile_viewer?type=2", '/var/log/maillog', "DEMO-OVERRIDE");
+        $c_button = $factory->getFancyButton("/console/console_logfile_viewer?type=3", '/var/log/messages', "DEMO-OVERRIDE");
+        $d_button = $factory->getFancyButton("/console/console_logfile_viewer?type=4", '/var/log/secure', "DEMO-OVERRIDE");
+        $buttonContainer_a = $factory->getButtonContainer("", array($a_button, $b_button, $c_button, $d_button));
 
-		$e_button = $factory->getFancyButton("/console/console_logfile_viewer?type=5", '/var/log/httpd/access_log', "DEMO-OVERRIDE");
-		$f_button = $factory->getFancyButton("/console/console_logfile_viewer?type=6", '/var/log/httpd/error_log', "DEMO-OVERRIDE");
-		$buttonContainer_b = $factory->getButtonContainer("", array($e_button, $f_button));
+        $e_button = $factory->getFancyButton("/console/console_logfile_viewer?type=5", '/var/log/httpd/access_log', "DEMO-OVERRIDE");
+        $f_button = $factory->getFancyButton("/console/console_logfile_viewer?type=6", '/var/log/httpd/error_log', "DEMO-OVERRIDE");
+        $buttonContainer_b = $factory->getButtonContainer("", array($e_button, $f_button));
 
-		$g_button = $factory->getFancyButton("/console/console_logfile_viewer?type=7", '/var/log/admserv/adm_access', "DEMO-OVERRIDE");
-		$h_button = $factory->getFancyButton("/console/console_logfile_viewer?type=8", '/var/log/admserv/adm_error', "DEMO-OVERRIDE");
-		$buttonContainer_c = $factory->getButtonContainer("", array($g_button, $h_button));
+        $g_button = $factory->getFancyButton("/console/console_logfile_viewer?type=7", '/var/log/admserv/adm_access', "DEMO-OVERRIDE");
+        $h_button = $factory->getFancyButton("/console/console_logfile_viewer?type=8", '/var/log/admserv/adm_error', "DEMO-OVERRIDE");
+        $buttonContainer_c = $factory->getButtonContainer("", array($g_button, $h_button));
 
-		// Nice people say goodbye, or CCEd waits forever:
-		$cceClient->bye();
-		$serverScriptHelper->destructor();
+        // Nice people say goodbye, or CCEd waits forever:
+        $cceClient->bye();
+        $serverScriptHelper->destructor();
 
-		$page_body[] = $buttonContainer_a->toHtml();
-		$page_body[] = $buttonContainer_b->toHtml();
-		$page_body[] = $buttonContainer_c->toHtml();
+        $page_body[] = $buttonContainer_a->toHtml();
+        $page_body[] = $buttonContainer_b->toHtml();
+        $page_body[] = $buttonContainer_c->toHtml();
 
-		// Out with the page:
-	    $BxPage->render($page_module, $page_body);
+        // Out with the page:
+        $BxPage->render($page_module, $page_body);
 
-	}		
+    }       
 }
 /*
-Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 All Rights Reserved.
 
 1. Redistributions of source code must retain the above copyright 

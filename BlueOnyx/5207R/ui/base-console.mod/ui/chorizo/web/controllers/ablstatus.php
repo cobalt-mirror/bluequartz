@@ -2,394 +2,339 @@
 
 class Ablstatus extends MX_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Past the login page this loads the page for /console/ablstatus.
-	 *
-	 */
+    /**
+     * Index Page for this controller.
+     *
+     * Past the login page this loads the page for /console/ablstatus.
+     *
+     */
 
-	public function index() {
+    public function index() {
 
-		$CI =& get_instance();
+        $CI =& get_instance();
 
-	    // We load the BlueOnyx helper library first of all, as we heavily depend on it:
-	    $this->load->helper('blueonyx');
-	    init_libraries();
+        // We load the BlueOnyx helper library first of all, as we heavily depend on it:
+        $this->load->helper('blueonyx');
+        init_libraries();
 
-  		// Need to load 'BxPage' for page rendering:
-  		$this->load->library('BxPage');
-		$MX =& get_instance();
+        // Need to load 'BxPage' for page rendering:
+        $this->load->library('BxPage');
+        $MX =& get_instance();
 
-	    // Get $sessionId and $loginName from Cookie (if they are set):
-	    $sessionId = $CI->input->cookie('sessionId');
-	    $loginName = $CI->input->cookie('loginName');
-	    $locale = $CI->input->cookie('locale');
+        // Get $sessionId and $loginName from Cookie (if they are set):
+        $sessionId = $CI->input->cookie('sessionId');
+        $loginName = $CI->input->cookie('loginName');
+        $locale = $CI->input->cookie('locale');
 
-	    // Line up the ducks for CCE-Connection:
-	    include_once('ServerScriptHelper.php');
-		$serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-		$cceClient = $serverScriptHelper->getCceClient();
-		$user = $cceClient->getObject("User", array("name" => $loginName));
-		$i18n = new I18n("base-console", $user['localePreference']);
-		$system = $cceClient->getObject("System");
+        // Line up the ducks for CCE-Connection:
+        include_once('ServerScriptHelper.php');
+        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
+        $cceClient = $serverScriptHelper->getCceClient();
+        $user = $cceClient->getObject("User", array("name" => $loginName));
+        $i18n = new I18n("base-console", $user['localePreference']);
+        $system = $cceClient->getObject("System");
 
-		// Initialize Capabilities so that we can poll the access rights as well:
-		$Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        // Initialize Capabilities so that we can poll the access rights as well:
+        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
 
-		// -- Actual page logic start:
+        // -- Actual page logic start:
 
-		// Not serverConfig? Bye, bye!
-		if (!$Capabilities->getAllowed('serverConfig')) {
-			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
-			Log403Error("/gui/Forbidden403");
-		}
+        // Not serverConfig? Bye, bye!
+        if (!$Capabilities->getAllowed('serverConfig')) {
+            // Nice people say goodbye, or CCEd waits forever:
+            $cceClient->bye();
+            $serverScriptHelper->destructor();
+            Log403Error("/gui/Forbidden403");
+        }
 
-		//
-		//--- Get CODB-Object of interest: 
-		//
+        //
+        //--- Handle form validation:
+        //
 
-	    // Get 'fail_hosts' information out of CCE:
-	    $hostnum = 0;
-	    $oids = $cceClient->findx('fail_hosts');
-	    foreach ($oids as $oid) {
-			$HOSTS = $cceClient->get($oid);
-			if ($HOSTS['host_ip']) {
-	    	    $HOSTSLIST[$hostnum] = array(
-	        							'host_ip' => $HOSTS['host_ip'],
-							        	'host_fqdn' => $HOSTS['host_fqdn'],
-						    	        'failcnt' => $HOSTS['failcnt'],
-							        	'blocking' => $HOSTS['blocking'],
-						    	        'activity' => $HOSTS['activity']
-	    	    );
-	    	    $hostnum++;
-			}
-	    }
+        // We start without any active errors:
+        $errors = array();
+        $extra_headers =array();
+        $ci_errors = array();
+        $my_errors = array();
 
-	    // Get 'fail_users' information out of CCE:
-	    $usernum = 0;
-	    $oids = $cceClient->findx('fail_users');
-	    foreach ($oids as $oid) {
-			$USERS = $cceClient->get($oid);
-			if ($USERS['username']) {
-	    	    $USERLIST[$usernum] = array(
-							        	'username' => $USERS['username'],
-							        	'failcnt' => $USERS['failcnt'],
-							        	'blocking' => $USERS['blocking'],
-							        	'activity' => $USERS['activity']
-	    	    );
-	    	    $usernum++;
-			}
-	    }
-	
-		//
-		//--- Handle form validation:
-		//
+        // Shove submitted input into $form_data after passing it through the XSS filter:
+        $form_data = $CI->input->post(NULL, TRUE);
 
-	    // We start without any active errors:
-	    $errors = array();
-	    $extra_headers =array();
-	    $ci_errors = array();
-	    $my_errors = array();
+        // Form fields that are required to have input:
+        $required_keys = array();
+        // Set up rules for form validation. These validations happen before we submit to CCE and further checks based on the schemas are done:
 
-		// Shove submitted input into $form_data after passing it through the XSS filter:
-		$form_data = $CI->input->post(NULL, TRUE);
+        // Empty array for key => values we want to submit to CCE:
+        $attributes = array();
+        // Items we do NOT want to submit to CCE:
+        $ignore_attributes = array("BlueOnyx_Info_Text", "_");
+        if (is_array($form_data)) {
+            // Function GetFormAttributes() walks through the $form_data and returns us the $parameters we want to
+            // submit to CCE. It intelligently handles checkboxes, which only have "on" set when they are ticked.
+            // In that case it pulls the unticked status from the hidden checkboxes and addes them to $parameters.
+            // It also transformes the value of the ticked checkboxes from "on" to "1". 
+            //
+            // Additionally it generates the form_validation rules for CodeIgniter.
+            //
+            // params: $i18n                i18n Object of the error messages
+            // params: $form_data           array with form_data array from CI
+            // params: $required_keys       array with keys that must have data in it. Needed for CodeIgniter's error checks
+            // params: $ignore_attributes   array with items we want to ignore. Such as Labels.
+            // return:                      array with keys and values ready to submit to CCE.
+            $attributes = GetFormAttributes($i18n, $form_data, $required_keys, $ignore_attributes, $i18n);
+        }
+        //Setting up error messages:
+        $CI->form_validation->set_message('required', $i18n->get("[[palette.val_is_required]]", false, array("field" => "\"%s\"")));        
 
-		// Form fields that are required to have input:
-		$required_keys = array();
-    	// Set up rules for form validation. These validations happen before we submit to CCE and further checks based on the schemas are done:
+        // Do we have validation related errors?
+        if ($CI->form_validation->run() == FALSE) {
 
-		// Empty array for key => values we want to submit to CCE:
-    	$attributes = array();
-    	// Items we do NOT want to submit to CCE:
-    	$ignore_attributes = array("BlueOnyx_Info_Text", "_");
-		if (is_array($form_data)) {
-			// Function GetFormAttributes() walks through the $form_data and returns us the $parameters we want to
-			// submit to CCE. It intelligently handles checkboxes, which only have "on" set when they are ticked.
-			// In that case it pulls the unticked status from the hidden checkboxes and addes them to $parameters.
-			// It also transformes the value of the ticked checkboxes from "on" to "1". 
-			//
-			// Additionally it generates the form_validation rules for CodeIgniter.
-			//
-			// params: $i18n				i18n Object of the error messages
-			// params: $form_data			array with form_data array from CI
-			// params: $required_keys		array with keys that must have data in it. Needed for CodeIgniter's error checks
-			// params: $ignore_attributes	array with items we want to ignore. Such as Labels.
-			// return: 						array with keys and values ready to submit to CCE.
-			$attributes = GetFormAttributes($i18n, $form_data, $required_keys, $ignore_attributes, $i18n);
-		}
-		//Setting up error messages:
-		$CI->form_validation->set_message('required', $i18n->get("[[palette.val_is_required]]", false, array("field" => "\"%s\"")));		
+            if (validation_errors()) {
+                // Set CI related errors:
+                $ci_errors = array(validation_errors('<div class="alert dismissible alert_red"><img width="40" height="36" src="/.adm/images/icons/small/white/alarm_bell.png"><strong>', '</strong></div>'));
+            }           
+            else {
+                // No errors. Pass empty array along:
+                $ci_errors = array();
+            }
+        }
 
-	    // Do we have validation related errors?
-	    if ($CI->form_validation->run() == FALSE) {
+        //
+        //--- Own error checks:
+        //
 
-			if (validation_errors()) {
-				// Set CI related errors:
-				$ci_errors = array(validation_errors('<div class="alert dismissible alert_red"><img width="40" height="36" src="/.adm/images/icons/small/white/alarm_bell.png"><strong>', '</strong></div>'));
-			}		    
-			else {
-				// No errors. Pass empty array along:
-				$ci_errors = array();
-			}
-		}
+        if ($CI->input->post(NULL, TRUE)) {
+        }
 
-		//
-		//--- Own error checks:
-		//
+        //
+        //--- At this point all checks are done. If we have no errors, we can submit the data to CODB:
+        //
 
-		if ($CI->input->post(NULL, TRUE)) {
-		}
+        // Join the various error messages:
+        $errors = array_merge($ci_errors, $my_errors);
 
-		//
-		//--- At this point all checks are done. If we have no errors, we can submit the data to CODB:
-		//
+        // If we have no errors and have POST data, we submit to CODB:
+        if ((count($errors) == "0") && ($CI->input->post(NULL, TRUE))) {
 
-		// Join the various error messages:
-		$errors = array_merge($ci_errors, $my_errors);
+            // No errors. Reload the entire page to load it with the updated values:
+            if ((count($errors) == "0")) {
+                // Nice people say goodbye, or CCEd waits forever:
+                $cceClient->bye();
+                $serverScriptHelper->destructor();              
+                header("Location: /console/ablstatus");
+                exit;
+            }
+        }
 
-		// If we have no errors and have POST data, we submit to CODB:
-		if ((count($errors) == "0") && ($CI->input->post(NULL, TRUE))) {
+        //
+        //-- Own page logic:
+        //
 
-			// No errors. Reload the entire page to load it with the updated values:
-			if ((count($errors) == "0")) {
-				// Nice people say goodbye, or CCEd waits forever:
-				$cceClient->bye();
-				$serverScriptHelper->destructor();				
-				header("Location: /console/ablstatus");
-				exit;
-			}
-		}
+        $get_form_data = $CI->input->get(NULL, TRUE);
 
-		//
-		//-- Own page logic:
-		//
+        // Other (button initiated) action taking place:
+        if (isset($get_form_data['action'])) {
+            // Remove the pam_abl databases altogether:
+            $runas = 'root';
+            $ret = $serverScriptHelper->shell("/bin/rm -f /var/lib/pam_abl/*", $nfk, $runas, $sessionId);
+            // Nice people say goodbye, or CCEd waits forever:
+            $cceClient->bye();
+            $serverScriptHelper->destructor();
+            header("Location: /console/ablstatus");
+            exit;
+        }
 
-		$get_form_data = $CI->input->get(NULL, TRUE);
+        // Unblocking action taking place on a selected IP via ScrollList Unblock button:
+        if (isset($get_form_data['host'])) {
+            if (isset($get_form_data['host'])) {
+                // Make sure that what we got is really an IP:
+                if (filter_var($get_form_data['host'], FILTER_VALIDATE_IP)) {
+                    $runas = 'root';
+                    $e_ip = $get_form_data['host'];
+                    $ret = $serverScriptHelper->shell("/usr/bin/pam_abl -wH $e_ip", $nfk, $runas, $sessionId);
+                }
+            }
+            // Nice people say goodbye, or CCEd waits forever:
+            $cceClient->bye();
+            $serverScriptHelper->destructor();
+            header("Location: /console/ablstatus");
+            exit;
+        }
 
-		// Other (button initiated) action taking place:
-		if (isset($get_form_data['action'])) {
-			$cceClient->setObject("pam_abl_settings", array($get_form_data['action'] => time()));
-		    $errors = $cceClient->errors();
-			if ((count($errors) == "0")) {
-				// Nice people say goodbye, or CCEd waits forever:
-				$cceClient->bye();
-				$serverScriptHelper->destructor();
-				header("Location: /console/ablstatus");
-				exit;
-			}		    
-		}
+        //
+        //--- Get 'fail_hosts' information from CCEWrap:
+        //
 
-		// Unblocking action taking place:
-		if ((isset($get_form_data['host'])) || (isset($get_form_data['user']))) {
-		    if (isset($get_form_data['host'])) {
-				$OID = $cceClient->find("fail_hosts", array("host_ip" => $get_form_data['host']));
-				$cceClient->set($OID[0], "",
-			    	    array(
-			            "host_remove" => time())
-				);
-		    }
-		    if (isset($get_form_data['user'])) {
-				$OID = $cceClient->find("fail_users", array("username" => $get_form_data['user']));
-				$cceClient->set($OID[0], "",
-			    	    array(
-			            "user_remove" => time())
-				);
-		    }
-			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
-		}
+        $runas = 'root';
+        $ret = $serverScriptHelper->shell("/usr/bin/pam_abl -v", $nfk, $runas, $sessionId);
 
-		//
-	    //-- Generate page:
-	    //
+        $hostList = explode(PHP_EOL, $nfk);
+        $clean_hostlist = array();
+        foreach ($hostList as $key => $value) {
+            $value = preg_replace('/\s+/', ';', $value);
+            $stripper = array();
+            $stripper = explode(';', $value);
+            // Remove anything we're not interested in:
+            if (($stripper[0] != "Reading") && ($stripper[0] != "No") && ($stripper[0] != "Failed") && ($value != "")) {
+                $clean_hostlist[] = $value;
+            }
+        }
 
+        $RecordedHosts = array();
+        foreach ($clean_hostlist as $key => $value) {
+            $value = explode(';', $value);
+            if (count($value) == "3") {
+                // We have the IP:
+                $event_IP = $value[1];
+                $event_count = $value[2];
+                $RecordedHosts[$event_IP]['failcnt'] = $event_count;
+                $event_num = "1";
+            }
+            if (count($value) > "3") {
+                $event_service = $value[1];
+                $event_user = $value[2];
+                $event_type = $value[3];
+                if (isset($value[8])) {
+                    unset($value[0]);
+                    unset($value[1]);
+                    unset($value[2]);
+                    unset($value[3]);
+                    unset($value[4]);
+                    $event_date = implode(" ", $value);
+                }
+                $RecordedHosts[$event_IP]['event'][$event_num] = array('event_service' => $event_service, 'event_user' => $event_user, 'event_type' => $event_type, 'event_date' => $event_date);
+                $event_num++;
+            }
+        }
 
-		// Prepare Page:
-		$factory = $serverScriptHelper->getHtmlComponentFactory("base-console", "/console/ablstatus");
-		$BxPage = $factory->getPage();
-		$BxPage->setErrors($errors);
-		$i18n = $factory->getI18n();
+        //
+        //-- Generate page:
+        //
 
-		$product = new Product($cceClient);
+        // Prepare Page:
+        $factory = $serverScriptHelper->getHtmlComponentFactory("base-console", "/console/ablstatus");
+        $BxPage = $factory->getPage();
+        $BxPage->setErrors($errors);
+        $i18n = $factory->getI18n();
 
-		// Set Menu items:
-		$BxPage->setVerticalMenu('base_security');
-		$BxPage->setVerticalMenuChild('pam_abl_status');
-		$page_module = 'base_sysmanage';
+        $product = new Product($cceClient);
 
-		$defaultPage = "blocked_hosts";
+        // Set Menu items:
+        $BxPage->setVerticalMenu('base_security');
+        $BxPage->setVerticalMenuChild('pam_abl_status');
+        $page_module = 'base_sysmanage';
 
-		$block =& $factory->getPagedBlock("pam_abl_blocked_users_and_hosts", array($defaultPage, 'blocked_users'));
+        $defaultPage = "blocked_hosts";
 
-		$block->setToggle("#");
-		$block->setSideTabs(FALSE);
-		$block->setShowAllTabs("#");
-		$block->setDefaultPage($defaultPage);
+        $block =& $factory->getPagedBlock("pam_abl_blocked_users_and_hosts", array($defaultPage));
 
-		//
-		//--- TAB: blocked_hosts
-		//
+        $block->setToggle("#");
+        $block->setSideTabs(FALSE);
+        $block->setShowAllTabs("#");
+        $block->setDefaultPage($defaultPage);
 
-  		$scrollList = $factory->getScrollList("pam_abl_blocked_hosts", array("host_ip", "host_fqdn", "whois", "failcnt", "access", "Action"), array()); 
-	    $scrollList->setAlignments(array("center", "center", "center", "center", "center", "center"));
-	    $scrollList->setDefaultSortedIndex('0');
-	    $scrollList->setSortOrder('ascending');
-	    $scrollList->setSortDisabled(array('2', '5'));
-	    $scrollList->setPaginateDisabled(FALSE);
-	    $scrollList->setSearchDisabled(FALSE);
-	    $scrollList->setSelectorDisabled(FALSE);
-	    $scrollList->enableAutoWidth(FALSE);
-	    $scrollList->setInfoDisabled(FALSE);
-	    $scrollList->setColumnWidths(array("180", "255", "75", "75", "75", "75")); // Max: 739px
+        //
+        //--- TAB: blocked_hosts
+        //
 
-	    // Populate host table rows with the data:
-	    while ( $hostnum >= 0 ) {
-	        if (isset($HOSTSLIST[$hostnum]['host_ip'])) {
+        $scrollList = $factory->getScrollList("pam_abl_blocked_hosts", array("host_ip", "host_fqdn", "events", "whois", "failcnt", "access", "Action"), array()); 
+        $scrollList->setAlignments(array("center", "center", "center", "center", "center", "center", "center"));
+        $scrollList->setDefaultSortedIndex('4');
+        $scrollList->setSortOrder('descending');
+        $scrollList->setSortDisabled(array('2', '3', '5', '6'));
+        $scrollList->setPaginateDisabled(FALSE);
+        $scrollList->setSearchDisabled(FALSE);
+        $scrollList->setSelectorDisabled(FALSE);
+        $scrollList->enableAutoWidth(FALSE);
+        $scrollList->setInfoDisabled(FALSE);
+        $scrollList->setColumnWidths(array("180", "180", "75", "75", "75", "75", "75")); // Max: 739px
 
-			    // Whois button:
-				$whois_button = $factory->getFancyButton("/console/whois?q=" . $HOSTSLIST[$hostnum]['host_ip'], "whois");
-				$whois_button->setImageOnly(TRUE);
+        // host_rule:
+        $CODBDATA = $cceClient->getObject("pam_abl_settings");
+        $host_rule_raw = $CODBDATA['host_rule'];
+        $hr_diss = explode(':', $host_rule_raw);
+        $host_rule = $hr_diss[1];
+        $hr_per_hr = explode('/', $host_rule);
+        $host_rule_per_hour = $hr_per_hr[0];
 
-				// Remove button:
-				$remove_button = $factory->getRemoveButton("/console/ablstatus?host=". $HOSTSLIST[$hostnum]['host_ip']);
-				$remove_button->setImageOnly(TRUE);
+        // Populate host table rows with the data:
+        foreach ($RecordedHosts as $host => $data) {
 
-				// Access icon:
-			    if ($HOSTSLIST[$hostnum]['blocking'] == "0") {
-					$status = '					<button class="red tiny text_only has_text tooltip hover" title="' . $i18n->getHtml("[[palette.Yes]]") . '"><span>' . $i18n->getHtml("[[palette.Yes]]") . '</span></button>';
-				}
-				else {
-					$status = '					<button class="light tiny text_only has_text tooltip hover" title="' . $i18n->getHtml("[[palette.No]]") . '"><span>' . $i18n->getHtml("[[palette.No]]") . '</span></button>';
-				}
-			    if ($HOSTSLIST[$hostnum]['blocking'] == "0") {
-		        	//$actions->setDisabled(true);
-	    	   	}
-	            $scrollList->addEntry(array(
-	                $HOSTSLIST[$hostnum]['host_ip'],
-	                $HOSTSLIST[$hostnum]['host_fqdn'], 
-	                $whois_button,
-	                $HOSTSLIST[$hostnum]['failcnt'],
-					$status,
-	                $remove_button
-	            ));
-			}
-	        $hostnum--;
-	    }
+            // Events button:
+            $events_button = $factory->getFancyButton("/console/events?q=" . $host, "events");
+            $events_button->setImageOnly(TRUE);
 
-		// Page selector:
-		$ps = "d";
+            // Whois button:
+            $whois_button = $factory->getFancyButton("/console/whois?q=" . $host, "whois");
+            $whois_button->setImageOnly(TRUE);
 
-		// Purge buttons:
-		$reset_hosts_button = $factory->getButton("/console/ablstatus?action=reset_hosts&ps=$ps", 'reset_hosts_button');
-		$reset_users_button = $factory->getButton("/console/ablstatus?action=reset_users&ps=$ps", 'reset_users_button');
-		$reset_all_button = $factory->getButton("/console/ablstatus?action=reset_all&ps=$ps", 'reset_all_button');
-		$purge_button = $factory->getButton("/console/ablstatus?action=purge&ps=$ps", 'purge_button');
-	
-		$buttonContainer = $factory->getButtonContainer("pam_abl_blocked_hosts", array($reset_hosts_button, $reset_users_button, $reset_all_button, $purge_button));
+            // Remove button:
+            $remove_button = $factory->getRemoveButton("/console/ablstatus?host=". $host);
+            $remove_button->setImageOnly(TRUE);
 
-		$block->addFormField(
-			$buttonContainer,
-			$factory->getLabel("pam_abl_blocked_hosts"),
-			"blocked_hosts"
-		);
+            // Access icon:
+            $failcnt = str_replace('(', '', $RecordedHosts[$host]['failcnt']);
+            $failcnt = str_replace(')', '', $failcnt);
+            if ($failcnt >= $host_rule_per_hour) {
+                $status = '                 <button class="red tiny text_only has_text tooltip hover" title="' . $i18n->getHtml("[[palette.Yes]]") . '"><span>' . $i18n->getHtml("[[palette.Yes]]") . '</span></button>';
+            }
+            else {
+                $status = '                 <button class="light tiny text_only has_text tooltip hover" title="' . $i18n->getHtml("[[palette.No]]") . '"><span>' . $i18n->getHtml("[[palette.No]]") . '</span></button>';
+            }
 
-		$block->addFormField(
-			$factory->getRawHTML("pam_abl_blocked_hosts", $scrollList->toHtml()),
-			$factory->getLabel("pam_abl_blocked_hosts"),
-			"blocked_hosts"
-		);
+            $scrollList->addEntry(array(
+                $host,
+                gethostbyaddr($host), 
+                $events_button,
+                $whois_button,
+                $failcnt,
+                $status,
+                $remove_button
+            ));
 
-		//
-		//--- TAB: blocked_users
-		//
+        }
+        
+        // Page selector:
+        $ps = "d";
 
-  		$scrollListusers = $factory->getScrollList("pam_abl_blocked_users", array("username", "failcnt", "access", "Action"), array()); 
-	    $scrollListusers->setAlignments(array("center", "center", "center", "center"));
-	    $scrollListusers->setDefaultSortedIndex('0');
-	    $scrollListusers->setSortOrder('ascending');
-	    $scrollListusers->setSortDisabled(array('3'));
-	    $scrollListusers->setPaginateDisabled(FALSE);
-	    $scrollListusers->setSearchDisabled(FALSE);
-	    $scrollListusers->setSelectorDisabled(FALSE);
-	    $scrollListusers->enableAutoWidth(FALSE);
-	    $scrollListusers->setInfoDisabled(FALSE);
-	    $scrollListusers->setColumnWidths(array("505", "75", "75", "75")); // Max: 739px
+        // Purge buttons:
+        $reset_hosts_button = $factory->getButton("/console/ablstatus?action=reset_hosts&ps=$ps", 'reset_hosts_button');
+    
+        $buttonContainer = $factory->getButtonContainer("pam_abl_blocked_hosts", array($reset_hosts_button));
 
-	    // Populate user table rows with the data:
-	    while ( $usernum >= 0 ) {
-			if (isset($USERLIST[$usernum]['username'])) {
-		        if ($USERLIST[$usernum]['username']) {
+        $block->addFormField(
+            $buttonContainer,
+            $factory->getLabel("pam_abl_blocked_hosts"),
+            "blocked_hosts"
+        );
 
-					// Access icon:
-				    if ($USERLIST[$usernum]['blocking'] == "0") {
-						$status = '					<button class="red tiny text_only has_text tooltip hover" title="' . $i18n->getHtml("[[palette.Yes]]") . '"><span>' . $i18n->getHtml("[[palette.Yes]]") . '</span></button>';
-					}
-					else {
-						$status = '					<button class="light tiny text_only has_text tooltip hover" title="' . $i18n->getHtml("[[palette.No]]") . '"><span>' . $i18n->getHtml("[[palette.No]]") . '</span></button>';
-					}
+        $block->addFormField(
+            $factory->getRawHTML("pam_abl_blocked_hosts", $scrollList->toHtml()),
+            $factory->getLabel("pam_abl_blocked_hosts"),
+            "blocked_hosts"
+        );
 
-					// Remove button:
-					$uremove_button = $factory->getRemoveButton("/console/ablstatus?user=". $USERLIST[$usernum]['username']);
-					$uremove_button->setImageOnly(TRUE);
+        //
+        //--- Add the buttons
+        //
 
-				    if ($USERLIST[$usernum]['blocking'] == "0") {
-			        	//$actions->setDisabled(true);
-					}
-		            $scrollListusers->addEntry(array(
-		                $USERLIST[$usernum]['username'],
-		                $USERLIST[$usernum]['failcnt'],
-		                $status,
-		                $uremove_button
-		            ));
-				}
-			}
-			$usernum--;
-	    }
+        $block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
+        $block->addButton($factory->getCancelButton("/console/ablstatus"));
 
-		$reset_hosts_button = $factory->getButton("/console/ablstatus?action=reset_hosts&ps=$ps", 'reset_hosts_button');
-		$reset_users_button = $factory->getButton("/console/ablstatus?action=reset_users&ps=$ps", 'reset_users_button');
-		$reset_all_button = $factory->getButton("/console/ablstatus?action=reset_all&ps=$ps", 'reset_all_button');
-		$purge_button = $factory->getButton("/console/ablstatus?action=purge&ps=$ps", 'purge_button');
-	
-		$buttonContainerUsers = $factory->getButtonContainer("pam_abl_blocked_users", array($reset_hosts_button, $reset_users_button, $reset_all_button, $purge_button));
+        // Nice people say goodbye, or CCEd waits forever:
+        $cceClient->bye();
+        $serverScriptHelper->destructor();
 
-		$block->addFormField(
-			$buttonContainerUsers,
-			$factory->getLabel("pam_abl_blocked_users"),
-			"blocked_users"
-		);
+        $page_body[] = $block->toHtml();
 
-		$block->addFormField(
-			$factory->getRawHTML("pam_abl_blocked_users", $scrollListusers->toHtml()),
-			$factory->getLabel("pam_abl_blocked_users"),
-			"blocked_users"
-		);
+        // Out with the page:
+        $BxPage->render($page_module, $page_body);
 
-		//
-		//--- Add the buttons
-		//
-
-		$block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
-		$block->addButton($factory->getCancelButton("/console/ablstatus"));
-
-		// Nice people say goodbye, or CCEd waits forever:
-		$cceClient->bye();
-		$serverScriptHelper->destructor();
-
-		$page_body[] = $block->toHtml();
-
-		// Out with the page:
-	    $BxPage->render($page_module, $page_body);
-
-	}		
+    }       
 }
 /*
-Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 All Rights Reserved.
 
 1. Redistributions of source code must retain the above copyright 

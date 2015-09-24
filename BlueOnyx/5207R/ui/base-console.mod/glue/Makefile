@@ -4,9 +4,8 @@ endif
 
 include $(CCEBASE)/devel/defines.mk
 
-CRONS=cron.d/pam_abl_purge.cron
+CRONS=cron.daily/pam_abl.sh
 SBIN=sbin/pam_abl_import.pl
-PAM=pam.d/password-auth-ac.5107R pam.d/system-auth.5106R
 all:
 
 install:
@@ -19,17 +18,21 @@ install:
 		$(INSTALL) $(INSTALL_HEADERFLAGS) $$file $(PREFIX)/$$dir; \
 	done
 	mkdir -p $(PREFIX)/$(CCEWEB)/base/console/.logtail
-	mkdir -p $(PREFIX)/etc/cron.d
+	mkdir -p $(PREFIX)/etc/cron.daily
 	for file in $(CRONS); do \
-		$(INSTALL) $(INSTALL_DEFAULT) $$file $(PREFIX)/etc/cron.d/; \
+		$(INSTALL) $(INSTALL_DEFAULT) $$file $(PREFIX)/etc/cron.daily/; \
 	done
 	mkdir -p $(PREFIX)/usr/sausalito/sbin
 	for file in $(SBIN); do \
 		$(INSTALL) $(INSTALL_DEFAULT) $$file $(PREFIX)/usr/sausalito/sbin/; \
 	done
-	mkdir -p $(PREFIX)/etc/pam.d
-	for file in $(PAM); do \
-		$(INSTALL) $(INSTALL_DEFAULT) $$file $(PREFIX)/etc/pam.d/; \
+	mkdir -p $(PREFIX)/usr/sausalito/configs
+	pam_files=`find pam.d -type f -not -path '*CVS*' -not -path '*/.*'`; \
+	for file in $$pam_files; do \
+		dir=`dirname $$file`; \
+		if [ ! -d "$(PREFIX)/usr/sausalito/configs/$$dir" ]; then \
+			$(INSTALL) $(INSTALL_DEFAULT) -d $(PREFIX)/usr/sausalito/configs/$$dir; \
+		fi; \
+		$(INSTALL) $(INSTALL_HEADERFLAGS) $$file $(PREFIX)/usr/sausalito/configs/$$dir; \
 	done
-
 rpm:

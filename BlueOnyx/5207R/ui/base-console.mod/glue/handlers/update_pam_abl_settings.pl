@@ -35,27 +35,32 @@ $PAM_ABL_OID = $oid;
 
 # We're creating or modifying the pam_abl_settings object:
 if ((($cce->event_is_create()) || ($cce->event_is_modify())) && ($PAM_ABL_OID eq $oid)) {
-    # Someone used the GUI to edit some parameters. Update
-    # the existing config file:
+    # Someone used the GUI to edit some parameters. Update the existing config file:
     if (-f $pam_abl_config) {
 
-	# Variable cleanup:
-	$host_purge = $abl_settings->{"host_purge"};
-	$user_purge = $abl_settings->{"user_purge"};
-	$host_rule = $abl_settings->{"host_rule"};
-	$user_rule = $abl_settings->{"user_rule"};
+        # Variable cleanup:
+        $host_purge = $abl_settings->{"host_purge"};
+        $host_rule = $abl_settings->{"host_rule"};
+        @host_whitelist_array = $cce->scalar_to_array($abl_settings->{"host_whitelist"});
 
-	# Edit config:
-        if (!Sauce::Util::editfile($pam_abl_config, *edit_pam_abl_config, $host_purge, $user_purge, $host_rule, $user_rule)) {
-                $cce->bye('FAIL', "Cannot edit $pam_abl_config");
-                exit(1);
+        $host_whitelist = '';
+        foreach $wl_ip (@host_whitelist_array) {
+            $host_whitelist .= $wl_ip . ';';
+        }
+        $host_whitelist .= '';
+
+
+        # Edit config:
+        if (!Sauce::Util::editfile($pam_abl_config, *edit_pam_abl_config, $host_purge, $host_rule, $host_whitelist)) {
+            $cce->bye('FAIL', "Cannot edit $pam_abl_config");
+            exit(1);
         }
     }
     else {
-	# Ok, we have a problem: No config found.
-	# So we just weep silently and exit. 
-	$cce->bye('FAIL', "$pam_abl_config not found!");
-	exit(1);
+        # Ok, we have a problem: No config found.
+        # So we just weep silently and exit. 
+        $cce->bye('FAIL', "$pam_abl_config not found!");
+        exit(1);
     }
 }
 
@@ -64,27 +69,33 @@ exit(0);
 
 sub edit_pam_abl_config {
 
-        my($in, $out, $xhost_purge, $xuser_purge, $xhost_rule, $xuser_rule) = @_;
-        my($new_config) = <<EOF;
-# /etc/security/pam_abl.conf
-# debug
-host_db=/var/lib/abl/hosts.db
+    my($in, $out, $xhost_purge, $xhost_rule, $xhost_whitelist) = @_;
+    my($new_config) = <<EOF;
+db_home=/var/lib/pam_abl
+host_db=/var/lib/pam_abl/hosts.db
 host_purge=$xhost_purge
 host_rule=$xhost_rule
-user_db=/var/lib/abl/users.db
-user_purge=$xuser_purge
-user_rule=$xuser_rule
+#user_db=/var/lib/pam_abl/users.db
+user_purge=1d
+user_rule=*:3/1h
+host_clear_cmd=[logger] [clear] [host] [%h]
+host_block_cmd=[logger] [block] [host] [%h]
+user_clear_cmd=[logger] [clear] [user] [%u]
+user_block_cmd=[logger] [block] [user] [%u]
+limits=1000-1200
+host_whitelist=$xhost_whitelist
+user_whitelist=admin
 EOF
-        print $out $new_config;
-        return 1;
+    print $out $new_config;
+    return 1;
 }
 
 $cce->bye('SUCCESS');
 exit(0);
 
 # 
-# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 

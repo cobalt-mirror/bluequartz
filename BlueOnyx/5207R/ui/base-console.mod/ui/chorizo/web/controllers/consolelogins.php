@@ -2,318 +2,318 @@
 
 class Consolelogins extends MX_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Past the login page this loads the page for /console/consolelogins.
-	 *
-	 */
+    /**
+     * Index Page for this controller.
+     *
+     * Past the login page this loads the page for /console/consolelogins.
+     *
+     */
 
-	public function index() {
+    public function index() {
 
-		$CI =& get_instance();
-		
-	    // We load the BlueOnyx helper library first of all, as we heavily depend on it:
-	    $this->load->helper('blueonyx');
-	    init_libraries();
+        $CI =& get_instance();
+        
+        // We load the BlueOnyx helper library first of all, as we heavily depend on it:
+        $this->load->helper('blueonyx');
+        init_libraries();
 
-  		// Need to load 'BxPage' for page rendering:
-  		$this->load->library('BxPage');
-		$MX =& get_instance();
+        // Need to load 'BxPage' for page rendering:
+        $this->load->library('BxPage');
+        $MX =& get_instance();
 
-	    // Get $sessionId and $loginName from Cookie (if they are set):
-	    $sessionId = $CI->input->cookie('sessionId');
-	    $loginName = $CI->input->cookie('loginName');
-	    $locale = $CI->input->cookie('locale');
+        // Get $sessionId and $loginName from Cookie (if they are set):
+        $sessionId = $CI->input->cookie('sessionId');
+        $loginName = $CI->input->cookie('loginName');
+        $locale = $CI->input->cookie('locale');
 
-	    // Line up the ducks for CCE-Connection:
-	    include_once('ServerScriptHelper.php');
-		$serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-		$cceClient = $serverScriptHelper->getCceClient();
-		$user = $cceClient->getObject("User", array("name" => $loginName));
-		$i18n = new I18n("base-console", $user['localePreference']);
-		$system = $cceClient->getObject("System");
+        // Line up the ducks for CCE-Connection:
+        include_once('ServerScriptHelper.php');
+        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
+        $cceClient = $serverScriptHelper->getCceClient();
+        $user = $cceClient->getObject("User", array("name" => $loginName));
+        $i18n = new I18n("base-console", $user['localePreference']);
+        $system = $cceClient->getObject("System");
 
-		// Initialize Capabilities so that we can poll the access rights as well:
-		$Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        // Initialize Capabilities so that we can poll the access rights as well:
+        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
 
-		// -- Actual page logic start:
+        // -- Actual page logic start:
 
-		// Not serverConfig? Bye, bye!
-		if (!$Capabilities->getAllowed('serverConfig')) {
-			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
-			Log403Error("/gui/Forbidden403");
-		}
+        // Not serverConfig? Bye, bye!
+        if (!$Capabilities->getAllowed('serverConfig')) {
+            // Nice people say goodbye, or CCEd waits forever:
+            $cceClient->bye();
+            $serverScriptHelper->destructor();
+            Log403Error("/gui/Forbidden403");
+        }
 
-		//
-		//--- Get CODB-Object of interest updated: 
-		//
+        //
+        //--- Get CODB-Object of interest updated: 
+        //
 
-		$ourOID = $cceClient->find("SOL_Console");
-		$cceClient->set($ourOID[0], "", array('gui_list_lasttrigger' => time()));
-		$errors = $cceClient->errors();
+        $ourOID = $cceClient->find("SOL_Console");
+        $cceClient->set($ourOID[0], "", array('gui_list_lasttrigger' => time()));
+        $errors = $cceClient->errors();
 
-		//
-		//--- Get CODB-Object of interest loaded: 
-		//
+        //
+        //--- Get CODB-Object of interest loaded: 
+        //
 
-		$CODBDATA = $cceClient->getObject("SOL_Console");
+        $CODBDATA = $cceClient->getObject("SOL_Console");
 
-		//
-		//--- Handle form validation:
-		//
+        //
+        //--- Handle form validation:
+        //
 
-	    // We start without any active errors:
-	    $errors = array();
-	    $extra_headers =array();
-	    $ci_errors = array();
-	    $my_errors = array();
+        // We start without any active errors:
+        $errors = array();
+        $extra_headers =array();
+        $ci_errors = array();
+        $my_errors = array();
 
-		// Shove submitted input into $form_data after passing it through the XSS filter:
-		$form_data = $CI->input->post(NULL, TRUE);
+        // Shove submitted input into $form_data after passing it through the XSS filter:
+        $form_data = $CI->input->post(NULL, TRUE);
 
-		// Form fields that are required to have input:
-		$required_keys = array();
+        // Form fields that are required to have input:
+        $required_keys = array();
 
-    	// Set up rules for form validation. These validations happen before we submit to CCE and further checks based on the schemas are done:
+        // Set up rules for form validation. These validations happen before we submit to CCE and further checks based on the schemas are done:
 
-		// Empty array for key => values we want to submit to CCE:
-    	$attributes = array();
-    	// Items we do NOT want to submit to CCE:
-    	$ignore_attributes = array("BlueOnyx_Info_Text");
-		if (is_array($form_data)) {
-			// Function GetFormAttributes() walks through the $form_data and returns us the $parameters we want to
-			// submit to CCE. It intelligently handles checkboxes, which only have "on" set when they are ticked.
-			// In that case it pulls the unticked status from the hidden checkboxes and addes them to $parameters.
-			// It also transformes the value of the ticked checkboxes from "on" to "1". 
-			//
-			// Additionally it generates the form_validation rules for CodeIgniter.
-			//
-			// params: $i18n				i18n Object of the error messages
-			// params: $form_data			array with form_data array from CI
-			// params: $required_keys		array with keys that must have data in it. Needed for CodeIgniter's error checks
-			// params: $ignore_attributes	array with items we want to ignore. Such as Labels.
-			// return: 						array with keys and values ready to submit to CCE.
-			$attributes = GetFormAttributes($i18n, $form_data, $required_keys, $ignore_attributes, $i18n);
-		}
-		//Setting up error messages:
-		$CI->form_validation->set_message('required', $i18n->get("[[palette.val_is_required]]", false, array("field" => "\"%s\"")));		
+        // Empty array for key => values we want to submit to CCE:
+        $attributes = array();
+        // Items we do NOT want to submit to CCE:
+        $ignore_attributes = array("BlueOnyx_Info_Text");
+        if (is_array($form_data)) {
+            // Function GetFormAttributes() walks through the $form_data and returns us the $parameters we want to
+            // submit to CCE. It intelligently handles checkboxes, which only have "on" set when they are ticked.
+            // In that case it pulls the unticked status from the hidden checkboxes and addes them to $parameters.
+            // It also transformes the value of the ticked checkboxes from "on" to "1". 
+            //
+            // Additionally it generates the form_validation rules for CodeIgniter.
+            //
+            // params: $i18n                i18n Object of the error messages
+            // params: $form_data           array with form_data array from CI
+            // params: $required_keys       array with keys that must have data in it. Needed for CodeIgniter's error checks
+            // params: $ignore_attributes   array with items we want to ignore. Such as Labels.
+            // return:                      array with keys and values ready to submit to CCE.
+            $attributes = GetFormAttributes($i18n, $form_data, $required_keys, $ignore_attributes, $i18n);
+        }
+        //Setting up error messages:
+        $CI->form_validation->set_message('required', $i18n->get("[[palette.val_is_required]]", false, array("field" => "\"%s\"")));        
 
-	    // Do we have validation related errors?
-	    if ($CI->form_validation->run() == FALSE) {
+        // Do we have validation related errors?
+        if ($CI->form_validation->run() == FALSE) {
 
-			if (validation_errors()) {
-				// Set CI related errors:
-				$ci_errors = array(validation_errors('<div class="alert dismissible alert_red"><img width="40" height="36" src="/.adm/images/icons/small/white/alarm_bell.png"><strong>', '</strong></div>'));
-			}		    
-			else {
-				// No errors. Pass empty array along:
-				$ci_errors = array();
-			}
-		}
+            if (validation_errors()) {
+                // Set CI related errors:
+                $ci_errors = array(validation_errors('<div class="alert dismissible alert_red"><img width="40" height="36" src="/.adm/images/icons/small/white/alarm_bell.png"><strong>', '</strong></div>'));
+            }           
+            else {
+                // No errors. Pass empty array along:
+                $ci_errors = array();
+            }
+        }
 
-		//
-		//--- Own error checks:
-		//
+        //
+        //--- Own error checks:
+        //
 
-		$get_form_data = $CI->input->get(NULL, TRUE);
+        $get_form_data = $CI->input->get(NULL, TRUE);
 
-		// Check if we have everything:
-		if (((isset($get_form_data['console'])) && ($get_form_data['console'] != "")) && 
-			((isset($get_form_data['username'])) && ($get_form_data['username'] != "")) && 
-			((isset($get_form_data['pid'])) && ($get_form_data['pid'] != ""))) { 
+        // Check if we have everything:
+        if (((isset($get_form_data['console'])) && ($get_form_data['console'] != "")) && 
+            ((isset($get_form_data['username'])) && ($get_form_data['username'] != "")) && 
+            ((isset($get_form_data['pid'])) && ($get_form_data['pid'] != ""))) { 
 
-			$user_kill_action = array(
-				"user_kill_console" => urldecode($get_form_data['console']),
-				"user_kill_user" => $get_form_data['username'],
-				"user_kill_pid" => $get_form_data['pid'],
-				"user_kill_trigger" => time()
-			  );
+            $user_kill_action = array(
+                "user_kill_console" => urldecode($get_form_data['console']),
+                "user_kill_user" => $get_form_data['username'],
+                "user_kill_pid" => $get_form_data['pid'],
+                "user_kill_trigger" => time()
+              );
 
-	  		// Actual submit to CODB:
-			$cceClient->setObject("SOL_Console", $user_kill_action);		
+            // Actual submit to CODB:
+            $cceClient->setObject("SOL_Console", $user_kill_action);        
 
-			// CCE errors that might have happened during submit to CODB:
-			$CCEerrors = $cceClient->errors();
-			foreach ($CCEerrors as $object => $objData) {
-				// When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
-				$errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
-			}
-			// No errors. Reload the entire page to load it with the updated values:
-			if ((count($errors) == "0")) {
-				header("Location: /console/consolelogins");
-				exit;
-			}
-		}
+            // CCE errors that might have happened during submit to CODB:
+            $CCEerrors = $cceClient->errors();
+            foreach ($CCEerrors as $object => $objData) {
+                // When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
+                $errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
+            }
+            // No errors. Reload the entire page to load it with the updated values:
+            if ((count($errors) == "0")) {
+                header("Location: /console/consolelogins");
+                exit;
+            }
+        }
 
-		//
-		//--- At this point all checks are done. If we have no errors, we can submit the data to CODB:
-		//
+        //
+        //--- At this point all checks are done. If we have no errors, we can submit the data to CODB:
+        //
 
-		// Join the various error messages:
-		$errors = array_merge($ci_errors, $my_errors);
+        // Join the various error messages:
+        $errors = array_merge($ci_errors, $my_errors);
 
-		//
-		//-- Page Logic:
-		//
+        //
+        //-- Page Logic:
+        //
 
-		$iam = '/console/consolelogins';
+        $iam = '/console/consolelogins';
 
-		//
-	    //-- Generate page:
-	    //
+        //
+        //-- Generate page:
+        //
 
-		// Prepare Page:
-		$factory = $serverScriptHelper->getHtmlComponentFactory("base-console", "/console/consolelogins");
-		$BxPage = $factory->getPage();
-		$BxPage->setErrors($errors);
-		$i18n = $factory->getI18n();
+        // Prepare Page:
+        $factory = $serverScriptHelper->getHtmlComponentFactory("base-console", "/console/consolelogins");
+        $BxPage = $factory->getPage();
+        $BxPage->setErrors($errors);
+        $i18n = $factory->getI18n();
 
-		$product = new Product($cceClient);
+        $product = new Product($cceClient);
 
-		// Set Menu items:
-		$BxPage->setVerticalMenu('base_security');
-		$BxPage->setVerticalMenuChild('base_console_logins');
-		$page_module = 'base_sysmanage';
+        // Set Menu items:
+        $BxPage->setVerticalMenu('base_security');
+        $BxPage->setVerticalMenuChild('base_console_logins');
+        $page_module = 'base_sysmanage';
 
-		$defaultPage = "basic";
+        $defaultPage = "basic";
 
-		$block =& $factory->getPagedBlock("vserver_loginlist", array($defaultPage));
+        $block =& $factory->getPagedBlock("vserver_loginlist", array($defaultPage));
 
-		$block->setToggle("#");
-		$block->setSideTabs(FALSE);
-//		$block->setShowAllTabs("#");
-		$block->setDefaultPage($defaultPage);
+        $block->setToggle("#");
+        $block->setSideTabs(FALSE);
+//      $block->setShowAllTabs("#");
+        $block->setDefaultPage($defaultPage);
 
-		//
-		//--- Basic Tab
-		//
+        //
+        //--- Basic Tab
+        //
 
-  		$ScrollList = $factory->getScrollList("vserver_loginlist", array(" ", "LUSER", "CONSOLE", "HOST", "START_DATE", "STIME", "ETIME", "DURATION", "UKILL"), array());
-	    $ScrollList->setAlignments(array("left", "left", "left", "left", "left", "left", "left", "left", "center"));
-	    $ScrollList->setDefaultSortedIndex('0');
-	    $ScrollList->setSortOrder('ascending');
-	    $ScrollList->setSortDisabled(array('8'));
-	    $ScrollList->setPaginateDisabled(FALSE);
-	    $ScrollList->setSearchDisabled(FALSE);
-	    $ScrollList->setSelectorDisabled(FALSE);
-	    $ScrollList->enableAutoWidth(TRUE);
-	    $ScrollList->setInfoDisabled(FALSE);
-	    $ScrollList->setColumnWidths(array("10", "20", "20", "100", "250", "50", "50", "100", "100")); // Max: 739px
+        $ScrollList = $factory->getScrollList("vserver_loginlist", array(" ", "LUSER", "CONSOLE", "HOST", "START_DATE", "STIME", "ETIME", "DURATION", "UKILL"), array());
+        $ScrollList->setAlignments(array("left", "left", "left", "left", "left", "left", "left", "left", "center"));
+        $ScrollList->setDefaultSortedIndex('0');
+        $ScrollList->setSortOrder('ascending');
+        $ScrollList->setSortDisabled(array('8'));
+        $ScrollList->setPaginateDisabled(FALSE);
+        $ScrollList->setSearchDisabled(FALSE);
+        $ScrollList->setSelectorDisabled(FALSE);
+        $ScrollList->enableAutoWidth(TRUE);
+        $ScrollList->setInfoDisabled(FALSE);
+        $ScrollList->setColumnWidths(array("10", "20", "20", "100", "250", "50", "50", "100", "100")); // Max: 739px
 
-		// Populate table rows with the data:
+        // Populate table rows with the data:
 
-		// USER PID %CPU %MEM VSZ RSS TTY STAT START TIME COMMAND
+        // USER PID %CPU %MEM VSZ RSS TTY STAT START TIME COMMAND
 
-		// Explode entire strings into separate lines:
-		$pieces = explode("#DELI#", $CODBDATA['sol_logins']);
+        // Explode entire strings into separate lines:
+        $pieces = explode("#DELI#", $CODBDATA['sol_logins']);
 
-		// How many entries are in $pieces?
-		$ps_lines = 0;
-		$ps_lines = count($pieces);
-		$ps_a = "0";
-		$ps_b = "1";
+        // How many entries are in $pieces?
+        $ps_lines = 0;
+        $ps_lines = count($pieces);
+        $ps_a = "0";
+        $ps_b = "1";
 
-		foreach ($pieces as $line) {
-		    if (($ps_a > 0) && (count_chars($line) > 3)) {
+        foreach ($pieces as $line) {
+            if (($ps_a > 0) && (count_chars($line) > 3)) {
 
-				$action = $factory->getCompositeFormField();
+                $action = $factory->getCompositeFormField();
 
-				// Split down each line into the bits and pieces we need:
-				$login = rtrim(substr($line, "0", "9"));
-				$console = rtrim(substr($line, "9", "13"));
-				$host = rtrim(substr($line, "22", "17"));
-				$startdate = rtrim(substr($line, "39", "11"));
-				$starttime = rtrim(substr($line, "50", "5"));
-				$endtime = rtrim(substr($line, "58", "5"));
-				$duration = rtrim(substr($line, "64", "75"));
+                // Split down each line into the bits and pieces we need:
+                $login = rtrim(substr($line, "0", "9"));
+                $console = rtrim(substr($line, "9", "13"));
+                $host = rtrim(substr($line, "22", "17"));
+                $startdate = rtrim(substr($line, "39", "11"));
+                $starttime = rtrim(substr($line, "50", "5"));
+                $endtime = rtrim(substr($line, "58", "5"));
+                $duration = rtrim(substr($line, "64", "75"));
 
-		    	if (($Capabilities->getAllowed('adminUser')) && ($endtime == "still")) {
-		    	    if (preg_match("/ftpd/i", $console)) {
-		    	        $killer = "ftpd";
-						$ftpd_pid = rtrim(substr($console, "4", "6"));
-		    	    }
-			    else {
-		    	        $killer = urlencode($console);
-		    	        $ftpd_pid = "0";
-		    	    }
+                if (($Capabilities->getAllowed('adminUser')) && ($endtime == "still")) {
+                    if (preg_match("/ftpd/i", $console)) {
+                        $killer = "ftpd";
+                        $ftpd_pid = rtrim(substr($console, "4", "6"));
+                    }
+                else {
+                        $killer = urlencode($console);
+                        $ftpd_pid = "0";
+                    }
 
-					$remove_button = $factory->getRemoveButton("$iam?console=" . urlencode($killer) . "&username=$login&pid=$ftpd_pid");
-					$remove_button->setImageOnly(TRUE);
-		    	    $action->addFormField($remove_button);
-		    	}
+                    $remove_button = $factory->getRemoveButton("$iam?console=" . urlencode($killer) . "&username=$login&pid=$ftpd_pid");
+                    $remove_button->setImageOnly(TRUE);
+                    $action->addFormField($remove_button);
+                }
 
-		        if (preg_match("/wtmp begins/i", $line)) {
-				    $header = rtrim(substr($line, "0", "42"));
-				}
-				elseif (!$login) {
-				}
-				else { 
-					// Populate Scrollist
-				    $ScrollList->addEntry(array(
-				        	    $ps_a,
-				        	    $login,
-				        	    $console,
-				        	    $host,
-				        	    $startdate,
-				        	    $starttime,
-				        	    $endtime,
-				        	    $duration,
-						    	$action
-				    ));
-		    	    $ps_b++;
-				}
-		    }
-		    $ps_a++;
-		}
+                if (preg_match("/wtmp begins/i", $line)) {
+                    $header = rtrim(substr($line, "0", "42"));
+                }
+                elseif (!$login) {
+                }
+                else { 
+                    // Populate Scrollist
+                    $ScrollList->addEntry(array(
+                                $ps_a,
+                                $login,
+                                $console,
+                                $host,
+                                $startdate,
+                                $starttime,
+                                $endtime,
+                                $duration,
+                                $action
+                    ));
+                    $ps_b++;
+                }
+            }
+            $ps_a++;
+        }
 
-		$block->addFormField(
-			$factory->getRawHTML("filler", "&nbsp;"),
-			$factory->getLabel(" "),
-			$defaultPage
-		);
+        $block->addFormField(
+            $factory->getRawHTML("filler", "&nbsp;"),
+            $factory->getLabel(" "),
+            $defaultPage
+        );
 
-		$block->addFormField(
-			$factory->getRawHTML("filler", "&nbsp;" . $header),
-			$factory->getLabel(" "),
-			$defaultPage
-		);
+        $block->addFormField(
+            $factory->getRawHTML("filler", "&nbsp;" . $header),
+            $factory->getLabel(" "),
+            $defaultPage
+        );
 
-		// Commit-Integer: We need at least one form field to be able to submit data.
-		// So we use this hidden one:
-		$block->addFormField(
-			$factory->getTextField('commit', time(), ''),
-			$factory->getLabel("commit"), 
-			$defaultPage
-		);	
+        // Commit-Integer: We need at least one form field to be able to submit data.
+        // So we use this hidden one:
+        $block->addFormField(
+            $factory->getTextField('commit', time(), ''),
+            $factory->getLabel("commit"), 
+            $defaultPage
+        );  
 
-		// Show the ScrollList of Logins:
-		$block->addFormField(
-			$factory->getRawHTML("vserver_loginlist", $ScrollList->toHtml()),
-			$factory->getLabel("vserver_loginlist"),
-			$defaultPage
-		);
+        // Show the ScrollList of Logins:
+        $block->addFormField(
+            $factory->getRawHTML("vserver_loginlist", $ScrollList->toHtml()),
+            $factory->getLabel("vserver_loginlist"),
+            $defaultPage
+        );
 
-		// Add the buttons
-		$block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
-		$block->addButton($factory->getCancelButton("/console/consolelogins"));
+        // Add the buttons
+        $block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
+        $block->addButton($factory->getCancelButton("/console/consolelogins"));
 
-		// Nice people say goodbye, or CCEd waits forever:
-		$cceClient->bye();
-		$serverScriptHelper->destructor();
+        // Nice people say goodbye, or CCEd waits forever:
+        $cceClient->bye();
+        $serverScriptHelper->destructor();
 
-		$page_body[] = $block->toHtml();
+        $page_body[] = $block->toHtml();
 
-		// Out with the page:
-	    $BxPage->render($page_module, $page_body);
+        // Out with the page:
+        $BxPage->render($page_module, $page_body);
 
-	}		
+    }       
 }
 /*
-Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 All Rights Reserved.
 
 1. Redistributions of source code must retain the above copyright 

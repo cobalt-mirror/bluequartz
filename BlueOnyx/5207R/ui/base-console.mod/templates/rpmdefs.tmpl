@@ -55,10 +55,21 @@ information for [VENDOR]-[SERVICE].
 
 <begin glue>
 [AUTOFILL]
-%attr(0644,-,-) /etc/cron.d/pam_abl_purge.cron
-%attr(0644,-,-) /etc/pam.d/password-auth-ac.5107R
-%attr(0644,-,-) /etc/pam.d/system-auth.5106R
+%attr(0755,-,-) /etc/cron.daily/pam_abl.sh
 %attr(0755,-,-) /usr/sausalito/sbin/pam_abl_import.pl
+%attr(0644,-,-) /usr/sausalito/configs/pam.d/el5/proftpd
+%attr(0644,-,-) /usr/sausalito/configs/pam.d/el5/system-auth
+%attr(0644,-,-) /usr/sausalito/configs/pam.d/el5/system-auth-cce
+%attr(0644,-,-) /usr/sausalito/configs/pam.d/el6/password-auth
+%attr(0644,-,-) /usr/sausalito/configs/pam.d/el6/password-auth-ac
+%attr(0644,-,-) /usr/sausalito/configs/pam.d/el6/proftpd
+%attr(0644,-,-) /usr/sausalito/configs/pam.d/el6/system-auth
+%attr(0644,-,-) /usr/sausalito/configs/pam.d/el6/system-auth-cce
+%attr(0644,-,-) /usr/sausalito/configs/pam.d/el7/password-auth
+%attr(0644,-,-) /usr/sausalito/configs/pam.d/el7/password-auth-ac
+%attr(0644,-,-) /usr/sausalito/configs/pam.d/el7/proftpd
+%attr(0644,-,-) /usr/sausalito/configs/pam.d/el7/system-auth
+%attr(0644,-,-) /usr/sausalito/configs/pam.d/el7/system-auth-cce
 <end glue>
 
 <begin ui>
@@ -134,6 +145,28 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Thu Sep 24 2015 Michael Stauber <mstauber@solarspeed.net> 2.1.0-0BX08
+- Update to handle PAM_ABL v0.6.0
+- Massively trimmed down the Schema and config file, as we do no longer 
+  want to keep the blocked hosts (or even the users) in CODB for this.
+- Modified constructor/import_pam_abl_settings.pl to rotate the platform
+  dependend PAM config files into the right places.
+- New glue/cron.daily/pam_abl.sh replaces previous cron.d
+- Modified glue/handlers/import_pam_abl_settings.pl to adjust it to the
+  new (and different) pam_abl.conf
+- Deleted unneeded event handlers.
+- Modified glue/handlers/update_pam_abl_settings.pl to deal with changed
+  pam_abl.conf config file.
+- Added glue/pam.d/ for the PAM configs of the various platforms.
+- Removed glue/sbin/pam_abl_import.pl
+- Modified ui/chorizo/web/controllers/ablsettings.php
+- Modified ui/chorizo/web/controllers/ablstatus.php
+- Modified ui/chorizo/web/controllers/console_logfile_viewer.php
+- Modified ui/chorizo/web/controllers/console_logfiles.php
+- Modified ui/chorizo/web/controllers/consolelogins.php
+- Modified ui/chorizo/web/controllers/consoleprocs.php
+- Added ui/chorizo/web/controllers/events.php
 
 * Sun Jul 19 2015 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX07
 - Removed requirement for 'whois', as we added that to base-blueonyx now.
