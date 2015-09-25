@@ -2,98 +2,98 @@
 
 class Events extends MX_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Past the login page this loads the page for /console/events.
-	 *
-	 */
+    /**
+     * Index Page for this controller.
+     *
+     * Past the login page this loads the page for /console/events.
+     *
+     */
 
-	public function index() {
+    public function index() {
 
-		$CI =& get_instance();
-		
-	    // We load the BlueOnyx helper library first of all, as we heavily depend on it:
-	    $this->load->helper('blueonyx');
-	    init_libraries();
+        $CI =& get_instance();
+        
+        // We load the BlueOnyx helper library first of all, as we heavily depend on it:
+        $this->load->helper('blueonyx');
+        init_libraries();
 
-  		// Need to load 'BxPage' for page rendering:
-  		$this->load->library('BxPage');
-		$MX =& get_instance();
+        // Need to load 'BxPage' for page rendering:
+        $this->load->library('BxPage');
+        $MX =& get_instance();
 
-	    // Get $sessionId and $loginName from Cookie (if they are set):
-	    $sessionId = $CI->input->cookie('sessionId');
-	    $loginName = $CI->input->cookie('loginName');
-	    $locale = $CI->input->cookie('locale');
+        // Get $sessionId and $loginName from Cookie (if they are set):
+        $sessionId = $CI->input->cookie('sessionId');
+        $loginName = $CI->input->cookie('loginName');
+        $locale = $CI->input->cookie('locale');
 
-	    // Line up the ducks for CCE-Connection:
-	    include_once('ServerScriptHelper.php');
-		$serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-		$cceClient = $serverScriptHelper->getCceClient();
-		$user = $cceClient->getObject("User", array("name" => $loginName));
-		$i18n = new I18n("base-console", $user['localePreference']);
-		$system = $cceClient->getObject("System");
+        // Line up the ducks for CCE-Connection:
+        include_once('ServerScriptHelper.php');
+        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
+        $cceClient = $serverScriptHelper->getCceClient();
+        $user = $cceClient->getObject("User", array("name" => $loginName));
+        $i18n = new I18n("base-console", $user['localePreference']);
+        $system = $cceClient->getObject("System");
 
-		// Initialize Capabilities so that we can poll the access rights as well:
-		$Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        // Initialize Capabilities so that we can poll the access rights as well:
+        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
 
-		// -- Actual page logic start:
+        // -- Actual page logic start:
 
-		// Not serverConfig? Bye, bye!
-		if (!$Capabilities->getAllowed('serverConfig')) {
-			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
-			Log403Error("/gui/Forbidden403");
-		}
+        // Not serverConfig? Bye, bye!
+        if (!$Capabilities->getAllowed('serverConfig')) {
+            // Nice people say goodbye, or CCEd waits forever:
+            $cceClient->bye();
+            $serverScriptHelper->destructor();
+            Log403Error("/gui/Forbidden403");
+        }
 
-		//
-		//--- Handle form validation:
-		//
+        //
+        //--- Handle form validation:
+        //
 
-	    // We start without any active errors:
-	    $errors = array();
-	    $extra_headers =array();
-	    $ci_errors = array();
-	    $my_errors = array();
+        // We start without any active errors:
+        $errors = array();
+        $extra_headers =array();
+        $ci_errors = array();
+        $my_errors = array();
 
-		$get_form_data = $CI->input->get(NULL, TRUE);
+        $get_form_data = $CI->input->get(NULL, TRUE);
 
-		// Get query string:
-		if (isset($get_form_data['q'])) {
-			$query = $get_form_data['q'];
-		}
-		else {
-			// This is not what we're looking for! Stop poking around!
-			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
-			Log403Error("/gui/Forbidden403#FU");
-		}
+        // Get query string:
+        if (isset($get_form_data['q'])) {
+            $query = $get_form_data['q'];
+        }
+        else {
+            // This is not what we're looking for! Stop poking around!
+            // Nice people say goodbye, or CCEd waits forever:
+            $cceClient->bye();
+            $serverScriptHelper->destructor();
+            Log403Error("/gui/Forbidden403#FU");
+        }
 
-		//
-		//--- At this point all checks are done. If we have no errors, we can submit the data to CODB:
-		//
+        //
+        //--- At this point all checks are done. If we have no errors, we can submit the data to CODB:
+        //
 
-		// Join the various error messages:
-		$errors = array_merge($ci_errors, $my_errors);
+        // Join the various error messages:
+        $errors = array_merge($ci_errors, $my_errors);
 
-		//
-	    //-- Generate page:
-	    //
+        //
+        //-- Generate page:
+        //
 
-		// Prepare Page:
-		$factory = $serverScriptHelper->getHtmlComponentFactory("base-console", "/console/ablstatus");
-		$BxPage = $factory->getPage();
-		$BxPage->setErrors($errors);
-		$i18n = $factory->getI18n();
+        // Prepare Page:
+        $factory = $serverScriptHelper->getHtmlComponentFactory("base-console", "/console/ablstatus");
+        $BxPage = $factory->getPage();
+        $BxPage->setErrors($errors);
+        $i18n = $factory->getI18n();
 
-		$product = new Product($cceClient);
+        $product = new Product($cceClient);
 
-		// Set Menu items:
-		$BxPage->setVerticalMenu('pam_abl_status');
-		$BxPage->setVerticalMenuChild('pam_abl_status');
-		$page_module = 'base_sysmanage';
+        // Set Menu items:
+        $BxPage->setVerticalMenu('pam_abl_status');
+        $BxPage->setVerticalMenuChild('pam_abl_status');
+        $page_module = 'base_sysmanage';
 
         //
         //--- Get 'fail_hosts' information from CCEWrap:
@@ -115,27 +115,33 @@ class Events extends MX_Controller {
         }
 
         $RecordedHosts = array();
+        $auth_types = array('USER', 'HOST', 'BOTH', 'AUTH');
         foreach ($clean_hostlist as $key => $value) {
             $value = explode(';', $value);
-            if (count($value) == "3") {
+            unset($value[0]);
+            if (count($value) == "2") {
                 // We have the IP:
                 $event_IP = $value[1];
                 $event_count = $value[2];
                 $RecordedHosts[$event_IP]['failcnt'] = $event_count;
                 $event_num = "1";
             }
-            if (count($value) > "3") {
+            else {
                 $event_service = $value[1];
-                $event_user = $value[2];
-                $event_type = $value[3];
-                if (isset($value[8])) {
-                    unset($value[0]);
+                if (in_array($value[2], $auth_types)) {
+                    $event_user = "n/a";
+                    $event_type = $value[2];
+                    unset($value[1]);
+                    unset($value[2]);
+                }
+                else {
+                    $event_user = $value[2];
+                    $event_type = $value[3];
                     unset($value[1]);
                     unset($value[2]);
                     unset($value[3]);
-                    unset($value[4]);
-                    $event_date = implode(" ", $value);
                 }
+                $event_date = implode(" ", $value);
                 $RecordedHosts[$event_IP]['event'][$event_num] = array('event_service' => $event_service, 'event_user' => $event_user, 'event_type' => $event_type, 'event_date' => $event_date);
                 $event_num++;
             }
@@ -166,15 +172,15 @@ class Events extends MX_Controller {
         $scrollList->setColumnWidths(array("184", "184", "184", "184")); // Max: 739px
 
         if (isset($RecordedHosts[$query])) {
-	        // Populate host table rows with the data:
-	        foreach ($RecordedHosts[$query]['event'] as $host => $data) {
-	            $scrollList->addEntry(array(
-	                $data['event_service'],
-	                $data['event_user'],
-	                $data['event_type'],
-	                $data['event_date']
-	            ));
-	        }
+            // Populate host table rows with the data:
+            foreach ($RecordedHosts[$query]['event'] as $host => $data) {
+                $scrollList->addEntry(array(
+                    $data['event_service'],
+                    $data['event_user'],
+                    $data['event_type'],
+                    $data['event_date']
+                ));
+            }
         }
 
         $block->addFormField(
@@ -183,18 +189,18 @@ class Events extends MX_Controller {
             "blocked_hosts"
         );
 
-		// Nice people say goodbye, or CCEd waits forever:
-		$cceClient->bye();
-		$serverScriptHelper->destructor();
+        // Nice people say goodbye, or CCEd waits forever:
+        $cceClient->bye();
+        $serverScriptHelper->destructor();
 
-		// Page body:
-		$page_body[] = $block->toHtml();
+        // Page body:
+        $page_body[] = $block->toHtml();
 
-		// Out with the page:
-	    $BxPage->setOutOfStyle(TRUE);
-	    $BxPage->render($page_module, $page_body);
+        // Out with the page:
+        $BxPage->setOutOfStyle(TRUE);
+        $BxPage->render($page_module, $page_body);
 
-	}		
+    }       
 }
 /*
 Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET

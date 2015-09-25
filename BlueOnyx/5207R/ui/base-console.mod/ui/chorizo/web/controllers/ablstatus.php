@@ -181,27 +181,33 @@ class Ablstatus extends MX_Controller {
         }
 
         $RecordedHosts = array();
+        $auth_types = array('USER', 'HOST', 'BOTH', 'AUTH');
         foreach ($clean_hostlist as $key => $value) {
             $value = explode(';', $value);
-            if (count($value) == "3") {
+            unset($value[0]);
+            if (count($value) == "2") {
                 // We have the IP:
                 $event_IP = $value[1];
                 $event_count = $value[2];
                 $RecordedHosts[$event_IP]['failcnt'] = $event_count;
                 $event_num = "1";
             }
-            if (count($value) > "3") {
+            else {
                 $event_service = $value[1];
-                $event_user = $value[2];
-                $event_type = $value[3];
-                if (isset($value[8])) {
-                    unset($value[0]);
+                if (in_array($value[2], $auth_types)) {
+                    $event_user = "n/a";
+                    $event_type = $value[2];
+                    unset($value[1]);
+                    unset($value[2]);
+                }
+                else {
+                    $event_user = $value[2];
+                    $event_type = $value[3];
                     unset($value[1]);
                     unset($value[2]);
                     unset($value[3]);
-                    unset($value[4]);
-                    $event_date = implode(" ", $value);
                 }
+                $event_date = implode(" ", $value);
                 $RecordedHosts[$event_IP]['event'][$event_num] = array('event_service' => $event_service, 'event_user' => $event_user, 'event_type' => $event_type, 'event_date' => $event_date);
                 $event_num++;
             }
@@ -282,9 +288,15 @@ class Ablstatus extends MX_Controller {
                 $status = '                 <button class="light tiny text_only has_text tooltip hover" title="' . $i18n->getHtml("[[palette.No]]") . '"><span>' . $i18n->getHtml("[[palette.No]]") . '</span></button>';
             }
 
+            // fqdn:
+            $event_fqdn = @gethostbyaddr($host);
+            if ($event_fqdn == "") {
+                $event_fqdn = "n/a";
+            }
+
             $scrollList->addEntry(array(
                 $host,
-                gethostbyaddr($host), 
+                $event_fqdn, 
                 $events_button,
                 $whois_button,
                 $failcnt,
