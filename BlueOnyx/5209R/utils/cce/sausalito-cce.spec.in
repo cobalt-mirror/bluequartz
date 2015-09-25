@@ -119,6 +119,7 @@ make install PREFIX=$RPM_BUILD_ROOT CCETOPDIR=/usr/sausalito
 /var/lib/pam_abl
 /usr/bin/pam_abl
 /usr/bin/pam_abl_test
+/usr/sausalito/bin/pam_abl_gui
 %config(noreplace) /etc/security/pam_abl.conf
 
 %files client
@@ -214,6 +215,9 @@ if [ "$1" -ge "1" ]; then
 fi
 
 %changelog
+
+* Fri Sep 25 2015 Michael Stauber <mstauber@solarspeed.net> 0.99.2-1BX03
+- Brought back /usr/sausalito/bin/pam_abl_gui as Dfix needs it.
 
 * Thu Sep 24 2015 Michael Stauber <mstauber@solarspeed.net> 0.99.2-1BX02
 - Upgraded PAM_ABL to 0.6.0

@@ -25,6 +25,8 @@ install: all
 	mkdir -p $(PREFIX)/usr/bin
 	$(INSTALL) -m 755 -o root -g root cmake_build/pam_abl $(PREFIX)/usr/bin/pam_abl
 	$(INSTALL) -m 755 -o root -g root cmake_build/pam_abl_test $(PREFIX)/usr/bin/pam_abl_test
+	mkdir -p $(PREFIX)/usr/sausalito/bin
+	$(INSTALL) -m 755 -o root -g root cmake_build/pam_abl $(PREFIX)/usr/sausalito/bin/pam_abl_gui
 
 clean:
 	rm -Rf cmake_build
