@@ -64,6 +64,11 @@ information for [VENDOR]-[SERVICE].
 %attr(0644,-,-) /usr/sausalito/configs/pam.d/el6/proftpd
 %attr(0644,-,-) /usr/sausalito/configs/pam.d/el6/system-auth
 %attr(0644,-,-) /usr/sausalito/configs/pam.d/el6/system-auth-cce
+%attr(0644,-,-) /usr/sausalito/configs/pam.d/el6.64/password-auth
+%attr(0644,-,-) /usr/sausalito/configs/pam.d/el6.64/password-auth-ac
+%attr(0644,-,-) /usr/sausalito/configs/pam.d/el6.64/proftpd
+%attr(0644,-,-) /usr/sausalito/configs/pam.d/el6.64/system-auth
+%attr(0644,-,-) /usr/sausalito/configs/pam.d/el6.64/system-auth-cce
 %attr(0644,-,-) /usr/sausalito/configs/pam.d/el7/password-auth
 %attr(0644,-,-) /usr/sausalito/configs/pam.d/el7/password-auth-ac
 %attr(0644,-,-) /usr/sausalito/configs/pam.d/el7/proftpd
@@ -145,6 +150,9 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Thu Sep 24 2015 Michael Stauber <mstauber@solarspeed.net> 2.1.0-0BX11
+- PAM fixes.
 
 * Thu Sep 24 2015 Michael Stauber <mstauber@solarspeed.net> 2.1.0-0BX10
 - Fixes.

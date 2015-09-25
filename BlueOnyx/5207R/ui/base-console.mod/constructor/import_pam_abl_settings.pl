@@ -38,9 +38,14 @@ chomp($fullbuild);
 my ($build, $model, $lang) = ($fullbuild =~ m/^build (\S+) for a (\S+) in (\S+)/);
 
 # Copy the right PAM config files into the right places:
-if (($model eq "5107R") || ($model eq "5108R") || ($model eq "5207R") || ($model eq "5208R")) {
+if (($model eq "5107R") ($model eq "5207R")) {
     if (-d "/usr/sausalito/configs/pam.d/el6") {
        system("/bin/cp /usr/sausalito/configs/pam.d/el6/* /etc/pam.d/");
+    }
+}
+if (($model eq "5108R") || ($model eq "5208R")) {
+    if (-d "/usr/sausalito/configs/pam.d/el6.64") {
+       system("/bin/cp /usr/sausalito/configs/pam.d/el6.64/* /etc/pam.d/");
     }
 }
 if ($model eq "5106R") {
