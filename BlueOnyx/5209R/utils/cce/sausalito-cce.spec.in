@@ -18,7 +18,7 @@ Prefix: /usr/sausalito
 BuildRoot: /var/tmp/cce-root
 BuildRequires: glib-devel, pam-devel, glib2-devel
 BuildRequires: flex, bison, flex-devel
-BuildRequires: php-devel
+BuildRequires: php-devel, cmake
 
 
 # Maximum RPM: "There are times when RPM's automatic dependency
