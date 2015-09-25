@@ -2,8 +2,7 @@
 # This file is auto-generated.
 # User changes will be destroyed the next time authconfig is run.
 auth        required      /lib/security/$ISA/pam_env.so
-auth        requisite     /lib/security/pam_abl.so config=/etc/security/pam_abl.conf check_only
-#auth        required      /lib/security/pam_abl.so config=/etc/security/pam_abl.conf
+auth        required      /lib/security/pam_abl.so config=/etc/security/pam_abl.conf
 auth        sufficient    /lib/security/$ISA/pam_unix.so likeauth nullok
 auth        required      /lib/security/$ISA/pam_deny.so
 
@@ -11,7 +10,6 @@ account     required      /lib/security/$ISA/pam_unix.so
 
 password    required      /lib/security/$ISA/pam_cracklib.so retry=3
 password    sufficient    /lib/security/$ISA/pam_unix.so nullok use_authtok md5 shadow
-auth        optional      pam_abl.so config=/etc/security/pam_abl.conf record_attempt
 password    required      /lib/security/$ISA/pam_deny.so
 
 session     required      /lib/security/$ISA/pam_limits.so
