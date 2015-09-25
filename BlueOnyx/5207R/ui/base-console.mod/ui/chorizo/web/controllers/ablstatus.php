@@ -185,31 +185,33 @@ class Ablstatus extends MX_Controller {
         foreach ($clean_hostlist as $key => $value) {
             $value = explode(';', $value);
             unset($value[0]);
-            if (count($value) == "2") {
-                // We have the IP:
-                $event_IP = $value[1];
-                $event_count = $value[2];
-                $RecordedHosts[$event_IP]['failcnt'] = $event_count;
-                $event_num = "1";
-            }
-            else {
-                $event_service = $value[1];
-                if (in_array($value[2], $auth_types)) {
-                    $event_user = "n/a";
-                    $event_type = $value[2];
-                    unset($value[1]);
-                    unset($value[2]);
+            if (count($value) != "1") {
+                if (count($value) == "2") {
+                    // We have the IP:
+                    $event_IP = $value[1];
+                    $event_count = $value[2];
+                    $RecordedHosts[$event_IP]['failcnt'] = $event_count;
+                    $event_num = "1";
                 }
                 else {
-                    $event_user = $value[2];
-                    $event_type = $value[3];
-                    unset($value[1]);
-                    unset($value[2]);
-                    unset($value[3]);
+                    $event_service = $value[1];
+                    if (in_array($value[2], $auth_types)) {
+                        $event_user = "n/a";
+                        $event_type = $value[2];
+                        unset($value[1]);
+                        unset($value[2]);
+                    }
+                    else {
+                        $event_user = $value[2];
+                        $event_type = $value[3];
+                        unset($value[1]);
+                        unset($value[2]);
+                        unset($value[3]);
+                    }
+                    $event_date = implode(" ", $value);
+                    $RecordedHosts[$event_IP]['event'][$event_num] = array('event_service' => $event_service, 'event_user' => $event_user, 'event_type' => $event_type, 'event_date' => $event_date);
+                    $event_num++;
                 }
-                $event_date = implode(" ", $value);
-                $RecordedHosts[$event_IP]['event'][$event_num] = array('event_service' => $event_service, 'event_user' => $event_user, 'event_type' => $event_type, 'event_date' => $event_date);
-                $event_num++;
             }
         }
 
