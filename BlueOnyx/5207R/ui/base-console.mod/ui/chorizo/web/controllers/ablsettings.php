@@ -188,31 +188,6 @@ class Ablsettings extends MX_Controller {
             "pam_abl_config_location"
         );
 
-        // host_purge:
-        $host_purge_choices=array(
-            "1h" => "1h", 
-            "2h" => "2h", 
-            "3h" => "3h", 
-            "4h" => "4h", 
-            "6h" => "6h", 
-            "8h" => "8h", 
-            "10h" => "10h", 
-            "12h" => "12h", 
-            "18h" => "18h", 
-            "1d" => "1d", 
-            "2d" => "2d", 
-            "3d" => "3d", 
-            "4d" => "4d", 
-            "8d" => "8d" 
-            );
-
-        $host_purge = $CODBDATA['host_purge'];
-
-        // user_purge Input:
-        $host_purge_select = $factory->getMultiChoice("host_purge",array_values($host_purge_choices));
-        $host_purge_select->setSelected($host_purge_choices[$host_purge], true);
-        $block->addFormField($host_purge_select,$factory->getLabel("host_purge"), "pam_abl_config_location");
-
         // host_rule:
         $host_rule_raw = $CODBDATA['host_rule'];
         $hr_diss = explode(':', $host_rule_raw);
