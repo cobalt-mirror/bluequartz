@@ -70,6 +70,10 @@ information for [VENDOR]-[SERVICE].
 <begin glue>
 # glue post-install
 
+if [ -f /usr/sausalito/constructor/base/vsite/fixhosts.pl ];then
+	/usr/sausalito/constructor/base/vsite/fixhosts.pl
+fi
+
 <end glue>
 <begin ui>
 # ui post-install
@@ -101,6 +105,10 @@ information for [VENDOR]-[SERVICE].
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Fri Sep 25 2015 Michael Stauber <mstauber@solarspeed.net> 2.0.0-1BX17
+- Added glue POST-INSTALL call to fixhosts.pl (if present) to get around
+  the fact that our capstone does not have post-install scripts.
 
 * Fri Sep 25 2015 Michael Stauber <mstauber@solarspeed.net> 2.0.0-1BX16
 - Replaced glue/handlers/etchosts.pl with the routines from base-vsite
