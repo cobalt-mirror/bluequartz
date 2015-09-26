@@ -101,7 +101,6 @@ class Events extends MX_Controller {
 
         $runas = 'root';
         $ret = $serverScriptHelper->shell("/usr/bin/pam_abl -v", $nfk, $runas, $sessionId);
-
         $hostList = explode(PHP_EOL, $nfk);
         $clean_hostlist = array();
         foreach ($hostList as $key => $value) {
@@ -121,8 +120,22 @@ class Events extends MX_Controller {
             unset($value[0]);
             if (count($value) != "1") {
                 if (count($value) == "2") {
-                    // We have the IP:
-                    $event_IP = $value[1];
+                    // We may have the IP. But check if it is an IP:
+                    if (filter_var($value[1], FILTER_VALIDATE_IP)) {
+                        $event_IP = $value[1];
+                    }
+                    else {
+                        // $value[1] is not an IP. Could be a hostname? Check it:
+                        $resolved_event_ip = @gethostbyname($value[1]);
+                        if (filter_var($resolved_event_ip, FILTER_VALIDATE_IP)) {
+                            // If we now have an IP, then we use it:
+                            $event_IP = $resolved_event_ip;
+                        }
+                        else {
+                            // Still don't have an IP? We give up.
+                            $event_IP = "n/a";
+                        }
+                    }
                     $event_count = $value[2];
                     $RecordedHosts[$event_IP]['failcnt'] = $event_count;
                     $event_num = "1";
@@ -150,7 +163,7 @@ class Events extends MX_Controller {
         }
 
         $defaultPage = "blocked_hosts";
-        $header_text = $i18n->get("pam_abl_blocked_users_and_hosts") . " (" . $event_IP . ")";
+        $header_text = $i18n->get("pam_abl_blocked_users_and_hosts") . " (" . $query . ")";
         $block =& $factory->getPagedBlock($header_text, array($defaultPage));
 
         $block->setToggle("#");

@@ -151,6 +151,15 @@ fi
 
 <begin $CHANGELOG>
 
+* Sat Sep 26 2015 Michael Stauber <mstauber@solarspeed.net> 2.1.0-0BX12
+- Some small fixes and some tidying up of the GUI code for the new 
+  PAM_ABL. These fixes make sure that an IP is shown where IP is required
+  and that we (if need be) calculate the IP from the hostname.
+  Additionally overly long hostnames are now shortened and displayed as
+  a void link with a mouse-over that shows the full hostname.
+  Small bugfix in the events viewer, which showed the last recorded IP
+  in the detail view instead of the actual IP we're examining.
+
 * Thu Sep 24 2015 Michael Stauber <mstauber@solarspeed.net> 2.1.0-0BX11
 - PAM fixes.
 
