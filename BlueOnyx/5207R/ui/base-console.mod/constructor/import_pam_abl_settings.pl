@@ -145,6 +145,7 @@ sub ini_read {
 sub verify {
 
     # Go through list of config switches we're interested in:
+    $oldstyle_config_found = '0';
     foreach $entry (@whatweneed) {
         if (!$CONFIG{"$entry"}) {
             # Found key without value - setting defaults for those that need it:
@@ -159,7 +160,6 @@ sub verify {
             }
         }
 
-        $oldstyle_config_found = '0';
         if ($CONFIG{"user_db"} eq "/var/lib/abl/users.db")  {
             # Found an old style config file. Need to update!
             $oldstyle_config_found = '1';
@@ -178,7 +178,6 @@ sub verify {
             print $entry . " = " . $CONFIG{"$entry"} . "\n";
         }
     }
-
 }
 
 sub feedthemonster {
