@@ -159,6 +159,12 @@ sub verify {
             }
         }
 
+        $oldstyle_config_found = '0';
+        if ($CONFIG{"user_db"} eq "/var/lib/abl/users.db")  {
+            # Found an old style config file. Need to update!
+            $oldstyle_config_found = '1';
+        }
+
         if ($CONFIG{"host_whitelist"})  {
             if ($CONFIG{"host_whitelist"} =~ /;/) {
                 @hwl = split (/;/, $CONFIG{"host_whitelist"});
@@ -194,6 +200,16 @@ sub feedthemonster {
             'host_rule' => $CONFIG{"host_rule"},  
             'host_whitelist' => $CONFIG{"host_whitelist"}
         });
+    }
+
+    # If we found an old style config file we force an update of it:
+    if ($oldstyle_config_found eq "1") {
+        ($sys_oid) = $cce->find('pam_abl_settings');
+        ($ok, $sys) = $cce->get($sys_oid);
+        ($ok) = $cce->set($sys_oid, '',{
+            'update_config' => time(),
+            'force_update' => time(),
+            });
     }
 }
 
