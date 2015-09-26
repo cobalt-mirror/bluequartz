@@ -136,6 +136,15 @@ fi
 
 <begin $CHANGELOG>
 
+* Fri Sep 25 2015 Michael Stauber <mstauber@solarspeed.net> 4.0-0BX30
+- Removed old constructor/fixhosts shell script.
+- Added constructor/fixhosts.pl
+- Changed glue/handlers/fixhosts.pl
+- Purpose if this change is to get a fully correct /etc/hosts generated
+  that covers really all bases reliably. Additionally it creates our
+  /etc/hostname which we need on EL7.
+- Modified glue/conf/vsite.conf
+
 * Sat Jul 04 2015 Michael Stauber <mstauber@solarspeed.net> 4.0-0BX29
 - Modified ui/chorizo/web/controllers/vsiteEmail.php to fix AutoFeatures.
 
