@@ -69,6 +69,9 @@ information for [VENDOR]-[SERVICE].
 
 <begin glue>
 # glue post-install
+if [ -f /usr/sausalito/constructor/base/vsite/fixhosts.pl ];then
+	/usr/sausalito/constructor/base/vsite/fixhosts.pl
+fi
 
 <end glue>
 <begin ui>
@@ -101,6 +104,12 @@ information for [VENDOR]-[SERVICE].
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Sat Sep 26 2015 Michael Stauber <mstauber@solarspeed.net> 2.0.0-1BX06
+- Added glue POST-INSTALL call to fixhosts.pl (if present) to get around
+  the fact that our capstone does not have post-install scripts.
+- Replaced glue/handlers/etchosts.pl with the routines from base-vsite
+  glue/handlers/fixhosts.pl to make it more consistent.
 
 * Thu Feb 13 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-1BX05
 - Fixed ui/web/pooling.php. Without any server admins set up it threw an error.
