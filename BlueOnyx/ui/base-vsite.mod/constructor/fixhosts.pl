@@ -4,7 +4,7 @@
 use CCE;
 
 my $cce = new CCE;
-$cce->connectfd();
+$cce->connectuds();
 
 @RealNetOids = $cce->find('Network', { 'enabled' => '1', 'real' => '1' } );
 @OtherNetOids = $cce->find('Network', { 'enabled' => '1', 'real' => '0' } );

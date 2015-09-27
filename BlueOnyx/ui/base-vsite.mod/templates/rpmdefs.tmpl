@@ -137,6 +137,15 @@ fi
 
 <begin $CHANGELOG>
 
+* Sat Sep 26 2015 Michael Stauber <mstauber@solarspeed.net> 3.1-0BX29
+- Removed old constructor/fixhosts shell script.
+- Added constructor/fixhosts.pl
+- Changed glue/handlers/fixhosts.pl
+- Purpose if this change is to get a fully correct /etc/hosts generated
+  that covers really all bases reliably. Additionally it creates our
+  /etc/hostname.
+- Modified glue/conf/vsite.conf
+
 * Fri Jun 19 2015 Michael Stauber <mstauber@solarspeed.net> 3.1-0BX28
 - Modified ui/web/php_server.php to use CCEWrap to get the contends of 
   php.ini instead of file() as our systems php.ini might have 600 
