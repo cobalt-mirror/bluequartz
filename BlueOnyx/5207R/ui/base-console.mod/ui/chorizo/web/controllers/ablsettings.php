@@ -189,8 +189,19 @@ class Ablsettings extends MX_Controller {
         );
 
         // host_rule:
+        $CODBDATA = $cceClient->getObject("pam_abl_settings");
         $host_rule_raw = $CODBDATA['host_rule'];
         $hr_diss = explode(':', $host_rule_raw);
+        if (!isset($hr_diss[1])) {
+            // 'host_rule' in CODB is fubar. Set it to default:
+            $attributes['host_rule'] = "*:30/1h";
+            $cceClient->setObject("pam_abl_settings", $attributes);
+
+            // Now try it again:
+            $CODBDATA = $cceClient->getObject("pam_abl_settings");
+            $host_rule_raw = $CODBDATA['host_rule'];
+            $hr_diss = explode(':', $host_rule_raw);
+        }
         $host_rule = $hr_diss[1];
 
         // build array:
