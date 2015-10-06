@@ -12,6 +12,17 @@
 # Vsite and will modify it with the PHP settings configured for the site in question.
 # If suPHP is disabled, that custom php.ini file will be deleted. It is protected
 # against modifications through chattrib, although that may be a bit excessive.
+#
+# Additionally: Each Vsite now has a nonpublic php.d directory into which custom
+# php.ini snippets can be posted. This handler will create the php.d directories
+# (if they don't already exist), fixes permissions and ownerships and parses the
+# contends. If the php.ini snippets in php.d of the Vsite match CODB stored PHP
+# parameters, then they will be updated in CODB. If they contain parameters that
+# are not stored in CODB, then (depending on the used PHP implementation) the 
+# <VirtualHost> container, the suPHP php.ini of the Vsite or the PHP-FPM pool file
+# will inherit these modifications, too. File format: Names must end in *.ini and 
+# only lines that contain "php_admin_value", "php_value" or "php_flag" are honored.
+#
 
 # Debugging switch:
 $DEBUG = "0";
@@ -70,6 +81,174 @@ if ($whatami eq "handler") {
     @system_oid = $cce->find('System');
     ($ok, $tzdata) = $cce->get($system_oid[0], "Time");
     $timezone = $tzdata->{'timeZone'};
+
+    ######################################## Start vsite/php.d parsing stuff ##########################################
+
+    #
+    ## PHP Application related extra-settings:
+    #
+
+    # Poll info about the Vsite in question:
+    ($ok, $vsite) = $cce->get($oid);
+
+    # Find out homedir of the Vsite:
+    &debug_msg("Vsite: $vsite->{name}\n");
+    my ($VirtualHost_oid) = $cce->find('Vsite', { 'name' => $vsite->{name} });
+    if ($VirtualHost_oid) {
+        ($ok, $VirtualHost) = $cce->get($VirtualHost_oid, '');
+    }
+    else {
+            $cce->bye('FAIL', '[[base-vsite.cantEditVhost]]');
+            &debug_msg("Fail0b: [[base-vsite.cantEditVhost]]\n");
+            exit(1);
+    }
+    my $site_dir = homedir_get_group_dir($VirtualHost->{name}, $VirtualHost->{volume});
+    &debug_msg("home $site_dir\n");
+    $custom_php_include_dir = $site_dir . "/php.d";
+    if (!-d $custom_php_include_dir) {
+        system("mkdir $custom_php_include_dir");
+    }
+    if (-d $custom_php_include_dir) {
+        system('chown', '-R', "root.$VirtualHost->{name}", $custom_php_include_dir);
+        system('chmod', '-R', "0644", $custom_php_include_dir);
+    }
+
+    # Get PHPVsite to determine how PHP is configured for this site:
+    ($ok, $active_php_settings) = $cce->get($oid, "PHPVsite");
+
+    # Start sane:
+    @php_vars_that_need_changing = ();
+    @php_vars_that_need_changing_the_hard_way = ();
+    @app_php_vars = ();
+    $vsite_php_settings_writeoff_extra = {};
+
+    # GUI supported PHP flags that we check against:
+    @php_gui_supported = qw/register_globals safe_mode safe_mode_gid max_execution_time max_input_time memory_limit post_max_size upload_max_filesize allow_url_fopen allow_url_include/;
+
+    # Do we have custom HTTPD config? Eg PHP settings?
+    if (-d $custom_php_include_dir) {
+        foreach my $fp (glob("$custom_php_include_dir/*.ini")) {
+            open my $fh, "<", $fp or die "can't read open '$fp': $OS_ERROR";
+            while (<$fh>) {
+                &debug_msg("Processing $fh with content: $_ \n");
+                if (($_ =~ /^#(.*)$/i) || ($_ =~ /^;(.*)$/i)) {
+                    # Skip lines that start with # or ; and therefore are comments:
+                    next;
+                }
+                ($php_operator, $php_flag, $php_value) = split(/\s/, $_);
+                push(@app_php_vars, ("$php_operator|$php_flag|$php_value"));
+            }
+            close $fh or die "can't read close '$fp': $OS_ERROR";
+        }
+    }
+
+    # Walk through the PHP config we inherited from the conf file:
+    foreach (@app_php_vars) {
+        ($php_operator, $php_flag, $php_value) = split(/\|/, $_);
+        if ((length($php_operator) gt "0") && (length($php_flag) gt "0") && (length($php_value) gt "0")) {
+            &debug_msg("Debug1: $php_operator - $php_flag - $php_value \n");
+        
+            # Check if the flag from conf file is amongst the supported GUI flags:
+            if (grep $_ eq $php_flag, @php_gui_supported) {
+                &debug_msg("Debug2: App wants $php_flag set to $php_value, but Vsite has $php_flag set to $active_php_settings->{$php_flag} \n");
+        
+                # Check if we really need to bump the sites PHP settings for this 
+                # parameter, or if the desired setting is worse than what we already have:
+        
+                # 'php_admin_flag' are usually 'On' or 'Off'. In our cases 'Off' is the safe and therefore preferred setting:
+                if ($php_operator eq "php_admin_flag") {
+                    if (($php_value =~ /^On$/i) && ($active_php_settings->{$php_flag} eq "Off")) {
+                    &debug_msg("Debug3: App wants $php_flag 'On' which is usually 'Off'. \n");
+                    push(@php_vars_that_need_changing, ("$php_operator|$php_flag|$php_value"));
+                    }
+                    else {
+                        &debug_msg("Debug3: Ignoring request to change $php_flag to 'On' as it is already 'On'. \n");
+                    }
+                }
+                # 'php_admin_value' that we care about are usually numerical with optional unit:
+                if (($php_operator eq "php_admin_value") || ($php_operator eq "php_value")) {
+        
+                    # We need to strip the optional unit 'M' from the end of our values:
+                    undef $value_worker;
+                    undef $value_worker_gui;
+                    if ($php_value =~ /^\d+M$/i) { 
+                        $value_worker = substr($php_value, 0, -1);
+                    }
+                    else {
+                        $value_worker = $php_value;
+                    }
+                    if ($active_php_settings->{$php_flag} =~ /^\d+M$/i) { 
+                        $value_worker_gui = substr($active_php_settings->{$php_flag}, 0, -1);
+                    }
+                    else {
+                        $value_worker_gui = $active_php_settings->{$php_flag};
+                    }
+        
+                    # Now compare if the desired value is greater than what the GUI already has set:
+                    if ($value_worker > $value_worker_gui) {
+                        push(@php_vars_that_need_changing, ("$php_operator|$php_flag|$php_value"));
+                        &debug_msg("Debug4: App wants $php_flag set to $value_worker, but GUI has it set to $value_worker_gui. \n");
+                    }
+                    else {
+                        &debug_msg("Debug4: Ignoring request to change $php_flag to $value_worker. \n");
+                    }
+                }
+            }
+            else {
+                # When we get here, then this means that the App config file contained options which the GUI doesn't support.
+                # So we need to take care of them the old fashioned way and store them away separately for now:
+                &debug_msg("Pushing $php_operator|$php_flag|$php_value \n");
+                if (!$vsite_php_settings_writeoff_extra->{"$php_flag"}) {
+                    # Preventing duplicates, first one wins.
+                    if ((length($php_operator) gt "0") && (length($php_flag) gt "0") && (length($php_value) gt "0")) {
+                        push(@php_vars_that_need_changing_the_hard_way, ("$php_operator|$php_flag|$php_value"));
+                        $vsite_php_settings_writeoff_extra->{"$php_flag"} = "$php_value";
+                    }
+                }
+            }
+        }
+    }
+
+    # At this point we looped through all the supported PHP vars. Push them to the GUI using supported methods:
+    $easy_way = scalar(@php_vars_that_need_changing);
+    if ($easy_way > 0) {
+        $php_gui_writeoff = {};
+        foreach (@php_vars_that_need_changing) {
+            ($php_operator, $php_flag, $php_value) = split(/\|/, $_);
+            &debug_msg("Pushing $php_flag - $php_value for the easy way. \n");
+            $php_gui_writeoff->{"$php_flag"} = "$php_value";
+        }
+    }
+
+    # Now we need to take care of any PHP related settings that are not handled directly by CODB:
+    $hard_way = scalar(@php_vars_that_need_changing_the_hard_way);
+    if ($hard_way > 0) {
+        &debug_msg("There are $hard_way unsupported flags left to settle.\n");
+        $php_extra_cfg  = "";
+        $php_fpm_extra_cfg  = "";
+        foreach (@php_vars_that_need_changing_the_hard_way) {
+            ($php_operator, $php_flag, $php_value) = split(/\|/, $_);
+            if (($php_operator eq "php_admin_value") || ($php_operator eq "php_value") || ($php_operator eq "php_flag")) {
+                if ((length($php_operator) gt "0") && (length($php_flag) gt "0") && (length($php_value) gt "0")) {
+                    $php_extra_cfg .=  "$php_operator $php_flag $php_value\n";
+                    $php_fpm_extra_cfg .=  "$php_operator" . '[' . "$php_flag" . ']' . " = $php_value\n";
+                    &debug_msg("$php_operator $php_flag $php_value\n");
+                }
+            }
+        }
+    }
+
+    # Write off the changes to CODB and set 'force_update' so that the config files (httpd, php.ini's and FPM-pools)
+    # are updated accordingly:
+    if (($easy_way > 0) || ($hard_way > 0)) {
+        # Adding the 'force_update' switch so that the GUI updates the PHP settings:
+        $php_gui_writeoff->{'force_update'} = time();
+        # Writing our wishlist of changes off to CCE, pushing the supported PHP changes active. This updates both the 
+        # sitex Vhost container as well as the separate php.ini of suPHP enabled sites.
+        $cce->set($sys_oid, 'PHPVsite', $php_gui_writeoff);
+    }
+
+    ######################################## End vsite/php.d parsing stuff ##########################################
 
     #
     ## Check for presence of third party extra PHP versions:
@@ -242,92 +421,96 @@ sub edit_vhost {
 
     if ($vsite_php->{"enabled"} eq "1") {
 
-    # Making sure 'safe_mode_include_dir' has the bare minimum defaults:
-    @smi_temporary = split(":", $vsite_php_settings->{"safe_mode_include_dir"});
-    @smi_baremetal_minimums = ('/usr/sausalito/configs/php/', '.');
-    @smi_temp_joined = (@smi_temporary, @smi_baremetal_minimums);
-    
-    # Remove duplicates:
-    foreach my $var ( @smi_temp_joined ){
-        if ( ! grep( /$var/, @safe_mode_include_dir ) ){
-            push(@safe_mode_include_dir, $var );
+        # Making sure 'safe_mode_include_dir' has the bare minimum defaults:
+        @smi_temporary = split(":", $vsite_php_settings->{"safe_mode_include_dir"});
+        @smi_baremetal_minimums = ('/usr/sausalito/configs/php/', '.');
+        @smi_temp_joined = (@smi_temporary, @smi_baremetal_minimums);
+        
+        # Remove duplicates:
+        foreach my $var ( @smi_temp_joined ){
+            if ( ! grep( /$var/, @safe_mode_include_dir ) ){
+                push(@safe_mode_include_dir, $var );
+            }
         }
-    }
-    $vsite_php_settings->{"safe_mode_include_dir"} = join(":", @safe_mode_include_dir);
+        $vsite_php_settings->{"safe_mode_include_dir"} = join(":", @safe_mode_include_dir);
 
-    # Making sure 'safe_mode_allowed_env_vars' has the bare minimum defaults:
-    @smaev_temporary = split(",", $vsite_php_settings->{"safe_mode_allowed_env_vars"});
-    @smi_baremetal_minimums = ('PHP_','_HTTP_HOST','_SCRIPT_NAME','_SCRIPT_FILENAME','_DOCUMENT_ROOT','_REMOTE_ADDR','_SOWNER');
-    @smaev_temp_joined = (@smaev_temporary, @smi_baremetal_minimums);
-    
-    # Remove duplicates:
-    foreach my $var ( @smaev_temp_joined ){
-        if ( ! grep( /$var/, @safe_mode_allowed_env_vars ) ){
-            push(@safe_mode_allowed_env_vars, $var );
+        # Making sure 'safe_mode_allowed_env_vars' has the bare minimum defaults:
+        @smaev_temporary = split(",", $vsite_php_settings->{"safe_mode_allowed_env_vars"});
+        @smi_baremetal_minimums = ('PHP_','_HTTP_HOST','_SCRIPT_NAME','_SCRIPT_FILENAME','_DOCUMENT_ROOT','_REMOTE_ADDR','_SOWNER');
+        @smaev_temp_joined = (@smaev_temporary, @smi_baremetal_minimums);
+        
+        # Remove duplicates:
+        foreach my $var ( @smaev_temp_joined ){
+            if ( ! grep( /$var/, @safe_mode_allowed_env_vars ) ){
+                push(@safe_mode_allowed_env_vars, $var );
+            }
         }
-    }
-    $vsite_php_settings->{"safe_mode_allowed_env_vars"} = join(",", @safe_mode_allowed_env_vars);
+        $vsite_php_settings->{"safe_mode_allowed_env_vars"} = join(",", @safe_mode_allowed_env_vars);
 
-    if ($legacy_php == "1") {
-        # These options only apply to PHP versions prior to PHP-5.3:
-        if ($vsite_php_settings->{"safe_mode"} ne "") {
-            $script_conf .= 'php_admin_flag safe_mode ' . $vsite_php_settings->{"safe_mode"} . "\n"; 
-        }
-        if ($vsite_php_settings->{"safe_mode_gid"} ne "") {
-            $script_conf .= 'php_admin_flag safe_mode_gid ' . $vsite_php_settings->{"safe_mode_gid"} . "\n";
-        }
-        if ($vsite_php_settings->{"safe_mode_allowed_env_vars"} ne "") {
-            $script_conf .= 'php_admin_value safe_mode_allowed_env_vars ' . $vsite_php_settings->{"safe_mode_allowed_env_vars"} . "\n"; 
-        }
-        if ($vsite_php_settings->{"safe_mode_exec_dir"} ne "") {
-            $script_conf .= 'php_admin_value safe_mode_exec_dir ' . $vsite_php_settings->{"safe_mode_exec_dir"} . "\n"; 
+        if ($legacy_php == "1") {
+            # These options only apply to PHP versions prior to PHP-5.3:
+            if ($vsite_php_settings->{"safe_mode"} ne "") {
+                $script_conf .= 'php_admin_flag safe_mode ' . $vsite_php_settings->{"safe_mode"} . "\n"; 
+            }
+            if ($vsite_php_settings->{"safe_mode_gid"} ne "") {
+                $script_conf .= 'php_admin_flag safe_mode_gid ' . $vsite_php_settings->{"safe_mode_gid"} . "\n";
+            }
+            if ($vsite_php_settings->{"safe_mode_allowed_env_vars"} ne "") {
+                $script_conf .= 'php_admin_value safe_mode_allowed_env_vars ' . $vsite_php_settings->{"safe_mode_allowed_env_vars"} . "\n"; 
+            }
+            if ($vsite_php_settings->{"safe_mode_exec_dir"} ne "") {
+                $script_conf .= 'php_admin_value safe_mode_exec_dir ' . $vsite_php_settings->{"safe_mode_exec_dir"} . "\n"; 
+            }
+
+            if ($vsite_php_settings->{"safe_mode_include_dir"} ne "") {
+                $script_conf .= 'php_admin_value safe_mode_include_dir ' . $vsite_php_settings->{"safe_mode_include_dir"} . "\n"; 
+            }
+            if ($vsite_php_settings->{"safe_mode_protected_env_vars"} ne "") {
+                $script_conf .= 'php_admin_value safe_mode_protected_env_vars ' . $vsite_php_settings->{"safe_mode_protected_env_vars"} . "\n"; 
+            }
         }
 
-        if ($vsite_php_settings->{"safe_mode_include_dir"} ne "") {
-            $script_conf .= 'php_admin_value safe_mode_include_dir ' . $vsite_php_settings->{"safe_mode_include_dir"} . "\n"; 
+        if ($vsite_php_settings->{"register_globals"} ne "") {
+            $script_conf .= 'php_admin_flag register_globals ' . $vsite_php_settings->{"register_globals"} . "\n"; 
         }
-        if ($vsite_php_settings->{"safe_mode_protected_env_vars"} ne "") {
-            $script_conf .= 'php_admin_value safe_mode_protected_env_vars ' . $vsite_php_settings->{"safe_mode_protected_env_vars"} . "\n"; 
+        if ($vsite_php_settings->{"allow_url_fopen"} ne "") {
+            $script_conf .= 'php_admin_flag allow_url_fopen ' . $vsite_php_settings->{"allow_url_fopen"} . "\n"; 
         }
-    }
+        if ($vsite_php_settings->{"allow_url_include"} ne "") {
+            $script_conf .= 'php_admin_flag allow_url_include ' . $vsite_php_settings->{"allow_url_include"} . "\n"; 
+        }
 
-    if ($vsite_php_settings->{"register_globals"} ne "") {
-        $script_conf .= 'php_admin_flag register_globals ' . $vsite_php_settings->{"register_globals"} . "\n"; 
-    }
-    if ($vsite_php_settings->{"allow_url_fopen"} ne "") {
-        $script_conf .= 'php_admin_flag allow_url_fopen ' . $vsite_php_settings->{"allow_url_fopen"} . "\n"; 
-    }
-    if ($vsite_php_settings->{"allow_url_include"} ne "") {
-        $script_conf .= 'php_admin_flag allow_url_include ' . $vsite_php_settings->{"allow_url_include"} . "\n"; 
-    }
+        if ($vsite_php_settings->{"open_basedir"} ne "") {
+            $script_conf .= 'php_admin_value open_basedir ' . $vsite_php_settings->{"open_basedir"} . "\n";
+        }
 
-    if ($vsite_php_settings->{"open_basedir"} ne "") {
-        $script_conf .= 'php_admin_value open_basedir ' . $vsite_php_settings->{"open_basedir"} . "\n";
-    }
+        if ($vsite_php_settings->{"post_max_size"} ne "") {
+            $script_conf .= 'php_admin_value post_max_size ' . $vsite_php_settings->{"post_max_size"} . "\n"; 
+        }
+        if ($vsite_php_settings->{"upload_max_filesize"} ne "") {
+            $script_conf .= 'php_admin_value upload_max_filesize ' . $vsite_php_settings->{"upload_max_filesize"} . "\n"; 
+        }
+        if ($vsite_php_settings->{"max_execution_time"} ne "") {
+            $script_conf .= 'php_admin_value max_execution_time ' . $vsite_php_settings->{"max_execution_time"} . "\n"; 
+        }
+        if ($vsite_php_settings->{"max_input_time"} ne "") {
+            $script_conf .= 'php_admin_value max_input_time ' . $vsite_php_settings->{"max_input_time"} . "\n"; 
+        }
+        if ($vsite_php_settings->{"max_input_vars"} ne "") {
+            $script_conf .= 'php_admin_value max_input_vars ' . $vsite_php_settings->{"max_input_vars"} . "\n"; 
+        }
+        if ($vsite_php_settings->{"memory_limit"} ne "") {
+            $script_conf .= 'php_admin_value memory_limit ' . $vsite_php_settings->{"memory_limit"} . "\n"; 
+        }
 
-    if ($vsite_php_settings->{"post_max_size"} ne "") {
-        $script_conf .= 'php_admin_value post_max_size ' . $vsite_php_settings->{"post_max_size"} . "\n"; 
-    }
-    if ($vsite_php_settings->{"upload_max_filesize"} ne "") {
-        $script_conf .= 'php_admin_value upload_max_filesize ' . $vsite_php_settings->{"upload_max_filesize"} . "\n"; 
-    }
-    if ($vsite_php_settings->{"max_execution_time"} ne "") {
-        $script_conf .= 'php_admin_value max_execution_time ' . $vsite_php_settings->{"max_execution_time"} . "\n"; 
-    }
-    if ($vsite_php_settings->{"max_input_time"} ne "") {
-        $script_conf .= 'php_admin_value max_input_time ' . $vsite_php_settings->{"max_input_time"} . "\n"; 
-    }
-    if ($vsite_php_settings->{"max_input_vars"} ne "") {
-        $script_conf .= 'php_admin_value max_input_vars ' . $vsite_php_settings->{"max_input_vars"} . "\n"; 
-    }
-    if ($vsite_php_settings->{"memory_limit"} ne "") {
-        $script_conf .= 'php_admin_value memory_limit ' . $vsite_php_settings->{"memory_limit"} . "\n"; 
-    }
+        # Email related:
+        $script_conf .= 'php_admin_flag mail.add_x_header On' . "\n";
+        $script_conf .= 'php_admin_value sendmail_path /usr/sausalito/sbin/phpsendmail' . "\n";
+        $script_conf .= 'php_admin_value auto_prepend_file /usr/sausalito/configs/php/set_php_headers.php' . "\n";
 
-    # Email related:
-    $script_conf .= 'php_admin_flag mail.add_x_header On' . "\n";
-    $script_conf .= 'php_admin_value sendmail_path /usr/sausalito/sbin/phpsendmail' . "\n";
-    $script_conf .= 'php_admin_value auto_prepend_file /usr/sausalito/configs/php/set_php_headers.php' . "\n";
+        # Add vsite/php.d/* include related extras:
+        $script_conf .= "# From $custom_php_include_dir/:\n";
+        $script_conf .= $php_extra_cfg;
 
     }
 
@@ -501,9 +684,27 @@ sub edit_php_ini {
 
     # Error handling:
     unless ($ok) {
-    &debug_msg("Error while editing $custom_php_ini_path through php_vsite_handler.pl \n");
+        &debug_msg("Error while editing $custom_php_ini_path through php_vsite_handler.pl \n");
         $cce->bye('FAIL', "Error while editing $custom_php_ini_path!");
         exit(1);
+    }
+
+    # Write off vsite/php.d related extras into Vsite's php.ini - if there are any:
+    if ($hard_way > 0) {
+        &debug_msg("Editing $custom_php_ini_path for php.d related extras through php_vsite_handler.pl \n");
+        $ok = Sauce::Util::editfile(
+            $custom_php_ini_path,
+            *Sauce::Util::hash_edit_function,
+            ';',
+            { 're' => '=', 'val' => ' = ' },
+            $vsite_php_settings_writeoff_extra);
+
+        # Error handling:
+        unless ($ok) {
+            &debug_msg("Error while editing $custom_php_ini_path for php.d related extras through php_vsite_handler.pl \n");
+            $cce->bye('FAIL', "Error while editing $custom_php_ini_path to set php.d related extras!");
+            exit(1);
+        }
     }
 }
 
@@ -751,6 +952,10 @@ sub handle_fpm_pools {
         $pool_conf .= 'php_admin_flag[mail.add_x_header] = On' . "\n";
         $pool_conf .= 'php_admin_value[sendmail_path] = /usr/sausalito/sbin/phpsendmail' . "\n";
         $pool_conf .= 'php_admin_value[auto_prepend_file] = /usr/sausalito/configs/php/set_php_headers.php' . "\n";
+
+        # Add vsite/php.d/* include related extras:
+        $pool_conf .= "; From $custom_php_include_dir/:\n";
+        $pool_conf .= $php_fpm_extra_cfg;
 
         # Edit the Pool config file or die!:
         &debug_msg("Editing PHP-FPM pool config $pool_file through php_vsite_handler.pl \n");
