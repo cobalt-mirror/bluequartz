@@ -137,6 +137,13 @@ fi
 
 <begin $CHANGELOG>
 
+* Tue Oct 06 2015 Michael Stauber <mstauber@solarspeed.net> 3.1-0BX30
+- Added support for php.d directories in Vsite root directories. Which
+  may contain PHP configuration snippets that now get included into
+  the respective PHP implementation and configuration that the Vsite
+  uses.
+- Modified glue/handlers/php_vsite_handler.pl
+
 * Sat Sep 26 2015 Michael Stauber <mstauber@solarspeed.net> 3.1-0BX29
 - Removed old constructor/fixhosts shell script.
 - Added constructor/fixhosts.pl
