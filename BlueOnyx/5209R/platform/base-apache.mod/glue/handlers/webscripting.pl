@@ -174,9 +174,11 @@ foreach (@app_php_vars) {
             &debug_msg("Pushing $php_operator|$php_flag|$php_value \n");
             if (!$vsite_php_settings_writeoff_extra->{"$php_flag"}) {
                 # Preventing duplicates, first one wins.
-                if ((length($php_operator) gt "0") && (length($php_flag) gt "0") && (length($php_value) gt "0")) {
-                    push(@php_vars_that_need_changing_the_hard_way, ("$php_operator|$php_flag|$php_value"));
-                    $vsite_php_settings_writeoff_extra->{"$php_flag"} = "$php_value";
+                if (($php_operator eq "php_admin_value") || ($php_operator eq "php_value") || ($php_operator eq "php_flag")) {
+                    if ((length($php_operator) gt "0") && (length($php_flag) gt "0") && (length($php_value) gt "0")) {
+                        push(@php_vars_that_need_changing_the_hard_way, ("$php_operator|$php_flag|$php_value"));
+                        $vsite_php_settings_writeoff_extra->{"$php_flag"} = "$php_value";
+                    }
                 }
             }
         }
