@@ -173,6 +173,16 @@ fi
 
 <begin $CHANGELOG>
 
+* Tue Oct 06 2015 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX18
+- Added support for php.d directories in Vsite root directories. Which
+  may contain PHP configuration snippets that now get included into
+  the respective PHP implementation and configuration that the Vsite
+  uses.
+- Modified glue/conf/Apache.conf
+- Modified glue/handlers/webscripting.pl
+- Modified glue/handlers/webscripting2.pl
+- Modified glue/handlers/webscripting3.pl
+
 * Mon Jun 15 2015 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX17
 - Modified constructor/fix_php_conf.pl to install all required PEAR
   modules and to append 'open_basedir' with the PEAR path to get it 
