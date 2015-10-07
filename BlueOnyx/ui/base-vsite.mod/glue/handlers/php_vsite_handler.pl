@@ -25,7 +25,7 @@
 #
 
 # Debugging switch:
-$DEBUG = "1";
+$DEBUG = "0";
 if ($DEBUG)
 {
         use Sys::Syslog qw( :DEFAULT setlogsock);
