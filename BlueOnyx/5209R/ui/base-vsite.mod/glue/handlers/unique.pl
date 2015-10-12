@@ -7,7 +7,12 @@
 use CCE;
 use POSIX qw(isalpha);
 
-my $DEBUG = 0;
+# Debugging switch:
+$DEBUG = "0";
+if ($DEBUG)
+{
+    use Sys::Syslog qw( :DEFAULT setlogsock);
+}
 
 my $cce = new CCE('Domain' => 'base-vsite');
 
@@ -20,17 +25,21 @@ my $vsite_old = $cce->event_old();
 my @oids= $cce->find("System");
 my ($ok, $system) = $cce->get($oids[0]);
 
+&debug_msg("Start of Email Alias validation.\n");
+
 # don't allow system FQDN as the vsite FQDN
 my $system_fqdn = lc($system->{hostname} . "." . $system->{domainname});
 my $vsite_fqdn = lc($vsite_new->{fqdn});
 if ($system_fqdn eq $vsite_fqdn) {
     $cce->bye('FAIL', "[[base-vsite.systemFqdnNotAllowed,fqdn='$vsite_new->{fqdn}']]");
+    &debug_msg("Fail: systemFqdnNotAllowed\n");
     exit(1);
 }
 
 # don't allow localhost as the hostname
 if ($vsite_new->{hostname} =~ /localhost/i) {
     $cce->bye('FAIL', '[[base-vsite.localhostNotAllowed]]');
+    &debug_msg("Fail: localhostNotAllowed\n");
     exit(1);
 }
 
@@ -43,23 +52,23 @@ if ($vsite_new->{fqdn}) {
 
     # there should be no oids found
     if (scalar(@oids) > 1) {
-        $cce->bye('FAIL', 
-              "[[base-vsite.fqdnInUse,fqdn='$vsite_new->{fqdn}']]");
+        $cce->bye('FAIL', "[[base-vsite.fqdnInUse,fqdn='$vsite_new->{fqdn}']]");
+        &debug_msg("Fail: fqdnInUse\n");
         exit(1);
     }
 }
 
 # fqdn must be less than or equal to 255
-if ((length($vsite->{fqdn}) > 255) || 
-    (length("$vsite->{hostname}.$vsite->{domain}") > 255)) {
-
+if ((length($vsite->{fqdn}) > 255) || (length("$vsite->{hostname}.$vsite->{domain}") > 255)) {
     $cce->bye('FAIL', '[[base-vsite.fqdnTooLong]]');
+    &debug_msg("Fail: fqdnTooLong\n");
     exit(1);
 }
 
 # prefix must be no longer than five characters:
 if (length($vsite_new->{prefix}) > 5) {
     $cce->bye('FAIL', '[[base-vsite.prefixTooLong]]');
+    &debug_msg("Fail: prefixTooLong\n");
     exit(1);
 }
 
@@ -74,8 +83,8 @@ if ($vsite_new->{prefix}) {
 
     # there should be no oids found
     if (scalar(@oids) > 1) {
-        $cce->bye('FAIL', 
-              "[[base-vsite.prefixInUse,fqdn='$vsite_new->{prefix}']]");
+        $cce->bye('FAIL', "[[base-vsite.prefixInUse,fqdn='$vsite_new->{prefix}']]");
+        &debug_msg("Fail: prefixInUse\n");
         exit(1);
     }
     }
@@ -84,10 +93,11 @@ if ($vsite_new->{prefix}) {
 # Make sure prefix is alphanumerical:
 if (length($vsite_new->{prefix}) > 0) {
     if ($vsite_new->{prefix} =~ /^[a-zA-Z0-9]+$/) {
-    # OK
+        # OK
     }
     else {
-    $cce->bye('FAIL', '[[base-vsite.prefixInvalidChars]]');
+        $cce->bye('FAIL', '[[base-vsite.prefixInvalidChars]]');
+        &debug_msg("Fail: prefixInvalidChars\n");
     }
 }
 
@@ -123,6 +133,7 @@ if ($vsite_new->{webAliases}) {
     # okay, yes, non-unique web aliases are fatal
     if (scalar(@used_web_aliases)) {
         $cce->warn("[[base-vsite.usedWebAliases,aliases='" . join(', ', @used_web_aliases) . "']]");
+        &debug_msg("Fail: usedWebAliases\n");
         $cce->bye('FAIL');
         exit(1);
     }
@@ -152,6 +163,7 @@ if ($vsite_new->{mailAliases})
     if (scalar(@used_mail_aliases))
     {
         $cce->bye('FAIL', "[[base-vsite.usedMailAliases,aliases='" . join(', ', @used_mail_aliases) . "']]");
+        &debug_msg("Fail: usedMailAliases\n");
         exit(1);
     }
 }
@@ -224,6 +236,18 @@ sub _build_regi
 
     # caller handles any boundary additions
     return $regex;
+}
+
+# For debugging:
+sub debug_msg {
+    if ($DEBUG) {
+        my $msg = shift;
+        $user = $ENV{'USER'};
+        setlogsock('unix');
+        openlog($0,'','user');
+        syslog('info', "$ARGV[0]: $msg");
+        closelog;
+    }
 }
 
 # 

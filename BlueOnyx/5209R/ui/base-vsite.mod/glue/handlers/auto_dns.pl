@@ -29,6 +29,8 @@ $vsite = $cce->event_object();
 $vsite_new = $cce->event_new();
 $vsite_old = $cce->event_old();
 
+&debug_msg("Start of Auto-DNS validation.\n");
+
 # find the system oid for DNS restarts
 my ($sysoid) = $cce->find("System");
 
@@ -639,7 +641,9 @@ if ($vsite->{dns_auto}) {
 }
 
 if (scalar(@used_aliases)) {
-    $cce->warn("[[base-vsite.usedMailAliases,aliases='" . join(', ', @used_aliases) . "']]");
+    &debug_msg("Warning about 'usedMailAliases'.\n");
+    # We no longer warn about this, as the the Chorizo GUI treats it as fatal error:
+    #$cce->warn("[[base-vsite.usedMailAliases,aliases='" . join(', ', @used_aliases) . "']]");
 }
 
 $cce->bye('SUCCESS');
@@ -686,8 +690,8 @@ sub debug_msg {
 }
 
 # 
-# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2008 Brian N. Smith / NuOnce Networks, Inc.
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
