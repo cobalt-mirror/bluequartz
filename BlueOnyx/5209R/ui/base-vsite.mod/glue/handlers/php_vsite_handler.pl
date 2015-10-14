@@ -115,6 +115,7 @@ if ($whatami eq "handler") {
 
     # Get PHPVsite to determine how PHP is configured for this site:
     ($ok, $active_php_settings) = $cce->get($oid, "PHPVsite");
+    $PHPVsite_oid = $oid;
 
     # Start sane:
     @php_vars_that_need_changing = ();
@@ -247,7 +248,7 @@ if ($whatami eq "handler") {
         $php_gui_writeoff->{'force_update'} = time();
         # Writing our wishlist of changes off to CCE, pushing the supported PHP changes active. This updates both the 
         # sitex Vhost container as well as the separate php.ini of suPHP enabled sites.
-        $cce->set($sys_oid, 'PHPVsite', $php_gui_writeoff);
+        $cce->set($PHPVsite_oid, 'PHPVsite', $php_gui_writeoff);
     }
 
     ######################################## End vsite/php.d parsing stuff ##########################################
