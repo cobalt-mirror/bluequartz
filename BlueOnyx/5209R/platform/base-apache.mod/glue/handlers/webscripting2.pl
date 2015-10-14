@@ -369,8 +369,22 @@ sub edit_vhost
                         if ($fpmPort < 9000) {
                             $fpmPort = 9000;
                         }
-                        # Join the config together:
-                        $script_conf .= "ProxyPassMatch ^/(.*\\.php(/.*)?)\$ fcgi://127.0.0.1:$fpmPort$Vsite->{basedir}/web/\n";
+                        # Join the config together - and take the possibility into account that the documentRoot might be different than usual:
+                        ($VH_oid) = $cce->find('VirtualHost', { 'name' => $Vsite->{name} });
+                        if ($VH_oid) {
+                            ($ok, $VH) = $cce->get($VH_oid, '');
+                        }
+                        # Define default:
+                        $normal_docroot = $VH->{'documentRoot'} . "/web";
+                        if ($VH->{'documentRoot'} ne $normal_docroot) {
+                            $VsiteDocRoot = $VH->{'documentRoot'} . "/";
+                        }
+                        else {
+                            $VsiteDocRoot = $site_dir . "/";
+                        }
+                        # Replace double slash with single slash:
+                        $VsiteDocRoot =~ s/\/\//\//g;
+                        $script_conf .= "ProxyPassMatch ^/(.*\\.php(/.*)?)\$ fcgi://127.0.0.1:$fpmPort$VsiteDocRoot\n";
                 }
                 # Handle 'regular' PHP via DSO:
                 else {
