@@ -1,7 +1,7 @@
 Summary: Active Monitor support for base-ftp-am
 Name: base-ftp-am
 Version: 1.0.3
-Release: 0BX02%{?dist}
+Release: 0BX03%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -25,6 +25,9 @@ This package contains binaries and scripts used by the Active Monitor
 subsystem for base-ftp-am.  
 
 %changelog
+
+* Wed Oct 14 2015 Michael Stauber <mstauber@solarspeed.net> 1.0.3-0BX03
+- Changed am_ftp.ext to check against 127.0.0.1 instead of localhost.
 
 * Thu Dec 04 2014 Michael Stauber <mstauber@solarspeed.net> 1.0.3-0BX02
 - Systemd related fixes.
