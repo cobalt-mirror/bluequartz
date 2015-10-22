@@ -23,39 +23,39 @@
 // User admin (IP: 186.116.135.82) triggered a 403 on page /vsite/manageAdmin?MODIFY=1&_oid=2605555 with user agent Firefox 25.0
 // 
 function Log403Error($url = "") {
-	$CI =& get_instance();
+    $CI =& get_instance();
 
-	$loginName = $CI->input->cookie('loginName');
-	$userip = $CI->input->ip_address();
+    $loginName = $CI->input->cookie('loginName');
+    $userip = $CI->input->ip_address();
 
-	if ($loginName == "") {
-		$loginName = "-unknown or not logged in-";
-	}
+    if ($loginName == "") {
+        $loginName = "-unknown or not logged in-";
+    }
 
-	$CI->load->library('user_agent');
-	if ($CI->agent->is_browser()) {
-	    $agent = $CI->agent->browser().' '.$CI->agent->version();
-	}
-	elseif ($CI->agent->is_robot()) {
-	    $agent = $CI->agent->robot();
-	}
-	elseif ($CI->agent->is_mobile()) {
-	    $agent = $CI->agent->mobile();
-	}
-	else {
-	    $agent = 'Unidentified User Agent';
-	}
-	$source = "unknown";
-	if (isset($_SERVER['REQUEST_URI'])) {
-		if ($_SERVER['REQUEST_URI']) {
-			$source = $_SERVER['REQUEST_URI'];
-		}
-	}
-	error_log("User $loginName (IP: $userip) triggered a 403 on page $source with user agent $agent");
-	if ($url != "") {
-		header("location: $url");
-		exit;
-	}
+    $CI->load->library('user_agent');
+    if ($CI->agent->is_browser()) {
+        $agent = $CI->agent->browser().' '.$CI->agent->version();
+    }
+    elseif ($CI->agent->is_robot()) {
+        $agent = $CI->agent->robot();
+    }
+    elseif ($CI->agent->is_mobile()) {
+        $agent = $CI->agent->mobile();
+    }
+    else {
+        $agent = 'Unidentified User Agent';
+    }
+    $source = "unknown";
+    if (isset($_SERVER['REQUEST_URI'])) {
+        if ($_SERVER['REQUEST_URI']) {
+            $source = $_SERVER['REQUEST_URI'];
+        }
+    }
+    error_log("User $loginName (IP: $userip) triggered a 403 on page $source with user agent $agent");
+    if ($url != "") {
+        header("location: $url");
+        exit;
+    }
 }
 
 // Function GetFormAttributes() walks through the $form_data and returns us the $parameters we want to
@@ -68,139 +68,139 @@ function Log403Error($url = "") {
 //
 // Additionally it generates the form_validation rules for CodeIgniter.
 //
-// params: $i18n				i18n Object of the error messages
-// params: $form_data			array with form_data array from CI
-// params: $required_keys		array with keys that must have data in it. Needed for CodeIgniter's error checks
-// params: $ignore_attributes	array with items we want to ignore. Such as Labels.
-// return: 						array with keys and values ready to submit to CCE.
+// params: $i18n                i18n Object of the error messages
+// params: $form_data           array with form_data array from CI
+// params: $required_keys       array with keys that must have data in it. Needed for CodeIgniter's error checks
+// params: $ignore_attributes   array with items we want to ignore. Such as Labels.
+// return:                      array with keys and values ready to submit to CCE.
 
 function GetFormAttributes ($i18n, $form_data, $required_keys=array(), $ignore_attributes=array()) {
-	// Get $CI instance:
-	$CI =& get_instance();
+    // Get $CI instance:
+    $CI =& get_instance();
 
-	// Required array setup:
-	$attributes = array();
-	$seen_checkboxes = array();
-	$seen_textareas = array();
-	$seen_radios = array();
-	$checkbox_data_before_submit = array();
-	$textarea_data_before_submit = array();
-	$radio_data_before_submit = array();
+    // Required array setup:
+    $attributes = array();
+    $seen_checkboxes = array();
+    $seen_textareas = array();
+    $seen_radios = array();
+    $checkbox_data_before_submit = array();
+    $textarea_data_before_submit = array();
+    $radio_data_before_submit = array();
 
-	// Let the games begin:
-	foreach ($form_data as $key => $value) {
-		if (is_object($i18n)) {
-			if (in_array($key, $required_keys)) {
-				// This key is required. Create a CI form_validation rule that takes that into account:
-				if (!is_array($value)) {
-					$CI->form_validation->set_rules($key, $i18n->get($key), 'trim|required|xss_clean');
-				}
-			}
-			else {
-				// This key is not required. Just do a form_validation rule with trim and xss_clean:
-				if (!is_array($value)) {
-					$CI->form_validation->set_rules($key, $i18n->get($key), 'trim|xss_clean');
-				}
-			}
-		}
-		else {
-			// This key is not required. Just do a form_validation rule with trim and xss_clean:
-			if (!is_array($value)) {
-				$CI->form_validation->set_rules($key, "N/A", 'trim|xss_clean');
-			}
-		}
+    // Let the games begin:
+    foreach ($form_data as $key => $value) {
+        if (is_object($i18n)) {
+            if (in_array($key, $required_keys)) {
+                // This key is required. Create a CI form_validation rule that takes that into account:
+                if (!is_array($value)) {
+                    $CI->form_validation->set_rules($key, $i18n->get($key), 'trim|required|xss_clean');
+                }
+            }
+            else {
+                // This key is not required. Just do a form_validation rule with trim and xss_clean:
+                if (!is_array($value)) {
+                    $CI->form_validation->set_rules($key, $i18n->get($key), 'trim|xss_clean');
+                }
+            }
+        }
+        else {
+            // This key is not required. Just do a form_validation rule with trim and xss_clean:
+            if (!is_array($value)) {
+                $CI->form_validation->set_rules($key, "N/A", 'trim|xss_clean');
+            }
+        }
 
-		// Certain fields (like getSetSelector()) have arrays as values. We want to immediately
-		// join them into a CODB-friendly storage format to make things a little easier:
-		if (is_array($value)) {
-			$value = array_to_scalar(array_values($value));
-		}
+        // Certain fields (like getSetSelector()) have arrays as values. We want to immediately
+        // join them into a CODB-friendly storage format to make things a little easier:
+        if (is_array($value)) {
+            $value = array_to_scalar(array_values($value));
+        }
 
-		// Generate an array with the key => values we want to submit to CCE:
-		if (!in_array($key, $ignore_attributes)) {
-			// Key is not a key that we want to ignore.
-			if (preg_match('/^checkbox-/', $key, $matches, PREG_OFFSET_CAPTURE)) {
-				// This key is a hidden key from a checkbox. Extract the real key name:
-				$new_key = preg_split('/^checkbox-/', $key);
-				if (isset($new_key[1])) {
-					$the_new_key = $new_key[1];
-					// Add the real key name and the corresponding (old) value to $attributes:
-					$attributes[$the_new_key] = $value;
-					// Note down that we have seen this checkbox:
-					$seen_checkboxes[] = $the_new_key;
-					$checkbox_data_before_submit[$the_new_key] = $value;
-				}
-			}
-			elseif (preg_match('/^textarea-/', $key, $matches, PREG_OFFSET_CAPTURE)) {
-				// This key is a hidden key from a textarea. Extract the real key name:
-				$new_ta_key = preg_split('/^textarea-/', $key);
-				if (isset($new_ta_key[1])) {
-					$the_ta_new_key = $new_ta_key[1];
-					// Add the real key name and the corresponding (old) value to $attributes:
-					$attributes[$the_ta_new_key] = $value;
-					// Note down that we have seen this textarea:
-					$seen_textareas[] = $the_ta_new_key;
-					$textarea_data_before_submit[$the_ta_new_key] = $value;
-				}
-			}
-			elseif (preg_match('/^radio-/', $key, $matches, PREG_OFFSET_CAPTURE)) {
-				// This key is a hidden key from a radio selector. Extract the real key name:
-				$new_radio_key = preg_split('/^radio-/', $key);
-				if (isset($new_radio_key[1])) {
-					$the_radio_new_key = $new_radio_key[1];
-					// Add the real key name and the corresponding (old) value to $attributes:
-					$attributes[$the_radio_new_key] = $value;
-					// Note down that we have seen this textarea:
-					$seen_radios[] = $the_radio_new_key;
-					$radio_data_before_submit[$the_radio_new_key] = $value;
-				}
-			}			
-			else {
-				// This is not the hidden key and (old) value of a checkbox:
-				if (in_array($key, $seen_checkboxes)) {
-					// This is a "real" checkbox with new data. If it's ticked, the value will be "on".
-					// We need to change the value to "1" instead:
-					if ($value == "on") {
-						$attributes[$key] = "1";
-					}
-					else {
-						$attributes[$key] = "0";
-					}
-				}
-				elseif (in_array($key, $seen_textareas)) {
-					// This is a "real" textarea with new data. 
-					// We need to make its payload CODB-friendly.
-					$attributes[$key] = urldecode(arrayToString(stringNToArray($value)));
-				}
-				elseif (in_array($key, $seen_radios)) {
-					// This is a "real" radio with new data. 
-					// We need to make its payload CODB-friendly.
-					$attributes[$key] = urldecode(arrayToString(stringNToArray($value)));
-				}
-				else {
-					// This is not a hidden or real checkbox, nor is it a textarea. We can add it right away:
-					$attributes[$key] = $value;
-				}
-			}
-		}
-	}
-	// Finally a correctional run to handle checkboxes which were "on", but have been unticked:
-	foreach ($seen_checkboxes as $key => $value) {
-		if (isset($checkbox_data_before_submit[$value])) {
-			if ((isset($checkbox_data_before_submit[$value])) && (!isset($form_data[$value]))) {
-				$attributes[$value] = "0";
-			}
-		}
-	}
-	// Finally a correctional run to handle radio selectors which were "on", but have been unticked:
-	foreach ($seen_radios as $key => $value) {
-		if (isset($radio_data_before_submit[$value])) {
-			if ((isset($radio_data_before_submit[$value])) && (!isset($form_data[$value]))) {
-				$attributes[$value] = "0";
-			}
-		}
-	}	
-	return $attributes;
+        // Generate an array with the key => values we want to submit to CCE:
+        if (!in_array($key, $ignore_attributes)) {
+            // Key is not a key that we want to ignore.
+            if (preg_match('/^checkbox-/', $key, $matches, PREG_OFFSET_CAPTURE)) {
+                // This key is a hidden key from a checkbox. Extract the real key name:
+                $new_key = preg_split('/^checkbox-/', $key);
+                if (isset($new_key[1])) {
+                    $the_new_key = $new_key[1];
+                    // Add the real key name and the corresponding (old) value to $attributes:
+                    $attributes[$the_new_key] = $value;
+                    // Note down that we have seen this checkbox:
+                    $seen_checkboxes[] = $the_new_key;
+                    $checkbox_data_before_submit[$the_new_key] = $value;
+                }
+            }
+            elseif (preg_match('/^textarea-/', $key, $matches, PREG_OFFSET_CAPTURE)) {
+                // This key is a hidden key from a textarea. Extract the real key name:
+                $new_ta_key = preg_split('/^textarea-/', $key);
+                if (isset($new_ta_key[1])) {
+                    $the_ta_new_key = $new_ta_key[1];
+                    // Add the real key name and the corresponding (old) value to $attributes:
+                    $attributes[$the_ta_new_key] = $value;
+                    // Note down that we have seen this textarea:
+                    $seen_textareas[] = $the_ta_new_key;
+                    $textarea_data_before_submit[$the_ta_new_key] = $value;
+                }
+            }
+            elseif (preg_match('/^radio-/', $key, $matches, PREG_OFFSET_CAPTURE)) {
+                // This key is a hidden key from a radio selector. Extract the real key name:
+                $new_radio_key = preg_split('/^radio-/', $key);
+                if (isset($new_radio_key[1])) {
+                    $the_radio_new_key = $new_radio_key[1];
+                    // Add the real key name and the corresponding (old) value to $attributes:
+                    $attributes[$the_radio_new_key] = $value;
+                    // Note down that we have seen this textarea:
+                    $seen_radios[] = $the_radio_new_key;
+                    $radio_data_before_submit[$the_radio_new_key] = $value;
+                }
+            }           
+            else {
+                // This is not the hidden key and (old) value of a checkbox:
+                if (in_array($key, $seen_checkboxes)) {
+                    // This is a "real" checkbox with new data. If it's ticked, the value will be "on".
+                    // We need to change the value to "1" instead:
+                    if ($value == "on") {
+                        $attributes[$key] = "1";
+                    }
+                    else {
+                        $attributes[$key] = "0";
+                    }
+                }
+                elseif (in_array($key, $seen_textareas)) {
+                    // This is a "real" textarea with new data. 
+                    // We need to make its payload CODB-friendly.
+                    $attributes[$key] = urldecode(arrayToString(stringNToArray($value)));
+                }
+                elseif (in_array($key, $seen_radios)) {
+                    // This is a "real" radio with new data. 
+                    // We need to make its payload CODB-friendly.
+                    $attributes[$key] = urldecode(arrayToString(stringNToArray($value)));
+                }
+                else {
+                    // This is not a hidden or real checkbox, nor is it a textarea. We can add it right away:
+                    $attributes[$key] = $value;
+                }
+            }
+        }
+    }
+    // Finally a correctional run to handle checkboxes which were "on", but have been unticked:
+    foreach ($seen_checkboxes as $key => $value) {
+        if (isset($checkbox_data_before_submit[$value])) {
+            if ((isset($checkbox_data_before_submit[$value])) && (!isset($form_data[$value]))) {
+                $attributes[$value] = "0";
+            }
+        }
+    }
+    // Finally a correctional run to handle radio selectors which were "on", but have been unticked:
+    foreach ($seen_radios as $key => $value) {
+        if (isset($radio_data_before_submit[$value])) {
+            if ((isset($radio_data_before_submit[$value])) && (!isset($form_data[$value]))) {
+                $attributes[$value] = "0";
+            }
+        }
+    }   
+    return $attributes;
 }
 
 // Private function that takes current ItemID and returns the URL of the first menu child
@@ -212,49 +212,49 @@ function GetFormAttributes ($i18n, $form_data, $required_keys=array(), $ignore_a
 // that he is privileged to see. Sounds simple, but is a tiny weeny itzi bitzy complicated:
 function getURLofFirstChild($val, $ignore_items, $_SiteMap_items, $access=array()) {
 
-	// Our first itemID can be an array of IDs or a single ID.
-	// We will only process ONE item ID, so we pick the first
-	// item off the array and ignore the rest for now:
-	if (is_array($val)) {
-		$first_item = array_shift(array_keys($val));
-	}
-	else {
-		$first_item = $val;
-	}
+    // Our first itemID can be an array of IDs or a single ID.
+    // We will only process ONE item ID, so we pick the first
+    // item off the array and ignore the rest for now:
+    if (is_array($val)) {
+        $first_item = array_shift(array_keys($val));
+    }
+    else {
+        $first_item = $val;
+    }
 
-	// Find out which children this item ID has:
-	$first_items_children = MenuChildren($first_item, $ignore_items, $_SiteMap_items, $access);
+    // Find out which children this item ID has:
+    $first_items_children = MenuChildren($first_item, $ignore_items, $_SiteMap_items, $access);
 
-	// Sort the children based on their "order", so that the lowest order comes first:
-	asort($first_items_children);
+    // Sort the children based on their "order", so that the lowest order comes first:
+    asort($first_items_children);
 
-	// Go through the children one by one:
-	foreach (array_keys($first_items_children) as $key => $itemID) {
-		// Check if that menu child itself has other children:
-		if (isset($_SiteMap_items[$itemID]["children"])) {
-			// It does. So we extract the very first child from that:
-			ksort($_SiteMap_items[$itemID]["children"]);
-			$first_item = array_shift(array_values($_SiteMap_items[$itemID]["children"]));
-			// Check if that grandchild has an URL set. It should, as our menus are at the
-			// worst three levels deep ("root" / category header / actual menu entry):
-			if (isset($_SiteMap_items[$first_item]["url"])) {
-				// Ok, it has an URL. We return that and be done with this charade:
-				return $_SiteMap_items[$first_item]["url"];
-			}
-		}
-		else {
-			// This child has no childs of its own. So we check if it has an URL set:
-			if ((isset($_SiteMap_items[$itemID]["url"])) && (!isset($_SiteMap_items[$itemID]["children"]))) {
-				// It has an URL set. So we return that and be done here:
-				return $_SiteMap_items[$itemID]["url"];
-			}
-		}
-	}
+    // Go through the children one by one:
+    foreach (array_keys($first_items_children) as $key => $itemID) {
+        // Check if that menu child itself has other children:
+        if (isset($_SiteMap_items[$itemID]["children"])) {
+            // It does. So we extract the very first child from that:
+            ksort($_SiteMap_items[$itemID]["children"]);
+            $first_item = array_shift(array_values($_SiteMap_items[$itemID]["children"]));
+            // Check if that grandchild has an URL set. It should, as our menus are at the
+            // worst three levels deep ("root" / category header / actual menu entry):
+            if (isset($_SiteMap_items[$first_item]["url"])) {
+                // Ok, it has an URL. We return that and be done with this charade:
+                return $_SiteMap_items[$first_item]["url"];
+            }
+        }
+        else {
+            // This child has no childs of its own. So we check if it has an URL set:
+            if ((isset($_SiteMap_items[$itemID]["url"])) && (!isset($_SiteMap_items[$itemID]["children"]))) {
+                // It has an URL set. So we return that and be done here:
+                return $_SiteMap_items[$itemID]["url"];
+            }
+        }
+    }
 
-	// After all this trouble we still don't have a return URL? In that case we 
-	// return the URL of the parent passed to us. Which might contain an URL.
-	// Or it not, it returns NULL:
-	return $_SiteMap_items[$first_item]["url"];
+    // After all this trouble we still don't have a return URL? In that case we 
+    // return the URL of the parent passed to us. Which might contain an URL.
+    // Or it not, it returns NULL:
+    return $_SiteMap_items[$first_item]["url"];
 }
 
 // Function to clean URLs:
@@ -262,47 +262,47 @@ function getURLofFirstChild($val, $ignore_items, $_SiteMap_items, $access=array(
 // the actual intended content. Such as the group ID or the FQDN. We do that here.
 function fixInternalURLs($url, $substitute=array()) {
 
-	// Start sane:
-	$numCount = "0";
+    // Start sane:
+    $numCount = "0";
 
-	if ((isset($substitute['group'])) && (isset($substitute['fqdn']))) {
-		// Check if the URL has a [[variable]] that needs replacing:
-		$pattern = '/\[\[[a-zA-Z0-9\-\_\.]{1,99}\]\]/';
-		preg_match_all($pattern, $url, $matches);
-		$numCount = count($matches[0], COUNT_RECURSIVE);
+    if ((isset($substitute['group'])) && (isset($substitute['fqdn']))) {
+        // Check if the URL has a [[variable]] that needs replacing:
+        $pattern = '/\[\[[a-zA-Z0-9\-\_\.]{1,99}\]\]/';
+        preg_match_all($pattern, $url, $matches);
+        $numCount = count($matches[0], COUNT_RECURSIVE);
 
-		if ($numCount > 0) {
+        if ($numCount > 0) {
 
-		    // Do the actual replacing:
-			foreach ($matches[0] as $key => $value) {
-				$patterns = array();
-				$patterns[0] = '/\[\[/';
-				$patterns[1] = '/\]\]/';
-				$value = preg_replace($patterns, "", $value);
-				$xpatterns = array();
-				// Found [[VAR.group]]:
-				if ($value == "VAR.group") {
-					// Replace with the group name:
-					$replacement = $substitute['group']; 
-				}
-				// Found [[VAR.hostname]]:
-				if ($value == "VAR.hostname") {
-					// Replace with the FQDN of the Vsite the user belongs to:
-					$replacement = $substitute['fqdn'];
-				}
-				//if ($value == "VAR.title") { // <-- Not sure where this is used!
-				//	$replacement = ... no idea!
-				//} 
-				$xpatterns[0] = "/\[\[$value\]\]/";
-				// Actual replacement:
-				if (isset($replacement)) {
-					$url = preg_replace($xpatterns, "" . $replacement . "", $url);
-				}
-			}
-		}
-	}
-	// Return cleaned URL:
-	return $url;
+            // Do the actual replacing:
+            foreach ($matches[0] as $key => $value) {
+                $patterns = array();
+                $patterns[0] = '/\[\[/';
+                $patterns[1] = '/\]\]/';
+                $value = preg_replace($patterns, "", $value);
+                $xpatterns = array();
+                // Found [[VAR.group]]:
+                if ($value == "VAR.group") {
+                    // Replace with the group name:
+                    $replacement = $substitute['group']; 
+                }
+                // Found [[VAR.hostname]]:
+                if ($value == "VAR.hostname") {
+                    // Replace with the FQDN of the Vsite the user belongs to:
+                    $replacement = $substitute['fqdn'];
+                }
+                //if ($value == "VAR.title") { // <-- Not sure where this is used!
+                //  $replacement = ... no idea!
+                //} 
+                $xpatterns[0] = "/\[\[$value\]\]/";
+                // Actual replacement:
+                if (isset($replacement)) {
+                    $url = preg_replace($xpatterns, "" . $replacement . "", $url);
+                }
+            }
+        }
+    }
+    // Return cleaned URL:
+    return $url;
 }
 
 /**
@@ -316,268 +316,272 @@ function fixInternalURLs($url, $substitute=array()) {
  * all fails we hail Mary (who sould have confessed to cheating instead) and fail back to 
  * English.
  *
- * @param VAR	$browserdetect	: TRUE or empty. Defines if we use browser detect or not.
- * @return ARR 	array("locale" => $locale, "localization" => $localization, "charset" => $charset);
+ * @param VAR   $browserdetect  : TRUE or empty. Defines if we use browser detect or not.
+ * @return ARR  array("locale" => $locale, "localization" => $localization, "charset" => $charset);
  */
 
 function initialize_languages($browserdetect) {
 
-	// Include BXBrowserLocale:
-	include_once("BXBrowserLocale.php");
+    // Include BXBrowserLocale:
+    include_once("BXBrowserLocale.php");
 
-	// Start sane:
-	$locale = 'en_US';
-	$charset = 'UTF-8';
+    // Start sane:
+    $locale = 'en_US';
+    $charset = 'UTF-8';
 
-	$CI =& get_instance();
-	$cookie_locale = $CI->input->cookie('locale');
+    $CI =& get_instance();
+    $cookie_locale = $CI->input->cookie('locale');
 
-	if ($browserdetect == "TRUE") {
+    if ($browserdetect == "TRUE") {
 
-		// Detect the browser locale to see if it is supported.
-		// If not, fall back to 'en_US':
-		$detected_locale = BXBrowserLocale::prefered_language();
+        // Detect the browser locale to see if it is supported.
+        // If not, fall back to 'en_US':
+        $detected_locale = BXBrowserLocale::prefered_language();
 
-	    if ($detected_locale == 'en_US') {
-			$locale = 'en_US';
-			$localization = 'en-US';
-			$loc = 'en';
-	    }
-	    elseif ($detected_locale == 'de_DE') {
-			$locale = 'de_DE';
-			$localization = 'de-DE';
-			$loc = 'de';
-	    }
-	    elseif ($detected_locale == 'da_DK') {
-			$locale = 'da_DK';
-			$localization = 'da-DK';
-			$loc = 'da';
-	    }
-	    elseif ($detected_locale == 'es_ES') {
-			$locale = 'es_ES';
-			$localization = 'es-ES';
-			$loc = 'es';
-	    }
-	    elseif ($detected_locale == 'fr_FR') {
-			$locale = 'fr_FR';
-			$localization = 'fr-FR';
-			$loc = 'fr';
-	    }
-	    elseif ($detected_locale == 'it_IT') {
-			$locale = 'it_IT';
-			$localization = 'it-IT';
-			$loc = 'it';
-	    }
-	    elseif ($detected_locale == 'pt_PT') {
-			$locale = 'pt_PT';
-			$localization = 'pt-PT';
-			$loc = 'pt';
-	    }
-	    elseif ($detected_locale == 'nl_NL') {
-			$locale = 'nl_NL';
-			$localization = 'nl-NL';
-			$loc = 'nl';
-	    }
-	    elseif ($detected_locale == 'ja_JP') {
-			$locale = 'ja_JP';
-			$localization = 'ja-JP';
-			$loc = 'ja';
-	    }
-	}
+        if ($detected_locale == 'en_US') {
+            $locale = 'en_US';
+            $localization = 'en-US';
+            $loc = 'en';
+        }
+        elseif ($detected_locale == 'de_DE') {
+            $locale = 'de_DE';
+            $localization = 'de-DE';
+            $loc = 'de';
+        }
+        elseif ($detected_locale == 'da_DK') {
+            $locale = 'da_DK';
+            $localization = 'da-DK';
+            $loc = 'da';
+        }
+        elseif ($detected_locale == 'es_ES') {
+            $locale = 'es_ES';
+            $localization = 'es-ES';
+            $loc = 'es';
+        }
+        elseif ($detected_locale == 'fr_FR') {
+            $locale = 'fr_FR';
+            $localization = 'fr-FR';
+            $loc = 'fr';
+        }
+        elseif ($detected_locale == 'it_IT') {
+            $locale = 'it_IT';
+            $localization = 'it-IT';
+            $loc = 'it';
+        }
+        elseif ($detected_locale == 'pt_PT') {
+            $locale = 'pt_PT';
+            $localization = 'pt-PT';
+            $loc = 'pt';
+        }
+        elseif ($detected_locale == 'nl_NL') {
+            $locale = 'nl_NL';
+            $localization = 'nl-NL';
+            $loc = 'nl';
+        }
+        elseif ($detected_locale == 'ja_JP') {
+            $locale = 'ja_JP';
+            $localization = 'ja-JP';
+            $loc = 'ja';
+        }
+    }
     elseif ($cookie_locale == "en_US") {
-		$locale = 'en_US';
-		$localization = 'en-US';
-		$loc = 'en';
+        $locale = 'en_US';
+        $localization = 'en-US';
+        $loc = 'en';
     }
     elseif ($cookie_locale == "de_DE") {
-		$locale = 'de_DE';
-		$localization = 'de-DE';
-		$loc = 'de';
+        $locale = 'de_DE';
+        $localization = 'de-DE';
+        $loc = 'de';
     }
     elseif ($cookie_locale == "da_DK") {
-		$locale = 'da_DK';
-		$localization = 'da-DK';
-		$loc = 'da';
+        $locale = 'da_DK';
+        $localization = 'da-DK';
+        $loc = 'da';
     }
     elseif ($cookie_locale == "es_ES") {
-		$locale = 'es_ES';
-		$localization = 'es-ES';
-		$loc = 'es';
+        $locale = 'es_ES';
+        $localization = 'es-ES';
+        $loc = 'es';
     }
     elseif ($cookie_locale == "fr_FR") {
-		$locale = 'fr_FR';
-		$localization = 'fr-FR';
-		$loc = 'fr';
+        $locale = 'fr_FR';
+        $localization = 'fr-FR';
+        $loc = 'fr';
     }
     elseif ($cookie_locale == "it_IT") {
-		$locale = 'it_IT';
-		$localization = 'it-IT';
-		$loc = 'it';
+        $locale = 'it_IT';
+        $localization = 'it-IT';
+        $loc = 'it';
     }
     elseif ($cookie_locale == "pt_PT") {
-		$locale = 'pt_PT';
-		$localization = 'pt-PT';
-		$loc = 'pt';
+        $locale = 'pt_PT';
+        $localization = 'pt-PT';
+        $loc = 'pt';
     }
     elseif ($cookie_locale == "nl_NL") {
-		$locale = 'nl_NL';
-		$localization = 'nl-NL';
-		$loc = 'nl';
+        $locale = 'nl_NL';
+        $localization = 'nl-NL';
+        $loc = 'nl';
     }
     elseif ($cookie_locale == "ja_JP") {
-		$locale = 'ja_JP';
-		$localization = 'ja-JP';
-		$loc = 'ja';
+        $locale = 'ja_JP';
+        $localization = 'ja-JP';
+        $loc = 'ja';
     }
     else {
-		$locale = 'en_US';
-		$localization = 'en-US';
-		$loc = 'en';
+        $locale = 'en_US';
+        $localization = 'en-US';
+        $loc = 'en';
     }
 
-   	$localecharset = 'UTF-8';
+    $localecharset = 'UTF-8';
 
     return array("locale" => $locale, "localization" => $localization, "charset" => $charset, "localecharset" => $localecharset, "loc" => $loc);
 }
 
 // This function is used to get the Newsfeed off www.blueonyx.it:
 function getRssfeed($rssfeed, $cssclass="", $encode="auto", $howmany=10, $mode=0) {
-	// $encode e[".*"; "no"; "auto"]
+    // $encode e[".*"; "no"; "auto"]
 
-	// $mode e[0; 1; 2; 3]:
-	// 0 = only titel and link of the items
-	// 1 = Titel and link
-	// 2 = Titel, link and description
-	// 3 = 1 & 2
-	
-	$bx_title = array();
-	$bx_date = array();
-	$bx_desc = array();
-	$bx_link = array();
+    // $mode e[0; 1; 2; 3]:
+    // 0 = only titel and link of the items
+    // 1 = Titel and link
+    // 2 = Titel, link and description
+    // 3 = 1 & 2
     
-	// Pull the RSS feed:
-	$data = get_data($rssfeed);
-	if(strpos($data,"</item>") > 0) {
-		preg_match_all("/<item.*>(.+)<\/item>/Uism", $data, $items);
-		$atom = 0;
-	}
-	elseif(strpos($data,"</entry>") > 0) {
-		preg_match_all("/<entry.*>(.+)<\/entry>/Uism", $data, $items);
-		$atom = 1;
-	}
+    $bx_title = array();
+    $bx_date = array();
+    $bx_desc = array();
+    $bx_link = array();
+    
+    // Pull the RSS feed:
+    $data = get_data($rssfeed);
+    if(strpos($data,"</item>") > 0) {
+        preg_match_all("/<item.*>(.+)<\/item>/Uism", $data, $items);
+        $atom = 0;
+    }
+    elseif(strpos($data,"</entry>") > 0) {
+        preg_match_all("/<entry.*>(.+)<\/entry>/Uism", $data, $items);
+        $atom = 1;
+    }
 
-	if (!isset($atom)) {
-		return NULL;
-	}
-	
-	// Encoding:
-	if($encode == "auto") {
-		preg_match("/<?xml.*encoding=\"(.+)\".*?>/Uism", $data, $encodingarray);
-		if (isset($encodingarray[1])) {
-			$encoding = $encodingarray[1];
-		}
-	}
-	else {
-		$encoding = $encode;
-	}
-	
-	// Titel and link:
-	if ($mode == 1 || $mode == 3) {
-		if(strpos($data,"</item>") > 0) {
-			$data = preg_replace("/<item.*>(.+)<\/item>/Uism", '', $data);
-		}
-		else {
-			$data = preg_replace("/<entry.*>(.+)<\/entry>/Uism", '', $data);
-		}
-		preg_match("/<title.*>(.+)<\/title>/Uism", $data, $channeltitle);
-		if($atom == 0) {
-			preg_match("/<link>(.+)<\/link>/Uism", $data, $channellink);
-		}
-		elseif($atom == 1) {
-			preg_match("/<link.*alternate.*text\/html.*href=[\"\'](.+)[\"\'].*\/>/Uism", $data, $channellink);
-		}
+    if (!isset($atom)) {
+        return NULL;
+    }
+    
+    // Encoding:
+    if($encode == "auto") {
+        preg_match("/<?xml.*encoding=\"(.+)\".*?>/Uism", $data, $encodingarray);
+        if (isset($encodingarray[1])) {
+            $encoding = $encodingarray[1];
+        }
+    }
+    else {
+        $encoding = $encode;
+    }
+    
+    // Titel and link:
+    if ($mode == 1 || $mode == 3) {
+        if(strpos($data,"</item>") > 0) {
+            $data = preg_replace("/<item.*>(.+)<\/item>/Uism", '', $data);
+        }
+        else {
+            $data = preg_replace("/<entry.*>(.+)<\/entry>/Uism", '', $data);
+        }
+        preg_match("/<title.*>(.+)<\/title>/Uism", $data, $channeltitle);
+        if($atom == 0) {
+            preg_match("/<link>(.+)<\/link>/Uism", $data, $channellink);
+        }
+        elseif($atom == 1) {
+            preg_match("/<link.*alternate.*text\/html.*href=[\"\'](.+)[\"\'].*\/>/Uism", $data, $channellink);
+        }
 
-		$channeltitle = preg_replace('/<!\[CDATA\[(.+)\]\]>/Uism', '$1', $channeltitle);
-		$channellink = preg_replace('/<!\[CDATA\[(.+)\]\]>/Uism', '$1', $channellink);
-	}
-	// Check if we get multiple news items back. If not, a proxy or a badly configured router may be interfering:
-	$counter = count ($items);
-	if ($counter) {
-	    // Titel, link and description of the news items:
-	    foreach ($items[1] as $item) {
-		preg_match("/<title.*>(.+)<\/title>/Uism", $item, $title);
-		if($atom == 0) {
-			preg_match("/<link>(.+)<\/link>/Uism", $item, $link);
-		}
-		elseif($atom == 1) {
-			preg_match("/<link.*alternate.*text\/html.*href=[\"\'](.+)[\"\'].*\/>/Uism", $item, $link);
-		}
-		
-		if($atom == 0) {
-			preg_match("/<description>(.*)<\/description>/Uism", $item, $description);
-		}
-		elseif($atom == 1) {
-			preg_match("/<summary.*>(.*)<\/summary>/Uism", $item, $description);
-		}
+        $channeltitle = preg_replace('/<!\[CDATA\[(.+)\]\]>/Uism', '$1', $channeltitle);
+        $channellink = preg_replace('/<!\[CDATA\[(.+)\]\]>/Uism', '$1', $channellink);
+    }
+    // Check if we get multiple news items back. If not, a proxy or a badly configured router may be interfering:
+    $counter = count ($items);
+    if ($counter) {
+        // Titel, link and description of the news items:
+        foreach ($items[1] as $item) {
+        preg_match("/<title.*>(.+)<\/title>/Uism", $item, $title);
+        if($atom == 0) {
+            preg_match("/<link>(.+)<\/link>/Uism", $item, $link);
+        }
+        elseif($atom == 1) {
+            preg_match("/<link.*alternate.*text\/html.*href=[\"\'](.+)[\"\'].*\/>/Uism", $item, $link);
+        }
+        
+        if($atom == 0) {
+            preg_match("/<description>(.*)<\/description>/Uism", $item, $description);
+        }
+        elseif($atom == 1) {
+            preg_match("/<summary.*>(.*)<\/summary>/Uism", $item, $description);
+        }
 
-		preg_match("/<pubDate>(.*)-(.*)<\/pubDate>/Uism", $item, $pubDate);
+        preg_match("/<pubDate>(.*)-(.*)<\/pubDate>/Uism", $item, $pubDate);
 
-		$bx_title[] = $title[1];
-		$bx_date[] = $pubDate[1];
-		$bx_desc[] = $description[1];
-		$bx_link[] = $link[1];
+        $bx_title[] = $title[1];
+        $bx_date[] = $pubDate[1];
+        $bx_desc[] = $description[1];
+        $bx_link[] = $link[1];
 
-		if ($howmany-- <= 1) break; }
-	    $payload["_bx_title"] = $bx_title;
-	    $payload["_bx_date"] = $bx_date;
-	    $payload["_bx_desc"] = $bx_desc;
-	    $payload["_bx_link"] = $bx_link;
-	}
-	else {
-	    // Did not receive expected results. Set bx_title to something we can catch and process:
-	    $payload["_bx_title"] = "n/a";
-	}
-	return $payload;
+        if ($howmany-- <= 1) break; }
+        $payload["_bx_title"] = $bx_title;
+        $payload["_bx_date"] = $bx_date;
+        $payload["_bx_desc"] = $bx_desc;
+        $payload["_bx_link"] = $bx_link;
+    }
+    else {
+        // Did not receive expected results. Set bx_title to something we can catch and process:
+        $payload["_bx_title"] = "n/a";
+    }
+    return $payload;
 }
 
-function areWeOnline($domain) {
+function areWeOnline($domain, $awo_timeout = "10") {
     // Check to see if we're online and if the desired URL is reachable.
     // Returns true, if URL is reachable, false if not
 
-   // Initialize curl:
-   $curlInit = curl_init($domain);
-   curl_setopt($curlInit,CURLOPT_TIMEOUT,10);
-   curl_setopt($curlInit,CURLOPT_CONNECTTIMEOUT,10);
-   curl_setopt($curlInit,CURLOPT_HEADER,true);
-   curl_setopt($curlInit,CURLOPT_NOBODY,true);
-   curl_setopt($curlInit,CURLOPT_RETURNTRANSFER,true);
+    if (!isset($awo_timeout)) {
+        $awo_timeout = "10";
+    }
 
-   // Get answer
-   $response = curl_exec($curlInit);
+    // Initialize curl:
+    $curlInit = curl_init($domain);
+    curl_setopt($curlInit,CURLOPT_TIMEOUT, $awo_timeout);
+    curl_setopt($curlInit,CURLOPT_CONNECTTIMEOUT, $awo_timeout);
+    curl_setopt($curlInit,CURLOPT_HEADER,true);
+    curl_setopt($curlInit,CURLOPT_NOBODY,true);
+    curl_setopt($curlInit,CURLOPT_RETURNTRANSFER,true);
+
+    // Get answer
+    $response = curl_exec($curlInit);
 
     // Close curl:
-   curl_close($curlInit);
+    curl_close($curlInit);
 
     // Generate response:
-   if ($response) return true;
-       return false;
+    if ($response) return true;
+    return false;
 }
 
 function get_data($url) {
-	$ch = curl_init();
-	$timeout = 5;
-	curl_setopt($ch,CURLOPT_URL,$url);
-	curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
-	curl_setopt($ch,CURLOPT_TIMEOUT,$timeout);
-	curl_setopt($ch,CURLOPT_CONNECTTIMEOUT,$timeout);
-	curl_setopt($ch, CURLOPT_USERAGENT, 'BlueLinQ/1.0');
-	$error = curl_error($ch);
-	$data = curl_exec($ch);
-	if($data === false) {
-	    $data = $error;
-	}
-	curl_close($ch);
-	return $data;
+    $ch = curl_init();
+    $timeout = 5;
+    curl_setopt($ch,CURLOPT_URL,$url);
+    curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+    curl_setopt($ch,CURLOPT_TIMEOUT,$timeout);
+    curl_setopt($ch,CURLOPT_CONNECTTIMEOUT,$timeout);
+    curl_setopt($ch, CURLOPT_USERAGENT, 'BlueLinQ/1.0');
+    $error = curl_error($ch);
+    $data = curl_exec($ch);
+    if($data === false) {
+        $data = $error;
+    }
+    curl_close($ch);
+    return $data;
 }
 
 /**
@@ -586,47 +590,47 @@ function get_data($url) {
  * A helper function that translates text via PHP's i18n support. We use this on
  * pages where we can't use Sausalito's i18n support, which needs CceClient.
  *
- * @param VAR	$text			: msgid of the string we need to translate
- * @param VAR	$language		: language identifier. Like de_DE for German.
- * @param VAR	$domain 		: name of the gettext file without extension
+ * @param VAR   $text           : msgid of the string we need to translate
+ * @param VAR   $language       : language identifier. Like de_DE for German.
+ * @param VAR   $domain         : name of the gettext file without extension
  * @return VAR translated string
  */
 
 function PoorMansBabelFish ($text, $language, $domain) {
 
-	putenv("LANG=$language"); 
-	setlocale(LC_ALL, $language);
+    putenv("LANG=$language"); 
+    setlocale(LC_ALL, $language);
 
-	$directory = "/usr/share/locale";
+    $directory = "/usr/share/locale";
 
-	setlocale( LC_MESSAGES, $language);
-	bindtextdomain($domain, $directory);
-	textdomain($domain);
-	bind_textdomain_codeset($domain, 'UTF-8');
+    setlocale( LC_MESSAGES, $language);
+    bindtextdomain($domain, $directory);
+    textdomain($domain);
+    bind_textdomain_codeset($domain, 'UTF-8');
 
-	return gettext($text);
+    return gettext($text);
 }
 
 function is_HTTPS () {
-	if (isset($_SERVER['HTTPS'])) {
-		return TRUE;
-	}
-	else {
-		return FALSE;
-	}
-	return FALSE;
+    if (isset($_SERVER['HTTPS'])) {
+        return TRUE;
+    }
+    else {
+        return FALSE;
+    }
+    return FALSE;
 }
 
 function PageURLReferer () {
-	if(isset($_SERVER['HTTP_REFERER'])) {
-		$ng = $_SERVER['HTTP_HOST'];
-		$match = "/^http:(.*)$ng/";
-		$baseline = preg_replace($match, '', $_SERVER['HTTP_REFERER']);
-	}
-	else {
-		$baseline = "";
-	}
-	return $baseline;
+    if(isset($_SERVER['HTTP_REFERER'])) {
+        $ng = $_SERVER['HTTP_HOST'];
+        $match = "/^http:(.*)$ng/";
+        $baseline = preg_replace($match, '', $_SERVER['HTTP_REFERER']);
+    }
+    else {
+        $baseline = "";
+    }
+    return $baseline;
 }
 
 /**
@@ -635,9 +639,9 @@ function PageURLReferer () {
  * A helper function that parses the Menu XML files and returns
  * the $_SiteMap_items object with all menu entries.
  *
- * @param VAR	$root		: ItemID of the menu entry whose childs we're looking for
- * @param ARR	$ignore_items	: array of menu items we ignore in this search
- * @param ARR	$_SiteMap_items : Our array with the complete SiteMap
+ * @param VAR   $root       : ItemID of the menu entry whose childs we're looking for
+ * @param ARR   $ignore_items   : array of menu items we ignore in this search
+ * @param ARR   $_SiteMap_items : Our array with the complete SiteMap
  * @return ARR $root_children_sort_order
  */
 
@@ -660,58 +664,58 @@ function MenuChildren($root, $bx_ignore_items, $SiteMap_items, $access=array()) 
 
     foreach ($root_children as $itemID => $val) {
       if (!in_array($itemID, $bx_ignore_items)) { // See, here we ignore the ignore items:
-		if (isset($val['parents'])) {
-	  		$temp_arr = elements(array('id', 'order', 'access', 'requiresChildren', 'children'), $val['parents'], NULL);
-			// Catches items which only have a single parent:
-			if ($temp_arr['id'] == $parent_we_search_for) {
-				// Is this an item that anyone can access? Or one that we specifically have access rights for?
-				if (($temp_arr['access'] == NULL) || (in_array($temp_arr['access'], $access))) {
-					// We have access. However, we don't know if this is a 2nd level menu child
-					// or a third level menu entry. So we use getURLofFirstChild() again and see
-					// if it returns an URL or NULL. If it has no URL as return, then this is either
-					// a 2nd level menu with entries to which we don't have access. Or it's a
-					// 3rd level menu entry to which we don't have access. We only add this
-					// entry as child to the parent if we have access and need access:
-					if (getURLofFirstChild($itemID, array(), $SiteMap_items, $access) != NULL) {
-						// We have access, so we add it. But only if we have access to the item 
-						// itself, too:
-//						print_rp($itemID);
-//						print_rp($SiteMap_items[$itemID]['parents']);
-//						print_rp($access);
-//						print_rp($temp_arr['access']);
-						if (isset($SiteMap_items[$itemID]['parents'])) {
-							if (in_array($temp_arr['access'], $SiteMap_items[$itemID]['parents'])) {
-								$root_children_sort_order[$itemID] = $temp_arr['order'];
-							}
-						}
-						else {
-							$root_children_sort_order[$itemID] = $temp_arr['order'];
-						}
-					}
-				}
-			}
-			// Catches items which have multiple parents:
-			if (isset($val['parents'][0])) {
-	    		foreach ($val['parents'] as $par_key => $par_val) {
-	      			$temp_arr = elements(array('id', 'order', 'access', 'requiresChildren', 'children'), $par_val, NULL);
-	      			if ($temp_arr['id'] == $parent_we_search_for) {
-	      				// Is this an item that anyone can access? Or one that we specifically have access rights for?
-	      				if (($temp_arr['access'] == NULL) || (in_array($temp_arr['access'], $access))) {
-							// We have access. However, we don't know if this is a 2nd level menu child
-							// or a third level menu entry. So we use getURLofFirstChild() again and see
-							// if it returns an URL or NULL. If it has no URL as return, then this is either
-							// a 2nd level menu with entries to which we don't have access. Or it's a
-							// 3rd level menu entry to which we don't have access. We only add this
-							// entry as child to the parent if we have access and need access:
-	      					if (getURLofFirstChild($itemID, array(), $SiteMap_items, $access) != NULL) {
-	      						// We have access, so we add it:
-								$root_children_sort_order[$itemID] = $temp_arr['order'];
-							}
-						}
-	      			}
-	    		}
-	  		}
-		}
+        if (isset($val['parents'])) {
+            $temp_arr = elements(array('id', 'order', 'access', 'requiresChildren', 'children'), $val['parents'], NULL);
+            // Catches items which only have a single parent:
+            if ($temp_arr['id'] == $parent_we_search_for) {
+                // Is this an item that anyone can access? Or one that we specifically have access rights for?
+                if (($temp_arr['access'] == NULL) || (in_array($temp_arr['access'], $access))) {
+                    // We have access. However, we don't know if this is a 2nd level menu child
+                    // or a third level menu entry. So we use getURLofFirstChild() again and see
+                    // if it returns an URL or NULL. If it has no URL as return, then this is either
+                    // a 2nd level menu with entries to which we don't have access. Or it's a
+                    // 3rd level menu entry to which we don't have access. We only add this
+                    // entry as child to the parent if we have access and need access:
+                    if (getURLofFirstChild($itemID, array(), $SiteMap_items, $access) != NULL) {
+                        // We have access, so we add it. But only if we have access to the item 
+                        // itself, too:
+//                      print_rp($itemID);
+//                      print_rp($SiteMap_items[$itemID]['parents']);
+//                      print_rp($access);
+//                      print_rp($temp_arr['access']);
+                        if (isset($SiteMap_items[$itemID]['parents'])) {
+                            if (in_array($temp_arr['access'], $SiteMap_items[$itemID]['parents'])) {
+                                $root_children_sort_order[$itemID] = $temp_arr['order'];
+                            }
+                        }
+                        else {
+                            $root_children_sort_order[$itemID] = $temp_arr['order'];
+                        }
+                    }
+                }
+            }
+            // Catches items which have multiple parents:
+            if (isset($val['parents'][0])) {
+                foreach ($val['parents'] as $par_key => $par_val) {
+                    $temp_arr = elements(array('id', 'order', 'access', 'requiresChildren', 'children'), $par_val, NULL);
+                    if ($temp_arr['id'] == $parent_we_search_for) {
+                        // Is this an item that anyone can access? Or one that we specifically have access rights for?
+                        if (($temp_arr['access'] == NULL) || (in_array($temp_arr['access'], $access))) {
+                            // We have access. However, we don't know if this is a 2nd level menu child
+                            // or a third level menu entry. So we use getURLofFirstChild() again and see
+                            // if it returns an URL or NULL. If it has no URL as return, then this is either
+                            // a 2nd level menu with entries to which we don't have access. Or it's a
+                            // 3rd level menu entry to which we don't have access. We only add this
+                            // entry as child to the parent if we have access and need access:
+                            if (getURLofFirstChild($itemID, array(), $SiteMap_items, $access) != NULL) {
+                                // We have access, so we add it:
+                                $root_children_sort_order[$itemID] = $temp_arr['order'];
+                            }
+                        }
+                    }
+                }
+            }
+        }
       }
     }
     // Sort $root_children_sort_order by numeric value 'order', lowest first:
@@ -728,212 +732,212 @@ function MenuChildren($root, $bx_ignore_items, $SiteMap_items, $access=array()) 
  * information that is required to build the menu. However, this also contains
  * information that the current user may not be privileged to see.
  *
- * @param  ARR		$debug				: If set to TRUE, it dumps the array with print_rp()
- * @param  ARR   	$access				: Access rights of the current users
- * @param  ARR   	$CceClient			: Current CceClient Object that this user is using.
- * @return ARR 		$_SiteMap_items
+ * @param  ARR      $debug              : If set to TRUE, it dumps the array with print_rp()
+ * @param  ARR      $access             : Access rights of the current users
+ * @param  ARR      $CceClient          : Current CceClient Object that this user is using.
+ * @return ARR      $_SiteMap_items
  */
 
 function generateSiteMap($debug = FALSE, $access, $CceClient, $substitutes) {
 
-	// Location of the directory with the BX Menus:
-	$menu_XML_dir = '/usr/sausalito/ui/chorizo/menu/';
+    // Location of the directory with the BX Menus:
+    $menu_XML_dir = '/usr/sausalito/ui/chorizo/menu/';
 
-	// Get a fileMap of /usr/sausalito/ui/chorizo/menu/:
-	$map = directory_map($menu_XML_dir, FALSE, FALSE);
+    // Get a fileMap of /usr/sausalito/ui/chorizo/menu/:
+    $map = directory_map($menu_XML_dir, FALSE, FALSE);
 
-	// Pre-define array for our XML files:
-	$xml_files = array();
+    // Pre-define array for our XML files:
+    $xml_files = array();
 
-	// The fileMap $map is pretty detailed. Let us build an array that has all
-	// paths to XML files in it and contains them in an easily accessible way:
-	foreach($map as $key => $val) {
-		foreach($map[$key] as $key_zwo => $val_zwo) {
-			// This handles 'base' and 'vendor' dirs:
-			if (is_array($map[$key][$key_zwo])) {
-				foreach($map[$key][$key_zwo] as $key_drei => $val_drei) {
-	  				// We're only interested in XML files:
-	  				if (preg_match('/\.xml$/', $val_drei)) {
-						$xml_files[] = $menu_XML_dir . "$key" . '/' .  $key_zwo . '/' . $val_drei;
-	  				}
-				}
-			}
-			else {
-	  			// This handles 'palette' and other short pathed XML locations:
-	  			// We're only interested in XML files:
-	  			if (preg_match('/\.xml$/', $map[$key][$key_zwo])) {
-					$xml_files[] = $menu_XML_dir . "$key" . '/' .  $map[$key][$key_zwo];
-	  			}
-			}
-		}
-	}
+    // The fileMap $map is pretty detailed. Let us build an array that has all
+    // paths to XML files in it and contains them in an easily accessible way:
+    foreach($map as $key => $val) {
+        foreach($map[$key] as $key_zwo => $val_zwo) {
+            // This handles 'base' and 'vendor' dirs:
+            if (is_array($map[$key][$key_zwo])) {
+                foreach($map[$key][$key_zwo] as $key_drei => $val_drei) {
+                    // We're only interested in XML files:
+                    if (preg_match('/\.xml$/', $val_drei)) {
+                        $xml_files[] = $menu_XML_dir . "$key" . '/' .  $key_zwo . '/' . $val_drei;
+                    }
+                }
+            }
+            else {
+                // This handles 'palette' and other short pathed XML locations:
+                // We're only interested in XML files:
+                if (preg_match('/\.xml$/', $map[$key][$key_zwo])) {
+                    $xml_files[] = $menu_XML_dir . "$key" . '/' .  $map[$key][$key_zwo];
+                }
+            }
+        }
+    }
 
-	// Set up an empty $_SiteMap_items array:
-	$_SiteMap_items = array();
+    // Set up an empty $_SiteMap_items array:
+    $_SiteMap_items = array();
 
-	for($i = 0; $i < count($xml_files); $i++) {
-		// Read in each XML file:
-		$xml_data = read_file($xml_files[$i]);
+    for($i = 0; $i < count($xml_files); $i++) {
+        // Read in each XML file:
+        $xml_data = read_file($xml_files[$i]);
 
-		// For debugging - print the path and filename:
-		//echo "$xml_files[$i]<pre>";
+        // For debugging - print the path and filename:
+        //echo "$xml_files[$i]<pre>";
 
-		// Convert the raw XML data into an array:
-		//
-		// This is mightily fucking brilliant and fast! Thanks to Eric Potvin for this amazing idea!
-		// See: http://www.bookofzeus.com/articles/convert-simplexml-object-into-php-array/
-		$xml = json_decode(json_encode((array) simplexml_load_string($xml_data)), 1);
+        // Convert the raw XML data into an array:
+        //
+        // This is mightily fucking brilliant and fast! Thanks to Eric Potvin for this amazing idea!
+        // See: http://www.bookofzeus.com/articles/convert-simplexml-object-into-php-array/
+        $xml = json_decode(json_encode((array) simplexml_load_string($xml_data)), 1);
 
-		// Array preparation (we want to start fresh during each iteration):
-		$item = array();
+        // Array preparation (we want to start fresh during each iteration):
+        $item = array();
 
-		// Start the extraction procedure to get all menu items we need:
-		// First create items of the easily extractable information:
-		$k = elements(array('id', 'description', 'label', 'type', 'url', 'window', 'imageOff', 'imageOn', 'requiresChildren', 'children', 'module', 'icon', 'icononly'), $xml['@attributes'], NULL);
-		$itemId = $item['id'] = $k['id'];
-		$item['description'] = $k['description'];
-		$item['label'] = $k['label'];
-		$item['type'] = $k['type'];
-		$item['url'] = fixInternalURLs($k['url'], $substitutes);
-		$item['window'] = $k['window'];
-		$item['imageOff'] = $k['imageOff'];
-		$item['imageOn'] = $k['imageOn'];
-		$item['requiresChildren'] = $k['requiresChildren'];
-		$item['children'] = $k['children'];
-		$item['module'] = $k['module'];
-		$item['icon'] = $k['icon'];
-		$item['icononly'] = $k['icononly'];
+        // Start the extraction procedure to get all menu items we need:
+        // First create items of the easily extractable information:
+        $k = elements(array('id', 'description', 'label', 'type', 'url', 'window', 'imageOff', 'imageOn', 'requiresChildren', 'children', 'module', 'icon', 'icononly'), $xml['@attributes'], NULL);
+        $itemId = $item['id'] = $k['id'];
+        $item['description'] = $k['description'];
+        $item['label'] = $k['label'];
+        $item['type'] = $k['type'];
+        $item['url'] = fixInternalURLs($k['url'], $substitutes);
+        $item['window'] = $k['window'];
+        $item['imageOff'] = $k['imageOff'];
+        $item['imageOn'] = $k['imageOn'];
+        $item['requiresChildren'] = $k['requiresChildren'];
+        $item['children'] = $k['children'];
+        $item['module'] = $k['module'];
+        $item['icon'] = $k['icon'];
+        $item['icononly'] = $k['icononly'];
 
-		// Now the complicated stuff:
-		//
-		// We need to extract the 'parent id' of this object. To make matters worse: It may have multiple parents!
-		// And as if it ain't enought, each of these 'parent id' entries may have an optional access restriction.
-		// But CodeIgniter's elements() function is a time saviour, so this is mean and clean:
+        // Now the complicated stuff:
+        //
+        // We need to extract the 'parent id' of this object. To make matters worse: It may have multiple parents!
+        // And as if it ain't enought, each of these 'parent id' entries may have an optional access restriction.
+        // But CodeIgniter's elements() function is a time saviour, so this is mean and clean:
 
-		// We check if there is a 'parent' field in the array to begin with:
-		if (isset($xml['parent'])) {
-			// We loop through the results:
-			$l = "";
-			foreach($xml['parent'] as $key => $val) {
-				// If there is directly an '@attributes' element, then this object only has one 'parent':
-				if (isset($xml['parent']['@attributes'])) {
-				  // Get Id of the single parent, the sort order and the access:
-				  $item["parents"] = elements(array('id', 'order', 'access'), $xml['parent']['@attributes'], NULL);
-				  // Extract 'access require' correctly as well:
-				  if (isset($xml['parent']['access'])) {
-				  	$l = elements(array('require'), $xml['parent']['access']['@attributes'], NULL);
-				  }
-				}
-				// If the $key is an integer and $val is an array, then we have multiple parents:
-				if ((is_int($key) === true) && (is_array($val))) {
-				  $item["parents"][] = elements(array('id', 'order', 'access'), $val['@attributes'], NULL);
-				  // Extract 'access require' correctly as well:
-				  if (isset($xml['parent'][$key]['access']['@attributes']['require'])) {
-				  	$l['require'][] = $xml['parent'][$key]['access']['@attributes']['require'];
-				  }
-				}
+        // We check if there is a 'parent' field in the array to begin with:
+        if (isset($xml['parent'])) {
+            // We loop through the results:
+            $l = "";
+            foreach($xml['parent'] as $key => $val) {
+                // If there is directly an '@attributes' element, then this object only has one 'parent':
+                if (isset($xml['parent']['@attributes'])) {
+                  // Get Id of the single parent, the sort order and the access:
+                  $item["parents"] = elements(array('id', 'order', 'access'), $xml['parent']['@attributes'], NULL);
+                  // Extract 'access require' correctly as well:
+                  if (isset($xml['parent']['access'])) {
+                    $l = elements(array('require'), $xml['parent']['access']['@attributes'], NULL);
+                  }
+                }
+                // If the $key is an integer and $val is an array, then we have multiple parents:
+                if ((is_int($key) === true) && (is_array($val))) {
+                  $item["parents"][] = elements(array('id', 'order', 'access'), $val['@attributes'], NULL);
+                  // Extract 'access require' correctly as well:
+                  if (isset($xml['parent'][$key]['access']['@attributes']['require'])) {
+                    $l['require'][] = $xml['parent'][$key]['access']['@attributes']['require'];
+                  }
+                }
 
-				// Stuff 'access require' into $item during this post processing:
-				if (isset($l['require'])) {
-					// But only do so, if the current user has access to it!
-					if (($l['require'] == NULL) || (in_array($l['require'], $access))) {
-						$item["parents"]['access'] = $l['require'];
-					}
-					else {
-						// This user does not have access to this item.
-						// Remove the item: 
-						unset($item);
-					}
-				}
-			}
-		}
-		if (isset($item)) {
-			// We still do have an item, so we add it to the $_SiteMap_items:
-			$_SiteMap_items["$itemId"] = $item;
-		}
-	}
+                // Stuff 'access require' into $item during this post processing:
+                if (isset($l['require'])) {
+                    // But only do so, if the current user has access to it!
+                    if (($l['require'] == NULL) || (in_array($l['require'], $access))) {
+                        $item["parents"]['access'] = $l['require'];
+                    }
+                    else {
+                        // This user does not have access to this item.
+                        // Remove the item: 
+                        unset($item);
+                    }
+                }
+            }
+        }
+        if (isset($item)) {
+            // We still do have an item, so we add it to the $_SiteMap_items:
+            $_SiteMap_items["$itemId"] = $item;
+        }
+    }
 
-	// Now we need to populate the $_SiteMap_items['children'] fields.
-	// This makes sure that our siteMap contains not only the entries 
-	// to let us know who the parents are, but it also tells us which 
-	// children (if any) an item has.
-	$itemIds = array_keys($_SiteMap_items);
-	foreach ($itemIds as $itemId) {
-		$item = $_SiteMap_items[$itemId];
-		// Create a list of children for this item
-		if (isset($_SiteMap_items[$itemId]["parents"])) {
-			$h = array();
-			foreach($_SiteMap_items[$itemId]["parents"] as $parentkey => $parentval) {
-		  		// Multiple parents found:
-		  		if ((is_int($parentkey) === true) && (is_array($parentval))) {
-					$h = $parentval['id'];
-					$order = "";
-					// Loop through the various parents:
-					foreach ($item['parents'] as $key => $value) {
-						if ($value['id'] == $parentval['id']) {
-							// Find out the sort order:
-							$order = $value['order'];
-						}
-					}
-					// Make sure the sort order isn't already taken by another menu item:
-					if (isset($_SiteMap_items[$h]['children'][$order])) {
-						print_rp("ERROR: Menu item with the ID '$itemId' has the same sort order as item " . $_SiteMap_items[$h]['children'][$order]);
-						exit;
-					}
+    // Now we need to populate the $_SiteMap_items['children'] fields.
+    // This makes sure that our siteMap contains not only the entries 
+    // to let us know who the parents are, but it also tells us which 
+    // children (if any) an item has.
+    $itemIds = array_keys($_SiteMap_items);
+    foreach ($itemIds as $itemId) {
+        $item = $_SiteMap_items[$itemId];
+        // Create a list of children for this item
+        if (isset($_SiteMap_items[$itemId]["parents"])) {
+            $h = array();
+            foreach($_SiteMap_items[$itemId]["parents"] as $parentkey => $parentval) {
+                // Multiple parents found:
+                if ((is_int($parentkey) === true) && (is_array($parentval))) {
+                    $h = $parentval['id'];
+                    $order = "";
+                    // Loop through the various parents:
+                    foreach ($item['parents'] as $key => $value) {
+                        if ($value['id'] == $parentval['id']) {
+                            // Find out the sort order:
+                            $order = $value['order'];
+                        }
+                    }
+                    // Make sure the sort order isn't already taken by another menu item:
+                    if (isset($_SiteMap_items[$h]['children'][$order])) {
+                        print_rp("ERROR: Menu item with the ID '$itemId' has the same sort order as item " . $_SiteMap_items[$h]['children'][$order]);
+                        exit;
+                    }
 
-					// Store the sort order of the children:
-					$_SiteMap_items[$h]['children'][$order] = $itemId;
-		  		}
-		  		else {
-					// Single parent found:
-					if ($parentkey == "id") {
-						// Get the sort order:
-					  	$order = $_SiteMap_items[$itemId]['parents']['order'];
-					  	// Make sure the sort order isn't already taken by another menu item:
-						if (isset($_SiteMap_items[$parentval]['children'][$order])) {
-							print_rp("ERROR: Menu item with the ID '$itemId' has the same sort order as item " . $_SiteMap_items[$parentval]['children'][$order]);
-							exit;
-						}
-						// Store the sort order of the children:
-					  	$_SiteMap_items[$parentval]['children'][$order] = $itemId;
-					}
-		  		}
-			}
-		}
-	}
+                    // Store the sort order of the children:
+                    $_SiteMap_items[$h]['children'][$order] = $itemId;
+                }
+                else {
+                    // Single parent found:
+                    if ($parentkey == "id") {
+                        // Get the sort order:
+                        $order = $_SiteMap_items[$itemId]['parents']['order'];
+                        // Make sure the sort order isn't already taken by another menu item:
+                        if (isset($_SiteMap_items[$parentval]['children'][$order])) {
+                            print_rp("ERROR: Menu item with the ID '$itemId' has the same sort order as item " . $_SiteMap_items[$parentval]['children'][$order]);
+                            exit;
+                        }
+                        // Store the sort order of the children:
+                        $_SiteMap_items[$parentval]['children'][$order] = $itemId;
+                    }
+                }
+            }
+        }
+    }
 
-	// At this point our $_SiteMap_items is complete and every item is populated
-	// with all info. Like which children it has. What parents it has. And so on.
-	// This is the full sitemap and it contains items that the user might not be
-	// privileged to see. We handle the actual access rights in the function
-	// MenuChildren(), which is called via getURLofFirstChild(). Which in turn
-	// is used to populate menu entries with the correct URL of the first item
-	// that the user has rights to see.
+    // At this point our $_SiteMap_items is complete and every item is populated
+    // with all info. Like which children it has. What parents it has. And so on.
+    // This is the full sitemap and it contains items that the user might not be
+    // privileged to see. We handle the actual access rights in the function
+    // MenuChildren(), which is called via getURLofFirstChild(). Which in turn
+    // is used to populate menu entries with the correct URL of the first item
+    // that the user has rights to see.
 
-	if ($debug == TRUE) {
-		echo "----_SiteMap_items:----<br>";
-		print_rp($_SiteMap_items);
-	}
+    if ($debug == TRUE) {
+        echo "----_SiteMap_items:----<br>";
+        print_rp($_SiteMap_items);
+    }
 
   return $_SiteMap_items;
 }
 
 /**
  *
- *	Simple function to detect if a string is UTF-8 or not.
+ *  Simple function to detect if a string is UTF-8 or not.
  *
  */
 
 
 function detectUTF8($string) {
         return preg_match('%(?:
-        [\xC2-\xDF][\x80-\xBF]        			# non-overlong 2-byte
+        [\xC2-\xDF][\x80-\xBF]                  # non-overlong 2-byte
         |\xE0[\xA0-\xBF][\x80-\xBF]             # excluding overlongs
         |[\xE1-\xEC\xEE\xEF][\x80-\xBF]{2}      # straight 3-byte
         |\xED[\x80-\x9F][\x80-\xBF]             # excluding surrogates
-        |\xF0[\x90-\xBF][\x80-\xBF]{2}    		# planes 1-3
+        |\xF0[\x90-\xBF][\x80-\xBF]{2}          # planes 1-3
         |[\xF1-\xF3][\x80-\xBF]{3}              # planes 4-15
-        |\xF4[\x80-\x8F][\x80-\xBF]{2}    		# plane 16
+        |\xF4[\x80-\x8F][\x80-\xBF]{2}          # plane 16
         )+%xs', $string);
 }
 
@@ -942,7 +946,7 @@ function Utf8Encode($text) {
     $text = mb_convert_encoding($text, "UTF-8", "EUC-JP");
   }
   if (detectUTF8($text) == "1" ) {
-	return $text;
+    return $text;
   }
   return BXEncoding::toUTF8($text);
 }
@@ -959,16 +963,16 @@ function Utf8Encode($text) {
  * The function takes the string as argument, checks if it is UTF-8 and if not, 
  * converts it. If it is already UTF-8, it gets returned outright. 
  *
- * @param  VAR	$string		: string we want to convert to a safe charset for display
- * @return VAR  $string 	: sanitized string or original string
+ * @param  VAR  $string     : string we want to convert to a safe charset for display
+ * @return VAR  $string     : sanitized string or original string
  */
 
 function bx_charsetsafe($string) {
 
-	if (detectUTF8($string) == "1") {
-		return BXEncoding::toUTF8($string);
-	}
-	return $string;
+    if (detectUTF8($string) == "1") {
+        return BXEncoding::toUTF8($string);
+    }
+    return $string;
 }
 
 /**
@@ -1005,7 +1009,7 @@ function bx_profiler($enabled = FALSE) {
  *
  * A helper function that mimicks print_r, but encapsulates the results in '<pre></pre>' tags.
  *
- * @param ARR	$prp		: array we want to print
+ * @param ARR   $prp        : array we want to print
  * @return NONE
  */
 
@@ -1081,124 +1085,124 @@ function init_libraries() {
 
 function bx_pw_check($i18n, $password = "", $pass_repeat = "") {
 
-		// Start sane:
-		$my_errors = array();
+        // Start sane:
+        $my_errors = array();
 
-		$CI =& get_instance();
+        $CI =& get_instance();
 
-		// Get loginName:
-		$loginName = $CI->input->cookie('loginName');
+        // Get loginName:
+        $loginName = $CI->input->cookie('loginName');
 
-		if ((!isset($loginName)) || ($loginName == "")) {
-			// This handles pw-checks in Wizard. We might not yet have a cookie:
-			$loginName = 'admin';
-		}
+        if ((!isset($loginName)) || ($loginName == "")) {
+            // This handles pw-checks in Wizard. We might not yet have a cookie:
+            $loginName = 'admin';
+        }
 
-		// We do have a pass_repeat, but it's not identical to the password:
-		if (($pass_repeat != "") && ($password != $pass_repeat)) {
-			$my_errors[] = ErrorMessage($i18n->interpolate("[[palette.pw_not_identical]]"));
-		}
-		elseif (strcasecmp($loginName, $password) == 0) {
-			// Username == Password? Baaaad idea!
-	        $my_errors[] = ErrorMessage($i18n->get("[[base-user.error-password-equals-username]]"));
-		}
-		elseif (($pass_repeat == "") || ($pass_repeat == "")) {
-			// Either password or repeat password are empty:
-			$my_errors[] = ErrorMessage($i18n->get("[[base-user.error-password-invalid]]") . " ". $i18n->get("[[base-user.error-invalid-password]]"));
-		}
-		elseif ($password) {
+        // We do have a pass_repeat, but it's not identical to the password:
+        if (($pass_repeat != "") && ($password != $pass_repeat)) {
+            $my_errors[] = ErrorMessage($i18n->interpolate("[[palette.pw_not_identical]]"));
+        }
+        elseif (strcasecmp($loginName, $password) == 0) {
+            // Username == Password? Baaaad idea!
+            $my_errors[] = ErrorMessage($i18n->get("[[base-user.error-password-equals-username]]"));
+        }
+        elseif (($pass_repeat == "") || ($pass_repeat == "")) {
+            // Either password or repeat password are empty:
+            $my_errors[] = ErrorMessage($i18n->get("[[base-user.error-password-invalid]]") . " ". $i18n->get("[[base-user.error-invalid-password]]"));
+        }
+        elseif ($password) {
 
-			if (function_exists('crack_opendict')) {
+            if (function_exists('crack_opendict')) {
 
-			    // Open CrackLib Dictionary for usage:
-			    @$dictionary = crack_opendict('/usr/share/dict/pw_dict');
+                // Open CrackLib Dictionary for usage:
+                @$dictionary = crack_opendict('/usr/share/dict/pw_dict');
 
-			    // Perform password check with cracklib:
-			    $check = crack_check($dictionary, $password);
+                // Perform password check with cracklib:
+                $check = crack_check($dictionary, $password);
 
-			    // Retrieve messages from cracklib:
-			    $diag = crack_getlastmessage();
+                // Retrieve messages from cracklib:
+                $diag = crack_getlastmessage();
 
-			    if ($diag == 'strong password') {
-			        // Nothing to do. Cracklib thinks it's a good password.
-			    }
-			    else {
+                if ($diag == 'strong password') {
+                    // Nothing to do. Cracklib thinks it's a good password.
+                }
+                else {
 
-					// Parse the return strings from cracklib and localize them:
-					if (preg_match('/^it\'s WAY too short$/', $diag)) {
-						$diag_result = $i18n->getHtml("[[palette.pw_way_too_short]]");
-					}
-					elseif (preg_match('/^it is too short$/', $diag)) {
-						$diag_result = $i18n->getHtml("[[palette.pw_too_short]]");
-					}
-					elseif (preg_match('/^it does not contain enough DIFFERENT characters$/', $diag)) {
-						$diag_result = $i18n->getHtml("[[palette.pw_not_nuff_different]]");
-					}
-					elseif (preg_match('/^it is all whitespace$/', $diag)) {
-						$diag_result = $i18n->getHtml("[[palette.pw_all_whitespace]]");
-					}
-					elseif (preg_match('/^it is too simplistic\/systematic$/', $diag)) {
-						$diag_result = $i18n->getHtml("[[palette.pw_too_simple]]");
-					}
-					elseif (preg_match('/^it looks like a National Insurance (.*)$/', $diag)) {
-						$diag_result = $i18n->getHtml("[[palette.pw_insurance_number]]");
-					}
-					elseif (preg_match('/^it is based on a dictionary word$/', $diag)) {
-						$diag_result = $i18n->getHtml("[[palette.pw_dictionary_word]]");
-					}
-					elseif (preg_match('/^it is based on a \(reversed\) dictionary word$/', $diag)) {
-						$diag_result = $i18n->getHtml("[[palette.pw_reversed_dictionary_word]]");
-					}
-					elseif (preg_match('/^strong password$/', $diag)) {
-						$diag_result = $i18n->getHtml("[[palette.pw_strong_password]]");
-					}
-					else {
-						// In case the localization fails, return the cracklib output directly:
-						$diag_result = $diag;
-					}
+                    // Parse the return strings from cracklib and localize them:
+                    if (preg_match('/^it\'s WAY too short$/', $diag)) {
+                        $diag_result = $i18n->getHtml("[[palette.pw_way_too_short]]");
+                    }
+                    elseif (preg_match('/^it is too short$/', $diag)) {
+                        $diag_result = $i18n->getHtml("[[palette.pw_too_short]]");
+                    }
+                    elseif (preg_match('/^it does not contain enough DIFFERENT characters$/', $diag)) {
+                        $diag_result = $i18n->getHtml("[[palette.pw_not_nuff_different]]");
+                    }
+                    elseif (preg_match('/^it is all whitespace$/', $diag)) {
+                        $diag_result = $i18n->getHtml("[[palette.pw_all_whitespace]]");
+                    }
+                    elseif (preg_match('/^it is too simplistic\/systematic$/', $diag)) {
+                        $diag_result = $i18n->getHtml("[[palette.pw_too_simple]]");
+                    }
+                    elseif (preg_match('/^it looks like a National Insurance (.*)$/', $diag)) {
+                        $diag_result = $i18n->getHtml("[[palette.pw_insurance_number]]");
+                    }
+                    elseif (preg_match('/^it is based on a dictionary word$/', $diag)) {
+                        $diag_result = $i18n->getHtml("[[palette.pw_dictionary_word]]");
+                    }
+                    elseif (preg_match('/^it is based on a \(reversed\) dictionary word$/', $diag)) {
+                        $diag_result = $i18n->getHtml("[[palette.pw_reversed_dictionary_word]]");
+                    }
+                    elseif (preg_match('/^strong password$/', $diag)) {
+                        $diag_result = $i18n->getHtml("[[palette.pw_strong_password]]");
+                    }
+                    else {
+                        // In case the localization fails, return the cracklib output directly:
+                        $diag_result = $diag;
+                    }
 
-					$my_errors[] = ErrorMessage($i18n->get("[[base-user.error-password-invalid]]") . '<br>' . $diag_result);
-					$my_errors[] = ErrorMessage($i18n->get("[[base-user.error-invalid-password]]"));
-			    }
+                    $my_errors[] = ErrorMessage($i18n->get("[[base-user.error-password-invalid]]") . '<br>' . $diag_result);
+                    $my_errors[] = ErrorMessage($i18n->get("[[base-user.error-invalid-password]]"));
+                }
 
-			    // Close cracklib dictionary:
-			    crack_closedict($dictionary);
-			}
-			else {
-				// No Cracklib support available. We have alternatives, though:
+                // Close cracklib dictionary:
+                crack_closedict($dictionary);
+            }
+            else {
+                // No Cracklib support available. We have alternatives, though:
 
-				$CI =& get_instance();
-				$CI->load->library('StupidPass');
-				// Override the default errors messages
-				$hardlang = array(
-				'length' => $i18n->getHtml("[[palette.pw_way_too_short]]"),
-				'upper'  => $i18n->getHtml("[[palette.pw_not_nuff_different]]"),
-				'lower'  => $i18n->getHtml("[[palette.pw_not_nuff_different]]"),
-				'numeric'=> $i18n->getHtml("[[palette.pw_too_simple]]"),
-				'special'=> $i18n->getHtml("[[palette.pw_too_simple]]"),
-				'common' => $i18n->getHtml("[[palette.pw_dictionary_word]]"),
-				'environ'=> $i18n->getHtml("[[palette.pw_too_simple]]"));
+                $CI =& get_instance();
+                $CI->load->library('StupidPass');
+                // Override the default errors messages
+                $hardlang = array(
+                'length' => $i18n->getHtml("[[palette.pw_way_too_short]]"),
+                'upper'  => $i18n->getHtml("[[palette.pw_not_nuff_different]]"),
+                'lower'  => $i18n->getHtml("[[palette.pw_not_nuff_different]]"),
+                'numeric'=> $i18n->getHtml("[[palette.pw_too_simple]]"),
+                'special'=> $i18n->getHtml("[[palette.pw_too_simple]]"),
+                'common' => $i18n->getHtml("[[palette.pw_dictionary_word]]"),
+                'environ'=> $i18n->getHtml("[[palette.pw_too_simple]]"));
 
-				// Supply reference of the environment (company, hostname, username, etc)
-				$environmental = array('blueonyx', 'admin');
-				$sp = new StupidPass(40, $environmental, '/usr/sausalito/ui/chorizo/ci/application/libraries/stupid-pass/StupidPass.default.dict', $hardlang);
-				if ($sp->validate($password) === false) {
-					$PWerrors = $sp->get_errors();
-					$diag_result = $PWerrors[0];
-					$my_errors[] = ErrorMessage($i18n->get("[[base-user.error-password-invalid]]") . '<br>' . $diag_result);
-					$my_errors[] = ErrorMessage($i18n->get("[[base-user.error-invalid-password]]"));
-				}
-				else {
-					$diag_result = $i18n->getHtml("[[palette.pw_strong_password]]");
-				}
-			}
-		}
+                // Supply reference of the environment (company, hostname, username, etc)
+                $environmental = array('blueonyx', 'admin');
+                $sp = new StupidPass(40, $environmental, '/usr/sausalito/ui/chorizo/ci/application/libraries/stupid-pass/StupidPass.default.dict', $hardlang);
+                if ($sp->validate($password) === false) {
+                    $PWerrors = $sp->get_errors();
+                    $diag_result = $PWerrors[0];
+                    $my_errors[] = ErrorMessage($i18n->get("[[base-user.error-password-invalid]]") . '<br>' . $diag_result);
+                    $my_errors[] = ErrorMessage($i18n->get("[[base-user.error-invalid-password]]"));
+                }
+                else {
+                    $diag_result = $i18n->getHtml("[[palette.pw_strong_password]]");
+                }
+            }
+        }
 
-		if (is_array($my_errors)) {
-			if (count($my_errors) >= "1") {
-				return $my_errors;
-			}
-		}
+        if (is_array($my_errors)) {
+            if (count($my_errors) >= "1") {
+                return $my_errors;
+            }
+        }
 }
 
 /**
@@ -1211,17 +1215,17 @@ function bx_pw_check($i18n, $password = "", $pass_repeat = "") {
  */
 
 function format_bytes ( $size ) {
-	switch ( $size ) {
-		case $size > 1000000:
-			return number_format(ceil($size / 1000000)) . "mb";
-			break;
-		case $size > 1000:
-			return number_format(ceil($size / 1000)) . "k";
-			break;
-		default:
-			return number_format($size) . "b";
-			break;
-	}
+    switch ( $size ) {
+        case $size > 1000000:
+            return number_format(ceil($size / 1000000)) . "mb";
+            break;
+        case $size > 1000:
+            return number_format(ceil($size / 1000)) . "k";
+            break;
+        default:
+            return number_format($size) . "b";
+            break;
+    }
 }
 
 function br2nl($str) {
@@ -1245,7 +1249,7 @@ function str_split_php4( $text, $min, $max ) {
     for ( $i=0; $i < strlen( $text ); ){
         $key = NULL;
         for ( $j = 0; $j < $max; $j++, $i++ ) {
-    	    if ($j >= $min) {
+            if ($j >= $min) {
                 $key .= $text[$i];
             }
         }
@@ -1295,12 +1299,12 @@ function formspecialchars($var) {
   */
 
 function ln_get_timezone_offset($remote_tz, $origin_tz = 'UTC') {
-		$origin_dtz = new DateTimeZone($origin_tz);
-		$remote_dtz = new DateTimeZone($remote_tz);
-		$origin_dt = new DateTime("now", $origin_dtz);
-		$remote_dt = new DateTime("now", $remote_dtz);
-		$offset = $remote_dtz->getOffset($remote_dt) - $origin_dtz->getOffset($origin_dt);
-		return $offset;
+        $origin_dtz = new DateTimeZone($origin_tz);
+        $remote_dtz = new DateTimeZone($remote_tz);
+        $origin_dt = new DateTime("now", $origin_dtz);
+        $remote_dt = new DateTime("now", $remote_dtz);
+        $offset = $remote_dtz->getOffset($remote_dt) - $origin_dtz->getOffset($origin_dt);
+        return $offset;
 }
 
 /**
@@ -1311,18 +1315,18 @@ function ln_get_timezone_offset($remote_tz, $origin_tz = 'UTC') {
  */
 
 function ln_get_timezone_offset_text($timezone){
-	    $time = ln_get_timezone_offset($timezone);
+        $time = ln_get_timezone_offset($timezone);
 
-	    $minutesOffset = $time/60;
-	    $hours = floor(($minutesOffset)/60);
-	    $minutes = abs($minutesOffset%60);
-	    $minutesFormatted = sprintf('%02d', $minutes);
-	    $plus = '';
-	    if($time >= 0){
-	        $plus = '+';
-	    }
-	    $GMToff = 'GMT '.$plus.$hours.':'.$minutesFormatted;
-	    return $GMToff;
+        $minutesOffset = $time/60;
+        $hours = floor(($minutesOffset)/60);
+        $minutes = abs($minutesOffset%60);
+        $minutesFormatted = sprintf('%02d', $minutes);
+        $plus = '';
+        if($time >= 0){
+            $plus = '+';
+        }
+        $GMToff = 'GMT '.$plus.$hours.':'.$minutesFormatted;
+        return $GMToff;
 }
 
 /**
@@ -1333,12 +1337,12 @@ function ln_get_timezone_offset_text($timezone){
  * @param string $text format select box option
  */
 function ln_display_timezone_option($timezone, $text, $value) {
-		$selectedTZ = '';
-		if ($value == $timezone) {
-			$selectedTZ = " SELECTED ";
-		}
-	    $out = '<option ' . $selectedTZ . 'value="' . $timezone .'">' . '(' . ln_get_timezone_offset_text($timezone) .') ' . $text . '</option>' . "\n";
-	    return $out;
+        $selectedTZ = '';
+        if ($value == $timezone) {
+            $selectedTZ = " SELECTED ";
+        }
+        $out = '<option ' . $selectedTZ . 'value="' . $timezone .'">' . '(' . ln_get_timezone_offset_text($timezone) .') ' . $text . '</option>' . "\n";
+        return $out;
 }
 
 /**
@@ -1346,7 +1350,7 @@ function ln_display_timezone_option($timezone, $text, $value) {
  */
 
 function ln_display_timezone_selector($value = "") {
-		$out = '<select name="timezoneSelectDropdown">' . "\n"
+        $out = '<select name="timezoneSelectDropdown">' . "\n"
         . ln_display_timezone_option('Pacific/Auckland', 'International Date Line West', $value)
         . ln_display_timezone_option('Pacific/Midway', 'Midway Island, Samoa', $value)
         . ln_display_timezone_option('US/Hawaii', 'Hawaii', $value)
@@ -1429,42 +1433,42 @@ function ln_display_timezone_selector($value = "") {
         . ln_display_timezone_option('Pacific/Auckland', 'Auckland, Wellington', $value)
         . ln_display_timezone_option('Pacific/Fiji', 'Fiji, Kamchatka, Marshall Is.', $value)
         . ln_display_timezone_option('Pacific/Tongatapu', 'Nuku\'alofa', $value)
-    	. '</select>';
-	return $out;
+        . '</select>';
+    return $out;
 }
 
 // description: converts a array into a CCE-encoded scalar
 function array_to_scalar( $array ) {
 $result = "&";
-	if (is_array($array)) {
-  		$result = "&";
-  		foreach($array as $value) {
-    			$value = preg_replace("/([^A-Za-z0-9_\. -])/e",
+    if (is_array($array)) {
+        $result = "&";
+        foreach($array as $value) {
+                $value = preg_replace("/([^A-Za-z0-9_\. -])/e",
                           "sprintf('%%%02X', ord('\\1'))", $value);
-    			$value = preg_replace("/ /", "+", $value);
+                $value = preg_replace("/ /", "+", $value);
 
-    			$result .= $value . "&";
-  		}
-	}
- 	if ($result == "&") $result = "";
-  	return $result;
+                $result .= $value . "&";
+        }
+    }
+    if ($result == "&") $result = "";
+    return $result;
 }
 
 // description: converts a CCE-encoded scalar into an array
 function scalar_to_array( $scalar ) {
-	// just in case trim off whitespace
-	$scalar = trim($scalar);
+    // just in case trim off whitespace
+    $scalar = trim($scalar);
 
-	$scalar = preg_replace("/^&/", "", $scalar);
-	$scalar = preg_replace("/&$/", "", $scalar);
-	$array = explode("&", $scalar);
-	for($i = 0; $i < count($array); $i++) {
-	  $array[$i] = preg_replace("/\+/", " ", $array[$i]);
-	  $array[$i] = preg_replace("/%([0-9a-fA-F]{2})/e",
-	                            "chr(hexdec('\\1'))", $array[$i]);
-	}
+    $scalar = preg_replace("/^&/", "", $scalar);
+    $scalar = preg_replace("/&$/", "", $scalar);
+    $array = explode("&", $scalar);
+    for($i = 0; $i < count($array); $i++) {
+      $array[$i] = preg_replace("/\+/", " ", $array[$i]);
+      $array[$i] = preg_replace("/%([0-9a-fA-F]{2})/e",
+                                "chr(hexdec('\\1'))", $array[$i]);
+    }
 
-	return $array;
+    return $array;
 }
 
 // description: converts a string to a CCE-encoded scalar. 
@@ -1510,17 +1514,17 @@ function scalar_to_string($scalar, $delimiter='\n') {
 }
 
 function array_merge_alt($a, $b) {
-	$new = array();
-	$new = $a;
-	foreach ( $b as $line ) {
-		$key = array_search($line, $a);
-		if ( $key === FALSE ) {
-			if ( $line ) {
-				$new[] = $line;
-			}
-		}
-	}
-	return $new;
+    $new = array();
+    $new = $a;
+    foreach ( $b as $line ) {
+        $key = array_search($line, $a);
+        if ( $key === FALSE ) {
+            if ( $line ) {
+                $new[] = $line;
+            }
+        }
+    }
+    return $new;
 }
 
 function removeElementWithValue($array, $key, $value){
@@ -1534,32 +1538,32 @@ function removeElementWithValue($array, $key, $value){
 
 function createRandomPassword($length='7', $type='alpha') {
 
-	// Get CI instance and load library uifc/PasswordGenerator.php:
-	$CI =& get_instance();
-	$CI->load->library('PasswordGenerator');
+    // Get CI instance and load library uifc/PasswordGenerator.php:
+    $CI =& get_instance();
+    $CI->load->library('PasswordGenerator');
 
-	// Can return random passwords of varius length and type.
-	// Supported types:
-	//
-	// - 'ascii'
-	// - 'hex'
-	// - 'alpha' (alphanumeric)
-	// - 'custom' (not supported by us at this time)
+    // Can return random passwords of varius length and type.
+    // Supported types:
+    //
+    // - 'ascii'
+    // - 'hex'
+    // - 'alpha' (alphanumeric)
+    // - 'custom' (not supported by us at this time)
 
-	if ($type == 'ascii') {
-		return PasswordGenerator::getASCIIPassword($length);
-	}
-	elseif ($type == 'hex') {
-		return PasswordGenerator::getHexPassword($length);
-	}
-	else {
-		return PasswordGenerator::getAlphaNumericPassword($length);
-	}
+    if ($type == 'ascii') {
+        return PasswordGenerator::getASCIIPassword($length);
+    }
+    elseif ($type == 'hex') {
+        return PasswordGenerator::getHexPassword($length);
+    }
+    else {
+        return PasswordGenerator::getAlphaNumericPassword($length);
+    }
 }
 
 /*
-Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 Copyright (c) 2003 Sun Microsystems, Inc. 
 All Rights Reserved.
 
