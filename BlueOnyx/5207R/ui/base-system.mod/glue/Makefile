@@ -11,11 +11,11 @@ ifdef PREFIX
 CCETOPDIR = $(PREFIX)/usr/sausalito
 endif
 
-SCRIPTS=getSerial.pl
+SCRIPTS=bin/getSerial.pl bin/getPKGversion.pl
 
 all:
 
 install:
 	mkdir -p $(CCEBINDIR)
-	$(INSTALL) $(INSTALL_SBINFLAGS) bin/$(SCRIPTS) $(CCEBINDIR);
+	$(INSTALL) $(INSTALL_SBINFLAGS) $(SCRIPTS) $(CCEBINDIR);
 rpm:
