@@ -1,9 +1,9 @@
 <!--
-	$Id: system.schema,v 1.3.2.2 2002/03/05 03:12:32 pbaltz Exp $
-	Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
-	
-	This is the schema for the system object.  Moved here
-	from sauce-basic.
+    $Id: system.schema
+    Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+    
+    This is the schema for the system object.  Moved here
+    from sauce-basic.
 -->
 
 <!-------------------------------------------------------------------------
@@ -42,7 +42,9 @@
     />
 
     <!-- hardware serial number of the product -->
-    <property name="serialNumber" type="scalar" />
+    <property name="serialNumber" type="scalar" 
+        writeacl="ruleCapable(adminUser)" readacl="ruleAll" 
+    />
 
     <!-- serial number of the product (as seen on the sticker on the box) -->
     <property name="productSerialNumber" type="scalar" />
@@ -62,13 +64,13 @@
     <!-- hostname: first half of FQDN -->
     <property 
         name="hostname" type="hostname" default="localhost"
-  	    writeacl="ruleCapable(adminUser)" readacl="ruleAll"
+        writeacl="ruleCapable(adminUser)" readacl="ruleAll"
     />
 
     <!-- domainname: second half of FQDN -->
     <property 
         name="domainname" type="domainname"
-  	    writeacl="ruleCapable(adminUser)" readacl="ruleAll"
+        writeacl="ruleCapable(adminUser)" readacl="ruleAll"
     />
     
     <!-- ip address of the default gateway -->
