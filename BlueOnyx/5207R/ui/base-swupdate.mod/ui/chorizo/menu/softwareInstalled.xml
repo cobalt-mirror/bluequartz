@@ -5,7 +5,7 @@
     icon="magnifying_glass"
     url="/swupdate/softwareList"
 >
-    <parent id="base_software" order="30">
+    <parent id="base_software" order="2">
         <access require="managePackage"/>
     </parent>
 </item>

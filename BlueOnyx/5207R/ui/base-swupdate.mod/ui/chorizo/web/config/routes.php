@@ -16,3 +16,4 @@ $route['/swupdate/statusFrame'] = "statusFrame";
 $route['/swupdate/uninstallHandler'] = "uninstallHandler";
 $route['/swupdate/manualInstall'] = "manualInstall";
 $route['/swupdate/updates_amdetails'] = "updates_amdetails";
+$route['/swupdate/autoinstall'] = "autoinstall";

@@ -2,114 +2,114 @@
 
 class Status extends MX_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Past the login page this loads the page for /swupdate/status.
-	 *
-	 */
+    /**
+     * Index Page for this controller.
+     *
+     * Past the login page this loads the page for /swupdate/status.
+     *
+     */
 
-	public function index() {
+    public function index() {
 
-		$CI =& get_instance();
+        $CI =& get_instance();
 
-	    // We load the BlueOnyx helper library first of all, as we heavily depend on it:
-	    $this->load->helper('blueonyx');
-	    // This page also needs the helpers/updateLib_helper.php:
-	    $this->load->helper('updatelib');
-	    init_libraries();
+        // We load the BlueOnyx helper library first of all, as we heavily depend on it:
+        $this->load->helper('blueonyx');
+        // This page also needs the helpers/updateLib_helper.php:
+        $this->load->helper('updatelib');
+        init_libraries();
 
-  		// Need to load 'BxPage' for page rendering:
-  		$this->load->library('BxPage');
-		$MX =& get_instance();
+        // Need to load 'BxPage' for page rendering:
+        $this->load->library('BxPage');
+        $MX =& get_instance();
 
-	    // Get $sessionId and $loginName from Cookie (if they are set):
-	    $sessionId = $CI->input->cookie('sessionId');
-	    $loginName = $CI->input->cookie('loginName');
-	    $locale = $CI->input->cookie('locale');
+        // Get $sessionId and $loginName from Cookie (if they are set):
+        $sessionId = $CI->input->cookie('sessionId');
+        $loginName = $CI->input->cookie('loginName');
+        $locale = $CI->input->cookie('locale');
 
-	    // Line up the ducks for CCE-Connection:
-	    include_once('ServerScriptHelper.php');
-		$serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-		$cceClient = $serverScriptHelper->getCceClient();
-		$user = $cceClient->getObject("User", array("name" => $loginName));
-		$i18n = new I18n("base-swupdate", $user['localePreference']);
-		$system = $cceClient->getObject("System");
+        // Line up the ducks for CCE-Connection:
+        include_once('ServerScriptHelper.php');
+        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
+        $cceClient = $serverScriptHelper->getCceClient();
+        $user = $cceClient->getObject("User", array("name" => $loginName));
+        $i18n = new I18n("base-swupdate", $user['localePreference']);
+        $system = $cceClient->getObject("System");
 
-		// Initialize Capabilities so that we can poll the access rights as well:
-		$Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        // Initialize Capabilities so that we can poll the access rights as well:
+        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
 
-		// -- Actual page logic start:
+        // -- Actual page logic start:
 
-		// Not 'managePackage'? Bye, bye!
-		if (!$Capabilities->getAllowed('managePackage')) {
-			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
-			Log403Error("/gui/Forbidden403");
-		}
+        // Not 'managePackage'? Bye, bye!
+        if (!$Capabilities->getAllowed('managePackage')) {
+            // Nice people say goodbye, or CCEd waits forever:
+            $cceClient->bye();
+            $serverScriptHelper->destructor();
+            Log403Error("/gui/Forbidden403");
+        }
 
-		// Get URL params:
-		$get_form_data = $CI->input->get(NULL, TRUE);
+        // Get URL params:
+        $get_form_data = $CI->input->get(NULL, TRUE);
 
-		if ((!isset($get_form_data['packageOID'])) || (!isset($get_form_data['backUrl'])) || (!isset($get_form_data['nameField']))) {
-			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
-			Log403Error("/gui/Forbidden403");
-		}
+        if ((!isset($get_form_data['packageOID'])) || (!isset($get_form_data['backUrl'])) || (!isset($get_form_data['nameField']))) {
+            // Nice people say goodbye, or CCEd waits forever:
+            $cceClient->bye();
+            $serverScriptHelper->destructor();
+            Log403Error("/gui/Forbidden403");
+        }
 
-		$packageOID = $get_form_data['packageOID'];
-		$backUrl = $get_form_data['backUrl'];
-		if (isset($get_form_data['A'])) {
-			// This is used to let statusFrame know we're uninstalling:
-			$appendix = "&A=U&nameField=".rawurlencode($get_form_data['nameField']);
-		}
-		else {
-			$appendix = "";
-		}
+        $packageOID = $get_form_data['packageOID'];
+        $backUrl = $get_form_data['backUrl'];
+        if (isset($get_form_data['A'])) {
+            // This is used to let statusFrame know we're uninstalling:
+            $appendix = "&A=U&nameField=".rawurlencode($get_form_data['nameField']);
+        }
+        else {
+            $appendix = "";
+        }
 
-		//
-		//--- Get CODB-Object of interest: 
-		//
+        //
+        //--- Get CODB-Object of interest: 
+        //
 
-		// Prepare Page:
-		$errors = array();
-		$factory = $serverScriptHelper->getHtmlComponentFactory("base-swupdate", "/swupdate/status");
-		$BxPage = $factory->getPage();
-		$BxPage->setErrors($errors);
-		$i18n = $factory->getI18n();
+        // Prepare Page:
+        $errors = array();
+        $factory = $serverScriptHelper->getHtmlComponentFactory("base-swupdate", "/swupdate/status");
+        $BxPage = $factory->getPage();
+        $BxPage->setErrors($errors);
+        $i18n = $factory->getI18n();
 
-	    //-- Generate page:
+        //-- Generate page:
 
-		// Set Menu items:
-		$BxPage->setVerticalMenu('base_software');
-		$BxPage->setVerticalMenuChild('base_softwareNew');
-		$page_module = 'base_software';
+        // Set Menu items:
+        $BxPage->setVerticalMenu('base_software');
+        $BxPage->setVerticalMenuChild('base_softwareNew');
+        $page_module = 'base_software';
 
-		// Nice people say goodbye, or CCEd waits forever:
-		$cceClient->bye();
-		$serverScriptHelper->destructor();
+        // Nice people say goodbye, or CCEd waits forever:
+        $cceClient->bye();
+        $serverScriptHelper->destructor();
 
-		// Assemble iFrame URL:
-		$uri = "/swupdate/statusFrame?" . "packageOID=" . $packageOID . $appendix . "&backUrl=" . $backUrl;
+        // Assemble iFrame URL:
+        $uri = "/swupdate/statusFrame?" . "packageOID=" . $packageOID . $appendix . "&backUrl=" . $backUrl;
 
-		// Page body:
-		$page_body[] = addInputForm(
-										$i18n->get("[[base-swupdate.progressField]]"),
-										array("window" => $uri, "toggle" => "#"), 
-										addIframe($uri, "auto", $BxPage),
-										"",
-										$i18n,
-										$BxPage,
-										$errors
-									);
+        // Page body:
+        $page_body[] = addInputForm(
+                                        $i18n->get("[[base-swupdate.progressField]]"),
+                                        array("window" => $uri, "toggle" => "#"), 
+                                        addIframe($uri, "auto", $BxPage),
+                                        "",
+                                        $i18n,
+                                        $BxPage,
+                                        $errors
+                                    );
 
 
-		// Out with the page:
-	    $BxPage->render($page_module, $page_body);
+        // Out with the page:
+        $BxPage->render($page_module, $page_body);
 
-	}		
+    }       
 }
 /*
 Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET

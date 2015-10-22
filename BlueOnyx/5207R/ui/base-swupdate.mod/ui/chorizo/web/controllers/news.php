@@ -101,7 +101,7 @@ class News extends MX_Controller {
             $rsslocation = 'http://www.blueonyx.it/index.php?mact=CGFeedMaker,cntnt01,default,0&cntnt01feed=BlueOnyx-News&cntnt01showtemplate=false';
 
             // Check if we are online:
-            if (areWeOnline($rsslocation)) {
+            if (areWeOnline($rsslocation, "5")) {
                 $online = "1";
             }
             else {

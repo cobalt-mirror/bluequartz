@@ -5,7 +5,7 @@
     icon="settings_2"
     url="/swupdate/settings"
 >
-    <parent id="base_software" order="40">
+    <parent id="swupdate_shopMenu" order="8">
         <access require="managePackage"/>
     </parent>
 </item>

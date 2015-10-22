@@ -5,7 +5,7 @@
     icon="vault"
     url="/swupdate/newSoftware"
 >
-    <parent id="base_software" order="20">
+    <parent id="swupdate_shopMenu" order="4">
         <access require="managePackage"/>
     </parent>
 </item>

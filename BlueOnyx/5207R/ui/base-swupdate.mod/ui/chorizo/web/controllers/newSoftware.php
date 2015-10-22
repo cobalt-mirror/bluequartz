@@ -50,6 +50,30 @@ class NewSoftware extends MX_Controller {
         }
 
         //
+        //--- Check if we got here via Auto-Install:
+        //
+
+        $ai_check = $CI->input->cookie('ai');
+        $shopemail = $CI->input->cookie('shopemail');
+
+        // Be really sure to delete the cookie:
+        delete_cookie("ai");
+
+        if ($ai_check == "1") {
+            $targetLocation = '/swupdate/autoinstall';
+            if ($shopemail != "") {
+                $targetLocation .= '?em=' . urlencode($shopemail);
+            }
+
+            // Nice people say goodbye, or CCEd waits forever:
+            $cceClient->bye();
+            $serverScriptHelper->destructor();
+
+            // Redirect to continue Auto-Install of shop purchases:
+            header('Location: ' . $targetLocation);
+        }
+
+        //
         //--- Get CODB-Object of interest: 
         //
 
@@ -86,7 +110,7 @@ class NewSoftware extends MX_Controller {
         else {
             // Don't poll again if the cookie hasn't expired. Used CODB's last result:
             // Do we have any PKGs listed in CODB that are visible and have the 'new' flag set?
-            $search = array('new' => '1', 'isVisible' => '1');
+            $search = array('installState' => 'Available', 'new' => '1', 'isVisible' => '1');
             $oids = $cceClient->findNSorted("Package", 'version', $search);
             if (count($oids) > "0") {
                 $msg = '[[base-swupdate.NewUpdatesSubject]]';

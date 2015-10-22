@@ -4,7 +4,7 @@
     description="[[base-yum.yumguimenuentrydesc]]"
     icon="refresh_3"
     url="/swupdate/yum">
-    <parent id="base_software" order="1">
+    <parent id="base_software" order="3">
         <access require="managePackage"/>
     </parent>
 </item>

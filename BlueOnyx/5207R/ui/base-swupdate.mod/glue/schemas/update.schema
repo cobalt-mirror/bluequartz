@@ -13,11 +13,11 @@
 	createacl="ruleCapable(createPackage)" destroyacl="ruleCapable(destroyPackage)">
 	<!-- information on the package -->
 	<property name="name" type="swidType"
-		 writeacl="ruleCapable(managePackage)"/>
+		 writeacl="ruleCapable(managePackage)" readacl="ruleAll"/>
         <property name="version" type="versionType" 
-		 writeacl="ruleCapable(managePackage)"/>
+		 writeacl="ruleCapable(managePackage)" readacl="ruleAll"/>
 	<property name="vendor" type="swidType" 
-		 writeacl="ruleCapable(managePackage)"/>
+		 writeacl="ruleCapable(managePackage)" readacl="ruleAll"/>
 
 	<!-- stuff that can be i18n'ized -->
 	<property name="nameTag" type="scalar" 
@@ -25,7 +25,7 @@
 	<property name="vendorTag" type="scalar" 
 		 writeacl="ruleCapable(managePackage)"/>
         <property name="versionTag" type="scalar" 
-		 writeacl="ruleCapable(managePackage)"/>
+		 writeacl="ruleCapable(managePackage)" readacl="ruleAll"/>
 
 	<!-- if true, this package is not yet seen by users -->
 	<property name="new" type="boolean" default="1" 
@@ -105,7 +105,7 @@
 		 writeacl="ruleCapable(managePackage)"/>
 
 	<property name="installState" type="installStateMode" default="Available" 
-		 writeacl="ruleCapable(managePackage)"/>
+		 writeacl="ruleCapable(managePackage)" readacl="ruleAll"/>
 
 	<!-- deal with encryption stuff -->
 	<property name="encryptionFormat" type="scalar" 
