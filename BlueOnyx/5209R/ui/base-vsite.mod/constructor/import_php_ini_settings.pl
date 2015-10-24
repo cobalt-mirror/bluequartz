@@ -10,7 +10,7 @@
 $DEBUG = "0";
 if ($DEBUG)
 {
-        use Sys::Syslog qw( :DEFAULT setlogsock);
+    use Sys::Syslog qw( :DEFAULT setlogsock);
 }
 
 # Uncomment correct type:
@@ -33,6 +33,7 @@ $extra_PHP_basepath = '/home/solarspeed/';
 use CCE;
 use Data::Dumper;
 use Sauce::Config;
+use Sauce::Util;
 use FileHandle;
 use File::Copy;
 
@@ -111,24 +112,21 @@ else {
     $new_php_dso_location = $php_dso_location;
 }
 
-# Update default php-cgi location in /etc/suphp.conf: (Actually we don't do this anymore.)
-if ((-f "$thirdPartyCGI") && (-f "/etc/suphp.conf")) {
-    umask(0077);
-    my $stage = "/etc/suphp.conf~";
-    open(HTTPD, "/etc/suphp.conf");
-    unlink($stage);
-    sysopen(STAGE, $stage, 1|O_CREAT|O_EXCL, 0600) || die;
-    while(<HTTPD>) {
-        #s/^x-httpd-suphp="(.*)"/x-httpd-suphp="php:$thirdPartyCGI"/g;
-        s/^x-httpd-suphp="(.*)"/x-httpd-suphp="php:\/usr\/bin\/php-cgi"/g;
-        print STAGE;
+# Update default php-cgi location in /etc/suphp.conf:
+if (-f "/etc/suphp.conf") {
+
+    $php_conf_suphp = 'x-httpd-suphp="php:/usr/bin/php-cgi"' . "\n";
+    $php_conf_suphp .= 'x-httpd-suphp-5.3="php:/home/solarspeed/php-5.3/bin/php-cgi"' . "\n";
+    $php_conf_suphp .= 'x-httpd-suphp-5.4="php:/home/solarspeed/php-5.4/bin/php-cgi"' . "\n";
+    $php_conf_suphp .= 'x-httpd-suphp-5.5="php:/home/solarspeed/php-5.5/bin/php-cgi"' . "\n";
+    $php_conf_suphp .= 'x-httpd-suphp-5.6="php:/home/solarspeed/php-5.6/bin/php-cgi"' . "\n";
+
+    if(!Sauce::Util::replaceblock('/etc/suphp.conf', ';Handler for php-scripts', $php_conf_suphp, ';Handler for CGI-scripts')) {
+        &debug_msg("Editing of /etc/suphp.conf failed!\n");
     }
-    close(STAGE);
-    close(HTTPD);
-    chmod(0644, $stage);
-    if(-s $stage) {
-        move($stage,"/etc/suphp.conf");
-        chmod(0644, "/etc/suphp.conf"); # paranoia
+    else {
+        &debug_msg("Editing of /etc/suphp.conf succeeded!\n");
+        system("rm -f /etc/suphp.conf.backup.*");
     }
 }
 
