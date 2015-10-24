@@ -102,7 +102,7 @@ class NewSoftware extends MX_Controller {
             }
             else {
                 $color = 'alert_red';
-                $msg = $ret;
+                $msg = '[[base-swupdate.QueryErrorSubject]]';
             }
             $new_msg[] = '<div class="alert dismissible ' . $color . '"><img width="40" height="36" src="/.adm/images/icons/small/white/alarm_bell.png"><strong>' . $i18n->interpolateHtml($msg) . '<br><br><br></strong></div>';
             $my_errors = array_merge($new_msg, $errors);          
