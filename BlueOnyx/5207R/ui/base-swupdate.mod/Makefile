@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=swupdate
 
 VERSION=1.6.0
-RELEASE=0BX01
+RELEASE=0BX02
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -20,7 +20,7 @@ BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=no
 
-REQUIRES = perl-Sort-Versions wget lynx php-soap sausalito-palette >= 0.5.2-0BX21 base-api-capstone base-istat-capstone perl-Sys-Hostname-FQDN base-support-capstone file
+REQUIRES = perl-Sort-Versions wget lynx php-soap sausalito-palette >= 0.5.2-0BX21 base-api-capstone base-istat-capstone perl-Sys-Hostname-FQDN base-support-capstone file perl-List-MoreUtils
 
 #########
 # some useful defines
