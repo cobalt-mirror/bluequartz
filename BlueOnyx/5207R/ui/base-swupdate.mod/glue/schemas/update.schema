@@ -166,7 +166,7 @@
 	<!-- status lets us know if the client-side is okay -->
 	<property name="status" type="status" default="up" 
 		writeacl="ruleCapable(modifyServerSWUpdate)"/>
-	<property name="updateInterval" type="intervalType" default="Never" 
+	<property name="updateInterval" type="intervalType" default="Daily" 
 		writeacl="ruleCapable(modifyServerSWUpdate)"/>
 	<property name="updateEmailNotification" type="scalar" default="admin" 
 		writeacl="ruleCapable(modifyServerSWUpdate)"/>

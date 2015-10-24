@@ -122,7 +122,8 @@ class Settings extends MX_Controller {
 
         if ($CI->input->post(NULL, TRUE)) {
 
-            $newScheduleMap = array("never" => "Never", "hourly" => "Hourly", "daily" => "Daily", "weekly" => "Weekly", "monthly" => "Monthly");
+            //$newScheduleMap = array("never" => "Never", "hourly" => "Hourly", "daily" => "Daily", "weekly" => "Weekly", "monthly" => "Monthly");
+            $newScheduleMap = array("hourly" => "Hourly", "daily" => "Daily", "weekly" => "Weekly", "monthly" => "Monthly");
             $attributes['updateInterval'] = $newScheduleMap[$attributes['updateInterval']];
 
             $notificationLightField = $attributes['notificationLightField'];
