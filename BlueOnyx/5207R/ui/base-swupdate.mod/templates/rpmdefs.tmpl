@@ -129,6 +129,14 @@ fi
 
 <begin $CHANGELOG>
 
+* Sun Oct 25 2015 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX05
+- Modified ui/chorizo/web/controllers/newSoftware.php to make the cookie
+  based check for updates a bit more sensical. The old routine was at
+  times showing errors on successful runs and then dissagreeing if new
+  PKGs were there or not. The new code should work better.
+- Modified ui/chorizo/web/controllers/checkHandler.php to rate available
+  updates to already installed PKGs as newsworthy.
+
 * Sat Oct 24 2015 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX04
 - Modified ui/chorizo/web/controllers/autoinstall.php to add a better
   check if Base-Compass is already installed. The old one wasn't right.

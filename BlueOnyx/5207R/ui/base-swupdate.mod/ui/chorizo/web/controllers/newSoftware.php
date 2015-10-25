@@ -96,28 +96,21 @@ class NewSoftware extends MX_Controller {
             $new_msg = array();
             $i = $serverScriptHelper->shell("/usr/sausalito/sbin/grab_updates.pl -u", $ret, 'root', $sessionId);
             setcookie("nl_check", time(), "0", "/");
-            if (!isset($ret)) {
-                $color = 'alert_green';
-                $msg = '[[base-swupdate.NoPackagesBody]]';
-            }
-            else {
-                $color = 'alert_red';
-                $msg = '[[base-swupdate.QueryErrorSubject]]';
-            }
+        }
+
+        $search = array('installState' => 'Available', 'new' => '1', 'isVisible' => '1');
+        $oids = $cceClient->findNSorted("Package", 'version', $search);
+        if (count($oids) > "0") {
+            $msg = '[[base-swupdate.NewUpdatesSubject]]';
+            $color = 'alert_green';
             $new_msg[] = '<div class="alert dismissible ' . $color . '"><img width="40" height="36" src="/.adm/images/icons/small/white/alarm_bell.png"><strong>' . $i18n->interpolateHtml($msg) . '<br><br><br></strong></div>';
             $my_errors = array_merge($new_msg, $errors);          
         }
         else {
-            // Don't poll again if the cookie hasn't expired. Used CODB's last result:
-            // Do we have any PKGs listed in CODB that are visible and have the 'new' flag set?
-            $search = array('installState' => 'Available', 'new' => '1', 'isVisible' => '1');
-            $oids = $cceClient->findNSorted("Package", 'version', $search);
-            if (count($oids) > "0") {
-                $msg = '[[base-swupdate.NewUpdatesSubject]]';
-                $color = 'alert_red';
-                $new_msg[] = '<div class="alert dismissible ' . $color . '"><img width="40" height="36" src="/.adm/images/icons/small/white/alarm_bell.png"><strong>' . $i18n->interpolateHtml($msg) . '<br><br><br></strong></div>';
-                $my_errors = array_merge($new_msg, $errors);          
-            }
+            $color = 'alert_green';
+            $msg = '[[base-swupdate.NoPackagesBody]]';
+            $new_msg[] = '<div class="alert dismissible ' . $color . '"><img width="40" height="36" src="/.adm/images/icons/small/white/alarm_bell.png"><strong>' . $i18n->interpolateHtml($msg) . '<br><br><br></strong></div>';
+            $my_errors = array_merge($new_msg, $errors);          
         }
 
         // Shove submitted input into $form_data after passing it through the XSS filter:

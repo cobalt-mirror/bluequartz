@@ -72,7 +72,14 @@ class CheckHandler extends MX_Controller {
             exit;
         }
         if (!isset($ret)) {
-            $ret = urlencode('[[base-swupdate.NoPackagesBody]]');
+            $search = array('installState' => 'Available', 'new' => '1', 'isVisible' => '1');
+            $oids = $cceClient->findNSorted("Package", 'version', $search);
+            if (count($oids) > "0") {
+                $ret = urlencode('[[base-swupdate.NewUpdatesSubject]]');
+            }
+            else {
+                $ret = urlencode('[[base-swupdate.NoPackagesBody]]');
+            }
         }
         else {
             $ret = urlencode($ret);
