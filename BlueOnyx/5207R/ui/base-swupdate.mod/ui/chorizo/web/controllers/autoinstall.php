@@ -88,10 +88,9 @@ class Autoinstall extends MX_Controller {
         //--- Check if the NewLinQ PKG is installed. If not, install it:
         //
         $BasePKG = $cceClient->getObject("Package", array("name" => 'base', 'vendor' => 'Compass', 'installState' => 'Installed'));
-        if (!$BasePKG) {
+        if (!isset($BasePKG['OID'])) {
             // NewLinQ PKG not installed! We refresh the list of available updates first:
             $ret = $serverScriptHelper->shell("/usr/sausalito/sbin/grab_updates.pl -u", $result, 'root', $sessionId);
-
             // Now find out what OID NewLinQ has:
             $BasePKG = $cceClient->getObject("Package", array("name" => 'base', 'vendor' => 'Compass', 'installState' => 'Available'));
 

@@ -129,6 +129,12 @@ fi
 
 <begin $CHANGELOG>
 
+* Sat Oct 24 2015 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX04
+- Modified ui/chorizo/web/controllers/autoinstall.php to add a better
+  check if Base-Compass is already installed. The old one wasn't right.
+- Added constructor/ccewrap_fixer.pl as ccewrap seems to loose its SUID
+  bit and/or permissions rather frequently these days.
+
 * Sat Oct 24 2015 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX03
 - Retired UpdateInterval 'Never' for NewLinQ queries.
 - Modified constructor/addSWUpdateServer.pl
