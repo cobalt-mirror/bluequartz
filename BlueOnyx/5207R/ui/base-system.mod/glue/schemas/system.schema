@@ -6,6 +6,10 @@
     from sauce-basic.
 -->
 
+<typedef name="HTTP_Access_Type"  type="re"
+  data = "^(BOTH|HTTP|HTTPS)$"
+/>
+
 <!-------------------------------------------------------------------------
   SYSTEM 
     Stores all system-wide configuration settings.  There should be
@@ -93,6 +97,11 @@
         name="locales" type="scalar" default="&amp;en&amp;" array="yes"
         writeacl="ruleCapable(adminUser)"
     />
+
+    <!-- Define which protocols the GUI is available on and if we redirect to FQDN of server on access: -->
+    <property name="GUIaccessType" type="HTTP_Access_Type" default="BOTH" writeacl="ruleCapable(adminUser)" readacl="ruleAll" />
+    <property name="GUIredirects" type="boolean" default="0" writeacl="ruleCapable(adminUser)" readacl="ruleAll" />
+
 </class>
 
 
