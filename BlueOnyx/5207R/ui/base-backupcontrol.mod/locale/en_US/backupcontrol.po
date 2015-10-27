@@ -29,3 +29,27 @@ msgstr "The Server Desktop was locked by a server administrator."
 
 msgid "cap_serverServerDesktop"
 msgstr "Server Desktop Settings"
+
+####
+
+msgid "GUIaccessType"
+msgstr "GUI access protocols"
+
+msgid "GUIaccessType_help"
+msgstr "This defines which protocols are allowed to access the GUI. If you want to allow both HTTP and HTTPS access, then set it to '[[base-backupcontrol.BOTH]]'. To allow only HTTPS access, set it to '[[base-backupcontrol.HTTPS]]'. Or you can configure it to '[[base-backupcontrol.HTTP]]' as only allowed protocol, which is a bad idea. Recommended: '[[base-backupcontrol.HTTPS]]'. Default: '[[base-backupcontrol.BOTH]]'"
+
+msgid "GUIredirects"
+msgstr "Redirect to Server-Name"
+
+msgid "GUIredirects_help"
+msgstr "The Apache Webserver that the GUI runs on (AdmServ) has a separate SSL certificate. If you want to force all GUI logins to be redirected to https://server-name/login, then tick this checkbox."
+
+msgid "BOTH"
+msgstr "HTTP and HTTPS"
+
+msgid "HTTP"
+msgstr "HTTP only"
+
+msgid "HTTPS"
+msgstr "HTTPS only"
+
