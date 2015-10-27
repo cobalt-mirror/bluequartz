@@ -129,6 +129,37 @@ class Login extends MX_Controller {
             exit;
         }
 
+        // Handle redirects to HTTP(S) and/or FQDN of server:
+        if ((isset($system['GUIaccessType'])) && (isset($system['GUIredirects']))) {
+          if ($system['GUIredirects'] == "1") {
+            // Redirect to FQDN of the server:
+            $servername = $system['hostname'] . '.' . $system['domainname'];
+            $http_url = 'http://' . $servername . ':444/login';
+            $https_url = 'https://' . $servername . ':81/login';
+            if ($servername != $_SERVER['SERVER_NAME']) {
+                if ((is_HTTPS() == FALSE) && ($system['GUIaccessType'] == "HTTPS")) {
+                    header("Location: $https_url");
+                }
+                else {
+                    header("Location: $http_url");
+                }
+                exit;
+            }
+          }
+          else {
+            $http_url = 'http://' . $_SERVER['SERVER_NAME'] . ':444/login';
+            $https_url = 'https://' . $_SERVER['SERVER_NAME'] . ':81/login';  
+          }
+          if ((is_HTTPS() == FALSE) && ($system['GUIaccessType'] == "HTTPS")) {
+            header("Location: $https_url");
+            exit;
+          }
+          if ((is_HTTPS() == TRUE) && ($system['GUIaccessType'] == "HTTP")) {
+            header("Location: $http_url");
+            exit;
+          }
+        }
+
         // Get Form data:
         $form_data = $CI->input->post(NULL, TRUE);
 
@@ -244,6 +275,38 @@ class Login extends MX_Controller {
             $primaryColor = 'blue';
         }
 
+        // Construct the SSL-Toggle switch:
+        $ssl_toggle = "<fieldset class=\"label_side top\">" ."\n";
+        $ssl_toggle .= "  <label for=\"secureConnect\">$SecureConnect</label>" ."\n";
+        $ssl_toggle .= "  <div class=\"jqui_radios\">" ."\n";
+
+        if ((isset($system['GUIaccessType'])) && (isset($system['GUIredirects']))) {
+          if ((is_HTTPS() == TRUE) && ($system['GUIaccessType'] == "HTTPS")) {
+            $ssl_toggle .= "    <input type=\"radio\" name=\"secureConnect\" id=\"yes\" value=\"1\" $sc_yes_selected $url>" ."\n";
+            $ssl_toggle .= "    <label for=\"yes\">$my_yes</label>" ."\n";
+          }
+          elseif ((is_HTTPS() == FALSE) && ($system['GUIaccessType'] == "HTTP")) {
+            $ssl_toggle .= "    <input type=\"radio\" name=\"secureConnect\" id=\"no\" value=\"0\" $sc_no_selected $url>" ."\n";
+            $ssl_toggle .= "    <label for=\"no\">$my_no</label>" ."\n";
+          }
+          else {
+            // Both HTTP and HTTPS are freely selectable:
+            $ssl_toggle .= "    <input type=\"radio\" name=\"secureConnect\" id=\"yes\" value=\"1\" $sc_yes_selected $url>" ."\n";
+            $ssl_toggle .= "    <label for=\"yes\">$my_yes</label>" ."\n";
+            $ssl_toggle .= "    <input type=\"radio\" name=\"secureConnect\" id=\"no\" value=\"0\" $sc_no_selected $url>" ."\n";
+            $ssl_toggle .= "    <label for=\"no\">$my_no</label>" ."\n";
+          }
+        }
+        else {
+            // Total fallback: Both HTTP and HTTPS are freely selectable:
+            $ssl_toggle .= "    <input type=\"radio\" name=\"secureConnect\" id=\"yes\" value=\"1\" $sc_yes_selected $url>" ."\n";
+            $ssl_toggle .= "    <label for=\"yes\">$my_yes</label>" ."\n";
+            $ssl_toggle .= "    <input type=\"radio\" name=\"secureConnect\" id=\"no\" value=\"0\" $sc_no_selected $url>" ."\n";
+            $ssl_toggle .= "    <label for=\"no\">$my_no</label>" ."\n";
+        }
+        $ssl_toggle .= "  </div>" ."\n";
+        $ssl_toggle .= "</fieldset>" ."\n";
+
         // Set headers:
         $this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate");
         $this->output->set_header("Cache-Control: post-check=0, pre-check=0");
@@ -259,8 +322,6 @@ class Login extends MX_Controller {
                   'username_field' => set_value('username_field'),
                   'password_field' => set_value('password_field'),
                   'secureConnect' => $secureConnect,
-                  'sc_yes_selected' => $sc_yes_selected,
-                  'sc_no_selected' => $sc_no_selected,
                   'page_title' => $page_title,
                   'WelcomeMsg' => $WelcomeMsg,
                   'Username' => $Username,
@@ -271,15 +332,13 @@ class Login extends MX_Controller {
                   'loginFailed' => $loginFailed,
                   'login_text' => $login_text,
                   'noJS' => $noJS,
-                  'yes' => $my_yes,
-                  'no' => $my_no,
-                  'url' => $url,
+                  'ssl_toggle' => $ssl_toggle,
                   'URLaddParams' => $URLaddParams,
                   'primaryColor' => $primaryColor
             );
 
             // Show the login form:
-            $this->load->view('login_view', $data);
+            $this->load->view('login_view_solo', $data);
 
         }
         else {
@@ -303,29 +362,25 @@ class Login extends MX_Controller {
               // Login failed. We need to show the login form again with error message.
               // Therefore we pre-populate the $data array with defaults:
               $data = array(
-                'username_field' => set_value('username_field'),
-                'password_field' => set_value('password_field'),
-                'secureConnect' => $secureConnect,
-                'sc_yes_selected' => $sc_yes_selected,
-                'sc_no_selected' => $sc_no_selected,
-                'page_title' => $page_title,
-                'WelcomeMsg' => $WelcomeMsg,
-                'Username' => $Username,
-                'Password' => $Password,
-                'SecureConnect' => $SecureConnect,
-                'redirect_target' => $redirect_target,
-                'loginMessage' => $loginFailed,
-                'loginFailed' => $loginFailed,
-                'login_text' => $login_text,
-                'noJS' => $noJS,
-                'yes' => $my_yes,
-                'no' => $my_no,
-                'url' => $url,
-                'URLaddParams' => $URLaddParams,
-                'primaryColor' => $primaryColor
+                  'username_field' => set_value('username_field'),
+                  'password_field' => set_value('password_field'),
+                  'secureConnect' => $secureConnect,
+                  'page_title' => $page_title,
+                  'WelcomeMsg' => $WelcomeMsg,
+                  'Username' => $Username,
+                  'Password' => $Password,
+                  'SecureConnect' => $SecureConnect,
+                  'redirect_target' => $redirect_target,
+                  'loginMessage' => $loginMessage,
+                  'loginFailed' => $loginFailed,
+                  'login_text' => $login_text,
+                  'noJS' => $noJS,
+                  'ssl_toggle' => $ssl_toggle,
+                  'URLaddParams' => $URLaddParams,
+                  'primaryColor' => $primaryColor
               );
               // Show the login form again:
-              $this->load->view('login_view', $data);
+              $this->load->view('login_view_solo', $data);
             }
             else {
               //
@@ -383,12 +438,17 @@ class Login extends MX_Controller {
                 'username_field' => set_value('username_field'),
                 'password_field' => set_value('password_field'),
                 'secureConnect' => $secureConnect,
-                'sc_yes_selected' => $sc_yes_selected,
-                'sc_no_selected' => $sc_no_selected,
                 'page_title' => $page_title,
-                'sessionId' => $sessionId,
-                'loginName' => set_value('username_field'),
-                'page_body' => $nav_body,
+                'WelcomeMsg' => $WelcomeMsg,
+                'Username' => $Username,
+                'Password' => $Password,
+                'SecureConnect' => $SecureConnect,
+                'redirect_target' => $redirect_target,
+                'loginMessage' => $loginMessage,
+                'loginFailed' => $loginFailed,
+                'login_text' => $login_text,
+                'noJS' => $noJS,
+                'ssl_toggle' => $ssl_toggle,
                 'URLaddParams' => $URLaddParams,
                 'primaryColor' => $primaryColor
               );

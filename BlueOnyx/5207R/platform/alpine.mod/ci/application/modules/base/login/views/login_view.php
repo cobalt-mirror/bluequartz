@@ -121,11 +121,10 @@ else {
                                                                 <fieldset class="label_side top">
                                                                         <label for="secureConnect"><?php echo $SecureConnect ?></label>
                                                                         <div class="jqui_radios">
-									    <input type="radio" name="secureConnect" id="yes" value="1" <?php echo $sc_yes_selected; ?><?php echo $url; ?>>
-									    <label for="yes"><?php echo $yes ?></label>
-                                                                            <input type="radio" name="secureConnect" id="no" value="0" <?php echo $sc_no_selected; ?><?php echo $url; ?>>
-									    <label for="no"><?php echo $no ?></label>
-
+									                                       <input type="radio" name="secureConnect" id="yes" value="1" <?php echo $sc_yes_selected; ?><?php echo $url; ?>>
+									                                       <label for="yes"><?php echo $yes ?></label>
+                                                                           <input type="radio" name="secureConnect" id="no" value="0" <?php echo $sc_no_selected; ?><?php echo $url; ?>>
+									                                       <label for="no"><?php echo $no ?></label>
                                                                         </div>
                                                                 </fieldset>
 
