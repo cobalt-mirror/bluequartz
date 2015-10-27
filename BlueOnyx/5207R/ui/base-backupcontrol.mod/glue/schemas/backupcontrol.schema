@@ -1,9 +1,3 @@
-<typedef name="HTTP_Access_Type"  type="re"
-  data = "^(BOTH|HTTP|HTTPS)$"
-/>
-
 <class name="System" namespace="DesktopControl" version="1.0">
 	<property name="lock" type="boolean" default="0" writeacl="ruleCapable(serverServerDesktop)" readacl="ruleAll" />
-	<property name="GUIaccessType" type="HTTP_Access_Type" default="BOTH" writeacl="ruleCapable(serverServerDesktop)" readacl="ruleAll" />
-	<property name="GUIredirects" type="boolean" default="0" writeacl="ruleCapable(serverServerDesktop)" readacl="ruleAll" />
 </class>
