@@ -21,13 +21,13 @@ $servername = $System->{'hostname'} . '.' . $System->{'domainname'};
 $output = '# /etc/hosts' . "\n";
 $output .= '# Auto-generated file. Please put your customizations at the very end.' . "\n\n";
 $output .= '# Entries for localhost and primary IP address:' . "\n";
-$output .= '127.0.0.1' . filler('127.0.0.1') . "\t" . 'localhost' . filler('localhost') . "\t" . 'localhost.localdomain' . "\n";
+$output .= '127.0.0.1' . filler('127.0.0.1') . "\t" . 'localhost.localdomain' . filler('localhost.localdomain') . "\t" . 'localhost' . "\n";
 
 foreach $oid (@RealNetOids) {
     ($ok, $obj) = $cce->get($oid);
     $MainIpaddr = $obj->{'ipaddr'};
     push (@all_ips, $MainIpaddr);
-    $output .= $MainIpaddr . filler($MainIpaddr) . "\t" . $hostname . filler($hostname) . "\t" . $servername . "\n";
+    $output .= $MainIpaddr . filler($MainIpaddr) . "\t" . $servername . filler($servername) . "\t" . $hostname . "\n";
 }
 
 if (scalar(@OtherNetOids) gt "1") {
@@ -39,7 +39,7 @@ foreach $oid (@OtherNetOids) {
     $ipaddr = $obj->{'ipaddr'};
     if (($ipaddr ne "127.0.0.1") && ($ipaddr ne $MainIpaddr)) {
         push (@all_ips, $ipaddr);
-        $output .= $ipaddr . filler($ipaddr) . "\t" . $hostname . filler($hostname) . "\t" . $servername . "\n";
+        $output .= $ipaddr . filler($ipaddr) . "\t" . $servername . filler($servername) . "\t" . $hostname . "\n";
     }
 }
 
@@ -49,7 +49,7 @@ foreach $ip (@all_ips) {
     if (scalar(@Vsites_on_IP) gt "0") {
         foreach $oid (@Vsites_on_IP) {
             ($ok, $Vsite) = $cce->get($oid);
-            $output .= $ip . filler($ip) . "\t" . $Vsite->{'hostname'} . filler($Vsite->{'hostname'}) . "\t" . $Vsite->{'fqdn'} . "\n";
+            $output .= $ip . filler($ip) . "\t" . $Vsite->{'fqdn'} . filler($Vsite->{'fqdn'}) . "\t" . $Vsite->{'hostname'} . "\n";
         }
     }
 }
