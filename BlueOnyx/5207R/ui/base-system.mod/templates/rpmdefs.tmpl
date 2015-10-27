@@ -72,6 +72,10 @@ information for [VENDOR]-[SERVICE].
 
 <begin glue>
 # glue post-install
+if [ -S /usr/sausalito/cced.socket ]; then
+    /usr/sausalito/sbin/free_admin_alias.pl
+    /usr/sausalito/sbin/cced.init restart
+fi
 
 <end glue>
 <begin ui>
