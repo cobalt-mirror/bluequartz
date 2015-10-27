@@ -117,17 +117,7 @@ else {
                                                                                 <input type="password" id="password_field" name="password_field" class="required" onKeyPress="if( getKey(event)==13 && document.form.onsubmit() ) document.form.submit()" value="<?php echo set_value('password_field');?>">
                                                                         </div>
                                                                 </fieldset>
-
-                                                                <fieldset class="label_side top">
-                                                                        <label for="secureConnect"><?php echo $SecureConnect ?></label>
-                                                                        <div class="jqui_radios">
-									                                       <input type="radio" name="secureConnect" id="yes" value="1" <?php echo $sc_yes_selected; ?><?php echo $url; ?>>
-									                                       <label for="yes"><?php echo $yes ?></label>
-                                                                           <input type="radio" name="secureConnect" id="no" value="0" <?php echo $sc_no_selected; ?><?php echo $url; ?>>
-									                                       <label for="no"><?php echo $no ?></label>
-                                                                        </div>
-                                                                </fieldset>
-
+<?php echo $ssl_toggle; ?>
 
                                                                 <div class="button_bar clearfix">
                                                                         <button class="wide" type="submit">

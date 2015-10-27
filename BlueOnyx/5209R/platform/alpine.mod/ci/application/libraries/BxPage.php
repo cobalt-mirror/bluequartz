@@ -465,6 +465,43 @@ class BxPage extends MX_Controller {
         $this->cceClient = $serverScriptHelper->getCceClient();     
         $system = $this->cceClient->getObject('System');
 
+        // Handle redirects to HTTP(S) and/or FQDN of server:
+        if ((isset($system['GUIaccessType'])) && (isset($system['GUIredirects']))) {
+          if ($system['GUIredirects'] == "1") {
+            // Redirect to FQDN of the server:
+            $servername = $system['hostname'] . '.' . $system['domainname'];
+            $http_url = 'http://' . $servername . ':444' . $_SERVER['REQUEST_URI'];
+            $https_url = 'https://' . $servername . ':81' . $_SERVER['REQUEST_URI'];
+            if ($servername != $_SERVER['SERVER_NAME']) {
+                if ((is_HTTPS() == FALSE) && ($system['GUIaccessType'] == "HTTPS")) {
+                    header("Location: $https_url");
+                }
+                else {
+                    header("Location: $http_url");
+                }
+                $this->cceClient->bye();
+                $serverScriptHelper->destructor();
+                exit;
+            }
+          }
+          else {
+            $http_url = 'http://' . $_SERVER['SERVER_NAME'] . ':444' . $_SERVER['REQUEST_URI'];
+            $https_url = 'https://' . $_SERVER['SERVER_NAME'] . ':81' . $_SERVER['REQUEST_URI'];  
+          }
+          if ((is_HTTPS() == FALSE) && ($system['GUIaccessType'] == "HTTPS")) {
+            header("Location: $https_url");
+            $this->cceClient->bye();
+            $serverScriptHelper->destructor();
+            exit;
+          }
+          if ((is_HTTPS() == TRUE) && ($system['GUIaccessType'] == "HTTP")) {
+            header("Location: $http_url");
+            $this->cceClient->bye();
+            $serverScriptHelper->destructor();
+            exit;
+          }
+        }
+
         // Get 'Support' object:
         $Support = $this->cceClient->getObject("System", array(), "Support");
 
