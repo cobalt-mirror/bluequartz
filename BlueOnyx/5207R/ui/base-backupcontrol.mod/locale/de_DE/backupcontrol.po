@@ -44,3 +44,26 @@ msgstr "Server Backup"
 msgid "cap_serverServerDesktop"
 msgstr "Server Desktop-Einstellungen"
 
+###
+
+msgid "GUIaccessType"
+msgstr "GUI-Pprotokolle"
+
+msgid "GUIaccessType_help"
+msgstr "Hier können Sie festlegen, welche Protokolle die GUI unterstützt. Wenn Sie sowohl HTTP als auch HTTPS-Zugriff erlauben wollen, dann wählen Sie '[[base-backupcontrol.BOTH]]'. Um nur HTTPS-Zugriffe auf die GUI zu erlauben, wählen Sie '[[base-backupcontrol.HTTPS]]'. Alternativ können Sie auch '[[base-backupcontrol.HTTP]]' als einziges erlaubtes Protokoll definieren. Empfohlen: '[[base-backupcontrol.HTTPS]]'. Standard-Einstellung: '[[base-backupcontrol.BOTH]]'"
+
+msgid "GUIredirects"
+msgstr "Auf Server-Name umleiten"
+
+msgid "GUIredirects_help"
+msgstr "Der Apache Webserver auf dem die GUI läuft (admserv) verfügt über ein separates SSL-Zertifikat, welches unabhängig von den Zertifikaten einzelner virtueller Sites ist. Greift jemand mittels https://www.site.com:81/login auf die GUI zu, so wird der Browser eine Warnung anzeigen, dass das Zertifikat des GUI-Webservers nicht zu dem Namen der Domäne passt. Um dies zu verhinden, können Sie hier einen Haken setzen. Dann werden alle Zugriffe auf die GUI zum Host- und Domänen-Namen des Servers umgeleitet. BITTE BEACHTEN SIE: Verwenden Sie diese nur, wenn Sie für den Host- und Domänen-Namen des Servers gültige DNS-Einträge haben. Ansonsten ist die GUI unter Umständen nicht mehr zu erreichen."
+
+msgid "BOTH"
+msgstr "HTTP und HTTPS"
+
+msgid "HTTP"
+msgstr "nur HTTP"
+
+msgid "HTTPS"
+msgstr "nur HTTPS"
+

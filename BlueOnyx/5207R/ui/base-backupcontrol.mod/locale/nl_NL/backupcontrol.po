@@ -38,3 +38,26 @@ msgstr "De Server Desktop werd opgesloten door een serverbeheerder."
 msgid "cap_serverServerDesktop"
 msgstr "Server Desktop Settings"
 
+###
+
+msgid "GUIaccessType"
+msgstr "GUI toegang protocollen"
+
+msgid "GUIaccessType_help"
+msgstr "Dit bepaalt welke protocollen worden toegestaan ​​om toegang tot de GUI. Als u wilt zowel HTTP- en HTTPS-toegang mogelijk te maken, zet het dan op '[[base-backupcontrol.BOTH]]'. Alleen HTTPS-toegang toe te staan, zet deze op '[[base-backupcontrol.HTTPS]]'. Of u kunt het configureren om '[[base-backupcontrol.HTTP]]' als alleen toegestaan ​​protocol, dat is een slecht idee. Aanbevolen: '[[base-backupcontrol.HTTPS]]'. Standaard: '[[base-backupcontrol.BOTH]]'"
+
+msgid "GUIredirects"
+msgstr "Omleiden naar Server-Naam"
+
+msgid "GUIredirects_help"
+msgstr "De Apache Webserver dat de GUI draait op (AdmServ) heeft een apart SSL certificaat. Als iemand toegang heeft tot de GUI van HTTPS via de domeinnaam van een virtuele website (voorbeeld: https://www.site.com:81/login), dan is de browser zal een waarschuwing laten zien dat het SSL-certificaat van de server komt niet overeen met de domeinnaam . Om dit te voorkomen kunt u het vakje en alle HTTPS toegangen tot de GUI zal worden doorgestuurd naar de volledig gekwalificeerde domeinnaam van de server. LET OP: gebruik deze alleen als de servers volledig gekwalificeerde domeinnaam heeft een geldige DNS-record, of de GUI zou onbereikbaar geworden."
+
+msgid "BOTH"
+msgstr "HTTP- en HTTPS"
+
+msgid "HTTP"
+msgstr "HTTP alleen"
+
+msgid "HTTPS"
+msgstr "HTTPS alleen"
+

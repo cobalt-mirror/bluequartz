@@ -37,3 +37,27 @@ msgstr "Il Desktop Server è stato bloccato da un amministratore del server."
 
 msgid "cap_serverServerDesktop"
 msgstr "Impostazioni del Desktop Server"
+
+####
+
+msgid "GUIaccessType"
+msgstr "Protocolli di accesso GUI"
+
+msgid "GUIaccessType_help"
+msgstr "Questo definisce quali sono autorizzati i protocolli per accedere alla GUI. Se si desidera consentire HTTP e HTTPS accesso, quindi impostarlo su '[[base-backupcontrol.BOTH]]'. Per consentire solo l'accesso HTTPS, impostare su '[[base-backupcontrol.HTTPS]]'. In alternativa, è possibile configurarlo per quanto consentito solo il protocollo '[[base-backupcontrol.HTTP]]', che è una cattiva idea. Consigliato: '[[base-backupcontrol.HTTPS]]'. Predefinito: '[[base-backupcontrol.BOTH]]'"
+
+msgid "GUIredirects"
+msgstr "Redirect a server-Name"
+
+msgid "GUIredirects_help"
+msgstr "Il server web Apache che l'interfaccia grafica gira su (AdmServ) ha un certificato SSL separato. Se qualcuno accede alla GUI HTTPS tramite il nome di dominio di un sito virtuale (esempio: https://www.site.com:81/login), quindi il browser mostrerà un avviso che il certificato SSL del server non corrisponde al nome di dominio . Per evitare questo è possibile controllare la casella e tutto HTTPS accessi alla GUI verrà reindirizzato al nome di dominio completo del server. ATTENZIONE: Utilizzare solo questo se i server Fully Qualified Domain Name ha un record DNS valido, o la GUI potrebbe diventare irraggiungibile."
+
+msgid "BOTH"
+msgstr "HTTP e HTTPS"
+
+msgid "HTTP"
+msgstr "Solo HTTP"
+
+msgid "HTTPS"
+msgstr "Solo HTTPS"
+

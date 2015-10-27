@@ -42,7 +42,7 @@ msgid "GUIredirects"
 msgstr "Redirect to Server-Name"
 
 msgid "GUIredirects_help"
-msgstr "The Apache Webserver that the GUI runs on (AdmServ) has a separate SSL certificate. If you want to force all GUI logins to be redirected to https://server-name/login, then tick this checkbox."
+msgstr "The Apache Webserver that the GUI runs on (AdmServ) has a separate SSL certificate. If someone accesses the GUI by HTTPS via the domain name of a virtual site (example: https://www.site.com:81/login), then the browser will show a warning that the SSL certificate of the server doesn't match the domain name. To prevent this you can check this box and all HTTPS accesses to the GUI will be redirected to the fully qualified domain name of the server. PLEASE NOTE: Only use this if the servers fully qualified domain name has a valid DNS record, or the GUI might become unreachable."
 
 msgid "BOTH"
 msgstr "HTTP and HTTPS"
@@ -52,4 +52,3 @@ msgstr "HTTP only"
 
 msgid "HTTPS"
 msgstr "HTTPS only"
-

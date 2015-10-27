@@ -39,3 +39,27 @@ msgstr "Le [[base-backupcontrol.desktop_control]] a été verrouillé par un adm
 
 msgid "cap_serverServerDesktop"
 msgstr "Paramètres [[base-backupcontrol.desktop_control]]"
+
+####
+
+msgid "GUIaccessType"
+msgstr "Protocoles d'accès GUI"
+
+msgid "GUIaccessType_help"
+msgstr "Ce qui définit les protocoles sont autorisés à accéder à l'interface graphique. Si vous voulez permettre à la fois accès HTTP et HTTPS, puis réglez-le sur '[[base-backupcontrol.BOTH]]'. Pour permettre l'accès HTTPS uniquement, réglez-le sur '[[base-backupcontrol.HTTPS]]'. Ou vous pouvez le configurer pour '[[base-backupcontrol.HTTP]]' que seulement permis protocole, qui est une mauvaise idée. Recommandé: '[[base-backupcontrol.HTTPS]]'. Par défaut: '[[base-backupcontrol.BOTH]]'"
+
+msgid "GUIredirects"
+msgstr "Redirection vers le serveur-Nom"
+
+msgid "GUIredirects_help"
+msgstr "Le serveur web Apache que l'interface graphique fonctionne sur (admserv) dispose d'un certificat SSL séparée. Si quelqu'un accède à l'interface graphique par HTTPS via le nom de domaine d'un site virtuel (exemple: https://www.site.com:81/login), le navigateur affiche un avertissement indiquant que le certificat SSL du serveur ne correspond pas au nom de domaine . Pour éviter cela, vous pouvez cocher cette case et tout HTTPS accède à l'interface utilisateur sera redirigé vers le nom de domaine complet du serveur. S'IL VOUS PLAÎT NOTE: Utiliser seulement ceci si les serveurs entièrement qualifié nom de domaine a un enregistrement DNS valide, ou l'interface graphique peut devenir inaccessible."
+
+msgid "BOTH"
+msgstr "HTTP et HTTPS"
+
+msgid "HTTP"
+msgstr "HTTP uniquement"
+
+msgid "HTTPS"
+msgstr "HTTPS uniquement"
+

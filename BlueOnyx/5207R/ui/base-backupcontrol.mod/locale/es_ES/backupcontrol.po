@@ -37,3 +37,27 @@ msgstr "El Escritorio del servidor fue bloqueado por un administrador del servid
 
 msgid "cap_serverServerDesktop"
 msgstr "Configuración del escritorio del servidor"
+
+####
+
+msgid "GUIaccessType"
+msgstr "Protocolos de acceso GUI"
+
+msgid "GUIaccessType_help"
+msgstr "Esto define qué se permiten los protocolos para acceder a la interfaz gráfica de usuario. Si desea permitir HTTP y HTTPS de acceso y luego ponerlo en '[[base-backupcontrol.BOTH]]'. Para permitir sólo el acceso HTTPS, póngalo en '[[base-backupcontrol.HTTPS]]'. O usted puede configurarlo para que el protocolo, ya que sólo permite '[[base-backupcontrol.HTTP]]', que es una mala idea. Recomendado: '[[base-backupcontrol.HTTPS]]'. Por defecto: '[[base-backupcontrol.BOTH]]'"
+
+msgid "GUIredirects"
+msgstr "Redirigir a nombre-servidor"
+
+msgid "GUIredirects_help"
+msgstr "El servidor web Apache que la interfaz gráfica de usuario se ejecuta en (admserv) tiene un certificado SSL separado. Si alguien tiene acceso a la interfaz gráfica de usuario mediante HTTPS a través del nombre de dominio de un sitio virtual (ejemplo: https://www.site.com:81/login), entonces el navegador mostrará una advertencia de que el certificado SSL del servidor no coincide con el nombre de dominio . Para evitar esto se puede comprobar esta caja y todo HTTPS accesos a la interfaz gráfica de usuario será redirigido al nombre de dominio completo del servidor. NOTA: Utilice sólo esto si los servidores de nombre de dominio completo tiene un registro DNS válido, o la interfaz gráfica de usuario podría llegar a ser inalcanzable."
+
+msgid "BOTH"
+msgstr "HTTP y HTTPS"
+
+msgid "HTTP"
+msgstr "Sólo HTTP"
+
+msgid "HTTPS"
+msgstr "Sólo HTTPS"
+
