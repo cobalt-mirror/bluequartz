@@ -114,6 +114,12 @@ fi
 
 <begin $CHANGELOG>
 
+* Tue Oct 2017 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX12
+- Modified glue/schemas/dns.schema to change type of 'hostname' from
+  'hostname' to 'hostnamePlusWildcard'. Work around for TXT records.
+- Modified ui/chorizo/web/controllers/dns_add.php to set domauth to
+  domain of newly added record after creation.
+
 * Wed Jan 21 2015 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX11
 - Maximum value for parameter 'responses_per_second' reduced to '1000'.
 

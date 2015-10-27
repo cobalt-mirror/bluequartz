@@ -170,7 +170,7 @@ How the fields of DnsRecord are meant to be used:
   <!-- common for all types of record: -->
   <property name="type" type="dns_record_type" default=""
     writeacl="ruleCapable(serverDNS) OR ruleCapable(siteDNS)"/>
-  <property name="hostname" type="hostname" default="" optional="true"
+  <property name="hostname" type="hostnamePlusWildcard" default="" optional="true"
     writeacl="ruleCapable(serverDNS) OR ruleCapable(siteDNS)"/>
   <property name="domainname" type="domainname" default="" optional="true"
     writeacl="ruleCapable(serverDNS) OR ruleCapable(siteDNS)"/>

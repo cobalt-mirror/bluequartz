@@ -202,7 +202,10 @@ class Dns_add extends MX_Controller {
 			if (count($errors) == "0") {
 				$cceClient->bye();
 				$serverScriptHelper->destructor();
-				if ($domauth != "") {
+				if (($domauth != "") && ($attributes['domainname'] != $domauth)) {
+					$redirect_URL = $parent . "?domauth=". urlencode($attributes['domainname']);
+				}
+				elseif ($domauth != "") {
 					$redirect_URL = $parent . "?domauth=" . urlencode($domauth);
 				}
 				elseif ($netauth != "") {
