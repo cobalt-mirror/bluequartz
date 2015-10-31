@@ -54,10 +54,18 @@ class Autoinstall extends MX_Controller {
         // Get URL params:
         $get_form_data = $CI->input->get(NULL, TRUE);
 
+        $email_access_field_rw = "rw";
         if (file_exists('/usr/sausalito/ui/chorizo/ci/application/modules/Compass/base/controllers/autolib.php')) {
             include_once("/usr/sausalito/ui/chorizo/ci/application/modules/Compass/base/controllers/autolib.php");
             $SerialNumber = $system["serialNumber"];
+            if ($SerialNumber == "") {
+                $ret = $serverScriptHelper->shell("/usr/sausalito/sbin/get_serial.pl", $is_there, 'root', $sessionId);
+                // Get Serial again from System object:
+                $system = $cceClient->getObject("System");
+                $SerialNumber = $system["serialNumber"];
+            }
             $shopEmail = get_nl_username($SerialNumber);
+            $email_access_field_rw = "r";
         }
         else {
             $shopEmail = '';
@@ -235,7 +243,7 @@ class Autoinstall extends MX_Controller {
         //
 
         // Shop-Email:
-        $shopemailField = $factory->getTextField("ShopEmail", $shopEmail, 'rw');
+        $shopemailField = $factory->getTextField("ShopEmail", $shopEmail, $email_access_field_rw);
         $shopemailField->setOptional (FALSE);
         $shopemailField->setType ('email');
         $block->addFormField(
