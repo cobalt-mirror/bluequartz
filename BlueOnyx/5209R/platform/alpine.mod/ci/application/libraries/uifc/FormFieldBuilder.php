@@ -106,7 +106,7 @@ class FormFieldBuilder {
       $tooltip = $i18n->getWrapped($label);
     }
     $out = '
-      <div class="alert">
+      <div class="alert" style="line-height: 18px;">
           <label for="' . $id . '" title="' . $tooltip . '" class="tooltip left">' . $label . '</label>
           <img width="24" height="24" src="/.adm/images/icons/small/white/tags_2.png"></img>
       </div>' ."\n";

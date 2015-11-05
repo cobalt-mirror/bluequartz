@@ -136,6 +136,11 @@ fi
 
 <begin $CHANGELOG>
 
+* Thu Nov 05 2015 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX050
+- Modified ci/application/libraries/uifc/FormFieldBuilder.php to change
+  function makeBxDivider() to override the CSS property line-height to
+  18 px. That way we can use BxDivider in getMultiChoice().
+
 * Tue Oct 27 2015 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX049
 - Added support for forcing protocols for GUI access to HTTPS (and HTTP).
 - Modified ci/application/modules/base/login/controllers/login.php
