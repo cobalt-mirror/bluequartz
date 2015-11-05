@@ -95,7 +95,8 @@ class Autoinstall extends MX_Controller {
         //
         //--- Check if the NewLinQ PKG is installed. If not, install it:
         //
-        $BasePKG = $cceClient->getObject("Package", array("name" => 'base', 'vendor' => 'Compass', 'installState' => 'Installed'));
+        //$BasePKG = $cceClient->getObject("Package", array("name" => 'base', 'vendor' => 'Compass', 'installState' => 'Installed'));
+        $BasePKG = $cceClient->getObject("Package", array("name" => 'base', 'vendor' => 'Compass'));
         if (!isset($BasePKG['OID'])) {
             // NewLinQ PKG not installed! We refresh the list of available updates first:
             $ret = $serverScriptHelper->shell("/usr/sausalito/sbin/grab_updates.pl -u", $result, 'root', $sessionId);
@@ -104,9 +105,12 @@ class Autoinstall extends MX_Controller {
 
             // Set 30 minute 'ai' cookie:
             setcookie("ai", '1', time()+60*30, "/");
-
-            // If we now have an OID, we do a little round-about to install the PKG
-            if (isset($BasePKG['OID'])) {
+        }
+        // Check again:
+        $BasePKG = $cceClient->getObject("Package", array("name" => 'base', 'vendor' => 'Compass'));
+        if (isset($BasePKG['installState'])) {
+            if ($BasePKG['installState'] == "Available") {
+                // We do a little round-about to install the PKG
                 $backUrl = '/swupdate/autoinstall?ai=true';
                 if (isset($get_form_data['em'])) {
                     $backUrl .= '&em=' . urlencode($shopEmail);
@@ -120,12 +124,20 @@ class Autoinstall extends MX_Controller {
                 header('Location: /swupdate/download?backUrl=' . $backUrl . '&packageOID=' . $BasePKG['OID']);
             }
         }
-        else {
-            // Delete old 'ai' cookie if present:
-            delete_cookie("ai");
+        if (isset($BasePKG['installState'])) {
+            if ($BasePKG['installState'] == "Installed") {
+                // Delete old 'ai' cookie if present:
+                delete_cookie("ai");
 
-            // Set new 30 minute 'ai' cookie:
-            setcookie("ai", '2', time()+60*30, "/");
+                // Set new 30 minute 'ai' cookie:
+                setcookie("ai", '2', time()+60*30, "/");
+            }
+        }
+
+        // Double check email-address:
+        if (!filter_var($shopEmail, FILTER_VALIDATE_EMAIL)) {
+            // No valid Email-Address. Reset access rights to 'rw':
+            $email_access_field_rw = "rw";
         }
 
         //
