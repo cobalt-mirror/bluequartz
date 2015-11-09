@@ -473,3 +473,139 @@ msgstr "Cette base de données [[base-mysql.DBTYPE]] existe déjà dans la table
 
 msgid "CreateFailDatabaseExists"
 msgstr "Cette base de données [[base-mysql.DBTYPE]] existe déjà."
+
+#
+### New for multi-DB support:
+#
+
+msgid "vsiteMySQLMenu"
+msgstr "[[base-mysql.DBTYPE]]"
+
+msgid "vsiteMySQLMenuDesc"
+msgstr "Cette page de l'interface graphique vous permet de gérer ou de consulter les bases de données et les autorisations [[base-mysql.DBTYPE]]."
+
+msgid "mysql_vsite_head"
+msgstr "[[base-mysql.DBTYPE]] Détails"
+
+msgid "VsiteDBtab"
+msgstr "Informations générales"
+
+msgid "VsiteDBtab_help"
+msgstr "Cette page vous montre les détails de la connexion à des bases de données [[base-mysql.DBTYPE]] et qui sont présents."
+
+msgid "MySQLuserRights"
+msgstr "[[base-mysql.DBTYPE]] Permission"
+
+msgid "MySQLuserRights_help"
+msgstr "Cette page vous montre les autorisations que l'utilisateur [[base-mysql.DBTYPE]] de ce site virtuel a."
+
+msgid "DIVIDER_Vsite_condetails"
+msgstr "[[base-mysql.DBTYPE]] détails de connexion:"
+
+msgid "DIVIDER_Vsite_DBlist"
+msgstr "Bases de données [[base-mysql.DBTYPE]] de ce site virtuel:"
+
+msgid "DBaddbut"
+msgstr "Ajouter base de données [[base-mysql.DBTYPE]]"
+
+msgid "DBaddbut_help"
+msgstr "Ce bouton vous permet d'ajouter une autre base de données [[base-mysql.DBTYPE]] à ce site virtuel."
+
+msgid "db_name"
+msgstr "Nom de la base"
+
+msgid "db_name_help"
+msgstr "Affiche les noms des bases de données [[base-mysql.DBTYPE]] de ce site virtuel."
+
+msgid "maxDBs"
+msgstr "Bases de données autorisés"
+
+msgid "maxDBs_help"
+msgstr "Ceci définit combien de bases de données [[base-mysql.DBTYPE]] ce site virtuel peut avoir."
+
+msgid "action"
+msgstr "action"
+
+msgid "action_help"
+msgstr "Vous permet d'effectuer des actions impliquant la base de données sélectionnée."
+
+msgid "new_db_name"
+msgstr "Nom de la base"
+
+msgid "new_db_name_help"
+msgstr "Entrez le nom de la nouvelle base de données de [[base-mysql.DBTYPE]] que vous voulez créer."
+
+msgid "dbRemove"
+msgstr "Retirer cette base de données de [[base-mysql.DBTYPE]]."
+
+msgid "dbRemove_help"
+msgstr "Ce bouton vous permet de supprimer cette base de données de [[base-mysql.DBTYPE]]. S'il vous plaît noter: Cette action ne peut pas être annulée."
+
+msgid "dbRemoveNotPoss"
+msgstr "Cette base de données ne peut pas être enlevé."
+
+msgid "dbRemoveNotPoss_help"
+msgstr "Cette base de données est [[base-mysql.DBTYPE]] de la base de données primaire [[base-mysql.DBTYPE]] et ne peut pas être enlevé. Il sera effacé automatiquement lorsque le soutien [[base-mysql.DBTYPE]] est éteint ou lorsque ce site virtuel est supprimé."
+
+msgid "resetToDefaults"
+msgstr "Réinitialiser les paramètres par défaut"
+
+msgid "resetToDefaults_help"
+msgstr "En cliquant sur ce bouton permet de réinitialiser les autorisations de [[base-mysql.DBTYPE]] de cette sites virtuels [[base-mysql.DBTYPE]] utilisateur aux valeurs par défaut tel que défini pour ce serveur dans les paramètres de [[base-mysql.DBTYPE]]."
+
+msgid "GrantAllPerms"
+msgstr "Accorde toutes les autorisations"
+
+msgid "GrantAllPerms_help"
+msgstr "Cette accordera (presque) toutes les autorisations à cet utilisateur de [[base-mysql.DBTYPE]] pour toutes les bases de données qui sont sous son contrôle. La seule permission de ne pas accorder l'autorisation est «GRANT»."
+
+msgid "EVENT"
+msgstr "UN ÉVÉNEMENT"
+
+msgid "EVENT_help"
+msgstr "Le privilège de CAS est nécessaire pour créer, modifier, supprimer ou voir les événements pour l'événement Scheduler."
+
+msgid "DIVIDER_ADM"
+msgstr "Privilèges administratifs (par défaut, ils ne sont pas accordées):"
+
+msgid "GRANT"
+msgstr "GRANT"
+
+msgid "GRANT_help"
+msgstr "Le privilège GRANT OPTION vous permet de donner à d'autres utilisateurs ou de supprimer d'autres utilisateurs de ces droits que vous possédez. Pour des raisons de sécurité, nous ne accorder ce privilège."
+
+msgid "TRIGGER"
+msgstr "GÂCHETTE"
+
+msgid "TRIGGER_help"
+msgstr "Le privilège TRIGGER permet des opérations de déclenchement. Vous devez avoir ce privilège pour une table pour créer, supprimer ou exécuter des déclencheurs pour cette table."
+
+msgid "LOCK_TABLES"
+msgstr "LOCK TABLES"
+
+msgid "LOCK_TABLES_help"
+msgstr "Le privilège LOCK TABLES permet l'utilisation de explicites instructions LOCK TABLES pour verrouiller les tables pour lesquelles vous avez le privilège SELECT. Cela comprend l'utilisation de verrous d'écriture, ce qui empêche les autres sessions de la lecture de la table verrouillée."
+
+msgid "REFERENCES"
+msgstr "LES RÉFÉRENCES"
+
+msgid "REFERENCES_help"
+msgstr "Accorde le privilège de référence pour cette base de données."
+
+msgid "db_not_found"
+msgstr "Une base de données avec ce nom n'a pu être trouvée. S'il vous plaît vérifier le nom et essayer à nouveau."
+
+msgid "db_name_already_in_use"
+msgstr "Il existe déjà une base de données présente avec ce nom. S'il vous plaît utiliser un nom de base de données et réessayez."
+
+msgid "MySQLVsiteNotEnabled"
+msgstr "[[base-mysql.DBTYPE]] est désactivé pour ce site virtuel. Vous devez activer [[base-mysql.DBTYPE]] pour ce site virtuel avant de pouvoir utiliser cette page d'interface graphique."
+
+msgid "MySQLdbList"
+msgstr "Liste des bases de données disponibles [[base-mysql.DBTYPE]]"
+
+msgid "dbRemoveConfirmNeutral"
+msgstr "Voulez-vous vraiment supprimer cette base de données?"
+
+msgid "DBremoveConfirmInfo"
+msgstr "S'il vous plaît confirmer que vous souhaitez supprimer cette base de données [[base-mysql.DBTYPE]]. S'il vous plaît noter: Cette action ne peut pas être annulée et vous perdrez toutes les informations qui sont stockées dans cette base de données [[base-mysql.DBTYPE]]."

@@ -463,3 +463,139 @@ msgstr "Esse banco de dados [[base-mysql.DBTYPE]] já existe na tabela de banco 
 
 msgid "CreateFailDatabaseExists"
 msgstr "Esse banco de dados [[base-mysql.DBTYPE]] já existe."
+
+#
+### New for multi-DB support:
+#
+
+msgid "vsiteMySQLMenu"
+msgstr "[[base-mysql.DBTYPE]]"
+
+msgid "vsiteMySQLMenuDesc"
+msgstr "Esta página GUI permite que você gerencie ou rever as bases de dados [[base-mysql.DBTYPE]] e permissões."
+
+msgid "mysql_vsite_head"
+msgstr "[[base-mysql.DBTYPE]] Detalhes"
+
+msgid "VsiteDBtab"
+msgstr "Informações gerais"
+
+msgid "VsiteDBtab_help"
+msgstr "Esta página mostra os detalhes de conexão para [[base-mysql.DBTYPE]] e quais bancos de dados estão presentes."
+
+msgid "MySQLuserRights"
+msgstr "[[base-mysql.DBTYPE]] Permissões"
+
+msgid "MySQLuserRights_help"
+msgstr "Esta página mostra as permissões que o usuário [[base-mysql.DBTYPE]] deste site virtual tem."
+
+msgid "DIVIDER_Vsite_condetails"
+msgstr "[[base-mysql.DBTYPE]] detalhes de conexão:"
+
+msgid "DIVIDER_Vsite_DBlist"
+msgstr "Bancos de dados [[base-mysql.DBTYPE]] deste site virtual:"
+
+msgid "DBaddbut"
+msgstr "Adicionar banco de dados [[base-mysql.DBTYPE]]"
+
+msgid "DBaddbut_help"
+msgstr "Este botão permite que você adicione outro banco de dados [[base-mysql.DBTYPE]] a este site virtual."
+
+msgid "db_name"
+msgstr "Nome de banco de dados"
+
+msgid "db_name_help"
+msgstr "Mostra os nomes dos bancos de dados [[base-mysql.DBTYPE]] deste site virtual."
+
+msgid "maxDBs"
+msgstr "Bases de dados de estimação"
+
+msgid "maxDBs_help"
+msgstr "Isso define quantos bancos de dados [[base-mysql.DBTYPE]] este site virtual pode ter."
+
+msgid "action"
+msgstr "Açao"
+
+msgid "action_help"
+msgstr "Permite que você execute ações que envolvem o banco de dados selecionado."
+
+msgid "new_db_name"
+msgstr "Nome de banco de dados"
+
+msgid "new_db_name_help"
+msgstr "Digite o nome do novo banco de dados [[base-mysql.DBTYPE]] que você deseja criar."
+
+msgid "dbRemove"
+msgstr "Remover esta base de dados [[base-mysql.DBTYPE]]."
+
+msgid "dbRemove_help"
+msgstr "Este botão permite que você remova esse banco de dados [[base-mysql.DBTYPE]]. Atenção: Esta ação não pode ser desfeita."
+
+msgid "dbRemoveNotPoss"
+msgstr "Esta base de dados não podem ser removidas."
+
+msgid "dbRemoveNotPoss_help"
+msgstr "Esta base de dados é a base de dados [[base-mysql.DBTYPE]] [[base-mysql.DBTYPE]] primária e não pode ser removido. Ele vai ficar excluído automaticamente quando o suporte [[base-mysql.DBTYPE]] é desligada ou quando este site virtual é excluído."
+
+msgid "resetToDefaults"
+msgstr "Restaurar padrões"
+
+msgid "resetToDefaults_help"
+msgstr "Ao clicar neste botão irá repor as permissões [[base-mysql.DBTYPE]] deste sites virtuais [[base-mysql.DBTYPE]] usuário para os padrões conforme definido para este servidor nas configurações [[base-mysql.DBTYPE]]."
+
+msgid "GrantAllPerms"
+msgstr "Concede todas as permissões"
+
+msgid "GrantAllPerms_help"
+msgstr "Isto irá conceder (quase) todas as permissões para este usuário [[base-mysql.DBTYPE]] para todos os bancos que estão sob seu controle. A única permissão concedida não é a permissão 'GRANT'."
+
+msgid "EVENT"
+msgstr "EVENTO"
+
+msgid "EVENT_help"
+msgstr "O privilégio EVENTO é necessário para criar, alterar, apagar ou ver eventos para o evento Scheduler."
+
+msgid "DIVIDER_ADM"
+msgstr "Privilégios administrativos (por padrão estes não são concedidos):"
+
+msgid "GRANT"
+msgstr "GRANT"
+
+msgid "GRANT_help"
+msgstr "O privilégio GRANT OPTION permite-lhe dar a outros usuários ou remover de outros usuários os privilégios que você mesmo possui. Por razões de segurança nós não conceder esse privilégio."
+
+msgid "TRIGGER"
+msgstr "GATILHO"
+
+msgid "TRIGGER_help"
+msgstr "O privilégio TRIGGER permite operações de gatilho. Você deve ter esse privilégio por uma mesa para criar, apagar ou executar gatilhos para essa tabela."
+
+msgid "LOCK_TABLES"
+msgstr "LOCK TABLES"
+
+msgid "LOCK_TABLES_help"
+msgstr "O privilégio BLOQUEIO TABELAS permite o uso de declarações bloquear tabelas explícitas para bloquear tabelas para as quais você tem o privilégio SELECT. Isso inclui o uso de bloqueios de escrita, o que impede outras sessões de leitura da tabela bloqueada."
+
+msgid "REFERENCES"
+msgstr "Referências"
+
+msgid "REFERENCES_help"
+msgstr "Concede o privilégio de referência para este banco de dados."
+
+msgid "db_not_found"
+msgstr "Um banco de dados com este nome não pôde ser encontrado. Por favor, verifique o nome e tente novamente."
+
+msgid "db_name_already_in_use"
+msgstr "Já existe um banco de dados atual com este nome. Por favor, use um nome de banco de dados diferente e tente novamente."
+
+msgid "MySQLVsiteNotEnabled"
+msgstr "[[base-mysql.DBTYPE]] está desativada para este site virtual. Você precisa habilitar o [[base-mysql.DBTYPE]] para este site virtual antes que você possa usar esta página GUI."
+
+msgid "MySQLdbList"
+msgstr "Lista de bases de dados disponíveis [[base-mysql.DBTYPE]]"
+
+msgid "dbRemoveConfirmNeutral"
+msgstr "Você realmente quer apagar este banco de dados?"
+
+msgid "DBremoveConfirmInfo"
+msgstr "Por favor, confirme que você deseja excluir esta base de dados [[base-mysql.DBTYPE]]. Atenção: Esta ação não pode ser desfeita e você perderá qualquer informação que é armazenada na base de dados [[base-mysql.DBTYPE]]."

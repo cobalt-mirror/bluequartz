@@ -464,3 +464,138 @@ msgstr "At [[base-mysql.DBTYPE]]-database findes allerede i [[base-mysql.DBTYPE]
 msgid "CreateFailDatabaseExists"
 msgstr "Findes allerede, at [[base-mysql.DBTYPE]]-database."
 
+#
+### New for multi-DB support:
+#
+
+msgid "vsiteMySQLMenu"
+msgstr "[[base-mysql.DBTYPE]]"
+
+msgid "vsiteMySQLMenuDesc"
+msgstr "Denne GUI side giver dig mulighed for at styre eller gennemgå [[base-mysql.DBTYPE]] databaser og tilladelser."
+
+msgid "mysql_vsite_head"
+msgstr "[[base-mysql.DBTYPE]] Detaljer"
+
+msgid "VsiteDBtab"
+msgstr "General Information"
+
+msgid "VsiteDBtab_help"
+msgstr "På denne side vises forbindelsesindstillingerne detaljer til [[base-mysql.DBTYPE]] og hvilke databaser er til stede."
+
+msgid "MySQLuserRights"
+msgstr "[[base-mysql.DBTYPE]] Tilladelser"
+
+msgid "MySQLuserRights_help"
+msgstr "På denne side vises tilladelserne at [[base-mysql.DBTYPE]] bruger af denne virtuelle websted har."
+
+msgid "DIVIDER_Vsite_condetails"
+msgstr "[[base-mysql.DBTYPE]] tilslutning detaljer:"
+
+msgid "DIVIDER_Vsite_DBlist"
+msgstr "[[base-mysql.DBTYPE]] databaser over denne virtuelle websted:"
+
+msgid "DBaddbut"
+msgstr "Tilføj [[base-mysql.DBTYPE]] database"
+
+msgid "DBaddbut_help"
+msgstr "Denne knap giver dig mulighed for at tilføje en anden [[base-mysql.DBTYPE]] database til denne virtuelle websted."
+
+msgid "db_name"
+msgstr "Database Name"
+
+msgid "db_name_help"
+msgstr "Viser navnene på [[base-mysql.DBTYPE]] databaser af denne virtuelle site."
+
+msgid "maxDBs"
+msgstr "Medbringes Databaser"
+
+msgid "maxDBs_help"
+msgstr "Dette definerer hvor mange [[base-mysql.DBTYPE]] databaser denne virtuelle websted kan have."
+
+msgid "action"
+msgstr "Handling"
+
+msgid "action_help"
+msgstr "Gør det muligt at udføre handlinger, der involverer den valgte database."
+
+msgid "new_db_name"
+msgstr "Database Name"
+
+msgid "new_db_name_help"
+msgstr "Indtast navnet på den nye [[base-mysql.DBTYPE]] database, du vil oprette."
+
+msgid "dbRemove"
+msgstr "Fjern denne [[base-mysql.DBTYPE]] database."
+
+msgid "dbRemove_help"
+msgstr "Denne knap giver dig mulighed for at fjerne denne [[base-mysql.DBTYPE]] database. Bemærk: Denne handling kan ikke fortrydes."
+
+msgid "dbRemoveNotPoss"
+msgstr "Denne database kan ikke fjernes."
+
+msgid "dbRemoveNotPoss_help"
+msgstr "Denne [[base-mysql.DBTYPE]] database er den primære [[base-mysql.DBTYPE]] databasen og kan ikke fjernes. Det vil blive slettet automatisk, når [[base-mysql.DBTYPE]] støtte slukkes, eller når denne virtuelle hjemmeside bliver slettet."
+
+msgid "resetToDefaults"
+msgstr "Nulstil til standardindstillinger"
+
+msgid "resetToDefaults_help"
+msgstr "Ved at klikke på denne knap vil nulstille tilladelserne til denne virtuelle sites [[base-mysql.DBTYPE]] bruger til standardindstillingerne [[base-mysql.DBTYPE]] som defineret for denne server i [[base-mysql.DBTYPE]] indstillinger."
+
+msgid "GrantAllPerms"
+msgstr "Give alle tilladelser"
+
+msgid "GrantAllPerms_help"
+msgstr "Dette vil give (næsten) alle tilladelser til denne [[base-mysql.DBTYPE]] bruger for alle databaser, som er under hans kontrol. Det eneste tilladelse ikke ydet er 'GRANT' tilladelse."
+
+msgid "EVENT"
+msgstr "EVENT"
+
+msgid "EVENT_help"
+msgstr "Arrangementet privilegium er forpligtet til at oprette, ændre, drop, eller se arrangementer for Event Scheduler."
+
+msgid "DIVIDER_ADM"
+msgstr "Administratorrettigheder (som standard disse ikke givet):"
+
+msgid "GRANT"
+msgstr "GRANT"
+
+msgid "GRANT_help"
+msgstr "Den GRANT OPTION privilegium giver dig mulighed for at give til andre brugere eller fjerne fra andre brugere de privilegier, som du selv besidder. Af sikkerhedsmæssige årsager, vi ikke giver dette privilegium."
+
+msgid "TRIGGER"
+msgstr "UDLØSER"
+
+msgid "TRIGGER_help"
+msgstr "Den TRIGGER privilegium giver trigger operationer. Du skal have dette privilegium for en tabel til at skabe, drop, eller udføre udløser for den tabel."
+
+msgid "LOCK_TABLES"
+msgstr "LOCK TABELLER"
+
+msgid "LOCK_TABLES_help"
+msgstr "LOCK TABELLER privilegium muliggør brugen af ​​eksplicitte LOCK TABELLER udsagn til at låse tabeller, som du har SELECT privilegium. Dette omfatter anvendelsen af ​​skrive låse, hvilket forhindrer andre sessioner fra at læse den låste tabel."
+
+msgid "REFERENCES"
+msgstr "REFERENCER"
+
+msgid "REFERENCES_help"
+msgstr "Meddeler REFERENCE privilegium for denne database."
+
+msgid "db_not_found"
+msgstr "En database med dette navn kunne ikke findes. Tjek venligst navnet og prøv igen."
+
+msgid "db_name_already_in_use"
+msgstr "Der findes allerede en database til stede med dette navn. Brug et andet databasenavn, og prøv igen."
+
+msgid "MySQLVsiteNotEnabled"
+msgstr "[[base-mysql.DBTYPE]] er deaktiveret for denne virtuelle websted. Du skal aktivere [[base-mysql.DBTYPE]] for denne virtuelle websted, før du kan bruge denne GUI side."
+
+msgid "MySQLdbList"
+msgstr "Liste over tilgængelige [[base-mysql.DBTYPE]] databaser"
+
+msgid "dbRemoveConfirmNeutral"
+msgstr "Vil du virkelig ønsker at slette denne database?"
+
+msgid "DBremoveConfirmInfo"
+msgstr "Bekræft venligst, at du ønsker at slette denne [[base-mysql.DBTYPE]] database. Bemærk: Denne handling kan ikke fortrydes, og du vil miste alle oplysninger, der er gemt i denne [[base-mysql.DBTYPE]] database."

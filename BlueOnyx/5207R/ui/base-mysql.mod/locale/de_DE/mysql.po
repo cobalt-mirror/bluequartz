@@ -466,3 +466,140 @@ msgstr "Diese [[base-mysql.DBTYPE]]-Datenbank ist bereits in der [[base-mysql.DB
 
 msgid "CreateFailDatabaseExists"
 msgstr "Diese [[base-mysql.DBTYPE]]-Datenbank ist bereits vorhanden."
+
+#
+### New for multi-DB support:
+#
+
+msgid "vsiteMySQLMenu"
+msgstr "[[base-mysql.DBTYPE]]"
+
+msgid "vsiteMySQLMenuDesc"
+msgstr "Das GUI-Seite ermöglicht Ihnen die Verwaltung oder Einsicht in die Einstellungen der [[base-mysql.DBTYPE]]-Datenbanken und Berechtigungen."
+
+msgid "mysql_vsite_head"
+msgstr "[[base-mysql.DBTYPE]] Details"
+
+msgid "VsiteDBtab"
+msgstr "Allgemeine Informationen"
+
+msgid "VsiteDBtab_help"
+msgstr "Diese Seite zeigt Dir die Verbindungsdetails zu [[base-mysql.DBTYPE]] und welche Datenbanken vorhanden sind."
+
+msgid "MySQLuserRights"
+msgstr "[[base-mysql.DBTYPE]] Berechtigungen"
+
+msgid "MySQLuserRights_help"
+msgstr "Diese Seite zeigt Dir die Berechtigungen, welche der [[base-mysql.DBTYPE]]-Benutzer dieser virtuellen Seite hat."
+
+msgid "DIVIDER_Vsite_condetails"
+msgstr "[[base-mysql.DBTYPE]] Verbindungsdetails:"
+
+msgid "DIVIDER_Vsite_DBlist"
+msgstr "[[base-mysql.DBTYPE]]-Datenbanken dieser virtuellen Website:"
+
+msgid "DBaddbut"
+msgstr "[[base-mysql.DBTYPE]] Datenbank hinzufügen"
+
+msgid "DBaddbut_help"
+msgstr "Mit dieser Schaltfläche können Sie eine weitere [[base-mysql.DBTYPE]]-Datenbank zu dieser virtuellen Website hinzufügen."
+
+msgid "db_name"
+msgstr "Datenbank-Name"
+
+msgid "db_name_help"
+msgstr "Zeigt die Namen der [[base-mysql.DBTYPE]]-Datenbanken dieser virtuellen Webseite an."
+
+msgid "maxDBs"
+msgstr "Anzahl Datenbanken"
+
+msgid "maxDBs_help"
+msgstr "Dieser Wert definiert, wie viele [[base-mysql.DBTYPE]]-Datenbanken diese virtuelle Website haben darf."
+
+msgid "action"
+msgstr "Aktion"
+
+msgid "action_help"
+msgstr "Ermöglicht Ihnen die ausgewählte Datenbank zu löschen."
+
+msgid "new_db_name"
+msgstr "Datenbank-Name"
+
+msgid "new_db_name_help"
+msgstr "Geben Sie den Namen der neuen [[base-mysql.DBTYPE]]-Datenbank an, die Sie erzeugen möchten."
+
+msgid "dbRemove"
+msgstr "[[base-mysql.DBTYPE]]-Datenbank entfernen"
+
+msgid "dbRemove_help"
+msgstr "Mit dieser Schaltfläche können Sie diese [[base-mysql.DBTYPE]]-Datenbank entfernen. Bitte beachten Sie: Diese Aktion kann nicht rückgängig gemacht werden."
+
+msgid "dbRemoveNotPoss"
+msgstr "Diese Datenbank kann nicht entfernt werden."
+
+msgid "dbRemoveNotPoss_help"
+msgstr "Diese [[base-mysql.DBTYPE]]-Datenbank ist die primäre [[base-mysql.DBTYPE]]-Datenbank und kann nicht entfernt werden. Sie wird automatisch gelöscht, wenn die [[base-mysql.DBTYPE]]-Unterstützung dieser virtuellen Website ausgeschaltet wird oder wenn dieses virtuelle Website gelöscht wird."
+
+msgid "resetToDefaults"
+msgstr "Rechte zurücksetzen"
+
+msgid "resetToDefaults_help"
+msgstr "Ein Klick auf diese Schaltfläche wird die [[base-mysql.DBTYPE]]-Berechtigungen dieses [[base-mysql.DBTYPE]]-Benutzers auf die Standardeinstellungen zurückzusetzen, wie sie für diesen Server in den [[base-mysql.DBTYPE]]-Einstellungen definiert sind."
+
+msgid "GrantAllPerms"
+msgstr "Alle Rechte gewähren"
+
+msgid "GrantAllPerms_help"
+msgstr "Über diese Schaltfläche können für alle Datenbanken dieses [[base-mysql.DBTYPE]]-Benutzers (fast) alle Rechte gewährt werden. Das Einzige nicht gewährte Recht ist 'GRANT', welches wir generell nicht vergeben."
+
+msgid "EVENT"
+msgstr "EVENT"
+
+msgid "EVENT_help"
+msgstr "Die EVENT Berechtigung ist erforderlich, um Ereignisse für den Event-Scheduler zu erstellen, zu ändern, oder zu löschen."
+
+msgid "DIVIDER_ADM"
+msgstr "Administratorrechte (standardmäßig nicht gewährt):"
+
+msgid "GRANT"
+msgstr "GRANT"
+
+msgid "GRANT_help"
+msgstr "Das GRANT Privileg ermöglicht es Ihnen, anderen Benutzer Berechtigungen zu erteilen. Aus Gründen der Sicherheit vergeben wir dieses Privileg generell nicht."
+
+msgid "TRIGGER"
+msgstr "TRIGGER"
+
+msgid "TRIGGER_help"
+msgstr "Die Berechtigung TRIGGER ermöglicht Trigger-Operationen. Dieses Privileg wird benötigt, um Trigger zu erstellen, zu löschen, oder auszuführen."
+
+msgid "LOCK_TABLES"
+msgstr "LOCK TABLES"
+
+msgid "LOCK_TABLES_help"
+msgstr "Das LOCK TABLES Privileg ermöglicht die Verwendung von expliziten LOCK TABLES-Anweisungen, mit denen Tabellen gesperrt werden können. Dies schließt die Verwendung von Schreibsperren mit ein, welche anderen Sitzungen den Zugriff auf die gesperrte Tabelle verweigern."
+
+msgid "REFERENCES"
+msgstr "REFERENCES"
+
+msgid "REFERENCES_help"
+msgstr "Erteilt das REFERENCES-Privileg für diese Datenbank."
+
+msgid "db_not_found"
+msgstr "Eine Datenbank mit diesem Namen konnte nicht gefunden werden. Bitte überprüfen Sie den Namen und versuchen Sie es erneut."
+
+msgid "db_name_already_in_use"
+msgstr "Es gibt bereits eine Datenbank mit diesem Namen. Bitte verwenden Sie einen anderen Datenbank-Namen und versuchen Sie es erneut."
+
+msgid "MySQLVsiteNotEnabled"
+msgstr "[[base-mysql.DBTYPE]] ist für diese virtuellen Webseite deaktiviert. Sie müssen [[base-mysql.DBTYPE]]-Support für diese virtuelle Website aktivieren, bevor Sie diese GUI-Seite verwenden können."
+
+msgid "MySQLdbList"
+msgstr "Liste der verfügbaren [[base-mysql.DBTYPE]]-Datenbanken"
+
+msgid "dbRemoveConfirmNeutral"
+msgstr "Wollen Sie diese Datenbank wirklich löschen?"
+
+msgid "DBremoveConfirmInfo"
+msgstr "Bitte bestätigen Sie, dass Sie diese [[base-mysql.DBTYPE]]-Datenbank löschen möchten. Bitte beachten Sie: Diese Aktion kann nicht rückgängig gemacht werden. Beim Löschen verlieren Sie alle Informationen, die in dieser [[base-mysql.DBTYPE]]-Datenbank gespeichert sind."
+

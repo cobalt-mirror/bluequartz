@@ -589,13 +589,13 @@ msgid "db_name_already_in_use"
 msgstr "There is already a database present with this name. Please use a different database name and try again."
 
 msgid "MySQLVsiteNotEnabled"
-msgstr "[[base-mysql.DBTYPE]] is not enabled for this virtual site. You need to enable [[base-mysql.DBTYPE]] for this virtual site before you can use this GUI page."
+msgstr "[[base-mysql.DBTYPE]] is disabled for this virtual site. You need to enable [[base-mysql.DBTYPE]] for this virtual site before you can use this GUI page."
 
 msgid "MySQLdbList"
 msgstr "List of available [[base-mysql.DBTYPE]] databases"
 
 msgid "dbRemoveConfirmNeutral"
-msgstr "Please confirm database deletion."
+msgstr "Do you really want to delete this database?"
 
 msgid "DBremoveConfirmInfo"
 msgstr "Please confirm that you want to delete this [[base-mysql.DBTYPE]] database. Please note: This action cannot be undone and you will loose any information that is stored in this [[base-mysql.DBTYPE]] database."

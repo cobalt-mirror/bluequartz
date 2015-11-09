@@ -467,3 +467,139 @@ msgstr "Esa base de datos [[base-mysql.DBTYPE]] ya existe en la tabla de base de
 
 msgid "CreateFailDatabaseExists"
 msgstr "Ya existe la base de datos [[base-mysql.DBTYPE]]."
+
+#
+### New for multi-DB support:
+#
+
+msgid "vsiteMySQLMenu"
+msgstr "[[base-mysql.DBTYPE]]"
+
+msgid "vsiteMySQLMenuDesc"
+msgstr "Esta página GUI le permite administrar o revisar las bases de datos [[base-mysql.DBTYPE]] y permisos."
+
+msgid "mysql_vsite_head"
+msgstr "[[base-mysql.DBTYPE]] Detalles"
+
+msgid "VsiteDBtab"
+msgstr "Información general"
+
+msgid "VsiteDBtab_help"
+msgstr "Esta página muestra los detalles de la conexión a [[base-mysql.DBTYPE]] y que las bases de datos están presentes."
+
+msgid "MySQLuserRights"
+msgstr "[[base-mysql.DBTYPE]] Permisos"
+
+msgid "MySQLuserRights_help"
+msgstr "Esta página muestra los permisos que el usuario [[base-mysql.DBTYPE]] de este sitio virtual tiene."
+
+msgid "DIVIDER_Vsite_condetails"
+msgstr "[[base-mysql.DBTYPE]] detalles de la conexión:"
+
+msgid "DIVIDER_Vsite_DBlist"
+msgstr "Bases de datos [[base-mysql.DBTYPE]] de este sitio virtual:"
+
+msgid "DBaddbut"
+msgstr "Añadir base de datos [[base-mysql.DBTYPE]]"
+
+msgid "DBaddbut_help"
+msgstr "Este botón le permite añadir otra base de datos [[base-mysql.DBTYPE]] a este sitio virtual."
+
+msgid "db_name"
+msgstr "Nombre de la base de datos"
+
+msgid "db_name_help"
+msgstr "Muestra los nombres de las bases de datos [[base-mysql.DBTYPE]] de este sitio virtual."
+
+msgid "maxDBs"
+msgstr "Bases de Datos de compañía"
+
+msgid "maxDBs_help"
+msgstr "Esto define el número de bases de datos [[base-mysql.DBTYPE]] este sitio virtual puede tener."
+
+msgid "action"
+msgstr "Acción"
+
+msgid "action_help"
+msgstr "Permite realizar acciones que impliquen la base de datos seleccionada."
+
+msgid "new_db_name"
+msgstr "Nombre de la base de datos"
+
+msgid "new_db_name_help"
+msgstr "Introduzca el nombre de la nueva base de datos [[base-mysql.DBTYPE]] que desea crear."
+
+msgid "dbRemove"
+msgstr "Eliminar a esta base de datos [[base-mysql.DBTYPE]]."
+
+msgid "dbRemove_help"
+msgstr "Este botón le permite eliminar esta base de datos [[base-mysql.DBTYPE]]. Nota: Esta acción no se puede deshacer."
+
+msgid "dbRemoveNotPoss"
+msgstr "Esta base de datos no se puede quitar."
+
+msgid "dbRemoveNotPoss_help"
+msgstr "Esta base de datos es la base de datos [[base-mysql.DBTYPE]] [[base-mysql.DBTYPE]] primaria y no se puede quitar. Se conseguirá eliminarán automáticamente cuando el apoyo [[base-mysql.DBTYPE]] está apagado o cuando este sitio virtual se elimina."
+
+msgid "resetToDefaults"
+msgstr "Restablecer los valores predeterminados"
+
+msgid "resetToDefaults_help"
+msgstr "Al hacer clic en este botón restablecerá los permisos [[base-mysql.DBTYPE]] de este sitios virtuales [[base-mysql.DBTYPE]] usuario a los valores predeterminados como se define para este servidor en la configuración de [[base-mysql.DBTYPE]]."
+
+msgid "GrantAllPerms"
+msgstr "Concede todos los permisos"
+
+msgid "GrantAllPerms_help"
+msgstr "Esto otorgará (casi) todos los permisos a este usuario [[base-mysql.DBTYPE]] para todas las bases de datos que están bajo su control. El único que no se concedió el permiso es el permiso 'GRANT'."
+
+msgid "EVENT"
+msgstr "EVENTO"
+
+msgid "EVENT_help"
+msgstr "Se requiere el privilegio EVENTO para crear, alterar, deje caer, o ver los eventos para el Programador de eventos."
+
+msgid "DIVIDER_ADM"
+msgstr "Privilegios administrativos (por defecto estos no se conceden):"
+
+msgid "GRANT"
+msgstr "GRANT"
+
+msgid "GRANT_help"
+msgstr "El privilegio GRANT OPTION le permite dar a otros usuarios o quitar de otros usuarios de esos privilegios que uno mismo posee. Por razones de seguridad no aceptamos este privilegio."
+
+msgid "TRIGGER"
+msgstr "GATILLO"
+
+msgid "TRIGGER_help"
+msgstr "El privilegio GATILLO permite operaciones de disparo. Debe tener este privilegio para una mesa para crear, bajar, o ejecutar disparadores para esa tabla."
+
+msgid "LOCK_TABLES"
+msgstr "LOCK TABLES"
+
+msgid "LOCK_TABLES_help"
+msgstr "El privilegio LOCK TABLES permite la utilización de declaraciones MESAS DE BLOQUEO explícitas para bloquear las tablas para las que tiene el privilegio SELECT. Esto incluye el uso de bloqueos de escritura, lo que impide que otras sesiones de la lectura de la tabla bloqueada."
+
+msgid "REFERENCES"
+msgstr "REFERENCIAS"
+
+msgid "REFERENCES_help"
+msgstr "Otorga el privilegio de referencia para esta base de datos."
+
+msgid "db_not_found"
+msgstr "Una base de datos con este nombre no se pudo encontrar. Por favor revisa el nombre y prueba de nuevo."
+
+msgid "db_name_already_in_use"
+msgstr "Ya existe una base de datos actual con este nombre. Utilice un nombre de base de datos diferente y vuelva a intentarlo."
+
+msgid "MySQLVsiteNotEnabled"
+msgstr "[[base-mysql.DBTYPE]] está desactivada para este sitio virtual. Necesita habilitar [[base-mysql.DBTYPE]] para este sitio virtual antes de poder utilizar esta página GUI."
+
+msgid "MySQLdbList"
+msgstr "Lista de las bases de datos disponibles [[base-mysql.DBTYPE]]"
+
+msgid "dbRemoveConfirmNeutral"
+msgstr "¿De verdad quiere eliminar esta base de datos?"
+
+msgid "DBremoveConfirmInfo"
+msgstr "Por favor, confirme que desea eliminar esta base de datos [[base-mysql.DBTYPE]]. Nota: Esta acción no se puede deshacer y usted perderá toda la información que se almacena en esta base de datos [[base-mysql.DBTYPE]]."

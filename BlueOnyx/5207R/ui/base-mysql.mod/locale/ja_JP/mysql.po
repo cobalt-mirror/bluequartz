@@ -526,3 +526,139 @@ msgstr "[[base-mysql.DBTYPE]]のユーザー名"
 
 msgid "username_help"
 msgstr "[[base-mysql.DBTYPE]]のメインユーザーのユーザー"
+
+#
+### New for multi-DB support:
+#
+
+msgid "vsiteMySQLMenu"
+msgstr "[[base-mysql.DBTYPE]]"
+
+msgid "vsiteMySQLMenuDesc"
+msgstr "このGUIページでは、管理または[[base-mysql.DBTYPE]]データベースと権限を確認することができます。"
+
+msgid "mysql_vsite_head"
+msgstr "[[base-mysql.DBTYPE]]詳細"
+
+msgid "VsiteDBtab"
+msgstr "一般情報"
+
+msgid "VsiteDBtab_help"
+msgstr "このページには[[base-mysql.DBTYPE]]への接続の詳細を示しているデータベースが存在しています。"
+
+msgid "MySQLuserRights"
+msgstr "[[base-mysql.DBTYPE]]パーミッション"
+
+msgid "MySQLuserRights_help"
+msgstr "このページでは、この仮想サイトの[[base-mysql.DBTYPE]]ユーザーが持つ権限を示しています。"
+
+msgid "DIVIDER_Vsite_condetails"
+msgstr "[[base-mysql.DBTYPE]]接続の詳細："
+
+msgid "DIVIDER_Vsite_DBlist"
+msgstr "この仮想サイトの[[base-mysql.DBTYPE]]データベース："
+
+msgid "DBaddbut"
+msgstr "[[base-mysql.DBTYPE]]データベースの追加"
+
+msgid "DBaddbut_help"
+msgstr "このボタンは、この仮想サイトに別の[[base-mysql.DBTYPE]]データベースを追加することができます。"
+
+msgid "db_name"
+msgstr "データベース名"
+
+msgid "db_name_help"
+msgstr "この仮想サイトの[[base-mysql.DBTYPE]]データベースの名前を表示します。"
+
+msgid "maxDBs"
+msgstr "許可データベース"
+
+msgid "maxDBs_help"
+msgstr "これは、この仮想サイトが持っているかもしれどのように多くの[[base-mysql.DBTYPE]]データベース定義されています。"
+
+msgid "action"
+msgstr "アクション"
+
+msgid "action_help"
+msgstr "あなたが選択したデータベースを含むアクションを実行できるようにします。"
+
+msgid "new_db_name"
+msgstr "データベース名"
+
+msgid "new_db_name_help"
+msgstr "作成する新しい[[base-mysql.DBTYPE]]データベースの名前を入力します。"
+
+msgid "dbRemove"
+msgstr "この[[base-mysql.DBTYPE]]データベースを削除します。"
+
+msgid "dbRemove_help"
+msgstr "このボタンは、この[[base-mysql.DBTYPE]]データベースを削除することができます。ご注意：このアクションは元に戻すことはできません。"
+
+msgid "dbRemoveNotPoss"
+msgstr "このデータベースには、除去することができません。"
+
+msgid "dbRemoveNotPoss_help"
+msgstr "この[[base-mysql.DBTYPE]]データベースは、プライマリ[[base-mysql.DBTYPE]]データベースであり、削除することはできません。 [[base-mysql.DBTYPE]]のサポートをオフにするか、この仮想サイトが削除されるとき、それは自動的に削除されます。"
+
+msgid "resetToDefaults"
+msgstr "デフォルト値にリセット"
+
+msgid "resetToDefaults_help"
+msgstr "[[base-mysql.DBTYPE]]設定で、このサーバー用に定義されたように、このボタンをクリックすると、デフォルトにこの仮想サイト[[base-mysql.DBTYPE]]ユーザーの[[base-mysql.DBTYPE]]アクセス許可をリセットします。"
+
+msgid "GrantAllPerms"
+msgstr "すべての権限を付与します"
+
+msgid "GrantAllPerms_help"
+msgstr "これは彼の制御下にあるすべてのデータベースに対してこの[[base-mysql.DBTYPE]]ユーザに（ほぼ）すべての権限を付与します。付与されていない唯一の権限は、「GRANTの許可です。"
+
+msgid "EVENT"
+msgstr "イベント"
+
+msgid "EVENT_help"
+msgstr "EVENT権限は、作成、変更、ドロップ、またはイベントスケジューラのイベントを見るために必要とされます。"
+
+msgid "DIVIDER_ADM"
+msgstr "管理者権限（デフォルトではこれらは付与されません）："
+
+msgid "GRANT"
+msgstr "GRANT"
+
+msgid "GRANT_help"
+msgstr "GRANT OPTION特権を他のユーザーに与えるか、または他のユーザーからのあなた自身が所有するこれらの権限を削除することができます。セキュリティ上の理由から、私たちは、この権限を付与しないでください。"
+
+msgid "TRIGGER"
+msgstr "TRIGGER"
+
+msgid "TRIGGER_help"
+msgstr "TRIGGER権限は、トリガー操作を可能にします。作成、ドロップ、またはそのテーブルのトリガを実行するためのテーブルに対して、この権限を持っている必要があります。"
+
+msgid "LOCK_TABLES"
+msgstr "LOCK TABLES"
+
+msgid "LOCK_TABLES_help"
+msgstr "ロックテーブルの権限はSELECT権限を持っているテーブルをロックするための明示的なロックテーブルステートメントの使用を可能にします。これは、ロックされたテーブルを読むことから、他のセッションを防止する書き込みロックの使用を含みます。"
+
+msgid "REFERENCES"
+msgstr "参考文献"
+
+msgid "REFERENCES_help"
+msgstr "このデータベースの参照権限を付与します。"
+
+msgid "db_not_found"
+msgstr "この名前のデータベースが見つかりませんでした。名を確認して、もう一度お試しください。"
+
+msgid "db_name_already_in_use"
+msgstr "この名前を持つ存在するデータベースが既に存在します。別のデータベース名を使用して、再試行してください。"
+
+msgid "MySQLVsiteNotEnabled"
+msgstr "[[base-mysql.DBTYPE]]は、この仮想サイトで無効になっています。あなたはこのGUIページを使用する前にこの仮想サイトの[[base-mysql.DBTYPE]]を有効にする必要があります。"
+
+msgid "MySQLdbList"
+msgstr "利用可能[[base-mysql.DBTYPE]]データベースのリスト"
+
+msgid "dbRemoveConfirmNeutral"
+msgstr "あなたが本当にこのデータベースを削除しますか？"
+
+msgid "DBremoveConfirmInfo"
+msgstr "あなたはこの[[base-mysql.DBTYPE]]データベースを削除することを確認してください。ご注意：このアクションは、元に戻すことはできません、あなたはこの[[base-mysql.DBTYPE]]データベースに保存されているすべての情報を失うことになります。"

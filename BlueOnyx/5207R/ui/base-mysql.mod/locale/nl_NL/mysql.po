@@ -464,3 +464,138 @@ msgstr "Dat [[base-mysql.DBTYPE]] database al bestaat in de [[base-mysql.DBTYPE]
 msgid "CreateFailDatabaseExists"
 msgstr "Dat [[base-mysql.DBTYPE]] database al bestaat."
 
+#
+### New for multi-DB support:
+#
+
+msgid "vsiteMySQLMenu"
+msgstr "[[base-mysql.DBTYPE]]"
+
+msgid "vsiteMySQLMenuDesc"
+msgstr "Deze GUI pagina kunt u beheren of herzien de [[base-mysql.DBTYPE]] databases en machtigingen."
+
+msgid "mysql_vsite_head"
+msgstr "[[base-mysql.DBTYPE]] Details"
+
+msgid "VsiteDBtab"
+msgstr "Algemene informatie"
+
+msgid "VsiteDBtab_help"
+msgstr "Deze pagina toont u de verbinding details [[base-mysql.DBTYPE]] en welke databases aanwezig zijn."
+
+msgid "MySQLuserRights"
+msgstr "[[base-mysql.DBTYPE]] Machtigingen"
+
+msgid "MySQLuserRights_help"
+msgstr "Deze pagina toont u de machtigingen die de [[base-mysql.DBTYPE]] gebruiker van deze virtuele site heeft."
+
+msgid "DIVIDER_Vsite_condetails"
+msgstr "[[base-mysql.DBTYPE]] verbinding gegevens:"
+
+msgid "DIVIDER_Vsite_DBlist"
+msgstr "[[base-mysql.DBTYPE]] databases van deze virtuele website:"
+
+msgid "DBaddbut"
+msgstr "Voeg [[base-mysql.DBTYPE]] databank"
+
+msgid "DBaddbut_help"
+msgstr "Met deze knop kunt u naar een andere [[base-mysql.DBTYPE]] de database toe te voegen aan deze virtuele website."
+
+msgid "db_name"
+msgstr "Database Naam"
+
+msgid "db_name_help"
+msgstr "Toont de namen van de [[base-mysql.DBTYPE]] databases van deze virtuele website."
+
+msgid "maxDBs"
+msgstr "Toegestaan ​​Databases"
+
+msgid "maxDBs_help"
+msgstr "Dit bepaalt hoeveel [[base-mysql.DBTYPE]] databases deze virtuele website kan hebben."
+
+msgid "action"
+msgstr "Actie"
+
+msgid "action_help"
+msgstr "Kunt u acties waarbij de geselecteerde database uit te voeren."
+
+msgid "new_db_name"
+msgstr "Database Naam"
+
+msgid "new_db_name_help"
+msgstr "Geef de naam van de nieuwe [[base-mysql.DBTYPE]] database die u wilt maken."
+
+msgid "dbRemove"
+msgstr "Verwijder dit [[base-mysql.DBTYPE]] databank."
+
+msgid "dbRemove_help"
+msgstr "Deze knop kunt u deze [[base-mysql.DBTYPE]] database te verwijderen. Let op: Deze actie kan niet ongedaan gemaakt worden."
+
+msgid "dbRemoveNotPoss"
+msgstr "Deze database kan niet worden verwijderd."
+
+msgid "dbRemoveNotPoss_help"
+msgstr "Dit [[base-mysql.DBTYPE]] databank het primaire [[base-mysql.DBTYPE]] database en kan niet worden verwijderd. Het zal krijgen geschrapt automatisch wanneer [[base-mysql.DBTYPE]] ondersteuning is uitgeschakeld of wanneer deze virtuele site wordt verwijderd."
+
+msgid "resetToDefaults"
+msgstr "Teruggezet naar standaardwaarden"
+
+msgid "resetToDefaults_help"
+msgstr "Te klikken op deze knop zal de [[base-mysql.DBTYPE]] rechten van deze virtuele locaties [[base-mysql.DBTYPE]] gebruiker de standaardinstellingen opnieuw in te stellen zoals gedefinieerd voor deze server in de [[base-mysql.DBTYPE]] instellingen."
+
+msgid "GrantAllPerms"
+msgstr "Grant alle machtigingen"
+
+msgid "GrantAllPerms_help"
+msgstr "Dit zal (bijna) alle rechten toe te kennen aan deze [[base-mysql.DBTYPE]] gebruiker voor alle databases die onder zijn controle. De enige toestemming niet verleend is de 'GRANT' toestemming."
+
+msgid "EVENT"
+msgstr "EVENT"
+
+msgid "EVENT_help"
+msgstr "Het evenement voorrecht is vereist om te maken, te wijzigen, te laten vallen, of zie evenementen voor de Event Scheduler."
+
+msgid "DIVIDER_ADM"
+msgstr "Beheerdersrechten (standaard deze zijn niet toegestaan):"
+
+msgid "GRANT"
+msgstr "GRANT"
+
+msgid "GRANT_help"
+msgstr "De GRANT OPTION voorrecht stelt u in staat om te geven aan andere gebruikers of verwijderen van andere gebruikers die privileges die je zelf bezit. Om veiligheidsredenen we niet dit voorrecht te verlenen."
+
+msgid "TRIGGER"
+msgstr "TRIGGER"
+
+msgid "TRIGGER_help"
+msgstr "De TRIGGER voorrecht maakt trekker operaties. U moet dit voorrecht hebben om een ​​tafel te creëren, te laten vallen, of uit te voeren triggers voor die tafel."
+
+msgid "LOCK_TABLES"
+msgstr "LOCK TAFELS"
+
+msgid "LOCK_TABLES_help"
+msgstr "De LOCK TABLES voorrecht maakt het gebruik van expliciete LOCK TABLES verklaringen tabellen waarvoor u de SELECT privilege te vergrendelen. Dit omvat het gebruik van write sloten, die andere sessies verhindert lezen vergrendelde tabel."
+
+msgid "REFERENCES"
+msgstr "Referenties"
+
+msgid "REFERENCES_help"
+msgstr "Verleent de verwijzing voorrecht voor deze database."
+
+msgid "db_not_found"
+msgstr "Een database met deze naam kon niet worden gevonden. Controleer de naam en probeer het opnieuw."
+
+msgid "db_name_already_in_use"
+msgstr "Er is al een database aanwezig met deze naam. Gebruik een andere database naam en probeer het opnieuw."
+
+msgid "MySQLVsiteNotEnabled"
+msgstr "[[base-mysql.DBTYPE]] is uitgeschakeld voor deze virtuele website. Je nodig hebt om [[base-mysql.DBTYPE]] inschakelen voor deze virtuele site voordat u deze GUI pagina kunt gebruiken."
+
+msgid "MySQLdbList"
+msgstr "Lijst van beschikbare [[base-mysql.DBTYPE]] databases"
+
+msgid "dbRemoveConfirmNeutral"
+msgstr "Wil je echt om deze database te verwijderen?"
+
+msgid "DBremoveConfirmInfo"
+msgstr "Gelieve te bevestigen dat u wilt dit [[base-mysql.DBTYPE]] database te verwijderen. Let op: Deze actie kan niet ongedaan gemaakt worden en u zult alle informatie die is opgeslagen in deze [[base-mysql.DBTYPE]] databank verliezen."
