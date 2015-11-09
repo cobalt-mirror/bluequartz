@@ -7,7 +7,7 @@
 -->
 
 <class
-    name="VsiteServices" namespace="MYSQL_Vsite" version="1.0"
+    name="VsiteServices" namespace="MYSQL_Vsite" version="2.3"
 >
     <property name="featureEnabled" type="boolean" default="0"/>
     
@@ -16,7 +16,7 @@
     />
 
     <property 
-        name="enabled" type="boolean" default="1"
+        name="enabled" type="boolean" default="0"
         writeacl="ruleCapable(adminUser)"
     />
 
