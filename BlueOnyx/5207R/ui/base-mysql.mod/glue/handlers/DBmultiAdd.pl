@@ -1,6 +1,6 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
 #
-# exist_user_and_db_check.pl
+# DBmultiAdd.pl
 
 use CCE;
 use POSIX qw(isalpha);
@@ -34,13 +34,13 @@ my ($ok, $mysql) = $cce->get($oids[0]);
 ($ok, $vsite_mysql) = $cce->get($vsite_oid, 'MYSQL_Vsite');
 
 &debug_msg("DB: $vsite_mysql->{DB} \n");
+&debug_msg("DBmulti: $vsite_mysql->{DBmulti} \n");
 
 # Enable and Disable Check
 if ($vsite_mysql->{enabled} != 1) {
     $cce->bye('SUCCESS');
     exit(0);
 }
-
 
 ## MySQL Server Connection Check
 $dbh = DBI->connect(
@@ -71,40 +71,46 @@ if ($row[0] != 0) {
     $db_check_fail = 1;
 }
 
-# DB Check
-my $siteMySQLDb = $dbh->quote($vsite_mysql->{DB});
-&debug_msg("SQL: SELECT COUNT(*) as rowCount FROM `db` WHERE User = $siteMySQLUser AND Db = $siteMySQLDb \n");
-@row = $dbh->selectrow_array("SELECT COUNT(*) as rowCount FROM `db` WHERE User = $siteMySQLUser AND Db = $siteMySQLDb");
-&debug_msg("row[0]:$row[0] \n");
-
-if ($row[0] != 0) {
-    $message .= '[[base-mysql.CreateFailDBExists]]';
-    $db_check_fail = 1;
-}
-
-$dbh->disconnect;
-
-## Database Connection Check
-$dbh = DBI->connect(
-        "DBI:mysql:$vsite_mysql->{DB}:$mysql->{sql_host}:$mysql->{port}",
-        $mysql->{sql_root}, $mysql->{sql_rootpassword},
-        {
-            RaiseError => 0,
-            PrintError => 0
+# DBmulti Check:
+@ExtraDBs = $cce->scalar_to_array($vsite_mysql->{DBmulti});
+foreach $extraDB (@ExtraDBs) {
+    &debug_msg("Testing presence of DB $extraDB\n");
+    $dbh = DBI->connect(
+            "DBI:mysql:$extraDB:$mysql->{sql_host}:$mysql->{port}",
+            $mysql->{sql_root}, $mysql->{sql_rootpassword},
+            {
+                RaiseError => 0,
+                PrintError => 0
+            }
+    );
+    if ($dbh) {
+        &debug_msg("DB $extraDB exists!\n");
+    }
+    else {
+        &debug_msg("DB $extraDB does NOT exist! Creating it!\n");
+        # Create Database:
+        $dbh = DBI->connect(
+                "DBI:mysql:mysql:$mysql->{sql_host}:$mysql->{port}",
+                $mysql->{sql_root}, $mysql->{sql_rootpassword},
+                {
+                    RaiseError => 0,
+                    PrintError => 0
+                }
+        ); 
+        $DEBUG && print STDERR Dumper($dbh);
+        if (!$dbh) {
+            $cce->bye('FAIL', 'Can not connect Database');
+            exit(1);
         }
-);
-&debug_msg("Dumper" . Dumper($dbh) . "\n"); 
-
-if ($dbh) {
-    # $dbh->diconnect;
-    $message .= '[[base-mysql.CreateFailDatabaseExists]]';
-    $db_check_fail = 1;
-}
-
-if ($db_check_fail)  {
-    &debug_msg("FAIL: $message \n");
-    $cce->bye('FAIL', $message);
-    exit(1);
+        $query = "CREATE DATABASE `$extraDB`;\n";
+        $return = $dbh->do($query);
+        &debug_msg("Dumper: " . Dumper($return) . "\n");
+        $dbh->disconnect;
+        #
+        ### Updating permissions:
+        #
+        ($ok) = $cce->set($vsite_oid, 'MYSQL_Vsite',{ 'userPermsUpdate' => time() });
+    }
 }
 
 $cce->bye('SUCCESS');
@@ -122,9 +128,8 @@ sub debug_msg {
 }
 
 # 
-# Copyright (c) 2010 Hideki Oride <oride@gachapom.jp>
-# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 

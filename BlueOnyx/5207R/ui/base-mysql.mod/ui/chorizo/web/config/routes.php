@@ -2,5 +2,6 @@
 
 $route['mysql/mysqlserver/:any'] = "mysqlserver";
 $route['mysql/mysqlconfig'] = "mysqlconfig";
+$route['mysql/vsiteMySQL'] = "vsiteMySQL";
 $route['mysql/mysql_amdetails'] = "mysql_amdetails";
 

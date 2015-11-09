@@ -15,7 +15,7 @@ use Sauce::Util;
 $DEBUG = "0";
 if ($DEBUG)
 {
-        use Sys::Syslog qw( :DEFAULT setlogsock);
+    use Sys::Syslog qw( :DEFAULT setlogsock);
 }
 
 $cce = new CCE('Namespace' => "MYSQL_Vsite");
@@ -41,7 +41,8 @@ $event_is_modify = $cce->event_is_modify();
 ($ok, $mysql_info) = $cce->get($event_oid, 'MYSQL_Vsite');
 ($ok, $old_mysql_info) = $cce->get($event_old->{OID}, 'MYSQL_Vsite');
 &debug_msg("Dumper: " . Dumper($event_object, $old_mysql_info, $event_new, $event_old, $event_oid, $event_is_create, $event_is_destroy, $event_is_modify, $mysql_info) . "\n");
-&debug_msg("DB: $mysql_info->{DB}  \n");
+&debug_msg("DB: $event_old->{DB}  \n");
+&debug_msg("DBmulti_old: $event_old->{DBmulti} \n");
 
 # Get 'System' details:
 @system_main = $cce->find('System');
@@ -200,6 +201,37 @@ sub remove_db_and_user {
     &debug_msg("Dumper: " . Dumper($query) . "\n");
     $return = $dbh->do($query);
     &debug_msg("Dumper: " . Dumper($return) . "\n");
+
+    #
+    ## Remove any extra-DB that might be around:
+    #
+    @ExtraDBs = $cce->scalar_to_array($event_old->{DBmulti});
+    foreach $extraDB (@ExtraDBs) {
+        #
+        ## Revoke privileges on extra-DB (Step #1):
+        #
+        &debug_msg("Revoking privileges on $extraDB for user $siteMysql_user:\n");
+        $query = "REVOKE ALL PRIVILEGES ON `$extraDB` . * FROM " . $siteMysql_user . '@' . $siteMysql_host . ";\n";
+        &debug_msg("Dumper: " . Dumper($query) . "\n");
+        $return = $dbh->do($query);
+        &debug_msg("Dumper: " . Dumper($return) . "\n");
+
+        #
+        ## Drop extra-DB (Step #2):
+        #
+        &debug_msg("Deleting DB $extraDB\n");
+        $query = "DROP DATABASE IF EXISTS $extraDB";
+        &debug_msg("Dumper: " . Dumper($query) . "\n");
+        $return = $dbh->do($query);
+        &debug_msg("Dumper: " . Dumper($return) . "\n");
+        $dbh->disconnect;
+
+        #
+        ### Updating DBdel:
+        #
+        ($ok) = $cce->set($event_oid, 'MYSQL_Vsite',{ 'DBdel' => '', 'DBmulti' => '' });
+
+    }
 
     #
     ## Delete the sites MySQL user: 

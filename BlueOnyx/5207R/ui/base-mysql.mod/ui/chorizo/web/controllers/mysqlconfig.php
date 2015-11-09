@@ -265,12 +265,12 @@ class Mysqlconfig extends MX_Controller {
           $factory->getLabel("DELETE"),
           'MySQL_TAB_ONE'
         );
-        $FILE = $CODBDATA['FILE'];
-        $block->addFormField(
-          $factory->getBoolean("FILE", $FILE),
-          $factory->getLabel("FILE"),
-          'MySQL_TAB_ONE'
-        );
+        //$FILE = $CODBDATA['FILE'];
+        //$block->addFormField(
+        //  $factory->getBoolean("FILE", $FILE),
+        //  $factory->getLabel("FILE"),
+        //  'MySQL_TAB_ONE'
+        //);
 
         // Add divider:
         $block->addFormField(
@@ -349,6 +349,45 @@ class Mysqlconfig extends MX_Controller {
         $block->addFormField(
           $factory->getBoolean("EXECUTE", $EXECUTE, $access),
           $factory->getLabel("EXECUTE"),
+          'MySQL_TAB_ONE'
+        );
+
+        // New additions:
+        $EVENT = $CODBDATA['EVENT'];
+        $block->addFormField(
+          $factory->getBoolean("EVENT", $EVENT, $access),
+          $factory->getLabel("EVENT"),
+          'MySQL_TAB_ONE'
+        );
+        $TRIGGER = $CODBDATA['TRIGGER'];
+        $block->addFormField(
+          $factory->getBoolean("TRIGGER", $TRIGGER, $access),
+          $factory->getLabel("TRIGGER"),
+          'MySQL_TAB_ONE'
+        );
+
+        // Add divider:
+        $block->addFormField(
+                $factory->addBXDivider("DIVIDER_ADM", ""),
+                $factory->getLabel("DIVIDER_ADM", false),
+                $defaultPage
+                );
+        $GRANT = $CODBDATA['GRANT'];
+        $block->addFormField(
+          $factory->getBoolean("GRANT", $GRANT, 'r'),
+          $factory->getLabel("GRANT"),
+          'MySQL_TAB_ONE'
+        );
+        $LOCK_TABLES = $CODBDATA['LOCK_TABLES'];
+        $block->addFormField(
+          $factory->getBoolean("LOCK_TABLES", $LOCK_TABLES, $access),
+          $factory->getLabel("LOCK_TABLES"),
+          'MySQL_TAB_ONE'
+        );
+        $REFERENCES = $CODBDATA['REFERENCES'];
+        $block->addFormField(
+          $factory->getBoolean("REFERENCES", $REFERENCES, $access),
+          $factory->getLabel("REFERENCES"),
           'MySQL_TAB_ONE'
         );
 

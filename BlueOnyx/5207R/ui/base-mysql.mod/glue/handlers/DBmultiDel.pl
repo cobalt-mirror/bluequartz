@@ -1,6 +1,6 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
 #
-# exist_user_and_db_check.pl
+# DBmultiDel.pl
 
 use CCE;
 use POSIX qw(isalpha);
@@ -34,13 +34,15 @@ my ($ok, $mysql) = $cce->get($oids[0]);
 ($ok, $vsite_mysql) = $cce->get($vsite_oid, 'MYSQL_Vsite');
 
 &debug_msg("DB: $vsite_mysql->{DB} \n");
+&debug_msg("DBmulti: $vsite_mysql->{DBmulti} \n");
+&debug_msg("DBdel: $vsite_mysql->{DBdel} \n");
 
 # Enable and Disable Check
 if ($vsite_mysql->{enabled} != 1) {
+    &debug_msg("FAIL: MySQL not enabled \n");
     $cce->bye('SUCCESS');
     exit(0);
 }
-
 
 ## MySQL Server Connection Check
 $dbh = DBI->connect(
@@ -71,44 +73,71 @@ if ($row[0] != 0) {
     $db_check_fail = 1;
 }
 
-# DB Check
-my $siteMySQLDb = $dbh->quote($vsite_mysql->{DB});
-&debug_msg("SQL: SELECT COUNT(*) as rowCount FROM `db` WHERE User = $siteMySQLUser AND Db = $siteMySQLDb \n");
-@row = $dbh->selectrow_array("SELECT COUNT(*) as rowCount FROM `db` WHERE User = $siteMySQLUser AND Db = $siteMySQLDb");
-&debug_msg("row[0]:$row[0] \n");
+# Delete Database:
+@ExtraDBs = $cce->scalar_to_array($vsite_mysql->{DBmulti});
 
-if ($row[0] != 0) {
-    $message .= '[[base-mysql.CreateFailDBExists]]';
-    $db_check_fail = 1;
+# Remove DB from ExtraDBs:
+$new_ExtraDBs = ();
+foreach $DBx (@ExtraDBs) {
+    if ($DBx ne $vsite_mysql->{DBdel}) {
+        &debug_msg("Adding $DBx to array new_ExtraDBs\n");
+        push @new_ExtraDBs, $DBx;
+    }
 }
 
-$dbh->disconnect;
+if (in_array(\@ExtraDBs, $vsite_mysql->{DBdel})) {
+    &debug_msg("Attempting to delete DB $vsite_mysql->{DBdel}\n");
+    ## MySQL Server Connection Check
+    $dbh = DBI->connect(
+                    "DBI:mysql:mysql:$mysql->{sql_host}:$mysql->{port}",
+                    $mysql->{sql_root}, $mysql->{sql_rootpassword},
+                    {
+                        RaiseError => 0,
+                        PrintError => 0
+                    }
+    );
+    
+    if (!$dbh) {
+        $db_check_fail = 1;
+        &debug_msg("Connection to MySQL failed!\n");
+        $cce->bye('SUCCESS');
+        exit(0);
+    }
 
-## Database Connection Check
-$dbh = DBI->connect(
-        "DBI:mysql:$vsite_mysql->{DB}:$mysql->{sql_host}:$mysql->{port}",
-        $mysql->{sql_root}, $mysql->{sql_rootpassword},
-        {
-            RaiseError => 0,
-            PrintError => 0
-        }
-);
-&debug_msg("Dumper" . Dumper($dbh) . "\n"); 
+    #
+    ## Revoke privileges on DB (Step #1):
+    #
+    &debug_msg("Revoking privileges on $vsite_mysql->{DBdel} for user $siteMySQLUser:\n");
+    $query = "REVOKE ALL PRIVILEGES ON `$vsite_mysql->{DBdel}` . * FROM " . $siteMySQLUser . '@' . $mysql->{sql_host} . ";\n";
+    &debug_msg("Dumper: " . Dumper($query) . "\n");
+    $return = $dbh->do($query);
+    &debug_msg("Dumper: " . Dumper($return) . "\n");
 
-if ($dbh) {
-    # $dbh->diconnect;
-    $message .= '[[base-mysql.CreateFailDatabaseExists]]';
-    $db_check_fail = 1;
-}
+    #
+    ## Drop Database (Step #2):
+    #
+    &debug_msg("Deleting DB $vsite_mysql->{DBdel}\n");
+    $query = "DROP DATABASE IF EXISTS $vsite_mysql->{DBdel}";
+    &debug_msg("Dumper: " . Dumper($query) . "\n");
+    $return = $dbh->do($query);
+    &debug_msg("Dumper: " . Dumper($return) . "\n");
+    $dbh->disconnect;
 
-if ($db_check_fail)  {
-    &debug_msg("FAIL: $message \n");
-    $cce->bye('FAIL', $message);
-    exit(1);
+    #
+    ### Updating DBdel:
+    #
+    ($ok) = $cce->set($vsite_oid, 'MYSQL_Vsite',{ 'DBdel' => '', 'DBmulti' => $cce->array_to_scalar(@new_ExtraDBs) });
+
 }
 
 $cce->bye('SUCCESS');
 exit(0);
+
+sub in_array {
+    my ($arr,$search_for) = @_;
+    my %items = map {$_ => 1} @$arr; # create a hash out of the array values
+    return (exists($items{$search_for}))?1:0;
+}
 
 sub debug_msg {
     if ($DEBUG) {
@@ -122,9 +151,8 @@ sub debug_msg {
 }
 
 # 
-# Copyright (c) 2010 Hideki Oride <oride@gachapom.jp>
-# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 

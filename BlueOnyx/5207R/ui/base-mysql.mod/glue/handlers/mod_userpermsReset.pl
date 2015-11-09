@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #
-# create_mysql_data.pl 
+# mod_userpermsReset.pl
 
 # Global Paths & Config
 $namespace = 'MYSQL_Vsite';
@@ -42,6 +42,7 @@ $event_is_modify = $cce->event_is_modify();
 ($ok, $old_mysql_info) = $cce->get($event_old->{OID}, 'MYSQL_Vsite');
 &debug_msg("Dumper: " . Dumper($event_object, $old_mysql_info, $event_new, $event_old, $event_oid, $event_is_create, $event_is_destroy, $event_is_modify, $mysql_info) . "\n");
 &debug_msg("DB: $mysql_info->{DB}  \n");
+&debug_msg("DB: $mysql_info->{DBmulti}  \n");
 
 # Get 'System' details:
 @system_main = $cce->find('System');
@@ -67,7 +68,6 @@ if ($sts_mysqld ne "RUNNING") {
     exit(1);
 }
 
-
 ## Get Vsite's MySQL from 'MYSQL_Vsite':
 $siteMysql_user = $mysql_info->{'username'};
 $siteMysql_pass = $mysql_info->{'pass'};
@@ -83,7 +83,7 @@ if (!defined($mysql_main[0])) {
     &debug_msg("Sorry, no 'MySQL' object found in CCE!\n");
     &debug_msg("Unable to fetch MySQL 'root' access details for MySQL.\n");
     $cce->bye('FAIL', "Unable to fetch MySQL 'root' access details for MySQL from CCE. Please configure them under 'Network Settings', 'MySQL'.");
-        exit(1);
+    exit(1);
 }
 else {
     ($ok, $mysql_main) = $cce->get($mysql_main[0]);
@@ -104,12 +104,8 @@ else {
 }
 
 if ($mysql_info->{'enabled'} == 1) {
-    &debug_msg("=================== Create db ==============  \n");
-    &create_db_and_user;
-}
-elsif ($mysql_info->{'enabled'} == 0)
-{
-    &remove_db_and_user;
+    &debug_msg("=================== Reset User MySQL permissions ==============  \n");
+    &reset_user_perms;
 }
 
 $cce->bye('SUCCESS');
@@ -117,11 +113,12 @@ exit 0;
 
 ### Subs
 
-sub create_db_and_user {
-    
+sub reset_user_perms {
+    &debug_msg("Resetting Permissions for user: $siteMysql_user back to Defaults\n");
+
     ## Get default DB rights from 'System' object 'solmysql':
     my ($ok, $db_rights) = $cce->get($system_main[0], "MYSQLUSERS_DEFAULTS");
-    
+
     my $MAX_QUERIES_PER_HOUR = $db_rights->{'MAX_QUERIES_PER_HOUR'};
     my $MAX_CONNECTIONS_PER_HOUR = $db_rights->{'MAX_CONNECTIONS_PER_HOUR'};
     my $MAX_UPDATES_PER_HOUR = $db_rights->{'MAX_UPDATES_PER_HOUR'};
@@ -141,7 +138,7 @@ sub create_db_and_user {
     }
     # FILE is a global privilege and cannot be granted individually for a DB:
     #if ($db_rights->{'FILE'} == 1) {
-    #   push @the_user_rights, "FILE";
+    #    push @the_user_rights, "FILE";
     #}
     if ($db_rights->{'CREATE'} == 1) {
         push @the_user_rights, "CREATE";
@@ -197,7 +194,7 @@ sub create_db_and_user {
         push @the_user_rights, "REFERENCES";
     }
     # End: New rights
-    
+
     # SQL create
     $the_user_rights_count = @the_user_rights;
     &debug_msg("the_user_rights_count:$the_user_rights_count  \n");
@@ -232,21 +229,35 @@ sub create_db_and_user {
         $cce->bye('FAIL', 'Can not connect Database');
         exit(1);
     }
-    
-    # Create Database
-    $query = "CREATE DATABASE `$siteMysql_db`;\n";
+
+    # Revoke Permissions:
+    $query = "REVOKE ALL PRIVILEGES ON `$siteMysql_db`.* FROM `$siteMysql_user`@`$siteMysql_host`;\n";
     &debug_msg("Dumper: " . Dumper($query) . "\n");
     $return = $dbh->do($query);
-    &debug_msg("Dumper: " . Dumper($return) . "\n");
-    
-    
-    # Create User
+    &debug_msg("Dumper: " . Dumper($return) . "\n");    
+
+    # Set Permissions:
     $query = "GRANT $my_user_rights ON `$siteMysql_db`.* TO `$siteMysql_user`@`$siteMysql_host`;\n";
     &debug_msg("Dumper: " . Dumper($query) . "\n");
     $return = $dbh->do($query);
     &debug_msg("Dumper: " . Dumper($return) . "\n");
-    
-    # 
+
+    @ExtraDBs = $cce->scalar_to_array($mysql_info->{DBmulti});
+    foreach my $extraDB (@ExtraDBs) {
+        # Revoke Permissions:
+        $query = "REVOKE ALL PRIVILEGES ON `$extraDB`.* FROM `$siteMysql_user`@`$siteMysql_host`;\n";
+        &debug_msg("Dumper: " . Dumper($query) . "\n");
+        $return = $dbh->do($query);
+        &debug_msg("Dumper: " . Dumper($return) . "\n");    
+
+        # Set Permissions:
+        $query = "GRANT $my_user_rights ON `$extraDB`.* TO `$siteMysql_user`@`$siteMysql_host`;\n";
+        &debug_msg("Dumper: " . Dumper($query) . "\n");
+        $return = $dbh->do($query);
+        &debug_msg("Dumper: " . Dumper($return) . "\n");
+    }
+
+    # Grant Usage:
     $query = "GRANT USAGE ON * . * TO `$siteMysql_user`@`$siteMysql_host` IDENTIFIED BY '$siteMysql_pass' WITH MAX_QUERIES_PER_HOUR $MAX_QUERIES_PER_HOUR MAX_CONNECTIONS_PER_HOUR $MAX_CONNECTIONS_PER_HOUR MAX_UPDATES_PER_HOUR $MAX_UPDATES_PER_HOUR;\n";
     &debug_msg("Dumper: " . Dumper($query) . "\n");
     $return = $dbh->do($query);
@@ -259,95 +270,36 @@ sub create_db_and_user {
     &debug_msg("Dumper: " . Dumper($return) . "\n");
     
     $dbh->disconnect;
-    
-}
-
-sub remove_db_and_user {
-    
-    ## MySQL Server Connection Check
-    $dbh = DBI->connect(
-                    "DBI:mysql:$siteMysql_db:$siteMysql_host:$siteMysql_port",
-                    $sql_root, $root_pass,
-                    {
-                        RaiseError => 0,
-                        PrintError => 0
-                    }
-    );
-    &debug_msg("Dumper: " . Dumper($dbh) . "\n");
-    
-    if (!$dbh) {
-        $message .= "Can not Connect MySQL Server\n";
-        $db_check_fail = 1;
-        $cce->bye('FAIL', $message);
-        exit(1);
-    }
-    
-    $query = "DROP DATABASE IF EXISTS $siteMysql_db";
-    &debug_msg("Dumper: " . Dumper($query) . "\n");
-    $return = $dbh->do($query);
-    &debug_msg("Dumper: " . Dumper($return) . "\n");
-    
-    $dbh->disconnect;
-    
-    #
-    ## Revoke privileges (Step #1):
-    #
-    $dbh = DBI->connect(
-                    "DBI:mysql:mysql:$sql_host:$sql_port}",
-                    $sql_root, $root_pass,
-                    {
-                        RaiseError => 0,
-                        PrintError => 0
-                    }
-    );
-    &debug_msg("Dumper: " . Dumper($dbh) . "\n");
-    
-    if (!$dbh) {
-        $message .= "Can not Connect MySQL Server\n";
-        $db_check_fail = 1;
-        $cce->bye('FAIL', $message);
-        exit(1);
-    }
-
-    $query = "REVOKE ALL PRIVILEGES ON * . * FROM '$siteMysql_user'\@'$siteMysql_host';\n";
-    &debug_msg("Dumper: " . Dumper($query) . "\n");
-    $return = $dbh->do($query);
-    &debug_msg("Dumper: " . Dumper($return) . "\n");
 
     #
-    ## Revoke privileges (Step #2):
+    ### Re-Apply default Permissions:
     #
-    $query = "REVOKE ALL PRIVILEGES ON `$siteMysql_db` . * FROM '$siteMysql_user'\@'$siteMysql_host';\n";
-    &debug_msg("Dumper: " . Dumper($query) . "\n");
-    $return = $dbh->do($query);
-    &debug_msg("Dumper: " . Dumper($return) . "\n");
-    
-    #
-    ## Revoke privileges (Step #3):
-    #
-    $qeury = "REVOKE GRANT OPTION ON * . * FROM '$siteMysql_user'\@'$siteMysql_host';\n";
-    &debug_msg("Dumper: " . Dumper($query) . "\n");
-    $return = $dbh->do($query);
-    &debug_msg("Dumper: " . Dumper($return) . "\n");
 
-    #
-    ## Delete the sites MySQL user: 
-    #
-    $query = "DROP USER '$siteMysql_user'\@'$siteMysql_host';\n";
-    &debug_msg("Dumper: " . Dumper($query) . "\n");
-    $return = $dbh->do($query);
-    &debug_msg("Dumper: " . Dumper($return) . "\n");
-    
-    #
-    ## Flush privileges:
-    #
-    $query = "FLUSH PRIVILEGES;";
-    &debug_msg("Dumper: " . Dumper($query) . "\n");
-    $return = $dbh->do($query);
-    &debug_msg("Dumper: " . Dumper($return) . "\n");
-    
-    $dbh->disconnect;
-    
+    ($ok) = $cce->set($event_oid, 'MYSQL_Vsite',{
+            'SELECT' => $db_rights->{'SELECT'}, 
+            'INSERT' => $db_rights->{'INSERT'}, 
+            'UPDATE' => $db_rights->{'UPDATE'}, 
+            'DELETE' => $db_rights->{'DELETE'}, 
+            'FILE' => $db_rights->{'FILE'}, 
+            'CREATE' => $db_rights->{'CREATE'}, 
+            'ALTER' => $db_rights->{'ALTER'}, 
+            'INDEX' => $db_rights->{'INDEX'}, 
+            'DROP' => $db_rights->{'DROP'}, 
+            'TEMPORARY' => $db_rights->{'TEMPORARY'}, 
+            'CREATE_VIEW' => $db_rights->{'CREATE_VIEW'}, 
+            'SHOW_VIEW' => $db_rights->{'SHOW_VIEW'}, 
+            'CREATE_ROUTINE' => $db_rights->{'CREATE_ROUTINE'}, 
+            'ALTER_ROUTINE' => $db_rights->{'ALTER_ROUTINE'}, 
+            'EXECUTE' => $db_rights->{'EXECUTE'}, 
+            'MAX_UPDATES_PER_HOUR' => $db_rights->{'MAX_UPDATES_PER_HOUR'}, 
+            'MAX_QUERIES_PER_HOUR' => $db_rights->{'MAX_QUERIES_PER_HOUR'}, 
+            'MAX_CONNECTIONS_PER_HOUR' => $db_rights->{'MAX_CONNECTIONS_PER_HOUR'},
+            'EVENT' => $db_rights->{'EVENT'},
+            'TRIGGER' => $db_rights->{'TRIGGER'},
+            'GRANT' => $db_rights->{'GRANT'},
+            'LOCK_TABLES' => $db_rights->{'LOCK_TABLES'},
+            'REFERENCES' => $db_rights->{'REFERENCES'}
+    });
 }
 
 sub check_mysqld_status {
@@ -373,10 +325,8 @@ sub debug_msg {
 }
 
 # 
-# Copyright (c) 2010 Hideki Oride <oride@gachapom.jp>
 # Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
 # Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
-# Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 

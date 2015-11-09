@@ -6,133 +6,166 @@
        <property name="force_update"
             type="scalar"
             default=""
-	    optional="true"	
+            optional="true" 
             writeacl="ruleCapable(adminUser)"
         />
 
         <property name="solsitemysql"
             type="scalar"
-	    default="1"
+            default="1"
             optional="false"
             writeacl="ruleCapable(adminUser)"
         />
 
         <property name="soltab"
             type="scalar"
-	    default=""
+            default=""
             optional="true"
             writeacl="ruleCapable(adminUser)"
         />
 
-	<!-- MySQL user permissions: -->
+    <!-- MySQL user permissions: -->
         <property name="SELECT"
             type="scalar"
-	    default="1"
+            default="1"
             optional="false"
             writeacl="ruleCapable(adminUser)"
         />
         <property name="INSERT"
             type="scalar"
-	    default="1"
+            default="1"
             optional="false"
             writeacl="ruleCapable(adminUser)"
         />
         <property name="UPDATE"
             type="scalar"
-	    default="1"
+            default="1"
             optional="false"
             writeacl="ruleCapable(adminUser)"
         />
         <property name="DELETE"
             type="scalar"
-	    default="1"
+            default="1"
             optional="false"
             writeacl="ruleCapable(adminUser)"
         />
         <property name="FILE"
             type="scalar"
-	    default="0"
+            default="0"
             optional="false"
             writeacl="ruleCapable(adminUser)"
         />
         <property name="CREATE"
             type="scalar"
-	    default="1"
+            default="1"
             optional="false"
             writeacl="ruleCapable(adminUser)"
         />
         <property name="ALTER"
             type="scalar"
-	    default="1"
+            default="1"
             optional="false"
             writeacl="ruleCapable(adminUser)"
         />
         <property name="INDEX"
             type="scalar"
-	    default="1"
+        default="1"
             optional="false"
             writeacl="ruleCapable(adminUser)"
         />
         <property name="DROP"
             type="scalar"
-	    default="1"
+            default="1"
             optional="false"
             writeacl="ruleCapable(adminUser)"
         />
         <property name="TEMPORARY"
             type="scalar"
-	    default="1"
+            default="1"
             optional="false"
             writeacl="ruleCapable(adminUser)"
         />
         <property name="CREATE_VIEW"
             type="scalar"
-	    default="0"
+            default="0"
             optional="false"
             writeacl="ruleCapable(adminUser)"
         />
         <property name="SHOW_VIEW"
             type="scalar"
-	    default="0"
+            default="0"
             optional="false"
             writeacl="ruleCapable(adminUser)"
         />
         <property name="CREATE_ROUTINE"
             type="scalar"
-	    default="0"
+            default="0"
             optional="false"
             writeacl="ruleCapable(adminUser)"
         />
         <property name="ALTER_ROUTINE"
             type="scalar"
-	    default="0"
+            default="0"
             optional="false"
             writeacl="ruleCapable(adminUser)"
         />
         <property name="EXECUTE"
             type="scalar"
-	    default="0"
+            default="0"
             optional="false"
             writeacl="ruleCapable(adminUser)"
         />
         <property name="MAX_QUERIES_PER_HOUR"
             type="scalar"
-	    default="0"
+            default="0"
             optional="false"
             writeacl="ruleCapable(adminUser)"
         />
         <property name="MAX_CONNECTIONS_PER_HOUR"
             type="scalar"
-	    default="0"
+            default="0"
             optional="false"
             writeacl="ruleCapable(adminUser)"
         />
         <property name="MAX_UPDATES_PER_HOUR"
             type="scalar"
-	    default="0"
+            default="0"
             optional="false"
             writeacl="ruleCapable(adminUser)"
         />
+
+        <!-- Start: New Permissions -->
+        <property name="EVENT"
+            type="scalar"
+            default="0"
+            optional="false"
+            writeacl="ruleCapable(adminUser)"
+        />
+        <property name="TRIGGER"
+            type="scalar"
+            default="0"
+            optional="false"
+            writeacl="ruleCapable(adminUser)"
+        />
+        <property name="GRANT"
+            type="scalar"
+            default="0"
+            optional="false"
+            writeacl="ruleCapable(adminUser)"
+        />
+        <property name="LOCK_TABLES"
+            type="scalar"
+            default="0"
+            optional="false"
+            writeacl="ruleCapable(adminUser)"
+        />
+        <property name="REFERENCES"
+            type="scalar"
+            default="0"
+            optional="false"
+            writeacl="ruleCapable(adminUser)"
+        />
+        <!-- End: New Permissions -->
 
 </class>
 

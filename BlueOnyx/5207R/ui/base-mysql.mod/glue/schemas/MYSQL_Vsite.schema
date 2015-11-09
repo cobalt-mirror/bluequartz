@@ -16,7 +16,7 @@
     />
 
     <property 
-        name="enabled" type="boolean" default="0"
+        name="enabled" type="boolean" default="1"
         writeacl="ruleCapable(adminUser)"
     />
 
@@ -45,6 +45,11 @@
         writeacl="ruleCapable(adminUser)" 
     /> 
 
+    <property 
+        name="maxDBs" type="uint" default="1"
+        writeacl="ruleCapable(adminUser)"
+    />
+
 </class>
 
 <class 
@@ -67,8 +72,23 @@
     />
 
     <property 
+        name="maxDBs" type="uint" default="1"
+        writeacl="ruleCapable(adminUser)"
+    />
+
+    <property 
         name="DB" type="mysqldatabase" default=""
         writeacl="ruleCapable(adminUser)"
+    />
+
+    <property 
+        name="DBmulti" type="mysqldatabase" array="yes" default="" optional="true"
+        writeacl="ruleCapable(adminUser) OR ruleCapable(siteAdmin)"
+    />
+
+    <property 
+        name="DBdel" type="mysqldatabase" default="" optional="true"
+        writeacl="ruleCapable(adminUser) OR ruleCapable(siteAdmin)"
     />
 
     <property 
@@ -95,6 +115,178 @@
         name="destroy" type="scalar" default=""
         writeacl="ruleCapable(adminUser)"
     />
+
+    <!-- Start: MySQL User Permissions -->
+        <property 
+            name="userPermChange" type="scalar" default=""
+            writeacl="ruleCapable(adminUser)"
+        />
+        <property name="SELECT"
+            type="scalar"
+            default="1"
+            optional="false"
+            writeacl="ruleCapable(adminUser)"
+        />
+        <property name="INSERT"
+            type="scalar"
+            default="1"
+            optional="false"
+            writeacl="ruleCapable(adminUser)"
+        />
+        <property name="UPDATE"
+            type="scalar"
+            default="1"
+            optional="false"
+            writeacl="ruleCapable(adminUser)"
+        />
+        <property name="DELETE"
+            type="scalar"
+            default="1"
+            optional="false"
+            writeacl="ruleCapable(adminUser)"
+        />
+        <property name="FILE"
+            type="scalar"
+            default="0"
+            optional="false"
+            writeacl="ruleCapable(adminUser)"
+        />
+        <property name="CREATE"
+            type="scalar"
+            default="1"
+            optional="false"
+            writeacl="ruleCapable(adminUser)"
+        />
+        <property name="ALTER"
+            type="scalar"
+            default="1"
+            optional="false"
+            writeacl="ruleCapable(adminUser)"
+        />
+        <property name="INDEX"
+            type="scalar"
+        default="1"
+            optional="false"
+            writeacl="ruleCapable(adminUser)"
+        />
+        <property name="DROP"
+            type="scalar"
+            default="1"
+            optional="false"
+            writeacl="ruleCapable(adminUser)"
+        />
+        <property name="TEMPORARY"
+            type="scalar"
+            default="1"
+            optional="false"
+            writeacl="ruleCapable(adminUser)"
+        />
+        <property name="CREATE_VIEW"
+            type="scalar"
+            default="0"
+            optional="false"
+            writeacl="ruleCapable(adminUser)"
+        />
+        <property name="SHOW_VIEW"
+            type="scalar"
+            default="0"
+            optional="false"
+            writeacl="ruleCapable(adminUser)"
+        />
+        <property name="CREATE_ROUTINE"
+            type="scalar"
+            default="0"
+            optional="false"
+            writeacl="ruleCapable(adminUser)"
+        />
+        <property name="ALTER_ROUTINE"
+            type="scalar"
+            default="0"
+            optional="false"
+            writeacl="ruleCapable(adminUser)"
+        />
+        <property name="EXECUTE"
+            type="scalar"
+            default="0"
+            optional="false"
+            writeacl="ruleCapable(adminUser)"
+        />
+        <property name="MAX_QUERIES_PER_HOUR"
+            type="scalar"
+            default="0"
+            optional="false"
+            writeacl="ruleCapable(adminUser)"
+        />
+        <property name="MAX_CONNECTIONS_PER_HOUR"
+            type="scalar"
+            default="0"
+            optional="false"
+            writeacl="ruleCapable(adminUser)"
+        />
+        <property name="MAX_UPDATES_PER_HOUR"
+            type="scalar"
+            default="0"
+            optional="false"
+            writeacl="ruleCapable(adminUser)"
+        />
+    <!-- End: MySQL User Permissions -->
+
+        <!-- Start: New Permissions -->
+        <property name="EVENT"
+            type="scalar"
+            default="0"
+            optional="false"
+            writeacl="ruleCapable(adminUser)"
+        />
+        <property name="TRIGGER"
+            type="scalar"
+            default="0"
+            optional="false"
+            writeacl="ruleCapable(adminUser)"
+        />
+        <property name="GRANT"
+            type="scalar"
+            default="0"
+            optional="false"
+            writeacl="ruleCapable(adminUser)"
+        />
+        <property name="LOCK_TABLES"
+            type="scalar"
+            default="0"
+            optional="false"
+            writeacl="ruleCapable(adminUser)"
+        />
+        <property name="REFERENCES"
+            type="scalar"
+            default="0"
+            optional="false"
+            writeacl="ruleCapable(adminUser)"
+        />
+        <!-- End: New Permissions -->
+
+    <!-- Start: Triggers for Multi-DB handling  -->
+
+    <property 
+        name="userPermsUpdate" type="scalar" default="" optional="true"
+        writeacl="ruleCapable(adminUser)"
+    />
+
+    <property 
+        name="userPermsReset" type="scalar" default="" optional="true"
+        writeacl="ruleCapable(adminUser)"
+    />
+
+    <property 
+        name="DBmultiAdd" type="scalar" default="" optional="true"
+        writeacl="ruleCapable(adminUser) OR ruleCapable(siteAdmin)"
+    />
+
+    <property 
+        name="DBmultiDel" type="scalar" default="" optional="true"
+        writeacl="ruleCapable(adminUser) OR ruleCapable(siteAdmin)"
+    />
+
+    <!-- End: Triggers for Multi-DB handling  -->
 
 </class>
 

@@ -115,6 +115,31 @@ information for [VENDOR]-[SERVICE].
 
 <begin $CHANGELOG>
 
+* Sun Nov 08 2015 Michael Stauber <mstauber@solarspeed.net> 2.3.0-0BX17
+- Added support for multiple MySQL databases to each Vsite.
+- Added ability to individually set permissions for each Vsite DB user.
+- Added ability to reset permissions for Vsite DB user to defaults.
+- Added some previously unsupported MySQL DB permissions.
+- Modified glue/schemas/MYSQLUSERS_DEFAULTS.schema
+- Modified glue/schemas/MYSQL_Vsite.schema
+- Modified glue/conf/mysql.conf
+- Modified glue/handlers/create_mysql_data.pl
+- Modified glue/handlers/destroy_mysql_data.pl
+- Modified glue/handlers/enableAM.pl
+- Modified glue/handlers/exist_user_and_db_check.pl
+- Modified glue/handlers/modify_mysql_data.pl
+- Modified ui/chorizo/web/config/routes.php
+- Modified ui/chorizo/web/controllers/mysqlconfig.php
+- Modified ui/chorizo/extensions/15_MYSQL_Vsite.php.create.Vsite
+- Modified ui/chorizo/extensions/15_MYSQL_Vsite.php.modifyWeb.Vsite
+- Added glue/handlers/DBmultiAdd.pl
+- Added glue/handlers/DBmultiDel.pl
+- Added glue/handlers/mod_userpermsReset.pl
+- Added glue/handlers/mod_userpermsUpdate.pl
+- Added ui/chorizo/extensions/11_MYSQL_Vsite.php.defaults.Vsite
+- Added ui/chorizo/web/controllers/vsiteMySQL.php
+- Added new English locales for the new GUI bits and pieces.
+
 * Fri Jun 26 2015 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX16
 - Modified glue/handlers/destroy_mysql_data.pl to remove the error message
   that the DB might already be gone. As that was the goal, we do not really
