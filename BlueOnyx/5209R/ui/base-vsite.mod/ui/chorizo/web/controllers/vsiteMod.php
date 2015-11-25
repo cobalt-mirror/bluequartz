@@ -266,7 +266,7 @@ class vsiteMod extends MX_Controller {
 
         // With IP Pooling enabled, display the IP field with a 
         // range of possible choices
-        list($sysoid) = $cceClient->find("System");
+        @list($sysoid) = $cceClient->find("System");
         $net_opts = $cceClient->get($sysoid, "Network");
         if (($net_opts["pooling"] == "1") && $Capabilities->getAllowed('manageSite')) {
             $range_strings = array();
@@ -428,10 +428,15 @@ class vsiteMod extends MX_Controller {
         $exact = array_merge($exact, array('createdUser' => $loginName));
 
         // Get the info about the 'manageSite' administrator:
-        list($user_oid) = $cceClient->find('User', array('name' => $vsite['createdUser'])); 
+        @list($user_oid) = $cceClient->find('User', array('name' => $vsite['createdUser'])); 
 
         // Get the site allowance settings for this 'manageSite' user:
         $AdminAllowances = $cceClient->get($user_oid, 'Sites'); 
+
+        if (!isset($AdminAllowances['user'])) {
+            $AdminAllowances['user'] = 'admin';
+            $AdminAllowances['quota'] = '500';
+        }
         
         // Get a list of all sites he owns: 
         $Userowned_Sites = $cceClient->find('Vsite', array('createdUser' => $vsite['createdUser'])); 
