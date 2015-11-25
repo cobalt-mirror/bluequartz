@@ -67,7 +67,7 @@ my $total = scalar(@users) + 1;
 
 for my $user (@users) {
     # override file check since this is a site destroy
-    $cce->set($user, '', { 'noFileCheck' => 1 });
+    $cce->set($user, '', { 'noFileCheck' => 1 , 'emailDisabled' => '0'});
     my ($ok, @info) = $cce->destroy($user);
     if (!$ok) {
         # failed. update status and exit.

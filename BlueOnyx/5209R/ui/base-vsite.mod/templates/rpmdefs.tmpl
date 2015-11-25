@@ -136,6 +136,12 @@ fi
 
 <begin $CHANGELOG>
 
+* Wed Nov 25 2015 Michael Stauber <mstauber@solarspeed.net> 4.2-0BX53
+- Modified glue/sbin/vsite_destroy.pl to unsuspend email accounts before
+  User deletion. This is a work around for making sure the aliases get
+  removed as well.
+- Small fixes in ui/chorizo/web/controllers/vsiteMod.php
+
 * Sat Oct 31 2015 Michael Stauber <mstauber@solarspeed.net> 4.2-0BX52
 - Updated vsite.conf to run fixhost.pl as well on hostname and domain
   name changes of the server.
