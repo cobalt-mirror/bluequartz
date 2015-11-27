@@ -25,8 +25,8 @@ BuildArch:      noarch
 Distribution:   BlueOnyx 5209R
 Source:         %{name}.tar.gz
 Summary:        BlueOnyx Generic Migration Utility
-AutoReq         : yes
-AutoProv        : yes
+AutoReq         : no
+AutoProv        : no
 
 %description
 The BlueOnyx Generic Migration Utility can import Resellers,
