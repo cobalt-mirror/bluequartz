@@ -20,11 +20,13 @@ Requires:		pv
 Requires:		perl-Apache-ConfigFile
 Requires:		perl-List-Flatten
 Requires:		perl-Mail-Sendmail
-Requires:		formail
+Requires:		procmail
 BuildArch:      noarch
 Distribution:   BlueOnyx 5209R
 Source:         %{name}.tar.gz
 Summary:        BlueOnyx Generic Migration Utility
+AutoReq         : yes
+AutoProv        : yes
 
 %description
 The BlueOnyx Generic Migration Utility can import Resellers,
