@@ -200,7 +200,7 @@ if ($BSD eq "0") {
     quagga mailnull smmsp pegasus apache mailman webalizer xfs cyrus
     radiusd ldap exim mysql fax squid dovecot postfixgdm
     pop alterroot httpd chiliasp qmail share-guest majordomo
-    anonymous guest Root Admin ROOT ADMIN
+    anonymous guest Root Admin ROOT ADMIN admin
 /;
 
 #

@@ -133,7 +133,10 @@ rm -R -f $RPM_BUILD_ROOT
 %changelog
 
 * Fri Nov 27 2015 Michael Stauber <mstauber@blueonyx.it>
-- [0.9.0-2] Small fixes to importer in line 246.
+- [0.9.0-4] Small fixes in exporter to prohibit username 'admin'.
+
+* Fri Nov 27 2015 Michael Stauber <mstauber@blueonyx.it>
+- [0.9.0-3] Small fixes to importer in line 246.
 
 * Fri Nov 27 2015 Michael Stauber <mstauber@blueonyx.it>
 - [0.9.0-2] Small fixes to importer for cgi-bin location.
