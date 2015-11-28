@@ -7,7 +7,7 @@ VENDORNAME='Team BlueOnyx'
 SERVICE=blueonyx-gmu
 
 VERSION=0.9.0
-RELEASE=4
+RELEASE=5
 
 # add a buildarch if desired
 BUILDARCH=noarch

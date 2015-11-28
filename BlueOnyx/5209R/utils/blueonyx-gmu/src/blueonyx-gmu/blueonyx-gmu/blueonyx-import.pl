@@ -636,7 +636,7 @@ sub cce_create_user {
 
         # Add/remove anything we need:
         $do_user->{name} = $cu;
-        #$do_user->{password} = $do_user->{crypt_password};
+        $do_user_reserve->{password} = $do_user->{crypt_password};
         delete $do_user->{crypt_password};
         delete $do_user->{md5_password};
 
@@ -704,7 +704,8 @@ sub cce_create_user {
 
         # Set Password-Hash:
         if ($errors eq '0') {
-            system("/usr/sbin/usermod $cu -p '$do_user->{password}'");
+            &debug_msg("Setting password via: /usr/sbin/usermod $cu -p '" . $do_user_reserve->{password} . "'\n");
+            system("/usr/sbin/usermod $cu -p '" . $do_user_reserve->{password} . "'");
         }
 
         #
