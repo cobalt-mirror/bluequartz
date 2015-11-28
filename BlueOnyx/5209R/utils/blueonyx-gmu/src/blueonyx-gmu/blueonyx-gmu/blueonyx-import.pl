@@ -243,19 +243,24 @@ if ($just_examine eq "1") {
 
 @Resellers_to_Import = ();
 foreach $v (@import_Vsites) {
-    foreach $u ( keys %{ $Resellers } ) {
-        @known_reseller_domains = scalar_to_array($Resellers->{$u}->{domains});
-        $num = scalar(@known_reseller_domains);
-        if (in_array(\@known_reseller_domains, $v)) {
-            if ($no_resellers eq "1") {
-                &debug_msg("Reseller '$u' owns Vsite '$v' - are you sure you don't want to import him?\n");
+    if (scalar(keys %{ $Resellers[0] }) gt "0") {
+        foreach $u ( keys %{ $Resellers } ) {
+            @known_reseller_domains = scalar_to_array($Resellers->{$u}->{domains});
+            $num = scalar(@known_reseller_domains);
+            if (in_array(\@known_reseller_domains, $v)) {
+                if ($no_resellers eq "1") {
+                    &debug_msg("Reseller '$u' owns Vsite '$v' - are you sure you don't want to import him?\n");
+                }
+                else {
+                    &debug_msg("Reseller '$u' owns Vsite '$v'\n");
+                }
+                push @Resellers_to_Import, $Resellers->{$u}->{newName};
+                @Resellers_to_Import = uniq(@Resellers_to_Import);
             }
-            else {
-                &debug_msg("Reseller '$u' owns Vsite '$v'\n");
-            }
-            push @Resellers_to_Import, $Resellers->{$u}->{newName};
-            @Resellers_to_Import = uniq(@Resellers_to_Import);
         }
+    }
+    else {
+        @Resellers_to_Import = ();
     }
 }
 

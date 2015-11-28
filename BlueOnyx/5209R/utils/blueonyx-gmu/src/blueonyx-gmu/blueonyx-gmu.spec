@@ -7,7 +7,7 @@
 
 Name:           %{pkgname}
 Version:        0.9.0
-Release:        2
+Release:        3
 Packager:       Michael Stauber <mstauber@blueonyx.it>
 Vendor:         BLUEONYX.IT
 URL:            http://www.blueonyx.it
@@ -131,6 +131,9 @@ rm -R -f $RPM_BUILD_ROOT
 
 
 %changelog
+
+* Fri Nov 27 2015 Michael Stauber <mstauber@blueonyx.it>
+- [0.9.0-2] Small fixes to importer in line 246.
 
 * Fri Nov 27 2015 Michael Stauber <mstauber@blueonyx.it>
 - [0.9.0-2] Small fixes to importer for cgi-bin location.
