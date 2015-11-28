@@ -939,11 +939,15 @@ sub cce_create_vsite {
                     # Path and Filename of tarball to import:
                     $unpack_this_file = $path_to_import . $fileName;
 
-                    if ($ball ne "SSL") {
+                    if ($ball eq "DocumentRoot") {
                         $unpack_target = $obj_vsite->{basedir} . "/web/";
                         $unpack_target_dir = $obj_vsite->{basedir} . "/web";
                     }
-                    else {
+                    if ($ball eq "CGI_BIN") {
+                        $unpack_target = $obj_vsite->{basedir} . "/web/cgi-bin/";
+                        $unpack_target_dir = $obj_vsite->{basedir} . "/web/cgi-bin";
+                    }
+                    if ($ball eq "SSL") {
                         $unpack_target = $obj_vsite->{basedir} . "/certs/";
                         $unpack_target_dir = $obj_vsite->{basedir} . "/certs";
                     }
@@ -972,6 +976,13 @@ sub cce_create_vsite {
                             $indexHtml = $unpack_target . "index.html";
                             system("rm -f $indexHtml");
                         }
+                        if ($ball eq "CGI_BIN") {
+                            # Create /web/cgi-bin:
+                            system("mkdir $unpack_target_dir");
+                            system("chmod 755 $unpack_target_dir");
+                            system("chown -R nobody:$vsite_grp $unpack_target_dir");
+                        }
+
                         # Actual unpack:
                         system("pv $unpack_this_file | tar xzf - -C $unpack_target");
                         if ($ball ne "SSL") {
