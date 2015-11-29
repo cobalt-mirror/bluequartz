@@ -7,7 +7,7 @@
 
 Name:           %{pkgname}
 Version:        0.9.0
-Release:        5
+Release:        6
 Packager:       Michael Stauber <mstauber@blueonyx.it>
 Vendor:         BLUEONYX.IT
 URL:            http://www.blueonyx.it
@@ -131,6 +131,9 @@ rm -R -f $RPM_BUILD_ROOT
 
 
 %changelog
+
+* Fri Nov 27 2015 Michael Stauber <mstauber@blueonyx.it>
+- [0.9.0-6] Reseller import fix.
 
 * Fri Nov 27 2015 Michael Stauber <mstauber@blueonyx.it>
 - [0.9.0-5] Small fixes in importer for password hashes.

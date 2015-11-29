@@ -242,8 +242,13 @@ if ($just_examine eq "1") {
 #
 
 @Resellers_to_Import = ();
-foreach $v (@import_Vsites) {
-    if (scalar(keys %{ $Resellers[0] }) gt "0") {
+if (is_array($Resellers)) {
+    &debug_msg("No Resellers to import.\n");
+    $no_resellers = "1";
+    @Resellers_to_Import = ();
+}
+else {
+    foreach $v (@import_Vsites) {
         foreach $u ( keys %{ $Resellers } ) {
             @known_reseller_domains = scalar_to_array($Resellers->{$u}->{domains});
             $num = scalar(@known_reseller_domains);
@@ -258,9 +263,6 @@ foreach $v (@import_Vsites) {
                 @Resellers_to_Import = uniq(@Resellers_to_Import);
             }
         }
-    }
-    else {
-        @Resellers_to_Import = ();
     }
 }
 
