@@ -25,7 +25,7 @@ class EmailSettingsExtension extends UIExtension {
     function display(&$serverScriptHelper, &$container, $prams) {
         $factory = $serverScriptHelper->getHtmlComponentFactory('base-user');
         $cceClient = $serverScriptHelper->getCceClient();
-    	$pageId = 'EmailSettings';
+        $pageId = 'EmailSettings';
 
         // Get the User related Objects of interest:
         $user = $cceClient->get($prams['CCE_OID']);
@@ -148,7 +148,8 @@ class EmailSettingsExtension extends UIExtension {
         // Yeah, this is *really* ugly. I know. But does it really make sense to build a class
         // or to modify a class so that it can display this stuff the way it want? It is not
         // really worth the effort, so we can afford to do it this way:
-        $mikes_folly = addToggleAbleAutoGrowField("forwardEnableField", "email_addresses", "notrequired", "forwardEnable", "forwardSaveField", $forwardEnableField, $forwardSaveField, "forwardEmailField", "forwardEmailField_rule", "", $forwardEmailField, "base-user", $i18n, $cceClient) .
+        //$mikes_folly = addToggleAbleAutoGrowField("forwardEnableField", "email_addresses", "notrequired", "forwardEnable", "forwardSaveField", $forwardEnableField, $forwardSaveField, "forwardEmailField", "forwardEmailField_rule", "", $forwardEmailField, "base-user", $i18n, $cceClient) .
+        $mikes_folly = addToggleAbleAutoGrowField("forwardEnableField", "fq_email_address_or_username_multiline", "notrequired", "forwardEnable", "forwardSaveField", $forwardEnableField, $forwardSaveField, "forwardEmailField", "forwardEmailField_rule", "", $forwardEmailField, "base-user", $i18n, $cceClient) .
                     '
                     <div class="columns">
                             <fieldset class="label_side col_25 no_lines">
@@ -327,9 +328,19 @@ class EmailSettingsExtension extends UIExtension {
 
         // No errors? Submit to CODB:
         if (count($errors) == "0") {
+            $fwEmailField = $cceClient->scalar_to_array($attributes['forwardEmailField']);
+            $outFW_email = array();
+            foreach ($fwEmailField as $addy) {
+                if ((!filter_var($addy, FILTER_VALIDATE_EMAIL)) && (!preg_match('/^[a-z][a-z0-9_.-]{0,30}$/', $addy))) {
+                    next;
+                }
+                else {
+                    $outFW_email[] = $addy;
+                }
+            }
             // Assemble the data we want to submit:
             $CODBout = array("forwardEnable" => $attributes['forwardEnable'], 
-                            "forwardEmail" => $attributes['forwardEmailField'],
+                            "forwardEmail" => $cceClient->array_to_scalar($outFW_email),
                             "forwardSave" => $attributes['forwardSaveField'],
                             "vacationOn" => $attributes['enableAutoResponderField'],
                             "vacationMsg" => $attributes["vacationMsg"],

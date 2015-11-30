@@ -119,6 +119,12 @@ fi
 
 <begin $CHANGELOG>
 
+* Mon Nov 30 2015 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX13
+- Modified glue/schemas/user.schema to add a new multiline typedef for
+  'fq_email_address_or_username_multiline'.
+- Modified ui/chorizo/extensions/10_EmailSettings.php.User.Email to use
+  said typedef to allow either usernames or email addresses for forwards.
+
 * Thu Jan 22 2015 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX12
 - Fix in ui/chorizo/web/controllers/userMod.php for password check.
 
