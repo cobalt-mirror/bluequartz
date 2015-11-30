@@ -53,11 +53,20 @@ use POSIX;
 #
 
 %options = ();
-getopts("avhcexqd:i:n:r:", \%options);
+getopts("avhcepxqd:i:n:r:", \%options);
 
 # Handle display of help text:
 if ($options{h}) {
     &help;
+}
+
+# Apply PHP settings:
+if ($options{p}) {
+    &header;
+    &apply_php_settings;
+    print "### Done! \n";
+    $cce->bye("SUCCESS");
+    exit(0);
 }
 
 # Skip reseller import:
@@ -395,6 +404,12 @@ if ($config_only eq "0") {
     &fix_overquotas;
 }
 
+#
+### Apply PHP Settings:
+#
+
+&apply_php_settings;
+
 print "### Done! \n";
 
 #
@@ -506,6 +521,7 @@ sub help {
     print "         -a skip import of all Reseller accounts\n";
     print "         -e just examine and verify dump\n";
     print "         -q Fix Vsite and User quota to OK limits\n";
+    print "         -p Set all Vsites PHP settings to server defaults\n";
     print "         -h help, this help text\n\n";
     $cce->bye("SUCCESS");
     exit(0);
@@ -1259,6 +1275,49 @@ sub root_check {
         #print "$0 must be run by user 'root'!\n\n";
         &help("$0 must be run by user 'root'!");
     }
+}
+
+sub apply_php_settings {
+
+    my @vhosts = ();
+    my (@vhosts) = $cce->findx('Vsite');
+
+    &debug_msg("\n");
+    &debug_msg("##############################################################################\n");
+    &debug_msg("# Going through all Vsites to set the PHP settings to server wide defaults:\n");
+    &debug_msg("##############################################################################\n\n");
+
+    # Get PHP settings:
+    @PHPoid = $cce->find("PHP");
+    if (scalar(@PHPoid) eq "1") {
+        ($ok, $PHP) = $cce->get($PHPoid[0]);
+    }
+
+    # Walk through all Vsites:
+    for my $vsite (@vhosts) {
+        ($ok, my $my_vsite) = $cce->get($vsite);
+
+        &debug_msg("Processing Site: $my_vsite->{fqdn}\n");
+
+        ($ok) = $cce->set($vsite, 'PHPVsite',{
+            'max_execution_time' => $PHP->{max_execution_time},
+            'safe_mode_exec_dir' => $PHP->{safe_mode_exec_dir},
+            'upload_max_filesize' => $PHP->{upload_max_filesize},
+            'max_input_time' => $PHP->{max_input_time},
+            'safe_mode_gid' => $PHP->{safe_mode_gid},
+            'safe_mode_protected_env_vars' => $PHP->{safe_mode_protected_env_vars},
+            'allow_url_fopen' => $PHP->{allow_url_fopen},
+            'memory_limit' => $PHP->{memory_limit},
+            'safe_mode_include_dir' => $PHP->{safe_mode_include_dir},
+            'safe_mode_allowed_env_vars' => $PHP->{safe_mode_allowed_env_vars},
+            'allow_url_include' => $PHP->{allow_url_include},
+            'register_globals' => $PHP->{register_globals},
+            'safe_mode' => $PHP->{safe_mode},
+            'post_max_size' => $PHP->{post_max_size},
+            'force_update' => time()
+           });
+    }
+    &debug_msg("\n");
 }
 
 # 

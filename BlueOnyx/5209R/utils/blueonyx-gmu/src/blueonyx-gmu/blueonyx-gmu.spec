@@ -7,7 +7,7 @@
 
 Name:           %{pkgname}
 Version:        0.9.0
-Release:        7
+Release:        8
 Packager:       Michael Stauber <mstauber@blueonyx.it>
 Vendor:         BLUEONYX.IT
 URL:            http://www.blueonyx.it
@@ -131,6 +131,9 @@ rm -R -f $RPM_BUILD_ROOT
 
 
 %changelog
+
+* Mon Nov 30 2015 Michael Stauber <mstauber@blueonyx.it>
+- [0.9.0-8] Added '-p' switch to importer to apply PHP settings to Vsites.
 
 * Mon Nov 30 2015 Michael Stauber <mstauber@blueonyx.it>
 - [0.9.0-7] Several fixes and tweaks in exporter.
