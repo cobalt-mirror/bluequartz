@@ -65,7 +65,7 @@ $virt_file = '/etc/mail/virtusertable.db';
 $user_def_quota = '50'*1024;
 
 # Default Vsite disk quotas for Vsites that have no Reseller and no siteAdmin:
-$vsite_def_quota = '10240'*1024;
+$vsite_def_quota = '1024'*1024;
 
 #
 ### Command line option handling
@@ -260,7 +260,8 @@ if ($vhost_server_name ne "") {
         'createdUser' => 'admin',
         'maxusers' => '5000',
         'mailCatchAll' => '',
-        'webAliasRedirects' => '1'
+        'webAliasRedirects' => '1',
+        'dns_auto' => '0'
         };
 
     $Vsite->{$fqdn}->{PHP} = {
@@ -277,6 +278,10 @@ if ($vhost_server_name ne "") {
         };
 
     $Vsite->{$fqdn}->{SSL} = {
+        'enabled' => '0'
+        };
+
+    $Vsite->{$fqdn}->{USERWEBS} = {
         'enabled' => '0'
         };
 }
@@ -422,7 +427,8 @@ while ($ip_port = $apache->cmd_config('NameVirtualHost')) {
                 'createdUser' => 'admin',
                 'maxusers' => '5000',
                 'mailCatchAll' => '',
-                'webAliasRedirects' => '1'
+                'webAliasRedirects' => '1',
+                'dns_auto' => '0'
                 };
 
             $Vsite->{$fqdn}->{PHP} = {
@@ -440,6 +446,10 @@ while ($ip_port = $apache->cmd_config('NameVirtualHost')) {
 
             $Vsite->{$fqdn}->{SSL} = {
                 'enabled' => $SSL
+                };
+
+            $Vsite->{$fqdn}->{USERWEBS} = {
+                'enabled' => '0'
                 };
         }
 
@@ -891,6 +901,8 @@ for (keys %virt_hash) {
 foreach $alias ( keys %{ $DomainForwardAlias } ) {
     $alias_target = $DomainForwardAlias->{$alias};
     if (in_array(\@KnownDomainNames, $alias_target)) {
+        @mailAliases = ();
+        @webAliases = ();
         if ($Vsite->{$alias_target}) {
             @mailAliases = scalar_to_array($Vsite->{$alias_target}->{mailAliases});
             push @mailAliases, $alias;
@@ -943,6 +955,10 @@ foreach $fqdn ( keys %{ $Vsite } ) {
 
 foreach $alias ( keys %{ $VirtUserTable } ) {
     $alias_target = $VirtUserTable->{$alias};
+    @domparts = ();
+    $userNamePart = '';
+    $domainNamePart = '';
+    @UserMailAliases = ();
     if (in_array(\@RealMailUsers, $alias_target)) {
         if ($User->{$alias_target}) {
             @domparts = split('@', $alias);
@@ -1027,6 +1043,15 @@ foreach $alias ( keys %{ $VirtUserTable } ) {
 # Unfunny part: We could have circular logic aliases. So we need to run over all of this again to pick at the left-overs:
 foreach $alias ( keys %{ $VirtUserTable } ) {
     $alias_target = $VirtUserTable->{$alias};
+    @A_domparts = ();
+    $A_userNamePart = '';
+    $A_domainNamePart = '';
+    $mailAliases = '';
+    @U_MailAliases = ();
+    @NA_domparts = ();
+    $NA_userNamePart = '';
+    $NA_domainNamePart = '';
+    @DomMailAliases = ();
 
     # Catch circular logic aliases.
     #
@@ -1130,6 +1155,8 @@ if ($DEBUG eq "2") {
 
 foreach $alias ( keys %{ $VirtUserTable } ) {
     $alias_target = $VirtUserTable->{$alias};
+    @DomMailAliases = ();
+    $bait = '';
 
     #&debug_msg("Recipient-Account: " . $alias_target . " -> " . $alias . "\n");
 
@@ -1216,6 +1243,11 @@ if ($DEBUG eq "2") {
 
 foreach $alias ( keys %{ $VirtUserTable } ) {
     $alias_target = $VirtUserTable->{$alias};
+
+    @F_domparts = ();;
+    $F_userNamePart = '';
+    $F_domainNamePart = '';
+    $new_user_limit = '';
 
     #&debug_msg("Recipient-Account of forwarder: " . $alias_target . " -> " . $alias . "\n");
 
@@ -1344,11 +1376,18 @@ for (keys %alias_hash) {
     chop($value = $alias_hash{$_});
     $value =~ s/\s+//;
 
+    @WF_domparts = ();
+    $WF_userNamePart = '';
+    $WF_domainNamePart = '';
+    @WF_destinations = ();
+    @WF_destinations_cleaned = ();
+    $wf_recipients = '';
+
     # This is the droid we're looking for: A weird alias with a tilde in it:
     if ($key =~ /~/) {
 
         unless ($WeirdForwardAliasReverse->{$key}) {
-            #&debug_msg("INFO_X6-WEIRD: key $key and value $value \n");
+            &debug_msg("INFO_X6-WEIRD: key $key and value $value - has no counterpart in virtusertable!\n");
         }
 
         # Check if we have a matching virtusertable-entry:
@@ -1369,6 +1408,7 @@ for (keys %alias_hash) {
 
                 # Assemble scalar of destination email-addresses:
                 @WF_destinations = split(',', $value);
+                $k = '';
                 foreach $k (@WF_destinations) {
                     $k =~ s/\s+//;
                     $k =~ s/\n//g;
@@ -1474,6 +1514,7 @@ foreach $account ( keys %{ $User } ) {
                     $User->{$userName}->{Email}->{vacationMsgStop} = time();
                     $User->{$userName}->{Email}->{forwardEnable} = '1';
 
+                    @existing_forwards = ();
                     @existing_forwards = scalar_to_array($User->{$userName}->{Email}->{forwardEmail});
                     foreach $x (@fwd_array) {
                         push @existing_forwards, $x;
