@@ -195,12 +195,16 @@ if ($BSD eq "0") {
 
 %illegal_usernames = map { $_ => 1 } qw /
     root bin daemon adm lp sync shutdown halt mail news uucp operator
-    games gopher ftp nobody dbus rpm htt nscd vcsa ntp wnn ident canna
+    games gopher ftp nobody dbus rpm http nscd vcsa ntp wnn ident canna
     haldaemon rpc named amanda sshd postgres pvm netdump pcap radvd
     quagga mailnull smmsp pegasus apache mailman webalizer xfs cyrus
     radiusd ldap exim mysql fax squid dovecot postfixgdm
     pop alterroot httpd chiliasp qmail share-guest majordomo
-    anonymous guest Root Admin ROOT ADMIN admin
+    anonymous guest Root Admin ROOT ADMIN admin info postmaster 
+    nut canna rpm amandabackup privoxy gdm postfix desktop rpcuser 
+    nfsnobody ingres system toor manager dumper abuse newsadm newsadmin 
+    usenet ftpadm ftpadmin ftp ftp www noc security hostmaster info 
+    decode root-admin mailer-daemon
 /;
 
 #
