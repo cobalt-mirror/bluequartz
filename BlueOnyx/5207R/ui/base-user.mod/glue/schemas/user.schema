@@ -14,7 +14,7 @@ sauce-basic.mod to base-user.mod.
 <typedef 
   name="fq_email_address_or_username_multiline" 
   type="re" 
-  data="^(([a-z][a-z0-9_\\.-\@]{0,60})([,]|[\r\n]{0,999}))*$"
+  data="^(([a-z][a-z0-9_\\.\-\@]{0,60})([,]|[\r\n]{0,999}))*$"
   errmsg = "[[base-cce.fq_email_address_or_username_errmsg]]"
 />
 <!-- Note: The above doesn't validate email addresses correctly. Would be overkill in one regexp. We do that in UI via PHP. -->
@@ -30,18 +30,18 @@ sauce-basic.mod to base-user.mod.
     destroyacl="ruleModifyUser"
 >
     <!--
-	Whether the user should appear as enabled in the UI or not.
-	This allows disassociation of site suspension from user suspension.
+    Whether the user should appear as enabled in the UI or not.
+    This allows disassociation of site suspension from user suspension.
     -->
     <property
-	name="ui_enabled" type="boolean" default="1"
-	readacl="ruleAll"
-	writeacl="ruleModifyUser"
+    name="ui_enabled" type="boolean" default="1"
+    readacl="ruleAll"
+    writeacl="ruleModifyUser"
     />
 
     <!--
-	the enabled property that actually matters as far as the system is
-	concerned.  Setting this to false (0) suspends the user.
+    the enabled property that actually matters as far as the system is
+    concerned.  Setting this to false (0) suspends the user.
     -->
     <property 
         name="enabled" type="boolean" default="1"
@@ -188,8 +188,8 @@ sauce-basic.mod to base-user.mod.
 
     <!-- whether to override the check for files owned on user destroy or not -->
     <property
-	name="noFileCheck" type="boolean" default="0"
-	writeacl="ruleModifyUser"
+    name="noFileCheck" type="boolean" default="0"
+    writeacl="ruleModifyUser"
     />
 </class>
 
