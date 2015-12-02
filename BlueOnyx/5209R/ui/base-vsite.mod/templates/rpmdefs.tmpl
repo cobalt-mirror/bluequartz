@@ -61,6 +61,7 @@ information for [VENDOR]-[SERVICE].
 %attr(0755,-,-) /usr/sausalito/sbin/phpsendmail
 %attr(0755,-,-) /usr/sausalito/sbin/MassIPChange.pl
 %attr(0755,-,-) /usr/sausalito/configs/php/set_php_headers.php
+%attr(0755,-,-) /usr/sausalito/sbin/free_admin_alias.pl
 
 <end glue>
 
@@ -135,6 +136,9 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Wed Dec 03 2015 Michael Stauber <mstauber@solarspeed.net> 4.2-0BX54
+- Script /usr/sausalito/sbin/free_admin_alias.pl was missing. Added.
 
 * Wed Nov 25 2015 Michael Stauber <mstauber@solarspeed.net> 4.2-0BX53
 - Modified glue/sbin/vsite_destroy.pl to unsuspend email accounts before
