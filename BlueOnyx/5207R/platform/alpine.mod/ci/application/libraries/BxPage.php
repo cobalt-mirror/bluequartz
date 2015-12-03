@@ -1071,6 +1071,18 @@ class BxPage extends MX_Controller {
                 $wiki = '&nbsp;';
             }
 
+            // Insert header-CSS:
+            if (is_file("/etc/DEBUG")) {
+                $bx_css = '    <script src="/.adm/scripts/adminica/adminica_all.js"></script>' . "\n";
+                $bx_css .= '    <script src="/.adm/scripts/adminica/adminica_mobile.js"></script>' . "\n";
+                $bx_css .= '    <script src="/.adm/scripts/overlay/jquery.popupoverlay.js"></script>' . "\n";
+            }
+            else {
+                $bx_css = '    <script src="/.adm/scripts/adminica/adminica_all-min.js"></script>' . "\n";
+                $bx_css .= '    <script src="/.adm/scripts/adminica/adminica_mobile-min.js"></script>' . "\n";
+                $bx_css .= '    <script src="/.adm/scripts/overlay/jquery.popupoverlay-min.js"></script>' . "\n";
+            }
+
             // Assemble header data:
             $data_head = array(
                 'charset' => $charset,
@@ -1080,6 +1092,7 @@ class BxPage extends MX_Controller {
                 'page_title' => $page_title,
                 'fullName' => $user['fullName'],
                 'layout' => $layout,
+                'bx_css' => $bx_css,
                 'page_title' => $page_title,
                 'extra_headers' => implode("\n", $this->extra_headers),
                 'body_open_tag' => $this->body_open_tag,

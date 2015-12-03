@@ -340,6 +340,13 @@ $.extend($.validator, {
 			this.invalid = $.extend({}, this.errorMap);
 			if ( !this.valid() ) {
 				$(this.currentForm).triggerHandler("invalid-form", [this]);
+				$('#error_formfields').removeClass("display_none");
+	            $('#fade_overlay').addClass("display_none");
+	            $('#fade_overlay').popup('hide');
+			}
+			else {
+	            $('#fade_overlay').removeClass("display_none");
+	            $('#fade_overlay').popup('show');
 			}
 			this.showErrors();
 			return this.valid();
