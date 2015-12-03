@@ -855,6 +855,11 @@ class PagedBlock extends Block {
     $result_head .= '              </div>
               <div class="toggle_container">' . "\n";
 
+    //
+    //--- Add the general (invisible) error that the form validation failed. This gets unhidden if it really fails:
+    //
+    $result_head .= '<div id="error_formfields" class="error_formfields alert alert_red display_none"><img width="40" height="36" src="/.adm/images/icons/small/white/alarm_bell.png"><strong>' . $i18n->get("[[base-alpine.errorFormfields]]") . '<br>&nbsp;</strong></div>' . "\n";
+
     if ($this->getDisplayErrors() == TRUE) {
       if (isset($errormsg)) {
         if (is_array($errormsg)) {

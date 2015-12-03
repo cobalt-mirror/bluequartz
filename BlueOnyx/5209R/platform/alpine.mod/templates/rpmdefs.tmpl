@@ -136,6 +136,25 @@ fi
 
 <begin $CHANGELOG>
 
+* Thu Dec 03 2015 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX051
+- Finally. Finally I found a way to suppress the progress bar overlay 
+  when the form validation failed and instead show a constructive error
+  message instead. What a birth. 
+- Modified ci/application/libraries/BxPage.php to show unminimized styles
+  if /etc/DEBUG is present. 
+- Modified ci/application/libraries/uifc/PagedBlock.php to always show a
+  hidden ('display_none') error message related to form validation failure.
+- Modified ci/application/views/validation_view.php 'form: function()' to
+  show or hide the progress overlay or form validation error message
+  dependent on the success or failure of the form validation. Yay.
+- Modifed ci/application/views/neutral_footer_view.php and
+  ci/application/views/footer_view.php to remove the jQuery code that was
+  used to show the loading overlay. As now validation_view.php does that
+  job we no longer need it there.
+- Modified ci/application/views/header_view.php and neutral_header_view.php
+  to show the CSS based on what BxPage.php tells it to show.
+- Extended locales with the new error message.
+
 * Thu Nov 05 2015 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX050
 - Modified ci/application/libraries/uifc/FormFieldBuilder.php to change
   function makeBxDivider() to override the CSS property line-height to

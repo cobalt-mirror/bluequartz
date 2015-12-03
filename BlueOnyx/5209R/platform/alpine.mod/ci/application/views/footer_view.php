@@ -1,14 +1,4 @@
 
-    <!-- Start: Wait overlay -->
-    <script>
-        $('button.waiter').click(function() {
-            $('#fade_overlay').removeClass("display_none");
-            $('#fade_overlay').popup('show');
-        });
-    </script>
-    <!-- End: Wait overlay -->
-
-
 <!-- Start: footer_view.php -->
                     <table width="100%" align="center" cellspacing="0" cellpadding="0" border="0">
                         <tbody>

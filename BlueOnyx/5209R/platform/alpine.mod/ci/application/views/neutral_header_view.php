@@ -38,9 +38,8 @@
 
 	<link rel="stylesheet" href="/.adm/styles/adminica/colours.css"> <!-- overrides the default colour scheme -->
 	<script src="/gui/pluginsmin?update"></script>
-	<script src="/.adm/scripts/adminica/adminica_all-min.js"></script>
-	<script src="/.adm/scripts/adminica/adminica_mobile-min.js"></script>
-	<script src="/.adm/scripts/overlay/jquery.popupoverlay-min.js"></script>
+
+<?php echo $bx_css; ?>
 
 	<!-- Start: Overrides for Adminica functions:-->
 	<script src="/gui/validation"></script>
