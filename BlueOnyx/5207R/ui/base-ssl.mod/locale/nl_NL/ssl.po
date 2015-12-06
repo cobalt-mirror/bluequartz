@@ -1037,3 +1037,59 @@ msgstr "Het commando '/usr/sausalito/sbin/ssl_get.pl' heeft niet de verwachte re
 msgid "cap_serverSSL"
 msgstr "SSL-instellingen"
 
+# New for Let's Encrypt integration:
+
+msgid "LetsEncrypt"
+msgstr "'Let's Encrypt!'"
+
+msgid "LE_CA_Request_Error"
+msgstr "De volgende fout is opgetreden tijdens de SSL-certificaat verzoek:<br><br>[[VAR.msg]]"
+
+msgid "LE_CA_Request_FQDN_Error"
+msgstr "De volgende fout is opgetreden tijdens de SSL-certificaat verzoek: de volledig gekwalificeerde domeinnaam voor de SSL-certificaat kon niet worden vastgesteld."
+
+msgid "LE_CA_Request_Error_noPathFound"
+msgstr "De volgende fout is opgetreden tijdens de SSL-certificaat verzoek: de installatie pad voor de certificaten kon niet worden vastgesteld."
+
+msgid "CouldnotCreateCertDir"
+msgstr "Fout: Het certificaat directory kon niet worden aangemaakt."
+
+msgid "doNotHaveValidLECert"
+msgstr "Het certificaat verzoek tegen [[base-ssl.LetsEncrypt]] niet iets dat lijkt op een geldig SSL-certificaat terug. Sorry."
+
+msgid "LetsEncrypt_help"
+msgstr "Maak een gratis SSL-certificaat voor deze virtuele site met behulp [[base-ssl.LetsEncrypt]]"
+
+msgid "DIVIDER_INTRO"
+msgstr "Algemene informatie"
+
+msgid "DIVIDER_INTRO_help"
+msgstr "[[base-ssl.DIVIDER_INTRO]]"
+
+msgid "DIVIDER_OPTIONS"
+msgstr "Configuratie"
+
+msgid "DIVIDER_OPTIONS_help"
+msgstr "[[base-ssl.DIVIDER_OPTIONS]]"
+
+msgid "LErequestCert"
+msgstr "Aanvragen of vernieuwen Certificaat"
+
+msgid "LErequestCert_help"
+msgstr "Vink dit vakje aan als je het aanvragen van een nieuwe SSL-certificaat of als u een bestaande [[base-ssl.LetsEncrypt]] SSL-certificaat te vernieuwen."
+
+msgid "autoRenew"
+msgstr "Automatische verlenging"
+
+msgid "autoRenew_help"
+msgstr "Hiermee kunt u de automatische verlenging van de SSL-certificaten in te schakelen. Zodra een [[base-ssl.LetsEncrypt]] SSL-certificaat ouder is dan aangegeven in '[[base-ssl.autoRenewDays]]' kan automatisch worden verlengd, indien dit selectievakje is aangevinkt."
+
+msgid "autoRenewDays"
+msgstr "Maximale Certificaat Leeftijd"
+
+msgid "autoRenewDays_help"
+msgstr "Hier kunt u aangeven op welke leeftijd (in dagen) een [[base-ssl.LetsEncrypt]] SSL-certificaat wordt automatisch verlengd."
+
+msgid "LetsEncrypt_info_text"
+msgstr "[[base-ssl.LetsEncrypt]] (<a href='http://www.letsencrypt.org' target='_blank'>www.letsencrypt.org</a>) is een nieuwe Certificate Authority: Het is gratis, geautomatiseerde en open.<br><br> De SSL-certificaten die het genereert worden ondersteund door de meeste moderne browsers en zijn geldig voor maximaal 90 dagen. BlueOnyx ondersteunt de automatische aanvraag en installatie van [[base-ssl.LetsEncrypt]] SSL-certificaten en kan ook omgaan met de automatische verlenging <br><br><b>Let op:</b> [[base-ssl.LetsEncrypt]] moet een online controleren om te zien of het domein (en) u een verzoek certificaten zijn van jou en wijzen op deze server. Voor dat doel zal het een tijdelijk bestand in de web directory die vervolgens wordt gecontroleerd vanaf de buitenzijde te plaatsen. Zorg ervoor dat u werkt DNS-records en dat deze virtuele site is bereikbaar vanaf de buitenkant.<br><br>Als deze virtuele site al een SSL-certificaat, dan is de gevraagde [[base-ssl.LetsEncrypt]] SSL certificaat vervangen <br><br><b>Beta Beperkingen:</b> [[base-ssl.LetsEncrypt]] is momenteel in bèta en de snelheid limieten voor de afgifte van kracht. Er zijn twee tarief grenzen in het spel: Registraties/IP-adres en Certificaten/Domain<br><br>Registraties/IP-adres beperkt het aantal registraties die u kunt maken in een bepaalde periode. Momenteel 10 inschrijvingen per 3 uur.<br><br>Certificaten/Domein kon je in te voeren door middel van herhaalde re-uitgifte. Deze limiet maatregelen certificaten afgegeven voor een bepaalde combinatie van Top Level Domain + Domain (een geregistreerd domein).<br><br>De limiet op Certificaten/Domein 5 certificaten voor een geregistreerd domein in een schuifraam van 7 dagen."
+

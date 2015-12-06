@@ -17,20 +17,27 @@ endif
 
 INSTALL = /usr/bin/install -m 0755 -o root 
 
-SBIN_SCRIPTS = ssl_get.pl ssl_import.pl
+SBIN_SCRIPTS = ssl_get.pl ssl_import.pl letsencrypt_autorenew.pl
+CRON_DAILY = letsencrypt.cron
 
-install: install_sbin
+install: install_sbin install_crondaily
 
 install_etc: 
-	tar -C etc . --exclude CVS -cf - | tar -C /etc -xf -
+	tar -C etc . --exclude .svn -cf - | tar -C /etc -xf -
 
 install_initd:
-	tar -C init.d . --exclude CVS -cf - | tar -C /etc/rc.d/init.d -xf -
+	tar -C init.d . --exclude .svn -cf - | tar -C /etc/rc.d/init.d -xf -
 
 install_sbin:
 	@mkdir -p $(CCEDIR)/sbin
 	cd sbin; for file in $(SBIN_SCRIPTS); do \
 		$(INSTALL) $$file $(CCEDIR)/sbin; \
+	done
+
+install_crondaily:
+	@mkdir -p $(PREFIX)/etc/cron.daily
+	cd etc/cron.daily; for file in $(CRON_DAILY); do \
+		$(INSTALL) $$file $(PREFIX)/etc/cron.daily/; \
 	done
 
 # used during development: installs symlinks instead of code.

@@ -1037,3 +1037,59 @@ msgstr "La commande '/usr/sausalito/sbin/ssl_get.pl' ne renvoient pas les résul
 msgid "cap_serverSSL"
 msgstr "Paramètres SSL"
 
+# New for Let's Encrypt integration:
+
+msgid "LetsEncrypt"
+msgstr "'Let's Encrypt!'"
+
+msgid "LE_CA_Request_Error"
+msgstr "L'erreur suivante est survenue lors de la demande de certificat SSL: <br><br> [[VAR.msg]]"
+
+msgid "LE_CA_Request_FQDN_Error"
+msgstr "L'erreur suivante est survenue lors de la demande de certificat SSL: Le nom de domaine pleinement qualifié pour le certificat SSL n'a pas pu être déterminée."
+
+msgid "LE_CA_Request_Error_noPathFound"
+msgstr "L'erreur suivante est survenue lors de la demande de certificat SSL: Le chemin d'installation pour les certificats n'a pas pu être déterminée."
+
+msgid "CouldnotCreateCertDir"
+msgstr "Erreur: Le répertoire de certificat ne peut être créé."
+
+msgid "doNotHaveValidLECert"
+msgstr "La demande de certificat contre [[base-ssl.LetsEncrypt]] ne revenait pas quelque chose qui ressemble à un certificat SSL valide. Pardon."
+
+msgid "LetsEncrypt_help"
+msgstr "Créer un certificat SSL gratuit pour ce site virtuel en utilisant [[base-ssl.LetsEncrypt]]"
+
+msgid "DIVIDER_INTRO"
+msgstr "informations générales"
+
+msgid "DIVIDER_INTRO_help"
+msgstr "[[base-ssl.DIVIDER_INTRO]]"
+
+msgid "DIVIDER_OPTIONS"
+msgstr "Configuration"
+
+msgid "DIVIDER_OPTIONS_help"
+msgstr "[[base-ssl.DIVIDER_OPTIONS]]"
+
+msgid "LErequestCert"
+msgstr "Demander ou renouveler le certificat"
+
+msgid "LErequestCert_help"
+msgstr "S'il vous plaît cocher cette case si vous demandez un nouveau certificat SSL ou si vous souhaitez renouveler un certificat SSL [[base-ssl.LetsEncrypt]] existant."
+
+msgid "autoRenew"
+msgstr "Renouvellement automatique"
+
+msgid "autoRenew_help"
+msgstr "Permet d'activer le renouvellement automatique des certificats SSL. Une fois un certificat SSL [[base-ssl.LetsEncrypt]] est plus ancienne que spécifié dans '[[base-ssl.autoRenewDays]]' il peut être renouvelé automatiquement si cette case est cochée."
+
+msgid "autoRenewDays"
+msgstr "Certificat Age maximum"
+
+msgid "autoRenewDays_help"
+msgstr "Ici vous pouvez spécifier à quel âge (en jours) un certificat SSL [[base-ssl.LetsEncrypt]] sera renouvelé automatiquement."
+
+msgid "LetsEncrypt_info_text"
+msgstr "[[base-ssl.LetsEncrypt]] (<a href='http://www.letsencrypt.org' target='_blank'>www.letsencrypt.org</a>) est une nouvelle autorité de certification: Il est gratuit, automatisé et ouvert.<br><br> Il génère sont pris en charge par la plupart des navigateurs modernes et sont valables pour un maximum de 90 jours. BlueOnyx appuie la demande et installation automatique de [[-ssl.LetsEncrypt de base]] de certificats SSL et peut également gérer le renouvellement automatique <br><br><b>S'il vous plaît noter:</b> [[base-ssl.LetsEncrypt]] doit faire une vérification en ligne pour voir si le nom de domaine (s) que vous demander des certificats pour sont les vôtres et le point à ce serveur. Pour cela, il va placer un fichier temporaire dans le répertoire web qui est ensuite vérifiée à partir de l'extérieur. S'il vous plaît assurez-vous que vous avez à travailler enregistrements DNS et que ce site virtuel est accessible depuis l'extérieur.<br><br>Si ce site virtuel a déjà un certificat SSL, alors le [[base-ssl.LetsEncrypt]] certificat SSL sera demandé remplacer <br><br><b>Beta Limitations:</b> [[base-ssl.LetsEncrypt]] est actuellement en bêta et limites de taux d'obtention des certificats sont en vigueur. Il ya deux limites de fréquence dans le jeu: Inscriptions/adresse IP et Certificats/Domaine<br><br>IP inscriptions limite le nombre d'enregistrements que vous pouvez faire dans une période de temps donnée. Actuellement, 10 inscriptions par 3 heures.<br><br>Certificats/domaine pourraient courir en travers re-délivrance répétée. Cela permet de mesurer limites certificats délivrés pour une combinaison donnée de Top Level Domain + Domaine (un «de domaine enregistré»).<br><br>La limite sur les Certificats/nom de domaine est de 5 certificats pour un domaine enregistré dans une fenêtre glissante de 7 jours."
+

@@ -1055,3 +1055,59 @@ msgstr "コマンド '/usr/sausalito/sbin/ssl_get.pl' が期待される結果�
 msgid "cap_serverSSL"
 msgstr "SSL設定"
 
+# New for Let's Encrypt integration:
+
+msgid "LetsEncrypt"
+msgstr "'Let's Encrypt!'"
+
+msgid "LE_CA_Request_Error"
+msgstr "次のエラーは、SSL証明書の要求の間に発生しました： <br><br> [[VAR.msg]]"
+
+msgid "LE_CA_Request_FQDN_Error"
+msgstr "次のエラーは、SSL証明書の要求の間に発生しました：SSL証明書の完全修飾ドメイン名を決定することができませんでした。"
+
+msgid "LE_CA_Request_Error_noPathFound"
+msgstr "証明書のインストールパスを決定することができませんでした。次のエラーは、SSL証明書の要求の間に発生しました。"
+
+msgid "CouldnotCreateCertDir"
+msgstr "エラー：証明書のディレクトリが作成できませんでした。"
+
+msgid "doNotHaveValidLECert"
+msgstr "[[base-ssl.LetsEncrypt]]に対する証明書の要求は、有効なSSL証明書のようなものを返しませんでした。ごめんなさい。"
+
+msgid "LetsEncrypt_help"
+msgstr "[[base-ssl.LetsEncrypt]]を使用して、この仮想サイトのための無料のSSL証明書を作成します。"
+
+msgid "DIVIDER_INTRO"
+msgstr "一般情報"
+
+msgid "DIVIDER_INTRO_help"
+msgstr "[[base-ssl.DIVIDER_INTRO]]"
+
+msgid "DIVIDER_OPTIONS"
+msgstr "コンフィギュレーション"
+
+msgid "DIVIDER_OPTIONS_help"
+msgstr "[[base-ssl.DIVIDER_OPTIONS]]"
+
+msgid "LErequestCert"
+msgstr "証明書を要求または更新"
+
+msgid "LErequestCert_help"
+msgstr "既存[[base-ssl.LetsEncrypt]]のSSL証明書を更新したい場合は、または新しいSSL証明書を要求している場合は、このボックスをチェックしてください。"
+
+msgid "autoRenew"
+msgstr "自動更新"
+
+msgid "autoRenew_help"
+msgstr "あなたは、SSL証明書の自動更新を有効にすることができます。 [[base-ssl.LetsEncrypt]] SSL証明書が「[[base-ssl.autoRenewDays]]」に指定されたよりも古いしたら、このチェックボックスがチェックされている場合には、自動的に更新することができます。"
+
+msgid "autoRenewDays"
+msgstr "証明書の最大年齢"
+
+msgid "autoRenewDays_help"
+msgstr "ここでは、どの年齢で[[base-ssl.LetsEncrypt]]のSSL証明書が自動的に更新されます（日単位）を指定することができます。"
+
+msgid "LetsEncrypt_info_text"
+msgstr "[[base-ssl.LetsEncrypt]] (<a href='http://www.letsencrypt.org' target='_blank'>www.letsencrypt.org</a>) is a new Certificate Authority: It’s free, automated and open.<br><br>The SSL certificates it generates are supported by most modern browsers and are valid for up to 90 days. BlueOnyx supports the automatic request and install of [[base-ssl.LetsEncrypt]] SSL certificates and can also handle the automatic renewal.<br><br><b>Please note:</b> [[base-ssl.LetsEncrypt]] needs to do an online verification to see if the domain(s) you request certificates for are yours and point to this server. For that purpose it will place a temporary file in the web directory which is then checked from the outside. Please make sure you have working DNS records and that this virtual site is reachable from the outside.<br><br>If this virtual site already has an SSL certificate, then the requested [[base-ssl.LetsEncrypt]] SSL certificate will replace it.<br><br><b>Beta Limitations:</b> [[base-ssl.LetsEncrypt]] is currently in Beta and rate limits for obtaining certificates are in effect. There are two rate limits in play: Registrations/IP address and Certificates/Domain.<br><br>Registrations/IP address limits the number of registrations you can make in a given time period. Currently 10 registrations per 3 hours.<br><br>Certificates/Domain you could run into through repeated re-issuance. This limit measures certificates issued for a given combination of Top Level Domain + Domain (a 'registered domain').<br><br>The limit on Certificates/Domain is 5 certificates for a registered domain in a sliding window of 7 days."
+
