@@ -124,8 +124,6 @@ if (($vsite->{'CLASS'} eq "Vsite") || ($vsite->{'CLASS'} eq "System")) {
         &debug_msg("Expiry Date: $expiryDate\n");
     }
 
-    $cert_path = '/etc/letsencrypt/live/5209r1.smd.net-0003';
-
     if ((-d $cert_path) && ($cert_path ne "")) {
         # Cleanup CA-Cert and disable SSL:
         if ($vsite->{'CLASS'} eq "Vsite") {
@@ -143,7 +141,7 @@ if (($vsite->{'CLASS'} eq "Vsite") || ($vsite->{'CLASS'} eq "System")) {
                 &debug_msg("Cert-Directory: $vsite->{basedir}/$SSL::CERT_DIR \n");
             }
             else {
-                $cert_dir = homedir_get_group_dir($group, $vsite->{volume}) . '/' . $SSL::CERT_DIR;
+                $cert_dir = homedir_get_group_dir($vsite->{name}, $vsite->{volume}) . '/' . $SSL::CERT_DIR;
             }
         }
         else {
@@ -152,7 +150,7 @@ if (($vsite->{'CLASS'} eq "Vsite") || ($vsite->{'CLASS'} eq "System")) {
         }
         if ($vsite->{'CLASS'} eq "Vsite") {
             if (!-d $cert_dir) {
-                if (!ssl_create_directory(02770, scalar(getgrnam($group)), $cert_dir)) {
+                if (!ssl_create_directory(02770, scalar(getgrnam($vsite->{name})), $cert_dir)) {
                     &debug_msg("Couldn't create $cert_dir!\n");
                     $cce->bye('FAIL', "[[base-ssl.CouldnotCreateCertDir]]");
                     exit(1);
