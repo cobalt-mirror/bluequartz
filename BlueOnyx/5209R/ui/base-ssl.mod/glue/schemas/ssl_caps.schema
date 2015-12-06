@@ -1,0 +1,24 @@
+<!--
+    Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+    $Id: ssl_caps.schema
+
+    capabilities for ssl that need to exist for the ui at least
+-->
+<class
+    name="Capabilities" namespace="siteSSL" version="1.0"
+>
+    <property name="capable" type="boolean" default="1"/>
+</class>
+
+<class
+    name="Capabilities" namespace="serverSSL" version="1.0"
+>
+    <property
+	name="capable" type="boolean" default="1"
+	readacl="ruleCapable(serverSSL)"
+    />
+    <property
+	name="nameTag" type="scalar" default="[[base-ssl.cap_serverSSL]]"
+    />
+</class>
+

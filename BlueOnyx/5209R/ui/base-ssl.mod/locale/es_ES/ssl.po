@@ -1,0 +1,1095 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "ssl"
+msgstr "SSL"
+
+msgid "sslDescription"
+msgstr "Información sobre el certificado SSL usado para proporcionar un acceso seguro a su sitio web utilizando HTTPS en el puerto 443 Acceso. Por ejemplo, SSL permite a los usuarios acceder a un sitio, vaya a https://www.example.com:443."
+
+msgid "adminSslDescription"
+msgstr "Información sobre el certificado SSL utilizado para el acceso seguro al servidor de Desktop Access."
+
+msgid "createCert"
+msgstr "Crear certificado autofirmado"
+
+msgid "createCert_help"
+msgstr "Crear un nuevo certificado SSL autofirmado."
+
+msgid "request"
+msgstr "Crear solicitud de firma"
+
+msgid "request_help"
+msgstr "Crear una solicitud de firma de certificado. La solicitud de firma de certificado puede ser sometida a una autoridad de certificación para crear un certificado firmado que los navegadores web pueden verificar como auténtico."
+
+msgid "request_disabledHelp"
+msgstr "El certificado debe ser creada primero para obtener una solicitud de firma."
+
+msgid "manageCAs"
+msgstr "Gestione autoridades de certificación"
+
+msgid "manageCAs_help"
+msgstr "Agregar o quitar entidades emisoras de certificados secundarios de este sitio. Por lo general no son necesarias las autoridades de certificados secundarios, pero algunas autoridades expidan un certificado adicional que se utilizará para la autenticación del cliente, además del certificado de servidor siempre que la mayor parte de emisión de certificados autoridades."
+
+msgid "import"
+msgstr "Importar"
+
+msgid "import_help"
+msgstr "Importar un certificado firmado."
+
+msgid "cert_empty"
+msgstr "Lo sentimos, no hay ningún archivo ha sido elegido para la importación. Por favor, seleccione un archivo que contiene un certificado SSL para importar."
+
+msgid "export"
+msgstr "Exportar"
+
+msgid "export_help"
+msgstr "Descarga de la clave privada y el certificado de corriente, por lo que el certificado puede ser transferido a otro servidor."
+
+msgid "export_disabledHelp"
+msgstr "El certificado debe ser creado o importado antes de que pueda ser exportado."
+
+msgid "serverDesktop"
+msgstr "Escritorio del servidor"
+
+msgid "sslCertInfo"
+msgstr "Información del certificado de [[VAR.fqdn]]"
+
+msgid "enabled"
+msgstr "Habilitar SSL"
+
+msgid "enabled_help"
+msgstr "Habilitar SSL para permitir el acceso seguro al servidor web para el sitio."
+
+msgid "importantNote"
+msgstr "Es importante que esta información es correcta y se puede verificar con un gobierno local, regional, o nacional o de otro organismo oficial."
+
+msgid "location"
+msgstr "Ubicación"
+
+msgid "city"
+msgstr "Ciudad"
+
+msgid "city_help"
+msgstr "La ciudad en la que la organización se encuentra o registrado. [[base-ssl.importantNote]]"
+
+msgid "state"
+msgstr "Estado o Provincia"
+
+msgid "state_help"
+msgstr "El Estado, provincia o región en la que se encuentra la ciudad de arriba. [[base-ssl.importantNote]]"
+
+msgid "country"
+msgstr "País"
+
+msgid "country_help"
+msgstr "Seleccione el país en el que la organización que va a utilizar este certificado se encuentra o registrado. [[base-ssl.importantNote]]"
+
+msgid "country_invalid"
+msgstr "Fue seleccionado Ningún país. El país esta organización se encuentra o registrado en debe ser elegido."
+
+msgid "orgInfo"
+msgstr "Información de la organización"
+
+msgid "orgInfo_help"
+msgstr "Información sobre la organización que posee este certificado."
+
+msgid "orgName"
+msgstr "Organización"
+
+msgid "orgName_help"
+msgstr "El nombre oficial de la organización que posee este certificado. Con el fin de obtener un certificado firmado por una autoridad de certificación, el nombre de la organización y la ubicación deben ser verificables con un gobierno local, regional, o nacional o de otro organismo oficial. Además, la autoridad de certificación debe ser capaz de verificar que la persona que solicita el certificado es el propietario o empleado de la organización llamada."
+
+msgid "orgUnit"
+msgstr "Unidad de Organización"
+
+msgid "orgUnit_help"
+msgstr "La división o unidad de la organización que utilice este certificado. Esto es opcional, pero puede ser útil si la persona que solicita un certificado firmado es un empleado de una filial de una organización más grande."
+
+msgid "otherInfo"
+msgstr "Otra información"
+
+msgid "otherInfo_help"
+msgstr "Informaciones diversas sobre este certificado."
+
+msgid "email"
+msgstr "Correo electrónico de contacto"
+
+msgid "email_help"
+msgstr "La dirección de correo electrónico para ser contactado para obtener más información acerca de este certificado."
+
+msgid "expires"
+msgstr "Certificado Fecha de vencimiento"
+
+msgid "expires_help"
+msgstr "El día después de que el certificado ya no debe ser considerada válida por el software de cliente que intenta conectarse a este servidor."
+
+msgid "noCertInfo"
+msgstr "Actualmente no hay ningún certificado para este sitio. Cree o importe un certificado para ver la información de dicho certificado."
+
+msgid "daysValid"
+msgstr "Período válido"
+
+msgid "daysValid_help"
+msgstr "Introduzca la longitud de tiempo durante el cual el certificado creado debe ser considerado válido. La longitud de tiempo introducido debe expirar el certificado antes de enero de 2038, o la creación fallará."
+
+msgid "365"
+msgstr "año (s)"
+
+msgid "30"
+msgstr "mes (s)"
+
+msgid "7"
+msgstr "semana (s)"
+
+msgid "1"
+msgstr "día (s)"
+
+msgid "requestInformation"
+msgstr "Solicitud de firma Información para [[VAR.fqdn]]"
+
+msgid "enterCertInformation"
+msgstr "Información del certificado de [[VAR.fqdn]]"
+
+msgid "certInstructions"
+msgstr "Haga clic en [[base-ssl.createCert]] para crear un certificado autofirmado para este sitio web. Los certificados auto-firmados generarán una advertencia cuando un navegador accede al sitio. Para deshacerse de esta advertencia, obtener un certificado firmado por la presentación de una solicitud de firma de una autoridad de certificación."
+
+msgid "genSSCert"
+msgstr "Generar certificado con firma"
+
+msgid "genSSCert_help"
+msgstr "Capaz de generar un certificado auto-firmado, junto con la solicitud de firma. El certificado autofirmado se puede utilizar temporalmente mientras espera a que la entidad emisora ​​de certificados para procesar su solicitud de firma."
+
+msgid "certReqInstructions"
+msgstr "Es importante que la ubicación y la información de la organización son correctas y pueden ser verificados con los gobiernos locales, regionales o nacionales u otros organismos oficiales. Si la autoridad de certificación no puede verificar la información, la solicitud de la firma puede ser retrasado o rechazado."
+
+msgid "importCert"
+msgstr "Certificado de Importación para [[VAR.fqdn]]"
+
+msgid "certUpload"
+msgstr "Certificado"
+
+msgid "certUpload_help"
+msgstr "Haga clic en Examinar para seleccionar el archivo de texto que contiene el certificado de importación. El archivo de certificado debe contener la clave privada y el certificado secciones si va a transferir desde otro servidor. Si el certificado es de una autoridad de certificación a la que se presentó una solicitud de firma de certificado generado por este servidor, sólo el certificado es necesario, pero está bien si una clave privada se incluye con el certificado firmado."
+
+msgid "sslImportError1"
+msgstr "No se puede subir el nuevo certificado."
+
+msgid "sslImportError2"
+msgstr "El sitio especificado no existe."
+
+msgid "sslImportError3"
+msgstr "No se puede obtener información del sitio. Por favor, inténtelo de nuevo."
+
+msgid "sslImportError4"
+msgstr "No se puede leer certificado cargado. Por favor, inténtelo de nuevo."
+
+msgid "sslImportError5"
+msgstr "El certificado no es un certificado SSL válido."
+
+msgid "sslImportError6"
+msgstr "No se puede generar una solicitud de firma de certificado para el certificado de importación."
+
+msgid "sslImportError7"
+msgstr "No se puede actualizar la información del certificado para la exhibición."
+
+msgid "sslImportError8"
+msgstr "El certificado importado no contiene la clave privada de este certificado y la clave privada actualmente en el servidor no coincide con este certificado. Si la importación de un certificado no se ha creado en este servidor, la clave privada RSA debe ser incluido en el archivo de certificado de importación."
+
+msgid "sslImportError10"
+msgstr "Se ha definido la [[base-ssl.caIdent]] no es único."
+
+msgid "sslImportError11"
+msgstr "El archivo importado no contiene un certificado SSL. Por favor, asegúrese de que se está importando el archivo correcto."
+
+msgid "sslImportError12"
+msgstr "El archivo importado contiene más de un certificado. Importar archivos sólo pueden contener un certificado SSL y posiblemente una clave privada."
+
+msgid "sslImportError13"
+msgstr "No se pudo añadir la autoridad de certificación en el fichero de autoridad de certificación."
+
+msgid "cantSetExpires"
+msgstr "Certificado sido creado con éxito, pero la actualización de la información de expiración no."
+
+msgid "nonExistentCertDir"
+msgstr "El directorio certificado determinado, [[VAR.dir]], no existe."
+
+msgid "cantGenerateKey"
+msgstr "OpenSSL fue incapaz de generar una clave privada para el servidor."
+
+msgid "cantGenerateSigningRequest"
+msgstr "OpenSSL fue incapaz de generar una solicitud de firma."
+
+msgid "cantGenerateCert"
+msgstr "OpenSSL fue incapaz de generar un certificado."
+
+msgid "generatedCertInvalid"
+msgstr "El certificado generado por openssl no parece ser válido."
+
+msgid "2038bug"
+msgstr "Lo sentimos, el valor introducido por [[base-ssl.daysValid]] daría el certificado de la fecha de vencimiento incorrecta, ya que la fecha de vencimiento sería en enero de 2038. Las herramientas de generación de SSL no puede aceptar las fechas de vencimiento pasadas mediados de enero de 2038. Por favor, introduzca un valor que expiraría el certificado antes de enero de 2038."
+
+msgid "fqdnTooLongForCsr"
+msgstr "Lo sentimos, el nombre de host completo, [[VAR.fqdn]], es demasiado largo para ser utilizado para generar una solicitud de firma de certificado. El nombre de host completo debe ser no más de 64 caracteres de longitud que se utiliza en una solicitud de firma de certificado. Todavía se puede generar un certificado auto-firmado, pero no será capaz de obtener un certificado firmado sin acortar el nombre de host completo."
+
+msgid "fqdnTooLongOkay"
+msgstr "El certificado autofirmado se ha creado correctamente, pero el nombre de host completo tuvo que ser truncada. El nombre de host completo, [[VAR.fqdn]], es más de 64 caracteres, que es la longitud máxima de un nombre de host completo de certificados SSL."
+
+msgid "sslAlreadyUsedByIP"
+msgstr "SSL ya está siendo utilizado por [[VAR.fqdn]], que comparte la misma dirección IP, [[VAR.ipaddr]], como este sitio. SSL sólo puede ser habilitado para que un sitio con una dirección IP compartida. Cambie la dirección IP de este sitio o desactivar SSL en [[VAR.fqdn]] si desea habilitar SSL para este sitio."
+
+msgid "noCertificateOrKey"
+msgstr "SSL no pudo ser habilitado porque el certificado o la clave privada para este servidor no se encuentra."
+
+msgid "cantEditSslConf"
+msgstr "No se puede actualizar el archivo de configuración SSL del servidor."
+
+msgid "cantUpdateApacheConf"
+msgstr "No se puede incluir la configuración de SSL para este sitio en la configuración del servidor."
+
+msgid "cantMakeDirectory"
+msgstr "No se puede crear el directorio, [[VAR.dir]]."
+
+msgid "couldntRunOpenssl"
+msgstr "No se pudo ejecutar el comando &#39;openssl&#39;"
+
+msgid "certDirMissing"
+msgstr "Directorio Certificado falta, no podía generar certificado"
+
+msgid "sslMigrationConflict"
+msgstr "La dirección IP no se puede cambiar a [[VAR.ipaddr]]. SSL está habilitado para este sitio, pero hay otro sitio con la dirección IP especificada, que también cuenta con SSL. Desactivación SSL para cualquiera de los sitios corregirá este problema."
+
+msgid "foocountry"
+msgstr "Seleccionar país ..."
+
+msgid "AF"
+msgstr "Afganistán"
+
+msgid "AL"
+msgstr "Albania"
+
+msgid "DZ"
+msgstr "Argelia"
+
+msgid "AS"
+msgstr "Samoa Americana"
+
+msgid "AD"
+msgstr "Andorra"
+
+msgid "AO"
+msgstr "Angola"
+
+msgid "AI"
+msgstr "Anguilla"
+
+msgid "AQ"
+msgstr "Antártida"
+
+msgid "AG"
+msgstr "Antigua y Barbuda"
+
+msgid "AR"
+msgstr "Argentina"
+
+msgid "AM"
+msgstr "Armenia"
+
+msgid "AW"
+msgstr "Aruba"
+
+msgid "AU"
+msgstr "Australia"
+
+msgid "AT"
+msgstr "Austria"
+
+msgid "AZ"
+msgstr "Azerbaijan"
+
+msgid "BS"
+msgstr "Bahamas"
+
+msgid "BH"
+msgstr "Bahrein"
+
+msgid "BD"
+msgstr "Bangladesh"
+
+msgid "BB"
+msgstr "Barbados"
+
+msgid "BY"
+msgstr "Bielorrusia"
+
+msgid "BE"
+msgstr "Bélgica"
+
+msgid "BZ"
+msgstr "Belice"
+
+msgid "BJ"
+msgstr "Benin"
+
+msgid "BM"
+msgstr "Bermuda"
+
+msgid "BT"
+msgstr "Bhutan"
+
+msgid "BO"
+msgstr "Bolivia"
+
+msgid "BA"
+msgstr "Bosnia y Herzegovina"
+
+msgid "BW"
+msgstr "Botswana"
+
+msgid "BV"
+msgstr "Isla Bouvet"
+
+msgid "BR"
+msgstr "Brasil"
+
+msgid "IO"
+msgstr "Territorio Británico del Océano Índico"
+
+msgid "BN"
+msgstr "Brunei Darussalam"
+
+msgid "BG"
+msgstr "Bulgaria"
+
+msgid "BF"
+msgstr "Burkina Faso"
+
+msgid "BI"
+msgstr "Burundi"
+
+msgid "KH"
+msgstr "Camboya"
+
+msgid "CM"
+msgstr "Camerún"
+
+msgid "CA"
+msgstr "Canadá"
+
+msgid "CV"
+msgstr "Cabo Verde"
+
+msgid "KY"
+msgstr "Islas Caimán"
+
+msgid "CF"
+msgstr "República Centroafricana"
+
+msgid "TD"
+msgstr "Chad"
+
+msgid "CL"
+msgstr "Chile"
+
+msgid "CN"
+msgstr "China"
+
+msgid "CX"
+msgstr "Isla de Navidad"
+
+msgid "CC"
+msgstr "Cocos (Keeling)"
+
+msgid "CO"
+msgstr "Colombia"
+
+msgid "KM"
+msgstr "Comoras"
+
+msgid "CG"
+msgstr "Congo, República Democrática del"
+
+msgid "CK"
+msgstr "Islas de Cook"
+
+msgid "CR"
+msgstr "Costa Rica"
+
+msgid "CI"
+msgstr "Costa de Marfil"
+
+msgid "HR"
+msgstr "Croacia"
+
+msgid "CU"
+msgstr "Cuba"
+
+msgid "CY"
+msgstr "Chipre"
+
+msgid "CZ"
+msgstr "República Checa"
+
+msgid "DK"
+msgstr "Dinamarca"
+
+msgid "DJ"
+msgstr "Djibouti"
+
+msgid "DM"
+msgstr "Dominica"
+
+msgid "DO"
+msgstr "República Dominicana"
+
+msgid "TP"
+msgstr "Timor del Este"
+
+msgid "EC"
+msgstr "Ecuador"
+
+msgid "EG"
+msgstr "Egipto"
+
+msgid "SV"
+msgstr "El Salvador"
+
+msgid "GQ"
+msgstr "Guinea Ecuatorial"
+
+msgid "ER"
+msgstr "Eritrea"
+
+msgid "EE"
+msgstr "Estonia"
+
+msgid "ET"
+msgstr "Etiopía"
+
+msgid "FK"
+msgstr "Islas Malvinas (Falkland)"
+
+msgid "FO"
+msgstr "Islas Feroe"
+
+msgid "FJ"
+msgstr "Fiji"
+
+msgid "FI"
+msgstr "Finlandia"
+
+msgid "FR"
+msgstr "Francia"
+
+msgid "GF"
+msgstr "Guiana francés"
+
+msgid "PF"
+msgstr "Polinesia francés"
+
+msgid "TF"
+msgstr "Territorios Australes Franceses"
+
+msgid "GA"
+msgstr "Gabón"
+
+msgid "GM"
+msgstr "Gambia"
+
+msgid "GE"
+msgstr "Georgia"
+
+msgid "DE"
+msgstr "Alemania"
+
+msgid "GH"
+msgstr "Ghana"
+
+msgid "GI"
+msgstr "Gibraltar"
+
+msgid "GR"
+msgstr "Grecia"
+
+msgid "GL"
+msgstr "Groenlandia"
+
+msgid "GD"
+msgstr "Granada"
+
+msgid "GP"
+msgstr "Guadalupe"
+
+msgid "GU"
+msgstr "Guam"
+
+msgid "GT"
+msgstr "Guatemala"
+
+msgid "GN"
+msgstr "Guinea"
+
+msgid "GW"
+msgstr "Guinea-Bissau"
+
+msgid "GY"
+msgstr "Guayana"
+
+msgid "HT"
+msgstr "Haití"
+
+msgid "HM"
+msgstr "Islas Heard y Mc Donald"
+
+msgid "HN"
+msgstr "Honduras"
+
+msgid "HK"
+msgstr "Hong Kong"
+
+msgid "HU"
+msgstr "Hungría"
+
+msgid "IS"
+msgstr "Islandia"
+
+msgid "IN"
+msgstr "India"
+
+msgid "ID"
+msgstr "Indonesia"
+
+msgid "IR"
+msgstr "Irán, República Islámica de"
+
+msgid "IQ"
+msgstr "Irak"
+
+msgid "IE"
+msgstr "Irlanda"
+
+msgid "IL"
+msgstr "Israel"
+
+msgid "IT"
+msgstr "Italia"
+
+msgid "JM"
+msgstr "Jamaica"
+
+msgid "JP"
+msgstr "Japón"
+
+msgid "JO"
+msgstr "Jordania"
+
+msgid "KZ"
+msgstr "Kazajstán"
+
+msgid "KE"
+msgstr "Kenia"
+
+msgid "KI"
+msgstr "Kiribati"
+
+msgid "KP"
+msgstr "República de Corea, Popular Democrática de"
+
+msgid "KR"
+msgstr "Corea, República de"
+
+msgid "KW"
+msgstr "Kuwait"
+
+msgid "KG"
+msgstr "Kirguistán"
+
+msgid "LA"
+msgstr "República Democrática Popular Lao"
+
+msgid "LV"
+msgstr "Letonia"
+
+msgid "LB"
+msgstr "Líbano"
+
+msgid "LS"
+msgstr "Lesoto"
+
+msgid "LR"
+msgstr "Liberia"
+
+msgid "LY"
+msgstr "Jamahiriya Árabe Libia"
+
+msgid "LI"
+msgstr "Liechtenstein"
+
+msgid "LT"
+msgstr "Lituania"
+
+msgid "LU"
+msgstr "Luxemburgo"
+
+msgid "MO"
+msgstr "Macau"
+
+msgid "MK"
+msgstr "Macedonia, Antigua República Yugoslava de"
+
+msgid "MG"
+msgstr "Madagascar"
+
+msgid "MW"
+msgstr "Malawi"
+
+msgid "MY"
+msgstr "Malasia"
+
+msgid "MV"
+msgstr "Maldivas"
+
+msgid "ML"
+msgstr "Malí"
+
+msgid "MT"
+msgstr "Malta"
+
+msgid "MH"
+msgstr "Islas Marshall"
+
+msgid "MQ"
+msgstr "Martinica"
+
+msgid "MR"
+msgstr "Mauritania"
+
+msgid "MU"
+msgstr "Mauricio"
+
+msgid "YT"
+msgstr "Mayotte"
+
+msgid "MX"
+msgstr "México"
+
+msgid "FM"
+msgstr "Micronesia, Estados Federados de"
+
+msgid "MD"
+msgstr "Moldova, República de"
+
+msgid "MC"
+msgstr "Mónaco"
+
+msgid "MN"
+msgstr "Mongolia"
+
+msgid "MS"
+msgstr "Montserrat"
+
+msgid "MA"
+msgstr "Marruecos"
+
+msgid "MZ"
+msgstr "Mozambique"
+
+msgid "MM"
+msgstr "Myanmar"
+
+msgid "NA"
+msgstr "Namibia"
+
+msgid "NR"
+msgstr "Nauru"
+
+msgid "NP"
+msgstr "Nepal"
+
+msgid "NL"
+msgstr "Países Bajos"
+
+msgid "AN"
+msgstr "Antillas Holandesas"
+
+msgid "NC"
+msgstr "Nueva Caledonia"
+
+msgid "NZ"
+msgstr "Nueva Zelandia"
+
+msgid "NI"
+msgstr "Nicaragua"
+
+msgid "NE"
+msgstr "Níger"
+
+msgid "NG"
+msgstr "Nigeria"
+
+msgid "NU"
+msgstr "Niue"
+
+msgid "NF"
+msgstr "Isla Norfolk"
+
+msgid "MP"
+msgstr "Islas Marianas del Norte"
+
+msgid "NO"
+msgstr "Noruega"
+
+msgid "OM"
+msgstr "Omán"
+
+msgid "PK"
+msgstr "Pakistán"
+
+msgid "PW"
+msgstr "Palau"
+
+msgid "PS"
+msgstr "Territorio palestino"
+
+msgid "PA"
+msgstr "Panamá"
+
+msgid "PG"
+msgstr "Papúa Nueva Guinea"
+
+msgid "PY"
+msgstr "Paraguay"
+
+msgid "PE"
+msgstr "Perú"
+
+msgid "PH"
+msgstr "Filipinas"
+
+msgid "PN"
+msgstr "Pitcairn"
+
+msgid "PL"
+msgstr "Polonia"
+
+msgid "PT"
+msgstr "Portugal"
+
+msgid "PR"
+msgstr "Puerto Rico"
+
+msgid "QA"
+msgstr "Katar"
+
+msgid "RE"
+msgstr "Reunión"
+
+msgid "RO"
+msgstr "Rumania"
+
+msgid "RU"
+msgstr "Federación de Rusia"
+
+msgid "RW"
+msgstr "Ruanda"
+
+msgid "SH"
+msgstr "Santa Helena"
+
+msgid "KN"
+msgstr "San Cristóbal y Nieves"
+
+msgid "LC"
+msgstr "Santa Lucía"
+
+msgid "PM"
+msgstr "San Pedro y Miquelón"
+
+msgid "VC"
+msgstr "San Vicente y las Granadinas"
+
+msgid "WS"
+msgstr "Samoa"
+
+msgid "SM"
+msgstr "San Marino"
+
+msgid "ST"
+msgstr "Sao Tomé y Príncipe"
+
+msgid "SA"
+msgstr "Arabia Saudita"
+
+msgid "SN"
+msgstr "Senegal"
+
+msgid "SC"
+msgstr "Seychelles"
+
+msgid "SL"
+msgstr "Sierra Leona"
+
+msgid "SG"
+msgstr "Singapur"
+
+msgid "SK"
+msgstr "Eslovaquia"
+
+msgid "SI"
+msgstr "Eslovenia"
+
+msgid "SB"
+msgstr "Islas Salomón"
+
+msgid "SO"
+msgstr "Somalia"
+
+msgid "ZA"
+msgstr "Sudáfrica"
+
+msgid "GS"
+msgstr "Georgia del Sur e Islas Sandwich del Sur"
+
+msgid "ES"
+msgstr "España"
+
+msgid "LK"
+msgstr "Sri Lanka"
+
+msgid "SD"
+msgstr "Sudán"
+
+msgid "SR"
+msgstr "Suriname"
+
+msgid "SJ"
+msgstr "Islas Svalbard y Jan Mayen"
+
+msgid "SZ"
+msgstr "Swazilandia"
+
+msgid "SE"
+msgstr "Suecia"
+
+msgid "CH"
+msgstr "Suiza"
+
+msgid "SY"
+msgstr "República Árabe Siria"
+
+msgid "TW"
+msgstr "Taiwan"
+
+msgid "TJ"
+msgstr "Tayikistán"
+
+msgid "TZ"
+msgstr "Tanzania, República Unida de"
+
+msgid "TH"
+msgstr "Tailandia"
+
+msgid "TG"
+msgstr "Togo"
+
+msgid "TK"
+msgstr "Tokelau"
+
+msgid "TO"
+msgstr "Tonga"
+
+msgid "TT"
+msgstr "Trinidad y Tobago"
+
+msgid "TN"
+msgstr "Túnez"
+
+msgid "TR"
+msgstr "Turquía"
+
+msgid "TM"
+msgstr "Turkmenistán"
+
+msgid "TC"
+msgstr "Islas Turcas y Caicos"
+
+msgid "TV"
+msgstr "Tuvalu"
+
+msgid "UG"
+msgstr "Uganda"
+
+msgid "UA"
+msgstr "Ucrania"
+
+msgid "AE"
+msgstr "Emiratos Árabes Unidos"
+
+msgid "GB"
+msgstr "Reino Unido"
+
+msgid "US"
+msgstr "Estados Unidos"
+
+msgid "UM"
+msgstr "Estados Unidos Islas menores alejadas de"
+
+msgid "UY"
+msgstr "Uruguay"
+
+msgid "UZ"
+msgstr "Uzbekistán"
+
+msgid "VU"
+msgstr "Vanuatu"
+
+msgid "VA"
+msgstr "Ciudad del Vaticano (Santa Sede)"
+
+msgid "VE"
+msgstr "Venezuela"
+
+msgid "VN"
+msgstr "Viet Nam"
+
+msgid "VG"
+msgstr "Islas Vírgenes (Reino Unido)"
+
+msgid "VI"
+msgstr "Islas Vírgenes (EE.UU.)"
+
+msgid "WF"
+msgstr "Wallis y Futuna"
+
+msgid "EH"
+msgstr "Sáhara Occidental"
+
+msgid "YE"
+msgstr "Yemen"
+
+msgid "YU"
+msgstr "Yugoslavia"
+
+msgid "ZM"
+msgstr "Zambia"
+
+msgid "ZW"
+msgstr "Zimbabue"
+
+msgid "caManager"
+msgstr "Gestión de Autoridad de Certificación de [[VAR.fqdn]]"
+
+msgid "caAction"
+msgstr "Acciones de Manejo"
+
+msgid "caAction_help"
+msgstr "Seleccione la acción a realizar por entidades emisoras de certificados secundarios de este sitio."
+
+msgid "addCA"
+msgstr "Añadir"
+
+msgid "caIdent"
+msgstr "Certificado Nombre Autoridad"
+
+msgid "caIdent_help"
+msgstr "Introduzca un nombre único para identificar esta entidad emisora ​​de certificados secundaria."
+
+msgid "addCaIdent_empty"
+msgstr "Lo sentimos, el valor debe ser introducido para [[base-ssl.caIdent]] con el fin de añadir una nueva entidad de certificación."
+
+msgid "caCert"
+msgstr "Seleccionar certificado"
+
+msgid "caCert_help"
+msgstr "Haga clic en Examinar para seleccionar el archivo que contiene el certificado de la entidad emisora ​​de certificados. El certificado debe ser la única cosa en el archivo."
+
+msgid "caCert_empty"
+msgstr "Lo sentimos, no ha elegido un certificado para subir. Debe seleccionar un certificado para subir con el fin de añadir una nueva entidad de certificación."
+
+msgid "removeCA"
+msgstr "Eliminar"
+
+msgid "removeCAIdent"
+msgstr "Autoridades de certificación actuales"
+
+msgid "removeCAIdent_help"
+msgstr "Seleccione las entidades de certificación de secundaria cuyos certificados que desea eliminar de este sitio."
+
+msgid "nonAsciiCharacter"
+msgstr "Lo sentimos, los caracteres no ASCII no se permiten para el [[VAR.property]] campo."
+
+msgid "SSL_enabled"
+msgstr "[[base-ssl.enabled]]"
+
+msgid "SSL_enabled_help"
+msgstr "[[base-ssl.enabled_help]]"
+
+msgid "sslGetFailed"
+msgstr "El comando '/usr/sausalito/sbin/ssl_get.pl' no devolvieron los resultados esperados. Tal vez no haya ningún certificado?"
+
+msgid "cap_serverSSL"
+msgstr "Configuración de SSL"
+
+# New for Let's Encrypt integration:
+
+msgid "LetsEncrypt"
+msgstr "'Let's Encrypt!'"
+
+msgid "LE_CA_Request_Error"
+msgstr "El siguiente error se produjo durante la solicitud de certificado SSL:<br><br>[[VAR.msg]]"
+
+msgid "LE_CA_Request_FQDN_Error"
+msgstr "El siguiente error se produjo durante la solicitud de certificado SSL: El nombre de dominio completo para el certificado SSL no se pudo determinar."
+
+msgid "LE_CA_Request_Error_noPathFound"
+msgstr "El siguiente error se produjo durante la solicitud de certificado SSL: La ruta de instalación de los certificados no se pudo determinar."
+
+msgid "CouldnotCreateCertDir"
+msgstr "Error: El directorio de certificado no pudo ser creada."
+
+msgid "doNotHaveValidLECert"
+msgstr "La solicitud de certificado contra [[base-ssl.LetsEncrypt]] no devolvió algo que se parece a un certificado SSL válido. Lo lamento."
+
+msgid "LetsEncrypt_help"
+msgstr "Crear un certificado SSL libre para este sitio virtual usando [[base-ssl.LetsEncrypt]]"
+
+msgid "DIVIDER_INTRO"
+msgstr "información general"
+
+msgid "DIVIDER_INTRO_help"
+msgstr "[[base-ssl.DIVIDER_INTRO]]"
+
+msgid "DIVIDER_OPTIONS"
+msgstr "Configuración"
+
+msgid "DIVIDER_OPTIONS_help"
+msgstr "[[base-ssl.DIVIDER_OPTIONS]]"
+
+msgid "LErequestCert"
+msgstr "Solicitar o Renovar Certificado"
+
+msgid "LErequestCert_help"
+msgstr "Por favor marque esta casilla si está solicitando un nuevo certificado SSL o si desea renovar un certificado SSL [[base-ssl.LetsEncrypt]] existente."
+
+msgid "autoRenew"
+msgstr "Renovación Automática"
+
+msgid "autoRenew_help"
+msgstr "Permite activar la renovación automática de certificados SSL. Una vez que un certificado SSL [[base-ssl.LetsEncrypt]] es más antiguo que se especifica en '[[base-ssl.autoRenewDays]]' puede ser renovado automáticamente si esta casilla está marcada."
+
+msgid "autoRenewDays"
+msgstr "Máximo Certificado Edad"
+
+msgid "autoRenewDays_help"
+msgstr "Aquí puede especificar a qué edad (en días) un certificado SSL [[base-ssl.LetsEncrypt]] se renovará automáticamente."
+
+msgid "LetsEncrypt_info_text"
+msgstr "[[base-ssl.LetsEncrypt]] (<a href='http://www.letsencrypt.org' target='_blank'>www.letsencrypt.org</a>) es una nueva autoridad de certificación: Es gratis, automatizada y abierta.<br><br>Los certificados SSL que genera son compatibles con la mayoría de los navegadores modernos y tienen una validez de hasta 90 días. BlueOnyx apoya la solicitud automática e instalar de [[base ssl.LetsEncrypt-]] certificados SSL y también puede manejar la renovación automática<br><br><b>Nota:</b> [[base-ssl.LetsEncrypt]] tiene que hacer una verificación en línea para ver si el dominio(s) que solicitar certificados para los tuyos y apuntan a este servidor. Para ello se colocará un archivo temporal en el directorio web que luego se comprobó desde el exterior. Por favor, asegúrese de que tiene los registros DNS de trabajo y que este sitio virtual es accesible por el exterior.<br><br>Si este sitio virtual ya tiene un certificado SSL, entonces el [[base-ssl.LetsEncrypt]] certificado SSL solicitado se reemplazarlo<br><br><b>Beta Limitaciones:</b> [[base-ssl.LetsEncrypt]] se encuentra actualmente en Beta y límites de velocidad para la obtención de los certificados están en vigor. Hay dos límites de la frecuencia en juego: Inscripciones/dirección IP y Certificados/Dominio<br><br>Inscripciones/dirección IP limita el número de registros que puede hacer en un período de tiempo dado. Actualmente 10 registros por 3 horas.<br><br>Certificados/dominio que podría llegar a través de la re-emisión repetida. Este mide límite certificados emitidos por una determinada combinación de dominio de nivel superior + dominio (un 'dominio registrado').<br><br>El límite en Certificados / dominio es de 5 certificados para un dominio registrado en una ventana deslizante de 7 días."
+

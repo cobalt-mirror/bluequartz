@@ -1,0 +1,10 @@
+<item 
+    id="base_ssl" 
+    label="[[base-ssl.ssl]]" 
+    description="[[base-ssl.sslDescription]]" 
+    url="/base/ssl/siteSSL.php?group=[[VAR.group]]"
+>
+    <parent id="base_siteadmin" order="60">
+        <access require="siteSSL"/>
+    </parent>
+</item>
