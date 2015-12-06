@@ -1,0 +1,11 @@
+<item 
+    id="base_ssl" 
+    label="[[base-ssl.ssl]]" 
+    description="[[base-ssl.sslDescription]]" 
+    url="/ssl/siteSSL?group=[[VAR.group]]"
+    icon="locked_2"
+>
+    <parent id="base_sitemanage" order="60">
+        <access require="siteSSL"/>
+    </parent>
+</item>
