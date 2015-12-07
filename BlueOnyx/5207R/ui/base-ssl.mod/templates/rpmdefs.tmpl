@@ -126,6 +126,11 @@ fi
 
 <begin $CHANGELOG>
 
+* Sun Dec 06 2015 Michael Stauber <mstauber@solarspeed.net> 1.3.0-0BX13
+- Small fix in glue/handlers/le_install.pl to make sure the .well-known
+  directory gets the correct permissions. On EL6 we otherwise might end
+  up with a directory that is not world-readable.
+
 * Sat Dec 05 2015 Michael Stauber <mstauber@solarspeed.net> 1.3.0-0BX12
 - Fixes in glue/handlers/le_install.pl
 
@@ -140,7 +145,7 @@ fi
 - Modified ui/chorizo/web/controllers/createCert.php
 - Modified ui/chorizo/web/controllers/siteSSL.php
 - Added ui/chorizo/web/controllers/letsencryptCert.php
-- Added lue/sbin/letsencrypt_autorenew.pl
+- Added glue/sbin/letsencrypt_autorenew.pl
 - Added glue/handlers/le_install.pl
 - Updated all locales with the new strings.
 
