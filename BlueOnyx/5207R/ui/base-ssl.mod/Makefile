@@ -6,8 +6,8 @@ VENDOR=base
 VENDORNAME='Project BlueOnyx'
 SERVICE=ssl
 
-VERSION=1.2.0
-RELEASE=0BX10
+VERSION=1.3.0
+RELEASE=0BX12
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -18,7 +18,8 @@ BUILDARCH=noarch
 BUILDUI=new
 BUILDGLUE=yes
 BUILDLOCALE=yes
-BUILDSRC=no
+BUILDSRC=yes
+REQUIRES=blueonyx-letsencrypt
 
 #########
 # some useful defines

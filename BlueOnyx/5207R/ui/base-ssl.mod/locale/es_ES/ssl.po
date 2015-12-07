@@ -1037,3 +1037,59 @@ msgstr "El comando '/usr/sausalito/sbin/ssl_get.pl' no devolvieron los resultado
 msgid "cap_serverSSL"
 msgstr "Configuración de SSL"
 
+# New for Let's Encrypt integration:
+
+msgid "LetsEncrypt"
+msgstr "'Let's Encrypt!'"
+
+msgid "LE_CA_Request_Error"
+msgstr "El siguiente error se produjo durante la solicitud de certificado SSL:<br><br>[[VAR.msg]]"
+
+msgid "LE_CA_Request_FQDN_Error"
+msgstr "El siguiente error se produjo durante la solicitud de certificado SSL: El nombre de dominio completo para el certificado SSL no se pudo determinar."
+
+msgid "LE_CA_Request_Error_noPathFound"
+msgstr "El siguiente error se produjo durante la solicitud de certificado SSL: La ruta de instalación de los certificados no se pudo determinar."
+
+msgid "CouldnotCreateCertDir"
+msgstr "Error: El directorio de certificado no pudo ser creada."
+
+msgid "doNotHaveValidLECert"
+msgstr "La solicitud de certificado contra [[base-ssl.LetsEncrypt]] no devolvió algo que se parece a un certificado SSL válido. Lo lamento."
+
+msgid "LetsEncrypt_help"
+msgstr "Crear un certificado SSL libre para este sitio virtual usando [[base-ssl.LetsEncrypt]]"
+
+msgid "DIVIDER_INTRO"
+msgstr "información general"
+
+msgid "DIVIDER_INTRO_help"
+msgstr "[[base-ssl.DIVIDER_INTRO]]"
+
+msgid "DIVIDER_OPTIONS"
+msgstr "Configuración"
+
+msgid "DIVIDER_OPTIONS_help"
+msgstr "[[base-ssl.DIVIDER_OPTIONS]]"
+
+msgid "LErequestCert"
+msgstr "Solicitar o Renovar Certificado"
+
+msgid "LErequestCert_help"
+msgstr "Por favor marque esta casilla si está solicitando un nuevo certificado SSL o si desea renovar un certificado SSL [[base-ssl.LetsEncrypt]] existente."
+
+msgid "autoRenew"
+msgstr "Renovación Automática"
+
+msgid "autoRenew_help"
+msgstr "Permite activar la renovación automática de certificados SSL. Una vez que un certificado SSL [[base-ssl.LetsEncrypt]] es más antiguo que se especifica en '[[base-ssl.autoRenewDays]]' puede ser renovado automáticamente si esta casilla está marcada."
+
+msgid "autoRenewDays"
+msgstr "Máximo Certificado Edad"
+
+msgid "autoRenewDays_help"
+msgstr "Aquí puede especificar a qué edad (en días) un certificado SSL [[base-ssl.LetsEncrypt]] se renovará automáticamente."
+
+msgid "LetsEncrypt_info_text"
+msgstr "[[base-ssl.LetsEncrypt]] (<a href='http://www.letsencrypt.org' target='_blank'>www.letsencrypt.org</a>) es una nueva autoridad de certificación: Es gratis, automatizada y abierta.<br><br>Los certificados SSL que genera son compatibles con la mayoría de los navegadores modernos y tienen una validez de hasta 90 días. BlueOnyx apoya la solicitud automática e instalar de [[base ssl.LetsEncrypt-]] certificados SSL y también puede manejar la renovación automática<br><br><b>Nota:</b> [[base-ssl.LetsEncrypt]] tiene que hacer una verificación en línea para ver si el dominio(s) que solicitar certificados para los tuyos y apuntan a este servidor. Para ello se colocará un archivo temporal en el directorio web que luego se comprobó desde el exterior. Por favor, asegúrese de que tiene los registros DNS de trabajo y que este sitio virtual es accesible por el exterior.<br><br>Si este sitio virtual ya tiene un certificado SSL, entonces el [[base-ssl.LetsEncrypt]] certificado SSL solicitado se reemplazarlo<br><br><b>Beta Limitaciones:</b> [[base-ssl.LetsEncrypt]] se encuentra actualmente en Beta y límites de velocidad para la obtención de los certificados están en vigor. Hay dos límites de la frecuencia en juego: Inscripciones/dirección IP y Certificados/Dominio<br><br>Inscripciones/dirección IP limita el número de registros que puede hacer en un período de tiempo dado. Actualmente 10 registros por 3 horas.<br><br>Certificados/dominio que podría llegar a través de la re-emisión repetida. Este mide límite certificados emitidos por una determinada combinación de dominio de nivel superior + dominio (un 'dominio registrado').<br><br>El límite en Certificados / dominio es de 5 certificados para un dominio registrado en una ventana deslizante de 7 días."
+

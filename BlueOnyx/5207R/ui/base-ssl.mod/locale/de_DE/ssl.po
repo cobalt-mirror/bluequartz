@@ -1037,3 +1037,59 @@ msgstr "Der Befehl '/usr/sausalito/sbin/ssl_get.pl' lieferte ein nicht erwartete
 msgid "cap_serverSSL"
 msgstr "SSL-Einstellungen"
 
+# New for Let's Encrypt integration:
+
+msgid "LetsEncrypt"
+msgstr "'Let's Encrypt!'"
+
+msgid "LE_CA_Request_Error"
+msgstr "Während der SSL Zertifikat-Anforderung trat leider der folgende Fehler auf: <br><br> [[VAR.msg]]"
+
+msgid "LE_CA_Request_FQDN_Error"
+msgstr "Während der SSL Zertifikat-Anforderung trat leider der folgende Felher auf: Der Domänenname für das SSL-Zertifikat konnte nicht ermittelt werden."
+
+msgid "LE_CA_Request_Error_noPathFound"
+msgstr "Während der SSL Zertifikat-Anforderung trat leider der folgende Felher auf: Der Installationspfad für das Zertifikat konnte nicht ermittelt werden."
+
+msgid "CouldnotCreateCertDir"
+msgstr "Fehler: Das Zertifikat-Verzeichnis konnte nicht erstellt werden."
+
+msgid "doNotHaveValidLECert"
+msgstr "[[base-ssl.LetsEncrypt]] lieferte bei der Anforderung des SSL-Zertifikates leider etwas zurück, was vermutlich kein SSL-Zertifikat ist. Tut uns leid."
+
+msgid "LetsEncrypt_help"
+msgstr "Über diese Seite können Sie bei [[base-ssl.LetsEncrypt]] ein kostenloses SSL-Zertifikat anfordern und automatisch einrichten lassen."
+
+msgid "DIVIDER_INTRO"
+msgstr "Allgemeine Informationen"
+
+msgid "DIVIDER_INTRO_help"
+msgstr "[[base-ssl.DIVIDER_INTRO]]"
+
+msgid "DIVIDER_OPTIONS"
+msgstr "Konfiguration"
+
+msgid "DIVIDER_OPTIONS_help"
+msgstr "[[base-ssl.DIVIDER_OPTIONS]]"
+
+msgid "LErequestCert"
+msgstr "Zertifikat anfordern oder erneuern"
+
+msgid "LErequestCert_help"
+msgstr "Bitte kreuzen Sie dieses Kästchen an, wenn Sie ein neues [[base-ssl.LetsEncrypt]] SSL-Zertifikat anfordern möchten, oder ein bestehendes [[base-ssl.LetsEncrypt]] erneuern möchten."
+
+msgid "autoRenew"
+msgstr "Automatische Erneuerung"
+
+msgid "autoRenew_help"
+msgstr "Sobald ein [[base-ssl.LetsEncrypt]] SSL-Zertifikat älter ist, als in '[[base-ssl.autoRenewDays]]' angegeben, kann es automatisch erneuert werden. Dazu müssen Sie dieses Kontrollkästchen markieren.."
+
+msgid "autoRenewDays"
+msgstr "Maximales Zertifikat-Alter"
+
+msgid "autoRenewDays_help"
+msgstr "Hier können das Alter (in Tagen) angeben, welches ein [[base-ssl.LetsEncrypt]] SSL-Zertifikat maximal haben darf, bevor es automatisch erneuert wird."
+
+msgid "LetsEncrypt_info_text"
+msgstr "[[base-ssl.LetsEncrypt]] (<a href='http://www.letsencrypt.org' target='_blank'>www.letsencrypt.org </a>) ist eine neue Zertifizierungsstelle: Sie ist kostenlos, automatisierte und offen<br><br>.Die von ihr erzeugten SSL-Zertifikate werden von den meisten modernen Browsern unterstützt und sind bis zu 90 Tage gültig. BlueOnyx unterstützt die automatische Anforderung und Installation von [[base-ssl.LetsEncrypt]] SSL-Zertifikaten. Desweiteren übernimmt es (auf Wunsch) die automatische Erneuerung dieser Zertifikate.<br><br><b>Bitte beachten Sie:</b> [[base-ssl.LetsEncrypt]] führt eine Online-Prüfung durch. Dabei wird überprüft, ob Sie berechtigt sind, für Domänen SSL-Zertifikate zu beantragen. Dazu wird eine temporäre Dateim in das Webverzeichnis Ihrer virtuellen Site gelegt und diese Datei von [[base-ssl.LetsEncrypt]] aufgerufen. Dazu ist es natürlich nötig, dass die virtuelle Site DNS-Einträge hat und von außen erreichbar ist.<br><br>Wenn diese virtuelle Site bereits ein SSL-Zertifikat hat, so wird dieses bei Anforderung eines [[base-ssl.LetsEncrypt]] SSL-Zertifikates ersetzt.<br><br><b>Einschränkungen während der Beta-Test Phase:</b> [[base-ssl.LetsEncrypt]] ist derzeit in einer öffentlichen Beta-Phase und hat daher enge Grenzwerte, wie oft Zertifikate angefordert oder erneuert werden können. Zwei Schwellwerte sind dabei zu beachten: 'Anforderungen pro IP-Adresse' und 'Zertifikate pro Domäne'.<br><br>'Anforderungen pro IP-Adresse': Derzeit dürfen pro Server maximal 10 Zertifikats-Anforderungen in 3 Stunden durchgeführt werden.<br><br>'Zertifikate pro Domäne': Wenn Sie wiederholt für die selbe(n) Domänen Zertifikate anfordern, so unterliegt auch dies einer Beschränkung. Das schließt auch Subdomänen mit ein. Sie dürfen maximal 5 Zertifkate für eine Domäne in 7 Tagen beantragen.<br><br>"
+

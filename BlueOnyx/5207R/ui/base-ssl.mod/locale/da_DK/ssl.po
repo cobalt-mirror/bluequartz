@@ -1160,3 +1160,59 @@ msgstr "Kommandoen '/usr/sausalito/sbin/ssl_get.pl' ikke tilbage forventede resu
 msgid "cap_serverSSL"
 msgstr "SSL-indstillinger"
 
+# New for Let's Encrypt integration:
+
+msgid "LetsEncrypt"
+msgstr "'Let's Encrypt!'"
+
+msgid "LE_CA_Request_Error"
+msgstr "Den følgende fejl opstod ved forespørgsel SSL-certifikat:<br><br>[[VAR.msg]]"
+
+msgid "LE_CA_Request_FQDN_Error"
+msgstr "Den følgende fejl opstod ved forespørgsel SSL-certifikatet: Det fuldt kvalificerede domænenavn for SSL-certifikatet kunne ikke bestemmes."
+
+msgid "LE_CA_Request_Error_noPathFound"
+msgstr "Den følgende fejl opstod ved forespørgsel SSL-certifikatet: Installationen sti til certifikaterne kunne ikke bestemmes."
+
+msgid "CouldnotCreateCertDir"
+msgstr "Fejl: kunne ikke oprettes Certifikatet mappe."
+
+msgid "doNotHaveValidLECert"
+msgstr "Anmodningen Certifikatet mod [[base-ssl.LetsEncrypt]] returnerede ikke noget, der ligner et gyldigt SSL-certifikat. Undskyld."
+
+msgid "LetsEncrypt_help"
+msgstr "Opret en gratis SSL-certifikat til denne virtuelle websted ved hjælp [[base-ssl.LetsEncrypt]]"
+
+msgid "DIVIDER_INTRO"
+msgstr "Generel information"
+
+msgid "DIVIDER_INTRO_help"
+msgstr "[[base-ssl.DIVIDER_INTRO]]"
+
+msgid "DIVIDER_OPTIONS"
+msgstr "Konfiguration"
+
+msgid "DIVIDER_OPTIONS_help"
+msgstr "[[base-ssl.DIVIDER_OPTIONS]]"
+
+msgid "LErequestCert"
+msgstr "Anmode om eller Forny certifikat"
+
+msgid "LErequestCert_help"
+msgstr "Sæt kryds i dette felt, hvis du anmoder om et nyt SSL-certifikat, eller hvis du ønsker at forny et eksisterende [[base-ssl.LetsEncrypt]] SSL-certifikat."
+
+msgid "autoRenew"
+msgstr "Automatisk fornyelse"
+
+msgid "autoRenew_help"
+msgstr "Lader dig aktivere automatiske fornyelser af SSL-certifikater. Når først en [[base-ssl.LetsEncrypt]] SSL certifikat er ældre end angivet i '[[base-ssl.autoRenewDays]]' den kan fornys automatisk, hvis dette afkrydsningsfelt er markeret."
+
+msgid "autoRenewDays"
+msgstr "Maksimal certifikat Alder"
+
+msgid "autoRenewDays_help"
+msgstr "Her kan du angive, hvor alder (i dage) et [[base-ssl.LetsEncrypt]] SSL-certifikat vil blive fornyet automatisk."
+
+msgid "LetsEncrypt_info_text"
+msgstr "[[base-ssl.LetsEncrypt]] (<a href='http://www.letsencrypt.org' target='_blank'> www.letsencrypt.org </a>) er en ny Certificate Authority: Det er gratis, automatiseret og åben.<br><br>De SSL certifikater det genererer understøttes af de fleste moderne browsere, og er gældende for op til 90 dage. BlueOnyx understøtter den automatiske anmodning og installation af [[base-ssl.LetsEncrypt]] SSL-certifikater og kan også håndtere automatisk fornyelse<br><br><b>Bemærk:</b> [[base-ssl.LetsEncrypt ]] skal gøre en online kontrol for at se om det domæne(r) du anmode certifikater for, er jeres og peger på denne server. Med henblik herpå vil det lægge en midlertidig fil i web directory, som derefter kontrolleres udefra. Sørg for at du har arbejdet DNS-registreringer, og at denne virtuelle site er tilgængelig udefra.<br><br>Hvis denne virtuelle websted allerede har en SSL-certifikat, så den ønskede [[base-ssl.LetsEncrypt]] SSL certifikat vil erstatte det<br><br><b>Beta Begrænsninger:</b> [[base-ssl.LetsEncrypt]] er i øjeblikket i Beta og sats grænser for at opnå certifikater er i kraft. Der er to sats grænser i spil: Registreringer/IP-adresse og Certifikater/domæne<br><br>Registreringer/IP-adresse begrænser antallet af registreringer, du kan gøre i en given periode. I øjeblikket 10 registreringer per 3 timer.<br><br>Certifikater/domæne, du kunne løbe ind ved gentagen genudstedelse. Denne grænse måler, der udstedes for en given kombination af topdomæne + Domæne (et 'registreret domæne').<br><br>Grænse for Certifikater/domæne er 5 certifikater for et registreret domæne i et glidende vindue på 7 dage."
+
