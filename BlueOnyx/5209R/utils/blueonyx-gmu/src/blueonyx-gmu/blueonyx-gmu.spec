@@ -7,7 +7,7 @@
 
 Name:           %{pkgname}
 Version:        0.9.0
-Release:        9
+Release:        10
 Packager:       Michael Stauber <mstauber@blueonyx.it>
 Vendor:         BLUEONYX.IT
 URL:            http://www.blueonyx.it
@@ -131,6 +131,9 @@ rm -R -f $RPM_BUILD_ROOT
 
 
 %changelog
+
+* Mon Dec 07 2015 Michael Stauber <mstauber@blueonyx.it>
+- [0.9.0-10] Switched exporter from NameVirtualHost to VirtualHost parsing.
 
 * Tue Dec 01 2015 Michael Stauber <mstauber@blueonyx.it>
 - [0.9.0-9] Added more prohibited aliases to exporter.

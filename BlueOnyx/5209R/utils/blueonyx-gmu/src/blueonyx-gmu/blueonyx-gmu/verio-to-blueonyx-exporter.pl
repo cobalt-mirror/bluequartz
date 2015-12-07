@@ -294,7 +294,7 @@ if ($vhost_server_name ne "") {
 delete($Vsite->{''});
 
 # Get NameVirtualHosts
-while ($ip_port = $apache->cmd_config('NameVirtualHost')) {
+while ($ip_port = $apache->cmd_config('VirtualHost')) {
     @NVH = ();
     @ip_raw = ();
     push @NVH, $ip_port;
@@ -305,8 +305,12 @@ while ($ip_port = $apache->cmd_config('NameVirtualHost')) {
     if ($port eq "80") {
         $SSL = 0;
     }
-    if ($port eq "443") {
+    elsif ($port eq "443") {
         $SSL = 1;
+    }
+    else {
+        # If it's not port 80 or 443, then we don't want it.
+        next;
     }
 
     # Set ip of primary Vsite:
@@ -346,13 +350,13 @@ while ($ip_port = $apache->cmd_config('NameVirtualHost')) {
 
         #if (($fqdn && $vhost_doc_root) && ($fqdn ne $vhost_server_name)) {
         if ($fqdn && $vhost_doc_root) {
-            &debug_msg("$fqdn - $ip(:$port) - $vhost_doc_root \n");
 
             # Store document root:
             $Vsite_Extra->{$fqdn}->{DocumentRoot} = $vhost_doc_root;
 
             # Take note that we have seen this FQDN:
-            unless (in_array(\@KnownDomainNames)) {
+            unless (in_array(\@KnownDomainNames, $fqdn)) {
+                &debug_msg("$fqdn - $ip(:$port) - $vhost_doc_root \n");
                 push @KnownDomainNames, $fqdn;
             }
 
