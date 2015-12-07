@@ -1,7 +1,7 @@
 Summary: Server and site statistics for web, ftp, email, and network traffic
 Name: base-sitestats-scripts
 Version: 1.0
-Release: 26BX31%{?dist}
+Release: 26BX32%{?dist}
 Vendor: Project BlueOnyx
 License: Sun modified BSD
 Group: System Environment/BlueOnax
@@ -21,7 +21,7 @@ if [ -f /bin/systemctl ]; then
   # Check if CCEd is up:
   if [ ! -S /usr/sausalito/cced.socket ]; then
     # Not up - restarting:
-    /usr/sausalito/sbin/cced.init restart &>/dev/null || :
+    /usr/sausalito/sbin/cced.init rehash &>/dev/null || :
   fi
 
   ### Fix fucking RH Firewall shit:
@@ -34,10 +34,14 @@ if [ -f /bin/systemctl ]; then
   /sbin/chkconfig iptables on
   /sbin/service iptables restart &>/dev/null || :
   # Flush previous iptables rules and load our standard rules:
-  /etc/cron.hourly/log_traffic
+  /etc/cron.hourly/log_traffic clean
 fi
 
 %changelog
+
+* Mon Dec 07 2015 Michael Stauber <mstauber@solarspeed.net> 1.0-26BX32
+- Replaced log_traffic with the new one from Greg Kuhnert and added
+  a '/etc/cron.hourly/log_traffic clean' at the end of post-install.
 
 * Sat Jun 27 2015 Michael Stauber <mstauber@solarspeed.net> 1.0-26BX31
 - Modified sitestats-scripts/apache.logrotate to work with 5209R.

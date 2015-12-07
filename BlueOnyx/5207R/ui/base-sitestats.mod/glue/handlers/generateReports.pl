@@ -19,6 +19,10 @@ my $DEBUG = 0;
 $DEBUG && warn $0.' '.`date`;
 
 my $analog  = '/usr/bin/analog';
+if (-f '/usr/bin/analogbx') {
+    $analog = '/usr/bin/analogbx';
+}
+
 my $configFn    = '/etc/analog.cfg';
 my $configTmpl  = $configFn.'.tmpl';
 my $updatestats = '/usr/sausalito/handlers/base/sitestats/updatestats.sh';
