@@ -91,6 +91,13 @@ if (($vsite->{'CLASS'} eq "Vsite") || ($vsite->{'CLASS'} eq "System")) {
         $email = ' --email ' . $ssl_info->{'LEemail'};
     }
 
+    $well_known_location = $webroot . '/.well-known';
+    if ($vsite->{'CLASS'} eq "Vsite") {
+        # Make sure acme dir gets right perms, because on EL6 this will not work well otherwise:
+        system("mkdir -p $well_known_location");
+        system("chmod 755 $well_known_location");
+    }
+
     # Obtain SSL cert:
     # --duplicate
     &debug_msg("Running: /usr/sausalito/letsencrypt/letsencrypt-auto certonly -a webroot --webroot-path $webroot -d $fqdn $alias_line $email --rsa-key-size 4096 --agree-tos $autoRenew --user-agent BlueOnyx.it\n");
@@ -100,6 +107,11 @@ if (($vsite->{'CLASS'} eq "Vsite") || ($vsite->{'CLASS'} eq "System")) {
     $result =~ s/^Running with virtualenv:(.*)\n//g;
     $result =~ s/\n/<br>/g;
     $cce->set($vsite->{'OID'}, 'SSL', { 'LEclientRet' => $result }); 
+
+    # Make sure the $well_known_location directory is gone:
+    if (-d $well_known_location) {
+        system("rm -R $well_known_location");
+    }
 
     # Handle errors:
     if (($result =~ /Error:/) || ($result =~ /An unexpected error occurred:/)) {
