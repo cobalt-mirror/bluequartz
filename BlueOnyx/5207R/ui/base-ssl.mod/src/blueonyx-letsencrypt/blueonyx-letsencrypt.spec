@@ -7,7 +7,7 @@
 
 Name:           %{pkgname}
 Version:        0.1.0
-Release:        3
+Release:        4
 Packager:       Michael Stauber <mstauber@blueonyx.it>
 Vendor:         Let's Encrypt
 URL:            http://www.letsencrypt.org
@@ -29,6 +29,9 @@ Requires:       augeas-libs
 Requires:       git
 Requires:       libffi-devel
 Requires:       redhat-rpm-config
+Requires:       python-devel
+Requires:       python-setuptools
+Requires:       python-virtualenv
 Summary:        Let's Encrypt Python Client
 
 %description
@@ -89,6 +92,9 @@ rm -R -f $RPM_BUILD_ROOT
 %files -f solFile.list
 
 %changelog
+
+* Sun Dec 06 2015 Michael Stauber <mstauber@blueonyx.it>
+- [0.1.0-4] Requirements updated.
 
 * Sun Dec 06 2015 Michael Stauber <mstauber@blueonyx.it>
 - [0.1.0-3] Switch to Python27 for EL6
