@@ -14,7 +14,7 @@ sauce-basic.mod to base-user.mod.
 <typedef 
   name="fq_email_address_or_username_multiline" 
   type="re" 
-  data="^(([a-z][a-z0-9_\\.\-\@]{0,60})([,]|[\r\n]{0,999}))*$"
+  data="^(([a-z0-9][a-z0-9_\\.\-\@]{0,60})([,]|[\r\n]{0,999}))*$"
   errmsg = "[[base-cce.fq_email_address_or_username_errmsg]]"
 />
 <!-- Note: The above doesn't validate email addresses correctly. Would be overkill in one regexp. We do that in UI via PHP. -->
