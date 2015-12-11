@@ -92,11 +92,9 @@ if (($vsite->{'CLASS'} eq "Vsite") || ($vsite->{'CLASS'} eq "System")) {
     }
 
     $well_known_location = $webroot . '/.well-known';
-    if ($vsite->{'CLASS'} eq "Vsite") {
-        # Make sure acme dir gets right perms, because on EL6 this will not work well otherwise:
-        system("mkdir -p $well_known_location");
-        system("chmod 755 $well_known_location");
-    }
+    # Make sure acme dir gets right perms, because on EL6 this will not work well otherwise:
+    system("mkdir -p $well_known_location");
+    system("chmod 755 $well_known_location");
 
     # Obtain SSL cert:
     # --duplicate
