@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# log_traffic,v 2.0 2015/12/05 16:34:00 gregk Exp $
+# log_traffic,v 2.0.1 2015/12/13 07:36:00 gregk Exp $
 #  
 # This script maintains and logs the activity on the ip accounting rules.
 # It updates the accounting rules based on the currently running interfaces,
@@ -21,7 +21,7 @@ IFCONFIG="/sbin/ifconfig"			# ifconfig binary
 IPLISTNOW="/var/state/acct/iplist.now"		# Temp file - list of ip addresses from ifconfig
 IPLISTBEFORE="/var/state/acct/iplist.before"	# Temp file - list of current ip addresses we monitor
 
-# Disable error messages
+# Disable error messages - Some IpTables commands we use to check status generate cosmetic errors. Lets suppress them
 exec 3>&2
 exec 2> /dev/null
 
@@ -43,9 +43,6 @@ for X in acctin acctout; do
  		$IPTABLES -A $X -j RETURN
 	fi
 done
-
-# Re-enable error messages
-exec 2>&3
 
 # Generate a list of IP's that we are already monitoring
 $IPTABLES -Z -vS acctin | grep "acctin -d" | cut -d " " -f 4 | cut -d "/" -f 1 | sort | uniq > $IPLISTBEFORE
@@ -108,5 +105,8 @@ else
 		fi
 	fi
 fi
+
+# Re-enable error messages
+exec 2>&3
 
 rm $IPLISTNOW $IPLISTBEFORE
