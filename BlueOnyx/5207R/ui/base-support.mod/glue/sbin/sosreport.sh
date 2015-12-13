@@ -167,7 +167,6 @@ SOSREPORTOPTIONS="$SOSREPORTOPTIONS --tmp-dir=/usr/sausalito/ui/web/debug/"
 
 echo "Running sosreport now. This will take a while. Do not break out of the program."
 echo sosreport -av --batch --ticket-number=$MODEL --name=$SERIALNUMBER $SOSREPORTOPTIONS
-read me
 sosreport -av --batch --ticket-number=$MODEL --name=$SERIALNUMBER $SOSREPORTOPTIONS # 2> /dev/null >/dev/null
 
 ls /usr/sausalito/ui/web/debug/sosreport-$SERIALNUMBER.$MODEL-* 2>/dev/null > /dev/null
