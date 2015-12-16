@@ -36,7 +36,8 @@ chomp($build);
             'capabilities' => $cce->array_to_scalar(
                     'serverNetwork', 'serverIpPooling',
                     'serverVsite', 'serverPower',
-                    'serverTime', 'serverInformation')
+                    'serverTime', 'serverInformation',
+		    'serverMemcache')
         },
         {
             'name' => 'menuServerMaintenance',
