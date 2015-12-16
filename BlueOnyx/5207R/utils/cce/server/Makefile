@@ -5,7 +5,7 @@
 include ../dynamic.mk
 
 DEFS += -DCCE_VERSION=\"$(CCE_VERSION)\"
-LIBS += -lcrypt -ldl #-ldebug 
+LIBS += -lcrypt -ldl -lmemcached #-ldebug 
 INCLUDES += -I./include
 
 SRCS = src/main.c src/smd.c

@@ -186,6 +186,11 @@ main(int argc, char *argv[])
 	signal(SIGQUIT, sighandle);
 	signal(SIGCHLD, SIG_DFL); /* POSIX says SIG_IGN + SIGCHLD == bad */
 
+	/* flush memcached */
+	int ret;
+	ret = connect_memcached();
+	ret = flush_memcached();
+
 	start_smd_thread();
 }
 
