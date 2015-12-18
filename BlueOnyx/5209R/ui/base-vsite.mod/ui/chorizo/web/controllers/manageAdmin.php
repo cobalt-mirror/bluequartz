@@ -59,6 +59,7 @@ class ManageAdmin extends MX_Controller {
                     'serverShell' => 1,
                     'serveriStat' => 1,
                     'serverSSL' => 1,
+                    'serverMemcache' => 1,
                     'serverNetwork' => 1,
                     'serverIpPooling' => 1,
                     'serverPower' => 1,
