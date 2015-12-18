@@ -16,16 +16,22 @@ $cce->connectuds();
 
 
 my $sysconfig = "/etc/sysconfig/named";
-
 $ret = Sauce::Util::editfile($sysconfig, *fix_sysconfig_named);
-
 if(! $ret ) {
     $cce->bye('FAIL', 'cantEditFile', {'file' => $sysconfig});
     exit(0);
 } 
 
-system('rm -f /etc/sysconfig/named.backup.*');
+my $unitfile = "/usr/lib/systemd/system/named-chroot.service";
+if (-f $unitfile) {
+  $ret = Sauce::Util::editfile($unitfile, *fix_unitfile_named);
+  if(! $ret ) {
+      $cce->bye('FAIL', 'cantEditFile', {'file' => $unitfile});
+      exit(0);
+  } 
+}
 
+system('rm -f /etc/sysconfig/named.backup.*');
 
 my ($sysoid) = $cce->find("System");
 my ($ok, $obj) = $cce->get($sysoid, "DNS");
@@ -33,6 +39,7 @@ my ($ok, $obj) = $cce->get($sysoid, "DNS");
 # Check if we have Systemd:
 if (-f "/usr/bin/systemctl") {
   # Got Systemd:
+  system("/usr/bin/systemctl daemon-reload");
   $SERVICE = "named-chroot";
 }
 else {
@@ -58,7 +65,7 @@ my $running = 0;
   }
 }
 
-print "RUNNING: $running, ". $obj->{enabled}."\n";
+#print "RUNNING: $running, ". $obj->{enabled}."\n";
 
 # do the right thing
 if (!$running && $obj->{enabled}) {
@@ -97,9 +104,27 @@ sub fix_sysconfig_named {
     return 1;
 }
 
+sub fix_unitfile_named {
+    my $in  = shift;
+    my $out = shift;
+
+    my $done = 0;
+    
+    select $out;
+    while (<$in>) {
+      if (/^ExecStartPre=\/bin\/bash/o ) {
+        $done = 1;
+      }
+      else {
+        print $_;
+      }
+    }
+    return 1;
+}
+
 # 
-# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2010 Bluapp AB, Rickard Osser <rickard.osser@bluapp.com>
 # All Rights Reserved.
 # 
