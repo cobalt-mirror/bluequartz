@@ -1,0 +1,77 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "BOTH"
+msgstr "HTTP e HTTPS"
+
+msgid "GUIaccessType"
+msgstr "Protocolli di accesso GUI"
+
+msgid "GUIaccessType_help"
+msgstr ""
+"Questo definisce quali protocolli hanno il permesso di accedere alla GUI. Se "
+"vuoi permettere l'accesso sia HTTP e HTTPS, allora impostalo a [[base-"
+"backupcontrol.BOTH]]. Per permettere solo l'accesso HTTPS, impostalo a "
+"[[base-backupcontrol.HTTPS]]. O puoi configurarlo a [[base-backupcontrol."
+"HTTP]] come unico protocollo permesso, il che e' un'idea cattiva. "
+"Raccomandiamo di impostarlo su [[base-backupcontrol.HTTPS]]. Il valore di "
+"default e': [[base-backupcontrol.BOTH]]"
+
+msgid "GUIredirects"
+msgstr "Reindirizza al Server-Name"
+
+msgid "GUIredirects_help"
+msgstr ""
+"Il Webserver apache dove la GUI e' eseguita (AdmServ) ha un certificato SSL "
+"separato. Se qualcuno accede alla GUI tramite HTTPS usando il dominio di un "
+"sito virtuale (esempio: https://www.site.com:81/login), allora il browser "
+"mostrera' un avviso dicendo che il certificato SSL del server non "
+"corrisponde al dominio. Per evitare che questo accada puoi spuntare questa "
+"casella e tutti gli accesso HTTPS alla GUI verranno reindirizzati al FQDN "
+"del server. Nota: Usare solo se il FQDN del server ha un record DNS valido, "
+"o la GUI potrebbe risultare irraggiungibile."
+
+msgid "HTTP"
+msgstr "Solo HTTP"
+
+msgid "HTTPS"
+msgstr "Solo HTTPS"
+
+msgid "cap_serverServerDesktop"
+msgstr "Impostazioni Server Desktop"
+
+msgid "description"
+msgstr "Clicca qui per controllare il modo di operazione del server desktop."
+
+msgid "desktop_control"
+msgstr "Server Desktop"
+
+msgid "desktop_control_settings"
+msgstr "Controllo [[base-backupcontrol.desktop_control]]"
+
+msgid "lock_desktop"
+msgstr "Blocca Server Desktop"
+
+msgid "lock_desktop_failed"
+msgstr "Errore nel cambiare lo stato di [[base-backupcontrol.desktop_control]]"
+
+msgid "lock_desktop_help"
+msgstr ""
+"Questa opzione da l'abilita' di creare interfacce amministrative (Server "
+"Desktop) sola lettura."
+
+msgid "lock_failed"
+msgstr "Il bloccaggio di [[base-backupcontrol.desktop_control]] e' fallito."
+
+msgid "locked"
+msgstr "Il Server Desktop e' stato bloccato da un amministratore."
+
+msgid "unlock_failed"
+msgstr "Lo Sbloccaggio del [[base-backupcontrol.desktop_control]] e' fallito."
