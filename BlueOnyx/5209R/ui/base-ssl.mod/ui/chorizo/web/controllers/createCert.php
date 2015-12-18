@@ -471,7 +471,12 @@ class CreateCert extends MX_Controller {
         //--- Add the Save/Cancel buttons (not for AdmServ-Cert, though)
         //
         $block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
-        $block->addButton($factory->getCancelButton("/ssl/siteSSL?group=" . $CODBDATA['group']));
+        if ($CODBDATA['group'] != "") {
+            $block->addButton($factory->getCancelButton("/ssl/siteSSL?group=" . $CODBDATA['group']));
+        }
+        else {
+            $block->addButton($factory->getCancelButton("/ssl/siteSSL"));
+        }
 
         // Nice people say goodbye, or CCEd waits forever:
         $cceClient->bye();

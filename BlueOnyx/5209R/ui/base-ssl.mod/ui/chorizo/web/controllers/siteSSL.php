@@ -282,10 +282,10 @@ class SiteSSL extends MX_Controller {
         }
         else {
             $create =& $factory->getButton('/ssl/createCert', 'createCert', 'DEMO-OVERRIDE');
-            $request =& $factory->getButton('/ssl/createCert' . '&type=csr', 'request', 'DEMO-OVERRIDE');
+            $request =& $factory->getButton('/ssl/createCert?group' . '&type=csr', 'request', 'DEMO-OVERRIDE');
             $ca_certs =& $factory->getButton('/ssl/caManager', 'manageCAs', 'DEMO-OVERRIDE');
             $import =& $factory->getButton('/ssl/uploadCert', 'import', 'DEMO-OVERRIDE');
-            $exportButton =& $factory->getButton('/ssl/siteSSL' . '&type=cert&action=export', 'export');
+            $exportButton =& $factory->getButton('/ssl/siteSSL?group' . '&type=cert&action=export', 'export');
             $letsEncryptButton =& $factory->getButton('/ssl/letsencryptCert', 'LetsEncrypt', 'DEMO-OVERRIDE');
         }
 
