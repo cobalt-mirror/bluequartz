@@ -73,7 +73,7 @@ information for [VENDOR]-[SERVICE].
 /var/www/html/*
 %dir /usr/share/doc/blueonyx-release-520XR
 /usr/share/doc/blueonyx-release-520XR/*
-/usr/lib/systemd/system/blueonyx.service
+%attr(0644,root,root) /usr/lib/systemd/system/blueonyx.service
 <end glue>
 
 <begin ui>
@@ -349,6 +349,9 @@ fi
 <end $TRIGGERUN>
 
 <begin $CHANGELOG>
+
+* Fri Dec 18 2015 Michael Stauber <mstauber@solarspeed.net> 4.20151218-BX28
+- Fixed permissions on unit file /usr/lib/systemd/system/blueonyx.service
 
 * Mon Sep 07 2015 Michael Stauber <mstauber@solarspeed.net> 4.20150907-BX27
 - Added constructor constructor/centos7fixes.sh to fix mtab and Grub2 symlinks.
