@@ -58,6 +58,8 @@ install: all
 	@echo Installed cced.init in $(CCE_SBINDIR)
 	@$(INSTALL) $(INST_BINFLAGS) cced.init.service $(SYSTEMD_INITDIR)
 	@echo Installed cced.init.service in $(SYSTEMD_INITDIR)
+	@$(INSTALL) $(INST_BINFLAGS) start_cced.sh $(CCE_SBINDIR)
+	@echo Installed start_cced.sh in $(CCE_SBINDIR)
 	@$(INSTALL) $(INST_BINFLAGS) $(CLIENT) $(CCE_BINDIR)
 	@echo Installed $(CLIENT) in $(CCE_BINDIR)
 	@$(INSTALL) $(INST_BINFLAGS) cce_construct $(CCE_BINDIR)

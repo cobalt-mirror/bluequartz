@@ -109,7 +109,7 @@ make install PREFIX=$RPM_BUILD_ROOT CCETOPDIR=/usr/sausalito
 %dir /usr/sausalito/include
 %dir /usr/sausalito/perl
 /etc/rc.d/init.d/*
-/usr/lib/systemd/system/*
+%attr(0644,root,root) /usr/lib/systemd/system/*
 /etc/pam.d/*
 /lib/security/*
 # For 64-bit pam_abl if this is a 64-bit system:
