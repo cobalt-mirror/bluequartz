@@ -19,7 +19,7 @@ BuildRoot: /var/tmp/cce-root
 BuildRequires: glib-devel, pam-devel, glib2-devel
 BuildRequires: flex, bison, flex-devel
 BuildRequires: php-devel, cmake
-
+BuildRequires: libmemcached-devel
 
 # Maximum RPM: "There are times when RPM's automatic dependency
 # processing may not be desirable."  Yeah, like when it crashes.
@@ -32,6 +32,7 @@ sausalito-cce has both the server and client parts of cce.
 Group: System Environment/BlueOnyx
 Summary: The CCE server daemon
 Requires: glib, glib-ghash, pam, policycoreutils
+Requires: memcached, libmemcached
 %if "%centos" == "5" 
 Requires: audit-libs
 %endif 
@@ -215,6 +216,12 @@ if [ "$1" -ge "1" ]; then
 fi
 
 %changelog
+
+* Tue Dec 15 2015 Hisao SHIBUYA <hisao@smack.jp> 0.99.2-1BX04
+- add memcachd feature. 
+- output debug information both from memcached and file. 
+- flush memcached when cced is starting. 
+- add cache mechanism. 
 
 * Fri Sep 25 2015 Michael Stauber <mstauber@solarspeed.net> 0.99.2-1BX03
 - Brought back /usr/sausalito/bin/pam_abl_gui as Dfix needs it.

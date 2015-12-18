@@ -43,6 +43,20 @@ proppathof(char *path, const char *prop, char *result)
 	return result;
 }
 
+static inline char *
+objkeyof_ul(unsigned long oid, const char *prop, char *result)
+{
+	snprintf(result, MAX_PATHLEN - 1, "%lu.%s", oid, prop);
+
+	return result;
+}
+
+static inline char *
+objkeyof(odb_oid * oid, const char *prop, char *result)
+{
+	return objkeyof_ul(oid->oid, prop, result);
+}
+
 static inline int
 isdir(const char *path)
 {

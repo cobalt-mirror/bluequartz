@@ -69,6 +69,10 @@ impl_destroy_obj(odb_impl_handle *h, odb_oid *oid)
 	closedir(objdir);
 	rmdir(objpath);
 
+	// delete obj from memcached
+	flush_memcached();
+	DPRINTF(DBG_CODB, "destroy obj : %s\n", objpath);
+
 	return CODB_RET_SUCCESS;
 }
 

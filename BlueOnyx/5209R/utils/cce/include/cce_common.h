@@ -136,6 +136,7 @@ extern int txnstopflag;
 #define DBG_CSCP_XTRA		0x0200
 #define DBG_TXN      		0x0400
 #define DBG_EXCESSIVE		0x8000
+#define DBG_MEMCACHED		0x1000
 
 /* profiling values */
 #define PROF_NONE    		0x00000000

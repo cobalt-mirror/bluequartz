@@ -13,7 +13,8 @@ SRCS = \
 	xml_parse.c \
 	cce_debug_mask.c \
 	glib-ghash.c \
-	intspan.c
+	intspan.c \
+	cce_memcached.c
 OBJS = $(patsubst %.c,%.o,$(SRCS))
 DIRLIB = ../common.a
 

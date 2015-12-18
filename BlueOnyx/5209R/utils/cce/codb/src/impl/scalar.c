@@ -16,8 +16,7 @@ impl_read_objprop(odb_impl_handle *h, odb_oid *oid, const char *prop,
 
 	objpathof(h, oid, objpath);
 	proppathof(objpath, prop, proppath);
-
-	return read_scalar(proppath, result);
+	return read_scalar(oid, proppath, prop, result);
 }
 
 codb_ret
@@ -43,7 +42,7 @@ impl_write_objprop(odb_impl_handle *h, odb_oid *oid, char *prop,
 
 	objpathof(h, oid, objpath);
 
-	return write_scalar(objpath, prop, val);
+	return write_scalar(oid, objpath, prop, val);
 }
 
 /*
@@ -55,11 +54,40 @@ impl_write_objprop(odb_impl_handle *h, odb_oid *oid, char *prop,
  *	CODB_RET_OTHER if an error occurs
  */
 codb_ret
-read_scalar(char *path, cce_scalar *result)
+read_scalar(odb_oid *oid, char *path, const char *prop, cce_scalar *result)
 {
-	if (cce_scalar_from_file(result, path) < 0) {
-		DPERROR(DBG_CODB, "read_scalar: cce_scalar_from_file()");
-		return CODB_RET_OTHER;
+	int ret;
+	PATHVAR(key);
+	char *cache_value;
+
+	// try to get value from memcached
+	ret = connect_memcached();
+
+	objkeyof(oid, prop, key);
+	ret = get_from_memcached(key, result); 
+
+	if (cce_debug_mask & (DBG_MEMCACHED)) {
+		cache_value = result->data;
+	}
+
+	if (ret <= 0 || (cce_debug_mask & (DBG_MEMCACHED))) {
+		if (cce_scalar_from_file(result, path) < 0) {
+			DPERROR(DBG_CODB, "read_scalar: cce_scalar_from_file()");
+			return CODB_RET_OTHER;
+		}
+	}
+
+	if (ret > 0 && cce_debug_mask & (DBG_MEMCACHED)) {
+		DPRINTF(DBG_MEMCACHED, "Data: [%s] [%s]:[%s]\n", key, cache_value, result->data);
+		result->data = cache_value;
+	}
+
+	// wite cache data to memcached
+	if (result->data != NULL && ret <= 0) {
+		ret =  set_to_memcached(key, cce_scalar_string(result)); 
+		if (ret) {
+			DPRINTF(DBG_MEMCACHED, "failed: set memcached():[%d]\n", ret);
+		}
 	}
 
 	return CODB_RET_SUCCESS;
@@ -74,15 +102,34 @@ read_scalar(char *path, cce_scalar *result)
  *	CODB_RET_OTHER on fail
  */
 codb_ret
-write_scalar(char *path, char *prop, cce_scalar *val)
+write_scalar(odb_oid *oid, char *path, char *prop, cce_scalar *val)
 {
+	int ret;
 	PATHVAR(proppath);
+	PATHVAR(key);
 
 	proppathof(path, prop, proppath);
+	DPRINTF(DBG_CODB, "write_scalar : path = %s / %s\n", proppath, val->data);
+
+	objkeyof(oid, prop, key);
+
+	// delete cache data from memcached
+	ret = delete_from_memcached(key);
+	if (ret) {
+		DPRINTF(DBG_MEMCACHED, "failed: delete memcached():[%d]\n");
+	}
 	
 	if (cce_scalar_to_file(val, proppath) < 0) {
 		DPERROR(DBG_CODB, "write_scalar: cce_scalar_to_file()");
 		return CODB_RET_OTHER;
+	}
+
+	// write cache data to memcached
+	if (val->data != NULL) {
+		ret =  set_to_memcached(key, cce_scalar_string(val));
+		if (ret) {
+			DPRINTF(DBG_MEMCACHED, "failed: set memcached():[%d]\n", ret);
+		}
 	}
 
 	return CODB_RET_SUCCESS;

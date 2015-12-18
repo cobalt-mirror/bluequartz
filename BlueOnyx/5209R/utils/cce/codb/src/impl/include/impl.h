@@ -14,8 +14,8 @@
 int get_flock(int fd, int nsecs);
 void release_flock(int fd);
 
-codb_ret read_scalar(char *path, cce_scalar *result);
-codb_ret write_scalar(char *path, char *prop, cce_scalar *val);
+codb_ret read_scalar(odb_oid *oid, char *path, const char *prop, cce_scalar *result);
+codb_ret write_scalar(odb_oid *oid, char *path, char *prop, cce_scalar *val);
 
 #endif
 
