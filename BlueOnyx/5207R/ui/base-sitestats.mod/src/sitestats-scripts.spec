@@ -1,7 +1,7 @@
 Summary: Server and site statistics for web, ftp, email, and network traffic
 Name: base-sitestats-scripts
 Version: 1.0
-Release: 26BX32%{?dist}
+Release: 26BX33%{?dist}
 Vendor: Project BlueOnyx
 License: Sun modified BSD
 Group: System Environment/BlueOnax
@@ -38,6 +38,9 @@ if [ -f /bin/systemctl ]; then
 fi
 
 %changelog
+
+* Fri Dec 18 2015 Michael Stauber <mstauber@solarspeed.net> 1.0-26BX33
+- Fix in /etc/cron.hourly/log_traffic
 
 * Mon Dec 07 2015 Michael Stauber <mstauber@solarspeed.net> 1.0-26BX32
 - Replaced log_traffic with the new one from Greg Kuhnert and added
