@@ -456,3 +456,47 @@ msgstr "[[base-apache.PHP_version_Field]]"
 
 msgid "PHP_version_help"
 msgstr "[[base-apache.PHP_version_Field_help]]"
+
+### PHP7:
+
+msgid "amPHPFPM70NameTag"
+msgstr "[[base-apache.amPHPFPMNameTag]] 7.0"
+
+msgid "amPHPFPM70StatusOK"
+msgstr "The service PHP-FPM (for PHP-7.0) is operating normally."
+
+msgid "amPHPFPM70NotRunning"
+msgstr "The service [[base-apache.amPHPFPM70NameTag]] is not running and could not be restarted. Please check the logfiles for error messages related to this service and run 'systemctl status php-fpm-7.0.service' as root from the command line to troubleshoot the problem. If you are still unable to access the [[base-apache.amPHPFPM70NameTag]], please visit [[base-sauce-basic.techSupportURL]] for technical support."
+
+#
+
+msgid "amPHPFPM71NameTag"
+msgstr "[[base-apache.amPHPFPMNameTag]] 7.1"
+
+msgid "amPHPFPM71StatusOK"
+msgstr "The service PHP-FPM (for PHP-7.1) is operating normally."
+
+msgid "amPHPFPM71NotRunning"
+msgstr "The service [[base-apache.amPHPFPM71NameTag]] is not running and could not be restarted. Please check the logfiles for error messages related to this service and run 'systemctl status php-fpm-7.1.service' as root from the command line to troubleshoot the problem. If you are still unable to access the [[base-apache.amPHPFPM71NameTag]], please visit [[base-sauce-basic.techSupportURL]] for technical support."
+
+#
+
+msgid "amPHPFPM72NameTag"
+msgstr "[[base-apache.amPHPFPMNameTag]] 7.2"
+
+msgid "amPHPFPM72StatusOK"
+msgstr "The service PHP-FPM (for PHP-7.2) is operating normally."
+
+msgid "amPHPFPM72NotRunning"
+msgstr "The service [[base-apache.amPHPFPM72NameTag]] is not running and could not be restarted. Please check the logfiles for error messages related to this service and run 'systemctl status php-fpm-7.2.service' as root from the command line to troubleshoot the problem. If you are still unable to access the [[base-apache.amPHPFPM72NameTag]], please visit [[base-sauce-basic.techSupportURL]] for technical support."
+
+#
+
+msgid "amPHPFPM73NameTag"
+msgstr "[[base-apache.amPHPFPMNameTag]] 7.3"
+
+msgid "amPHPFPM73StatusOK"
+msgstr "The service PHP-FPM (for PHP-7.3) is operating normally."
+
+msgid "amPHPFPM73NotRunning"
+msgstr "The service [[base-apache.amPHPFPM73NameTag]] is not running and could not be restarted. Please check the logfiles for error messages related to this service and run 'systemctl status php-fpm-7.3.service' as root from the command line to troubleshoot the problem. If you are still unable to access the [[base-apache.amPHPFPM73NameTag]], please visit [[base-sauce-basic.techSupportURL]] for technical support."

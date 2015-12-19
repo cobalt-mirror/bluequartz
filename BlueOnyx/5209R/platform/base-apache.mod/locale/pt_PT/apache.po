@@ -406,7 +406,7 @@ msgid "amPHPFPM53NameTag"
 msgstr "[[base-apache.amPHPFPMNameTag]] 5.3"
 
 msgid "amPHPFPM53StatusOK"
-msgstr "O serviço PHP-FPM (para PHP-5.6) está funcionando normalmente."
+msgstr "O serviço PHP-FPM (para PHP-5.3) está funcionando normalmente."
 
 msgid "amPHPFPM53NotRunning"
 msgstr "O [[base-apache.amPHPFPM53NameTag]] serviço não está em execução e não pôde ser reiniciado. Por favor, verifique os arquivos de log para mensagens de erro relacionadas com este serviço e run 'estado systemctl php-fpm-5.3.service' como root na linha de comando para solucionar o problema. Se você ainda não conseguir acessar a [[base-apache.amPHPFPM53NameTag]], visite [[base-sauce-basic.techSupportURL]] para suporte técnico."
@@ -432,6 +432,9 @@ msgstr "O [[base-apache.amPHPFPM55NameTag]] serviço não está em execução e 
 msgid "amPHPFPM56NameTag"
 msgstr "[[base-apache.amPHPFPMNameTag]] 5.6"
 
+msgid "amPHPFPM53StatusOK"
+msgstr "O serviço PHP-FPM (para PHP-5.3) está funcionando normalmente."
+
 msgid "amPHPFPM56NotRunning"
 msgstr "O [[base-apache.amPHPFPM56NameTag]] serviço não está em execução e não pôde ser reiniciado. Por favor, verifique os arquivos de log para mensagens de erro relacionadas com este serviço e run 'estado systemctl php-fpm-5.6.service' como root na linha de comando para solucionar o problema. Se você ainda não conseguir acessar a [[base-apache.amPHPFPM56NameTag]], visite [[base-sauce-basic.techSupportURL]] para suporte técnico."
 
@@ -442,4 +445,51 @@ msgstr "[[base-apache.PHP_version_Field]]"
 
 msgid "PHP_version_help"
 msgstr "[[base-apache.PHP_version_Field_help]]"
+
+### PHP7:
+
+msgid "amPHPFPM70NameTag"
+msgstr "[[base-apache.amPHPFPMNameTag]] 7.0"
+
+msgid "amPHPFPM70StatusOK"
+msgstr "O serviço PHP-FPM (para PHP-7.0) está funcionando normalmente."
+
+msgid "amPHPFPM70NotRunning"
+msgstr "O [[base-apache.amPHPFPM70NameTag]] serviço não está em execução e não pôde ser reiniciado. Por favor, verifique os arquivos de log para mensagens de erro relacionadas com este serviço e run 'estado systemctl php-fpm-7.0.service' como root na linha de comando para solucionar o problema. Se você ainda não conseguir acessar a [[base-apache.amPHPFPM70NameTag]], visite [[base-sauce-basic.techSupportURL]] para suporte técnico."
+
+#
+
+msgid "amPHPFPM71NameTag"
+msgstr "[[base-apache.amPHPFPMNameTag]] 7.1"
+
+msgid "amPHPFPM71StatusOK"
+msgstr "O serviço PHP-FPM (para PHP-7.1) está funcionando normalmente."
+
+msgid "amPHPFPM71NotRunning"
+msgstr "O [[base-apache.amPHPFPM71NameTag]] serviço não está em execução e não pôde ser reiniciado. Por favor, verifique os arquivos de log para mensagens de erro relacionadas com este serviço e run 'estado systemctl php-fpm-7.1.service' como root na linha de comando para solucionar o problema. Se você ainda não conseguir acessar a [[base-apache.amPHPFPM71NameTag]], visite [[base-sauce-basic.techSupportURL]] para suporte técnico."
+
+#
+
+msgid "amPHPFPM72NameTag"
+msgstr "[[base-apache.amPHPFPMNameTag]] 7.2"
+
+msgid "amPHPFPM72StatusOK"
+msgstr "O serviço PHP-FPM (para PHP-7.2) está funcionando normalmente."
+
+msgid "amPHPFPM72NotRunning"
+msgstr "O [[base-apache.amPHPFPM72NameTag]] serviço não está em execução e não pôde ser reiniciado. Por favor, verifique os arquivos de log para mensagens de erro relacionadas com este serviço e run 'estado systemctl php-fpm-7.2.service' como root na linha de comando para solucionar o problema. Se você ainda não conseguir acessar a [[base-apache.amPHPFPM72NameTag]], visite [[base-sauce-basic.techSupportURL]] para suporte técnico."
+
+#
+
+msgid "amPHPFPM73NameTag"
+msgstr "[[base-apache.amPHPFPMNameTag]] 7.3"
+
+msgid "amPHPFPM73StatusOK"
+msgstr "O serviço PHP-FPM (para PHP-7.3) está funcionando normalmente."
+
+msgid "amPHPFPM73NotRunning"
+msgstr "O [[base-apache.amPHPFPM73NameTag]] serviço não está em execução e não pôde ser reiniciado. Por favor, verifique os arquivos de log para mensagens de erro relacionadas com este serviço e run 'estado systemctl php-fpm-7.3.service' como root na linha de comando para solucionar o problema. Se você ainda não conseguir acessar a [[base-apache.amPHPFPM73NameTag]], visite [[base-sauce-basic.techSupportURL]] para suporte técnico."
+
+#
+
 

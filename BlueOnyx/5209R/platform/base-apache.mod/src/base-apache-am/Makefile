@@ -10,7 +10,7 @@ include /usr/sausalito/devel/defines.mk
 #endif
 
 BINDIR = $(SWATCHBINDIR)
-BINS = am_apache.exp am_apache.sh am_admserv.exp am_phpfpm.pl am_phpfpm53.pl am_phpfpm54.pl am_phpfpm55.pl am_phpfpm56.pl am_apache.pl
+BINS = am_apache.exp am_apache.sh am_admserv.exp am_phpfpm.pl am_phpfpm53.pl am_phpfpm54.pl am_phpfpm55.pl am_phpfpm56.pl am_phpfpm70.pl am_phpfpm71.pl am_phpfpm72.pl am_phpfpm73.pl am_phpfpm74.pl am_phpfpm75.pl am_phpfpm76.pl am_phpfpm77.pl am_phpfpm78.pl am_phpfpm79.pl am_apache.pl
 
 .PHONY: all
 all: install

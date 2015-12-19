@@ -1,0 +1,16 @@
+[Unit]
+Description=The PHP-7.5 FastCGI Process Manager
+After=syslog.target network.target
+
+[Service]
+Type=notify
+PIDFile=/run/php-fpm/php-fpm-7.5.pid
+EnvironmentFile=/etc/sysconfig/php-fpm
+ExecStart=/home/solarspeed/php-7.5/sbin/php-fpm --nodaemonize
+ExecReload=/bin/kill -USR2 $MAINPID
+PrivateTmp=true
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+

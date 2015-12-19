@@ -56,7 +56,17 @@ if (-s $stage) {
                         'PHP53' => '/home/solarspeed/php-5.3',
                         'PHP54' => '/home/solarspeed/php-5.4',
                         'PHP55' => '/home/solarspeed/php-5.5',
-                        'PHP56' => '/home/solarspeed/php-5.6'
+                        'PHP56' => '/home/solarspeed/php-5.6',
+                        'PHP70' => '/home/solarspeed/php-7.0',
+                        'PHP71' => '/home/solarspeed/php-7.1',
+                        'PHP72' => '/home/solarspeed/php-7.2',
+                        'PHP73' => '/home/solarspeed/php-7.3',
+                        'PHP74' => '/home/solarspeed/php-7.4',
+                        'PHP75' => '/home/solarspeed/php-7.5',
+                        'PHP76' => '/home/solarspeed/php-7.6',
+                        'PHP77' => '/home/solarspeed/php-7.7',
+                        'PHP78' => '/home/solarspeed/php-7.8',
+                        'PHP79' => '/home/solarspeed/php-7.9'
                         );
 
 # List of PEAR modules that we *need* to install:

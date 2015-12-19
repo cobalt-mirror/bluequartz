@@ -110,7 +110,8 @@ sub edit_vhost
 
     my $include_file = httpd_get_vhost_conf_file($vhost->{name}) . '.include';
 
-    my $aliasRewrite, $aliasRewriteSSL;
+    $aliasRewrite = '';
+    $aliasRewriteSSL = '';
     &debug_msg("Before trigger.\n");
     if (($vhost->{webAliases}) && ($vhost->{webAliasRedirects} == "0")) {
         &debug_msg("After trigger.\n");

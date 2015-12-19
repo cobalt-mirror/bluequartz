@@ -405,7 +405,7 @@ msgid "amPHPFPM53NameTag"
 msgstr "[[base-apache.amPHPFPMNameTag]] 5.3"
 
 msgid "amPHPFPM53StatusOK"
-msgstr "De service PHP-FPM (voor PHP-5.6) werkt normaal."
+msgstr "De service PHP-FPM (voor PHP-5.3) werkt normaal."
 
 msgid "amPHPFPM53NotRunning"
 msgstr "De service [[base-apache.amPHPFPM53NameTag]] draait niet en kon niet worden hervat. Kijk dan op de logfiles voor foutmeldingen in verband met deze service en run 'systemctl status php-fpm-5.3.service' als root vanaf de opdrachtregel om het probleem op te lossen. Als u nog steeds geen toegang tot de [[base-apache.amPHPFPM53NameTag]], kunt u terecht op [[base-sauce-basic.techSupportURL]] voor technische ondersteuning."
@@ -431,6 +431,9 @@ msgstr "De service [[base-apache.amPHPFPM55NameTag]] draait niet en kon niet wor
 msgid "amPHPFPM56NameTag"
 msgstr "[[base-apache.amPHPFPMNameTag]] 5.6"
 
+msgid "amPHPFPM56StatusOK"
+msgstr "De service PHP-FPM (voor PHP-5.6) werkt normaal."
+
 msgid "amPHPFPM56NotRunning"
 msgstr "De service [[base-apache.amPHPFPM56NameTag]] draait niet en kon niet worden hervat. Kijk dan op de logfiles voor foutmeldingen in verband met deze service en run 'systemctl status php-fpm-5.6.service' als root vanaf de opdrachtregel om het probleem op te lossen. Als u nog steeds geen toegang tot de [[base-apache.amPHPFPM56NameTag]], kunt u terecht op [[base-sauce-basic.techSupportURL]] voor technische ondersteuning."
 
@@ -441,4 +444,50 @@ msgstr "[[base-apache.PHP_version_Field]]"
 
 msgid "PHP_version_help"
 msgstr "[[base-apache.PHP_version_Field_help]]"
+
+### PHP7:
+
+msgid "amPHPFPM70NameTag"
+msgstr "[[base-apache.amPHPFPMNameTag]] 7.0"
+
+msgid "amPHPFPM70StatusOK"
+msgstr "De service PHP-FPM (voor PHP-7.0) werkt normaal."
+
+msgid "amPHPFPM70NotRunning"
+msgstr "De service [[base-apache.amPHPFPM70NameTag]] draait niet en kon niet worden hervat. Kijk dan op de logfiles voor foutmeldingen in verband met deze service en run 'systemctl status php-fpm-7.0.service' als root vanaf de opdrachtregel om het probleem op te lossen. Als u nog steeds geen toegang tot de [[base-apache.amPHPFPM70NameTag]], kunt u terecht op [[base-sauce-basic.techSupportURL]] voor technische ondersteuning."
+
+#
+
+msgid "amPHPFPM71NameTag"
+msgstr "[[base-apache.amPHPFPMNameTag]] 7.1"
+
+msgid "amPHPFPM71StatusOK"
+msgstr "De service PHP-FPM (voor PHP-7.1) werkt normaal."
+
+msgid "amPHPFPM71NotRunning"
+msgstr "De service [[base-apache.amPHPFPM71NameTag]] draait niet en kon niet worden hervat. Kijk dan op de logfiles voor foutmeldingen in verband met deze service en run 'systemctl status php-fpm-7.1.service' als root vanaf de opdrachtregel om het probleem op te lossen. Als u nog steeds geen toegang tot de [[base-apache.amPHPFPM71NameTag]], kunt u terecht op [[base-sauce-basic.techSupportURL]] voor technische ondersteuning."
+
+#
+
+msgid "amPHPFPM72NameTag"
+msgstr "[[base-apache.amPHPFPMNameTag]] 7.2"
+
+msgid "amPHPFPM72StatusOK"
+msgstr "De service PHP-FPM (voor PHP-7.2) werkt normaal."
+
+msgid "amPHPFPM72NotRunning"
+msgstr "De service [[base-apache.amPHPFPM72NameTag]] draait niet en kon niet worden hervat. Kijk dan op de logfiles voor foutmeldingen in verband met deze service en run 'systemctl status php-fpm-7.2.service' als root vanaf de opdrachtregel om het probleem op te lossen. Als u nog steeds geen toegang tot de [[base-apache.amPHPFPM72NameTag]], kunt u terecht op [[base-sauce-basic.techSupportURL]] voor technische ondersteuning."
+
+#
+
+msgid "amPHPFPM73NameTag"
+msgstr "[[base-apache.amPHPFPMNameTag]] 7.3"
+
+msgid "amPHPFPM73StatusOK"
+msgstr "De service PHP-FPM (voor PHP-7.3) werkt normaal."
+
+msgid "amPHPFPM73NotRunning"
+msgstr "De service [[base-apache.amPHPFPM73NameTag]] draait niet en kon niet worden hervat. Kijk dan op de logfiles voor foutmeldingen in verband met deze service en run 'systemctl status php-fpm-7.3.service' als root vanaf de opdrachtregel om het probleem op te lossen. Als u nog steeds geen toegang tot de [[base-apache.amPHPFPM73NameTag]], kunt u terecht op [[base-sauce-basic.techSupportURL]] voor technische ondersteuning."
+
+#
 

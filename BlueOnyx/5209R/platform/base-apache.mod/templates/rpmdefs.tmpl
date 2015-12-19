@@ -62,11 +62,31 @@ information for [VENDOR]-[SERVICE].
 /usr/lib/systemd/system/php-fpm-5.4.service
 /usr/lib/systemd/system/php-fpm-5.5.service
 /usr/lib/systemd/system/php-fpm-5.6.service
+/usr/lib/systemd/system/php-fpm-7.0.service
+/usr/lib/systemd/system/php-fpm-7.1.service
+/usr/lib/systemd/system/php-fpm-7.2.service
+/usr/lib/systemd/system/php-fpm-7.3.service
+/usr/lib/systemd/system/php-fpm-7.4.service
+/usr/lib/systemd/system/php-fpm-7.5.service
+/usr/lib/systemd/system/php-fpm-7.6.service
+/usr/lib/systemd/system/php-fpm-7.7.service
+/usr/lib/systemd/system/php-fpm-7.8.service
+/usr/lib/systemd/system/php-fpm-7.9.service
 
 %config(noreplace)/etc/php-fpm-5.3.d/www.conf
 %config(noreplace)/etc/php-fpm-5.4.d/www.conf
 %config(noreplace)/etc/php-fpm-5.5.d/www.conf
 %config(noreplace)/etc/php-fpm-5.6.d/www.conf
+%config(noreplace)/etc/php-fpm-7.0.d/www.conf
+%config(noreplace)/etc/php-fpm-7.1.d/www.conf
+%config(noreplace)/etc/php-fpm-7.2.d/www.conf
+%config(noreplace)/etc/php-fpm-7.3.d/www.conf
+%config(noreplace)/etc/php-fpm-7.4.d/www.conf
+%config(noreplace)/etc/php-fpm-7.5.d/www.conf
+%config(noreplace)/etc/php-fpm-7.6.d/www.conf
+%config(noreplace)/etc/php-fpm-7.7.d/www.conf
+%config(noreplace)/etc/php-fpm-7.8.d/www.conf
+%config(noreplace)/etc/php-fpm-7.9.d/www.conf
 
 [AUTOFILL]
 
@@ -203,6 +223,9 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Fri Dec 18 2015 Michael Stauber <mstauber@solarspeed.net> 2.1.1-0BX40
+- Added provisions for PHP7
 
 * Wed Oct 14 2015 Michael Stauber <mstauber@solarspeed.net> 2.1.1-0BX39
 - Updated the webscripting handlers to update documentRoot changes in the

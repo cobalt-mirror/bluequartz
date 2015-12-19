@@ -451,7 +451,7 @@ msgid "amPHPFPM53NameTag"
 msgstr "[[base-apache.amPHPFPMNameTag]] 5.3"
 
 msgid "amPHPFPM53StatusOK"
-msgstr "Tjenesten PHP-FPM (til PHP-5.6) fungerer normalt."
+msgstr "Tjenesten PHP-FPM (til PHP-5.3) fungerer normalt."
 
 msgid "amPHPFPM53NotRunning"
 msgstr "Servicen [[base-apache.amPHPFPM53NameTag]] kører ikke, og kunne ikke genstartes. Husk at tjekke logfiler for fejlmeddelelser relateret til denne tjeneste og køre 'systemctl status php-fpm-5.3.service' som root fra kommandolinjen for at finde problemet. Hvis du stadig ikke kan få adgang til [[base-apache.amPHPFPM53NameTag]], kan du besøge [[base-sauce-basic.techSupportURL]] til teknisk support."
@@ -477,6 +477,9 @@ msgstr "Servicen [[base-apache.amPHPFPM55NameTag]] kører ikke, og kunne ikke ge
 msgid "amPHPFPM56NameTag"
 msgstr "[[base-apache.amPHPFPMNameTag]] 5.6"
 
+msgid "amPHPFPM56StatusOK"
+msgstr "Tjenesten PHP-FPM (til PHP-5.6) fungerer normalt."
+
 msgid "amPHPFPM56NotRunning"
 msgstr "Servicen [[base-apache.amPHPFPM56NameTag]] kører ikke, og kunne ikke genstartes. Husk at tjekke logfiler for fejlmeddelelser relateret til denne tjeneste og køre 'systemctl status php-fpm-5.6.service' som root fra kommandolinjen for at finde problemet. Hvis du stadig ikke kan få adgang til [[base-apache.amPHPFPM56NameTag]], kan du besøge [[base-sauce-basic.techSupportURL]] til teknisk support."
 
@@ -487,3 +490,49 @@ msgstr "[[base-apache.PHP_version_Field]]"
 
 msgid "PHP_version_help"
 msgstr "[[base-apache.PHP_version_Field_help]]"
+
+### PHP 7:
+
+msgid "amPHPFPM70NameTag"
+msgstr "[[base-apache.amPHPFPMNameTag]] 7.0"
+
+msgid "amPHPFPM70StatusOK"
+msgstr "Tjenesten PHP-FPM (til PHP-7.0) fungerer normalt."
+
+msgid "amPHPFPM70NotRunning"
+msgstr "Servicen [[base-apache.amPHPFPM70NameTag]] kører ikke, og kunne ikke genstartes. Husk at tjekke logfiler for fejlmeddelelser relateret til denne tjeneste og køre 'systemctl status php-fpm-7.0.service' som root fra kommandolinjen for at finde problemet. Hvis du stadig ikke kan få adgang til [[base-apache.amPHPFPM70NameTag]], kan du besøge [[base-sauce-basic.techSupportURL]] til teknisk support."
+
+#
+
+msgid "amPHPFPM71NameTag"
+msgstr "[[base-apache.amPHPFPMNameTag]] 7.1"
+
+msgid "amPHPFPM71StatusOK"
+msgstr "Tjenesten PHP-FPM (til PHP-7.1) fungerer normalt."
+
+msgid "amPHPFPM71NotRunning"
+msgstr "Servicen [[base-apache.amPHPFPM71NameTag]] kører ikke, og kunne ikke genstartes. Husk at tjekke logfiler for fejlmeddelelser relateret til denne tjeneste og køre 'systemctl status php-fpm-7.1.service' som root fra kommandolinjen for at finde problemet. Hvis du stadig ikke kan få adgang til [[base-apache.amPHPFPM71NameTag]], kan du besøge [[base-sauce-basic.techSupportURL]] til teknisk support."
+
+#
+
+msgid "amPHPFPM72NameTag"
+msgstr "[[base-apache.amPHPFPMNameTag]] 7.2"
+
+msgid "amPHPFPM72StatusOK"
+msgstr "Tjenesten PHP-FPM (til PHP-7.2) fungerer normalt."
+
+msgid "amPHPFPM72NotRunning"
+msgstr "Servicen [[base-apache.amPHPFPM72NameTag]] kører ikke, og kunne ikke genstartes. Husk at tjekke logfiler for fejlmeddelelser relateret til denne tjeneste og køre 'systemctl status php-fpm-7.2.service' som root fra kommandolinjen for at finde problemet. Hvis du stadig ikke kan få adgang til [[base-apache.amPHPFPM72NameTag]], kan du besøge [[base-sauce-basic.techSupportURL]] til teknisk support."
+
+#
+
+msgid "amPHPFPM73NameTag"
+msgstr "[[base-apache.amPHPFPMNameTag]] 7.3"
+
+msgid "amPHPFPM73StatusOK"
+msgstr "Tjenesten PHP-FPM (til PHP-7.3) fungerer normalt."
+
+msgid "amPHPFPM73NotRunning"
+msgstr "Servicen [[base-apache.amPHPFPM73NameTag]] kører ikke, og kunne ikke genstartes. Husk at tjekke logfiler for fejlmeddelelser relateret til denne tjeneste og køre 'systemctl status php-fpm-7.3.service' som root fra kommandolinjen for at finde problemet. Hvis du stadig ikke kan få adgang til [[base-apache.amPHPFPM73NameTag]], kan du besøge [[base-sauce-basic.techSupportURL]] til teknisk support."
+
+#

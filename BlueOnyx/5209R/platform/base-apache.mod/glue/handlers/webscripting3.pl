@@ -233,7 +233,17 @@ if (($easy_way > 0) || ($hard_way > 0)) {
                         'PHP53' => '5.3',
                         'PHP54' => '5.4',
                         'PHP55' => '5.5',
-                        'PHP56' => '5.6'
+                        'PHP56' => '5.6',
+                        'PHP70' => '7.0',
+                        'PHP71' => '7.1',
+                        'PHP72' => '7.2',
+                        'PHP73' => '7.3',
+                        'PHP74' => '7.4',
+                        'PHP75' => '7.5',
+                        'PHP76' => '7.6',
+                        'PHP77' => '7.7',
+                        'PHP78' => '7.8',
+                        'PHP79' => '7.9'
                         );
 
 %php_handlers = (
@@ -241,7 +251,17 @@ if (($easy_way > 0) || ($hard_way > 0)) {
                         'PHP53' => 'x-httpd-suphp-5.3',
                         'PHP54' => 'x-httpd-suphp-5.4',
                         'PHP55' => 'x-httpd-suphp-5.5',
-                        'PHP56' => 'x-httpd-suphp-5.6'
+                        'PHP56' => 'x-httpd-suphp-5.6',
+                        'PHP70' => 'x-httpd-suphp-7.0',
+                        'PHP71' => 'x-httpd-suphp-7.1',
+                        'PHP72' => 'x-httpd-suphp-7.2',
+                        'PHP73' => 'x-httpd-suphp-7.3',
+                        'PHP74' => 'x-httpd-suphp-7.4',
+                        'PHP75' => 'x-httpd-suphp-7.5',
+                        'PHP76' => 'x-httpd-suphp-7.6',
+                        'PHP77' => 'x-httpd-suphp-7.7',
+                        'PHP78' => 'x-httpd-suphp-7.8',
+                        'PHP79' => 'x-httpd-suphp-7.9'
                         );
 
 @sysoids = $cce->find('PHP');
