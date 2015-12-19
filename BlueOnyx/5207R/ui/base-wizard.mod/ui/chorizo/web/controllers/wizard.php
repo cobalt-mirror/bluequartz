@@ -702,20 +702,6 @@ class Wizard extends MX_Controller {
             exit;
         }
 
-        // Set default Wait Overlay:
-        $this->Overlay = "          <script>
-                $(document).ready(function() {
-                  $('#fade_overlay').popup({
-                        blur: false
-                    });
-                });
-            </script>
-            <!-- End: Wait overlay -->
-            <!-- Start: Wait overlay -->
-            <div id=\"fade_overlay\" class=\"display_none\">
-                <img src=\"/.adm/images/wait/loading_bar.gif\" id=\"loading_image\" height=\"75\" width=\"450\">
-            </div>\n";
-
         // Get the IP address of the user accessing the GUI:
         $userip = $this->input->ip_address();
 
@@ -1563,7 +1549,7 @@ nuclear facility.';
                 'layout' => $layout,
                 'extra_headers' => '',
                 'body_open_tag' => '<body>',
-                'overlay' => $this->Overlay,
+                'overlay' => '',
                 'debug' => '',
                 'iso_wizard_title' => $i18n->getHtml("[[base-wizard.iso_wizard_title]]"),
                 'step_1_title' => $step_1_title,

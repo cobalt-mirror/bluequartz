@@ -103,6 +103,14 @@ information for [VENDOR]-[SERVICE].
 
 <begin $CHANGELOG>
 
+* Fri Dec 18 2015 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX20
+- The recent changes in base-alpine.mod to the Overlay progress bar handling
+  makes it necessary to disable the progress bar entirely in the wizard
+  pages. The reason for this is the entirely different 'out of style' 
+  appearance of this pages is no longer compatible with the Overlay stuff.
+- Modified ui/chorizo/web/controllers/wizard.php to remove Overlay.
+- Modified ui/chorizo/web/views/wizard_view.php to remove Overlay.
+
 * Sat Jun 27 2015 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX19
 - Another 'undefined index' fix for cases where we're not yet having all
   required CODB information.
