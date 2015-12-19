@@ -432,8 +432,8 @@ msgstr "O [[base-apache.amPHPFPM55NameTag]] serviço não está em execução e 
 msgid "amPHPFPM56NameTag"
 msgstr "[[base-apache.amPHPFPMNameTag]] 5.6"
 
-msgid "amPHPFPM53StatusOK"
-msgstr "O serviço PHP-FPM (para PHP-5.3) está funcionando normalmente."
+msgid "amPHPFPM56StatusOK"
+msgstr "O serviço PHP-FPM (para PHP-5.6) está funcionando normalmente."
 
 msgid "amPHPFPM56NotRunning"
 msgstr "O [[base-apache.amPHPFPM56NameTag]] serviço não está em execução e não pôde ser reiniciado. Por favor, verifique os arquivos de log para mensagens de erro relacionadas com este serviço e run 'estado systemctl php-fpm-5.6.service' como root na linha de comando para solucionar o problema. Se você ainda não conseguir acessar a [[base-apache.amPHPFPM56NameTag]], visite [[base-sauce-basic.techSupportURL]] para suporte técnico."
