@@ -47,7 +47,17 @@ if ($whatami eq "handler") {
                             'PHP53' => '5.3',
                             'PHP54' => '5.4',
                             'PHP55' => '5.5',
-                            'PHP56' => '5.6'
+                            'PHP56' => '5.6',
+                            'PHP70' => '7.0',
+                            'PHP71' => '7.1',
+                            'PHP72' => '7.2',
+                            'PHP73' => '7.3',
+                            'PHP74' => '7.4',
+                            'PHP75' => '7.5',
+                            'PHP76' => '7.6',
+                            'PHP77' => '7.7',
+                            'PHP78' => '7.8',
+                            'PHP79' => '7.9'
                             );
 
     # Known PHP Paths:
@@ -55,7 +65,17 @@ if ($whatami eq "handler") {
                             'PHP53' => '/etc/php-fpm-5.3.d/',
                             'PHP54' => '/etc/php-fpm-5.4.d/',
                             'PHP55' => '/etc/php-fpm-5.5.d/',
-                            'PHP56' => '/etc/php-fpm-5.6.d/'
+                            'PHP56' => '/etc/php-fpm-5.6.d/',
+                            'PHP70' => '/etc/php-fpm-7.0.d/',
+                            'PHP71' => '/etc/php-fpm-7.1.d/',
+                            'PHP72' => '/etc/php-fpm-7.2.d/',
+                            'PHP73' => '/etc/php-fpm-7.3.d/',
+                            'PHP74' => '/etc/php-fpm-7.4.d/',
+                            'PHP75' => '/etc/php-fpm-7.5.d/',
+                            'PHP76' => '/etc/php-fpm-7.6.d/',
+                            'PHP77' => '/etc/php-fpm-7.7.d/',
+                            'PHP78' => '/etc/php-fpm-7.8.d/',
+                            'PHP79' => '/etc/php-fpm-7.9.d/'
                             );
 
     # Known PHP Services:
@@ -63,7 +83,17 @@ if ($whatami eq "handler") {
                             'PHP53' => 'php-fpm-5.3',
                             'PHP54' => 'php-fpm-5.4',
                             'PHP55' => 'php-fpm-5.5',
-                            'PHP56' => 'php-fpm-5.6'
+                            'PHP56' => 'php-fpm-5.6',
+                            'PHP70' => 'php-fpm-7.0',
+                            'PHP71' => 'php-fpm-7.1',
+                            'PHP72' => 'php-fpm-7.2',
+                            'PHP73' => 'php-fpm-7.3',
+                            'PHP74' => 'php-fpm-7.4',
+                            'PHP75' => 'php-fpm-7.5',
+                            'PHP76' => 'php-fpm-7.6',
+                            'PHP77' => 'php-fpm-7.7',
+                            'PHP78' => 'php-fpm-7.8',
+                            'PHP79' => 'php-fpm-7.9'
                             );
 
     # Get OID of 'ActiveMonitor':

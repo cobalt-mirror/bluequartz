@@ -56,7 +56,17 @@ else {
                         'PHP53' => '5.3',
                         'PHP54' => '5.4',
                         'PHP55' => '5.5',
-                        'PHP56' => '5.6'
+                        'PHP56' => '5.6',
+                        'PHP70' => '7.0',
+                        'PHP71' => '7.1',
+                        'PHP72' => '7.2',
+                        'PHP73' => '7.3',
+                        'PHP74' => '7.4',
+                        'PHP75' => '7.5',
+                        'PHP76' => '7.6',
+                        'PHP77' => '7.7',
+                        'PHP78' => '7.8',
+                        'PHP79' => '7.9'
                         );
 
 # Check if known extra PHP versions are present. If so, update CODB accordingly:
@@ -120,6 +130,16 @@ if (-f "/etc/suphp.conf") {
     $php_conf_suphp .= 'x-httpd-suphp-5.4="php:/home/solarspeed/php-5.4/bin/php-cgi"' . "\n";
     $php_conf_suphp .= 'x-httpd-suphp-5.5="php:/home/solarspeed/php-5.5/bin/php-cgi"' . "\n";
     $php_conf_suphp .= 'x-httpd-suphp-5.6="php:/home/solarspeed/php-5.6/bin/php-cgi"' . "\n";
+    $php_conf_suphp .= 'x-httpd-suphp-7.0="php:/home/solarspeed/php-7.0/bin/php-cgi"' . "\n";
+    $php_conf_suphp .= 'x-httpd-suphp-7.1="php:/home/solarspeed/php-7.1/bin/php-cgi"' . "\n";
+    $php_conf_suphp .= 'x-httpd-suphp-7.2="php:/home/solarspeed/php-7.2/bin/php-cgi"' . "\n";
+    $php_conf_suphp .= 'x-httpd-suphp-7.3="php:/home/solarspeed/php-7.3/bin/php-cgi"' . "\n";
+    $php_conf_suphp .= 'x-httpd-suphp-7.4="php:/home/solarspeed/php-7.4/bin/php-cgi"' . "\n";
+    $php_conf_suphp .= 'x-httpd-suphp-7.5="php:/home/solarspeed/php-7.5/bin/php-cgi"' . "\n";
+    $php_conf_suphp .= 'x-httpd-suphp-7.6="php:/home/solarspeed/php-7.6/bin/php-cgi"' . "\n";
+    $php_conf_suphp .= 'x-httpd-suphp-7.7="php:/home/solarspeed/php-7.7/bin/php-cgi"' . "\n";
+    $php_conf_suphp .= 'x-httpd-suphp-7.8="php:/home/solarspeed/php-7.8/bin/php-cgi"' . "\n";
+    $php_conf_suphp .= 'x-httpd-suphp-7.9="php:/home/solarspeed/php-7.9/bin/php-cgi"' . "\n";
 
     if(!Sauce::Util::replaceblock('/etc/suphp.conf', ';Handler for php-scripts', $php_conf_suphp, ';Handler for CGI-scripts')) {
         &debug_msg("Editing of /etc/suphp.conf failed!\n");

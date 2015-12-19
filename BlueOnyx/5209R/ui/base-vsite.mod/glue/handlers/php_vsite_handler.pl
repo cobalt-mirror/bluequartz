@@ -262,18 +262,38 @@ if ($whatami eq "handler") {
                             'PHP53' => '5.3',
                             'PHP54' => '5.4',
                             'PHP55' => '5.5',
-                            'PHP56' => '5.6'
+                            'PHP56' => '5.6',
+                            'PHP70' => '7.0',
+                            'PHP71' => '7.1',
+                            'PHP72' => '7.2',
+                            'PHP73' => '7.3',
+                            'PHP74' => '7.4',
+                            'PHP75' => '7.5',
+                            'PHP76' => '7.6',
+                            'PHP77' => '7.7',
+                            'PHP78' => '7.8',
+                            'PHP79' => '7.9'
                             );
 
     # Known PHP-FPM pool ports:
     %known_pool_ports = (
-                            'PHPOS' => '9000',
+                            'OS' => '9000',
                             'PHP53' => '8953',
                             'PHP54' => '8954',
                             'PHP55' => '8955',
-                            'PHP56' => '8956'
+                            'PHP56' => '8956',
+                            'PHP70' => '8957',
+                            'PHP71' => '8958',
+                            'PHP72' => '8959',
+                            'PHP73' => '8960',
+                            'PHP74' => '8961',
+                            'PHP75' => '8962',
+                            'PHP76' => '8963',
+                            'PHP77' => '8964',
+                            'PHP78' => '8965',
+                            'PHP79' => '8966'
                             );
-
+    
     # Check if known extra PHP versions are present. If so, update CODB accordingly:
     if (defined($PHP_server_OID)) {
         for $phpVer (keys %known_php_versions) {

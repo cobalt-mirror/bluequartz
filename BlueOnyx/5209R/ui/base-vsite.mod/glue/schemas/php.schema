@@ -201,3 +201,113 @@
         name="version" type="scalar" default="" optional="true" 
     />
 </class>
+<class name="PHP" namespace="PHP70" version="1.0" createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)">
+    <property
+        name="present" type="boolean" default="0" 
+    />
+    <property
+        name="enabled" type="boolean" default="0" 
+    />
+    <property
+        name="version" type="scalar" default="" optional="true" 
+    />
+</class>
+<class name="PHP" namespace="PHP71" version="1.0" createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)">
+    <property
+        name="present" type="boolean" default="0" 
+    />
+    <property
+        name="enabled" type="boolean" default="0" 
+    />
+    <property
+        name="version" type="scalar" default="" optional="true" 
+    />
+</class>
+<class name="PHP" namespace="PHP72" version="1.0" createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)">
+    <property
+        name="present" type="boolean" default="0" 
+    />
+    <property
+        name="enabled" type="boolean" default="0" 
+    />
+    <property
+        name="version" type="scalar" default="" optional="true" 
+    />
+</class>
+<class name="PHP" namespace="PHP73" version="1.0" createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)">
+    <property
+        name="present" type="boolean" default="0" 
+    />
+    <property
+        name="enabled" type="boolean" default="0" 
+    />
+    <property
+        name="version" type="scalar" default="" optional="true" 
+    />
+</class>
+<class name="PHP" namespace="PHP74" version="1.0" createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)">
+    <property
+        name="present" type="boolean" default="0" 
+    />
+    <property
+        name="enabled" type="boolean" default="0" 
+    />
+    <property
+        name="version" type="scalar" default="" optional="true" 
+    />
+</class>
+<class name="PHP" namespace="PHP75" version="1.0" createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)">
+    <property
+        name="present" type="boolean" default="0" 
+    />
+    <property
+        name="enabled" type="boolean" default="0" 
+    />
+    <property
+        name="version" type="scalar" default="" optional="true" 
+    />
+</class>
+<class name="PHP" namespace="PHP76" version="1.0" createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)">
+    <property
+        name="present" type="boolean" default="0" 
+    />
+    <property
+        name="enabled" type="boolean" default="0" 
+    />
+    <property
+        name="version" type="scalar" default="" optional="true" 
+    />
+</class>
+<class name="PHP" namespace="PHP77" version="1.0" createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)">
+    <property
+        name="present" type="boolean" default="0" 
+    />
+    <property
+        name="enabled" type="boolean" default="0" 
+    />
+    <property
+        name="version" type="scalar" default="" optional="true" 
+    />
+</class>
+<class name="PHP" namespace="PHP78" version="1.0" createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)">
+    <property
+        name="present" type="boolean" default="0" 
+    />
+    <property
+        name="enabled" type="boolean" default="0" 
+    />
+    <property
+        name="version" type="scalar" default="" optional="true" 
+    />
+</class>
+<class name="PHP" namespace="PHP79" version="1.0" createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)">
+    <property
+        name="present" type="boolean" default="0" 
+    />
+    <property
+        name="enabled" type="boolean" default="0" 
+    />
+    <property
+        name="version" type="scalar" default="" optional="true" 
+    />
+</class>
