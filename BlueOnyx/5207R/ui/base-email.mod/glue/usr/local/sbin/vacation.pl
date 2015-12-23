@@ -268,7 +268,7 @@ if ($is_overquota eq "0") {
 
     # Build the message using MIME::Lite instead:
     my $send_msg = MIME::Lite->new(
-        From     => $fullname . " <$user_from>",
+        From     => "<$user_from>",
         To       => $sendto,
         Subject  => $mail_subject,
         Data     => $msg
