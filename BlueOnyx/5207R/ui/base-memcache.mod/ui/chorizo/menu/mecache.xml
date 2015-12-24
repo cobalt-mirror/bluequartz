@@ -1,0 +1,10 @@
+<item
+  id="base_memcache"
+  label="[[base-memcache.memcache]]"
+  description="[[base-memcache.memcache_help]]"
+  url="/memcache/memcache"
+>
+  <parent id="base_serverconfig" order="10">
+    <access require="adminUser"/>
+  </parent>
+</item>
