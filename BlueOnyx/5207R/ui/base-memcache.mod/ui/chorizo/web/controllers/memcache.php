@@ -183,10 +183,6 @@ class Memcache extends MX_Controller {
     $BxPage->render($page_module, $page_body);
 
   }
-
-
-
-
 }
 /*
 Copyright (c) 2015 Hisao SHIBUYA, Smack, Inc.
