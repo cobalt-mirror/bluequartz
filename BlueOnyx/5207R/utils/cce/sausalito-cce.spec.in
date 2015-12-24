@@ -33,7 +33,7 @@ sausalito-cce has both the server and client parts of cce.
 Group: System Environment/BlueOnyx
 Summary: The CCE server daemon
 Requires: glib, glib-ghash, pam, policycoreutils
-Requires: memcached, libmemcached
+Requires: memcached, libmemcached, base-memcache-capstone >= 1.0.0-0BX01
 %if "%centos" == "5" 
 Requires: audit-libs
 %endif 
@@ -209,6 +209,9 @@ if [ "$1" -ge "1" ]; then
 fi
 
 %changelog
+* Tue Dec 22 2015 Hisao SHIBUYA <hisao@smack.jp> 0.99.2-1BZ02
+- add requires base-memcahe-capstone to install base-memcahe packages.
+
 * Tue Dec 15 2015 Hisao SHIBUYA <hisao@smack.jp> 0.99.2-1BX01
 - add memcachd feature.
 - output debug information both from memcached and file.
