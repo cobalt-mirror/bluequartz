@@ -11,16 +11,22 @@ $cce->connectuds();
 # Find out if memcached is enabled at the moment:
 my @oids = $cce->find('System');
 if (not @oids) {
-	$cce->bye('FAIL');
-	exit 1;
+    $cce->bye('FAIL');
+    exit 1;
 }
 my ($ok, $obj) = $cce->get($oids[0], 'memcache');
 unless ($ok and $obj) {
-	$cce->bye('FAIL');
-	exit 1;
+    $cce->bye('FAIL');
+    exit 1;
 }
 
 service_toggle_init('memcached', $obj->{'enabled'});
+if ($obj->{'enabled'} eq "1") {
+    Sauce::Service::service_run_init('memcached', 'restart');
+}
+else {
+    Sauce::Service::service_run_init('memcached', 'stop');
+}
 
 $cce->bye('SUCCESS');
 exit(0);
