@@ -83,7 +83,7 @@ information for [VENDOR]-[SERVICE].
 
 <begin glue>
 # glue post-install
-if [ $1 = 1 ]; then
+if [ -S /usr/sausalito/cced.socket ]; then
     /usr/sausalito/sbin/cced.init restart
 fi
 
