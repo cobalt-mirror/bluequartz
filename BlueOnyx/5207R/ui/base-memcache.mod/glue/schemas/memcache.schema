@@ -3,7 +3,7 @@
 	writeacl="ruleCapable(adminUser)"
     />
 
-    <property name="enabled" type="boolean" default="1"
+    <property name="enabled" type="boolean" default="0"
 	writeacl="ruleCapable(adminUser)"
     />
 
