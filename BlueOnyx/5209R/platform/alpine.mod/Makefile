@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=alpine
 
 VERSION=1.1
-RELEASE=1BX52
+RELEASE=1BX53
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -20,7 +20,7 @@ BUILDGLUE=yes
 BUILDLOCALE=yes
 #BUILDSRC=yes
 
-REQUIRES = php-mcrypt
+REQUIRES = php-mcrypt base-memcache-capstone
 
 #########
 # some useful defines
