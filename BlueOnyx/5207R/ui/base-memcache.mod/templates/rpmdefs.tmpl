@@ -84,7 +84,7 @@ information for [VENDOR]-[SERVICE].
 <begin glue>
 # glue post-install
 if [ $1 = 1 ]; then
-    /etc/init.d/cced.init restart
+    /usr/sausalito/sbin/cced.init restart
 fi
 
 <end glue>
