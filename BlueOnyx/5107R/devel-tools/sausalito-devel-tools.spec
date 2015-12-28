@@ -53,6 +53,8 @@ done
 /etc/rpm/macros.blueonyx
 
 %changelog
+* Mon Dec 28 2015 Hisao SHIBUYA <hisao@smack.jp> 0.6.0-0BX10
+- modify rpmsorter.sh to remove epoch number for resolving the issue about missing package that package has epoch number.
 
 * Wed Oct 01 2014 Michael Stauber <mstauber@solarspeed.net> 0.6.0-0BX09
 - Yet more fixes for the rpmsorter.sh stuff. 

@@ -43,5 +43,5 @@ export LINGUAS="en_US ja da_DK de_DE"
 
 rm -f /tmp/rpmtest
 rpm -ihv --test -v $1/*.rpm 2> /tmp/rpmtest 1>/dev/null
-cat /tmp/rpmtest|grep "D:    "|cut -d + -f2|grep -v "^Preparing..."|grep -v "######"|sed 's@$@.rpm@' | sed ':a;N;$!ba;s/\n/ /g'
+cat /tmp/rpmtest|grep "D:    "|cut -d + -f2|grep -v "^Preparing..."|grep -v "######"|sed 's@$@.rpm@' | sed 's@-[0-9]*:@-@' | sed ':a;N;$!ba;s/\n/ /g'
 
