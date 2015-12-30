@@ -406,7 +406,7 @@ while ($ip_port = $apache->cmd_config('VirtualHost')) {
             # Keep track of who owns what:
             if ($SuexecUserGroup) {
                 @known_reseller_domains = scalar_to_array($DomainOwners->{$SuexecUserGroup});
-                if (!in_array(\@known_reseller_domains, $fqdn)) {
+                if ((!in_array(\@known_reseller_domains, $fqdn)) && ($SuexecUserGroup ne "apache")) {
                     push @known_reseller_domains, $fqdn;
                     $DomainOwners->{$SuexecUserGroup} = array_to_scalar(@known_reseller_domains);
                     $Resellers->{$SuexecUserGroup}->{newName} = $SuexecUserGroup . "_admin";
@@ -481,7 +481,7 @@ while ($ip_port = $apache->cmd_config('VirtualHost')) {
 foreach $u ( keys %{ $Resellers } ) {
     @known_reseller_domains = scalar_to_array($Resellers->{$u}->{domains});
     $num = scalar(@known_reseller_domains);
-    if ($num == "1") {
+    if (($num == "1") || ($u = "apache")) {
         delete $Resellers->{$u};
         &debug_msg("User $u will NOT be treated as reseller as he only handles one Vsite. \n");
     }
