@@ -53,7 +53,7 @@ use POSIX;
 #
 
 %options = ();
-getopts("avhcepxqd:i:n:r:", \%options);
+getopts("avhcepxqsd:i:n:r:", \%options);
 
 # Handle display of help text:
 if ($options{h}) {
@@ -67,6 +67,12 @@ if ($options{p}) {
     print "### Done! \n";
     $cce->bye("SUCCESS");
     exit(0);
+}
+
+# Skip Vsite creation if Vsite already exists:
+$soft_vsite_failure = "0";
+if ($options{s}) {
+    $soft_vsite_failure = "1";
 }
 
 # Skip reseller import:
@@ -320,7 +326,12 @@ if ($no_vsites eq "0") {
     foreach $v (@import_Vsites) {
         &debug_msg("Attempting to create Vsite: $v\n");
         if (&cce_find_vsite($v)) {
-            &help("Creation of Vsite '$v' failed! Vsite '$v' already exists! (OID: " . &cce_find_vsite($v) .")");
+            if ($soft_vsite_failure eq "1") {
+                &debug_msg("Skipping Vsite '$v' as it already exists.\n\n");
+            }
+            else {
+                &help("Creation of Vsite '$v' failed! Vsite '$v' already exists! (OID: " . &cce_find_vsite($v) . ")");
+            }
         }
         else {
             $ok = &cce_create_vsite($v);
@@ -351,7 +362,8 @@ print "########################################################## \n";
 print "# Creating Users of Vsites:                              #\n";
 print "##########################################################\n\n";
 
-@Userss_to_Import = ();
+print Dumper (\@import_Vsites);
+
 foreach $v (@import_Vsites) {
     foreach $u ( keys %{ $User } ) {
         if (in_array(\@import_Vsites, $User->{$u}->{site})) {
@@ -519,6 +531,7 @@ sub help {
     print "         -n import only these sites ie -n \"ftp.foo.com,www.bar.com\"\n";
     print "         -r remove items ie \"-r (vsites|users|resellers)\"\n";
     print "         -a skip import of all Reseller accounts\n";
+    print "         -s Vsite that already exists does not get imported\n";
     print "         -e just examine and verify dump\n";
     print "         -q Fix Vsite and User quota to OK limits\n";
     print "         -p Set all Vsites PHP settings to server defaults\n";
