@@ -35,8 +35,7 @@ my @groups = (
             'capabilities' => $cce->array_to_scalar(
                     'serverNetwork', 'serverIpPooling',
                     'serverVsite', 'serverPower',
-                    'serverTime', 'serverInformation',
-		    'serverMemcache')
+                    'serverTime', 'serverInformation')
         },
         {
             'name' => 'menuServerMaintenance',
