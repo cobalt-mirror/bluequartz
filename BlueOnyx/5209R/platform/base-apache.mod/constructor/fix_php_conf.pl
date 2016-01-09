@@ -93,6 +93,12 @@ if ($check_net eq "1") {
       system("cp /etc/php.ini /etc/php.ini.bak");
       system("cat /etc/php.ini|grep -v ^open_basedir > /etc/php.ini");
     }
+    else {
+      if (-f $pear_path) {
+        system("cp $known_php_versions{$phpVer}/etc/php.ini $known_php_versions{$phpVer}/etc/php.ini.bak");
+        system("cat $known_php_versions{$phpVer}/etc/php.ini|grep -v ^open_basedir > $known_php_versions{$phpVer}/etc/php.ini");
+      }
+    }
     # Do this for all %required_modules:
     for $module (keys %required_modules) {
       if (-f $pear_path) {
@@ -117,6 +123,14 @@ if ($check_net eq "1") {
       # Move the unmodified php.ini of the OS back in place:
       system("mv /etc/php.ini.bak /etc/php.ini");
     }
+    else {
+      if (-f $pear_path) {
+        # Move the unmodified php.ini of the OS back in place:
+        if (-f "$known_php_versions{$phpVer}/etc/php.ini") {
+          system("mv $known_php_versions{$phpVer}/etc/php.ini.bak $known_php_versions{$phpVer}/etc/php.ini");
+        }
+      }
+    }
   }
 }
 
@@ -130,8 +144,8 @@ else {
 exit(0);
 
 # 
-# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 
