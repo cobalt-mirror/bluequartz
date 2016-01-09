@@ -237,8 +237,11 @@ class GroupDiskUsage extends MX_Controller {
         for ($i = $start; ($i < count($sysquotas)); $i++) {
             $service = $cceClient->get($sysquotas[$i]);
 
-            $percent = round(100 * $used / $service['quota']);  
-            $used = simplify_number_diskspace($service["used"], "K", "2", "B");
+            $quota = $service['quota'];
+            $service['quota'] = $service['quota'] * 1000;
+            $used = sprintf("%.2f", $service['used'] / 1024);
+            $percent = round(100 * $used / $quota);
+            $used .= "MB";
 
             if ($percent > 100)
                 $percent = 100;
@@ -401,8 +404,8 @@ class GroupDiskUsage extends MX_Controller {
     }
 }
 /*
-Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
 All Rights Reserved.
 
 1. Redistributions of source code must retain the above copyright 
