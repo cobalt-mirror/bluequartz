@@ -84,7 +84,12 @@ information for [VENDOR]-[SERVICE].
 <begin glue>
 # glue post-install
 if [ -S /usr/sausalito/cced.socket ]; then
-    /usr/sausalito/sbin/cced.init restart
+    /usr/sausalito/sbin/cced.init rehash
+fi
+
+# Turn memcache off:
+if [ -f /usr/sausalito/sbin/memcache_off.pl ];then
+	/usr/sausalito/sbin/memcache_off.pl
 fi
 
 <end glue>
@@ -139,6 +144,13 @@ fi
 <end $TRIGGERUN>
 
 <begin $CHANGELOG>
+
+* Mon Jan 11 2016 Michael Stauber <mstauber@blueonyx.it> 1.0.0-0BX5
+- Memcache now defaults to off. Enforce turning it off, too.
+- Added glue/sbin/memcache_off.pl
+- Modified glue/sbin/delayRestartCce.sh to rehash instead of restart
+- Modified glue/schemas/memcache.schema to set 'enabled' to '0'.
+- Modified RPM post-install to enforce memcache off.
 
 * Mon Jan 11 2016 Michael Stauber <mstauber@blueonyx.it> 1.0.0-0BX4
 - Security fix. Restrict memcached to only bind to IPv4 localhost.

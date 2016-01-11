@@ -1,24 +1,48 @@
-#!/bin/sh
+#!/usr/bin/perl -I /usr/sausalito/perl
+# Toggles memcached off
 
-sleep 10
-/usr/sausalito/sbin/cced.init rehash >/dev/null 2>&1
+use CCE;
+
+my $cce = new CCE('Namespace' => 'memcache');
+$cce->connectuds();
+
+# Find out if memcached is enabled at the moment:
+my @oids = $cce->find('System');
+if (not @oids) {
+    $cce->bye('FAIL');
+    exit 1;
+}
+
+my ($ok, $obj) = $cce->get($oids[0], 'memcache');
+unless ($ok and $obj) {
+    $cce->bye('FAIL');
+    exit 1;
+}
+
+if ($obj->{enabled} eq "1") {
+	($ok) = $cce->set($oids[0], 'memcache', { 'enabled' => '0' });
+}
+
+# Tell cce everything is okay
+$cce->bye('SUCCESS');
+exit(0);
 
 # 
-# Copyright (c) 2015 Hisao Shibuya, Smack, Inc.
-# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 
-#    notice, this list of conditions and the following disclaimer.
+#	 notice, this list of conditions and the following disclaimer.
 # 
 # 2. Redistributions in binary form must reproduce the above copyright 
-#    notice, this list of conditions and the following disclaimer in 
-#    the documentation and/or other materials provided with the 
-#    distribution.
+#	 notice, this list of conditions and the following disclaimer in 
+#	 the documentation and/or other materials provided with the 
+#	 distribution.
 # 
 # 3. Neither the name of the copyright holder nor the names of its 
-#    contributors may be used to endorse or promote products derived 
-#    from this software without specific prior written permission.
+#	 contributors may be used to endorse or promote products derived 
+#	 from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
 # "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
@@ -37,4 +61,3 @@ sleep 10
 # use in the design, construction, operation or maintenance of any 
 # nuclear facility.
 # 
-

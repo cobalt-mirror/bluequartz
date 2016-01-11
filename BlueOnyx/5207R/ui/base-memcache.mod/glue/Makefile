@@ -11,7 +11,7 @@ ifdef PREFIX
 CCETOPDIR = $(PREFIX)/usr/sausalito
 endif
 
-SCRIPTS = sbin/delayRestartCce.sh
+SCRIPTS = sbin/delayRestartCce.sh sbin/memcache_off.pl
 
 all:
 
