@@ -3,10 +3,10 @@
 
 use CCE;
 use Sauce::Service;
+use Sauce::Util;
 
 my $cce = new CCE('Namespace' => 'memcache');
 $cce->connectuds();
-
 
 # Find out if memcached is enabled at the moment:
 my @oids = $cce->find('System');
@@ -20,6 +20,11 @@ unless ($ok and $obj) {
     exit 1;
 }
 
+my $sysconfig = '/etc/sysconfig/memcached';
+if (!Sauce::Util::editfile($sysconfig, *update_sysconfig, $obj)) {
+    $cce->warn("[[base-memcache.errorWritingConfFile]]");
+}
+
 service_toggle_init('memcached', $obj->{'enabled'});
 if ($obj->{'enabled'} eq "1") {
     Sauce::Service::service_run_init('memcached', 'restart');
@@ -30,6 +35,25 @@ else {
 
 $cce->bye('SUCCESS');
 exit(0);
+
+sub update_sysconfig {
+    my ($fin, $fout, $obj) = @_;
+
+    my $cachesize = $obj->{'cachesize'};
+
+    while (<$fin>) {
+        if (/CACHESIZE/) {
+            print $fout "CACHESIZE=\"$cachesize\"\n";
+        }
+        elsif (/OPTIONS/) {
+            print $fout "OPTIONS=\"-l 127.0.0.1\"\n";
+        }
+        else {
+            print $fout $_;
+        }
+    }
+    return 1;
+}
 
 # 
 # Copyright (c) 2015 Hisao Shibuya, Smack, Inc.

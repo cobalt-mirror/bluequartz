@@ -34,7 +34,11 @@ sub update_sysconfig
     while (<$fin>) {
         if (/CACHESIZE/) {
             print $fout "CACHESIZE=\"$cachesize\"\n";
-        } else {
+        }
+        elsif (/OPTIONS/) {
+            print $fout "OPTIONS=\"-l 127.0.0.1\"\n";
+        }
+        else {
             print $fout $_;
         }
     }
