@@ -1,7 +1,7 @@
 Summary: System Watcher
 Name: base-swatch
 Version: XX_VER_XX
-Release: 0BX27%{?dist}
+Release: 0BX28%{?dist}
 Vendor: Project BlueOnyx
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -72,6 +72,9 @@ if [ -f /etc/swatch.conf.rpmnew ]; then
 fi
 
 %changelog
+
+* Tue Jan 12 2016 Michael Stauber <mstauber@solarspeed.net> 4.0.0-0BX28
+- Added $globalState var to allow us with one glance to check the AM state.
 
 * Fri Sep 18 2015 Michael Stauber <mstauber@solarspeed.net> 4.0.0-0BX27
 - Version number bump to 4.0.0 because Epel has a v3.2.3 and therefore
