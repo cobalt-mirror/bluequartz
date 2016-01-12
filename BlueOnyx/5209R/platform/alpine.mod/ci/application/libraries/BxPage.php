@@ -526,20 +526,16 @@ class BxPage extends MX_Controller {
                                 "brown" => "alert_brown"
                                 );
             $isAlert = $colorBGarray[$this->getPrimaryColor()];
-            for ($i = 0; $i < count($AMnames); $i++) {
-              $monitoredObj = $this->cceClient->get($activeMonitorObj["OID"], $AMnames[$i]);
-              if (!isset($monitoredObj["hideUI"]) && $monitoredObj["enabled"] && $monitoredObj["monitor"]) {
-                if ($monitoredObj["currentState"] == "R") {
-                    // We have at least one 'red' item. Stop further checks and show the red alert:
-                    $isAlert = "alert_red";
-                    break;
-                }
-                if ($monitoredObj["currentState"] == "Y") {
-                    // No red alert? Check deeper if something is giving a yellow warning:
-                    $isAlert = "alert_orange";
-                }
-              }
+
+            if ($activeMonitorObj["globalState"] == "R") {
+                // We have at least one 'red' item. Stop further checks and show the red alert:
+                $isAlert = "alert_red";
             }
+            if ($activeMonitorObj["globalState"] == "Y") {
+                // Give a yellow warning:
+                $isAlert = "alert_orange";
+            }
+
             // Start: RAID work-around:
             // Yes. This is dirty. Remind me to fix /usr/sausalito/swatch/bin/raid_amdetails.pl, though.
             if (is_file("/proc/mdstat")) {
