@@ -85,6 +85,8 @@ my ($ok, @names, @info) = $cce->names ('ActiveMonitor');
 #print @names, "\n";
 my @states = ("N", "G", "Y", "R");
 
+my $globalState = "N";
+
 my %stats = {};
 
 my @tcp_ports;
@@ -141,6 +143,7 @@ while ( defined (my $name = <@names>) ) {
         $msgs[1] = $object->{greenMsg} if (defined ($object->{greenMsg}));
         $msgs[2] = $object->{yellowMsg} if (defined ($object->{yellowMsg}));
         $msgs[3] = $object->{redMsg} if (defined ($object->{redMsg}));
+
         $cce->set ($oid[0], $name, {
                  currentState => $states[$state],
                  lastChange=>time(),
@@ -166,6 +169,11 @@ while ( defined (my $name = <@names>) ) {
     }
   }
 }
+
+# Update $globalState:
+$cce->set ($oid[0], "", {
+         globalState => $globalState
+         });
 
 if ($body) {
 
@@ -255,6 +263,18 @@ sub do_monitor
              });
   }
 
+  # Update $globalState:
+  if (($globalState ne "R") && ($globalState ne "Y") && ($statecodes[$state] eq "G")) {
+    $globalState = "G";
+  }
+  if (($globalState ne "R") && ($statecodes[$state] eq "Y")) {
+    $globalState = "Y";
+  }        
+  if ($statecodes[$state] eq "R") {
+    $globalState = "R";
+  }
+  print "Globalstate: $globalState\n" if ($DEBUG_ME);
+
   print "OldState:$oldState\tNewState:$statecodes[$state]\n" if ($DEBUG_ME);
 
   my $msg;
@@ -265,20 +285,20 @@ sub do_monitor
 
     ### Start: Append 'top' output if CPU is/was in moderate or heavy useage:
     if (($object->{nameTag} eq "[[base-am.amCPUName]]") && ($object->{monitor} == "1")) {
-	if ($object->{currentMessage}) {
-		print "CPU is/was in moderate or heavy useage - generating 'top' report\n" if ($DEBUG_ME);
-		my $TOP = `top -b -n 1`;
-		my @procs = split(/\n/, $TOP);
-		$msg .= "\n\n-------------------------------------------\n";
-		$msg .= "System snapshot:\n";
-		$msg .= "-------------------------------------------\n";
-		foreach my $top (@procs) {
-			$top =~ s/ *$//g;
-			$msg .= $top . "\n";
-		}
-		$msg .= "\n\n";
-		print "TOP: \n $TOP \n" if ($DEBUG_ME);
-	}
+  if ($object->{currentMessage}) {
+    print "CPU is/was in moderate or heavy useage - generating 'top' report\n" if ($DEBUG_ME);
+    my $TOP = `top -b -n 1`;
+    my @procs = split(/\n/, $TOP);
+    $msg .= "\n\n-------------------------------------------\n";
+    $msg .= "System snapshot:\n";
+    $msg .= "-------------------------------------------\n";
+    foreach my $top (@procs) {
+      $top =~ s/ *$//g;
+      $msg .= $top . "\n";
+    }
+    $msg .= "\n\n";
+    print "TOP: \n $TOP \n" if ($DEBUG_ME);
+  }
     }
     ### End: Append 'top' output if CPU is/was in moderate or heavy useage:
 
