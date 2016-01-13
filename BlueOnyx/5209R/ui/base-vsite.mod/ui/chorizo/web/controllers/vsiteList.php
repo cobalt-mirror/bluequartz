@@ -88,6 +88,22 @@ class VsiteList extends MX_Controller {
             $autoFeatures = new AutoFeatures($cceClient);
             $AutoFeaturesList = $autoFeatures->ListFeatures('modifyWeb.Vsite');
 
+            // Find out which PHP version the server uses:
+            $system_php = $cceClient->getObject('PHP');
+
+            // Get all known PHP versions together:
+            $all_php_versions = array('PHPOS' => $system_php['PHP_version_os']);
+            $all_php_versions_reverse = array($system_php['PHP_version_os'] => 'PHPOS');
+
+            foreach ($known_php_versions as $NSkey => $NSvalue) {
+                if ($NSkey != 'PHPOS') { 
+                    $extraPHPs[$NSkey] = $cceClient->get($system_php["OID"], $NSkey);
+                    if ($extraPHPs[$NSkey]['present'] != "1") {
+                        unset($extraPHPs[$NSkey]);
+                    }
+                }
+            }
+
             $numsite = "0";
             foreach ($vsites as $site) {
                 // Get Vsite settings:
@@ -158,22 +174,6 @@ class VsiteList extends MX_Controller {
                     $suspended = '                  <button class="light tiny text_only has_text tooltip hover" title="' . $i18n->getHtml("[[palette.No]]") . '" disabled><span>' . $i18n->getHtml("[[palette.No]]") . '</span></button>';
                 }
                 $siteList[3][$numsite] = $suspended;
-
-                // Find out which PHP version the server uses:
-                $system_php = $cceClient->getObject('PHP');
-
-                // Get all known PHP versions together:
-                $all_php_versions = array('PHPOS' => $system_php['PHP_version_os']);
-                $all_php_versions_reverse = array($system_php['PHP_version_os'] => 'PHPOS');
-
-                foreach ($known_php_versions as $NSkey => $NSvalue) {
-                    if ($NSkey != 'PHPOS') { 
-                        $extraPHPs[$NSkey] = $cceClient->get($system_php["OID"], $NSkey);
-                        if ($extraPHPs[$NSkey]['present'] != "1") {
-                            unset($extraPHPs[$NSkey]);
-                        }
-                    }
-                }
 
                 $all_selectable_php_versions['PHPOS'] = $system_php['PHP_version_os'];
                 foreach ($extraPHPs as $NSkey => $NSvalue) {
