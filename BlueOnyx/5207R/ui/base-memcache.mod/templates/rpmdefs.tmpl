@@ -145,6 +145,13 @@ fi
 
 <begin $CHANGELOG>
 
+* Tue Jan 12 2016 Michael Stauber <mstauber@blueonyx.it> 1.0.0-0BX6
+- Fixed ACL in ui/chorizo/menu/mecache.xml as we can no longer use
+  'adminUser' alone. This would add such an item to to the menu of 
+  resellers. The ACL's of the actual page then still prevent access,
+  which leads to a nasty '403 Error' on Reseller login. Switched
+  ACL to use 'serverNetwork' instead.
+
 * Mon Jan 11 2016 Michael Stauber <mstauber@blueonyx.it> 1.0.0-0BX5
 - Memcache now defaults to off. Enforce turning it off, too.
 - Added glue/sbin/memcache_off.pl
