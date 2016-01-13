@@ -58,8 +58,7 @@ class ServerScriptHelper {
   var $errors;
   var $BxPageTemp;
 
-  public $UserCapabilities;
-  public $CAPABILITIESGLOBALOBJECT;
+  var $CAPABILITIESGLOBALOBJECT;
 
   //
   // public functions
