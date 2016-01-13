@@ -309,7 +309,7 @@ class BxPage extends MX_Controller {
 
     // Check if we have elements with error message display area:
     public function getErrorMsgDisplayArea() {
-        if (isset($this->BXErrorDisplayArea)) {         
+        if (isset($this->BXErrorDisplayArea)) {
             return $this->BXErrorDisplayArea;
         }
         else {
@@ -408,7 +408,8 @@ class BxPage extends MX_Controller {
         }
 
         // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($this->cceClient, $loginName, $sessionId);
+        //$Capabilities = new Capabilities($this->cceClient, $loginName, $sessionId);
+        // Note by mstauber: No, we don't. Not here. Not now.
         $this->cceClient->bye();
 
         // Find out the browser locale and display a message in our supported languages:
@@ -505,60 +506,67 @@ class BxPage extends MX_Controller {
         // Get 'Support' object:
         $Support = $this->cceClient->getObject("System", array(), "Support");
 
-        // Get Active Monitor Alerts:
-        $activeMonitorObj = $this->cceClient->getObject("ActiveMonitor");
-        $AMnames = $this->cceClient->names($activeMonitorObj["OID"]);
+        // Only poll "ActiveMonitor" if the GUI user actually has ACL rights for 'ActiveMonitor':
+        if (in_array("serverShowActiveMonitor", $access)) {
+            // Get Active Monitor Alerts:
+            $activeMonitorObj = $this->cceClient->getObject("ActiveMonitor");
+            $AMnames = $this->cceClient->names($activeMonitorObj["OID"]);
 
-        // See if any monitored item is in bad state
-        if ($activeMonitorObj["enabled"] == "0") {
-            // If AM is disabled, then we don't show the AM-Status:
-            $isAlert = "light";
+            // See if any monitored item is in bad state
+            if ($activeMonitorObj["enabled"] == "0") {
+                // If AM is disabled, then we don't show the AM-Status:
+                $isAlert = "light";
+            }
+            else {
+                // If AM is enabled, then we start without active error and everything in the blue:
+                $colorBGarray = array(
+                                    "black" => "alert_black",
+                                    "blue" => "alert_blue",
+                                    "navy" => "alert_navy",
+                                    "red" => "alert_magenta",
+                                    "green" => "alert_green",
+                                    "magenta" => "alert_magenta",
+                                    "brown" => "alert_brown"
+                                    );
+                $isAlert = $colorBGarray[$this->getPrimaryColor()];
+
+                if ($activeMonitorObj["globalState"] == "R") {
+                    // We have at least one 'red' item. Stop further checks and show the red alert:
+                    $isAlert = "alert_red";
+                }
+                if ($activeMonitorObj["globalState"] == "Y") {
+                    // Give a yellow warning:
+                    $isAlert = "alert_orange";
+                }
+
+                // Start: RAID work-around:
+                // Yes. This is dirty. Remind me to fix /usr/sausalito/swatch/bin/raid_amdetails.pl, though.
+                if (is_file("/proc/mdstat")) {
+                  $this->load->helper('raid_helper');
+                  list($array_health, $array_fail) = fast_raid_check($this->cceClient, $serverScriptHelper);
+                  if ((count($array_fail) > 0) && (count($array_health) == 0)) {
+                    $state = "fail";
+                    $isAlert = "alert_red";
+                  }
+                  elseif ((count($array_fail) == 0) && (count($array_health) > 0)) {
+                    $state = "syncing";
+                    $isAlert = "alert_orange";
+                  }
+                  elseif ((count($array_fail) == 0) && (count($array_health) == 0)) {
+                    $state = "raidOK";
+                  }
+                  else {
+                    // Both are >1:
+                    $state = "syncing";
+                    $isAlert = "alert_orange";
+                  }
+                }
+                // End: RAID work-around:
+            }
         }
         else {
-            // If AM is enabled, then we start without active error and everything in the blue:
-            $colorBGarray = array(
-                                "black" => "alert_black",
-                                "blue" => "alert_blue",
-                                "navy" => "alert_navy",
-                                "red" => "alert_magenta",
-                                "green" => "alert_green",
-                                "magenta" => "alert_magenta",
-                                "brown" => "alert_brown"
-                                );
-            $isAlert = $colorBGarray[$this->getPrimaryColor()];
-
-            if ($activeMonitorObj["globalState"] == "R") {
-                // We have at least one 'red' item. Stop further checks and show the red alert:
-                $isAlert = "alert_red";
-            }
-            if ($activeMonitorObj["globalState"] == "Y") {
-                // Give a yellow warning:
-                $isAlert = "alert_orange";
-            }
-
-            // Start: RAID work-around:
-            // Yes. This is dirty. Remind me to fix /usr/sausalito/swatch/bin/raid_amdetails.pl, though.
-            if (is_file("/proc/mdstat")) {
-              $this->load->helper('raid_helper');
-              list($array_health, $array_fail) = fast_raid_check($this->cceClient, $serverScriptHelper);
-              if ((count($array_fail) > 0) && (count($array_health) == 0)) {
-                $state = "fail";
-                $isAlert = "alert_red";
-              }
-              elseif ((count($array_fail) == 0) && (count($array_health) > 0)) {
-                $state = "syncing";
-                $isAlert = "alert_orange";
-              }
-              elseif ((count($array_fail) == 0) && (count($array_health) == 0)) {
-                $state = "raidOK";
-              }
-              else {
-                // Both are >1:
-                $state = "syncing";
-                $isAlert = "alert_orange";
-              }
-            }
-            // End: RAID work-around:
+            // Fallback to not leave it undefined:
+            $isAlert = "light";
         }
 
         // If web based setup has not been completed, then redirect to /wizard

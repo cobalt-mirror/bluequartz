@@ -37,7 +37,7 @@ chomp($build);
                     'serverNetwork', 'serverIpPooling',
                     'serverVsite', 'serverPower',
                     'serverTime', 'serverInformation',
-		    'serverMemcache')
+                    'serverMemcache')
         },
         {
             'name' => 'menuServerMaintenance',

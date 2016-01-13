@@ -6,8 +6,8 @@ VENDOR=base
 VENDORNAME='Project BlueOnyx'
 SERVICE=alpine
 
-VERSION=1.1
-RELEASE=1BX54
+VERSION=1.2
+RELEASE=1BX56
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -79,6 +79,7 @@ install: install_perl install_config
 	$(MKDIR) $(PREFIX)/usr/share/doc/blueonyx-release-520XR
 	find CHORIZO-readme.txt -type f -not -path ".svn" -exec install {} -D -o root -g root -m 644 $(PREFIX)/usr/share/doc/blueonyx-release-520XR/{} \;
 	find CHORIZO-readme.txt -type f -not -path ".svn" -exec install {} -D -o root -g root -m 644 $(CIROOT)/ci/{} \;
+	$(MKDIR) $(CCEDIR)/capcache
 
 install_config:
 	@$(MKDIR) $(SYSCONFIG)
