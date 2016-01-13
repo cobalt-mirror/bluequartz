@@ -61,6 +61,7 @@ information for [VENDOR]-[SERVICE].
 %{RootDir}/ui/chorizo/ci/*
 /usr/share/doc/blueonyx-release-520XR/CHORIZO-readme.txt
 %{RootDir}/ui/chorizo/ci/CHORIZO-readme.txt
+%attr(0700,admserv,admserv) %{RootDir}/capcache
 
 <end ui>
 
@@ -135,6 +136,17 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Tue Jan 12 2016 Michael Stauber <mstauber@solarspeed.net> 1.2-1BX056
+- Need for speed initiative.
+- Makefile edited to add capcache
+- Modified templates/rpmdefs.tmpl to add capcache
+- Bugfixes in ci/application/modules/base/gui/controllers/*.php
+- Extended ci/application/libraries/CceClient.php with Debug logging to log all CCEd transactions.
+- Extended ci/application/libraries/ServerScriptHelper.php with Debug logging.
+- Modified ci/application/libraries/ServerScriptHelper.php to use a cache for Capabilities.
+- Modified ci/application/modules/base/login/controllers/login.php to clean up capcache.
+- Lots of streamlining in ci/application/libraries/BxPage.php
 
 * Tue Jan 12 2016 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX055
 - Modified ci/application/libraries/BxPage.php for smarter/faster AM checks.

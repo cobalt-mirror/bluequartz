@@ -55,10 +55,23 @@ class Forbidden403 extends MX_Controller {
         $title = PoorMansBabelFish("403title", $locale, $domain);
         $text = PoorMansBabelFish("403text", $locale, $domain);
 
+        // Insert header-CSS:
+        if (is_file("/etc/DEBUG")) {
+            $bx_css = '    <script src="/.adm/scripts/adminica/adminica_all.js"></script>' . "\n";
+            $bx_css .= '    <script src="/.adm/scripts/adminica/adminica_mobile.js"></script>' . "\n";
+            $bx_css .= '    <script src="/.adm/scripts/overlay/jquery.popupoverlay.js"></script>' . "\n";
+        }
+        else {
+            $bx_css = '    <script src="/.adm/scripts/adminica/adminica_all-min.js"></script>' . "\n";
+            $bx_css .= '    <script src="/.adm/scripts/adminica/adminica_mobile-min.js"></script>' . "\n";
+            $bx_css .= '    <script src="/.adm/scripts/overlay/jquery.popupoverlay-min.js"></script>' . "\n";
+        }
+
         // Prepare page:
         $data_head = array(
             'charset' => $charset,
             'page_title' => $title,
+            'bx_css' => $bx_css,
             'layout' => "layout_fixed.css",
             'extra_headers' => "",
             'overlay' => ""

@@ -55,6 +55,18 @@ class PageNotFound404 extends MX_Controller {
         $title = PoorMansBabelFish("404title", $locale, $domain);
         $text = PoorMansBabelFish("404text", $locale, $domain);
 
+        // Insert header-CSS:
+        if (is_file("/etc/DEBUG")) {
+            $bx_css = '    <script src="/.adm/scripts/adminica/adminica_all.js"></script>' . "\n";
+            $bx_css .= '    <script src="/.adm/scripts/adminica/adminica_mobile.js"></script>' . "\n";
+            $bx_css .= '    <script src="/.adm/scripts/overlay/jquery.popupoverlay.js"></script>' . "\n";
+        }
+        else {
+            $bx_css = '    <script src="/.adm/scripts/adminica/adminica_all-min.js"></script>' . "\n";
+            $bx_css .= '    <script src="/.adm/scripts/adminica/adminica_mobile-min.js"></script>' . "\n";
+            $bx_css .= '    <script src="/.adm/scripts/overlay/jquery.popupoverlay-min.js"></script>' . "\n";
+        }
+
         // Login failed. We need to show the login form again with error message.
         // Therefore we pre-populate the $data array with defaults:
 
@@ -62,6 +74,7 @@ class PageNotFound404 extends MX_Controller {
             'charset' => $charset,
             'localization' => $localization,
             'page_title' => $title,
+            'bx_css' => $bx_css,
             'layout' => "layout_fixed.css",
             'extra_headers' => "",
             'overlay' => ""

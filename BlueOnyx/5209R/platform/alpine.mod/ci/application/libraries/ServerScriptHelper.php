@@ -58,6 +58,9 @@ class ServerScriptHelper {
   var $errors;
   var $BxPageTemp;
 
+  public $UserCapabilities;
+  public $CAPABILITIESGLOBALOBJECT;
+
   //
   // public functions
   //
@@ -321,9 +324,10 @@ class ServerScriptHelper {
 
   // description: returns the global capabilities object
   function getCapabilitiesObject() {
-    if ($this->capabilities == null)
+    if ($this->capabilities == null) {
       $this->capabilities = getGlobalCapabilitiesObject($this->cceClient);
-    return $this->capabilities;
+      return $this->capabilities;
+    }
   }
       
 
@@ -1001,11 +1005,35 @@ $post_vars_html
         return $retclean;
     }
 
+    function debug_log ($msg) {
+      if (is_file("/etc/DEBUGSSH")) {
+        error_log($msg);
+      }
+    }
+
     // description: returns an array of ALL the capabilityGroups
     function getAllCapabilityGroups() {
+      $this->debug_log("getAllCapabilityGroups: via ServerScriptHelper");
+
+      $capabilityGroups_file_name = "/usr/sausalito/capcache/$this->loginName" . "_capabilityGroups";
+
       if (isset($this->_gotAllCapabilityGroups)) {
+        $this->debug_log("getAllCapabilityGroups: From memory");
         return $this->capabilityGroups;
       }
+      elseif (is_file($capabilityGroups_file_name)) {
+        if (is_file($capabilityGroups_file_name)) {
+          $capabilityGroups_file_data = read_file($capabilityGroups_file_name);
+          $this->capabilityGroups = json_decode($capabilityGroups_file_data, true);
+          $this->debug_log("getAllCapabilityGroups: From file");
+          $this->_gotAllCapabilityGroups = 1;
+          return $this->capabilityGroups;
+        }
+      }
+      else {
+        $this->debug_log("getAllCapabilityGroups: Full run");
+      }
+
       $cce =& $this->cceClient;
       //$oids = $cce->findSorted("CapabilityGroup", "sort");
       $oids = $cce->find("CapabilityGroup");
@@ -1015,12 +1043,19 @@ $post_vars_html
         $this->getCapabilityGroup($obj['name'], $obj);
       }
       $this->_gotAllCapabilityGroups = 1;
+
+      // Store temporary file:
+      $capabilityGroups_file_data = json_encode($this->capabilityGroups);
+      if (!write_file($capabilityGroups_file_name, $capabilityGroups_file_data)) {
+        system("rm -f $capabilityGroups_file_name");
+      }
       return $this->capabilityGroups;
     }
 
   
     // description: returns an array of all the declared cce-level capabilities
     function getAllCapabilities() {
+      $this->debug_log("getAllCapabilities: via ServerScriptHelper");
       if (count($this->capabilities)) {
         return ($this->capabilities); 
       }
@@ -1031,6 +1066,8 @@ $post_vars_html
 
     // description:  gets the capabilityGroup and caches it
     function &getCapabilityGroup($capName, $data = null) {
+      $this->debug_log("getCapabilityGroup: via ServerScriptHelper");
+
       if ($data) {
         // we are given the data to cache.
         $this->capabilityGroups[$capName] = $data;
@@ -1059,12 +1096,36 @@ $post_vars_html
 
 
     function getGlobalCapabilitiesObject($cce = null) {
-      $CAPABILITIESGLOBALOBJECT = new Capabilities($cce);
-      return $CAPABILITIESGLOBALOBJECT;
+
+      $cap_file_name = "/usr/sausalito/capcache/$this->loginName" . "_cap";
+      $this->debug_log("getGlobalCapabilitiesObject: via ServerScriptHelper");
+
+      if (is_file($cap_file_name)) {
+        $cap_file_data = read_file($cap_file_name);
+        $this->CAPABILITIESGLOBALOBJECT = json_decode($cap_file_data, true);
+      }
+
+      if (isset($this->CAPABILITIESGLOBALOBJECT)) {
+        $this->debug_log("getGlobalCapabilitiesObject: from File");
+        return $this->CAPABILITIESGLOBALOBJECT;
+      }
+      else {
+        $this->debug_log("getGlobalCapabilitiesObject: full run");
+        $this->CAPABILITIESGLOBALOBJECT = new Capabilities($cce);
+
+        // Store temporary file:
+        $cap_file_data = json_encode($this->CAPABILITIESGLOBALOBJECT);
+
+        if (!write_file($cap_file_name, $cap_file_data)) {
+          system("rm -f $cap_file_name");
+        }
+        return $this->CAPABILITIESGLOBALOBJECT;
+      }
     }
 
-
     function Capabilities($cce = NULL, $loginName = NULL, $sessionId = NULL) {
+
+      $this->debug_log("Capabilities: via ServerScriptHelper");
 
       if ($cce != NULL) {
         $this->cceClient =& $cce;

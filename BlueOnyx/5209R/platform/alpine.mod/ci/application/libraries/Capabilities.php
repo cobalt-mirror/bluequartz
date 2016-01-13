@@ -51,7 +51,6 @@ class Capabilities {
   // Description: Constructor
   // param: a active cceclient. (optional, otherwise it will create a new connection)
   function Capabilities($cce = NULL, $loginName = NULL, $sessionId = NULL) {
-
     if ($cce != NULL) {
       $this->cceClient =& $cce;
     }

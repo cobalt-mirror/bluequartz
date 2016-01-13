@@ -85,6 +85,15 @@ class Login extends MX_Controller {
           $cceClient->authkey($this->input->cookie('loginName'),
           $this->input->cookie('sessionId'));
           $cceClient->endkey(); # release the session id
+          // Cleanup Cache:
+          $cap_file_name = "/usr/sausalito/capcache/" . $this->input->cookie('loginName') . "_cap";
+          $capabilityGroups_file_name = "/usr/sausalito/capcache/" . $this->input->cookie('loginName') . "_capabilityGroups";
+          if (is_file($cap_file_name)) {
+            system("rm -f $cap_file_name");
+          }
+          if (is_file($capabilityGroups_file_name)) {
+            system("rm -f $capabilityGroups_file_name");
+          }
           $cceClient = new CceClient();
           $cceClient->connect();
         }
@@ -204,6 +213,15 @@ class Login extends MX_Controller {
           delete_cookie("loginName");
           delete_cookie("sessionId");
           delete_cookie("userip");
+          // Cleanup Cache:
+          $cap_file_name = "/usr/sausalito/capcache/" . $this->input->cookie('loginName') . "_cap";
+          $capabilityGroups_file_name = "/usr/sausalito/capcache/" . $this->input->cookie('loginName') . "_capabilityGroups";
+          if (is_file($cap_file_name)) {
+            system("rm -f $cap_file_name");
+          }
+          if (is_file($capabilityGroups_file_name)) {
+            system("rm -f $capabilityGroups_file_name");
+          }
           // Logout from CCE:
           $cceClient->endkey(); # release the session id
           $cceClient = new CceClient();
@@ -394,6 +412,16 @@ class Login extends MX_Controller {
               // Now set the locale based on the users localePreference - if specified and known:
               if ($user['localePreference']) {
                 $locale = $user['localePreference'];
+              }
+
+              // Cleanup Cache:
+              $cap_file_name = "/usr/sausalito/capcache/" . set_value('username_field') . "_cap";
+              $capabilityGroups_file_name = "/usr/sausalito/capcache/" . set_value('username_field') . "_capabilityGroups";
+              if (is_file($cap_file_name)) {
+                system("rm -f $cap_file_name");
+              }
+              if (is_file($capabilityGroups_file_name)) {
+                system("rm -f $capabilityGroups_file_name");
               }
 
               // Send cookies that expire at end of the browser session. 

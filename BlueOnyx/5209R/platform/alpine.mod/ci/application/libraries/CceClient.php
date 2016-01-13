@@ -98,6 +98,14 @@ class CceClient {
     return $this->Password;
   }
 
+  function setDebug($DEBUG = "") {
+    $this->DEBUG = $DEBUG;
+  }
+
+  function getDebug() {
+    return $this->DEBUG;
+  }
+
   // description: constructor
   function CceClient() {
 
@@ -117,6 +125,13 @@ class CceClient {
       $this->handle = CCE::ccephp_new();
     }
 
+    if (is_file("/etc/DEBUG")) {
+      $this->setDebug(TRUE);
+    }
+    else {
+      $this->setDebug(FALSE);
+    }
+
     // set default
     $this->isConnected = FALSE;
   }
@@ -127,6 +142,9 @@ class CceClient {
   // returns: session ID if succeed, empty string if failed
   function auth($userName, $password) {
     if (!$this->getNative()) {
+      if ($this->DEBUG) {
+        error_log("Command: AUTH $userName XXXX");
+      }
       return ccephp_auth($this->handle, $userName, $password);
     }
     else {
@@ -140,6 +158,9 @@ class CceClient {
   // returns: true is successful
   function suspend( $reason ) {
     if (!$this->getNative()) {
+      if ($this->DEBUG) {
+        error_log("Command: SUSPEND");
+      }
       return ccephp_suspend( $this->handle, $reason );
     }
     else {
@@ -152,6 +173,9 @@ class CceClient {
   // returns: true is successful
   function resume( ) {
     if (!$this->getNative()) {
+      if ($this->DEBUG) {
+        error_log("Command: RESUME");
+      }
       return ccephp_resume( $this->handle );
     }
     else {
@@ -162,6 +186,9 @@ class CceClient {
   // description: authenticate using a session id
   function authkey( $userName, $sessionId ) {
     if (!$this->getNative()) {
+      if ($this->DEBUG) {
+        error_log("Command: AUTHKEY $userName $sessionId");
+      }
       return ccephp_authkey( $this->handle, $userName, $sessionId );
     }
     else {
@@ -173,6 +200,9 @@ class CceClient {
   // returns: the oid of the user object
   function whoami( ) {
     if (!$this->getNative()) {
+      if ($this->DEBUG) {
+        error_log("Command: WHOAMI");
+      }
       return ccephp_whoami( $this->handle );
     }
     else {
@@ -184,6 +214,9 @@ class CceClient {
   function bye() {
     $this->isConnected = false;
     if (!$this->getNative()) {
+      if ($this->DEBUG) {
+        error_log("Command: BYE");
+      }
       return ccephp_bye($this->handle);
     }
     else {
@@ -194,6 +227,9 @@ class CceClient {
   // description: begin delayed-handler mode
   function begin() {
     if (!$this->getNative()) {
+      if ($this->DEBUG) {
+        error_log("Command: BEGIN");
+      }
       return ccephp_begin($this->handle);
     }
     else {
@@ -206,6 +242,9 @@ class CceClient {
   //          operations since begin()
   function commit() {
     if (!$this->getNative()) {
+      if ($this->DEBUG) {
+        error_log("Command: COMMIT");
+      }
       return ccephp_commit($this->handle);
     }
     else {
@@ -216,6 +255,9 @@ class CceClient {
   // end authenticated session to cce
   function endkey() {
     if (!$this->getNative()) {
+      if ($this->DEBUG) {
+        error_log("Command: ENDKEY");
+      }
       return ccephp_endkey($this->handle);
     }
     else {
@@ -259,6 +301,14 @@ class CceClient {
   // usage: $oid = $cce->create($class, array( 'property' => 'value' ));
   function create($class, $vars = array()) {
     if (!$this->getNative()) {
+      if ($this->DEBUG) {
+        $varline = " ";
+        foreach ($vars as $key => $value) {
+          $varline .= "$key = \"" . CceClient::_escape($value) . "\" ";
+        }
+        $varline = rtrim($varline);
+        error_log("Command: CREATE $class $varline");
+      }
       return ccephp_create($this->handle, $class, $vars);
     }
     else {
@@ -271,6 +321,9 @@ class CceClient {
   // usage: $ok = $cce->destroy($oid);
   function destroy($oid) {
     if (!$this->getNative()) {
+      if ($this->DEBUG) {
+        error_log("Command: DESTROY $oid ");
+      }
       return ccephp_destroy($this->handle, $oid);
     }
     else {
@@ -340,6 +393,14 @@ class CceClient {
   // usage: $oids = $cce->find($class, array( 'property' => 'value'));
   function find($class, $vars = array()) {
     if (!$this->getNative()) {
+      if ($this->DEBUG) {
+        $varline = " ";
+        foreach ($vars as $key => $value) {
+          $varline .= "$key = \"" . CceClient::_escape($value) . "\" ";
+        }
+        $varline = rtrim($varline);
+        error_log("Command: FIND $class $varline");
+      }
       return ccephp_find($this->handle, $class, $vars, "", 0);
     }
     else {
@@ -387,6 +448,14 @@ class CceClient {
   // usage: $oids = $cce->findx($class, $vars, $regex_vars, $sorttype, $sortkey);
   function findx($class, $vars = array(), $revars = array(), $sorttype="", $sortprop = "") {
     if (!$this->getNative()) {
+      if ($this->DEBUG) {
+        $varline = " ";
+        foreach ($vars as $key => $value) {
+          $varline .= "$key = \"" . CceClient::_escape($value) . "\" ";
+        }
+        $varline = rtrim($varline);
+        error_log("Command: FINDX $class $varline");
+      }
       return ccephp_findx($this->handle, $class, $vars, $revars, $sorttype, $sortprop);
     }
     else {
@@ -399,6 +468,14 @@ class CceClient {
   // usage: $object = $cce->get($oid, $namespace);
   function get($oid, $namespace = "") {
     if (!$this->getNative()) {
+      if ($this->DEBUG) {
+        if ($namespace != "") {
+          error_log("Command: GET $oid . $namespace");
+        }
+        else {
+          error_log("Command: GET $oid");
+        }
+      }
       return ccephp_get($this->handle, $oid, $namespace);
     }
     else {
@@ -447,6 +524,9 @@ class CceClient {
   // usage: $namespaces = $cce->names($classname);
   function names($arg) {
     if (!$this->getNative()) {
+      if ($this->DEBUG) {
+        error_log("Command: NAMES $arg");
+      }
       return ccephp_names($this->handle, $arg);
     }
     else {
@@ -459,6 +539,19 @@ class CceClient {
   // usage: $ok = $cce->set($oid, $namespace, array( 'property' => 'value'));
   function set($oid, $namespace = "", $vars = array()) {
     if (!$this->getNative()) {
+      if ($this->DEBUG) {
+        $varline = " ";
+        foreach ($vars as $key => $value) {
+          $varline .= "$key = \"" . CceClient::_escape($value) . "\" ";
+        }
+        $varline = rtrim($varline);
+        if ($namespace == "") {
+          error_log("Command: SET $oid $varline");
+        }
+        else {
+          error_log("Command: SET $oid . $namespace  $varline");
+        }
+      }
       return ccephp_set($this->handle, $oid, $namespace, $vars);
     }
     else {
@@ -583,6 +676,24 @@ class CceClient {
     }
     return $value;
   }    
+
+  // _escape: This function is used to clean up data comming
+  // from the GUI in a fashion so that it can be stored into CODB.
+  function _escape($text) {
+    if (is_array($text)) {
+      // We have an array. Transform it into a scalar for easier processing:
+      $text = array_to_scalar($text);
+    }
+
+    // Check if this is a simple matter. If so, return right away:
+    if (preg_match('/^[a-zA-Z0-9_]+$/', $text)) {
+      return $text;
+    }
+
+    // Replace unwanted chars with their double escaped counterparts or another safe replacement:
+    $out = str_replace(array("\\", "\a", "\b", "\f", "\n", "\t", '"', '$', '&quot;', '&amp;', '&#39;', '&lt;', '&gt;'), array( "\\\\", "\\a", "\\b", "\\f", "\\n", "\\t", "\\\"", "\\$", '\"', '\&', "'", '<', '>'), $text); 
+    return $out;
+  }
 
 }
 
