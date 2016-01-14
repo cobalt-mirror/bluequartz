@@ -1,8 +1,5 @@
 #!/usr/bin/perl -w -I/usr/sausalito/perl -I.
-# Author: Brian N. Smith, Michael Stauber 
-# Copyright 2006-2007, NuOnce Networks, Inc.  All rights reserved. 
-# Copyright 2006-2007, Stauber Multimedia Design  All rights reserved. 
-# $Id: yum-checker.pl, v1.0 2007/12/20 9:02:00 Exp $   
+# $Id: yum-checker.pl
 
 use CCE;
 use Sauce::Util;
@@ -16,8 +13,8 @@ my $obj = $cce->event_object();
 
 my @oids = $cce->find('System');
 if (!defined($oids[0])) {
-	print STDERR "Sorry, no System object in CCE found!\n";
-	exit 0;
+  print STDERR "Sorry, no System object in CCE found!\n";
+  exit 0;
 }
 
 my $yumguiConf    = "/etc/yumgui.conf";
@@ -27,21 +24,21 @@ my ($ok, $yumguiValues) = $cce->get($oids[0], "yum");
 
 if ($ok) {
     yumguiWriteConf(
-	$yumguiValues->{'yumguiEMAIL'},
-        $yumguiValues->{'yumguiEMAILADDY'}
-        );
+      $yumguiValues->{'yumguiEMAIL'},
+      $yumguiValues->{'yumguiEMAILADDY'}
+      );
 
     yumguiSetCrontab(
-        $yumguiValues->{'yumUpdateSU'},
-        $yumguiValues->{'yumUpdateMO'},
-        $yumguiValues->{'yumUpdateTU'},
-        $yumguiValues->{'yumUpdateWE'},
-        $yumguiValues->{'yumUpdateTH'},
-        $yumguiValues->{'yumUpdateFR'},
-        $yumguiValues->{'yumUpdateSA'},
-        $yumguiValues->{'yumUpdateTime'},
-        $yumguiValues->{'autoupdate'}
-        );
+      $yumguiValues->{'yumUpdateSU'},
+      $yumguiValues->{'yumUpdateMO'},
+      $yumguiValues->{'yumUpdateTU'},
+      $yumguiValues->{'yumUpdateWE'},
+      $yumguiValues->{'yumUpdateTH'},
+      $yumguiValues->{'yumUpdateFR'},
+      $yumguiValues->{'yumUpdateSA'},
+      $yumguiValues->{'yumUpdateTime'},
+      $yumguiValues->{'autoupdate'}
+      );
 }
 
 $all_rpms = $yumguiValues->{'yumguiEXCLUDE'};
@@ -72,47 +69,46 @@ exit(0);
 ##
 
 sub yumguiSetCrontab {
-	my $yumUpdateSU   = shift;
-	my $yumUpdateMO   = shift;
-	my $yumUpdateTU   = shift;
-	my $yumUpdateWE   = shift;
-	my $yumUpdateTH   = shift;
-	my $yumUpdateFR   = shift;
-	my $yumUpdateSA   = shift;
-	my $yumUpdateTime = shift;
-	my $autoupdate    = shift;
+  my $yumUpdateSU   = shift;
+  my $yumUpdateMO   = shift;
+  my $yumUpdateTU   = shift;
+  my $yumUpdateWE   = shift;
+  my $yumUpdateTH   = shift;
+  my $yumUpdateFR   = shift;
+  my $yumUpdateSA   = shift;
+  my $yumUpdateTime = shift;
+  my $autoupdate    = shift;
 
-	($h, $m) = split(':', $yumUpdateTime);
-    	my $crontab_entry = "$m $h * * ";
+  ($h, $m) = split(':', $yumUpdateTime);
+  my $crontab_entry = "$m $h * * ";
 
-    	my $tmp_crontab_entry =
-        ($yumUpdateSU eq 1 ? "0," : "")
-      	. ($yumUpdateMO eq 1 ? "1," : "")
-      	. ($yumUpdateTU eq 1 ? "2," : "")
-      	. ($yumUpdateWE eq 1 ? "3," : "")
-      	. ($yumUpdateTH eq 1 ? "4," : "")
-      	. ($yumUpdateFR eq 1 ? "5," : "")
-      	. ($yumUpdateSA eq 1 ? "6," : "");
+  my $tmp_crontab_entry =
+  ($yumUpdateSU eq 1 ? "0," : "")
+  . ($yumUpdateMO eq 1 ? "1," : "")
+  . ($yumUpdateTU eq 1 ? "2," : "")
+  . ($yumUpdateWE eq 1 ? "3," : "")
+  . ($yumUpdateTH eq 1 ? "4," : "")
+  . ($yumUpdateFR eq 1 ? "5," : "")
+  . ($yumUpdateSA eq 1 ? "6," : "");
 
-    if ($autoupdate eq "On") {
-    	$tmp_crontab_entry =~ s/,$//;
-    	$tmp_crontab_entry = "*" if length($tmp_crontab_entry) < 1;
-    	$crontab_entry .= $tmp_crontab_entry . " root /usr/sausalito/handlers/base/swupdate/yum-update.sh\n";
-    	chomp($crontab_entry);
-    	open(CRON, ">$yumguiCrontab") || die "Can't write to crontab";
-    	print CRON "# DO NOT EDIT! THIS FILE IS GENERATED AUTOMATICALLY THROUGH THE GUI!\n";
-    	print CRON $crontab_entry;
-    	print CRON "\n";
-    	print CRON "\n";
-    	close CRON;
-    }
-    if ($autoupdate eq "Off") {
-	unlink $yumguiCrontab; 
-    }
-    Sauce::Util::chmodfile(00644, $yumguiCrontab);
-    Sauce::Service::service_run_init('crond', 'restart');
+  if ($autoupdate eq "On") {
+    $tmp_crontab_entry =~ s/,$//;
+    $tmp_crontab_entry = "*" if length($tmp_crontab_entry) < 1;
+    $crontab_entry .= $tmp_crontab_entry . " root /usr/sausalito/handlers/base/swupdate/yum-update.sh\n";
+    chomp($crontab_entry);
+    open(CRON, ">$yumguiCrontab") || die "Can't write to crontab";
+    print CRON "# DO NOT EDIT! THIS FILE IS GENERATED AUTOMATICALLY THROUGH THE GUI!\n";
+    print CRON $crontab_entry;
+    print CRON "\n";
+    print CRON "\n";
+    close CRON;
+  }
+  if ($autoupdate eq "Off") {
+  unlink $yumguiCrontab; 
+  }
+  Sauce::Util::chmodfile(00644, $yumguiCrontab);
+  Sauce::Service::service_run_init('crond', 'restart');
 }
-
 
 ##
 ## yumguiWriteConf
@@ -120,14 +116,14 @@ sub yumguiSetCrontab {
 ##
 
 sub yumguiWriteConf {
-    my $yumguiEMAIL                 = shift;
-    my $yumguiEMAILADDY             = shift;
+  my $yumguiEMAIL                 = shift;
+  my $yumguiEMAILADDY             = shift;
 
-    if ($yumguiEMAIL eq "1") {
-	open(CONF, ">$yumguiConf") || die "Can't write to configuration file";
-    	print CONF "#!/bin/sh
+  if ($yumguiEMAIL eq "1") {
+    open(CONF, ">$yumguiConf") || die "Can't write to configuration file";
+    print CONF "#!/bin/sh
 ###############################################################
-## YUM-GUI 						     ##
+## YUM-GUI                 ##
 ##                                                           ##
 ## Main Configuration File                                   ##
 ##                                                           ##
@@ -138,11 +134,46 @@ sub yumguiWriteConf {
 MAILTO=\"$yumguiEMAILADDY\";
 
 ";
-close CONF;
-	Sauce::Util::chmodfile(00644, $yumguiConf);
-    }
-    else {
-	unlink $yumguiConf;
-    }
+    close CONF;
+    Sauce::Util::chmodfile(00644, $yumguiConf);
+  }
+  else {
+    unlink $yumguiConf;
+  }
 }
 
+# 
+# Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2006 Brian N. Smith, NuOnce Networks, Inc.
+# All Rights Reserved.
+# 
+# 1. Redistributions of source code must retain the above copyright 
+#   notice, this list of conditions and the following disclaimer.
+# 
+# 2. Redistributions in binary form must reproduce the above copyright 
+#   notice, this list of conditions and the following disclaimer in 
+#   the documentation and/or other materials provided with the 
+#   distribution.
+# 
+# 3. Neither the name of the copyright holder nor the names of its 
+#   contributors may be used to endorse or promote products derived 
+#   from this software without specific prior written permission.
+# 
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
+# COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+# POSSIBILITY OF SUCH DAMAGE.
+# 
+# You acknowledge that this software is not designed or intended for 
+# use in the design, construction, operation or maintenance of any 
+# nuclear facility.
+# 
