@@ -1,0 +1,346 @@
+The Cobalt Configuration Engine (CCE)
+A portion of the Sausalito project
+
+Authors: Jonathan Mayer <jmayer@cobalt.com> 
+	   Tim Hockin <thockin@cobalt.com>
+Copyright: Cobalt Networks (c) 1999,2000
+$Id: Overview.spec.txt 3 2003-07-17 15:19:15Z will $
+
+****************
+ALL INFORMATION IN THIS DOCUMENT IS COBALT CONFIDENTIAL
+NOT FOR GENERAL DISTRIBUTION
+****************
+
+
+
+Table of contents:
+-----------------
+
+	1. Objectives and Design Goals
+	2. Requirements
+	3. Architecture Overview
+	4. Design and Implementation
+	5. Referenced Documents
+
+
+
+
+Preface
+======================================================================
+
+	This specification does not cover all of Sausalito (of which CCE 
+	is a part).  Sausalito encompasses several pieces, and is discussed 
+	in it's entirety in a separate document.
+
+
+1. Objectives and Design Goals
+======================================================================
+
+	* Branding:
+	  Cobalt products have historically focused on low price, simplicity,
+	  and ease of use.  We must continue these goals, and ensure that the
+	  new architecture focuses on the things that have made Cobalt
+	  products successful to date.  The goal is not a completely
+	  flexible, general purpose PC, but an appliance that meets the needs
+	  of the vast majority of end users, and is simple to extend by the
+	  vast majority of third-party developers.
+
+	* Hardware independence:
+	  The new software architecture must not be inherently tied to a
+	  hardware form-factor.  There is no reason to support some functions
+	  on one system, and not on another.
+
+	* Modularization:
+ 	  It is imperative that the new architecture be modular to every extent
+	  possible.  To ease upgrade and new development issues, and to
+	  enable third-party developers to be most successful, we must
+	  minimize change.  We must isolate independent pieces of
+	  functionality and provide a structure which can be extended,
+	  without being modified.
+	
+	* Security:
+	  One of the most important things we must do is make sure our system
+	  is safe.  Safe from known malicious attacks, and, as much as
+	  possible, from unforeseen attacks.  This includes verifying access
+	  to every system change.
+
+	* Robustness:
+  	  Part of safety is the ability to handle unknown or bad situations
+	  gracefully.  We must ensure that error cases and unknown situations
+	  are accounted for, and handled simply, elegantly, and consistently.
+
+	* Testability:
+  	  As the architecture develops, we must build in hooks for thorough,
+	  repeatable, and exhaustive testing.  This includes automated
+	  testing and human testing.
+  
+	* Extensibility:
+  	  We must make it easy for Cobalt or third-party developers to extend
+	  and expand the Cobalt system.  It must be well documented, well
+	  abstracted, and well modularized, in order to accept new features
+	  easily and without system-wide changes.
+
+	* APIs:
+  	  Part of making this appliance a platform for third-party
+	  developers, is providing a well-defined set of constructs to
+	  manipulate the system.  This is a matter of abstracting operations
+	  cleanly and vowing to maintain interfaces through future products.
+  
+	* Language independence:
+  	  It should be feasible to configure the system from any language.
+	  Ideally, the system will not care what language is used to access
+	  it, but realistically we may just work on providing as much
+	  compatibility as possible.  This includes
+	  installations/uninstallations as well as run-time events.
+
+	* Clusterability:
+  	  One of the long-term goals of the architecture must be to ensure
+	  and maintain the ability to be clustered.
+
+	* Accountability:
+  	  The system must be capable of logging every event and transaction,
+	  and optionally be verbose about its operation.
+
+	* Manageability:
+	  The system must present an interface for remote management via a
+	  "management appliance" style device or application.
+
+
+2. Requirements
+======================================================================
+
+	The following is a list of requirements that must be met by the
+	architecture.
+
+	1) There must be standard ways to access configuration information
+	    for any module on the system
+
+	2) There must be a standard way of performing error checking
+
+	3) There must be an easy way to add/remove software modules
+
+	4) There must be a safe way of doing configuration recovery
+
+	5) APIs must be stable and change minimally between releases
+
+	6) There must be a robust event management mechanism
+
+	7) There must be a published technical document, covering mechanisms to
+	configure the system, as well as extending and programming for CCE
+
+	8) There must be standard ways to add/remove hooks for ActiveMonitor
+
+	9) There must be common, well defined set of data types for the system
+
+	10) There must be a distinct separation between UI and sauce and data
+
+	11) The system must be clusterable
+
+	12) The system must be secure
+
+	13) The system must have a management interface
+
+	14) The system must generate sufficient logs
+
+	15) The system must be product independent
+
+	16) The system must be failure-smart
+
+
+3. Architecture Overview
+======================================================================
+
+3.1. The Pieces
+	
+	The CCE project is slated as multiple phase project.  The first phase
+	is a very elementary system, and the final phase is a complete,
+	robust system meeting all the above requirements.
+
+	Documented here are the multiple stages, as best estimated.
+
+   	CCE consists of several parts.  The system is divided into modules
+	and abstracted so that any piece can change its internal design, and 
+	keep the API to other pieces consistent.  
+
+	The CCE maintains the whole configuration state of the system.  All
+	other system configuration files and such are generated from the
+	state of the CCE database by actuator routines, triggered by values
+	within the database.
+
+	The major pieces, present in all phases are:
+	* The CCE daemon (cced)
+	  - handles incoming connections/signals/etc.
+	* The Cobalt object database (codb) (see CODB.spec.txt)
+	  - maintains an object database that reflects the current
+	    configuration state of the system
+	* The CCE client library (libcce) (FIXME: see ???)
+	  - provides wrappers for clients to access CSCP
+	* The event dispatcher (ed) (FIXME: see ???)
+	  - triggers an appropriate set of actuators when data is changed
+	* The session manager (sm)
+	  - handles CSCP sessions with a client
+
+	The general flow of CCE operation is this:
+	* Packages register via config files (see Config.spec.txt) for 
+	  notification when properties of objects change, or when object are 
+	  created or destroyed.
+	* The cced listens for incoming clients on a UNIX domain socket.
+	* The cced speaks the CSCP protocol (see CSCP.spec.txt) to the client
+	* The client reads values, sets values, or creates or destroys objects.
+	* The sm reads the codb to give data to clients, and writes changes
+	  into a codb transaction (transparent).  When done, the transaction
+	  is committed.
+	* The ed identifies the registered entities (handlers) and dispatches
+	  them to actuate changes made to the system.
+	* The handlers communicate with the cced if needed (see
+	  HandlerInterface.spec.txt)
+	* The handlers each exit, indicating one of various states of success.
+	* The ed, when all handlers are done, returns the success value to
+	  the client.
+	
+3.2. Addressing Of Requirements
+
+	1) All configuration information for an appliance is abstracted
+	out to a hierarchy of objects and properties.  These objects and
+	properties are accessed ONLY through the CSCP protocol.
+
+	2) All CSCP commands return the status of their operation, as well as
+	any messages generated by handlers.
+
+	3) Package management is beyond the scope of CCE, but CCE can easily
+	accommodate modular configuration files (see Config.spec.txt).
+
+	4) Configuration recovery will be handled by rollback features of
+	later phases of CCE.
+
+	5) The only APIs that end-users or third-party-developers will access
+	are the libcce client library, and the CSCP protocol.  These will
+	be standardized interfaces.
+	   
+	6) Event management is done by the event dispatcher and configuration
+	files (see Config.spec.txt).
+
+	7) FIXME: A technical document would be very nice to have :)
+
+	8) FIXME: unaddressed.
+
+	9) FIXME: Currently data typing is not specced 
+
+	10) The CSCP protocol and event dispatcher provide boundaries between
+	a front-end and the CCE and the handlers and the CCE.
+
+	11) Clusterability is addressed in later phases of CCE via the Atomic
+	Broadcast Layer (ABL).
+
+	12) Security is arbitrated by the CCE.  All access to CCE are logged
+	and authenticated, and access is restricted by user-level rights.
+
+	13) CSCP provides the foundation for a management API.  FIXME:
+
+	14) All activities are logged.
+
+	15) All of CCE is designed to support the greatest set of
+	functionality, with the least amount of product-specific information.
+
+	16) Failure of handlers is addressed in later phases of CCE with the
+	configuration rollback feature.
+
+
+4. Design and Implementation
+======================================================================
+
+4.1. Phase 1 - The Basics
+
+	Phase 1 consists of a simple, single threaded cced, which includes
+	the ed and smd pieces monolithically.  For phase 1, a relatively
+	simple codb is needed, and a fairly full libcce is needed.
+
+	Once a client is connected to cced, no more connections will be 
+	allowed until the connected client disconnects.  The connection will 
+	then begin the CSCP protocol.  Each CSCP command will be executed and 
+	dispatched immediately.  The sm is essentially a single connection, 
+	managing individual commands.  The ed will dispatch events and
+	observe their success/failure and report it to the client.  Once all
+	handlers are done, changes will be committed to the codb.
+
+	Diagram 4.1.1: Phase 1 block diagram
+	------------------------------------
+	 +---------+              +------+
+	 | client  |---connects-->| cced |<--reads/writes--+           
+	 +---------+              | +sm  |                 |
+	                          | +ed  |                 |
+	                          +------+                 V 
+	                              |                +------+
+	                          dispatches           | codb |
+	                              |                +------+
+	                              V
+	                         +---------+
+	                         | handler | 
+	                         +---------+
+
+4.2. Phase 2 - Multiple Connections
+
+	Phase 2 takes the single-threaded cced and adds multiple client
+	connections.  To prevent database conflicts, a write semaphore is
+	provided, and all calls to writing functions are expected to have
+	obtained the lock first.  This allows multiple concurrent readers,
+	and multiple writers serialized across a semaphore.
+
+	Diagram 4.2.1: Phase 2 block diagram
+	------------------------------------
+	 +--------+              +------+            +------+
+	 | client |---connects-->| cced |---writes-->| lock | 
+	 +--------+              +------+<--reads--+ +------+
+	 +--------+              +------+          |   |
+	 | client |---connects-->| cced |<--reads--|   |
+	 +--------+              +------+          V   V
+	                             |            ------
+	                         dispatches      | codb |
+	                             |            ------ 
+	                             V
+	                         ---------
+	                        | handler | 
+	                         ---------
+
+4.3. Phase 3 - Evolution
+
+	Phase 3 is likely to evolve into multiple phases, but is TBD. 
+	
+	The final structure of CCE will split responsibilities across multiple
+	processes.  The sm (a process) will communicate with a transaction
+	queue (txnq), which is responsible for both generating replay-able
+	logs, and serializing the multiple incoming writes.  This provides
+	the clusterability features that are required.  The codb will be
+	fully transaction aware, and will process change requests in-batch.
+	The failure of any handler (as determined by ed via CSCP) will cause
+	the global failure of the transaction, and data will be rolled-back,
+	and handlers triggered with the old data, to actuate the system to a
+	known-good state.
+
+	Diagram 4.3.1: Final block diagram
+	----------------------------------
+	See pic.full-cce.jpg
+
+4.4. The Event Dispatcher
+
+	The ed must be aware of handler return status.  A handler can return
+	one of three states:  SUCCESS, FAIL, or DEFER.  If any handler
+	returns FAIL, the entire transaction will be rolled back.  For phases
+	1 and 2 this will not be implemented.  
+	
+	When a handler determines that it is not ready to run, for example: 
+	some pre-condition has not been met, it returns a value of DEFER.  
+	This requests that the ed move this handler to the end of the list, 
+	to be retried later.  The ed will notice if the case arises where all 
+	handlers are stuck in a DEFER state, and will fail the transaction.
+	Phase 1 will not implement this feature, phase to may (TBD), and
+	later phases will support this feature, when rollback is available. 
+
+
+5. Referenced Documents
+======================================================================
+	* Config.spec.txt
+	* CODB.spec.txt
+	* CSCP.spec.txt
+	* HandlerInterface.spec.txt
+	* pic.full-cce.jpg
