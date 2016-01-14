@@ -145,6 +145,14 @@ fi
 
 <begin $CHANGELOG>
 
+* Wed Jan 13 2016 Michael Stauber <mstauber@blueonyx.it> 1.0.0-0BX7
+- To avoid a naming conflict with php-memcached I renamed our 
+  memcache class to ccecache instead.
+- Modified ui/chorizo/menu/mecache.xml
+- Modified ui/chorizo/web/config/route.php
+- Added ui/chorizo/web/controllers/ccecache.php
+- Removed ui/chorizo/web/controllers/memcache.php
+
 * Tue Jan 12 2016 Michael Stauber <mstauber@blueonyx.it> 1.0.0-0BX6
 - Fixed ACL in ui/chorizo/menu/mecache.xml as we can no longer use
   'adminUser' alone. This would add such an item to to the menu of 

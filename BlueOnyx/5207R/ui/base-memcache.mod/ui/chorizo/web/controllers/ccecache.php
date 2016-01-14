@@ -1,11 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Memcache extends MX_Controller {
+class ccecache extends MX_Controller {
 
 /**
  * Index Page for this controller.
  *
- * Past the login page this loads the page for /memcache/memcache.
+ * Past the login page this loads the page for /memcache/ccecache.
  *
  */
 
@@ -136,7 +136,7 @@ class Memcache extends MX_Controller {
     //
 
     // Prepare Page:
-    $factory = $serverScriptHelper->getHtmlComponentFactory("base-memcache", "/memcache/memcache");
+    $factory = $serverScriptHelper->getHtmlComponentFactory("base-memcache", "/memcache/ccecache");
     $BxPage = $factory->getPage();
     $BxPage->setErrors($errors);
     $i18n = $factory->getI18n();
@@ -171,7 +171,7 @@ class Memcache extends MX_Controller {
 
     // Add the buttons
     $block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
-    $block->addButton($factory->getCancelButton("/memcache/memcache"));
+    $block->addButton($factory->getCancelButton("/memcache/ccecache"));
 
     // Nice people say goodbye, or CCEd waits forever:
     $cceClient->bye();
