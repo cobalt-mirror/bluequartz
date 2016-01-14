@@ -32,6 +32,7 @@ sausalito-cce has both the server and client parts of cce.
 Group: System Environment/BlueOnyx
 Summary: The CCE server daemon
 Requires: glib, glib-ghash, pam, policycoreutils
+Obsoletes: base-memcache-capstone base-memcache-glue base-memcache-locale-da_DK base-memcache-locale-de_DE base-memcache-locale-en_US base-memcache-locale-es_ES base-memcache-locale-fr_FR base-memcache-locale-it_IT base-memcache-locale-ja_JP base-memcache-locale-nl_NL base-memcache-locale-pt_PT base-memcache-ui
 %if "%centos" == "5" 
 Requires: audit-libs
 %endif 
