@@ -1,0 +1,56 @@
+Base Data Types - cced.schema
+-----------------------------------------
+Tim Hockin <thockin@cobalt.com>
+May, 2000
+
+1. Overview
+
+	Several base data types are provided for use in schemas.  They are
+	found in cced.schema, under /usr/sausalito/schemas.
+
+2. Types
+
+	All base data types are regular expressions.
+
+2.1 Type: scalar
+
+	Regex: ^.*$
+	Meaning: Zero or more characters of any value.
+
+2.2 Type: word
+
+	Regex: ^[^ \t\n\r\v\f]+$
+	Meaning: One or more non-whitespace characters.  whitespace is
+	defined as space (' '), tab ('\t'), newline ('\n'), carriage return
+	('\r'), vertical tab ('\v'), or form-feed ('\f').
+
+2.3 Type: alphanum
+
+	Regex: ^[A-Za-z0-9]+$
+	Meaning: One or more alphanumeric characters.
+
+2.4 Type: int
+
+	Regex: ^(\-?[1-9][0-9]*)|(0)$
+	Meaning: An integer.  An optional unary minus (negative) followed by
+	any integer except zero, or zero (no unary minus for zero).
+
+2.5 Type: uint
+
+	Regex: ^([1-9][0-9]*)|(0)$
+	Meaning: An unsigned integer. Any positive integer value, starting at 0.
+
+2.6 Type: boolean
+
+	Regex: ^(0|1)$
+	Meaning: A logical TRUE or FALSE.  The value "0" means a logical FALSE. 
+	The value "1" means logical TRUE.
+
+2.7 Type: ipaddr
+
+	Regex: ^(([0-9])|([1-9][0-9])|(1[0-9][0-9])|2[0-4][0-9]|25[0-5])\.\
+		  (([0-9])|([1-9][0-9])|(1[0-9][0-9])|2[0-4][0-9]|25[0-5])\.\
+		  (([0-9])|([1-9][0-9])|(1[0-9][0-9])|2[0-4][0-9]|25[0-5])\.\
+		  (([0-9])|([1-9][0-9])|(1[0-9][0-9])|2[0-4][0-9]|25[0-5])$
+	Meaning: Any set of four integers between 0 and 255, sperated by
+	periods ('.').
