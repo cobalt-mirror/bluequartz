@@ -94,11 +94,9 @@ if [ ! -e /home/.pkg_install_tmp ]; then
 fi
 
 # Restart CCEd:
-if [ ! -d "/usr/sausalito/yumcce" ];then
-        mkdir /usr/sausalito/yumcce
-        chmod 700 /usr/sausalito/yumcce
+if [ -d "/usr/sausalito/yumcce" ];then
+    touch /usr/sausalito/yumcce/restart
 fi
-touch /usr/sausalito/yumcce/restart
 
 # Restart Crond:
 /sbin/service crond restart
