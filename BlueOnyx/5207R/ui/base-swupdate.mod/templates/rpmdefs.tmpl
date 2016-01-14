@@ -60,6 +60,10 @@ information for [VENDOR]-[SERVICE].
 %attr(0600,root,root)%config /root/.gnupg/secring.gpg
 %attr(0644,root,root)%config /root/.gnupg/trustdb.gpg
 %attr(0755,root,root)/usr/sausalito/swatch/bin/am_updates.pl
+%attr(0644,root,root)%config /etc/yum/pluginconf.d/blueonyx.conf
+%attr(0700,root,root)%{RootDir}/sbin/cced_yum
+%attr(0700,root,root) %{RootDir}/yumcce
+%attr(0644,root,root) /usr/lib/yum-plugins/blueonyx.py
 [AUTOFILL]
 
 <end glue>
@@ -90,9 +94,11 @@ if [ ! -e /home/.pkg_install_tmp ]; then
 fi
 
 # Restart CCEd:
-if [ -S /usr/sausalito/cced.socket ]; then
-    /usr/sausalito/sbin/cced.init restart
+if [ ! -d "/usr/sausalito/yumcce" ];then
+        mkdir /usr/sausalito/yumcce
+        chmod 700 /usr/sausalito/yumcce
 fi
+touch /usr/sausalito/yumcce/restart
 
 # Restart Crond:
 /sbin/service crond restart
@@ -128,6 +134,17 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Wed Jan 13 2016 Michael Stauber <mstauber@solarspeed.net> 1.6.1-0BX01
+- Added YUM plugin BlueOnyx to handle cced rehash/restart elegantly.
+- Added /usr/sausalito/yumcce/ directory. If a file named 'restart' is
+  in it, cced will be restarted at the end of a YUM run. If a file 
+  named 'rehash' is in it, CCEd will be rehashed at the end of a YUM run.
+  If both 'restart' and 'rehash' are present, a restart will be done and
+  the rehash will be ignored.
+- Added glue/etc/yum/pluginconf.d/blueonyx.conf
+- Added glue/yum-plugins/blueonyx.py
+- Added glue/sbin/cced_yum
 
 * Thu Nov 05 2015 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX07
 - Modified ui/chorizo/web/controllers/autoinstall.php with some more
