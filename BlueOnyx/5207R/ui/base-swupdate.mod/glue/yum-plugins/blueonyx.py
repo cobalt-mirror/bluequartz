@@ -27,16 +27,6 @@ B{BlueOnyx} is a Yum plugin which handles BlueOnyx specific cleanup
 tasks after YUM updates on BlueOnyx servers.
 """
 
-import os
-import sys
-import time
-import socket
-import string
-import urlparse
-import datetime
-import threading
-import re
-
 from yum.plugins import PluginYumExit, TYPE_CORE, TYPE_INTERACTIVE
 from subprocess import call
 
