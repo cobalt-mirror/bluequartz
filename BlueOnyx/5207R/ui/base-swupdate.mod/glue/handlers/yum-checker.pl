@@ -3,6 +3,12 @@
 
 use CCE;
 
+# Debugging switch:
+$DEBUG = "0";
+if ($DEBUG) {
+	use Sys::Syslog qw( :DEFAULT setlogsock);
+}
+
 my $cce = new CCE;
 $cce->connectfd();
 
@@ -11,15 +17,28 @@ my $obj = $cce->event_object();
 
 my @oids = $cce->find('System');
 if (!defined($oids[0])) {
+	&debug_msg("'System' Object not found. Exiting. \n");
 	exit 0;
 }
 
 my ($ok, $yum) = $cce->get($oids[0], "yum");
 
 if ( $ok ) {
+	&debug_msg("Running yum-checker.sh \n");
 	`/usr/sausalito/handlers/base/swupdate/yum-checker.sh`;
 	$cce->bye('SUCCESS');
 	exit(0);
+}
+
+sub debug_msg {
+    if ($DEBUG) {
+        my $msg = shift;
+        $user = $ENV{'USER'};
+        setlogsock('unix');
+        openlog($0,'','user');
+        syslog('info', "$ARGV[0]: $msg");
+        closelog;
+    }
 }
 
 # 

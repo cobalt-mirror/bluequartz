@@ -2,91 +2,91 @@
 
 class DownloadHandler extends MX_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Past the login page this loads the page for /swupdate/downloadHandler.
-	 *
-	 */
+    /**
+     * Index Page for this controller.
+     *
+     * Past the login page this loads the page for /swupdate/downloadHandler.
+     *
+     */
 
-	public function index() {
+    public function index() {
 
-		$CI =& get_instance();
+        $CI =& get_instance();
 
-	    // We load the BlueOnyx helper library first of all, as we heavily depend on it:
-	    $this->load->helper('blueonyx');
-	    init_libraries();
+        // We load the BlueOnyx helper library first of all, as we heavily depend on it:
+        $this->load->helper('blueonyx');
+        init_libraries();
 
-  		// Need to load 'BxPage' for page rendering:
-  		$this->load->library('BxPage');
-		$MX =& get_instance();
+        // Need to load 'BxPage' for page rendering:
+        $this->load->library('BxPage');
+        $MX =& get_instance();
 
-	    // Get $sessionId and $loginName from Cookie (if they are set):
-	    $sessionId = $CI->input->cookie('sessionId');
-	    $loginName = $CI->input->cookie('loginName');
-	    $locale = $CI->input->cookie('locale');
+        // Get $sessionId and $loginName from Cookie (if they are set):
+        $sessionId = $CI->input->cookie('sessionId');
+        $loginName = $CI->input->cookie('loginName');
+        $locale = $CI->input->cookie('locale');
 
-	    // Line up the ducks for CCE-Connection:
-	    include_once('ServerScriptHelper.php');
-		$serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-		$cceClient = $serverScriptHelper->getCceClient();
-		$user = $cceClient->getObject("User", array("name" => $loginName));
-		$i18n = new I18n("base-swupdate", $user['localePreference']);
-		$system = $cceClient->getObject("System");
+        // Line up the ducks for CCE-Connection:
+        include_once('ServerScriptHelper.php');
+        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
+        $cceClient = $serverScriptHelper->getCceClient();
+        $user = $cceClient->getObject("User", array("name" => $loginName));
+        $i18n = new I18n("base-swupdate", $user['localePreference']);
+        $system = $cceClient->getObject("System");
 
-		// Initialize Capabilities so that we can poll the access rights as well:
-		$Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        // Initialize Capabilities so that we can poll the access rights as well:
+        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
 
-		// -- Actual page logic start:
+        // -- Actual page logic start:
 
-		// Not 'managePackage'? Bye, bye!
-		if (!$Capabilities->getAllowed('managePackage')) {
-			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
-			Log403Error("/gui/Forbidden403");
-		}
+        // Not 'managePackage'? Bye, bye!
+        if (!$Capabilities->getAllowed('managePackage')) {
+            // Nice people say goodbye, or CCEd waits forever:
+            $cceClient->bye();
+            $serverScriptHelper->destructor();
+            Log403Error("/gui/Forbidden403");
+        }
 
-		// Get URL params:
-		$get_form_data = $CI->input->get(NULL, TRUE);
+        // Get URL params:
+        $get_form_data = $CI->input->get(NULL, TRUE);
 
-		if ((!isset($get_form_data['packageOID'])) || (!isset($get_form_data['backUrl']))) {
-			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
-			Log403Error("/gui/Forbidden403");
-		}
+        if ((!isset($get_form_data['packageOID'])) || (!isset($get_form_data['backUrl']))) {
+            // Nice people say goodbye, or CCEd waits forever:
+            $cceClient->bye();
+            $serverScriptHelper->destructor();
+            Log403Error("/gui/Forbidden403");
+        }
 
-		$packageOID = $get_form_data['packageOID'];
-		$backUrl = $get_form_data['backUrl'];
+        $packageOID = $get_form_data['packageOID'];
+        $backUrl = $get_form_data['backUrl'];
 
-		//
-		//-- Do the deeds:
-		//
+        //
+        //-- Do the deeds:
+        //
 
-		$installScript = "/usr/sausalito/sbin/pkg_install.pl";
+        $installScript = "/usr/sausalito/sbin/pkg_install.pl";
 
-		// Reset
-		$cceClient->setObject("System", array("uiCMD" => "", "message" => "[[base-swupdate.initializing]]", "progress" => 0), "SWUpdate");
+        // Reset
+        $cceClient->setObject("System", array("uiCMD" => "", "message" => "[[base-swupdate.initializing]]", "progress" => 0), "SWUpdate");
 
-		// Initiate the install:
-		$package = $cceClient->get($packageOID);
-		$serverScriptHelper->fork("$installScript $packageOID", "root", $sessionId);
-		$name = $package["vendor"] . ' ' . $package["name"] . ' ' . $package["version"];
+        // Initiate the install:
+        $package = $cceClient->get($packageOID);
+        $serverScriptHelper->fork("$installScript $packageOID", "root", $sessionId);
+        $name = $package["vendor"] . ' ' . $package["name"] . ' ' . $package["version"];
 
-		// Nice people say goodbye, or CCEd waits forever:
-		$cceClient->bye();
-		$serverScriptHelper->destructor();
+        // Nice people say goodbye, or CCEd waits forever:
+        $cceClient->bye();
+        $serverScriptHelper->destructor();
 
-		// Redirect to the status page during the install:
-		header("Location: /swupdate/status?packageOID=". $packageOID . "&nameField=" . rawurlencode($name) . "&backUrl=$backUrl");
-		exit;
+        // Redirect to the status page during the install:
+        header("Location: /swupdate/status?packageOID=". $packageOID . "&nameField=" . rawurlencode($name) . "&backUrl=$backUrl");
+        exit;
 
-	}
+    }
 }
 /*
-Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
 All Rights Reserved.
 
 1. Redistributions of source code must retain the above copyright 

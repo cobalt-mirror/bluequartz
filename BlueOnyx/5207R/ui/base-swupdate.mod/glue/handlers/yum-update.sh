@@ -5,6 +5,7 @@
 /bin/chmod 644 /var/log/yum.log
 /bin/touch /tmp/yum.updating
 /bin/rm -f /tmp/yum.check-update
+/usr/bin/yum clean all
 /usr/bin/yum -y update > /tmp/yum.update
 
 if [ -f /etc/yumgui.conf ]; then

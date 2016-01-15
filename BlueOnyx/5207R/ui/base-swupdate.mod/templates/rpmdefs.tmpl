@@ -95,7 +95,7 @@ fi
 
 # Restart CCEd:
 if [ -d "/usr/sausalito/yumcce" ];then
-    touch /usr/sausalito/yumcce/restart
+    touch /usr/sausalito/yumcce/rehash
 fi
 
 # Restart Crond:
@@ -132,6 +132,16 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Fri Jan 15 2016 Michael Stauber <mstauber@solarspeed.net> 1.6.1-0BX02
+- Fixed 'Check for Updates' and 'Update System' buttons for YUM. Now they
+  use proper CCEwrapped calls which are more reliable.
+- Modified glue/ccewrap/pkg.xml
+- Modified glue/handlers/yum-checker.pl
+- Modified glue/handlers/yum-update.sh
+- Modified ui/chorizo/web/controllers/checkupdates.php
+- Modified ui/chorizo/web/controllers/yum.php
+- Modified ui/chorizo/web/controllers/yumupdate.php
 
 * Wed Jan 13 2016 Michael Stauber <mstauber@solarspeed.net> 1.6.1-0BX01
 - Added YUM plugin BlueOnyx to handle cced rehash/restart elegantly.

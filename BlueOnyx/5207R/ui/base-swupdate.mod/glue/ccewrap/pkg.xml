@@ -3,26 +3,33 @@
 -->
 
 <program name="/usr/bin/file">
-	<capability requires="modifyPackage" user="root"/>
+  <capability requires="modifyPackage" user="root"/>
 </program>
 <program name="/usr/sausalito/sbin/pkg_prepare.pl">
-	<capability requires="modifyPackage" user="root"/>
+  <capability requires="modifyPackage" user="root"/>
 </program>
 <program name="/usr/sausalito/sbin/pkg_install.pl">
-	<capability requires="modifyPackage" user="root"/>
+  <capability requires="modifyPackage" user="root"/>
 </program>
 <program name="/usr/sausalito/sbin/pkg_uninstall.pl">
-	<capability requires="modifyPackage" user="root"/>
+  <capability requires="modifyPackage" user="root"/>
 </program>
 <program name="/usr/sausalito/sbin/grab_updates.pl">
-	<capability requires="modifyPackage" user="root"/>
+  <capability requires="modifyPackage" user="root"/>
 </program>
 <program name="/usr/sausalito/swatch/bin/am_updates.pl">
+  <capability requires="modifyPackage" user="root"/>
+</program>
+<program name="/usr/sausalito/handlers/base/swupdate/yum-checker.sh">
 	<capability requires="modifyPackage" user="root"/>
 </program>
+<program name="/usr/sausalito/handlers/base/swupdate/yum-update.sh">
+	<capability requires="modifyPackage" user="root"/>
+</program>
+
 <!--
-Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
 Copyright (c) 2003 Sun Microsystems, Inc. 
 All Rights Reserved.
 
