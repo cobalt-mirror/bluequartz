@@ -18,20 +18,20 @@ $cce->connectuds();
 my $sysconfig = "/etc/sysconfig/named";
 $ret = Sauce::Util::editfile($sysconfig, *fix_sysconfig_named);
 if(! $ret ) {
-    $cce->bye('FAIL', 'cantEditFile', {'file' => $sysconfig});
-    exit(0);
+  $cce->bye('FAIL', 'cantEditFile', {'file' => $sysconfig});
+  exit(0);
 } 
+system('rm -f /etc/sysconfig/named.backup.*');
 
 my $unitfile = "/usr/lib/systemd/system/named-chroot.service";
 if (-f $unitfile) {
   $ret = Sauce::Util::editfile($unitfile, *fix_unitfile_named);
   if(! $ret ) {
-      $cce->bye('FAIL', 'cantEditFile', {'file' => $unitfile});
-      exit(0);
-  } 
+    $cce->bye('FAIL', 'cantEditFile', {'file' => $unitfile});
+    exit(0);
+  }
+  system("rm -f rm /usr/lib/systemd/system/named-chroot.service.backup.*");
 }
-
-system('rm -f /etc/sysconfig/named.backup.*');
 
 my ($sysoid) = $cce->find("System");
 my ($ok, $obj) = $cce->get($sysoid, "DNS");
@@ -69,12 +69,14 @@ my $running = 0;
 
 # do the right thing
 if (!$running && $obj->{enabled}) {
-    Sauce::Service::service_run_init($SERVICE, 'start');
-    sleep(1); # wait for named to really start
-} elsif ($running && !$obj->{enabled}) {
-    Sauce::Service::service_run_init($SERVICE, 'stop');
-} elsif ($running && $obj->{enabled}) {
-    Sauce::Service::service_run_init($SERVICE, 'restart');
+  Sauce::Service::service_run_init($SERVICE, 'start');
+  sleep(1); # wait for named to really start
+}
+elsif ($running && !$obj->{enabled}) {
+  Sauce::Service::service_run_init($SERVICE, 'stop');
+}
+elsif ($running && $obj->{enabled}) {
+  Sauce::Service::service_run_init($SERVICE, 'restart');
 }
 
 $cce->bye('SUCCESS');

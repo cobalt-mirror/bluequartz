@@ -26,10 +26,13 @@ subsystem for base-dns-am.
 
 %changelog
 
+* Thu Jan 28 2016 Michael Stauber <mstauber@solarspeed.net> 1.1-0BX05
+- Better implementation of Unit-File fix on demand in am_dns.sh.
+
 * Thu Jan 28 2016 Michael Stauber <mstauber@solarspeed.net> 1.1-0BX04
-- Modified am_dns.sh to call constructor fixDNS.pl. Which has provisions
-  to fix up the Systemd Unit-File named-chroot in case a YUM update rolls
-  it back to a nonfunctional version.
+- Modified am_dns.sh to call constructor fixDNS.pl if needed. Which 
+  has provisions to fix up the Systemd Unit-File named-chroot in case
+  a YUM update rolls it back to a nonfunctional version.
 
 * Mon Dec 22 2014 Michael Stauber <mstauber@solarspeed.net> 1.1-0BX03
 - More Systemd related changes.

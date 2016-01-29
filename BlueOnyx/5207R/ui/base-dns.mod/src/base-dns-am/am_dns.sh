@@ -11,10 +11,16 @@
 # 	exit $AM_STATE_NOINFO
 # fi
 
-# Run the fixDNS.pl constructor. That will make sure that the Systemd
-# Unit-File of named-chroot will be fixed if needed:
-if [ -f "/usr/sausalito/constructor/base/dns/fixDNS.pl"];then
-	/usr/sausalito/constructor/base/dns/fixDNS.pl
+# Check if the 'named-chroot' Systemd Unit-File is present:
+if [ -f "/usr/lib/systemd/system/named-chroot.service" ];then
+	FOUND=`cat /usr/lib/systemd/system/named-chroot.service | grep "^ExecStartPre=/bin/bash"|wc -l`
+	if [ $FOUND = "1" ];then
+		# Run the fixDNS.pl constructor. That will make sure that the Systemd
+		# Unit-File of named-chroot will be fixed if needed:
+		if [ -f "/usr/sausalito/constructor/base/dns/fixDNS.pl" ];then
+			/usr/sausalito/constructor/base/dns/fixDNS.pl
+		fi
+	fi
 fi
 
 # Test localhost lookup
@@ -43,8 +49,8 @@ echo -n "$greenMsg"
 exit $AM_STATE_GREEN;
 
 # 
-# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 
