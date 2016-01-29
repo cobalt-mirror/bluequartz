@@ -1,7 +1,7 @@
 Summary: Active Monitor support for base-dns-am
 Name: base-dns-am
 Version: 1.1
-Release: 0BX04%{?dist}
+Release: 0BX05%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
