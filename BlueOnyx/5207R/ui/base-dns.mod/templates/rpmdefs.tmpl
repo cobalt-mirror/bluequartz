@@ -74,9 +74,12 @@ information for [VENDOR]-[SERVICE].
 
 <begin glue>
 # glue post-install
-if [ -S /usr/sausalito/cced.socket ]; then
-    /usr/sausalito/sbin/cced.init rehash
-fi
+
+# Restart CCEd: 
+if [ -d "/usr/sausalito/yumcce" ];then 
+  touch /usr/sausalito/yumcce/restart
+fi 
+
 if [ -d /var/named/chroot/var/named ]; then
   chmod 0770 /var/named/chroot/var/named
 fi
