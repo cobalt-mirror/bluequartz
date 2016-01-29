@@ -11,6 +11,12 @@
 # 	exit $AM_STATE_NOINFO
 # fi
 
+# Run the fixDNS.pl constructor. That will make sure that the Systemd
+# Unit-File of named-chroot will be fixed if needed:
+if [ -f "/usr/sausalito/constructor/base/dns/fixDNS.pl"];then
+	/usr/sausalito/constructor/base/dns/fixDNS.pl
+fi
+
 # Test localhost lookup
 /usr/bin/host -W 2 127.0.0.1 127.0.0.1 | grep '1.0.0.127.in-addr.arpa.' >/dev/null
 
