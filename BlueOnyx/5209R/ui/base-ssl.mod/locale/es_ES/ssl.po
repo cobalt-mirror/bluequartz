@@ -1093,3 +1093,13 @@ msgstr "Aquí puede especificar a qué edad (en días) un certificado SSL [[base
 msgid "LetsEncrypt_info_text"
 msgstr "[[base-ssl.LetsEncrypt]] (<a href='http://www.letsencrypt.org' target='_blank'>www.letsencrypt.org</a>) es una nueva autoridad de certificación: Es gratis, automatizada y abierta.<br><br>Los certificados SSL que genera son compatibles con la mayoría de los navegadores modernos y tienen una validez de hasta 90 días. BlueOnyx apoya la solicitud automática e instalar de [[base ssl.LetsEncrypt-]] certificados SSL y también puede manejar la renovación automática<br><br><b>Nota:</b> [[base-ssl.LetsEncrypt]] tiene que hacer una verificación en línea para ver si el dominio(s) que solicitar certificados para los tuyos y apuntan a este servidor. Para ello se colocará un archivo temporal en el directorio web que luego se comprobó desde el exterior. Por favor, asegúrese de que tiene los registros DNS de trabajo y que este sitio virtual es accesible por el exterior.<br><br>Si este sitio virtual ya tiene un certificado SSL, entonces el [[base-ssl.LetsEncrypt]] certificado SSL solicitado se reemplazarlo<br><br><b>Beta Limitaciones:</b> [[base-ssl.LetsEncrypt]] se encuentra actualmente en Beta y límites de velocidad para la obtención de los certificados están en vigor. Hay dos límites de la frecuencia en juego: Inscripciones/dirección IP y Certificados/Dominio<br><br>Inscripciones/dirección IP limita el número de registros que puede hacer en un período de tiempo dado. Actualmente 10 registros por 3 horas.<br><br>Certificados/dominio que podría llegar a través de la re-emisión repetida. Este mide límite certificados emitidos por una determinada combinación de dominio de nivel superior + dominio (un 'dominio registrado').<br><br>El límite en Certificados / dominio es de 5 certificados para un dominio registrado en una ventana deslizante de 7 días."
 
+#
+### New for webAlias-stuff:
+#
+
+msgid "LEwantedAliases"
+msgstr "Alias de dominio SSL"
+
+msgid "LEwantedAliases_help"
+msgstr "Un certificado SSL es válido para el nombre de dominio completo del sitio virtual. Pero también se puede solicitar la validez de los alias del nombre de dominio. Mueva los alias de la derecha a la izquierda para incluirlos en el certificado SSL durante las solicitudes y renovaciones."
+

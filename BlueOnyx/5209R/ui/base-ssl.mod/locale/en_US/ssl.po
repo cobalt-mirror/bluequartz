@@ -1101,3 +1101,12 @@ msgstr "Here you can specify at which age (in days) a [[base-ssl.LetsEncrypt]] S
 msgid "LetsEncrypt_info_text"
 msgstr "[[base-ssl.LetsEncrypt]] (<a href='http://www.letsencrypt.org' target='_blank'>www.letsencrypt.org</a>) is a new Certificate Authority: It’s free, automated and open.<br><br>The SSL certificates it generates are supported by most modern browsers and are valid for up to 90 days. BlueOnyx supports the automatic request and install of [[base-ssl.LetsEncrypt]] SSL certificates and can also handle the automatic renewal.<br><br><b>Please note:</b> [[base-ssl.LetsEncrypt]] needs to do an online verification to see if the domain(s) you request certificates for are yours and point to this server. For that purpose it will place a temporary file in the web directory which is then checked from the outside. Please make sure you have working DNS records and that this virtual site is reachable from the outside.<br><br>If this virtual site already has an SSL certificate, then the requested [[base-ssl.LetsEncrypt]] SSL certificate will replace it.<br><br><b>Beta Limitations:</b> [[base-ssl.LetsEncrypt]] is currently in Beta and rate limits for obtaining certificates are in effect. There are two rate limits in play: Registrations/IP address and Certificates/Domain.<br><br>Registrations/IP address limits the number of registrations you can make in a given time period. Currently 10 registrations per 3 hours.<br><br>Certificates/Domain you could run into through repeated re-issuance. This limit measures certificates issued for a given combination of Top Level Domain + Domain (a 'registered domain').<br><br>The limit on Certificates/Domain is 5 certificates for a registered domain in a sliding window of 7 days."
 
+#
+### New for webAlias-stuff:
+#
+
+msgid "LEwantedAliases"
+msgstr "SSL domain aliases"
+
+msgid "LEwantedAliases_help"
+msgstr "A SSL certificate is valid for the fully qualified domain name of the virtual site. But you can also request validity for aliases of the domain name. Move aliases from the right side to the left to include them in the SSL certificate during requests and renewals."

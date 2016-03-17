@@ -1093,3 +1093,12 @@ msgstr "Hier können das Alter (in Tagen) angeben, welches ein [[base-ssl.LetsEn
 msgid "LetsEncrypt_info_text"
 msgstr "[[base-ssl.LetsEncrypt]] (<a href='http://www.letsencrypt.org' target='_blank'>www.letsencrypt.org </a>) ist eine neue Zertifizierungsstelle: Sie ist kostenlos, automatisierte und offen<br><br>.Die von ihr erzeugten SSL-Zertifikate werden von den meisten modernen Browsern unterstützt und sind bis zu 90 Tage gültig. BlueOnyx unterstützt die automatische Anforderung und Installation von [[base-ssl.LetsEncrypt]] SSL-Zertifikaten. Desweiteren übernimmt es (auf Wunsch) die automatische Erneuerung dieser Zertifikate.<br><br><b>Bitte beachten Sie:</b> [[base-ssl.LetsEncrypt]] führt eine Online-Prüfung durch. Dabei wird überprüft, ob Sie berechtigt sind, für Domänen SSL-Zertifikate zu beantragen. Dazu wird eine temporäre Dateim in das Webverzeichnis Ihrer virtuellen Site gelegt und diese Datei von [[base-ssl.LetsEncrypt]] aufgerufen. Dazu ist es natürlich nötig, dass die virtuelle Site DNS-Einträge hat und von außen erreichbar ist.<br><br>Wenn diese virtuelle Site bereits ein SSL-Zertifikat hat, so wird dieses bei Anforderung eines [[base-ssl.LetsEncrypt]] SSL-Zertifikates ersetzt.<br><br><b>Einschränkungen während der Beta-Test Phase:</b> [[base-ssl.LetsEncrypt]] ist derzeit in einer öffentlichen Beta-Phase und hat daher enge Grenzwerte, wie oft Zertifikate angefordert oder erneuert werden können. Zwei Schwellwerte sind dabei zu beachten: 'Anforderungen pro IP-Adresse' und 'Zertifikate pro Domäne'.<br><br>'Anforderungen pro IP-Adresse': Derzeit dürfen pro Server maximal 10 Zertifikats-Anforderungen in 3 Stunden durchgeführt werden.<br><br>'Zertifikate pro Domäne': Wenn Sie wiederholt für die selbe(n) Domänen Zertifikate anfordern, so unterliegt auch dies einer Beschränkung. Das schließt auch Subdomänen mit ein. Sie dürfen maximal 5 Zertifkate für eine Domäne in 7 Tagen beantragen.<br><br>"
 
+#
+### New for webAlias-stuff:
+#
+
+msgid "LEwantedAliases"
+msgstr "SSL-Domain Aliase"
+
+msgid "LEwantedAliases_help"
+msgstr "Ein SSL-Zertifikat ist für den vollqualifizierten Domain-Name der virtuellen Seite gültig. Sie können aber auch für Aliase des Domain-Namens Gültigkeit verlangen. Bewegen Sie dazu die gewünschten Aliase in der Liste von Rechts nach Links. Alle Domain-Aliase, die links gelistet sind, werden bei der Erstellung und Erneuerung von SSL-Zertifikaten verwendet werden."

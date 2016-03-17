@@ -1216,3 +1216,13 @@ msgstr "Her kan du angive, hvor alder (i dage) et [[base-ssl.LetsEncrypt]] SSL-c
 msgid "LetsEncrypt_info_text"
 msgstr "[[base-ssl.LetsEncrypt]] (<a href='http://www.letsencrypt.org' target='_blank'> www.letsencrypt.org </a>) er en ny Certificate Authority: Det er gratis, automatiseret og åben.<br><br>De SSL certifikater det genererer understøttes af de fleste moderne browsere, og er gældende for op til 90 dage. BlueOnyx understøtter den automatiske anmodning og installation af [[base-ssl.LetsEncrypt]] SSL-certifikater og kan også håndtere automatisk fornyelse<br><br><b>Bemærk:</b> [[base-ssl.LetsEncrypt ]] skal gøre en online kontrol for at se om det domæne(r) du anmode certifikater for, er jeres og peger på denne server. Med henblik herpå vil det lægge en midlertidig fil i web directory, som derefter kontrolleres udefra. Sørg for at du har arbejdet DNS-registreringer, og at denne virtuelle site er tilgængelig udefra.<br><br>Hvis denne virtuelle websted allerede har en SSL-certifikat, så den ønskede [[base-ssl.LetsEncrypt]] SSL certifikat vil erstatte det<br><br><b>Beta Begrænsninger:</b> [[base-ssl.LetsEncrypt]] er i øjeblikket i Beta og sats grænser for at opnå certifikater er i kraft. Der er to sats grænser i spil: Registreringer/IP-adresse og Certifikater/domæne<br><br>Registreringer/IP-adresse begrænser antallet af registreringer, du kan gøre i en given periode. I øjeblikket 10 registreringer per 3 timer.<br><br>Certifikater/domæne, du kunne løbe ind ved gentagen genudstedelse. Denne grænse måler, der udstedes for en given kombination af topdomæne + Domæne (et 'registreret domæne').<br><br>Grænse for Certifikater/domæne er 5 certifikater for et registreret domæne i et glidende vindue på 7 dage."
 
+#
+### New for webAlias-stuff:
+#
+
+msgid "LEwantedAliases"
+msgstr "SSL domænealiasser"
+
+msgid "LEwantedAliases_help"
+msgstr "En SSL certifikat er gyldigt i det fuldt kvalificerede domænenavn på den virtuelle site. Men du kan også anmode gyldighed for aliasser af domænenavnet. Flyt aliaser fra højre side til venstre for at inkludere dem i SSL-certifikatet under anmodninger og fornyelser."
+
