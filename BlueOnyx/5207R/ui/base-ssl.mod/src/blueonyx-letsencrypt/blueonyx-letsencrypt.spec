@@ -7,7 +7,7 @@
 
 Name:           %{pkgname}
 Version:        0.1.0
-Release:        4
+Release:        2
 Packager:       Michael Stauber <mstauber@blueonyx.it>
 Vendor:         Let's Encrypt
 URL:            http://www.letsencrypt.org
@@ -17,21 +17,14 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-root
 BuildArch:      noarch
 Distribution:   BlueOnyx
 Source:         %{name}.tar.gz
-Requires:       python27
-Requires:       python27-devel
-Requires:       python27-pip
-Requires:       python27-setuptools
-Requires:       python27-tools
-Requires:       python27-virtualenv
+Requires:       python-devel
+Requires:       python-virtualenv
 Requires:       gcc
 Requires:       dialog
 Requires:       augeas-libs
 Requires:       git
 Requires:       libffi-devel
 Requires:       redhat-rpm-config
-Requires:       python-devel
-Requires:       python-setuptools
-Requires:       python-virtualenv
 Summary:        Let's Encrypt Python Client
 
 %description
@@ -92,12 +85,6 @@ rm -R -f $RPM_BUILD_ROOT
 %files -f solFile.list
 
 %changelog
-
-* Sun Dec 06 2015 Michael Stauber <mstauber@blueonyx.it>
-- [0.1.0-4] Requirements updated.
-
-* Sun Dec 06 2015 Michael Stauber <mstauber@blueonyx.it>
-- [0.1.0-3] Switch to Python27 for EL6
 
 * Fri Dec 04 2015 Michael Stauber <mstauber@blueonyx.it>
 - [0.1.0-2] Updated Requirements.

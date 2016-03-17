@@ -17,7 +17,7 @@ endif
 
 INSTALL = /usr/bin/install -m 0755 -o root 
 
-SBIN_SCRIPTS = ssl_get.pl ssl_import.pl letsencrypt_autorenew.pl
+SBIN_SCRIPTS = ssl_get.pl ssl_import.pl letsencrypt_autorenew.pl LE_SSL_fixer.pl
 CRON_DAILY = letsencrypt.cron
 
 install: install_sbin install_crondaily

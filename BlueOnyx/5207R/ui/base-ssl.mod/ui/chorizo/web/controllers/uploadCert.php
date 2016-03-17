@@ -142,7 +142,7 @@ class UploadCert extends MX_Controller {
 			//
 
 			$config['upload_path'] = '/tmp/';
-			$config['allowed_types'] = 'txt|csr|cert|crt';
+			//$config['allowed_types'] = 'txt|csr|cert|crt';
 			$config['encrypt_name'] = TRUE;
 			$config['remove_spaces'] = TRUE;
 			$this->load->library('upload', $config);
@@ -323,8 +323,8 @@ class UploadCert extends MX_Controller {
 	}		
 }
 /*
-Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
 All Rights Reserved.
 
 1. Redistributions of source code must retain the above copyright 

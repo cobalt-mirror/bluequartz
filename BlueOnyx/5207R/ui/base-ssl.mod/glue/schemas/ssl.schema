@@ -246,5 +246,12 @@
         name="LEcreationDate" type="scalar" default="" optional="true" 
         writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleSiteSSL )"
     />
+
+    <!-- Keep track of aliases that we need to request for: -->
+    <property
+        name="LEwantedAliases" type="scalar" array="yes" optional="yes"
+        writeacl="ruleCapable(adminUser) OR (ruleCapable(siteAdmin) AND ruleSiteSSL)"
+    />
+
 </class>
 

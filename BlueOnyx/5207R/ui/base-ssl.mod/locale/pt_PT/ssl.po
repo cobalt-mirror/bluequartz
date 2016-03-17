@@ -1093,3 +1093,12 @@ msgstr "Aqui você pode especificar em que idade (em dias) um certificado SSL [[
 msgid "LetsEncrypt_info_text"
 msgstr "[[base-ssl.LetsEncrypt]] (<a href='http://www.letsencrypt.org' target='_blank'>www.letsencrypt.org</a>) é uma nova Autoridade de Certificação: É gratuito, automatizada e aberta.<br><br>Os certificados SSL ele gera são suportados pela maioria dos navegadores modernos e são válidos por até 90 dias. BlueOnyx apoia o pedido automático e instalar certificados de [[base-ssl.LetsEncrypt]] de SSL e também pode lidar com a renovação automática<br><br><b>Por favor, note:</b> [[base-ssl.LetsEncrypt]] precisa fazer uma verificação on-line para ver se o domínio(s) que você solicitar certificados para são seus e aponte para esse servidor. Para esse efeito, vai colocar um arquivo temporário no diretório web que depois é verificada a partir do exterior. Por favor, verifique se você tem trabalhando registros de DNS e que este site virtual é acessível a partir do exterior.<br><br>Se este site virtual já tem um certificado SSL, então o [[base-ssl.LetsEncrypt]] certificado SSL solicitada substituí-lo<br><br><b>Beta Limitações:</b> [[base-ssl.LetsEncrypt]] está atualmente em beta e limites de taxa de obtenção dos certificados estão em vigor. Existem dois limites de frequência em jogo:. As inscrições/endereço IP e Certificados/Domínio<br><br>Inscrições/endereço IP limita o número de registros que você pode fazer em um determinado período de tempo. Atualmente 10 inscrições por 3 horas.<br><br>Certificados/Domínio você pode executar em meio repetido re-emissão. Mede-limite certificados emitidos para uma dada combinação de Top Level Domain Domínio + (um 'domínio registrado').<br><br>O limite de Certificados/Domínio é de 5 certificados para um domínio registrado em uma janela deslizante de 7 dias."
 
+#
+### New for webAlias-stuff:
+#
+
+msgid "LEwantedAliases"
+msgstr "aliases de domínio SSL"
+
+msgid "LEwantedAliases_help"
+msgstr "Um certificado SSL é válido para o nome de domínio totalmente qualificado do site virtual. Mas você também pode solicitar validade para aliases de nome de domínio. Mova aliases a partir do lado direito para a esquerda para incluí-los no certificado SSL durante a pedidos e renovações."

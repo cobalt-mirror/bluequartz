@@ -57,7 +57,7 @@ if (($vsite->{'CLASS'} eq "Vsite") || ($vsite->{'CLASS'} eq "System")) {
     # Get WebAliases:
     $alias_line = '';
     if ($vsite->{'CLASS'} eq "Vsite") {
-        @webAliases = $cce->scalar_to_array($vsite->{webAliases});
+        @webAliases = $cce->scalar_to_array($ssl_info->{LEwantedAliases});
         foreach $alias (@webAliases) {
             if ($alias ne "") {
                 $alias_line .= '-d ' . $alias . ' ';
@@ -248,8 +248,8 @@ sub debug_msg {
 }
 
 # 
-# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 

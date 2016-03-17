@@ -1093,3 +1093,12 @@ msgstr "Ici vous pouvez spécifier à quel âge (en jours) un certificat SSL [[b
 msgid "LetsEncrypt_info_text"
 msgstr "[[base-ssl.LetsEncrypt]] (<a href='http://www.letsencrypt.org' target='_blank'>www.letsencrypt.org</a>) est une nouvelle autorité de certification: Il est gratuit, automatisé et ouvert.<br><br> Il génère sont pris en charge par la plupart des navigateurs modernes et sont valables pour un maximum de 90 jours. BlueOnyx appuie la demande et installation automatique de [[-ssl.LetsEncrypt de base]] de certificats SSL et peut également gérer le renouvellement automatique <br><br><b>S'il vous plaît noter:</b> [[base-ssl.LetsEncrypt]] doit faire une vérification en ligne pour voir si le nom de domaine (s) que vous demander des certificats pour sont les vôtres et le point à ce serveur. Pour cela, il va placer un fichier temporaire dans le répertoire web qui est ensuite vérifiée à partir de l'extérieur. S'il vous plaît assurez-vous que vous avez à travailler enregistrements DNS et que ce site virtuel est accessible depuis l'extérieur.<br><br>Si ce site virtuel a déjà un certificat SSL, alors le [[base-ssl.LetsEncrypt]] certificat SSL sera demandé remplacer <br><br><b>Beta Limitations:</b> [[base-ssl.LetsEncrypt]] est actuellement en bêta et limites de taux d'obtention des certificats sont en vigueur. Il ya deux limites de fréquence dans le jeu: Inscriptions/adresse IP et Certificats/Domaine<br><br>IP inscriptions limite le nombre d'enregistrements que vous pouvez faire dans une période de temps donnée. Actuellement, 10 inscriptions par 3 heures.<br><br>Certificats/domaine pourraient courir en travers re-délivrance répétée. Cela permet de mesurer limites certificats délivrés pour une combinaison donnée de Top Level Domain + Domaine (un «de domaine enregistré»).<br><br>La limite sur les Certificats/nom de domaine est de 5 certificats pour un domaine enregistré dans une fenêtre glissante de 7 jours."
 
+#
+### New for webAlias-stuff:
+#
+
+msgid "LEwantedAliases"
+msgstr "SSL alias de domaine"
+
+msgid "LEwantedAliases_help"
+msgstr "Un certificat SSL est valide pour le nom de domaine complet du site virtuel. Mais vous pouvez également demander la validité des alias du nom de domaine. Déplacer les alias de la droite vers la gauche pour les inclure dans le certificat SSL lors des demandes et les renouvellements."

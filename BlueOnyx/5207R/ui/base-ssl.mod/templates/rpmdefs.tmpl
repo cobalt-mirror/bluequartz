@@ -50,6 +50,7 @@ information for [VENDOR]-[SERVICE].
 %attr(0755,root,root) /usr/sausalito/sbin/ssl_get.pl
 %attr(0755,root,root) /usr/sausalito/sbin/ssl_import.pl
 %attr(0755,root,root) /usr/sausalito/sbin/letsencrypt_autorenew.pl
+%attr(0755,root,root) /usr/sausalito/sbin/LE_SSL_fixer.pl
 %attr(0755,root,root) /etc/cron.daily/letsencrypt.cron
 
 [AUTOFILL]
@@ -75,8 +76,14 @@ information for [VENDOR]-[SERVICE].
 
 <begin glue>
 # glue post-install
-if [ -S /usr/sausalito/cced.socket ]; then
-    /usr/sausalito/sbin/cced.init rehash
+# Rehash CCEd once YUM is done:
+if [ -d /usr/sausalito/yumcce ];then 
+	touch /usr/sausalito/yumcce/rehash
+fi
+
+# Run fixer. One time:
+if [ -f /usr/sausalito/sbin/LE_SSL_fixer.pl ];then
+	/usr/sausalito/sbin/LE_SSL_fixer.pl
 fi
 
 <end glue>
@@ -125,6 +132,21 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Thu Mar 17 2016 Michael Stauber <mstauber@solarspeed.net> 1.3.0-0BX16
+- Added ability for Let's Encrypt cert requests to have fewer aliases
+  than all existing ones. GUI now allows to choose which ones should
+  be included in the cert request.
+- Modified glue/conf/base-ssl.conf
+- Modified glue/schemas/ssl.schema
+- Modified glue/handlers/le_install.pl
+- Modified ui/chorizo/web/controllers/letsencryptCert.php
+- Added glue/handlers/le_webAliases_change.pl
+- Added glue/sbin/LE_SSL_fixer.pl
+- Modified ui/chorizo/web/controllers/uploadCert.php to remove mime check
+  for uploaded certs.
+- Locales extended.
+
 * Fri Dec 18 2015 Michael Stauber <mstauber@solarspeed.net> 1.3.0-0BX15
 - Fixes in ui/chorizo/web/controllers/caManager.php
 - Fixes in ui/chorizo/web/controllers/createCert.php

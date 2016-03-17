@@ -1093,3 +1093,12 @@ msgstr "Hier kunt u aangeven op welke leeftijd (in dagen) een [[base-ssl.LetsEnc
 msgid "LetsEncrypt_info_text"
 msgstr "[[base-ssl.LetsEncrypt]] (<a href='http://www.letsencrypt.org' target='_blank'>www.letsencrypt.org</a>) is een nieuwe Certificate Authority: Het is gratis, geautomatiseerde en open.<br><br> De SSL-certificaten die het genereert worden ondersteund door de meeste moderne browsers en zijn geldig voor maximaal 90 dagen. BlueOnyx ondersteunt de automatische aanvraag en installatie van [[base-ssl.LetsEncrypt]] SSL-certificaten en kan ook omgaan met de automatische verlenging <br><br><b>Let op:</b> [[base-ssl.LetsEncrypt]] moet een online controleren om te zien of het domein (en) u een verzoek certificaten zijn van jou en wijzen op deze server. Voor dat doel zal het een tijdelijk bestand in de web directory die vervolgens wordt gecontroleerd vanaf de buitenzijde te plaatsen. Zorg ervoor dat u werkt DNS-records en dat deze virtuele site is bereikbaar vanaf de buitenkant.<br><br>Als deze virtuele site al een SSL-certificaat, dan is de gevraagde [[base-ssl.LetsEncrypt]] SSL certificaat vervangen <br><br><b>Beta Beperkingen:</b> [[base-ssl.LetsEncrypt]] is momenteel in bèta en de snelheid limieten voor de afgifte van kracht. Er zijn twee tarief grenzen in het spel: Registraties/IP-adres en Certificaten/Domain<br><br>Registraties/IP-adres beperkt het aantal registraties die u kunt maken in een bepaalde periode. Momenteel 10 inschrijvingen per 3 uur.<br><br>Certificaten/Domein kon je in te voeren door middel van herhaalde re-uitgifte. Deze limiet maatregelen certificaten afgegeven voor een bepaalde combinatie van Top Level Domain + Domain (een geregistreerd domein).<br><br>De limiet op Certificaten/Domein 5 certificaten voor een geregistreerd domein in een schuifraam van 7 dagen."
 
+#
+### New for webAlias-stuff:
+#
+
+msgid "LEwantedAliases"
+msgstr "SSL domeinaliassen"
+
+msgid "LEwantedAliases_help"
+msgstr "Een SSL-certificaat is geldig voor de volledige domeinnaam van de virtuele terrein. Maar je kunt ook geldigheid aanvragen voor aliassen van de domeinnaam. Verplaats aliassen van de rechterkant naar links om ze op te nemen in het SSL-certificaat tijdens het aanvragen en verlengingen."
