@@ -175,6 +175,14 @@ class LetsencryptCert extends MX_Controller {
                             'autoRenewDays' => $attributes['autoRenewDays'],
                             );
 
+                // Set 'LEwantedAliases' if we have it:
+                if (isset($attributes['LEwantedAliases'])) {
+                    $settings['LEwantedAliases'] = $attributes['LEwantedAliases'];
+                }
+                else {
+                    $settings['LEwantedAliases'] = "";
+                }
+
                 // Only set these during install transaction:
                 if ($attributes['LErequestCert'] == "1") {
                     $settings['uses_letsencrypt'] = '1';
@@ -343,6 +351,48 @@ class LetsencryptCert extends MX_Controller {
             );
 
         //
+        //--- Wanted Aliases:
+        //
+
+        if (isset($vsiteObj)) {
+            // This is a Vsite and not 'admserv':
+            if (isset($vsiteObj['webAliases'])) {
+                // We do have 'webAliases':
+                if ($vsiteObj['webAliases'] != "") {
+                    // They're not empty either. See what we've got:
+                    $webAliases = $cceClient->scalar_to_array($vsiteObj['webAliases']);
+                    $LEwantedAliases = $cceClient->scalar_to_array($CODBDATA['LEwantedAliases']);
+
+                    // If a webAliases equals the domain of the FQDN, add it to the list of items enabled by default: 
+                    if (in_array($vsiteObj['domain'], $webAliases)) {
+                        if ((!in_array($vsiteObj['domain'], $LEwantedAliases)) && ($CODBDATA['LEwantedAliases'] == "")) {
+                            // But we only add it if the stored aliases for SSL aren't empty:
+                            $LEwantedAliases[] = $vsiteObj['domain'];
+                            $CODBDATA['LEwantedAliases'] = $cceClient->array_to_scalar($LEwantedAliases);
+                        }
+                    }
+
+                    // Build selector:
+                    $select_webAliases =& $factory->getSetSelector('LEwantedAliases',
+                                            $CODBDATA['LEwantedAliases'], 
+                                            $vsiteObj['webAliases'],
+                                            'allowedAbilities', 'disallowedAbilities',
+                                            'rw', 
+                                            $CODBDATA['LEwantedAliases'],
+                                            $vsiteObj['webAliases']
+                                        );
+                    $select_webAliases->setOptional(true);
+
+                    // Out with selector:
+                    $block->addFormField($select_webAliases, 
+                                $factory->getLabel('LEwantedAliases'),
+                                $defaultPage
+                                );
+                }
+            }
+        }
+
+        //
         //--- Auto-Renew:
         //
 
@@ -399,8 +449,8 @@ class LetsencryptCert extends MX_Controller {
     }       
 }
 /*
-Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
 All Rights Reserved.
 
 1. Redistributions of source code must retain the above copyright 
