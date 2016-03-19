@@ -1041,6 +1041,15 @@ class BxPage extends MX_Controller {
 
             // Wiki Support:
             if ($Support['wiki_enabled'] == '1') {
+
+                // HTTPS check:
+                $web_url_pref = 'http';
+                if (isset($_SERVER['HTTPS'])) {
+                    if ($_SERVER['HTTPS'] == "on") {
+                        $web_url_pref = 'https';
+                    }
+                }
+
                 if ($Support['wiki_tabbed'] == '1') {
                     // Use FancyButton:
                     $this->setExtraHeaders('
@@ -1059,14 +1068,6 @@ class BxPage extends MX_Controller {
                                     });
                                   });
                                 </script>');
-
-                    // HTTPS check:
-                    $web_url_pref = 'http';
-                    if (isset($_SERVER['HTTPS'])) {
-                        if ($_SERVER['HTTPS'] == "on") {
-                            $web_url_pref = 'https';
-                        }
-                    }
 
                     $wiki = '<a class="various" target="_self" href="' . $web_url_pref . '://' . $Support['wiki_baseURL'] . '/userguide/' . uri_string() . '" data-fancybox-type="iframe">' . "\n";
                     $wiki .= '<button class="fancybox light small has_text img_icon tooltip hover" title="' . $i18n->getWrapped("[[base-support.wiki_help]]") . '"><img width="24" height="24" src="/.adm/images/icons/small/grey/info_about.png"><span>' . $i18n->getHtml("[[base-support.wiki]]") . '</span></button>' . "\n";
