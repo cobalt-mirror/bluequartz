@@ -1060,13 +1060,21 @@ class BxPage extends MX_Controller {
                                   });
                                 </script>');
 
-                    $wiki = '<a class="various" target="_self" href="http://' . $Support['wiki_baseURL'] . '/userguide/' . uri_string() . '" data-fancybox-type="iframe">' . "\n";
+                    // HTTPS check:
+                    $web_url_pref = 'http';
+                    if (isset($_SERVER['HTTPS'])) {
+                        if ($_SERVER['HTTPS'] == "on") {
+                            $web_url_pref = 'https';
+                        }
+                    }
+
+                    $wiki = '<a class="various" target="_self" href="' . $web_url_pref . '://' . $Support['wiki_baseURL'] . '/userguide/' . uri_string() . '" data-fancybox-type="iframe">' . "\n";
                     $wiki .= '<button class="fancybox light small has_text img_icon tooltip hover" title="' . $i18n->getWrapped("[[base-support.wiki_help]]") . '"><img width="24" height="24" src="/.adm/images/icons/small/grey/info_about.png"><span>' . $i18n->getHtml("[[base-support.wiki]]") . '</span></button>' . "\n";
                     $wiki .= '</a>' . "\n";
                 }
                 else {
                     // Use Link-Button to open in new tab:
-                    $wiki = '<a target="_blank" href="http://' . $Support['wiki_baseURL'] . '/userguide/' . uri_string() . '">' . "\n";
+                    $wiki = '<a target="_blank" href="' . $web_url_pref . '://' . $Support['wiki_baseURL'] . '/userguide/' . uri_string() . '">' . "\n";
                     $wiki .= '<button class="light small has_text img_icon tooltip hover" title="' . $i18n->getWrapped("[[base-support.wiki_help]]") . '"><img width="24" height="24" src="/.adm/images/icons/small/grey/info_about.png"><span>' . $i18n->getHtml("[[base-support.wiki]]") . '</span></button>' . "\n";
                     $wiki .= '</a>' . "\n";
                 }
@@ -1171,9 +1179,8 @@ class BxPage extends MX_Controller {
 }
 
 /*
-Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
-Copyright (c) 2003 Sun Microsystems, Inc. 
+Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
 All Rights Reserved.
 
 1. Redistributions of source code must retain the above copyright 
