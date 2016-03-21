@@ -70,8 +70,9 @@ information for [VENDOR]-[SERVICE].
 <begin glue>
 # glue post-install
 
-if [ -S /usr/sausalito/cced.socket ]; then
-    /usr/sausalito/sbin/php_settings_convert.pl >/dev/null 2>&1
+# Restart CCEd: 
+if [ -d "/usr/sausalito/yumcce" ];then 
+  touch /usr/sausalito/yumcce/restart
 fi
 
 <end glue>
@@ -119,6 +120,9 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Mon Mar 21 2016 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX12
+- Updated Italian locales added as provided by Simone Capra.
 
 * Wed Jan 21 2015 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX11
 - Modified glue/schemas/subdomainsVsite.schema to allow hostnames for
