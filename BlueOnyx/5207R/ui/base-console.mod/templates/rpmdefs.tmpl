@@ -95,11 +95,11 @@ information for [VENDOR]-[SERVICE].
 <begin glue>
 # glue post-install
 
-# Restart CCEd unless we're updating through the GUI:
-if [ ! -f /tmp/yum.updating ]; then
-    /usr/sausalito/sbin/cced.init rehash
-    /usr/sausalito/constructor/base/console/import_pam_abl_settings.pl
-fi
+# Rehash CCEd:
+touch /usr/sausalito/yumcce/reshash
+
+# Import PAM_ABL Settings:
+/usr/sausalito/constructor/base/console/import_pam_abl_settings.pl
 
 # Restart CRONd:
 /sbin/service crond restart > /dev/null 2>&1
@@ -150,6 +150,9 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Mon Mar 21 2016 Michael Stauber <mstauber@solarspeed.net> 2.1.0-0BX15
+- Updated Italian locales added as provided by Simone Capra.
 
 * Sun Oct 04 2015 Michael Stauber <mstauber@solarspeed.net> 2.1.0-0BX14
 - Modified ui/chorizo/web/controllers/ablsettings.php

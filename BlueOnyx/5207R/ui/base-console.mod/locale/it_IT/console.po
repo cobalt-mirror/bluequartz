@@ -8,257 +8,35 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-msgid "procsMenu"
-msgstr "Processi"
+msgid "/var/log/admserv/adm_access"
+msgstr "/var/log/admserv/adm_access"
 
-msgid "procsMenu_help"
-msgstr "Ti permette di vedere quali processi sono in esecuzione sul server. Replica l'output di 'ps auxwf'. Inoltre ti permette di uccidere i processi."
+msgid "/var/log/admserv/adm_access_help"
+msgstr "/var/log/admserv/adm_access"
 
-msgid "vserver_processlist"
-msgstr "Lista Process Server"
+msgid "/var/log/admserv/adm_error"
+msgstr "/var/log/admserv/adm_error"
 
-msgid "PID_help"
-msgstr "Processo ID."
-
-msgid "USER_help"
-msgstr "Nome utente del proprietario del processo."
-
-msgid "CPU_help"
-msgstr "Utilizzo della CPU del processo in formato 'XX, X'. È il tempo di CPU utilizzato diviso per il tempo del processo ha usato (cputime / rapporto tempo reale), espresso in percentuale. Non sarà aggiungere fino a 100% a meno che non si è fortunati."
-
-msgid "MEM_help"
-msgstr "L'utilizzo della memoria. Rapporto della dimensione dell'insieme residente del processo per la memoria fisica della macchina, espressa in percentuale."
-
-msgid "VSZ_help"
-msgstr "Utilizzo della memoria virtuale di tutto il processo."
-
-msgid "RSS_help"
-msgstr "Dimensione resident set, il non-scambiato memoria fisica che un compito ha utilizzato (in kilobyte)."
-
-msgid "TTY_help"
-msgstr "Controllo tty (terminale)."
-
-msgid "STAT_help"
-msgstr "Multi-carattere dello stato del processo."
-
-msgid "START_help"
-msgstr "Ora o la data del processo di partenza. Solo l'anno verrà visualizzato se il processo non è stato avviato nello stesso anno ps è stato invocato, o 'mmmdd' se non è stata avviata il giorno stesso, o 'HH: MM' diversamente."
-
-msgid "TIME_help"
-msgstr "Tempo CPU totale, '[dd-] hh: mm: ss' formato."
-
-msgid "COMMAND_help"
-msgstr "Comando con tutti i suoi argomenti come una stringa. Può tagliare a piacere. Le modifiche degli argomenti non vengono mostrati. L'uscita in questa colonna può contenere spazi."
-
-msgid "KILL_help"
-msgstr "Fare clic sull'icona accanto al processo in questione per ucciderlo con 'kill -9 PID'. FATE ATTENZIONE A NON UCCIDERE processi importanti!"
-
-msgid "loginsMenu"
-msgstr "Account di accesso"
-
-msgid "loginsMenu_help"
-msgstr "Permette di vedere gli ultimi accessi al server e riproduce l'output del comando Linux 'ultima'."
-
-msgid "vserver_loginlist"
-msgstr "Account di accesso a questo server"
-
-msgid "LUSER"
-msgstr "Nome utente"
-
-msgid "LUSER_help"
-msgstr "Mostra il nome dell'utente in questione."
-
-msgid "CONSOLE"
-msgstr "Console"
-
-msgid "CONSOLE_help"
-msgstr "Questa colonna indica quale servizio di console o di rete l'utente utilizza per accedere."
-
-msgid "HOST"
-msgstr "Host"
-
-msgid "HOST_help"
-msgstr "Nome host o IP dell'utente che loggato"
-
-msgid "START_DATE"
-msgstr "Accedi data di inizio"
-
-msgid "START_DATE_help"
-msgstr "Indica la data in cui l'accesso in questione ha iniziato."
-
-msgid "STIME"
-msgstr "S-Time"
-
-msgid "STIME_help"
-msgstr "Mostra il tempo in cui l'accesso in questione ha iniziato."
-
-msgid "ETIME"
-msgstr "E-Time"
-
-msgid "ETIME_help"
-msgstr "Mostra il tempo in cui l'accesso in questione è conclusa."
-
-msgid "DURATION"
-msgstr "Durata"
-
-msgid "DURATION_help"
-msgstr "Indica quanto tempo è durato il login - oppure se è ancora in corso."
-
-msgid "UKILL"
-msgstr "Uccidere"
-
-msgid "UKILL_help"
-msgstr "Consente di avviare l'utente dal sistema (se è ancora collegato!). Che da solo non gli impedisce di accedere di nuovo, però. Per questo potrebbe essere necessario sospendere il sito o utente in questione, anche."
-
-msgid "logfilesMenu"
-msgstr "File di log"
-
-msgid "logfilesMenu_help"
-msgstr "Consente di esaminare i file di log del server."
-
-msgid "sol_view"
-msgstr "Logfile:"
-
-msgid "sol_view_help"
-msgstr "Scegliere il file di log che si desidera esaminare."
-
-msgid "pam_ablMenu"
-msgstr "Login Manager"
-
-msgid "pam_ablMenu_help"
-msgstr "Il 'Login Manager' consente di configurare la protezione contro i brute force password guessing tentativi. È possibile configurare dopo quanti fallito login del conto o dei padroni di casa che attaccano sarà impedito di login a tutti. Anche se alla fine usa un nome utente e una password validi. Se mai bloccare te stesso: Sarete sempre in grado di accedere alla GUI come 'admin' per ripristinare il blocco."
-
-msgid "pam_abl_head"
-msgstr "Login Manager"
-
-msgid "pam_abl_location"
-msgstr "Config File:"
-
-msgid "pam_abl_location_help"
-msgstr "Posizione del file di configurazione pam_abl."
-
-msgid "user_purge"
-msgstr "Spurgo Utente:"
-
-msgid "user_purge_help"
-msgstr "Definisce quanto tempo non è riuscita login per gli utenti vengono conservati nel database degli utenti. Accessi non riusciti sono ancora memorizzati nel database, anche dopo il blocco temporaneo è scaduto."
-
-msgid "host_purge"
-msgstr "Host di spurgo:"
-
-msgid "host_purge_help"
-msgstr "Definisce quanto tempo non è riuscita login per host sono conservate nel database host. Accessi non riusciti sono ancora memorizzati nel database, anche dopo il blocco temporaneo è scaduto."
-
-msgid "user_rule"
-msgstr "Regola Utente:"
-
-msgid "user_rule_help"
-msgstr "Quantità di accessi non riusciti per ora fino alla account sarà nella lista nera, impedendo a chiunque di accedere a tale account anche con una password valida. NOTA BENE: Si dovrebbe lasciare questo a 'disabile', perché altrimenti qualcuno potrebbe eseguire un 'Denial of Service' attacco contro di te che (temporaneamente) blocca anche gli utenti legittimi di utilizzare i propri conti."
-
-msgid "host_rule"
-msgstr "Ospitare regola:"
-
-msgid "host_rule_help"
-msgstr "Quantità di accessi non riusciti per ora fino a quando sarà blackisted l'host di origine. Anche i dati di accesso con username e la password corretti dal IP incriminato saranno poi bloccati. Eccezione: l'utente 'admin' può ancora accedere al GUI da quel IP - se conosce la password corretta."
-
-msgid "pam_abl_statusMenu"
-msgstr "Account di accesso non riusciti"
-
-msgid "pam_abl_statusMenu_help"
-msgstr "Mostra un elenco di indirizzi IP da cui non sono riusciti i tentativi di accesso sono stati registrati. Mostra anche che sono stati utilizzati nomi utente. Questa pagina consente inoltre di ripristinare blocchi Autenticazione. Una spia rossa accanto a un indirizzo IP o il nome utente significa che l'host (o utente!) Non è consentito accedere più."
-
-msgid "pam_abl_blocked_users_and_hosts"
-msgstr "Impossibile Accesso Storia"
-
-msgid "blocked_hosts"
-msgstr "Host bloccati"
-
-msgid "blocked_users"
-msgstr "Utenti bloccati"
-
-msgid "pam_abl_blocked_hosts"
-msgstr "Padroni di casa con attività di login fallito:"
-
-msgid "host_ip"
-msgstr "Indirizzo IP"
-
-msgid "host_ip_help"
-msgstr "Indirizzo IP dal quale non sono stati registrati tentativi di accesso."
-
-msgid "failcnt"
-msgstr "Fail"
-
-msgid "failcnt_help"
-msgstr "Indica il numero di accessi non riusciti sono stati registrati."
-
-msgid "access"
-msgstr "Accesso"
-
-msgid "access_help"
-msgstr "Mostra se l'accesso è ancora consentito o se è bloccato. Un verde di stato attraverso la luce: l'accesso è (ancora - o di nuovo) consentito. Rosso significa: L'accesso è bloccato."
-
-msgid "Action"
-msgstr "Sblocca"
-
-msgid "Action_help"
-msgstr "Facendo clic sul pulsante è possibile rimuovere un blocco attivi del host o conto in questione. Se il pulsante è grigio, quindi questo host o l'account non è al momento bloccato."
-
-msgid "reset_hosts_button"
-msgstr "Ripristina tutti i blocchi di accoglienza"
-
-msgid "reset_hosts_button_help"
-msgstr "Consente di ripristinare tutti i blocchi di accoglienza e rimuove anche tutte le attività dell'evento host dal database host."
-
-msgid "reset_users_button"
-msgstr "Ripristina tutti i blocchi utente"
-
-msgid "reset_users_button_help"
-msgstr "Consente di ripristinare tutti i blocchi utente e rimuove anche tutte le attività dell'evento utente dal database degli utenti."
-
-msgid "reset_all_button"
-msgstr "Ripristina tutti i blocchi"
-
-msgid "reset_all_button_help"
-msgstr "Consente di reimpostare tutte host e blocchi utente. Rimuove anche tutti falliti attività all'evento di accesso dai database."
-
-msgid "purge_button"
-msgstr "Eventi di spurgo"
-
-msgid "purge_button_help"
-msgstr "Consente per scadere manualmente gli eventi dal utente e database host che sono oltre la loro data di scadenza."
-
-msgid "pam_abl_blocked_users"
-msgstr "Conti con l'attività di login fallito:"
-
-msgid "username"
-msgstr "Acconto"
-
-msgid "username_help"
-msgstr "Nome utente per il quale non è riuscita attività di accesso è stato registrato. Questi nomi utente non possono non essere gli account validi su questo server, ma qualcuno ha cercato di login con loro comunque."
-
-msgid "blocked_hosts_help"
-msgstr "Mostra una lista di host da cui non è riuscita l'attività di accesso è stato registrato, come spesso non sono riusciti ad autenticare correttamente e se sono ancora bloccati. Un verde di stato attraverso la luce: l'accesso è (ancora - o di nuovo) consentito. Rosso significa: L'accesso è bloccato."
-
-msgid "blocked_users_help"
-msgstr "Mostra un elenco di account utente per il quale non è riuscita l'attività di accesso è stato registrato, come spesso l'autenticazione non riuscita e se l'account è ancora bloccata. Un verde di stato attraverso la luce: l'accesso è (ancora - o di nuovo) consentito. Rosso significa: L'accesso è bloccato."
-
-msgid "whois"
-msgstr "Whois"
-
-msgid "whois_help"
-msgstr "Mostra il 'whois' informazioni sulla IP in questione."
-
-msgid "host_fqdn"
-msgstr "Hostname"
-
-msgid "host_fqdn_help"
-msgstr "Nome host da cui non è riuscito stati registrati tentativi di accesso. Se mostra '-n/a-' significa che l'host non ha avuto un reverse DNS validi. Se mostra 'localhost', non significa necessariamente che l'attacco è venuto dal server. Ci sono un sacco di (prevalentemente asiatici) ISP che ha fissato il reverse DNS per la propria rete a 'localhost'."
+msgid "/var/log/admserv/adm_error_help"
+msgstr "/var/log/admserv/adm_error"
 
 msgid "/var/log/cron"
 msgstr "/var/log/cron"
 
 msgid "/var/log/cron_help"
 msgstr "/var/log/cron"
+
+msgid "/var/log/httpd/access_log"
+msgstr "/var/log/httpd/access_log"
+
+msgid "/var/log/httpd/access_log_help"
+msgstr "/var/log/httpd/access_log"
+
+msgid "/var/log/httpd/error_log"
+msgstr "/var/log/httpd/error_log"
+
+msgid "/var/log/httpd/error_log_help"
+msgstr "/var/log/httpd/error_log"
 
 msgid "/var/log/maillog"
 msgstr "/var/log/maillog"
@@ -278,70 +56,382 @@ msgstr "/var/log/secure"
 msgid "/var/log/secure_help"
 msgstr "/var/log/secure"
 
-msgid "/var/log/httpd/access_log"
-msgstr "/var/log/httpd/access_log"
+msgid "Action"
+msgstr "Unblock"
 
-msgid "/var/log/httpd/access_log_help"
-msgstr "/var/log/httpd/access_log"
+msgid "Action_help"
+msgstr ""
+"Questo bottone ti permette di rimuovere un blocco attivo sull'host o "
+"sull'account in questione. Se il bottone e' grigio, allora questo host o "
+"questo account non e' bloccato."
 
-msgid "/var/log/httpd/error_log"
-msgstr "/var/log/httpd/error_log"
+msgid "COMMAND_help"
+msgstr ""
+"Comando con tutti i suoi argomenti come una stringa. Si puo' spezzare come "
+"desiderato. Le modifiche agli argomenti non sono mostrate. L'output in "
+"questa colonna puo' contenere spazi."
 
-msgid "/var/log/httpd/error_log_help"
-msgstr "/var/log/httpd/error_log"
+msgid "CONSOLE"
+msgstr "Console"
 
-msgid "/var/log/admserv/adm_access"
-msgstr "/var/log/admserv/adm_access"
+msgid "CONSOLE_help"
+msgstr ""
+"Questa colonna mostra quale console o servizio di rete l'utente stava "
+"utilizzando per effettuare l'accesso."
 
-msgid "/var/log/admserv/adm_access_help"
-msgstr "/var/log/admserv/adm_access"
+msgid "CPU_help"
+msgstr ""
+"L'utilizzo della CPU nel formato 'XX.X'. E' il tempo dell'utilizzo CPU "
+"diviso per il tempo durante il quale il processo era in esecuzione (media "
+"cputime/realtime), espresso in percentuale. Non raggiungera' 100% a meno che "
+"tu non sia fortunato."
 
-msgid "/var/log/admserv/adm_error"
-msgstr "/var/log/admserv/adm_error"
+msgid "DURATION"
+msgstr "Durata"
 
-msgid "/var/log/admserv/adm_error_help"
-msgstr "/var/log/admserv/adm_error"
+msgid "DURATION_help"
+msgstr ""
+"Mostra per quanto tempo l'utente e' rimasto loggato - o se lo e' ancora."
 
-#------------
+msgid "ETIME"
+msgstr "E-Time"
+
+msgid "ETIME_help"
+msgstr "Mostra l'ora del logout del login in questione."
+
+msgid "HOST"
+msgstr "Host"
+
+msgid "HOST_help"
+msgstr "Hostname o IP dell'utente che si e' loggato."
+
+msgid "KILL_help"
+msgstr ""
+"Clicca l'icona vicino al processo in questione per killarlo con 'kill-9' "
+"PID. ATTENZIONE A NON KILLARE PROCESSI IMPORTANTI!"
+
+msgid "LUSER"
+msgstr "Username"
+
+msgid "LUSER_help"
+msgstr "Mostra l'username dell'utente in questione."
+
+msgid "MEM_help"
+msgstr ""
+"Utilizzo della memoria. Media della memoria fisica dei processi sulla "
+"macchina, espressa in percentuale."
+
+msgid "PID_help"
+msgstr "ID Processo."
+
+msgid "RSS_help"
+msgstr ""
+"Dimensione della memoria fisica che un'attivita' ha utilizzato (in "
+"kilobytes)."
+
+msgid "START_DATE"
+msgstr "Data inizio login"
+
+msgid "START_DATE_help"
+msgstr "Mostra la data nella quale il login in questione e' iniziato."
+
+msgid "START_help"
+msgstr ""
+"Ora o data di inizio del processo. Verra' mostrato solo l'anno se il "
+"processo non venne avviato lo stesso anno che 'ps' fu invocato, o verra' "
+"visualizzato nel formato 'mmdd' se non venne avviato lo stesso giorno, "
+"oppure 'HH:MM'."
+
+msgid "STAT_help"
+msgstr "Stato del processo multi-carattere."
+
+msgid "STIME"
+msgstr "S-Time"
+
+msgid "STIME_help"
+msgstr "Mostra l'ora nel quale il login in questione e' iniziato."
+
+msgid "TIME_help"
+msgstr "Ora cumulativa della CPU, formato '[dd-]hh:mm:ss'."
+
+msgid "TTY_help"
+msgstr "Controllo tty (terminale)."
+
+msgid "UKILL"
+msgstr "Kill"
+
+msgid "UKILL_help"
+msgstr ""
+"Ti permette di avviare l'utente dal sistema (se e' ancora connesso!).Che da "
+"solo non gli impedisce di accedere di nuovo. Per questo, forse, dovrebbe "
+"essere necessario sospendere il sito o l'utente in questione."
+
+msgid "USER_help"
+msgstr "Nome utente del possessore del processo."
+
+msgid "VSZ_help"
+msgstr "Utilizzo memoria virtuale del processo."
+
+msgid "access"
+msgstr "Accesso"
+
+msgid "access_help"
+msgstr ""
+"Mostra se l'accesso e' ancora permesso o bloccato. Una pallina verde "
+"significa: l'accesso e' ancora permesso. Rosso significa: l'accesso "
+"e'bloccato."
+
+msgid "blocked_hosts"
+msgstr "Host Bloccati"
+
+msgid "blocked_hosts_help"
+msgstr ""
+"Mostra una lista di host dei quali viene registrato un tentativo di login "
+"fallito e quante volte hanno provato ad effettuare l'accesso e se sono "
+"bloccati o meno. Una lucina verde significa che l' accesso e' permesso. "
+"Rosso significa che l'accesso e' bloccato."
+
+msgid "blocked_users"
+msgstr "Utenti bloccati"
+
+msgid "blocked_users_help"
+msgstr ""
+"Mostra una lista degli utenti dei quali e' stata registrato un tentativo di "
+"login fallito, quanto spesso hanno effettuato l'accesso e se l'account e' "
+"ancora attivo. Una lucina verde significa che l;accesso e' permesso. Rosso "
+"significa che l'accesso e' bloccato."
 
 msgid "cap_menuServerSecurity"
-msgstr "Sicurezza del server"
-
-#------------
-
-msgid "events"
-msgstr "Eventi"
-
-msgid "events_help"
-msgstr "Un clic su questo pulsante permette di vedere i dettagli circa i tentativi di login falliti da questo indirizzo IP."
-
-msgid "service"
-msgstr "Servizio"
-
-msgid "service_help"
-msgstr "Questo dimostra il servizio che è stato utilizzato durante il tentativo di accesso non riuscito."
-
-msgid "user"
-msgstr "Utente"
-
-msgid "user_help"
-msgstr "Indica il nome utente che è stato utilizzato durante il tentativo di accesso non riuscito."
-
-msgid "type"
-msgstr "Tipo"
-
-msgid "type_help"
-msgstr "Mostra il metodo di autenticazione che è stato utilizzato durante il tentativo di accesso non riuscito."
+msgstr "Sicurezza Server"
 
 msgid "date"
 msgstr "Data"
 
 msgid "date_help"
-msgstr "Mostra la data e l'ora del tentativo di accesso non riuscito."
+msgstr "Mostra la data e l'ora dei tentativi di login falliti."
+
+msgid "events"
+msgstr "Eventi"
+
+msgid "events_help"
+msgstr ""
+"Un click su questo bottone ti permette di vedere i dettagli riguardo i "
+"tentativi di login falliti da questo indirizzo IP."
+
+msgid "failcnt"
+msgstr "Falliti"
+
+msgid "failcnt_help"
+msgstr "Mostra quanti login falliti sono stati registrati."
+
+msgid "host_fqdn"
+msgstr "Nome Host"
+
+msgid "host_fqdn_help"
+msgstr ""
+"Nome Host dal quale il tentativo di login fallito e' stato registrato. Se "
+"mostra -n/a- significa che l'host non ha un reverse DNS valido. Se mostra "
+"'localhost', non significa necessariamente che l'attacco arriva dal tuo "
+"server. Ci sono molti ISP, prevalentemente asiatici, che impostano come "
+"reverse DNS 'localhost'."
+
+msgid "host_ip"
+msgstr "Indirizzo IP"
+
+msgid "host_ip_help"
+msgstr ""
+"Indirizzo IP dal quale il tentativo di login fallito e' stato registrato."
+
+msgid "host_purge"
+msgstr "Blocca Host:"
+
+msgid "host_purge_help"
+msgstr ""
+"Definisce per quanto tempo i tentativi di accesso falliti vengono salvati "
+"nel database host. I tentativi falliti sono salvati nel database dopo che il "
+"blocco temporaneo e' scaduto."
+
+msgid "host_rule"
+msgstr "Regola Host:"
+
+msgid "host_rule_help"
+msgstr ""
+"Quantita' di accessi falliti all'ora fino a quando l'host di origine non "
+"verra' blacklistato. Anche gli accessi con username e password corretti "
+"dall'IP incriminiato. Eccezione: l'utente 'Admin' puo' continuare ad "
+"accedere alla GUI, sempre se si usa la password corretta."
 
 msgid "host_whitelist"
-msgstr "Whitelist"
+msgstr "Lista Bianca"
 
 msgid "host_whitelist_help"
-msgstr "Immettere intervalli di indirizzi IP che non si desidera essere bloccato da PAM_ABL. Ingressi validi: indirizzo IP più maschera di rete, una voce per riga. Esempio: 192.168.0.0/16. Per consentire a un unico indirizzo IP, inserire l'IP con un /32 alla fine. Esempio: 10.1.128.1/32"
+msgstr ""
+"Inserisci l'intervallo di indirizzi IP che non vuoi che vengano bloccati da "
+"PAM_ABL. Inserimenti validi: indirizzo IP con la netmask su ogni riga. "
+"Esempio: 192.168.0.0/16. Per permettere un singolo indirizzo IP "
+"inserisci /32 alla fine. Esempio: 10.1.128.1/32"
 
+msgid "logfilesMenu"
+msgstr "File di log"
+
+msgid "logfilesMenu_help"
+msgstr "Ti permette di esaminare i file di log del server."
+
+msgid "loginsMenu"
+msgstr "Accessi"
+
+msgid "loginsMenu_help"
+msgstr ""
+"Ti permette di vedere gli ultimi accesso al tuo server e mostra i risultati "
+"del comando Linux 'last'."
+
+msgid "pam_ablMenu"
+msgstr "Gestione Accessi"
+
+msgid "pam_ablMenu_help"
+msgstr ""
+"Il 'Gestione Accessi' ti permette di configurare la protezione contro i "
+"brute che cercano di indovinare la password. Puoi configurare dopo quanti "
+"login falliti l'host dell'utente viene bloccato. Anche se l'utente utilizza "
+"username e password corretti. Se mai dovessi bloccarti da solo potrai sempre "
+"accedere con l'account Admin."
+
+msgid "pam_abl_blocked_hosts"
+msgstr "Host con attivita' di accessi falliti:"
+
+msgid "pam_abl_blocked_users"
+msgstr "Accounts con attivita' di accessi falliti:"
+
+msgid "pam_abl_blocked_users_and_hosts"
+msgstr "Cronologia di accessi falliti"
+
+msgid "pam_abl_head"
+msgstr "Gestione Accessi"
+
+msgid "pam_abl_location"
+msgstr "File di Configurazione:"
+
+msgid "pam_abl_location_help"
+msgstr "Percorso del file di configurazione pam_abl."
+
+msgid "pam_abl_statusMenu"
+msgstr "Tentativi di Accesso Falliti"
+
+msgid "pam_abl_statusMenu_help"
+msgstr ""
+"Ti mostra una lista di indirizzi IP dai quali i tentativi di accesso falliti "
+"sono stati registrati. Inoltre mostra quale nome utente e' stato "
+"utilizzaato. Questa pagina inoltre ti permette di resettare i blocchi "
+"autenticazione. Una luce rossa accanto ad un indirizzo IP o ad un username "
+"significa che l'host o l'utente non puo' accedere."
+
+msgid "procsMenu"
+msgstr "Processi"
+
+msgid "procsMenu_help"
+msgstr ""
+"Ti permette di vedere quali processi sono in esecuzione sul tuo server. Esso "
+"replica l'output del comando 'ps auxwf'. Inoltre ti permette di killare "
+"processi."
+
+msgid "purge_button"
+msgstr "Svuota Eventi"
+
+msgid "purge_button_help"
+msgstr ""
+"Ti permette di rimuovere manualmente gli eventi, dal database user e host, "
+"che sono gia scaduti."
+
+msgid "reset_all_button"
+msgstr "Resetta Tutti i Blocchi"
+
+msgid "reset_all_button_help"
+msgstr ""
+"Ti permette di resettare tutti i blocchi utente e host. Inoltre rimuove gli "
+"eventi dei tentativi di login falliti dai database."
+
+msgid "reset_hosts_button"
+msgstr "Resetta Tutti i Blocchi Host"
+
+msgid "reset_hosts_button_help"
+msgstr ""
+"Ti permette di resettare i blocchi degli host e inoltre rimuove tutte le "
+"attivita' degli host dal database."
+
+msgid "reset_users_button"
+msgstr "Resetta Tutti i Blocchi Utenti"
+
+msgid "reset_users_button_help"
+msgstr ""
+"Ti permette di resettare i blocchi degli utenti e inoltre rimuove tutte le "
+"attivita' degli utenti dal database."
+
+msgid "service"
+msgstr "Servizio"
+
+msgid "service_help"
+msgstr ""
+"Questo mostra il servizio che era in uso al momento del tentativo di accesso."
+
+msgid "sol_view"
+msgstr "File di log:"
+
+msgid "sol_view_help"
+msgstr "Scegli il file di log che vuoi esaminare."
+
+msgid "type"
+msgstr "Tipo"
+
+msgid "type_help"
+msgstr ""
+"Mostra il metodo di autenticazione che era in uso durante i tentativi di "
+"login."
+
+msgid "user"
+msgstr "Utente"
+
+msgid "user_help"
+msgstr ""
+"Mostra l'username che l'utente stava usando al momento del tentativo del "
+"login."
+
+msgid "user_purge"
+msgstr "Blocca Utenti:"
+
+msgid "user_purge_help"
+msgstr ""
+"Definisce per quanto tempo i tentativi di login falliti degli utenti "
+"rimangono salvati nel database degli utenti. I tentativi falliti vengono "
+"salvati dopo che il blocco temporaneo e' scaduto."
+
+msgid "user_rule"
+msgstr "Regola Utenti:"
+
+msgid "user_rule_help"
+msgstr ""
+"Quantita' di accessi falliti all'ora prima che l'account dell'utente verra' "
+"blacklistato, impedendo a chiunque di accedere con quei username e password. "
+"NOTA: Dovresti lacsiare questa impostazione 'disattivata', perche' "
+"altrimenti qualcuno potrebbe effettuare un attacco 'Denial of Service' e "
+"bloccare gli accessi degli utenti."
+
+msgid "username"
+msgstr "Account"
+
+msgid "username_help"
+msgstr ""
+"Nome utente per il quale i tentativi di login falliti sono stati registrati. "
+"Questi nomi utente potrebbero non essere account validi su questo server, ma "
+"comunque sia qualcuno ha provato accedere con questi dati."
+
+msgid "vserver_loginlist"
+msgstr "Accedi a questo server"
+
+msgid "vserver_processlist"
+msgstr "Lista Processi Server"
+
+msgid "whois"
+msgstr "Whois"
+
+msgid "whois_help"
+msgstr "Mostra le informazioni 'whois' riguardo l'IP in questione."
