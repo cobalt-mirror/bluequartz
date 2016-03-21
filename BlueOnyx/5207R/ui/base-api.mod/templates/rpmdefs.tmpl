@@ -71,10 +71,8 @@ information for [VENDOR]-[SERVICE].
 <begin glue>
 # glue post-install
 
-# Restart CCEd unless we're updating through the GUI:
-if [ ! -f /tmp/yum.updating ]; then
-    /usr/sausalito/sbin/cced.init rehash
-fi
+# Restart CCEd:
+touch /usr/sausalito/yumcce/restart
 
 <end glue>
 <begin ui>
@@ -122,6 +120,9 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Mon Mar 21 2016 Michael Stauber <mstauber@solarspeed.net> 1.1.0-0BX05
+- Updated Italian locales added as provided by Simone Capra.
 
 * Thu Dec 04 2014 Michael Stauber <mstauber@solarspeed.net> 1.1.0-0BX04
 - Some Systemd love in post-install script.
