@@ -1,7 +1,7 @@
 Summary: Cobalt development tools
 Name: sausalito-devel-tools
 Version: 0.5.3
-Release: 0BX09%{?dist}
+Release: 0BX10%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -53,6 +53,9 @@ done
 /etc/rpm/macros.blueonyx
 
 %changelog
+
+* Mon Mar 21 2016 Michael Stauber <mstauber@solarspeed.net> 0.6.0-0BX10
+- Small fix in module.mk
 
 * Thu Oct 02 2014 Michael Stauber <mstauber@solarspeed.net> 0.5.3-0BX09
 - This is essentially the same in functionality as 0.6.0-0BX09 for 5X07R.
