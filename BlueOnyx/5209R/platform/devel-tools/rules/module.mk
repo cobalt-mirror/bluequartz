@@ -108,10 +108,10 @@ clean:
 		make -C glue clean; \
 	fi
 	-if [ -f "ui/$(VENDORNAME)/Makefile" ]; then \
-		make -C "glue/$(VENDORNAME)" clean; \
+		make -C "ui/$(VENDORNAME)" clean; \
 	fi
 	-if [ -f ui/Makefile ]; then \
-		make -C glue clean; \
+		make -C ui clean; \
 	fi
 	-rm -rf rpms srpms as_rpms as_srpms packing_list
 
