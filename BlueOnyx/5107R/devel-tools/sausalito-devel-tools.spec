@@ -1,7 +1,7 @@
 Summary: Cobalt development tools
 Name: sausalito-devel-tools
 Version: 0.6.0
-Release: 0BX10%{?dist}
+Release: 0BX11%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -53,6 +53,10 @@ done
 /etc/rpm/macros.blueonyx
 
 %changelog
+
+* Mon Mar 21 2016 Michael Stauber <mstauber@solarspeed.net> 0.6.0-0BX11
+- Small fix in module.mk
+
 * Mon Dec 28 2015 Hisao SHIBUYA <hisao@smack.jp> 0.6.0-0BX10
 - modify rpmsorter.sh to remove epoch number for resolving the issue about missing package that package has epoch number.
 
