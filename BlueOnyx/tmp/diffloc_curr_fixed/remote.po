@@ -8,18 +8,21 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-msgid "header"
-msgstr "Connetti al server"
+msgid "about"
+msgstr ""
+"Mindterm è un'applicazione basata su Java che consente di accedere al server "
+"da una postazione remota. Esso utilizza Secure Shell. Devi avere abilitato "
+"SSH per connettersi al server. Se non lo hai attivato, sei pregato di farlo "
+"prima di connetterti."
 
 msgid "connect"
-msgstr "Lancio Mindterm"
+msgstr "Avvia Mindterm"
 
 msgid "connect_help"
 msgstr "Connettersi al server tramite SSH"
 
-msgid "about"
-msgstr "Mindterm è un'applicazione basata su Java che consente di accedere al server da una postazione remota. Esso utilizza Secure Shell. Devi avere abilitato SSH per connettersi al server. Se non lo avete attivato, si prega di farlo prima di connettersi."
+msgid "header"
+msgstr "Connetti al server"
 
 msgid "remote_menu"
 msgstr "Accesso remoto"
-

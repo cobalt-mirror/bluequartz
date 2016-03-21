@@ -8,33 +8,45 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+msgid "API_info"
+msgstr ""
+"Le API di BlueOnyx consentono il provisioning remoto dei Vsites, degli "
+"utenti e di alcune funzioni di gestione del server. Le chiamate API sono "
+"fatte via HTTP(s) all'AdmServ di BlueOnyx. Un modulo WHMCS e' disponibile. "
+"Per piu' informazioni  visita la documentazine API: http://www.blueonyx.it/"
+"api/"
+
 msgid "APImenu"
 msgstr "API"
 
 msgid "APImenu_help"
-msgstr "Configurare l'API BlueOnyx. Esso consente per il provisioning remoto e la gestione remota del server. Ad esempio, con WHMCS (http://www.whmcs.com/) o attraverso le proprie chiamate API."
+msgstr ""
+"Configura le API di BlueOnyx. Esse ti permettono di gestire il server "
+"tramite provisioning da remoto. Per esempio con WHMCS (http://www.whmcs."
+"com/) o tramite le tue chiamate API."
+
+msgid "apiHosts"
+msgstr "API Host(s)"
+
+msgid "apiHosts_help"
+msgstr ""
+"Gli indirizzi IP degli host che possono eseguire delle chiamate API a questo "
+"server. Per motivi di sicurezza dovresti consentire l'accesso alle API solo "
+"a fonti fidate"
 
 msgid "apiSettings"
-msgstr "Settings API"
-
-msgid "API_info"
-msgstr "L'API BlueOnyx consente il provisioning a distanza di Vsites e utenti e alcune funzioni di gestione del server correlate. Chiamate API vengono effettuate tramite HTTP (s) al AdmServ del BlueOnyx. Un modulo WHMCS è disponibile. Per maggiori informazioni si prega di consultare la documentazione API: http://www.blueonyx.it/api/"
+msgstr "Impostazioni API"
 
 msgid "enableServerField"
 msgstr "Abilita API"
 
 msgid "enableServerField_help"
-msgstr "Consente di abilitare o disabilitare l'API."
+msgstr "Ti permette di attivare o disattivare le API."
 
 msgid "forceHTTPSField"
 msgstr "Forza HTTPS"
 
 msgid "forceHTTPSField_help"
-msgstr "Consentono solo SSL crittografato accesso all'API solo accettare le connessioni HTTPS. Per motivi di sicurezza questo dovrebbe essere acceso."
-
-msgid "apiHosts"
-msgstr "API Host (s)"
-
-msgid "apiHosts_help"
-msgstr "Indirizzi IP degli host che sono autorizzati ad effettuare chiamate API al server. Per motivi di sicurezza si dovrebbe consentire solo le chiamate alle API da fonti attendibili."
-
+msgstr ""
+"Permetti l'accesso alle API solo da connessione SSL cifrata.Per motivi di "
+"sicurezza questa opzione dovrebbe essere attivata."

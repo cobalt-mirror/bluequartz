@@ -8,118 +8,84 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-msgid "enableSSH"
-msgstr "Abilitare SSH server"
-
-msgid "enableSSH_help"
-msgstr "L'attivazione di SSH consente agli utenti con accesso alla shell di connettersi a questo server utilizzando il software client ssh. Uso di ssh è generalmente considerato più sicuro rispetto all'uso di telnet da ssh crittografa tutti i dati, comprese le password che vengono inviati tra il client e il server."
-
-msgid "SSH_Port"
-msgstr "Porta SSH:"
-
-msgid "SSH_Port_help"
-msgstr "Di default SSH gira sulla porta 22/tcp. Tuttavia, è possibile configurarlo per funzionare su un'altra porta, invece, al fine di cercare di evitare gli attacchi di forza bruta accesso automatizzato."
-
-msgid "SSH_Proto"
-msgstr "Protocollo SSH:"
-
-msgid "SSH_Proto_help"
-msgstr "SSH supporta due protocolli: il protocollo versione 1 e versione 2. Due è più avanzato e sicuro. Se possibile, si consiglia di utilizzare solo il protocollo 2. Ma si può anche impostare per '2, 1 ', in cui le applicazioni di casi in cui il supporto del protocollo 2 verrà utilizzato, mentre le applicazioni meno recenti che supportano solo il protocollo 1 può cadere di nuovo a quel posto."
-
-msgid "SSHrootLogin"
-msgstr "SSH Root Login:"
-
-msgid "SSHrootLogin_help"
-msgstr "Per impostazione predefinita e per motivi di sicurezza diretti SSH login come utente 'root' è in genere non sono ammessi. Se necessario, è possibile consentire qui."
-
-###
-
-msgid "basicSettingsTab"
-msgstr "Impostazioni di base"
-
-msgid "advancedSettingsTab"
-msgstr "Gestione SSH Key/Certificati"
-
-msgid "PasswordAuthentication"
-msgstr "Password di autenticazione"
-
-msgid "PasswordAuthentication_help"
-msgstr "Specifica se l'autenticazione della password di SSH è permesso. Il valore predefinito è 'sì'. Se avete impostato le chiavi SSH o certificati, è possibile disattivare l'autenticazione della password per una maggiore sicurezza. Solo permettendo login SSH basato chiave/certificati è il modo più sicuro."
-
-msgid "RSAAuthentication"
-msgstr "RSA Authentication"
-
-msgid "RSAAuthentication_help"
-msgstr "Specificare se l'autenticazione RSA pura è permesso. Il valore predefinito è 'no', come siamo soliti permettiamo protocollo solo SSH versione 2 e questa opzione si applica solo a solo versione 1 del protocollo."
-
-msgid "PubkeyAuthentication"
-msgstr "L'autenticazione a chiave pubblica"
-
-msgid "PubkeyAuthentication_help"
-msgstr "Specificare se l'autenticazione a chiave pubblica è permesso. Il valore predefinito è 'sì'. Notare che questa opzione si applica solo versione 2 del protocollo."
-
-msgid "key_present"
-msgstr "SSH Keys"
-
-msgid "key_present_help"
-msgstr "Indica se sono presenti chiavi pubbliche e private SSH. In caso contrario, è possibile selezionare la casella di controllo e li hanno creati."
-
-msgid "cert_present"
-msgstr "PEM Certificati"
-
-msgid "cert_present_help"
-msgstr "Indica se sono presenti i certificati pubblici e privati ​​PEM SSH. In caso contrario, è possibile selezionare la casella di controllo e li hanno creati."
-
-msgid "keys_present_msg"
-msgstr "[[VAR.bits]] bit pubblici e privati ​​presenti chiave."
-
-msgid "certs_present_msg"
-msgstr "[[VAR.bits]] bit certificati PEM privati ​​e pubblici presenti."
-
-msgid "but_needs_root_access"
-msgstr " Ma per accedere da SSH come root è necessario per consentire 'root' accesso di SSH."
-
-msgid "AuthKeyList"
-msgstr "Sostiene di: [[VAR.authkey_file]]"
-
-msgid "key_type"
-msgstr "Tipo"
-
-msgid "key_type_help"
-msgstr "Mostra il tipo della chiave pubblica."
-
-msgid "key_payload"
-msgstr "Chiave"
-
-msgid "key_payload_help"
-msgstr "Mostra i primi 15 e ultimi 15 caratteri della chiave pubblica installata."
-
-msgid "key_userhost"
-msgstr "Utente e l'host"
-
-msgid "key_userhost_help"
-msgstr "Mostra l'utente e host per cui questa chiave pubblica è valido. Finché è installato questa chiave pubblica, chiunque con la chiave privata corrispondente (o certificato) può accedere a questo server SSH."
-
-msgid "bits"
-msgstr "Bit"
-
-msgid "bits_help"
-msgstr "Mostra il bit di lunghezza della chiave pubblica installata o certificato. Chiavi o certificati con più bit di lunghezza sono generalmente considerati più sicuri."
-
-msgid "listAction"
-msgstr "Azione"
-
-msgid "listAction_help"
-msgstr "Consente di eliminare una chiave pubblica installata. L'utente e l'host è quindi più consentito l'accesso con la chiave o il certificato. Nota: Se l'utente è attualmente connesso, allora questo non terminerà la sua connessione. Ma non sarà permesso di accedere di nuovo con quella chiave o il certificato."
-
 msgid "AKRemove"
 msgstr "Rimuovere la chiave pubblica selezionata dal authorized_keys"
 
 msgid "AKRemoveConfirmNeutral"
 msgstr "Confermare la rimozione della chiave pubblica:"
 
-msgid "removeConfirmInfo"
-msgstr "Vuoi davvero eliminare questa chiave pubblica da chiavi autorizzate? Questo consentirà di evitare che l'utente e l'host di accedere nuovamente con la chiave o il certificato dato."
+msgid "AuthKeyList"
+msgstr "Sostiene di: [[VAR.authkey_file]]"
+
+msgid "PasswordAuthentication"
+msgstr "Password di autenticazione"
+
+msgid "PasswordAuthentication_help"
+msgstr ""
+"Specifica se l'autenticazione della password di SSH è permesso. Il valore "
+"predefinito è 'sì'. Se avete impostato le chiavi SSH o certificati, è "
+"possibile disattivare l'autenticazione della password per una maggiore "
+"sicurezza. Solo permettendo login SSH basato chiave/certificati è il modo "
+"più sicuro."
+
+msgid "PubkeyAuthentication"
+msgstr "L'autenticazione a chiave pubblica"
+
+msgid "PubkeyAuthentication_help"
+msgstr ""
+"Specificare se l'autenticazione a chiave pubblica è permesso. Il valore "
+"predefinito è 'sì'. Notare che questa opzione si applica solo versione 2 del "
+"protocollo."
+
+msgid "RSAAuthentication"
+msgstr "RSA Authentication"
+
+msgid "RSAAuthentication_help"
+msgstr ""
+"Specificare se l'autenticazione RSA pura è permesso. Il valore predefinito è "
+"'no', come siamo soliti permettiamo protocollo solo SSH versione 2 e questa "
+"opzione si applica solo a solo versione 1 del protocollo."
+
+msgid "SSH_Port"
+msgstr "Porta SSH:"
+
+msgid "SSH_Port_help"
+msgstr ""
+"Di default SSH gira sulla porta 22/tcp. Tuttavia, è possibile configurarlo "
+"per funzionare su un'altra porta, invece, al fine di cercare di evitare gli "
+"attacchi di forza bruta accesso automatizzato."
+
+msgid "SSH_Proto"
+msgstr "Protocollo SSH:"
+
+msgid "SSH_Proto_help"
+msgstr ""
+"SSH supporta due protocolli: il protocollo versione 1 e versione 2. Due è "
+"più avanzato e sicuro. Se possibile, si consiglia di utilizzare solo il "
+"protocollo 2. Ma si può anche impostare per '2, 1 ', in cui le applicazioni "
+"di casi in cui il supporto del protocollo 2 verrà utilizzato, mentre le "
+"applicazioni meno recenti che supportano solo il protocollo 1 può cadere di "
+"nuovo a quel posto."
+
+msgid "SSH_keylength"
+msgstr "SSH lunghezza bit"
+
+msgid "SSH_keylength_help"
+msgstr ""
+"Specifica il numero di bit nella chiave per le chiavi di nuova costituzione "
+"o certificati. L'impostazione predefinita è 2048 bit. In generale, 2048 bit "
+"è considerato sufficiente, ma è possibile creare chiavi con più bit. Si "
+"prega di notare che le chiavi più lunghe creano più tempo per creare. Chiavi "
+"più lunghe hanno anche un impatto negativo sulle prestazioni SSH."
+
+msgid "SSHrootLogin"
+msgstr "SSH Root Login:"
+
+msgid "SSHrootLogin_help"
+msgstr ""
+"Per impostazione predefinita e per motivi di sicurezza diretti SSH login "
+"come utente 'root' è in genere non sono ammessi. Se necessario, è possibile "
+"consentire qui."
 
 msgid "UploadPubKeyHead"
 msgstr "Carica una chiave pubblica e aggiungerla al [[VAR.authkey_file]]"
@@ -128,36 +94,126 @@ msgid "UploadPubkey"
 msgstr "Carica chiave pubblica"
 
 msgid "UploadPubkey_help"
-msgstr "Questo consente di caricare una chiave pubblica. Sarà aggiunto al authorized_keys automaticamente."
+msgstr ""
+"Questo consente di caricare una chiave pubblica. Sarà aggiunto al "
+"authorized_keys automaticamente."
 
-msgid "keyDownloadHeader"
-msgstr "Scaricare chiave pubblica e / o PEM del certificato:"
+msgid "advancedSettingsTab"
+msgstr "Gestione SSH Key/Certificati"
+
+msgid "basicSettingsTab"
+msgstr "Impostazioni di base"
+
+msgid "bits"
+msgstr "Bit"
+
+msgid "bits_help"
+msgstr ""
+"Mostra il bit di lunghezza della chiave pubblica installata o certificato. "
+"Chiavi o certificati con più bit di lunghezza sono generalmente considerati "
+"più sicuri."
+
+msgid "but_needs_root_access"
+msgstr ""
+" Ma per accedere da SSH come root è necessario per consentire 'root' accesso "
+"di SSH."
+
+msgid "cert_present"
+msgstr "PEM Certificati"
+
+msgid "cert_present_help"
+msgstr ""
+"Indica se sono presenti i certificati pubblici e privati ​​PEM SSH. In caso "
+"contrario, è possibile selezionare la casella di controllo e li hanno creati."
+
+msgid "certs_present_msg"
+msgstr "[[VAR.bits]] bit certificati PEM privati ​​e pubblici presenti."
+
+msgid "enableSSH"
+msgstr "Abilitare SSH server"
+
+msgid "enableSSH_help"
+msgstr ""
+"L'attivazione di SSH consente agli utenti con accesso alla shell di "
+"connettersi a questo server utilizzando il software client ssh. Uso di ssh è "
+"generalmente considerato più sicuro rispetto all'uso di telnet da ssh "
+"crittografa tutti i dati, comprese le password che vengono inviati tra il "
+"client e il server."
 
 msgid "export_id_rsa_pub"
 msgstr "Scarica Public Key"
 
 msgid "export_id_rsa_pub_help"
-msgstr "Questo ti permette di scaricare la chiave pubblica da questo server, in modo che è possibile aggiungere a authorized_keys su un altro server."
+msgstr ""
+"Questo ti permette di scaricare la chiave pubblica da questo server, in modo "
+"che è possibile aggiungere a authorized_keys su un altro server."
 
 msgid "export_root_pem"
 msgstr "Scarica PEM Certificato"
 
 msgid "export_root_pem_help"
-msgstr "Questo ti permette di scaricare il certificato PEM da questo server. È quindi possibile utilizzare nel vostro client SSH per stabilire una connessione con SSH su questo server."
+msgstr ""
+"Questo ti permette di scaricare il certificato PEM da questo server. È "
+"quindi possibile utilizzare nel vostro client SSH per stabilire una "
+"connessione con SSH su questo server."
 
-###
+msgid "keyDownloadHeader"
+msgstr "Scaricare chiave pubblica e / o PEM del certificato:"
+
+msgid "key_payload"
+msgstr "Chiave"
+
+msgid "key_payload_help"
+msgstr ""
+"Mostra i primi 15 e ultimi 15 caratteri della chiave pubblica installata."
+
+msgid "key_present"
+msgstr "SSH Keys"
+
+msgid "key_present_help"
+msgstr ""
+"Indica se sono presenti chiavi pubbliche e private SSH. In caso contrario, è "
+"possibile selezionare la casella di controllo e li hanno creati."
+
+msgid "key_type"
+msgstr "Tipo"
+
+msgid "key_type_help"
+msgstr "Mostra il tipo della chiave pubblica."
+
+msgid "key_userhost"
+msgstr "Utente e l'host"
+
+msgid "key_userhost_help"
+msgstr ""
+"Mostra l'utente e host per cui questa chiave pubblica è valido. Finché è "
+"installato questa chiave pubblica, chiunque con la chiave privata "
+"corrispondente (o certificato) può accedere a questo server SSH."
+
+msgid "keys_present_msg"
+msgstr "[[VAR.bits]] bit pubblici e privati ​​presenti chiave."
+
+msgid "listAction"
+msgstr "Azione"
+
+msgid "listAction_help"
+msgstr ""
+"Consente di eliminare una chiave pubblica installata. L'utente e l'host è "
+"quindi più consentito l'accesso con la chiave o il certificato. Nota: Se "
+"l'utente è attualmente connesso, allora questo non terminerà la sua "
+"connessione. Ma non sarà permesso di accedere di nuovo con quella chiave o "
+"il certificato."
 
 msgid "pers_shell_menu"
 msgstr "Accesso SSH"
 
 msgid "pers_shell_menu_help"
-msgstr "Consente di creare e gestire le chiavi SSH e certificati PEM per i dati di accesso SSH."
+msgstr ""
+"Consente di creare e gestire le chiavi SSH e certificati PEM per i dati di "
+"accesso SSH."
 
-###
-
-msgid "SSH_keylength"
-msgstr "SSH lunghezza bit"
-
-msgid "SSH_keylength_help"
-msgstr "Specifica il numero di bit nella chiave per le chiavi di nuova costituzione o certificati. L'impostazione predefinita è 2048 bit. In generale, 2048 bit è considerato sufficiente, ma è possibile creare chiavi con più bit. Si prega di notare che le chiavi più lunghe creano più tempo per creare. Chiavi più lunghe hanno anche un impatto negativo sulle prestazioni SSH."
-
+msgid "removeConfirmInfo"
+msgstr ""
+"Vuoi davvero eliminare questa chiave pubblica da chiavi autorizzate? Questo "
+"consentirà di evitare che l'utente e l'host di accedere nuovamente con la "
+"chiave o il certificato dato."
