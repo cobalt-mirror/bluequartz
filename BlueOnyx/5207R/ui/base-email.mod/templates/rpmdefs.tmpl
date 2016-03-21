@@ -108,7 +108,10 @@ fi
 
 # Restart CCEd and run Swatch for good measure:
 if [ -S /usr/sausalito/cced.socket ]; then
-    /etc/init.d/cced.init restart
+    # Restart CCEd: 
+    if [ -d "/usr/sausalito/yumcce" ];then 
+      touch /usr/sausalito/yumcce/restart
+    fi 
     echo "Running constructor/base/email/syncEmailService.pl"
     /usr/sausalito/constructor/base/email/syncEmailService.pl
     if [ -f /usr/sbin/swatch ]; then
@@ -151,6 +154,9 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Mon Mar 21 2016 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX38
+- Updated Italian locales added as provided by Simone Capra.
 
 * Wed Dec 23 2015 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX37
 - Small fix in glue/usr/local/sbin/vacation.pl
