@@ -8,49 +8,55 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-msgid "shellMenu"
-msgstr "Conchiglia"
+msgid "cantEnableNoVsiteShell"
+msgstr ""
+"L'accesso Shell non puo' essere abilitato per questo utente, perche' il sito "
+"virtuale al quale appartiene non ha la Shell abilitata."
 
-msgid "shellMenuDescription"
-msgstr "Configurare i servizi, come ad esempio Telnet e SSH, che gli utenti con accesso alla shell possono utilizzare per connettersi a questo server."
+msgid "cap_serverShell"
+msgstr "Impostazioni Shell"
+
+msgid "enableShell"
+msgstr "Abilita Accesso Shell"
+
+msgid "enableShell_help"
+msgstr ""
+"Abilita l'accesso Shell per permettere la creazione di utenti che possono "
+"connettersi usando servizi come telnet e ssh."
 
 msgid "shell"
 msgstr "[[base-shell.shellMenu]]"
 
+msgid "shellIsEnabled"
+msgstr "Accesso Shell"
+
+msgid "shellIsEnabled_help"
+msgstr "L'accesso Shell e' abilitato per questo utente."
+
+msgid "shellMenu"
+msgstr "Shell"
+
+msgid "shellMenuDescription"
+msgstr ""
+"Configura i servizi, come telnet e ssh, che gli utenti con l'accesso Shell "
+"utilizzeranno per connettersi a questo server."
+
 msgid "shellName"
-msgstr "Accesso alla Shell"
+msgstr "Accesso Shell"
 
-msgid "enableShell"
-msgstr "Abilitare l'accesso alla Shell"
+msgid "siteShellSettings"
+msgstr "Impostazioni Shell per [[VAR.fqdn]]"
 
-msgid "enableShell_help"
-msgstr "Abilitare l'accesso shell per consentire la creazione di utenti che possono connettersi al server utilizzando servizi come telnet e ssh."
+msgid "siteshell"
+msgstr "Shell"
+
+msgid "siteshell_help"
+msgstr "Clicca qui per configurare l'accesso Shell per questo sito."
 
 msgid "userEnableShell"
 msgstr "[[base-shell.enableShell]]"
 
 msgid "userEnableShell_help"
-msgstr "Abilitare l'accesso shell per consentire all'utente di essere in grado di connettersi al server utilizzando servizi come telnet e ssh."
-
-msgid "shellIsEnabled"
-msgstr "Accesso alla Shell"
-
-msgid "shellIsEnabled_help"
-msgstr "Accesso shell è abilitata per questo utente."
-
-msgid "cantEnableNoVsiteShell"
-msgstr "Accesso Shell non può essere abilitata per l'utente, in quanto il sito virtuale che sono un membro di non dispone di accesso alla shell abilitata."
-
-msgid "siteshell"
-msgstr "Conchiglia"
-
-msgid "siteshell_help"
-msgstr "Fare clic qui per configurare l'accesso alla shell per questo sito."
-
-msgid "siteShellSettings"
-msgstr "Impostazioni di shell per [[VAR.fqdn]]"
-
-msgid "cap_serverShell"
-msgstr "Impostazioni Shell"
-
-
+msgstr ""
+"Abilita l'accesso Shell per permettere all'utente di connettersi utilizzando "
+"servizi come telnet e ssh."
