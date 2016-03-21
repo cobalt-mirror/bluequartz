@@ -75,28 +75,31 @@ information for [VENDOR]-[SERVICE].
 
 <begin glue>
 # glue post-install
-if [ $1 = 2 ] && [ -S /usr/sausalito/cced.socket ]; then
-    /usr/sausalito/sbin/cced.init restart
-fi
 
-if [ $1 = 2 ]; then
-    /bin/cp /etc/proftpd.conf /etc/proftpd.conf.bqold
-    /usr/sausalito/bin/addIdentLookups.pl
+# Restart CCEd: 
+if [ -d "/usr/sausalito/yumcce" ];then 
+  touch /usr/sausalito/yumcce/restart
+fi 
 
-	# Replace the onboard proftpd.conf with proftpd.conf.dist:
-	/bin/cat /etc/proftpd.conf.dist > /etc/proftpd.conf
-	/bin/cat /etc/proftpds.conf.dist > /etc/proftpds.conf
-
-	# Re-add the now missing VirtualHost containers - but only do so
-	# if a previous proftpd was already installed. Because then it was
-	# an upgrade, not a first install:
-	if [ -f /etc/proftpd.conf.bqold ]; then
-	    /usr/sausalito/sbin/fixproftpd_conf.pl >> /etc/proftpd.conf
-	    /usr/sausalito/sbin/fixproftpds_conf.pl >> /etc/proftpds.conf
-	    # Restart of xinetd:
-	    /sbin/service xinetd restart
-	fi
-fi
+# Disabled for now. Reactivate on config changes:
+#
+#if [ $1 = 2 ]; then
+#    /bin/cp /etc/proftpd.conf /etc/proftpd.conf.bqold
+#    /usr/sausalito/bin/addIdentLookups.pl
+#
+#	# Replace the onboard proftpd.conf with proftpd.conf.dist:
+#	/bin/cat /etc/proftpd.conf.dist > /etc/proftpd.conf
+#	/bin/cat /etc/proftpds.conf.dist > /etc/proftpds.conf
+#	# Re-add the now missing VirtualHost containers - but only do so
+#	# if a previous proftpd was already installed. Because then it was
+#	# an upgrade, not a first install:
+#	if [ -f /etc/proftpd.conf.bqold ]; then
+#	    /usr/sausalito/sbin/fixproftpd_conf.pl >> /etc/proftpd.conf
+#	    /usr/sausalito/sbin/fixproftpds_conf.pl >> /etc/proftpds.conf
+#	    # Restart of xinetd:
+#	    /sbin/service xinetd restart
+#	fi
+#fi
 
 <end glue>
 <begin ui>
@@ -144,6 +147,9 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Mon Mar 21 2016 Michael Stauber <mstauber@solarspeed.net> 1.3.1-0BX13
+- Updated Italian locales added as provided by Simone Capra.
 
 * Wed Feb 04 2015 Michael Stauber <mstauber@solarspeed.net> 1.3.1-0BX12
 - Modified glue/handlers/user_ftp_access.pl to exit early if user is an
