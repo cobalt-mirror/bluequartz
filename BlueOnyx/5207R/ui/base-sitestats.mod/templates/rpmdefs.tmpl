@@ -75,8 +75,10 @@ mkdir -p $RPM_BUILD_ROOT/%{RootDir}/ui/web/%{Vendor}/%{Service}/img
 
 <begin glue>
 # glue post-install
-if [ -S /usr/sausalito/cced.socket ]; then
-    /usr/sausalito/sbin/cced.init rehash
+
+# Rehash CCEd: 
+if [ -d "/usr/sausalito/yumcce" ];then 
+  touch /usr/sausalito/yumcce/rehash
 fi
 
 <end glue>
@@ -126,6 +128,9 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Mon Mar 21 2016 Michael Stauber <mstauber@solarspeed.net> 2.0-0BX14
+- Updated Italian locales added as provided by Simone Capra.
 
 * Sun Dec 13 2015 Greg Kuhnert <gkuhnert@compassnetworks.com.au> 2.0-0BX13
 - Suppressed a few cosmetic error messages that were being generated
