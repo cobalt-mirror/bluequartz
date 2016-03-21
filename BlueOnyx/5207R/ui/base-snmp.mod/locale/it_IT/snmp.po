@@ -8,79 +8,104 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-msgid "snmpSettings"
-msgstr "Simple Network Management Protocol (SNMP) Impostazioni"
+msgid "amDetailsTitle"
+msgstr "Dettagli Server SNMP"
 
-msgid "snmp"
-msgstr "SNMP"
+msgid "amSNMPNameTag"
+msgstr "Server SNMP"
 
-msgid "snmp_help"
-msgstr "[[base-snmp.snmpSettings]] può essere modificata qui."
+msgid "amSNMPNotRunning"
+msgstr ""
+"Il server SNMP non e' in esecuzione e non puo' essere riavviato. Nel [[base-"
+"apache.amAdmservNameTag]], prova a spegnere il server SNMP e avviarlo di "
+"nuovo per vedere se il problema si corregge. Se il server SNMP continua ad "
+"non avviarsi, prova a riavviare il server stesso cliccando il bottone [[base-"
+"power.reboot]] nel menu' [[base-power.power]] sotto [[base-alpine."
+"serverconfig]]. Se il server SNMP continua a non avviarsi, ti preghiamo di "
+"far riferimento al supporto tecnico all'indirizzo [[base-sauce-basic."
+"techSupportURL]]"
+
+msgid "amSNMPStatusOK"
+msgstr "Il server SNMP funziona correttamente."
+
+msgid "cannotBreakLink"
+msgstr "Error while breaking symlink [[VAR.msg]]"
+
+msgid "cannotCreateSynlink"
+msgstr "Errore nel creare il link simbolico [[VAR.msg]]"
+
+msgid "cannotFork"
+msgstr "Errore nel forking [[VAR.msg]]"
+
+msgid "cannotStartSnmpServer"
+msgstr "Errore nell'avviare il server SNMP [[VAR.msg]]"
+
+msgid "cannotStopSnmpService"
+msgstr "Errore nell'arresto del servizio SNMP [[VAR.msg]]"
+
+msgid "cap_serverSNMP"
+msgstr "Impostazioni SNMP"
 
 msgid "enableServer"
 msgstr "Abilita Server"
 
 msgid "enableServer_help"
-msgstr "Accendere il server di Simple Network Management Protocol (SNMP) o disattivare. SNMP è un protocollo di gestione della rete e fornisce un mezzo per monitorare e controllare i dispositivi di rete e per la gestione delle configurazioni, raccolta delle statistiche, le prestazioni e la sicurezza di una rete."
-
-msgid "readSnmpCommunityField"
-msgstr "Sola lettura SNMP Community"
-
-msgid "readSnmpCommunityField_rule"
-msgstr "La sola lettura SNMP Community si entra può contenere solo caratteri alfanumerici insieme, '.' '-' E '_'."
-
-msgid "readSnmpCommunityField_help"
-msgstr "Nella Comunità solo SNMP Read al quale questo server appliance appartiene. [[base-snmp.readSnmpCommunityField_rule]]"
-
-msgid "readSnmpCommunityField_invalid"
-msgstr "Siamo spiacenti, [[VAR.invalidValue]] è un valore non valido per [[base-snmp.readSnmpCommunityField]]. [[base-snmp.readSnmpCommunityField_rule]]"
-
-msgid "readWriteSnmpCommunityField"
-msgstr "Lettura e scrittura Comunità SNMP"
-
-msgid "readWriteSnmpCommunityField_rule"
-msgstr "La lettura e scrittura SNMP Community si entra può contenere solo caratteri alfanumerici insieme, '.' '-' E '_'."
-
-msgid "readWriteSnmpCommunityField_help"
-msgstr "Immettere la lettura e scrittura Comunità SNMP al quale questo server appliance appartiene. [[base-snmp.readWriteSnmpCommunityField_rule]]"
-
-msgid "readWriteSnmpCommunityField_invalid"
-msgstr "Siamo spiacenti, [[VAR.invalidValue]] è un valore non valido per [[base-snmp.readWriteSnmpCommunityField]]. [[base-snmp.readWriteSnmpCommunityField_rule]]"
-
-msgid "readNorWriteSet"
-msgstr "Spiacenti, è necessario immettere una lettura e / o scrittura comunità al fine di consentire SNMP."
+msgstr ""
+"Abilita/disabilita il server SNMP. SNMP e' un protocollo di gestione di rete "
+"e fornisce un mezzo per controllare e monitorare i dispositivi di rete, "
+"gestire le configurazioni, le performance e la sicurezza in una rete."
 
 msgid "readEqualWrite"
-msgstr "Per avere una comunità che leggere e scrivere, è sufficiente inserirlo nella lettura e scrittura di campo. La tua comunità di lettura è stato cambiato per riflettere tali requisiti."
+msgstr ""
+"Per avere una community di lettura e scrittura, e' sufficiente inserirla nel "
+"campo leggi e scrivi."
 
-msgid "cannotFork"
-msgstr "Errore durante la biforcazione [[VAR.msg]]"
+msgid "readNorWriteSet"
+msgstr ""
+"Spiacenti, devi inserire una community di lettura e/o scrittura al fine di "
+"abilitare SNMP."
 
-msgid "cannotCreateSynlink"
-msgstr "Errore nella creazione Symlink [[VAR.msg]]"
+msgid "readSnmpCommunityField"
+msgstr "Community SNMP di Sola Lettura"
 
-msgid "cannotStartSnmpServer"
-msgstr "Errore del server SNMP di partenza [[VAR.msg]]"
+msgid "readSnmpCommunityField_help"
+msgstr ""
+"Inserisci la Community SNMP di Sola Lettura al quale questo server "
+"appartiene.[[base-snmp.readSnmpCommunityField_rule]]"
 
-msgid "cannotStopSnmpService"
-msgstr "Errore servizio fermandosi SNMP [[VAR.msg]]"
+msgid "readSnmpCommunityField_invalid"
+msgstr ""
+"Spiacente, [[VAR.invalidValue] e' un valore invalido per [[base-snmp."
+"readSnmpCommunityField]]. [[base-snmp.readSnmpCommunityField_rule]]"
 
-msgid "cannotBreakLink"
-msgstr "Errore durante la rottura link simbolico [[VAR.msg]]"
+msgid "readSnmpCommunityField_rule"
+msgstr ""
+"La Community SNMP di Sola Lettura che inserisci puo solo contenere caratteri "
+"alfanumerici e '.', '-', '_'."
 
-msgid "amSNMPNameTag"
-msgstr "Simple Network Management Protocol (SNMP) Server"
+msgid "readWriteSnmpCommunityField"
+msgstr "Community SNMP di Lettura e Scrittura"
 
-msgid "amDetailsTitle"
-msgstr "Simple Network Management Protocol (SNMP) Dettagli Server"
+msgid "readWriteSnmpCommunityField_help"
+msgstr ""
+"Inserisci la Community SNMP di Lettura e Scrittura al quale questo "
+"serverappartiene. [[base-snmp.readWriteSnmpCommunityField_rule]]"
 
-msgid "amSNMPNotRunning"
-msgstr "Il server SNMP non è in esecuzione e non poteva essere riavviato. Nel [[base-apache.amAdmservNameTag]], provare a capovolgere il server SNMP e riaccenderlo per vedere se questo risolve il problema. Se il server SNMP è ancora possibile avviare, provate a riavviare il server stesso cliccando il [[base-power.reboot]] nella [[base-power.power]] menu sotto [[base-alpine.serverconfig]] . Se il server SNMP è ancora in grado di iniziare, vedere [[base-sauce-basic.techSupportURL]] per il supporto tecnico."
+msgid "readWriteSnmpCommunityField_invalid"
+msgstr ""
+"Spiacente, [[VAR.invalidValue] e' un valore invalido per [[base-snmp."
+"readWriteSnmpCommunityField]]. [[base-snmp.readWriteSnmpCommunityField_rule]]"
 
-msgid "amSNMPStatusOK"
-msgstr "Il server SNMP funziona normalmente."
+msgid "readWriteSnmpCommunityField_rule"
+msgstr ""
+"La Community SNMP di Lettura e Scrittura che inserisci puo solo contenere "
+"caratteri alfanumerici e '.', '-', '_'."
 
-msgid "cap_serverSNMP"
+msgid "snmp"
+msgstr "SNMP"
+
+msgid "snmpSettings"
 msgstr "Impostazioni SNMP"
 
-
+msgid "snmp_help"
+msgstr "[[base-snmp.snmpSettings]] possono essere modificate qui."
