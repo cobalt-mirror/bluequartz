@@ -1,0 +1,25 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "bad_action"
+msgstr "L'azione specificata non esiste o non è eseguibile."
+
+msgid "bad_start_time"
+msgstr "L'ora di inizio specificato non è valido."
+
+msgid "cannot_create_timer"
+msgstr "Impossibile aggiungere una nuova pianificazione di /etc/cron.d."
+
+msgid "timer_add_failed"
+msgstr "Impossibile aggiungere una nuova pianificazione di cron."
+
+msgid "timer_delete_failed"
+msgstr "Impossibile rimuovere il file specificato da /etc/cron.d."
+

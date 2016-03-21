@@ -1,0 +1,549 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "userList"
+msgstr "Elenco utenti"
+
+msgid "userListTitle"
+msgstr "Elenco utente per [[VAR.fqdn]]"
+
+msgid "users_help"
+msgstr "Clicca qui per gestire gli utenti."
+
+msgid "fullName"
+msgstr "Nome e Cognome"
+
+msgid "fullName_help"
+msgstr "Questo è il nome completo dell'utente."
+
+msgid "userName"
+msgstr "Nome Utente"
+
+msgid "userName_help"
+msgstr "Questo è il nome utilizzato dal sistema per identificare l'utente."
+
+msgid "listAction"
+msgstr "Azione"
+
+msgid "listAction_help"
+msgstr "Questi sono i pulsanti utilizzati per modificare le impostazioni di un utente o per rimuovere un utente."
+
+msgid "addNewUser"
+msgstr "Aggiungi Nuovo Utente"
+
+msgid "addNewUserTitle"
+msgstr "Aggiungi nuovo utente per [[VAR.fqdn]]"
+
+msgid "fullNameField"
+msgstr "[[base-user.fullName]]"
+
+msgid "fullNameField_rule"
+msgstr "Inserisci i caratteri tranne i due punti. Ad esempio, John Doe è una voce valida."
+
+msgid "fullNameField_help"
+msgstr "Inserire il nome completo dell'utente. [[base-user.fullNameField_rule]]"
+
+msgid "userNameField"
+msgstr "[[base-user.userName]]"
+
+msgid "userNameField_rule"
+msgstr "Inserisci un massimo di 31 caratteri contenente solo caratteri alfanumerici minuscoli, punti, trattini e underscore. Il primo carattere deve essere una lettera. Ad esempio, mario.rossi è una voce valida."
+
+msgid "userNameField_help"
+msgstr "Immettere il nome da utilizzare dal sistema per identificare l'utente. [[base-user.userNameField_rule]]"
+
+msgid "userNameAlreadyTaken"
+msgstr "Mi dispiace, è stato inserito un valore per [[base-user.userNameField]] che non è disponibile su questo sistema. Si prega di inserire un altro valore per [[base-user.userNameField]]."
+
+msgid "userNameSuggest"
+msgstr "[[base-user.userNameAlreadyTaken]] I nomi seguenti sono disponibili: [[VAR.list]]."
+
+msgid "passwordField"
+msgstr "Parola d'ordine"
+
+msgid "passwordField_help"
+msgstr "Inserire la password per essere utilizzato dal sistema per identificare questo utente. [[base-user.passwordField_rule]]"
+
+msgid "passwordField_invalid"
+msgstr "Spiacente, non hai inserito la stessa password in entrambi i campi. La stessa password viene inserita in entrambi i campi per la protezione contro gli errori di battitura. Riprova."
+
+msgid "error-invalid-password"
+msgstr "Siamo spiacenti, la password che hai inserito non è valido. [[base-user.passwordField_rule]]"
+
+msgid "maxDiskSpaceField"
+msgstr "Spazio su disco massimo consentito"
+
+msgid "maxDiskSpaceField_rule"
+msgstr "Lo spazio su disco massimo consentito deve essere compresa nell'intervallo specificato tra parentesi."
+
+msgid "maxDiskSpaceField_help"
+msgstr "Impostare la quota disco di questo utente. Questo è il massimo spazio su disco disponibile per l'utente per la memorizzazione delle pagine web, messaggi di posta elettronica e tutti gli altri file utente. [[base-user.maxDiskSpaceField_rule]] Il valore di default per i nuovi utenti è impostato nella sezione Modello Utente."
+
+msgid "maxDiskSpaceFieldDefault"
+msgstr "[[base-user.maxDiskSpaceField]]"
+
+msgid "maxDiskSpaceFieldDefault_help"
+msgstr "Impostare il massimo spazio su disco di default per i nuovi utenti. Questo è il massimo spazio su disco a disposizione degli utenti per l'archiviazione delle pagine web, messaggi di posta elettronica e tutti gli altri file utente. [[base-user.maxDiskSpaceField_rule]]"
+
+msgid "memberGroupsField"
+msgstr "Appartenenza al gruppo"
+
+msgid "memberGroupsField_help"
+msgstr "Impostare l'appartenenza al gruppo di questo utente. La colonna di sinistra mostra i gruppi a cui questo utente appartiene attualmente. La colonna di destra mostra i gruppi a cui l'utente potrebbe appartenere. Per aggiungere l'utente come membro di un gruppo, spostare il gruppo dalla colonna di destra alla colonna di sinistra."
+
+msgid "memberGroups"
+msgstr "Gruppi affiliati"
+
+msgid "allGroups"
+msgstr "Gruppi non affiliati"
+
+msgid "modifyUser"
+msgstr "Modifica impostazioni utente per [[VAR.userName]]"
+
+msgid "newPasswordField"
+msgstr "Nuova password"
+
+msgid "newPasswordField_help"
+msgstr "[[base-user.passwordField_help]]"
+
+msgid "newPasswordField_invalid"
+msgstr "[[base-user.passwordField_invalid]]"
+
+msgid "emailSettingsFor"
+msgstr "Impostazioni e-mail per la [[VAR.userName]]"
+
+msgid "emailAlias"
+msgstr "Alias ​​di posta elettronica"
+
+msgid "emailAliasesField"
+msgstr "Email Alias"
+
+msgid "emailAliasesField_rule"
+msgstr "Inserisci i caratteri che contengono solo caratteri alfanumerici minuscoli, punti, trattini e underscore. Il valore predefinito è il nome e il cognome in minuscolo dell'utente separati da un punto. Ad esempio, mario.rossi è una voce valida."
+
+msgid "emailAliasesField_help"
+msgstr "Immettere nomi aggiuntivi che l'utente riceverà email. [[base-user.emailAliasesField_rule]]"
+
+msgid "forwardEnableField"
+msgstr "Email Forwarding"
+
+msgid "forwardEnableField_help"
+msgstr "Abilitare l'inoltro di email provoca mail ricevuta in futuro per essere trasmessa automaticamente indirizzi email specificati."
+
+msgid "forwardEnable"
+msgstr "Attiva"
+
+msgid "forwardEmailField_rule"
+msgstr "Inserisci gli indirizzi email validi. Indirizzi multipli vanno bene. Separarli con una virgola o mettere ciascun indirizzo su una riga separata."
+
+msgid "forwardEmailField"
+msgstr "Indirizzi e-mail"
+
+msgid "forwardEmailField_help"
+msgstr "Inserisci gli indirizzi email a cui desideri che la tua e-mail inviata. [[base-user.forwardEmailField_rule]]"
+
+msgid "autoResponderField"
+msgstr "Vacation Message"
+
+msgid "autoResponderField_help"
+msgstr "Vacation Message consente di inviare automaticamente un messaggio personalizzato a tutti coloro che manda email."
+
+msgid "enableAutoResponderField"
+msgstr "Attiva"
+
+msgid "autoResponderMessageField"
+msgstr "Auto-Reply"
+
+msgid "autoResponderMessageField_help"
+msgstr "Inserisci il messaggio che sarà inviato automaticamente come una risposta al mittente di ogni messaggio ricevuto."
+
+msgid "blank-vacation-msg"
+msgstr "Mi dispiace, è stato inserito un valore non valido per [[base-user.autoResponderMessageField]]."
+
+msgid "userDefaults"
+msgstr "Modifica modello User"
+
+msgid "userDefaults_help"
+msgstr "Clicca qui per cambiare le impostazioni predefinite per i nuovi utenti."
+
+msgid "userDefaultsTitle"
+msgstr "Modifica modello di utente per [[VAR.fqdn]]"
+
+msgid "basicDefaults"
+msgstr "Di base"
+
+msgid "serviceDefaults"
+msgstr "Servizi"
+
+msgid "usersPerPage"
+msgstr "Numero di utenti per pagina"
+
+msgid "usersPerPage_help"
+msgstr "Impostare il numero di utenti da visualizzare per pagina nella lista degli utenti."
+
+msgid "userNameGenField"
+msgstr "Nome Utente Generation"
+
+msgid "userNameGenField_help"
+msgstr "Impostare il metodo con cui i nomi utente vengono generati automaticamente dopo aver inserito i nomi completi. Per esempio, se John Doe è il nome completo, allora o johnd, mrossi, john doe o sarebbe il nome utente generato automaticamente."
+
+msgid "first"
+msgstr "Solo Nome"
+
+msgid "last"
+msgstr "Solo Cognome"
+
+msgid "firstInitLast"
+msgstr "Iniziale del Nome & Cognome"
+
+msgid "firstLastInit"
+msgstr "Nome e iniziali del cognome"
+
+msgid "languageField"
+msgstr "Preferenza lingua"
+
+msgid "languageField_help"
+msgstr "Il server cercherà di visualizzare le pagine nella lingua preferita selezionata qui. Se si seleziona 'Imposta Da Opzioni del browser', il server tenterà di visualizzare le pagine in base alle preferenze della lingua del browser web. Se la lingua selezionata non è disponibile, il server visualizzerà le pagine utilizzando la lingua predefinita che è disponibile per il vostro server."
+
+msgid "account"
+msgstr "Acconto"
+
+msgid "account_help"
+msgstr "Fare clic qui per configurare le impostazioni di base."
+
+msgid "email"
+msgstr "Email"
+
+msgid "email_help"
+msgstr "Fare clic qui per configurare le impostazioni di posta elettronica, come gli alias, l'inoltro e il messaggio vacanza."
+
+msgid "personalEmail"
+msgstr "Email"
+
+msgid "personalEmail_help"
+msgstr "Clicca qui per gestire il tuo inoltro di email e le impostazioni di risposta automatica."
+
+msgid "styleField"
+msgstr "Stile"
+
+msgid "styleField_help"
+msgstr "Cambia lo stile grafico utilizzato per la visualizzazione dei menu, pulsanti e altri elementi."
+
+msgid "personalAccount"
+msgstr "Acconto"
+
+msgid "personalAccount_help"
+msgstr "Clicca qui per gestire le informazioni sull'account utente personale."
+
+msgid "accountSettings"
+msgstr "Impostazioni account per [[VAR.userName]]"
+
+msgid "removeUserConfirm"
+msgstr "Sei sicuro di voler rimuovere l'utente [[VAR.userName]]?"
+
+msgid "reloadMessage"
+msgstr "Il browser web sarà ora aggiornare automaticamente per utilizzare la lingua scelta."
+
+msgid "forwardSaveField"
+msgstr "Salva copia"
+
+msgid "forwardSaveField_help"
+msgstr "Salva copia salva una copia di ogni e-mail ricevuta alla casella di posta, oltre ad inoltro di una copia agli indirizzi specificati."
+
+msgid "userDesc"
+msgstr "Osservazioni"
+
+msgid "userDesc_help"
+msgstr "Questa colonna fornisce ulteriori informazioni su ciascun utente."
+
+msgid "userDescField"
+msgstr "Osservazioni"
+
+msgid "userDescField_help"
+msgstr "Inserisci informazioni aggiuntive o commenti relative all'utente qui."
+
+msgid "uidAlreadyTaken"
+msgstr "Siamo spiacenti, si è verificato un errore. L'uid inserito è già stato preso."
+
+msgid "aliasAlreadyTaken"
+msgstr "Spiacenti, questo utente non può essere creata con il nome specificato perché un alias email esiste già per quel nome."
+
+msgid "aliasAlreadyTaken2"
+msgstr "Siamo spiacenti, alias di posta elettronica dell'utente non potrebbero essere fissati a causa di uno o più degli alias specificato è già in uso."
+
+msgid "add_user_help"
+msgstr "Clicca qui per aggiungere un nuovo utente."
+
+msgid "administrator"
+msgstr "Administrator"
+
+msgid "failed-to-add-user"
+msgstr "Un account utente non può essere creata a causa di un errore di sistema."
+
+msgid "cantCreateUserServices"
+msgstr "Impossibile creare l'oggetto UserServices."
+
+msgid "="
+msgstr "è"
+
+msgid "match"
+msgstr "contiene"
+
+msgid "nomatch"
+msgstr "non contiene"
+
+msgid "searchbut"
+msgstr "Cerca"
+
+msgid "searchbut_help"
+msgstr "Clicca qui per recuperare un elenco di utenti in base ai criteri inseriti."
+
+msgid "userSearch"
+msgstr "Utenti"
+
+msgid "userSearchCriteria"
+msgstr "Ricerca:"
+
+msgid "userSearchCriteria_help"
+msgstr "È possibile utilizzare questo strumento di ricerca per trovare gli utenti in base ai criteri specificati. Selezionare il campo su cui cercare e scegliere in che modo il testo immesso deve essere confrontato con il campo."
+
+msgid "capgroup_adminUser"
+msgstr "Gestire gli utenti"
+
+msgid "capgroup_adminUser_help"
+msgstr "Questo diritto amministrativo consente a un utente di creare, distruggere e modificare gli altri utenti su questa macchina"
+
+msgid "siteAdminEnabled"
+msgstr "Amministratore del Sito"
+
+msgid "siteAdminEnabled_help"
+msgstr "Questo utente è un amministratore del sito."
+
+msgid "userSuspended"
+msgstr "Utente Sospeso"
+
+msgid "userSuspended_help"
+msgstr "Questo utente è sospeso e verrà negato l'accesso ai servizi di sistema associati a tale account, come telnet, ftp, posta, e l'accesso web ai loro file. E-mail inviato a questo account sarà respinta e il mittente riceverà un messaggio di errore."
+
+msgid "rights"
+msgstr "Stato"
+
+msgid "rights_help"
+msgstr "Questa colonna visualizza le icone per le funzioni abilitate per l'utente. Muovi il mouse sopra le icone per maggiori informazioni su ogni articolo."
+
+msgid "emailAliases"
+msgstr "Email Alias"
+
+msgid "emailAliases_help"
+msgstr "Questa colonna elenca gli alias di posta elettronica per l'utente. L'utente può ricevere e-mail indirizzata a questi nomi, oltre al nome utente."
+
+msgid "suspendUser"
+msgstr "Sospeso"
+
+msgid "suspendUser_help"
+msgstr "Sospendere un utente impedirà che l'utente l'accesso ai servizi di sistema associati a tale account, come telnet, ftp, posta, e l'accesso Web per i propri file. E-mail inviata al conto dell'utente sospeso sarà respinta e il mittente riceverà un messaggio di errore."
+
+msgid "siteAdministratorField"
+msgstr "Amministratore del Sito"
+
+msgid "siteAdministratorField_help"
+msgstr "Gli amministratori del sito sono gli utenti che sono in grado di configurare le impostazioni per un sito."
+
+msgid "cantDeleteUser"
+msgstr "Impossibile eliminare l'utente specificato."
+
+msgid "cleanupOldFiles"
+msgstr "Questo utente non possiede i file che si trovano sotto la directory del sito, ma non nella directory home dell'utente che si potrebbe voler mantenere. È necessario eliminare questi file o riassegnare la proprietà di un altro utente prima di eliminare questo utente."
+
+msgid "cantGetRootAccess"
+msgstr "Impossibile ottenere lo spazio dei nomi RootAccess per [[VAR.name]] dalla CCE."
+
+msgid "cantDisableRootAccess"
+msgstr "Impossibile disabilitare l'accesso root per [[VAR.name]]."
+
+msgid "cantEnableRootAccess"
+msgstr "Impossibile abilitare l'accesso di root per [[VAR.name]]."
+
+msgid "cantDeleteAlterRoot"
+msgstr "Impossibile rimuovere l'account utente root, [[VAR.root]]."
+
+msgid "cantCreateAlterRoot"
+msgstr "Impossibile creare l'account utente root, [[VAR.root]]."
+
+msgid "cantUpdateAlterRoot"
+msgstr "Impossibile sincronizzare l'utente password dell'account principale per l'account di root, [[VAR.root]], per abbinare la password per [[VAR.name]] 's conto."
+
+msgid "emailDisabled"
+msgstr "Disabilitare l'utente Email"
+
+msgid "emailDisabled_help"
+msgstr "Questo disabiliterà e-mail dell'utente per il suo account principale e tutti gli alias"
+
+msgid "dnsAdministratorField"
+msgstr "Amministratore DNS"
+
+msgid "dnsAdministratorField_help"
+msgstr "Questo utente è un amministratore DNS."
+
+msgid "passwordField_rule"
+msgstr "La password deve essere lunga tra 6 e 24 caratteri. Una buona password deve contenere almeno 6 caratteri, con una combinazione di lettere maiuscole e minuscole e numeri e segni di punteggiatura. Non deve precisare le parole trovate nel dizionario. Le password sono maiuscole e minuscole."
+
+msgid "error-password-equals-username"
+msgstr "Password non valida - non si può utilizzare una password che è identico al tuo nome utente!"
+
+msgid "error-password-invalid"
+msgstr "Password non valida:"
+
+msgid "autoRespondStartDate"
+msgstr "Data di inizio:"
+
+msgid "autoRespondStartDate_help"
+msgstr "Data e ora in cui il risponditore automatico (se abilitato) inizia a inviare messaggi di vacanza. In caso di inizio e data di fine sono identici, mentre il risponditore automatico è abilitato, allora verrà eseguito fino a quando non si spegne."
+
+msgid "autoRespondStopDate"
+msgstr "Data di fine:"
+
+msgid "autoRespondStopDate_help"
+msgstr "Data e ora in cui il risponditore automatico (se abilitato) si ferma per l'invio di messaggi di vacanza. In caso di inizio e data di fine sono identici, mentre il risponditore automatico è abilitato, allora verrà eseguito fino a quando non si spegne."
+
+msgid "autoRespondStartTime"
+msgstr "Ora di inizio:"
+
+msgid "autoRespondStartTime_help"
+msgstr "Ora quando la risposta automatica (se attivata) inizia a inviare messaggi di vacanza."
+
+msgid "autoRespondStoptTime"
+msgstr "Tempo di Stop:"
+
+msgid "autoRespondStoptTime_help"
+msgstr "Ora quando la risposta automatica (se attivata) smette di inviare messaggi di vacanza."
+
+msgid "invalidVacationDate"
+msgstr "È stata inserita una data di vacanza non valido. La data e l'ora di fine non deve essere antecedente alla data di inizio."
+
+#---
+
+msgid "prefix"
+msgstr "[[base-vsite.prefix]]"
+
+msgid "prefix_help"
+msgstr "[[base-vsite.prefix_help]]"
+
+#---
+
+msgid "removeConfirmQuestion"
+msgstr "Sei sicuro di voler rimuovere questo utente?"
+
+msgid "userRemoveConfirmInfo"
+msgstr "Questo eliminerà l'account di tale utente e verranno eliminate anche tutte le email, i file ei dati di questo utente. Questa operazione non può essere annullata."
+
+### IMAP Sync:
+
+msgid "EmailSettings"
+msgstr "Impostazioni di base"
+
+msgid "ImapSync"
+msgstr "Sincronizzazione IMAP"
+
+msgid "sync_desc_text"
+msgstr "La sincronizzazione IMAP consente di copiare le email e le cartelle IMAP da una cassetta postale a un altro. Questo può essere usato per importare le email di un singolo utente da un altro server dopo una migrazione di server. Può anche essere utilizzato per esportare email di un utente locale di una cassetta postale localizzare su un altro server."
+
+msgid "ImapSyncField"
+msgstr "Sincronizzazione IMAP"
+
+msgid "ImapSyncField_help"
+msgstr "Quando si spunta la casella 'Abilita', hanno tutti i campi obbligatori compilato e salvare le modifiche, allora questo server tenterà di importare i messaggi di posta elettronica tramite imapsync dal telecomando alla destinazione locale. Un file di log della transazione viene creata e può quindi essere visualizzato per determinare se il trasferimento ha avuto successo o meno."
+
+msgid "SourceHostHeader"
+msgstr "Server da cui si desidera importare:"
+
+msgid "source"
+msgstr "Server di origine"
+
+msgid "source_help"
+msgstr "Questo può essere il nome host o l'indirizzo IP del server remoto da cui si desidera importare."
+
+msgid "sourceUsername"
+msgstr "Fonte utente"
+
+msgid "sourceUsername_help"
+msgstr "Si prega di inserire i dati d'accesso per il server remoto. A seconda della architettura server può essere sia il nome utente, o l'indirizzo e-mail. Non tutti gli account di accesso di supporto server con l'indirizzo e-mail, però. In tal caso, utilizzare invece il nome utente. Se si esporta da un altro server [[base-product.productName]], poi basta specificare il nome utente."
+
+msgid "sourcePass"
+msgstr "Fonte password"
+
+msgid "sourcePass_help"
+msgstr "Si prega di inserire la password dell'account di posta elettronica remoto."
+
+msgid "sourceProto"
+msgstr "Fonte protocollo"
+
+msgid "sourceProto_help"
+msgstr "Questo è il protocollo IMAP utilizzato per la connessione al server remoto. Scegliere 'IMAP' per non crittografato IMAP regolare. Se il server remoto supporta sia 'SSL' o 'TLS', scegliendo loro invece di stabilire una connessione più sicura."
+
+msgid "sourceAuth"
+msgstr "Fonte Auth"
+
+msgid "sourceAuth_help"
+msgstr "Si prega di specificare il meccanismo di autenticazione che il server remoto supporta. Questo di solito è 'PLAIN' o 'LOGIN', ma si può anche provare 'CRAM-MD5'. Se si prevede di importare da Google Mail, poi riprova 'OAuth' invece."
+
+msgid "TargetHostHeader"
+msgstr "Server a cui si desidera importare:"
+
+msgid "target"
+msgstr "Server di destinazione"
+
+msgid "target_help"
+msgstr "Questo può essere il nome host o l'indirizzo IP del server a cui si desidera importare. Se si desidera importare le e-mail su questo server [[base-product.productName]], allora si può lasciare l'indirizzo IP al valore di default di '127.0.0.1'."
+
+msgid "targetUsername"
+msgstr "Obiettivo Nome utente"
+
+msgid "targetUsername_help"
+msgstr "Si prega di inserire i dati d'accesso per il server a cui si desidera importare le e-mail. A seconda della architettura server può essere sia il nome utente, o l'indirizzo e-mail. Se si importa un server [[base-product.productName]], poi basta specificare il nome utente."
+
+msgid "targetPass"
+msgstr "Obiettivo password"
+
+msgid "targetPass_help"
+msgstr "Si prega di inserire la password dell'account di posta elettronica a cui si desidera importare le e-mail."
+
+msgid "targetProto"
+msgstr "Protocollo di destinazione"
+
+msgid "targetProto_help"
+msgstr "Questo è il protocollo IMAP utilizzato per la connessione al server locale. Scegliere 'IMAP' per non crittografato IMAP regolare. Se il server remoto supporta sia 'SSL' o 'TLS', scegliendo loro invece di stabilire una connessione più sicura. Se si desidera importare le e-mail su questo server [[base-product.productName]], allora di solito si può lasciare al valore predefinito di 'SSL', fino a quando l'amministratore del server ha IMAP su SSL abilitata qui."
+
+msgid "targetAuth"
+msgstr "Obiettivo Auth"
+
+msgid "targetAuth_help"
+msgstr "Si prega di specificare il meccanismo di autenticazione che il server remoto supporta. Questo di solito è 'PLAIN' o 'LOGIN', ma si può anche provare 'CRAM-MD5'. Se si prevede di importare da Google Mail, poi riprova 'OAuth' invece. Se avete intenzione di importare questo server [[base-product.productName]], allora si può lasciare al default 'NORMALE'."
+
+msgid "LogFileHeader"
+msgstr "IMAP Sincronizzazione Logfile:"
+
+msgid "logdelete"
+msgstr "Elimina file di log"
+
+msgid "logdelete_help"
+msgstr "Se si seleziona questa casella e salvare questa pagina, allora il file di log creato durante l'ultima sincronizzazione IMAP verranno eliminati."
+
+msgid "ViewImapSyncLog"
+msgstr "Visualizza file di log"
+
+msgid "ViewImapSyncLog_help"
+msgstr "Ciò consente di esaminare il file di log che è stato creato durante l'ultima sincronizzazione IMAP."
+
+msgid "ImapSyncRunFailed"
+msgstr "La sincronizzazione IMAP non è riuscita. Si prega di esaminare il file di log, in quanto potrebbe indicare una ragione per questo. Le possibili cause sono di solito errati dati d'accesso o meccanismi di protocollo e / o di autenticazione errato. Si prega di correggere i problemi e provare di nuovo."
+
+
+

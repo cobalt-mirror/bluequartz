@@ -1,0 +1,54 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "time"
+msgstr "Volta"
+
+msgid "timeSetting"
+msgstr "Impostazioni ora"
+
+msgid "time_help"
+msgstr "Clicca qui per cambiare [[base-time.timeSetting]]."
+
+msgid "systemDisplayedDate"
+msgstr "Data e Ora"
+
+msgid "systemDisplayedDate_help"
+msgstr "Impostare la data corrente."
+
+msgid "systemDisplayedTime"
+msgstr "Volta"
+
+msgid "systemDisplayedTime_help"
+msgstr "Impostare l'ora corrente."
+
+msgid "systemDisplayedTimeZone"
+msgstr "Time Zone"
+
+msgid "systemDisplayedTimeZone_help"
+msgstr "Impostare il fuso orario attuale di questo apparecchio server."
+
+msgid "ntpAddress"
+msgstr "Indirizzo server NTP"
+
+msgid "ntpDefaultServer"
+msgstr "clock.isc.org"
+
+msgid "ntpAddress_help"
+msgstr "Immettere l'indirizzo di rete o il completo nome di dominio di un server Network Time Protocol (NTP) per le quali la data e l'ora di sistema verranno sincronizzati periodicamente."
+
+msgid "capgroup_adminTime"
+msgstr "Gestire il tempo di sistema"
+
+msgid "capgroup_adminTime_help"
+msgstr "Questo diritto amministrativo consente a un utente di impostare l'ora di sistema e il fuso orario."
+
+msgid "cap_serverTime"
+msgstr "Impostazioni ora"
