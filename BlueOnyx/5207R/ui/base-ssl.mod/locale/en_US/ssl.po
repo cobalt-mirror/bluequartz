@@ -187,7 +187,7 @@ msgid "sslImportError3"
 msgstr "Unable to get site information. Please try again."
 
 msgid "sslImportError4"
-msgstr "アップロードされた証明書を読み取ることができません。ファイル拡張子のみ'*.txtの'、 '*.csrファイル'、 '*.cerファイル'または '*.CRT'が許可されているとファイル。もう一度やり直してください。"
+msgstr "Unable to read uploaded certificate. Only files with the file extension '*.txt', '*.csr', '*.cert' or '*.crt' are allowed. Please try again."
 
 msgid "sslImportError5"
 msgstr "The certificate is not a valid SSL certificate."
