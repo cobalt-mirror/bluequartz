@@ -77,9 +77,10 @@ information for [VENDOR]-[SERVICE].
 
 <begin glue>
 # glue post-install
-if [ -S /usr/sausalito/cced.socket ]; then
-    /usr/sausalito/sbin/cced.init restart
-    /sbin/service crond restart
+
+# Restart CCEd: 
+if [ -d "/usr/sausalito/yumcce" ];then 
+  touch /usr/sausalito/yumcce/restart
 fi
 
 # If user_gid_fix.pl has never run, then run it now:
@@ -118,6 +119,9 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Mon Mar 21 2016 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX16
+- Updated Italian locales added as provided by Simone Capra.
 
 * Mon Dec 07 2015 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX15
 - Relaxed typedef 'fq_email_address_or_username_multiline' to (again)
