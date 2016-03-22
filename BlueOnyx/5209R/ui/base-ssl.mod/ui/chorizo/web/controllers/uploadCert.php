@@ -142,7 +142,7 @@ class UploadCert extends MX_Controller {
 			//
 
 			$config['upload_path'] = '/tmp/';
-			//$config['allowed_types'] = 'txt|csr|cert|crt';
+			$config['allowed_types'] = 'txt|csr|cert|crt';
 			$config['encrypt_name'] = TRUE;
 			$config['remove_spaces'] = TRUE;
 			$this->load->library('upload', $config);
