@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=vsite
 
 VERSION=4.2
-RELEASE=0BX60
+RELEASE=0BX61
 
 # add a buildarch if desired
 BUILDARCH=noarch
