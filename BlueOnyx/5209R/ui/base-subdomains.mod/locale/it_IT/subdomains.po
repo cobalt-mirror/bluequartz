@@ -8,131 +8,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-msgid "subdomain_header"
-msgstr "Setup Sub Domain"
-
-msgid "vsite_enabled"
-msgstr "Abilita Sotto Domini"
-
-msgid "vsite_enabled_help"
-msgstr "Consente di attivare sottodomini host virtuali"
-
-msgid "default_max_subdomains"
-msgstr "Numero predefinito di Sotto Domini"
-
-msgid "default_max_subdomains_help"
-msgstr "Consente di creare una linea di base di default ogni sito può creare"
-
-msgid "vlist_header"
-msgstr "Tutti i siti virtuali disponibili"
-
-msgid "v_name"
-msgstr "Nome"
-
-msgid "v_name_help"
-msgstr "Nome di Virtual Site"
-
-msgid "v_subdomain"
-msgstr "Numero di Sotto Domini"
-
-msgid "v_subdomain_help"
-msgstr "Mostra come sono consentiti molti sottodomini"
-
-msgid "v_subdomain_enabled"
-msgstr "Stato"
-
-msgid "v_subdomain_enabled_help"
-msgstr "Monitorare lo stato di ogni vsite. E 'attivato o disattivato?"
-
-msgid "vsite_header"
-msgstr "Impostazioni sottodominio"
-
-msgid "vsite_name"
-msgstr "Virtuale del sito Host Name"
-
-msgid "vsite_name_help"
-msgstr "Il nome del tuo sito virtuale"
-
-msgid "max_subdomains"
-msgstr "Numero massimo di Sotto Domini"
-
-msgid "max_subdomains_help"
-msgstr "Il numero massimo di sottodomini che si è permesso di ospitare"
-
-msgid "sub_title"
-msgstr "Sub Configurazione Domini"
-
-msgid "sub_domain"
-msgstr "Dominio Sub"
-
-msgid "sub_domain_help"
-msgstr "Nome dei tuoi sottodomini"
-
-msgid "sub_path"
-msgstr "Sub Percorso dominio"
-
-msgid "sub_path_help"
-msgstr "Percorso per i vostri domini Sub"
-
-msgid "vsite_add_header"
-msgstr "Aggiungere un dominio Sub"
-
-msgid "enterFqdn"
-msgstr "Inserire il nome di dominio Sub"
-
-msgid "enterFqdn_help"
-msgstr "Inserire il nome di dominio Sub"
-
-msgid "hostname"
-msgstr "Nome Host"
-
-msgid "hostname_help"
-msgstr "Nome del tuo nuovo dominio Sub"
-
-msgid "domainname"
-msgstr "Nome dominio"
-
-msgid "domainname_help"
-msgstr "Nome del tuo dominio"
-
 msgid "button_cancel"
-msgstr "Annullare"
+msgstr "Annulla"
 
 msgid "button_cancel_help"
 msgstr "Annulla configurazione"
 
-msgid "php"
-msgstr "Abilita PHP Scripting"
-
-msgid "php_help"
-msgstr "Consente PHP per il tuo dominio Sub"
-
 msgid "cgi"
-msgstr "Abilitare Common Gateway Interface (CGI)"
-
-msgid "cgi_help"
-msgstr "Consente CGI per il vostro dominio Sub"
-
-msgid "ssi"
-msgstr "Abilitare Server Side Includes (SSI)"
-
-msgid "ssi_help"
-msgstr "Abilitare Server Side Include per il vostro dominio Sub"
-
-msgid "vsite_mod_header"
-msgstr "Modifica impostazioni sottodominio"
-
-msgid "new_sub"
-msgstr "Aggiungi nuovo dominio Sub"
-
-msgid "new_sub_help"
-msgstr "Aggiungi nuovo dominio Sub"
-
-msgid "php_head"
-msgstr "PHP"
-
-msgid "php_head_help"
-msgstr "Mostra se è stato abilitato PHP sul sito virtuale"
+msgstr "Abilita Common Gateway Interface (CGI)"
 
 msgid "cgi_head"
 msgstr "CGI"
@@ -140,47 +23,54 @@ msgstr "CGI"
 msgid "cgi_head_help"
 msgstr "Mostra se è stata attivata CGI sul sito virtuale"
 
-msgid "ssi_head"
-msgstr "SSI"
+msgid "cgi_help"
+msgstr "Abilita CGI per il vostro sotto-dominio"
 
-msgid "ssi_head_help"
-msgstr "Mostra se è stata abilitata SSI sul sito virtuale"
+msgid "default_max_subdomains"
+msgstr "Numero predefinito di Sotto Domini"
+
+msgid "default_max_subdomains_help"
+msgstr ""
+"Consente di creare una linea di base di default che ogni sito può creare"
 
 msgid "default_settings"
-msgstr "Impostazioni predefinite per config inital"
+msgstr "Impostazioni predefinite per la configurazione iniziale"
 
 msgid "divider_subdomains"
 msgstr "Configurazione per Sotto Domini"
 
+msgid "domainname"
+msgstr "Nome dominio"
+
+msgid "domainname_help"
+msgstr "Nome del tuo dominio"
+
+msgid "duplicateEntry"
+msgstr "Un sottodominio con questo nome esiste già."
+
 msgid "enabled"
-msgstr "Utente Sub Domain"
+msgstr "Utente Sotto Domain"
 
 msgid "enabled_help"
-msgstr "Creare un sottodominio per l'utente come: manuale. dominio. tld"
+msgstr "Crea un sottodominio per l'utente come: utente . dominio. tld"
 
-msgid "webpath"
-msgstr "Web Path"
+msgid "enterFqdn"
+msgstr "Inserire il nome del sotto dominio"
 
-msgid "webpath_help"
-msgstr "Il percorso del contenuto del sottodominio. Questo non sarà automaticamente cancellato dovrebbe rimuovere questa voce successiva"
+msgid "enterFqdn_help"
+msgstr "Inserire il nome del sotto dominio"
 
-msgid "webdir"
-msgstr "Web Directory"
+msgid "hostname"
+msgstr "Nome Host"
 
-msgid "webdir_help"
-msgstr "La directory che contiene il contenuto Web per il sottodominio"
+msgid "hostname_help"
+msgstr "Nome del tuo nuovo sotto dominio"
 
-msgid "rootpath"
-msgstr "Root Directory Base"
+msgid "max_subdomains"
+msgstr "Numero massimo di Sotto Domini"
 
-msgid "rootpath_help"
-msgstr "Il percorso, sia per webdirectory del vsite, oppure il sottodominio sottodirectory"
-
-msgid "menu_vsite_subdomains"
-msgstr "Sotto Domini"
-
-msgid "menu_vsite_subdomains_help"
-msgstr "Gestione sottodomini"
+msgid "max_subdomains_help"
+msgstr "Il numero massimo di sottodomini che è permesso ospitare"
 
 msgid "menu_system_subdomains"
 msgstr "Sotto Domini"
@@ -188,12 +78,128 @@ msgstr "Sotto Domini"
 msgid "menu_system_subdomains_help"
 msgstr "Consenti ai siti virtuali per creare sottodomini."
 
+msgid "menu_vsite_subdomains"
+msgstr "Sotto Domini"
+
+msgid "menu_vsite_subdomains_help"
+msgstr "Gestione sottodomini"
+
+msgid "new_sub"
+msgstr "Aggiungi nuovo sotto dominio"
+
+msgid "new_sub_help"
+msgstr "Aggiungi nuovo sott dominio"
+
+msgid "php"
+msgstr "Abilita PHP Scripting"
+
+msgid "php_head"
+msgstr "PHP"
+
+msgid "php_head_help"
+msgstr "Mostra se è stato abilitato PHP sul sito virtuale"
+
+msgid "php_help"
+msgstr "Abilita PHP al tuo sotto dominio"
+
+msgid "rootpath"
+msgstr "Directory Root Base"
+
+msgid "rootpath_help"
+msgstr ""
+"Il percorso, sia per webdirectory del vsite, oppure la sottodirectory del "
+"sottodominio"
+
+msgid "ssi"
+msgstr "Abilita Server Side Includes (SSI)"
+
+msgid "ssi_head"
+msgstr "SSI"
+
+msgid "ssi_head_help"
+msgstr "Mostra se è stata abilitata SSI sul sito virtuale"
+
+msgid "ssi_help"
+msgstr "Abilita Server Side Include per il vostro sotto dominio"
+
 msgid "sub_dom_remove_header"
 msgstr "Rimozione sottodominio:"
 
 msgid "sub_dom_remove_question"
-msgstr "Sei sicuro di voler eliminare questo sottodominio? Questa operazione non può essere annullata."
+msgstr ""
+"Sei sicuro di voler eliminare questo sottodominio? Questa operazione non può "
+"essere annullata."
 
-msgid "duplicateEntry"
-msgstr "Un sottodominio con questo nome esiste già."
+msgid "sub_domain"
+msgstr "Sotto Dominio"
 
+msgid "sub_domain_help"
+msgstr "Nome dei tuoi sottodomini"
+
+msgid "sub_path"
+msgstr "Percorso sotto dominio"
+
+msgid "sub_path_help"
+msgstr "Percorso per i vostri sotto domini"
+
+msgid "sub_title"
+msgstr "Configurazione Sotto Domini"
+
+msgid "subdomain_header"
+msgstr "Installazione Sotto Domain"
+
+msgid "v_name"
+msgstr "Nome"
+
+msgid "v_name_help"
+msgstr "Nome del Sito Virtuale"
+
+msgid "v_subdomain"
+msgstr "Numero di Sotto Domini"
+
+msgid "v_subdomain_enabled"
+msgstr "Stato"
+
+msgid "v_subdomain_enabled_help"
+msgstr "Monitora lo stato di ogni vSite. E' attivato o disattivato?"
+
+msgid "v_subdomain_help"
+msgstr "Mostra quanti sottodomini sono permessi"
+
+msgid "vlist_header"
+msgstr "Tutti i siti virtuali disponibili"
+
+msgid "vsite_add_header"
+msgstr "Aggiungere un sotto dominio"
+
+msgid "vsite_enabled"
+msgstr "Abilita Sotto Domini"
+
+msgid "vsite_enabled_help"
+msgstr "Consente di attivare sottodomini per host virtuali"
+
+msgid "vsite_header"
+msgstr "Impostazioni sottodominio"
+
+msgid "vsite_mod_header"
+msgstr "Modifica impostazioni sottodominio"
+
+msgid "vsite_name"
+msgstr "Host Name del sito virtuale"
+
+msgid "vsite_name_help"
+msgstr "Il nome del tuo sito virtuale"
+
+msgid "webdir"
+msgstr "Web Directory"
+
+msgid "webdir_help"
+msgstr "La directory che contiene il contenuto Web per il sottodominio"
+
+msgid "webpath"
+msgstr "Web Path"
+
+msgid "webpath_help"
+msgstr ""
+"Il percorso del contenuto del sottodominio. Questo non sarà automaticamente "
+"cancellato. Dovresti rimuovere questa voce successivamente."
