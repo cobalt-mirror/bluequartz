@@ -53,6 +53,7 @@ information for [VENDOR]-[SERVICE].
 %attr(0700,root,root)%{RootDir}/sbin/pkg_uninstall.pl
 %attr(0700,root,root)%{RootDir}/sbin/swupdate_tmp_clean.pl
 %attr(0700,root,root)%{RootDir}/sbin/rpm-clean-duplicates.pl
+%attr(0700,root,root)%{RootDir}/sbin/locale-analyze.pl
 %attr(0644,root,root)%{RootDir}/perl/SWUpdate.pm
 %attr(0644,root,root)%config /etc/cron.d/swupdate_tmp_clean.cron
 %attr(0700,root,root)%dir /root/.gnupg
@@ -135,6 +136,7 @@ fi
 
 * Mon Mar 21 2016 Michael Stauber <mstauber@solarspeed.net> 1.6.1-0BX03
 - Updated Italian locales added as provided by Simone Capra.
+- Added /usr/sausalito/sbin/sbin/locale-analyze.pl
 
 * Fri Jan 15 2016 Michael Stauber <mstauber@solarspeed.net> 1.6.1-0BX02
 - Fixed 'Check for Updates' and 'Update System' buttons for YUM. Now they
