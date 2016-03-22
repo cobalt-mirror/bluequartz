@@ -86,7 +86,11 @@ information for [VENDOR]-[SERVICE].
 # glue post-install
 if [ -S /usr/sausalito/cced.socket ]; then
     /usr/sausalito/sbin/free_admin_alias.pl
-    /usr/sausalito/sbin/cced.init restart
+fi
+
+# Restart CCEd: 
+if [ -d "/usr/sausalito/yumcce" ];then 
+  touch /usr/sausalito/yumcce/restart
 fi
 
 <end glue>
@@ -135,6 +139,10 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Mon Mar 21 2016 Michael Stauber <mstauber@solarspeed.net> 4.0-0BX37
+- Updated Italian locales added as provided by Simone Capra.
+
 * Tue Dec 15 2015 Hisao SHIBUYA <hisao@smack.jp> 4.0-0BX36
 - Add memcache capability.
 
