@@ -82,36 +82,43 @@
     <!-- New for Let's Encrypt: -->
     <property 
         name="uses_letsencrypt" type="boolean" default="0" optional="true"
-        writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleSiteSSL )"
+        writeacl="ruleCapable(adminUser)"
     />
     <property 
         name="LEemail" type="email_address" optional="true" 
-        writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleSiteSSL )"
+        writeacl="ruleCapable(adminUser)"
     />
     <property 
         name="autoRenew" type="boolean" default="1" optional="true" 
-        writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleSiteSSL )"
+        writeacl="ruleCapable(adminUser)"
     />
     <property 
         name="autoRenewDays" type="int" default="60" optional="true" 
-        writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleSiteSSL )"
+        writeacl="ruleCapable(adminUser)"
     />
     <property 
         name="performLEinstall" type="scalar" default="" optional="true" 
-        writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleSiteSSL )"
+        writeacl="ruleCapable(adminUser)"
     />
     <property 
         name="performLErenew" type="scalar" default="" optional="true" 
-        writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleSiteSSL )"
+        writeacl="ruleCapable(adminUser)"
     />
     <property 
         name="LEclientRet" type="scalar" default="" optional="true" 
-        writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleSiteSSL )"
+        writeacl="ruleCapable(adminUser)"
     />
     <property 
         name="LEcreationDate" type="scalar" default="" optional="true" 
-        writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleSiteSSL )"
+        writeacl="ruleCapable(adminUser)"
     />
+
+    <!-- Keep track of aliases that we need to request for: -->
+    <property
+        name="LEwantedAliases" type="scalar" array="yes" optional="yes"
+        writeacl="ruleCapable(adminUser)"
+    />
+
 </class>
 
 <class name="VsiteServices" namespace="SSL" version="1.0" >
