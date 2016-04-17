@@ -12,7 +12,7 @@
 $DEBUG = "0";
 if ($DEBUG)
 {
-        use Sys::Syslog qw( :DEFAULT setlogsock);
+    use Sys::Syslog qw( :DEFAULT setlogsock);
 }
 
 # Uncomment correct type:
@@ -245,7 +245,7 @@ if ($whatami eq "handler") {
             if (-f $php_ini) {
 
                 # Check if we need to switch the default PHP version to a different one:
-                if ($PHP->{'PHP_version_os'} ne $PHP->{'PHP_version'}) {
+                if (($PHP->{'PHP_version_os'} ne $PHP->{'PHP_version'}) || ($cce->event_is_modify())) {
                     &debug_msg("Default PHP version has changed to $PHP->{'PHP_version'}. Updating configs. \n");
                     &php_switcher;
                 }
@@ -657,9 +657,15 @@ sub pool_printer {
 sub php_switcher {
 
     # Check if the OS supplied PHP is any different than the PHP that Apache DSO is currently using:
+    $got_php7 = "0";
     if ($PHP->{'PHP_version_os'} ne $PHP->{'PHP_version'}) {
         $thirdPartyCGI = $extra_PHP_basepath . "php-" . $known_php_versions{$seen_php_versions{$PHP->{PHP_version}}} . "/bin/php-cgi";
         $new_php_dso_location = $extra_PHP_basepath . "php-" . $known_php_versions{$seen_php_versions{$PHP->{PHP_version}}} . "/lib/httpd/libphp5.so";
+        $new_php7_dso_location = $extra_PHP_basepath . "php-" . $known_php_versions{$seen_php_versions{$PHP->{PHP_version}}} . "/lib/httpd/libphp7.so";
+        if (-f $new_php7_dso_location) {
+            $new_php_dso_location = $new_php7_dso_location;
+            $got_php7 = "1";
+        }
     }
     else {
         $thirdPartyCGI = "/usr/bin/php-cgi";
@@ -678,7 +684,12 @@ sub php_switcher {
         unlink($stage);
         sysopen(STAGE, $stage, 1|O_CREAT|O_EXCL, 0600) || die;
         while(<HTTPD>) {
-            s/LoadModule php5_module (.*)/LoadModule php5_module $new_php_dso_location/g;
+            if ($got_php7 eq "1") {
+                s/LoadModule php(.*)/LoadModule php7_module $new_php_dso_location/g;
+            }
+            else {
+                s/LoadModule php(.*)/LoadModule php5_module $new_php_dso_location/g;
+            }
             print STAGE;
         }
         close(STAGE);
@@ -706,8 +717,8 @@ $cce->bye('SUCCESS');
 exit(0);
 
 # 
-# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 
