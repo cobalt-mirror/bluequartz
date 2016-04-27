@@ -46,7 +46,7 @@ install: all
 	install $(INSTFLAGS) -m 0644 swatch.cron $(CRONDIR)
 	install $(INSTFLAGS) -m 0750 swatch.sh $(SAUSBINDIR)/swatch.sh
 	install $(INSTFLAGS) -m 0750 hotfixes.sh $(SAUSBINDIR)/hotfixes.sh
-	install $(INSTFLAGS) -m 0750 hotfixes.sh $(SAUSBINDIR)/fix_syslog.sh
+	install $(INSTFLAGS) -m 0750 fix_syslog.sh $(SAUSBINDIR)/fix_syslog.sh
 
 	make -C locale install
 
