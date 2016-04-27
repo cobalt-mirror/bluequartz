@@ -69,13 +69,16 @@ my $running = 0;
 
 # do the right thing
 if (!$running && $obj->{enabled}) {
+  Sauce::Service::service_set_init($SERVICE, 'on');
   Sauce::Service::service_run_init($SERVICE, 'start');
   sleep(1); # wait for named to really start
 }
 elsif ($running && !$obj->{enabled}) {
+  Sauce::Service::service_set_init($SERVICE, 'off');
   Sauce::Service::service_run_init($SERVICE, 'stop');
 }
 elsif ($running && $obj->{enabled}) {
+  Sauce::Service::service_set_init($SERVICE, 'on');
   Sauce::Service::service_run_init($SERVICE, 'restart');
 }
 
