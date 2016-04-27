@@ -1,2 +1,5 @@
 # swatch is the system watcher
 */15 * * * *    root    /usr/sausalito/sbin/swatch.sh >/dev/null 2>&1
+
+# Check syslog every 5 minutes, and restart it if required
+*/5 * * * * root /usr/sausalito/sbin/fix_syslog.sh > /dev/null 2>&1

@@ -1,7 +1,7 @@
 Summary: System Watcher
 Name: swatch
 Version: XX_VER_XX
-Release: 0BX28%{?dist}
+Release: 0BX29%{?dist}
 Vendor: Project BlueOnyx
 License: BSD
 Group: System Environment/BlueOnyx
@@ -56,6 +56,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %dir /usr/sausalito/swatch
 %attr(755,root,root) /usr/sausalito/sbin/swatch.sh
 %attr(755,root,root) /usr/sausalito/sbin/hotfixes.sh
+%attr(755,root,root) /usr/sausalito/sbin/fix_syslog.sh
 
 %pre
 if [ -f /etc/swatch.conf.rpmnew ]; then
@@ -68,6 +69,12 @@ if [ -f /etc/swatch.conf.rpmnew ]; then
 fi 
 
 %changelog
+
+* Wed Apr 27 2016 Michael Stauber <mstauber@solarspeed.net> 4.0.0-0BX29
+- Added /usr/sausalito/sbin/fix_syslog.sh and modified swatch.cron to address
+  the bloody Systemd related rsyslog problem.
+- See: https://bugzilla.redhat.com/show_bug.cgi?id=1088021
+- Also see: http://wiki.blueonyx.it/kb/os/rsyslogd/00001
 
 * Tue Jan 12 2016 Michael Stauber <mstauber@solarspeed.net> 4.0.0-0BX28
 - Added $globalState var to allow us with one glance to check the AM state.
