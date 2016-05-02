@@ -12,11 +12,11 @@
   <PROPERTY name="delete" type="word" default=""/>
   <PROPERTY name="mysqluser" type="word" default="root"/>
   <PROPERTY name="oldpass" type="password" optional = "true" default=""/>
-  <PROPERTY name="newpass" type="alphanum_plus" optional = "true" 
+  <PROPERTY name="newpass" type="password" optional = "true" 
 default=""/>
   <PROPERTY name="changepass" type="word" default=""/>
   <PROPERTY name="username" type="word" default="root"/>
-  <PROPERTY name="password" type="alphanum_plus" optional = "true" 
+  <PROPERTY name="password" type="password" optional = "true" 
 default=""/>
   <PROPERTY name="dump" type="word" default=""/>
 

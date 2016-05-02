@@ -17,7 +17,7 @@
             writeacl="ruleCapable(adminUser)"
         />
         <property name="sql_rootpassword"
-            type="alphanum_plus"
+            type="password"
             optional="true"
             default="" 
             writeacl="ruleCapable(adminUser)"

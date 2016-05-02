@@ -118,6 +118,11 @@ fi
 
 <begin $CHANGELOG>
 
+* Mon May 02 2015 Michael Stauber <mstauber@solarspeed.net> 2.3.0-0BX19
+- Modified glue/schemas/MySQL.schema and glue/schemas/mysql.schema to
+  change the regular expression for the MySQL root password from the old
+  'alphanum_plus' to 'password' to allow more complex passwords.
+
 * Sun Nov 08 2015 Michael Stauber <mstauber@solarspeed.net> 2.3.0-0BX18
 - Modified glue/schemas/MYSQL_Vsite.schema to change 'enabled' back to '0'.
 
