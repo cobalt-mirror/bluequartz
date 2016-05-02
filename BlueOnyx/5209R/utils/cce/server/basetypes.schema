@@ -148,10 +148,32 @@
   data="((^[a-z0-9][a-z0-9\-]*([\\.][a-z0-9][a-z0-9\-]*))|([a-z0-9][a-z0-9\-]*([\\.][a-z0-9][a-z0-9\-]*)([,]|[\r\n]{0,999})))$"
 />
 
+<!-- Please note the password regexp. It forbids certain elements from the *octal* ASCII table.
+
+     Forbidden: 
+     ==========
+     Anything between octal 001 and 040 control chars and space
+     Octal \042, which means: "
+     Octal \046, which means: &
+     Octal \047, which means: '
+     Octal \057, which means: /
+     Octal \074, which means: <
+     Octal \076, which means: >
+     Octal \077, which means: ?
+     Octal \100, which means: @
+     Octal \133-\140, which means: [ \ ] ^ _ `
+     Octal \173-\177, which means: { | } ~ and DELete key.
+     See: https://courses.engr.illinois.edu/ece390/books/labmanual/ascii-code-table.html
+
+     Still allowed chars:
+     ====================
+     Any alphanumeric character plus: !#$%()*+,-.:;=
+-->
+
 <typedef
 	name="password"
 	type="re"
-	data="^[^\001-\037\177]{6,24}$"
+	data="^[^\001-\040\042\046\047\057\074\076\077\100\133-\140\173-\177]{6,24}$"
 />
 
 <typedef 
