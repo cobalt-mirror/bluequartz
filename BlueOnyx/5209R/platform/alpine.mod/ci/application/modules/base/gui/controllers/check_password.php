@@ -63,9 +63,11 @@ class Check_Password extends MX_Controller {
         // Initialize I18n:
         $i18n = new I18n("palette", $locale);
 
+        $form_data = $CI->input->post();
+
         // Handle form data:
-        if (isset($_POST["password"])) {
-            $password = $_POST["password"];
+        if (isset($form_data["password"])) {
+            $password = $form_data["password"];
         }
         else {
             $password = "";
@@ -81,37 +83,116 @@ class Check_Password extends MX_Controller {
             $diag = crack_getlastmessage();
             crack_closedict($dictionary);
 
-            // Parse the return strings from cracklib and localize them:
-            if (preg_match('/^it\'s WAY too short$/', $diag)) {
-                $data['result'] = $i18n->getHtml("[[palette.pw_way_too_short]]");
+            // Note to self: We don't check for '&', because we can't. The XSS filter is on globally
+            // due to $config['global_xss_filtering'] = TRUE; in application/config/config.php.
+            // So it gets filtered out. So you enter a '&' and we get nothing. Fun and games!
+
+            // Standard error text for illegal chars: "Password contains illegal characters."
+
+            // Check if Password matches our 'password' regexp:
+            $illegal_chars = "0";
+            if (preg_match("/\s/", $password)) {
+                $data['result'] = $i18n->getHtml("[[base-alpine.pw_illegal_chars]]");
+                $illegal_chars = "1";
             }
-            elseif (preg_match('/^it is too short$/', $diag)) {
-                $data['result'] = $i18n->getHtml("[[palette.pw_too_short]]");
+            elseif (preg_match("/\"/", $password)) {
+                $data['result'] = $i18n->getHtml("[[base-alpine.pw_illegal_chars]]");
+                $illegal_chars = "1";
             }
-            elseif (preg_match('/^it does not contain enough DIFFERENT characters$/', $diag)) {
-                $data['result'] = $i18n->getHtml("[[palette.pw_not_nuff_different]]");
+            elseif (preg_match("/'/", $password)) {
+                $data['result'] = $i18n->getHtml("[[base-alpine.pw_illegal_chars]]");
+                $illegal_chars = "1";
             }
-            elseif (preg_match('/^it is all whitespace$/', $diag)) {
-                $data['result'] = $i18n->getHtml("[[palette.pw_all_whitespace]]");
+            elseif (preg_match("/\//", $password)) {
+                $data['result'] = $i18n->getHtml("[[base-alpine.pw_illegal_chars]]");
+                $illegal_chars = "1";
             }
-            elseif (preg_match('/^it is too simplistic\/systematic$/', $diag)) {
-                $data['result'] = $i18n->getHtml("[[palette.pw_too_simple]]");
+            elseif (preg_match("/</", $password)) {
+                $data['result'] = $i18n->getHtml("[[base-alpine.pw_illegal_chars]]");
+                $illegal_chars = "1";
             }
-            elseif (preg_match('/^it looks like a National Insurance (.*)$/', $diag)) {
-                $data['result'] = $i18n->getHtml("[[palette.pw_insurance_number]]");
+            elseif (preg_match("/>/", $password)) {
+                $data['result'] = $i18n->getHtml("[[base-alpine.pw_illegal_chars]]");
+                $illegal_chars = "1";
             }
-            elseif (preg_match('/^it is based on a dictionary word$/', $diag)) {
-                $data['result'] = $i18n->getHtml("[[palette.pw_dictionary_word]]");
+            elseif (preg_match("/\?/", $password)) {
+                $data['result'] = $i18n->getHtml("[[base-alpine.pw_illegal_chars]]");
+                $illegal_chars = "1";
             }
-            elseif (preg_match('/^it is based on a \(reversed\) dictionary word$/', $diag)) {
-                $data['result'] = $i18n->getHtml("[[palette.pw_reversed_dictionary_word]]");
+            elseif (preg_match("/\@/", $password)) {
+                $data['result'] = $i18n->getHtml("[[base-alpine.pw_illegal_chars]]");
+                $illegal_chars = "1";
             }
-            elseif (preg_match('/^strong password$/', $diag)) {
-                $data['result'] = $i18n->getHtml("[[palette.pw_strong_password]]");
+            elseif (preg_match("/\[/", $password)) {
+                $data['result'] = $i18n->getHtml("[[base-alpine.pw_illegal_chars]]");
+                $illegal_chars = "1";
             }
-            else {
-                // In case the localization fails, return the cracklib output directly:
-                $data['result'] = $diag;
+            elseif (preg_match("/\]/", $password)) {
+                $data['result'] = $i18n->getHtml("[[base-alpine.pw_illegal_chars]]");
+                $illegal_chars = "1";
+            }
+            elseif (preg_match("/\^/", $password)) {
+                $data['result'] = $i18n->getHtml("[[base-alpine.pw_illegal_chars]]");
+                $illegal_chars = "1";
+            }
+            elseif (preg_match("/\_/", $password)) {
+                $data['result'] = $i18n->getHtml("[[base-alpine.pw_illegal_chars]]");
+                $illegal_chars = "1";
+            }
+            elseif (preg_match("/`/", $password)) {
+                $data['result'] = $i18n->getHtml("[[base-alpine.pw_illegal_chars]]");
+                $illegal_chars = "1";
+            }
+            elseif (preg_match("/{/", $password)) {
+                $data['result'] = $i18n->getHtml("[[base-alpine.pw_illegal_chars]]");
+                $illegal_chars = "1";
+            }
+            elseif (preg_match("/\|/", $password)) {
+                $data['result'] = $i18n->getHtml("[[base-alpine.pw_illegal_chars]]");
+                $illegal_chars = "1";
+            }
+            elseif (preg_match("/}/", $password)) {
+                $data['result'] = $i18n->getHtml("[[base-alpine.pw_illegal_chars]]");
+                $illegal_chars = "1";
+            }
+            elseif (preg_match("/~/", $password)) {
+                $data['result'] = $i18n->getHtml("[[base-alpine.pw_illegal_chars]]");
+                $illegal_chars = "1";
+            }
+            elseif ($illegal_chars == "0") {
+
+                // Parse the return strings from cracklib and localize them:
+                if (preg_match('/^it\'s WAY too short$/', $diag)) {
+                    $data['result'] = $i18n->getHtml("[[palette.pw_way_too_short]]");
+                }
+                elseif (preg_match('/^it is too short$/', $diag)) {
+                    $data['result'] = $i18n->getHtml("[[palette.pw_too_short]]");
+                }
+                elseif (preg_match('/^it does not contain enough DIFFERENT characters$/', $diag)) {
+                    $data['result'] = $i18n->getHtml("[[palette.pw_not_nuff_different]]");
+                }
+                elseif (preg_match('/^it is all whitespace$/', $diag)) {
+                    $data['result'] = $i18n->getHtml("[[palette.pw_all_whitespace]]");
+                }
+                elseif (preg_match('/^it is too simplistic\/systematic$/', $diag)) {
+                    $data['result'] = $i18n->getHtml("[[palette.pw_too_simple]]");
+                }
+                elseif (preg_match('/^it looks like a National Insurance (.*)$/', $diag)) {
+                    $data['result'] = $i18n->getHtml("[[palette.pw_insurance_number]]");
+                }
+                elseif (preg_match('/^it is based on a dictionary word$/', $diag)) {
+                    $data['result'] = $i18n->getHtml("[[palette.pw_dictionary_word]]");
+                }
+                elseif (preg_match('/^it is based on a \(reversed\) dictionary word$/', $diag)) {
+                    $data['result'] = $i18n->getHtml("[[palette.pw_reversed_dictionary_word]]");
+                }
+                elseif (preg_match('/^strong password$/', $diag)) {
+                    $data['result'] = $i18n->getHtml("[[palette.pw_strong_password]]");
+                }
+                else {
+                    // In case the localization fails, return the cracklib output directly:
+                    $data['result'] = $diag;
+                }
             }
         }
         else {
@@ -147,8 +228,8 @@ class Check_Password extends MX_Controller {
 }
 
 /*
-Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
 All Rights Reserved.
 
 1. Redistributions of source code must retain the above copyright 
