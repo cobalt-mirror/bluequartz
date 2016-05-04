@@ -44,8 +44,10 @@ install: all
 	install $(INSTFLAGS) -m 0644 conf/statecodes $(SWATCHDIR)
 	install $(INSTFLAGS) -m 0644 conf/statecodes.tcl $(SWATCHDIR)
 	install $(INSTFLAGS) -m 0644 swatch.cron $(CRONDIR)
+	install $(INSTFLAGS) -m 0644 hotfixes/policy.xml $(CONFDIR)/ImageMagick/policy.xml.fixed
 	install $(INSTFLAGS) -m 0750 swatch.sh $(SAUSBINDIR)/swatch.sh
 	install $(INSTFLAGS) -m 0750 hotfixes.sh $(SAUSBINDIR)/hotfixes.sh
+	install $(INSTFLAGS) -m 0750 fix_syslog.sh $(SAUSBINDIR)/fix_syslog.sh
 
 	make -C locale install
 
@@ -57,6 +59,7 @@ uninstall:
 	rm -f $(SWATCHDIR)/statecodes.tcl
 	rm -f $(SAUSBINDIR)/swatch.sh
 	rm -f $(SAUSBINDIR)/hotfixes.sh
+	rm -f $(SAUSBINDIR)/fix_syslog.sh
 	make -C locale uninstall
 
 rpm: clean
