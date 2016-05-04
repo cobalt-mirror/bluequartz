@@ -1,7 +1,7 @@
 Summary: System Watcher
 Name: swatch
 Version: XX_VER_XX
-Release: 0BX29%{?dist}
+Release: 0BX30%{?dist}
 Vendor: Project BlueOnyx
 License: BSD
 Group: System Environment/BlueOnyx
@@ -28,6 +28,7 @@ mkdir -p $RPM_BUILD_ROOT
 mkdir -p $RPM_BUILD_ROOT/usr/sbin
 mkdir -p $RPM_BUILD_ROOT/etc
 mkdir -p $RPM_BUILD_ROOT/etc/cron.d
+mkdir -p $RPM_BUILD_ROOT/etc/ImageMagick/
 mkdir -p $RPM_BUILD_ROOT/usr/sausalito/swatch/
 mkdir -p $RPM_BUILD_ROOT/usr/sausalito/swatch/bin
 mkdir -p $RPM_BUILD_ROOT/usr/sausalito/sbin/
@@ -57,6 +58,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /usr/sausalito/sbin/swatch.sh
 %attr(755,root,root) /usr/sausalito/sbin/hotfixes.sh
 %attr(755,root,root) /usr/sausalito/sbin/fix_syslog.sh
+%attr(644,root,root) /etc/ImageMagick/policy.xml.fixed
 
 %pre
 if [ -f /etc/swatch.conf.rpmnew ]; then
@@ -69,6 +71,11 @@ if [ -f /etc/swatch.conf.rpmnew ]; then
 fi 
 
 %changelog
+
+* Tue May 03 2016 Michael Stauber <mstauber@solarspeed.net> 4.0.0-0BX30
+- Added provisions to automatically fix the Imagetragick bug CVE-2016–3714
+- Added hotfixes/policy.xml
+- Modified hotfixes.sh to check for and if need be deploy the fixed policy.xml
 
 * Wed Apr 27 2016 Michael Stauber <mstauber@solarspeed.net> 4.0.0-0BX29
 - Added /usr/sausalito/sbin/fix_syslog.sh and modified swatch.cron to address

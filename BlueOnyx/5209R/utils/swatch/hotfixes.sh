@@ -47,5 +47,17 @@ if [ -f /usr/sausalito/swatch/bin/am_support.pl ]; then
         /usr/sausalito/swatch/bin/am_support.pl
 fi
 
+# Fix Imagetragick issue:
+if [ -f /etc/ImageMagick/policy.xml ];then
+	ITRAGIC=`cat /etc/ImageMagick/policy.xml.org |grep EPHEMERAL|wc -l`
+	# We need to apply the fix:
+	if [ $ITRAGIC -eq 0 ]; then
+		# Do we have a good copy? We should!
+		if [ -f /etc/ImageMagick/policy.xml.fixed ];then
+			cp /etc/ImageMagick/policy.xml.fixed /etc/ImageMagick/policy.xml
+		fi
+	fi
+fi
+
 exit
 
