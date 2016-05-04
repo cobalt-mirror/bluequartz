@@ -209,6 +209,16 @@ fi
 
 %changelog
 
+* Mon May 02 2016 Michael Stauber <mstauber@solarspeed.net> 0.99.2-1BX04
+- Modified server/basetypes.schema to update the regexp for 'password' to
+  only allow passwords that our architecture actually supports. One problem
+  is cce.so not quoting the password, which disallows whitespaces. The other
+  issue is storage related (CODB) and transposition to octal values. One
+  char it chokes on is ']'. Another issue are chars getting escaped, when they
+  should not be escaped. The current regexp from this commit reduces the allowed
+  subset of chars to what we can actually support all across the board in all
+  usage scenarios.
+
 * Thu Jan 14 2016 Michael Stauber <mstauber@solarspeed.net> 0.99.2-1BX03
 - Rollback of memcache feature.
 
