@@ -67,8 +67,13 @@ https://www.imagemagick.org/discourse-server/viewtopic.php?f=4&t=26801
   <policy domain="system" name="precision" value="6"/>
   <policy domain="cache" name="shared-secret" value="replace with your secret phrase"/>
   <policy domain="coder" rights="none" pattern="EPHEMERAL" />
+  <policy domain="coder" rights="none" pattern="URL" />
   <policy domain="coder" rights="none" pattern="HTTPS" />
   <policy domain="coder" rights="none" pattern="MVG" />
   <policy domain="coder" rights="none" pattern="MSL" />
+  <policy domain="coder" rights="none" pattern="TEXT" />
+  <policy domain="coder" rights="none" pattern="SHOW" />
+  <policy domain="coder" rights="none" pattern="WIN" />
+  <policy domain="coder" rights="none" pattern="PLT" />
   <policy domain="path" rights="none" pattern="@*" />
 </policymap>
