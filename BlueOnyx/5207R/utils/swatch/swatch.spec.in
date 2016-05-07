@@ -1,7 +1,7 @@
 Summary: System Watcher
 Name: swatch
 Version: XX_VER_XX
-Release: 0BX30%{?dist}
+Release: 0BX31%{?dist}
 Vendor: Project BlueOnyx
 License: BSD
 Group: System Environment/BlueOnyx
@@ -71,6 +71,10 @@ if [ -f /etc/swatch.conf.rpmnew ]; then
 fi 
 
 %changelog
+
+* Sat May 07 2016 Michael Stauber <mstauber@solarspeed.net> 4.0.0-0BX31
+- Updated hotfixes/policy.xml with latest ImageTragick fixes from 5/5.
+- See: https://imagetragick.com/
 
 * Tue May 03 2016 Michael Stauber <mstauber@solarspeed.net> 4.0.0-0BX30
 - Added provisions to automatically fix the Imagetragick bug CVE-2016–3714
