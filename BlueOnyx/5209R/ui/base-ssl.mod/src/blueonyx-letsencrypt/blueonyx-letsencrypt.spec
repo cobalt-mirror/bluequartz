@@ -6,8 +6,8 @@
 %define instdir letsencrypt
 
 Name:           %{pkgname}
-Version:        0.1.0
-Release:        2
+Version:        0.2.0
+Release:        1
 Packager:       Michael Stauber <mstauber@blueonyx.it>
 Vendor:         Let's Encrypt
 URL:            http://www.letsencrypt.org
@@ -85,6 +85,9 @@ rm -R -f $RPM_BUILD_ROOT
 %files -f solFile.list
 
 %changelog
+
+* Thu May 19 2016 Michael Stauber <mstauber@blueonyx.it>
+- [0.2.0-1] Updated client.
 
 * Fri Dec 04 2015 Michael Stauber <mstauber@blueonyx.it>
 - [0.1.0-2] Updated Requirements.
