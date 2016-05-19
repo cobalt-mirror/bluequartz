@@ -45,6 +45,7 @@ install: all
 	install $(INSTFLAGS) -m 0644 conf/statecodes.tcl $(SWATCHDIR)
 	install $(INSTFLAGS) -m 0644 swatch.cron $(CRONDIR)
 	install $(INSTFLAGS) -m 0644 hotfixes/policy.xml $(CONFDIR)/ImageMagick/policy.xml.fixed
+	install $(INSTFLAGS) -m 0755 hotfixes/dcclogrotate.sh $(CONFDIR)/cron.daily/dcclogrotate.sh
 	install $(INSTFLAGS) -m 0750 swatch.sh $(SAUSBINDIR)/swatch.sh
 	install $(INSTFLAGS) -m 0750 hotfixes.sh $(SAUSBINDIR)/hotfixes.sh
 	install $(INSTFLAGS) -m 0750 fix_syslog.sh $(SAUSBINDIR)/fix_syslog.sh
@@ -54,6 +55,7 @@ install: all
 uninstall:
 	rm -f $(SBINDIR)/swatch
 	rm -f $(CONFDIR)/swatch.conf
+	rm -f $(CONFDIR)/cron.daily/dcclogrotate.sh
 	rm -f $(CRONDIR)/swatch.cron
 	rm -f $(SWATCHDIR)/statecodes
 	rm -f $(SWATCHDIR)/statecodes.tcl
