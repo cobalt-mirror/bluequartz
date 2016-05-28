@@ -1,7 +1,7 @@
 Summary: Perl modules that contain useful utility functions for handlers.
 Name: perl-handler-utils
 Version: 1.4.0
-Release: 0BX12%{?dist}
+Release: 0BX13%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -33,6 +33,11 @@ This package contains a number of perl modules that contain useful
 utility functions for writing cced event handler scripts.
 
 %changelog
+
+* Sat May 28 2016 Michael Stauber <mstauber@solarspeed.net> 1.4.0-0BX13
+- Modified Sauce/Service.pm to fix function service_get_init(), which
+  wasn't working correctly under InitV when the locale was not en_US.
+  The new method is a bit over the top, but it works.
 
 * Sat May 28 2016 Michael Stauber <mstauber@solarspeed.net> 1.4.0-0BX12
 - Modified Sauce/Service/Daemon.pm for better 'avspam' service handling.

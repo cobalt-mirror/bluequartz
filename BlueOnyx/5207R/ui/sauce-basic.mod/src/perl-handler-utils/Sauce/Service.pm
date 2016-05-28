@@ -196,10 +196,13 @@ sub service_get_init
         }
     }
     else {
-        # Thank God, no Systemd:
-        my $status = `/sbin/chkconfig --list $service`;
-        if ($status) {
-            $return = ($status =~ /\b$state:on\b/) ? 1 : 0;
+        # Thank God, no Systemd. Still sucks enough to get the state:
+        $return = "0";
+        # This is a clear case of "YGBSM!". But if it works ... then we'll use it:
+        my $status = `ls -la /etc/rc$state.d/S*|grep ^lrwxrwxrwx|grep -E "S*$service ->"|wc -l`;
+        chomp($status);
+        if ($status eq "1") {
+            $return = "1";
         }
     }
     return $return;
