@@ -57,7 +57,8 @@ sub service_run_init
     $pidHttpd = `pidof httpd|wc -l`;
     chomp($pidHttpd);
     if (($service eq 'httpd') && ($arg eq 'reload')) {
-        &debug_msg("Special case: $service $arg"); 
+        &debug_msg("Special case: $service $arg - upgrade to restart"); 
+        $arg = 'restart';
         my $ssc = new Sauce::Service::Client;
         if (!$ssc->connect()) {
             return(0);

@@ -310,7 +310,7 @@ sub _spawn_child
         else {
             if (-f "/usr/bin/systemctl") { 
                 # Got Systemd: 
-                $checker = `/usr/bin/systemctl status $service|$grep "Active:"|$grep running|$wc -l`;
+                $checker = `/usr/bin/systemctl status $service|$grep "Active:"|$grep -E "(running|exited)"|$wc -l`;
                 chomp($checker);
             }
             else {
@@ -335,8 +335,14 @@ sub _spawn_child
 
         # check for timeout
         if ($i >= $CHILD_TIMEOUT) {
-            &_logmsg("child $$ unable to complete event $service $action. Running am_apache.sh and exiting");
-            `/usr/sausalito/swatch/bin/am_apache.sh`;
+            if ($service eq "httpd") {
+                &_logmsg("child $$ unable to complete event $service $action. Running am_apache.sh and exiting");
+                `/usr/sausalito/swatch/bin/am_apache.sh`;
+            }
+            if ($service eq "avspam") {
+                &_logmsg("child $$ unable to complete event $service $action. Running /usr/sausalito/sbin/avspam_init.pl and exiting.");
+                `/usr/sausalito/sbin/avspam_init.pl -restart`;
+            }
             # notify parent
             kill 'USR2', getppid();
             exit(1);
@@ -484,8 +490,8 @@ sub debug_msg {
 1;
 
 # 
-# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 
