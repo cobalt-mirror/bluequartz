@@ -1,7 +1,7 @@
 Summary: Perl modules that contain useful utility functions for handlers.
 Name: perl-handler-utils
 Version: 1.4.0
-Release: 0BX10%{?dist}
+Release: 0BX11%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -33,6 +33,13 @@ This package contains a number of perl modules that contain useful
 utility functions for writing cced event handler scripts.
 
 %changelog
+
+* Sat May 28 2016 Michael Stauber <mstauber@solarspeed.net> 1.4.0-0BX11
+- Modified Sauce/Service.pm to add a special provision to daemonize
+  restarts of the 'avspam' as well. Additionally systemctl based calls
+  now honor the 'nobg' parameter and execute then without the systemctl
+  option --no-block. This is done to make systemctl actually wait for
+  the call to finish. It doesn't, but at least it waits a bit longer.
 
 * Fri Jun 26 2015 Michael Stauber <mstauber@solarspeed.net> 1.4.0-0BX10
 - Turned out running Swatch isn't the best of ideas. So I switched that

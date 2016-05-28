@@ -41,7 +41,9 @@ sub xinetd_perm { return 0644; };
 
 sub service_run_init
 # changes the init state. it does this in the background by default
-# arguments: file, arguments ('start', 'stop', or 'restart')
+# arguments: file, arguments ('start', 'stop', or 'restart') and
+# optionally 'nobg' as third parameter to not shoot the call into 
+# the background.
 {
     my ($service, $arg, $options) = @_;
     my $pid;
@@ -69,6 +71,26 @@ sub service_run_init
         }
         return(1);
     }
+
+    #
+    ### Special case AV-SPAM restart:
+    #
+    if (($service eq 'avspam') && (-f "/usr/sausalito/sbin/avspam_init.pl") && ($arg eq 'restart')) {
+        &debug_msg("Special case: $service $arg"); 
+        my $ssc = new Sauce::Service::Client;
+        if (!$ssc->connect()) {
+            return(0);
+        }
+        if (!$ssc->register_event($service, $arg)) {
+            return(0);
+        }
+        if (!$ssc->bye()) {
+            # this can actually never fail currently
+            return(0);
+        }
+        return(1);
+    }
+
     if ($service eq 'crond') {
         `killall -9 crond`;
         # Restarts Service:
@@ -102,8 +124,8 @@ sub service_run_init
         # Restarts Service:
         if (-f "/usr/bin/systemctl") { 
             # Got Systemd: 
-            &debug_msg("Running: systemctl $arg $service.service --no-block"); 
-            system("systemctl $arg $service.service --no-block"); 
+            &debug_msg("Running: systemctl $arg $service.service"); 
+            system("systemctl $arg $service.service"); 
         } 
         else { 
             # Thank God, no Systemd: 
@@ -479,8 +501,8 @@ sub debug_msg {
 }
  
 # 
-# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 
