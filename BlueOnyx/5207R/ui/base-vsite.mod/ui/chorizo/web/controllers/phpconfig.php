@@ -127,8 +127,8 @@ class Phpconfig extends MX_Controller {
             foreach ($open_basedir_temp as $entry) {
                 // Valid paths must start with a slash and end with a slash and certainly not with two slashes at the beginning:
                 if ((preg_match("/^\/(.*)\/?$/", $entry, $regs)) && (!preg_match("/^\/\/(.*)$/", $entry, $regs))) {
-                    if (is_dir($entry)) {
-                        // That is_dir() ought to weed out anything that's invalid. Poor man's regular expression. :p
+                    if ((is_dir($entry)) || (is_readable($entry))) {
+                        // That is_dir() or is_readable() ought to weed out anything that's invalid. Poor man's regular expression. :p
                         array_push($open_basedir_minimal, $entry);
                     }
                 }
