@@ -1,7 +1,7 @@
 Summary: System Watcher
 Name: swatch
 Version: XX_VER_XX
-Release: 0BX32%{?dist}
+Release: 0BX33%{?dist}
 Vendor: Project BlueOnyx
 License: BSD
 Group: System Environment/BlueOnyx
@@ -11,6 +11,7 @@ BuildArchitectures: noarch
 Obsoletes: base-swatch
 Requires: perl-MIME-Lite >= 3.023-2
 Requires: perl-Email-Date-Format >= 1.002-1
+Requires: lsof
 
 %description
 This is the System Watcher (SWATCH).  It is generally run from cron, to
@@ -73,6 +74,10 @@ if [ -f /etc/swatch.conf.rpmnew ]; then
 fi 
 
 %changelog
+
+* Thu Jun 02 2016 Michael Stauber <mstauber@solarspeed.net> 4.0.0-0BX33
+- Added requirement for lsof, as /usr/sausalito/sbin/fix_syslog.sh is
+  using it.
 
 * Thu May 19 2016 Michael Stauber <mstauber@solarspeed.net> 4.0.0-0BX32
 - Added conditional dcc logrotate cronjob.
