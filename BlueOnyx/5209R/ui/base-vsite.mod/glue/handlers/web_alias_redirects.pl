@@ -85,66 +85,110 @@ sub restart_apache {
 sub edit_vhost {
     my ($in, $out, $php, $cgi, $ssi) = @_;
 
-    my $vhost_conf = '';
-
     # Build the webAlias Array:
     my $aliasRewrite, $aliasRewriteSSL;
     #SET  347 "webAliases" "=" "" "webAliasRedirects" "=" "0"
     #SET  347 "webAliases" "=" "&*.schulbus-tours.de&" "webAliasRedirects" "=" "1"
     &debug_msg("Before trigger.\n");
+
+    #
+    #### Build our output string:
+    #
+
+    #
+    ### Non SSL:
+    #
+
+    # Basic Vsite related RewriteCond's first:
+    $vhost_conf = "RewriteCond %{HTTP_HOST}                !^$vsite->{ipaddr}(:$httpPort)?\$\n";
+    $vhost_conf .= "RewriteCond %{HTTP_HOST}                !^$vsite->{fqdn}(:$httpPort)?\$ [NC]\n";
+    # Add aliases (if there are any!):
     if (($vsite->{webAliases}) && ($vsite->{webAliasRedirects} == "0")) {
-        &debug_msg("After trigger.\n");
+        &debug_msg("webAliasRedirects is set to '0' - no separate RewriteCond's for Aliases!\n");
         my @webAliases = $cce->scalar_to_array($vsite->{webAliases});
         foreach my $alias (@webAliases) {
             &debug_msg("Alias alt: $alias\n");
             $alias =~ s/^\*/\\*/g;
             &debug_msg("Alias neu: $alias\n");
-            $aliasRewrite .= "RewriteCond %{HTTP_HOST}                !^$alias(:$httpPort)?\$ [NC]\n";
+            $vhost_conf .= "RewriteCond %{HTTP_HOST}                !^$alias(:$httpPort)?\$ [NC]\n";
         }
     }
+    $vhost_conf .= "\n";
 
-    # Build our output string:
-    my $vhost_conf =<<END;
-RewriteCond %{HTTP_HOST}                !^$vsite->{ipaddr}(:$httpPort)?\$
-RewriteCond %{HTTP_HOST}                !^$vsite->{fqdn}(:$httpPort)?\$ [NC]
-$aliasRewrite
-END
+    #
+    ### For SSL:
+    #
+
+    # Basic Vsite related RewriteCond's first:
+    $vhost_conf_SSL = "RewriteCond %{HTTP_HOST}                !^$vsite->{ipaddr}(:$sslPort)?\$\n";
+    $vhost_conf_SSL .= "RewriteCond %{HTTP_HOST}                !^$vsite->{fqdn}(:$sslPort)?\$ [NC]\n";
+    # Add aliases (if there are any!):
+    if (($vsite->{webAliases}) && ($vsite->{webAliasRedirects} == "0")) {
+        &debug_msg("webAliasRedirects is set to '0' - no separate RewriteCond's for Aliases!\n");
+        my @webAliases = $cce->scalar_to_array($vsite->{webAliases});
+        foreach my $alias (@webAliases) {
+            &debug_msg("Alias alt: $alias\n");
+            $alias =~ s/^\*/\\*/g;
+            &debug_msg("Alias neu: $alias\n");
+            $vhost_conf_SSL .= "RewriteCond %{HTTP_HOST}                !^$alias(:$sslPort)?\$ [NC]\n";
+        }
+    }
+    $vhost_conf_SSL .= "\n";
 
     # Do the actual editing:
-    my $last;
+    my $vhost_content = '';
+    $block_found = "0";
+    $SSL_block_found = "0";
     while(<$in>) {
-        if ((/^RewriteRule/i) || (/^RewriteOptions/i)) { 
-            # If we get to this point, we're past the area of interest.
-            # We store it in the string $last and end the charade.
-            $last = $_; 
-            last; 
+        if (/^RewriteEngine on/i) {
+            # First block-start found:
+            $block_found = '1';
+            &debug_msg("block start found: $block_found\n");
+            # Store the found line:
+            $vhost_content .= $_;
+            chomp($vhost_content);
         }
-
-        if (/^RewriteCond/) {
-            # If we find this line, we ignore it and later add our own.
-            $found = "1";
-        next;
+        elsif (/^SSLengine on/i) {
+            &debug_msg("SSL VirtualHost found ... \n");
+            # Found start of the SSL-VhostContainer:
+            $SSL_block_found = '1';
+            # Store the found line:
+            $vhost_content .= $_;
         }
-    elsif ((/^[\r\n]/) && ($found eq "1")) {
-        # We now found the empty line smack in the middle of our area of interest and ignore it.
-        next;
-    }
+        elsif (/^RewriteRule/i) {
+            # Block end found.
+            $block_found = '0';
+            &debug_msg("block end found: $block_found\n");
+            # Print the correct replacement depending on where we are in the config:
+            if ($SSL_block_found eq "0") {
+                # Print non-SSL RewriteRule:
+                $vhost_content .= $vhost_conf;
+            }
+            else {
+                # Print SSL RewriteRule:
+                $vhost_content .= $vhost_conf_SSL;
+            }
+            # Store the found line:
+            $vhost_content .= $_;
+        }
+        elsif (/^RewriteCond/i) {
+            # Ignore
+            &debug_msg("Ignoring original RewriteCond: $_ \n");
+            #next;
+        }
         else {
-            # Anything else stays and gets printed out straight away.
-            print $out $_;
+            # Store the found line:
+            $vhost_content .= $_;
         }
     }
 
-    # Print out or new RewriteCond's:
-    print $out $vhost_conf;
+    # Print out our new Config:
+    print $out $vhost_content;
 
-    # Print out all the rest of the config unaltered:
-    print $out $last;
-
-    # preserve the remainder of the config file and write it out:
-    while(<$in>) {
-        print $out $_;
-    }
+    ## preserve the remainder of the config file and write it out:
+    #while(<$in>) {
+    #    print $out $_;
+    #}
 
     return 1;
 }
@@ -164,8 +208,8 @@ $cce->bye('SUCCESS');
 exit(0);
 
 # 
-# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 
