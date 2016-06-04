@@ -1,7 +1,7 @@
 Summary: Perl modules that contain useful utility functions for handlers.
 Name: perl-handler-utils
 Version: 1.4.0
-Release: 0BX13%{?dist}
+Release: 0BX14%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -33,6 +33,14 @@ This package contains a number of perl modules that contain useful
 utility functions for writing cced event handler scripts.
 
 %changelog
+
+* Sat Jun 04 2016 Michael Stauber <mstauber@solarspeed.net> 1.4.0-0BX14
+- More Systemd madness in relation with restarting Apache. I really had
+  to go to town on this one. Big overhaul of /Sauce/Service/Daemon.pm
+  to deal with it and to properly restart daemonized services. Streamlined
+  the code to turn repetitive code into re-usable functions. Intentionally
+  left debugging enabled for now so that /var/log/messages shows what's
+  going on when Sauce::Service::Daemon is being used.
 
 * Sat May 28 2016 Michael Stauber <mstauber@solarspeed.net> 1.4.0-0BX13
 - Modified Sauce/Service.pm to fix function service_get_init(), which

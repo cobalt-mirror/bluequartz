@@ -13,7 +13,7 @@
 package Sauce::Service::Daemon;
 
 # Debugging switch:
-$DEBUG = "0";
+$DEBUG = "1";
 if ($DEBUG)
 {
         use Sys::Syslog qw( :DEFAULT setlogsock);
@@ -112,6 +112,7 @@ sub run
             &_check_queue();
 
             # set the queue check alarm
+            &_logmsg("sub run: Setting up alarm($QUEUE_CHECK_INTERVAL).");
             alarm($QUEUE_CHECK_INTERVAL);
         }
         $client->close();
@@ -155,6 +156,52 @@ sub _daemonize
     select($oldfh);
 
     chdir('/');
+}
+
+sub _check_apache_state {
+    # Check how many Apache processes are currently attached around as 
+    # primaries and not as children. There should be only one:
+    $apache_state = `$ps axf|$grep /usr/sbin/httpd|$grep -v adm|$grep -v '\_'|$wc -l`;
+    chomp($apache_state);
+
+    ## Legend:
+    #   0   Apache dead
+    #   1   Apache probably running OK
+    #  >1   Childs have detached (bad)
+    return $apache_state;
+}
+
+sub _kill_and_restart_apache {
+
+    # See how Apache behaves currently:
+    $xchecker = &_check_apache_state;
+    ## Legend:
+    #   0   Apache dead
+    #   1   Apache probably running OK
+    #  >1   Childs have detached (bad)
+
+    &_logmsg("_kill_and_restart_apache: Apache state: $xchecker");
+
+    if ($xchecker > "1") {
+        # Apache-Childs have detached from the master-process. Which is bad.
+        # Kill httpd (but not AdmServ!):
+        &_logmsg("xchecker reported: Killing $xchecker 'httpd' processes, but not killing admserv.\n");
+        `$ps axf|$grep /usr/sbin/httpd|$grep -v adm|$grep -v grep|$grep -v '\_'|$awk -F ' ' '{print \$1}'|/usr/bin/xargs $kill -9 >&/dev/null`;
+    }
+
+    # Perform action:
+    if (-f "/usr/bin/systemctl") { 
+        # Got Systemd: 
+        # Please note: For httpd we do not use systemctl with the --no-block option to
+        # enqueue the call. We issue it directly and wait for the result.
+        &_logmsg("_kill_and_restart_apache runs: /usr/bin/systemctl --job-mode=flush restart httpd.service\n");
+        `/usr/bin/systemctl --job-mode=flush restart httpd.service`; 
+    } 
+    else { 
+        # Thank God, no Systemd: 
+        &_logmsg("_kill_and_restart_apache runs: /sbin/service httpd restart");
+        `/sbin/service httpd restart`;
+    }
 }
 
 sub _spawn_child
@@ -203,96 +250,34 @@ sub _spawn_child
     }
     $client->close();
 
-    # check if this action needs to be upgraded to a start
-    if (-f "/usr/bin/systemctl") { 
-        # Got Systemd: 
-        $checker = `$ps axf|$grep /usr/sbin/httpd|$grep -v adm|$grep -v '\_'|$wc -l`;
-        chomp($checker);
-    }
-    else {
-        # Thank God, no Systemd: 
-        $checker = `/sbin/service $service status|$grep running|$wc -l`;
-        chomp($checker);
-    }
-    if ($checker > "1") {
-        $checker = "0";
-    }
-
-    &_logmsg("1:checker reports: $service $checker");
-
-    if (($action ne 'stop') && ($action ne 'start') && ($action ne 'restart') && ($checker eq '0')) {
-        #
-        # not currently running, upgrade to a start 
-        #
-        &_logmsg("child, $$, upgrading $action to start");
-        $action = 'start';
-    }
-    else {
-        &_logmsg("child, $$, NOT upgrading $action to start");
-    }
-
     &_logmsg("Performing event: $service $action");
 
     if ($service eq "httpd") {
 
         &_logmsg("Special case ($service): $action");
 
-        # Check how many Apache processes are currently attached around as 
-        # primaries and not as children. There should be only one:
-        $xchecker = `$ps axf|$grep /usr/sbin/httpd|$grep -v adm|$grep -v '\_'|$wc -l`;
-        chomp($xchecker);
+        # Kill and restart Apache:
+        &_kill_and_restart_apache;
 
+        # Check if that worked:
+        $xchecker = &_check_apache_state;
         ## Legend:
         #   0   Apache dead
         #   1   Apache probably running OK
         #  >1   Childs have detached (bad)
 
-        if ($xchecker > "1") {
-            # Apache-Childs have detached from the master-process. Which is bad.
-            # Kill httpd (but not AdmServ!):
-            &_logmsg("xchecker reported: $xchecker - killing httpd, but not admserv.");
-            `$ps axf|$grep /usr/sbin/httpd|$grep -v adm|$grep -v grep|$grep -v '\_'|$awk -F ' ' '{print \$1}'|/usr/bin/xargs $kill -9 >&/dev/null`;
+        if ($xchecker ne "1") {
+            &_logmsg("xchecker reported: $xchecker - Apache restart failed.");
         }
-
-        # Perform action:
-        if (-f "/usr/bin/systemctl") { 
-            # Got Systemd: 
-            # Please note: For httpd we do not use systemctl with the --no-block option to
-            # enqueue the call. We issue it directly and wait for the result.
-            `/usr/bin/systemctl $action $service.service`; 
-        } 
-        else { 
-            # Thank God, no Systemd: 
-            `/sbin/service $service $action`;
+        else {
+            &_logmsg("xchecker reported: $xchecker - Apache restart succeeded.");
         }
-
-        # Running or check again to make sure Apache is running:
-        $xchecker = `$ps axf|$grep /usr/sbin/httpd|$grep -v adm|$grep -v '\_'|$wc -l`;
-        chomp($xchecker);
-        if ($xchecker == "0") {
-            # Apache is still reported as stopped. Reload didn't work. Upgrading to restart:
-            # Perform action:
-            $action = "restart";
-            if (-f "/usr/bin/systemctl") { 
-                # Got Systemd: 
-                # Please note: For httpd we do not use systemctl with the --no-block option to
-                # enqueue the call. We issue it directly and wait for the result.
-                `/usr/bin/systemctl $action $service.service`;
-            } 
-            else { 
-                # Thank God, no Systemd: 
-                `/sbin/service $service $action`;
-            }
-        }
-        &_logmsg("Running /usr/sausalito/swatch/bin/am_apache.sh");
-        `/usr/sausalito/swatch/bin/am_apache.sh`;
     }
     else {
-
         # Perform action:
         if (-f "/usr/bin/systemctl") { 
             # Got Systemd: 
-            `/usr/bin/systemctl $action $service.service --no-block`;
+            `/usr/bin/systemctl --job-mode=flush $action $service.service --no-block`;
         } 
         else { 
             # Thank God, no Systemd: 
@@ -304,26 +289,43 @@ sub _spawn_child
 
         # Check if service is running:
         if ($service eq "httpd") {
-            $checker = `$ps axf|$grep /usr/sbin/httpd|$grep -v adm|$grep -v '\_'|$wc -l`;
-            chomp($checker);
+            # See how Apache behaves currently:
+            $checker = &_check_apache_state;
         }
         else {
-            if (-f "/usr/bin/systemctl") { 
-                # Got Systemd: 
-                $checker = `/usr/bin/systemctl status $service|$grep "Active:"|$grep -E "(running|exited)"|$wc -l`;
-                chomp($checker);
+            # Check if service is running:
+            $checker = &_check_service($service);
+        }
+        if ($checker ne "1") {
+            # Service is not running! Perform actions again:
+            if ($service eq "httpd") {
+                # Kill and restart Apache - again:
+                &_kill_and_restart_apache;
             }
             else {
-                # Thank God, no Systemd: 
-                $checker = `/sbin/service $service status|$grep running|$wc -l`;
-                chomp($checker);
+                # Perform action again for other services than 'httpd':
+                if (-f "/usr/bin/systemctl") { 
+                    # Got Systemd: 
+                    `/usr/bin/systemctl --job-mode=flush $action $service.service`;
+                } 
+                else { 
+                    # Thank God, no Systemd: 
+                    `/sbin/service $service $action`;
+                }
+            }
+
+            # Now take a final look and see if the service is running:
+            if ($service eq "httpd") {
+                # See how Apache behaves currently:
+                $checker = &_check_apache_state;
+            }
+            else {
+                # Check if service is running:
+                $checker = &_check_service($service);
             }
         }
-        if ($checker > "1") {
-            $checker = "0";
-        }
 
-        &_logmsg("2:checker reports: $service " . $checker . "");
+        &_logmsg("2:checker reports: $service " . $checker . "\n");
 
         if (($action eq 'stop') && ($checker == "0")) {
             last;
@@ -339,9 +341,12 @@ sub _spawn_child
                 &_logmsg("child $$ unable to complete event $service $action. Running am_apache.sh and exiting");
                 `/usr/sausalito/swatch/bin/am_apache.sh`;
             }
-            if ($service eq "avspam") {
+            elsif ($service eq "avspam") {
                 &_logmsg("child $$ unable to complete event $service $action. Running /usr/sausalito/sbin/avspam_init.pl and exiting.");
                 `/usr/sausalito/sbin/avspam_init.pl -restart`;
+            }
+            else {
+                &_logmsg("child $$ unable to complete event $service $action. Throwing the towel and exiting.");
             }
             # notify parent
             kill 'USR2', getppid();
@@ -354,8 +359,23 @@ sub _spawn_child
     exit(0);
 }
 
-sub _queue_event
-{
+sub _check_service {
+    my ($service) = @_;
+    my $service_status = '';
+    if (-f "/usr/bin/systemctl") { 
+        # Got Systemd: 
+        $service_status = `/usr/bin/systemctl status $service|$grep "Active:"|$grep -E "(running|exited)"|$wc -l`;
+        chomp($service_status);
+    }
+    else {
+        # Thank God, no Systemd: 
+        $service_status = `/sbin/service $service status|$grep running|$wc -l`;
+        chomp($service_status);
+    }
+    return $service_status;
+}
+
+sub _queue_event {
     my ($self, $service, $event) = @_;
 
     # store the time of the last event  
@@ -409,16 +429,7 @@ sub _check_queue
             # verify that the service is in the correct state
 
             # Check if service is running:
-            if (-f "/usr/bin/systemctl") { 
-                # Got Systemd: 
-                $checker = `systemctl status $service|$grep "Active:"|$grep running|$wc -l`;
-                chomp($checker);
-            }
-            else {
-                # Thank God, no Systemd: 
-                $checker = `/sbin/service $service status|$grep running|$wc -l`;
-                chomp($checker);
-            }
+            $checker = &_check_service($service);
 
             if ($event_queue->{$key}->{state} && ($checker eq "0")) {
 
@@ -455,6 +466,7 @@ sub ALRM_HANDLER
     &_check_queue();
     alarm($QUEUE_CHECK_INTERVAL);
     if ($children == 0) {
+        &_logmsg("ALRM_HANDLER: no more children, terminate.");
         &terminate(0);
     }
 }
