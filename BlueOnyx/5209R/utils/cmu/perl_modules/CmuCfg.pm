@@ -1,6 +1,4 @@
-# $Id: CmuCfg.pm 945 2005-10-09 12:26:12Z shibuya $
-# Cobalt Networks, Inc http::/www.cobalt.com
-# Copyright 2002 Sun Microsystems, Inc.  All rights reserved.
+# $Id: CmuCfg.pm
 
 package CmuCfg;
 use strict;
@@ -515,8 +513,8 @@ usage:   cmuExport [OPTIONS]
          -a export admin's files
          -c export configuration only
          -d build directory, this is where export will place all exported files, the default is /home/cmu/FQDN
-         -i export all virtual sites with this IP address (RaQ only)
-         -n export these virtual sites, ie "www.foo.com,www.bar.com" (RaQ only)
+         -i export all virtual sites with this IP address
+         -n export these virtual sites, ie "www.foo.com,www.bar.com"
          -p do not export user passwords
          -v verbose, print all messages to stdout
          -h help, this help text
@@ -534,8 +532,8 @@ usage:   cmuImport [OPTION]
          -d directory of that contains the exported files
          -p do not import user passwords, userPasswd in /etc/cmu/cobaltBase.xml will be used instead
          -s use session id #####
-         -i import all virtual sites with this IP address (RaQ only)
-         -n import only these sites ie -n "ftp.foo.com,www.bar.com" (RaQ only)
+         -i import all virtual sites with this IP address
+         -n import only these sites ie -n "ftp.foo.com,www.bar.com"
          -A skip adjust script, this is dangerous
          -S skip conflict resolution
          -C skip scanin script, this is useful for see what conflict exsist
@@ -553,8 +551,8 @@ usage:   $0 [OPTIONS]
          -d build directory, this is where export will place all exported files, the default is /home/cmu/FQDN 
          -f the file where the output xml is placed
          -g read the config info from /etc/cmu/, you must use this option if calling this script directly
-         -i export all virtual sites with this IP address (RaQ only)
-         -n export these virtual sites, ie "www.foo.com,www.bar.com" (RaQ only)
+         -i export all virtual sites with this IP address 
+         -n export these virtual sites, ie "www.foo.com,www.bar.com"
          -p do not export user passwords
          -h help, this help text
 EOF
@@ -571,8 +569,8 @@ usage:   $0 [OPTIONS]
          -d build directory, this is where the import files are located
          -f the file where the in xml is located
          -g read the config info from /etc/cmu/, you must use this option if calling this script directly
-         -i import all virtual sites with this IP address (RaQ only)
-         -n import only these sites ie -n "ftp.foo.com,www.bar.com" (RaQ only)
+         -i import all virtual sites with this IP address
+         -n import only these sites ie -n "ftp.foo.com,www.bar.com"
          -p do not import user passwords
          -h help, this help text
 EOF
@@ -623,22 +621,39 @@ EOF
 }
 
 1;
-# Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
+
 # 
-# Redistribution and use in source and binary forms, with or without 
-# modification, are permitted provided that the following conditions are met:
+# Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2003 Sun Microsystems, Inc. 
+# All Rights Reserved.
 # 
-# -Redistribution of source code must retain the above copyright notice, 
-# this list of conditions and the following disclaimer.
+# 1. Redistributions of source code must retain the above copyright 
+#	 notice, this list of conditions and the following disclaimer.
 # 
-# -Redistribution in binary form must reproduce the above copyright notice, 
-# this list of conditions and the following disclaimer in the documentation  
-# and/or other materials provided with the distribution.
+# 2. Redistributions in binary form must reproduce the above copyright 
+#	 notice, this list of conditions and the following disclaimer in 
+#	 the documentation and/or other materials provided with the 
+#	 distribution.
 # 
-# Neither the name of Sun Microsystems, Inc. or the names of contributors may 
-# be used to endorse or promote products derived from this software without 
-# specific prior written permission.
+# 3. Neither the name of the copyright holder nor the names of its 
+#	 contributors may be used to endorse or promote products derived 
+#	 from this software without specific prior written permission.
 # 
-# This software is provided "AS IS," without a warranty of any kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY EXCLUDED. SUN MICROSYSTEMS, INC. ("SUN") AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
+# COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+# POSSIBILITY OF SUCH DAMAGE.
 # 
-# You acknowledge that  this software is not designed or intended for use in the design, construction, operation or maintenance of any nuclear facility.
+# You acknowledge that this software is not designed or intended for 
+# use in the design, construction, operation or maintenance of any 
+# nuclear facility.
+# 
