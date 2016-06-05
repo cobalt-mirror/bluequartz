@@ -49,7 +49,7 @@ fi
 
 # Fix Imagetragick issue:
 if [ -f /etc/ImageMagick/policy.xml ];then
-	ITRAGIC=`cat /etc/ImageMagick/policy.xml.org |grep TEXT|wc -l`
+	ITRAGIC=`cat /etc/ImageMagick/policy.xml |grep TEXT|wc -l`
 	# We need to apply the fix:
 	if [ $ITRAGIC -eq 0 ]; then
 		# Do we have a good copy? We should!
@@ -57,6 +57,14 @@ if [ -f /etc/ImageMagick/policy.xml ];then
 			cp /etc/ImageMagick/policy.xml.fixed /etc/ImageMagick/policy.xml
 		fi
 	fi
+fi
+
+# CentOS 7 Snafu-fix:
+if [ -f /usr/lib/systemd/system/auditd.service ];then
+    AUDITD=`ls -la /usr/lib/systemd/system/auditd.service|grep "^-rw-r-----"|wc -l`
+    if [ $AUDITD -eq 1 ]; then
+        chmod 644 /usr/lib/systemd/system/auditd.service
+    fi
 fi
 
 exit
