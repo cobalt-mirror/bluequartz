@@ -1,7 +1,7 @@
 Summary: Active Monitor support for base-apache-am
 Name: base-apache-am
 Version: 1.0.6
-Release: 0BX09%{?dist}
+Release: 0BX10%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -25,6 +25,10 @@ This package contains binaries and scripts used by the Active Monitor
 subsystem for base-apache-am.  
 
 %changelog
+
+* Sun Jun 05 2016 Michael Stauber <mstauber@solarspeed.net> 1.0.6-0BX10
+- Modified am_apache.pl to make use of the subs stolen from Sauce::Service
+  to detect if Apache is in a bad state and to restart it.
 
 * Fri Dec 18 2015 Michael Stauber <mstauber@solarspeed.net> 1.0.6-0BX09
 - PHP7 provisions added.
