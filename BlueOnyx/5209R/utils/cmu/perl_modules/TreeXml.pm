@@ -21,7 +21,7 @@ use vars qw(@ISA @EXPORT @EXPORT_OK $VERSION);
         $XMLPROLOG
         $XMLHEADER
 );      
-$VERSION = "2.91";
+$VERSION = "2.94";
 
 use vars qw($XMLPROLOG $XMLHEADER $KEYATTR);
 $XMLPROLOG = '<?xml version="1.0" encoding="iso-8859-1"?>';
