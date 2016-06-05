@@ -5,7 +5,7 @@ After = syslog.target nss-lookup.target network.target cced.init.service httpd.s
 [Service]
 Type=oneshot
 ExecStart=/usr/sausalito/sbin/swatch.sh
-ExecStop=/usr/sausalito/sbin/swatch.sh
+ExecStop=/usr/bin/true
 ExecReload=/usr/sausalito/sbin/swatch.sh
 RemainAfterExit=yes
 
