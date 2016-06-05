@@ -678,7 +678,7 @@ sub undoTarNew
         system("tar xf $tBname --use-compress-program=pigz");
     }
     else {
-        warn "unpacking tar (external TAR with PigZ): with command: tar zxf $tBname\n";
+        warn "unpacking tar (external TAR with Gzip): with command: tar zxf $tBname\n";
         system("tar zxf $tBname");
     }
     if ($? == -1) {
