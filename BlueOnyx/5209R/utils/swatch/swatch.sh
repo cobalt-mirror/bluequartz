@@ -11,6 +11,9 @@ TOUCH=`which touch`
 REM=`which rm`
 CCEDUP=`/usr/sausalito/bin/check_cce.pl`
 
+# Run fix_syslog.sh:
+/usr/sausalito/sbin/fix_syslog.sh
+
 if [ "$CCEDUP" != "SUCCESS" ];then
         /usr/sausalito/bin/cced_unstuck.sh >/dev/null 2>&1
         sleep 5
@@ -42,8 +45,8 @@ $REM -f $lockfile
 exit
 
 # 
-# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 

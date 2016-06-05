@@ -49,6 +49,8 @@ install: all
 	install $(INSTFLAGS) -m 0750 swatch.sh $(SAUSBINDIR)/swatch.sh
 	install $(INSTFLAGS) -m 0750 hotfixes.sh $(SAUSBINDIR)/hotfixes.sh
 	install $(INSTFLAGS) -m 0750 fix_syslog.sh $(SAUSBINDIR)/fix_syslog.sh
+	install $(INSTFLAGS) -m 0644 swatch.service $(SWATCHDIR)
+	/usr/sausalito/swatch/
 
 	make -C locale install
 
@@ -59,6 +61,7 @@ uninstall:
 	rm -f $(CRONDIR)/swatch.cron
 	rm -f $(SWATCHDIR)/statecodes
 	rm -f $(SWATCHDIR)/statecodes.tcl
+	rm -f $(SWATCHDIR)/swatch.service
 	rm -f $(SAUSBINDIR)/swatch.sh
 	rm -f $(SAUSBINDIR)/hotfixes.sh
 	rm -f $(SAUSBINDIR)/fix_syslog.sh
