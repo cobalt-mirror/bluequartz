@@ -1,7 +1,5 @@
 #!/usr/bin/perl
-# $Id: cmuExport Sat Jun 13 15:13:58 2009 mstauber $
-# Cobalt Networks, Inc http://www.cobalt.com
-# Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+# $Id: cmuExport 
 use strict;
 
 use lib "/usr/cmu/perl";
@@ -36,7 +34,7 @@ TreeXml::addNode('cobaltBase', $cfg->{glbConf}, $cobaltBase);
 
 my $build = Global::getBuild();
 if(defined $validExport->{$build}) {
-	$cfg->putGlb('currentOS', $build);	
+    $cfg->putGlb('currentOS', $build);  
 } else { die "Cannot export on a $build\n" }
 
 
@@ -47,15 +45,15 @@ cmuLog("INFO", "$0 running version: $VERSION\n");
 
 # Parse the directory arg
 if($cfg->isDestDir) { 
-	$cfg->putDestDir(Global::parseD($cfg->destDir));
+    $cfg->putDestDir(Global::parseD($cfg->destDir));
 } else {
-	$cfg->putDestDir(Global::parseD($cfg->glb('cmuDir')."/".$fqdn));
+    $cfg->putDestDir(Global::parseD($cfg->glb('cmuDir')."/".$fqdn));
 }
 cmuLog("INFO", "$0 running in directory: ".$cfg->destDir."\n");
 
 # parse the list, vsites or groups
 if($cfg->isGlb('subsetNames')) {
-	$cfg->parseNames('subsetNames');
+    $cfg->parseNames('subsetNames');
 }
 
 #########################
@@ -66,30 +64,30 @@ preBuild($cfg);
 my $pid;
 my $scanOutCmd = $cfg->lib('scanout');
 if(! -x $scanOutCmd) {
-	cmuLog("ERROR", "scanout command is not executable $scanOutCmd\n");
-	exit 1;
+    cmuLog("ERROR", "scanout command is not executable $scanOutCmd\n");
+    exit 1;
 }
 # execute cobaltBase scanout function
 if($pid = open3(*WR, *RE, *ER, $scanOutCmd)) {
     print WR TreeXml::writeXml($cobaltBase);
     close(WR);
     close(RE);
-	while(my $line = <ER>) { cmuLog("Scanout", $line); }
+    while(my $line = <ER>) { cmuLog("Scanout", $line); }
     close(ER);
-	waitpid($pid,0);
+    waitpid($pid,0);
 }
 
 # Run the third party exports
 foreach my $app (keys %{ $appConf }) {
-	$scanOutCmd = $appConf->{$app}->{configData}->{libs}->{scanout};
-	if(-x $scanOutCmd) {
-		my $cfg_pass = $cfg->destDir.'/config.xml.'.$$;
-		open(FH, ">$cfg_pass") || cmuLog("Could not open $cfg_pass\n");
-		print FH TreeXml::writeXml($cobaltBase);
-		close(FH);
-		$scanOutCmd .= " ".$cfg->destDir." ".$cfg_pass;
-		qx/$scanOutCmd/;
-	} else { warn "$app scanout command is not executable: $scanOutCmd\n" }
+    $scanOutCmd = $appConf->{$app}->{configData}->{libs}->{scanout};
+    if(-x $scanOutCmd) {
+        my $cfg_pass = $cfg->destDir.'/config.xml.'.$$;
+        open(FH, ">$cfg_pass") || cmuLog("Could not open $cfg_pass\n");
+        print FH TreeXml::writeXml($cobaltBase);
+        close(FH);
+        $scanOutCmd .= " ".$cfg->destDir." ".$cfg_pass;
+        qx/$scanOutCmd/;
+    } else { warn "$app scanout command is not executable: $scanOutCmd\n" }
 }
 
 postBuild($cfg);
@@ -98,25 +96,25 @@ exit 0;
 sub preBuild
 # removes and/or creates the dest directory
 {
-	my $cfg = shift;
-	my $destDir = $cfg->destDir;
-	if(-d $destDir) {
-		system("/bin/rm -rf $destDir");
-	}
-	system("/bin/mkdir -p $destDir");
-	chmod(0750, $destDir);
-	my $chownCmd = "/bin/chown -R ".$cfg->cmuUser.".".$cfg->cmuGroup." ".$destDir;
-	qx/$chownCmd/;
-	return;
+    my $cfg = shift;
+    my $destDir = $cfg->destDir;
+    if(-d $destDir) {
+        system("/bin/rm -rf $destDir");
+    }
+    system("/bin/mkdir -p $destDir");
+    chmod(0750, $destDir);
+    my $chownCmd = "/bin/chown -R ".$cfg->cmuUser.".".$cfg->cmuGroup." ".$destDir;
+    qx/$chownCmd/;
+    return;
 }
 
 sub postBuild
 {
-	my $cfg = shift;
-	my $chmodCmd = "find ".$cfg->destDir." -type f | xargs -r chmod 640";
-	qx/$chmodCmd/;
-	cmuLog("INFO", "$0 completed at ".localtime()."\n");
-	return;
+    my $cfg = shift;
+    my $chmodCmd = "find ".$cfg->destDir." -type f | xargs -r chmod 640";
+    qx/$chmodCmd/;
+    cmuLog("INFO", "$0 completed at ".localtime()."\n");
+    return;
 }
 
 sub is_root_user () {
@@ -140,3 +138,38 @@ sub get_uid ($) {
   return $uid;
 }
 
+# 
+# Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2003 Sun Microsystems, Inc. 
+# All Rights Reserved.
+# 
+# 1. Redistributions of source code must retain the above copyright 
+#     notice, this list of conditions and the following disclaimer.
+# 
+# 2. Redistributions in binary form must reproduce the above copyright 
+#     notice, this list of conditions and the following disclaimer in 
+#     the documentation and/or other materials provided with the 
+#     distribution.
+# 
+# 3. Neither the name of the copyright holder nor the names of its 
+#     contributors may be used to endorse or promote products derived 
+#     from this software without specific prior written permission.
+# 
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
+# COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+# POSSIBILITY OF SUCH DAMAGE.
+# 
+# You acknowledge that this software is not designed or intended for 
+# use in the design, construction, operation or maintenance of any 
+# nuclear facility.
+# 
