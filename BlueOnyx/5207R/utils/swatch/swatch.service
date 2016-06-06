@@ -1,0 +1,14 @@
+[Unit]
+Description = Swatch - Service Watcher
+After = syslog.target nss-lookup.target network.target cced.init.service httpd.service admserv.service dovecot.service sendmail.service xinetd.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sausalito/sbin/swatch.sh
+ExecStop=/usr/bin/true
+ExecReload=/usr/sausalito/sbin/swatch.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+

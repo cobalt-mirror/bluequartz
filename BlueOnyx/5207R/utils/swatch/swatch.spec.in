@@ -1,7 +1,7 @@
 Summary: System Watcher
 Name: swatch
 Version: XX_VER_XX
-Release: 0BX33%{?dist}
+Release: 0BX35%{?dist}
 Vendor: Project BlueOnyx
 License: BSD
 Group: System Environment/BlueOnyx
@@ -12,6 +12,7 @@ Obsoletes: base-swatch
 Requires: perl-MIME-Lite >= 3.023-2
 Requires: perl-Email-Date-Format >= 1.002-1
 Requires: lsof
+Requires: pigz
 
 %description
 This is the System Watcher (SWATCH).  It is generally run from cron, to
@@ -62,6 +63,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /usr/sausalito/sbin/hotfixes.sh
 %attr(755,root,root) /usr/sausalito/sbin/fix_syslog.sh
 %attr(644,root,root) /etc/ImageMagick/policy.xml.fixed
+%attr(644,root,root) /usr/sausalito/swatch/swatch.service
 
 %pre
 if [ -f /etc/swatch.conf.rpmnew ]; then
@@ -73,7 +75,35 @@ if [ -f /etc/swatch.conf.rpmnew ]; then
         mv /etc/swatch.conf.rpmnew /etc/swatch.conf
 fi 
 
+# Install Swatch Unit-File on Systemd enabled servers:
+if [ -f /usr/bin/systemctl ]; then
+  cp /usr/sausalito/swatch/swatch.service /usr/lib/systemd/system/swatch.service
+  test "$1" != "1" || systemctl daemon-reload >/dev/null 2>&1 || :
+  systemctl enable swatch.service >/dev/null 2>&1 || :
+fi
+
+%preun
+if [ -f /usr/bin/systemctl ]; then
+  systemctl stop swatch.service >/dev/null 2>&1 || :
+  systemctl disable swatch.service >/dev/null 2>&1 || :
+  rm -f /usr/lib/systemd/system/swatch.service
+  test "$1" != "1" || systemctl daemon-reload >/dev/null 2>&1 || :
+fi
+
 %changelog
+
+* Sun Jun 05 2016 Michael Stauber <mstauber@solarspeed.net> 4.0.0-0BX35
+- Modified swatch.cron to remove fix_syslog.sh run
+- Wrapped fix_syslog.sh run into swatch.sh instead.
+- Added Swatch Unit-File for 5209R. Purpose is to run it at end of service
+  startup to make sure really everything that should be running is running.
+
+* Sun Jun 05 2016 Michael Stauber <mstauber@solarspeed.net> 4.0.0-0BX34
+- Added requirement for 'pigz'. Swatch does not need it, but CMU now 
+  benefits from it. As CMU is multi-platform, adding the dependency 
+  to it would not be wise. 
+- Small fix to hotfixes.sh regarding ImageMagick.
+- Modified hotfixes.sh to add fix for CentOS 7 'auditd' Unit-File snafu.
 
 * Thu Jun 02 2016 Michael Stauber <mstauber@solarspeed.net> 4.0.0-0BX33
 - Added requirement for lsof, as /usr/sausalito/sbin/fix_syslog.sh is
