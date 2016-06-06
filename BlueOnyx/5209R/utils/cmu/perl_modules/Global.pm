@@ -82,15 +82,16 @@ $validImport = {
                '5108R' => '5207R',
                '5207R' => '5208R',
                '5208R' => '5209R',
-               '5209R' => '5106R'
+               '5209R' => '5209R'
                );
         
-    # Note: The old adjustPath was just from the oldest model to the newest.
-    # This only allowed migrations from an old platform to a newer. But not
-    # going from 5108R 'down' to 5106R - for example.
-    # So at the end of the old adjustPath (which ended with 5161R) I added
-    # 5109R again and make it adjustable to the bottom end of the supported
-    # platform list: 5106R.
+    # Note: The adjustPath isfrom the oldest model to the newest. This is for
+    # a reason. The last entry is:
+    #
+    # '5209R' => '5209R'
+    #
+    # This allows migrations from 5209R to 5209R w/o loosing config options
+    # such as the PHP-FPM stuff.
 
 1;
 
