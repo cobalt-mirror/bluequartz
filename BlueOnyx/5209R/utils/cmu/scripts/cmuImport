@@ -55,7 +55,7 @@ if ($build =~ /(510[6-8]R|520[7-9]R)/) {
     # Root check
     my $id = get_uid('root');
     if ($id ne "0") {
-    print "$0 must be run by a user with root capability.\n";
+        print "$0 must be run by a user with root capability.\n";
     exit 1
     }
 }
@@ -103,32 +103,31 @@ if($cfg->skipAdjust eq 't') {
     $adjustCmd = "/usr/cmu/scripts/RaQXTR4adjust.pl";
     cmuLog("INFO", "AdjustCommand = $adjustCmd\n");
     if($pid = open3(*WR, *RE, *ER, $adjustCmd)) {
-    print WR TreeXml::writeXml($cobaltBase);
-    close(WR);
-    close(RE);
-    while(my $line = <ER>) { cmuLog("Adjust", $line); }
-    close(ER);
-    waitpid ($pid, 0);
-    }
-    $migrate->{adjustPlatform} = $adjustPath{ $migrate->{adjustPlatform} };
-} elsif($migrate->{adjustPlatform} ne $build) {
-    while($migrate->{adjustPlatform} ne $build) {
-    $adjustCmd = "/usr/cmu/scripts/".
-        $adjustPath{ $migrate->{adjustPlatform} }."adjust.pl";
-    cmuLog("INFO", "AdjustCommand = $adjustCmd\n");
-    if(! -x $adjustCmd) {
-        cmuLog("ERROR", "Cannot adjust to this platform\n");
-        exit 1;
-    }
-    if($pid = open3(*WR, *RE, *ER, $adjustCmd)) {
         print WR TreeXml::writeXml($cobaltBase);
         close(WR);
-            close(RE);
+        close(RE);
         while(my $line = <ER>) { cmuLog("Adjust", $line); }
         close(ER);
         waitpid ($pid, 0);
     }
     $migrate->{adjustPlatform} = $adjustPath{ $migrate->{adjustPlatform} };
+} elsif($migrate->{adjustPlatform} ne $build) {
+    while($migrate->{adjustPlatform} ne $build) {
+        $adjustCmd = "/usr/cmu/scripts/". $adjustPath{ $migrate->{adjustPlatform} }."adjust.pl";
+        cmuLog("INFO", "AdjustCommand = $adjustCmd\n");
+        if(! -x $adjustCmd) {
+            cmuLog("ERROR", "Cannot adjust to this platform\n");
+            exit 1;
+        }
+        if($pid = open3(*WR, *RE, *ER, $adjustCmd)) {
+            print WR TreeXml::writeXml($cobaltBase);
+            close(WR);
+            close(RE);
+            while(my $line = <ER>) { cmuLog("Adjust", $line); }
+            close(ER);
+            waitpid ($pid, 0);
+        }
+        $migrate->{adjustPlatform} = $adjustPath{ $migrate->{adjustPlatform} };
     }
 }
 
@@ -149,8 +148,7 @@ if($cfg->skipConflict eq 't') {
     cmuLog("WARN","Skipping conflict resolution\n");
 } else {
     my $conflictCmd = $cfg->lib('conflict');
-    $conflictCmd .= " -g -i ".$sessXml." -e ".$outTmpFile." -f ".$sessXml
-        ." -s ".$cfg->sess." -d ".$cfg->destDir;
+    $conflictCmd .= " -g -i ".$sessXml." -e ".$outTmpFile." -f ".$sessXml ." -s ".$cfg->sess." -d ".$cfg->destDir;
     $conflictCmd .= " -c " if($cfg->confOnly eq 't');
     my $ret = system("$conflictCmd");
     if($ret != 0) { die "Conflict phase did not succeed\n" }
