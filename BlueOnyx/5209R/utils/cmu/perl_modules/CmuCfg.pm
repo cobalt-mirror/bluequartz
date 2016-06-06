@@ -527,11 +527,11 @@ sub importHelp
 {
     print <<EOF;
 usage:   cmuImport [OPTION]
-         -a import admin's files
+         -a import files of user 'admin'
          -c import configuration only
          -d directory of that contains the exported files
          -p do not import user passwords, userPasswd in /etc/cmu/cobaltBase.xml will be used instead
-         -s use session id #####
+         -s import server-admins (Resellers)
          -i import all virtual sites with this IP address
          -n import only these sites ie -n "ftp.foo.com,www.bar.com"
          -A skip adjust script, this is dangerous
@@ -546,7 +546,7 @@ sub scanoutHelp
 {
     print <<EOF;
 usage:   $0 [OPTIONS] 
-         -a export the user admin files
+         -a export files of user 'admin'
          -c export configuration only
          -d build directory, this is where export will place all exported files, the default is /home/cmu/FQDN 
          -f the file where the output xml is placed
@@ -564,7 +564,7 @@ sub scaninHelp
 {
     print <<EOF;
 usage:   $0 [OPTIONS] 
-         -a import the user admin files
+         -a import files of user 'admin'
          -c import configuration only
          -d build directory, this is where the import files are located
          -f the file where the in xml is located
