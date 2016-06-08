@@ -13,6 +13,7 @@ BuildArchitectures: noarch
 
 Requires: perl(Compress::Zlib)
 Requires: perl(XML::Parser)
+Requires: pigz
 
 %description
 Cobalt Migration Utility (CMU)
@@ -71,6 +72,7 @@ rm -rf $RPM_BUILD_ROOT
 - All 520XR adjust scripts get the new adminUser Capabilities set.
 - All pre-5209R scanin scripts discard the new PHP options.
 - All pre-5207R scanin scripts discard ChorizoStyle on import.
+- Added requirement for 'pigz'
 
 * Fri Jul 18 2014 Michael Stauber <mstauber@solarspeed.net>
 - version 2.92-0BX02
