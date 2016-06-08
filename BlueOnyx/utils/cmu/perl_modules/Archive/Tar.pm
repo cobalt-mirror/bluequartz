@@ -15,8 +15,8 @@ require Exporter;
 @ISA = qw(Exporter);
 
 @EXPORT_OK = qw(FILE HARDLINK SYMLINK 
-		CHARDEV BLOCKDEV DIR
-		FIFO SOCKET INVALID);
+        CHARDEV BLOCKDEV DIR
+        FIFO SOCKET INVALID);
 %EXPORT_TAGS = (filetypes => \@EXPORT_OK);
 
 # Check if symbolic links are available
@@ -28,14 +28,14 @@ carp "Symbolic links not available"
 my $compression = eval { 
     local $SIG{__DIE__};
     require Compress::Zlib; 
-    sub Compress::Zlib::gzFile::gzseek {
-	my $tmp;
-	
-	$_[0]->gzread ($tmp, 4096), $_[1] -= 4096
-	    while ($_[1] > 4096);
-	
-	$_[0]->gzread ($tmp, $_[1])
-	    if $_[1];
+    sub Compress::Zlib::gzFile::gzseekbx {
+    my $tmp;
+    
+    $_[0]->gzread ($tmp, 4096), $_[1] -= 4096
+        while ($_[1] > 4096);
+    
+    $_[0]->gzread ($tmp, $_[1])
+        if $_[1];
     }
     1;
 };
@@ -97,27 +97,27 @@ sub filetype {
     my $file = shift;
 
     return SYMLINK
-	if (-l $file);		# Symlink
+    if (-l $file);      # Symlink
 
     return FILE
-	if (-f _);		# Plain file
+    if (-f _);      # Plain file
 
     return DIR
-	if (-d _);		# Directory
+    if (-d _);      # Directory
 
     return FIFO
-	if (-p _);		# Named pipe
+    if (-p _);      # Named pipe
 
     return SOCKET
-	if (-S _);		# Socket
+    if (-S _);      # Socket
 
     return BLOCKDEV
-	if (-b _);		# Block special
+    if (-b _);      # Block special
 
     return CHARDEV
-	if (-c _);		# Character special
+    if (-c _);      # Character special
 
-    return UNKNOWN;		# Something else (like what?)
+    return UNKNOWN;     # Something else (like what?)
 }
 
 sub _make_special_file_UNIX {
@@ -125,30 +125,30 @@ sub _make_special_file_UNIX {
     my ($entry, $file) = @_;
 
     if ($entry->{type} == SYMLINK) {
-	symlink $entry->{linkname}, $file or
-	    $^W && carp ("Making symbolic link from ", $entry->{linkname}, 
-			 " to ", $entry->{name}, ", failed.\n");
+    symlink $entry->{linkname}, $file or
+        $^W && carp ("Making symbolic link from ", $entry->{linkname}, 
+             " to ", $entry->{name}, ", failed.\n");
     }
     elsif ($entry->{type} == HARDLINK) {
-	link $entry->{linkname}, $file or
-	    $^W && carp ("Hard linking ", $entry->{linkname}, 
-			 " to ", $entry->{name}, ", failed.\n");
+    link $entry->{linkname}, $file or
+        $^W && carp ("Hard linking ", $entry->{linkname}, 
+             " to ", $entry->{name}, ", failed.\n");
     }
     elsif ($entry->{type} == FIFO) {
-	system("mknod","$file","p") or
-	    $^W && carp "Making fifo ", $entry->{name}, ", failed.\n";
+    system("mknod","$file","p") or
+        $^W && carp "Making fifo ", $entry->{name}, ", failed.\n";
     }
     elsif ($entry->{type} == BLOCKDEV) {
-	system("mknod","$file","b",$entry->{devmajor},$entry->{devminor}) or
-	    $^W && carp ("Making block device ", $entry->{name},
-			 " (maj=", $entry->{devmajor}, 
-			 ", min=", $entry->{devminor}, "), failed.\n");
+    system("mknod","$file","b",$entry->{devmajor},$entry->{devminor}) or
+        $^W && carp ("Making block device ", $entry->{name},
+             " (maj=", $entry->{devmajor}, 
+             ", min=", $entry->{devminor}, "), failed.\n");
     }
     elsif ($entry->{type} == CHARDEV) {
-	system("mknod", "$file", "c", $entry->{devmajor}, $entry->{devminor}) or
-	    $^W && carp ("Making block device ", $entry->{name}, 
-			 " (maj=", $entry->{devmajor}, 
-			 " ,min=", $entry->{devminor}, "), failed.\n");
+    system("mknod", "$file", "c", $entry->{devmajor}, $entry->{devminor}) or
+        $^W && carp ("Making block device ", $entry->{name}, 
+             " (maj=", $entry->{devmajor}, 
+             " ,min=", $entry->{devminor}, "), failed.\n");
     }
 }
 
@@ -157,26 +157,26 @@ sub _make_special_file_Win32 {
     my ($entry, $file) = @_;
 
     if ($entry->{type} == SYMLINK) {
-	$^W && carp ("Making symbolic link from ", $entry->{linkname}, 
-		     " to ", $entry->{name}, ", failed.\n");
+    $^W && carp ("Making symbolic link from ", $entry->{linkname}, 
+             " to ", $entry->{name}, ", failed.\n");
     }
     elsif ($entry->{type} == HARDLINK) {
-	link $entry->{linkname}, $file or
-	    $^W && carp ("Making hard link from ", $entry->{linkname}, 
-			 " to ", $entry->{name}, ", failed.\n");
+    link $entry->{linkname}, $file or
+        $^W && carp ("Making hard link from ", $entry->{linkname}, 
+             " to ", $entry->{name}, ", failed.\n");
     }
     elsif ($entry->{type} == FIFO) {
-	$^W && carp "Making fifo ", $entry->{name}, ", failed.\n";
+    $^W && carp "Making fifo ", $entry->{name}, ", failed.\n";
     }
     elsif ($entry->{type} == BLOCKDEV) {
-	$^W && carp ("Making block device ", $entry->{name},
-		     " (maj=", $entry->{devmajor}, 
-		     ", min=", $entry->{devminor}, "), failed.\n");
+    $^W && carp ("Making block device ", $entry->{name},
+             " (maj=", $entry->{devmajor}, 
+             ", min=", $entry->{devminor}, "), failed.\n");
     }
     elsif ($entry->{type} == CHARDEV) {
-	$^W && carp ("Making block device ", $entry->{name},
-		     " (maj=", $entry->{devmajor}, 
-		     " ,min=", $entry->{devminor}, "), failed.\n");
+    $^W && carp ("Making block device ", $entry->{name},
+             " (maj=", $entry->{devmajor}, 
+             " ,min=", $entry->{devminor}, "), failed.\n");
     }
 }
 
@@ -193,8 +193,8 @@ sub _munge_file {
 #  current directory.  Return it, changing any / in the name into :
 #
     if ($inpath !~ m,:,) {
-	$inpath =~ s,/,:,g;
-	return $inpath;
+    $inpath =~ s,/,:,g;
+    return $inpath;
     }
 #
 #  If we now split on :, there will be just as many nulls in the list as
@@ -203,28 +203,28 @@ sub _munge_file {
 #
     my @names = split (/:/, $inpath);
     shift (@names)
-	if ($names[0] eq "");
+    if ($names[0] eq "");
     my @outname = ();
 #
 #  Work from the end.
 #
     my $i;
     for ($i = $#names; $i >= 0; --$i) {
-	if ($names[$i] eq "") {
-	    unshift (@outname, "..");
-	} 
-	else {
-	    $names[$i] =~ s,/,:,g;
-	    unshift (@outname, $names[$i]);
-	}
+    if ($names[$i] eq "") {
+        unshift (@outname, "..");
+    } 
+    else {
+        $names[$i] =~ s,/,:,g;
+        unshift (@outname, $names[$i]);
+    }
     }
     my $netpath = join ("/", @outname);
     $netpath = $netpath . "/" if ($inpath =~ /:$/);
     if ($inpath !~ m,^:,) {
-	return "/".$netpath;
+    return "/".$netpath;
     } 
     else {
-	return $netpath;
+    return $netpath;
     }
 }
 
@@ -232,36 +232,36 @@ sub _get_handle {
     my ($fh, $flags, $mode);
 
     sysseek ($_[0], 0, 0)
-	or goto &_drat;
+    or goto &_drat;
 
     if ($^O eq "MSWin32") {
-	$fh = $_[0];
+    $fh = $_[0];
     }
     else {
-	$fh = fcntl ($_[0], F_DUPFD, 0)
-	    or goto &_drat;
+    $fh = fcntl ($_[0], F_DUPFD, 0)
+        or goto &_drat;
     }
     if ($compression && (@_ < 2 || $_[1] != 0)) {
-	$mode = $#_ ? (int($_[1]) > 1 ?
-			  "wb".int($_[1]) : "wb") : "rb";
+    $mode = $#_ ? (int($_[1]) > 1 ?
+              "wb".int($_[1]) : "wb") : "rb";
 
-	$fh = Compress::Zlib::gzopen ($_[0], $mode)
-#	$fh = Compress::Zlib::gzdopen_ ($fh, $mode, 0)
-	    or &_drat;
-#	$fh = Compress::Zlib::gzdopen_ ($fh, $mode, 0)
-#	    or &_drat;
+    $fh = Compress::Zlib::gzopen ($_[0], $mode)
+#   $fh = Compress::Zlib::gzdopen_ ($fh, $mode, 0)
+        or &_drat;
+#   $fh = Compress::Zlib::gzdopen_ ($fh, $mode, 0)
+#       or &_drat;
     }
     else {
-	$flags = fcntl ($_[0], F_GETFL, 0) & (O_RDONLY | O_WRONLY | O_RDWR);
-	$mode = ($flags == O_WRONLY) ? ">&=$fh" : 
-	    ($flags == O_RDONLY) ? "<&=$fh" : "+>&=$fh";
-	$fh = gensym;
-	open ($fh, $mode)
-	  or goto &_drat;
+    $flags = fcntl ($_[0], F_GETFL, 0) & (O_RDONLY | O_WRONLY | O_RDWR);
+    $mode = ($flags == O_WRONLY) ? ">&=$fh" : 
+        ($flags == O_RDONLY) ? "<&=$fh" : "+>&=$fh";
+    $fh = gensym;
+    open ($fh, $mode)
+      or goto &_drat;
 
-	$fh = bless *{$fh}{IO}, "Archive::Tar::_io";
-	binmode $fh
-	    or goto &_drat;
+    $fh = bless *{$fh}{IO}, "Archive::Tar::_io";
+    binmode $fh
+        or goto &_drat;
     }
 
     return $fh;
@@ -273,134 +273,134 @@ sub _read_tar {
     my ($head, $offset, $size);
 
     $file->gzread ($head, $tar_header_length)
-	or goto &_drat;
+    or goto &_drat;
 
     if (substr ($head, 0, 2) =~ /$gzip_magic_number/o) {
-	$error =
-	    "Compression not available\n";
-	return undef;
+    $error =
+        "Compression not available\n";
+    return undef;
     }
 
     $offset = $tar_header_length
-	if $seekable;
+    if $seekable;
 
  READLOOP:
     while (length ($head) == $tar_header_length) {
-	my ($name,		# string
-	    $mode,		# octal number
-	    $uid,		# octal number
-	    $gid,		# octal number
-	    $size,		# octal number
-	    $mtime,		# octal number
-	    $chksum,		# octal number
-	    $type,		# character
-	    $linkname,		# string
-	    $magic,		# string
-	    $version,		# two bytes
-	    $uname,		# string
-	    $gname,		# string
-	    $devmajor,		# octal number
-	    $devminor,		# octal number
-	    $prefix) = unpack ($tar_unpack_header, $head);
-	my ($data, $block, $entry);
+    my ($name,      # string
+        $mode,      # octal number
+        $uid,       # octal number
+        $gid,       # octal number
+        $size,      # octal number
+        $mtime,     # octal number
+        $chksum,        # octal number
+        $type,      # character
+        $linkname,      # string
+        $magic,     # string
+        $version,       # two bytes
+        $uname,     # string
+        $gname,     # string
+        $devmajor,      # octal number
+        $devminor,      # octal number
+        $prefix) = unpack ($tar_unpack_header, $head);
+    my ($data, $block, $entry);
 
-	$mode = oct $mode;
-	$uid = oct $uid;
-	$gid = oct $gid;
-	$size = oct $size;
-	$mtime = oct $mtime;
-	$chksum = oct $chksum;
-	$devmajor = oct $devmajor;
-	$devminor = oct $devminor;
-	$name = $prefix."/".$name if $prefix;
-	$prefix = "";
-	# some broken tar-s don't set the type for directories
-	# so we ass_u_me a directory if the name ends in slash
-	$type = DIR
-	    if $name =~ m|/$| and $type == FILE;
+    $mode = oct $mode;
+    $uid = oct $uid;
+    $gid = oct $gid;
+    $size = oct $size;
+    $mtime = oct $mtime;
+    $chksum = oct $chksum;
+    $devmajor = oct $devmajor;
+    $devminor = oct $devminor;
+    $name = $prefix."/".$name if $prefix;
+    $prefix = "";
+    # some broken tar-s don't set the type for directories
+    # so we ass_u_me a directory if the name ends in slash
+    $type = DIR
+        if $name =~ m|/$| and $type == FILE;
 
-	last READLOOP if $head eq "\0" x 512; # End of archive
-	# Apparently this should really be two blocks of 512 zeroes,
-	# but GNU tar sometimes gets it wrong. See comment in the
-	# source code (tar.c) to GNU cpio.
+    last READLOOP if $head eq "\0" x 512; # End of archive
+    # Apparently this should really be two blocks of 512 zeroes,
+    # but GNU tar sometimes gets it wrong. See comment in the
+    # source code (tar.c) to GNU cpio.
 
-	substr ($head, 148, 8) = "        ";
-	if (unpack ("%16C*", $head) != $chksum) {
-	   warn "$name: checksum error.\n";
-	}
+    substr ($head, 148, 8) = "        ";
+    if (unpack ("%16C*", $head) != $chksum) {
+       warn "$name: checksum error.\n";
+    }
 
-	unless ($extract || $type != FILE) {
-	    # Always read in full 512 byte blocks
-	    $block = $size & 0x01ff ? ($size & ~0x01ff) + 512 : $size;
-	    if ($seekable) {
-		while ($block > 4096) {
-		    $file->gzread ($data, 4096)
-			or goto &_drat;
-		    $block -= 4096;
-		}
-		$file->gzread ($data, $block)
-		    or goto &_drat
-			if ($block);
+    unless ($extract || $type != FILE) {
+        # Always read in full 512 byte blocks
+        $block = $size & 0x01ff ? ($size & ~0x01ff) + 512 : $size;
+        if ($seekable) {
+        while ($block > 4096) {
+            $file->gzread ($data, 4096)
+            or goto &_drat;
+            $block -= 4096;
+        }
+        $file->gzread ($data, $block)
+            or goto &_drat
+            if ($block);
 
-		# Ignore everything we've just read.
-		undef $data;
-	    } else {
-		if ($file->gzread ($data, $block) < $block) {
-		    $error = "Read error on tarfile.";
-		    return undef;
-		}
+        # Ignore everything we've just read.
+        undef $data;
+        } else {
+        if ($file->gzread ($data, $block) < $block) {
+            $error = "Read error on tarfile.";
+            return undef;
+        }
 
-		# Throw away any trailing garbage
-		substr ($data, $size) = "";
-	    }
-	}
+        # Throw away any trailing garbage
+        substr ($data, $size) = "";
+        }
+    }
 
-	# Guard against tarfiles with garbage at the end
-	last READLOOP if $name eq ''; 
+    # Guard against tarfiles with garbage at the end
+    last READLOOP if $name eq ''; 
 
-	$entry = {name => $name,		    
-		  mode => $mode,
-		  uid => $uid,
-		  gid => $gid,
-		  size => $size,
-		  mtime => $mtime,
-		  chksum => $chksum,
-		  type => $type,
-		  linkname => $linkname,
-		  magic => $magic,
-		  version => $version,
-		  uname => $uname,
-		  gname => $gname,
-		  devmajor => $devmajor,
-		  devminor => $devminor,
-		  prefix => $prefix,
-		  offset => $offset,
-		  data => $data};
+    $entry = {name => $name,            
+          mode => $mode,
+          uid => $uid,
+          gid => $gid,
+          size => $size,
+          mtime => $mtime,
+          chksum => $chksum,
+          type => $type,
+          linkname => $linkname,
+          magic => $magic,
+          version => $version,
+          uname => $uname,
+          gname => $gname,
+          devmajor => $devmajor,
+          devminor => $devminor,
+          prefix => $prefix,
+          offset => $offset,
+          data => $data};
 
-	if ($extract) {
-	    _extract_file ($entry, $file);
-	    $file->gzread ($head, 512 - ($size & 0x1ff)) 
-		or goto &_drat
-		    if ($size & 0x1ff && $type == FILE);
-	}
-	else {
-	    push @$tarfile, $entry;
-	}
+    if ($extract) {
+        _extract_file ($entry, $file);
+        $file->gzread ($head, 512 - ($size & 0x1ff)) 
+        or goto &_drat
+            if ($size & 0x1ff && $type == FILE);
+    }
+    else {
+        push @$tarfile, $entry;
+    }
 
-	if ($seekable) {
-	    $offset += $tar_header_length;
-	    $offset += ($size & 0x01ff) ? ($size & ~0x01ff) + 512 : $size
-		if $type == FILE;
-	}
-	$file->gzread ($head, $tar_header_length) 
-	    or goto &_drat;
+    if ($seekable) {
+        $offset += $tar_header_length;
+        $offset += ($size & 0x01ff) ? ($size & ~0x01ff) + 512 : $size
+        if $type == FILE;
+    }
+    $file->gzread ($head, $tar_header_length) 
+        or goto &_drat;
     }
 
     $file->gzclose ()
-	unless $seekable;
+    unless $seekable;
 
     return $tarfile
-	unless $extract;
+    unless $extract;
 }
 
 sub _format_tar_entry {
@@ -409,36 +409,36 @@ sub _format_tar_entry {
 
     $file = $ref->{name};
     if (length ($file) > 99) {
-	$pos = index $file, "/", (length ($file) - 100);
-	next
-	    if $pos == -1;	# Filename longer than 100 chars!
+    $pos = index $file, "/", (length ($file) - 100);
+    next
+        if $pos == -1;  # Filename longer than 100 chars!
 
-	$prefix = substr $file,0,$pos;
-	$file = substr $file,$pos+1;
-	substr ($prefix, 0, -155) = ""
-	    if length($prefix)>154;
+    $prefix = substr $file,0,$pos;
+    $file = substr $file,$pos+1;
+    substr ($prefix, 0, -155) = ""
+        if length($prefix)>154;
     }
     else {
-	$prefix="";
+    $prefix="";
     }
 
     $tmp = pack ($tar_pack_header,
-		 $file,
-		 sprintf("%06o ",$ref->{mode}),
-		 sprintf("%06o ",$ref->{uid}),
-		 sprintf("%06o ",$ref->{gid}),
-		 sprintf("%11o ",$ref->{size}),
-		 sprintf("%11o ",$ref->{mtime}),
-		 "",		#checksum field - space padded by pack("A8")
-		 $ref->{type},
-		 $ref->{linkname},
-		 $ref->{magic},
-		 $ref->{version} || '00',
-		 $ref->{uname},
-		 $ref->{gname},
-		 sprintf("%6o ",$ref->{devmajor}),
-		 sprintf("%6o ",$ref->{devminor}),
-		 $prefix);
+         $file,
+         sprintf("%06o ",$ref->{mode}),
+         sprintf("%06o ",$ref->{uid}),
+         sprintf("%06o ",$ref->{gid}),
+         sprintf("%11o ",$ref->{size}),
+         sprintf("%11o ",$ref->{mtime}),
+         "",        #checksum field - space padded by pack("A8")
+         $ref->{type},
+         $ref->{linkname},
+         $ref->{magic},
+         $ref->{version} || '00',
+         $ref->{uname},
+         $ref->{gname},
+         sprintf("%6o ",$ref->{devmajor}),
+         sprintf("%6o ",$ref->{devminor}),
+         $prefix);
     substr($tmp,148,7) = sprintf("%6o\0", unpack("%16C*",$tmp));
 
     return $tmp;
@@ -449,10 +449,10 @@ sub _format_tar_file {
     my $file = "";
 
     foreach (@tarfile) {
-	$file .= _format_tar_entry $_;
-	$file .= $_->{data};
-	$file .= "\0" x (512 - ($_->{size} & 0x1ff))
-	    if ($_->{size} & 0x1ff);
+    $file .= _format_tar_entry $_;
+    $file .= $_->{data};
+    $file .= "\0" x (512 - ($_->{size} & 0x1ff))
+        if ($_->{size} & 0x1ff);
     }
     $file .= "\0" x 1024;
 
@@ -464,64 +464,64 @@ sub _write_tar {
     my $entry;
 
     foreach $entry ((ref ($_[0]) eq 'ARRAY') ? @{$_[0]} : @_) {
-	next
-	    unless (ref ($entry) eq 'HASH');
+    next
+        unless (ref ($entry) eq 'HASH');
 
-	my $src;
+    my $src;
         if ($^O eq "MacOS") {  #convert back from Unix to Mac path
             my @parts = split(/\//, $entry->{name});
 
             $src = $parts[0] ? ":" : "";
             foreach (@parts) {
-		next if !$_ || $_ eq ".";  
+        next if !$_ || $_ eq ".";  
                 s,:,/,g;
 
-		$_ = ":"
-		    if ($_ eq "..");
+        $_ = ":"
+            if ($_ eq "..");
 
-		$src .= ($src =~ /:$/) ? $_ : ":$_";
-	    }
+        $src .= ($src =~ /:$/) ? $_ : ":$_";
         }
-	else {
+        }
+    else {
             $src = $entry->{name};
         }
-	sysopen (FH, $src, O_RDONLY)
-	    && binmode (FH)
-		or next
-		    unless $entry->{type} != FILE || $entry->{data};
+    sysopen (FH, $src, O_RDONLY)
+        && binmode (FH)
+        or next
+            unless $entry->{type} != FILE || $entry->{data};
 
-	$file->gzwrite (_format_tar_entry ($entry))
-	    or goto &_drat;
+    $file->gzwrite (_format_tar_entry ($entry))
+        or goto &_drat;
 
-	if ($entry->{type} == FILE) {
-	    if ($entry->{data}) {
-		$file->gzwrite ($entry->{data})
-		    or goto &_drat;
-	    }
-	    else {
-		my $size = $entry->{size};
-		my $data;
-		while ($size >= 4096) {
-		    sysread (FH, $data, 4096)
-			&& $file->gzwrite ($data)
-			    or goto &_drat;
-		    $size -= 4096;
-		}
-		sysread (FH, $data, $size)
-		    && $file->gzwrite ($data)
-			or goto &_drat
-			    if $size;
-		close FH;
-	    }
-	    $file->gzwrite ("\0" x (512 - ($entry->{size} & 511)))
-		or goto &_drat
-		    if ($entry->{size} & 511);
-	}
+    if ($entry->{type} == FILE) {
+        if ($entry->{data}) {
+        $file->gzwrite ($entry->{data})
+            or goto &_drat;
+        }
+        else {
+        my $size = $entry->{size};
+        my $data;
+        while ($size >= 4096) {
+            sysread (FH, $data, 4096)
+            && $file->gzwrite ($data)
+                or goto &_drat;
+            $size -= 4096;
+        }
+        sysread (FH, $data, $size)
+            && $file->gzwrite ($data)
+            or goto &_drat
+                if $size;
+        close FH;
+        }
+        $file->gzwrite ("\0" x (512 - ($entry->{size} & 511)))
+        or goto &_drat
+            if ($entry->{size} & 511);
+    }
     }
 
     $file->gzwrite ("\0" x 1024)
-	and !$file->gzclose ()
-	    or goto &_drat;
+    and !$file->gzclose ()
+        or goto &_drat;
 }
 
 sub _add_file {
@@ -529,34 +529,34 @@ sub _add_file {
     my ($mode,$nlnk,$uid,$gid,$rdev,$size,$mtime,$type,$linkname);
 
     if (($mode,$nlnk,$uid,$gid,$rdev,$size,$mtime) = (lstat $file)[2..7,9]) {
-	$linkname = "";
-	$type = filetype ($file);
+    $linkname = "";
+    $type = filetype ($file);
 
-	$linkname = readlink $file
-	    if ($type == SYMLINK) && $symlinks;
+    $linkname = readlink $file
+        if ($type == SYMLINK) && $symlinks;
 
-	$file = _munge_file ($file)
-	    if ($^O eq "MacOS");
+    $file = _munge_file ($file)
+        if ($^O eq "MacOS");
 
-	return +{name => $file,		    
-		 mode => $mode,
-		 uid => $uid,
-		 gid => $gid,
-		 size => $size,
-		 mtime => (($mtime - $time_offset) | 0),
-		 chksum => "      ",
-		 type => $type, 
-		 linkname => $linkname,
-		 magic => "ustar",
-		 version => "00",
-		 # WinNT protection
-		 uname => ($fake_getpwuid || scalar getpwuid($uid)),
-		 gname => ($fake_getgrgid || scalar getgrgid ($gid)),
-		 devmajor => 0, # We don't handle this yet
-		 devminor => 0, # We don't handle this yet
-		 prefix => "",
-		 data => undef,
-		};
+    return +{name => $file,         
+         mode => $mode,
+         uid => $uid,
+         gid => $gid,
+         size => $size,
+         mtime => (($mtime - $time_offset) | 0),
+         chksum => "      ",
+         type => $type, 
+         linkname => $linkname,
+         magic => "ustar",
+         version => "00",
+         # WinNT protection
+         uname => ($fake_getpwuid || scalar getpwuid($uid)),
+         gname => ($fake_getgrgid || scalar getgrgid ($gid)),
+         devmajor => 0, # We don't handle this yet
+         devminor => 0, # We don't handle this yet
+         prefix => "",
+         data => undef,
+        };
     }
 }
 
@@ -571,74 +571,74 @@ sub _extract_file {
     $path[0] = '/' unless defined $path[0]; # catch absolute paths
     $file = pop @path;
     $file =~ s,:,/,g
-	if $^O eq "MacOS";
+    if $^O eq "MacOS";
     $cwd = cwd
-	if @path;
+    if @path;
     foreach (@path) {
-	if ($^O eq "MacOS") {
-	    s,:,/,g;
-	    $_ = "::" if $_ eq "..";
-	    $_ = ":" if $_ eq ".";
-	}
-	if (-e $_ && ! -d _) {
-	    $^W && carp "$_ exists but is not a directory!\n";
-	    next;
-	}
-	mkdir $_, 0777 unless -d _;
-	chdir $_;
+    if ($^O eq "MacOS") {
+        s,:,/,g;
+        $_ = "::" if $_ eq "..";
+        $_ = ":" if $_ eq ".";
+    }
+    if (-e $_ && ! -d _) {
+        $^W && carp "$_ exists but is not a directory!\n";
+        next;
+    }
+    mkdir $_, 0777 unless -d _;
+    chdir $_;
     }
 
-    if ($entry->{type} == FILE) {	# Ordinary file
-	sysopen (FH, $file, O_WRONLY|O_CREAT|O_TRUNC)
-	    and binmode FH
-		or goto &_drat;
+    if ($entry->{type} == FILE) {   # Ordinary file
+    sysopen (FH, $file, O_WRONLY|O_CREAT|O_TRUNC)
+        and binmode FH
+        or goto &_drat;
 
-	if ($handle) {
-	    my $size = $entry->{size};
-	    my $data;
-	    while ($size > 4096) {
-		$handle->gzread ($data, 4096)
-		    and syswrite (FH, $data, length $data)
-			or goto &_drat;
-		$size -= 4096;
-	    }
-	    $handle->gzread ($data, $size)
-		and syswrite (FH, $data, length $data)
-		    or goto &_drat
-			if ($size);
-	}
-	else {
-	    syswrite FH, $entry->{data}, $entry->{size}
-		or goto &_drat
-	}
-	close FH
-	    or goto &_drat
-    }
-    elsif ($entry->{type} == DIR) { # Directory
-	goto &_drat
-	    if (-e $file && ! -d $file);
-
-	mkdir $file,0777
-	    unless -d $file;
-    }
-    elsif ($entry->{type} == UNKNOWN) {
-	$error = "unknown file type: $_->{type}";
-	return undef;
+    if ($handle) {
+        my $size = $entry->{size};
+        my $data;
+        while ($size > 4096) {
+        $handle->gzread ($data, 4096)
+            and syswrite (FH, $data, length $data)
+            or goto &_drat;
+        $size -= 4096;
+        }
+        $handle->gzread ($data, $size)
+        and syswrite (FH, $data, length $data)
+            or goto &_drat
+            if ($size);
     }
     else {
-	_make_special_file ($entry, $file);
+        syswrite FH, $entry->{data}, $entry->{size}
+        or goto &_drat
+    }
+    close FH
+        or goto &_drat
+    }
+    elsif ($entry->{type} == DIR) { # Directory
+    goto &_drat
+        if (-e $file && ! -d $file);
+
+    mkdir $file,0777
+        unless -d $file;
+    }
+    elsif ($entry->{type} == UNKNOWN) {
+    $error = "unknown file type: $_->{type}";
+    return undef;
+    }
+    else {
+    _make_special_file ($entry, $file);
     }
     utime time, $entry->{mtime} + $time_offset, $file;
 
     # We are root, and chown exists
     chown $entry->{uid}, $entry->{gid}, $file
-	if ($> == 0 and $^O ne "MacOS" and $^O ne "MSWin32");
+    if ($> == 0 and $^O ne "MacOS" and $^O ne "MSWin32");
 
     # chmod is done last, in case it makes file readonly
     # (this accomodates DOSish OSes)
     chmod $entry->{mode}, $file;
     chdir $cwd
-	if @path;
+    if @path;
 }
 
 ###
@@ -655,17 +655,17 @@ sub create_archive {
     my ($handle, $file, $compress) = splice (@_, 0, 3);
 
     if ($compress && !$compression) {
-	$error = "Compression not available.\n";
-	return undef;
+    $error = "Compression not available.\n";
+    return undef;
     }
 
     $handle = gensym;
     open $handle, ref ($file) ? ">&". fileno ($file) : ">" . $file
-	and binmode ($handle)
-	    or goto &_drat;
+    and binmode ($handle)
+        or goto &_drat;
 
     _write_tar (_get_handle ($handle, int ($compress)),
-		map {_add_file ($_)} @_);
+        map {_add_file ($_)} @_);
 }
 
 # Perfom the equivalent of ->new()->list_files() without the overhead
@@ -675,14 +675,14 @@ sub list_archive {
 
     $handle = gensym;
     open $handle, ref ($file) ? "<&". fileno ($file) : "<" . $file
-	and binmode ($handle)
-	    or goto &_drat;
+    and binmode ($handle)
+        or goto &_drat;
 
     my $data = _read_tar (_get_handle ($handle), 1);
 
     return map {my %h; @h{@$fields} = @$_{@$fields}; \%h} @$data
         if (ref $fields eq 'ARRAY'
-	    && (@$fields > 1 || $fields->[0] ne 'name'));
+        && (@$fields > 1 || $fields->[0] ne 'name'));
 
     return map {$_->{name}} @$data;
 }
@@ -694,8 +694,8 @@ sub extract_archive {
 
     $handle = gensym;
     open $handle, ref ($file) ? "<&". fileno ($file) : "<" . $file
-	and binmode ($handle)
-	    or goto &_drat;
+    and binmode ($handle)
+        or goto &_drat;
 
     _read_tar (_get_handle ($handle), 0, 1);
 }
@@ -729,11 +729,11 @@ sub read {
 
     $self->{_handle} = gensym;
     open $self->{_handle}, ref ($file) ? "<&". fileno ($file) : "<" . $file
-	and binmode ($self->{_handle})
-	    or goto &_drat;
+    and binmode ($self->{_handle})
+        or goto &_drat;
 
     $self->{_data} = _read_tar (_get_handle ($self->{_handle}), 
-				  sysseek $self->{_handle}, 0, 1);
+                  sysseek $self->{_handle}, 0, 1);
     return scalar @{$self->{_data}};
 }
 
@@ -742,16 +742,16 @@ sub write {
     my ($self, $file, $compress) = @_;
 
     return _format_tar_file (@{$self->{_data}})
-	unless (@_ > 1);
+    unless (@_ > 1);
 
     my $handle = gensym;
     open $handle, ref ($file) ? ">&". fileno ($file) : ">" . $file
-	and binmode ($handle)
-	    or goto &_drat;
+    and binmode ($handle)
+        or goto &_drat;
 
     if ($compress && !$compression) {
-	$error = "Compression not available.\n";
-	return undef;
+    $error = "Compression not available.\n";
+    return undef;
     }
 
     _write_tar (_get_handle ($handle, $compress || 0), $self->{_data});
@@ -763,10 +763,10 @@ sub add_files {
     my ($counter, $file, $entry);
 
     foreach $file (@_) {
-	if ($entry = _add_file ($file)) {
-	    push (@{$self->{'_data'}}, $entry);
-	    ++$counter;
-	}
+    if ($entry = _add_file ($file)) {
+        push (@{$self->{'_data'}}, $entry);
+        ++$counter;
+    }
     }
 
     return $counter;
@@ -779,7 +779,7 @@ sub add_data {
     my ($key);
 
     if($^O eq "MacOS") {
-	$file = _munge_file($file);
+    $file = _munge_file($file);
     }
     $ref->{'data'} = $data;
     $ref->{name} = $file;
@@ -788,8 +788,8 @@ sub add_data {
     $ref->{gid} = (split(/ /,$)))[0]; # Yuck
     $ref->{size} = length $data;
     $ref->{mtime} = ((time - $time_offset) | 0),
-    $ref->{chksum} = "      ";	# Utterly pointless
-    $ref->{type} = FILE;		# Ordinary file
+    $ref->{chksum} = "      ";  # Utterly pointless
+    $ref->{type} = FILE;        # Ordinary file
     $ref->{linkname} = "";
     $ref->{magic} = "ustar";
     $ref->{version} = "00";
@@ -801,9 +801,9 @@ sub add_data {
     $ref->{prefix} = "";
 
     if ($opt) {
-	foreach $key (keys %$opt) {
-	    $ref->{$key} = $opt->{$key}
-	}
+    foreach $key (keys %$opt) {
+        $ref->{$key} = $opt->{$key}
+    }
     }
 
     push (@{$self->{'_data'}}, $ref);
@@ -815,7 +815,7 @@ sub rename {
     my $entry;
 
     foreach $entry (@{$self->{_data}}) {
-	@{$self->{_data}} = grep {$_->{name} ne $entry} @{$self->{'_data'}};
+    @{$self->{_data}} = grep {$_->{name} ne $entry} @{$self->{'_data'}};
     }
     return $self;
 }
@@ -825,7 +825,7 @@ sub remove {
     my $entry;
 
     foreach $entry (@_) {
-	@{$self->{_data}} = grep {$_->{name} ne $entry} @{$self->{'_data'}};
+    @{$self->{_data}} = grep {$_->{name} ne $entry} @{$self->{'_data'}};
     }
     return $self;
 }
@@ -836,20 +836,20 @@ sub get_content {
     my ($entry, $data);
 
     foreach $entry (@{$self->{_data}}) {
-	next
-	    unless $entry->{name} eq $file;
+    next
+        unless $entry->{name} eq $file;
 
-	return $entry->{data}
-	    unless $entry->{offset};
+    return $entry->{data}
+        unless $entry->{offset};
 
-	my $handle = _get_handle ($self->{_handle});
-	$handle->gzseek ($entry->{offset}, 0)
-	    or goto &_drat;
+    my $handle = _get_handle ($self->{_handle});
+    $handle->gzseekbx ($entry->{offset}, 0)
+        or goto &_drat;
 
-	$handle->gzread ($data, $entry->{size}) != -1
-	    or goto &_drat;
+    $handle->gzread ($data, $entry->{size}) != -1
+        or goto &_drat;
 
-	return $data;
+    return $data;
     }
 
     return;
@@ -861,13 +861,13 @@ sub replace_content {
     my $entry;
 
     foreach $entry (@{$self->{_data}}) {
-	next
-	    unless $entry->{name} eq $file;
+    next
+        unless $entry->{name} eq $file;
 
-	$entry->{data} = $content;
-	$entry->{size} = length $content;
-	$entry->{offset} = undef;
-	return 1;
+    $entry->{data} = $content;
+    $entry->{size} = length $content;
+    $entry->{offset} = undef;
+    return 1;
     }
 }
 
@@ -879,20 +879,20 @@ sub extract {
 
     @files = list_files ($self) unless @files;
     foreach $entry (@{$self->{_data}}) {
-	my $cnt = 0;
-	foreach $file (@files) {
-	    ++$cnt, next
-		unless $entry->{name} eq $file;
-	    my $handle = $entry->{offset} && _get_handle ($self->{_handle});
-	    $handle->gzseek ($entry->{offset}, 0)
-		or goto &_drat
-		    if $handle;
-	    _extract_file ($entry, $handle);
-	    splice (@_, $cnt, 1);
-	    last;
-	}
-	last
-	    unless @_;
+    my $cnt = 0;
+    foreach $file (@files) {
+        ++$cnt, next
+        unless $entry->{name} eq $file;
+        my $handle = $entry->{offset} && _get_handle ($self->{_handle});
+        $handle->gzseekbx ($entry->{offset}, 0)
+        or goto &_drat
+            if $handle;
+        _extract_file ($entry, $handle);
+        splice (@_, $cnt, 1);
+        last;
+    }
+    last
+        unless @_;
     }
     $self;
 }
@@ -923,7 +923,7 @@ sub list_files {
 
 package Archive::Tar::_io;
 
-sub gzseek {
+sub gzseekbx {
     sysseek $_[0], $_[1], $_[2];
 }
 
@@ -1232,22 +1232,38 @@ setting Tar::error.
 Better handling of tarfiles with garbage at the end.
 
 =cut
-# Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 # 
-# Redistribution and use in source and binary forms, with or without 
-# modification, are permitted provided that the following conditions are met:
+# Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2003 Sun Microsystems, Inc. 
+# All Rights Reserved.
 # 
-# -Redistribution of source code must retain the above copyright notice, 
-# this list of conditions and the following disclaimer.
+# 1. Redistributions of source code must retain the above copyright 
+#    notice, this list of conditions and the following disclaimer.
 # 
-# -Redistribution in binary form must reproduce the above copyright notice, 
-# this list of conditions and the following disclaimer in the documentation  
-# and/or other materials provided with the distribution.
+# 2. Redistributions in binary form must reproduce the above copyright 
+#    notice, this list of conditions and the following disclaimer in 
+#    the documentation and/or other materials provided with the 
+#    distribution.
 # 
-# Neither the name of Sun Microsystems, Inc. or the names of contributors may 
-# be used to endorse or promote products derived from this software without 
-# specific prior written permission.
+# 3. Neither the name of the copyright holder nor the names of its 
+#    contributors may be used to endorse or promote products derived 
+#    from this software without specific prior written permission.
 # 
-# This software is provided "AS IS," without a warranty of any kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY EXCLUDED. SUN MICROSYSTEMS, INC. ("SUN") AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
+# COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+# POSSIBILITY OF SUCH DAMAGE.
 # 
-# You acknowledge that  this software is not designed or intended for use in the design, construction, operation or maintenance of any nuclear facility.
+# You acknowledge that this software is not designed or intended for 
+# use in the design, construction, operation or maintenance of any 
+# nuclear facility.
+# 

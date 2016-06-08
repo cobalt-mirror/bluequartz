@@ -1,7 +1,5 @@
 #!/usr/bin/perl
 # $Id: cmuImport
-# Cobalt Networks, Inc http://www.cobalt.com
-# Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 use strict;
 
 use lib "/usr/cmu/perl";
@@ -19,24 +17,24 @@ use TreeXml;
 
 my $build = Global::getBuild();
 if(defined $validImport->{$build}) {
-	$cfg->putGlb('currentOS', $build);	
+    $cfg->putGlb('currentOS', $build);  
 } else { die "Cannot import on a $build\n" }
 
 if(!$cfg->isSess) { $cfg->putSess($$) }
 
 if($cfg->isDestDir) {
-	$cfg->putDestDir(Global::parseD($cfg->destDir));
+    $cfg->putDestDir(Global::parseD($cfg->destDir));
 } else { 
-	cmuLog("ERROR", "Cannot find directory: ".$cfg->destDir."\n");
-	exit 1;
+    cmuLog("ERROR", "Cannot find directory: ".$cfg->destDir."\n");
+    exit 1;
 }
 chdir $cfg->destDir || 
-	die "Could not chdir to ", $cfg->destDir, ": $!\n";
+    die "Could not chdir to ", $cfg->destDir, ": $!\n";
 
 my $origXml = $cfg->cmuXml;
 my $sessXml = $cfg->sessXml;
 if(!-f $origXml && !-f $sessXml) {
-	die "Cannot find cmu.xml in ", $cfg->destDir, "\n";
+    die "Cannot find cmu.xml in ", $cfg->destDir, "\n";
 }
 
 print "LogFile location is ", $cfg->logFile, "\n";
@@ -57,19 +55,19 @@ if ($build =~ /(510[6-8]R|520[7-9]R)/) {
     # Root check
     my $id = get_uid('root');
     if ($id ne "0") {
-	print "$0 must be run by a user with root capability.\n";
-	exit 1
+        print "$0 must be run by a user with root capability.\n";
+    exit 1
     }
 }
 else {
-	$password = checkPass();
-	$cfg->putGlb('adminPassword', $password);	
+    $password = checkPass();
+    $cfg->putGlb('adminPassword', $password);   
 }
 
 # Start the import 
 
 if(-f $sessXml) {
-	$origXml = $sessXml;
+    $origXml = $sessXml;
 } else { qx/cp $origXml $sessXml/; }
 
 # unpack data here set $importXml
@@ -81,8 +79,8 @@ $cfg->checkVersion($migrate->{cmuVersion});
 # make sure to delete any extra sites earily
 # this is one ugly piece of code
 if($cfg->isGlb('subsetNames')) {
-	$cfg->parseNames('subsetNames');
-	$migrate = $cfg->removeNamesVsite($migrate);
+    $cfg->parseNames('subsetNames');
+    $migrate = $cfg->removeNamesVsite($migrate);
 }
 
 if($cfg->isIpaddr) { $migrate = $cfg->convertIpaddr($migrate) }
@@ -105,32 +103,31 @@ if($cfg->skipAdjust eq 't') {
     $adjustCmd = "/usr/cmu/scripts/RaQXTR4adjust.pl";
     cmuLog("INFO", "AdjustCommand = $adjustCmd\n");
     if($pid = open3(*WR, *RE, *ER, $adjustCmd)) {
-	print WR TreeXml::writeXml($cobaltBase);
-	close(WR);
-	close(RE);
-	while(my $line = <ER>) { cmuLog("Adjust", $line); }
-	close(ER);
-	waitpid ($pid, 0);
+        print WR TreeXml::writeXml($cobaltBase);
+        close(WR);
+        close(RE);
+        while(my $line = <ER>) { cmuLog("Adjust", $line); }
+        close(ER);
+        waitpid ($pid, 0);
     }
     $migrate->{adjustPlatform} = $adjustPath{ $migrate->{adjustPlatform} };
 } elsif($migrate->{adjustPlatform} ne $build) {
     while($migrate->{adjustPlatform} ne $build) {
-	$adjustCmd = "/usr/cmu/scripts/".
-	    $adjustPath{ $migrate->{adjustPlatform} }."adjust.pl";
-	cmuLog("INFO", "AdjustCommand = $adjustCmd\n");
-	if(! -x $adjustCmd) {
-	    cmuLog("ERROR", "Cannot adjust to this platform\n");
-	    exit 1;
-	}
-	if($pid = open3(*WR, *RE, *ER, $adjustCmd)) {
-	    print WR TreeXml::writeXml($cobaltBase);
-	    close(WR);
-    		close(RE);
-	    while(my $line = <ER>) { cmuLog("Adjust", $line); }
-	    close(ER);
-	    waitpid ($pid, 0);
-	}
-	$migrate->{adjustPlatform} = $adjustPath{ $migrate->{adjustPlatform} };
+        $adjustCmd = "/usr/cmu/scripts/". $adjustPath{ $migrate->{adjustPlatform} }."adjust.pl";
+        cmuLog("INFO", "AdjustCommand = $adjustCmd\n");
+        if(! -x $adjustCmd) {
+            cmuLog("ERROR", "Cannot adjust to this platform\n");
+            exit 1;
+        }
+        if($pid = open3(*WR, *RE, *ER, $adjustCmd)) {
+            print WR TreeXml::writeXml($cobaltBase);
+            close(WR);
+            close(RE);
+            while(my $line = <ER>) { cmuLog("Adjust", $line); }
+            close(ER);
+            waitpid ($pid, 0);
+        }
+        $migrate->{adjustPlatform} = $adjustPath{ $migrate->{adjustPlatform} };
     }
 }
 
@@ -140,50 +137,49 @@ my $scanOutCmd = $cfg->lib('scanout')." -p -x -c -f $outTmpFile";
 if($pid = open3(*WR, *RE, *ER, $scanOutCmd)) {
     print WR TreeXml::writeXml($cobaltBase);
     close(WR);
-	close(RE);
-	while(my $line = <ER>) { cmuLog("Scanout", $line); }
+    close(RE);
+    while(my $line = <ER>) { cmuLog("Scanout", $line); }
     close(ER);
-	waitpid($pid, 0);
+    waitpid($pid, 0);
 } 
 
 # conflict resolution
 if($cfg->skipConflict eq 't') {
-	cmuLog("WARN","Skipping conflict resolution\n");
+    cmuLog("WARN","Skipping conflict resolution\n");
 } else {
-	my $conflictCmd = $cfg->lib('conflict');
-	$conflictCmd .= " -g -i ".$sessXml." -e ".$outTmpFile." -f ".$sessXml
-		." -s ".$cfg->sess." -d ".$cfg->destDir;
-	$conflictCmd .= " -c " if($cfg->confOnly eq 't');
-	my $ret = system("$conflictCmd");
-	if($ret != 0) { die "Conflict phase did not succeed\n" }
+    my $conflictCmd = $cfg->lib('conflict');
+    $conflictCmd .= " -g -i ".$sessXml." -e ".$outTmpFile." -f ".$sessXml ." -s ".$cfg->sess." -d ".$cfg->destDir;
+    $conflictCmd .= " -c " if($cfg->confOnly eq 't');
+    my $ret = system("$conflictCmd");
+    if($ret != 0) { die "Conflict phase did not succeed\n" }
 }
 
 if($cfg->conflictOnly eq 't') {
-	cmuLog("WARN","Skipping scanin\n");
+    cmuLog("WARN","Skipping scanin\n");
 } else {
-	my $scanInCmd = $cfg->lib('scanin')." -f $sessXml";
-	cmuLog("ScanIn", "Calling $scanInCmd\n");
-	if($pid = open3(*WR, *RE, *ER, $scanInCmd)) {
-		print WR TreeXml::writeXml($cobaltBase);
-		close(WR);
-		while(my $line = <ER>) { cmuLog("ScanIn", $line); }
-		close(RE);
-		close(ER);
-		waitpid($pid, 0);
-	}
+    my $scanInCmd = $cfg->lib('scanin')." -f $sessXml";
+    cmuLog("ScanIn", "Calling $scanInCmd\n");
+    if($pid = open3(*WR, *RE, *ER, $scanInCmd)) {
+        print WR TreeXml::writeXml($cobaltBase);
+        close(WR);
+        while(my $line = <ER>) { cmuLog("ScanIn", $line); }
+        close(RE);
+        close(ER);
+        waitpid($pid, 0);
+    }
 
-	# thrid party scan out
-	foreach my $app (keys %{ $appConf }) {
-		$scanInCmd = $appConf->{$app}->{configData}->{libs}->{scanin};
-		if(-x $scanInCmd) {
-			my $cfg_pass = $cfg->destDir.'/config.xml.'.$$;
-			open(FH, ">$cfg_pass") || cmuLog("Could not open $cfg_pass\n");
-			print FH TreeXml::writeXml($cobaltBase);
-			close(FH);
-			$scanInCmd .= " ".$cfg->destDir." ".$cfg_pass;
-			qx/$scanInCmd/;
-		} else { warn "$app scanin command is not executable: $scanInCmd\n" }
-	}
+    # thrid party scan out
+    foreach my $app (keys %{ $appConf }) {
+        $scanInCmd = $appConf->{$app}->{configData}->{libs}->{scanin};
+        if(-x $scanInCmd) {
+            my $cfg_pass = $cfg->destDir.'/config.xml.'.$$;
+            open(FH, ">$cfg_pass") || cmuLog("Could not open $cfg_pass\n");
+            print FH TreeXml::writeXml($cobaltBase);
+            close(FH);
+            $scanInCmd .= " ".$cfg->destDir." ".$cfg_pass;
+            qx/$scanInCmd/;
+        } else { warn "$app scanin command is not executable: $scanInCmd\n" }
+    }
 }
 
 cmuLog("INFO", "$0 ended at ".localtime()."\n");
@@ -193,29 +189,29 @@ exit 0;
 
 sub checkPass
 {
-	require cmuCCE;
+    require cmuCCE;
 
-	my $cce = new cmuCCE;
-	$cce->connectuds();
-	
-	my $password;
-	my $retry = 3;
-	for(my $i = 0; $i < $retry; $i++) {
-		print "Enter admin's password: ";
-		system "stty -echo";
-		chop($password = <STDIN>);
-		system "stty echo";
-		if($cce->auth('admin', $password)) { last; }
-		else { $password = 0 }
-		print "\nInvalid password\n";
-	}
-	if(!$password) { 
-		warn "Cannot import....exiting.\n";
-		exit 1;
-	} else {
-		print "\nPassword ok.\n";
-		return $password;
-	}
+    my $cce = new cmuCCE;
+    $cce->connectuds();
+    
+    my $password;
+    my $retry = 3;
+    for(my $i = 0; $i < $retry; $i++) {
+        print "Enter admin's password: ";
+        system "stty -echo";
+        chop($password = <STDIN>);
+        system "stty echo";
+        if($cce->auth('admin', $password)) { last; }
+        else { $password = 0 }
+        print "\nInvalid password\n";
+    }
+    if(!$password) { 
+        warn "Cannot import....exiting.\n";
+        exit 1;
+    } else {
+        print "\nPassword ok.\n";
+        return $password;
+    }
 }
 
 sub is_root_user () {
@@ -238,3 +234,38 @@ sub get_uid ($) {
 
   return $uid;
 }
+# 
+# Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2003 Sun Microsystems, Inc. 
+# All Rights Reserved.
+# 
+# 1. Redistributions of source code must retain the above copyright 
+#     notice, this list of conditions and the following disclaimer.
+# 
+# 2. Redistributions in binary form must reproduce the above copyright 
+#     notice, this list of conditions and the following disclaimer in 
+#     the documentation and/or other materials provided with the 
+#     distribution.
+# 
+# 3. Neither the name of the copyright holder nor the names of its 
+#     contributors may be used to endorse or promote products derived 
+#     from this software without specific prior written permission.
+# 
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
+# COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+# POSSIBILITY OF SUCH DAMAGE.
+# 
+# You acknowledge that this software is not designed or intended for 
+# use in the design, construction, operation or maintenance of any 
+# nuclear facility.
+# 

@@ -66,13 +66,35 @@ rm -rf $RPM_BUILD_ROOT
 
 %changelog
 
+* Sun Jun 05 2016 Michael Stauber <mstauber@solarspeed.net>
+- version 2.94-0BX01
+- Modified perl_modules/Archive/Tar.pm to rename 'gzseek' to
+  'gzseekbx' to suppress a warning.
+- Modified perl_modules/Archive.pm with the ability to pack and
+  unpack tarballs without Archive::TAR and by directly calling
+  'tar' via a system call. If 'pigz' is present, it will be used
+  instead of 'gzip', which can greatly speed up the tarball
+  creation and their unpacking. Also addressed a couple of chown
+  commands which are now properly escaped so that whitespaces in
+  file names no longer cause grief. Additionally I took the pee 
+  out. That is the -p switch in the copy commands for the mail-spool,
+  which could otherwise cause quota issues of uid/gid were preserved
+  during the copy. Quota and ownerships are fixed separately at the
+  end of the CMU-Import anyway.
+- Added requirement for 'pigz'.
+
+* Sun Mar 15 2015 Michael Stauber <mstauber@solarspeed.net>
+- version 2.93-0BX02
+- As 5209R got extended with support for various PHP versions
+  we need to remove the PHP 'version' field on imports on older
+  platforms, as they don't have it.
+
 * Sat Jan 31 2015 Michael Stauber <mstauber@solarspeed.net>
 - version 2.93-0BX01
 - New CMU for 5209R. First draft.
 - All 520XR adjust scripts get the new adminUser Capabilities set.
 - All pre-5209R scanin scripts discard the new PHP options.
 - All pre-5207R scanin scripts discard ChorizoStyle on import.
-- Added requirement for 'pigz'
 
 * Fri Jul 18 2014 Michael Stauber <mstauber@solarspeed.net>
 - version 2.92-0BX02
