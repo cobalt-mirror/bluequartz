@@ -13,6 +13,7 @@ BuildArchitectures: noarch
 
 Requires: perl(Compress::Zlib)
 Requires: perl(XML::Parser)
+Requires: pigz
 
 %description
 Cobalt Migration Utility (CMU)
@@ -80,6 +81,7 @@ rm -rf $RPM_BUILD_ROOT
   which could otherwise cause quota issues of uid/gid were preserved
   during the copy. Quota and ownerships are fixed separately at the
   end of the CMU-Import anyway.
+- Added requirement for 'pigz'.
 
 * Sun Mar 15 2015 Michael Stauber <mstauber@solarspeed.net>
 - version 2.93-0BX02
