@@ -1,0 +1,10 @@
+<item 
+    id="base_ftpusage" 
+    label="[[base-sitestats.ftpusage]]" 
+    description="[[base-sitestats.ftpusageDescription]]" 
+    url="/sitestats/summary?type=ftp&amp;group=[[VAR.group]]"
+>   
+    <parent id="base_siteusage" order="30">
+        <access require="siteAdmin"/>
+    </parent>
+</item>

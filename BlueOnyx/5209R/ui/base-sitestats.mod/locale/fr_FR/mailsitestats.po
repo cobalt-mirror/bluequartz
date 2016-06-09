@@ -1,0 +1,536 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "customizeBut"
+msgstr "[[base-sitestats.customizeBut]]"
+
+msgid "customizeBut_help"
+msgstr "[[base-sitestats.customizeBut_help]]"
+
+msgid "generateBut"
+msgstr "[[base-sitestats.generateBut]]"
+
+msgid "generateBut_help"
+msgstr "[[base-sitestats.generateBut_help]]"
+
+msgid "summaryStats"
+msgstr "Courrier utilisation Statistiques sommaires"
+
+msgid "reportGenerated"
+msgstr "[[base-sitestats.reportGenerated]]"
+
+msgid "reportGenerated_help"
+msgstr "[[base-sitestats.reportGenerated_help]]"
+
+msgid "firstRequest"
+msgstr "Première Email"
+
+msgid "firstRequest_help"
+msgstr "La date de la première dépêche couverte dans ce rapport. [[base-sitestats.requestCoverageHint]]"
+
+msgid "lastRequest"
+msgstr "Dernière Email"
+
+msgid "lastRequest_help"
+msgstr "La date de la dernière dépêche couverte dans ce rapport. [[base-sitestats.requestCoverageHint]]"
+
+msgid "successfulRequests"
+msgstr "Nombre de messages traités"
+
+msgid "successfulRequests_help"
+msgstr "Il s&#39;agit du total de tous les courriels traités."
+
+msgid "bytesTransfered"
+msgstr "[[base-sitestats.bytesTransfered]]"
+
+msgid "bytesTransfered_help"
+msgstr "[[base-sitestats.bytesTransfered_help]]"
+
+msgid "otherStatistics"
+msgstr "Autre courrier Statistiques d&#39;accès"
+
+msgid "vsitesReportBut"
+msgstr "[[base-sitestats.vsitesReportBut]]"
+
+msgid "vsitesReportBut_help"
+msgstr "[[base-sitestats.vsitesReportBut_help]]"
+
+msgid "periodicReportBut"
+msgstr "[[base-sitestats.periodicReportBut]]"
+
+msgid "periodicReportBut_help"
+msgstr "[[base-sitestats.periodicReportBut_help]]"
+
+msgid "historicalReportBut"
+msgstr "[[base-sitestats.historicalReportBut]]"
+
+msgid "historicalReportBut_help"
+msgstr "[[base-sitestats.historicalReportBut_help]]"
+
+msgid "domainReportBut"
+msgstr "Demandes par domaine"
+
+msgid "domainReportBut_help"
+msgstr "Obtenez des rapports montrant les domaines depuis lesquels les demandes étaient originaires."
+
+msgid "typesReportBut"
+msgstr "Demandes par type de fichier"
+
+msgid "typesReportBut_help"
+msgstr "Catégorise les demandes par les types de fichiers."
+
+msgid "requestReportBut"
+msgstr "Email envoyé ou reçu par adresse"
+
+msgid "requestReportBut_help"
+msgstr "Cette fonction rend l&#39;utilisation du courrier par l&#39;utilisateur pour le courrier électronique entrant ou sortant."
+
+msgid "downloadLogBut"
+msgstr "[[base-sitestats.downloadLogBut]]"
+
+msgid "downloadLogBut_help"
+msgstr "[[base-sitestats.downloadLogBut_help]]"
+
+msgid "dailyHistory"
+msgstr "[[base-sitestats.dailyHistory]]"
+
+msgid "weeklyHistory"
+msgstr "[[base-sitestats.weeklyHistory]]"
+
+msgid "monthlyHistory"
+msgstr "[[base-sitestats.monthlyHistory]]"
+
+msgid "dailyHistory_help"
+msgstr "[[base-sitestats.dailyHistory_help]]"
+
+msgid "weeklyHistory_help"
+msgstr "[[base-sitestats.weeklyHistory_help]]"
+
+msgid "monthlyHistory_help"
+msgstr "[[base-sitestats.monthlyHistory_help]]"
+
+msgid "daily"
+msgstr "[[base-sitestats.daily]]"
+
+msgid "hourly"
+msgstr "[[base-sitestats.hourly]]"
+
+msgid "daily_help"
+msgstr "[[base-sitestats.daily_help]]"
+
+msgid "hourly_help"
+msgstr "[[base-sitestats.hourly_help]]"
+
+msgid "domainStats"
+msgstr "Domaine Statistiques"
+
+msgid "domain"
+msgstr "[[base-sitestats.domain]]"
+
+msgid "requests"
+msgstr "Messages"
+
+msgid "requests_help"
+msgstr "Le nombre d&#39;emails traités."
+
+msgid "vsiteStatsOut"
+msgstr "Mail envoyé par le nom d&#39;hôte"
+
+msgid "vsiteStatsIn"
+msgstr "Le courrier reçu par le nom d&#39;hôte"
+
+msgid "bytes"
+msgstr "[[base-sitestats.bytes]]"
+
+msgid "bytes_help"
+msgstr "[[base-sitestats.bytes_help]]"
+
+msgid "pbytes"
+msgstr "[[base-sitestats.pbytes]]"
+
+msgid "pbytes_help"
+msgstr "[[base-sitestats.pbytes_help]]"
+
+msgid "site"
+msgstr "Nom d&#39;hôte"
+
+msgid "site_help"
+msgstr "C&#39;est le nom de la machine ou à laquelle le courrier a été envoyé."
+
+msgid "typeStats"
+msgstr "Demandes par type de fichier"
+
+msgid "filetype"
+msgstr "[[base-sitestats.filetype]]"
+
+msgid "filetype_help"
+msgstr "[[base-sitestats.filetype_help]]"
+
+msgid "vsites_out"
+msgstr "Mail envoyé"
+
+msgid "vsites_out_help"
+msgstr "Cliquez ici pour voir les meilleurs sites à partir desquels mail a été envoyé."
+
+msgid "vsites_in"
+msgstr "Courrier reçu"
+
+msgid "vsites_in_help"
+msgstr "Cliquez ici pour voir les meilleurs sites auxquels mail a été envoyé."
+
+msgid "requestStatsIn"
+msgstr "Mail reçu par adresse"
+
+msgid "requestStatsOut"
+msgstr "Mail envoyé par adresse"
+
+msgid "requestFileOut"
+msgstr "Adresse"
+
+msgid "requestFileOut_help"
+msgstr "L&#39;adresse à partir de laquelle le message a été envoyé. Notez que ceci est basé sur deux e-mails entrants et sortants. Par conséquent, cela peut inclure les adresses ne sont pas hébergés sur ce serveur."
+
+msgid "requestFileIn"
+msgstr "Adresse"
+
+msgid "requestFileIn_help"
+msgstr "L&#39;adresse à laquelle le message a été envoyé. Notez que ceci est basé sur deux e-mails entrants et sortants. Par conséquent, cela peut inclure les adresses ne sont pas hébergés sur ce serveur."
+
+msgid "requestNumber"
+msgstr "Emails"
+
+msgid "requestNumber_help"
+msgstr "Le nombre d&#39;e-mails pour cet utilisateur."
+
+msgid "requestOutBut"
+msgstr "Courriel envoyé"
+
+msgid "requestOutBut_help"
+msgstr "Cliquez ici pour voir les meilleurs adresses à partir desquelles mail a été envoyé."
+
+msgid "requestInBut"
+msgstr "E-mail reçu"
+
+msgid "requestInBut_help"
+msgstr "Cliquez ici pour voir les meilleurs adresses à laquelle le courrier a été envoyé."
+
+msgid "fullDailyDesc"
+msgstr "[[base-sitestats.fullDailyDesc]]"
+
+msgid "fullWeeklyDesc"
+msgstr "[[base-sitestats.fullWeeklyDesc]]"
+
+msgid "fullMonthlyDesc"
+msgstr "[[base-sitestats.fullMonthlyDesc]]"
+
+msgid "hourlySummaryDesc"
+msgstr "[[base-sitestats.hourlySummaryDesc]]"
+
+msgid "dailySummaryDesc"
+msgstr "[[base-sitestats.dailySummaryDesc]]"
+
+## New strings for sendmailanalyzer based /sitestats/summaryEmail:
+
+msgid "sa_stats_label"
+msgstr "Statistiques pour la période:"
+
+msgid "daily_weekly_summary"
+msgstr "Résumé hebdomadaire"
+
+msgid "hourly_summary"
+msgstr "Résumé horaire"
+
+msgid "yearly_summary"
+msgstr "Résumé annuel"
+
+msgid "monthly_summary"
+msgstr "Sommaire mensuel"
+
+msgid "months"
+msgstr "Mois"
+
+msgid "hours"
+msgstr "Heures"
+
+msgid "select_an_alias"
+msgstr "Sélectionnez un alias"
+
+msgid "global_cat_messaging"
+msgstr "+ Messagerie"
+
+msgid "global_cat_spamming"
+msgstr "+ Spamming"
+
+msgid "global_cat_virus"
+msgstr "+ Virus"
+
+msgid "global_cat_notification"
+msgstr "+ Notification"
+
+msgid "global_cat_rejection"
+msgstr "+ Rejet"
+
+msgid "global_cat_status"
+msgstr "+ Statut"
+
+msgid "global_cat_smtpauth"
+msgstr "+ SMTP Auth"
+
+msgid "top_cat_senders"
+msgstr "* Expéditeurs"
+
+msgid "top_cat_recipients"
+msgstr "* Destinataires"
+
+msgid "top_cat_spamming"
+msgstr "* Le spamming"
+
+msgid "top_cat_virus"
+msgstr "* Virus"
+
+msgid "top_cat_notification"
+msgstr "* Notification"
+
+msgid "top_cat_rejection"
+msgstr "* Rejet"
+
+msgid "top_cat_smtpauth"
+msgstr "* SMTP Auth"
+
+msgid "av_spamassassin"
+msgstr "- SpamAssassin"
+
+msgid "sa_nodata"
+msgstr "Pas de données disponibles pour cette période."
+
+msgid "messaging_flows"
+msgstr "flux de messagerie"
+
+msgid "messages"
+msgstr "Messages"
+
+msgid "size"
+msgstr "Taille"
+
+msgid "mean"
+msgstr "Moyenne"
+
+msgid "incoming"
+msgstr "Nouveau"
+
+msgid "local_incomming"
+msgstr "Entrant local"
+
+msgid "total_incomming"
+msgstr "Entrant total"
+
+msgid "outgoing"
+msgstr "Sortant"
+
+msgid "local_delivery"
+msgstr "Livraison locale"
+
+msgid "total_outgoing"
+msgstr "Sortant total"
+
+msgid "inbound"
+msgstr "Inbound"
+
+msgid "outbound"
+msgstr "Outbound"
+
+msgid "number_of_messages"
+msgstr "Nombre de Messages"
+
+msgid "size_mb"
+msgstr "Taille (Mo)"
+
+msgid "percentage"
+msgstr "Pourcentage"
+
+msgid "external_to_internal"
+msgstr "Externe -> Interne"
+
+msgid "external_to_external"
+msgstr "Externe -> Externe"
+
+msgid "internal_to_internal"
+msgstr "Interne -> Interne"
+
+msgid "internal_to_external"
+msgstr "Interne -> externe"
+
+msgid "delivery_direction"
+msgstr "Direction de livraison"
+
+msgid "different_senders_recipients"
+msgstr "Différents expéditeurs/destinataires"
+
+msgid "senders"
+msgstr "Expéditeurs"
+
+msgid "recipients"
+msgstr "Destinataires"
+
+msgid "spamming_flows"
+msgstr "Flux spamming"
+
+msgid "size_per_msg"
+msgstr "Taille/msg"
+
+msgid "spam_delivery_flows"
+msgstr "flux livraison de Spam"
+
+msgid "spamming_flow"
+msgstr "Spamming débit"
+
+msgid "delivery_status_notification"
+msgstr "Delivery Status Notification"
+
+msgid "in_error"
+msgstr "Dans erreur"
+
+msgid "total"
+msgstr "Total"
+
+msgid "dsn_delivery_flows"
+msgstr "flux livraison de DSN"
+
+msgid "dsn_flow"
+msgstr "DSN débit"
+
+msgid "rejection_flows"
+msgstr "Flux rejet"
+
+msgid "syserr_flows"
+msgstr "Flux SYSERR"
+
+msgid "messaging_status"
+msgstr "Messagerie Etat"
+
+msgid "smtpauth_server"
+msgstr "Authentification SMTP: serveur"
+
+msgid "mechanism"
+msgstr "Mécanisme"
+
+msgid "count"
+msgstr "Compter"
+
+msgid "authentication_flow_server"
+msgstr "Authentification Débit: serveur"
+
+msgid "top_sender_relay"
+msgstr "Top Relais de l'expéditeur"
+
+msgid "other"
+msgstr "Autre"
+
+msgid "top_sender_domains"
+msgstr "Top expéditeur de domaine (top 100)"
+
+msgid "top_sender_domain"
+msgstr "Top expéditeur de domaine"
+
+msgid "top_sender_relays"
+msgstr "Top expéditeur relais (top 100)"
+
+msgid "top_sender_addresses"
+msgstr "Adresse Haut de l'expéditeur (top 100)"
+
+msgid "top_sender_address"
+msgstr "Top Adresse de l'expéditeur"
+
+msgid "top_recipient relay"
+msgstr "Top Relais du bénéficiaire"
+
+msgid "top_recipient_domains"
+msgstr "Domaine Haut de bénéficiaire (top 100)"
+
+msgid "top_recipient_domain"
+msgstr "Haut de domaine du destinataire"
+
+msgid "top_recipient_relays"
+msgstr "Relais Top du destinataire (top 100)"
+
+msgid "top_recipient_relay"
+msgstr "Top Relais du bénéficiaire"
+
+msgid "top_recipient_addresses"
+msgstr "Top bénéficiaires Adresse (top 100)"
+
+msgid "top_recipient_address"
+msgstr "Top bénéficiaires Adresse"
+
+msgid "lbl_top_spam_rules"
+msgstr "Top Spams règles"
+
+msgid "lbl_top_spammers_domain"
+msgstr "Top spammeurs domaine"
+
+msgid "lbl_top_spammers_relay"
+msgstr "Top spammeurs Relais"
+
+msgid "lbl_top_spammers_address"
+msgstr "Top spammeurs adresse"
+
+msgid "lbl_top_recipients_address"
+msgstr "Top bénéficiaires Adresse"
+
+msgid "lbl_top_dsn_status"
+msgstr "Top DSN Etat"
+
+msgid "lbl_top_dsn_senders"
+msgstr "Top DSN expéditeurs"
+
+msgid "lbl_top_dsn_relays"
+msgstr "Top DSN Relais"
+
+msgid "lbl_top_dsn_recipients"
+msgstr "Principaux destinataires de DSN"
+
+msgid "lbl_top_rules"
+msgstr "Top Règles"
+
+msgid "lbl_top_domains"
+msgstr "Top Domaines"
+
+msgid "lbl_top_relays"
+msgstr "Top Relais"
+
+msgid "lbl_top_senders"
+msgstr "Top des expéditeurs"
+
+msgid "lbl_top_status"
+msgstr "Top État"
+
+msgid "system_messages"
+msgstr "Les messages système"
+
+msgid "lbl_top_mechanism"
+msgstr "Top Mécanisme"
+
+msgid "lbl_top_relay"
+msgstr "Top Relais"
+
+msgid "lbl_top_AUTHID"
+msgstr "Top AUTHID"
+
+msgid "lbl_topspam_spams"
+msgstr "Top Spams (top 100)"
+
+msgid "lbl_topspam_scores"
+msgstr "Meilleurs scores de spam"
+
+msgid "lbl_topspam_autolearnstats"
+msgstr "Statistiques AUTOlearn"
+
+msgid "top_individual_spam_rules"
+msgstr "Top règles SPAM individuels"

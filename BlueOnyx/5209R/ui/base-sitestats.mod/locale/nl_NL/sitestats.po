@@ -1,0 +1,541 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "selectStat"
+msgstr "Bekijk Gedetailleerde Gebruik ..."
+
+msgid "summary"
+msgstr "Overzicht"
+
+msgid "downloadBut"
+msgstr "Download Inloggen"
+
+msgid "downloadBut_help"
+msgstr "Klik om de usage log te downloaden voor deze dienst. Het logbestand bevat dienstverlenende activiteit begint om middernacht op de datum van de eerste activiteit tot het einde van de dag voor de datum van de laatste activiteit voor de opgegeven toen dit rapport werd gegenereerd data. Als logbestanden zijn verwijderd, kunnen er ontbrekende data in de output logbestand."
+
+msgid "serverusage"
+msgstr "Gebruiksinformatie"
+
+msgid "serverusageDescription"
+msgstr "Klik hier om de server en netwerk service gebruiksstatistieken bladeren."
+
+msgid "netusage"
+msgstr "Netwerk"
+
+msgid "netusageDescription"
+msgstr "Netwerkgebruik statistieken"
+
+msgid "webusage"
+msgstr "Web"
+
+msgid "webusageDescription"
+msgstr "Gebruik webstatistieken"
+
+msgid "ftpusage"
+msgstr "FTP"
+
+msgid "ftpusageDescription"
+msgstr "FTP gebruiksstatistieken"
+
+msgid "mailusage"
+msgstr "E-mail"
+
+msgid "mailusageDescription"
+msgstr "E-mail gebruiksstatistieken"
+
+msgid "generateSettings"
+msgstr "Configureren [[VAR.type]] Rapportageopties"
+
+msgid "generateSettingsVsite"
+msgstr "Configureren [[VAR.type]] Rapportageopties voor [[VAR.fqdn]]"
+
+msgid "customizeBut"
+msgstr "Genereer Nieuw rapport"
+
+msgid "customizeBut_help"
+msgstr "Pas een gebruiksrapport op datum."
+
+msgid "generateBut"
+msgstr "Rapport genereren"
+
+msgid "generateBut_help"
+msgstr "Genereer rapporten met behulp van de opgegeven opties."
+
+msgid "generate"
+msgstr "Genereer rapporten"
+
+msgid "reportGenerated"
+msgstr "Verslag Vernieuwd"
+
+msgid "reportGenerated_help"
+msgstr "Dit is de datum en tijd waarop dit rapport is gegenereerd."
+
+msgid "startDate"
+msgstr "Vanaf Van"
+
+msgid "startDate_help"
+msgstr "Dit is de datum van de eerste activiteit die zal worden opgenomen in het rapport."
+
+msgid "endDate"
+msgstr "Eindigend op"
+
+msgid "endDate_help"
+msgstr "Dit is de datum van de laatste activiteit die zal worden opgenomen in het rapport."
+
+msgid "requestCoverageHint"
+msgstr "Merk op dat de data die in het verslag minder dan de dagen die u hebt geselecteerd als er geen activiteit over het gehele bereik gekozen kunnen worden."
+
+msgid "bytesTransfered"
+msgstr "Gegevens overgedragen"
+
+msgid "bytesTransfered_help"
+msgstr "De totale hoeveelheid gegevens die door deze dienst in de betreffende periode."
+
+msgid "vsitesReportBut"
+msgstr "Gebruik door Virtual Site"
+
+msgid "vsitesReportBut_help"
+msgstr "Hier krijg je een verslag van het gebruik op basis van virtuele sites."
+
+msgid "periodicReportBut"
+msgstr "Periodieke verslagen"
+
+msgid "periodicReportBut_help"
+msgstr "Ontvang rapporten tonen activiteit bij dag of uur."
+
+msgid "historicalReportBut"
+msgstr "Historisch gebruik per dag, week of maand."
+
+msgid "historicalReportBut_help"
+msgstr "Rapporten van het dagelijks, wekelijks of maandelijks gebruik."
+
+msgid "requestReportButweb"
+msgstr "Bestanden Aangevraagd"
+
+msgid "requestReportButweb_help"
+msgstr "Categoriseert verzoeken van de gevraagde bestanden."
+
+msgid "requestReportButftp"
+msgstr "[[base-sitestats.requestReportButweb]]"
+
+msgid "requestReportButftp_help"
+msgstr "[[base-sitestats.requestReportButweb_help]]"
+
+msgid "requestReportButmail"
+msgstr "Afzenders en ontvangers"
+
+msgid "requestReportButmail_help"
+msgstr "Categoriseert mailservice door de afzenders en ontvangers."
+
+msgid "requestReportBut"
+msgstr "Top bestanden aanvragen"
+
+msgid "requestReportBut_help"
+msgstr "Categoriseert verzoeken van de gevraagde bestanden."
+
+msgid "downloadLogBut"
+msgstr "Download logbestand (Alle datums)"
+
+msgid "downloadLogBut_help"
+msgstr "Via deze link kunt u de ruwe logbestand downloaden naar uw lokale computer."
+
+msgid "bytes_help"
+msgstr "Het aantal bytes overgedragen."
+
+msgid "pbytes"
+msgstr "Percentage van Bytes"
+
+msgid "pbytes_help"
+msgstr "Het percentage van de totale overgedragen bytes."
+
+msgid "ipAddr"
+msgstr "IP-adres"
+
+msgid "ipAddr_help"
+msgstr "De IP-adressen voor deze server. Het IP-adres, 127.0.0.1, is voor lokaal netwerkverkeer niet ontvangen van een extern IP-adres."
+
+msgid "site"
+msgstr "Plaats"
+
+msgid "site_help"
+msgstr "De naam van de virtuele plaats. 'Server' staat voor verkeer dat niet is aangesloten bij een site."
+
+msgid "iDomain"
+msgstr "Ontvanger Domeinen"
+
+msgid "iDomain_help"
+msgstr "De domeinen van de ontvanger e-mailadres voor mail afgehandeld door deze server. 'Server' staat voor lokale ontvangers zonder opgegeven domein."
+
+msgid "oDomain"
+msgstr "Sender Domeinen"
+
+msgid "oDomain_help"
+msgstr "De domeinen van de afzender e-mailadressen voor mail afgehandeld door deze server. 'Server' staat voor lokale zenders zonder opgegeven domein."
+
+msgid "Home"
+msgstr "Server"
+
+msgid "requests"
+msgstr "Verzoeken"
+
+msgid "domain"
+msgstr "Domein"
+
+msgid "domain_help"
+msgstr "Het domein waarvan het verzoek afkomstig is. Klanten die niet beschikken over domeinnamen zijn gecategoriseerd als '[[base-sitestats.unresolved numerical addresses]]'. Merk op dat de sommen ingesprongen rijen in de totalen voor hun ouders tr. Bijvoorbeeld, het verkeer voor alle hosts die eindigen op '.com' zal worden weerspiegeld in de rij waarin lijsten '.com' in de kolom Domein."
+
+msgid "dailyHistory"
+msgstr "Dagelijkse Geschiedenis"
+
+msgid "weeklyHistory"
+msgstr "Wekelijkse Geschiedenis"
+
+msgid "monthlyHistory"
+msgstr "Maandelijkse Geschiedenis"
+
+msgid "dailyHistory_help"
+msgstr "Klik hier om historische activiteit zien op een dagelijkse basis."
+
+msgid "weeklyHistory_help"
+msgstr "Klik hier om historische activiteit te zien op een wekelijkse basis."
+
+msgid "monthlyHistory_help"
+msgstr "Klik hier om historische activiteit te zien op een maandelijkse basis."
+
+msgid "daily"
+msgstr "Dagelijks gebruik"
+
+msgid "hourly"
+msgstr "Gebruik van uur van de dag"
+
+msgid "useByDayOfWeek"
+msgstr "Gebruik door Dag van de week"
+
+msgid "weekly"
+msgstr "Wekelijkse Usage"
+
+msgid "monthly"
+msgstr "Maandelijks Usage"
+
+msgid "filetype"
+msgstr "Type bestand"
+
+msgid "filetype_help"
+msgstr "Het type bestand aangevraagd op basis van de bestandsextensie. Bijvoorbeeld, zou een bestand met. Jpg extensie een JPEG-afbeelding zijn."
+
+msgid "requestFile"
+msgstr "Bestand"
+
+msgid "requestFile_help"
+msgstr "De naam van het opgevraagde bestand."
+
+msgid "requestNumber"
+msgstr "Verzoeken"
+
+msgid "requestNumber_help"
+msgstr "Het aantal aanvragen voor dit bestand."
+
+msgid "noDataError"
+msgstr "Er zijn geen gegevens gevonden voor activiteit tijdens de aangegeven periode. Misschien wilt u een andere set van data proberen."
+
+msgid "fullDailyDesc"
+msgstr "Dit rapport toont de cumulatieve activiteit voor elke dag in het rapport opgenomen."
+
+msgid "fullWeeklyDesc"
+msgstr "Dit rapport toont de cumulatieve activiteit voor elke week opgenomen in het rapport."
+
+msgid "fullMonthlyDesc"
+msgstr "Dit rapport toont de cumulatieve activiteit voor elke maand in het rapport opgenomen."
+
+msgid "hourlySummaryDesc"
+msgstr "Dit rapport toont de uurlijkse verdeling van de cumulatieve activiteit."
+
+msgid "dailySummaryDesc"
+msgstr "Dit rapport toont de dagelijkse verdeling van de cumulatieve activiteit."
+
+msgid "gigabyte_abbr"
+msgstr "GB"
+
+msgid "megabyte_abbr"
+msgstr "MB"
+
+msgid "kilobyte_abbr"
+msgstr "KB"
+
+msgid "sitestatsTabName"
+msgstr "Gebruiksinformatie"
+
+msgid "sitestatsTabName_help"
+msgstr "Configureren Virtual gebruik Site statistieken genereren en gebruik geschiedenis bewaring."
+
+msgid "sitestatsEnable"
+msgstr "Statistieken aanzetten Generation"
+
+msgid "sitestatsEnable_help"
+msgstr "Controleer Virtual Site web, FTP en e-mail gebruik van statistieken mogelijk te maken."
+
+msgid "sitestatsConsolidate"
+msgstr "Detail Level"
+
+msgid "sitestatsConsolidate_help"
+msgstr "Het detailniveau bepaalt of dagelijkse statistieken informatiebestanden worden gecombineerd in een maandelijkse statistieken informatie bestand per maand. Dit heeft geen invloed op de statistieken informatie voor de huidige maand. Als Daily is geselecteerd, kunt u rapporten met een waarde van minder dan een maand van de statistieken voor maanden vóór de huidige maand genereren. Als Maandelijks is geselecteerd, kunt u alleen rapporten met de statistieken voor de hele maand al maanden vóór de huidige maand genereren. Statistieken combinatie kan niet ongedaan gemaakt worden voor maanden die al zijn gecombineerd. Selecteren Maandelijks zal minder schijfruimte verbruiken in vergelijking met Daily."
+
+msgid "sitestatsConsolidateDaily"
+msgstr "Dagelijks"
+
+msgid "sitestatsConsolidateMonthly"
+msgstr "Maandelijks"
+
+msgid "sitestatsPurge"
+msgstr "Statistieken Geschiedenis"
+
+msgid "sitestatsPurge_help"
+msgstr "Deze optie bepaalt hoe ver terug in de tijd zal je in staat zijn om te dekken in statistische rapporten zijn. Een langere periode van tijd kunt u rapporten met een langere geschiedenis te genereren ten koste van de schijfruimte."
+
+msgid "bytes"
+msgstr "Bytes"
+
+msgid "never"
+msgstr "Voor altijd"
+
+msgid "month"
+msgstr "1 maand"
+
+msgid "2month"
+msgstr "2 Maanden"
+
+msgid "3month"
+msgstr "3 Maanden"
+
+msgid "6month"
+msgstr "6 Maanden"
+
+msgid "year"
+msgstr "1 Jaar"
+
+msgid "2year"
+msgstr "2 Jaar"
+
+msgid "3year"
+msgstr "3 Jaar"
+
+msgid "4year"
+msgstr "4 Jaar"
+
+msgid "5year"
+msgstr "5 Jaar"
+
+msgid "byIP"
+msgstr "Gebruik van IP-adres"
+
+msgid "sendReceiveByDomain"
+msgstr "Verzenden en ontvangen Domeinen"
+
+msgid "referringSite"
+msgstr "Verwijzende site Report"
+
+msgid "typesReportBut"
+msgstr "Bestandstypen"
+
+msgid "requestorDomain"
+msgstr "Client Domeinen"
+
+msgid "summaryStats"
+msgstr "[[VAR.type]] Statistieken Opsomming"
+
+msgid "summaryStatsVsite"
+msgstr "[[VAR.type]] Statistieken Samenvatting voor [[VAR.fqdn]]"
+
+msgid "otherStatistics"
+msgstr "Gedetailleerde statistieken"
+
+msgid "view"
+msgstr "Uitzicht"
+
+msgid "view_help"
+msgstr "Klik om een ​​gedetailleerd rapport te bekijken."
+
+msgid "reportType"
+msgstr "Verslag"
+
+msgid "reportType_help"
+msgstr "De volgende gedetailleerde statistieken beschikbaar."
+
+msgid "firstRequest"
+msgstr "Eerste activiteit"
+
+msgid "firstRequest_help"
+msgstr "De datum van de eerste activiteit die in dit rapport. Merk op dat de data die in het verslag minder dan de dagen die u hebt geselecteerd als er geen activiteit over het gehele bereik gekozen kunnen worden."
+
+msgid "lastRequest"
+msgstr "Laatste activiteit"
+
+msgid "lastRequest_help"
+msgstr "De datum van de laatste activiteit die in dit rapport. Merk op dat de data die in het verslag minder dan de dagen die u hebt geselecteerd als er geen activiteit over het gehele bereik gekozen kunnen worden."
+
+msgid "successfulRequests"
+msgstr "Totaal Verzoeken"
+
+msgid "successfulRequests_help"
+msgstr "Het aantal individuele transacties deze dienst heeft gemaakt."
+
+msgid "totalSent"
+msgstr "Totaal uitgaand"
+
+msgid "totalSent_help"
+msgstr "Het aantal uitgaande service requests."
+
+msgid "totalReceived"
+msgstr "Totaal ontvangen"
+
+msgid "totalReceived_help"
+msgstr "Het aantal binnenkomende serviceverzoeken."
+
+msgid "distinctFiles"
+msgstr "Verschillende bestanden"
+
+msgid "distinctFiles_help"
+msgstr "Het aantal unieke bestanden onderhouden."
+
+msgid "uniqueHosts"
+msgstr "Unieke Cliënten"
+
+msgid "uniqueHosts_help"
+msgstr "Het aantal unieke computers die dienst verzoeken hebben gemaakt."
+
+msgid "pageRequests"
+msgstr "Succesvolle Verzoeken"
+
+msgid "pageRequests_help"
+msgstr "Dit is het totale aantal succesvolle dienstverzoeken."
+
+msgid "failedRequests"
+msgstr "Mislukte aanvragen"
+
+msgid "failedRequests_help"
+msgstr "Dit is het totale aantal mislukte dienstverzoeken."
+
+msgid "vsiteStatsIn"
+msgstr "Geadresseerden door Domein"
+
+msgid "vsiteStatsOut"
+msgstr "Mail afzenders door Domein"
+
+msgid "Site"
+msgstr "Virtual Site hostnaam"
+
+msgid "Site_help"
+msgstr "De volledig gekwalificeerde domeinnaam van de actieve virtuele terrein. 'Server' staat voor service requests die niet zijn gekoppeld aan een virtuele site."
+
+msgid "requests_help"
+msgstr "Het totale aantal service requests door de aangrenzende Virtual Site."
+
+msgid "vsites_in"
+msgstr "Geadresseerden"
+
+msgid "vsites_in_help"
+msgstr "Klik om de ontvanger domeinen te bekijken voor mail afgehandeld door deze server."
+
+msgid "vsites_out"
+msgstr "Mail afzenders"
+
+msgid "vsites_out_help"
+msgstr "Klik om de afzender domeinen te bekijken voor mail afgehandeld door deze server."
+
+msgid "vsiteStats"
+msgstr "[[VAR.type]] Gebruik door Virtual Site"
+
+msgid "domainStats"
+msgstr "[[VAR.type]] Gebruik door Domein"
+
+msgid "vsiteStatsVsite"
+msgstr "[[VAR.type]] Gebruik door Virtual Site voor [[VAR.fqdn]]"
+
+msgid "domainStatsVsite"
+msgstr "[[VAR.type]] Gebruik door Domein voor [[VAR.fqdn]]"
+
+msgid "requestStats"
+msgstr "Gevraagd [[VAR.type]] gegevens"
+
+msgid "requestStatsVsite"
+msgstr "Gevraagd [[VAR.type]] Gegevens voor [[VAR.fqdn]]"
+
+msgid "typeStats"
+msgstr "[[VAR.type]] Gebruik op bestandstype"
+
+msgid "typeStatsVsite"
+msgstr "[[VAR.type]] Gebruik op bestandstype voor [[VAR.fqdn]]"
+
+msgid "requestStatsOut"
+msgstr "Uitgaande e-mail"
+
+msgid "requestStatsIn"
+msgstr "Inkomende e-mail"
+
+msgid "requestStatsOutVsite"
+msgstr "Mail afzenders via [[VAR.fqdn]]"
+
+msgid "requestStatsInVsite"
+msgstr "Geadresseerden via [[VAR.fqdn]]"
+
+msgid "requestInBut"
+msgstr "Bekijk Geadresseerden"
+
+msgid "requestInBut_help"
+msgstr "Klik om de geadresseerden te bekijken voor berichten behandeld door deze server."
+
+msgid "requestOutBut"
+msgstr "Bekijk afzenders"
+
+msgid "requestOutBut_help"
+msgstr "Klik om de afzenders te bekijken voor berichten behandeld door deze server."
+
+msgid "requestFileIn"
+msgstr "Mail Sender"
+
+msgid "requestFileIn_help"
+msgstr "Dit zijn de afzender e-mailadressen. Deze omvatten mail van gebruikers die leden van de site en mail van externe e-mailadressen gestuurd naar leden van de site."
+
+msgid "requestFileOut"
+msgstr "Mail Ontvanger"
+
+msgid "requestFileOut_help"
+msgstr "Dit zijn de ontvanger e-mailadressen. Deze omvatten mail door gebruikers die lid zijn van deze site en mail die naar de externe e-mailadressen van gebruikers van deze site ontvangen."
+
+msgid "sitestatsSettingsButton"
+msgstr "Instellingen"
+
+msgid "sitestatsSettingsButtonHelp"
+msgstr "Klik om Usage Informatie en Statistieken Generation configureren voor deze website."
+
+msgid "sitestatsSettings"
+msgstr "Gebruik Information De instellingen voor [[VAR.fqdn]]"
+
+msgid "statsQuota"
+msgstr "Gebruik Logs"
+
+msgid "unresolved numerical addresses"
+msgstr "Onbekend"
+
+msgid "serviceName"
+msgstr "Gebruiksinformatie"
+
+msgid "directories"
+msgstr "Indexbestanden"
+
+msgid "cantEnableLogrotate"
+msgstr "Kan logbestand rotatie mogelijk te maken voor deze site."
+
+msgid "systemError"
+msgstr "Een systeem fout opgetreden tijdens het lezen van informatie. Neem contact op met de technische ondersteuning."
+
+msgid "cap_menuServerServerStats"
+msgstr "Toon gebruik informatie"
+

@@ -1,0 +1,9 @@
+<item
+    id="base_vsite_sitestats" label="[[base-sitestats.sitestatsSettingsButton]]"
+    description="[[base-sitestats.sitestatsSettingsButtonHelp]]"
+    url="/sitestats/statSettings?group=[[VAR.group]]"
+>
+    <parent id="base_siteusage" order="90">
+        <access require="siteAdmin"/>
+    </parent>
+</item>

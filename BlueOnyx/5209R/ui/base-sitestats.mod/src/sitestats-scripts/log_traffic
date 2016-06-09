@@ -1,0 +1,112 @@
+#!/bin/bash
+#
+# log_traffic,v 2.0.1 2015/12/13 07:36:00 gregk Exp $
+#  
+# This script maintains and logs the activity on the ip accounting rules.
+# It updates the accounting rules based on the currently running interfaces,
+# and then captures the current use, logs that, zeros the counters.
+#
+# This updates the accounting rules and logs as often as it is run. 
+# Therefore this frequency determines the amount of resolution you will
+# get in the logs and how long it will take for an ip to get accounted for
+# after it is added.
+
+# Hardcode locale to be English, otherwise we may utilities may output Japanese strings that would mess up our parsing.
+LC_ALL="en_US"
+LANG="en_US"
+
+LOGFILE="/var/log/ipacct"			# log file we generate
+IPTABLES="/sbin/iptables"			# iptable binary
+IFCONFIG="/sbin/ifconfig"			# ifconfig binary
+IPLISTNOW="/var/state/acct/iplist.now"		# Temp file - list of ip addresses from ifconfig
+IPLISTBEFORE="/var/state/acct/iplist.before"	# Temp file - list of current ip addresses we monitor
+
+# Disable error messages - Some IpTables commands we use to check status generate cosmetic errors. Lets suppress them
+exec 3>&2
+exec 2> /dev/null
+
+# Command line option clean - to reset all rules that we use
+if [ "$1" = "clean" ]; then
+	iptables -D INPUT -j acctin 2>&1 > /dev/null
+	iptables -D OUTPUT -j acctout 2>&1 > /dev/null
+	iptables -F acctin 2>&1 > /dev/null
+	iptables -F acctout 2>&1 > /dev/null
+	iptables -X acctin 2>&1 > /dev/null
+	iptables -X acctout 2>&1 > /dev/null
+fi
+
+# Create our accounting tables if required
+for X in acctin acctout; do
+	$IPTABLES -L $X -vn 2>&1 > /dev/null
+	if [ $? -eq 1 ]; then
+		$IPTABLES -N $X
+ 		$IPTABLES -A $X -j RETURN
+	fi
+done
+
+# Generate a list of IP's that we are already monitoring
+$IPTABLES -Z -vS acctin | grep "acctin -d" | cut -d " " -f 4 | cut -d "/" -f 1 | sort | uniq > $IPLISTBEFORE
+
+# Generate a list of IP's that appear in ifconfig
+$IFCONFIG | grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}" | grep -v "^255\|^0" | sort | uniq > $IPLISTNOW
+
+# Add new IP addresses that are in ifconfig but not yet monitored
+for ip in `diff $IPLISTBEFORE $IPLISTNOW | grep ">" | cut -d " " -f 2`
+do
+	$IPTABLES -I acctin -d "$ip/32" -j RETURN 
+	$IPTABLES -I acctout -s "$ip/32" -j RETURN
+done
+
+# Generate our traffic file with a couple of one-liners
+DATE=`date +"[%d/%b/%Y:%H:%M:%S %z]"`
+$IPTABLES -Z -vS acctin | grep "^.A" | sed -e "s#acctin -c#acctin -d Other/32 -c#" -e "s/.* -d //" -e "s#/32##" | cut -d " " -f 1,4 | sed -e "s# # - - $DATE \"GET /acctin HTTP/1.1\" 200 #" -e 's#$# "" ""#' >> $LOGFILE
+
+$IPTABLES -Z -vS acctout | grep "^.A.*-s" | sed -e "s#acctout -c#acctout -s Other/32 -c#" -e "s/.* -s //" -e "s#/32##" | cut -d " " -f 1,4 | sed -e "s# # - - $DATE \"GET /acctout HTTP/1.1\" 200 #" -e 's#$# "" ""#' >> $LOGFILE
+
+# Delete IP addresses from rules for removed virtual interfaces
+for X in `diff $IPLISTBEFORE $IPLISTNOW | grep "<" | grep -v 0.0.0.0 | cut -d " " -f 2`
+do
+	$IPTABLES -D acctin -d "$ip/32" -j RETURN
+	$IPTABLES -D acctout -s "$ip/32" -j RETURN
+done
+
+# Check acctin reference from INPUT and add/repair if required
+CHECK=`$IPTABLES --list INPUT -nv | grep all | grep -c acctin`
+if [ $CHECK -eq 0 ]; then
+	$IPTABLES -I INPUT -j acctin
+else
+	if [ $CHECK -gt 1 ]; then
+		echo Error - multiple IP accounting references detected - trying to fix
+		$IPTABLES -D INPUT -j acctin
+	else
+		# Be greedy - make us first in the list
+		CHECK=`$IPTABLES --list INPUT -nv | grep all | head -1 | grep -c acctin`
+		if [ $CHECK -eq 0 ]; then
+			$IPTABLES -D INPUT -j acctin
+			$IPTABLES -I INPUT -j acctin
+		fi
+	fi
+fi
+
+# Check acctout reference from OUTPUT and add/repair if required
+CHECK=`$IPTABLES --list OUTPUT -nv | grep all | grep -c acctout`
+if [ $CHECK -eq 0 ]; then
+	$IPTABLES -I OUTPUT -j acctout
+else
+	if [ $CHECK -gt 1 ]; then
+		echo Error - multiple IP accounting references detected - trying to fix
+		$IPTABLES -D OUTPUT -j acctout
+	else
+		# Be greedy - make us first in the list
+		CHECK=`$IPTABLES --list OUTPUT -nv | grep all | head -1 | grep -c acctout`
+		if [ $CHECK -eq 0 ]; then
+			$IPTABLES -D OUTPUT -j acctout
+			$IPTABLES -I OUTPUT -j acctout
+		fi
+	fi
+fi
+
+# Re-enable error messages
+exec 2>&3
+
+rm $IPLISTNOW $IPLISTBEFORE
