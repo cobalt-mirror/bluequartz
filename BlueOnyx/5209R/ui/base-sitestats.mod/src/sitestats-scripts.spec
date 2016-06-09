@@ -1,7 +1,7 @@
 Summary: Server and site statistics for web, ftp, email, and network traffic
 Name: base-sitestats-scripts
-Version: 1.0
-Release: 26BX33%{?dist}
+Version: 2.0
+Release: 1BX01%{?dist}
 Vendor: Project BlueOnyx
 License: Sun modified BSD
 Group: System Environment/BlueOnax
@@ -9,6 +9,7 @@ Source: sitestats-scripts.tar.gz
 BuildRoot: /tmp/sitestats-scripts
 BuildArchitectures: noarch
 Requires: webalizer, tmpwatch
+Requires: iptables-services
 
 %description
 This package contains the scripts for processing logfiles
@@ -18,26 +19,29 @@ generating and viewing reports.
 %post
 
 if [ -f /bin/systemctl ]; then
-  # Check if CCEd is up:
-  if [ ! -S /usr/sausalito/cced.socket ]; then
-    # Not up - restarting:
-    /usr/sausalito/sbin/cced.init rehash &>/dev/null || :
-  fi
 
   ### Fix fucking RH Firewall shit:
   # Stop and disable firewalld:
   systemctl stop firewalld.service
   systemctl disable firewalld.service
+
   # Turn module unload off for iptables:
   /bin/sed -i -e 's@^IPTABLES_MODULES_UNLOAD="yes"@IPTABLES_MODULES_UNLOAD="no"@' /etc/sysconfig/iptables-config
+
   # Enable and start iptables:
-  /sbin/chkconfig iptables on
-  /sbin/service iptables restart &>/dev/null || :
+  systemctl enable iptables.service
+  systemctl restart iptables.service &>/dev/null || :
+
   # Flush previous iptables rules and load our standard rules:
   /etc/cron.hourly/log_traffic clean
 fi
 
 %changelog
+
+* Thu Jun 09 2016 Michael Stauber <mstauber@solarspeed.net> 2.0-1BX01
+- Added requirement for 'iptables-services' as we need it on EL7.
+- Modified post-install routine to use systemctl to enable and restart
+  iptables.
 
 * Fri Dec 18 2015 Michael Stauber <mstauber@solarspeed.net> 1.0-26BX33
 - Fix in /etc/cron.hourly/log_traffic
