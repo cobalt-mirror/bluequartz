@@ -30,6 +30,7 @@ fi
 
 # Check if APF is present:
 if [ -d /etc/apf ];then
+
   # APF present. Disable and stop iptables:
   rm -f /etc/sysconfig/iptables
   touch /etc/sysconfig/iptables
@@ -39,17 +40,44 @@ if [ -d /etc/apf ];then
 else
   # Flush existing iptables rules:
   iptables --flush
-  
-  # Generate accounting rules for iptables:
-  /etc/cron.hourly/log_traffic &>/dev/null || :
-  
-  # Save new iptables rules:
-  iptables-save > /etc/sysconfig/iptables
 
-  # Enable and start iptables:
-  systemctl enable iptables.service
-  systemctl start iptables.service &>/dev/null || :
+  if [$1 -eq 1]; then
 
+    # New Install
+
+    # Zap existing /etc/sysconfig/iptables
+    rm -f /etc/sysconfig/iptables
+    touch /etc/sysconfig/iptables
+    echo "# Empty, because log_traffic hasn't run yet." > /etc/sysconfig/iptables
+
+    # Enable iptables:
+    systemctl enable iptables.service
+
+  else
+
+    # Upgrade of already installed RPM:
+
+    # Zap existing /etc/sysconfig/iptables
+    rm -f /etc/sysconfig/iptables
+    touch /etc/sysconfig/iptables
+    echo "# Empty, because log_traffic hasn't run yet." > /etc/sysconfig/iptables
+
+    # Generate accounting rules for iptables:
+    /etc/cron.hourly/log_traffic &>/dev/null || :
+    
+    # Save new iptables rules:
+    iptables-save > /etc/sysconfig/iptables
+
+    # Enable iptables:
+    systemctl enable iptables.service
+
+    # Start iptables:
+    if [ $1 -gt 1 ]; then
+      # RPM upgrade
+      systemctl restart iptables.service &>/dev/null || :
+    fi
+
+  fi
 fi
 
 %changelog
