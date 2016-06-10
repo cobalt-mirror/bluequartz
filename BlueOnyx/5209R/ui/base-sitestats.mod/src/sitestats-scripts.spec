@@ -84,7 +84,15 @@ fi
 
 * Fri Jun 10 2016 Michael Stauber <mstauber@solarspeed.net> 2.0-1BX03
 - Proper fix for preventing that the standard RHEL7 firewall rules
-  kick in.
+  kick in. We now check if 'apf' is installed and deal with it accordingly.
+  Additionally we make sure in all cases and eventualities (CD install,
+  yum install, yum update) that /etc/sysconfig/iptables is present in a
+  way that 'iptables-services' will be forced to honor its 'config-noreplace'
+  option and wíll not replace it with one that contains stock firewall rules.
+- Modified cronjob src/sitestats-scripts/log_traffic with provisions for
+  'apf' again and to also make sure that the cronjob will wipe out and
+  leave a clean (empty of populated - depending on APF presence) 
+  /etc/sysconfig/iptables config file.
 
 * Thu Jun 09 2016 Michael Stauber <mstauber@solarspeed.net> 2.0-1BX02
 - Disabled iptables.
