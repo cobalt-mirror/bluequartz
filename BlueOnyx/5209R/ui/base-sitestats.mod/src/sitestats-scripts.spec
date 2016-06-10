@@ -1,7 +1,7 @@
 Summary: Server and site statistics for web, ftp, email, and network traffic
 Name: base-sitestats-scripts
 Version: 2.0
-Release: 1BX02%{?dist}
+Release: 1BX03%{?dist}
 Vendor: Project BlueOnyx
 License: Sun modified BSD
 Group: System Environment/BlueOnax
@@ -19,24 +19,44 @@ generating and viewing reports.
 %post
 
 if [ -f /bin/systemctl ]; then
-
   ### Fix fucking RH Firewall shit:
   # Stop and disable firewalld:
   systemctl stop firewalld.service
   systemctl disable firewalld.service
+fi
 
-  # Turn module unload off for iptables:
-  /bin/sed -i -e 's@^IPTABLES_MODULES_UNLOAD="yes"@IPTABLES_MODULES_UNLOAD="no"@' /etc/sysconfig/iptables-config
+# Turn module unload off for iptables:
+/bin/sed -i -e 's@^IPTABLES_MODULES_UNLOAD="yes"@IPTABLES_MODULES_UNLOAD="no"@' /etc/sysconfig/iptables-config
 
-  # Disable and start iptables:
+# Check if APF is present:
+if [ -d /etc/apf ];then
+  # APF present. Disable and stop iptables:
+  rm -f /etc/sysconfig/iptables
+  touch /etc/sysconfig/iptables
+  echo "# Empty, because APF is present" > /etc/sysconfig/iptables
   systemctl disable iptables.service
   systemctl stop iptables.service &>/dev/null || :
+else
+  # Flush existing iptables rules:
+  iptables --flush
+  
+  # Generate accounting rules for iptables:
+  /etc/cron.hourly/log_traffic &>/dev/null || :
+  
+  # Save new iptables rules:
+  iptables-save > /etc/sysconfig/iptables
 
-  # Flush previous iptables rules and load our standard rules:
-  /etc/cron.hourly/log_traffic clean
+  # Enable and start iptables:
+  systemctl enable iptables.service
+  systemctl start iptables.service &>/dev/null || :
+
 fi
 
 %changelog
+
+* Fri Jun 10 2016 Michael Stauber <mstauber@solarspeed.net> 2.0-1BX03
+- Proper fix for preventing that the standard RHEL7 firewall rules
+  kick in.
 
 * Thu Jun 09 2016 Michael Stauber <mstauber@solarspeed.net> 2.0-1BX02
 - Disabled iptables.
