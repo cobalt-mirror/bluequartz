@@ -1,7 +1,7 @@
 Summary: Server and site statistics for web, ftp, email, and network traffic
 Name: base-sitestats-scripts
 Version: 2.0
-Release: 1BX01%{?dist}
+Release: 1BX02%{?dist}
 Vendor: Project BlueOnyx
 License: Sun modified BSD
 Group: System Environment/BlueOnax
@@ -28,15 +28,18 @@ if [ -f /bin/systemctl ]; then
   # Turn module unload off for iptables:
   /bin/sed -i -e 's@^IPTABLES_MODULES_UNLOAD="yes"@IPTABLES_MODULES_UNLOAD="no"@' /etc/sysconfig/iptables-config
 
-  # Enable and start iptables:
-  systemctl enable iptables.service
-  systemctl restart iptables.service &>/dev/null || :
+  # Disable and start iptables:
+  systemctl disable iptables.service
+  systemctl stop iptables.service &>/dev/null || :
 
   # Flush previous iptables rules and load our standard rules:
   /etc/cron.hourly/log_traffic clean
 fi
 
 %changelog
+
+* Thu Jun 09 2016 Michael Stauber <mstauber@solarspeed.net> 2.0-1BX02
+- Disabled iptables.
 
 * Thu Jun 09 2016 Michael Stauber <mstauber@solarspeed.net> 2.0-1BX01
 - Added requirement for 'iptables-services' as we need it on EL7.
