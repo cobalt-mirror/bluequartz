@@ -21,8 +21,8 @@ generating and viewing reports.
 if [ -f /bin/systemctl ]; then
   ### Fix fucking RH Firewall shit:
   # Stop and disable firewalld:
-  systemctl stop firewalld.service
-  systemctl disable firewalld.service
+  systemctl stop firewalld.service &>/dev/null || :
+  systemctl disable firewalld.service &>/dev/null || :
 fi
 
 # Turn module unload off for iptables:
@@ -35,7 +35,7 @@ if [ -d /etc/apf ];then
   rm -f /etc/sysconfig/iptables
   touch /etc/sysconfig/iptables
   echo "# Empty, because APF is present" > /etc/sysconfig/iptables
-  systemctl disable iptables.service
+  systemctl disable iptables.service &>/dev/null || :
   systemctl stop iptables.service &>/dev/null || :
 else
   # Flush existing iptables rules:
@@ -69,7 +69,7 @@ else
     iptables-save > /etc/sysconfig/iptables
 
     # Enable iptables:
-    systemctl enable iptables.service
+    systemctl enable iptables.service &>/dev/null || :
 
     # Start iptables:
     if [ $1 -gt 1 ]; then
