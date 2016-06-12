@@ -97,7 +97,7 @@ fi
 * Sun Jun 12 2016 Michael Stauber <mstauber@solarspeed.net> 4.0.0-0BX37
 - Pre-Uninstall logic fixes.
 
-* Mon Jun 13 2016 Greg Kuhnert <gkuhnert@compassnetworks.com.au> 4.0.0-0BX36
+* Sun Jun 12 2016 Greg Kuhnert <gkuhnert@compassnetworks.com.au> 4.0.0-0BX36
 - Modified Swatch unit file - It was not starting. Made it dependent on
   network being up only.
 - Modified swatch.sh to cause it to wait for any constructors before
