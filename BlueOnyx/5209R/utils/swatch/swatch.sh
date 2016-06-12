@@ -41,17 +41,6 @@ while [ $? -eq 0 -a $TIMEOUT -gt 0 ]; do
 done
 debug "Constructors all finished"
 
-# Pause to wait for constructors to stop running if the box is just booting up
-debug "Waiting for constructors to finish"
-pgrep -f cce_construct
-while [ $? -eq 0 ]; do
-	debug "Sleeping"
-	sleep 1
-	pgrep -f cce_construct
-done
-debug "Constructors all finished"
-
-
 debug "Checking swatch lockfile"
 if [ -f $lockfile ] ; then
 	$FIND $lockfile -type f -cmin +25 -print | $XARGS $REM >/dev/null 2>&1
