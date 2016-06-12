@@ -41,7 +41,7 @@ else
   # Flush existing iptables rules:
   iptables --flush
 
-  if [$1 -eq 1]; then
+  if [ $1 -eq 1 ]; then
 
     # New Install
 
