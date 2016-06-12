@@ -1,7 +1,7 @@
 Summary: System Watcher
 Name: swatch
 Version: XX_VER_XX
-Release: 0BX36%{?dist}
+Release: 0BX37%{?dist}
 Vendor: Project BlueOnyx
 License: BSD
 Group: System Environment/BlueOnyx
@@ -84,7 +84,7 @@ fi
 
 %preun
 if [ -f /usr/bin/systemctl ]; then
-  if [ "$1" -eq "1" ];then 
+  if [ $1 -eq 0 ];then 
     systemctl stop swatch.service >/dev/null 2>&1 || :
     systemctl disable swatch.service >/dev/null 2>&1 || :
     rm -f /usr/lib/systemd/system/swatch.service
@@ -93,6 +93,9 @@ if [ -f /usr/bin/systemctl ]; then
 fi
 
 %changelog
+
+* Sun Jun 05 2016 Michael Stauber <mstauber@solarspeed.net> 4.0.0-0BX37
+- Pre-Uninstall logic fixes.
 
 * Mon Jun 13 2016 Greg Kuhnert <gkuhnert@compassnetworks.com.au> 4.0.0-0BX36
 - Modified Swatch unit file - It was not starting. Made it dependent on
