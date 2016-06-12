@@ -38,6 +38,15 @@ else
         $REM -f /tmp/.swatch.lock
 fi
 
+if [ -f /usr/bin/systemctl ]; then
+  if [ ! -f /usr/lib/systemd/system/swatch.service ];then
+    cp /usr/sausalito/swatch/swatch.service /usr/lib/systemd/system/swatch.service
+    systemctl daemon-reload >/dev/null 2>&1 || :
+    systemctl enable swatch.service >/dev/null 2>&1 || :
+  fi
+fi
+
+
 # Pause to wait for constructors to stop running  - max of 5 minutes
 TIMEOUT=300
 WAITFOR=cce_construct
