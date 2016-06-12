@@ -84,7 +84,7 @@ fi
 
 %preun
 if [ -f /usr/bin/systemctl ]; then
-  if [ "$1" eq "1" ];then 
+  if [ "$1" -eq "1" ];then 
     systemctl stop swatch.service >/dev/null 2>&1 || :
     systemctl disable swatch.service >/dev/null 2>&1 || :
     rm -f /usr/lib/systemd/system/swatch.service
