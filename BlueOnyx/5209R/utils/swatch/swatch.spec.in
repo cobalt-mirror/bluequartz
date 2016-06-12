@@ -94,6 +94,10 @@ fi
 
 %changelog
 
+* Sun Jun 12 2016 Greg Kuhnert <gkuhnert@compassnetworks.com.au> 4.0.0-BX38
+- Added debugging into swatch.sh
+- Moved the wait for constructor check to before the lock file checks
+
 * Sun Jun 12 2016 Michael Stauber <mstauber@solarspeed.net> 4.0.0-0BX37
 - Pre-Uninstall logic fixes.
 
