@@ -1,6 +1,6 @@
 [Unit]
 Description = Swatch - Service Watcher
-After = syslog.target nss-lookup.target network.target cced.init.service httpd.service admserv.service dovecot.service sendmail.service xinetd.service
+After = network.service
 
 [Service]
 Type=oneshot

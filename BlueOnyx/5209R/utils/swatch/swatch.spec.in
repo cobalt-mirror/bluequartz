@@ -1,7 +1,7 @@
 Summary: System Watcher
 Name: swatch
 Version: XX_VER_XX
-Release: 0BX35%{?dist}
+Release: 0BX36%{?dist}
 Vendor: Project BlueOnyx
 License: BSD
 Group: System Environment/BlueOnyx
@@ -91,6 +91,12 @@ if [ -f /usr/bin/systemctl ]; then
 fi
 
 %changelog
+
+* Mon Jun 13 2016 Greg Kuhnert <gkuhnert@compassnetworks.com.au> 4.0.0-0BX36
+- Modified Swatch unit file - It was not starting. Made it dependent on
+  network being up only.
+- Modified swatch.sh to cause it to wait for any constructors before
+  running, with a timeout of 5 minutes.
 
 * Sun Jun 05 2016 Michael Stauber <mstauber@solarspeed.net> 4.0.0-0BX35
 - Modified swatch.cron to remove fix_syslog.sh run

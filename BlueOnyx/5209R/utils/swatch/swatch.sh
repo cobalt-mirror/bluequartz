@@ -38,6 +38,16 @@ else
         $REM -f /tmp/.swatch.lock
 fi
 
+# Pause to wait for constructors to stop running  - max of 5 minutes
+TIMEOUT=300
+WAITFOR=cce_construct
+pgrep -f $WAITFOR > /dev/null
+while [ $? -eq 0 -a $TIMEOUT -gt 0 ]; do
+        sleep 1
+        ((TIMEOUT--))
+        pgrep -f $WAITFOR > /dev/null
+done
+
 # Run hotfix script:
 /usr/sausalito/sbin/hotfixes.sh
 
