@@ -147,19 +147,22 @@ while ( my ($pkgname, $value) = each(%$CODB_Installed_PKGs_flat) ) {
 $PerformedAutoInstallHash;
 
 if (scalar(@autoinstall_OIDs) gt "0") {
-    foreach $oid (@autoinstall_OIDs) {
-        ($ok, $UpdatePKG) = $cce->get($oid);
-        &debug_msg("Performing autoinstall of PKG $UpdatePKG->{'name'} \n");
-        if ($UpdatePKG->{'location'}) {
+    if (-f "/var/lib/rpm/.rpm.lock") {
+        # Do NOT run PKG auto-update if the RPM database is currently locked!
+        foreach $oid (@autoinstall_OIDs) {
+            ($ok, $UpdatePKG) = $cce->get($oid);
+            &debug_msg("Performing autoinstall of PKG $UpdatePKG->{'name'} \n");
+            if ($UpdatePKG->{'location'}) {
 
-            # Perform the autoinstall:
-            &debug_msg("Performing autoinstall of PKG $UpdatePKG->{'name'} via $UpdatePKG->{'location'} \n");
-            system("/usr/sausalito/sbin/pkg_install.pl $UpdatePKG->{'OID'}");
+                # Perform the autoinstall:
+                &debug_msg("Performing autoinstall of PKG $UpdatePKG->{'name'} via $UpdatePKG->{'location'} \n");
+                system("/usr/sausalito/sbin/pkg_install.pl $UpdatePKG->{'OID'}");
 
-            # Keep track of what we did:
-            push @PerformedAutoInstall, $UpdatePKG->{'name'};
-            $PerformedAutoInstallHash->{"$UpdatePKG->{'name'}"}->{'version'} = $UpdatePKG->{'version'};
-            $PerformedAutoInstallHash->{"$UpdatePKG->{'name'}"}->{'nameTag'} = $UpdatePKG->{'nameTag'};
+                # Keep track of what we did:
+                push @PerformedAutoInstall, $UpdatePKG->{'name'};
+                $PerformedAutoInstallHash->{"$UpdatePKG->{'name'}"}->{'version'} = $UpdatePKG->{'version'};
+                $PerformedAutoInstallHash->{"$UpdatePKG->{'name'}"}->{'nameTag'} = $UpdatePKG->{'nameTag'};
+            }
         }
     }
 }
