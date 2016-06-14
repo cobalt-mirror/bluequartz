@@ -1,6 +1,6 @@
 [Unit]
 Description = Swatch - Service Watcher
-After = network.service
+After = cced.init.service
 
 [Service]
 Type=oneshot
