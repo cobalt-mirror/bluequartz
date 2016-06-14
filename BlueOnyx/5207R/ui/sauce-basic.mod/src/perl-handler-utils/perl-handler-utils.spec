@@ -1,7 +1,7 @@
 Summary: Perl modules that contain useful utility functions for handlers.
 Name: perl-handler-utils
 Version: 1.4.0
-Release: 0BX14%{?dist}
+Release: 0BX15%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -33,6 +33,11 @@ This package contains a number of perl modules that contain useful
 utility functions for writing cced event handler scripts.
 
 %changelog
+
+* Tue Jun 14 2016 Michael Stauber <mstauber@solarspeed.net> 1.4.0-0BX15
+- More Systemd related improvements. Now that we split the unit files
+  for cced.init in two, we need special provisions to run it depending
+  on which init transaction we want to run when triggering cced.init
 
 * Sat Jun 04 2016 Michael Stauber <mstauber@solarspeed.net> 1.4.0-0BX14
 - More Systemd madness in relation with restarting Apache. I really had

@@ -92,6 +92,24 @@ sub service_run_init
         return(1);
     }
 
+    #
+    ### Special case cced.init:
+    #
+
+    if ((($service eq 'cced.init') || ($service eq 'cced')) && (-f '/usr/bin/systemctl')) {
+        if (-f '/usr/sausalito/sbin/cced.init') {
+            &debug_msg("Special case cced.init $arg: Using /usr/sausalito/sbin/cced.init $arg");
+            $wtf = `/usr/sausalito/sbin/cced.init $arg`;
+            chomp($wtf);
+            &debug_msg("Result: $wtf");
+            # Return 1 on success instead of the standard unix command 0
+            if ($wtf == 0) {
+                return 1;
+            }
+            return 0;
+        }
+    }
+
     if ($service eq 'crond') {
         `killall -9 crond`;
         # Restarts Service:
