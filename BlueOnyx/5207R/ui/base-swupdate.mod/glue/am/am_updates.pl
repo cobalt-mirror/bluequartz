@@ -147,7 +147,10 @@ while ( my ($pkgname, $value) = each(%$CODB_Installed_PKGs_flat) ) {
 $PerformedAutoInstallHash;
 
 if (scalar(@autoinstall_OIDs) gt "0") {
-    if (-f "/var/lib/rpm/.rpm.lock") {
+    # Check if RPM-Database is currently open:
+    $rpmlock = `lsof -n | grep "/var/lib/rpm/__db"|wc -l`;
+    chomp($rpmlock);
+    if ($rpmlock eq "0") {
         # Do NOT run PKG auto-update if the RPM database is currently locked!
         foreach $oid (@autoinstall_OIDs) {
             ($ok, $UpdatePKG) = $cce->get($oid);
