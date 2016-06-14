@@ -18,7 +18,7 @@ if (@OIDS) {
     my $configured = $obj->{configured};
     my $admin_pw = $obj->{enabled};
 
-    if (-d '/var/lock/mailman') {
+    if (! -d '/var/lock/mailman') {
         system("mkdir /var/lock/mailman");
         system("chown mailman:mailman /var/lock/mailman");
     }
