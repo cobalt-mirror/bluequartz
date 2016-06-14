@@ -1,6 +1,6 @@
 [Unit]
 Description=BlueOnyx - Setup Assistent
-Before=network.target cced.init.service admserv.service sendmail.service httpd.service sshd.service
+After=cced.init.service cced.construct.service
 
 [Service]
 Type=oneshot

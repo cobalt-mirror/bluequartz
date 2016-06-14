@@ -19,6 +19,11 @@ for FILE in *; do
 done
 )
 
+if [ ! -f /var/lib/dovecot/ssl-parameters.dat ]; then
+    /usr/libexec/dovecot/ssl-params >/dev/null 2>&1 || :
+fi
+
+
 exit 0
 
 # 
