@@ -94,6 +94,9 @@ fi
 
 %changelog
 
+* Tue Jun 13 2016 Greg Kuhnert <gkuhnert@compassnetworks.com.au> 4.0.0-BX40
+- Dont run cced_unstuck if we are in the process of doing a firstboot
+
 * Mon Jun 13 2016 Michael Stauber <mstauber@solarspeed.net> 4.0.0-BX39
 - Revised swatch.service again.
 

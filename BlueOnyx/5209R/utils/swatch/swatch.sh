@@ -21,13 +21,20 @@ function debug {
 debug "Running fix_syslog.sh"
 /usr/sausalito/sbin/fix_syslog.sh
 
-debug "Running check_cce.pl"
-if [ "$CCEDUP" != "SUCCESS" ];then
-	debug "Running cced_unstuck.sh"
-	/usr/sausalito/bin/cced_unstuck.sh >/dev/null 2>&1
-	sleep 5
+# Wait for CODB to be created on first boot if required
+# We will assume we need a dozen objects or more
+debug "Checking that CODB exists"
+if [ -e /usr/sausalito/codb ]; then
+	OBJCOUNT=`ls /usr/sausalito/codb/objects/ | wc -l`
+	if [ $OBJCOUNT -gt 5 ]; then
+		debug "Running check_cce.pl"
+		if [ "$CCEDUP" != "SUCCESS" ];then
+			debug "Running cced_unstuck.sh"
+			/usr/sausalito/bin/cced_unstuck.sh >/dev/null 2>&1
+			sleep 5
+		fi
+	fi
 fi
-
 # Pause to wait for constructors to stop running  - max of 5 minutes
 debug "Waiting for constructors to finish"
 TIMEOUT=300
