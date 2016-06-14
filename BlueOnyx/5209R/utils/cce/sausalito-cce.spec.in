@@ -221,6 +221,9 @@ fi
 
 %changelog
 
+* Tue Jun 14 2016 Michael Stauber <mstauber@solarspeed.net> 0.99.2-1BX08
+- Small change in server/cced.init for a proper response on 'reload'.
+
 * Mon Jun 13 2016 Michael Stauber <mstauber@solarspeed.net> 0.99.2-1BX07
 - New approach to CCEd Unit-Files for Systemd.
 - Modified server/cced.init.service
