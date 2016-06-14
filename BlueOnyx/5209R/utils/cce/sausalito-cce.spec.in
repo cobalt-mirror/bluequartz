@@ -149,21 +149,23 @@ if [ -f /usr/bin/systemctl ];then
   /usr/bin/systemctl daemon-reload
 fi
 
-if [ "$1" -eq "1" ]; then
+if [ $1 -eq 1 ]; then
   # Install
-  if [ `cat /etc/build |grep 5209R|wc -l` = "1" ]; then
+  if [ -f /usr/bin/systemctl ];then
     /usr/bin/systemctl enable cced.init.service 
+    /usr/bin/systemctl enable cced.construct.service 
     /sbin/chkconfig --add pam_abl
   else 
     /sbin/chkconfig --add cced.init
     /sbin/chkconfig --add pam_abl
   fi
-fi
-if [ "$1" -gt "1" ]; then
+else
   # Upgrade
-  if [ `cat /etc/build |grep 5209R|wc -l` = "1" ]; then
+  if [ -f /usr/bin/systemctl ];then
     /usr/bin/systemctl enable cced.init.service 
+    /usr/bin/systemctl enable cced.construct.service 
     /usr/bin/systemctl restart cced.init.service 
+    /usr/bin/systemctl restart cced.construct.service 
     /sbin/chkconfig --add pam_abl
     /sbin/service pam_abl restart >/dev/null 2>&1
   else 
@@ -176,10 +178,12 @@ fi
 
 %preun server
 # only run if this is the last instance to be removed
-if [ "$1" -eq "0" ]; then
-  if [ `cat /etc/build |grep 5209R|wc -l` = "1" ]; then
+if [ $1 -eq 0 ]; then
+  if [ -f /usr/bin/systemctl ];then
     /usr/bin/systemctl stop cced.init.service
+    /usr/bin/systemctl stop cced.construct.service 
     /usr/bin/systemctl disable cced.init.service
+    /usr/bin/systemctl disable cced.construct.service 
     /usr/bin/systemctl daemon-reload
     /sbin/service pam_abl stop
     /sbin/chkconfig --del pam_abl
@@ -193,7 +197,7 @@ fi
 
 %post client
 # only run on install, not upgrade
-if [ "$1" = "1" ]; then
+if [ $1 -eq 1 ]; then
 	LIB=/usr/sausalito/lib
 	cp /etc/ld.so.conf /etc/ld.so.conf.bak
 	egrep "^$LIB[ 	]*$" /etc/ld.so.conf >/dev/null \
@@ -216,6 +220,17 @@ if [ "$1" -ge "1" ]; then
 fi
 
 %changelog
+
+* Mon Jun 13 2016 Michael Stauber <mstauber@solarspeed.net> 0.99.2-1BX07
+- New approach to CCEd Unit-Files for Systemd.
+- Modified server/cced.init.service
+- Added server/cced.construct.service
+- Modified server/cced.init
+- Added server/final_constructor.sh
+- Revised RPM post-install and pre-uninstall section.
+- Purpose: cced.init now is a truer Unit-File than before.
+- Constructor run split off into separate dependent unit file.
+- final_constructor.sh runs the runonce stuff plus swatch.
 
 * Mon May 02 2016 Michael Stauber <mstauber@solarspeed.net> 0.99.2-1BX06
 - Modified server/basetypes.schema to update the regexp for 'password' to

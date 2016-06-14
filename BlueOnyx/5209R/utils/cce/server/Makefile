@@ -56,12 +56,16 @@ install: all
 	@echo Installed $(DAEMON) in $(CCE_SBINDIR)
 	@$(INSTALL) $(INST_BINFLAGS) cced.init $(CCE_SBINDIR)
 	@echo Installed cced.init in $(CCE_SBINDIR)
+	@$(INSTALL) $(INST_BINFLAGS) final_constructor.sh $(CCE_SBINDIR)
+	@echo Installed final_constructor.sh in $(CCE_SBINDIR)
 	@$(INSTALL) $(INST_BINFLAGS) start_cced.sh $(CCE_SBINDIR)
 	@echo Installed start_cced.sh in $(CCE_SBINDIR)
 	@$(INSTALL) $(INST_BINFLAGS) start_cced.sh $(CCE_SBINDIR) 
 	@echo Installed start_cced.sh in $(CCE_SBINDIR) 
 	@$(INSTALL) $(INST_BINFLAGS) cced.init.service $(SYSTEMD_INITDIR)
 	@echo Installed cced.init.service in $(SYSTEMD_INITDIR)
+	@$(INSTALL) $(INST_BINFLAGS) cced.construct.service $(SYSTEMD_INITDIR)
+	@echo Installed cced.construct.service in $(SYSTEMD_INITDIR)
 	@$(INSTALL) $(INST_BINFLAGS) $(CLIENT) $(CCE_BINDIR)
 	@echo Installed $(CLIENT) in $(CCE_BINDIR)
 	@$(INSTALL) $(INST_BINFLAGS) cce_construct $(CCE_BINDIR)
@@ -81,6 +85,7 @@ install: all
 uninstall:
 	$(RM) -f $(CCE_SBINDIR)/$(DAEMON)
 	$(RM) -f $(CCE_SBINDIR)/cced.init
+	$(RM) -f $(CCE_SBINDIR)/final_constructor.sh
 	$(RM) -f $(CCE_BINDIR)/$(CLIENT)
 	$(RM) -f $(CCE_SCHEMADIR)/cced.schema
 	$(RM) -f $(CCE_SCHEMADIR)/basetypes.schema
@@ -88,6 +93,7 @@ uninstall:
 	$(RM) -f $(SYS_PAMDIR)/cced
 	$(RM) -f $(SYS_PAMDIR)/system-auth-cce
 	$(RM) -f $(SYSTEMD_INITDIR)/cced.init.service
+	$(RM) -f $(SYSTEMD_INITDIR)/cced.construct.service
 
 clean:
 	$(RM) -f $(OBJS) $(DAEMON) $(CLIENT) .depend

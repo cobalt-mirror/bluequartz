@@ -22,54 +22,64 @@ export LANG=en_US
 export LC_ALL=en_US.UTF-8
 export LINGUAS="en_US ja da_DK de_DE"
 
+red=`tput setaf 1`
+green=`tput setaf 2`
+reset=`tput sgr0`
+
 # See how we were called.
 case "$1" in
   start)
 	# Start daemons.
 	echo -n "Starting cced: "
-	daemon /usr/sausalito/sbin/cced
+	systemctl --job-mode=flush --no-ask-password restart cced.init
 	RETVAL=$?
-	echo
+	if [ $RETVAL -eq 0 ];then
+		echo -n "[ ${green}OK${reset} ]"
+	else 
+		echo -n "[ ${red}FAIL${reset} ]"
+	fi
+	echo ""
 	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/cced
-	echo -n "Running CCE constructors: "
-	/usr/sausalito/bin/cce_construct > /dev/null 2>&1
-	logger -p local0.debug -t "CONSTRUCTOR" /usr/sausalito/handlers/base/network/change_route.pl -c 2>/dev/null
-	echo done
+	echo -n "Running CCEd constructors: "
+	/usr/sausalito/bin/cce_construct >/dev/null 2>&1 || :
+	RETVAL=$?
+	if [ $RETVAL -eq 0 ];then
+		echo -n "[ ${green}OK${reset} ]"
+	else 
+		echo -n "[ ${red}FAIL${reset} ]"
+	fi
+	echo ""
 	;;
   hash)
 	# Start daemons.
-	echo -n "Starting cced: "
-	daemon /usr/sausalito/sbin/cced
+	systemctl --job-mode=flush --no-ask-password restart cced.init
 	RETVAL=$?
-	echo
 	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/cced
 	echo -n "Skipping run of CCE constructors: "
 	/usr/sausalito/handlers/base/network/change_route.pl -c 2>/dev/null
-	echo done
+	RETVAL=$?
+	if [ $RETVAL -eq 0 ];then
+		echo -n "[ ${green}OK${reset} ]"
+	else 
+		echo -n "[ ${red}FAIL${reset} ]"
+	fi
+	echo ""
 	;;
   stop)
 	# Stop daemons.
 	echo -n "Shutting down cced: "
-	killall -TERM cced >/dev/null 2>&1
-
-	I=300
-	ps --no-headers -C cced > /dev/null 2>&1
-	R=$?
-	while [ "$R" != "1" -a "$I" -gt 0 ]; do
-		sleep 1;
-		killall -TERM cced >/dev/null 2>&1
-		I=$((I-1))
-		ps --no-headers -C cced > /dev/null 2>&1
-		R=$?
-	done
-	if [ "$I" = "0" ]; then
-		killall -9 cced >/dev/null 2>&1
+	systemctl --job-mode=flush --no-ask-password stop cced.init
+	RETVAL=$?
+	if [ $RETVAL -eq 0 ];then
+		echo -n "[ ${green}OK${reset} ]"
+	else 
+		echo -n "[ ${red}FAIL${reset} ]"
 	fi
-	echo done
+	echo ""
 	rm -f /var/lock/subsys/cced
 	;;
   status)
-	status cced
+	systemctl status cced.service
 	RETVAL=$?
 	;;
   restart)
@@ -80,13 +90,19 @@ case "$1" in
   reload)
 	echo -n "Reloading cced configuration: "
 	killall -HUP cced >/dev/null 2>&1
-	echo done
+	echo ""
 	;;
   rehash)
 	echo -n "Rehashing cced configuration: "
-	echo
-	$0 stop
-	$0 hash
+	killall -HUP cced >/dev/null 2>&1
+	$0 hash >/dev/null 2>&1
+	RETVAL=$?
+	if [ $RETVAL -eq 0 ];then
+		echo -n "[ ${green}OK${reset} ]"
+	else 
+		echo -n "[ ${red}FAIL${reset} ]"
+	fi
+	echo ""
 	;;
   *)
 	echo "Usage: cced {start|stop|restart|reload|status|hash|rehash}"
