@@ -130,7 +130,7 @@ if [ $1 -eq 1 ]; then
 fi
 
 # update product information
-if [ $1 -gt 1 ] && [ -S /usr/sausalito/cced.socket ]; then
+if [ -S /usr/sausalito/cced.socket ]; then
   /usr/sausalito/sbin/updateSystem.pl
 fi
 
@@ -151,22 +151,21 @@ if [ $1 -eq 1 ]; then
     /bin/mv /etc/mail/sendmail.cf /etc/mail/sendmail.cf.bxold
     /usr/sausalito/scripts/initSendmail.sh
   fi
-
-  # update procmailrc
-  if [ ! -f /etc/procmailrc ]; then
-    /usr/sausalito/scripts/initProcmail.sh
-  else
-    grep '^ORGMAIL=$HOME/mbox' /etc/procmailrc > /dev/null 2>&1
-    if [ $? = 1 ]; then
-      echo 'ORGMAIL=$HOME/mbox' >> /etc/procmailrc
-    fi
-    grep '^DEFAULT=$ORGMAIL' /etc/procmailrc > /dev/null 2>&1
-    if [ $? = 1 ]; then
-      echo 'DEFAULT=$ORGMAIL' >> /etc/procmailrc
-    fi
-  fi
 fi
 
+# update procmailrc
+if [ ! -f /etc/procmailrc ]; then
+  /usr/sausalito/scripts/initProcmail.sh
+else
+  grep '^ORGMAIL=$HOME/mbox' /etc/procmailrc > /dev/null 2>&1
+  if [ $? = 1 ]; then
+    echo 'ORGMAIL=$HOME/mbox' >> /etc/procmailrc
+  fi
+  grep '^DEFAULT=$ORGMAIL' /etc/procmailrc > /dev/null 2>&1
+  if [ $? = 1 ]; then
+    echo 'DEFAULT=$ORGMAIL' >> /etc/procmailrc
+  fi
+fi
 
 if [ -f /etc/sysconfig/saslauthd ]; then
   /usr/bin/perl -pi -e 's|^MECH=shadow|MECH=pam|g'  /etc/sysconfig/saslauthd
