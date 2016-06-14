@@ -101,6 +101,7 @@ information for [VENDOR]-[SERVICE].
 
 # Enable CCEd:
 systemctl enable cced.init.service &>/dev/null || :
+systemctl enable cced.construct.service &>/dev/null || :
 
 # Check if CCEd is up:
 if [ ! -S /usr/sausalito/cced.socket ]; then
@@ -134,49 +135,51 @@ if [ $1 -gt 1 ] && [ -S /usr/sausalito/cced.socket ]; then
 fi
 
 # update sendmail config files
-/bin/grep 'setup for BlueOnyx' /etc/mail/sendmail.mc > /dev/null 2>&1
-if [ $? = 0 ]; then
-  /bin/mv /etc/mail/sendmail.mc /etc/mail/sendmail.mc.bxold
-  /bin/mv /etc/mail/sendmail.cf /etc/mail/sendmail.cf.bxold
-  /usr/sausalito/scripts/initSendmail.sh
+if [ $1 -eq 1 ]; then
+  # Pretty please: Only on new installs, not updates!
+  /bin/grep 'setup for BlueOnyx' /etc/mail/sendmail.mc > /dev/null 2>&1
+  if [ $? = 0 ]; then
+    /bin/mv /etc/mail/sendmail.mc /etc/mail/sendmail.mc.bxold
+    /bin/mv /etc/mail/sendmail.cf /etc/mail/sendmail.cf.bxold
+    /usr/sausalito/scripts/initSendmail.sh
+  fi
+
+  # Make sure sendmail.mc has confMAX_RCPTS_PER_MESSAGE:
+  /bin/grep 'confMAX_RCPTS_PER_MESSAGE' /etc/mail/sendmail.mc > /dev/null 2>&1
+  if [ $? = 0 ]; then
+    /bin/mv /etc/mail/sendmail.mc /etc/mail/sendmail.mc.bxold
+    /bin/mv /etc/mail/sendmail.cf /etc/mail/sendmail.cf.bxold
+    /usr/sausalito/scripts/initSendmail.sh
+  fi
+
+  # update procmailrc
+  if [ ! -f /etc/procmailrc ]; then
+    /usr/sausalito/scripts/initProcmail.sh
+  else
+    grep '^ORGMAIL=$HOME/mbox' /etc/procmailrc > /dev/null 2>&1
+    if [ $? = 1 ]; then
+      echo 'ORGMAIL=$HOME/mbox' >> /etc/procmailrc
+    fi
+    grep '^DEFAULT=$ORGMAIL' /etc/procmailrc > /dev/null 2>&1
+    if [ $? = 1 ]; then
+      echo 'DEFAULT=$ORGMAIL' >> /etc/procmailrc
+    fi
+  fi
 fi
 
-# Make sure sendmail.mc has confMAX_RCPTS_PER_MESSAGE:
-/bin/grep 'confMAX_RCPTS_PER_MESSAGE' /etc/mail/sendmail.mc > /dev/null 2>&1
-if [ $? = 0 ]; then
-  /bin/mv /etc/mail/sendmail.mc /etc/mail/sendmail.mc.bxold
-  /bin/mv /etc/mail/sendmail.cf /etc/mail/sendmail.cf.bxold
-  /usr/sausalito/scripts/initSendmail.sh
-fi
-
-# update procmailrc
-if [ ! -f /etc/procmailrc ]; then
-  /usr/sausalito/scripts/initProcmail.sh
-else
-  grep '^ORGMAIL=$HOME/mbox' /etc/procmailrc > /dev/null 2>&1
-  if [ $? = 1 ]; then
-    echo 'ORGMAIL=$HOME/mbox' >> /etc/procmailrc
-  fi
-  grep '^DEFAULT=$ORGMAIL' /etc/procmailrc > /dev/null 2>&1
-  if [ $? = 1 ]; then
-    echo 'DEFAULT=$ORGMAIL' >> /etc/procmailrc
-  fi
-fi
 
 if [ -f /etc/sysconfig/saslauthd ]; then
   /usr/bin/perl -pi -e 's|^MECH=shadow|MECH=pam|g'  /etc/sysconfig/saslauthd
 else
   echo 'MECH=pam' > /etc/sysconfig/saslauthd
 fi
-/usr/sausalito/constructor/base/email/syncEmailService.pl
-#/sbin/chkconfig --add blueonyx
-systemctl enable blueonyx.service > /dev/null 2>&1
 
-# install pgp key
-#/bin/rpm -q gpg-pubkey-f888eeac-47462ece > /dev/null 2>&1
-#if [ $? = 1 ]; then
-#  /bin/rpm --import /usr/share/doc/bluequartz-release-5106R/RPM-GPG-KEY-BlueQuartz-5100R
-#fi
+if [ $1 -eq 1 ]; then
+  # Pretty please: Only on new installs, not updates!
+  /usr/sausalito/constructor/base/email/syncEmailService.pl
+fi
+
+systemctl enable blueonyx.service > /dev/null 2>&1
 
 # install BlueOnyx pgp key
 /bin/rpm -q gpg-pubkey-5202f88b-491b00bc > /dev/null 2>&1
@@ -301,8 +304,8 @@ fi
 
 # for distributions
 %if "%centos" == "7"
-%triggerin glue -- iptables
-/bin/cp /usr/sausalito/triggers/iptables/iptables-CentOS5.init /etc/init.d/iptables
+#%triggerin glue -- iptables
+#/bin/cp /usr/sausalito/triggers/iptables/iptables-CentOS5.init /etc/init.d/iptables
 %triggerin glue -- initscripts
 /bin/cp /usr/sausalito/triggers/initscripts/ifup-CentOS5 /sbin/ifup
 %triggerin glue -- httpd
@@ -349,6 +352,11 @@ fi
 <end $TRIGGERUN>
 
 <begin $CHANGELOG>
+
+* Tue Jun 14 2016 Michael Stauber <mstauber@solarspeed.net> 4.20160614-BX30
+- Small fixes in RPM post-install section to only run the Email related
+  commands on first installs, but not upgrades. Disabled copying over of
+  iptables InitV startup script. We do have a proper Unit-File for it now.
 
 * Mon Jun 13 2016 Michael Stauber <mstauber@solarspeed.net> 4.20160613-BX29
 - Modified glue/configs/systemd/blueonyx.service
