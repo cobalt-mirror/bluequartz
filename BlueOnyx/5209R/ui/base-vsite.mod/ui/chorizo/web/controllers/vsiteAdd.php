@@ -77,13 +77,16 @@ class VsiteAdd extends MX_Controller {
                     $errors[$errNum] = urldecode($errMsg);
                 }
                 else {
-                    if (isset($errMsg->key)) {
+                    if ((isset($errMsg->key)) && (isset($errMsg->message))) {
                         // We already have an error Object. Use it:
                         $errors[$errNum] = ErrorMessage($i18n->get($errMsg->message, true, array('key' => $errMsg->key)) . '<br>&nbsp;');
                     }
-                    else {
+                    elseif (isset($errMsg->message)) {
                         // Error message object without key:
                         $errors[$errNum] = ErrorMessage($i18n->get($errMsg->message, true) . '<br>&nbsp;');
+                    }
+                    else {
+                        # Nothing to see.
                     }
                 }
             }
