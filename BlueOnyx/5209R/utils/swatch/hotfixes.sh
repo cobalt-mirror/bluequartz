@@ -67,5 +67,11 @@ if [ -f /usr/lib/systemd/system/auditd.service ];then
     fi
 fi
 
+# Create Dovecot SSL parameters (DH-stuff) if it's missing:
+if [ ! -f /var/lib/dovecot/ssl-parameters.dat ]; then
+    /usr/libexec/dovecot/ssl-params &>/dev/null
+fi
+
+
 exit
 
