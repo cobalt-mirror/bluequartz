@@ -54,6 +54,10 @@ my $add_raid_pkg = 1 if ($raid);
 
 my $disks = Cobalt::RAID::raid_get_numdisk();
 
+if ( $disks !~ /^\d+$/ ) {
+	$disks=0;
+}
+
 if (@oids == 1) {
     # The level can only be set once (reconfiguration is not allowed)
     # therefore we don't set a level now for configurable systems
