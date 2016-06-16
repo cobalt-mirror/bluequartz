@@ -11,7 +11,6 @@
 
 my $confdir = '/etc/httpd/conf.d';
 
-use Sauce::Config;
 use FileHandle;
 use File::Copy;
 use CCE;
@@ -87,7 +86,14 @@ if ($check_net eq "1") {
   # Do this for all known PHP versions:
   for $phpVer (keys %known_php_versions) {
     $pear_path = $known_php_versions{$phpVer} . "/bin/pear";
+    $module_registry_path = $known_php_versions{$phpVer} . "/share/pear/.registry/";
     $top_module_path = $known_php_versions{$phpVer} . "/share/pear";
+
+    if (! -f $pear_path) {
+      # $pear_path doesn't exist, skipping.
+      next;
+    }
+
     # Special provisions for the PHP of the OS:
     if ($phpVer eq "PHPOS") {
       system("cp /etc/php.ini /etc/php.ini.bak");
@@ -101,7 +107,11 @@ if ($check_net eq "1") {
     }
     # Do this for all %required_modules:
     for $module (keys %required_modules) {
-      if (-f $pear_path) {
+      my $module_regi_check = $module_registry_path . lc $module . ".reg";
+      if (-f $module_regi_check) {
+        next;
+      }
+      if ((-f $pear_path) && (! -f $module_regi_check)) {
         $module_check = `$pear_path list|grep $module|wc -l`;
         chomp($module_check);
         if (($module_check == "0") && (-f $pear_path)) {
