@@ -42,6 +42,10 @@ system("chmod 0600 /usr/share/ssl/certs/sendmail.pem");
 
 system("/bin/cp /etc/admserv/certs/key /etc/pki/dovecot/private/dovecot.pem");
 system("/bin/cp /etc/admserv/certs/certificate /etc/pki/dovecot/certs/dovecot.pem");
+if (-f '/etc/admserv/certs/ca-certs') {
+    # If AdmServ has an intermediate, then copy it to the ca-bundle as well:
+    system("cat /etc/admserv/certs/ca-certs >> /usr/share/ssl/certs/ca-bundle.crt")
+}
 
 #
 ## Handle TLS oddity on 5106R:
@@ -451,8 +455,8 @@ sub debug_msg {
 }
 
 # 
-# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 
