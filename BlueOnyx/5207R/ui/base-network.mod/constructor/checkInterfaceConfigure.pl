@@ -7,30 +7,60 @@ use Network;
 
 my $DEBUG = 0;
 
+# Connect to CCE
 my $cce = new CCE;
 $cce->connectuds();
 
-my $configure = 1;
+# Get system object, and some current values from it
+my @oids = $cce->find('System');
+my $sys_oid = $oids[0];
+my ($ok, $sys_obj) = $cce->get($sys_oid, 'Network');
+my $configure = $sys_obj->{'interfaceConfigure'};
+my $pooling = $sys_obj->{'pooling'};
 
 # If we're using DHCP (like in AWS) or if we're under OpenVZ, then we cannot
 # change the IP address ranges via the GUI:
-if ((-f "/etc/is_aws") || (-f "/proc/user_beancounters")) {
-	$configure = 0;
+if (  (-f "/etc/is_aws") || (-f "/proc/user_beancounters")) {
+	if ($configure == 1 ) {
+		$configure = 0;
+		$cce->set($sys_oid, 'Network', { 'interfaceConfigure' => $configure });
+	}
+} else {
+	if ($configure == 0 ) {
+		$configure = 1;
+		$cce->set($sys_oid, 'Network', { 'interfaceConfigure' => $configure });
+	}
 }
 
-my @oids = $cce->find('System');
-my $sys_oid = $oids[0];
-my ($ok) = $cce->set($sys_oid, 'Network', { 'interfaceConfigure' => $configure });
-
-@oids = $cce->find('IPPoolingRange');
-if ($#oids < 0 && $configure == 0) {
-  my @net_oids = $cce->find('Network', {'real' => 1});
+# Add entries into IP pooling for all interfaces if they dont already exist
+# from currently configured interfaces
+if ($configure == 0) {
+  my @net_oids = $cce->find('Network');
   foreach my $oid (@net_oids) {
     my ($ok, $obj) = $cce->get($oid);
     my $ipaddr = $obj->{'ipaddr'};
-    $ok = $cce->create('IPPoolingRange', {'min' => $ipaddr, 'max' => $ipaddr});
+    @oids = $cce->find('IPPoolingRange', {'min' => $ipaddr});
+    if ($#oids < 0) {
+      $ok = $cce->create('IPPoolingRange', {'min' => $ipaddr, 'max' => $ipaddr});
+    }
   }
-  my ($ok) = $cce->set($sys_oid, 'Network', {'pooling' => 1});
+
+  # Delete any entries for interfaces that have been deleted
+  # Note: It is possible to fail on deletion if a vsite still exists
+  # and the ip has been removed from the virtualisation layer.
+
+  @oids = $cce->find('IPPoolingRange');
+  foreach my $oid (@oids) {
+    my ($ok, $obj) = $cce->get($oid);
+    my $ipaddr = $obj->{'min'};
+    my @net_oids = $cce->find('Network', {'ipaddr' => $ipaddr});
+    if ($#net_oids < 0 ) {
+      my ($ok) = $cce->destroy($oid);
+    }
+  }
+  if ($pooling == 0) {
+    my ($ok) = $cce->set($sys_oid, 'Network', {'pooling' => 1});
+  }
 }
 
 $cce->bye('SUCCESS');
