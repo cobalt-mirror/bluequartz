@@ -31,7 +31,6 @@ $php_dso_location = '/usr/lib64/httpd/modules/libphp5.so';
 $extra_PHP_basepath = '/home/solarspeed/';
 
 use CCE;
-use Data::Dumper;
 use Sauce::Config;
 use Sauce::Util;
 use FileHandle;
@@ -385,10 +384,8 @@ sub feedthemonster {
         ($sys_oid) = $cce->find('PHP');
         ($ok, $sys) = $cce->get($sys_oid);
         &debug_msg("CLASS 'PHP' was found! (Object $system_oid) Using it!!! \n");
-        if ($sys->{'PHP_version'} eq "") {
-            ($ok) = $cce->set($sys_oid, '',{ 'PHP_version' => $PHP_version });
-        }
-        ($ok) = $cce->set($sys_oid, '',{
+
+        $new_data = {
             'PHP_version_os' => $PHP_version,  
             'safe_mode' => $CONFIG{"safe_mode"},  
             'safe_mode_allowed_env_vars' => $CONFIG{"safe_mode_allowed_env_vars"},   
@@ -409,7 +406,29 @@ sub feedthemonster {
             'max_input_vars' => $CONFIG{"max_input_vars"},
             'memory_limit' => $CONFIG{"memory_limit"},   
             'php_ini_location' => $php_ini  
-        });
+        };
+
+        # Check if the values in both hashes are identical or if we need to update CODB:
+        $codb_update_needed = '0';
+        # Keys we ignore in our check between new data and previous CODB state:
+        @ignore_keys = ('show_safemode', 'applicable', 'safe_mode_exception', 'force_update', 'CLASS', 'fpm_max_children', 'OID', 'register_globals_exception', 'CLASSVER', 'PHP_version');
+        foreach my $key (keys($sys)) {
+            if ($sys->{$key} ne $new_data->{$key}) {
+                if (in_array(\@ignore_keys, $key)) {
+                    next;
+                }
+                &debug_msg("Need to update CODB as $key is different.\n");
+                $codb_update_needed = '1';
+            }
+        }
+
+        if ($sys->{'PHP_version'} eq "") {
+            ($ok) = $cce->set($sys_oid, '',{ 'PHP_version' => $PHP_version });
+        }
+
+        if ($codb_update_needed eq "1") {
+            ($ok) = $cce->set($sys_oid, '', $new_data);
+        }
 
         if (($CONFIG{"mysql.default_socket"} eq "") || ($CONFIG{"mysqli.default_socket"} eq "") || ($CONFIG{"pdo_mysql.default_socket"} eq "") ||
             (!$CONFIG{"mysql.default_socket"}) || (!$CONFIG{"mysqli.default_socket"}) || (!$CONFIG{"pdo_mysql.default_socket"})) {
@@ -467,12 +486,18 @@ sub debug_msg {
     }
 }
 
+sub in_array {
+    my ($arr,$search_for) = @_;
+    my %items = map {$_ => 1} @$arr; # create a hash out of the array values
+    return (exists($items{$search_for}))?1:0;
+}
+
 $cce->bye('SUCCESS');
 exit(0);
 
 # 
-# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 
