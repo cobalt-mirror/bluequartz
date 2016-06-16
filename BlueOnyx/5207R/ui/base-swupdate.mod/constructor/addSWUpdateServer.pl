@@ -20,19 +20,27 @@ if (-e "/etc/sysconfig/yum-autoupdate") {
 }
 
 my @OIDS = $cce->find('SWUpdateServer');
-# create a default SWUpdateServer object if none exists, use default
-# properties in update.schema file
 
-foreach $oid (@OIDS) {
-    my ($ok, $obj) = $cce->destroy($oid);
+# Check if SWUpdateServer object has the right data. If it has wrong data, fix it.
+# If it's missing, create it.
+if ($OIDS[0] ne "") {
+    my ($ok, $SWUpdateServer) = $cce->get($OIDS[0]);
+    if ($SWUpdateServer->{location} ne 'newlinq.blueonyx.it') {
+        $cce->set($OIDS[0], '', { 'location' => 'newlinq.blueonyx.it', 'name' => 'default', 'enabled' => '1' });
+    }
 }
+else {
+    foreach $oid (@OIDS) {
+        my ($ok, $obj) = $cce->destroy($oid);
+    }
 
-# create SWUpdateServer object
-$cce->create('SWUpdateServer', {
-    'name'        => 'default',
-    'enabled'     => 1,
-    'location'    => 'newlinq.blueonyx.it',
-});
+    # create SWUpdateServer object
+    $cce->create('SWUpdateServer', {
+        'name'        => 'default',
+        'enabled'     => 1,
+        'location'    => 'newlinq.blueonyx.it',
+    });
+}
 
 mkdir($package_dir, 0755) unless -d ($package_dir);
 chown((getpwnam(Sauce::Config::groupdir_owner))[2,3], $package_dir);
@@ -46,16 +54,16 @@ if (@OIDS) {
     # If Update-Interval is 'Never' (no longer supported), then change it to 'Daily':
     if ($interval eq "Never") {
         $interval = 'Daily';
+        $cce->set($OIDS[0], 'SWUpdate', { updateInterval => $interval });
     }
-    $cce->set($OIDS[0], 'SWUpdate', { updateInterval => $interval });
 }
 
 $cce->bye('SUCCESS');
 exit 0;
 
 # 
-# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 
