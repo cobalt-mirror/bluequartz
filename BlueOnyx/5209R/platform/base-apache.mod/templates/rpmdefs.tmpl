@@ -146,8 +146,8 @@ fi
 # A lot of BX servers have ImageMagick installed, which in turn installs and activates the avahi-daemon.
 # This daemon is not really needed and certainly should not be running. Hence we stop it and turn it off:
 if [ -f /etc/avahi/avahi-daemon.conf ]; then
-	systemctl disable avahi-daemon
-	systemctl stop avahi-daemon --no-block
+	systemctl disable avahi-daemon >/dev/null 2>&1 || :
+	systemctl stop avahi-daemon --no-block >/dev/null 2>&1 || :
 fi
 
 # Fix login links in preview config:
@@ -166,16 +166,8 @@ fi
   #/usr/sausalito/sbin/SSL_fixer.pl
 #fi
 
-# Run Swatch to get Apache back up if SSL_fixer.pl let it fell on its face:
-if [ -f /usr/sbin/swatch ]; then
-  /usr/sbin/swatch
-fi
-
 # Rehash/Restart CCEd and Apache for good measure:
-if [ -S /usr/sausalito/cced.socket ]; then
-    /usr/sausalito/sbin/cced.init rehash
-    /sbin/service httpd restart
-fi
+touch /usr/sausalito/yumcce/restart
 
 if [ -f /usr/bin/systemctl ]; then
 
@@ -183,13 +175,15 @@ if [ -f /usr/bin/systemctl ]; then
 	cp /usr/sausalito/configs/systemd/php-fpm.service /usr/lib/systemd/system/php-fpm.service
 
 	# Reload
-	systemctl daemon-reload --no-block
+	systemctl daemon-reload --no-block >/dev/null 2>&1 || :
 
 	# Enable service php-fpm:
-	systemctl enable php-fpm.service
+	systemctl enable php-fpm.service >/dev/null 2>&1 || :
 
 	# Start service php-fpm:
-	systemctl restart php-fpm.service --no-block
+  if [ $1 -gt 1 ] ; then
+    systemctl restart php-fpm.service --no-block >/dev/null 2>&1 || :
+  fi
 fi
 
 <end glue>
@@ -223,6 +217,10 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Thu Jun 16 2016 Michael Stauber <mstauber@solarspeed.net> 2.1.1-0BX42
+- Small fixes in constructor/fix_php_conf.pl for some speed increase.
+- Cleanups in post-install section.
 
 * Sat Jan 09 2016 Michael Stauber <mstauber@solarspeed.net> 2.1.1-0BX41
 - Fixes in constructor/fix_php_conf.pl
