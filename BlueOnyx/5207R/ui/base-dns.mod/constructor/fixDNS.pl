@@ -14,6 +14,7 @@ my $cce = new CCE;
 
 $cce->connectuds();
 
+$md5_orig = `cat /etc/sysconfig/named /usr/lib/systemd/system/named-chroot.service | md5sum`;
 
 my $sysconfig = "/etc/sysconfig/named";
 $ret = Sauce::Util::editfile($sysconfig, *fix_sysconfig_named);
@@ -67,19 +68,27 @@ my $running = 0;
 
 #print "RUNNING: $running, ". $obj->{enabled}."\n";
 
+$md5_new = `cat /etc/sysconfig/named /usr/lib/systemd/system/named-chroot.service | md5sum`;
+
 # do the right thing
 if (!$running && $obj->{enabled}) {
   Sauce::Service::service_set_init($SERVICE, 'on');
-  Sauce::Service::service_run_init($SERVICE, 'start');
-  sleep(1); # wait for named to really start
+  if ($md5_new ne $md5_orig) {
+    Sauce::Service::service_run_init($SERVICE, 'start');
+    sleep(1); # wait for named to really start
+  }
 }
 elsif ($running && !$obj->{enabled}) {
   Sauce::Service::service_set_init($SERVICE, 'off');
-  Sauce::Service::service_run_init($SERVICE, 'stop');
+  if ($md5_new ne $md5_orig) {
+    Sauce::Service::service_run_init($SERVICE, 'stop');
+  }
 }
 elsif ($running && $obj->{enabled}) {
   Sauce::Service::service_set_init($SERVICE, 'on');
-  Sauce::Service::service_run_init($SERVICE, 'restart');
+  if ($md5_new ne $md5_orig) {
+    Sauce::Service::service_run_init($SERVICE, 'restart');
+  }
 }
 
 $cce->bye('SUCCESS');
@@ -128,8 +137,8 @@ sub fix_unitfile_named {
 }
 
 # 
-# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2010 Bluapp AB, Rickard Osser <rickard.osser@bluapp.com>
 # All Rights Reserved.
 # 
