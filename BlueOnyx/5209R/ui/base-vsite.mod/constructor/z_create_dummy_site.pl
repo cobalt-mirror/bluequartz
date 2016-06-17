@@ -25,7 +25,7 @@ $cce->connectuds();
 ($ok, $network) = $cce->get($sys_oid);
 
 # Make sure there is no Vsite yet, that the license isn't accepted yet and that we know the primary IP:
-if ((not scalar($cce->find('Vsite'))) && ($network->{'ipaddr'} ne "") && ($system->{'isLicenseAccepted'} == "0")) {
+if ((not scalar($cce->find('Vsite'))) && ($network->{'ipaddr'} ne "") && ($system->{'isLicenseAccepted'} == "0") && (! -f "/tmp/.dummyvsite")) {
 
         # Create the dummy Vsite:
         ($ok) = $cce->create('Vsite', {
@@ -53,6 +53,7 @@ if ((not scalar($cce->find('Vsite'))) && ($network->{'ipaddr'} ne "") && ($syste
         if ($sys_oid) {
                 ($ok, $sys) = $cce->get($sys_oid);
                 ($ok) = $cce->destroy($sys_oid);
+                system("touch /tmp/.dummyvsite");
         }
 
 }
@@ -61,8 +62,8 @@ $cce->bye('SUCCESS');
 exit(0);
 
 # 
-# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 
