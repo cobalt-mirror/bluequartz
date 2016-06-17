@@ -45,23 +45,23 @@ if(!$success) {
   exit 1;
 }
 
-# clear old data on EVERY reboot 
-my @names;
-($success, @names) = $cce->names($oid);
-foreach $_ (@names) {
-	$cce->set($oid, $_, {
-		currentState => "N",
-		currentMessage => "",
-		lastChange => time()});
-}
+# clear old data on EVERY reboot  - NO! We don't!!!
+#my @names;
+#($success, @names) = $cce->names($oid);
+#foreach $_ (@names) {
+#	$cce->set($oid, $_, {
+#		currentState => "N",
+#		currentMessage => "",
+#		lastChange => time()});
+#}
 
 $cce->bye();
 
 exit 0;
 
 # 
-# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 
