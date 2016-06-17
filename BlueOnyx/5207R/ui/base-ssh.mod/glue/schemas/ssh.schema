@@ -1,7 +1,7 @@
 <!--
     $Id: ssh.schema
-    Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-    Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+    Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
+    Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
     All Rights Reserved.
 -->
 
@@ -56,6 +56,11 @@
 
     <property
         name="PubkeyAuthentication" type="boolean" default="1"
+        writeacl="ruleCapable(serverShell)"
+    />
+
+    <property
+        name="AllowTcpForwarding" type="boolean" default="0"
         writeacl="ruleCapable(serverShell)"
     />
 

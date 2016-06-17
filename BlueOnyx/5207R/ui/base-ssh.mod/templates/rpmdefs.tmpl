@@ -123,6 +123,13 @@ fi
 
 <begin $CHANGELOG>
 
+* Tue Jun 16 2016 Michael Stauber <mstauber@solarspeed.net> 2.0-0BX11
+- Added key/value pair to glue/schemas/ssh.schema to allow config of
+  AllowTcpForwarding. No GUI option for this yet.
+- Modified glue/handlers/sshd_handler.pl to use conditional SSHd
+  restarts to only restart when needed.
+- Code cleanup in glue/handlers/toggle_ssh.pl
+
 * Mon Mar 21 2016 Michael Stauber <mstauber@solarspeed.net> 2.0-0BX10
 - Updated Italian locales added as provided by Simone Capra.
 

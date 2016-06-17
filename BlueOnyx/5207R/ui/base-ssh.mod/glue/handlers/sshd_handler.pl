@@ -26,7 +26,6 @@ use Sauce::Service;
 use Sauce::Util;
 
 my $cce = new CCE;
-my $conf = '/var/lib/cobalt';
 
 $cce->connectfd();
 
@@ -51,12 +50,23 @@ if ((($cce->event_is_create()) || ($cce->event_is_modify())) && ($SSH_server_OID
     # Someone used the GUI to edit some parameters. Update
     # the existing config and restart the daemon:
     if (-f $sshd_config) {
+
+        $md5_orig = `cat $sshd_config | md5sum`;
+        chomp($md5_orig);
+
         # Edit config:
         &ini_read;
+
         &edit_sshd_config;
 
-        # Restart daemon:   
-        &restart_sshd;
+        $md5_new = `cat $sshd_config | md5sum`;
+        chomp($md5_new);
+
+        # Restart daemon:
+        &debug_msg("Checksums: md5_orig: $md5_orig - md5_new: $md5_new\n");
+        if ($md5_orig ne $md5_new) {
+            &restart_sshd;
+        }
     }
     else {
         # Ok, we have a problem: No config found.
@@ -141,6 +151,11 @@ sub edit_sshd_config {
         }
     }
 
+    $AllowTcpForwarding = 'no';
+    if ($sshd_settings->{"AllowTcpForwarding"} eq "1") {
+        $AllowTcpForwarding = 'yes';
+    }
+
     # Build output hash:
     $server_sshd_settings_writeoff = { 
         'PermitRootLogin' => $sshd_settings->{"PermitRootLogin"}, 
@@ -151,7 +166,7 @@ sub edit_sshd_config {
         'Protocol' => $sshd_settings->{"Protocol"},
         'X11Forwarding' => 'no',
         'StrictModes' => 'no',
-        'AllowTcpForwarding' => 'no'
+        'AllowTcpForwarding' => $AllowTcpForwarding
     };
 
     # Write changes to config file using Sauce::Util::hash_edit_function. The really GREAT thing
@@ -302,8 +317,8 @@ $cce->bye('SUCCESS');
 exit(0);
 
 # 
-# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 
