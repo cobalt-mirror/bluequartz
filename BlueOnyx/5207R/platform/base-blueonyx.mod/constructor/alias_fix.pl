@@ -2,20 +2,19 @@
 # $Id: alias_fix.pl
 #
 
-use CCE;
-my $cce = new CCE;
-my $conf = '/var/lib/cobalt';
-
-$cce->connectuds();
-
 # Remove misplaced alias databases - if present:
-system("/bin/rm -f /etc/aliases");
-system("/bin/rm -f /etc/aliases.db");
+if (-f "/etc/aliases") {
+	if (!-f "/etc/mail/aliases") {
+		system("/bin/cp /etc/aliases /etc/mail/aliases");
+		system("/bin/cp /etc/aliases.db /etc/mail/aliases.db");
+	}
+	system("/bin/rm -f /etc/aliases");
+	system("/bin/rm -f /etc/aliases.db");
 
-# Run 'newaliases' for good measure:
-system("/usr/bin/newaliases");
+	# Run 'newaliases' for good measure:
+	system("/usr/bin/newaliases");
 
-$cce->bye();
+}
 exit 0;
 
 # 
