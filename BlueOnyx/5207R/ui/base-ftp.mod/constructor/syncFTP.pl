@@ -22,7 +22,7 @@ unless ($ok and $obj) {
     exit 1;
 }
 
-$md5_orig = `cat /etc/xinetd.d/proftpd /etc/xinetd.d/proftpds /etc/proftpd.conf /etc/proftpds.conf | md5sum`
+$md5_orig = `cat /etc/xinetd.d/proftpd /etc/xinetd.d/proftpds /etc/proftpd.conf /etc/proftpds.conf | md5sum`;
 chomp($md5_orig);
 
 # get connect rate
@@ -87,7 +87,7 @@ if ($new ne $old) {
 # Or: http://www.wains.be/index.php/2006/01/24/slow-logins-under-proftpd-using-xinetd/
 system("/usr/bin/perl -pi -e 's|DURATION USERID|DURATION|g' /etc/xinetd.d/proftpd");
 
-$md5_new = `cat /etc/xinetd.d/proftpd /etc/xinetd.d/proftpds /etc/proftpd.conf /etc/proftpds.conf | md5sum`
+$md5_new = `cat /etc/xinetd.d/proftpd /etc/xinetd.d/proftpds /etc/proftpd.conf /etc/proftpds.conf | md5sum`;
 chomp($md5_new);
 
 if ($md5_orig ne $md5_new) {
