@@ -64,6 +64,10 @@ if (! -e "/usr/share/ssl/certs/sendmail-2048.dh") {
 }
 
 # dovecot settings first
+
+$md5_orig = `cat /etc/dovecot/dovecot.conf /etc/dovecot/conf.d/* | md5sum`;
+chomp($md5_orig);
+
 Sauce::Util::editfile('/etc/dovecot.conf', *make_dovecot_conf, $obj );
 system('rm -f /etc/dovecot.conf.backup.*');
 
@@ -79,6 +83,9 @@ chmod 0600, "/etc/pki/dovecot/certs/ca.pem";
 # Edit /etc/dovecot/conf.d/10-ssl.conf:
 &edit_dovecot_intermediate;
 
+$md5_new = `cat /etc/dovecot/dovecot.conf /etc/dovecot/conf.d/* | md5sum`;
+chomp($md5_new);
+
 # Stop mail services if they are disabled. Which do not use xinetd.
 if (($obj->{'enablePop'} eq '0') && ($obj->{'enablePops'} eq '0') && ($obj->{'enableImap'} eq '0') && ($obj->{'enableImaps'} eq '0')) {
     Sauce::Service::service_run_init('dovecot', 'stop');
@@ -86,10 +93,15 @@ if (($obj->{'enablePop'} eq '0') && ($obj->{'enablePops'} eq '0') && ($obj->{'en
 }
 else {
     Sauce::Service::service_set_init('dovecot', 1);
-    Sauce::Service::service_toggle_init('dovecot', 1);
+    if ($md5_orig ne $md5_new) {
+        Sauce::Service::service_toggle_init('dovecot', 1);
+    }
 }
 
 # sync sendmail settings
+
+$md5_sm_orig = `cat /etc/mail/sendmail.mc|md5sum`;
+
 # submission port
 my $run = 0;
 if ($obj->{enableSMTP} || $obj->{enableSMTPS} || $obj->{enableSubmissionPort}) {
@@ -138,10 +150,16 @@ if (-f "/lib/systemd/system/sendmail.service") {
     system("/usr/bin/systemctl daemon-reload");
 }
 
+# Check if the config has changed:
+$md5_sm_new = `cat /etc/mail/sendmail.mc|md5sum`;
+
 # need to start sendmail?
 if ($run) {
-    Sauce::Service::service_toggle_init('sendmail', 1);
-    Sauce::Service::service_toggle_init('saslauthd', $obj->{enableSMTPAuth});
+    if ($md5_sm_orig ne $md5_sm_new) {
+        # Config has changed, toggle service:
+        Sauce::Service::service_toggle_init('sendmail', 1);
+        Sauce::Service::service_toggle_init('saslauthd', $obj->{enableSMTPAuth});
+    }
 }
 else {
     Sauce::Service::service_toggle_init('sendmail', 0);
