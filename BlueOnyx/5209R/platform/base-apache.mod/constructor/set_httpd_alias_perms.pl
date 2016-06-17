@@ -4,8 +4,6 @@
 # This constructor sets the GID and permissions on the databases in /etc/httpd/alias/
 # to the new requested standards as required by the mod_nss introduced by CentOS-5.6:
 
-use Sauce::Util;
-use Sauce::Config;
 use Sauce::Service;
 use CCE;
 
@@ -20,50 +18,50 @@ if (-e "/etc/httpd/alias/cert8.db") {
 
 # While we are at it, delete the default CentOS welcome page:
 if (-e "/etc/httpd/conf.d/welcome.conf") {
-	system('/bin/rm -f /etc/httpd/conf.d/welcome.conf');
+    system('/bin/rm -f /etc/httpd/conf.d/welcome.conf');
 }
 
 # Also delete /etc/httpd/conf.d/manual.conf:
 if (-e "/etc/httpd/conf.d/manual.conf") {
-	system('/bin/rm -f /etc/httpd/conf.d/manual.conf');
+    system('/bin/rm -f /etc/httpd/conf.d/manual.conf');
 }
 
 # Also remove server.conf
 if (-e "/etc/httpd/conf.d/server.conf") {
-	system('/bin/rm -f /etc/httpd/conf.d/server.conf');
+    system('/bin/rm -f /etc/httpd/conf.d/server.conf');
 }
 
 # Also remove userdir.conf
 if (-e "/etc/httpd/conf.d/userdir.conf") {
-	system('/bin/rm -f /etc/httpd/conf.d/userdir.conf');
+    system('/bin/rm -f /etc/httpd/conf.d/userdir.conf');
 }
 
 # A lot of BX servers have ImageMagick installed, which in turn installs and activates the avahi-daemon.
 # This daemon is not really needed and certainly should not be running. Hence we stop it and turn it off:
-if (-f "/etc/avahi/avahi-daemon.conf") {
-	Sauce::Service::service_run_init('avahi-daemon', 'stop');
-	Sauce::Service::service_set_init('avahi-daemon', 0);
+if ((-f "/etc/avahi/avahi-daemon.conf") && (Sauce::Service::service_get_init('avahi-daemon') eq "1")) {
+    Sauce::Service::service_run_init('avahi-daemon', 'stop');
+    Sauce::Service::service_set_init('avahi-daemon', 0);
 }
 
 $cce->bye('SUCCESS');
 exit 0;
 
 # 
-# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 
-#	 notice, this list of conditions and the following disclaimer.
+#    notice, this list of conditions and the following disclaimer.
 # 
 # 2. Redistributions in binary form must reproduce the above copyright 
-#	 notice, this list of conditions and the following disclaimer in 
-#	 the documentation and/or other materials provided with the 
-#	 distribution.
+#    notice, this list of conditions and the following disclaimer in 
+#    the documentation and/or other materials provided with the 
+#    distribution.
 # 
 # 3. Neither the name of the copyright holder nor the names of its 
-#	 contributors may be used to endorse or promote products derived 
-#	 from this software without specific prior written permission.
+#    contributors may be used to endorse or promote products derived 
+#    from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
 # "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
