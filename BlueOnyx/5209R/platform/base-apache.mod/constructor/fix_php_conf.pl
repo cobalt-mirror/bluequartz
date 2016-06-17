@@ -79,7 +79,7 @@ if (-s $stage) {
                     );
 
 # Only run this if we're online and pear.php.net can be pinged:
-$check_net = `ping -c 1 -w 1 pear.php.net|grep "1 received"|wc -l`;
+$check_net = `ping -n -q -c 1 -w 1 pear.php.net|grep "1 received"|wc -l`;
 chomp($check_net);
 # Only run this if we can ping pear.php.net:
 if ($check_net eq "1") {
