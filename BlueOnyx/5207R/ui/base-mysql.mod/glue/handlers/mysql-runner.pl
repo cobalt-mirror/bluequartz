@@ -30,54 +30,52 @@ $cmd_chk_build = `cat /etc/build|grep 5209R|wc -l`;
 $cmd_mysqld = chomp($cmd_chk_build);
 
 if ( $enable eq "1" ) {
-	if ( ! $pid ) {
-		$tmp = Sauce::Service::service_run_init('mysqld', 'start');
-		if ($cmd_mysqld eq "1") {
-			# 5209R with MariaDB:
-			$tmp = Sauce::Service::service_set_init('mariadb', 'on', '345');
-		}
-		else {
-			# Anything else with MySQL:
-			$tmp = Sauce::Service::service_set_init('mysqld', 'on', '345');
-		}
-	}
+    if ( ! $pid ) {
+        $tmp = Sauce::Service::service_run_init('mysqld', 'start');
+        if ($cmd_mysqld eq "1") {
+            # 5209R with MariaDB:
+            $tmp = Sauce::Service::service_set_init('mariadb', 'on', '345');
+        }
+        else {
+            # Anything else with MySQL:
+            $tmp = Sauce::Service::service_set_init('mysqld', 'on', '345');
+        }
+    }
 } else {
-	if ( $pid ) {
-		$tmp = Sauce::Service::service_run_init('mysqld', 'stop');
-		
-		if ($cmd_mysqld eq "1") {
-			# 5209R with MariaDB:
-			$tmp = Sauce::Service::service_set_init('mariadb', 'on', '345');
-		}
-		else {
-			# Anything else with MySQL:
-			$tmp = Sauce::Service::service_set_init('mysqld', 'off', '345');
-		}
-	}
+    if ( $pid ) {
+        $tmp = Sauce::Service::service_run_init('mysqld', 'stop');
+        
+        if ($cmd_mysqld eq "1") {
+            # 5209R with MariaDB:
+            $tmp = Sauce::Service::service_set_init('mariadb', 'on', '345');
+        }
+        else {
+            # Anything else with MySQL:
+            $tmp = Sauce::Service::service_set_init('mysqld', 'off', '345');
+        }
+    }
 }
-
-sleep 5;
 
 $cce->bye('SUCCESS');
 exit 0;
 
 # 
-# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
 # Copyright (C) 2006, NuOnce Networks, Inc. All rights reserved.
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 
-#	 notice, this list of conditions and the following disclaimer.
+#    notice, this list of conditions and the following disclaimer.
 # 
 # 2. Redistributions in binary form must reproduce the above copyright 
-#	 notice, this list of conditions and the following disclaimer in 
-#	 the documentation and/or other materials provided with the 
-#	 distribution.
+#    notice, this list of conditions and the following disclaimer in 
+#    the documentation and/or other materials provided with the 
+#    distribution.
 # 
 # 3. Neither the name of the copyright holder nor the names of its 
-#	 contributors may be used to endorse or promote products derived 
-#	 from this software without specific prior written permission.
+#    contributors may be used to endorse or promote products derived 
+#    from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
 # "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
