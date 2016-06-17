@@ -12,6 +12,9 @@ $cce->connectuds();
 my $package_dir = '/home/packages';
 
 # Fix perms on /var/log/yum.log:
+if (! -f '/var/log/yum.log') {
+    system("touch /var/log/yum.log");
+}
 system("/bin/chmod 644 /var/log/yum.log");
 
 # Disable RHEL6 yum-autoupdater if present:
