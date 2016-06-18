@@ -3,7 +3,7 @@
 Summary: Cobalt Migration Utility
 Name: [PRODUCT]-cmu
 Version: [VERSION]
-Release: 0BX01%{?dist}
+Release: 0BX02%{?dist}
 Vendor: Team BlueOnyx
 License: Sun modified BSD
 Group: Applications/Archiving
@@ -65,6 +65,13 @@ rm -rf $RPM_BUILD_ROOT
 %attr(644,root,man) /usr/man/*/*
 
 %changelog
+
+* Fri Jun 17 2016 Michael Stauber <mstauber@solarspeed.net>
+- version 2.94-0BX02
+- Modified perl_modules/Archive/Tar.pm to strip non-empty directories
+  out of the file-list, as the files within the directories are already
+  in the list and getting packed up. Telling tar to pack up the dir as
+  well will result in tarballs twice as large as need be.
 
 * Sun Jun 05 2016 Michael Stauber <mstauber@solarspeed.net>
 - version 2.94-0BX01
