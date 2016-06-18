@@ -357,6 +357,19 @@ sub createTarNew
     my @files;
     my $file_list;
     foreach my $f (@{ $fHash->{file} }) {
+        if (-d $f->{name}) {
+            my $dirtest = `ls -al $f->{name} | wc -l`;
+            chomp($dirtest);
+            if ($dirtest eq '3') {
+                # Empty directory. Not skipping.
+                #warn "Not skipping dir $f->{name}";
+            }
+            else {
+                # Directory not empty. So we have it's files in the file-list. Skipping directory name.
+                #warn "Skipping dir $f->{name}";
+                next;
+            }
+        }
         push(@files, $f->{name});
         $file_list .= $f->{name} . "\n";
     }
@@ -370,6 +383,7 @@ sub createTarNew
 
     if (-e "/usr/bin/pigz") {
         warn "creating tar (external TAR with PigZ): $tarName with ", scalar @files, " files\n";
+        warn "running: tar cf - --files-from=$fileListTmp | pigz > $tarName";
         system("tar cf - --files-from=$fileListTmp | pigz > $tarName");
     }
     else {
