@@ -72,17 +72,33 @@ case "$1" in
 	rm -f /var/lock/subsys/cced
 	;;
   status)
-	systemctl status cced.service
+	systemctl status cced.init.service
 	RETVAL=$?
 	;;
   restart)
-	$0 stop
-	$0 start
+	echo -n "Restarting cced: "
+	systemctl --job-mode=flush --no-ask-password restart cced.init
 	RETVAL=$?
+	if [ $RETVAL -eq 0 ];then
+		echo -n "[ ${green}OK${reset} ]"
+	else 
+		echo -n "[ ${red}FAIL${reset} ]"
+	fi
+	echo ""
+	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/cced
+	echo -n "Running CCEd constructors: "
+	/usr/sausalito/bin/cce_construct >/dev/null 2>&1 || :
+	RETVAL=$?
+	if [ $RETVAL -eq 0 ];then
+		echo -n "[ ${green}OK${reset} ]"
+	else 
+		echo -n "[ ${red}FAIL${reset} ]"
+	fi
+	echo ""
 	;;
   reload)
 	echo -n "Reloading cced configuration: "
-	killall -HUP cced >/dev/null 2>&1
+	systemctl --job-mode=flush --no-ask-password restart cced.init
 	RETVAL=$?
 	if [ $RETVAL -eq 0 ];then
 		echo -n "[ ${green}OK${reset} ]"
@@ -90,11 +106,11 @@ case "$1" in
 		echo -n "[ ${red}FAIL${reset} ]"
 	fi
 	echo ""
+	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/cced
 	;;
   rehash)
 	echo -n "Rehashing cced configuration: "
-	killall -HUP cced >/dev/null 2>&1
-	$0 hash >/dev/null 2>&1
+	systemctl --job-mode=flush --no-ask-password restart cced.init
 	RETVAL=$?
 	if [ $RETVAL -eq 0 ];then
 		echo -n "[ ${green}OK${reset} ]"
@@ -102,6 +118,7 @@ case "$1" in
 		echo -n "[ ${red}FAIL${reset} ]"
 	fi
 	echo ""
+	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/cced
 	;;
   *)
 	echo "Usage: cced {start|stop|restart|reload|status|hash|rehash}"
