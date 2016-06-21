@@ -82,13 +82,22 @@ if (! -f "/etc/fstab") {
 else {
     $is_home_separate = `cat /etc/fstab|grep /home|wc -l`;
     chomp($is_home_separate);
+    $is_vz_separate = `cat /etc/fstab|grep /vz|wc -l`;
+    chomp($is_vz_separate);
+    $is_ave = `cat /etc/build |grep "for a 610"|wc -l`;
+    chomp($is_ave);
+
+    if ($is_home_separate eq "1") {
+        $HOME_ROOT = '/home';
+    }
+    elsif (($is_vz_separate eq "1") && ($is_ave eq "1")) {
+        $HOME_ROOT = '/vz';
+    }
+    else {
+        $HOME_ROOT = '/';
+    }
 }
-if ($is_home_separate eq "1") {
-    $HOME_ROOT = '/home';
-}
-else {
-    $HOME_ROOT = '/';
-}
+
 $SITE_DIR = 'sites';
 $USER_DIR = 'users';
 
