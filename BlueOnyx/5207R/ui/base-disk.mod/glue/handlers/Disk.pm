@@ -51,6 +51,13 @@ sub setquota
     &debug_msg("Creation disk is: $disk \n");
     if ($type eq 'User') {
         $type = 0;
+        if ($name eq "admin") {
+                # If we're creating the 'admin' User, we don't really need quota for him.
+                # We need the admin account so much that we simply ignore any quota issues
+                # that could potentially arise.
+                &debug_msg("Creation name is: $name - returning 1 (success)\n");
+                return 1;
+        }
         $id = getpwnam($name);
         if(! $id) {
             &debug_msg("Could not get ID for user: $name \n");

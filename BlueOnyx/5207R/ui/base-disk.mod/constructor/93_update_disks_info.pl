@@ -18,8 +18,7 @@ $cce->connectuds();
 
 my $mounts = disk_getmounts();
 
-for my $partition (keys %$mounts)
-{
+for my $partition (keys %$mounts) {
     # this script only deals with internal disks
     next unless ($partition =~ /^\/dev/);
 
@@ -28,19 +27,23 @@ for my $partition (keys %$mounts)
     # get disk usage information
     my $info = disk_get_usage_info($partition);
 
-    if ($oid)
-    {
-        $cce->set($oid, "", { 'total' => $info->{$partition}->{Total}, 
-                            'used' => $info->{$partition}->{Used} });
-    }
-    else
-    {
+    if ($oid) {
+        $cce->set($oid, "", { 'total' => $info->{$partition}->{Total}, 'used' => $info->{$partition}->{Used} });
 
-        #print "device: " . $partition . "\n";
-        #print Dumper(\$info);
-        #print "mountPoint: " . $info->{$partition}->{MountPoint} . "\n";
-        #print "total: " . $info->{$partition}->{Total} . "\n";
-        #print "used: " . $info->{$partition}->{Used} . "\n";
+        # Check if there are duplicate 'Disk' entries with different devices for the same mountpoint:
+        my (@xoid) = $cce->find("Disk", { 'mountPoint' => $info->{$partition}->{MountPoint} });
+        my $x = '0';
+        if ($#xoid gt "0") {
+            foreach $x (@xoid) {
+                my ($ok, $obj) = $cce->get($x, '');
+                if ($obj->{'device'} ne $partition) {
+                    # There are. Destroy the duplicate:
+                    $cce->destroy($x);
+                }
+            }
+        }
+    }
+    else {
 
         my $partition_info = { 
                             'device' => $partition,
@@ -51,15 +54,13 @@ for my $partition (keys %$mounts)
                             'internal' => 1
                         };
 
-        if($info->{$partition}->{MountPoint} =~ /$Base::HomeDir::HOME_ROOT/)
-        {
+        if($info->{$partition}->{MountPoint} =~ /$Base::HomeDir::HOME_ROOT/) {
             $partition_info->{isHomePartition} = 1;
         }
        
         my ($ok) = $cce->create("Disk", $partition_info);
 
-        if (not $ok)
-        {
+        if (not $ok) {
             #$cce->bye('WARN', 'cantCreateDisk', { 'device' => $partition });
             #exit(1);
         }
@@ -70,8 +71,8 @@ $cce->bye('SUCCESS');
 exit(0);
 
 # 
-# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 
