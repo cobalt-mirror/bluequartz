@@ -103,6 +103,14 @@ information for [VENDOR]-[SERVICE].
 
 <begin $CHANGELOG>
 
+* Fri Jun 24 2016 Michael Stauber <mstauber@solarspeed.net> 3.0.0-1BX14
+- Code cleanup in constructor/94_check_home_partition.pl
+- Modified constructor/93_update_disks_info.pl to delete duplicate Disk
+  objects for mountPoints.
+- Modified glue/handlers/Disk.pm to not fail on quota issues when 
+  dealing with the account of user admin. We really need this.
+- Code cleanup in glue/handlers/modquota.pl
+
 * Sat Jan 09 2016 Michael Stauber <mstauber@solarspeed.net> 3.0.0-1BX13
 - Code cleanup in glue/handlers/servicequota_usage.pl
 - Fixes in ui/chorizo/web/controllers/groupDiskUsage.php
