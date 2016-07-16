@@ -97,68 +97,114 @@ class News extends MX_Controller {
             $BxPage->setVerticalMenu('base_swupdate');
             $page_module = 'base_sysmanage';
 
-            // Location (URL) of the RSS feed:
-            $rsslocation = 'http://www.blueonyx.it/index.php?mact=CGFeedMaker,cntnt01,default,0&cntnt01feed=BlueOnyx-News&cntnt01showtemplate=false';
+            //
+            //--- RSS Feed Handling:
+            //
 
-            // Check if we are online:
-            if (areWeOnline($rsslocation, "5")) {
-                $online = "1";
-            }
-            else {
-               $online = "0";
-               $errors[] = '<div class="alert alert_light"><img width="40" height="36" src="/.adm/images/icons/small/white/alert_2.png"><strong>' . $i18n->getHtml("[[base-yum.ErrorMSGdesc]]") . '</strong></div>';
-            }
+            $have_good_rss_cache = FALSE;
 
-            if ($online == "1") {
+            if (is_file('/usr/sausalito/license/rss-news.cache')) {
+                $rss_cache = read_file('/usr/sausalito/license/rss-news.cache');
 
-                // Process the RSS feed:
-                $news = getRssfeed($rsslocation,"BlueOnyx News","auto",50,3);
+                // Json-decode it:
+                $rss_cache = @json_decode($rss_cache, true);
 
-                // News are now stored in this format:
-                //
-                // $news["_bx_title"] : Titles
-                // $news["_bx_date"]  : Date
-                // $news["_bx_desc"]  : Short description
-                // $news["_bx_link"]  : Link
-
-                if ((!isset($news["_bx_title"])) || (!is_array($news))) {
-                    // Although we can establish a connection to www.blueonyx.it, the RSS feed did not return expected results:
-                    $errors[] = '<div class="alert dismissible alert_red"><img width="40" height="36" src="/.adm/images/icons/small/white/alarm_bell.png"><strong>' . $i18n->getHtml("[[base-yum.ErrorMSGdesc]]") . '</strong></div>';
-                    $news = array();
-                }
-                // Can't get News for whatever reason:
-                elseif ($news["_bx_title"] == "n/a") {
-                    // Although we can establish a connection to www.blueonyx.it, the RSS feed did not return expected results:
-                    $errors[] = '<div class="alert dismissible alert_red"><img width="40" height="36" src="/.adm/images/icons/small/white/alarm_bell.png"><strong>' . $i18n->getHtml("[[base-yum.ErrorMSGdesc]]") . '</strong></div>';
-                }
-                else {
-
-                    // General parameters for the scroll list:
-
-                    // Count number of news-entries:
-                    $bx_num = count($news["_bx_title"]);
-
-                    // Build multidimensional array of our news:
-                    $news = array($news["_bx_title"], $news["_bx_desc"], $news["_bx_date"], $news["_bx_link"]);
-
-                    // Loop through array $news and extract the news to populate the scroll list rows:
-                    $num = "0";
-                    while ($num < $bx_num) {
-                        // Create the image link button for the external news article URL:
-                        preg_match_all("/articleid=(.*)&(.*)/Uism", $news[3][$num], $article_id);
-                        $article = $article_id[1][0];
-                        $exturl = $news[3][$num];
-                        if (is_HTTPS() == TRUE) {
-                            $exturl = str_replace('http://', 'https://', $exturl ); 
-                        }
-                        $news[3][$num] = '<a class="various" target="_blank" href="' . $exturl . '" data-fancybox-type="iframe">' . '<button class="fancybox tiny icon_only img_icon tooltip hover" title="' . $i18n->getWrapped("[[base-yum.openURL_help]]") .'"><img src="/.adm/images/icons/small/white/magnifying_glass.png"></button>' . '</a>';
-                        $linkButton = $factory->getUrlButton($exturl);
-                        $linkButton->setButtonSite("tiny");
-                        $news[4][$num] = $linkButton->toHtml();
-                        $num++;
+                // Check if we have data in expected format:
+                if ((isset($rss_cache['time'])) && (isset($rss_cache['rss']))) {
+                    // Cache expires after one day:
+                    if ($rss_cache['time'] + 86400 > time()) {
+                        $have_good_rss_cache = TRUE;
+                        $news = $rss_cache['rss'];
                     }
                 }
             }
+
+            // We don't have good cache data. So we pull the news live:
+            if ($have_good_rss_cache == FALSE) {
+
+                // Location (URL) of the RSS feed:
+                $rsslocation = 'http://www.blueonyx.it/index.php?mact=CGFeedMaker,cntnt01,default,0&cntnt01feed=BlueOnyx-News&cntnt01showtemplate=false';
+
+                // Check if we are online:
+                if (areWeOnline($rsslocation, "5")) {
+                    $online = "1";
+                }
+                else {
+                   $online = "0";
+                   $errors[] = '<div class="alert alert_light"><img width="40" height="36" src="/.adm/images/icons/small/white/alert_2.png"><strong>' . $i18n->getHtml("[[base-yum.ErrorMSGdesc]]") . '</strong></div>';
+                }
+
+                if ($online == "1") {
+                    // Process the RSS feed:
+                    $news = getRssfeed($rsslocation,"BlueOnyx News","auto",50,3);
+
+                    if (isset($news["_bx_title"])) {
+                        // Update Cache:
+                        $cache_dir = '/usr/sausalito/license';
+                        if (is_dir($cache_dir)) {
+                            $rss_cache_file = $cache_dir . "/rss-news.cache";
+
+                            // Create an Array with the cache content:
+                            $cache_data['time'] = time();
+                            $cache_data['rss'] = $news;
+
+                            // Json encode the array:
+                            $cache_content = json_encode($cache_data);
+
+                            // Write the new cache file out to disk:
+                            if (write_file($rss_cache_file, $cache_content)) {
+                                $text = "RSS News Feed Cache updated.";
+                            }
+                        }
+                    }
+                }
+            }
+
+            // News are now stored in this format:
+            //
+            // $news["_bx_title"] : Titles
+            // $news["_bx_date"]  : Date
+            // $news["_bx_desc"]  : Short description
+            // $news["_bx_link"]  : Link
+
+            if ((!isset($news["_bx_title"])) || (!is_array($news))) {
+                // Although we can establish a connection to www.blueonyx.it, the RSS feed did not return expected results:
+                $errors[] = '<div class="alert dismissible alert_red"><img width="40" height="36" src="/.adm/images/icons/small/white/alarm_bell.png"><strong>' . $i18n->getHtml("[[base-yum.ErrorMSGdesc]]") . '</strong></div>';
+                $news = array();
+            }
+            // Can't get News for whatever reason:
+            elseif ($news["_bx_title"] == "n/a") {
+                // Although we can establish a connection to www.blueonyx.it, the RSS feed did not return expected results:
+                $errors[] = '<div class="alert dismissible alert_red"><img width="40" height="36" src="/.adm/images/icons/small/white/alarm_bell.png"><strong>' . $i18n->getHtml("[[base-yum.ErrorMSGdesc]]") . '</strong></div>';
+            }
+            else {
+
+                // General parameters for the scroll list:
+
+                // Count number of news-entries:
+                $bx_num = count($news["_bx_title"]);
+
+                // Build multidimensional array of our news:
+                $news = array($news["_bx_title"], $news["_bx_desc"], $news["_bx_date"], $news["_bx_link"]);
+
+                // Loop through array $news and extract the news to populate the scroll list rows:
+                $num = "0";
+                while ($num < $bx_num) {
+                    // Create the image link button for the external news article URL:
+                    preg_match_all("/articleid=(.*)&(.*)/Uism", $news[3][$num], $article_id);
+                    $article = $article_id[1][0];
+                    $exturl = $news[3][$num];
+                    if (is_HTTPS() == TRUE) {
+                        $exturl = str_replace('http://', 'https://', $exturl ); 
+                    }
+                    $news[3][$num] = '<a class="various" target="_blank" href="' . $exturl . '" data-fancybox-type="iframe">' . '<button class="fancybox tiny icon_only img_icon tooltip hover" title="' . $i18n->getWrapped("[[base-yum.openURL_help]]") .'"><img src="/.adm/images/icons/small/white/magnifying_glass.png"></button>' . '</a>';
+                    $linkButton = $factory->getUrlButton($exturl);
+                    $linkButton->setButtonSite("tiny");
+                    $news[4][$num] = $linkButton->toHtml();
+                    $num++;
+                }
+            }
+
         }
 
         if (!isset($news)) {

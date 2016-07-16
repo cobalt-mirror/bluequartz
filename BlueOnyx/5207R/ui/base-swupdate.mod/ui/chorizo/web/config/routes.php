@@ -17,3 +17,4 @@ $route['/swupdate/uninstallHandler'] = "uninstallHandler";
 $route['/swupdate/manualInstall'] = "manualInstall";
 $route['/swupdate/updates_amdetails'] = "updates_amdetails";
 $route['/swupdate/autoinstall'] = "autoinstall";
+$route['/swupdate/rsscron'] = "rsscron";

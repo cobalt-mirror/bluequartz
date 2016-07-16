@@ -21,6 +21,7 @@ install:
 	mkdir -p $(CCESBINDIR)
 	mkdir -p $(CCEPERLDIR)
 	mkdir -p $(PREFIX)/etc/cron.d
+	mkdir -p $(PREFIX)/etc/cron.daily
 	mkdir -p $(PREFIX)/etc/yum/pluginconf.d
 	mkdir -p $(PREFIX)/usr/lib/yum-plugins
 	mkdir -p $(PREFIX)/root/.gnupg
@@ -31,6 +32,7 @@ install:
 	$(INSTALL) $(INSTALL_SBINFLAGS) $(SCRIPTS) $(CCESBINDIR); \
 	$(INSTALL) $(INSTALL_LIBFLAGS) $(PERLLIB) $(CCEPERLDIR))
 	install -m 0644 etc/cron.d/swupdate_tmp_clean.cron $(PREFIX)/etc/cron.d/swupdate_tmp_clean.cron
+	install -m 0755 etc/cron.daily/rsscache_cron.pl $(PREFIX)/etc/cron.daily/rsscache_cron.pl
 	cd gnupg; tar cBf - . | (cd $(PREFIX)/root/.gnupg; tar xBf -)
 	install -m 0644 etc/yum/pluginconf.d/blueonyx.conf $(PREFIX)/etc/yum/pluginconf.d/blueonyx.conf
 	install -m 0644 yum-plugins/blueonyx.py $(PREFIX)/usr/lib/yum-plugins/blueonyx.py

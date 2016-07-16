@@ -56,6 +56,7 @@ information for [VENDOR]-[SERVICE].
 %attr(0700,root,root)%{RootDir}/sbin/locale-analyze.pl
 %attr(0644,root,root)%{RootDir}/perl/SWUpdate.pm
 %attr(0644,root,root)%config /etc/cron.d/swupdate_tmp_clean.cron
+%attr(0755,root,root)%config /etc/cron.daily/rsscache_cron.pl
 %attr(0700,root,root)%dir /root/.gnupg
 %attr(0644,root,root)%config /root/.gnupg/pubring.gpg
 %attr(0600,root,root)%config /root/.gnupg/secring.gpg
@@ -92,6 +93,12 @@ information for [VENDOR]-[SERVICE].
 if [ ! -e /home/.pkg_install_tmp ]; then
   /bin/mkdir -p /home/.pkg_install_tmp
   /bin/chmod 755 /home/.pkg_install_tmp
+fi
+
+if [ ! -d /usr/sausalito/license ];then
+  mkdir -p /usr/sausalito/license/
+  chown admserv:admserv /usr/sausalito/license
+  chmod 700 /usr/sausalito/license
 fi
 
 # Restart CCEd:
@@ -133,6 +140,14 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Fri Jul 15 2016 Michael Stauber <mstauber@solarspeed.net> 1.6.1-0BX07
+- Added RSS News Cache for faster GUI logins.
+- Modified glue/Makefile
+- Added glue/etc/cron.daily/rsscache_cron.pl
+- Added ui/chorizo/web/controllers/rsscron.php
+- Modified ui/chorizo/web/controllers/news.php
+- Modified ui/chorizo/web/config/routes.php
 
 * Fri Jun 17 2016 Michael Stauber <mstauber@solarspeed.net> 1.6.1-0BX06
 - Small bugfix in constructor/addSWUpdateServer.pl
