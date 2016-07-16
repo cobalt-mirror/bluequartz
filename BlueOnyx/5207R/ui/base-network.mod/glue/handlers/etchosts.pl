@@ -15,6 +15,11 @@ $cce->connectfd();
 $hostname = $System->{'hostname'};
 $servername = $System->{'hostname'} . '.' . $System->{'domainname'};
 
+# Set hostname via /usr/bin/hostnamectl set-hostname $servername:
+if (-e '/usr/bin/hostnamectl') {
+    system("/usr/bin/hostnamectl set-hostname $servername");
+}
+
 # Set up an array for all IP addresses of this box;
 @all_ips = ('127.0.0.1');
 
@@ -112,8 +117,8 @@ sub filler {
 }
 
 # 
-# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 
