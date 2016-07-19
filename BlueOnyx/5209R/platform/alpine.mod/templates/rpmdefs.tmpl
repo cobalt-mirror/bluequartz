@@ -137,6 +137,10 @@ fi
 
 <begin $CHANGELOG>
 
+* Tue Jul 19 2016 Michael Stauber <mstauber@solarspeed.net> 1.2-1BX062
+- Modified ci/application/modules/base/login/controllers/login.php to
+  redirect to HTTPS if we're calling the GUI via HTTP on the HTTPS port.
+
 * Tue Jun 21 2016 Michael Stauber <mstauber@solarspeed.net> 1.2-1BX061
 - Modified perl/HomeDir.pm to not only be able to set /home as homedir,
   but to also handle /vz on Aventurine.

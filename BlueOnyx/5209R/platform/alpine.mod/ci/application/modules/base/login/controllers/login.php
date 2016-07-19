@@ -106,6 +106,13 @@ class Login extends MX_Controller {
             $skin = 'skin_light.css';
         }
 
+        // Make sure we have $_SERVER['HTTP_HOST']:
+        if (!isset($_SERVER['HTTP_HOST'])) {
+            $https_url = 'https://' . $_SERVER['SERVER_NAME'] . ':81/login';
+            header("Location: $https_url");
+            exit;
+        }
+
         // Set page title:
         $i18n = new I18n("base-alpine", $locale);
         preg_match("/^([^:]+)/", $_SERVER['HTTP_HOST'], $matches);
