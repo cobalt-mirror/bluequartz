@@ -70,7 +70,7 @@ if (($cce->event_is_modify())) {
 
         # Perform the POST action to https://support.blueonyx.it/index.php
         &debug_msg("Posting bugreport to https://support.blueonyx.it/index.php");
-        $ua       = LWP::UserAgent->new(ssl_opts => { verify_hostname => 1 });
+        $ua       = LWP::UserAgent->new(ssl_opts => { verify_hostname => 0 });
         $ua->agent('BlueLinQ/1.0');
         $response = $ua->post( 'https://support.blueonyx.it/index.php', { 'bugreport' => $bugreport } );
         if ($response->is_success) {

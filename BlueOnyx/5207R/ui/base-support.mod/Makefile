@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=support
 
 VERSION=1.0.0
-RELEASE=0BX14
+RELEASE=0BX15
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -20,7 +20,7 @@ BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=no
 
-REQUIRES = perl-libwww-perl sos
+REQUIRES = perl-libwww-perl sos perl-JSON
 
 #########
 # some useful defines
