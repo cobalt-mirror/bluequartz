@@ -35,4 +35,3 @@ plugin_type = (TYPE_CORE, TYPE_INTERACTIVE)
 
 def close_hook(conduit):
     call(["/usr/sausalito/sbin/cced_yum", ""])
-    call(["/bin/chmod 777 /var/lib/php/session", ""])

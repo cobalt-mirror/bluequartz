@@ -11,6 +11,9 @@
 # Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 # All Rights Reserved.
 
+# Execute Hotfixes:
+/usr/sausalito/sbin/hotfixes.sh
+
 if [ ! -d "/usr/sausalito/yumcce" ];then
 	mkdir /usr/sausalito/yumcce
 	chmod 700 /usr/sausalito/yumcce
