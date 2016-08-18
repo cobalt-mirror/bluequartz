@@ -267,10 +267,13 @@ class NewSoftware extends MX_Controller {
           $url = $package["url"];
           $options = updates_geturloptions($cceClient, $package["urloptions"]);
 
-          if (preg_match("/^file:/", $package["location"])) {
-            $removeButton = $factory->getRemoveButton("/swupdate/removeHandler?backUrl=/swupdate/newSoftware&packageOID=$oid");
-            $removeButton->setImageOnly(TRUE);
+          if (isset($package["location"])) {
+            if (preg_match("/^file:/", $package["location"])) {
+                $removeButton = $factory->getRemoveButton("/swupdate/removeHandler?backUrl=/swupdate/newSoftware&packageOID=$oid");
+                $removeButton->setImageOnly(TRUE);
+            }
           }
+
           $detailButton = $factory->getDetailButton("/swupdate/download?backUrl=/swupdate/newSoftware&packageOID=$oid", "installField");
           $detailButton->setImageOnly(TRUE);
 
