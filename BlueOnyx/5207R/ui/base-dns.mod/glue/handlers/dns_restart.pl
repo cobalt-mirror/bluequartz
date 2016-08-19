@@ -5,7 +5,7 @@
 # safety checks.  jm.
 
 # configure here: (mostly)
-my $SERVICE = "named";	# name of initd script for this daemon
+my $SERVICE = "named";  # name of initd script for this daemon
 my $CMDLINE = "named";  # contents of /proc/nnn/cmdline for this daemon
 my $RESTART = "reload"; # restart action
 my $DEBUG   = 0;
@@ -15,6 +15,7 @@ $DEBUG && warn `date` .' '. $0;
 use lib qw( /usr/sausalito/perl );
 use FileHandle;
 use Sauce::Util;
+use Sauce::Service;
 use CCE;
 $cce = new CCE;
 $cce->connectfd();
@@ -22,11 +23,17 @@ $cce->connectfd();
 my ($sysoid) = $cce->find("System");
 my ($ok, $obj) = $cce->get($sysoid, "DNS");
 
+# Check if we have Systemd:
+if (-f "/usr/bin/systemctl") {
+  # Got Systemd:
+  $SERVICE = "named-chroot";
+}
+
 # fix chkconfig information:
 if ($obj->{enabled}) {
-	Sauce::Service::service_set_init($SERVICE, 'on', '345');
+  Sauce::Service::service_set_init($SERVICE, 'on', '345');
 } else {
-	Sauce::Service::service_set_init($SERVICE, 'off', '345');
+  Sauce::Service::service_set_init($SERVICE, 'off', '345');
 }
 
 # check to see if the service is presently running;
@@ -49,25 +56,10 @@ my $running = 0;
   }
 }
 
-$DEBUG && warn "Running? $running, Enabled in CCE? ".$obj->{enabled};
-
-# Check if we have Systemd:
-if (-f "/usr/bin/systemctl") {
-  # Got Systemd:
-  $SERVICE = "named-chroot";
-}
+$DEBUG && warn "Running? $running, Enabled in CCE? " . $obj->{enabled};
 
 # do the right thing
-if (!$running && $obj->{enabled}) {
-  system("/sbin/service ${SERVICE} start >/dev/null 2>&1");
-  sleep(1); # wait for named to really start
-}
-elsif ($running && !$obj->{enabled}) {
-  system("/sbin/service ${SERVICE} stop >/dev/null 2>&1");
-}
-elsif ($running && $obj->{enabled}) {
-  system("/sbin/service ${SERVICE} $RESTART >/dev/null 2>&1");
-}
+service_toggle_init($SERVICE, $obj->{enabled});
 
 # is it running now?
 $running = 0;
@@ -109,8 +101,8 @@ $cce->bye("SUCCESS");
 exit 0;
 
 # 
-# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 

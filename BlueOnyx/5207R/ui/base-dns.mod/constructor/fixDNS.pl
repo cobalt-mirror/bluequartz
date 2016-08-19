@@ -47,6 +47,13 @@ else {
   $SERVICE = "named";
 }
 
+# fix chkconfig information:
+if ($obj->{enabled}) {
+  Sauce::Service::service_set_init($SERVICE, 'on', '345');
+} else {
+  Sauce::Service::service_set_init($SERVICE, 'off', '345');
+}
+
 my $running = 0;
 {
   my $fh = new FileHandle("</var/named/chroot/var/run/named/named.pid");
@@ -66,30 +73,10 @@ my $running = 0;
   }
 }
 
-#print "RUNNING: $running, ". $obj->{enabled}."\n";
-
 $md5_new = `cat /etc/sysconfig/named /usr/lib/systemd/system/named-chroot.service | md5sum`;
 
 # do the right thing
-if (!$running && $obj->{enabled}) {
-  Sauce::Service::service_set_init($SERVICE, 'on');
-  if ($md5_new ne $md5_orig) {
-    Sauce::Service::service_run_init($SERVICE, 'start');
-    sleep(1); # wait for named to really start
-  }
-}
-elsif ($running && !$obj->{enabled}) {
-  Sauce::Service::service_set_init($SERVICE, 'off');
-  if ($md5_new ne $md5_orig) {
-    Sauce::Service::service_run_init($SERVICE, 'stop');
-  }
-}
-elsif ($running && $obj->{enabled}) {
-  Sauce::Service::service_set_init($SERVICE, 'on');
-  if ($md5_new ne $md5_orig) {
-    Sauce::Service::service_run_init($SERVICE, 'restart');
-  }
-}
+Sauce::Service::service_toggle_init($SERVICE, $obj->{enabled});
 
 $cce->bye('SUCCESS');
 exit(0);
