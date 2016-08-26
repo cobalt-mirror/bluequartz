@@ -549,3 +549,29 @@ msgstr "This allows you to examine the logfile that was created during the last 
 msgid "ImapSyncRunFailed"
 msgstr "The IMAP Synchronization has failed. Please examine the logfile, as it might indicate a reason for this. Possible causes are usually incorrect login details or incorrect protocol and/or authentication mechanisms. Please correct the problems and try it again."
 
+########
+
+msgid "PrefAliasComplete"
+msgstr "Sender Address"
+
+msgid "PrefAliasComplete_help"
+msgstr "If your email account (or the virtual site it belongs to) has multiple email aliases, then you can specify the sender address of auto-responder messages here."
+
+msgid "prefUserAlias"
+msgstr "Username"
+
+msgid "prefUserAlias_help"
+msgstr "This defines the username part of the sender-address."
+
+msgid "spacer"
+msgstr "&nbsp;"
+
+msgid "spacer_help"
+msgstr " "
+
+msgid "prefDomAlias"
+msgstr "Domain"
+
+msgid "prefDomAlias_help"
+msgstr "This defines the domain part of the sender-address."
+
