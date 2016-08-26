@@ -199,7 +199,7 @@ else {
             $alias_check = `cat /etc/mail/virtusertable|grep ^\@$prefEmailDomain|grep $fqdn|wc -l`;
             chomp($alias_check);
             &debug_msg("Is configured prefEmailDomain valid: $alias_check\n");
-            &debug_msg("2: prefEmailAlias is: $prefEmailAlias.\n");
+            &debug_msg("2: prefEmailDomain is: $prefEmailDomain.\n");
         }
         else {
             $alias_check = '0';
@@ -219,7 +219,7 @@ else {
             }
         }
 
-        if ($prefEmailAlias eq '') {
+        if ($prefEmailDomain eq '') {
             $user_from .= '@' . $fqdn;
             &debug_msg("Using standard domain alias of the Vsite.\n");
         }
