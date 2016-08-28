@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=admserv
 
 VERSION=2.2.0
-RELEASE=0BX25
+RELEASE=0BX26
 
 # add a buildarch if desired
 BUILDARCH=noarch
