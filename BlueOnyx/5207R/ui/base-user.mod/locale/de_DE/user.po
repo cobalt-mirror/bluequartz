@@ -551,3 +551,30 @@ msgstr "Durch Klick auf diesen Knopf können Sie die Protokolldatei der letzten 
 msgid "ImapSyncRunFailed"
 msgstr "Die IMAP-Synchronisation ist fehlgeschlagen. Bitte prüfen Sie das Logfile der IMAP-Synchronisation, da es sicher Hinweise darauf gibt, warum die Verbindung oder der Transfer fehlgeschlagen ist. Mögliche Ursachen sind meist falsche Login-Daten, falsches Protokoll und/oder Authentifizierungs-Mechanismen. Bitte korrigieren Sie Ihre Eingaben entsprechend und versuchen Sie es erneut."
 
+#######
+
+
+msgid "PrefAliasComplete"
+msgstr "Absenderadresse"
+
+msgid "PrefAliasComplete_help"
+msgstr "Wenn Ihr Email-Konto (oder die virtuelle Webseite zu der es gehört) mehrere Email-Aliase hat, dann können Sie die Absenderadresse der Abwesenheits-Nachrichten hier auswählen."
+
+msgid "prefUserAlias"
+msgstr "Benutzername"
+
+msgid "prefUserAlias_help"
+msgstr "Benutzername der Email-Adresse des Absenders."
+
+msgid "spacer"
+msgstr "&nbsp;"
+
+msgid "spacer_help"
+msgstr " "
+
+msgid "prefDomAlias"
+msgstr "Domäne"
+
+msgid "prefDomAlias_help"
+msgstr "Domäne der Email-Adresse des Absenders."
+

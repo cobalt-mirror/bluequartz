@@ -545,3 +545,28 @@ msgstr "Isso permite que você examine o arquivo de log que foi criado durante a
 msgid "ImapSyncRunFailed"
 msgstr "A sincronização IMAP falhou. Por favor, examine o arquivo de log, pois pode indicar uma razão para isso. As possíveis causas são geralmente detalhes de login incorretas ou mecanismos de protocolo e / ou autenticação incorreta. Corrija os problemas e tente novamente."
 
+########
+
+msgid "PrefAliasComplete"
+msgstr "Endereço do remetente"
+
+msgid "PrefAliasComplete_help"
+msgstr "Se a sua conta de e-mail (ou o site virtual que pertence) tem vários aliases de e-mail, então você pode especificar o endereço do remetente de mensagens de auto-resposta aqui."
+
+msgid "prefUserAlias"
+msgstr "Nome de usuário"
+
+msgid "prefUserAlias_help"
+msgstr "Isto define a parte nome de usuário do remetente endereço."
+
+msgid "spacer"
+msgstr "&nbsp;"
+
+msgid "spacer_help"
+msgstr " "
+
+msgid "prefDomAlias"
+msgstr "Domínio"
+
+msgid "prefDomAlias_help"
+msgstr "Isto define a parte do domínio do remetente endereço."

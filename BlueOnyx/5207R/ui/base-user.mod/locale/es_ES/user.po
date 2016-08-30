@@ -546,3 +546,29 @@ msgstr "Esto le permite examinar el archivo de registro que se creó durante la 
 msgid "ImapSyncRunFailed"
 msgstr "La sincronización IMAP ha fallado. Por favor, examine el archivo de registro, ya que podría indicar una razón para esto. Las posibles causas son usualmente datos de acceso incorrectos o mecanismos de protocolo y / o autenticación correctos. Por favor, corrija los problemas y vuelva a intentarlo."
 
+##########
+
+msgid "PrefAliasComplete"
+msgstr "DirecciÃ³n del remitente"
+
+msgid "PrefAliasComplete_help"
+msgstr "Si su cuenta de correo electrónico (o el sitio virtual al que pertenece) tiene múltiples alias de correo electrónico, a continuación, se puede especificar la dirección del remitente de mensajes de respuesta automática aquí."
+
+msgid "prefUserAlias"
+msgstr "Nombre de usuario"
+
+msgid "prefUserAlias_help"
+msgstr "Esto define la parte de nombre de usuario de la dirección del remitente."
+
+msgid "spacer"
+msgstr "&nbsp;"
+
+msgid "spacer_help"
+msgstr " "
+
+msgid "prefDomAlias"
+msgstr "Dominio"
+
+msgid "prefDomAlias_help"
+msgstr "Esto define la parte del dominio de remitente-dirección."
+

@@ -552,3 +552,28 @@ msgstr "Dette giver dig mulighed for at undersøge logfilen, der blev oprettet u
 msgid "ImapSyncRunFailed"
 msgstr "IMAP Synkronisering mislykkedes. Undersøge venligst logfil, da det kan indikere en grund til dette. Mulige årsager er som regel forkerte login-oplysninger eller forkert protokol og / eller godkendelse mekanismer. Venligst rette problemerne og prøve det igen."
 
+######
+
+msgid "PrefAliasComplete"
+msgstr "Sender Adresse"
+
+msgid "PrefAliasComplete_help"
+msgstr "Hvis din e-mail-konto (eller det virtuelle websted det tilhører) har flere e-mail aliaser, så kan du angive afsenderadressen af autoresponder beskeder her."
+
+msgid "prefUserAlias"
+msgstr "Brugernavn"
+
+msgid "prefUserAlias_help"
+msgstr "Dette definerer brugernavn del af afsenderens-adresse."
+
+msgid "spacer"
+msgstr "&nbsp;"
+
+msgid "spacer_help"
+msgstr " "
+
+msgid "prefDomAlias"
+msgstr "Domæne"
+
+msgid "prefDomAlias_help"
+msgstr "Dette definerer det domæne del af afsenderens-adresse."

@@ -572,3 +572,28 @@ msgstr "これは、最後のIMAP同期中に作成されたログファイル�
 msgid "ImapSyncRunFailed"
 msgstr "IMAPの同期に失敗しました。それはこの理由を示している可能性がありますように、ログファイルを調べてください。考えられる原因は、通常、不正なログインの詳細や、誤ったプロトコルおよび/または認証メカニズムである。問題を修正して再度お試しください。"
 
+########
+
+msgid "PrefAliasComplete"
+msgstr "送信者アドレス"
+
+msgid "PrefAliasComplete_help"
+msgstr "メールアカウント（またはそれが属する仮想サイト）は、複数の電子メールエイリアスを持っている場合は、ここでは、自動応答メッセージの送信者アドレスを指定することができます。"
+
+msgid "prefUserAlias"
+msgstr "ユーザー名"
+
+msgid "prefUserAlias_help"
+msgstr "これは、送信者アドレスのユーザ名部分を定義します。"
+
+msgid "spacer"
+msgstr "&nbsp;"
+
+msgid "spacer_help"
+msgstr " "
+
+msgid "prefDomAlias"
+msgstr "ドメイン"
+
+msgid "prefDomAlias_help"
+msgstr "これは、送信者アドレスのドメイン部分を定義します。"

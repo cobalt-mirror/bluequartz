@@ -559,5 +559,28 @@ msgstr "Cela vous permet d'examiner le fichier journal qui a été créé au cou
 msgid "ImapSyncRunFailed"
 msgstr "La synchronisation IMAP a échoué. S'il vous plaît examiner le fichier journal, car il peut indiquer une raison à cela. Les causes possibles sont généralement des détails de connexion incorrectes ou des mécanismes de protocole incorrect et / ou d'authentification. S'il vous plaît corriger les problèmes et essayer de nouveau."
 
+############
 
+msgid "PrefAliasComplete"
+msgstr "Adresse de l'expéditeur"
 
+msgid "PrefAliasComplete_help"
+msgstr "Si votre compte de messagerie (ou le site virtuel auquel il appartient) a plusieurs alias de messagerie, vous pouvez spécifier l'adresse de l'expéditeur des messages autorépondeur ici."
+
+msgid "prefUserAlias"
+msgstr "Nom d'utilisateur"
+
+msgid "prefUserAlias_help"
+msgstr "Ceci définit la partie de nom d'utilisateur de l'expéditeur adresse."
+
+msgid "spacer"
+msgstr "&nbsp;"
+
+msgid "spacer_help"
+msgstr " "
+
+msgid "prefDomAlias"
+msgstr "Domaine"
+
+msgid "prefDomAlias_help"
+msgstr "Ceci définit la partie de domaine de l'expéditeur adresse."
