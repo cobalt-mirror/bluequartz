@@ -39,6 +39,85 @@ class EmailSettingsExtension extends UIExtension {
 
         $i18n = new I18n("base-user", $locale);
 
+        //---
+        // Get data for the Vsite:
+        $vsite = $cceClient->getObject('Vsite', array('name' => $user['site']));
+
+        // Prefered Email Domain Alias field:
+        $user_mailAliases = $cceClient->scalar_to_array($userEmail['aliases']);
+        if (!in_array($user['name'], $user_mailAliases)) {
+            $user_mailAliases[] = $user['name'];
+        }
+        if (count($user_mailAliases) > "0") {
+            asort($user_mailAliases);
+            // Build the MultiChoice selector:
+            $prefered_ualias_select = $factory->getMultiChoice("prefUserAlias", array_values($user_mailAliases));
+            $pref_ualias_file = '~' . $user["name"] . '/.prefEmailAlias';
+            $ret = $serverScriptHelper->shell("/bin/cat $pref_ualias_file", $pref_ualias, 'root', $sessionId);
+            $pref_ualias = substr($pref_ualias, 0, -1);
+            if (isset($pref_ualias)) {
+                if (in_array($pref_ualias, array_values($user_mailAliases))) {
+                    $prefered_ualias_select->setSelected($pref_ualias, true);
+                }
+                else {
+                    $prefered_ualias_select->setSelected($user['name'], true);
+                }
+            }
+            else {
+                $prefered_ualias_select->setSelected($user['name'], true);
+            }
+        }
+
+        // Prefered Email User Alias field:
+        $vsite_mailAliases = $cceClient->scalar_to_array($vsite['mailAliases']);
+        if (!in_array($vsite['fqdn'], $vsite_mailAliases)) {
+            $vsite_mailAliases[] = $vsite['fqdn'];
+        }
+        if (count($vsite_mailAliases) > "0") {
+            asort($vsite_mailAliases);
+            // Build the MultiChoice selector:
+            $prefered_alias_select = $factory->getMultiChoice("prefDomAlias", array_values($vsite_mailAliases));
+            $pref_alias_file = '~' . $user["name"] . '/.prefEmailDomain';
+            $ret = $serverScriptHelper->shell("/bin/cat $pref_alias_file", $pref_alias, 'root', $sessionId);            
+            $pref_alias = substr($pref_alias, 0, -1);
+            if (isset($pref_alias)) {
+                if (in_array($pref_alias, array_values($vsite_mailAliases))) {
+                    $prefered_alias_select->setSelected($pref_alias, true);
+                }
+                else {
+                    $prefered_alias_select->setSelected($vsite['fqdn'], true);
+                }
+            }
+            else {
+                $prefered_alias_select->setSelected($vsite['fqdn'], true);
+            }
+        }
+
+        // Only show this element if the user is member of a Vsite:
+        if (isset($vsite['name'])) {
+            // Show the pulldowns for the prefered alias:
+            if ((count($user_mailAliases) > "0") && (count($vsite_mailAliases) > "0")) {
+                $PrefAliasComplete = $factory->getTextField("PrefAliasComplete", '', 'r');
+                $PrefAliasComplete->setLabelType("label_top no_lines");
+                $prefered_ualias_select->setLabelType("label_top no_lines");
+                $spacer = $factory->getTextField("spacer", '@', 'r');
+                $spacer->setLabelType("label_top no_lines");
+                $prefered_alias_select->setLabelType("label_top no_lines");
+                $fqdn =& $factory->getCompositeFormField(array($PrefAliasComplete, $prefered_ualias_select, $spacer, $prefered_alias_select));
+                $fqdn->setColumnWidths(array('col_25', 'col_25', 'col_50'));
+                $container->addFormField(
+                        $fqdn,
+                        $factory->getLabel("[[base-user.PrefAliasComplete]]"),
+                        $pageId
+                        );
+            }
+
+            $name = "PrefAliasComplete";
+            $helptext = $i18n->getWrapped("[[base-user.PrefAliasComplete_help]]");
+            $optional_text = "";
+        }
+        //---
+
         // Line up the Ducks:
         $forwardSaveField = $userEmail['forwardSave'];
         $forwardEnableField = $userEmail['forwardEnable'];
@@ -148,7 +227,6 @@ class EmailSettingsExtension extends UIExtension {
         // Yeah, this is *really* ugly. I know. But does it really make sense to build a class
         // or to modify a class so that it can display this stuff the way it want? It is not
         // really worth the effort, so we can afford to do it this way:
-        //$mikes_folly = addToggleAbleAutoGrowField("forwardEnableField", "email_addresses", "notrequired", "forwardEnable", "forwardSaveField", $forwardEnableField, $forwardSaveField, "forwardEmailField", "forwardEmailField_rule", "", $forwardEmailField, "base-user", $i18n, $cceClient) .
         $mikes_folly = addToggleAbleAutoGrowField("forwardEnableField", "fq_email_address_or_username_multiline", "notrequired", "forwardEnable", "forwardSaveField", $forwardEnableField, $forwardSaveField, "forwardEmailField", "forwardEmailField_rule", "", $forwardEmailField, "base-user", $i18n, $cceClient) .
                     '
                     <div class="columns">
@@ -229,6 +307,9 @@ class EmailSettingsExtension extends UIExtension {
         // Make CI instance available:
         $CI =& get_instance();
 
+        $sessionId = $CI->input->cookie('sessionId');
+        $loginName = $CI->input->cookie('loginName');
+
         // Get form data:
         $form_data = $CI->input->post(NULL, TRUE);
 
@@ -285,6 +366,57 @@ class EmailSettingsExtension extends UIExtension {
         if ($CI->input->post(NULL, TRUE)) {
 
             $my_errors = array();
+
+            $user = $cceClient->get($prams['CCE_OID']);
+            $userEmail = $cceClient->get($prams['CCE_OID'], "Email");
+            $vsite = $cceClient->getObject('Vsite', array('name' => $user['site']));
+
+            // Only perform this transaction if the user is member of a Vsite:
+            if (isset($vsite['name'])) {
+
+                if (isset($attributes['prefUserAlias'])) {
+                    $alias_check = $cceClient->scalar_to_array($userEmail['aliases']);
+                    $unamePart = $user['name'];
+                    $groupPart = $user['site'];
+                    if (!in_array($attributes['prefUserAlias'], $alias_check)) {
+                        $ret = $serverScriptHelper->shell("/bin/rm -f ~$unamePart/.prefEmailAlias", $output, 'root', $sessionId);
+                    }
+                    else {
+                        // Create a unique temporary file name:
+                        $tempnameShort = tempnam("/tmp/", $unamePart . "_prefUserAlias");
+                        $tempname =  $tempnameShort . ".tmp";
+                        // Write as temporary file:
+                        write_file($tempname, $attributes['prefUserAlias']);
+                        // Move it to the right location and delete the temporary files:
+                        $ret = $serverScriptHelper->shell("/bin/cp $tempname ~$unamePart/.prefEmailAlias", $output, 'root', $sessionId);
+                        $ret = $serverScriptHelper->shell("/bin/chmod 00644 ~$unamePart/.prefEmailAlias", $output, 'root', $sessionId);
+                        $ret = $serverScriptHelper->shell("/bin/chown $unamePart:$groupPart ~$unamePart/.prefEmailAlias", $output, 'root', $sessionId);
+                        $ret = $serverScriptHelper->shell("/bin/rm -f $tempname", $output, 'root', $sessionId);
+                        $ret = $serverScriptHelper->shell("/bin/rm -f $tempnameShort", $output, 'root', $sessionId);
+                    }
+                }
+                if (isset($attributes['prefDomAlias'])) {
+                    $vsite_alias_check = $cceClient->scalar_to_array($vsite['mailAliases']);
+                    $unamePart = $user['name'];
+                    $groupPart = $user['site'];
+                    if (!in_array($attributes['prefDomAlias'], $vsite_alias_check)) {
+                        $ret = $serverScriptHelper->shell("/bin/rm -f ~$unamePart/.prefEmailDomain", $output, 'root', $sessionId);
+                    }
+                    else {
+                        // Create a unique temporary file name:
+                        $tempnameShort = tempnam("/tmp/", $unamePart . "_prefDomAlias");
+                        $tempname =  $tempnameShort . ".tmp";
+                        // Write as temporary file:
+                        write_file($tempname, $attributes['prefDomAlias']);
+                        // Move it to the right location and delete the temporary files:
+                        $ret = $serverScriptHelper->shell("/bin/cp $tempname ~$unamePart/.prefEmailDomain", $output, 'root', $sessionId);
+                        $ret = $serverScriptHelper->shell("/bin/chmod 00644 ~$unamePart/.prefEmailDomain", $output, 'root', $sessionId);
+                        $ret = $serverScriptHelper->shell("/bin/chown $unamePart:$groupPart ~$unamePart/.prefEmailDomain", $output, 'root', $sessionId);
+                        $ret = $serverScriptHelper->shell("/bin/rm -f $tempname", $output, 'root', $sessionId);
+                        $ret = $serverScriptHelper->shell("/bin/rm -f $tempnameShort", $output, 'root', $sessionId);
+                    }
+                }
+            }
 
             // Without email address we neither forward nor activate 'save a copy':
             if (($attributes['forwardEnable'] == "1") || ($attributes['forwardSaveField'] == "1")) {
@@ -356,8 +488,8 @@ class EmailSettingsExtension extends UIExtension {
 }
 
 /*
-Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
 Copyright (c) 2008 Brian Smith, NuOnce Networks, Inc.
 All Rights Reserved.
 

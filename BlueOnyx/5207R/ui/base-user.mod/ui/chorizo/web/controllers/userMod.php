@@ -300,49 +300,6 @@ class UserMod extends MX_Controller {
 
                 $cceClient->set($useroid, "Email", $settings);
                 $errors = array_merge($errors, $cceClient->errors());
-
-                if (isset($attributes['prefUserAlias'])) {
-                    $alias_check = $cceClient->scalar_to_array($attributes['emailAliasesField']);
-                    $unamePart = $attributes['userName'];
-                    $groupPart = $attributes['group'];
-                    if (!in_array($attributes['prefUserAlias'], $alias_check)) {
-                        $ret = $serverScriptHelper->shell("/bin/rm -f ~$unamePart/.prefEmailAlias", $output, 'root', $sessionId);
-                    }
-                    else {
-                        // Create a unique temporary file name:
-                        $tempnameShort = tempnam("/tmp/", $attributes['userName'] . "_prefUserAlias");
-                        $tempname =  $tempnameShort . ".tmp";
-                        // Write as temporary file:
-                        write_file($tempname, $attributes['prefUserAlias']);
-                        // Move it to the right location and delete the temporary files:
-                        $ret = $serverScriptHelper->shell("/bin/cp $tempname ~$unamePart/.prefEmailAlias", $output, 'root', $sessionId);
-                        $ret = $serverScriptHelper->shell("/bin/chmod 00644 ~$unamePart/.prefEmailAlias", $output, 'root', $sessionId);
-                        $ret = $serverScriptHelper->shell("/bin/chown $unamePart:$groupPart ~$unamePart/.prefEmailAlias", $output, 'root', $sessionId);
-                        $ret = $serverScriptHelper->shell("/bin/rm -f $tempname", $output, 'root', $sessionId);
-                        $ret = $serverScriptHelper->shell("/bin/rm -f $tempnameShort", $output, 'root', $sessionId);
-                    }
-                }
-                if (isset($attributes['prefDomAlias'])) {
-                    $vsite_alias_check = $cceClient->scalar_to_array($vsite['mailAliases']);
-                    $unamePart = $attributes['userName'];
-                    $groupPart = $attributes['group'];
-                    if (!in_array($attributes['prefDomAlias'], $vsite_alias_check)) {
-                        $ret = $serverScriptHelper->shell("/bin/rm -f ~$unamePart/.prefEmailDomain", $output, 'root', $sessionId);
-                    }
-                    else {
-                        // Create a unique temporary file name:
-                        $tempnameShort = tempnam("/tmp/", $attributes['userName'] . "_prefDomAlias");
-                        $tempname =  $tempnameShort . ".tmp";
-                        // Write as temporary file:
-                        write_file($tempname, $attributes['prefDomAlias']);
-                        // Move it to the right location and delete the temporary files:
-                        $ret = $serverScriptHelper->shell("/bin/cp $tempname ~$unamePart/.prefEmailDomain", $output, 'root', $sessionId);
-                        $ret = $serverScriptHelper->shell("/bin/chmod 00644 ~$unamePart/.prefEmailDomain", $output, 'root', $sessionId);
-                        $ret = $serverScriptHelper->shell("/bin/chown $unamePart:$groupPart ~$unamePart/.prefEmailDomain", $output, 'root', $sessionId);
-                        $ret = $serverScriptHelper->shell("/bin/rm -f $tempname", $output, 'root', $sessionId);
-                        $ret = $serverScriptHelper->shell("/bin/rm -f $tempnameShort", $output, 'root', $sessionId);
-                    }
-                }
                 // At this point we're done. We may have errors, though.
             }
 
@@ -458,71 +415,6 @@ class UserMod extends MX_Controller {
             $factory->getLabel("emailAliasesField"),
             "EmailSettings"
         );
-
-        // Prefered Email Domain Alias field:
-        $user_mailAliases = $cceClient->scalar_to_array($userEmail['aliases']);
-        if (!in_array($User['name'], $user_mailAliases)) {
-            $user_mailAliases[] = $User['name'];
-        }
-        if (count($user_mailAliases) > "0") {
-            asort($user_mailAliases);
-            // Build the MultiChoice selector:
-            $prefered_ualias_select = $factory->getMultiChoice("prefUserAlias", array_values($user_mailAliases));
-            $pref_ualias_file = '~' . $User["name"] . '/.prefEmailAlias';
-            $ret = $serverScriptHelper->shell("/bin/cat $pref_ualias_file", $pref_ualias, 'root', $sessionId);
-            $pref_ualias = substr($pref_ualias, 0, -1);
-            if (isset($pref_ualias)) {
-                if (in_array($pref_ualias, array_values($user_mailAliases))) {
-                    $prefered_ualias_select->setSelected($pref_ualias, true);
-                }
-                else {
-                    $prefered_ualias_select->setSelected($User['name'], true);
-                }
-            }
-            else {
-                $prefered_ualias_select->setSelected($User['name'], true);
-            }
-        }
-
-        // Prefered Email User Alias field:
-        $vsite_mailAliases = $cceClient->scalar_to_array($vsite['mailAliases']);
-        if (!in_array($vsite['fqdn'], $vsite_mailAliases)) {
-            $vsite_mailAliases[] = $vsite['fqdn'];
-        }
-        if (count($vsite_mailAliases) > "0") {
-            asort($vsite_mailAliases);
-            // Build the MultiChoice selector:
-            $prefered_alias_select = $factory->getMultiChoice("prefDomAlias", array_values($vsite_mailAliases));
-            $pref_alias_file = '~' . $User["name"] . '/.prefEmailDomain';
-            $ret = $serverScriptHelper->shell("/bin/cat $pref_alias_file", $pref_alias, 'root', $sessionId);            
-            $pref_alias = substr($pref_alias, 0, -1);
-            if (isset($pref_alias)) {
-                if (in_array($pref_alias, array_values($vsite_mailAliases))) {
-                    $prefered_alias_select->setSelected($pref_alias, true);
-                }
-                else {
-                    $prefered_alias_select->setSelected($vsite['fqdn'], true);
-                }
-            }
-            else {
-                $prefered_alias_select->setSelected($vsite['fqdn'], true);
-            }
-        }
-
-        // Show the pulldowns for the prefered alias:
-        if ((count($user_mailAliases) > "0") && (count($vsite_mailAliases) > "0")) {
-            $prefered_ualias_select->setLabelType("label_top no_lines");
-            $spacer = $factory->getTextField("spacer", '@', 'r');
-            $spacer->setLabelType("label_top no_lines");
-            $prefered_alias_select->setLabelType("label_top no_lines");
-            $fqdn =& $factory->getCompositeFormField(array($factory->getLabel("PrefAlias"), $prefered_ualias_select, $spacer, $prefered_alias_select));
-            $fqdn->setColumnWidths(array('col_25', 'col_25', 'col_50'));
-            $block->addFormField(
-                    $fqdn,
-                    $factory->getLabel("PrefAliasComplete"),
-                    "EmailSettings"
-                    );
-        }
 
         $textblock = $factory->getTextBlock("userDescField", Utf8Encode($User["description"]));
         $textblock->setWidth(2*$textblock->getWidth());
