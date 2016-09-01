@@ -1,6 +1,5 @@
-#!/usr/bin/perl -w -I/usr/sausalito/perl/ -I/usr/sausalito/handlers/base/ssl
+#!/usr/bin/perl -I/usr/sausalito/perl/ -I/usr/sausalito/handlers/base/ssl
 # $Id: ssl.pl
-# Copyright 2000, 2001 Sun Microsystems, Inc.  All rights reserved.
 # update the admin server's certificate on changes to System attributes
 # such as hostname, domain name, and identity information
 
@@ -13,8 +12,15 @@ use SSL qw(
             ssl_check_days_valid
             );
 
+# Debugging switch:
+$DEBUG = "0";
+if ($DEBUG) {
+        use Sys::Syslog qw( :DEFAULT setlogsock);
+}
+
 # globals
 my $cert_dir = '/etc/admserv/certs';
+my $current_cert = '/etc/admserv/certs/certificate';
 
 my $cce = new CCE(Domain => 'base-ssl');
 my $errors;
@@ -40,6 +46,35 @@ if (!ssl_check_days_valid($ssl->{daysValid}))
     exit(1); 
 } 
 
+# Examine current AdmServ certificate:
+if (-e $current_cert) {
+    &debug_msg("AdmServ certificate present. Checking it. \n");
+    # read the expiration date from the new certificate
+    my ($sub, $iss, $date) = ssl_get_cert_info($cert_dir);
+    my $nowtime = time();
+    my $timeDiff = $ssl->{'createCert'} + '60';
+    &debug_msg("Nowtime:  $nowtime - createCert: $ssl->{'createCert'} - timeDiff: $timeDiff\n");
+    if ($timeDiff lt $nowtime) {
+        &debug_msg("Inside timeDiff check.\n");
+        # A request for a new cert was issued. We check if CODB has 'createCert' set and what timestamp it has.
+        # If that timestamp is recent, then someone used the GUI to create a new cert or cert request.
+        # If we get here, the timestamp is ancient. So we might have been triggered due to a non-GUI event and
+        # would generate a new self signed AdmServ cert. But we will only do so if the previous cert was self
+        # signed and NOT a real one:
+        if ($sub->{'CN'} ne $iss->{'CN'}) {
+            &debug_msg("Current certificate is NOT self signed. Exit.\n");
+            # Current certificate is NOT self signed. So we exit here. And we exit gracefully w/o raising an error:
+            $cce->bye('SUCCESS');
+            exit(0);
+        }
+        else {
+            &debug_msg("Current certificate is self signed. Replacing it.\n");
+        }
+    }
+    else {
+        &debug_msg("Past timeDiff check.\n");
+    }
+}
 
 # setup the certificate
 my $ret = ssl_set_identity(
@@ -87,83 +122,53 @@ if (length($system->{hostname} . '.' . $system->{domainname}) > 64)
 $cce->bye('SUCCESS');
 exit(0);
 
-# keeping this around for ideas in case the qube has trouble using the
-# old ssl_set_identity and needs the forking stuff.  although I recommend
-# fixing this in SSL.pm
-# sub set_identity
-# {
-#     my $cce = shift;
+#
+### Subs:
+#
+
+sub debug_msg {
+    if ($DEBUG) {
+        my $msg = shift;
+        $user = $ENV{'USER'};
+        setlogsock('unix');
+        openlog($0,'','user');
+        syslog('info', "$ARGV[0]: $msg");
+        closelog;
+    }
+}
+
 # 
-#     my ($ret,$SysObj) = $cce->get($cce->event_oid());
-#     my ($reti,$IdentObj) = $cce->get($cce->event_oid(),"Identity");
+# Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2003 Sun Microsystems, Inc. 
+# All Rights Reserved.
 # 
-#     # We're starting from scratch here.. Make backups if we're going
-#     # to be overwriting something.
-#     for my $file ( qw(request certificate key) ) {
-#         if( -f "$CertDir/$file") {
-#             rename("$CertDir/$file","$CertDir/$file.bak");
-#         }
-#     }
+# 1. Redistributions of source code must retain the above copyright 
+#     notice, this list of conditions and the following disclaimer.
 # 
-#     # Fork off here as generating certificates takes too long.
-#     my $pid = fork();
-#     if($pid) 
-#   {
-#         return 1;
-#     }
+# 2. Redistributions in binary form must reproduce the above copyright 
+#     notice, this list of conditions and the following disclaimer in 
+#     the documentation and/or other materials provided with the 
+#     distribution.
 # 
-#     # daemonize myself
-#     close(STDIN); close(STDOUT); close(STDERR);
-#     my $logfile = "/tmp/ssl.log.$$";
-#     open(STDOUT, ">$logfile");
-#     open(STDERR, ">&STDOUT");
-#     open(STDIN, "</dev/null");
-#     POSIX::setsid();
+# 3. Neither the name of the copyright holder nor the names of its 
+#     contributors may be used to endorse or promote products derived 
+#     from this software without specific prior written permission.
 # 
-#     # generate key:
-#     system("$Openssl_cmd genrsa -out $CertDir/key 1024 1>&2");
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
+# COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+# POSSIBILITY OF SUCH DAMAGE.
 # 
-#     # generate certificate request:
-#     my $cmnd =  "|$Openssl_cmd req -new -config /usr/lib/openssl.cnf "
-#         . "-key $CertDir/key -days $CertValidFor -out $CertDir/request 1>&2";
+# You acknowledge that this software is not designed or intended for 
+# use in the design, construction, operation or maintenance of any 
+# nuclear facility.
 # 
-#     open(REQ, $cmnd);
-# 
-#     print REQ $IdentObj->{country} ."\n";
-#     print REQ $IdentObj->{state} . "\n";
-#     print REQ $IdentObj->{locality} . "\n";
-#     print REQ $IdentObj->{organisation} . "\n";
-#     print REQ $IdentObj->{organisationUnit} . "\n";
-#     print REQ $SysObj->{hostname} .'.'. $SysObj->{domainname} . "\n";
-#     print REQ "$ResponsibleUser@".$SysObj->{hostname}.'.'. $SysObj->{domainname}. "\n";
-#     close REQ;    
-# 
-#     # self-sign certificate request to make certificate
-#     system("$Openssl_cmd x509 -days $CertValidFor -req -signkey $CertDir/key "
-#           ."-in $CertDir/request -out $CertDir/certificate 1>&2");
-# 
-#     chmod 0660, "$CertDir/key";
-#     chmod 0660, "$CertDir/certificate";
-#     chmod 0660, "$CertDir/request";
-# 
-#     exit 1;
-# }
-# Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
-# 
-# Redistribution and use in source and binary forms, with or without 
-# modification, are permitted provided that the following conditions are met:
-# 
-# -Redistribution of source code must retain the above copyright notice, 
-# this list of conditions and the following disclaimer.
-# 
-# -Redistribution in binary form must reproduce the above copyright notice, 
-# this list of conditions and the following disclaimer in the documentation  
-# and/or other materials provided with the distribution.
-# 
-# Neither the name of Sun Microsystems, Inc. or the names of contributors may 
-# be used to endorse or promote products derived from this software without 
-# specific prior written permission.
-# 
-# This software is provided "AS IS," without a warranty of any kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY EXCLUDED. SUN MICROSYSTEMS, INC. ("SUN") AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
-# 
-# You acknowledge that  this software is not designed or intended for use in the design, construction, operation or maintenance of any nuclear facility.
