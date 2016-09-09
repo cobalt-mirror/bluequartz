@@ -1,7 +1,7 @@
 Summary: System Watcher
 Name: swatch
 Version: XX_VER_XX
-Release: 0BX35%{?dist}
+Release: 0BX36%{?dist}
 Vendor: Project BlueOnyx
 License: BSD
 Group: System Environment/BlueOnyx
@@ -91,6 +91,9 @@ if [ -f /usr/bin/systemctl ]; then
 fi
 
 %changelog
+
+* Thu Sep 08 2016 Michael Stauber <mstauber@solarspeed.net> 4.0.0-BX36
+- Fixed swatch.cron
 
 * Sun Jun 05 2016 Michael Stauber <mstauber@solarspeed.net> 4.0.0-0BX35
 - Modified swatch.cron to remove fix_syslog.sh run
