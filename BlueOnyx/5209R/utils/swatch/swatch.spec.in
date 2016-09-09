@@ -1,7 +1,7 @@
 Summary: System Watcher
 Name: swatch
 Version: XX_VER_XX
-Release: 0BX40%{?dist}
+Release: 0BX41%{?dist}
 Vendor: Project BlueOnyx
 License: BSD
 Group: System Environment/BlueOnyx
@@ -93,6 +93,9 @@ if [ -f /usr/bin/systemctl ]; then
 fi
 
 %changelog
+
+* Thu Sep 08 2016 Michael Stauber <mstauber@solarspeed.net> 4.0.0-BX41
+- Fixed swatch.cron
 
 * Tue Jun 13 2016 Greg Kuhnert <gkuhnert@compassnetworks.com.au> 4.0.0-BX40
 - Dont run cced_unstuck if we are in the process of doing a firstboot
