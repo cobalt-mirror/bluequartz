@@ -75,7 +75,7 @@ if [ -f /etc/swatch.conf.rpmnew ]; then
         mv /etc/swatch.conf.rpmnew /etc/swatch.conf
 fi 
 
-# Install Swatch Unit-File on Systemd enabled servers:
+# Restart Crond:
 /sbin/service crond restart >/dev/null 2>&1 || :
 
 %preun
