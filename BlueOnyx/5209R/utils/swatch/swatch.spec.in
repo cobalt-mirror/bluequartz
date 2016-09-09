@@ -1,7 +1,7 @@
 Summary: System Watcher
 Name: swatch
 Version: XX_VER_XX
-Release: 0BX41%{?dist}
+Release: 0BX42%{?dist}
 Vendor: Project BlueOnyx
 License: BSD
 Group: System Environment/BlueOnyx
@@ -80,6 +80,7 @@ if [ -f /usr/bin/systemctl ]; then
   cp /usr/sausalito/swatch/swatch.service /usr/lib/systemd/system/swatch.service
   test "$1" != "1" || systemctl daemon-reload >/dev/null 2>&1 || :
   systemctl enable swatch.service >/dev/null 2>&1 || :
+  systemctl restart crond.service >/dev/null 2>&1 || :
 fi
 
 %preun
@@ -93,6 +94,9 @@ if [ -f /usr/bin/systemctl ]; then
 fi
 
 %changelog
+
+* Fri Sep 09 2016 Michael Stauber <mstauber@solarspeed.net> 4.0.0-BX42
+- Added post-install crond restart
 
 * Thu Sep 08 2016 Michael Stauber <mstauber@solarspeed.net> 4.0.0-BX41
 - Fixed swatch.cron
