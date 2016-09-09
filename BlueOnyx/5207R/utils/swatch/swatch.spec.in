@@ -76,21 +76,14 @@ if [ -f /etc/swatch.conf.rpmnew ]; then
 fi 
 
 # Install Swatch Unit-File on Systemd enabled servers:
-if [ -f /usr/bin/systemctl ]; then
-  cp /usr/sausalito/swatch/swatch.service /usr/lib/systemd/system/swatch.service
-  test "$1" != "1" || systemctl daemon-reload >/dev/null 2>&1 || :
-  systemctl enable swatch.service >/dev/null 2>&1 || :
-fi
+/sbin/service crond restart >/dev/null 2>&1 || :
 
 %preun
-if [ -f /usr/bin/systemctl ]; then
-  systemctl stop swatch.service >/dev/null 2>&1 || :
-  systemctl disable swatch.service >/dev/null 2>&1 || :
-  rm -f /usr/lib/systemd/system/swatch.service
-  test "$1" != "1" || systemctl daemon-reload >/dev/null 2>&1 || :
-fi
 
 %changelog
+
+* Fri Sep 09 2016 Michael Stauber <mstauber@solarspeed.net> 4.0.0-BX37
+- Added post-install crond restart
 
 * Thu Sep 08 2016 Michael Stauber <mstauber@solarspeed.net> 4.0.0-BX36
 - Fixed swatch.cron
