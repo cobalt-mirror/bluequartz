@@ -14,14 +14,8 @@ msgstr "SSH Server einschalten"
 msgid "enableSSH_help"
 msgstr "Ist SSH eingeschaltet, so können Benutzer, für die Shellzugang aktiviert ist, sich mit SSH-Clients auf dem Server einloggen. Die Nutzung von SSH wird grundsätzlich als sicherer angesehen als die Benutzung von Telnet, da SSH alle Daten (auch Passwörter) verschlüsselt, die zwischen dem Client und dem Server gesendet werden."
 
-msgid "amNotAccepting"
-msgstr "Der SSH Server akzeptiert keine Verbindungen."
-
 msgid "amSSHDetails"
 msgstr "SSH Server"
-
-msgid "amStatusOK"
-msgstr "Der SSH Server funktioniert normal."
 
 msgid "SSH_Port"
 msgstr "SSH Port:"
