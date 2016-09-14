@@ -160,3 +160,18 @@ msgstr "SSH Key bitlengte"
 
 msgid "SSH_keylength_help"
 msgstr "Bepaalt het aantal bits in de sleutel voor nieuwe sleutels of certificaten. De standaardwaarde is 2048 bits. In het algemeen wordt 2048 bits voldoende geacht, maar je kunt toetsen met meer bits te creëren. Let op: langere sleutels langer te creëren. Langere toetsen hebben ook een negatieve invloed op SSH prestaties."
+
+##### --- Active monitor
+
+msgid "amSSHNameTag"
+msgstr "SSHd Server"
+
+msgid "amDetailsTitle"
+msgstr "SSHd Server Details"
+
+msgid "amStatusOK"
+msgstr "De SSHd server werkt normaal."
+
+msgid "amNotAccepting"
+msgstr "De SSHd server draait niet en kon niet worden hernieuwd. In de [[base-apache.amAdmservNameTag]], probeer dan de SSHd server uit en dan weer aan om te zien of dit corrigeert het probleem."
+

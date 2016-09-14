@@ -217,3 +217,18 @@ msgstr ""
 "Vuoi davvero eliminare questa chiave pubblica da chiavi autorizzate? Questo "
 "consentirà di evitare che l'utente e l'host di accedere nuovamente con la "
 "chiave o il certificato dato."
+
+##### --- Active monitor
+
+msgid "amSSHNameTag"
+msgstr "SSHd Server"
+
+msgid "amDetailsTitle"
+msgstr "Server Dettagli SSHd"
+
+msgid "amStatusOK"
+msgstr "Il server SSHd funziona normalmente."
+
+msgid "amNotAccepting"
+msgstr "Il server SSHd non è in esecuzione e non poteva essere riavviato. Nel [[base-apache.amAdmservNameTag]], cercare di girare il server SSHd off riaccendere per vedere se questo risolve il problema."
+

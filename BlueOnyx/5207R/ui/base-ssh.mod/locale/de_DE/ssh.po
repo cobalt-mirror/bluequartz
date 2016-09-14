@@ -170,3 +170,17 @@ msgstr "SSH-Schlüssellänge"
 msgid "SSH_keylength_help"
 msgstr "Hier können Sie die Bit-Länge für neu zu erstellende Schlüssel und Zertifikate festlegen. Der Standardwert ist 2048 Bit. Im Allgemeinen wird 2048 Bit als ausreichend angesehen, aber Sie können Schlüssel mit größerer Bitlänge erstellen. Bitte beachten Sie, dass die Rechenzeit bei der Erstellung längere Schlüssel entsprechend größer ist und länger braucht. Längere Schlüssel haben auch einen negativen Einfluss auf die Performanz von SSH."
 
+##### --- Active monitor
+
+msgid "amSSHNameTag"
+msgstr "SSHd Server"
+
+msgid "amDetailsTitle"
+msgstr "SSHd Server Details"
+
+msgid "amStatusOK"
+msgstr "Der SSHd Server arbeitet einwandfrei."
+
+msgid "amNotAccepting"
+msgstr "The SSHd Server läuft nicht und konnte auch nicht wieder neu gestartet werden. Bitte versuchen Sie den SSHd Server über die GUI zu deaktivieren und neu zu aktivieren."
+

@@ -161,4 +161,17 @@ msgstr "SSH Comprimento da chave"
 msgid "SSH_keylength_help"
 msgstr "Especifica o número de bits na chave para as chaves recém-criados ou certificados. O padrão é 2048 bits. Geralmente, 2048 bits é considerada suficiente, mas você pode criar as chaves com mais bits. Por favor, note que as chaves mais criar mais tempo para criar. Chaves mais longas também têm um impacto negativo no desempenho SSH."
 
+##### --- Active monitor
+
+msgid "amSSHNameTag"
+msgstr "SSHd Servidor"
+
+msgid "amDetailsTitle"
+msgstr "SSHd Detalhes Servidor"
+
+msgid "amStatusOK"
+msgstr "O servidor SSHd está funcionando normalmente."
+
+msgid "amNotAccepting"
+msgstr "O servidor SSHd não está em execução e não pode ser reiniciado. No [[base-apache.amAdmservNameTag]], tente desligar o servidor SSHd desligar e ligar novamente para ver se isso corrige o problema."
 

@@ -169,3 +169,16 @@ msgstr "SSH Key Length"
 msgid "SSH_keylength_help"
 msgstr "Angiver antallet af bits i nøglen for nyoprettede nøgler eller certifikater. Standarden er 2048 bits. Generelt er 2048 bits betragtes som tilstrækkelig, men du kan oprette nøgler med flere bit. Bemærk venligst, at længere nøgler skaber længere tid at oprette. Længere nøgler har også en negativ indvirkning på SSH ydeevne."
 
+##### --- Active monitor
+
+msgid "amSSHNameTag"
+msgstr "SSHd Server"
+
+msgid "amDetailsTitle"
+msgstr "SSHd Server Detaljer"
+
+msgid "amStatusOK"
+msgstr "The SSHd server fungerer normalt."
+
+msgid "amNotAccepting"
+msgstr "The SSHd-serveren kører ikke, og kunne ikke genstartes. I [[base-apache.amAdmservNameTag]], prøv at dreje sshd serveren off derefter igen for at se, om det løser problemet. Hvis sshd serveren er stadig ikke at starte, så prøv at genstarte serveren selv ved at klikke på [[base-power.power]] knappen i [[base-alpine.serverconfig]]. If the SSHd server is still unable to start, please refer [[base-sauce-basic.techSupportURL]] for technical support."
