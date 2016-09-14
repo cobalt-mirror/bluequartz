@@ -44,9 +44,14 @@ if ($SSHsettings->{'enabled'} eq "1") {
     }
 
     # Check Status:
-    $status = `systemctl status $service.service|grep "Active: active (running)"|wc -l`;
+    if (-f '/usr/bin/systemctl') {
+        $status = `systemctl status $service.service|grep "Active: active (running)"|wc -l`;
+    }
+    else {
+        $status = `netstat -tupan|grep LISTEN|grep sshd|wc -l`;
+    }
     chomp($status);
-    if ($status eq "1") {
+    if ($status gt "0") {
         # Service is working:
         &debug_msg("Service $service is working. \n");
         print $ENV{greenMsg};
@@ -59,7 +64,12 @@ if ($SSHsettings->{'enabled'} eq "1") {
         Sauce::Service::service_run_init($service, 'restart');
         sleep 3;
         # Retest if service is working now:
-        $status = `systemctl status $service.service|grep "Active: active (running)"|wc -l`;
+        if (-f '/usr/bin/systemctl') {
+            $status = `systemctl status $service.service|grep "Active: active (running)"|wc -l`;
+        }
+        else {
+            $status = `netstat -tupan|grep LISTEN|grep sshd|wc -l`;
+        }
         chomp($status);
         if ($status eq "0") {
             &debug_msg("Service $service has failed. \n");
