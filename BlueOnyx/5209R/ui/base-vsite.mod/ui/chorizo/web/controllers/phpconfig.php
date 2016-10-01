@@ -532,45 +532,43 @@ class Phpconfig extends MX_Controller {
         $block->addFormField($upload_max_filesize_choices_select,$factory->getLabel("upload_max_filesize"), "php_ini_security_settings");
 
         // post_max_size:
-        if ($CODBDATA['post_max_size']) {
-            $post_max_size_choices = array (
-                '2M',  
-                '4M',  
-                '8M',  
-                '16M', 
-                '24M', 
-                '32M', 
-                '40M', 
-                '48M', 
-                '56M', 
-                '64M', 
-                '72M',
-                '80M',
-                '88M',
-                '96M',
-                '104M',
-                '112M',
-                '120M',
-                '128M',
-                '132M',
-                '140M',
-                '148M',
-                '156M',
-                '164M',
-                '172M',
-                '180M',
-                '256M',
-                '512M',
-                '750M',
-                '1024M'
-            );
+        $post_max_size_choices = array (
+            '2M',  
+            '4M',  
+            '8M',  
+            '16M', 
+            '24M', 
+            '32M', 
+            '40M', 
+            '48M', 
+            '56M', 
+            '64M', 
+            '72M',
+            '80M',
+            '88M',
+            '96M',
+            '104M',
+            '112M',
+            '120M',
+            '128M',
+            '132M',
+            '140M',
+            '148M',
+            '156M',
+            '164M',
+            '172M',
+            '180M',
+            '256M',
+            '512M',
+            '750M',
+            '1024M'
+        );
 
-            // If we're currently using something that's not in that array, we add it to it:
-            if (!in_array($CODBDATA['post_max_size'], $post_max_size_choices)) {
-                    $post_max_size_choices[] = $CODBDATA['post_max_size'];
-            }
-            sort($post_max_size_choices, SORT_NUMERIC);
+        // If we're currently using something that's not in that array, we add it to it:
+        if (!in_array($CODBDATA['post_max_size'], $post_max_size_choices)) {
+                $post_max_size_choices[] = $CODBDATA['post_max_size'];
         }
+        sort($post_max_size_choices, SORT_NUMERIC);
 
         // post_max_size Input:
         $post_max_size_choices_select = $factory->getMultiChoice("post_max_size",array_values($post_max_size_choices));
@@ -578,29 +576,27 @@ class Phpconfig extends MX_Controller {
         $block->addFormField($post_max_size_choices_select,$factory->getLabel("post_max_size"), "php_ini_security_settings");
 
         // max_execution_time:
-        if ($CODBDATA['max_execution_time']) {
-                $max_execution_time_choices = array (
-                    '30',  
-                    '60',  
-                    '90',  
-                    '120', 
-                    '150', 
-                    '180', 
-                    '210', 
-                    '240', 
-                    '270', 
-                    '300', 
-                    '500',
-                    '600',
-                    '900'
-                );
-                
-                // If we're currently using something that's not in that array, we add it to it:
-                if (!in_array($CODBDATA['max_execution_time'], $max_execution_time_choices)) {
-                        $max_execution_time_choices[] = $CODBDATA['max_execution_time'];
-                }
-                sort($max_execution_time_choices, SORT_NUMERIC);
+        $max_execution_time_choices = array (
+            '30',  
+            '60',  
+            '90',  
+            '120', 
+            '150', 
+            '180', 
+            '210', 
+            '240', 
+            '270', 
+            '300', 
+            '500',
+            '600',
+            '900'
+        );
+        
+        // If we're currently using something that's not in that array, we add it to it:
+        if ((!in_array($CODBDATA['max_execution_time'], $max_execution_time_choices)) && ($CODBDATA['max_execution_time'] != "")) {
+                $max_execution_time_choices[] = $CODBDATA['max_execution_time'];
         }
+        sort($max_execution_time_choices, SORT_NUMERIC);
 
         // max_execution_time Input:
         $max_execution_time_choices_select = $factory->getMultiChoice("max_execution_time",array_values($max_execution_time_choices));
@@ -608,29 +604,27 @@ class Phpconfig extends MX_Controller {
         $block->addFormField($max_execution_time_choices_select,$factory->getLabel("max_execution_time"), "php_ini_security_settings");
 
         // max_input_time:
-        if ($CODBDATA['max_input_time']) {
-                $max_input_time_choices = array (
-                    '30',  
-                    '60',  
-                    '90',  
-                    '120', 
-                    '150', 
-                    '180', 
-                    '210', 
-                    '240', 
-                    '270',
-                    '300',
-                    '500',
-                    '600',
-                    '900'
-                );
-                
-                // If we're currently using something that's not in that array, we add it to it:
-                if (!in_array($CODBDATA['max_input_time'], $max_input_time_choices)) {
-                        $max_input_time_choices[] = $CODBDATA['max_input_time'];
-                }
-                sort($max_input_time_choices, SORT_NUMERIC);
+        $max_input_time_choices = array (
+            '30',  
+            '60',  
+            '90',  
+            '120', 
+            '150', 
+            '180', 
+            '210', 
+            '240', 
+            '270',
+            '300',
+            '500',
+            '600',
+            '900'
+        );
+        
+        // If we're currently using something that's not in that array, we add it to it:
+        if ((!in_array($CODBDATA['max_input_time'], $max_input_time_choices)) && ($CODBDATA['max_input_time'] != "")) {
+                $max_input_time_choices[] = $CODBDATA['max_input_time'];
         }
+        sort($max_input_time_choices, SORT_NUMERIC);
 
         // max_input_time Input:
         $max_input_time_choices_select = $factory->getMultiChoice("max_input_time",array_values($max_input_time_choices));
@@ -638,42 +632,40 @@ class Phpconfig extends MX_Controller {
         $block->addFormField($max_input_time_choices_select,$factory->getLabel("max_input_time"), "php_ini_security_settings");
 
         // memory_limit:
-        if ($CODBDATA['memory_limit']) {
-                $memory_limit_choices = array (
-                    '16M', 
-                    '24M', 
-                    '32M', 
-                    '40M', 
-                    '48M', 
-                    '56M',
-                    '64M',
-                    '72M',
-                    '80M',
-                    '88M',
-                    '96M',
-                    '104M',
-                    '112M',
-                    '120M',
-                    '128M',
-                    '132M',
-                    '140M',
-                    '148M',
-                    '156M',
-                    '164M',
-                    '172M',
-                    '180M',
-                    '256M',
-                    '512M',
-                    '750M',
-                    '1024M'
-                );
+        $memory_limit_choices = array (
+            '16M', 
+            '24M', 
+            '32M', 
+            '40M', 
+            '48M', 
+            '56M',
+            '64M',
+            '72M',
+            '80M',
+            '88M',
+            '96M',
+            '104M',
+            '112M',
+            '120M',
+            '128M',
+            '132M',
+            '140M',
+            '148M',
+            '156M',
+            '164M',
+            '172M',
+            '180M',
+            '256M',
+            '512M',
+            '750M',
+            '1024M'
+        );
 
-                // If we're currently using something that's not in that array, we add it to it:
-                if (!in_array($CODBDATA['memory_limit'], $memory_limit_choices)) {
-                        $memory_limit_choices[] = $CODBDATA['memory_limit'];
-                }
-                sort($memory_limit_choices, SORT_NUMERIC);
+        // If we're currently using something that's not in that array, we add it to it:
+        if ((!in_array($CODBDATA['memory_limit'], $memory_limit_choices)) && ($CODBDATA['memory_limit'] != "")) {
+            $memory_limit_choices[] = $CODBDATA['memory_limit'];
         }
+        sort($memory_limit_choices, SORT_NUMERIC);
 
         // max_input_vars:
         if (!isset($CODBDATA["max_input_vars"])) { 

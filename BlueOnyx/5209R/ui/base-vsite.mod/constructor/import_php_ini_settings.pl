@@ -182,6 +182,8 @@ if ((-f "$php_dso_conf") && ( -f "$new_php_dso_location")) {
 
 if (-f $php_ini) {
 
+    &debug_msg("Processing: $php_ini \n");
+
     # Array of PHP config switches that we want to update in CCE:
     &items_of_interest;
 
@@ -200,6 +202,7 @@ if (-f $php_ini) {
 else {
     # Ok, we have a problem: No php.ini found.
     # So we just weep silently and exit. 
+    &debug_msg("FAIL: $php_ini not found!\n");
     $cce->bye('FAIL', "$php_ini not found!");
     exit(1);
 }
@@ -209,6 +212,9 @@ exit(0);
 
 # Read and parse php.ini:
 sub ini_read {
+
+    &debug_msg("Reading: $php_ini \n");
+
     open (F, $php_ini) || die "Could not open $php_ini: $!";
 
     while ($line = <F>) {
