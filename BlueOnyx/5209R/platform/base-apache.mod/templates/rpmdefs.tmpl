@@ -55,6 +55,7 @@ information for [VENDOR]-[SERVICE].
 /usr/sausalito/sbin/set_default_php_settings.pl
 /usr/sausalito/sbin/toggle_ssl.pl
 /usr/sausalito/sbin/SSL_fixer.pl
+/usr/sausalito/sbin/phptoggle.pl
 /etc/ccewrap.d/base/apache/apache.xml
 
 /usr/sausalito/configs/systemd/php-fpm.service
@@ -118,7 +119,7 @@ if [ -f /etc/httpd/alias/cert8.db ]; then
 	find /etc/httpd/alias -user root -name "*.db" -exec /bin/chmod g+r {} \;
 fi
 
-if [ $1 = 2 ]; then
+if [ $1 -gt 1 ]; then
   /usr/sausalito/handlers/base/apache/preview.pl -c
 fi
 
@@ -166,8 +167,15 @@ fi
   #/usr/sausalito/sbin/SSL_fixer.pl
 #fi
 
+# One time conversion of PHP-FPM settings:
+if [ $1 -gt 1 ]; then
+	/usr/sausalito/sbin/phptoggle.pl -fpm
+fi
+
 # Rehash/Restart CCEd and Apache for good measure:
-touch /usr/sausalito/yumcce/restart
+if [ -d /usr/sausalito/yumcce ];then
+	touch /usr/sausalito/yumcce/restart
+fi
 
 if [ -f /usr/bin/systemctl ]; then
 
@@ -217,6 +225,14 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Sat Oct 01 2016 Michael Stauber <mstauber@solarspeed.net> 2.1.1-0BX48
+- Improved PHP-FPM implementation with a conditional FCGI call.
+- Added glue/sbin/phptoggle.pl
+- Modified glue/Makefile
+- Modified glue/handlers/webscripting.pl
+- Modified glue/handlers/webscripting2.pl
+- Modified glue/handlers/webscripting3.pl
 
 * Wed Aug 31 2016 Michael Stauber <mstauber@solarspeed.net> 2.1.1-0BX47
 - Modified glue/httpd/ssl_bx.conf to turn Gzip compression off again.
