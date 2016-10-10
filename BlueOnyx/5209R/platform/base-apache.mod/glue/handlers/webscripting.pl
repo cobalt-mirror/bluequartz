@@ -405,8 +405,9 @@ sub edit_vhost
                         # Replace double slash with single slash:
                         $VsiteDocRoot =~ s/\/\//\//g;
                         $script_conf .= "RewriteCond $VsiteDocRoot%{REQUEST_FILENAME} -f\n";
-                        $script_conf .= "RewriteRule ^/(.*\.php(/.*)?)\$ fcgi://127.0.0.1:$fpmPort$VsiteDocRoot\$1 [L,P]\n";
-
+                        $script_conf .= "RewriteRule ^/(.+\.php(/.*)?)\$ fcgi://127.0.0.1:$fpmPort$VsiteDocRoot\$1 [L,P]\n";
+                        $script_conf .= "RewriteCond $VsiteDocRoot%{REQUEST_FILENAME} \"\\.php/\"\n";
+                        $script_conf .= "RewriteRule ^/(.+\.php(/.*)?)\$ fcgi://127.0.0.1:$fpmPort$VsiteDocRoot\$1 [L,P]\n";
                 }
                 # Handle 'regular' PHP via DSO:
                 else {
