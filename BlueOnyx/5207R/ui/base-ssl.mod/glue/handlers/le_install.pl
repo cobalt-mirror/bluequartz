@@ -98,8 +98,10 @@ if (($vsite->{'CLASS'} eq "Vsite") || ($vsite->{'CLASS'} eq "System")) {
 
     # Obtain SSL cert:
     # --duplicate
-    &debug_msg("Running: /usr/sausalito/letsencrypt/letsencrypt-auto certonly -a webroot --webroot-path $webroot -d $fqdn $alias_line $email --rsa-key-size 4096 --agree-tos $autoRenew --user-agent BlueOnyx.it\n");
-    $result = `/usr/sausalito/letsencrypt/letsencrypt-auto certonly -a webroot --webroot-path $webroot -d $fqdn $alias_line $email --rsa-key-size 4096 --agree-tos $autoRenew --user-agent BlueOnyx.it 2>&1`;
+    &debug_msg("Running: /usr/sausalito/letsencrypt/letsencrypt-auto --text --no-self-upgrade certonly -a webroot --webroot-path $webroot -d $fqdn $alias_line $email --rsa-key-size 4096 --agree-tos $autoRenew --user-agent 
+BlueOnyx.it\n");
+    $result = `/usr/sausalito/letsencrypt/letsencrypt-auto --text --no-self-upgrade certonly -a webroot --webroot-path $webroot -d $fqdn $alias_line $email --rsa-key-size 4096 --agree-tos $autoRenew --user-agent BlueOnyx.it 
+2>&1`;
     &debug_msg("Result: $result\n");
     $result =~ s/^Updating letsencrypt(.*)\n//g;
     $result =~ s/^Running with virtualenv:(.*)\n//g;
