@@ -136,6 +136,20 @@ fi
 
 <begin $CHANGELOG>
 
+* Mon Oct 10 2016 Michael Stauber <mstauber@solarspeed.net> 1.3.0-0BX22
+- Modified glue/handlers/le_install.pl to add --text --no-self-upgrade
+  flags to all letsencrypt-auto calls. Self updating Python piece of shit.
+  Why do these idiots change expected behaviour without reason.
+
+* Wed Aug 31 2016 Michael Stauber <mstauber@solarspeed.net> 1.3.0-0BX21
+- Modified glue/handlers/ssl.pl so that a real SSL certificate for
+  AdmServ doesn't get replaced by a self signed one on hostname or
+  domain name changes.
+
+* Tue Aug 02 2016 Michael Stauber <mstauber@solarspeed.net> 1.3.0-0BX20
+- Disabled glue/handlers/vsite_change_ip.pl
+- Modified glue/conf/base-ssl.conf to that end as well.
+
 * Thu Mar 24 2016 Michael Stauber <mstauber@solarspeed.net> 1.3.0-0BX19
 - Modified glue/schemas/ssl.schema to fix System/SSL ACL's and to add a
   missing field.
