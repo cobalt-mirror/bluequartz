@@ -266,8 +266,9 @@ class UserAdd extends MX_Controller {
 					    $quota = "-1";
 					}
 					else {
+						$attributes['maxDiskSpaceField'] = preg_replace('/\,/', '.', $attributes['maxDiskSpaceField']);
 						// Quota is set. Check if it has a unit or not:
-					    $pattern = '/^(\d*\.{0,1}\d+)(K|M|G|T)$/';
+					    $pattern = '/^(\d*[(\.)|(\,)]{0,1}\d+)(K|M|G|T)$/';
 					    if (preg_match($pattern, $attributes['maxDiskSpaceField'], $matches, PREG_OFFSET_CAPTURE)) {
 					    	// Quota has a unit:
 					    	$quota = (unsimplify_number($attributes['maxDiskSpaceField'], "K")/1000);
@@ -416,7 +417,7 @@ class UserAdd extends MX_Controller {
 		$vsite_quota = $disk['quota']*1024*1024;
 		$default_quota = $defaults['quota']*1024*1024;
 
-		$site_quota = $factory->getInteger('maxDiskSpaceField', simplify_number($default_quota, "KB", "0"), 1, $vsite_quota, 'rw'); 
+		$site_quota = $factory->getInteger('maxDiskSpaceField', simplify_number($default_quota, "KB", "2"), 1, $vsite_quota, 'rw'); 
 	    $site_quota->showBounds('dezi');
 	    $site_quota->setType('memdisk');
 		$block->addFormField(
