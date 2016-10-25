@@ -376,6 +376,7 @@ class ManageAdmin extends MX_Controller {
 
             // Set the disk quota:
             if ($big_ok) {
+                $attributes['diskQuota'] = preg_replace('/\,/', '.', $attributes['diskQuota']);
                 $diskQuota = floor(unsimplify_number($attributes['diskQuota'], "KB")/1024);
                 $cceClient->set($_oid, 'Disk', array('quota' => $diskQuota));
             }
@@ -410,6 +411,7 @@ class ManageAdmin extends MX_Controller {
 
             // Set Site Management information
             if ($big_ok) {
+                $attributes['siteQuota'] = preg_replace('/\,/', '.', $attributes['siteQuota']);
                 $siteQuota = unsimplify_number($attributes['siteQuota'], "K");
                 $cceClient->set($_oid, 'Sites',
                     array('quota' => ($siteQuota == '' ? '0' : $siteQuota),
@@ -566,7 +568,7 @@ class ManageAdmin extends MX_Controller {
 
         if (isset($_oid)) {
             $disk = $cceClient->get($_oid, 'Disk');
-            $displayed_quota = simplify_number($disk['quota']*1024*1024, "KB", "0");
+            $displayed_quota = simplify_number($disk['quota']*1024*1024, "KB", "2");
         }
         else {
             $displayed_quota = "200M";
@@ -643,7 +645,7 @@ class ManageAdmin extends MX_Controller {
         if (isset($_oid)) {
             $site = $cceClient->get($_oid, 'Sites');
             $sites_quota = ($site['quota'] == -1 ? '' : $site['quota']);
-            $sites_quota = simplify_number($sites_quota*1000, "K", "0");
+            $sites_quota = simplify_number($sites_quota*1000, "K", "2");
             $sites_max = ($site['max'] == -1 ? '' : $site['max']);
             $sites_user = ($site['user'] == -1 ? '' : $site['user']);
         }

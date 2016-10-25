@@ -192,8 +192,9 @@ class vsiteMod extends MX_Controller {
 
             // Setup Quota information:
             if ($vsiteOID) {
+                $attributes['quota'] = preg_replace('/\,/', '.', $attributes['quota']);
                 // Check if our quota has a unit:
-                $pattern = '/^(\d*\.{0,1}\d+)(K|M|G|T)$/';
+                $pattern = '/^(\d*[(\.)|(\,)]{0,1}\d+)(K|M|G|T)$/';
                 if (preg_match($pattern, $attributes['quota'], $matches, PREG_OFFSET_CAPTURE)) {
                     // Quota has a unit:
                     $quota = floor((unsimplify_number($attributes['quota'], "K")/1000));
@@ -494,7 +495,7 @@ class vsiteMod extends MX_Controller {
         }
         // If the Disk Space is editable, we show it as editable:
         if ($access == 'rw') {
-            $site_quota = $factory->getInteger('quota', simplify_number($VsiteTotalDiskSpace, "K", "0"), 1, $partitionMax, $access); 
+            $site_quota = $factory->getInteger('quota', simplify_number($VsiteTotalDiskSpace, "K", "2"), 1, $partitionMax, $access); 
             $site_quota->showBounds('dezi');
             $site_quota->setType('memdisk');
             $block->addFormField(
@@ -507,7 +508,7 @@ class vsiteMod extends MX_Controller {
             // Else we show it as shiny bargraph:
             $percent = round(100 * ($disk['used'] / $disk['quota']));
             $disk_bar = $factory->getBar("quota", floor($percent), "");
-            $disk_bar->setBarText($i18n->getHtml("[[base-disk.userDiskPercentage_moreInfo]]", false, array("percentage" => $percent, "used" => simplify_number($VsiteUsedDiskSpace, "K", "0"), "total" => simplify_number($VsiteTotalDiskSpace, "K", "0"))));
+            $disk_bar->setBarText($i18n->getHtml("[[base-disk.userDiskPercentage_moreInfo]]", false, array("percentage" => $percent, "used" => simplify_number($VsiteUsedDiskSpace, "K", "2"), "total" => simplify_number($VsiteTotalDiskSpace, "K", "0"))));
             $disk_bar->setLabelType("quota");
             $disk_bar->setHelpTextPosition("bottom");   
 
