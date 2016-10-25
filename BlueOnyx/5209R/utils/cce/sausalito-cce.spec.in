@@ -221,6 +221,9 @@ fi
 
 %changelog
 
+* Mon Oct 24 2016 Michael Stauber <mstauber@solarspeed.net> 0.99.2-1BX10
+- Modified baseType Schema to allow 'memdisk' to use non-integers.
+
 * Sun Jun 19 2016 Michael Stauber <mstauber@solarspeed.net> 0.99.2-1BX09
 - Small change in server/cced.init to no longer use killall.
 
