@@ -470,10 +470,20 @@ class CceClient {
     if (!$this->getNative()) {
       if ($this->DEBUG) {
         if ($namespace != "") {
-          error_log("Command: GET $oid . $namespace");
+          if (is_string($oid)) {
+            error_log("Command: GET $oid . $namespace");
+          }
+          else {
+            error_log("Command: GET " . array_to_scalar($oid) . " . $namespace");
+          }
         }
         else {
-          error_log("Command: GET $oid");
+          if (is_string($oid)) {
+            error_log("Command: GET $oid");
+          }
+          else {
+            error_log("Command: GET " . array_to_scalar($oid));
+          }
         }
       }
       return ccephp_get($this->handle, $oid, $namespace);
