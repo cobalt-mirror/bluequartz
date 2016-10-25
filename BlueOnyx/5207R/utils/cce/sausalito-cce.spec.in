@@ -209,6 +209,9 @@ fi
 
 %changelog
 
+* Mon Oct 24 2016 Michael Stauber <mstauber@solarspeed.net> 0.99.2-1BX05
+- Modified baseType Schema to allow 'memdisk' to use non-integers.
+
 * Mon May 02 2016 Michael Stauber <mstauber@solarspeed.net> 0.99.2-1BX04
 - Modified server/basetypes.schema to update the regexp for 'password' to
   only allow passwords that our architecture actually supports. One problem

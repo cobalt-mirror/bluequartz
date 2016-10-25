@@ -26,7 +26,7 @@
 <typedef name="alphanum" 	type="re" 	data="^[A-Za-z0-9]+$"/>
 
 <!-- memdisk is any alphanumeric data plus a unit (K, KB, M, MB, G, GB, T, TB) -->
-<typedef name="memdisk" 	type="re" 	data="^([0-9]{1,9})((K)||(KB)||(M)||(MB)||(G)||(GB)||(T)||(TB))+$"/>
+<typedef name="memdisk" 	type="re" 	data="^([0-9]{1,9})[(\.)|(\,)]{0,1}[0-9]{0,9}((K)||(KB)||(M)||(MB)||(G)||(GB)||(T)||(TB))+$"/>
 
 
 <!-- alphanum_plus is alphanumeric data plus a "safe" subset of punctuation -->
