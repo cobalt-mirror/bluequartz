@@ -739,7 +739,12 @@ function simplify_number ($number, $literal, $cnt) {
     $base = log($number, $multi);
     $suffixes = array('', 'K', 'M', 'G', 'T');   
 
-    return round(pow($multi, $base - floor($base)), $cnt) .''. $suffixes[floor($base)];
+    if (isset($suffixes[floor($base)])) {
+        return round(pow($multi, $base - floor($base)), $cnt) .''. $suffixes[floor($base)];
+    }
+    else {
+        return round(pow($multi, $base - floor($base)), $cnt);
+    }
 }
 
 function unsimplify_number ($number, $literal, $cnt="") {
