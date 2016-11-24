@@ -8,17 +8,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-msgid	"header"
-msgstr	"はサーバへ接続"
+msgid "header"
+msgstr "サーバーに接続する"
 
-msgid	"connect"
-msgstr	"は Mindterm を起動"
+msgid "connect"
+msgstr "コンソールログイン"
 
-msgid	"connect_help"
-msgstr	"は SSH 経由でこのサーバーに接続する"
+msgid "connect_help"
+msgstr "Shellinaboxを介してこのサーバーのコンソールに接続してシェルを開きます。"
 
-msgid	"about"
-msgstr	"Mindterm は、あなたが遠隔地からサーバーにアクセスすることを可能にするJavaベースのアプリケーションです。これは、セキュア?シェルを使用しています。ご自分のサーバに接続するためにSSHを有効にする必要があります。あなたはそれが有効になっていない場合は、接続する前にそうしてください。"
+msgid "info_text"
+msgstr "このページでは、このサーバーのコンソールにログインできます。 そのためにSSHは使用しませんが、 'Shellinabox'を介した真のコンソール接続です。 'Shellinabox'へのアクセスは、シェルアクセスが有効になっている認証されたユーザーがGUI経由でサービスにアクセスする場合にのみ許可されます。"
 
-msgid "remote_menu"
-msgstr "リモートアクセス"
+msgid "admin_text"
+msgstr "<b>ご注意ください：</b><br><br>ユーザー 'admin'はログインできますが、rootアクセスを得るために 'su - 'を使用することはできません。 rootアクセスが必要な場合は、「Root-Access」を有効にして別のServer Administratorとしてログインし、「su root-username」を使用して「root」アクセス権を取得しま"
+

@@ -6,8 +6,8 @@ VENDOR=base
 VENDORNAME='Team BlueOnyx'
 SERVICE=remote
 
-VERSION=1.2.0
-RELEASE=0BX06
+VERSION=1.3.0
+RELEASE=0BX01
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -17,6 +17,7 @@ BUILDUI=new
 BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=no
+REQUIRES=shellinabox
 
 OBSOLETES=nuonce-mindterm
 

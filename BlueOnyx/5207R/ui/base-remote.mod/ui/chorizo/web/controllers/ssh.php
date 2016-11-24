@@ -1,112 +1,168 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+
 class Ssh extends MX_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Past the login page this loads the page for the SSH applet.
-	 *
-	 */
+    /**
+     * Index Page for this controller.
+     *
+     * Past the login page this loads the page for the console access.
+     *
+     */
 
-	public function index() {
+    public function index() {
 
-		$CI =& get_instance();
-		
-	    // We load the BlueOnyx helper library first of all, as we heavily depend on it:
-	    $this->load->helper('blueonyx');
-	    init_libraries();
+        $CI =& get_instance();
+        
+        // We load the BlueOnyx helper library first of all, as we heavily depend on it:
+        $this->load->helper('blueonyx');
+        init_libraries();
 
-  		// Need to load 'BxPage' for page rendering:
-  		$this->load->library('BxPage');
-		$MX =& get_instance();
+        // Need to load 'BxPage' for page rendering:
+        $this->load->library('BxPage');
+        $MX =& get_instance();
 
-	    // Get $sessionId and $loginName from Cookie (if they are set):
-	    $sessionId = $CI->input->cookie('sessionId');
-	    $loginName = $CI->input->cookie('loginName');
-	    $locale = $CI->input->cookie('locale');
+        // Get $sessionId and $loginName from Cookie (if they are set):
+        $sessionId = $CI->input->cookie('sessionId');
+        $loginName = $CI->input->cookie('loginName');
+        $locale = $CI->input->cookie('locale');
 
-	    // Line up the ducks for CCE-Connection:
-	    include_once('ServerScriptHelper.php');
-		$serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-		$cceClient = $serverScriptHelper->getCceClient();
-		$user = $cceClient->getObject("User", array("name" => $loginName));
-		$i18n = new I18n("base-disk", $user['localePreference']);
-		$system = $cceClient->getObject("System");
+        // Line up the ducks for CCE-Connection:
+        include_once('ServerScriptHelper.php');
+        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
+        $cceClient = $serverScriptHelper->getCceClient();
+        $user = $cceClient->getObject("User", array("name" => $loginName));
+        $userShell = $cceClient->getObject("User", array("name" => $loginName), "Shell");
+        $i18n = new I18n("base-disk", $user['localePreference']);
+        $system = $cceClient->getObject("System");
 
-		// Initialize Capabilities so that we can poll the access rights as well:
-		$Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        // Initialize Capabilities so that we can poll the access rights as well:
+        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
 
-		// Required array setup:
-		$errors = array();
-		$extra_headers = array();
+        // No Shell access? Bye, bye!
+        if ((!$Capabilities->getAllowed('serverShell')) || (!$Capabilities->getAllowed('siteShell')) || (!$Capabilities->getAllowed('resellerShell'))) {
+            // Nice people say goodbye, or CCEd waits forever:
+            $cceClient->bye();
+            $serverScriptHelper->destructor();
+            Log403Error("/gui/Forbidden403");
+        }
 
-		// -- Actual page logic start:
+        // Required array setup:
+        $errors = array();
+        $extra_headers = array();
 
-	    //-- Generate page:
+        // -- Actual page logic start:
 
-		// Prepare Page:
-		$factory = $serverScriptHelper->getHtmlComponentFactory("base-remote", "/remote/ssh/");
-		$BxPage = $factory->getPage();
-		$BxPage->setErrors($errors);
-		$i18n = $factory->getI18n();
+        //-- Generate page:
 
-		// Set Menu items:
-		$BxPage->setVerticalMenu('base_programsPersonal');
-		$BxPage->setVerticalMenuChild('2nuonce_base_ssh2');
-		$page_module = 'base_personalProfile';
+        // Prepare Page:
+        $factory = $serverScriptHelper->getHtmlComponentFactory("base-remote", "/remote/ssh/");
+        $BxPage = $factory->getPage();
+        $BxPage->setErrors($errors);
+        $i18n = $factory->getI18n();
 
-		$defaultPage = "basicSettingsTab";
+        // Set Menu items:
+        $BxPage->setVerticalMenu('base_programsPersonal');
+        $BxPage->setVerticalMenuChild('2nuonce_base_ssh2');
+        $page_module = 'base_personalProfile';
 
-		$block =& $factory->getPagedBlock("header", array($defaultPage));
+        $defaultPage = "basicSettingsTab";
 
-		$block->setToggle("#");
-		$block->setSelf("/remote/ssh/full");
-		$block->setSideTabs(FALSE);
-		$block->setDefaultPage($defaultPage);
+        $block =& $factory->getPagedBlock("header", array($defaultPage));
 
+        $block->setToggle("#");
+        $block->setSideTabs(FALSE);
+        $block->setDefaultPage($defaultPage);
 
-		if (uri_string() == "remote/ssh/full") {
-			$sepframe = "true";
-		}
-		else {
-			$sepframe = "false";
-		}
+        $uri_full = 'https://' . $_SERVER['SERVER_NAME'] . ':81/bxshell/?' . $loginName . '=' . time();
+        $uri_short = '/bxshell/?$loginName=' . time();
 
-		$applet = '
-			<APPLET CODE="com.mindbright.application.MindTerm.class" ARCHIVE="/.adm/scripts/mindterm/mindterm.jar" WIDTH=735 HEIGHT=600>
-			  <PARAM NAME="cabinets" VALUE="mindterm.cab">    
-			  <PARAM NAME="debug" value="false">
-			  <PARAM NAME="menus" value="yes"> 
-			  <PARAM NAME="sepframe" value="' . $sepframe . '">
-			  <PARAM NAME="allow-new-server" value="false">
-			  <PARAM NAME="exit-on-logout" value="true">   
-			  <PARAM NAME="quiet" VALUE="false">
-			  <PARAM NAME="term-type" VALUE="xterm-color">
-			  <PARAM NAME="bg-color" VALUE="black">
-			  <PARAM NAME="fg-color" VALUE="187,187,187">
-			  <PARAM NAME="font-size" VALUE="14">
-			</APPLET>';
+        if (!isset($userShell['enabled'])) {
+            $uri_full = 'https://' . $_SERVER['SERVER_NAME'] . ':81/remote/noaccess/?' . $loginName . '=' . time();
+            $uri_short = '/remote/noaccess/?' . $loginName . '=' . time();
+        }
 
-		$block->addFormField(
-			$factory->getRawHTML("applet", $applet),
-			$factory->getLabel("AllowOverride_OptionsField")
-		);
+        if (uri_string() != "remote/ssh/full") {
 
-		// Nice people say goodbye, or CCEd waits forever:
-		$cceClient->bye();
-		$serverScriptHelper->destructor();
+            $my_TEXT = "<div class='flat_area grid_16'><br>" . $i18n->getClean("[[base-remote.info_text]]") . "</div>";
+            $infotext = $factory->getHtmlField("info_text", $my_TEXT, 'r');
+            $infotext->setLabelType("nolabel");
+            $block->addFormField(
+              $infotext,
+              $factory->getLabel(" ", false),
+              $defaultPage
+            );
 
-		$page_body[] = $block->toHtml();
+            if ($loginName == 'admin') {
 
-		// Out with the page:
-	    $BxPage->render($page_module, $page_body);
+                $admin_TEXT = "<div class='flat_area grid_16'><br>" . $i18n->getClean("[[base-remote.admin_text]]") . "</div>";
+                $admintext = $factory->getHtmlField("admin_text", $admin_TEXT, 'r');
+                $admintext->setLabelType("nolabel");
+                $block->addFormField(
+                  $admintext,
+                  $factory->getLabel(" ", false),
+                  $defaultPage
+                );
+            }
 
-	}		
+            $block->setSelf("/remote/ssh/full");
+            $applet = '<iframe height=600 width=720 src="' . $uri_short . '" scrolling="no"></iframe>';
+
+            $block->addFormField(
+                $factory->getRawHTML("applet", $applet),
+                $factory->getLabel("AllowOverride_OptionsField")
+            );
+
+            // Nice people say goodbye, or CCEd waits forever:
+            $cceClient->bye();
+            $serverScriptHelper->destructor();
+            $page_body[] = $block->toHtml();
+        }
+        else {
+
+            $BxPage->setExtraBodyTag('<body onload="javascript: poponload()">');
+
+            $BxPage->setExtraHeaders('<script type="text/javascript">');
+            $BxPage->setExtraHeaders('function poponload() {');
+            $BxPage->setExtraHeaders("  window.open('$uri_full','_blank','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, copyhistory=yes, width=1024, height=800');");
+            $BxPage->setExtraHeaders('}');
+            $BxPage->setExtraHeaders('</script>');
+
+            $my_TEXT = "<div class='flat_area grid_16'><br>" . $i18n->getClean("[[base-remote.info_text]]") . "</div>";
+            $infotext = $factory->getHtmlField("info_text", $my_TEXT, 'r');
+            $infotext->setLabelType("nolabel");
+            $block->addFormField(
+              $infotext,
+              $factory->getLabel(" ", false),
+              $defaultPage
+            );
+
+            if ($loginName == 'admin') {
+
+                $admin_TEXT = "<div class='flat_area grid_16'><br>" . $i18n->getClean("[[base-remote.admin_text]]") . "</div>";
+                $admintext = $factory->getHtmlField("admin_text", $admin_TEXT, 'r');
+                $admintext->setLabelType("nolabel");
+                $block->addFormField(
+                  $admintext,
+                  $factory->getLabel(" ", false),
+                  $defaultPage
+                );
+            }
+
+            // Nice people say goodbye, or CCEd waits forever:
+            $cceClient->bye();
+            $serverScriptHelper->destructor();
+            $page_body[] = $block->toHtml();
+
+        }
+        // Out with the page:
+        $BxPage->render($page_module, $page_body);
+
+    }       
 }
 /*
-Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
 All Rights Reserved.
 
 1. Redistributions of source code must retain the above copyright 

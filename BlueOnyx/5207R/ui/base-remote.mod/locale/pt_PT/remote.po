@@ -9,17 +9,16 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "header"
-msgstr "Conectar ao Servidor"
+msgstr "Ligar ao servidor"
 
 msgid "connect"
-msgstr "Lançamento MindTerm"
+msgstr "Login do console"
 
 msgid "connect_help"
-msgstr "Conectar a este servidor via SSH"
+msgstr "Conecte-se ao console deste servidor via 'Shellinabox' para abrir um shell."
 
-msgid "about"
-msgstr "Mindterm é um aplicativo baseado em Java que lhe permite aceder ao seu servidor a partir de um local remoto. Ele usa Secure Shell. Você deve ter o SSH habilitado para se conectar ao seu servidor. Se você não tê-lo ativado, faça-o antes de ligar."
+msgid "info_text"
+msgstr "Esta página GUI permite que você faça login no console deste servidor. O acesso ao 'Shellinabox' só é concedido se o serviço for acessado através da GUI por um usuário autenticado que tenha acesso ao shell habilitado."
 
-msgid "remote_menu"
-msgstr "Acesso Remoto"
-
+msgid "admin_text"
+msgstr "<b>Observe:</b><br><br>O usuário 'admin' pode fazer login, mas ele não pode usar 'su -' para obter acesso root. Se você precisar de acesso root, faça login como outro 'Server Administrator' com 'Root-Access' ativado e use 'su root-username' para obter acesso 'root'."

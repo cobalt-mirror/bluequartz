@@ -12,13 +12,15 @@ msgid "header"
 msgstr "Opret forbindelse til server"
 
 msgid "connect"
-msgstr "Start Mindterm"
+msgstr "Konsol Login"
 
 msgid "connect_help"
-msgstr "Opret forbindelse til denne server via SSH"
+msgstr "Opret forbindelse til konsollen på denne server via 'Shellinabox' for at åbne en shell."
 
-msgid "about"
-msgstr "Mindterm er en Java-baseret program, der giver dig adgang til din server fra en ekstern placering. Det bruger Secure Shell. Du skal have SSH slået til for at oprette forbindelse til din server. Hvis du ikke har gjort det muligt, skal du gøre det, inden du tilslutter."
+msgid "info_text"
+msgstr "
 
-msgid "remote_menu"
-msgstr "Remote Access"
+Denne GUI side kan du logge ind på konsollen på denne server. For at den ikke bruger SSH, men en sand konsol forbindelse via 'Shellinabox'.<br><br>Adgang til 'Shellinabox' kun gives, hvis tjenesten er tilgængelig via GUI af en godkendt bruger, der har shell adgang aktiveret."
+
+msgid "admin_text"
+msgstr "<b>Bemærk:</b><br><br>Bruger 'admin' kan logge ind, men han kan ikke bruge 'su -' for at få root-adgang. Hvis du har brug for root-adgang, log ind som en anden 'Server Administrator' med aktiveret 'Root-adgang' og derefter bruge 'su root-brugernavn' at vinde 'root' adgang."
