@@ -23,3 +23,25 @@ msgstr "Deze GUI pagina kunt u in te loggen op de console van deze server. Voor 
 msgid "admin_text"
 msgstr "<b>Houd er rekening mee dat:</b><br><br>Gebruiker 'admin' kan inloggen, maar hij kan 'su -' niet gebruiken om root-toegang te krijgen. Als je root-toegang, login als een ander 'Server Administrator' met enabled 'Root-Access' nodig hebben en dan gebruik maken van 'su root-gebruikersnaam' naar 'root' toegang te krijgen."
 
+msgid "ShellinaboxEnabled"
+msgstr "Shellinabox Console Access"
+
+msgid "ShellinaboxEnabled_help"
+msgstr "Hierdoor kan de dienst 'Shellinabox' die nodig is als je wilt gebruiken '[[base-remote.connect]]' via 'Persoonlijk Profiel' / 'Programmas' / '[[base-remote.connect]]'."
+
+msgid "service_disabled"
+msgstr "De Service 'Shellinabox' is niet ingeschakeld. Console Inloggen is daarom niet mogelijk op dit moment."
+
+##### --- Active monitor
+
+msgid "amRemoteNameTag"
+msgstr "Shellinabox Server"
+
+msgid "amDetailsTitle"
+msgstr "Shellinabox Server Details"
+
+msgid "amStatusOK"
+msgstr "De Shellinabox server werkt normaal."
+
+msgid "amNotAccepting"
+msgstr "De Shellinabox server draait niet en kon niet worden hernieuwd. Probeer de Shellinabox server uit en dan weer aan om te zien of dit corrigeert het probleem."

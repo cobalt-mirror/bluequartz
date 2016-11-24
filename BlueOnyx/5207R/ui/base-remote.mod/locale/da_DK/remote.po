@@ -22,3 +22,26 @@ msgstr "Denne GUI side kan du logge ind på konsollen på denne server. For at d
 
 msgid "admin_text"
 msgstr "<b>Bemærk:</b><br><br>Bruger 'admin' kan logge ind, men han kan ikke bruge 'su -' for at få root-adgang. Hvis du har brug for root-adgang, log ind som en anden 'Server Administrator' med aktiveret 'Root-adgang' og derefter bruge 'su root-brugernavn' at vinde 'root' adgang."
+
+msgid "ShellinaboxEnabled"
+msgstr "Shellinabox Konsol Access"
+
+msgid "ShellinaboxEnabled_help"
+msgstr "Dette gør det muligt tjeneste "Shellinabox", som er nødvendig, hvis du ønsker at bruge "[[base-remote.connect]] via 'Personlige Profil / 'Programmer' / '[[base-remote.connect]]'."
+
+msgid "service_disabled"
+msgstr "The Service 'Shellinabox' is not enabled. Console Login is therefore not possible at this time."
+
+##### --- Active monitor
+
+msgid "amRemoteNameTag"
+msgstr "Shellinabox Server"
+
+msgid "amDetailsTitle"
+msgstr "Shellinabox Server Detaljer"
+
+msgid "amStatusOK"
+msgstr "Den Shellinabox server fungerer normalt."
+
+msgid "amNotAccepting"
+msgstr "Den Shellinabox-serveren kører ikke, og kunne ikke genstartes. Prøv at dreje Shellinabox serveren fra og derefter på igen for at se, om det løser problemet."

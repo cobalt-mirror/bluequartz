@@ -23,3 +23,25 @@ msgstr "このページでは、このサーバーのコンソールにログイ
 msgid "admin_text"
 msgstr "<b>ご注意ください：</b><br><br>ユーザー 'admin'はログインできますが、rootアクセスを得るために 'su - 'を使用することはできません。 rootアクセスが必要な場合は、「Root-Access」を有効にして別のServer Administratorとしてログインし、「su root-username」を使用して「root」アクセス権を取得しま"
 
+msgid "ShellinaboxEnabled"
+msgstr "Shellinaboxコンソールアクセス"
+
+msgid "ShellinaboxEnabled_help"
+msgstr "これにより、 '[[base-remote.connect]]'を使用する場合に必要なサービス 'Shellinabox'が有効になります。"
+
+msgid "service_disabled"
+msgstr "サービス 'Shellinabox'は有効になっていません。 したがって、コンソールログインは現時点では不可能です。"
+
+##### --- Active monitor
+
+msgid "amRemoteNameTag"
+msgstr "Shellinabox Server"
+
+msgid "amDetailsTitle"
+msgstr "Shellinaboxサーバーの詳細"
+
+msgid "amStatusOK"
+msgstr "Shellinaboxサーバーは正常に動作しています。"
+
+msgid "amNotAccepting"
+msgstr "Shellinaboxサーバーは実行されていないため、再起動できませんでした。 Shellinaboxサーバーの電源を入れなおして、問題が解決するかどうかを確認してください。"

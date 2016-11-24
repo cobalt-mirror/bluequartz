@@ -22,3 +22,26 @@ msgstr "Esta página GUI le permite iniciar sesión en la consola de este servid
 
 msgid "admin_text"
 msgstr "<b>Tenga en cuenta:</b><br><br>El usuario 'admin' puede iniciar sesión, pero no puede usar 'su -' para obtener acceso root. Si necesita acceso root, ingrese como otro 'Server Administrator' con 'Root-Access' habilitado y luego use 'su root-username' para obtener acceso 'root'."
+
+msgid "ShellinaboxEnabled"
+msgstr "Acceso a la consola Shellinabox"
+
+msgid "ShellinaboxEnabled_help"
+msgstr "Esto permite el servicio 'Shellinabox' que es necesario si desea utilizar '[[base-remote.connect]]' a través de 'Perfil Personal' / 'Programas' / '[[base-remote.connect]]'."
+
+msgid "service_disabled"
+msgstr "El servicio 'Shellinabox' no está habilitado. Por lo tanto, el inicio de sesión de la consola no es posible en este momento."
+
+##### --- Active monitor
+
+msgid "amRemoteNameTag"
+msgstr "Shellinabox Servidor"
+
+msgid "amDetailsTitle"
+msgstr "Detalles del servidor Shellinabox"
+
+msgid "amStatusOK"
+msgstr "El servidor Shellinabox funciona normalmente."
+
+msgid "amNotAccepting"
+msgstr "El servidor Shellinabox no se está ejecutando y no se pudo reiniciar. Intente apagar el servidor Shellinabox y vuelva a encenderlo para ver si esto corrige el problema."
