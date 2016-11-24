@@ -1,8 +1,8 @@
 <item 
-    id="2nuonce_base_ssh2" 
+    id="console_personal" 
     label="[[base-remote.connect]]" 
     description="[[base-remote.connect_help]]" 
-    url="/remote/ssh"
+    url="/remote/console"
     module="user"
 >
     <parent id="base_programsPersonal" order="20">

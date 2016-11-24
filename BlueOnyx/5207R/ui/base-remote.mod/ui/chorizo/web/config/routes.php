@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-$route['remote/ssh/:any'] = "ssh";
+$route['remote/console/:any'] = "console";
 $route['remote/noaccess'] = "noaccess";
-$route['remote/noaccess'] = "remote_amdetails";
+$route['remote/remote_amdetails'] = "remote_amdetails";
