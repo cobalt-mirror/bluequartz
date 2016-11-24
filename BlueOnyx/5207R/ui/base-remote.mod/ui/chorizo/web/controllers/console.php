@@ -27,6 +27,9 @@ class Console extends MX_Controller {
         $loginName = $CI->input->cookie('loginName');
         $locale = $CI->input->cookie('locale');
 
+        $cookie = array('name' => 'remote', 'path' => '/', 'value' => $sessionId, 'expire' => '0');
+        $this->input->set_cookie($cookie);
+
         // Line up the ducks for CCE-Connection:
         include_once('ServerScriptHelper.php');
         $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
