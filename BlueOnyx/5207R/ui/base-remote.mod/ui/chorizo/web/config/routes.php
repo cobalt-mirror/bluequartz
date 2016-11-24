@@ -3,3 +3,4 @@
 
 $route['remote/ssh/:any'] = "ssh";
 $route['remote/noaccess'] = "noaccess";
+$route['remote/noaccess'] = "remote_amdetails";

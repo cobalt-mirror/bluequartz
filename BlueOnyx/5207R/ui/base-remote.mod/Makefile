@@ -16,8 +16,8 @@ BUILDARCH=noarch
 BUILDUI=new
 BUILDGLUE=yes
 BUILDLOCALE=yes
-BUILDSRC=no
-REQUIRES=shellinabox
+BUILDSRC=yes
+REQUIRES=shellinabox base-remote-am
 
 OBSOLETES=nuonce-mindterm
 

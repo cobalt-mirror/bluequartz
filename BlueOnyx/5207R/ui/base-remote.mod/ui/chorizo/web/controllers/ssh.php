@@ -35,6 +35,7 @@ class Ssh extends MX_Controller {
         $userShell = $cceClient->getObject("User", array("name" => $loginName), "Shell");
         $i18n = new I18n("base-disk", $user['localePreference']);
         $system = $cceClient->getObject("System");
+        $systemRemote = $cceClient->get($system['OID'], "Remote");
 
         // Initialize Capabilities so that we can poll the access rights as well:
         $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
@@ -84,34 +85,47 @@ class Ssh extends MX_Controller {
 
         if (uri_string() != "remote/ssh/full") {
 
-            $my_TEXT = "<div class='flat_area grid_16'><br>" . $i18n->getClean("[[base-remote.info_text]]") . "</div>";
-            $infotext = $factory->getHtmlField("info_text", $my_TEXT, 'r');
-            $infotext->setLabelType("nolabel");
-            $block->addFormField(
-              $infotext,
-              $factory->getLabel(" ", false),
-              $defaultPage
-            );
+            if ($systemRemote['enabled'] == "0") {
+                    $disabled_TEXT = "<div class='flat_area grid_16'><br>" . $i18n->getClean("[[base-remote.service_disabled]]") . "</div>";
+                    $disabledtext = $factory->getHtmlField("admin_text", $disabled_TEXT, 'r');
+                    $disabledtext->setLabelType("nolabel");
+                    $block->addFormField(
+                      $disabledtext,
+                      $factory->getLabel(" ", false),
+                      $defaultPage
+                    );
+            }
+            else {
 
-            if ($loginName == 'admin') {
-
-                $admin_TEXT = "<div class='flat_area grid_16'><br>" . $i18n->getClean("[[base-remote.admin_text]]") . "</div>";
-                $admintext = $factory->getHtmlField("admin_text", $admin_TEXT, 'r');
-                $admintext->setLabelType("nolabel");
+                $my_TEXT = "<div class='flat_area grid_16'><br>" . $i18n->getClean("[[base-remote.info_text]]") . "</div>";
+                $infotext = $factory->getHtmlField("info_text", $my_TEXT, 'r');
+                $infotext->setLabelType("nolabel");
                 $block->addFormField(
-                  $admintext,
+                  $infotext,
                   $factory->getLabel(" ", false),
                   $defaultPage
                 );
+
+                if ($loginName == 'admin') {
+
+                    $admin_TEXT = "<div class='flat_area grid_16'><br>" . $i18n->getClean("[[base-remote.admin_text]]") . "</div>";
+                    $admintext = $factory->getHtmlField("admin_text", $admin_TEXT, 'r');
+                    $admintext->setLabelType("nolabel");
+                    $block->addFormField(
+                      $admintext,
+                      $factory->getLabel(" ", false),
+                      $defaultPage
+                    );
+                }
+
+                $block->setSelf("/remote/ssh/full");
+                $applet = '<iframe height=600 width=720 src="' . $uri_short . '" scrolling="no"></iframe>';
+
+                $block->addFormField(
+                    $factory->getRawHTML("applet", $applet),
+                    $factory->getLabel("AllowOverride_OptionsField")
+                );
             }
-
-            $block->setSelf("/remote/ssh/full");
-            $applet = '<iframe height=600 width=720 src="' . $uri_short . '" scrolling="no"></iframe>';
-
-            $block->addFormField(
-                $factory->getRawHTML("applet", $applet),
-                $factory->getLabel("AllowOverride_OptionsField")
-            );
 
             // Nice people say goodbye, or CCEd waits forever:
             $cceClient->bye();
@@ -120,33 +134,46 @@ class Ssh extends MX_Controller {
         }
         else {
 
-            $BxPage->setExtraBodyTag('<body onload="javascript: poponload()">');
+            if ($systemRemote['enabled'] == "0") {
+                    $disabled_TEXT = "<div class='flat_area grid_16'><br>" . $i18n->getClean("[[base-remote.service_disabled]]") . "</div>";
+                    $disabledtext = $factory->getHtmlField("admin_text", $disabled_TEXT, 'r');
+                    $disabledtext->setLabelType("nolabel");
+                    $block->addFormField(
+                      $disabledtext,
+                      $factory->getLabel(" ", false),
+                      $defaultPage
+                    );
+            }
+            else {
 
-            $BxPage->setExtraHeaders('<script type="text/javascript">');
-            $BxPage->setExtraHeaders('function poponload() {');
-            $BxPage->setExtraHeaders("  window.open('$uri_full','_blank','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, copyhistory=yes, width=1024, height=800');");
-            $BxPage->setExtraHeaders('}');
-            $BxPage->setExtraHeaders('</script>');
+                $BxPage->setExtraBodyTag('<body onload="javascript: poponload()">');
 
-            $my_TEXT = "<div class='flat_area grid_16'><br>" . $i18n->getClean("[[base-remote.info_text]]") . "</div>";
-            $infotext = $factory->getHtmlField("info_text", $my_TEXT, 'r');
-            $infotext->setLabelType("nolabel");
-            $block->addFormField(
-              $infotext,
-              $factory->getLabel(" ", false),
-              $defaultPage
-            );
+                $BxPage->setExtraHeaders('<script type="text/javascript">');
+                $BxPage->setExtraHeaders('function poponload() {');
+                $BxPage->setExtraHeaders("  window.open('$uri_full','_blank','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, copyhistory=yes, width=1024, height=800');");
+                $BxPage->setExtraHeaders('}');
+                $BxPage->setExtraHeaders('</script>');
 
-            if ($loginName == 'admin') {
-
-                $admin_TEXT = "<div class='flat_area grid_16'><br>" . $i18n->getClean("[[base-remote.admin_text]]") . "</div>";
-                $admintext = $factory->getHtmlField("admin_text", $admin_TEXT, 'r');
-                $admintext->setLabelType("nolabel");
+                $my_TEXT = "<div class='flat_area grid_16'><br>" . $i18n->getClean("[[base-remote.info_text]]") . "</div>";
+                $infotext = $factory->getHtmlField("info_text", $my_TEXT, 'r');
+                $infotext->setLabelType("nolabel");
                 $block->addFormField(
-                  $admintext,
+                  $infotext,
                   $factory->getLabel(" ", false),
                   $defaultPage
                 );
+
+                if ($loginName == 'admin') {
+
+                    $admin_TEXT = "<div class='flat_area grid_16'><br>" . $i18n->getClean("[[base-remote.admin_text]]") . "</div>";
+                    $admintext = $factory->getHtmlField("admin_text", $admin_TEXT, 'r');
+                    $admintext->setLabelType("nolabel");
+                    $block->addFormField(
+                      $admintext,
+                      $factory->getLabel(" ", false),
+                      $defaultPage
+                    );
+                }
             }
 
             // Nice people say goodbye, or CCEd waits forever:
