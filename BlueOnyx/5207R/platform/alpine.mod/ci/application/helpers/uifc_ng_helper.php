@@ -736,6 +736,12 @@ function simplify_number ($number, $literal, $cnt) {
         return $number;
     }
 
+    # When we're here, $number *must* be an integer. Make sure it is:
+    $number = floor($number); // Round it down. If it's not a number, this won't give an error.
+    if (!ctype_digit($number)) { // Check if it's an integer.
+        $number = '0'; // It's not. Set it to '0'.
+    }
+
     $base = log($number, $multi);
     $suffixes = array('', 'K', 'M', 'G', 'T');   
 
