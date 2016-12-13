@@ -1,0 +1,431 @@
+# configuration bits for mod_rpmize
+# syntax:
+# <begin [x]section>
+# <end [x]section>
+#
+# x an be $ for a string or % for a hash.
+# if a hash is being used, you can add sub-sections with
+# <begin sub-section>
+# <end sub-section>
+
+
+<begin $DESCRIPTION>
+%package [LABEL]
+Group: CCE/[VENDOR]
+Summary: [LABEL] for [VENDOR]-[SERVICE].
+[AUTOFILL]
+[BUILDARCH]
+Obsoletes: nuonce-mysql-ui <= 1.0.0
+Obsoletes: nuonce-mysql-locale-en  <= 1.0.0
+Obsoletes: nuonce-mysql-glue <= 1.0.0
+Obsoletes: nuonce-mysql-locale-ja <= 1.0.0
+Obsoletes: nuonce-mysql-capstone <= 1.0.0
+Obsoletes: solarspeed-mod_mysql-glue <= 1.0.1
+Obsoletes: solarspeed-mod_mysql-capstone <= 1.0.1
+Obsoletes: solarspeed-mod_mysql-locale-en <= 1.0.1
+Obsoletes: solarspeed-mod_mysql-ui <= 1.0.1
+Obsoletes: solarspeed-mysql-locale-en <= 1.0.0
+Obsoletes: solarspeed-mysql-ui <= 1.0.0
+Obsoletes: solarspeed-mysql-capstone <= 1.0.0
+Obsoletes: solarspeed-mysql-glue <= 1.0.0
+Obsoletes: mariadb-galera-common 
+Obsoletes: mariadb-galera-server 
+
+%description [LABEL]
+The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
+information for [VENDOR]-[SERVICE].
+
+<end $DESCRIPTION>
+
+<begin %PREP>
+<end %PREP>
+
+<begin %SETUP>
+<end %SETUP>
+
+<begin %BUILD>
+<end %BUILD>
+
+<begin %INSTALL>
+<end %INSTALL>
+
+<begin %FILES>
+<begin HEADER>
+%files [LABEL]
+%defattr(-,root,root)
+<end HEADER>
+
+<begin locale>
+[AUTOFILL]
+
+<end locale>
+
+<begin glue>
+
+[AUTOFILL]
+<end glue>
+
+<begin ui>
+[AUTOFILL]
+
+<end ui>
+
+<begin capstone>
+%{RootDir}/capstone/%{Vendor}-%{Service}.cap
+[AUTOFILL]
+
+<end capstone>
+<end %FILES>
+
+<begin %POST-INSTALL>
+<begin HEADER>
+%post [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-install
+if [ -S /usr/sausalito/cced.socket ]; then
+    /usr/sausalito/sbin/cced.init rehash
+fi
+
+<end glue>
+<begin ui>
+# ui post-install
+
+<end ui>
+<begin locale>
+# locale post-install
+
+<end locale>
+<end %POST-INSTALL>
+
+<begin %POST-UNINSTALL>
+<begin HEADER>
+%postun [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-uninstall
+
+<end glue>
+<begin ui>
+# ui post-uninstall
+
+<end ui>
+<begin locale>
+# locale post-uninstall
+
+<end locale>
+<end %POST-UNINSTALL>
+
+<begin $CHANGELOG>
+
+* Tue Dec 13 2016 Michael Stauber <mstauber@solarspeed.net> 2.4.0-0BX20
+- Separate version for 5209R based on 2.3.0-0BX20
+- Obsoletes mariadb-galera
+- Requires mariadb explicitly. Removes other dependencies.
+
+* Fri Jun 17 2016 Michael Stauber <mstauber@solarspeed.net> 2.3.0-0BX20
+- Speedup for glue/handlers/mysql-runner.pl - do not ask.
+
+* Mon May 02 2016 Michael Stauber <mstauber@solarspeed.net> 2.3.0-0BX19
+- Modified glue/schemas/MySQL.schema and glue/schemas/mysql.schema to
+  change the regular expression for the MySQL root password from the old
+  'alphanum_plus' to 'password' to allow more complex passwords.
+
+* Sun Nov 08 2015 Michael Stauber <mstauber@solarspeed.net> 2.3.0-0BX18
+- Modified glue/schemas/MYSQL_Vsite.schema to change 'enabled' back to '0'.
+
+* Sun Nov 08 2015 Michael Stauber <mstauber@solarspeed.net> 2.3.0-0BX17
+- Added support for multiple MySQL databases to each Vsite.
+- Added ability to individually set permissions for each Vsite DB user.
+- Added ability to reset permissions for Vsite DB user to defaults.
+- Added some previously unsupported MySQL DB permissions.
+- Modified glue/schemas/MYSQLUSERS_DEFAULTS.schema
+- Modified glue/schemas/MYSQL_Vsite.schema
+- Modified glue/conf/mysql.conf
+- Modified glue/handlers/create_mysql_data.pl
+- Modified glue/handlers/destroy_mysql_data.pl
+- Modified glue/handlers/enableAM.pl
+- Modified glue/handlers/exist_user_and_db_check.pl
+- Modified glue/handlers/modify_mysql_data.pl
+- Modified ui/chorizo/web/config/routes.php
+- Modified ui/chorizo/web/controllers/mysqlconfig.php
+- Modified ui/chorizo/extensions/15_MYSQL_Vsite.php.create.Vsite
+- Modified ui/chorizo/extensions/15_MYSQL_Vsite.php.modifyWeb.Vsite
+- Added glue/handlers/DBmultiAdd.pl
+- Added glue/handlers/DBmultiDel.pl
+- Added glue/handlers/mod_userpermsReset.pl
+- Added glue/handlers/mod_userpermsUpdate.pl
+- Added ui/chorizo/extensions/11_MYSQL_Vsite.php.defaults.Vsite
+- Added ui/chorizo/web/controllers/vsiteMySQL.php
+- Added new English locales for the new GUI bits and pieces.
+- All other locales added.
+
+* Fri Jun 26 2015 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX16
+- Modified glue/handlers/destroy_mysql_data.pl to remove the error message
+  that the DB might already be gone. As that was the goal, we do not really
+  need to warn about it.
+
+* Sat Jun 20 2015 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX15
+- EL7 actually doesn't use /etc/my.cnf but /etc/my.cnf.d/server.cnf.
+- Fixed ui/chorizo/web/controllers/mysqlconfig.php my.cnf location.
+- Converted UI indentation to spaces.
+
+* Tue May 05 2015 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX14
+- Modified constructor/setup_mysql_data.pl to detect if /etc/my.cnf has
+  'old_passwords=1' configured. If so, turn it off and restart MySQLd.
+  This is done to make BlueOnyx compatible again with RoundCube, which
+  needs the longer password hashes that this provides.
+
+* Thu Feb 12 2015 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX13
+- Modified glue/handlers/mod_mysql.pl to throw out my.cnf editing.
+- Modified ui/chorizo/web/controllers/mysqlconfig.php to handle my.cnf
+  edits in it directly via CCEWrapper. This avoids a runtime issue with
+  the handler.
+
+* Fri Feb 06 2015 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX12
+- MySQL should be running and enabled before wizard tries to set the
+  password. Likewise: If MySQL is stopped and we want to set/change the
+  password, we need to fire it up first. Updated schema file, constructor
+  and handler to deal with this.
+
+* Thu Feb 05 2015 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX11
+- MySQL password related fixes. We don't want to allow someone to set a
+  MySQL password that cannot be used by mysql_connect() or other 
+  means. Which makes it necessary to restrict the passwords to the type
+  'alphanum_plus'. This required various changes in Schema files.
+- Modified glue/schemas/MYSQL_Vsite.schema
+- Modified glue/schemas/MySQL.schema
+- Modified glue/schemas/mysql.schema
+- Modified glue/handlers/mysql-changePass.pl to make sure the shell
+  commands for setting passwords are properly escaped.
+- Changes in ui/chorizo/web/controllers/mysqlserver.php to set 'MySQL'
+  Object after 'System' . 'mysql' has finished w/o errors. Also some
+  more escaping of the MySQL password.
+
+* Thu Dec 04 2014 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX10
+- Systemd related fixes.
+
+* Tue Dec 02 2014 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX09
+- Replaced all instances of 'MySQL' in the locales with a placeholder
+  that gets replaced on RPM build with the type of MySQL server that we
+  have installed: MariaDB or MySQL.
+
+* Sun Nov 23 2014 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX08
+- Added perl-DBI to list of requirements.
+- Modified handlers to check for MySQLd process in a fashion compatible
+  with both Systemd and InitV. Needs modified Sauce/Service.pm
+
+* Fri Nov 21 2014 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX07
+- Preparational build for 5209R. 'localhost' changed to '127.0.0.1' for
+  usage with both MySQL and MariaDB.
+
+* Mon Nov 03 2014 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX06
+- Fixed some ACL issues.
+
+* Tue Oct 14 2014 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX05
+- Version number bump as old GUI Makefile got change to BUILDUI=yes
+  and we don't want it's version number to outpace the one for the new
+  GUI.
+
+* Tue Oct 14 2014 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX04
+- Modified glue/schemas/MYSQL_Vsite.schema to allow minus in mysql
+  usernames and database names.
+
+* Tue Oct 14 2014 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX03
+- Last minute fix and bump for porting old GUI bits back in. Just to keep
+  this consistent.
+
+* Tue Oct 14 2014 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX02
+- Massive cleanup in ui/chorizo/extensions/15_MYSQL_Vsite.php.create.Vsite
+- Massive cleanup in ui/chorizo/extensions/15_MYSQL_Vsite.php.modifyWeb.Vsite
+- There was a pretty big kink in the logic and it prevented saves when the
+  MySQL details didn't change. Pretty stupid actually.
+
+* Sat Oct 11 2014 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX01
+- Version number bump due to radical behaviour changes.
+- Implemented, improvised and adapted Hideki Oride's MySQL changes from
+  the BlueQuartz 5200R code tree. It's indeed way better to offload the
+  creation/deletion of MySQL users and databases into Handlers instead
+  of stuffing that into the UI or into UIExtensions. That way we can now
+  also easily check if a database or DB user already exists, whereas
+  that would have complicated the MySQL UIExtensions just a bit more.
+  Database usernames and Database names are now auto-generated and 
+  prefixed with 'vsite_', which allows us to also already fill in the
+  username and database name on Vsite creation, as we no longer would
+  need to predict the Vsite group. This also sorts the follow on
+  problem that after a cmuImport site2 might have the database user
+  'site44' and the database name 'site44_db'. We no longer use the
+  group for that, but instead a randomized 7 character alpha-numeric
+  string.
+- Modified glue/conf/mysql.conf
+- Added glue/handlers/destroy_mysql_data.pl
+- Added glue/handlers/create_mysql_data.pl
+- Modified and activated glue/handlers/exist_user_and_db_check.pl
+- Renamed most schema files for easier comprehension.
+- Cleanup of ui/chorizo/extensions/15_MYSQL_Vsite.php.create.Vsite
+- Cleanup of ui/chorizo/extensions/15_MYSQL_Vsite.php.modifyWeb.Vsite
+- Grammar fix in locale/de_DE/mysql.po
+
+* Wed Jul 16 2014 Michael Stauber <mstauber@solarspeed.net> 2.1.0-0BX13
+- Fixed path in glue/handlers/mysql-del-backup.pl as well.
+
+* Tue Jul 15 2014 Michael Stauber <mstauber@solarspeed.net> 2.1.0-0BX12
+- Using the right path usually helps.
+
+* Tue Jul 15 2014 Michael Stauber <mstauber@solarspeed.net> 2.1.0-0BX11
+- Bugfixes in glue/handlers/mysql-dump.pl as it had the wrong path and
+  the wrong ownership for the MySQL dump.
+
+* Mon Jul 14 2014 Michael Stauber <mstauber@solarspeed.net> 2.1.0-0BX10
+- Bugfix in ui/chorizo/web/controllers/mysqlserver.php
+- Warranted by a stupid last minute change to bx_pw_check()
+
+* Fri Jul 11 2014 Michael Stauber <mstauber@solarspeed.net> 2.1.0-0BX09
+- Fixed incorrect ACL in ui/chorizo/menu/mysql.xml
+- Fixed incorrect ACL in ui/chorizo/menu/mysqlusers.xml
+
+* Fri Jul 11 2014 Michael Stauber <mstauber@solarspeed.net> 2.1.0-0BX08
+- Chorizo GUI added, old GUI disabled.
+- Added improved translation as provided by Meaulnes Legler.
+
+* Wed Feb 26 2014 Michael Stauber <mstauber@solarspeed.net> 2.1.0-0BX07
+- Merged in better locales for Japanese as provided by Hiroyuki Sasahide.
+
+* Fri Dec 27 2013 Michael Stauber <mstauber@solarspeed.net> 2.1.0-0BX06
+- German locale had incorrect charset.
+
+* Sat Dec 14 2013 Michael Stauber <mstauber@solarspeed.net> 2.1.0-0BX05
+- Merged in locales for the Netherlands ('nl_NL').
+
+* Mon Dec 09 2013 Michael Stauber <mstauber@solarspeed.net> 2.1.0-0BX04
+- Small fix to ui/extensions/06_MYSQL_Vsite.php.create.Vsite.
+
+* Mon Dec 09 2013 Michael Stauber <mstauber@solarspeed.net> 2.1.0-0BX03
+- Small fixes to ui/extensions/06_MYSQL_Vsite.php.modifyWeb.Vsite.
+
+* Mon Dec 09 2013 Michael Stauber <mstauber@solarspeed.net> 2.1.0-0BX02
+- Time to backpedal a bit: Disabled glue/handlers/exist_user_and_db_check.pl for now. Totally nice idea,
+  but incompatible with our MySQL implementation. Need to make more adjustments to this and don't have the
+  time for that now. Will get back to this later on.
+- Small fixes to ui/extensions/06_MYSQL_Vsite.php.create.Vsite and ui/extensions/06_MYSQL_Vsite.php.modifyWeb.Vsite.
+  We only want the CODB set transaction if we have all the data we need. 
+
+* Fri Dec 06 2013 Michael Stauber <mstauber@solarspeed.net> 2.1.0-0BX01
+- Preparational build for 5207R/5208R. Doesn't include new GUI yet.
+- Updated Danish, English and German locales.
+- Merged in new locales from 5207R ("es_ES", "fr_FR", "it_IT", "pt_PT").
+- Dropped all two character locales.
+- Converted "ja_JP" from EUC-JP to UTF-8.
+- Updated Schema files with new additions from Hisao's 5200R tree.
+- Added Hideki Oride's glue/handlers/exist_user_and_db_check.pl and modified it to use localized error messages.
+- Added localized error messages from glue/handlers/exist_user_and_db_check.pl to all locales.
+- Modified MySQL version check in ui/web/mysqlusers.php
+
+* Thu Apr 12 2012 Michael Stauber <mstauber@solarspeed.net> 2.0.1-27
+- Updated locale/de_DE/mysql.po to correct some transitional errors.
+
+* Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 2.0.1-26
+- Converted locale encoding from UTF-8 to ISO-8859-1.
+
+* Sat Jun 25 2011 Michael Stauber <mstauber@solarspeed.net> 2.0.1-25
+- Merged in Greg Kuhnert's changes for password length for the MySQL passwords from 5106R tree
+- Was previously 2.0.1-19 on 5106R
+
+* Tue Jun 08 2010 Michael Stauber <mstauber@solarspeed.net> 2.0.1-24
+- Small compat fix for newer MySQL
+
+* Tue Jun 08 2010 Michael Stauber <mstauber@solarspeed.net> 2.0.1-23
+- Fixed PHP-5.3 compat issues in extensions
+
+* Sun Jun 06 2010 Michael Stauber <mstauber@solarspeed.net> 2.0.1-22
+- Fixed PHP-5.3 compat issues in ui/web/download.php and ui/web/mysqlHandler.php
+
+* Sat Jun 05 2010 Michael Stauber <mstauber@solarspeed.net> 2.0.1-21
+- Cleaned up requirements again.
+
+* Sat Jun 05 2010 Michael Stauber <mstauber@solarspeed.net> 2.0.1-20
+- Changed requirement for base-subdomains-locale-en to base-subdomains-locale-en_US
+
+* Sat Jun 05 2010 Michael Stauber <mstauber@solarspeed.net> 2.0.1-19
+- Copied 'en' locales to 'en_US'
+
+* Wed Sep 16 2009 Michael Stauber <mstauber@solarspeed.net> 2.0.1-18
+- Updated glue/handlers/modify_mysql_data.pl to check if MySQLd is running. If not skip all MySQL related transactions before they generate errors that interfere with site deletions.
+
+* Wed Jun 10 2009 Michael Stauber <mstauber@solarspeed.net> 2.0.1-17
+- Updated ui/web/mysql.php again as the switchology for hiding the MySQL user and password field was not entirely right.
+
+* Sun May 24 2009 Michael Stauber <mstauber@solarspeed.net> 2.0.1-16
+- Updated ui/web/mysql.php to hide the MySQL user and password field if a connection to MySQL can be established.
+- Otherwise people tend to get confused and attempt to change the MySQL root password from the wrong tab.
+
+* Wed Dec 30 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.1-15
+- Added requirements for base-subdomains to Makefile.
+- Dirty little trick to force it's install on all BlueOnyx boxes that are already up without this late arrival mod.
+
+* Tue Dec 30 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.1-14
+- Small code cleanup in ui/web/mysql.php 
+
+* Tue Dec 30 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.1-13
+- Modified connectivity checks in ui/web/mysql.php 
+- Added constructor/setup_mysql_data.pl to create initial MySQL object.
+- Updated glue/handlers/modify_mysql_data.pl to remove check for password presence.
+
+* Mon Dec 22 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.1-12
+- Updated glue/handlers/modify_mysql_data.pl to fix bug ticket #1
+
+* Sun Dec 21 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.1-11
+- Added requirement for base-phpmyadmin-capstone
+
+* Thu Dec 11 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.1-10
+- Modified 06_MYSQL_Vsite.php.create.Vsite and 06_MYSQL_Vsite.php.modifyWeb.Vsite yet again.
+- Corrected a localization string no longer used in the locales to one still present.
+
+* Wed Dec 10 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.1-9
+- Modified 06_MYSQL_Vsite.php.create.Vsite and 06_MYSQL_Vsite.php.modifyWeb.Vsite yet again.
+- Modified 06_MYSQL_Vsite.php.create.Vsite yet again, as I had entirely removed one display_errors = Off.
+- Note to self: Committs while being dead tired are bad.
+
+* Wed Dec 10 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.1-8
+- Modified 06_MYSQL_Vsite.php.create.Vsite and 06_MYSQL_Vsite.php.modifyWeb.Vsite again.
+- Had to move display_errors to Off into the function in order for it to work as intended.
+
+* Wed Dec 10 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.1-7
+- Modified 06_MYSQL_Vsite.php.create.Vsite and 06_MYSQL_Vsite.php.modifyWeb.Vsite
+- Changed error message when MySQL connection cannot be established.
+- Set display_errors to Off during MySQL connect to hide nasty in-line error messages on connect issues.
+
+* Sun Dec 07 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.1-6
+- Modified glue/handlers/modify_mysql_data.pl
+- Fixed a potential issue during site deletion, which would fail if MySQL db was missing already.
+
+* Sun Dec 07 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.1-5
+- i18-nized some previously hardwired error and status messages.
+- Minor touch up in German locales. 
+- Changed algorythm for user- and dbname creation from FQDN to group names.
+- Limited username and dbname input fields to 15 characters of length.
+
+* Sun Dec 07 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.1-4
+- German locales added.
+- Post merge snafu in glue/conf/mysql.conf and ui/web/mysqlusersHandler.php fixed.
+
+* Fri Dec 05 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.1-3
+- Fixed a post merge snafu in glue/schemas/mysql-am.schema
+
+* Fri Dec 05 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.1-2
+- Fixes some issues during merge.
+- Moved Obsoletes to Makefile where they belong.
+
+* Fri Dec 05 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1
+- Merged in Solarspeed Mod_MySQL.
+
+* Fri Dec 05 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.0-1
+- Rebuilt for BlueOnyx.
+- Merged NuOnce MySQL and Solarspeed MySQL GUI's.
+- Added obsolete tags to auto-replace corresponding NuOnce and Solarspeed RPMs.
+- English locales are merged.
+- German, Danish and Japanese locales are using the English texts for now.
+
+<end $CHANGELOG>

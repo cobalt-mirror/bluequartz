@@ -1,0 +1,605 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "DBTYPE"
+msgstr "XXX_DBTYPE_XXX"
+
+msgid "amDetailsTitle"
+msgstr "Detalles del Servidor [[base-mysql.DBTYPE]]"
+
+msgid "amMysqlNameTag"
+msgstr "[[base-mysql.DBTYPE]] Server"
+
+msgid "amNotAccepting"
+msgstr "El servidor [[base-mysql.DBTYPE]] no está funcionando normalmente. Por favor, intente reiniciar manualmente."
+
+msgid "amStatusOK"
+msgstr "El servidor [[base-mysql.DBTYPE]] está funcionando normalmente."
+
+msgid "current_pass"
+msgstr "Contraseña actual:"
+
+msgid "current_pass_help"
+msgstr "Por favor, ingrese su contraseña actual"
+
+msgid "delete_backup"
+msgstr "Eliminar copia de seguridad"
+
+msgid "delete_backup_help"
+msgstr "Elimine el archivo de copia de seguridad de [[base-mysql.DBTYPE]]"
+
+msgid "download_backup"
+msgstr "Descarga DB Backup"
+
+msgid "download_backup_help"
+msgstr "Descargue la instantánea actual de la base de datos"
+
+msgid "dump"
+msgstr "Ejecutar SQL Dump"
+
+msgid "dump_help"
+msgstr "Ejecutar [[base-mysql.DBTYPE]] Dump"
+
+msgid "filesize"
+msgstr "Tamaño del archivo:"
+
+msgid "filesize_help"
+msgstr "El tamaño de su archivo de volcado de [[base-mysql.DBTYPE]]"
+
+msgid "last_backup"
+msgstr "Última Respaldado Up:"
+
+msgid "last_backup_help"
+msgstr "Mira cuando la última copia de seguridad pasó"
+
+msgid "mysql_enabled"
+msgstr "Habilitar [[base-mysql.DBTYPE]] Server:"
+
+msgid "mysql_enabled_help"
+msgstr "Haga clic para activar el servidor [[base-mysql.DBTYPE]]"
+
+msgid "mysql_header"
+msgstr "[[base-mysql.DBTYPE]] Server"
+
+msgid "mysqldump"
+msgstr "Crear Instantánea de base de datos"
+
+msgid "mysqldump_help"
+msgstr "Realice una copia de seguridad de sus bases de datos"
+
+msgid "mysqlpass"
+msgstr "Nueva contraseña:"
+
+msgid "mysqlpass_help"
+msgstr "Le permite cambiar la contraseña de [[base-mysql.DBTYPE]], como siempre que se sepa la contraseña actual."
+
+msgid "password"
+msgstr "[[base-mysql.DBTYPE]] Contraseña"
+
+msgid "password_help"
+msgstr "La contraseña para el usuario principal de [[base-mysql.DBTYPE]]"
+
+msgid "server"
+msgstr "Servidor"
+
+msgid "server_help"
+msgstr "Activar y desactivar el servidor [[base-mysql.DBTYPE]]"
+
+msgid "sqldump"
+msgstr "DB SQL Dump"
+
+msgid "sqldump_help"
+msgstr "Volcado de todas las bases de datos a un archivo de texto"
+
+msgid "sqlpass"
+msgstr "Cambiar contraseña"
+
+msgid "sqlpass_help"
+msgstr "Le permite cambiar la contraseña de [[base-mysql.DBTYPE]]. También se puede utilizar para borrar una contraseña de [[base-mysql.DBTYPE]], siempre que conozca la contraseña actual. Para ello, simplemente deje el campo &quot;New Password&quot; vacía."
+
+msgid "username"
+msgstr "Nombre de usuario [[base-mysql.DBTYPE]]"
+
+msgid "username_help"
+msgstr "El principal usuario del usuario de [[base-mysql.DBTYPE]]"
+
+msgid "MySQL_Settings_head"
+msgstr "Configuración de [[base-mysql.DBTYPE]]"
+
+msgid "MySQL_Settings_divider"
+msgstr "Configure los ajustes para la creación automática de usuarios y bases de datos [[base-mysql.DBTYPE]]."
+
+msgid "sql_host"
+msgstr "[[base-mysql.DBTYPE]] Host:"
+
+msgid "sql_host_help"
+msgstr "Host en el que se encuentra el servidor [[base-mysql.DBTYPE]]. Se debe especificar para que las aplicaciones puedan conectarse a [[base-mysql.DBTYPE]]. Por defecto, este debe ser &#39;localhost&#39;."
+
+msgid "sql_port"
+msgstr "Puerto [[base-mysql.DBTYPE]]:"
+
+msgid "sql_port_help"
+msgstr "Puerto TCP/IP en la que [[base-mysql.DBTYPE]] es accesible en el host especificado. Por defecto, este debe ser &#39;3306 &#39;."
+
+msgid "MYSQL_ROOT_Settings_divider"
+msgstr "Configuración de usuario root de [[base-mysql.DBTYPE]] - necesarios para la inicialización de base de datos, configuración y mantenimiento:"
+
+msgid "sql_root"
+msgstr "[[base-mysql.DBTYPE]] del usuario:"
+
+msgid "sql_root_help"
+msgstr "Nombre del usuario de [[base-mysql.DBTYPE]] con privilegios de &quot;root&quot;. Por defecto, este debe ser &#39;root&#39;."
+
+msgid "sql_rootpassword"
+msgstr "[[base-mysql.DBTYPE]] Contraseña:"
+
+msgid "sql_rootpassword_help"
+msgstr "Contraseña de usuario &#39;root&#39; el [[base-mysql.DBTYPE]]."
+
+msgid "sql_status"
+msgstr "[[base-mysql.DBTYPE]] Estado:"
+
+msgid "sql_status_help"
+msgstr "Muestra el estado de la conexión [[base-mysql.DBTYPE]] y si es posible conectar con el servidor [[base-mysql.DBTYPE]] con los datos de acceso que especificó anteriormente."
+
+msgid "mysql_status_unconfigured"
+msgstr "Por favor, configure los ajustes."
+
+msgid "mysql_status_incorrect"
+msgstr "Conexión de [[base-mysql.DBTYPE]] no se puede establecer. Compruebe los ajustes."
+
+msgid "mysql_status_ok"
+msgstr "Conexión posible con esta configuración [[base-mysql.DBTYPE]]."
+
+msgid "MySQL_menu"
+msgstr "[[base-mysql.DBTYPE]]"
+
+msgid "MySQL_menu_help"
+msgstr "Configure los ajustes relacionados con [[base-mysql.DBTYPE]], por lo que las aplicaciones pueden comunicarse con [[base-mysql.DBTYPE]]."
+
+msgid "MySQL_Local_divider"
+msgstr "Local del servidor [[base-mysql.DBTYPE]]:"
+
+msgid "MySQL_Remote_divider"
+msgstr "Detalles del Servidor [[base-mysql.DBTYPE]]:"
+
+msgid "MySQL_Login_divider"
+msgstr "&#39;Root&#39; [[base-mysql.DBTYPE]] detalles del usuario:"
+
+msgid "MySQL_Status_divider"
+msgstr "[[base-mysql.DBTYPE]] Estado de la conexión:"
+
+msgid "mysql_head"
+msgstr "Configuración de [[base-mysql.DBTYPE]]"
+
+msgid "my_cnf"
+msgstr "/etc/my.cnf Editor:"
+
+msgid "my_cnf_help"
+msgstr "Aquí puede editar su my.cnf directamente. Tenga en cuenta que este editor no comprueba si lo que escribe tiene sentido. No lo hace corregir errores tipográficos o definiciones equivocadas."
+
+msgid "mysql_license"
+msgstr "Gestión de licencias:"
+
+msgid "mysql_license_help"
+msgstr "Este software es propiedad intelectual de trabajo y requiere una licencia por servidor. Puede solicitar, visualizar o administrar su licencia de servidor aquí."
+
+msgid "customer_name"
+msgstr "Nombre del cliente:"
+
+msgid "customer_name_help"
+msgstr "Introduzca su nombre aquí. Este debe ser el nombre con el que ha adquirido el software en http://www.solarspeed.net"
+
+msgid "customer_email"
+msgstr "Email Cliente:"
+
+msgid "customer_email_help"
+msgstr "Introduzca su dirección de correo electrónico. Esta debe ser la misma dirección de email que has utilizado en la tienda en línea Solarspeed.net para la compra."
+
+msgid "customer_company"
+msgstr "Nombre de la Empresa:"
+
+msgid "customer_company_help"
+msgstr "Introduzca su nombre de la empresa aquí. Si no se incorporan, por favor use su nombre de dominio en su lugar."
+
+msgid "server_key"
+msgstr "Clave del servidor:"
+
+msgid "server_key_help"
+msgstr "El &quot;servidor de claves&quot; es un identificador único generado automáticamente que nos ayuda a identificar si se ejecuta el software en el servidor que tenía licencia para."
+
+msgid "product_key"
+msgstr "Clave del producto:"
+
+msgid "product_key_help"
+msgstr "La &quot;clave de producto&quot; es la licencia de software. Se abre el software si está instalado en el servidor que tenía licencia para."
+
+msgid "email_key_request"
+msgstr "Enviar Solicitud de Clave"
+
+msgid "email_key_request_help"
+msgstr "Al pulsar este botón, se envía un email a keyrequest@solarspeed.net. El correo electrónico contendrá el nombre, la razón social y la dirección de correo electrónico. También se le enviará el &quot;servidor de claves&quot; para que podamos generar una &quot;clave de producto&quot; para usted."
+
+msgid "mail_status"
+msgstr "Estado Email:"
+
+msgid "mail_status_help"
+msgstr "Estado del Email Solicitar entrega Key. Le indica si su correo electrónico de registro podría ser enviado a keyrequest@solarspeed.net"
+
+msgid "back_to_key_request"
+msgstr "Volver a la página anterior"
+
+msgid "back_to_key_request_help"
+msgstr "Vuelve a la página anterior."
+
+msgid "MySQL_Config_head"
+msgstr "[[base-mysql.DBTYPE]] Config"
+
+msgid "MySQL_Config_head_help"
+msgstr "Configuración de su servidor [[base-mysql.DBTYPE]]."
+
+msgid "MySQL_Config_desc"
+msgstr "Configuración de [[base-mysql.DBTYPE]]"
+
+msgid "MySQL_Config_desc_help"
+msgstr "Permite configurar la base de datos [[base-mysql.DBTYPE]] y creación automática de usuario."
+
+msgid "MySQL_TAB_ONE"
+msgstr "Usuarios de Auto-Crear [[base-mysql.DBTYPE]] y bases de datos"
+
+msgid "MySQL_TAB_ONE_help"
+msgstr "Le permite crear automáticamente usuarios de [[base-mysql.DBTYPE]] y bases de datos para cada sitio."
+
+msgid "MySQL_TAB_TWO"
+msgstr "/etc/my.cnf Editor"
+
+msgid "MySQL_TAB_TWO_help"
+msgstr "Le permite editar /etc/my.cnf directamente a través de la interfaz gráfica de usuario."
+
+msgid "udb_switch"
+msgstr "[[base-mysql.DBTYPE]] crear automáticamente"
+
+msgid "udb_switch_help"
+msgstr "Permite la creación automática de usuarios de [[base-mysql.DBTYPE]] y bases de datos a través de la interfaz gráfica de usuario. O al crear un nuevo sitio, o editando los servicios &#39;web&#39; de un sitio existente. Sólo los administradores de servidores tienen esta capacidad."
+
+msgid "solmysqlFullText"
+msgstr "Usuario de base de datos [[base-mysql.DBTYPE]] y"
+
+msgid "solmysqlFullText_help"
+msgstr "Le permite crear o eliminar automáticamente una base de datos [[base-mysql.DBTYPE]] y un usuario de [[base-mysql.DBTYPE]] para este sitio. NOTA: Si la casilla ya está marcada, desmarcando y guardar los cambios eliminará la base de datos [[base-mysql.DBTYPE]] y el usuario."
+
+msgid "solmysqlUsername"
+msgstr "Nombre de usuario"
+
+msgid "solmysqlUsername_help"
+msgstr "Nombre del usuario [[base-mysql.DBTYPE]]. Tiene derechos y permisos sólo para la base de datos se especifica a continuación."
+
+msgid "solmysqlPass"
+msgstr "Contraseña"
+
+msgid "solmysqlPass_help"
+msgstr "Contraseña de [[base-mysql.DBTYPE]] para el usuario de [[base-mysql.DBTYPE]] en cuestión."
+
+msgid "solmysqlDB"
+msgstr "Nombre de base de datos"
+
+msgid "solmysqlDB_help"
+msgstr "Nombre de la base de datos [[base-mysql.DBTYPE]] para este sitio."
+
+msgid "solmysqlHost"
+msgstr "Host Database"
+
+msgid "solmysqlHost_help"
+msgstr "Host donde se está ejecutando el servidor [[base-mysql.DBTYPE]]. Normalmente, esto es &#39;localhost&#39;."
+
+msgid "solmysqlPort"
+msgstr "Puerto"
+
+msgid "solmysqlPort_help"
+msgstr "Puerto en el que escucha el servidor [[base-mysql.DBTYPE]]. Normalmente, esto es &#39;3306 &#39;."
+
+msgid "MySQL_DIVIDER_ONE"
+msgstr "Derechos por defecto a los usuarios creadas automáticamente:"
+
+msgid "mysql_default_privileges"
+msgstr "Privilegios por defecto:"
+
+msgid "mysql_default_privileges_help"
+msgstr "Los nuevos usuarios de [[base-mysql.DBTYPE]] se crearán los siguientes privilegios por defecto para su propia base de datos, como se muestra a continuación."
+
+msgid "EXPLAIN_RIGHTS"
+msgstr "Los nuevos usuarios de [[base-mysql.DBTYPE]] se crearán los siguientes privilegios por defecto para su propia base de datos, como se muestra a continuación."
+
+msgid "DIVIDER_ZERO"
+msgstr "Privilegios de base de datos por defecto:"
+
+msgid "DIVIDER_ONE"
+msgstr "Privilegios de datos:"
+
+msgid "DIVIDER_TWO"
+msgstr "Privilegios de la estructura (por defecto todas se conceden):"
+
+msgid "DIVIDER_THREE"
+msgstr "Privilegios de la estructura (por defecto esto no se conceden):"
+
+msgid "DIVIDER_FOUR"
+msgstr "Límites de recursos:"
+
+msgid "SELECT_help"
+msgstr "Permite la lectura de datos."
+
+msgid "INSERT_help"
+msgstr "Permite insertar y reemplazar datos."
+
+msgid "UPDATE_help"
+msgstr "Permite cambiar los datos."
+
+msgid "DELETE_help"
+msgstr "Permite la eliminación de los datos."
+
+msgid "FILE_help"
+msgstr "Permite importar datos de archivos y exportar datos a archivos. No se establece de forma predeterminada."
+
+msgid "CREATE_help"
+msgstr "Permite la creación de bases de datos y tablas."
+
+msgid "ALTER_help"
+msgstr "Permite modificar la estructura de las tablas existentes."
+
+msgid "INDEX_help"
+msgstr "Permite crear y eliminar índices."
+
+msgid "DROP_help"
+msgstr "Permite dejar de bases de datos y tablas."
+
+msgid "TEMPORARY"
+msgstr "Crear tablas temporales"
+
+msgid "TEMPORARY_help"
+msgstr "Permite la creación de tablas temporales."
+
+msgid "CREATE_VIEW"
+msgstr "CREATE VIEW"
+
+msgid "CREATE_VIEW_help"
+msgstr "Permite la creación de nuevos puntos de vista. (Sólo disponible en [[base-mysql.DBTYPE]]5 o mejor.)"
+
+msgid "SHOW_VIEW"
+msgstr "Mostrar vista"
+
+msgid "SHOW_VIEW_help"
+msgstr "Permite realizar consultas SHOW CREATE VIEW. (Sólo disponible en [[base-mysql.DBTYPE]]5 o mejor.)"
+
+msgid "CREATE_ROUTINE"
+msgstr "CREAR RUTINA"
+
+msgid "CREATE_ROUTINE_help"
+msgstr "Permite la creación de rutinas almacenadas. (Sólo disponible en [[base-mysql.DBTYPE]]5 o mejor.)"
+
+msgid "ALTER_ROUTINE"
+msgstr "ALTER RUTINA"
+
+msgid "ALTER_ROUTINE_help"
+msgstr "Permite la modificación y el descarte de las rutinas almacenadas. (Sólo disponible en [[base-mysql.DBTYPE]]5 o mejor.)"
+
+msgid "EXECUTE_help"
+msgstr "Permite la ejecución de las rutinas de la tienda. (Sólo disponible en [[base-mysql.DBTYPE]]5 o mejor.)"
+
+msgid "MAX_QUERIES_PER_HOUR"
+msgstr "MAX CONSULTAS POR HORA"
+
+msgid "MAX_QUERIES_PER_HOUR_help"
+msgstr "Limita el número de consultas que un usuario puede enviar al servidor por hora. 0 &quot;significa que no hay límite."
+
+msgid "MAX_UPDATES_PER_HOUR"
+msgstr "ACTUALIZACIONES MAX POR HORA"
+
+msgid "MAX_UPDATES_PER_HOUR_help"
+msgstr "Limita el número de comandos que cambian cualquier tabla o base de datos, el usuario puede ejecutar por hora. 0 &quot;significa que no hay límite."
+
+msgid "MAX_CONNECTIONS_PER_HOUR"
+msgstr "MAX CONEXIONES POR HORA"
+
+msgid "MAX_CONNECTIONS_PER_HOUR_help"
+msgstr "Limita el número de conexiones que el usuario puede abrir por hora. 0 &quot;significa que no hay límite."
+
+msgid "MySQL_Info_Text"
+msgstr "Los nuevos usuarios de [[base-mysql.DBTYPE]] se crearán los siguientes privilegios por defecto para su propia base de datos, como se muestra a continuación."
+
+msgid "root_has_no_pwd"
+msgstr "[[base-mysql.DBTYPE]] contraseña de usuario [[base-mysql.DBTYPE]] root no parecer ajustado! Por favor, establecer una contraseña de &#39;root&#39; [[base-mysql.DBTYPE]] para el usuario!"
+
+msgid "sqlstatus_fail"
+msgstr "Conexión de [[base-mysql.DBTYPE]] no se puede establecer. Compruebe la configuración en 'Servicios de red' / '[[base-mysql.DBTYPE]] Config'. También ver si [[base-mysql.DBTYPE]] se está ejecutando."
+
+## Label renaming for 5200R:
+
+# was: "solmysqlFullText"
+msgid "solmysql_enabled"
+msgstr "[[base-mysql.solmysqlFullText]]"
+
+# was: msgid "solmysqlFullText_help"
+msgid "solmysql_enabled_help"
+msgstr "[[base-mysql.solmysqlFullText_help]]"
+
+msgid "solmysql_username"
+msgstr "[[base-mysql.solmysqlUsername]]"
+
+msgid "solmysql_username_help"
+msgstr "[[base-mysql.solmysqlUsername_help]]"
+
+msgid "solmysql_pass"
+msgstr "[[base-mysql.solmysqlPass]]"
+
+msgid "solmysql_pass_help"
+msgstr "[[base-mysql.solmysqlPass_help]]"
+
+msgid "solmysql_DB"
+msgstr "[[base-mysql.solmysqlDB]]"
+
+msgid "solmysql_DB_help"
+msgstr "[[base-mysql.solmysqlDB_help]]"
+
+msgid "solmysql_host"
+msgstr "[[base-mysql.solmysqlHost]]"
+
+msgid "solmysql_host_help"
+msgstr "[[base-mysql.solmysqlHost_help]]"
+
+msgid "solmysql_Port"
+msgstr "[[base-mysql.solmysqlPort]]"
+
+msgid "solmysql_Port_help"
+msgstr "[[base-mysql.solmysqlPort_help]]"
+
+msgid "CreateFailUserExists"
+msgstr "Ese usuario [[base-mysql.DBTYPE]] ya existe en la tabla de usuario [[base-mysql.DBTYPE]]."
+
+msgid "CreateFailDBExists"
+msgstr "Esa base de datos [[base-mysql.DBTYPE]] ya existe en la tabla de base de datos [[base-mysql.DBTYPE]]."
+
+msgid "CreateFailDatabaseExists"
+msgstr "Ya existe la base de datos [[base-mysql.DBTYPE]]."
+
+#
+### New for multi-DB support:
+#
+
+msgid "vsiteMySQLMenu"
+msgstr "[[base-mysql.DBTYPE]]"
+
+msgid "vsiteMySQLMenuDesc"
+msgstr "Esta página GUI le permite administrar o revisar las bases de datos [[base-mysql.DBTYPE]] y permisos."
+
+msgid "mysql_vsite_head"
+msgstr "[[base-mysql.DBTYPE]] Detalles"
+
+msgid "VsiteDBtab"
+msgstr "Información general"
+
+msgid "VsiteDBtab_help"
+msgstr "Esta página muestra los detalles de la conexión a [[base-mysql.DBTYPE]] y que las bases de datos están presentes."
+
+msgid "MySQLuserRights"
+msgstr "[[base-mysql.DBTYPE]] Permisos"
+
+msgid "MySQLuserRights_help"
+msgstr "Esta página muestra los permisos que el usuario [[base-mysql.DBTYPE]] de este sitio virtual tiene."
+
+msgid "DIVIDER_Vsite_condetails"
+msgstr "[[base-mysql.DBTYPE]] detalles de la conexión:"
+
+msgid "DIVIDER_Vsite_DBlist"
+msgstr "Bases de datos [[base-mysql.DBTYPE]] de este sitio virtual:"
+
+msgid "DBaddbut"
+msgstr "Añadir base de datos [[base-mysql.DBTYPE]]"
+
+msgid "DBaddbut_help"
+msgstr "Este botón le permite añadir otra base de datos [[base-mysql.DBTYPE]] a este sitio virtual."
+
+msgid "db_name"
+msgstr "Nombre de la base de datos"
+
+msgid "db_name_help"
+msgstr "Muestra los nombres de las bases de datos [[base-mysql.DBTYPE]] de este sitio virtual."
+
+msgid "maxDBs"
+msgstr "Bases de Datos de compañía"
+
+msgid "maxDBs_help"
+msgstr "Esto define el número de bases de datos [[base-mysql.DBTYPE]] este sitio virtual puede tener."
+
+msgid "action"
+msgstr "Acción"
+
+msgid "action_help"
+msgstr "Permite realizar acciones que impliquen la base de datos seleccionada."
+
+msgid "new_db_name"
+msgstr "Nombre de la base de datos"
+
+msgid "new_db_name_help"
+msgstr "Introduzca el nombre de la nueva base de datos [[base-mysql.DBTYPE]] que desea crear."
+
+msgid "dbRemove"
+msgstr "Eliminar a esta base de datos [[base-mysql.DBTYPE]]."
+
+msgid "dbRemove_help"
+msgstr "Este botón le permite eliminar esta base de datos [[base-mysql.DBTYPE]]. Nota: Esta acción no se puede deshacer."
+
+msgid "dbRemoveNotPoss"
+msgstr "Esta base de datos no se puede quitar."
+
+msgid "dbRemoveNotPoss_help"
+msgstr "Esta base de datos es la base de datos [[base-mysql.DBTYPE]] [[base-mysql.DBTYPE]] primaria y no se puede quitar. Se conseguirá eliminarán automáticamente cuando el apoyo [[base-mysql.DBTYPE]] está apagado o cuando este sitio virtual se elimina."
+
+msgid "resetToDefaults"
+msgstr "Restablecer los valores predeterminados"
+
+msgid "resetToDefaults_help"
+msgstr "Al hacer clic en este botón restablecerá los permisos [[base-mysql.DBTYPE]] de este sitios virtuales [[base-mysql.DBTYPE]] usuario a los valores predeterminados como se define para este servidor en la configuración de [[base-mysql.DBTYPE]]."
+
+msgid "GrantAllPerms"
+msgstr "Concede todos los permisos"
+
+msgid "GrantAllPerms_help"
+msgstr "Esto otorgará (casi) todos los permisos a este usuario [[base-mysql.DBTYPE]] para todas las bases de datos que están bajo su control. El único que no se concedió el permiso es el permiso 'GRANT'."
+
+msgid "EVENT"
+msgstr "EVENTO"
+
+msgid "EVENT_help"
+msgstr "Se requiere el privilegio EVENTO para crear, alterar, deje caer, o ver los eventos para el Programador de eventos."
+
+msgid "DIVIDER_ADM"
+msgstr "Privilegios administrativos (por defecto estos no se conceden):"
+
+msgid "GRANT"
+msgstr "GRANT"
+
+msgid "GRANT_help"
+msgstr "El privilegio GRANT OPTION le permite dar a otros usuarios o quitar de otros usuarios de esos privilegios que uno mismo posee. Por razones de seguridad no aceptamos este privilegio."
+
+msgid "TRIGGER"
+msgstr "GATILLO"
+
+msgid "TRIGGER_help"
+msgstr "El privilegio GATILLO permite operaciones de disparo. Debe tener este privilegio para una mesa para crear, bajar, o ejecutar disparadores para esa tabla."
+
+msgid "LOCK_TABLES"
+msgstr "LOCK TABLES"
+
+msgid "LOCK_TABLES_help"
+msgstr "El privilegio LOCK TABLES permite la utilización de declaraciones MESAS DE BLOQUEO explícitas para bloquear las tablas para las que tiene el privilegio SELECT. Esto incluye el uso de bloqueos de escritura, lo que impide que otras sesiones de la lectura de la tabla bloqueada."
+
+msgid "REFERENCES"
+msgstr "REFERENCIAS"
+
+msgid "REFERENCES_help"
+msgstr "Otorga el privilegio de referencia para esta base de datos."
+
+msgid "db_not_found"
+msgstr "Una base de datos con este nombre no se pudo encontrar. Por favor revisa el nombre y prueba de nuevo."
+
+msgid "db_name_already_in_use"
+msgstr "Ya existe una base de datos actual con este nombre. Utilice un nombre de base de datos diferente y vuelva a intentarlo."
+
+msgid "MySQLVsiteNotEnabled"
+msgstr "[[base-mysql.DBTYPE]] está desactivada para este sitio virtual. Necesita habilitar [[base-mysql.DBTYPE]] para este sitio virtual antes de poder utilizar esta página GUI."
+
+msgid "MySQLdbList"
+msgstr "Lista de las bases de datos disponibles [[base-mysql.DBTYPE]]"
+
+msgid "dbRemoveConfirmNeutral"
+msgstr "¿De verdad quiere eliminar esta base de datos?"
+
+msgid "DBremoveConfirmInfo"
+msgstr "Por favor, confirme que desea eliminar esta base de datos [[base-mysql.DBTYPE]]. Nota: Esta acción no se puede deshacer y usted perderá toda la información que se almacena en esta base de datos [[base-mysql.DBTYPE]]."
