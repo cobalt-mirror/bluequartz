@@ -1,7 +1,7 @@
 Summary: System Watcher
 Name: swatch
 Version: XX_VER_XX
-Release: 0BX42%{?dist}
+Release: 0BX44%{?dist}
 Vendor: Project BlueOnyx
 License: BSD
 Group: System Environment/BlueOnyx
@@ -94,6 +94,11 @@ if [ -f /usr/bin/systemctl ]; then
 fi
 
 %changelog
+* Tue Dec 13 2016 Michael Stauber <mstauber@solarspeed.net> 4.0.0-BX44
+- MariaDB Galera hotfix removed.
+
+* Tue Dec 13 2016 Michael Stauber <mstauber@solarspeed.net> 4.0.0-BX43
+- MariaDB Galera hotfix added.
 
 * Fri Sep 09 2016 Michael Stauber <mstauber@solarspeed.net> 4.0.0-BX42
 - Added post-install crond restart
