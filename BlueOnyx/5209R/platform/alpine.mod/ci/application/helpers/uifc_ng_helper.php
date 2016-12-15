@@ -802,7 +802,7 @@ function unsimplify_number ($number, $literal, $cnt="") {
             $mod = $multi*$multi*$multi;
             $number = $number*$mod;
         }
-        if ($format == "E") {
+        if ($format == "P") {
             $mod = $multi*$multi*$multi*$multi;
             $number = $number*$mod;
         }
