@@ -717,6 +717,11 @@ function simplify_number ($number, $literal, $cnt) {
     //
     // Returns nicely formatted number including the factor.
 
+    // Simple: If it's a '0' to begin with, we're done right here and now:
+    if ($number == "0") {
+        return $number;
+    }
+
     if ($literal == "K") {
         $multi = "1000";
     }
@@ -736,21 +741,27 @@ function simplify_number ($number, $literal, $cnt) {
         return $number;
     }
 
-    # When we're here, $number *must* be an integer. Make sure it is:
-    $number = floor($number); // Round it down. If it's not a number, this won't give an error.
-    if (!ctype_digit($number)) { // Check if it's an integer.
-        $number = '0'; // It's not. Set it to '0'.
+    if ((strlen($number)) > "12") {
+        return "Unlimited";
+    }
+    else {
+        // When we're here, $number *must* be an integer. Make sure it is:
+        $number = floor($number); // Round it down. If it's not a number, this won't give an error.
+        if (!((string) (int) $number === (string) $number)) {
+            $number = '0'; // It's not. Set it to '0'.
+        }
     }
 
     $base = log($number, $multi);
     $suffixes = array('', 'K', 'M', 'G', 'T');   
 
     if (isset($suffixes[floor($base)])) {
-        return round(pow($multi, $base - floor($base)), $cnt) .''. $suffixes[floor($base)];
+        $result = round(pow($multi, $base - floor($base)), $cnt) .''. $suffixes[floor($base)];
     }
     else {
-        return round(pow($multi, $base - floor($base)), $cnt);
+        $result = round(pow($multi, $base - floor($base)), $cnt);
     }
+    return $result;
 }
 
 function unsimplify_number ($number, $literal, $cnt="") {
