@@ -894,6 +894,11 @@ function simplify_number_pages ($number, $literal, $cnt) {
             $mod = $multi*$multi*$multi;
             $number = $number/$mod;
         }
+        if ($len > "12") {
+            $format = "E";
+            $mod = $multi*$multi*$multi*$multi;
+            $number = $number/$mod;
+        }
         return sprintf("%.${cnt}f$format", "$number");
     }
 }
