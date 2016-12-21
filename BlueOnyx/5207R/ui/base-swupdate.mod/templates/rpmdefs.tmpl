@@ -66,6 +66,7 @@ information for [VENDOR]-[SERVICE].
 %attr(0700,root,root)%{RootDir}/sbin/cced_yum
 %attr(0700,root,root) %{RootDir}/yumcce
 %attr(0644,root,root) /usr/lib/yum-plugins/blueonyx.py
+%attr(0644,root,root) /usr/sausalito/ui/web/.adm/images/btn_donateCC_LG.gif
 [AUTOFILL]
 
 <end glue>
@@ -140,6 +141,10 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Wed Dec 21 2016 Michael Stauber <mstauber@solarspeed.net> 1.6.1-0BX10
+- Added glue/paypal/btn_donateCC_LG.gif 
+- Modified ui/chorizo/web/controllers/news.php with call for donations.
 
 * Thu Aug 18 2016 Michael Stauber <mstauber@solarspeed.net> 1.6.1-0BX09
 - Removed chmod from glue/yum-plugins/blueonyx.py.

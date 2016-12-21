@@ -28,6 +28,8 @@ install:
 	mkdir -p $(PREFIX)/usr/sausalito/yumcce
 	mkdir -p $(SWATCHBINDIR)
 	mkdir -p $(SWATCHCONFDIR)/base/swupdate
+	mkdir -p $(PREFIX)/usr/sausalito/ui/web/.adm/images
+
 	(cd sbin; \
 	$(INSTALL) $(INSTALL_SBINFLAGS) $(SCRIPTS) $(CCESBINDIR); \
 	$(INSTALL) $(INSTALL_LIBFLAGS) $(PERLLIB) $(CCEPERLDIR))
@@ -37,6 +39,7 @@ install:
 	install -m 0644 etc/yum/pluginconf.d/blueonyx.conf $(PREFIX)/etc/yum/pluginconf.d/blueonyx.conf
 	install -m 0644 yum-plugins/blueonyx.py $(PREFIX)/usr/lib/yum-plugins/blueonyx.py
 	install -m 0700 sbin/cced_yum $(CCESBINDIR)/cced_yum
+	install -m 0644 paypal/btn_donateCC_LG.gif $(PREFIX)/usr/sausalito/ui/web/.adm/images/btn_donateCC_LG.gif
 	for file in $(AMSCRIPTS); do \
 		$(INSTALL) $(INSTALL_BINFLAGS) $$file $(SWATCHBINDIR); \
 	done

@@ -64,7 +64,7 @@ class News extends MX_Controller {
             $oids = $cceClient->findNSorted("Package", 'version', $search);
             if (count($oids) > "0") {
                 $msg = '[[base-swupdate.UpdatesAvailablePackagesBody]]';
-                $new_msg[] = '<a href="/swupdate/newSoftware"><div class="alert alert_light"><img width="40" height="36" src="/.adm/images/icons/small/white/alert_2.png"><strong>' . $i18n->interpolateHtml($msg) . '</strong></a></div>';
+                $new_msg[] = '<a href="/swupdate/newSoftware"><div class="alert alert_light"><img width="40" height="30" src="/.adm/images/icons/small/white/alert_2.png"><strong>' . $i18n->interpolateHtml($msg) . '</strong></a></div>';
                 $update_errors = array_merge($new_msg, $errors);          
             }
 
@@ -131,7 +131,7 @@ class News extends MX_Controller {
                 }
                 else {
                    $online = "0";
-                   $errors[] = '<div class="alert alert_light"><img width="40" height="36" src="/.adm/images/icons/small/white/alert_2.png"><strong>' . $i18n->getHtml("[[base-yum.ErrorMSGdesc]]") . '</strong></div>';
+                   $errors[] = '<div class="alert alert_light"><img width="40" height="30" src="/.adm/images/icons/small/white/alert_2.png"><strong>' . $i18n->getHtml("[[base-yum.ErrorMSGdesc]]") . '</strong></div>';
                 }
 
                 if ($online == "1") {
@@ -169,13 +169,13 @@ class News extends MX_Controller {
 
             if ((!isset($news["_bx_title"])) || (!is_array($news))) {
                 // Although we can establish a connection to www.blueonyx.it, the RSS feed did not return expected results:
-                $errors[] = '<div class="alert dismissible alert_red"><img width="40" height="36" src="/.adm/images/icons/small/white/alarm_bell.png"><strong>' . $i18n->getHtml("[[base-yum.ErrorMSGdesc]]") . '</strong></div>';
+                $errors[] = '<div class="alert dismissible alert_red"><img width="40" height="30" src="/.adm/images/icons/small/white/alarm_bell.png"><strong>' . $i18n->getHtml("[[base-yum.ErrorMSGdesc]]") . '</strong></div>';
                 $news = array();
             }
             // Can't get News for whatever reason:
             elseif ($news["_bx_title"] == "n/a") {
                 // Although we can establish a connection to www.blueonyx.it, the RSS feed did not return expected results:
-                $errors[] = '<div class="alert dismissible alert_red"><img width="40" height="36" src="/.adm/images/icons/small/white/alarm_bell.png"><strong>' . $i18n->getHtml("[[base-yum.ErrorMSGdesc]]") . '</strong></div>';
+                $errors[] = '<div class="alert dismissible alert_red"><img width="40" height="30" src="/.adm/images/icons/small/white/alarm_bell.png"><strong>' . $i18n->getHtml("[[base-yum.ErrorMSGdesc]]") . '</strong></div>';
             }
             else {
 
@@ -209,7 +209,7 @@ class News extends MX_Controller {
 
         if (!isset($news)) {
             $news = array();
-            //$errors[] = '<div class="alert dismissible alert_red"><img width="40" height="36" src="/.adm/images/icons/small/white/alarm_bell.png"><strong>' . $i18n->getHtml("[[base-yum.ErrorMSGdesc]]") . '</strong></div>';
+            //$errors[] = '<div class="alert dismissible alert_red"><img width="40" height="30" src="/.adm/images/icons/small/white/alarm_bell.png"><strong>' . $i18n->getHtml("[[base-yum.ErrorMSGdesc]]") . '</strong></div>';
         }
 
         $scrollList = $factory->getScrollList("TheNews", array("title", "desc", "date", "internal", 'link'), $news); 
@@ -224,12 +224,35 @@ class News extends MX_Controller {
         $scrollList->setInfoDisabled(FALSE);
         $scrollList->setColumnWidths(array("150", "75%", "100", "35", "35"));
 
+        // Donations? Thank you!
+        $PayPal = '<br>
+                <div class="box grid_16">
+                    <div class="toggle_container">
+                        <div class="block">
+                            <fieldset class="label_side top bottom indented_button_bar">
+                                <label>
+                                <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KTKZNMW3F2WUU" target="_blank" class="light on_dark">
+                                    <img src="/.adm/images/btn_donateCC_LG.gif" alt="PayPal - The safer, easier way to pay online!" />
+                                </a>
+                                </label>
+                                <div class="clearfix">
+                                ' . $i18n->get("[[base-yum.call_for_donations]]") . '
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>' . "\n";
+
+        $donate = $factory->getRawHTML("Donation", $PayPal);
+
         $errors = array_merge($errors, $update_errors);
         $BxPage->setErrors($errors);
 
         // Nice people say goodbye, or CCEd waits forever:
         $cceClient->bye();
         $serverScriptHelper->destructor();
+
+        $page_body[] = $donate->toHtml();
 
         $page_body[] = $scrollList->toHtml();
 
