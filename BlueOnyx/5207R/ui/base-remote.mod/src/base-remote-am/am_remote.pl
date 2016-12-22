@@ -21,7 +21,7 @@ my %am_states = am_get_statecodes();
 
 # Get the System Object:
 @sysoids = $cce->find('System');
-($ok, $SSHsettings) = $cce->get($sysoids[0], 'SSH');
+($ok, $RemoteSettings) = $cce->get($sysoids[0], 'Remote');
 if (!$ok) {
     &debug_msg("Service $service: Unspecified fail. \n");
     $cce->bye('FAIL');
@@ -29,7 +29,7 @@ if (!$ok) {
 }
 
 # Check if the service is enabled:
-if ($SSHsettings->{'enabled'} eq "1") {
+if ($RemoteSettings->{'enabled'} eq "1") {
     # Service is enabled:
     &debug_msg("Service $service is enabled in the GUI. Checking status. \n");
 
@@ -80,7 +80,13 @@ if ($SSHsettings->{'enabled'} eq "1") {
     }
 }
 else {
-    # Service is disabled:
+    # Check if the System service is disabled:
+    $enabled = Sauce::Service::service_get_init($service);
+    if ($enabled eq "1") {
+        &debug_msg("Service $service is enabled on the System level, but should be stopped and off. \n");
+        Sauce::Service::service_set_init($service, 'off');
+        Sauce::Service::service_run_init($service, 'stop');
+    }
     &debug_msg("Service $service is disabled. \n");
     $cce->bye('SUCCESS');
     exit $am_states{AM_STATE_NOINFO};
