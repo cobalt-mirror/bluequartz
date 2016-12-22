@@ -1,0 +1,32 @@
+
+# Di 20. Dez 01:24:52 PET 2016
+CFLAGS="-O3" ./netdata-installer.sh 
+# ./autogen.sh  ... OK
+# ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --with-zlib --with-math --with-user=netdata CFLAGS=-O3  ... OK
+# make -j16  ... OK
+# make install  ... OK
+# find ./system/ -type f -a \! -name \*.in -a \! -name Makefile\* -a \! -name \*.conf -a \! -name \*.service -exec chmod 755 \{\} \;  ... OK
+# groupadd -r netdata  ... OK
+# useradd -r -g netdata -c netdata -s /usr/sbin/nologin -d / netdata  ... OK
+# cp system/netdata.logrotate /etc/logrotate.d/netdata  ... OK
+# chown --recursive netdata:netdata /etc/netdata  ... OK
+# find /etc/netdata -type f -exec chmod 0660 \{\} \;  ... OK
+# find /etc/netdata -type d -exec chmod 0775 \{\} \;  ... OK
+# chown --recursive netdata:netdata /usr/share/netdata/web  ... OK
+# find /usr/share/netdata/web -type f -exec chmod 0664 \{\} \;  ... OK
+# find /usr/share/netdata/web -type d -exec chmod 0775 \{\} \;  ... OK
+# chown --recursive netdata:netdata /var/lib/netdata  ... OK
+# chown --recursive netdata:netdata /var/cache/netdata  ... OK
+# chown --recursive netdata:netdata /var/log/netdata  ... OK
+# chown --recursive root:root /usr/libexec/netdata  ... OK
+# find /usr/libexec/netdata -type d -exec chmod 0755 \{\} \;  ... OK
+# find /usr/libexec/netdata -type f -exec chmod 0644 \{\} \;  ... OK
+# find /usr/libexec/netdata -type f -a -name \*.plugin -exec chmod 0755 \{\} \;  ... OK
+# find /usr/libexec/netdata -type f -a -name \*.sh -exec chmod 0755 \{\} \;  ... OK
+# setcap cap_dac_read_search\,cap_sys_ptrace+ep /usr/libexec/netdata/plugins.d/apps.plugin  ... OK
+# chmod a+rX /usr/libexec  ... OK
+# chmod a+rX /usr/share/netdata  ... OK
+# cp system/netdata.service /etc/systemd/system/netdata.service  ... OK
+# systemctl daemon-reload  ... OK
+# systemctl enable netdata  ... OK
+# /usr/sbin/service netdata restart  ... OK
