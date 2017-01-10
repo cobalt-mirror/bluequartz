@@ -9,7 +9,7 @@
  * @author    Michael Stauber
  * @link      http://www.solarspeed.net
  * @license   http://devel.blueonyx.it/pub/BlueOnyx/licenses/SUN-modified-BSD-License.txt
- * @version   2.1
+ * @version   2.2
  */
 
 //
@@ -36,6 +36,16 @@ function do_modify_vsite ($payload, $clientsdetails, $helper, $action="unknown")
   // Get the vsiteDefaults:
   $cceClient = $helper->getCceClient();
   $vsiteDefaults = $cceClient->getObject("System", array(), "VsiteDefaults");
+
+  $buildcheck = `cat /etc/build|grep 5209R|wc -l`;
+  if ($buildcheck == "1\n") {
+  	$build = "5209R";
+  	error_log("Build:" . $build);
+  }
+  else {
+  	$build = "520XR";
+  	error_log("Build:" . $build);
+  }
 
   // Get Vsite OID:
   $vsiteOIDHelper = $cceClient->find("Vsite", array("fqdn" => $host_details['fqdn']));
@@ -95,7 +105,7 @@ function do_modify_vsite ($payload, $clientsdetails, $helper, $action="unknown")
   }
 
   // Handle suPHP. If enabled, we set the web-ownerships to this User:
-  if ($payload->php == "suPHP") {
+  if (($payload->php == "suPHP") || ($payload->php == "ModRUID") || ($payload->php == "FPM")) {
 	  $cceClient->set($vsiteOID, 'PHP', array('prefered_siteAdmin' => $payload->username));
 	  $errors = array_merge($errors, $cceClient->errors());
   }
@@ -152,15 +162,30 @@ function do_modify_vsite ($payload, $clientsdetails, $helper, $action="unknown")
   }
   // PHP:
   if (isset($payload->php)) {
-	  // Possible options: No,Yes,suPHP
-	  $php = "0"; 
-	  $suPHP = "0";
-	  if ($payload->php == "Yes") { $php = "1"; $suPHP = "0"; }
-	  if ($payload->php == "suPHP") { $php = "1"; $suPHP = "1"; }
-	  $cceClient->set($vsiteOID, 'PHP', array('enabled' => $php, "suPHP_enabled" => $suPHP));
-	  $errors = array_merge($errors, $cceClient->errors());
-	  error_log("Error count past PHP settings: " . count($errors));
+	// Possible options: No,Yes,ModRUID,suPHP,FPM
+	$php = "0"; 
+	$suPHP = "0";
+	$mod_ruid_enabled = "0";
+	$fpm_enabled = "0";
+
+	if ($build == "5209R") {
+		error_log("PHP handling for productBuild: " . $build);
+		if ($payload->php == "Yes") { $php = "1"; $suPHP = "0"; $mod_ruid_enabled = "0"; $fpm_enabled = "0"; }
+		if ($payload->php == "suPHP") { $php = "1"; $suPHP = "1"; $mod_ruid_enabled = "0"; $fpm_enabled = "0"; }
+		if ($payload->php == "ModRUID") { $php = "1"; $suPHP = "0"; $mod_ruid_enabled = "1"; $fpm_enabled = "0"; }
+		if ($payload->php == "FPM") { $php = "1"; $suPHP = "0"; $mod_ruid_enabled = "0"; $fpm_enabled = "1"; }
+		$cceClient->set($vsiteOID, 'PHP', array('enabled' => $php, "suPHP_enabled" => $suPHP, "mod_ruid_enabled" => $mod_ruid_enabled, "fpm_enabled" => $fpm_enabled));
+	}
+	else {
+		error_log("PHP handling for productBuild: " . $build);
+		if ($payload->php == "Yes") { $php = "1"; $suPHP = "0"; }
+		if ($payload->php == "suPHP") { $php = "1"; $suPHP = "1"; }
+		$cceClient->set($vsiteOID, 'PHP', array('enabled' => $php, "suPHP_enabled" => $suPHP));
+	}
+	$errors = array_merge($errors, $cceClient->errors());
+	error_log("Error count past PHP settings: " . count($errors));
   }
+
   // MySQL:
 
   // Get Vsite's MySQL settings:
@@ -263,9 +288,12 @@ function do_modify_vsite ($payload, $clientsdetails, $helper, $action="unknown")
 
   // bwlimit:
   if ((isset($payload->bwlimit)) && (isset($payload->bwlimitVal))) {
-	  $cceClient->set($vsiteOID, 'ApacheBandwidth', array('enabled' => $payload->bwlimit, 'speed' => $payload->bwlimitVal));
-	  $errors = array_merge($errors, $cceClient->errors());
-	  error_log("Error count past ApacheBandwidth settings: " . count($errors));
+  	error_log("ApacheBandwidth handling for productBuild: " . $build);
+  	if ($build != "5209R") {
+		$cceClient->set($vsiteOID, 'ApacheBandwidth', array('enabled' => $payload->bwlimit, 'speed' => $payload->bwlimitVal));
+		$errors = array_merge($errors, $cceClient->errors());
+		error_log("Error count past ApacheBandwidth settings: " . count($errors));
+	}
   }
 
   // FTP:
@@ -357,6 +385,16 @@ function do_create_vsite ($payload, $clientsdetails, $helper) {
 	$cceClient = $helper->getCceClient();
 	$vsiteDefaults = $cceClient->getObject("System", array(), "VsiteDefaults");
 
+	$buildcheck = `cat /etc/build|grep 5209R|wc -l`;
+	if ($buildcheck == "1\n") {
+		$build = "5209R";
+		error_log("Build:" . $build);
+	}
+	else {
+		$build = "520XR";
+		error_log("Build:" . $build);
+	}
+
 	// Do the Vsite create CCE transaction:
 	$vsiteOID = $cceClient->create("Vsite", 
 			  array(
@@ -405,13 +443,28 @@ function do_create_vsite ($payload, $clientsdetails, $helper) {
 	}
 	// PHP:
 	if (isset($payload->php)) {
-	  // Possible options: No,Yes,suPHP
-	  $php = "0"; 
-	  $suPHP = "0";
-	  if ($payload->php == "Yes") { $php = "1"; $suPHP = "0"; }
-	  if ($payload->php == "suPHP") { $php = "1"; $suPHP = "1"; }
-	  $cceClient->set($vsiteOID, 'PHP', array('enabled' => $php, "suPHP_enabled" => $suPHP));
-	  $errors = array_merge($errors, $cceClient->errors());
+		// Possible options: No,Yes,ModRUID,suPHP,FPM
+		$php = "0"; 
+		$suPHP = "0";
+		$mod_ruid_enabled = "0";
+		$fpm_enabled = "0";
+
+		if ($build == "5209R") {
+			error_log("PHP handling for productBuild: " . $build);
+			if ($payload->php == "Yes") { $php = "1"; $suPHP = "0"; $mod_ruid_enabled = "0"; $fpm_enabled = "0"; }
+			if ($payload->php == "suPHP") { $php = "1"; $suPHP = "1"; $mod_ruid_enabled = "0"; $fpm_enabled = "0"; }
+			if ($payload->php == "ModRUID") { $php = "1"; $suPHP = "0"; $mod_ruid_enabled = "1"; $fpm_enabled = "0"; }
+			if ($payload->php == "FPM") { $php = "1"; $suPHP = "0"; $mod_ruid_enabled = "0"; $fpm_enabled = "1"; }
+			$cceClient->set($vsiteOID, 'PHP', array('enabled' => $php, "suPHP_enabled" => $suPHP, "mod_ruid_enabled" => $mod_ruid_enabled, "fpm_enabled" => $fpm_enabled));
+		}
+		else {
+			error_log("PHP handling for productBuild: " . $build);
+			if ($payload->php == "Yes") { $php = "1"; $suPHP = "0"; }
+			if ($payload->php == "suPHP") { $php = "1"; $suPHP = "1"; }
+			$cceClient->set($vsiteOID, 'PHP', array('enabled' => $php, "suPHP_enabled" => $suPHP));
+		}
+		$errors = array_merge($errors, $cceClient->errors());
+		error_log("Error count past PHP settings: " . count($errors));
 	}
 	// MySQL:
 	if (isset($payload->mysql)) {
@@ -463,8 +516,11 @@ function do_create_vsite ($payload, $clientsdetails, $helper) {
 
 	// bwlimit:
 	if ((isset($payload->bwlimit)) && (isset($payload->bwlimitVal))) {
-	  $cceClient->set($vsiteOID, 'ApacheBandwidth', array('enabled' => $payload->bwlimit, 'speed' => $payload->bwlimitVal));
-	  $errors = array_merge($errors, $cceClient->errors());
+		error_log("ApacheBandwidth handling for productBuild: " . $build);
+		if ($build != "5209R") {
+			$cceClient->set($vsiteOID, 'ApacheBandwidth', array('enabled' => $payload->bwlimit, 'speed' => $payload->bwlimitVal));
+			$errors = array_merge($errors, $cceClient->errors());
+		}
 	}
 
 	// FTP:
@@ -609,10 +665,10 @@ function do_create_user ($payload, $clientsdetails, $helper, $VsiteSettings) {
 	  }
 	}
 
-	// Handle suPHP. If enabled, we set the web-ownerships to this User:
-	if ($payload->php == "suPHP") {
-	  $cceClient->set($VsiteSettings['OID'], 'PHP', array('prefered_siteAdmin' => $payload->username));
-	  $errors = array_merge($errors, $cceClient->errors());
+	// Handle PHP ownerships. If suitable PHP enabled, we set the web-ownerships to this User:
+	if (($payload->php == "suPHP") || ($payload->php == "ModRUID") || ($payload->php == "FPM")) {
+		$cceClient->set($VsiteSettings['OID'], 'PHP', array('prefered_siteAdmin' => $payload->username));
+		$errors = array_merge($errors, $cceClient->errors());
 	}
 
 	// If Auto-DNS is enabled, we grant this user the caplevel of 'dnsAdmin' as well:
@@ -700,8 +756,8 @@ function get_fqdn_details($domain_to_check) {
 }
 
 /*
-Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2014-2017 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2014-2017 Team BlueOnyx, BLUEONYX.IT
 All Rights Reserved.
 
 1. Redistributions of source code must retain the above copyright 
