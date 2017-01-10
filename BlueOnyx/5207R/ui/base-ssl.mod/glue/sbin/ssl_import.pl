@@ -248,7 +248,12 @@ if ($type ne 'caCert') {
                         'orgName' => $subject->{O},
                         'orgUnit' => $subject->{OU},
                         'email' => $subject->{emailAddress},
-                        'expires' => $expires
+                        'expires' => $expires,
+                        'LEclientRet' => '',
+                        'uses_letsencrypt' => '0',
+                        'performLEinstall' => '',
+                        'performLErenew' => '',
+                        'LEcreationDate' => ''
                     };
 } # end if ($type)
 
@@ -287,8 +292,8 @@ sub debug_msg {
 }
 
 # 
-# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2017 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2017 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 

@@ -171,10 +171,15 @@ class UploadCert extends MX_Controller {
 						}
 				    }
 				    else {
-				        header("Location: /ssl/siteSSL?group=$group");
 						if (is_file($tmp_cert)) {
 						    unlink($tmp_cert);
 						}
+				    	if ($attributes['group'] == '') {
+				        	header("Location: /ssl/siteSSL");
+				        }
+				        else {
+				        	header("Location: /ssl/siteSSL?group=$group");
+				        }
 						$cceClient->bye();
 						$serverScriptHelper->destructor();
 				        exit;
@@ -216,7 +221,12 @@ class UploadCert extends MX_Controller {
 
 			// No errors. Reload the entire page to load it with the updated values:
 			if ((count($errors) == "0")) {
-				header("Location: /ssl/siteSSL?group=" . $attributes['group']);
+				if ($attributes['group'] != '') {
+					header("Location: /ssl/siteSSL?group=" . $attributes['group']);
+				}
+				else {
+					header("Location: /ssl/siteSSL");
+				}
 				exit;
 			}
 			else {
@@ -323,8 +333,8 @@ class UploadCert extends MX_Controller {
 	}		
 }
 /*
-Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2017 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2017 Team BlueOnyx, BLUEONYX.IT
 All Rights Reserved.
 
 1. Redistributions of source code must retain the above copyright 

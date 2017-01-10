@@ -29,6 +29,12 @@ $ssl = $cce->event_object();
 $ssl_old = $cce->event_old();
 $ssl_new = $cce->event_new();
 
+if ($ssl_info->{'performLEinstall'} eq "") {
+    &debug_msg("Not using LE for this SSL certificiate install.\n");
+    $cce->bye('SUCCESS');
+    exit(0);
+}
+
 if ($vsite->{'name'}) {
     $siteName = $vsite->{'name'};
 }
@@ -250,8 +256,8 @@ sub debug_msg {
 }
 
 # 
-# Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2017 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2017 Team BlueOnyx, BLUEONYX.IT
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 

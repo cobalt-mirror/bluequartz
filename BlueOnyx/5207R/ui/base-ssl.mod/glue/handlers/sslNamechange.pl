@@ -1,7 +1,8 @@
 #!/usr/bin/perl -I/usr/sausalito/perl/ -I/usr/sausalito/handlers/base/ssl
-# $Id: ssl.pl
+# $Id: sslNamechange.pl
 # update the admin server's certificate on changes to System attributes
-# such as hostname, domain name, and identity information
+# such as hostname, domain name, and identity information - but only if
+# the SSL certificate is *NOT* self-signed!
 
 use Time::Local qw( timelocal ); 
 use POSIX;
@@ -35,65 +36,22 @@ if (! -d $cert_dir)
     ssl_create_directory(0700, 0, $cert_dir);
 }
 
-# make sure we don't hit 2038 rollover
-$ssl->{daysValid} = ssl_check_days_valid($ssl->{daysValid}); 
-if ($ssl->{daysValid} eq "9999") { 
-    $ssl->{daysValid} = int((timelocal(59, 59, 23, 31, 11, 2037) - time())/(24 * 60 * 60)); 
-} 
-if (!ssl_check_days_valid($ssl->{daysValid})) 
-{ 
-    $cce->bye('FAIL', '[[base-ssl.2038bug]]'); 
-    exit(1); 
-} 
-
 # Examine current AdmServ certificate:
 if (-e $current_cert) {
     &debug_msg("AdmServ certificate present. Checking it. \n");
     # read the expiration date from the new certificate
     my ($sub, $iss, $date) = ssl_get_cert_info($cert_dir);
-}
 
-# setup the certificate
-my $ret = ssl_set_identity(
-                $ssl->{daysValid},
-                $ssl->{country},
-                $ssl->{state},
-                $ssl->{city},
-                $ssl->{orgName},
-                $ssl->{orgUnit},
-                substr(($system->{hostname} . '.' . $system->{domainname}), 0, 64),
-                $ssl->{email},
-                $cert_dir
-                );
-                
-# check for errors
-if ($ret != 1)
-{
-    $cce->bye('FAIL', ssl_error($ret));
-    exit(1);
-}
-
-# read the expiration date from the new certificate
-my ($sub, $iss, $date) = ssl_get_cert_info($cert_dir);
-
-# munge date because the php strtotime function changed
-$date =~ s/(\d{1,2}:\d{2}:\d{2})(\s+)(\d{4,})/$3$2$1/;
-
-($ok) = $cce->set($cce->event_oid(), 'SSL', { 'expires' => $date });
-
-# failing to set expires is non-fatal
-if (not $ok)
-{
-    $cce->warn('[[base-ssl.cantSetExpires]]');
-}
-
-# issue a warning for to long a fqdn
-if (length($system->{hostname} . '.' . $system->{domainname}) > 64)
-{
-    $cce->baddata(0, 'fqdn', 'fqdnTooLongOkay', 
-            { 
-                'fqdn' => ($system->{hostname} . '.' . $system->{domainname})
-            });
+    if ($sub->{'CN'} ne $iss->{'CN'}) {
+        &debug_msg("Current certificate is NOT self signed. Exit.\n");
+        # Current certificate is NOT self signed. So we exit here. And we exit gracefully w/o raising an error:
+        $cce->bye('SUCCESS');
+        exit(0);
+    }
+    else {
+        &debug_msg("Current certificate is self signed. Replacing it.\n");
+        ($ok) = $cce->set($cce->event_oid(), 'SSL', { 'createCert' => time() });
+    }
 }
 
 $cce->bye('SUCCESS');
@@ -117,7 +75,6 @@ sub debug_msg {
 # 
 # Copyright (c) 2017 Michael Stauber, SOLARSPEED.NET
 # Copyright (c) 2017 Team BlueOnyx, BLUEONYX.IT
-# Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 

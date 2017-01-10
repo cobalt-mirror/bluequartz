@@ -136,6 +136,26 @@ fi
 
 <begin $CHANGELOG>
 
+* Tue Jan 10 2017 Michael Stauber <mstauber@solarspeed.net> 1.3.0-0BX23
+- Fixed spurious problem where a server name change replaced a valid
+  non-self-signed SSL certificate. Problem was that triggers for SSL
+  cert generations (LE or otherwise) all use 'createCert', but flags
+  between different forms of creation are never fully cleaned up.
+  Modified this to fire a new glue/handlers/sslNamechange.pl instead
+  which runs on System name changes. It will never trigger a replacement
+  of a real cert. Only self signed ones. Added better flag cleanup, too.
+- Modified constructor/gen_adm_cert.pl
+- Modified glue/conf/base-ssl.conf
+- Modified glue/handlers/le_install.pl
+- Modified glue/handlers/ssl.pl
+- Added glue/handlers/sslNamechange.pl
+- Modified glue/sbin/LE_SSL_fixer.pl
+- Modified glue/sbin/letsencrypt_autorenew.pl
+- Modified glue/sbin/ssl_import.pl
+- Modified ui/chorizo/web/controllers/createCert.php
+- Modified ui/chorizo/web/controllers/letsencryptCert.php
+- Modified ui/chorizo/web/controllers/uploadCert.php
+
 * Mon Oct 10 2016 Michael Stauber <mstauber@solarspeed.net> 1.3.0-0BX22
 - Modified glue/handlers/le_install.pl to add --text --no-self-upgrade
   flags to all letsencrypt-auto calls. Self updating Python piece of shit.

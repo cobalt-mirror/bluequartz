@@ -167,7 +167,12 @@ class CreateCert extends MX_Controller {
                             'orgName' => $attributes['orgName'],
                             'orgUnit' => $attributes['orgUnit'],
                             'email' => $attributes['email'],
-                            'daysValid' => ($attributes['daysValid'] * $attributes['multiplier'])
+                            'daysValid' => ($attributes['daysValid'] * $attributes['multiplier']),
+                            'LEclientRet' => '',
+                            'uses_letsencrypt' => '0',
+                            'performLEinstall' => '',
+                            'performLErenew' => '',
+                            'LEcreationDate' => ''
                             );
 
                 if ($attributes['type'] != 'csr' || $attributes['genCert']) {
@@ -199,7 +204,12 @@ class CreateCert extends MX_Controller {
                         $url = "/ssl/siteSSL?group=" . $attributes['group'] . "&action=export&type=csr";
                     }
                     else {
-                        $url = '/ssl/siteSSL?group=' . $attributes['group'];
+                        if ($attributes['group'] == '') {
+                            $url = '/ssl/siteSSL';
+                        }
+                        else {
+                            $url = '/ssl/siteSSL?group=' . $attributes['group'];
+                        }
                     }
                     $cceClient->bye();
                     $serverScriptHelper->destructor();
@@ -490,8 +500,8 @@ class CreateCert extends MX_Controller {
     }       
 }
 /*
-Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2017 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2017 Team BlueOnyx, BLUEONYX.IT
 All Rights Reserved.
 
 1. Redistributions of source code must retain the above copyright 

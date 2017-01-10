@@ -98,7 +98,7 @@ if ($do_admserv eq "1") {
             $renew_time = $System_SSL->{LEcreationDate} + ($System_SSL->{autoRenewDays} * 86400);
             if ($renew_time lt time()) {
                 &debug_msg("Renewing SSL certificate for 'AdmServ'.\n\n");
-                $cce->set($sysoid, 'SSL', { 'uses_letsencrypt' => $uses_letsencrypt, 'performLErenew' => time() });
+                $cce->set($sysoid, 'SSL', { 'uses_letsencrypt' => $uses_letsencrypt, 'performLEinstall' => time() });
             }
             else {
                 &debug_msg("NOT renewing SSL certificate for 'AdmServ' as it's still good.\n\n");
@@ -142,7 +142,7 @@ foreach  $vsiteOID (@vhosts) {
             $renew_time = $vsite_SSL->{LEcreationDate} + ($vsite_SSL->{autoRenewDays} * 86400);
             if ($renew_time lt time()) {
                 &debug_msg("Renewing SSL certificate for Vsite '$vsite->{fqdn}'.\n");
-                $cce->set($vsite->{'OID'}, 'SSL', { 'uses_letsencrypt' => $uses_letsencrypt, 'performLErenew' => time() });
+                $cce->set($vsite->{'OID'}, 'SSL', { 'uses_letsencrypt' => $uses_letsencrypt, 'performLEinstall' => time() });
             }
             else {
                 &debug_msg("NOT renewing SSL certificate for Vsite '$vsite->{fqdn}' as it's still good.\n");
@@ -211,8 +211,8 @@ sub debug_msg {
 }
 
 # 
-# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2017 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2017 Team BlueOnyx, BLUEONYX.IT
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 
