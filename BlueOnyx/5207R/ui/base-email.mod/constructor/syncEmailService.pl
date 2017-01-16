@@ -256,7 +256,7 @@ sub make_sendmail_mc {
         $smartRelay_out = "define(`SMART_HOST', `" . $obj->{smartRelay} . "')\n";
     }
     else {
-        $smartRelay_out = "define(`SMART_HOST', `')dnl\n";
+        $smartRelay_out = "dnl define(`SMART_HOST', `')dnl\n";
     }
 
     # hideHeaders:
@@ -280,7 +280,7 @@ sub make_sendmail_mc {
         $masqAddress_out = "MASQUERADE_AS(`" . $obj->{masqAddress} . "')\n";
     }
     else {
-        $masqAddress = "MASQUERADE_AS(`')\n";
+        $masqAddress = "MASQUERADE_AS()dnl\n";
     }
 
     # maxRecipientsPerMessage:
@@ -409,12 +409,12 @@ sub make_sendmail_mc {
         }
         elsif ( /^MAILER\(procmail\)dnl/o ) {
             print $_;
-            if ($Dh_found == "0") {
+            if ($Dh_found eq "0") {
                 # Add the Diffie-Hellmann line:
                 print $DiffieHellmann;
                 $Dh_found = "1";
             }
-            if ($LC_found == "0") {
+            if ($LC_found eq "0") {
                 # Add the LOCAL_CONFIG line:
                 print $local_config;
                 $LC_found = "1";
