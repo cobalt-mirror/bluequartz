@@ -251,6 +251,46 @@ sub make_sendmail_mc {
         $maxMessageSize_out = "define(`confMAX_MESSAGE_SIZE',0)dnl\n";
     }
 
+    # SmartRelay:
+    if ($obj->{smartRelay}) {
+        $smartRelay_out = "define(`SMART_HOST', `" . $obj->{smartRelay} . "')\n";
+    }
+    else {
+        $smartRelay_out = "define(`SMART_HOST', `')dnl\n";
+    }
+
+    # hideHeaders:
+    if ($obj->{hideHeaders} eq "1") {
+        $hideHeaders_out = "define(`confRECEIVED_HEADER',`by \$j \$?r with \$r\$. id \$i; \$b')dnl\n";
+    }
+    else {
+        $hideHeaders_out = "dnl define(`confRECEIVED_HEADER',`by \$j \$?r with \$r\$. id \$i; \$b')dnl\n";
+    }
+
+    # delayChecks:
+    if ($obj->{delayChecks} eq "1") {
+        $delayChecks_out = "FEATURE(delay_checks)dnl\n";
+    }
+    else {
+        $delayChecks_out = "dnl FEATURE(delay_checks)dnl\n";
+    }
+
+    # masqAddress:
+    if ($obj->{masqAddress}) {
+        $masqAddress_out = "MASQUERADE_AS(`" . $obj->{masqAddress} . "')\n";
+    }
+    else {
+        $masqAddress = "MASQUERADE_AS(`')\n";
+    }
+
+    # maxRecipientsPerMessage:
+    if ($obj->{maxRecipientsPerMessage}) {
+        $maxRecipientsPerMessage_out = "define(`confMAX_RCPTS_PER_MESSAGE'," . $obj->{maxRecipientsPerMessage} . ")\n";
+    }
+    else {
+        $maxRecipientsPerMessage_out = "define(`confMAX_RCPTS_PER_MESSAGE',0)\n";
+    }
+
     # Diffie-Hellmann File:
     $DiffieHellmann = "define(`confDH_PARAMETERS',`/usr/share/ssl/certs/sendmail-2048.dh')\n";
 
@@ -351,6 +391,21 @@ sub make_sendmail_mc {
         }
         elsif ( /^define\(\`confDH_PARAMETERS/o ) { 
             # Do nothing and remove this line.
+        }
+        elsif ( /define\(\`SMART_HOST/ ) { 
+            print $smartRelay_out;
+        }
+        elsif (( /^define\(\`confRECEIVED_HEADER(.*)$/ ) || ( /^dnl define\(\`confRECEIVED_HEADER(.*)$/ )) { 
+            print $hideHeaders_out;
+        }
+        elsif (( /^FEATURE(delay_checks)dnl/ ) || ( /^dnl FEATURE(delay_checks)dnl/ )) { 
+            print $delayChecks_out;
+        }
+        elsif ( /^MASQUERADE_AS(.*)$/ ) { 
+            print $masqAddress;
+        }
+        elsif (( /^define\(`confMAX_RCPTS_PER_MESSAGE(.*)$/o ) || ( /^dnl define\(`confMAX_RCPTS_PER_MESSAGE(.*)$/o )) { 
+            print $maxRecipientsPerMessage_out;
         }
         elsif ( /^MAILER\(procmail\)dnl/o ) {
             print $_;
@@ -473,8 +528,8 @@ sub debug_msg {
 }
 
 # 
-# Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2017 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2017 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 
