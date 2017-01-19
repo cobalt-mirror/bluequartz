@@ -11,7 +11,7 @@ CDTITLE="Team BluOnyx Presents - Network Reconfigure"
 TITLE="Network Setup Utility"
 
 
-IPADDRESS=`ifconfig  | grep 'inet '| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $2}'`
+IPADDRESS=`ifconfig  | grep 'inet '| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $2}'|head -1`
 NETMASK=`ifconfig | grep $IPADDRESS | awk '{ print $4}'`
 DEFAULTGW=`/sbin/ip route | awk '/default/ { print $3 }'|head -1`
 DNSSERVER=`cat /etc/resolv.conf |grep ^nameserver|awk '{ print $2}'|head -1`
@@ -137,8 +137,8 @@ if [ "$NO" == "0" ]; then
 fi
 
 # 
-# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2017 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2017 Team BlueOnyx, BLUEONYX.IT
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 
