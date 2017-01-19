@@ -1,8 +1,8 @@
 <!-- This is the AM Namespace for monitoring Shellinabox -->
 <class name="ActiveMonitor"     namespace="Netdata"     version="1.0">
-    <property name="enabled"        type="boolean"  default="1"/>
+    <property name="enabled"        type="boolean"  default="0"/>
     <property name="monitor"    writeACL="ruleCapable(serverActiveMonitor)"
-    type="boolean"  default="1"/>
+    type="boolean"  default="0"/>
     <property name="type"       type="scalar"   default="exec"/>
     <property name="typeData"       type="scalar"
     default="/usr/sausalito/swatch/bin/am_netdata.pl"/>

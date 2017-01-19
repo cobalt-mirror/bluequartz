@@ -8,7 +8,7 @@
 <class name="System" namespace="Netdata" version="2.0">
 
     <property
-        name="enabled" type="boolean" default="1"
+        name="enabled" type="boolean" default="0"
         writeacl="ruleCapable(serverShell)"
     />
     <property

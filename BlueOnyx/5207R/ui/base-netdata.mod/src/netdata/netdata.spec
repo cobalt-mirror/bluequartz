@@ -133,13 +133,12 @@ install -m 644 -p blueonyx/el6/zz_netdata.conf $RPM_BUILD_ROOT%{_sysconfdir}/adm
 %distro_post
 if [ -f /usr/bin/systemctl ];then
     /usr/bin/systemctl daemon-reload 2> /dev/null || :
-    /usr/bin/systemctl enable netdata 2> /dev/null || :
-    /usr/bin/systemctl start netdata 2> /dev/null || :
-    /usr/bin/systemctl restart admserv 2> /dev/null || :
+    /usr/bin/systemctl disable netdata 2> /dev/null || :
+    /usr/bin/systemctl condrestart admserv 2> /dev/null || :
 else
     # Start the netdata service
-    /sbin/chkconfig --add netdata
-    /sbin/service netdata start 2> /dev/null || :
+    /sbin/chkconfig --del netdata
+    /sbin/service netdata stop 2> /dev/null || :
     /sbin/service admserv restart 2> /dev/null || :
 fi
 exit 0
@@ -166,9 +165,11 @@ exit 0
 # Only gets run on upgrade (not uninstalls)
 if [ $1 != 0 ]; then
     if [ -f /usr/bin/systemctl ];then
+	/usr/bin/systemctl disable netdata 2> /dev/null || :
         /usr/bin/systemctl condrestart netdata 2> /dev/null || :
     else
-        /sbin/service netdata condrestart 2> /dev/null || :
+        /sbin/chkconfig --del netdata
+        /sbin/service netdata stop 2> /dev/null || :
         /sbin/service admserv restart 2> /dev/null || :
     fi
 fi
@@ -185,14 +186,14 @@ exit 0
 
 %post
 # Register the netdata service
-/sbin/chkconfig --add netdata
 if [ -f /usr/bin/systemctl ];then
-    /usr/bin/systemctl enable netdata 2> /dev/null || :
-    /usr/bin/systemctl start netdata 2> /dev/null || :
+    /usr/bin/systemctl disable netdata 2> /dev/null || :
+    /usr/bin/systemctl stop netdata 2> /dev/null || :
     /usr/bin/systemctl restart admserv 2> /dev/null || :
 else
     # Start the netdata service
-    /sbin/service netdata start 2> /dev/null || :
+    /sbin/chkconfig --del netdata
+    /sbin/service netdata stop 2> /dev/null || :
     /sbin/service admserv restart 2> /dev/null || :
 fi
 exit 0
@@ -217,9 +218,11 @@ exit 0
 # Only gets run on upgrade (not uninstalls)
 if [ $1 != 0 ]; then
     if [ -f /usr/bin/systemctl ];then
+        /usr/bin/systemctl disable netdata 2> /dev/null || :
         /usr/bin/systemctl condrestart netdata 2> /dev/null || :
     else
-        /sbin/service netdata condrestart 2> /dev/null || :
+        /sbin/chkconfig --del netdata
+        /sbin/service netdata stop 2> /dev/null || :
         /sbin/service admserv restart 2> /dev/null || :
     fi
 fi
