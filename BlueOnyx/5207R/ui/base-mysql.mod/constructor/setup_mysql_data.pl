@@ -10,6 +10,12 @@ use Sauce::Service;
 $cce = new CCE;
 $cce->connectuds();
 
+# Fix permissions on the MySQL directory so that PHP can access the mysql.sock:
+if (-d "/home/mysql") {
+    system("chmod 755 /home/mysql");
+}
+system("chmod 755 /var/lib/mysql");
+
 # Create main MySQL access settings if not already present:
 @mysql_main = $cce->find('MySQL');
 if (!defined($mysql_main[0])) {
@@ -42,12 +48,6 @@ if ($firstboot eq "1") {
         "onoff" => time()
     });
 }
-
-# Fix permissions on the MySQL directory so that PHP can access the mysql.sock:
-if (-d "/home/mysql") {
-    system("chmod 755 /home/mysql");
-}
-system("chmod 755 /var/lib/mysql");
 
 # Disable old_passwords=0 if present:
 $old_passwords = `cat /etc/my.cnf|grep old_passwords=1|wc -l`;
