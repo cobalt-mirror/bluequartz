@@ -43,6 +43,12 @@ if ($firstboot eq "1") {
     });
 }
 
+# Fix permissions on the MySQL directory so that PHP can access the mysql.sock:
+if (-d "/home/mysql") {
+    system("chmod 755 /home/mysql");
+}
+system("chmod 755 /var/lib/mysql");
+
 # Disable old_passwords=0 if present:
 $old_passwords = `cat /etc/my.cnf|grep old_passwords=1|wc -l`;
 chomp($old_passwords);
@@ -64,8 +70,8 @@ $cce->bye('SUCCESS');
 exit 0;
 
 # 
-# Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2017 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2017 Team BlueOnyx, BLUEONYX.IT
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 
