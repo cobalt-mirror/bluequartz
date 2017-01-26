@@ -20,7 +20,7 @@ BUILDGLUE=yes
 BUILDLOCALE=no
 BUILDSRC=no
 
-REQUIRES=httpd
-REQUIRES_GLUE=openssl httpd mod_ssl php-mysql
+REQUIRES=httpd php-mysql
+REQUIRES_GLUE=openssl httpd mod_ssl
 
 include /usr/sausalito/devel/module.mk
