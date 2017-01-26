@@ -15,6 +15,7 @@ Group: System Environment/BlueQuartz
 Summary: [LABEL] for [VENDOR]-[SERVICE].
 [AUTOFILL]
 [BUILDARCH]
+Obsoletes: php-mysql
 
 %description [LABEL]
 The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
@@ -127,7 +128,9 @@ fi
 
 # Restart AdmServ on upgrades:
 if [ $1 = 2 ]; then
-    /sbin/service admserv restart
+    systemctl restart admserv 2> /dev/null || :
+    systemctl restart httpd 2> /dev/null || :
+    systemctl restart php-fpm 2> /dev/null || :
 fi
 <end glue>
 <begin ui>
@@ -160,6 +163,11 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Thu Jan 26 2017 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX28
+- Added requirement for php-mysqlnd
+- Added Obsolete for php-mysql
+- Added proper restarts on upgrade for httpd, php-fpm and admserv
 
 * Wed Nov 24 2016 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX27
 - Added glue/etc/admserv/conf.d/shellinabox.conf
