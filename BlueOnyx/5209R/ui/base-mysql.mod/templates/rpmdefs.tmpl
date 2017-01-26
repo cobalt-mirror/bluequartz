@@ -84,8 +84,15 @@ information for [VENDOR]-[SERVICE].
 
 <begin glue>
 # glue post-install
+
+# Restart CCEd once YUM is done:
+if [ -d /usr/sausalito/yumcce ];then
+        touch /usr/sausalito/yumcce/restart
+fi
+
 if [ -S /usr/sausalito/cced.socket ]; then
-    /usr/sausalito/sbin/cced.init rehash
+    systemctl restart admserv
+    systemctl restart httpd
 fi
 
 <end glue>
@@ -119,6 +126,14 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Thu Jan 26 2017 Michael Stauber <mstauber@solarspeed.net> 2.4.0-0BX26
+- Small fix in ui/chorizo/web/controllers/vsiteMySQL.php
+- Modified constructor/setup_mysql_data.pl to chmod 755 the MySQL dir.
+- Removed requirement for php-mysql
+- Added requirement for php-mysqlnd
+- Proper CCEd restart added.
+- Restart of Apache and Admserv due to php-mysqlnd switch added
 
 * Tue Dec 13 2016 Michael Stauber <mstauber@solarspeed.net> 2.4.0-0BX21
 - Brought the galera shit back.

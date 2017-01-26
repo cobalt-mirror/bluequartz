@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=mysql
 
 VERSION=2.4.0
-RELEASE=0BX22
+RELEASE=0BX26
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -20,11 +20,10 @@ BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=yes
 
-REQUIRES= mariadb mariadb-libs php-mysql perl-DBI base-mysql-am 
+REQUIRES= mariadb mariadb-libs php-mysqlnd perl-DBI base-mysql-am 
 #mariadb-galera-common mariadb-galera-server galera
 
-
-OBSOLETES= mariadb-galera-common mariadb-galera-server
+OBSOLETES= mariadb-galera-common mariadb-galera-server php-mysql
 
 #########
 # some useful defines

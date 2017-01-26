@@ -323,7 +323,9 @@ class vsiteMySQL extends MX_Controller {
                 }
                 else {
                     // Check if DB already exists:
+                    $err_level = error_reporting(0);  
                     $mysqli = new mysqli($AbsMYSQL['sql_host'], $AbsMYSQL['sql_root'], $AbsMYSQL['sql_rootpassword']);
+                    error_reporting($err_level);
                     if (!$mysqli->connect_errno) {
                         // Check if the DB already exists in MySQL. And for this we use MySQLi because we *really*
                         // want to know if a DB with that name already exists. CODB could be wrong on this. And 

@@ -10,6 +10,12 @@ use Sauce::Service;
 $cce = new CCE;
 $cce->connectuds();
 
+# Fix permissions on the MySQL directory so that PHP can access the mysql.sock:
+if (-d "/home/mysql") {
+    system("chmod 755 /home/mysql");
+}
+system("chmod 755 /var/lib/mysql");
+
 # Create main MySQL access settings if not already present:
 @mysql_main = $cce->find('MySQL');
 if (!defined($mysql_main[0])) {
@@ -64,8 +70,8 @@ $cce->bye('SUCCESS');
 exit 0;
 
 # 
-# Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2017 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2017 Team BlueOnyx, BLUEONYX.IT
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 
