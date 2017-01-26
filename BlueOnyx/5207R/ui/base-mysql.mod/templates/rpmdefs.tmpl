@@ -82,8 +82,9 @@ information for [VENDOR]-[SERVICE].
 
 <begin glue>
 # glue post-install
-if [ -S /usr/sausalito/cced.socket ]; then
-    /usr/sausalito/sbin/cced.init rehash
+# Restart CCEd once YUM is done:
+if [ -d /usr/sausalito/yumcce ];then
+        touch /usr/sausalito/yumcce/rehash
 fi
 
 <end glue>
