@@ -2,91 +2,94 @@
 
 class Sysinfo extends MX_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Past the login page this loads the page for /phpsysinfo/sysinfo.
-	 *
-	 */
+    /**
+     * Index Page for this controller.
+     *
+     * Past the login page this loads the page for /phpsysinfo/sysinfo.
+     *
+     */
 
-	public function index() {
+    public function index() {
 
-		$CI =& get_instance();
-		
-	    // We load the BlueOnyx helper library first of all, as we heavily depend on it:
-	    $this->load->helper('blueonyx');
-	    init_libraries();
+        $CI =& get_instance();
+        
+        // We load the BlueOnyx helper library first of all, as we heavily depend on it:
+        $this->load->helper('blueonyx');
+        init_libraries();
 
-  		// Need to load 'BxPage' for page rendering:
-  		$this->load->library('BxPage');
-		$MX =& get_instance();
+        // Need to load 'BxPage' for page rendering:
+        $this->load->library('BxPage');
+        $MX =& get_instance();
 
-	    // Get $sessionId and $loginName from Cookie (if they are set):
-	    $sessionId = $CI->input->cookie('sessionId');
-	    $loginName = $CI->input->cookie('loginName');
-	    $locale = $CI->input->cookie('locale');
+        // Get $sessionId and $loginName from Cookie (if they are set):
+        $sessionId = $CI->input->cookie('sessionId');
+        $loginName = $CI->input->cookie('loginName');
+        $locale = $CI->input->cookie('locale');
 
-	    // Line up the ducks for CCE-Connection:
-	    include_once('ServerScriptHelper.php');
-		$serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-		$cceClient = $serverScriptHelper->getCceClient();
-		$user = $cceClient->getObject("User", array("name" => $loginName));
-		$i18n = new I18n("base-phpsysinfo", $user['localePreference']);
-		$system = $cceClient->getObject("System");
+        // Line up the ducks for CCE-Connection:
+        include_once('ServerScriptHelper.php');
+        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
+        $cceClient = $serverScriptHelper->getCceClient();
+        $user = $cceClient->getObject("User", array("name" => $loginName));
+        $i18n = new I18n("base-phpsysinfo", $user['localePreference']);
+        $system = $cceClient->getObject("System");
 
-		// Initialize Capabilities so that we can poll the access rights as well:
-		$Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        // Initialize Capabilities so that we can poll the access rights as well:
+        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
 
-		// Required array setup:
-		$errors = array();
-		$extra_headers = array();
+        // Required array setup:
+        $errors = array();
+        $extra_headers = array();
 
-		// -- Actual page logic start:
+        // -- Actual page logic start:
 
-		// Not adminUser? Bye, bye!
-		if (!$Capabilities->getAllowed('serverInformation')) {
-			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
-			Log403Error("/gui/Forbidden403");
-		}
+        // Not adminUser? Bye, bye!
+        if (!$Capabilities->getAllowed('serverInformation')) {
+            // Nice people say goodbye, or CCEd waits forever:
+            $cceClient->bye();
+            $serverScriptHelper->destructor();
+            Log403Error("/gui/Forbidden403");
+        }
 
-	    //-- Generate page:
+        // Set access-cookie for phpSysinfo that expires at end of the browser session. 
+        setcookie("sysinfoAccess", $sessionId, "0", "/");
 
-		// Prepare Page:
-		$BxPage = new BxPage();
+        //-- Generate page:
 
-		// Set Menu items:
-		$BxPage->setVerticalMenu('base_serverconfig');
-		$BxPage->setVerticalMenuChild('base_phpsysinfo');
-		$page_module = 'base_sysmanage';
+        // Prepare Page:
+        $BxPage = new BxPage();
 
-		$uri = '/base/phpsysinfo/.phpsysinfo/index.php?disp=dynamic';
+        // Set Menu items:
+        $BxPage->setVerticalMenu('base_serverconfig');
+        $BxPage->setVerticalMenuChild('base_phpsysinfo');
+        $page_module = 'base_sysmanage';
 
-		// Nice people say goodbye, or CCEd waits forever:
-		$cceClient->bye();
-		$serverScriptHelper->destructor();
+        $uri = '/base/phpsysinfo/.phpsysinfo/index.php?disp=dynamic';
 
-		// Page body:
-		$page_body[] = addInputForm(
-										$i18n->get("[[base-phpsysinfo.hwInfo]]"),
-										array("window" => $uri, "toggle" => "#"), 
-										addIframe($uri, "1200", $BxPage),
-										"",
-										$i18n,
-										$BxPage,
-										$errors
-									);
+        // Nice people say goodbye, or CCEd waits forever:
+        $cceClient->bye();
+        $serverScriptHelper->destructor();
+
+        // Page body:
+        $page_body[] = addInputForm(
+                                        $i18n->get("[[base-phpsysinfo.hwInfo]]"),
+                                        array("window" => $uri, "toggle" => "#"), 
+                                        addIframe($uri, "1200", $BxPage),
+                                        "",
+                                        $i18n,
+                                        $BxPage,
+                                        $errors
+                                    );
 
 
-		// Out with the page:
-	    $BxPage->render($page_module, $page_body);
+        // Out with the page:
+        $BxPage->render($page_module, $page_body);
 
-	}		
+    }       
 }
 /*
-Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2014-2017 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2014-2017 Team BlueOnyx, BLUEONYX.IT
 All Rights Reserved.
 
 1. Redistributions of source code must retain the above copyright 
