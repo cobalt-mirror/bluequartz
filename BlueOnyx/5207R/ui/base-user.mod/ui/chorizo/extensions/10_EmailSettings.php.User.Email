@@ -23,6 +23,7 @@ include_once('UIExtension.php');
 
 class EmailSettingsExtension extends UIExtension {
     function display(&$serverScriptHelper, &$container, $prams) {
+        $CI =& get_instance();
         $factory = $serverScriptHelper->getHtmlComponentFactory('base-user');
         $cceClient = $serverScriptHelper->getCceClient();
         $pageId = 'EmailSettings';
@@ -30,14 +31,11 @@ class EmailSettingsExtension extends UIExtension {
         // Get the User related Objects of interest:
         $user = $cceClient->get($prams['CCE_OID']);
         $userEmail = $cceClient->get($prams['CCE_OID'], "Email");
-        $system = $cceClient->getObject("System");
 
-        // Get CI instance and $sessionId:
-        $CI =& get_instance();
-        $sessionId = $CI->input->cookie('sessionId');
-        $locale = $CI->input->cookie('locale');
+        // Get $sessionId:
+        $sessionId = $CI->BX_SESSION['sessionId'];
 
-        $i18n = new I18n("base-user", $locale);
+        $i18n = new I18n("base-user", $CI->BX_SESSION['loginUser']['localePreference']);
 
         //---
         // Get data for the Vsite:
@@ -300,15 +298,16 @@ class EmailSettingsExtension extends UIExtension {
 
     function handle(&$serverScriptHelper, &$errors, $prams) {
 
+        // Make CI instance available:
+        $CI =& get_instance();
+
         $cceClient = $serverScriptHelper->getCceClient();
 
         $i18n = $prams['i18n'];
 
-        // Make CI instance available:
-        $CI =& get_instance();
-
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
+        // Get $sessionId and $loginName from Cookie (if they are set):
+        $sessionId = $CI->BX_SESSION['sessionId'];
+        $loginName = $CI->BX_SESSION['loginName'];
 
         // Get form data:
         $form_data = $CI->input->post(NULL, TRUE);
@@ -343,7 +342,7 @@ class EmailSettingsExtension extends UIExtension {
             // params: $required_keys       array with keys that must have data in it. Needed for CodeIgniter's error checks
             // params: $ignore_attributes   array with items we want to ignore. Such as Labels.
             // return:                      array with keys and values ready to submit to CCE.
-            $attributes = GetFormAttributes($i18n, $form_data, $required_keys, $ignore_attributes, $i18n);
+            $attributes = GetFormAttributes($i18n, $form_data, $required_keys, $ignore_attributes);
         }
         // Do we have validation related errors?
         if ($CI->form_validation->run() == FALSE) {

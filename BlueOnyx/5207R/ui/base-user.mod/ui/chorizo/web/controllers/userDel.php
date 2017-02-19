@@ -11,31 +11,25 @@ class UserDel extends MX_Controller {
 
 	public function index() {
 
-		$CI =& get_instance();
+        $CI =& get_instance();
 
-	    // We load the BlueOnyx helper library first of all, as we heavily depend on it:
-	    $this->load->helper('blueonyx');
-	    init_libraries();
+        // We load the BlueOnyx helper library first of all, as we heavily depend on it:
+        $this->load->helper('blueonyx');
+        init_libraries();
 
-  		// Need to load 'BxPage' for page rendering:
-  		$this->load->library('BxPage');
-		$MX =& get_instance();
+        // Need to load 'BxPage' for page rendering:
+        $this->load->library('BxPage');
 
-	    // Get $sessionId and $loginName from Cookie (if they are set):
-	    $sessionId = $CI->input->cookie('sessionId');
-	    $loginName = $CI->input->cookie('loginName');
-	    $locale = $CI->input->cookie('locale');
+        // Get $sessionId and $loginName from Cookie (if they are set) and store them in $CI->BX_SESSION:
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
-	    // Line up the ducks for CCE-Connection:
-	    include_once('ServerScriptHelper.php');
-		$serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-		$cceClient = $serverScriptHelper->getCceClient();
-		$user = $cceClient->getObject("User", array("name" => $loginName));
-		$i18n = new I18n("base-vsite", $user['localePreference']);
-		$system = $cceClient->getObject("System");
+        // Line up the ducks for CCE-Connection and store them for re-usability in $CI:
+        include_once('ServerScriptHelper.php');
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
 
-		// Initialize Capabilities so that we can poll the access rights as well:
-		$Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        $i18n = new I18n("base-user", $CI->BX_SESSION['loginUser']['localePreference']);
 
 		// -- Actual page logic start:
 
@@ -63,18 +57,18 @@ class UserDel extends MX_Controller {
 		// 3.) Checks if the user is Reseller of the given Group/Vsite
 		// 4.) Checks if the iser is siteAdmin of the given Group/Vsite
 		// Returns Forbidden403 if *none* of that is the case.
-		if (!$Capabilities->getGroupAdmin($group)) {
+		if (!$CI->serverScriptHelper->getGroupAdmin($group)) {
 			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
+			$CI->cceClient->bye();
+			$CI->serverScriptHelper->destructor();
 			Log403Error("/gui/Forbidden403#1");
 		}
 
 		if ((!isset($group)) || (!isset($username))) {
 			// No group? No name? Not our kind of game!
 			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
+			$CI->cceClient->bye();
+			$CI->serverScriptHelper->destructor();
 			Log403Error("/gui/Forbidden403#2");
 			// Please note: 'serverAdmin' users have no 'site' set.
 			// So this also serves as a check to make sure that we 
@@ -93,26 +87,26 @@ class UserDel extends MX_Controller {
 		// Admin cannot be deleted. This check is redundant due to our 
 		// 'minnion' & 'chieftain' check above. We also don't allow
 		// that someone tries to delete his own account.
-		if (($username == "admin") || ($username == $loginName)) {
+		if (($username == "admin") || ($username == $CI->BX_SESSION['loginName'])) {
 			// No Harakiri allowed here!
 			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
+			$CI->cceClient->bye();
+			$CI->serverScriptHelper->destructor();
 			Log403Error("/gui/Forbidden403#3");
 		}
 
 		// User is a Reseller. Make sure he can only mess with accounts of Vsites
 		// that are under his management:
-		if (($Capabilities->getAllowed('manageSite')) && ($loginName != "admin")) {
+		if (($CI->serverScriptHelper->getAllowed('manageSite')) && ($CI->BX_SESSION['loginName'] != "admin")) {
 
 			// Get a list of Vsite OID's of this Reseller:
-			$vsites = $cceClient->findx('Vsite', array('createdUser' => $loginName), array(), "", "");
+			$vsites = $CI->cceClient->findx('Vsite', array('createdUser' => $CI->BX_SESSION['loginName']), array(), "", "");
 
 			// Build an array of groups that this Reseller owns:
 			$groups_of_owned_vsites = array();
 			foreach ($vsites as $site) {
 				// Get Vsite settings:
-				$vsiteSettings = $cceClient->get($site);
+				$vsiteSettings = $CI->cceClient->get($site);
 				$groups_of_owned_vsites[] = $vsiteSettings['name'];
 			}
 
@@ -120,45 +114,45 @@ class UserDel extends MX_Controller {
 			if (!in_array($group, $groups_of_owned_vsites)) {
 				// Trying to delete a user that's not yours? Bad boy!
 				// Nice people say goodbye, or CCEd waits forever:
-				$cceClient->bye();
-				$serverScriptHelper->destructor();
+				$CI->cceClient->bye();
+				$CI->serverScriptHelper->destructor();
 				Log403Error("/gui/Forbidden403#4");
 			}
 		}
 
 		// One more security check: Is siteAdmin, not manageSite, not admin:
-		if (($Capabilities->getAllowed('siteAdmin')) && (!$Capabilities->getAllowed('manageSite')) && ($loginName != "admin")) {
+		if (($CI->serverScriptHelper->getAllowed('siteAdmin')) && (!$CI->serverScriptHelper->getAllowed('manageSite')) && ($CI->BX_SESSION['loginName'] != "admin")) {
 			// So we have a siteAdmin. Is he of the same group as the user he wants to delete?
 			if ($user['site'] != $group) {
 				// Don't play games with us!
 				// Nice people say goodbye, or CCEd waits forever:
-				$cceClient->bye();
-				$serverScriptHelper->destructor();
+				$CI->cceClient->bye();
+				$CI->serverScriptHelper->destructor();
 				Log403Error("/gui/Forbidden403#5");
 			}
 		}
 
 		// Get a list of User OID's:
-		$users = $cceClient->findx('User', array('name' => $username, 'site' => $group), array(), "", "");
+		$users = $CI->cceClient->findx('User', array('name' => $username, 'site' => $group), array(), "", "");
 
 		// At this point we should have one object. Not more and not less:
 		if (count($users) != "1") {
 			// Don't play games with us!
 			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
+			$CI->cceClient->bye();
+			$CI->serverScriptHelper->destructor();
 			Log403Error("/gui/Forbidden403#6");
 		}
 		else {
 
 			// We continue with the deletion if we're not in DEMO mode:
 			if (!is_file('/etc/DEMO')) {
-				$cceClient->destroyObjects("User", array('name' => $username, 'site' => $group));
+				$CI->cceClient->destroyObjects("User", array('name' => $username, 'site' => $group));
 			}
 
 			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
+			$CI->cceClient->bye();
+			$CI->serverScriptHelper->destructor();
 
 			// Redirect to the processing page to follow the status of this transaction:
 			header("Location: /user/userList?group=$group");
@@ -167,8 +161,8 @@ class UserDel extends MX_Controller {
 		}
 
 		// Nice people say goodbye, or CCEd waits forever:
-		$cceClient->bye();
-		$serverScriptHelper->destructor();
+		$CI->cceClient->bye();
+		$CI->serverScriptHelper->destructor();
 
 		// Can't imagine why we would get to this line.
 		// But if we do, log a 403 and call it a day:

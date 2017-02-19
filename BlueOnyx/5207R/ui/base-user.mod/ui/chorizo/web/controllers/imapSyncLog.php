@@ -11,28 +11,27 @@ class ImapSyncLog extends MX_Controller {
 
 	public function index() {
 
-		$CI =& get_instance();
-		
-	    // We load the BlueOnyx helper library first of all, as we heavily depend on it:
-	    $this->load->helper('blueonyx');
-	    init_libraries();
+        $CI =& get_instance();
 
-  		// Need to load 'BxPage' for page rendering:
-  		$this->load->library('BxPage');
-		$MX =& get_instance();
+        // We load the BlueOnyx helper library first of all, as we heavily depend on it:
+        $this->load->helper('blueonyx');
+        init_libraries();
 
-	    // Get $sessionId and $loginName from Cookie (if they are set):
-	    $sessionId = $CI->input->cookie('sessionId');
-	    $loginName = $CI->input->cookie('loginName');
+        // Need to load 'BxPage' for page rendering:
+        $this->load->library('BxPage');
 
-	    // Line up the ducks for CCE-Connection:
-	    include_once('ServerScriptHelper.php');
-		$serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-		$cceClient = $serverScriptHelper->getCceClient();
-		$user = $cceClient->getObject("User", array("name" => $loginName));
+        // Get $CI->BX_SESSION['sessionId'] and $loginName from Cookie (if they are set) and store them in $CI->BX_SESSION:
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
-		$i18n = new I18n("base-user", $user['localePreference']);
-		$system = $cceClient->getObject("System");
+        // Line up the ducks for CCE-Connection and store them for re-usability in $CI:
+        include_once('ServerScriptHelper.php');
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
+
+        $i18n = new I18n("base-user", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
+        $user = $CI->BX_SESSION['loginUser'];
 
 		// -- Actual page logic start:
 
@@ -50,8 +49,8 @@ class ImapSyncLog extends MX_Controller {
 		if (!isset($userOid)) {
 			// Don't play games with us!
 			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
+			$CI->cceClient->bye();
+			$CI->serverScriptHelper->destructor();
 			Log403Error("/gui/Forbidden403#1");
 		}
 
@@ -61,7 +60,7 @@ class ImapSyncLog extends MX_Controller {
 			// that User has the rights to be here:
 
 			// Get group of the user whose logfile we want to view:
-			$TargetUser = $cceClient->get($userOid);
+			$TargetUser = $CI->cceClient->get($userOid);
 
 			if ($TargetUser['site'] != "") {
 				$group = $TargetUser['site'];
@@ -71,7 +70,7 @@ class ImapSyncLog extends MX_Controller {
 			}
 
 			// Initialize Capabilities so that we can poll the access rights as well:
-			$Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+			$Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
 
 			//
 			//-- Access Rights Check for Vsite level pages:
@@ -84,8 +83,8 @@ class ImapSyncLog extends MX_Controller {
 			// And: If he's not 'systemAdministrator' he will not be allowed to see logs of non-owned Users.
 			if ((!$Capabilities->getGroupAdmin($group)) && (!$Capabilities->getAllowed('systemAdministrator'))) {
 				// Nice people say goodbye, or CCEd waits forever:
-				$cceClient->bye();
-				$serverScriptHelper->destructor();
+				$CI->cceClient->bye();
+				$CI->serverScriptHelper->destructor();
 				Log403Error("/gui/Forbidden403#2");
 			}
 		}
@@ -106,7 +105,7 @@ class ImapSyncLog extends MX_Controller {
 	    //
 
 		// Prepare Page:
-		$factory = $serverScriptHelper->getHtmlComponentFactory("base-user", "/user/personalEmail");
+		$factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-user", "/user/personalEmail");
 		$BxPage = $factory->getPage();
 		$BxPage->setErrors($errors);
 		$i18n = $factory->getI18n();
@@ -117,7 +116,7 @@ class ImapSyncLog extends MX_Controller {
 
 		$logfile = '~' . $TargetUser['name'] . '/.imapsync.log';
 
-		$ret = $serverScriptHelper->shell("/bin/cat $logfile", $output, 'root', $sessionId);
+		$ret = $CI->serverScriptHelper->shell("/bin/cat $logfile", $output, 'root', $CI->BX_SESSION['sessionId']);
 		$output = explode("\n", $output);
 
 		$out = "<pre>";
@@ -125,10 +124,6 @@ class ImapSyncLog extends MX_Controller {
 				$out .= formspecialchars($outputline) . "\n";
 		}
 		$out .= "</pre>";
-
-		// Nice people say goodbye, or CCEd waits forever:
-		$cceClient->bye();
-		$serverScriptHelper->destructor();
 
 		$page_body[] = $out;
 

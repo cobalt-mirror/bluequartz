@@ -11,31 +11,25 @@ class UserList extends MX_Controller {
 
 	public function index() {
 
-		$CI =& get_instance();
-		
-	    // We load the BlueOnyx helper library first of all, as we heavily depend on it:
-	    $this->load->helper('blueonyx');
-	    init_libraries();
+        $CI =& get_instance();
 
-  		// Need to load 'BxPage' for page rendering:
-  		$this->load->library('BxPage');
-		$MX =& get_instance();
+        // We load the BlueOnyx helper library first of all, as we heavily depend on it:
+        $this->load->helper('blueonyx');
+        init_libraries();
 
-	    // Get $sessionId and $loginName from Cookie (if they are set):
-	    $sessionId = $CI->input->cookie('sessionId');
-	    $loginName = $CI->input->cookie('loginName');
-	    $locale = $CI->input->cookie('locale');
+        // Need to load 'BxPage' for page rendering:
+        $this->load->library('BxPage');
 
-	    // Line up the ducks for CCE-Connection:
-	    include_once('ServerScriptHelper.php');
-		$serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-		$cceClient = $serverScriptHelper->getCceClient();
-		$user = $cceClient->getObject("User", array("name" => $loginName));
-		$i18n = new I18n("base-user", $user['localePreference']);
-		$system = $cceClient->getObject("System");
+        // Get $sessionId and $loginName from Cookie (if they are set) and store them in $CI->BX_SESSION:
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
-		// Initialize Capabilities so that we can poll the access rights as well:
-		$Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        // Line up the ducks for CCE-Connection and store them for re-usability in $CI:
+        include_once('ServerScriptHelper.php');
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
+
+        $i18n = new I18n("base-user", $CI->BX_SESSION['loginUser']['localePreference']);
 
 		// Required array setup:
 		$errors = array();
@@ -55,8 +49,8 @@ class UserList extends MX_Controller {
 		else {
 			// Don't play games with us!
 			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
+			$CI->cceClient->bye();
+			$CI->serverScriptHelper->destructor();
 			Log403Error("/gui/Forbidden403#1");
 		}
 
@@ -68,10 +62,10 @@ class UserList extends MX_Controller {
 		// 3.) Checks if the user is Reseller of the given Group/Vsite
 		// 4.) Checks if the iser is siteAdmin of the given Group/Vsite
 		// Returns Forbidden403 if *none* of that is the case.
-		if (!$Capabilities->getGroupAdmin($group)) {
+		if (!$CI->serverScriptHelper->getGroupAdmin($group)) {
 			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
+			$CI->cceClient->bye();
+			$CI->serverScriptHelper->destructor();
 			Log403Error("/gui/Forbidden403#2");
 		}
 
@@ -79,36 +73,35 @@ class UserList extends MX_Controller {
 		//-- Get Vsite data
 		//
 		if ($group) {
-			$userDefaults = $cceClient->getObject("Vsite", array("name" => $group), "UserDefaults");
-			if (count($cceClient->find("Vsite", array("name" => $group))) == "0") {
+			$userDefaults = $CI->cceClient->getObject("Vsite", array("name" => $group), "UserDefaults");
+			if (count($CI->cceClient->find("Vsite", array("name" => $group))) == "0") {
 				// Don't play games with us!
 				// Nice people say goodbye, or CCEd waits forever:
-				$cceClient->bye();
-				$serverScriptHelper->destructor();
+				$CI->cceClient->bye();
+				$CI->serverScriptHelper->destructor();
 				Log403Error("/gui/Forbidden403#3");
 			}
 			else {
-				list($vsite) = $cceClient->find("Vsite", array("name" => $group));
-				$vsiteObj = $cceClient->get($vsite);
-	    		list($userServices) = $cceClient->find("UserServices", array("site" => $group));
+				list($vsite) = $CI->cceClient->find("Vsite", array("name" => $group));
+				$vsiteObj = $CI->cceClient->get($vsite);
+	    		list($userServices) = $CI->cceClient->find("UserServices", array("site" => $group));
 	    	}
 		}
 		else {
-			$userDefaults = $cceClient->getObject("System", array(), "UserDefaults");
+			$userDefaults = $CI->cceClient->getObject("System", array(), "UserDefaults");
 		}
 
 		// Second stage of capability check. More thorough here:
 		// Only adminUser and siteAdmin should be here
-		// NOTE: Needs testing if this is restructive enough (!!!!!!!!!!!!!!!!!!!!!!!!!!)
-		if ((!$Capabilities->getAllowed('adminUser')) && 
-			(!$Capabilities->getAllowed('siteAdmin')) && 
-			(!$Capabilities->getAllowed('manageSite')) && 
-			(($user['site'] != $serverScriptHelper->loginUser['site']) && $Capabilities->getAllowed('siteAdmin')) &&
-			(($vsiteObj['createdUser'] != $loginName) && $Capabilities->getAllowed('manageSite'))
+		if ((!$CI->serverScriptHelper->getAllowed('adminUser')) && 
+			(!$CI->serverScriptHelper->getAllowed('siteAdmin')) && 
+			(!$CI->serverScriptHelper->getAllowed('manageSite')) && 
+			(($user['site'] != $CI->serverScriptHelper->loginUser['site']) && $CI->serverScriptHelper->getAllowed('siteAdmin')) &&
+			(($vsiteObj['createdUser'] != $CI->BX_SESSION['loginName']) && $CI->serverScriptHelper->getAllowed('manageSite'))
 			) {
 			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
+			$CI->cceClient->bye();
+			$CI->serverScriptHelper->destructor();
 			Log403Error("/gui/Forbidden403#4");
 		}
 		else {
@@ -121,18 +114,18 @@ class UserList extends MX_Controller {
 				$exactMatch = array();
 			}
 
-			$Users = $cceClient->findx("User", $exactMatch, array(), 'ascii', "");
+			$Users = $CI->cceClient->findx("User", $exactMatch, array(), 'ascii', "");
 
 			// Find out of non-siteAdmin's can FTP or not:
-			$FTPNONADMIN = $cceClient->get($vsiteObj["OID"], "FTPNONADMIN");
+			$FTPNONADMIN = $CI->cceClient->get($vsiteObj["OID"], "FTPNONADMIN");
 
 			// Auto-detect available features:
-			//$autoFeatures = new AutoFeatures($serverScriptHelper);
+			//$autoFeatures = new AutoFeatures($CI->serverScriptHelper);
 
 			$numUsers = "0";
 			foreach ($Users as $user) {
 				// Get Vsite settings:
-				$UserData = $cceClient->get($user);
+				$UserData = $CI->cceClient->get($user);
 
 				// Full name:
 				$userList[0][$numUsers] = bx_charsetsafe($UserData['fullName']);
@@ -141,7 +134,7 @@ class UserList extends MX_Controller {
 				$userList[1][$numUsers] = $UserData['name'];
 
 				// Email Aliases:
-				$userEmail = $cceClient->get($user, 'Email');
+				$userEmail = $CI->cceClient->get($user, 'Email');
 				$userList[2][$numUsers] = implode(', ', stringToArray($userEmail['aliases']));
 
 				// Suspend icon:
@@ -215,7 +208,7 @@ class UserList extends MX_Controller {
 				}
 
 				// Does User have Subdomain enabled?
-				$subdomain = $cceClient->get($user, 'subdomains');
+				$subdomain = $CI->cceClient->get($user, 'subdomains');
 				if ($subdomain['enabled'] == "1") {
 					$UserData['FEATURE']['Subdomain'] = "1";
 				}
@@ -254,7 +247,7 @@ class UserList extends MX_Controller {
 				// Add Buttons for Edit, View and Delete:
 				$buttons = '<button title="' . $i18n->getHtml("modifyUser", "base-user", array('userName' => $UserData['name'])) . '" class="tiny icon_only div_icon tooltip hover right link_button" data-link="/user/userMod?group=' . $UserData['site'] . '&name=' . $UserData['name'] . '" target="_self" formtarget="_self"><div class="ui-icon ui-icon-pencil"></div></button><br>';
 				// Only add 'Delete' button for all users but our current user:
-				if ($UserData['name'] != $loginName) {
+				if ($UserData['name'] != $CI->BX_SESSION['loginName']) {
 					$buttons .= '<a class="lb" href="/user/userDel?group=' . $group . '&name=' . $UserData['name'] . '"><button class="tiny icon_only div_icon tooltip hover dialog_button" title="' . $i18n->getHtml("[[palette.remove_help]]") . '"><div class="ui-icon ui-icon-trash"></div></button></a><br>';
 				}
 				$userList[5][$numUsers] = $buttons;
@@ -265,7 +258,7 @@ class UserList extends MX_Controller {
 	    //-- Generate page:
 
 		// Prepare Page:
-		$factory = $serverScriptHelper->getHtmlComponentFactory("base-user", "/user/userList");
+		$factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-user", "/user/userList");
 		$BxPage = $factory->getPage();
 		$i18n = $factory->getI18n();
 
@@ -344,8 +337,8 @@ class UserList extends MX_Controller {
 
 	    // Get VSite object if we don't have it already:
 		if (!isset($vsiteObj)) {
-			list($vsite) = $cceClient->find("Vsite", array("name" => $group));
-			$vsiteObj = $cceClient->get($vsite);
+			list($vsite) = $CI->cceClient->find("Vsite", array("name" => $group));
+			$vsiteObj = $CI->cceClient->get($vsite);
 		}
 
 		// How many accounts are set up on this Vsite?
@@ -377,10 +370,6 @@ class UserList extends MX_Controller {
 			$factory->getLabel("userList"),
 			$defaultPage
 		);
-
-		// Nice people say goodbye, or CCEd waits forever:
-		$cceClient->bye();
-		$serverScriptHelper->destructor();
 
 		$page_body[] = $block->toHtml();
 

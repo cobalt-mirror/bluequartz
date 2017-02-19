@@ -11,31 +11,25 @@ class UserAdd extends MX_Controller {
 
 	public function index() {
 
-		$CI =& get_instance();
-		
-	    // We load the BlueOnyx helper library first of all, as we heavily depend on it:
-	    $this->load->helper('blueonyx');
-	    init_libraries();
+        $CI =& get_instance();
 
-  		// Need to load 'BxPage' for page rendering:
-  		$this->load->library('BxPage');
-		$MX =& get_instance();
+        // We load the BlueOnyx helper library first of all, as we heavily depend on it:
+        $this->load->helper('blueonyx');
+        init_libraries();
 
-	    // Get $sessionId and $loginName from Cookie (if they are set):
-	    $sessionId = $CI->input->cookie('sessionId');
-	    $loginName = $CI->input->cookie('loginName');
-	    $locale = $CI->input->cookie('locale');
+        // Need to load 'BxPage' for page rendering:
+        $this->load->library('BxPage');
 
-	    // Line up the ducks for CCE-Connection:
-	    include_once('ServerScriptHelper.php');
-		$serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-		$cceClient = $serverScriptHelper->getCceClient();
-		$user = $cceClient->getObject("User", array("name" => $loginName));
-		$i18n = new I18n("base-user", $user['localePreference']);
-		$system = $cceClient->getObject("System");
+        // Get $sessionId and $loginName from Cookie (if they are set) and store them in $CI->BX_SESSION:
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
-		// Initialize Capabilities so that we can poll the access rights as well:
-		$Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        // Line up the ducks for CCE-Connection and store them for re-usability in $CI:
+        include_once('ServerScriptHelper.php');
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
+
+        $i18n = new I18n("base-user", $CI->BX_SESSION['loginUser']['localePreference']);
 
 		// -- Actual page logic start:
 
@@ -53,8 +47,8 @@ class UserAdd extends MX_Controller {
 		else {
 			// Don't play games with us!
 			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
+			$CI->cceClient->bye();
+			$CI->serverScriptHelper->destructor();
 			Log403Error("/gui/Forbidden403#1");
 		}
 
@@ -66,26 +60,26 @@ class UserAdd extends MX_Controller {
 		// 3.) Checks if the user is Reseller of the given Group/Vsite
 		// 4.) Checks if the iser is siteAdmin of the given Group/Vsite
 		// Returns Forbidden403 if *none* of that is the case.
-		if (!$Capabilities->getGroupAdmin($group)) {
-			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
-			Log403Error("/gui/Forbidden403#2");
-		}
+        if (!$CI->serverScriptHelper->getGroupAdmin($group)) {
+            // Nice people say goodbye, or CCEd waits forever:
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
+            Log403Error("/gui/Forbidden403#2");
+        }
 
 		//
 		//-- Prepare data:
 		//
 
 		// Get data for the Vsite:
-		$vsite = $cceClient->getObject('Vsite', array('name' => $group));
+		$vsite = $CI->cceClient->getObject('Vsite', array('name' => $group));
 
 		// Get UserDefaults:
-		$defaults = $cceClient->getObject("Vsite", array("name" => $group), "UserDefaults");
+		$defaults = $CI->cceClient->getObject("Vsite", array("name" => $group), "UserDefaults");
 
 		// Find out if FTP access for non-siteAdmins is enabled or disabled for this site:
-		list($ftpvsite) = $cceClient->find("Vsite", array("name" => $group));
-		$ftpPermsObj = $cceClient->get($ftpvsite, 'FTPNONADMIN');
+		list($ftpvsite) = $CI->cceClient->find("Vsite", array("name" => $group));
+		$ftpPermsObj = $CI->cceClient->get($ftpvsite, 'FTPNONADMIN');
 		$ftpnonadmin = $ftpPermsObj['enabled'];
 
 		//
@@ -149,7 +143,7 @@ class UserAdd extends MX_Controller {
 
 			// Handle setting the proper volume for vsite users
 			if (isset($group)) {
-			    $vsite = $cceClient->getObject("Vsite", array("name" => $group));
+			    $vsite = $CI->cceClient->getObject("Vsite", array("name" => $group));
 			    $attributes['volume'] = $vsite['volume'];
 			}
 			else {
@@ -253,8 +247,8 @@ class UserAdd extends MX_Controller {
     		if (!isset($_oid)) {
 
     			// Create the User:
-		        $big_ok = $cceClient->create('User', $out_attributes);
-		        $errors = array_merge($errors, $cceClient->errors());
+		        $big_ok = $CI->cceClient->create('User', $out_attributes);
+		        $errors = array_merge($errors, $CI->cceClient->errors());
 
 		        // Get the OID of this transaction:
                 if ($big_ok) {
@@ -279,19 +273,19 @@ class UserAdd extends MX_Controller {
 					    }
 					}
 
-					$cceClient->set($_oid, "Disk", array("quota" => $quota));
-					$errors = array_merge($errors, $cceClient->errors());
+					$CI->cceClient->set($_oid, "Disk", array("quota" => $quota));
+					$errors = array_merge($errors, $CI->cceClient->errors());
 
 					// Handle AutoFeatures:
-					list($userservices) = $cceClient->find("UserServices", array("site" => $group));
-					$autoFeatures = new AutoFeatures($serverScriptHelper, $attributes);
+					list($userservices) = $CI->cceClient->find("UserServices", array("site" => $group));
+					$autoFeatures = new AutoFeatures($CI->serverScriptHelper, $attributes);
 					$af_errors = $autoFeatures->handle("create.User", array("CCE_SERVICES_OID" => $userservices, "CCE_OID" => $_oid), $attributes);
 					$errors = array_merge($errors, $af_errors);
 
 					// Set email information and prune the duplicate email aliases:
-					$emailAliasesFieldArray = $cceClient->scalar_to_array($attributes['emailAliasesField']);
+					$emailAliasesFieldArray = $CI->cceClient->scalar_to_array($attributes['emailAliasesField']);
 					$emailAliasesFieldArray = array_unique($emailAliasesFieldArray);
-					$emailAliasesField = $cceClient->array_to_scalar($emailAliasesFieldArray);
+					$emailAliasesField = $CI->cceClient->array_to_scalar($emailAliasesFieldArray);
 
 					// Replace && with & to avoid always getting a blank alias in the field
 					// in cce. This also skirts around dealing with browser issues:
@@ -302,8 +296,8 @@ class UserAdd extends MX_Controller {
 
 					$alias_attributes = array("aliases" => $emailAliasesField);
 
-					$cceClient->set($_oid, "Email", $alias_attributes);
-					$errors = array_merge($errors, $cceClient->errors());
+					$CI->cceClient->set($_oid, "Email", $alias_attributes);
+					$errors = array_merge($errors, $CI->cceClient->errors());
 
 					// At this point we're done. We may have errors, though.
             	}
@@ -311,7 +305,7 @@ class UserAdd extends MX_Controller {
 
 			// CCE errors that might have happened during submit to CODB:
 			$z = "0";
-			$CCEerrors = $cceClient->errors();
+			$CCEerrors = $CI->cceClient->errors();
 			foreach ($CCEerrors as $object => $objData) {
 				// When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
 				$errors[$z] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
@@ -320,8 +314,8 @@ class UserAdd extends MX_Controller {
 
 			// No errors during submit? Reload page:
 			if (count($errors) == "0") {
-				$cceClient->bye();
-				$serverScriptHelper->destructor();
+				$CI->cceClient->bye();
+				$CI->serverScriptHelper->destructor();
 				$redirect_URL = "/user/userList?group=$group";
 				header("location: $redirect_URL");
 				exit;
@@ -329,7 +323,7 @@ class UserAdd extends MX_Controller {
 			else {
 				// We do have errors. So we roll back and destroy the created User object:
 				if (isset($_oid)) {
-					$cceClient->destroy($_oid);
+					$CI->cceClient->destroy($_oid);
 				}
 			}
 		}
@@ -339,7 +333,7 @@ class UserAdd extends MX_Controller {
 	    //
 
 		// Prepare Page:
-		$factory = $serverScriptHelper->getHtmlComponentFactory("base-user", "/user/userAdd?group=$group");
+		$factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-user", "/user/userAdd?group=$group");
 		$BxPage = $factory->getPage();
 		$BxPage->setErrors($errors);
 		$i18n = $factory->getI18n();
@@ -412,8 +406,8 @@ class UserAdd extends MX_Controller {
 		);
 
 		// Load site quota
-		list($vsite_oid) = $cceClient->find('Vsite', array("name" => $group));
-		$disk = $cceClient->get($vsite_oid, 'Disk');
+		list($vsite_oid) = $CI->cceClient->find('Vsite', array("name" => $group));
+		$disk = $CI->cceClient->get($vsite_oid, 'Disk');
 		$vsite_quota = $disk['quota']*1024*1024;
 		$default_quota = $defaults['quota']*1024*1024;
 
@@ -427,11 +421,11 @@ class UserAdd extends MX_Controller {
 		        );
 
 		// Add other features
-		$autoFeatures = new AutoFeatures($serverScriptHelper);
+		$autoFeatures = new AutoFeatures($CI->serverScriptHelper);
 
 		if (isset($group) && $group != "") {
-		    list($userServices) = $cceClient->find("UserServices", array("site" => $group));
-		    list($vsite) = $cceClient->find("Vsite", array("name" => $group));
+		    list($userServices) = $CI->cceClient->find("UserServices", array("site" => $group));
+		    list($vsite) = $CI->cceClient->find("Vsite", array("name" => $group));
 		    $autoFeatures->display($block, "create.User", array("CCE_SERVICES_OID" => $userServices, 'PAGED_BLOCK_DEFAULT_PAGE' => $defaultPage, "VSITE_OID" => $vsite));
 
 		    $block->addFormField(
@@ -447,7 +441,7 @@ class UserAdd extends MX_Controller {
 		 
 		}
 		else {
-		    list($userServices) = $cceClient->find("UserServices");
+		    list($userServices) = $CI->cceClient->find("UserServices");
 		    $autoFeatures->display($block, "create.User", array("CCE_SERVICES_OID" => $userServices));
 		}
 
@@ -484,10 +478,6 @@ class UserAdd extends MX_Controller {
 		// Add the buttons for those who can edit this page:
 		$block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
 		$block->addButton($factory->getCancelButton("/user/userList?group=$group"));
-
-		// Nice people say goodbye, or CCEd waits forever:
-		$cceClient->bye();
-		$serverScriptHelper->destructor();
 
 		$page_body[] = $block->toHtml();
 

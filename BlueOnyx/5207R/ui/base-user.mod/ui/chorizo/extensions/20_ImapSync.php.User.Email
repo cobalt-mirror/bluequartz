@@ -8,22 +8,21 @@ include_once('UIExtension.php');
 
 class ImapSyncExtension extends UIExtension {
     function display(&$serverScriptHelper, &$container, $prams) {
+        $CI =& get_instance();
         $factory = $serverScriptHelper->getHtmlComponentFactory('base-user');
         $cceClient = $serverScriptHelper->getCceClient();
     	$pageId = 'ImapSync';
 
-        // Get CI instance and $sessionId:
-        $CI =& get_instance();
-        $sessionId = $CI->input->cookie('sessionId');
-        $locale = $CI->input->cookie('locale');
+        // Get $sessionId:
+        $sessionId = $CI->BX_SESSION['sessionId'];
 
         // Get the User related Objects of interest:
         $user = $cceClient->get($prams['CCE_OID']);
         $userEmail = $cceClient->get($prams['CCE_OID'], "Email");
         $userSync = $cceClient->get($prams['CCE_OID'], "ImapSync");
-        $system = $cceClient->getObject("System");
+        $system = $CI->getSystem();
 
-        $i18n = new I18n("base-user", $locale);
+        $i18n = new I18n("base-user", $CI->BX_SESSION['loginUser']['localePreference']);
 
         // Line up the Ducks:
         $protocols = array('LOGIN', 'PLAIN', 'CRAM-MD5', 'OAUTH');

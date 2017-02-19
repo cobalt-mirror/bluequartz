@@ -18,31 +18,27 @@ class PersonalAccount extends MX_Controller {
 
 	public function index() {
 
-		$CI =& get_instance();
-		
-	    // We load the BlueOnyx helper library first of all, as we heavily depend on it:
-	    $this->load->helper('blueonyx');
-	    init_libraries();
+        $CI =& get_instance();
 
-  		// Need to load 'BxPage' for page rendering:
-  		$this->load->library('BxPage');
-		$MX =& get_instance();
+        // We load the BlueOnyx helper library first of all, as we heavily depend on it:
+        $this->load->helper('blueonyx');
+        init_libraries();
 
-	    // Get $sessionId and $loginName from Cookie (if they are set):
-	    $sessionId = $CI->input->cookie('sessionId');
-	    $loginName = $CI->input->cookie('loginName');
-	    $locale = $CI->input->cookie('locale');
+        // Need to load 'BxPage' for page rendering:
+        $this->load->library('BxPage');
 
-	    // Line up the ducks for CCE-Connection:
-	    include_once('ServerScriptHelper.php');
-		$serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-		$cceClient = $serverScriptHelper->getCceClient();
-		$user = $cceClient->getObject("User", array("name" => $loginName));
-		$i18n = new I18n("base-vsite", $user['localePreference']);
-		$system = $cceClient->getObject("System");
+        // Get $sessionId and $loginName from Cookie (if they are set) and store them in $CI->BX_SESSION:
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
-		// Initialize Capabilities so that we can poll the access rights as well:
-		$Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        // Line up the ducks for CCE-Connection and store them for re-usability in $CI:
+        include_once('ServerScriptHelper.php');
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
+
+        $i18n = new I18n("base-vsite", $CI->BX_SESSION['loginUser']['localePreference']); // really? base-vsite??
+        $system = $CI->getSystem();
+		$user = $CI->BX_SESSION['loginUser'];
 
 		// Make the users fullName safe for all charsets:
 		$user['fullName'] = Utf8Encode($user['fullName']);
@@ -96,7 +92,7 @@ class PersonalAccount extends MX_Controller {
 
 		// If this is NOT a Demo, then store the updated Style in CODB, too:
 		if (!is_file('/etc/DEMO')) {
-			$cceClient->set($user['OID'], "", array('ChorizoStyle' => urlencode(json_encode($ChorizoNewStyle))));
+			$CI->cceClient->set($user['OID'], "", array('ChorizoStyle' => urlencode(json_encode($ChorizoNewStyle))));
 		}
 
 		//
@@ -116,7 +112,7 @@ class PersonalAccount extends MX_Controller {
 		 * don't show browser option for admin, because then it becomes unclear
 		 * what the system locale is.
 		 */
-		if ($serverScriptHelper->getLoginName() != "admin") {
+		if ($CI->BX_SESSION['loginName'] != "admin") {
 			$possibleLocales = array_merge(array("browser"), $possibleLocales);
 		}
 
@@ -145,14 +141,13 @@ class PersonalAccount extends MX_Controller {
 				// The two entered passwords are not identical:
 				$my_errors[] = ErrorMessage($i18n->get("[[base-user.error-password-invalid]]"). '<br>' . $i18n->get("[[palette.pw_not_identical]]"));
 		}
-		elseif (strcasecmp($loginName, $form_data['newPasswordField']) == 0) {
+		elseif (strcasecmp($CI->BX_SESSION['loginName'], $form_data['newPasswordField']) == 0) {
 				// Username == Password? Baaaad idea!
 		        $my_errors[] = ErrorMessage($i18n->get("[[base-user.error-password-equals-username]]") . '<br>&nbsp;');
 		        $my_errors[] = ErrorMessage($i18n->get("[[base-user.error-invalid-password]]"));
 		}
 		elseif ($form_data['newPasswordField']) {
 
-//----
 			if (function_exists('crack_opendict')) {
 
 			    // Open CrackLib Dictionary for usage:
@@ -283,10 +278,10 @@ class PersonalAccount extends MX_Controller {
 	  		}
 
 	  		// Actual submit to CODB:
-			$cceClient->setObject("User", $attributes, "", array("name" => $loginName));
+			$CI->cceClient->setObject("User", $attributes, "", array("name" => $CI->BX_SESSION['loginName']));
 
 			// CCE errors that might have happened during submit to CODB:
-			$CCEerrors = $cceClient->errors();
+			$CCEerrors = $CI->cceClient->errors();
 			foreach ($CCEerrors as $object => $objData) {
 				// When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
 				$errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
@@ -302,8 +297,8 @@ class PersonalAccount extends MX_Controller {
 				$CI->input->set_cookie($cookie);
 
 				// Nice people say goodbye, or CCEd waits forever:
-				$cceClient->bye();
-				$serverScriptHelper->destructor();
+				$CI->cceClient->bye();
+				$CI->serverScriptHelper->destructor();
 
 				// Redirect:
 				header("Location: /user/personalAccount");
@@ -315,7 +310,7 @@ class PersonalAccount extends MX_Controller {
 	    //-- Generate page - Either with data out of CODB (no POST action) or with form submitted data (on POST action):
 
 		// Prepare Page:
-		$factory = $serverScriptHelper->getHtmlComponentFactory("base-user", "/user/personalAccount");
+		$factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-user", "/user/personalAccount");
 		$BxPage = $factory->getPage();
 		$BxPage->setErrors($errors);
 		$i18n = $factory->getI18n();
@@ -330,7 +325,7 @@ class PersonalAccount extends MX_Controller {
 		$defaultPage = "basicSettingsTab";
 
 		$settings =& $factory->getPagedBlock("accountSettings", array($defaultPage));
-		$settings->setCurrentLabel($factory->getLabel('accountSettings', false, array('userName' => $loginName)));		
+		$settings->setCurrentLabel($factory->getLabel('accountSettings', false, array('userName' => $CI->BX_SESSION['loginName'])));		
 		$settings->setToggle("#");
 		$settings->setSideTabs(FALSE);
 
@@ -371,10 +366,6 @@ class PersonalAccount extends MX_Controller {
 		// Add the buttons
 		$settings->addButton($factory->getSaveButton($BxPage->getSubmitAction(), "DEMO-OVERRIDE"));
 		$settings->addButton($factory->getCancelButton("/user/personalAccount"));
-
-		// Nice people say goodbye, or CCEd waits forever:
-		$cceClient->bye();
-		$serverScriptHelper->destructor();
 
 		$page_body[] = $settings->toHtml();
 
