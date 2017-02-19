@@ -11,46 +11,38 @@ class Memory_details extends MX_Controller {
 
 	public function index() {
 
-		$CI =& get_instance();
-		
-	    // We load the BlueOnyx helper library first of all, as we heavily depend on it:
-	    $this->load->helper('blueonyx');
-	    init_libraries();
+        $CI =& get_instance();
 
-  		// Need to load 'BxPage' for page rendering:
-  		$this->load->library('BxPage');
-		$MX =& get_instance();
+        // We load the BlueOnyx helper library first of all, as we heavily depend on it:
+        $this->load->helper('blueonyx');
+        init_libraries();
+
+        // Need to load 'BxPage' for page rendering:
+        $this->load->library('BxPage');
 
 		// Load AM Detail Helper:
 		$this->load->helper('amdetail');
 
-	    // Get $sessionId and $loginName from Cookie (if they are set):
-	    $sessionId = $CI->input->cookie('sessionId');
-	    $loginName = $CI->input->cookie('loginName');
-	    $locale = $CI->input->cookie('locale');
+        // Get $sessionId and $loginName from Cookie (if they are set) and store them in $CI->BX_SESSION:
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
-	    // Line up the ducks for CCE-Connection:
-	    include_once('ServerScriptHelper.php');
-		$serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-		$cceClient = $serverScriptHelper->getCceClient();
-		$user = $cceClient->getObject("User", array("name" => $loginName));
-		$i18n = new I18n("base-am", $user['localePreference']);
-		$system = $cceClient->getObject("System");
+        // Line up the ducks for CCE-Connection and store them for re-usability in $CI:
+        include_once('ServerScriptHelper.php');
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
 
-		// Initialize Capabilities so that we can poll the access rights as well:
-		$Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        $i18n = new I18n("base-am", $CI->BX_SESSION['loginUser']['localePreference']); 
 
 		// -- Actual page logic start:
 
 		// Not 'serverShowActiveMonitor'? Bye, bye!
-		if (!$Capabilities->getAllowed('serverShowActiveMonitor')) {
+		if (!$CI->serverScriptHelper->getAllowed('serverShowActiveMonitor')) {
 			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
+			$CI->cceClient->bye();
+			$CI->serverScriptHelper->destructor();
 			Log403Error("/gui/Forbidden403");
 		}
-
-		// -- Actual page logic start:
 
 	    // We start without any active errors:
 	    $errors = array();
@@ -66,7 +58,7 @@ class Memory_details extends MX_Controller {
 		}
 
 		// Prepare Page:
-		$factory = $serverScriptHelper->getHtmlComponentFactory("base-am");
+		$factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-am");
 		$BxPage = $factory->getPage();
 		$i18n = $factory->getI18n();
 
@@ -83,13 +75,11 @@ class Memory_details extends MX_Controller {
 			$page_body[] = '<br><div id="main_container" class="container_16">';
 		}
 
-//---
-
 		//
 		//--- Print Detail Block:
 		//
 
-		$page_body[] = am_detail_block($factory, $cceClient, "Memory", "[[base-am.amMemDetails]]");
+		$page_body[] = am_detail_block($factory, $CI->cceClient, "Memory", "[[base-am.amMemDetails]]");
 
 		//
 		//--- Print Sub Block:
@@ -266,7 +256,7 @@ class Memory_details extends MX_Controller {
 		$heute_cleaned_prefixed = array();
 
 		if (is_file("/var/log/sa/sa$gestern")) {
-			$ret = $serverScriptHelper->shell("/usr/bin/sar -r -f /var/log/sa/sa$gestern", $saStatsGestern, 'root', $sessionId);
+			$ret = $CI->serverScriptHelper->shell("/usr/bin/sar -r -f /var/log/sa/sa$gestern", $saStatsGestern, 'root', $CI->BX_SESSION['sessionId']);
 
 			// If locale is 'ja_JP' and AdmServ has been restarted, then we'll get the date in Japanese format.
 			// We do a search and replace for these Kanji's and replace them:
@@ -306,7 +296,7 @@ class Memory_details extends MX_Controller {
 		}
 
 		if (is_file("/var/log/sa/sa$heute")) {
-			$ret = $serverScriptHelper->shell("/usr/bin/sar -r -f /var/log/sa/sa$heute", $saStatsHeute, 'root', $sessionId);
+			$ret = $CI->serverScriptHelper->shell("/usr/bin/sar -r -f /var/log/sa/sa$heute", $saStatsHeute, 'root', $CI->BX_SESSION['sessionId']);
 
 			// If locale is 'ja_JP' and AdmServ has been restarted, then we'll get the date in Japanese format.
 			// We do a search and replace for these Kanji's and replace them:
@@ -524,7 +514,7 @@ class Memory_details extends MX_Controller {
 		$heute_cleaned_prefixed = array();
 
 		if (is_file("/var/log/sa/sa$gestern")) {
-			$ret = $serverScriptHelper->shell("/usr/bin/sar -S -f /var/log/sa/sa$gestern", $saStatsGestern, 'root', $sessionId);
+			$ret = $CI->serverScriptHelper->shell("/usr/bin/sar -S -f /var/log/sa/sa$gestern", $saStatsGestern, 'root', $CI->BX_SESSION['sessionId']);
 
 			// If locale is 'ja_JP' and AdmServ has been restarted, then we'll get the date in Japanese format.
 			// We do a search and replace for these Kanji's and replace them:
@@ -564,7 +554,7 @@ class Memory_details extends MX_Controller {
 		}
 
 		if (is_file("/var/log/sa/sa$heute")) {
-			$ret = $serverScriptHelper->shell("/usr/bin/sar -S -f /var/log/sa/sa$heute", $saStatsHeute, 'root', $sessionId);
+			$ret = $CI->serverScriptHelper->shell("/usr/bin/sar -S -f /var/log/sa/sa$heute", $saStatsHeute, 'root', $CI->BX_SESSION['sessionId']);
 
 			// If locale is 'ja_JP' and AdmServ has been restarted, then we'll get the date in Japanese format.
 			// We do a search and replace for these Kanji's and replace them:
@@ -757,10 +747,6 @@ class Memory_details extends MX_Controller {
 			// Full page display. Show "Back" Button:
 			$page_body[] = am_back($factory);
 		}
-
-		// Nice people say goodbye, or CCEd waits forever:
-		$cceClient->bye();
-		$serverScriptHelper->destructor();
 
 		// Out with the page:
 		$BxPage->setErrors($errors);

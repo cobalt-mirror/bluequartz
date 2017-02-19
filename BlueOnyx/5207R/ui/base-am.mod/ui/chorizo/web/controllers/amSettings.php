@@ -13,39 +13,34 @@ class AmSettings extends MX_Controller {
 
 	public function index() {
 
-		$CI =& get_instance();
-		
-	    // We load the BlueOnyx helper library first of all, as we heavily depend on it:
-	    $this->load->helper('blueonyx');
-	    init_libraries();
+        $CI =& get_instance();
 
-  		// Need to load 'BxPage' for page rendering:
-  		$this->load->library('BxPage');
-		$MX =& get_instance();
+        // We load the BlueOnyx helper library first of all, as we heavily depend on it:
+        $this->load->helper('blueonyx');
+        init_libraries();
 
-	    // Get $sessionId and $loginName from Cookie (if they are set):
-	    $sessionId = $CI->input->cookie('sessionId');
-	    $loginName = $CI->input->cookie('loginName');
-	    $locale = $CI->input->cookie('locale');
+        // Need to load 'BxPage' for page rendering:
+        $this->load->library('BxPage');
 
-	    // Line up the ducks for CCE-Connection:
-	    include_once('ServerScriptHelper.php');
-		$serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-		$cceClient = $serverScriptHelper->getCceClient();
-		$user = $cceClient->getObject("User", array("name" => $loginName));
-		$i18n = new I18n("base-am", $user['localePreference']);
-		$system = $cceClient->getObject("System");
+        // Get $sessionId and $loginName from Cookie (if they are set) and store them in $CI->BX_SESSION:
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
-		// Initialize Capabilities so that we can poll the access rights as well:
-		$Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        // Line up the ducks for CCE-Connection and store them for re-usability in $CI:
+        include_once('ServerScriptHelper.php');
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
+
+        $i18n = new I18n("base-am", $CI->BX_SESSION['loginUser']['localePreference']); 
+        $system = $CI->getSystem();
 
 		// -- Actual page logic start:
 
 		// Not 'serverActiveMonitor'? Bye, bye!
-		if (!$Capabilities->getAllowed('serverActiveMonitor')) {
+		if (!$CI->serverScriptHelper->getAllowed('serverActiveMonitor')) {
 			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
+			$CI->cceClient->bye();
+			$CI->serverScriptHelper->destructor();
 			Log403Error("/gui/Forbidden403");
 		}
 
@@ -53,7 +48,7 @@ class AmSettings extends MX_Controller {
 		//--- Get CODB-Object of interest: 
 		//
 
-		$CODBDATA = $cceClient->getObject("ActiveMonitor");
+		$CODBDATA = $CI->cceClient->getObject("ActiveMonitor");
 
 		//
 		//--- Handle form validation:
@@ -129,10 +124,10 @@ class AmSettings extends MX_Controller {
 			// We have no errors. We submit to CODB.
 
 	  		// Actual submit to CODB:
-			$cceClient->setObject("ActiveMonitor", array("enabled" => $attributes['enableAMField'], "alertEmailList" => $attributes['alertEmailList']), "");
+			$CI->cceClient->setObject("ActiveMonitor", array("enabled" => $attributes['enableAMField'], "alertEmailList" => $attributes['alertEmailList']), "");
 
 			// CCE errors that might have happened during submit to CODB:
-			$CCEerrors = $cceClient->errors();
+			$CCEerrors = $CI->cceClient->errors();
 			foreach ($CCEerrors as $object => $objData) {
 				// When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
 				$errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
@@ -142,18 +137,18 @@ class AmSettings extends MX_Controller {
 			//--- Handle the updating of all "ActiveMonitor" items:
 			//
 
-			$amobj = $cceClient->getObject("ActiveMonitor");
+			$amobj = $CI->cceClient->getObject("ActiveMonitor");
 			if (isset($attributes['itemsToMonitor'])) {
 				$items = stringToArray($attributes['itemsToMonitor']);
 			}
 			else {
 				$items = array();
 			}
-			$names = $cceClient->names($amobj["OID"]);
+			$names = $CI->cceClient->names($amobj["OID"]);
 
 			// for each namespace on ActiveMonitor
 			for ($i=0; $i < count($names); ++$i) {
-				$namespace = $cceClient->get($amobj["OID"], $names[$i]);
+				$namespace = $CI->cceClient->get($amobj["OID"], $names[$i]);
 				if (isset($namespace["hideUI"])) {
 					if ($namespace["hideUI"]) {
 						continue;
@@ -177,13 +172,13 @@ class AmSettings extends MX_Controller {
 					if ($namespace["type"] == "aggregate") {
 						$amServices = preg_split("/ /",$namespace["typeData"]);
 						foreach($amServices as $agServ) {
-							$cceClient->set($amobj["OID"], $agServ, array("monitor" => $val));
-							$errors = array_merge($errors, $cceClient->errors());
+							$CI->cceClient->set($amobj["OID"], $agServ, array("monitor" => $val));
+							$errors = array_merge($errors, $CI->cceClient->errors());
 						}
 					}
 
-					$cceClient->set($amobj["OID"], $names[$i], array("monitor" => $val));
-					$errors = array_merge($errors, $cceClient->errors());
+					$CI->cceClient->set($amobj["OID"], $names[$i], array("monitor" => $val));
+					$errors = array_merge($errors, $CI->cceClient->errors());
 				}
 			}
 
@@ -198,7 +193,7 @@ class AmSettings extends MX_Controller {
 	    //
 
 		// Prepare Page:
-		$factory = $serverScriptHelper->getHtmlComponentFactory("base-am", "/am/amSettings");
+		$factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-am", "/am/amSettings");
 		$BxPage = $factory->getPage();
 		$BxPage->setErrors($errors);
 		$i18n = $factory->getI18n();
@@ -229,7 +224,7 @@ class AmSettings extends MX_Controller {
 		// Work around for getEmailAddressList(): These days it only takes "emailAddresses"
 		// and just a username like "admin" is no longer a valid email address. 
 		$fixed_addies = array();
-		$alertEmailList = $cceClient->scalar_to_array($CODBDATA["alertEmailList"]);
+		$alertEmailList = $CI->cceClient->scalar_to_array($CODBDATA["alertEmailList"]);
 		foreach ($alertEmailList as $key => $value) {
 			if (!preg_match('/\@/', $value)) {
 				$fixed_addies[] = $value . '@' . $system['hostname'] . '.' . $system['domainname'];
@@ -238,7 +233,7 @@ class AmSettings extends MX_Controller {
 				$fixed_addies[] = $value;
 			}
 		}
-		$CODBDATA["alertEmailList"] = $cceClient->array_to_scalar($fixed_addies);
+		$CODBDATA["alertEmailList"] = $CI->cceClient->array_to_scalar($fixed_addies);
 
 		$alerts = $factory->getEmailAddressList("alertEmailList", $CODBDATA["alertEmailList"]);
 		$alerts->setOptional(true);
@@ -254,11 +249,11 @@ class AmSettings extends MX_Controller {
 		$notSelected = array();
 		$notSelectedVals = array();
 
-		$names = $cceClient->names($CODBDATA["OID"]);
+		$names = $CI->cceClient->names($CODBDATA["OID"]);
 		$namespaces = array();
 
 		for ($i=0; $i < count($names); ++$i) {
-			$nspace = $cceClient->get($CODBDATA["OID"], $names[$i]);
+			$nspace = $CI->cceClient->get($CODBDATA["OID"], $names[$i]);
 			$name = $i18n->get($nspace["nameTag"]);
 			$namespaces[$name] = $nspace;
 		}
@@ -299,11 +294,11 @@ class AmSettings extends MX_Controller {
 		}
 
 		$select_caps =& $factory->getSetSelector('itemsToMonitor',
-		                    $cceClient->array_to_scalar($selected), 
-		                    $cceClient->array_to_scalar($all_monitor_items),
+		                    $CI->cceClient->array_to_scalar($selected), 
+		                    $CI->cceClient->array_to_scalar($all_monitor_items),
 		                    'selected', 'notSelected', 'rw',
-		                    $cceClient->array_to_scalar($selectedVals),
-		                    $cceClient->array_to_scalar($all_monitor_itemsVals));
+		                    $CI->cceClient->array_to_scalar($selectedVals),
+		                    $CI->cceClient->array_to_scalar($all_monitor_itemsVals));
 	   
 		$select_caps->setOptional(true);
 
@@ -316,10 +311,6 @@ class AmSettings extends MX_Controller {
 		// Add the buttons
 		$block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
 		$block->addButton($factory->getCancelButton("/am/amSettings"));
-
-		// Nice people say goodbye, or CCEd waits forever:
-		$cceClient->bye();
-		$serverScriptHelper->destructor();
 
 		$page_body[] = $block->toHtml();
 

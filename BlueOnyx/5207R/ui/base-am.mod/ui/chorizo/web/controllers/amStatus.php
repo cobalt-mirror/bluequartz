@@ -13,39 +13,34 @@ class AmStatus extends MX_Controller {
 
 	public function index() {
 
-		$CI =& get_instance();
-		
-	    // We load the BlueOnyx helper library first of all, as we heavily depend on it:
-	    $this->load->helper('blueonyx');
-	    init_libraries();
 
-  		// Need to load 'BxPage' for page rendering:
-  		$this->load->library('BxPage');
-		$MX =& get_instance();
+        $CI =& get_instance();
 
-	    // Get $sessionId and $loginName from Cookie (if they are set):
-	    $sessionId = $CI->input->cookie('sessionId');
-	    $loginName = $CI->input->cookie('loginName');
-	    $locale = $CI->input->cookie('locale');
+        // We load the BlueOnyx helper library first of all, as we heavily depend on it:
+        $this->load->helper('blueonyx');
+        init_libraries();
 
-	    // Line up the ducks for CCE-Connection:
-	    include_once('ServerScriptHelper.php');
-		$serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-		$cceClient = $serverScriptHelper->getCceClient();
-		$user = $cceClient->getObject("User", array("name" => $loginName));
-		$i18n = new I18n("base-am", $user['localePreference']);
-		$system = $cceClient->getObject("System");
+        // Need to load 'BxPage' for page rendering:
+        $this->load->library('BxPage');
 
-		// Initialize Capabilities so that we can poll the access rights as well:
-		$Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        // Get $sessionId and $loginName from Cookie (if they are set) and store them in $CI->BX_SESSION:
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
+
+        // Line up the ducks for CCE-Connection and store them for re-usability in $CI:
+        include_once('ServerScriptHelper.php');
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
+
+        $i18n = new I18n("base-am", $CI->BX_SESSION['loginUser']['localePreference']); 
 
 		// -- Actual page logic start:
 
 		// Not 'serverShowActiveMonitor'? Bye, bye!
-		if (!$Capabilities->getAllowed('serverShowActiveMonitor')) {
+		if (!$CI->serverScriptHelper->getAllowed('serverShowActiveMonitor')) {
 			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
+			$CI->cceClient->bye();
+			$CI->serverScriptHelper->destructor();
 			Log403Error("/gui/Forbidden403");
 		}
 
@@ -53,7 +48,7 @@ class AmStatus extends MX_Controller {
 		//--- Get CODB-Object of interest: 
 		//
 
-		$CODBDATA = $cceClient->getObject("ActiveMonitor");
+		$CODBDATA = $CI->cceClient->getObject("ActiveMonitor");
 
 		//
 		//--- Handle form validation:
@@ -71,10 +66,10 @@ class AmStatus extends MX_Controller {
 		$get_form_data = $CI->input->get(NULL, TRUE);
 		if ($get_form_data['UPDATE'] == "1") {
 			// Shell out a Swatch run:
-			$ret = $serverScriptHelper->shell("/usr/sbin/swatch -c /etc/swatch.conf", $output, "root", $sessionId);
+			$ret = $CI->serverScriptHelper->shell("/usr/sbin/swatch -c /etc/swatch.conf", $output, "root", $CI->BX_SESSION['sessionId']);
 			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
+			$CI->cceClient->bye();
+			$CI->serverScriptHelper->destructor();
 			header("Location: /am/amStatus");
 			exit;
 		}
@@ -99,7 +94,7 @@ class AmStatus extends MX_Controller {
 	    //
 
 		// Prepare Page:
-		$factory = $serverScriptHelper->getHtmlComponentFactory("base-am", "/am/amStatus");
+		$factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-am", "/am/amStatus");
 		$BxPage = $factory->getPage();
 		$BxPage->setErrors($errors);
 		$i18n = $factory->getI18n();
@@ -160,7 +155,7 @@ class AmStatus extends MX_Controller {
 	    $servlist->setInfoDisabled(FALSE);
 	    $servlist->setColumnWidths(array("100", "500", "120")); // Max: 739px	    
 
-	    $am_names = $cceClient->names("ActiveMonitor");
+	    $am_names = $CI->cceClient->names("ActiveMonitor");
 
 	    $stmap = array(
 	        "N" => "none", 
@@ -187,7 +182,7 @@ class AmStatus extends MX_Controller {
 	        "R" => "amKeyRed");
 
 	    for ($i=0; $i < count($am_names); ++$i) {
-	        $nspace = $cceClient->get($CODBDATA['OID'], $am_names[$i]);
+	        $nspace = $CI->cceClient->get($CODBDATA['OID'], $am_names[$i]);
 
 	        if (!isset($nspace["hideUI"])) {
             	$iname = $i18n->interpolate($nspace["nameTag"]);
@@ -297,10 +292,6 @@ class AmStatus extends MX_Controller {
 				$defaultPage
 			);
 		}
-
-		// Nice people say goodbye, or CCEd waits forever:
-		$cceClient->bye();
-		$serverScriptHelper->destructor();
 
 		$page_body[] = $buttonContainer->toHtml();
 		$page_body[] = $block->toHtml();
