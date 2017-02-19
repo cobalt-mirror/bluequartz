@@ -972,8 +972,12 @@ $post_vars_html
             $currentuser = 1;
             $oid = $this->loginUser["OID"];
         }
-        
-        if ($this->_listAllowed != null && $this->_listAllowed[$oid] != null) {
+
+        if (!isset($this->_listAllowed[$oid])) {
+            $this->_listAllowed[$oid] = TRUE;
+        }
+
+        if (is_array($this->_listAllowed[$oid])) {
             return $this->_listAllowed[$oid];
         }
 
@@ -1025,7 +1029,6 @@ $post_vars_html
         }
    
         $this->_listAllowed[$oid] = $retclean;
-
         return $retclean;
     }
 
@@ -1097,6 +1100,35 @@ $post_vars_html
         // Check if this user belongs to this group and is siteAdmin of this group:
         if (($this->loginUser['site'] == $group) && ($this->getSiteAdmin($group))) {
           // This user belongs to this group and is siteAdmin OR Reseller.
+          return 1;
+        }
+        return 0;
+    }
+
+    // description: checks to see if a user is a reseller (createdUser) of a 
+    // given Vsite group.
+    // param: the group of the Vsite to check
+    // param: the user to check for (default: current)
+    // returns: true if the current user has this capability, false otherwise
+
+    function getReseller($group, $oid = -1) {
+        if ($oid == -1) {
+            $currentuser = 1;
+            $oid = $this->loginUser["OID"];
+        }
+        // Find out if the Group exists:
+        $site = $this->cceClient->getObject('Vsite', array('name' => $group));
+        if (!isset($site['fqdn'])) {
+          // Group doesn't exist. So we fail right here:
+          return 0;
+        }
+        if ($this->loginUser['systemAdministrator']) {
+            // Fast 'yes' to all rights, because we are system administrator:
+            return 1;
+        }
+        // Check Vsite's 'createdUser':
+        if ($site['createdUser'] == $this->loginUser['name']) {
+          // This user is listed as 'createdUser', so we return yes:
           return 1;
         }
         return 0;
