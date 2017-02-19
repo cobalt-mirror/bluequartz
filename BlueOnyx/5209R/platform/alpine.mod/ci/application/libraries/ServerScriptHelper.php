@@ -1068,6 +1068,77 @@ $post_vars_html
         return 0;
     }
 
+    // description: checks to see if a user is systemAdministrator, siteAdmin 
+    // or a reseller of a group and if the group exists.
+    // param: the group of the User/Vsite to check
+    // param: the user to check for (default: current)
+    // returns: true if the current user has this capability, false otherwise
+
+    function getGroupAdmin($group, $oid = -1) {
+        if ($oid == -1) {
+            $currentuser = 1;
+            $oid = $this->loginUser["OID"];
+        }
+        // Find out if the Group exists:
+        $site = $this->cceClient->getObject('Vsite', array('name' => $group));
+        if (!isset($site['fqdn'])) {
+          // Group doesn't exist. So we fail right here:
+          return 0;
+        }
+        if ($this->loginUser['systemAdministrator']) {
+            // Fast 'yes' to all rights, because we are system administrator:
+            return 1;
+        }
+        // Check if this user is Reseller of this group:
+        if (($this->loginUser['site'] == "") && ($this->getReseller($group) == "1")) {
+          // This is a reseller (has no group) and can manage the specified group as Reseller.
+          return 1;
+        }
+        // Check if this user belongs to this group and is siteAdmin of this group:
+        if (($this->loginUser['site'] == $group) && ($this->getSiteAdmin($group))) {
+          // This user belongs to this group and is siteAdmin OR Reseller.
+          return 1;
+        }
+        return 0;
+    }
+
+    // description: checks to see if a user is a siteAdmin of a given Vsite group.
+    // param: the group of the Vsite to check
+    // param: the user to check for (default: current)
+    // returns: true if the current user has this capability, false otherwise
+
+    function getSiteAdmin($group, $oid = -1) {
+        if ($oid == -1) {
+            $currentuser = 1;
+            $oid = $this->loginUser["OID"];
+        }
+        // Find out if the Group exists:
+        $site = $this->cceClient->getObject('Vsite', array('name' => $group));
+        if (!isset($site['fqdn'])) {
+          // Group doesn't exist. So we fail right here:
+          return 0;
+        }
+        if ($this->loginUser['systemAdministrator']) {
+            // Fast 'yes' to all rights, because we are system administrator:
+            return 1;
+        }
+        // Check if this user belongs to the given group:
+        if ($this->loginUser['site'] == $group) {
+          // This user is listed as 'createdUser', so we return yes:
+          return 1;
+        }
+        else {
+          // He might be a siteAdmin elsewhere, but sure not here.
+          return 0;
+        }
+        // Check if this user has the capability 'siteAdmin':
+        $caps = $this->listAllowed($oid);
+        if (in_array('siteAdmin', $caps)) {
+          return 1;
+        }
+        return 0;
+    }
+
     function debug_log ($msg) {
       if (is_file("/etc/DEBUGSSH")) {
         error_log($msg);
