@@ -248,14 +248,6 @@ class ServerScriptHelper {
         // UserShell:
         $userShell = $this->cceClient->get($this->loginUser['OID'], 'Shell');
 
-        // Use CodeIgniter 'session' to store some essestial and often re-used info:
-        $CI_session_items = array(
-            'loginName' => $loginName, 
-            'sessionId' => $sessionId,
-            'loginUser' => $this->loginUser,
-            'userShell' => $userShell['enabled']
-            );
-
         // Store BX_SESSION:
         $CI->setBX_SESSION($loginName, $sessionId, $this->loginUser, $userShell['enabled']);
     }
