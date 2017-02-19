@@ -31,6 +31,9 @@ class UserDel extends MX_Controller {
 
         $i18n = new I18n("base-user", $CI->BX_SESSION['loginUser']['localePreference']);
 
+        // Initialize Capabilities so that we can poll the access rights as well:
+        $Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
+
 		// -- Actual page logic start:
 
 		// Get URL params:
@@ -57,7 +60,7 @@ class UserDel extends MX_Controller {
 		// 3.) Checks if the user is Reseller of the given Group/Vsite
 		// 4.) Checks if the iser is siteAdmin of the given Group/Vsite
 		// Returns Forbidden403 if *none* of that is the case.
-		if (!$CI->serverScriptHelper->getGroupAdmin($group)) {
+		if (!$Capabilities->getGroupAdmin($group)) {
 			// Nice people say goodbye, or CCEd waits forever:
 			$CI->cceClient->bye();
 			$CI->serverScriptHelper->destructor();
@@ -97,7 +100,7 @@ class UserDel extends MX_Controller {
 
 		// User is a Reseller. Make sure he can only mess with accounts of Vsites
 		// that are under his management:
-		if (($CI->serverScriptHelper->getAllowed('manageSite')) && ($CI->BX_SESSION['loginName'] != "admin")) {
+		if (($Capabilities->getAllowed('manageSite')) && ($CI->BX_SESSION['loginName'] != "admin")) {
 
 			// Get a list of Vsite OID's of this Reseller:
 			$vsites = $CI->cceClient->findx('Vsite', array('createdUser' => $CI->BX_SESSION['loginName']), array(), "", "");
@@ -121,7 +124,7 @@ class UserDel extends MX_Controller {
 		}
 
 		// One more security check: Is siteAdmin, not manageSite, not admin:
-		if (($CI->serverScriptHelper->getAllowed('siteAdmin')) && (!$CI->serverScriptHelper->getAllowed('manageSite')) && ($CI->BX_SESSION['loginName'] != "admin")) {
+		if (($Capabilities->getAllowed('siteAdmin')) && (!$Capabilities->getAllowed('manageSite')) && ($CI->BX_SESSION['loginName'] != "admin")) {
 			// So we have a siteAdmin. Is he of the same group as the user he wants to delete?
 			if ($user['site'] != $group) {
 				// Don't play games with us!

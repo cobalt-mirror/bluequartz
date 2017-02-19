@@ -31,6 +31,9 @@ class UserMod extends MX_Controller {
 
         $i18n = new I18n("base-user", $CI->BX_SESSION['loginUser']['localePreference']);
 
+        // Initialize Capabilities so that we can poll the access rights as well:
+        $Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
+
         // -- Actual page logic start:
 
         // Get URL strings:
@@ -64,7 +67,7 @@ class UserMod extends MX_Controller {
         // 3.) Checks if the user is Reseller of the given Group/Vsite
         // 4.) Checks if the iser is siteAdmin of the given Group/Vsite
         // Returns Forbidden403 if *none* of that is the case.
-        if (!$CI->serverScriptHelper->getGroupAdmin($group)) {
+        if (!$Capabilities->getGroupAdmin($group)) {
             // Nice people say goodbye, or CCEd waits forever:
             $CI->cceClient->bye();
             $CI->serverScriptHelper->destructor();
@@ -432,12 +435,12 @@ class UserMod extends MX_Controller {
             $autoFeatures->display($block, "modify.User", array("CCE_SERVICES_OID" => $userServices, 'CCE_OID' => $useroid, "VSITE_OID" => $vsite));
 
             $block->addFormField(
-                $factory->getBoolean("siteAdministrator", $CI->serverScriptHelper->getAllowed('siteAdmin', $useroid)),
+                $factory->getBoolean("siteAdministrator", $Capabilities->getAllowed('siteAdmin', $useroid)),
                 $factory->getLabel("siteAdministratorField"),
                 $defaultPage
             );
             $block->addFormField(
-                $factory->getBoolean("dnsAdministrator", $CI->serverScriptHelper->getAllowed('siteDNS', $useroid)),
+                $factory->getBoolean("dnsAdministrator", $Capabilities->getAllowed('siteDNS', $useroid)),
                 $factory->getLabel("dnsAdministratorField"),
                 $defaultPage
             );
