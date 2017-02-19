@@ -55,15 +55,15 @@ class Capabilities {
       $this->cceClient =& $cce;
     }
     else {
-      $this->cceClient = new CceClient();
-      // FIXME check connect and authkey for failure
-      $this->cceClient->connect();
-      $this->cceClient->authkey($loginName, $sessionId);
-      $this->myCce = 1;
+      $this->cceClient =& $CI->getCCE();
     }
 
-    $iam = $this->cceClient->whoami();
-    $this->loginUser = $this->cceClient->get($iam);
+    // New method via CI 'BX_SESSION':
+    $CI =& get_instance();
+    $userCap = $CI->BX_SESSION['loginUser'];
+    $iam = $userCap['OID'];
+    $this->loginUser = $userCap;
+
     $this->capabilityGroups = array();
     $this->capabilities = array();
     $this->notCapabilityGroups = array();
@@ -91,6 +91,7 @@ class Capabilities {
             $currentuser = 1;
             $oid = $this->loginUser["OID"];
         }
+
         if (($currentuser == 1) && ($this->loginUser['systemAdministrator'])) {
           // We want to know the caps for the current users. AND that user is
           // 'systemAdministrator'. Spare the trouble and return a fast 'yes':
@@ -349,8 +350,9 @@ class Capabilities {
           }
         }
 
-        $userShell = $this->cceClient->get($oid, 'Shell');
-        if ($userShell['enabled'] == "1") {
+        // New method via CI 'BX_SESSION':
+        $CI =& get_instance();
+        if ($CI->BX_SESSION['userShell'] == "1") {
           $returnCap[] = 'shellAccessEnabled';
         }
 
@@ -409,8 +411,8 @@ class Capabilities {
 } // Class Capabilities
 
 /*
-Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2014-2017 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2014-2017 Team BlueOnyx, BLUEONYX.IT
 Copyright (c) 2003 Sun Microsystems, Inc. 
 All Rights Reserved.
 

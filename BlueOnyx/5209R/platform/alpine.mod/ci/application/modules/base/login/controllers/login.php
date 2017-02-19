@@ -14,10 +14,12 @@ class Login extends MX_Controller {
         // Profiling and Benchmarking:
         bx_profiler();
 
-        // Find out if CCEd is running. If it is not, we display an error message and quit:
-        $cceClient = new CceClient();
-
         $CI =& get_instance();
+
+        // Find out if CCEd is running. If it is not, we display an error message and quit:
+        if (!$CI->serverScriptHelper) {
+            $CI->cceClient = new CceClient();
+        }
 
         // locale and charset setup:
         $ini_langs = initialize_languages(TRUE);
@@ -55,9 +57,9 @@ class Login extends MX_Controller {
             // pperld and cced.init. It then does a fast cced.init rehash to get us back up:
             $cce_unstuck = shell_exec('/usr/bin/sudo /usr/sausalito/bin/cced_unstuck.sh');
         }
-        // If we get here, CCEd should be running. Either again, or because it was fine.
 
-        if(!$cceClient->connect()) {
+        // If we get here, CCEd should be running. Either again, or because it was fine.
+        if(!$CI->cceClient->connect()) {
             if($locale == "") {
                 $this->load->library('System');
                 $system = new System();
@@ -82,9 +84,8 @@ class Login extends MX_Controller {
         // Check to see if the user is already logged in as another user:
         if ($this->input->cookie('loginName') && $this->input->cookie('sessionId')) {
           // Release the old session id:
-          $cceClient->authkey($this->input->cookie('loginName'),
-          $this->input->cookie('sessionId'));
-          $cceClient->endkey(); # release the session id
+          $CI->cceClient->authkey($this->input->cookie('loginName'), $this->input->cookie('sessionId'));
+          $CI->cceClient->endkey(); # release the session id
           // Cleanup Cache:
           $cap_file_name = "/usr/sausalito/capcache/" . $this->input->cookie('loginName') . "_cap";
           $capabilityGroups_file_name = "/usr/sausalito/capcache/" . $this->input->cookie('loginName') . "_capabilityGroups";
@@ -94,8 +95,8 @@ class Login extends MX_Controller {
           if (is_file($capabilityGroups_file_name)) {
             system("rm -f $capabilityGroups_file_name");
           }
-          $cceClient = new CceClient();
-          $cceClient->connect();
+          $CI->cceClient = new CceClient();
+          $CI->cceClient->connect();
         }
 
         // Get default theme cookie (if it exists):
@@ -138,7 +139,7 @@ class Login extends MX_Controller {
         $noJS = $i18n->getHtml("[[base-alpine.loginNoJsMessage]]");
 
         // Get 'System' object
-        $system = $cceClient->getObject('System');
+        $system = $CI->cceClient->getObject('System');
         if ((!$system['isLicenseAccepted']) && ($wizard == FALSE)) {
             // Web based setup has not been completed. Redirect to /wizard
             header("Location: /wizard?from=login");
@@ -230,9 +231,9 @@ class Login extends MX_Controller {
             system("rm -f $capabilityGroups_file_name");
           }
           // Logout from CCE:
-          $cceClient->endkey(); # release the session id
-          $cceClient = new CceClient();
-          $cceClient->connect();
+          $CI->cceClient->endkey(); # release the session id
+          $CI->cceClient = new CceClient();
+          $CI->cceClient->connect();
         }
 
         // Willfully logged out of the system. Show the farewell message instead:
@@ -370,10 +371,10 @@ class Login extends MX_Controller {
             // Form data has been sanitized and validated. Now we check if it matches:
 
             // get session ID
-            $sessionId = $cceClient->auth(set_value('username_field'), set_value('password_field'));
+            $sessionId = $CI->cceClient->auth(set_value('username_field'), set_value('password_field'));
 
             // Get 'System' object
-            $system = $cceClient->getObject('System');
+            $system = $CI->cceClient->getObject('System');
 
             if ((!$system['isLicenseAccepted']) && ($wizard == FALSE)) {
                 // Web based setup has not been completed. Redirect to /wizard
@@ -415,7 +416,7 @@ class Login extends MX_Controller {
               // Now if this user is known (and at this point he is), then we check his CODB object to 
               // learn which locale (and charset) he's usually using and use that one instead. After all,
               // it might be different from what his browser tells us:
-              $user = $cceClient->getObject("User", array("name" => set_value('username_field')));
+              $user = $CI->cceClient->getObject("User", array("name" => set_value('username_field')));
               // Now set the locale based on the users localePreference - if specified and known:
               if ($user['localePreference']) {
                 $locale = $user['localePreference'];
@@ -435,11 +436,13 @@ class Login extends MX_Controller {
               setcookie("loginName", set_value('username_field'), time()+60*60*24*365, "/");
               setcookie("sessionId", $sessionId, "0", "/");
               setcookie("userip", $userip, "0", "/");
-              //setcookie("skin_switcher_php-style", $skin);
 
               // Set new locale to cookie, too, but set an expiry of 365 days:
               $cookie = array('name' => 'locale', 'path' => '/', 'value' => $locale, 'expire' => '31536000');
               $this->input->set_cookie($cookie);
+
+              $CI->BX_SESSION['sessionId'] = $sessionId;
+              $CI->BX_SESSION['loginName'] = set_value('username_field');
 
               //
               //-- Start: Chorizo's Style handling:
@@ -513,8 +516,8 @@ class Login extends MX_Controller {
 }
 
 /*
-Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2015-2017 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2015-2017 Team BlueOnyx, BLUEONYX.IT
 All Rights Reserved.
 
 1. Redistributions of source code must retain the above copyright 

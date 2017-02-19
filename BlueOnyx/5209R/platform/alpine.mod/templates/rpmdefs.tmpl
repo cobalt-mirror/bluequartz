@@ -137,6 +137,34 @@ fi
 
 <begin $CHANGELOG>
 
+* Sat Feb 18 2017 Michael Stauber <mstauber@solarspeed.net> 2.0-1BX068
+- Another milestone in the 'Need for Speed'-Initiative. This warrants
+  a major version bump to v2.0. By using CI itself as a storage for
+  essential Class bridging information such as loginName, sessionID,
+  serverScriptHelper, cceClient and other things we managed massively
+  cut down on CODB transations for simple page loads. Further CCE usage
+  of certain simple pages was eliminated entirely. For a full speed
+  increase all Controllers need to be modified. The ones included in
+  base-alpine are already modified accordingly. Yet we still retain
+  full compatability to older Controllers. 
+- Modified ci/application/third_party/MX/Base.php for CI storage.
+- Modified ci/application/libraries/ServerScriptHelper.php to use CI
+- Modified ci/application/libraries/CceClient.php to use CI
+- Modified ci/application/libraries/BxPage.php to use CI
+- Modified ci/application/libraries/CCE.php with small fixes
+- Modified ci/application/libraries/Capabilities.php with small fixes
+- Modified ci/application/helpers/blueonyx_helper.php with small fixes
+- Integrated controllers fixed for CI usage or eleminated CCE usage:
+- ci/application/modules/base/gui/controllers/check_password.php
+- ci/application/modules/base/gui/controllers/datepicker.php
+- ci/application/modules/base/gui/controllers/fullcalendar.php
+- ci/application/modules/base/gui/controllers/pluginsmin.php
+- ci/application/modules/base/gui/controllers/processFrame.php
+- ci/application/modules/base/gui/controllers/processing.php
+- ci/application/modules/base/login/controllers/login.php
+- ci/application/views/pluginsmin.php
+- Added web/.adm/scripts/elfinder for a future feature update
+
 * Mon Jan 09 2017 Michael Stauber <mstauber@solarspeed.net> 1.2-1BX067
 - Modified ci/application/helpers/bxapi_helper.php for 5209R API usage.
 

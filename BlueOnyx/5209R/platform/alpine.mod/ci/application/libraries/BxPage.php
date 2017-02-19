@@ -359,24 +359,25 @@ class BxPage extends MX_Controller {
         //$this->load->library('cssmin');
         //$this->load->library('jsmin');
 
-        // Find out if CCEd is running. If it is not, we display an error message and quit:
-        $this->cceClient = new CceClient();
-
         // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
+        $sessionId = $CI->BX_SESSION['sessionId'];
+        $loginName = $CI->BX_SESSION['loginName'];
 
-        // Get the IP address of the user accessing the GUI:
-        $userip = $CI->input->ip_address();
+        // Find out if serverScriptHelper has already been initialized:
+        $serverScriptHelper = $CI->getSSH();
 
-        // Call 'ServerScriptHelper.php' and check if the login is still valid:
-        // And bloody hell! We can't use the load->helper() function for this one or it blows up:
-        include_once('ServerScriptHelper.php');
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        $this->cceClient->authkey($loginName, $sessionId);
-        $this->cceClient = $serverScriptHelper->getCceClient();
-        $user = $this->cceClient->getObject("User", array("name" => $loginName));
-        $access = $serverScriptHelper->getAccessRights($this->cceClient);
+        if (!$serverScriptHelper) {
+            // It has not been initialized yet, so we do it here:
+            $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
+            $this->cceClient = $serverScriptHelper->getCceClient();
+        }
+        else {
+            // Was already initialized. Reuse it:
+            $this->cceClient = $CI->getCCE();
+        }
+
+        $user = $CI->BX_SESSION['loginUser'];
+        $access =& $serverScriptHelper->getAccessRights($this->cceClient);
 
         // In our menus we have [[VAR.hostname]] and [[VAR.group]] which need to be 
         // substituted with the correct values. This is done by the subroutine
@@ -407,108 +408,10 @@ class BxPage extends MX_Controller {
             $group = $user['site'];
         }
 
-        // Initialize Capabilities so that we can poll the access rights as well:
-        //$Capabilities = new Capabilities($this->cceClient, $loginName, $sessionId);
-        // Note by mstauber: No, we don't. Not here. Not now.
-        $this->cceClient->bye();
-
-        // Find out the browser locale and display a message in our supported languages:
-        $ini_langs = initialize_languages(FALSE);
-        $locale = $ini_langs['locale'];
-        $localization = $ini_langs['localization'];
-        $charset = $ini_langs['charset'];
-
-        // Now set the locale based on the users localePreference - if specified and known:
-        if ($user['localePreference']) {
-            $locale = $user['localePreference'];
-        }
-
-        // Set headers:
-        $CI->output->set_header("Content-Type: text/html; charset=$charset");
-        $CI->output->set_header("Cache-Control: no-store, no-cache, must-revalidate");
-        $CI->output->set_header("Cache-Control: post-check=0, pre-check=0");
-        $CI->output->set_header("Pragma: no-cache"); 
-        $CI->output->set_header("Content-language: $localization");
-
-        // Set page title:
-        preg_match("/^([^:]+)/", $_SERVER['HTTP_HOST'], $matches);
-        $hostname = $matches[0];
-        // Strip out the :444 or :81 from the hostname - if present:
-        if (preg_match('/:/', $hostname)) {
-            $hn_pieces = explode(":", $hostname);
-            $hostname = $hn_pieces[0];
-        }
-        $i18n = new I18n("palette", $locale);
-        preg_match("/([^:]+):?.*/", $hostname, $matches);
-        $hostname_new = $matches[1] ? $matches[1] : `/bin/hostname --fqdn`;
-        $page_title = $i18n->getHtml("navigationTitle", "", array("hostName" => $hostname_new, "userName" => $serverScriptHelper->getLoginName()));
-
-        // Connect to CCE if possible. If not, display that CCE is down:
-        if(!$this->cceClient->connect()) {
-          if($this->locale == "") {
-            $CI->load->library('System');
-            $system = new System();
-            $defaultLocale = $system->getConfig("defaultLocale");
-          }
-          $i18n = new I18n("palette", $defaultLocale);
-          // Display the error message and quit:
-          $cceDown = "<div style=\"text-align: center;\"><br><br><br><br><span style=\"color: #990000;\">"
-              . $i18n->getHtml("cceDown") . "</span></div>";
-            echo "$cceDown";
-            error_log("loginHandler.php: $cceDown");
-            $this->cceClient->bye();
-            $serverScriptHelper->destructor();
-            exit;
-        }
-
-        // Get 'System' object
-        $this->cceClient->authkey($loginName, $sessionId);
-        $this->cceClient = $serverScriptHelper->getCceClient();     
-        $system = $this->cceClient->getObject('System');
-
-        // Handle redirects to HTTP(S) and/or FQDN of server:
-        if ((isset($system['GUIaccessType'])) && (isset($system['GUIredirects']))) {
-          if ($system['GUIredirects'] == "1") {
-            // Redirect to FQDN of the server:
-            $servername = $system['hostname'] . '.' . $system['domainname'];
-            $http_url = 'http://' . $servername . ':444' . $_SERVER['REQUEST_URI'];
-            $https_url = 'https://' . $servername . ':81' . $_SERVER['REQUEST_URI'];
-            if ($servername != $_SERVER['SERVER_NAME']) {
-                if ((is_HTTPS() == FALSE) && ($system['GUIaccessType'] == "HTTPS")) {
-                    header("Location: $https_url");
-                }
-                else {
-                    header("Location: $http_url");
-                }
-                $this->cceClient->bye();
-                $serverScriptHelper->destructor();
-                exit;
-            }
-          }
-          else {
-            $http_url = 'http://' . $_SERVER['SERVER_NAME'] . ':444' . $_SERVER['REQUEST_URI'];
-            $https_url = 'https://' . $_SERVER['SERVER_NAME'] . ':81' . $_SERVER['REQUEST_URI'];  
-          }
-          if ((is_HTTPS() == FALSE) && ($system['GUIaccessType'] == "HTTPS")) {
-            header("Location: $https_url");
-            $this->cceClient->bye();
-            $serverScriptHelper->destructor();
-            exit;
-          }
-          if ((is_HTTPS() == TRUE) && ($system['GUIaccessType'] == "HTTP")) {
-            header("Location: $http_url");
-            $this->cceClient->bye();
-            $serverScriptHelper->destructor();
-            exit;
-          }
-        }
-
-        // Get 'Support' object:
-        $Support = $this->cceClient->getObject("System", array(), "Support");
-
         // Only poll "ActiveMonitor" if the GUI user actually has ACL rights for 'ActiveMonitor':
         if (in_array("serverShowActiveMonitor", $access)) {
             // Get Active Monitor Alerts:
+
             $activeMonitorObj = $this->cceClient->getObject("ActiveMonitor");
             $AMnames = $this->cceClient->names($activeMonitorObj["OID"]);
 
@@ -567,6 +470,100 @@ class BxPage extends MX_Controller {
         else {
             // Fallback to not leave it undefined:
             $isAlert = "light";
+        }
+
+        // Get 'Support' object:
+        $Support = $CI->getSupport();
+
+        $this->cceClient->bye();
+
+        // Find out the browser locale and display a message in our supported languages:
+        $ini_langs = initialize_languages(FALSE);
+        $locale = $ini_langs['locale'];
+        $localization = $ini_langs['localization'];
+        $charset = $ini_langs['charset'];
+
+        // Now set the locale based on the users localePreference - if specified and known:
+        if ($user['localePreference']) {
+            $locale = $user['localePreference'];
+        }
+
+        // Set headers:
+        $CI->output->set_header("Content-Type: text/html; charset=$charset");
+        $CI->output->set_header("Cache-Control: no-store, no-cache, must-revalidate");
+        $CI->output->set_header("Cache-Control: post-check=0, pre-check=0");
+        $CI->output->set_header("Pragma: no-cache"); 
+        $CI->output->set_header("Content-language: $localization");
+
+        // Set page title:
+        preg_match("/^([^:]+)/", $_SERVER['HTTP_HOST'], $matches);
+        $hostname = $matches[0];
+        // Strip out the :444 or :81 from the hostname - if present:
+        if (preg_match('/:/', $hostname)) {
+            $hn_pieces = explode(":", $hostname);
+            $hostname = $hn_pieces[0];
+        }
+        $i18n = new I18n("palette", $locale);
+        preg_match("/([^:]+):?.*/", $hostname, $matches);
+        $hostname_new = $matches[1] ? $matches[1] : `/bin/hostname --fqdn`;
+        $page_title = $i18n->getHtml("navigationTitle", "", array("hostName" => $hostname_new, "userName" => $serverScriptHelper->getLoginName()));
+
+        // Connect to CCE if possible. If not, display that CCE is down:
+        if(!$this->cceClient->connect()) {
+          if($this->locale == "") {
+            $CI->load->library('System');
+            $system = new System();
+            $defaultLocale = $system->getConfig("defaultLocale");
+          }
+          $i18n = new I18n("palette", $defaultLocale);
+          // Display the error message and quit:
+          $cceDown = "<div style=\"text-align: center;\"><br><br><br><br><span style=\"color: #990000;\">"
+              . $i18n->getHtml("cceDown") . "</span></div>";
+            echo "$cceDown";
+            error_log("loginHandler.php: $cceDown");
+            $this->cceClient->bye();
+            $serverScriptHelper->destructor();
+            exit;
+        }
+
+        // Get 'System' object
+        $system = $CI->getSystem();
+
+        // Handle redirects to HTTP(S) and/or FQDN of server:
+        if ((isset($system['GUIaccessType'])) && (isset($system['GUIredirects']))) {
+          if ($system['GUIredirects'] == "1") {
+            // Redirect to FQDN of the server:
+            $servername = $system['hostname'] . '.' . $system['domainname'];
+            $http_url = 'http://' . $servername . ':444' . $_SERVER['REQUEST_URI'];
+            $https_url = 'https://' . $servername . ':81' . $_SERVER['REQUEST_URI'];
+            if ($servername != $_SERVER['SERVER_NAME']) {
+                if ((is_HTTPS() == FALSE) && ($system['GUIaccessType'] == "HTTPS")) {
+                    header("Location: $https_url");
+                }
+                else {
+                    header("Location: $http_url");
+                }
+                $this->cceClient->bye();
+                $serverScriptHelper->destructor();
+                exit;
+            }
+          }
+          else {
+            $http_url = 'http://' . $_SERVER['SERVER_NAME'] . ':444' . $_SERVER['REQUEST_URI'];
+            $https_url = 'https://' . $_SERVER['SERVER_NAME'] . ':81' . $_SERVER['REQUEST_URI'];  
+          }
+          if ((is_HTTPS() == FALSE) && ($system['GUIaccessType'] == "HTTPS")) {
+            header("Location: $https_url");
+            $this->cceClient->bye();
+            $serverScriptHelper->destructor();
+            exit;
+          }
+          if ((is_HTTPS() == TRUE) && ($system['GUIaccessType'] == "HTTP")) {
+            header("Location: $http_url");
+            $this->cceClient->bye();
+            $serverScriptHelper->destructor();
+            exit;
+          }
         }
 
         // If web based setup has not been completed, then redirect to /wizard
@@ -1180,8 +1177,8 @@ class BxPage extends MX_Controller {
 }
 
 /*
-Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2014-2017 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2014-2017 Team BlueOnyx, BLUEONYX.IT
 All Rights Reserved.
 
 1. Redistributions of source code must retain the above copyright 

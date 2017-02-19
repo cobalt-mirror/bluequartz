@@ -44,7 +44,6 @@
  * - Another bonus is that for the first time ever it is now possible to upgrade PHP on 
  *   BlueOnyx a hell of a lot easier. We will still actually discourage to do so, because we
  *   can only support the GUI on PHP versions that we actually tested it under. 
- * - This step also allows us to port the Chorizo GUI to EL7 (and clones) which use PHP-5.4.
  *
  * This code might still need some work and it sure needs a hell of a lot of testing.
  *
