@@ -12,45 +12,37 @@ class Fpm_amdetails extends MX_Controller {
     public function index() {
 
         $CI =& get_instance();
-        
+
         // We load the BlueOnyx helper library first of all, as we heavily depend on it:
         $this->load->helper('blueonyx');
         init_libraries();
 
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
-        $MX =& get_instance();
 
         // Load AM Detail Helper:
         $this->load->helper('amdetail');
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
-        $locale = $CI->input->cookie('locale');
+        // Get $sessionId and $loginName from Cookie (if they are set) and store them in $CI->BX_SESSION:
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
-        // Line up the ducks for CCE-Connection:
+        // Line up the ducks for CCE-Connection and store them for re-usability in $CI:
         include_once('ServerScriptHelper.php');
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        $cceClient = $serverScriptHelper->getCceClient();
-        $user = $cceClient->getObject("User", array("name" => $loginName));
-        $i18n = new I18n("base-apache", $user['localePreference']);
-        $system = $cceClient->getObject("System");
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
 
-        // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        $i18n = new I18n("base-apache", $CI->BX_SESSION['loginUser']['localePreference']); 
 
         // -- Actual page logic start:
 
         // Not 'serverShowActiveMonitor'? Bye, bye!
-        if (!$Capabilities->getAllowed('serverShowActiveMonitor')) {
+        if (!$CI->serverScriptHelper->getAllowed('serverShowActiveMonitor')) {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403");
         }
-
-        // -- Actual page logic start:
 
         // We start without any active errors:
         $errors = array();
@@ -66,7 +58,7 @@ class Fpm_amdetails extends MX_Controller {
         }
 
         // Prepare Page:
-        $factory = $serverScriptHelper->getHtmlComponentFactory("base-apache");
+        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-apache");
         $BxPage = $factory->getPage();
         $i18n = $factory->getI18n();
 
@@ -87,48 +79,48 @@ class Fpm_amdetails extends MX_Controller {
         //--- Print Detail Block:
         //
 
-        $page_body[] = am_detail_block($factory, $cceClient, "PHPFPMMASTER", "[[base-apache.amPHPFPMMASTERNameTag]]");
+        $page_body[] = am_detail_block($factory, $CI->cceClient, "PHPFPMMASTER", "[[base-apache.amPHPFPMMASTERNameTag]]");
         if (is_dir('/home/solarspeed/php-5.3')) {
-            $page_body[] = am_detail_block($factory, $cceClient, "FPMPHP53", "[[base-apache.amPHPFPM53NameTag]]");
+            $page_body[] = am_detail_block($factory, $CI->cceClient, "FPMPHP53", "[[base-apache.amPHPFPM53NameTag]]");
         }
         if (is_dir('/home/solarspeed/php-5.4')) {
-            $page_body[] = am_detail_block($factory, $cceClient, "FPMPHP54", "[[base-apache.amPHPFPM54NameTag]]");
+            $page_body[] = am_detail_block($factory, $CI->cceClient, "FPMPHP54", "[[base-apache.amPHPFPM54NameTag]]");
         }
         if (is_dir('/home/solarspeed/php-5.5')) {
-            $page_body[] = am_detail_block($factory, $cceClient, "FPMPHP55", "[[base-apache.amPHPFPM55NameTag]]");
+            $page_body[] = am_detail_block($factory, $CI->cceClient, "FPMPHP55", "[[base-apache.amPHPFPM55NameTag]]");
         }
         if (is_dir('/home/solarspeed/php-5.6')) {
-            $page_body[] = am_detail_block($factory, $cceClient, "FPMPHP56", "[[base-apache.amPHPFPM56NameTag]]");
+            $page_body[] = am_detail_block($factory, $CI->cceClient, "FPMPHP56", "[[base-apache.amPHPFPM56NameTag]]");
         }
         if (is_dir('/home/solarspeed/php-7.0')) {
-            $page_body[] = am_detail_block($factory, $cceClient, "FPMPHP70", "[[base-apache.amPHPFPM70NameTag]]");
+            $page_body[] = am_detail_block($factory, $CI->cceClient, "FPMPHP70", "[[base-apache.amPHPFPM70NameTag]]");
         }
         if (is_dir('/home/solarspeed/php-7.1')) {
-            $page_body[] = am_detail_block($factory, $cceClient, "FPMPHP71", "[[base-apache.amPHPFPM71NameTag]]");
+            $page_body[] = am_detail_block($factory, $CI->cceClient, "FPMPHP71", "[[base-apache.amPHPFPM71NameTag]]");
         }
         if (is_dir('/home/solarspeed/php-7.2')) {
-            $page_body[] = am_detail_block($factory, $cceClient, "FPMPHP72", "[[base-apache.amPHPFPM72NameTag]]");
+            $page_body[] = am_detail_block($factory, $CI->cceClient, "FPMPHP72", "[[base-apache.amPHPFPM72NameTag]]");
         }
         if (is_dir('/home/solarspeed/php-7.3')) {
-            $page_body[] = am_detail_block($factory, $cceClient, "FPMPHP73", "[[base-apache.amPHPFPM73NameTag]]");
+            $page_body[] = am_detail_block($factory, $CI->cceClient, "FPMPHP73", "[[base-apache.amPHPFPM73NameTag]]");
         }
         if (is_dir('/home/solarspeed/php-7.4')) {
-            $page_body[] = am_detail_block($factory, $cceClient, "FPMPHP74", "[[base-apache.amPHPFPM74NameTag]]");
+            $page_body[] = am_detail_block($factory, $CI->cceClient, "FPMPHP74", "[[base-apache.amPHPFPM74NameTag]]");
         }
         if (is_dir('/home/solarspeed/php-7.5')) {
-            $page_body[] = am_detail_block($factory, $cceClient, "FPMPHP75", "[[base-apache.amPHPFPM75NameTag]]");
+            $page_body[] = am_detail_block($factory, $CI->cceClient, "FPMPHP75", "[[base-apache.amPHPFPM75NameTag]]");
         }
         if (is_dir('/home/solarspeed/php-7.6')) {
-            $page_body[] = am_detail_block($factory, $cceClient, "FPMPHP76", "[[base-apache.amPHPFPM76NameTag]]");
+            $page_body[] = am_detail_block($factory, $CI->cceClient, "FPMPHP76", "[[base-apache.amPHPFPM76NameTag]]");
         }
         if (is_dir('/home/solarspeed/php-7.7')) {
-            $page_body[] = am_detail_block($factory, $cceClient, "FPMPHP77", "[[base-apache.amPHPFPM77NameTag]]");
+            $page_body[] = am_detail_block($factory, $CI->cceClient, "FPMPHP77", "[[base-apache.amPHPFPM77NameTag]]");
         }
         if (is_dir('/home/solarspeed/php-7.8')) {
-            $page_body[] = am_detail_block($factory, $cceClient, "FPMPHP78", "[[base-apache.amPHPFPM78NameTag]]");
+            $page_body[] = am_detail_block($factory, $CI->cceClient, "FPMPHP78", "[[base-apache.amPHPFPM78NameTag]]");
         }
         if (is_dir('/home/solarspeed/php-7.9')) {
-            $page_body[] = am_detail_block($factory, $cceClient, "FPMPHP79", "[[base-apache.amPHPFPM79NameTag]]");
+            $page_body[] = am_detail_block($factory, $CI->cceClient, "FPMPHP79", "[[base-apache.amPHPFPM79NameTag]]");
         }
 
         if ($fancy == TRUE) {
@@ -138,10 +130,6 @@ class Fpm_amdetails extends MX_Controller {
             // Full page display. Show "Back" Button:
             $page_body[] = am_back($factory);
         }
-
-        // Nice people say goodbye, or CCEd waits forever:
-        $cceClient->bye();
-        $serverScriptHelper->destructor();
 
         // Out with the page:
         $BxPage->setErrors($errors);

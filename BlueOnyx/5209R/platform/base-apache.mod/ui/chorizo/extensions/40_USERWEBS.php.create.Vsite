@@ -17,6 +17,7 @@ class USERWEBSExtension extends UIExtension
 {
     function display(&$helper, &$container, &$cce_info)
     {
+        $CI =& get_instance();
         $factory =& $helper->getHtmlComponentFactory("base-apache");
         $cce =& $helper->getCceClient();
     

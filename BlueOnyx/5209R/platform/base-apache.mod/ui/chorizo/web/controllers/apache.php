@@ -11,41 +11,35 @@ class Apache extends MX_Controller {
 
 	public function index() {
 
-		$CI =& get_instance();
-		
-	    // We load the BlueOnyx helper library first of all, as we heavily depend on it:
-	    $this->load->helper('blueonyx');
-	    init_libraries();
+        $CI =& get_instance();
 
-  		// Need to load 'BxPage' for page rendering:
-  		$this->load->library('BxPage');
-		$MX =& get_instance();
+        // We load the BlueOnyx helper library first of all, as we heavily depend on it:
+        $this->load->helper('blueonyx');
+        init_libraries();
 
-	    // Get $sessionId and $loginName from Cookie (if they are set):
-	    $sessionId = $CI->input->cookie('sessionId');
-	    $loginName = $CI->input->cookie('loginName');
-	    $locale = $CI->input->cookie('locale');
+        // Need to load 'BxPage' for page rendering:
+        $this->load->library('BxPage');
 
-	    // Line up the ducks for CCE-Connection:
-	    include_once('ServerScriptHelper.php');
-		$serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-		$cceClient = $serverScriptHelper->getCceClient();
-		$user = $cceClient->getObject("User", array("name" => $loginName));
-		$i18n = new I18n("base-vsite", $user['localePreference']);
-		$system = $cceClient->getObject("System");
+        // Get $sessionId and $loginName from Cookie (if they are set) and store them in $CI->BX_SESSION:
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
-		// Initialize Capabilities so that we can poll the access rights as well:
-		$Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        // Line up the ducks for CCE-Connection and store them for re-usability in $CI:
+        include_once('ServerScriptHelper.php');
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
 
-		// -- Actual page logic start:
+        $i18n = new I18n("base-apache", $CI->BX_SESSION['loginUser']['localePreference']); // really? base-vsite??
+        $system = $CI->getSystem();
+		$user = $CI->BX_SESSION['loginUser'];
 
-		// Not 'serverHttpd'? Bye, bye!
-		if (!$Capabilities->getAllowed('serverHttpd')) {
-			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
-			Log403Error("/gui/Forbidden403");
-		}
+        // Not 'serverHttpd'? Bye, bye!
+        if (!$CI->serverScriptHelper->getAllowed('serverHttpd')) {
+            // Nice people say goodbye, or CCEd waits forever:
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
+            Log403Error("/gui/Forbidden403");
+        }
 
 		//
 		//--- Handle form validation:
@@ -107,7 +101,7 @@ class Apache extends MX_Controller {
 		if ($CI->input->post(NULL, TRUE)) {
 
 			// get web
-			$web = $cceClient->getObject("System", array(), "Web");
+			$web = $CI->cceClient->getObject("System", array(), "Web");
 
 			// min spares needs to be less than or equal to max spares
 			if ($form_data['minSpare'] > $form_data['maxSpare']) {
@@ -152,7 +146,7 @@ class Apache extends MX_Controller {
 			$attributes['Writeback_BlueOnyx_Conf'] = time();
 
 	  		// Actual submit to CODB:
-			$cceClient->setObject("System", $attributes, "Web");
+			$CI->cceClient->setObject("System", $attributes, "Web");
 
 			if (($web['httpPort'] != $httpPortField) || ($web['sslPort'] != $sslPortField) || ($web['HSTS'] != $attributes['HSTS'])) {
 			    // In case the HTTP-port, SSL-port or HSTS settings are changed, we also need to update all 
@@ -160,11 +154,11 @@ class Apache extends MX_Controller {
 			    // We can simply do so by running /usr/sausalito/sbin/SSL_fixer.pl. And as that
 			    // may take a while to finish, we simply shoot it into the background via fork():
 				$nfk = '';
-			    $ret = $serverScriptHelper->fork("/usr/sausalito/sbin/SSL_fixer.pl", $nfk, 'root', $sessionId);
+			    $ret = $CI->serverScriptHelper->fork("/usr/sausalito/sbin/SSL_fixer.pl", $nfk, 'root', $CI->BX_SESSION['sessionId']);
 			}
 
 			// CCE errors that might have happened during submit to CODB:
-			$CCEerrors = $cceClient->errors();
+			$CCEerrors = $CI->cceClient->errors();
 			foreach ($CCEerrors as $object => $objData) {
 				// When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
 				$errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
@@ -178,7 +172,7 @@ class Apache extends MX_Controller {
 	    //
 
 		// Prepare Page:
-		$factory = $serverScriptHelper->getHtmlComponentFactory("base-apache", "/apache/apache");
+		$factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-apache", "/apache/apache");
 		$BxPage = $factory->getPage();
 		$BxPage->setErrors($errors);
 		$i18n = $factory->getI18n();
@@ -188,7 +182,7 @@ class Apache extends MX_Controller {
 		$page_module = 'base_sysmanage';
 
 		// get web
-		$web = $cceClient->getObject("System", array(), "Web");
+		$web = $CI->cceClient->getObject("System", array(), "Web");
 
 		$defaultPage = "basicSettingsTab";
 
@@ -346,10 +340,6 @@ class Apache extends MX_Controller {
 		// Add the buttons
 		$block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
 		$block->addButton($factory->getCancelButton("/apache/apache"));
-
-		// Nice people say goodbye, or CCEd waits forever:
-		$cceClient->bye();
-		$serverScriptHelper->destructor();
 
 		$page_body[] = $block->toHtml();
 

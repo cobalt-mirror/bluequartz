@@ -17,6 +17,7 @@ class SSIExtension extends UIExtension
 {
     function display(&$helper, &$container, &$cce_info)
     {
+        $CI =& get_instance();
         $factory =& $helper->getHtmlComponentFactory("base-apache");
         $cce =& $helper->getCceClient();
     
@@ -40,7 +41,7 @@ class SSIExtension extends UIExtension
         //
         //-- Reseller: Can the reseller that owns this Vsite modify this?
         //
-        $VsiteOwnerObj = $cce->get($cce->whoami());
+        $VsiteOwnerObj = $CI->BX_SESSION['loginUser'];
         $access = "rw";
         if ($VsiteOwnerObj['name'] != "admin") {
             $resellerCaps = $cce->scalar_to_array($VsiteOwnerObj['capabilities']);
