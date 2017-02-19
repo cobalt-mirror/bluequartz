@@ -51,7 +51,6 @@ class ServerScriptHelper {
   // hash of "<domain>/<localePreference>" to i18n objects
   var $i18n;
   var $loginName;
-  var $sessionId;
   var $loginUser;
   var $isMonterey;
 
@@ -108,16 +107,8 @@ class ServerScriptHelper {
       $loginName = $CI->input->cookie('loginName');
     }
 
-    if (is_file("/etc/DEBUG")) {
-      $this->setDebug(TRUE);
-    }
-    else {
-      $this->setDebug(FALSE);
-    }
-
-    // save parameters
+    // save parameter
     $this->loginName = $loginName;
-    $this->sessionId = $sessionId;
 
     // initialize cceClient
     // does authentication via CCE
@@ -150,11 +141,8 @@ class ServerScriptHelper {
     }
     // If we get here, CCEd should be running. Either again, or because it was fine.
     if ($this->hasCCE()) {
-
-      if ((!isset($this->cceClient)) || (!isset($cceClient))) {
         $this->cceClient = new CceClient();
-        $cceClient =& $this->cceClient;
-      }
+        $cceClient = $this->cceClient;
 
         if(!$cceClient->connect()) {
             // CCE is down
@@ -198,10 +186,7 @@ class ServerScriptHelper {
   
         // only AUTH if not on Monterey
         if (!$this->isMonterey) {
-            //error_log("DOING IT!: " . $cceClient->Whoami());
-
-            $auth_attempt = $cceClient->authkey($CI->input->cookie('loginName'), $CI->input->cookie('sessionId'));
-            if (!$auth_attempt) {
+            if (!$cceClient->authkey($loginName, $sessionId)) {
               error_log("ServerScriptHelper.ServerScriptHelper(): Cannot authenticate to CCE (login name: $loginName, session ID: $sessionId)"); 
               // tell users their sessions are expired and redirect
               // set the target here to point to where to go back to after login
@@ -229,41 +214,33 @@ class ServerScriptHelper {
 </HTML>");
               exit;
             }
+            else {
+              $cceClient->authkey($loginName, $sessionId);
+            }
             $this->loginUser = $cceClient->get($cceClient->whoami());
         }
-
+    
         // initialize
         $this->i18n = array();
         // initialize timezone
-        $retvalTZ = @date_default_timezone_get();
-        if (!$retvalTZ) {
-          $timeObj = $cceClient->getObject("System", array(), "Time");
-        }
+        $timeObj = $cceClient->getObject("System", array(), "Time");
+
         if (!isset($timeObj["timeZone"])) {
           $timeObj["timeZone"] = "America/New_York";
         }
+
         $systemTimeZone = $timeObj["timeZone"];
         @date_default_timezone_set($systemTimeZone);
-
-        // UserShell:
-        $userShell = $this->cceClient->get($this->loginUser['OID'], 'Shell');
-
-        // Store BX_SESSION:
-        $CI->setBX_SESSION($loginName, $sessionId, $this->loginUser, $userShell['enabled']);
+        $retvalTZ = @date_default_timezone_get();
     }
   }
 
   // description: destructor
-  function destructor($whodidit='') {
+  function destructor() {
     $cceClient = $this->cceClient;
-    //$cceClient->commit();
+//    $cceClient->commit();
     if ($this->hasCCE()) {
-      if ($whodidit != '') {
-        if ($this->DEBUG) {
-          error_log("ServerScriptHelper: BYE initiated by: $whodidit");
-        }
-      }
-      $cceClient->bye();
+        $cceClient->bye();
     }
 
     // clean up cache
@@ -446,10 +423,7 @@ class ServerScriptHelper {
     $CI =& get_instance();
 
     // Get loginName:
-    $loginName = $CI->BX_SESSION['loginName'];
-    if (!$loginName) {
-      $loginName = $CI->input->cookie('loginName');
-    }
+    $loginName = $CI->input->cookie('loginName');
 
     $accessRights = array();
 
@@ -471,17 +445,8 @@ class ServerScriptHelper {
       }
     }
 
-    if (is_array($CI->BX_SESSION['loginUser'])) {
-      // Reuse loginUser from BX_SESSION if present:
-      $user = $CI->BX_SESSION['loginUser'];
-      $userShell['enabled'] = $CI->BX_SESSION['userShell'];
-    }
-    else {
-      // If not present, fetch him via CCE:
-      $user = $this->cceClient->getObject("User", array("name" => $loginName));
-      $userShell = $this->cceClient->get($user['OID'], 'Shell');
-    }
-
+    $user = $this->cceClient->getObject("User", array("name" => $loginName));
+    $userShell = $this->cceClient->get($user['OID'], 'Shell');
     if ($userShell['enabled'] == "1") {
       $accessRights[] = 'shellAccessEnabled';
     }
@@ -930,7 +895,10 @@ $post_vars_html
     }
 
     function hasCCE() {
-        return TRUE;
+        // commented out monterey-specific cruft
+        // pretty much all future products will have CCE
+        // return file_exists("/etc/rc.d/init.d/cced.init");
+       return true;
     }
 
     // this should not be used outside this class
@@ -967,8 +935,10 @@ $post_vars_html
     // description: get a list of all the capabilities the given user has
     // param: the oid of the user to check (defaults: current)
     // returns: a list of all the capabilities the current user has
-    function listAllowed($oid = -1) {
-        if ($oid == -1) {
+    function listAllowed($oid = -1) 
+    {
+        if ($oid == -1) 
+        {
             $currentuser = 1;
             $oid = $this->loginUser["OID"];
         }
@@ -979,35 +949,41 @@ $post_vars_html
 
         $ret = array();
         // get all the capLevels and expand them.
-        if (isset($currentuser)) {
+        if ($currentuser) {
             $uirights = stringToArray($this->loginUser["uiRights"]);
             if (in_array("systemAdministrator", $uirights) || $this->loginUser["systemAdministrator"]) {
                 // I am god, so I get ALL the capgroups :)
                 $groups = $this->getAllCapabilityGroups();
                 $caplevels = array();
-                foreach($groups as $groupkey=>$groupval) {
+                foreach($groups as $groupkey=>$groupval) 
+                {
                     $caplevels[] = $groupkey;
                 }
             } 
-            else { // get the capLevels from this user 
+            else 
+            { // get the capLevels from this user 
                 $caplevels = stringToArray($this->loginUser["capLevels"]);
             }
         } 
-        else { // i'm asking about another user, so I say what I can about them.
+        else 
+        { // i'm asking about another user, so I say what I can about them.
             $user = $this->cceClient->get($oid);
             $caplevels = stringToArray($user["capLevels"]);
         } 
 
-        foreach ($caplevels as $caplevel) {
+        foreach ($caplevels as $caplevel) 
+        {
             $ret = array_merge((array)$ret, (array)$this->expandCaps($caplevel));
         }
 
         // remember to add the uirights in
-        if (isset($currentuser)) {
+        if ($currentuser) 
+        {
             // self
             $ret = array_merge($ret, stringToArray($this->loginUser["uiRights"]));
         } 
-        else {
+        else 
+        {
             $ret = array_merge($ret, stringToArray($user["uiRights"]));
         }
 
@@ -1020,123 +996,12 @@ $post_vars_html
           }
         }
 
-        if ($this->_listAllowed == null) {
-          $this->_listAllowed = array();
-        }
+        if ($this->_listAllowed == null) 
+            $this->_listAllowed = array();
    
         $this->_listAllowed[$oid] = $retclean;
 
         return $retclean;
-    }
-
-    // description: checks to see if a user is granted the given capability.
-    // param: the name of the CapabilityGroup or CCE-Level capability to check
-    // param: the user to check for (default: current)
-    // returns: true if the current user has this capability, false otherwise
-
-    function getAllowed($capName, $oid = -1) {
-        // this is quicker besides systemAdministrator should be
-        // able to view everything whether there is a capability group
-        // or not
-        $currentuser = 0;
-        if ($oid == -1) {
-            $currentuser = 1;
-            $oid = $this->loginUser["OID"];
-        }
-
-        if (($currentuser == 1) && ($this->loginUser['systemAdministrator'])) {
-          // We want to know the caps for the current users. AND that user is
-          // 'systemAdministrator'. Spare the trouble and return a fast 'yes':
-          return 1;
-        }
-
-        if ((!$this->loginUser['systemAdministrator']) && ($oid == -1) && ($capName == 'adminUser')) { 
-          // Fast 'no' to the question for 'adminUser', because we simply aren't.
-          // Do not get get confused here. Resellers are 'adminUser', but we do
-          // NOT treat them as such unless they also have the 'systemAdministrator'
-          // flag. Without that flag, we do not rate them as 'adminUser':
-          return 0;
-        }
-
-        $caps = $this->listAllowed($oid);
-        if (in_array($capName, $caps)) {
-            return 1;
-        }
-        else {
-            return 0;
-        }
-        return 0;
-    }
-
-    // description: checks to see if a user is systemAdministrator, siteAdmin 
-    // or a reseller of a group and if the group exists.
-    // param: the group of the User/Vsite to check
-    // param: the user to check for (default: current)
-    // returns: true if the current user has this capability, false otherwise
-
-    function getGroupAdmin($group, $oid = -1) {
-        if ($oid == -1) {
-            $currentuser = 1;
-            $oid = $this->loginUser["OID"];
-        }
-        // Find out if the Group exists:
-        $site = $this->cceClient->getObject('Vsite', array('name' => $group));
-        if (!isset($site['fqdn'])) {
-          // Group doesn't exist. So we fail right here:
-          return 0;
-        }
-        if ($this->loginUser['systemAdministrator']) {
-            // Fast 'yes' to all rights, because we are system administrator:
-            return 1;
-        }
-        // Check if this user is Reseller of this group:
-        if (($this->loginUser['site'] == "") && ($this->getReseller($group) == "1")) {
-          // This is a reseller (has no group) and can manage the specified group as Reseller.
-          return 1;
-        }
-        // Check if this user belongs to this group and is siteAdmin of this group:
-        if (($this->loginUser['site'] == $group) && ($this->getSiteAdmin($group))) {
-          // This user belongs to this group and is siteAdmin OR Reseller.
-          return 1;
-        }
-        return 0;
-    }
-
-    // description: checks to see if a user is a siteAdmin of a given Vsite group.
-    // param: the group of the Vsite to check
-    // param: the user to check for (default: current)
-    // returns: true if the current user has this capability, false otherwise
-
-    function getSiteAdmin($group, $oid = -1) {
-        if ($oid == -1) {
-            $currentuser = 1;
-            $oid = $this->loginUser["OID"];
-        }
-        // Find out if the Group exists:
-        $site = $this->cceClient->getObject('Vsite', array('name' => $group));
-        if (!isset($site['fqdn'])) {
-          // Group doesn't exist. So we fail right here:
-          return 0;
-        }
-        if ($this->loginUser['systemAdministrator']) {
-            // Fast 'yes' to all rights, because we are system administrator:
-            return 1;
-        }
-        // Check if this user belongs to the given group:
-        if ($this->loginUser['site'] == $group) {
-          // This user is listed as 'createdUser', so we return yes:
-          return 1;
-        }
-        else {
-          // He might be a siteAdmin elsewhere, but sure not here.
-          return 0;
-        }
-        // Check if this user has the capability 'siteAdmin':
-        $caps = $this->listAllowed($oid);
-        if (in_array('siteAdmin', $caps)) {
-          return 1;
-        }
-        return 0;
     }
 
     function debug_log ($msg) {
@@ -1272,12 +1137,8 @@ $post_vars_html
         $this->myCce = 1;
       }
 
-      // New method via CI 'BX_SESSION':
-      $CI =& get_instance();
-      $userCap = $CI->BX_SESSION['loginUser'];
-      $iam = $userCap['OID'];
-      $this->loginUser = $userCap;
-
+      $iam = $this->cceClient->whoami();
+      $this->loginUser = $this->cceClient->get($iam);
       $this->capabilityGroups = array();
       $this->capabilities = array();
       $this->notCapabilityGroups = array();
@@ -1290,19 +1151,11 @@ $post_vars_html
       $this->getAllCapabilities();
       $this->listAllowed();
     }
-
-    function setDebug($DEBUG = "") {
-      $this->DEBUG = $DEBUG;
-    }
-
-    function getDebug() {
-      return $this->DEBUG;
-    }
 }
 
 /*
-Copyright (c) 2014-2017 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2014-2017 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
 Copyright (c) 2003 Sun Microsystems, Inc. 
 All Rights Reserved.
 
