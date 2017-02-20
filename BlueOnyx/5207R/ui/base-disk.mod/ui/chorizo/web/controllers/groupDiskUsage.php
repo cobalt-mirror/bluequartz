@@ -305,7 +305,6 @@ class GroupDiskUsage extends MX_Controller {
         }
 
         for ($i = 0; $i < count($users); $i++) {
-            $user = $cceClient->get($users[$i]);
             $user_info = $users[$i];
 
             if (isset($user_info[0])) {
