@@ -476,7 +476,7 @@ class CceClient {
           error_log("Command: GET $oid . $namespace");
         }
         else {
-          error_log("Command: GET " . $oid . " . $namespace");
+          error_log("Command: GET " . json_encode($oid) . " . $namespace");
         }
       }
       else {
@@ -484,7 +484,7 @@ class CceClient {
           error_log("Command: GET $oid");
         }
         else {
-          error_log("Command: GET " . $oid);
+          error_log("Command: GET " . json_encode($oid));
         }
       }
     }
