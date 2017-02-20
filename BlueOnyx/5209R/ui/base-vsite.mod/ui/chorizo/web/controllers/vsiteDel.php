@@ -19,31 +19,30 @@ class VsiteDel extends MX_Controller {
 
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
-        $MX =& get_instance();
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
-        $locale = $CI->input->cookie('locale');
+        // Get $sessionId and $CI->BX_SESSION['loginName'] from Cookie (if they are set) and store them in $CI->BX_SESSION:
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
-        // Line up the ducks for CCE-Connection:
+        // Line up the ducks for CCE-Connection and store them for re-usability in $CI:
         include_once('ServerScriptHelper.php');
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        $cceClient = $serverScriptHelper->getCceClient();
-        $user = $cceClient->getObject("User", array("name" => $loginName));
-        $i18n = new I18n("base-vsite", $user['localePreference']);
-        $system = $cceClient->getObject("System");
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
+
+        $i18n = new I18n("base-vsite", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
+        $user = $CI->BX_SESSION['loginUser'];
 
         // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        $Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
 
         // -- Actual page logic start:
 
         // Not 'manageSite'? Bye, bye!
         if (!$Capabilities->getAllowed('manageSite')) {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403#1");
         }
 
@@ -65,8 +64,8 @@ class VsiteDel extends MX_Controller {
         else {
             // Don't play games with us!
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403#2");
         }
 
@@ -82,27 +81,27 @@ class VsiteDel extends MX_Controller {
         // Prep search array:
         $exact = array('name' => $delSite);
 
-        // We're not 'systemAdministrator', so we limit the search to 'createdUser' => $loginName:
+        // We're not 'systemAdministrator', so we limit the search to 'createdUser' => $CI->BX_SESSION['loginName']:
         if (!$Capabilities->getAllowed('systemAdministrator')) {
                 // If the user is not 'systemAdministrator', then we only return Vsites that this user owns:
-                $exact = array_merge($exact, array('createdUser' => $loginName));  
+                $exact = array_merge($exact, array('createdUser' => $CI->BX_SESSION['loginName']));  
         }
 
         // Get a list of Vsite OID's:
-        $vsites = $cceClient->findx('Vsite', $exact, array(), "", "");
+        $vsites = $CI->cceClient->findx('Vsite', $exact, array(), "", "");
 
         // At this point we should have one object. Not more and not less:
         if (count($vsites) != "1") {
             // Don't play games with us!
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403#3");
         }
         elseif (is_file('/etc/DEMO')) {
             // We are in DEMO mode. So we don't delete:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             $redirect_URL = "/vsite/vsiteList";
             header("location: $redirect_URL");
             exit;
@@ -117,21 +116,17 @@ class VsiteDel extends MX_Controller {
             $cmd = "/usr/sausalito/sbin/vsite_destroy.pl $delSite \"/vsite/vsiteList\"";
 
             // Do the dirty deeds:
-            $serverScriptHelper->fork($cmd, "root", $sessionId);
+            $CI->serverScriptHelper->fork($cmd, "root", $CI->BX_SESSION['sessionId']);
 
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
 
             // Redirect to the processing page to follow the status of this transaction:
             header("Location: /gui/processing?statusId=remove$delSite&title=[[base-vsite.deletingSite]]&message=[[base-vsite.removingUsers]]&progress=0");
             exit;
 
         }
-
-        // Nice people say goodbye, or CCEd waits forever:
-        $cceClient->bye();
-        $serverScriptHelper->destructor();
 
         // Can't imagine why we would get to this line.
         // But if we do, log a 403 and call it a day:

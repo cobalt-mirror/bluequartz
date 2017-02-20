@@ -19,31 +19,27 @@ class Phpconfig extends MX_Controller {
 
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
-        $MX =& get_instance();
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
-        $locale = $CI->input->cookie('locale');
+        // Get $sessionId and $CI->BX_SESSION['loginName'] from Cookie (if they are set) and store them in $CI->BX_SESSION:
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
-        // Line up the ducks for CCE-Connection:
+        // Line up the ducks for CCE-Connection and store them for re-usability in $CI:
         include_once('ServerScriptHelper.php');
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        $cceClient = $serverScriptHelper->getCceClient();
-        $user = $cceClient->getObject("User", array("name" => $loginName));
-        $i18n = new I18n("base-vsite", $user['localePreference']);
-        $system = $cceClient->getObject("System");
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
 
-        // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        $i18n = new I18n("base-vsite", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
+        $user = $CI->BX_SESSION['loginUser'];
 
         // -- Actual page logic start:
 
         // Not serverConfig? Bye, bye!
-        if (!$Capabilities->getAllowed('serverConfig')) {
+        if (!$CI->serverScriptHelper->getAllowed('serverConfig')) {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403");
         }
 
@@ -51,7 +47,7 @@ class Phpconfig extends MX_Controller {
         //--- Get CODB-Object of interest: 
         //
 
-        $CODBDATA = $cceClient->getObject("PHP");
+        $CODBDATA = $CI->cceClient->getObject("PHP");
         $platform = $CODBDATA["PHP_version"];
 
         //
@@ -198,18 +194,18 @@ class Phpconfig extends MX_Controller {
             // Enable / Disable PHP Extra versions:
             foreach ($known_php_versions as $NSkey => $NSvalue) {
                 if (in_array($NSkey, $enabledExtraPHPversions)) {
-                    $cceClient->setObject("PHP", array('enabled' => '1'), "$NSkey" );
+                    $CI->cceClient->setObject("PHP", array('enabled' => '1'), "$NSkey" );
                 }
                 else {
-                    $cceClient->setObject("PHP", array('enabled' => '0'), "$NSkey" );
+                    $CI->cceClient->setObject("PHP", array('enabled' => '0'), "$NSkey" );
                 }
             }
 
             // Actual submit to CODB:
-            $cceClient->setObject("PHP", $attributes);
+            $CI->cceClient->setObject("PHP", $attributes);
 
             // CCE errors that might have happened during submit to CODB:
-            $CCEerrors = $cceClient->errors();
+            $CCEerrors = $CI->cceClient->errors();
             foreach ($CCEerrors as $object => $objData) {
                 // When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
                 $errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
@@ -229,7 +225,7 @@ class Phpconfig extends MX_Controller {
         //-- Own page logic:
         //
 
-        $CODBDATA = $cceClient->getObject("PHP");
+        $CODBDATA = $CI->cceClient->getObject("PHP");
         $platform = $CODBDATA["PHP_version"];
 
         //
@@ -238,12 +234,12 @@ class Phpconfig extends MX_Controller {
 
 
         // Prepare Page:
-        $factory = $serverScriptHelper->getHtmlComponentFactory("base-vsite", "/vsite/phpconfig");
+        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-vsite", "/vsite/phpconfig");
         $BxPage = $factory->getPage();
         $BxPage->setErrors($errors);
         $i18n = $factory->getI18n();
 
-        $product = new Product($cceClient);
+        $product = new Product($CI->cceClient);
 
         // Set Menu items:
         $BxPage->setVerticalMenu('base_security');
@@ -284,7 +280,7 @@ class Phpconfig extends MX_Controller {
         }
 
         foreach ($known_php_versions as $NSkey => $NSvalue) {
-            $extraPHPs[$NSkey] = $cceClient->get($CODBDATA['OID'], $NSkey);
+            $extraPHPs[$NSkey] = $CI->cceClient->get($CODBDATA['OID'], $NSkey);
             if ($extraPHPs[$NSkey]['present'] != "1") {
                 unset($extraPHPs[$NSkey]);
             }
@@ -320,12 +316,12 @@ class Phpconfig extends MX_Controller {
             }
 
             $extraPHPversions =& $factory->getSetSelector('extraPHPversions',
-                    $cceClient->array_to_scalar($permitted_php_versions_labels), 
-                    $cceClient->array_to_scalar($all_available_php_versions_labels),
+                    $CI->cceClient->array_to_scalar($permitted_php_versions_labels), 
+                    $CI->cceClient->array_to_scalar($all_available_php_versions_labels),
                     'allowedPHPversions', 'disallowedPHPversions',
                     "rw", 
-                    $cceClient->array_to_scalar($all_selectable_php_versions),
-                    $cceClient->array_to_scalar(array_keys($permitted_php_versions))
+                    $CI->cceClient->array_to_scalar($all_selectable_php_versions),
+                    $CI->cceClient->array_to_scalar(array_keys($permitted_php_versions))
                 );
 
             $extraPHPversions->setOptional(true);
@@ -710,7 +706,7 @@ class Phpconfig extends MX_Controller {
         // to make it safe for viewing and encapsulate the result into <pre></pre> tags:
 
         $file_php_ini = $CODBDATA['php_ini_location'];
-        $ret = $serverScriptHelper->shell("/bin/cat $file_php_ini", $the_file_data, 'root', $sessionId);
+        $ret = $CI->serverScriptHelper->shell("/bin/cat $file_php_ini", $the_file_data, 'root', $CI->BX_SESSION['sessionId']);
         $ini_presenter = $factory->getRawHTML("php_ini", "<pre>" . formspecialchars($the_file_data) . "</pre>", "r");
         $block->addFormField(
           $ini_presenter,
@@ -724,10 +720,6 @@ class Phpconfig extends MX_Controller {
 
         $block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
         $block->addButton($factory->getCancelButton("/vsite/phpconfig"));
-
-        // Nice people say goodbye, or CCEd waits forever:
-        $cceClient->bye();
-        $serverScriptHelper->destructor();
 
         $page_body[] = $block->toHtml();
 

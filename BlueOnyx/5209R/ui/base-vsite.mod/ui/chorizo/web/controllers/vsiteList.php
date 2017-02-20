@@ -12,30 +12,37 @@ class VsiteList extends MX_Controller {
     public function index() {
 
         $CI =& get_instance();
-        
+
         // We load the BlueOnyx helper library first of all, as we heavily depend on it:
         $this->load->helper('blueonyx');
         init_libraries();
 
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
-        $MX =& get_instance();
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
-        $locale = $CI->input->cookie('locale');
+        // Get $sessionId and $CI->BX_SESSION['loginName'] from Cookie (if they are set) and store them in $CI->BX_SESSION:
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
-        // Line up the ducks for CCE-Connection:
+        // Line up the ducks for CCE-Connection and store them for re-usability in $CI:
         include_once('ServerScriptHelper.php');
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        $cceClient = $serverScriptHelper->getCceClient();
-        $user = $cceClient->getObject("User", array("name" => $loginName));
-        $i18n = new I18n("base-vsite", $user['localePreference']);
-        $system = $cceClient->getObject("System");
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
+
+        $i18n = new I18n("base-vsite", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
+        $user = $CI->BX_SESSION['loginUser'];
+
+        // Not 'manageSite'? Bye, bye!
+        if (!$CI->serverScriptHelper->getAllowed('manageSite')) {
+            // Nice people say goodbye, or CCEd waits forever:
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
+            Log403Error("/gui/Forbidden403");
+        }
 
         // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        $Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
 
         // Required array setup:
         $errors = array();
@@ -46,8 +53,8 @@ class VsiteList extends MX_Controller {
         // Not 'manageSite'? Bye, bye!
         if (!$Capabilities->getAllowed('manageSite')) {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403");
         }
         else {
@@ -78,18 +85,18 @@ class VsiteList extends MX_Controller {
             $exact = array();
             if (!$Capabilities->getAllowed('systemAdministrator')) {
                     // If the user is not 'admin', then we only show Vsites that this user owns:
-                    $exact = array_merge($exact, array('createdUser' => $loginName));  
+                    $exact = array_merge($exact, array('createdUser' => $CI->BX_SESSION['loginName']));  
             }
 
             // Get a list of Vsite OID's:
-            $vsites = $cceClient->findx('Vsite', $exact, array(), "", "");
+            $vsites = $CI->cceClient->findx('Vsite', $exact, array(), "", "");
 
             // Auto-detect available features:
-            $autoFeatures = new AutoFeatures($cceClient);
+            $autoFeatures = new AutoFeatures($CI->cceClient);
             $AutoFeaturesList = $autoFeatures->ListFeatures('modifyWeb.Vsite');
 
             // Find out which PHP version the server uses:
-            $system_php = $cceClient->getObject('PHP');
+            $system_php = $CI->cceClient->getObject('PHP');
 
             // Get all known PHP versions together:
             $all_php_versions = array('PHPOS' => $system_php['PHP_version_os']);
@@ -97,7 +104,7 @@ class VsiteList extends MX_Controller {
 
             foreach ($known_php_versions as $NSkey => $NSvalue) {
                 if ($NSkey != 'PHPOS') { 
-                    $extraPHPs[$NSkey] = $cceClient->get($system_php["OID"], $NSkey);
+                    $extraPHPs[$NSkey] = $CI->cceClient->get($system_php["OID"], $NSkey);
                     if ($extraPHPs[$NSkey]['present'] != "1") {
                         unset($extraPHPs[$NSkey]);
                     }
@@ -107,10 +114,10 @@ class VsiteList extends MX_Controller {
             $numsite = "0";
             foreach ($vsites as $site) {
                 // Get Vsite settings:
-                $vsiteSettings = $cceClient->get($site);
+                $vsiteSettings = $CI->cceClient->get($site);
                 $vsiteSettings['FEATURE'] = array();
                 foreach ($AutoFeaturesList as $key => $value) {
-                    $featureOID = $cceClient->get($site, $value);
+                    $featureOID = $CI->cceClient->get($site, $value);
                     if ($value == "PHP") {
                         $vsiteSettings['PHP_version'] = $featureOID['version'];
                         if ($featureOID['mod_ruid_enabled'] == "1") {
@@ -143,13 +150,13 @@ class VsiteList extends MX_Controller {
                 $vsiteSettings['FEATURE']['DNS'] = $vsiteSettings['dns_auto'];
 
                 // SSL:
-                $vsiteSSLSettings = $cceClient->get($site, 'SSL');
+                $vsiteSSLSettings = $CI->cceClient->get($site, 'SSL');
                 if ($vsiteSSLSettings['enabled'] == '1') {
                     $vsiteSettings['FEATURE']['SSL'] = $vsiteSSLSettings['enabled'];
                 }
 
                 // OpenVPN:
-                $vsiteVPNSettings = $cceClient->get($site, 'VPN');
+                $vsiteVPNSettings = $CI->cceClient->get($site, 'VPN');
                 if ($vsiteVPNSettings['enabled'] == '1') {
                     $vsiteSettings['FEATURE']['VPN'] = $vsiteVPNSettings['enabled'];
                 }
@@ -248,7 +255,7 @@ class VsiteList extends MX_Controller {
         //-- Generate page:
 
         // Prepare Page:
-        $factory = $serverScriptHelper->getHtmlComponentFactory("base-vsite", "/vsite/vsiteList");
+        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-vsite", "/vsite/vsiteList");
         $BxPage = $factory->getPage();
         $i18n = $factory->getI18n();
 
@@ -325,14 +332,13 @@ class VsiteList extends MX_Controller {
             $vsite_user = 0;
             $num_vsites = 0;  
             foreach($vsites as $vsites_oid) {  
-                $vsite = $cceClient->get($vsites_oid);  
-                $vsite2 = $cceClient->get($vsites_oid, "Disk");
+                $vsite = $CI->cceClient->get($vsites_oid);  
+                $vsite2 = $CI->cceClient->get($vsites_oid, "Disk");
                 $vsite_user += $vsite['maxusers'];  
                 $vsite_disk += $vsite2['quota'];
                 $num_vsites++;
             }  
-            list($user_oid) = $cceClient->find('User', array('name' => $loginName));  
-            $sites = $cceClient->get($user_oid, 'Sites');  
+            $sites = $CI->cceClient->get($user['OID'], 'Sites');
             $sites['quota'] = simplify_number($sites['quota']*1000, "K", "1") . "B";
             $ResellerStats = '                      <div class="columns">
                             <div class="col_33 no_border_top no_border_right">
@@ -367,10 +373,8 @@ class VsiteList extends MX_Controller {
         }       
 
         // Check vsite max for administrator 
-        list($user_oid) = $cceClient->find('User', array('name' => $loginName)); 
-        $sites = $cceClient->get($user_oid, 'Sites'); 
-
-        $user_sites = $cceClient->find('Vsite', array('createdUser' => $loginName));
+        $sites = $CI->cceClient->get($user['OID'], 'Sites');
+        $user_sites = $CI->cceClient->find('Vsite', array('createdUser' => $CI->BX_SESSION['loginName']));
         // Show "Add"-button if this Vsite hasn't yet reached max number of accounts:
         if ((($sites['max'] > 0) && (count($user_sites) < $sites['max'])) || ($Capabilities->getAllowed('systemAdministrator'))) {
             // Generate +Add button:
@@ -390,10 +394,6 @@ class VsiteList extends MX_Controller {
             $factory->getLabel("virtualSiteList"),
             $defaultPage
         );
-
-        // Nice people say goodbye, or CCEd waits forever:
-        $cceClient->bye();
-        $serverScriptHelper->destructor();
 
         $page_body[] = $block->toHtml();
 

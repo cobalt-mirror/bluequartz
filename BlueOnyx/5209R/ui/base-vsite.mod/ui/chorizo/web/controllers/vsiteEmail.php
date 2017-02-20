@@ -12,30 +12,29 @@ class vsiteEmail extends MX_Controller {
     public function index() {
 
         $CI =& get_instance();
-        
+
         // We load the BlueOnyx helper library first of all, as we heavily depend on it:
         $this->load->helper('blueonyx');
         init_libraries();
 
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
-        $MX =& get_instance();
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
-        $locale = $CI->input->cookie('locale');
+        // Get $sessionId and $CI->BX_SESSION['loginName'] from Cookie (if they are set) and store them in $CI->BX_SESSION:
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
-        // Line up the ducks for CCE-Connection:
+        // Line up the ducks for CCE-Connection and store them for re-usability in $CI:
         include_once('ServerScriptHelper.php');
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        $cceClient = $serverScriptHelper->getCceClient();
-        $user = $cceClient->getObject("User", array("name" => $loginName));
-        $i18n = new I18n("base-vsite", $user['localePreference']);
-        $system = $cceClient->getObject("System");
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
+
+        $i18n = new I18n("base-vsite", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
+        $user = $CI->BX_SESSION['loginUser'];
 
         // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        $Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
 
         // -- Actual page logic start:
 
@@ -53,8 +52,8 @@ class vsiteEmail extends MX_Controller {
         else {
             // Don't play games with us!
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403#1");
         }
 
@@ -68,8 +67,8 @@ class vsiteEmail extends MX_Controller {
         // Returns Forbidden403 if *none* of that is the case.
         if (!$Capabilities->getGroupAdmin($group)) {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403#2");
         }
 
@@ -78,7 +77,7 @@ class vsiteEmail extends MX_Controller {
         //
 
         // Get data for the Vsite:
-        $vsite = $cceClient->getObject('Vsite', array('name' => $group));
+        $vsite = $CI->cceClient->getObject('Vsite', array('name' => $group));
 
         //
         //--- Handle form validation:
@@ -152,20 +151,20 @@ class vsiteEmail extends MX_Controller {
         if ((count($errors) == "0") && ($CI->input->post(NULL, TRUE))) {
 
             // Handle AutoFeatures:
-            $autoFeatures = new AutoFeatures($serverScriptHelper, $attributes);
+            $autoFeatures = new AutoFeatures($CI->serverScriptHelper, $attributes);
             $cce_info = array('CCE_OID' => $vsite['OID'], 'group' => $group, 'i18n' => $i18n);
-            list($cce_info['CCE_SERVICES_OID']) = $cceClient->find('VsiteServices');
+            list($cce_info['CCE_SERVICES_OID']) = $CI->cceClient->find('VsiteServices');
             $af_errors = $autoFeatures->handle('modifyEmail.Vsite', $cce_info);
             $errors = array_merge($errors, $af_errors);
 
-            $cceClient->set($vsite['OID'], '', array(
+            $CI->cceClient->set($vsite['OID'], '', array(
                 "emailDisabled" => $attributes['emailDisabled'], 
                 "mailAliases" => $attributes['mailAliases'], 
                 "mailCatchAll" => $attributes['mailCatchAll'])
                 );
 
             // CCE errors that might have happened during submit to CODB:
-            $CCEerrors = $cceClient->errors();
+            $CCEerrors = $CI->cceClient->errors();
             foreach ($CCEerrors as $object => $objData) {
                 // When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
                 $errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
@@ -173,8 +172,8 @@ class vsiteEmail extends MX_Controller {
 
             // No errors during submit? Reload page:
             if (count($errors) == "0") {
-                $cceClient->bye();
-                $serverScriptHelper->destructor();
+                $CI->cceClient->bye();
+                $CI->serverScriptHelper->destructor();
                 $redirect_URL = "/vsite/vsiteEmail?group=$group";
                 header("location: $redirect_URL");
                 exit;
@@ -186,7 +185,7 @@ class vsiteEmail extends MX_Controller {
         //
 
         // Prepare Page:
-        $factory = $serverScriptHelper->getHtmlComponentFactory("base-vsite", "/vsite/vsiteEmail?group=$group");
+        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-vsite", "/vsite/vsiteEmail?group=$group");
         $BxPage = $factory->getPage();
         $BxPage->setErrors($errors);
         $i18n = $factory->getI18n();
@@ -216,8 +215,8 @@ class vsiteEmail extends MX_Controller {
         }
         else {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403#2");
         }
 
@@ -258,15 +257,11 @@ class vsiteEmail extends MX_Controller {
         //--- Add AutoFeatures:
         //
 
-        $autoFeatures = new AutoFeatures($serverScriptHelper, $attributes);
+        $autoFeatures = new AutoFeatures($CI->serverScriptHelper, $attributes);
         $cce_info = array('CCE_OID' => $vsite['OID'], 'FIELD_ACCESS' => $access, 'IS_SITE_ADMIN' => $is_site_admin, 'group' => $group);
-        list($cce_info['CCE_SERVICES_OID']) = $cceClient->find('VsiteServices');
+        list($cce_info['CCE_SERVICES_OID']) = $CI->cceClient->find('VsiteServices');
         $cce_info['PAGED_BLOCK_DEFAULT_PAGE'] = $defaultPage;
         $autoFeatures->display($block, 'modifyEmail.Vsite', $cce_info);
-
-        // Nice people say goodbye, or CCEd waits forever:
-        $cceClient->bye();
-        $serverScriptHelper->destructor();
 
         $page_body[] = $block->toHtml();
 

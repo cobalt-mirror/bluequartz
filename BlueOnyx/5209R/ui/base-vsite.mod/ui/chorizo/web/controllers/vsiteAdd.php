@@ -19,42 +19,36 @@ class VsiteAdd extends MX_Controller {
 
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
-        $MX =& get_instance();
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
-        $locale = $CI->input->cookie('locale');
+        // Get $sessionId and $CI->BX_SESSION['loginName'] from Cookie (if they are set) and store them in $CI->BX_SESSION:
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
-        // Line up the ducks for CCE-Connection:
+        // Line up the ducks for CCE-Connection and store them for re-usability in $CI:
         include_once('ServerScriptHelper.php');
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        $cceClient = $serverScriptHelper->getCceClient();
-        $CODBDATA = $cceClient->getObject("User", array("name" => $loginName));
-        $i18n = new I18n("base-vsite", $CODBDATA['localePreference']);
-        $system = $cceClient->getObject("System");
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
 
-        // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        $i18n = new I18n("base-vsite", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
+        $CODBDATA = $CI->BX_SESSION['loginUser'];
+
+        // Not 'manageSite'? Bye, bye!
+        if (!$CI->serverScriptHelper->getAllowed('manageSite')) {
+            // Nice people say goodbye, or CCEd waits forever:
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
+            Log403Error("/gui/Forbidden403");
+        }
+
+        // -- Actual page logic start:
+        $extra_headers = array();
+        $access = 'rw';
 
         // We start without any active errors:
         $errors = array();
         $ci_errors = array();
         $my_errors = array();
-
-        $extra_headers = array();
-
-        // -- Actual page logic start:
-
-        $access = 'rw';
-
-        // Not 'manageSite'? Bye, bye!
-        if (!$Capabilities->getAllowed('manageSite')) {
-            // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
-            Log403Error("/gui/Forbidden403");
-        }
 
         // Shove submitted input into $form_data after passing it through the XSS filter:
         $form_data = $CI->input->post(NULL, TRUE);
@@ -150,7 +144,7 @@ class VsiteAdd extends MX_Controller {
             if ((count($errors) == "0") && ($CI->input->post(NULL, TRUE))) {
 
                 // We have no errors. We submit to CODB.
-                $vsiteOID = $cceClient->create("Vsite", 
+                $vsiteOID = $CI->cceClient->create("Vsite", 
                              array(
                                 'hostname' => $attributes['hostName'],
                                 'domain' => $attributes['domain'],
@@ -173,7 +167,7 @@ class VsiteAdd extends MX_Controller {
                             );
 
                 // CCE errors that might have happened during submit to CODB:
-                $CCEerrors = $cceClient->errors();
+                $CCEerrors = $CI->cceClient->errors();
                 foreach ($CCEerrors as $object => $objData) {
                     // When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
                     $errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
@@ -193,7 +187,7 @@ class VsiteAdd extends MX_Controller {
                         $quota = $attributes['quota'];
                     }
                     // Set the quota:
-                    $ok = $cceClient->set($vsiteOID, 'Disk', array('quota' => $quota));
+                    $ok = $CI->cceClient->set($vsiteOID, 'Disk', array('quota' => $quota));
 
                     // If the WebApp Installer is present and RoundCube Autoinstall is enabled,
                     // then we might get a weird runtime issue with CCEd. So if the above SET
@@ -203,17 +197,17 @@ class VsiteAdd extends MX_Controller {
                     if ($ok === "0") {
                         // Sleep and do it again:
                         sleep(5);
-                        $ok = $cceClient->set($vsiteOID, 'Disk', array('quota' => $quota));
+                        $ok = $CI->cceClient->set($vsiteOID, 'Disk', array('quota' => $quota));
                         if ($ok === "0") {
                             // Sleep and do it again:
                             sleep(5);
-                            $ok = $cceClient->set($vsiteOID, 'Disk', array('quota' => $quota));
+                            $ok = $CI->cceClient->set($vsiteOID, 'Disk', array('quota' => $quota));
                             if ($ok === "0") {
                                 $errors[] = new Error('[[base-vsite.cantReadVsite]]');
                             }
                         }
                     }
-                    $errors = array_merge($errors, $cceClient->errors());
+                    $errors = array_merge($errors, $CI->cceClient->errors());
                 }
 
                 /*
@@ -222,8 +216,8 @@ class VsiteAdd extends MX_Controller {
                  */
                 if ($vsiteOID) {
                     // Handle automatically detected services
-                    list($servicesoid) = $cceClient->find("VsiteServices");
-                    $autoFeatures = new AutoFeatures($serverScriptHelper, $attributes);
+                    list($servicesoid) = $CI->cceClient->find("VsiteServices");
+                    $autoFeatures = new AutoFeatures($CI->serverScriptHelper, $attributes);
                     $af_errors = $autoFeatures->handle("create.Vsite", 
                                        array(
                                         "CCE_SERVICES_OID" => $servicesoid, 
@@ -239,23 +233,23 @@ class VsiteAdd extends MX_Controller {
                     //
 
                     // Nice people say goodbye, or CCEd waits forever:
-                    $cceClient->bye();
-                    $serverScriptHelper->destructor();
+                    $CI->cceClient->bye();
+                    $CI->serverScriptHelper->destructor();
                     header("Location: /vsite/vsiteList");
                     exit;
                 }
                 else {
                     // We do have an error. And a partially create Vsite. So we destroy it:
                     if ((isset($vsiteOID)) && ($vsiteOID != "1") && ($vsiteOID != "0")) {
-                        $ok = $cceClient->destroy($vsiteOID);
+                        $ok = $CI->cceClient->destroy($vsiteOID);
                         if ($ok === FALSE) {
                             // If the first destroy() failed, we wait 5 secs and try again:
                             sleep(5);
-                            $ok = $cceClient->destroy($vsiteOID);
+                            $ok = $CI->cceClient->destroy($vsiteOID);
                             if ($ok === FALSE) {
                                 // Try it one more time:
                                 sleep(5);
-                                $ok = $cceClient->destroy($vsiteOID);
+                                $ok = $CI->cceClient->destroy($vsiteOID);
                                 if ($ok === FALSE) {
                                     // Pointless. Give up and raise error:
                                     $errors[] = new Error('[[base-vsite.removeFailed]]');
@@ -267,7 +261,7 @@ class VsiteAdd extends MX_Controller {
                     // Remove duplicate Errors:
                     $errors = array_map("unserialize", array_unique(array_map("serialize", $errors)));
                     // Then we redirect back to this page by passing the errors and the post vars:
-                    print $serverScriptHelper->toHandlerHtml("/vsite/vsiteAdd", $errors, TRUE);
+                    print $CI->serverScriptHelper->toHandlerHtml("/vsite/vsiteAdd", $errors, TRUE);
                 }
             }
         }
@@ -276,7 +270,7 @@ class VsiteAdd extends MX_Controller {
         //-- Generate page:
         //
 
-        $factory = $serverScriptHelper->getHtmlComponentFactory("base-vsite", "/vsite/vsiteAdd");
+        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-vsite", "/vsite/vsiteAdd");
         $BxPage = $factory->getPage();
         $i18n = $factory->getI18n();
 
@@ -296,10 +290,10 @@ class VsiteAdd extends MX_Controller {
          *  necessary for things to work correctly.
          */
 
-        list($sysoid) = $cceClient->find("System");
+        list($sysoid) = $CI->cceClient->find("System");
         if (count($errors) == 0) {
             // We have no errors. So we use the VsiteDefaults from CODB_
-            $vsiteDefaults = $cceClient->get($sysoid, "VsiteDefaults");
+            $vsiteDefaults = $CI->cceClient->get($sysoid, "VsiteDefaults");
         }       
         else {
             // We have at least one error. Which means this is probably a
@@ -311,11 +305,11 @@ class VsiteAdd extends MX_Controller {
             $vsiteDefaults['ipaddr'] = $attributes['ipAddr'];
         }
 
-        $vsite = $cceClient->get($sysoid, "Vsite"); 
-        $vsiteoids = $cceClient->find("Vsite"); 
+        $vsite = $CI->cceClient->get($sysoid, "Vsite"); 
+        $vsiteoids = $CI->cceClient->find("Vsite"); 
         if ($vsite['maxVsite'] <= count($vsiteoids)) { 
             // The limit doesn't apply to systemAdministrators! 
-            if (!$Capabilities->getAllowed('systemAdministrator')) {
+            if (!$CI->serverScriptHelper->getAllowed('systemAdministrator')) {
                 // But to everyone else:
                 $errors[] = new Error('[[base-vsite.maxVsiteAlreadyMade]]');
             }
@@ -325,10 +319,10 @@ class VsiteAdd extends MX_Controller {
         $secondPage = "otherServices";
 
         // Check vsite max for administrator 
-        list($user_oid) = $cceClient->find('User', array('name' => $loginName)); 
-        $sites = $cceClient->get($user_oid, 'Sites'); 
+        list($user_oid) = $CI->cceClient->find('User', array('name' => $CI->BX_SESSION['loginName'])); 
+        $sites = $CI->cceClient->get($user_oid, 'Sites'); 
          
-        $user_sites = $cceClient->find('Vsite', array('createdUser' => $loginName)); 
+        $user_sites = $CI->cceClient->find('Vsite', array('createdUser' => $CI->BX_SESSION['loginName'])); 
         if ($sites['max'] > 0 && $sites['max'] <= count($user_sites)) { 
             $errors[] = ErrorMessage($i18n->getClean('[[base-vsite.maxVsiteAlreadyMade]]'), 'alert_red', 'alarm_bell', FALSE);
 
@@ -366,8 +360,8 @@ class VsiteAdd extends MX_Controller {
             $page_body[] = $settings->toHtml();
 
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
 
             // Out with the page:
             $BxPage->render($page_module, $page_body);
@@ -383,15 +377,15 @@ class VsiteAdd extends MX_Controller {
             $settings->setSideTabs(FALSE);
             //$settings->setDefaultPage($secondPage);
 
-            $net_opts = $cceClient->get($sysoid, "Network");
+            $net_opts = $CI->cceClient->get($sysoid, "Network");
             if ($net_opts["pooling"] == "1") {
                 $range_strings = array();
 
-                $oids = $cceClient->findx('IPPoolingRange', array(), array(), 'old_numeric', 'creation_time');
+                $oids = $CI->cceClient->findx('IPPoolingRange', array(), array(), 'old_numeric', 'creation_time');
                 foreach ($oids as $oid) {
-                    $range = $cceClient->get($oid);
-                    $adminArray = $cceClient->scalar_to_array($range['admin']); 
-                    if ($loginName == 'admin' || in_array($loginName, $adminArray)) { 
+                    $range = $CI->cceClient->get($oid);
+                    $adminArray = $CI->cceClient->scalar_to_array($range['admin']); 
+                    if ($CI->BX_SESSION['loginName'] == 'admin' || in_array($CI->BX_SESSION['loginName'], $adminArray)) { 
                             $range_strings[] = $range['min'] . ' - ' . $range['max']; 
                     } 
                 }
@@ -457,14 +451,14 @@ class VsiteAdd extends MX_Controller {
             //-- Start Owner Management
 
             // Find all 'adminUsers' with the capability 'manageSite':
-            $admins = $cceClient->findx('User', 
+            $admins = $CI->cceClient->findx('User', 
                             array('systemAdministrator' => 0, 'capLevels' => 'manageSite'),
                             array());
 
             // Set up an array that - at least - has 'admin' in it:
             $adminNames = array('admin');
             foreach ($admins as $num => $oid) {
-                $current = $cceClient->get($oid);
+                $current = $CI->cceClient->get($oid);
                 // Found a reseller, adding him to the array as well:
                 $adminNames[] = $current['name'];
             }
@@ -475,11 +469,11 @@ class VsiteAdd extends MX_Controller {
             }
             else {
                 // Else we need to set a current owner. Assume the current user:
-                $current_createdUser = $loginName;
+                $current_createdUser = $CI->BX_SESSION['loginName'];
             }
 
             // If the current user has the cap 'serverManage', then he is allowed to change the owner:
-            if ($Capabilities->getAllowed('serverManage')) { 
+            if ($CI->serverScriptHelper->getAllowed('serverManage')) { 
                 // Sort the array values:
                 asort($adminNames);
                 // Build the MultiChoice selector:
@@ -490,7 +484,7 @@ class VsiteAdd extends MX_Controller {
             else {
                 // Current user doesn't have the cap 'serverManage'. So we just add a hidden TextField with the current owner in it:
                 $settings->addFormField(
-                        $factory->getTextField("createdUser", $loginName, "r"),
+                        $factory->getTextField("createdUser", $CI->BX_SESSION['loginName'], "r"),
                         $factory->getLabel("createdUser"),
                         $defaultPage
                         );
@@ -581,16 +575,16 @@ class VsiteAdd extends MX_Controller {
             //-- Resource Management:
             //
 
-            $disk_dev = $cceClient->find("Disk", array('isHomePartition' => 1, 'mounted' => 1));
+            $disk_dev = $CI->cceClient->find("Disk", array('isHomePartition' => 1, 'mounted' => 1));
 
             // Dirty hack not to use /home partition. Kicks in if we don't have a disk partition
             // after our last search or if the reported disk has no size information. Then we use
             // the size information from the / partition instead:
             if (count($disk_dev) == 0) { 
-                    $disk_dev = $cceClient->getObject('Disk', array('mountPoint' => '/'), ''); 
+                    $disk_dev = $CI->cceClient->getObject('Disk', array('mountPoint' => '/'), ''); 
             }
             else {
-                $disk_dev = $cceClient->get($disk_dev[0]); 
+                $disk_dev = $CI->cceClient->get($disk_dev[0]); 
             } 
 
             if (isset($disk_dev['total'])) {
@@ -613,19 +607,19 @@ class VsiteAdd extends MX_Controller {
             // If the site is not owned by 'admin', we need to gather information
             // about the allowances and usage info for this 'manageSite' administrator:
             $exact = array();
-            $exact = array_merge($exact, array('createdUser' => $loginName));
+            $exact = array_merge($exact, array('createdUser' => $CI->BX_SESSION['loginName']));
 
             // Get the info about the 'manageSite' administrator:
-            list($user_oid) = $cceClient->find('User', array('name' => $loginName)); 
+            list($user_oid) = $CI->cceClient->find('User', array('name' => $CI->BX_SESSION['loginName'])); 
 
             // Get the site allowance settings for this 'manageSite' user:
-            $AdminAllowances = $cceClient->get($user_oid, 'Sites'); 
+            $AdminAllowances = $CI->cceClient->get($user_oid, 'Sites'); 
             
             // Get a list of all sites he owns: 
-            $Userowned_Sites = $cceClient->find('Vsite', array('createdUser' => $loginName)); 
+            $Userowned_Sites = $CI->cceClient->find('Vsite', array('createdUser' => $CI->BX_SESSION['loginName'])); 
             $Quota_of_Userowned_Sites = 0; 
             foreach ($Userowned_Sites as $oid) { 
-                $user_vsiteDisk = $cceClient->get($oid, 'Disk'); 
+                $user_vsiteDisk = $CI->cceClient->get($oid, 'Disk'); 
                 $Quota_of_Userowned_Sites += $user_vsiteDisk['quota']; 
             }
             // Variable $Quota_of_Userowned_Sites includes the quota of the current Vsite. We need
@@ -640,11 +634,11 @@ class VsiteAdd extends MX_Controller {
             $CreatedUserAccountsAllSites = 0;
             $CreatedUserAccountsThisSite = 0;
             foreach ($Userowned_Sites as $oid) { 
-                $user_vsite = $cceClient->get($oid); 
+                $user_vsite = $CI->cceClient->get($oid); 
                 $AllocatedUserAccounts += $user_vsite['maxusers'];
 
                 // How many accounts are set up on this Vsite?
-                $useduser_oids = $cceClient->find('User', array("site" => $user_vsite['name']));
+                $useduser_oids = $CI->cceClient->find('User', array("site" => $user_vsite['name']));
                 // Add them to the total:
                 $CreatedUserAccountsAllSites += count($useduser_oids);
                 // How many accounts does THIS site have at the moment?
@@ -652,7 +646,7 @@ class VsiteAdd extends MX_Controller {
             }
 
             // Check if the amount of allocated accounts is greater than what the user is allowed to:
-            if (($Capabilities->getAllowed('manageSite')) && ($loginName == 'admin')) {
+            if (($CI->serverScriptHelper->getAllowed('manageSite')) && ($CI->BX_SESSION['loginName'] == 'admin')) {
                 $Can_Modify_Quantity_of_Users = "1";
             }
             elseif ($AllocatedUserAccounts > $AdminAllowances['user']) {
@@ -670,7 +664,7 @@ class VsiteAdd extends MX_Controller {
             //-- Site quota
             //
 
-            if ($loginName != 'admin') {
+            if ($CI->BX_SESSION['loginName'] != 'admin') {
                 $partitionMax = ($AdminAllowances['quota']-$Quota_of_Userowned_Sites);
             }
 
@@ -771,8 +765,8 @@ class VsiteAdd extends MX_Controller {
                     $secondPage
                     );      
             // Figure out which services are available
-            list($vsiteServices) = $cceClient->find('VsiteServices');
-            $autoFeatures = new AutoFeatures($serverScriptHelper);
+            list($vsiteServices) = $CI->cceClient->find('VsiteServices');
+            $autoFeatures = new AutoFeatures($CI->serverScriptHelper);
 
             // add all generic enabled/disabled type services detected above
             $autoFeatures->display($settings, 'create.Vsite', 
@@ -784,7 +778,6 @@ class VsiteAdd extends MX_Controller {
 
             // Add the buttons
             $btn = $factory->getSaveButton($BxPage->getSubmitAction());
-//          $btn->setDisabled(TRUE);
 
             $settings->addButton($btn);
             $settings->addButton($factory->getCancelButton("/vsite/vsiteList"));
@@ -808,10 +801,6 @@ class VsiteAdd extends MX_Controller {
 
             //-- Generate page:
             $page_body[] = $settings->toHtml();
-
-            // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
 
             // Out with the page:
             $BxPage->render($page_module, $page_body);
