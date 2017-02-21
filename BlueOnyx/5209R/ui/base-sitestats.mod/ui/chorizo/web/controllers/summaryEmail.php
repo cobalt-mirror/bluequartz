@@ -320,34 +320,41 @@ class SummaryEmail extends MX_Controller {
     public function index() {
 
         $CI =& get_instance();
-        
+
         // We load the BlueOnyx helper library first of all, as we heavily depend on it:
         $this->load->helper('blueonyx');
         init_libraries();
 
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
-        $MX =& get_instance();
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
-        $locale = $CI->input->cookie('locale');
+        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set) and store them in $CI->BX_SESSION:
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
-        // Line up the ducks for CCE-Connection:
+        // Line up the ducks for CCE-Connection and store them for re-usability in $CI:
         include_once('ServerScriptHelper.php');
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        $cceClient = $serverScriptHelper->getCceClient();
-        $user = $cceClient->getObject("User", array("name" => $loginName));
-        $i18n = new I18n("base-sitestats", $user['localePreference']);
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
+
+        $i18n = new I18n("base-vsite", $CI->BX_SESSION['loginUser']['localePreference']);
         $this->setI18n($i18n);
-        $system = $cceClient->getObject("System");
+        $system = $CI->getSystem();
+        $user = $CI->BX_SESSION['loginUser'];
+
+        // Not 'serverHttpd'? Bye, bye!
+        if (!$CI->serverScriptHelper->getAllowed('serverHttpd')) {
+            // Nice people say goodbye, or CCEd waits forever:
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
+            Log403Error("/gui/Forbidden403");
+        }
+
+        // Initialize Capabilities so that we can poll the access rights as well:
+        $Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
 
         // Load pagination library:
         $this->load->library('pagination');
-
-        // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
 
         // -- Actual page logic start:
 
@@ -403,8 +410,8 @@ class SummaryEmail extends MX_Controller {
             !($Capabilities->getAllowed('siteAdmin') &&
               $group == $Capabilities->loginUser['site'])) {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403");
         }
 
@@ -540,7 +547,7 @@ class SummaryEmail extends MX_Controller {
         //
 
         // Update SA Cache:
-        //$ret = $serverScriptHelper->shell("/usr/bin/sa_cache -a", $sareport, 'root', $sessionId);
+        //$ret = $CI->serverScriptHelper->shell("/usr/bin/sa_cache -a", $sareport, 'root', $CI->BX_SESSION['sessionId']);
 
         // Location of the directory with statistics:
         $Stats_dir = '/home/.sendmailanalyzer';
@@ -548,8 +555,8 @@ class SummaryEmail extends MX_Controller {
         if (!is_dir($Stats_dir)) {
             // If we don't have stats we don't go any further and throw an error.
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403");
         }
 
@@ -616,7 +623,7 @@ class SummaryEmail extends MX_Controller {
         // Do we have stats to display? If not, stop here:
         if (!isset($server_statsDir)) {
             $defaultPage = "basicSettingsTab";
-            $factory =& $serverScriptHelper->getHtmlComponentFactory('base-mailsitestats', "");
+            $factory =& $CI->serverScriptHelper->getHtmlComponentFactory('base-mailsitestats', "");
 
             // Prepare Page:
             $BxPage = $factory->getPage();
@@ -651,10 +658,6 @@ class SummaryEmail extends MX_Controller {
                 $BxPage->setVerticalMenuChild('base_mailusage');
             }
                         
-            // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
-
             // Out with the page:
             $BxPage->render($page_module, $page_body);
             return;
@@ -732,8 +735,8 @@ class SummaryEmail extends MX_Controller {
             // We can get at this point if the server is freshly set up and sa_cache
             // hasn't finished its initial run. In that case we just throw a 403.
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403");
         }
 
@@ -792,7 +795,7 @@ class SummaryEmail extends MX_Controller {
         $mainFormTargetUrl = $formTargetUrl . $domain_parm;
 
         $defaultPage = "basicSettingsTab";
-        $factory =& $serverScriptHelper->getHtmlComponentFactory('base-sitestats', $mainFormTargetUrl);
+        $factory =& $CI->serverScriptHelper->getHtmlComponentFactory('base-sitestats', $mainFormTargetUrl);
 
         // Prepare Page:
         $BxPage = $factory->getPage();
@@ -813,16 +816,16 @@ class SummaryEmail extends MX_Controller {
         $mailAliases = array();
 
         if (isset($group) && $group != 'server') {
-            $vsite = $cceClient->find('Vsite', array('name' => $group));
+            $vsite = $CI->cceClient->find('Vsite', array('name' => $group));
             if (isset($vsite[0])) {
-                $vsiteObj = $cceClient->get($vsite[0]);
+                $vsiteObj = $CI->cceClient->get($vsite[0]);
                 $mailAliases = scalar_to_array($vsiteObj['mailAliases']);
             }
             else {
                 // Vsite Object doesn't exist.
                 // Nice people say goodbye, or CCEd waits forever:
-                $cceClient->bye();
-                $serverScriptHelper->destructor();
+                $CI->cceClient->bye();
+                $CI->serverScriptHelper->destructor();
                 Log403Error("/gui/Forbidden403");
             }
         }
@@ -1122,13 +1125,13 @@ class SummaryEmail extends MX_Controller {
             $domain = strtoupper($domain);
             $sa_params .= ' --domain=' . $domain;
             $output = '';
-            $ret = $serverScriptHelper->shell("/var/lib/sendmailanalyzer/sa_to_php.pl $sa_params", $output, 'root', $sessionId);
+            $ret = $CI->serverScriptHelper->shell("/var/lib/sendmailanalyzer/sa_to_php.pl $sa_params", $output, 'root', $CI->BX_SESSION['sessionId']);
             $statsObject = json_decode($output); // Returns Object
             $SAR = json_decode(json_encode($statsObject), true); // Returns and Array instead
         }
         else {
             // Whole server:
-            $ret = $serverScriptHelper->shell("/var/lib/sendmailanalyzer/sa_to_php.pl $sa_params", $output, 'root', $sessionId);
+            $ret = $CI->serverScriptHelper->shell("/var/lib/sendmailanalyzer/sa_to_php.pl $sa_params", $output, 'root', $CI->BX_SESSION['sessionId']);
             $statsObject = json_decode($output); // Returns Object
             $SAR = json_decode(json_encode($statsObject), true); // Returns and Array instead           
         }
@@ -2895,8 +2898,8 @@ class SummaryEmail extends MX_Controller {
         //
 
         // Figure out which services are available
-        list($vsiteServices) = $cceClient->find('VsiteServices');
-        $autoFeatures = new AutoFeatures($serverScriptHelper);
+        list($vsiteServices) = $CI->cceClient->find('VsiteServices');
+        $autoFeatures = new AutoFeatures($CI->serverScriptHelper);
         $EmailStats_ID = 'EmailStats';
         $EmailStats =& $factory->getPagedBlock("EmailStats", array($EmailStats_ID));
 
@@ -2933,11 +2936,6 @@ class SummaryEmail extends MX_Controller {
             $page_body[] = "<p>&nbsp;&nbsp;&nbsp;$no_data</p>\n";
         }
                     
-        // Nice people say goodbye, or CCEd waits forever:
-        $cceClient->bye();
-        $serverScriptHelper->destructor();
-
-
         // Out with the page:
         $BxPage->render($page_module, $page_body);
 
