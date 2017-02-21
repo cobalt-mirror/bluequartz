@@ -19,42 +19,38 @@ class Desktopcontrol extends MX_Controller {
 
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
-        $MX =& get_instance();
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
-        $locale = $CI->input->cookie('locale');
+        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set) and store them in $CI->BX_SESSION:
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
-        // Line up the ducks for CCE-Connection:
+        // Line up the ducks for CCE-Connection and store them for re-usability in $CI:
         include_once('ServerScriptHelper.php');
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        $cceClient = $serverScriptHelper->getCceClient();
-        $user = $cceClient->getObject("User", array("name" => $loginName));
-        $i18n = new I18n("base-vsite", $user['localePreference']);
-        $system = $cceClient->getObject("System");
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
 
-        // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        $i18n = new I18n("base-backupcontrol", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
+        $user = $CI->BX_SESSION['loginUser'];
+
+        // Not 'serverServerDesktop'? Bye, bye!
+        if (!$CI->serverScriptHelper->getAllowed('serverServerDesktop')) {
+            // Nice people say goodbye, or CCEd waits forever:
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
+            Log403Error("/gui/Forbidden403");
+        }
 
         // Make the users fullName safe for all charsets:
         $user['fullName'] = bx_charsetsafe($user['fullName']);
 
         // -- Actual page logic start:
 
-        // Not 'serverServerDesktop'? Bye, bye!
-        if (!$Capabilities->getAllowed('serverServerDesktop')) {
-            // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
-            Log403Error("/gui/Forbidden403");
-        }
-
         //
         //--- Get CODB-Object of interest: 
         //
 
-        $CODBDATA = $cceClient->getObject('System', array(), 'DesktopControl');
+        $CODBDATA = $CI->cceClient->get($system['OID'], "DesktopControl");
 
         //
         //--- Handle form validation:
@@ -132,8 +128,8 @@ class Desktopcontrol extends MX_Controller {
             if ((isset($attributes['GUIaccessType'])) || (isset($attributes['GUIredirects']))) {
                 $access_attribs['GUIaccessType'] = $attributes['GUIaccessType'];
                 $access_attribs['GUIredirects'] = $attributes['GUIredirects'];
-                $cceClient->setObject("System", $access_attribs, "");
-                array_merge($errors, $cceClient->errors()); 
+                $CI->cceClient->setObject("System", $access_attribs, "");
+                array_merge($errors, $CI->cceClient->errors()); 
                 unset($attributes['GUIaccessType']);
                 unset($attributes['GUIredirects']);
             }
@@ -145,33 +141,33 @@ class Desktopcontrol extends MX_Controller {
                 if ($attributes['lock'] == "1") {
 
                     // Tell CCEd to lock it up:
-                    $cceClient->setObject("System", $attributes, "DesktopControl");
+                    $CI->cceClient->set($system['OID'], "DesktopControl",  $attributes);
 
                     // Lock it up via Perl script:
                     $lock_cmd = "$lock_script --lock --reason=[[base-backupcontrol.locked]]";
-                    $ret = $serverScriptHelper->shell($lock_cmd, $output, 'root', $sessionId);
+                    $ret = $CI->serverScriptHelper->shell($lock_cmd, $output, 'root', $CI->BX_SESSION['sessionId']);
 
                     if ($ret != 0) {
                         # Suspending failed.  Rollback the lock bit in CODB:
-                        $cceClient->setObject('System', array('lock' => "0"), 'DesktopControl');
-                        array_merge($errors, $cceClient->errors()); 
+                        $CI->cceClient->set($system['OID'], "DesktopControl",  array('lock' => "0"));
+                        array_merge($errors, $CI->cceClient->errors()); 
                     }               
                 }
                 else {
                     // We are attempting to unlock the desktop.  Unlock cce first via the Perl script:
-                    $ret = $serverScriptHelper->shell("$lock_script --unlock", $output, 'root', $sessionId);
+                    $ret = $CI->serverScriptHelper->shell("$lock_script --unlock", $output, 'root', $CI->BX_SESSION['sessionId']);
 
                     if ($ret == 0) {
                         // That went well. Now unset the lock bit in CODB:
-                        $cceClient->setObject('System', array('lock' => "0"), 'DesktopControl');
-                        array_merge($errors, $cceClient->errors()); 
+                        $CI->cceClient->set($system['OID'], "DesktopControl",  array('lock' => "0"));
+                        array_merge($errors, $CI->cceClient->errors()); 
                     }
                 }
             }
             // Replace the CODB obtained values in our Form with the one we just posted to CCE:
             $CODBDATA = $attributes;
             // Get System Object again:
-            $system = $cceClient->getObject("System");
+            $system = $CI->cceClient->getObject("System");
 
         }
 
@@ -180,7 +176,7 @@ class Desktopcontrol extends MX_Controller {
         //
 
         // Prepare Page:
-        $factory = $serverScriptHelper->getHtmlComponentFactory("base-backupcontrol", "/backupcontrol/desktopcontrol");
+        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-backupcontrol", "/backupcontrol/desktopcontrol");
         $BxPage = $factory->getPage();
         $BxPage->setErrors($errors);
         $i18n = $factory->getI18n();
@@ -190,7 +186,7 @@ class Desktopcontrol extends MX_Controller {
         $page_module = 'base_sysmanage';
 
         // get web
-        $web = $cceClient->getObject("System", array(), "Ftp");
+        $web = $CI->cceClient->getObject("System", array(), "Ftp");
 
         $defaultPage = "basic";
 
@@ -218,10 +214,6 @@ class Desktopcontrol extends MX_Controller {
         // Add the buttons
         $block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
         $block->addButton($factory->getCancelButton("/backupcontrol/desktopcontrol"));
-
-        // Nice people say goodbye, or CCEd waits forever:
-        $cceClient->bye();
-        $serverScriptHelper->destructor();
 
         $page_body[] = $block->toHtml();
 

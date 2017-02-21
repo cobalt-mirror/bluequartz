@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=backupcontrol
 
 VERSION=1.1.0
-RELEASE=0BX06
+RELEASE=0BX07
 
 # add a buildarch if desired
 BUILDARCH=noarch
