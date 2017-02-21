@@ -12,38 +12,31 @@ class Template extends MX_Controller {
     public function index() {
 
         $CI =& get_instance();
-        
+
         // We load the BlueOnyx helper library first of all, as we heavily depend on it:
         $this->load->helper('blueonyx');
         init_libraries();
 
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
-        $MX =& get_instance();
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
-        $locale = $CI->input->cookie('locale');
+        // Get $sessionId and $loginName from Cookie (if they are set) and store them in $CI->BX_SESSION:
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
-        // Line up the ducks for CCE-Connection:
+        // Line up the ducks for CCE-Connection and store them for re-usability in $CI:
         include_once('ServerScriptHelper.php');
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        $cceClient = $serverScriptHelper->getCceClient();
-        $user = $cceClient->getObject("User", array("name" => $loginName));
-        $i18n = new I18n("base-email", $user['localePreference']);
-        $system = $cceClient->getObject("System");
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
 
-        // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
-
-        // -- Actual page logic start:
+        $i18n = new I18n("base-vsite", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
 
         // Not 'admin'? Bye, bye!
-        if (!$Capabilities->getAllowed('admin')) {
+        if (!$CI->serverScriptHelper->getAllowed('admin')) {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403");
         }
 
@@ -129,7 +122,7 @@ class Template extends MX_Controller {
             }
 
             // We have no errors. We submit to CODB.
-            $cceClient->setObject("System",
+            $CI->cceClient->setObject("System",
                     array(
                         "ipaddr" => $attributes['ipAddr'],
                         "domain" => $attributes['domain'],
@@ -145,7 +138,7 @@ class Template extends MX_Controller {
                 );
 
             // CCE errors that might have happened during submit to CODB:
-            $CCEerrors = $cceClient->errors();
+            $CCEerrors = $CI->cceClient->errors();
             foreach ($CCEerrors as $object => $objData) {
                 // When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
                 $errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
@@ -156,9 +149,9 @@ class Template extends MX_Controller {
             //
             if (count($errors) == "0") {
                 // Handle automatically detected services
-                $autoFeatures = new AutoFeatures($serverScriptHelper, $attributes);
+                $autoFeatures = new AutoFeatures($CI->serverScriptHelper, $attributes);
                 $cce_info = array();
-                list($cce_info["CCE_SERVICES_OID"]) = $cceClient->find("VsiteServices");
+                list($cce_info["CCE_SERVICES_OID"]) = $CI->cceClient->find("VsiteServices");
                 $af_errors = $autoFeatures->handle("defaults.Vsite", $cce_info); 
                 $errors = array_merge($errors, $af_errors);
             }
@@ -166,8 +159,8 @@ class Template extends MX_Controller {
             // No errors? Great, reload page:
             if (count($errors) == "0") {
                 // Nice people say goodbye, or CCEd waits forever:
-                $cceClient->bye();
-                $serverScriptHelper->destructor();
+                $CI->cceClient->bye();
+                $CI->serverScriptHelper->destructor();
                 header("Location: /vsite/template");
                 exit;
             }
@@ -179,19 +172,20 @@ class Template extends MX_Controller {
         //
 
         // Prepare Page:
-        $factory = $serverScriptHelper->getHtmlComponentFactory("base-vsite", "/vsite/template");
+        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-vsite", "/vsite/template");
         $BxPage = $factory->getPage();
+        $BxPage->setErrors($errors);
         $i18n = $factory->getI18n();
 
-        $product = new Product($cceClient);
+        $product = new Product($CI->cceClient);
 
         // Set Menu items:
         $BxPage->setVerticalMenu('base_sitemanage');
         $page_module = 'base_sitemanageVSL';
 
         // Read the current defaults from cce, so they can be substituted
-        list($sysoid) = $cceClient->find("System");
-        $vsiteDefaults = $cceClient->get($sysoid, "VsiteDefaults");
+        list($sysoid) = $CI->cceClient->find("System");
+        $vsiteDefaults = $CI->cceClient->get($sysoid, "VsiteDefaults");
 
         $pageId = "siteDefaultsTab";
 
@@ -284,31 +278,15 @@ class Template extends MX_Controller {
         //
 
         // Add automatically detected features
-        $autoFeatures = new AutoFeatures($serverScriptHelper);
+        $autoFeatures = new AutoFeatures($CI->serverScriptHelper);
         $cce_info = array();
-        list($cce_info['CCE_SERVICES_OID']) = $cceClient->find('VsiteServices');
+        list($cce_info['CCE_SERVICES_OID']) = $CI->cceClient->find('VsiteServices');
         $cce_info['PAGED_BLOCK_DEFAULT_PAGE'] = 'otherServices';
         $autoFeatures->display($block, 'defaults.Vsite', $cce_info);
 
         // Add the buttons
         $block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
         $block->addButton($factory->getCancelButton("/vsite/template"));
-
-        //
-        //-- Error message handing:
-        //
-        $BXerrors = array();
-        foreach ($errors as $object => $objData) {
-            // When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
-            $BXerrors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
-        }
-
-        // Publish error messages:
-        $BxPage->setErrors($BXerrors);
-
-        // Nice people say goodbye, or CCEd waits forever:
-        $cceClient->bye();
-        $serverScriptHelper->destructor();
 
         $page_body[] = $block->toHtml();
 
