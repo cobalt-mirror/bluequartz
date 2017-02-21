@@ -11,20 +11,30 @@ class WarAdd extends MX_Controller {
 
 	public function index() {
 
-		$CI =& get_instance();
-		
-	    // We load the BlueOnyx helper library first of all, as we heavily depend on it:
-	    $this->load->helper('blueonyx');
-	    init_libraries();
+        $CI =& get_instance();
 
-  		// Need to load 'BxPage' for page rendering:
-  		$this->load->library('BxPage');
-		$MX =& get_instance();
+        // We load the BlueOnyx helper library first of all, as we heavily depend on it:
+        $this->load->helper('blueonyx');
+        init_libraries();
 
-	    // Get $sessionId and $loginName from Cookie (if they are set):
-	    $sessionId = $CI->input->cookie('sessionId');
-	    $loginName = $CI->input->cookie('loginName');
-	    $locale = $CI->input->cookie('locale');
+        // Need to load 'BxPage' for page rendering:
+        $this->load->library('BxPage');
+
+        // Get $sessionId and $loginName from Cookie (if they are set) and store them in $CI->BX_SESSION:
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
+
+        // Line up the ducks for CCE-Connection and store them for re-usability in $CI:
+        include_once('ServerScriptHelper.php');
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
+
+        $i18n = new I18n("base-java", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
+        $user = $CI->BX_SESSION['loginUser'];
+
+		// Initialize Capabilities so that we can poll the access rights as well:
+		$Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
 
 		// Adds settings to avoid changing php.ini
 		ini_set('memory_limit', '256M');
@@ -33,16 +43,8 @@ class WarAdd extends MX_Controller {
 		ini_set('max_execution_time', '0');
 		ini_set('max_input_time', '0');
 
-	    // Line up the ducks for CCE-Connection:
-	    include_once('ServerScriptHelper.php');
-		$serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-		$cceClient = $serverScriptHelper->getCceClient();
-		$user = $cceClient->getObject("User", array("name" => $loginName));
-		$i18n = new I18n("base-java", $user['localePreference']);
-		$system = $cceClient->getObject("System");
-
 		// Initialize Capabilities so that we can poll the access rights as well:
-		$Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+		$Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
 
 		// -- Actual page logic start:
 
@@ -75,8 +77,8 @@ class WarAdd extends MX_Controller {
 		else {
 			// Don't play games with us!
 			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
+			$CI->cceClient->bye();
+			$CI->serverScriptHelper->destructor();
 			Log403Error("/gui/Forbidden403#1");
 		}
 
@@ -90,8 +92,8 @@ class WarAdd extends MX_Controller {
 		// Returns Forbidden403 if *none* of that is the case.
 		if (!$Capabilities->getGroupAdmin($group)) {
 			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
+			$CI->cceClient->bye();
+			$CI->serverScriptHelper->destructor();
 			Log403Error("/gui/Forbidden403#2");
 		}
 
@@ -100,15 +102,15 @@ class WarAdd extends MX_Controller {
 		//
 
 		// Get data for the Vsite:
-		$vsite = $cceClient->getObject('Vsite', array('name' => $group));
-		$vsiteJava = $cceClient->getObject('Vsite', array('name' => $group), "Java");
+		$vsite = $CI->cceClient->getObject('Vsite', array('name' => $group));
+		$vsiteJava = $CI->cceClient->getObject('Vsite', array('name' => $group), "Java");
         $dirName = $vsite['basedir'] . "/web";
 
 		if ($vsiteJava['enabled'] != "1") {
 			// Java is not enabled! We're going home!
 			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
+			$CI->cceClient->bye();
+			$CI->serverScriptHelper->destructor();
 
 			// Back to the main page:
 	        header("Location: /java/warList?group=" . $group);
@@ -182,12 +184,12 @@ class WarAdd extends MX_Controller {
 			if (!preg_match('/^\/java\//', $backUrl)) {
 				// Don't play games with us!
 				// Nice people say goodbye, or CCEd waits forever:
-				$cceClient->bye();
-				$serverScriptHelper->destructor();
+				$CI->cceClient->bye();
+				$CI->serverScriptHelper->destructor();
 				Log403Error("/gui/Forbidden403#0");
 			}
 
-			$runas = ($Capabilities->getAllowed('adminUser') ? 'root' : $loginName);
+			$runas = ($Capabilities->getAllowed('adminUser') ? 'root' : $CI->BX_SESSION['loginName']);
 
 			// Filter bash manipulative characters
 			$targetField = preg_replace('/[\n\r\;\"]/', "", $form_data['targetField']);
@@ -223,7 +225,7 @@ class WarAdd extends MX_Controller {
 					// than sorry. Note to self: This check requires PHP-5.2 or better.
 					$ret = -1;
 					if (filter_var($urlField, FILTER_VALIDATE_URL)) {
-						$ret = $serverScriptHelper->shell("$prepare_cmd -n $loginName -g $group -u \"$urlField\" -t \"$targetField\" -c", $output, $runas, $sessionId);
+						$ret = $CI->serverScriptHelper->shell("$prepare_cmd -n " . $CI->BX_SESSION['loginName'] . " -g $group -u \"$urlField\" -t \"$targetField\" -c", $output, $runas, $CI->BX_SESSION['sessionId']);
 					}
 
 				    if ($ret != 0) {
@@ -232,7 +234,7 @@ class WarAdd extends MX_Controller {
 				    }
 				    else {
 				    	// If the 'prepare_cmd' was sucessful, we now have the *.war listed in CODB:
-						$WarCry = $cceClient->getObject("JavaWar", array('group' => $group, 'name' => $targetField), "");
+						$WarCry = $CI->cceClient->getObject("JavaWar", array('group' => $group, 'name' => $targetField), "");
 						if (!isset($WarCry['name'])) {
 							// Install failed. Roll up error message and let the user try again:
 							$my_errors[] = ErrorMessage($i18n->get("[[base-java.installFailure]]") . '<br>&nbsp;');
@@ -240,8 +242,8 @@ class WarAdd extends MX_Controller {
 						else {
 							// Install went fine. We're going home.
 							// Nice people say goodbye, or CCEd waits forever:
-							$cceClient->bye();
-							$serverScriptHelper->destructor();
+							$CI->cceClient->bye();
+							$CI->serverScriptHelper->destructor();
 
 							// Back to the main page:
 					        header("Location: /java/warList?group=" . $group);
@@ -275,7 +277,7 @@ class WarAdd extends MX_Controller {
 			    	$tmp_pkg = $data['full_path'];
 
 				    // Install uploaded WAR:
-				    $ret = $serverScriptHelper->shell("$prepare_cmd -n $loginName -g $group -f $tmp_pkg -t \"$targetField\" -c", $output, $runas, $sessionId);
+				    $ret = $CI->serverScriptHelper->shell("$prepare_cmd -n " . $CI->BX_SESSION['loginName'] . " -g $group -f $tmp_pkg -t \"$targetField\" -c", $output, $runas, $CI->BX_SESSION['sessionId']);
 
 				    if ($ret != 0) {
 				        // Deal with errors:
@@ -286,7 +288,7 @@ class WarAdd extends MX_Controller {
 				    }
 				    else {
 				    	// If the 'prepare_cmd' was sucessful, we now have the *.war listed in CODB:
-						$WarCry = $cceClient->getObject("JavaWar", array('group' => $group, 'name' => $targetField), "");
+						$WarCry = $CI->cceClient->getObject("JavaWar", array('group' => $group, 'name' => $targetField), "");
 						if (!isset($WarCry['name'])) {
 							// Install failed. Roll up error message and let the user try again:
 							$my_errors[] = ErrorMessage($i18n->get("[[base-java.installFailure]]") . '<br>&nbsp;');
@@ -294,8 +296,8 @@ class WarAdd extends MX_Controller {
 						else {
 							// Install went fine. We're going home.
 							// Nice people say goodbye, or CCEd waits forever:
-							$cceClient->bye();
-							$serverScriptHelper->destructor();
+							$CI->cceClient->bye();
+							$CI->serverScriptHelper->destructor();
 
 							// Back to the main page:
 					        header("Location: /java/warList?group=" . $group);
@@ -315,13 +317,13 @@ class WarAdd extends MX_Controller {
 				if (!is_file($WarPath)) {
 					// Don't play games with us!
 					// Nice people say goodbye, or CCEd waits forever:
-					$cceClient->bye();
-					$serverScriptHelper->destructor();
+					$CI->cceClient->bye();
+					$CI->serverScriptHelper->destructor();
 					Log403Error("/gui/Forbidden403#0a");
 				}
 
 				// Install uploaded WAR:
-				$ret = $serverScriptHelper->shell("$prepare_cmd -n $loginName -g $group -f $WarPath -t \"$targetField\" -c", $output, $runas, $sessionId);
+				$ret = $CI->serverScriptHelper->shell("$prepare_cmd -n " . $CI->BX_SESSION['loginName'] . " -g $group -f $WarPath -t \"$targetField\" -c", $output, $runas, $CI->BX_SESSION['sessionId']);
 			    if ($ret != 0) {
 			        // Deal with errors:
 			        $ci_errors[] = new CceError('huh', 0, 'urlField', "[[base-java.badPackage]]");
@@ -331,7 +333,7 @@ class WarAdd extends MX_Controller {
 			    }
 			    else {
 			    	// If the 'prepare_cmd' was sucessful, we now have the *.war listed in CODB:
-					$WarCry = $cceClient->getObject("JavaWar", array('group' => $group, 'name' => $targetField), "");
+					$WarCry = $CI->cceClient->getObject("JavaWar", array('group' => $group, 'name' => $targetField), "");
 					if (!isset($WarCry['name'])) {
 						// Install failed. Roll up error message and let the user try again:
 						$my_errors[] = ErrorMessage($i18n->get("[[base-java.installFailure]]") . '<br>&nbsp;');
@@ -339,8 +341,8 @@ class WarAdd extends MX_Controller {
 					else {
 						// Install went fine. We're going home.
 						// Nice people say goodbye, or CCEd waits forever:
-						$cceClient->bye();
-						$serverScriptHelper->destructor();
+						$CI->cceClient->bye();
+						$CI->serverScriptHelper->destructor();
 
 						// Back to the main page:
 				        header("Location: /java/warList?group=" . $group);
@@ -350,8 +352,8 @@ class WarAdd extends MX_Controller {
 			}
 			else {
 				// Nice people say goodbye, or CCEd waits forever:
-				$cceClient->bye();
-				$serverScriptHelper->destructor();
+				$CI->cceClient->bye();
+				$CI->serverScriptHelper->destructor();
 
 				// Wow. No method selected. Reload page and try that again:
 		        header("Location: /swupdate/manualInstall?backUrl=$backUrl");
@@ -375,13 +377,13 @@ class WarAdd extends MX_Controller {
 		}
 		else {
 			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
+			$CI->cceClient->bye();
+			$CI->serverScriptHelper->destructor();
 			Log403Error("/gui/Forbidden403#3");
 		}
 
 		// Prepare Page:
-		$factory = $serverScriptHelper->getHtmlComponentFactory("base-java", "/java/warAdd?group=$group");
+		$factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-java", "/java/warAdd?group=$group");
 		$BxPage = $factory->getPage();
 		$BxPage->setErrors($errors);
 		$i18n = $factory->getI18n();
@@ -471,10 +473,6 @@ class WarAdd extends MX_Controller {
 
 		$block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
 		$block->addButton($factory->getCancelButton("/java/warList?group=$group"));
-
-		// Nice people say goodbye, or CCEd waits forever:
-		$cceClient->bye();
-		$serverScriptHelper->destructor();
 
 		$page_body[] = $block->toHtml();
 

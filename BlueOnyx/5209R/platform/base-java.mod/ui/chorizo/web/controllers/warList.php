@@ -11,31 +11,30 @@ class WarList extends MX_Controller {
 
 	public function index() {
 
-		$CI =& get_instance();
-		
-	    // We load the BlueOnyx helper library first of all, as we heavily depend on it:
-	    $this->load->helper('blueonyx');
-	    init_libraries();
+        $CI =& get_instance();
 
-  		// Need to load 'BxPage' for page rendering:
-  		$this->load->library('BxPage');
-		$MX =& get_instance();
+        // We load the BlueOnyx helper library first of all, as we heavily depend on it:
+        $this->load->helper('blueonyx');
+        init_libraries();
 
-	    // Get $sessionId and $loginName from Cookie (if they are set):
-	    $sessionId = $CI->input->cookie('sessionId');
-	    $loginName = $CI->input->cookie('loginName');
-	    $locale = $CI->input->cookie('locale');
+        // Need to load 'BxPage' for page rendering:
+        $this->load->library('BxPage');
 
-	    // Line up the ducks for CCE-Connection:
-	    include_once('ServerScriptHelper.php');
-		$serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-		$cceClient = $serverScriptHelper->getCceClient();
-		$user = $cceClient->getObject("User", array("name" => $loginName));
-		$i18n = new I18n("base-java", $user['localePreference']);
-		$system = $cceClient->getObject("System");
+        // Get $sessionId and $loginName from Cookie (if they are set) and store them in $CI->BX_SESSION:
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
+
+        // Line up the ducks for CCE-Connection and store them for re-usability in $CI:
+        include_once('ServerScriptHelper.php');
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
+
+        $i18n = new I18n("base-java", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
+        $user = $CI->BX_SESSION['loginUser'];
 
 		// Initialize Capabilities so that we can poll the access rights as well:
-		$Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+		$Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
 
 		// Required array setup:
 		$errors = array();
@@ -55,8 +54,8 @@ class WarList extends MX_Controller {
 		else {
 			// Don't play games with us!
 			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
+			$CI->cceClient->bye();
+			$CI->serverScriptHelper->destructor();
 			Log403Error("/gui/Forbidden403#1");
 		}
 
@@ -70,8 +69,8 @@ class WarList extends MX_Controller {
 		// Returns Forbidden403 if *none* of that is the case.
 		if (!$Capabilities->getGroupAdmin($group)) {
 			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
+			$CI->cceClient->bye();
+			$CI->serverScriptHelper->destructor();
 			Log403Error("/gui/Forbidden403#2");
 		}
 
@@ -79,10 +78,10 @@ class WarList extends MX_Controller {
 		//-- Get Vsite data
 		//
 		if ($group) {
-			$JavaWarOids = $cceClient->find("JavaWar", array("group" => "$group"));
+			$JavaWarOids = $CI->cceClient->find("JavaWar", array("group" => "$group"));
 			// Lookup the current site for the fqdn, used in the form/help text
-			$vsite = $cceClient->getObject('Vsite', array('name' => $group));
-			$vsiteJava = $cceClient->getObject('Vsite', array('name' => $group), "Java");
+			$vsite = $CI->cceClient->getObject('Vsite', array('name' => $group));
+			$vsiteJava = $CI->cceClient->getObject('Vsite', array('name' => $group), "Java");
 		}
 		else {
 			$JavaWarOids = array();
@@ -94,12 +93,12 @@ class WarList extends MX_Controller {
 		if ((!$Capabilities->getAllowed('adminUser')) && 
 			(!$Capabilities->getAllowed('siteAdmin')) && 
 			(!$Capabilities->getAllowed('manageSite')) && 
-			(($user['site'] != $serverScriptHelper->loginUser['site']) && $Capabilities->getAllowed('siteAdmin')) &&
-			(($vsiteObj['createdUser'] != $loginName) && $Capabilities->getAllowed('manageSite'))
+			(($user['site'] != $CI->serverScriptHelper->loginUser['site']) && $Capabilities->getAllowed('siteAdmin')) &&
+			(($vsiteObj['createdUser'] != $CI->BX_SESSION['loginName']) && $Capabilities->getAllowed('manageSite'))
 			) {
 			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
+			$CI->cceClient->bye();
+			$CI->serverScriptHelper->destructor();
 			Log403Error("/gui/Forbidden403#4");
 		}
 
@@ -118,12 +117,12 @@ class WarList extends MX_Controller {
 			$_REMOVE = $get_form_data['_REMOVE'];
 			if (intval($_REMOVE) > 0) {
 				// Verify if it's an 'JavaWar' Object of this group:
-				$obj = $cceClient->get($_REMOVE);
+				$obj = $CI->cceClient->get($_REMOVE);
 				if (($obj['CLASS'] != "JavaWar") || ($obj['group'] != $group)) { 
 					// Yeah, it was a nice try. There is the door!
 					// Nice people say goodbye, or CCEd waits forever:
-					$cceClient->bye();
-					$serverScriptHelper->destructor();
+					$CI->cceClient->bye();
+					$CI->serverScriptHelper->destructor();
 					Log403Error("/gui/Forbidden403#5");
 				}
 				// Destroy the Mailing-List Object:
@@ -133,14 +132,14 @@ class WarList extends MX_Controller {
 				  	if(($obj['name'] != '') && ($vsite['basedir'] != '')) {
 				    	$path = $vsite['basedir'].'/web/'.$obj['name'];
 				    	// Bombs away!
-				    	$runas = ($Capabilities->getAllowed('adminUser') ? 'root' : $loginName);
-						$ret = $serverScriptHelper->shell("/bin/rm -rf \"$path\"", $output, $runas, $sessionId);
+				    	$runas = ($Capabilities->getAllowed('adminUser') ? 'root' : $CI->BX_SESSION['loginName']);
+						$ret = $CI->serverScriptHelper->shell("/bin/rm -rf \"$path\"", $output, $runas, $CI->BX_SESSION['sessionId']);
 					}
-					$ret = $cceClient->destroy($_REMOVE);
+					$ret = $CI->cceClient->destroy($_REMOVE);
 				}
 
 				// CCE errors that might have happened during submit to CODB:
-				$CCEerrors = $cceClient->errors();
+				$CCEerrors = $CI->cceClient->errors();
 				foreach ($CCEerrors as $object => $objData) {
 					// When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
 					$delErrors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
@@ -148,8 +147,8 @@ class WarList extends MX_Controller {
 
 				// No errors during submit? Reload page:
 				if (count($errors) == "0") {
-					$cceClient->bye();
-					$serverScriptHelper->destructor();
+					$CI->cceClient->bye();
+					$CI->serverScriptHelper->destructor();
 					$redirect_URL = "/java/warList?group=$group";
 					header("location: $redirect_URL");
 					exit;
@@ -160,7 +159,7 @@ class WarList extends MX_Controller {
 	    //-- Generate page:
 
 		// Prepare Page:
-		$factory = $serverScriptHelper->getHtmlComponentFactory("base-java", "/java/warList?group=$group");
+		$factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-java", "/java/warList?group=$group");
 		$BxPage = $factory->getPage();
 		$i18n = $factory->getI18n();
 
@@ -265,7 +264,7 @@ class WarList extends MX_Controller {
 
 		//-- Populate ScrollList:
 		foreach ($JavaWarOids as $i => $oid) {
-			$warList = $cceClient->get($oid, "");
+			$warList = $CI->cceClient->get($oid, "");
 			$path = 'http://'.$vsite['fqdn'].'/'.$warList['name'];
 			$msg = $i18n->get("confirm_archive_removal", "", array('path' => $path));
 
@@ -286,10 +285,6 @@ class WarList extends MX_Controller {
 			$factory->getLabel('warNames_menu'),
 			$defaultPage
 		);
-
-		// Nice people say goodbye, or CCEd waits forever:
-		$cceClient->bye();
-		$serverScriptHelper->destructor();
 
 		$page_body[] = $block->toHtml();
 
