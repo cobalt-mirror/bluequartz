@@ -335,7 +335,6 @@ class Capabilities {
 
         // get the capLevels from this user 
         if (isset($currentuser)) {
-            //$caplevels = stringToArray($this->loginUser["capLevels"]);
             $uirights = stringToArray($this->loginUser["uiRights"]);
             if (in_array("systemAdministrator", $uirights) || $this->loginUser["systemAdministrator"]) {
                 // I am god, so I get ALL the capgroups :)
