@@ -304,12 +304,7 @@ class CceClient {
   // usage: $oid = $cce->create($class, array( 'property' => 'value' ));
   function create($class, $vars = array()) {
     if ($this->DEBUG) {
-      $varline = " ";
-      foreach ($vars as $key => $value) {
-        $varline .= "$key = \"" . CceClient::_escape($value) . "\" ";
-      }
-      $varline = rtrim($varline);
-      error_log("Command: CREATE $class $varline");
+      error_log("Command: CREATE $class " . json_encode($vars));
     }
     if (!$this->getNative()) {
       return ccephp_create($this->handle, $class, $vars);
@@ -341,6 +336,9 @@ class CceClient {
   // usage: $cce->destroyObjects($class, array( 'findkey' => 'findvalue'));
   // DEPRECATED
   function destroyObjects($class, $vars = array()) {
+    if ($this->DEBUG) {
+      error_log("Command: DestroyObjects $class " . json_encode($vars));
+    }
     $oids = $this->find($class, $vars);
     for($i = 0; $i < count($oids); $i++)
       $this->destroy($oids[$i]);
@@ -396,12 +394,7 @@ class CceClient {
   // usage: $oids = $cce->find($class, array( 'property' => 'value'));
   function find($class, $vars = array()) {
     if ($this->DEBUG) {
-      $varline = " ";
-      foreach ($vars as $key => $value) {
-        $varline .= "$key = \"" . CceClient::_escape($value) . "\" ";
-      }
-      $varline = rtrim($varline);
-      error_log("Command: FIND $class $varline");
+      error_log("Command: FIND $class " . json_encode($vars));
     }
     if (!$this->getNative()) {
       return ccephp_find($this->handle, $class, $vars, "", 0);
@@ -418,6 +411,9 @@ class CceClient {
   // usage: $oids = $cce->findSorted($class, $sortkey, array( 'property' => 'value'));
   // DEPRECATED - this just does a regular find()
   function findSorted($class, $key, $vars = array()) {
+    if ($this->DEBUG) {
+      error_log("Command: FINDSORTED $class $key " . json_encode($vars));
+    }
     if (!$this->getNative()) {
       return ccephp_find($this->handle, $class, $vars, $key, 0);
     }
@@ -431,6 +427,9 @@ class CceClient {
   // usage: $oids = $cce->findSorted($class, $sortkey, array( 'property' => 'value'));
   // DEPRECATED - this just does a regular find()
   function findNSorted($class, $key, $vars = array()) {
+    if ($this->DEBUG) {
+      error_log("Command: FINDSORTED $class $key " . json_encode($vars));
+    }
     if (!$this->getNative()) {
       return ccephp_find($this->handle, $class, $vars, $key, 1);
     }
@@ -451,12 +450,7 @@ class CceClient {
   // usage: $oids = $cce->findx($class, $vars, $regex_vars, $sorttype, $sortkey);
   function findx($class, $vars = array(), $revars = array(), $sorttype="", $sortprop = "") {
     if ($this->DEBUG) {
-      $varline = " ";
-      foreach ($vars as $key => $value) {
-        $varline .= "$key = \"" . CceClient::_escape($value) . "\" ";
-      }
-      $varline = rtrim($varline);
-      error_log("Command: FINDX $class $varline");
+      error_log("Command: FINDX $class " . json_encode(array('vars' => $vars, 'revars' => $revars, 'sorttype' => $sorttype, 'sortprop' => $sortprop)));
     }
     if (!$this->getNative()) {
       return ccephp_findx($this->handle, $class, $vars, $revars, $sorttype, $sortprop);
@@ -502,6 +496,9 @@ class CceClient {
   // returns: a property hash or null if the object cannot be found
   // usage: $object = $cce->getObject($class, array( 'property' => 'value'), $namespace);
   function getObject($class, $vars = array(), $namespace = "") {
+    if ($this->DEBUG) {
+      error_log("Command: GetObject $class " . json_encode($vars) . ' ' . $namespace);
+    }
     $oids = $this->find($class, $vars);
     if ((count($oids) > 0) && (isset($oids[0]))) {
       return $this->get($oids[0], $namespace);
@@ -517,8 +514,10 @@ class CceClient {
   // returns: an array of property hashes, or null if no objects can be found
   // usage: $objects = $cce->getObjects($class, array( 'property' => 'value'), $namespace);
   function getObjects($class, $vars = array(), $namespace = "") {
+    if ($this->DEBUG) {
+      error_log("Command: GetObjects $class" . json_encode($vars) . " . $namespace");
+    }
     $oids = $this->find($class, $vars);
-
     $objects = array();
     for($i = 0; $i < count($oids); $i++)
       $objects[] = $this->get($oids[$i], $namespace);
@@ -552,16 +551,11 @@ class CceClient {
   // usage: $ok = $cce->set($oid, $namespace, array( 'property' => 'value'));
   function set($oid, $namespace = "", $vars = array()) {
     if ($this->DEBUG) {
-      $varline = " ";
-      foreach ($vars as $key => $value) {
-        $varline .= "$key = \"" . CceClient::_escape($value) . "\" ";
-      }
-      $varline = rtrim($varline);
       if ($namespace == "") {
-        error_log("Command: SET $oid $varline");
+        error_log("Command: SET $oid " . json_encode($varline));
       }
       else {
-        error_log("Command: SET $oid . $namespace  $varline");
+        error_log("Command: SET $oid $namespace " . json_encode($varline));
       }
     }
 
@@ -579,6 +573,9 @@ class CceClient {
   // returns: true on success, false otherwise
   // usage: $ok = $cce->set($class, array( 'property' => 'value'), $namespace, array( 'findkey' => 'findvalue'));
   function setObject($class, $setVars = array(), $namespace = "", $findVars = array()) {
+    if ($this->DEBUG) {
+      error_log("Command: setObject $class " . json_encode($setVars) . ' ' . $namespace . ' ' . json_encode($findVars));
+    }
     $oids = $this->find($class, $findVars);
     if (count($oids) > 0) {
       return $this->set($oids[0], $namespace, $setVars);
@@ -594,8 +591,10 @@ class CceClient {
   // returns: true on success, false otherwise
   // usage: $ok = $cce->set($class, array( 'property' => 'value'), $namespace, array( 'findkey' => 'findvalue'));
   function setObjectForce($class, $setVars = array(), $namespace = "", $findVars = array()) {
+    if ($this->DEBUG) {
+      error_log("Command: setObjectForce $class " . json_encode($setVars) . ' ' . $namespace . ' ' . json_encode($findVars));
+    }
     $oids = $this->find($class, $findVars);
-
     // create if necessary
     if(count($oids) == 0)
       if(!$this->create($class))
