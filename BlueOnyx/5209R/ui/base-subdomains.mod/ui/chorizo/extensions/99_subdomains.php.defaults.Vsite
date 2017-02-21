@@ -11,12 +11,14 @@
 	class subdomainsExtension extends UIExtension {
 
 		function display(&$ServerScriptHelper, &$container, &$parameters) {
+			$CI =& get_instance();
 			$factory = $ServerScriptHelper->getHtmlComponentFactory("base-subdomains");
 			$cceClient = $ServerScriptHelper->getCceClient();
 
 			$pageId = $parameters['PAGED_BLOCK_DEFAULT_PAGE'];
 
-			$site = $cceClient->getObject("System", array(), "subdomains");
+			$system = $CI->getSystem();
+			$site = $cceClient->get($system['OID'], "subdomains");
 
 			// Add Divider:
 			$container->addFormField(
