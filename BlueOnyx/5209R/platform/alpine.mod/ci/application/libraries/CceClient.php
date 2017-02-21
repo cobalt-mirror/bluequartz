@@ -552,10 +552,10 @@ class CceClient {
   function set($oid, $namespace = "", $vars = array()) {
     if ($this->DEBUG) {
       if ($namespace == "") {
-        error_log("Command: SET $oid " . json_encode($varline));
+        error_log("Command: SET $oid " . json_encode($vars));
       }
       else {
-        error_log("Command: SET $oid $namespace " . json_encode($varline));
+        error_log("Command: SET $oid $namespace " . json_encode($vars));
       }
     }
 

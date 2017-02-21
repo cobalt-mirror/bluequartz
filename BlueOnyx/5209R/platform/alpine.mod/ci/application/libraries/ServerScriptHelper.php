@@ -350,7 +350,7 @@ class ServerScriptHelper {
     // description: returns the global capabilities object
     function getCapabilitiesObject() {
         if ($this->capabilities == null) {
-            $this->capabilities = getGlobalCapabilitiesObject($this->cceClient);
+            $this->capabilities = $this->getGlobalCapabilitiesObject($this->cceClient);
             return $this->capabilities;
         }
     }
@@ -488,19 +488,27 @@ class ServerScriptHelper {
         }
 
         if ($userShell['enabled'] == "1") {
-            $accessRights[] = 'shellAccessEnabled';
+            if (!in_array('shellAccessEnabled', $accessRights)) {
+                $accessRights[] = 'shellAccessEnabled';
+            }
         }
 
         if (($loginName == "admin") || ($this->loginUser['systemAdministrator'] == '1')) {
-            $accessRights[] = "admin";
-            $accessRights[] = "systemAdministrator";
+            if (!in_array('admin', $accessRights)) {
+                $accessRights[] = "admin";
+            }
+            if (!in_array('systemAdministrator', $accessRights)) {
+                $accessRights[] = "systemAdministrator";
+            }            
         }
 
         if (in_array($loginName, posix_getgrnam("site-adm"))) {
-            $accessRights[] = "siteAdministrator";
+            if (!in_array('siteAdministrator', $accessRights)) {
+                $accessRights[] = "siteAdministrator";
+            }
         } 
 
-        return array_unique($accessRights);
+        return array_unique(array_values($accessRights));
     }
 
     // description: get a connected and authenticated CceClient
@@ -1001,34 +1009,43 @@ class ServerScriptHelper {
             $caplevels = stringToArray($user["capLevels"]);
         } 
 
-        foreach ($caplevels as $caplevel) {
-            $ret = array_merge((array)$ret, (array)$this->expandCaps($caplevel));
-        }
+        $returnCap = array();
 
-        // remember to add the uirights in
-        if (isset($currentuser)) {
-            // self
-            $ret = array_merge($ret, stringToArray($this->loginUser["uiRights"]));
-        } 
-        else {
-            $ret = array_merge($ret, stringToArray($user["uiRights"]));
-        }
-
-        // make unique and store
-        $ret = array_unique($ret);
-        $retclean = array();
-        foreach ($ret as $key => $value) {
-            if (!empty($value)) {
-                $retclean[$key] = $value;
+        foreach ($caplevels as $key => $capName) {
+            foreach ($this->getAllCapabilityGroups() as $capA => $capContend) {
+                if ($capContend['CLASS'] == "CapabilityGroup") {
+                    if ($capContend['name'] == $capName) {
+                        if (!in_array($capName, $returnCap)) {
+                            $returnCap[] = $capName;
+                        }
+                        $tmpreturnCap = scalar_to_array($capContend['capabilities']);
+                        foreach ($tmpreturnCap as $key => $value) {
+                            if (!in_array($value, $returnCap)) {
+                                $returnCap[] = $value;
+                            }
+                        }
+                    }
+                    else {
+                        if (!in_array($capName, $returnCap)) {
+                            $returnCap[] = $capName;
+                        }
+                    }
+                }
             }
         }
 
-        if ($this->_listAllowed == null) {
-            $this->_listAllowed = array();
+        // New method via CI 'BX_SESSION':
+        $CI =& get_instance();
+        if ($CI->BX_SESSION['userShell'] == "1") {
+            $returnCap[] = 'shellAccessEnabled';
         }
 
-        $this->_listAllowed[$oid] = $retclean;
-        return $retclean;
+        // Remove blank entries, make unique and store:
+        $returnCap = array_filter(array_unique($returnCap));
+        if ($this->_listAllowed[$oid] == TRUE) {
+            $this->_listAllowed[$oid] = $returnCap;
+        }
+        return $returnCap;
     }
 
     // description: checks to see if a user is granted the given capability.
@@ -1066,6 +1083,34 @@ class ServerScriptHelper {
         }
         else {
             return 0;
+        }
+        return 0;
+    }
+
+    // description: checks to see if a user is in a certain group or a reseller of it.
+    // param: the group of the User/Vsite to check
+    // param: the user to check for (default: current)
+    // returns: true if the current user has this capability, false otherwise
+
+    function getGroup($group, $oid = -1) {
+        if ($oid == -1) {
+            $currentuser = 1;
+            $oid = $this->loginUser["OID"];
+        }
+        // Find out if the Group exists:
+        $site = $this->cceClient->getObject('Vsite', array('name' => $group));
+        if (!isset($site['fqdn'])) {
+            // Group doesn't exist. So we fail right here:
+            return 0;
+        }
+        if ($this->loginUser['systemAdministrator']) {
+            // Fast 'yes' to all rights, because we are system administrator:
+            return 1;
+        }
+        // Check if this user belongs to the given group OR is Reseller of this group:
+        if (($this->loginUser['site'] == $group) || ($this->getReseller($group))) {
+            // This user is listed as 'createdUser', so we return yes:
+            return 1;
         }
         return 0;
     }

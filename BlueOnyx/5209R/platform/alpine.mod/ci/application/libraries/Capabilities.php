@@ -35,6 +35,7 @@ class Capabilities {
     // Description: Constructor
     // param: a active cceclient. (optional, otherwise it will create a new connection)
     function Capabilities($cce = NULL, $loginName = NULL, $sessionId = NULL) {
+        $CI =& get_instance();
         if ($cce != NULL) {
             $this->cceClient =& $cce;
         }
@@ -43,7 +44,6 @@ class Capabilities {
         }
 
         // New method via CI 'BX_SESSION':
-        $CI =& get_instance();
         $userCap = $CI->BX_SESSION['loginUser'];
         $iam = $userCap['OID'];
         $this->loginUser = $userCap;
@@ -238,42 +238,81 @@ class Capabilities {
 
     // description:  gets the capabilityGroup and caches it
     function &getCapabilityGroup($capName, $data = null) {
-    if ($data) {
-    // we are given the data to cache.
-    $this->capabilityGroups[$capName] = $data;
-    return $this->capabilityGroups[$capName];
-    }
-    // check if we already checked and couldn't find this capname
-    if (isset($this->capabilityGroups[$capName])) {
-    if (isset($this->notCapabilityGroups[$capName]) || ($this->capabilityGroups[$capName]==null && $this->_gotAllCapabilityGroups)) {
-    return null;
-    }
-    }
-    $cce = $this->cceClient;
-    if (isset($this->capabilityGroups[$capName])) {
-    if ($this->capabilityGroups[$capName]!=null) {
-    return $this->capabilityGroups[$capName];
-    }
-    }
-    if (($group = $this->cceClient->getObject("CapabilityGroup", array("name"=>$capName)))!=null) {
-    $this->capabilityGroups[$capName] = $group;
-    return $this->capabilityGroups[$capName];
-    }
-    $this->notCapabilityGroups[$capName] = 1;
-    $null = "NULL";
-    return $null;
+        if ($data) {
+            // we are given the data to cache.
+            $this->capabilityGroups[$capName] = $data;
+            return $this->capabilityGroups[$capName];
+        }
+        // check if we already checked and couldn't find this capname
+        if (isset($this->capabilityGroups[$capName])) {
+            if (isset($this->notCapabilityGroups[$capName]) || ($this->capabilityGroups[$capName]==null && $this->_gotAllCapabilityGroups)) {
+                return null;
+            }
+        }
+        $cce = $this->cceClient;
+        if (isset($this->capabilityGroups[$capName])) {
+            if ($this->capabilityGroups[$capName]!=null) {
+                return $this->capabilityGroups[$capName];
+            }
+        }
+        if (($group = $this->cceClient->getObject("CapabilityGroup", array("name"=>$capName)))!=null) {
+            $this->capabilityGroups[$capName] = $group;
+            return $this->capabilityGroups[$capName];
+        }
+        $this->notCapabilityGroups[$capName] = 1;
+        $null = "NULL";
+        return $null;
     }
 
     // description: returns an array of ALL the capabilityGroups
     function getAllCapabilityGroups() {
-    $CI =& get_instance();
-    return $CI->serverScriptHelper->getAllCapabilityGroups();
+        $CI =& get_instance();
+        $this->debug_log("getAllCapabilityGroups: via Capabilities");
+
+        $capabilityGroups_file_name = "/usr/sausalito/capcache/" . $CI->BX_SESSION['loginName'] . "_capabilityGroups";
+
+        if (isset($this->_gotAllCapabilityGroups)) {
+            $this->debug_log("getAllCapabilityGroups: From memory");
+            return $this->capabilityGroups;
+        }
+        elseif (is_file($capabilityGroups_file_name)) {
+            if (is_file($capabilityGroups_file_name)) {
+                $capabilityGroups_file_data = read_file($capabilityGroups_file_name);
+                $this->capabilityGroups = json_decode($capabilityGroups_file_data, true);
+                $this->debug_log("getAllCapabilityGroups: From file");
+                $this->_gotAllCapabilityGroups = 1;
+                return $this->capabilityGroups;
+            }
+        }
+        else {
+            $this->debug_log("getAllCapabilityGroups: Full run");
+        }
+
+        $cce =& $this->cceClient;
+        $oids = $cce->find("CapabilityGroup");
+
+        foreach($oids as $oid) {
+            $obj = $cce->get($oid);
+            $this->getCapabilityGroup($obj['name'], $obj);
+        }
+        $this->_gotAllCapabilityGroups = 1;
+
+        // Store temporary file:
+        $capabilityGroups_file_data = json_encode($this->capabilityGroups);
+        if (!write_file($capabilityGroups_file_name, $capabilityGroups_file_data)) {
+            system("rm -f $capabilityGroups_file_name");
+        }
+        return $this->capabilityGroups;
     }
 
     // description: returns an array of all the declared cce-level capabilities
     function getAllCapabilities() {
-    $CI =& get_instance();
-    return $CI->serverScriptHelper->getAllCapabilities();
+        $this->debug_log("getAllCapabilities: via Capabilities");
+        if (count($this->capabilities)) {
+            return ($this->capabilities);
+        }
+        $this->capabilities = $this->cceClient->names("Capabilities");
+        return $this->capabilities;
     } 
 
     // description: get a list of all the capabilities the given user has
@@ -296,7 +335,19 @@ class Capabilities {
 
         // get the capLevels from this user 
         if (isset($currentuser)) {
-            $caplevels = stringToArray($this->loginUser["capLevels"]);
+            //$caplevels = stringToArray($this->loginUser["capLevels"]);
+            $uirights = stringToArray($this->loginUser["uiRights"]);
+            if (in_array("systemAdministrator", $uirights) || $this->loginUser["systemAdministrator"]) {
+                // I am god, so I get ALL the capgroups :)
+                $groups = $this->getAllCapabilityGroups();
+                $caplevels = array();
+                foreach($groups as $groupkey=>$groupval) {
+                    $caplevels[] = $groupkey;
+                }
+            } 
+            else { // get the capLevels from this user 
+                $caplevels = stringToArray($this->loginUser["capLevels"]);
+            }
         }
         else {
             // i'm asking about another user, so I say what I can about them.
@@ -385,6 +436,73 @@ class Capabilities {
                     error_log($msg, 0);
             }
         }
+    }
+
+    // descriptions: get an array of access rights
+    // returns: an array of access rights in strings
+    function getAccessRights() {
+
+        $CI =& get_instance();
+
+        // Get loginName:
+        $loginName = $CI->BX_SESSION['loginName'];
+        if (!$loginName) {
+            $loginName = $CI->input->cookie('loginName');
+        }
+
+        $accessRights = array();
+
+        // include rights specified in uiRights property
+        if ($this->loginUser["uiRights"] != "") {
+            $accessRights = stringToArray($this->loginUser["uiRights"]);
+        }
+
+        // add the list of capabilityGroups AND cce-level capabilities
+        if (isset($this->loginUser["capLevels"])) {
+            $accessRights = array_merge($accessRights, $this->listAllowed());
+        }
+
+        // This catches extra admins:
+        $admin_users = posix_getgrnam("admin-users");
+        if (is_array($admin_users)) {
+            if (in_array($loginName, $admin_users['members'])) {
+                $accessRights[] = "serverManage";
+            }
+        }
+
+        if (is_array($CI->BX_SESSION['loginUser'])) {
+            // Reuse loginUser from BX_SESSION if present:
+            $user = $CI->BX_SESSION['loginUser'];
+            $userShell['enabled'] = $CI->BX_SESSION['userShell'];
+        }
+        else {
+            // If not present, fetch him via CCE:
+            $user = $this->cceClient->getObject("User", array("name" => $loginName));
+            $userShell = $this->cceClient->get($user['OID'], 'Shell');
+        }
+
+        if ($userShell['enabled'] == "1") {
+            if (!in_array('shellAccessEnabled', $accessRights)) {
+                $accessRights[] = 'shellAccessEnabled';
+            }
+        }
+
+        if (($loginName == "admin") || ($this->loginUser['systemAdministrator'] == '1')) {
+            if (!in_array('admin', $accessRights)) {
+                $accessRights[] = "admin";
+            }
+            if (!in_array('systemAdministrator', $accessRights)) {
+                $accessRights[] = "systemAdministrator";
+            }            
+        }
+
+        if (in_array($loginName, posix_getgrnam("site-adm"))) {
+            if (!in_array('siteAdministrator', $accessRights)) {
+                $accessRights[] = "siteAdministrator";
+            }
+        } 
+
+        return array_unique(array_values($accessRights));
     }
 
     // Debug logging:
