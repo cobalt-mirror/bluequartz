@@ -20,62 +20,54 @@
 
 include_once("ArrayPacker.php");
 
-global $CAPABILITIESCLASS;
-if ($CAPABILITIESCLASS)
-  return; 
-$CAPABILITIESCLASS = 1;
-
-global $CAPABILITIESGLOBALOBJECT;
-$CAPABILITIESGLOBALOBJECT = null;
-
-function getGlobalCapabilitiesObject($cce = null) {
-  global $CAPABILITIESGLOBALOBJECT;
-  if ($CAPABILITIESGLOBALOBJECT != null) {
-    return $CAPABILITIESGLOBALOBJECT;
-  }
-  $CAPABILITIESGLOBALOBJECT = new Capabilities($cce);
-  return $CAPABILITIESGLOBALOBJECT;
-}
-
 class Capabilities {
 
-  // Internal caching of expanded data
-  var $capabilityGroups;
-  var $notCapabilityGroups;
-  var $capabilities;
-  var $cceClient;
-  public $loginUser;
-  var $_listAllowed;
-  var $_gotAllCapabilityGroups;
-  
-  // Description: Constructor
-  // param: a active cceclient. (optional, otherwise it will create a new connection)
-  function Capabilities($cce = NULL, $loginName = NULL, $sessionId = NULL) {
-    if ($cce != NULL) {
-      $this->cceClient =& $cce;
+    // Internal caching of expanded data
+    var $capabilityGroups;
+    var $notCapabilityGroups;
+    var $capabilities;
+    var $cceClient;
+    public $loginUser;
+    var $_listAllowed;
+    var $_gotAllCapabilityGroups;
+    var $debugActive;
+
+    // Description: Constructor
+    // param: a active cceclient. (optional, otherwise it will create a new connection)
+    function Capabilities($cce = NULL, $loginName = NULL, $sessionId = NULL) {
+        if ($cce != NULL) {
+            $this->cceClient =& $cce;
+        }
+        else {
+            $this->cceClient =& $CI->getCCE();
+        }
+
+        // New method via CI 'BX_SESSION':
+        $CI =& get_instance();
+        $userCap = $CI->BX_SESSION['loginUser'];
+        $iam = $userCap['OID'];
+        $this->loginUser = $userCap;
+
+        $this->capabilityGroups = array();
+        $this->capabilities = array();
+        $this->notCapabilityGroups = array();
+        $this->_listAllowed = array();
+        $this->_debug = false;
+
+        // this makes us get all the capgroup stuff right away, making CCE not 
+        // to worry about pulling capgroups out by indexed names
+        $this->getAllCapabilityGroups();
+        $this->getAllCapabilities();
+        $this->listAllowed();
+
+        // Check if debugging is active
+        if (is_file("/etc/DEBUGSSH")) {
+            $this->debugActive = TRUE;
+        }
+        else {
+            $this->debugActive = FALSE;
+        }
     }
-    else {
-      $this->cceClient =& $CI->getCCE();
-    }
-
-    // New method via CI 'BX_SESSION':
-    $CI =& get_instance();
-    $userCap = $CI->BX_SESSION['loginUser'];
-    $iam = $userCap['OID'];
-    $this->loginUser = $userCap;
-
-    $this->capabilityGroups = array();
-    $this->capabilities = array();
-    $this->notCapabilityGroups = array();
-    $this->_listAllowed = array();
-    $this->_debug = false;
-
-    // this makes us get all the capgroup stuff right away, making CCE not 
-    // to worry about pulling capgroups out by indexed names
-    $this->getAllCapabilityGroups();
-    $this->getAllCapabilities();
-    $this->listAllowed();
-  }
 
     // description: checks to see if a user is granted the given capability.
     // param: the name of the CapabilityGroup or CCE-Level capability to check
@@ -93,17 +85,17 @@ class Capabilities {
         }
 
         if (($currentuser == 1) && ($this->loginUser['systemAdministrator'])) {
-          // We want to know the caps for the current users. AND that user is
-          // 'systemAdministrator'. Spare the trouble and return a fast 'yes':
-          return 1;
+            // We want to know the caps for the current users. AND that user is
+            // 'systemAdministrator'. Spare the trouble and return a fast 'yes':
+            return 1;
         }
 
         if ((!$this->loginUser['systemAdministrator']) && ($oid == -1) && ($capName == 'adminUser')) { 
-          // Fast 'no' to the question for 'adminUser', because we simply aren't.
-          // Do not get get confused here. Resellers are 'adminUser', but we do
-          // NOT treat them as such unless they also have the 'systemAdministrator'
-          // flag. Without that flag, we do not rate them as 'adminUser':
-          return 0;
+            // Fast 'no' to the question for 'adminUser', because we simply aren't.
+            // Do not get get confused here. Resellers are 'adminUser', but we do
+            // NOT treat them as such unless they also have the 'systemAdministrator'
+            // flag. Without that flag, we do not rate them as 'adminUser':
+            return 0;
         }
 
         $caps = $this->listAllowed($oid);
@@ -130,8 +122,8 @@ class Capabilities {
         // Find out if the Group exists:
         $site = $this->cceClient->getObject('Vsite', array('name' => $group));
         if (!isset($site['fqdn'])) {
-          // Group doesn't exist. So we fail right here:
-          return 0;
+            // Group doesn't exist. So we fail right here:
+            return 0;
         }
         if ($this->loginUser['systemAdministrator']) {
             // Fast 'yes' to all rights, because we are system administrator:
@@ -139,8 +131,8 @@ class Capabilities {
         }
         // Check Vsite's 'createdUser':
         if ($site['createdUser'] == $this->loginUser['name']) {
-          // This user is listed as 'createdUser', so we return yes:
-          return 1;
+            // This user is listed as 'createdUser', so we return yes:
+            return 1;
         }
         return 0;
     }
@@ -158,8 +150,8 @@ class Capabilities {
         // Find out if the Group exists:
         $site = $this->cceClient->getObject('Vsite', array('name' => $group));
         if (!isset($site['fqdn'])) {
-          // Group doesn't exist. So we fail right here:
-          return 0;
+            // Group doesn't exist. So we fail right here:
+            return 0;
         }
         if ($this->loginUser['systemAdministrator']) {
             // Fast 'yes' to all rights, because we are system administrator:
@@ -167,17 +159,17 @@ class Capabilities {
         }
         // Check if this user belongs to the given group:
         if ($this->loginUser['site'] == $group) {
-          // This user is listed as 'createdUser', so we return yes:
-          return 1;
+            // This user is listed as 'createdUser', so we return yes:
+            return 1;
         }
         else {
-          // He might be a siteAdmin elsewhere, but sure not here.
-          return 0;
+            // He might be a siteAdmin elsewhere, but sure not here.
+            return 0;
         }
         // Check if this user has the capability 'siteAdmin':
         $caps = $this->listAllowed($oid);
         if (in_array('siteAdmin', $caps)) {
-          return 1;
+            return 1;
         }
         return 0;
     }
@@ -195,8 +187,8 @@ class Capabilities {
         // Find out if the Group exists:
         $site = $this->cceClient->getObject('Vsite', array('name' => $group));
         if (!isset($site['fqdn'])) {
-          // Group doesn't exist. So we fail right here:
-          return 0;
+            // Group doesn't exist. So we fail right here:
+            return 0;
         }
         if ($this->loginUser['systemAdministrator']) {
             // Fast 'yes' to all rights, because we are system administrator:
@@ -204,8 +196,8 @@ class Capabilities {
         }
         // Check if this user belongs to the given group OR is Reseller of this group:
         if (($this->loginUser['site'] == $group) || ($this->getReseller($group))) {
-          // This user is listed as 'createdUser', so we return yes:
-          return 1;
+            // This user is listed as 'createdUser', so we return yes:
+            return 1;
         }
         return 0;
     }
@@ -224,8 +216,8 @@ class Capabilities {
         // Find out if the Group exists:
         $site = $this->cceClient->getObject('Vsite', array('name' => $group));
         if (!isset($site['fqdn'])) {
-          // Group doesn't exist. So we fail right here:
-          return 0;
+            // Group doesn't exist. So we fail right here:
+            return 0;
         }
         if ($this->loginUser['systemAdministrator']) {
             // Fast 'yes' to all rights, because we are system administrator:
@@ -233,69 +225,56 @@ class Capabilities {
         }
         // Check if this user is Reseller of this group:
         if (($this->loginUser['site'] == "") && ($this->getReseller($group) == "1")) {
-          // This is a reseller (has no group) and can manage the specified group as Reseller.
-          return 1;
+            // This is a reseller (has no group) and can manage the specified group as Reseller.
+            return 1;
         }
         // Check if this user belongs to this group and is siteAdmin of this group:
         if (($this->loginUser['site'] == $group) && ($this->getSiteAdmin($group))) {
-          // This user belongs to this group and is siteAdmin OR Reseller.
-          return 1;
+            // This user belongs to this group and is siteAdmin OR Reseller.
+            return 1;
         }
         return 0;
     }
 
-  // description:  gets the capabilityGroup and caches it
-  function &getCapabilityGroup($capName, $data = null) {
+    // description:  gets the capabilityGroup and caches it
+    function &getCapabilityGroup($capName, $data = null) {
     if ($data) {
-      // we are given the data to cache.
-      $this->capabilityGroups[$capName] = $data;
-      return $this->capabilityGroups[$capName];
+    // we are given the data to cache.
+    $this->capabilityGroups[$capName] = $data;
+    return $this->capabilityGroups[$capName];
     }
     // check if we already checked and couldn't find this capname
     if (isset($this->capabilityGroups[$capName])) {
-      if (isset($this->notCapabilityGroups[$capName]) || ($this->capabilityGroups[$capName]==null && $this->_gotAllCapabilityGroups)) {
-      return null;
-      }
+    if (isset($this->notCapabilityGroups[$capName]) || ($this->capabilityGroups[$capName]==null && $this->_gotAllCapabilityGroups)) {
+    return null;
+    }
     }
     $cce = $this->cceClient;
     if (isset($this->capabilityGroups[$capName])) {
-      if ($this->capabilityGroups[$capName]!=null) {
-         return $this->capabilityGroups[$capName];
-      }
+    if ($this->capabilityGroups[$capName]!=null) {
+    return $this->capabilityGroups[$capName];
+    }
     }
     if (($group = $this->cceClient->getObject("CapabilityGroup", array("name"=>$capName)))!=null) {
-      $this->capabilityGroups[$capName] = $group;
-      return $this->capabilityGroups[$capName];
+    $this->capabilityGroups[$capName] = $group;
+    return $this->capabilityGroups[$capName];
     }
     $this->notCapabilityGroups[$capName] = 1;
     $null = "NULL";
     return $null;
-  }
-
-  // description: returns an array of ALL the capabilityGroups
-  function getAllCapabilityGroups() {
-    if ($this->_gotAllCapabilityGroups)
-      return $this->capabilityGroups;
-    $cce =& $this->cceClient;
-    //$oids = $cce->findSorted("CapabilityGroup", "sort");
-    $oids = $cce->find("CapabilityGroup");
-
-    foreach($oids as $oid) {
-      $obj = $cce->get($oid);
-      $this->getCapabilityGroup($obj['name'], $obj);
     }
-    $this->_gotAllCapabilityGroups = 1;
-    return $this->capabilityGroups;
-  }
- 
-  // description: returns an array of all the declared cce-level capabilities
-  function getAllCapabilities() {
-    if (count($this->capabilities)) {
-      return ($this->capabilities); 
+
+    // description: returns an array of ALL the capabilityGroups
+    function getAllCapabilityGroups() {
+    $CI =& get_instance();
+    return $CI->serverScriptHelper->getAllCapabilityGroups();
     }
-    $this->capabilities = $this->cceClient->names("Capabilities");
-    return $this->capabilities;
-  } 
+
+    // description: returns an array of all the declared cce-level capabilities
+    function getAllCapabilities() {
+    $CI =& get_instance();
+    return $CI->serverScriptHelper->getAllCapabilities();
+    } 
 
     // description: get a list of all the capabilities the given user has
     // param: the oid of the user to check (defaults: current)
@@ -317,43 +296,43 @@ class Capabilities {
 
         // get the capLevels from this user 
         if (isset($currentuser)) {
-          $caplevels = stringToArray($this->loginUser["capLevels"]);
+            $caplevels = stringToArray($this->loginUser["capLevels"]);
         }
         else {
             // i'm asking about another user, so I say what I can about them.
             $user = $this->cceClient->get($oid);
-            $caplevels = stringToArray($user["capLevels"]);          
+            $caplevels = stringToArray($user["capLevels"]);
         }
 
         $returnCap = array();
 
         foreach ($caplevels as $key => $capName) {
-          foreach ($this->getAllCapabilityGroups() as $capA => $capContend) {
-            if ($capContend['CLASS'] == "CapabilityGroup") {
-              if ($capContend['name'] == $capName) {
-                if (!in_array($capName, $returnCap)) {
-                  $returnCap[] = $capName;
+            foreach ($this->getAllCapabilityGroups() as $capA => $capContend) {
+                if ($capContend['CLASS'] == "CapabilityGroup") {
+                    if ($capContend['name'] == $capName) {
+                        if (!in_array($capName, $returnCap)) {
+                            $returnCap[] = $capName;
+                        }
+                        $tmpreturnCap = scalar_to_array($capContend['capabilities']);
+                        foreach ($tmpreturnCap as $key => $value) {
+                            if (!in_array($value, $returnCap)) {
+                                $returnCap[] = $value;
+                            }
+                        }
+                    }
+                    else {
+                        if (!in_array($capName, $returnCap)) {
+                            $returnCap[] = $capName;
+                        }
+                    }
                 }
-                $tmpreturnCap = scalar_to_array($capContend['capabilities']);
-                foreach ($tmpreturnCap as $key => $value) {
-                  if (!in_array($value, $returnCap)) {
-                    $returnCap[] = $value;
-                  }
-                }
-              }
-              else {
-                if (!in_array($capName, $returnCap)) {
-                  $returnCap[] = $capName;
-                }
-              }
             }
-          }
         }
 
         // New method via CI 'BX_SESSION':
         $CI =& get_instance();
         if ($CI->BX_SESSION['userShell'] == "1") {
-          $returnCap[] = 'shellAccessEnabled';
+            $returnCap[] = 'shellAccessEnabled';
         }
 
         // Remove blank entries, make unique and store:
@@ -364,49 +343,56 @@ class Capabilities {
         return $returnCap;
     }
 
-  // description: given a capabilitygroup name, this function will expand it
-  //   and it's children into a list composed of both capabilitygroup names and
-  //   and cce-level capabilities
-  // param: capName - the name of the capability to be expanded.
-  // returns: an expanded list of the capabilities entailed by $capName 
-  function expandCaps($capName, $seen = array()) {
-    // don't cycle around in a graph.
-    if (in_array($capName, $seen)) {
-      return array();
-    }
-    // check to see if capName is a group, if so, expand..
-    if (($group = &$this->getCapabilityGroup($capName))!=null) {
-
-      if (isset($group["expanded"])) {
-        if ($group["expanded"] != null) {
-          return $group["expanded"];
+    // description: given a capabilitygroup name, this function will expand it
+    //   and it's children into a list composed of both capabilitygroup names and
+    //   and cce-level capabilities
+    // param: capName - the name of the capability to be expanded.
+    // returns: an expanded list of the capabilities entailed by $capName 
+    function expandCaps($capName, $seen = array()) {
+        // don't cycle around in a graph.
+        if (in_array($capName, $seen)) {
+            return array();
         }
-      }
 
-      $children = stringToArray($group["capabilities"]);
-      $kids = array();
-      array_push($seen, $capName);
-      foreach($children as $child) {
-        $kids = array_merge((array)$kids, (array)$this->expandCaps($child, $seen));
-      }
-      array_push($kids, $capName);
-      $kids = array_unique($kids); 
-      $group["expanded"] =& $kids;
-      return $kids;
-      // check as a cce-capability
-    }
-    else {
-      $capList = $this->getAllCapabilities();
-      if (in_array($capName, $capList)) {
-        return array($capName);
-      } 
-      elseif ($this->_debug) {
-        $msg = "Capability name $capName could not be found in Capabilities" . "::getAllowed()";
-        error_log($msg, 0);
-      }
-    }
-  }
+        // check to see if capName is a group, if so, expand..
+        if (($group = &$this->getCapabilityGroup($capName))!=null) {
 
+            if (isset($group["expanded"])) {
+                if ($group["expanded"] != null) {
+                    return $group["expanded"];
+                }
+            }
+
+            $children = stringToArray($group["capabilities"]);
+            $kids = array();
+            array_push($seen, $capName);
+            foreach($children as $child) {
+                $kids = array_merge((array)$kids, (array)$this->expandCaps($child, $seen));
+            }
+            array_push($kids, $capName);
+            $kids = array_unique($kids); 
+            $group["expanded"] =& $kids;
+            return $kids;
+            // check as a cce-capability
+            }
+            else {
+                $capList = $this->getAllCapabilities();
+                if (in_array($capName, $capList)) {
+                    return array($capName);
+                } 
+                elseif ($this->_debug) {
+                    $msg = "Capability name $capName could not be found in Capabilities" . "::getAllowed()";
+                    error_log($msg, 0);
+            }
+        }
+    }
+
+    // Debug logging:
+    function debug_log ($msg) {
+        if ($this->debugActive) {
+            error_log($msg);
+        }
+    }
 
 } // Class Capabilities
 
