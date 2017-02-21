@@ -12,40 +12,36 @@ class Events extends MX_Controller {
     public function index() {
 
         $CI =& get_instance();
-        
+
         // We load the BlueOnyx helper library first of all, as we heavily depend on it:
         $this->load->helper('blueonyx');
         init_libraries();
 
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
-        $MX =& get_instance();
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
-        $locale = $CI->input->cookie('locale');
+        // Get $sessionId and $loginName from Cookie (if they are set) and store them in $CI->BX_SESSION:
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
-        // Line up the ducks for CCE-Connection:
+        // Line up the ducks for CCE-Connection and store them for re-usability in $CI:
         include_once('ServerScriptHelper.php');
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        $cceClient = $serverScriptHelper->getCceClient();
-        $user = $cceClient->getObject("User", array("name" => $loginName));
-        $i18n = new I18n("base-console", $user['localePreference']);
-        $system = $cceClient->getObject("System");
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
 
-        // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        $i18n = new I18n("base-console", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
+        $user = $CI->BX_SESSION['loginUser'];
 
-        // -- Actual page logic start:
-
-        // Not serverConfig? Bye, bye!
-        if (!$Capabilities->getAllowed('serverConfig')) {
+        // Not 'serverConfig'? Bye, bye!
+        if (!$CI->serverScriptHelper->getAllowed('serverConfig')) {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403");
         }
+
+        // -- Actual page logic start:
 
         //
         //--- Handle form validation:
@@ -66,8 +62,8 @@ class Events extends MX_Controller {
         else {
             // This is not what we're looking for! Stop poking around!
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403#FU");
         }
 
@@ -83,12 +79,12 @@ class Events extends MX_Controller {
         //
 
         // Prepare Page:
-        $factory = $serverScriptHelper->getHtmlComponentFactory("base-console", "/console/ablstatus");
+        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-console", "/console/ablstatus");
         $BxPage = $factory->getPage();
         $BxPage->setErrors($errors);
         $i18n = $factory->getI18n();
 
-        $product = new Product($cceClient);
+        $product = new Product($CI->cceClient);
 
         // Set Menu items:
         $BxPage->setVerticalMenu('pam_abl_status');
@@ -100,7 +96,7 @@ class Events extends MX_Controller {
         //
 
         $runas = 'root';
-        $ret = $serverScriptHelper->shell("/usr/bin/pam_abl -v", $nfk, $runas, $sessionId);
+        $ret = $CI->serverScriptHelper->shell("/usr/bin/pam_abl -v", $nfk, $runas, $CI->BX_SESSION['sessionId']);
         $hostList = explode(PHP_EOL, $nfk);
         $clean_hostlist = array();
         foreach ($hostList as $key => $value) {
@@ -203,10 +199,6 @@ class Events extends MX_Controller {
             $factory->getLabel("pam_abl_blocked_hosts"),
             "blocked_hosts"
         );
-
-        // Nice people say goodbye, or CCEd waits forever:
-        $cceClient->bye();
-        $serverScriptHelper->destructor();
 
         // Page body:
         $page_body[] = $block->toHtml();

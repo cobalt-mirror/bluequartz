@@ -19,31 +19,25 @@ class Ablsettings extends MX_Controller {
 
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
-        $MX =& get_instance();
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
-        $locale = $CI->input->cookie('locale');
+        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set) and store them in $CI->BX_SESSION:
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
-        // Line up the ducks for CCE-Connection:
+        // Line up the ducks for CCE-Connection and store them for re-usability in $CI:
         include_once('ServerScriptHelper.php');
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        $cceClient = $serverScriptHelper->getCceClient();
-        $user = $cceClient->getObject("User", array("name" => $loginName));
-        $i18n = new I18n("base-console", $user['localePreference']);
-        $system = $cceClient->getObject("System");
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
 
-        // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        $i18n = new I18n("base-console", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
+        $user = $CI->BX_SESSION['loginUser'];
 
-        // -- Actual page logic start:
-
-        // Not serverConfig? Bye, bye!
-        if (!$Capabilities->getAllowed('serverConfig')) {
+        // Not 'serverConfig'? Bye, bye!
+        if (!$CI->serverScriptHelper->getAllowed('serverConfig')) {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403");
         }
 
@@ -51,7 +45,7 @@ class Ablsettings extends MX_Controller {
         //--- Get CODB-Object of interest loaded: 
         //
 
-        $CODBDATA = $cceClient->getObject("pam_abl_settings");
+        $CODBDATA = $CI->cceClient->getObject("pam_abl_settings");
 
         //
         //--- Handle form validation:
@@ -136,10 +130,10 @@ class Ablsettings extends MX_Controller {
             $attributes['host_rule'] = "*:" . $attributes['host_rule'];
 
             // Actual submit to CODB:
-            $cceClient->setObject("pam_abl_settings", $attributes);
+            $CI->cceClient->setObject("pam_abl_settings", $attributes);
 
             // CCE errors that might have happened during submit to CODB:
-            $CCEerrors = $cceClient->errors();
+            $CCEerrors = $CI->cceClient->errors();
             foreach ($CCEerrors as $object => $objData) {
                 // When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
                 $errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
@@ -151,7 +145,7 @@ class Ablsettings extends MX_Controller {
                 exit;
             }
             else {
-                $CODBDATA = $cceClient->getObject("pam_abl_settings");
+                $CODBDATA = $CI->cceClient->getObject("pam_abl_settings");
             }
 
         }
@@ -161,7 +155,7 @@ class Ablsettings extends MX_Controller {
         //
 
         // Prepare Page:
-        $factory = $serverScriptHelper->getHtmlComponentFactory("base-console", "/console/ablsettings");
+        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-console", "/console/ablsettings");
         $BxPage = $factory->getPage();
         $BxPage->setErrors($errors);
         $i18n = $factory->getI18n();
@@ -189,16 +183,16 @@ class Ablsettings extends MX_Controller {
         );
 
         // host_rule:
-        $CODBDATA = $cceClient->getObject("pam_abl_settings");
+        $CODBDATA = $CI->cceClient->getObject("pam_abl_settings");
         $host_rule_raw = $CODBDATA['host_rule'];
         $hr_diss = explode(':', $host_rule_raw);
         if (!isset($hr_diss[1])) {
             // 'host_rule' in CODB is fubar. Set it to default:
             $attributes['host_rule'] = "*:30/1h";
-            $cceClient->setObject("pam_abl_settings", $attributes);
+            $CI->cceClient->setObject("pam_abl_settings", $attributes);
 
             // Now try it again:
-            $CODBDATA = $cceClient->getObject("pam_abl_settings");
+            $CODBDATA = $CI->cceClient->getObject("pam_abl_settings");
             $host_rule_raw = $CODBDATA['host_rule'];
             $hr_diss = explode(':', $host_rule_raw);
         }
@@ -236,10 +230,6 @@ class Ablsettings extends MX_Controller {
         // Add the buttons
         $block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
         $block->addButton($factory->getCancelButton("/console/ablsettings"));
-
-        // Nice people say goodbye, or CCEd waits forever:
-        $cceClient->bye();
-        $serverScriptHelper->destructor();
 
         $page_body[] = $block->toHtml();
 

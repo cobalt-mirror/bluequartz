@@ -12,38 +12,32 @@ class Console_logfiles extends MX_Controller {
     public function index() {
 
         $CI =& get_instance();
-        
+
         // We load the BlueOnyx helper library first of all, as we heavily depend on it:
         $this->load->helper('blueonyx');
         init_libraries();
 
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
-        $MX =& get_instance();
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
-        $locale = $CI->input->cookie('locale');
+        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set) and store them in $CI->BX_SESSION:
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
-        // Line up the ducks for CCE-Connection:
+        // Line up the ducks for CCE-Connection and store them for re-usability in $CI:
         include_once('ServerScriptHelper.php');
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        $cceClient = $serverScriptHelper->getCceClient();
-        $user = $cceClient->getObject("User", array("name" => $loginName));
-        $i18n = new I18n("base-console", $user['localePreference']);
-        $system = $cceClient->getObject("System");
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
 
-        // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        $i18n = new I18n("base-console", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
+        $user = $CI->BX_SESSION['loginUser'];
 
-        // -- Actual page logic start:
-
-        // Not serverConfig? Bye, bye!
-        if (!$Capabilities->getAllowed('serverConfig')) {
+        // Not 'serverConfig'? Bye, bye!
+        if (!$CI->serverScriptHelper->getAllowed('serverConfig')) {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403");
         }
 
@@ -52,7 +46,7 @@ class Console_logfiles extends MX_Controller {
         //
 
         // Prepare Page:
-        $factory = $serverScriptHelper->getHtmlComponentFactory("base-console", "/console/console_logfiles");
+        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-console", "/console/console_logfiles");
         $BxPage = $factory->getPage();
         $i18n = $factory->getI18n();
 
@@ -78,10 +72,6 @@ class Console_logfiles extends MX_Controller {
         $g_button = $factory->getFancyButton("/console/console_logfile_viewer?type=7", '/var/log/admserv/adm_access', "DEMO-OVERRIDE");
         $h_button = $factory->getFancyButton("/console/console_logfile_viewer?type=8", '/var/log/admserv/adm_error', "DEMO-OVERRIDE");
         $buttonContainer_c = $factory->getButtonContainer("", array($g_button, $h_button));
-
-        // Nice people say goodbye, or CCEd waits forever:
-        $cceClient->bye();
-        $serverScriptHelper->destructor();
 
         $page_body[] = $buttonContainer_a->toHtml();
         $page_body[] = $buttonContainer_b->toHtml();

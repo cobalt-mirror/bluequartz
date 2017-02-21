@@ -19,31 +19,25 @@ class Ablstatus extends MX_Controller {
 
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
-        $MX =& get_instance();
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
-        $locale = $CI->input->cookie('locale');
+        // Get $sessionId and $loginName from Cookie (if they are set) and store them in $CI->BX_SESSION:
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
-        // Line up the ducks for CCE-Connection:
+        // Line up the ducks for CCE-Connection and store them for re-usability in $CI:
         include_once('ServerScriptHelper.php');
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        $cceClient = $serverScriptHelper->getCceClient();
-        $user = $cceClient->getObject("User", array("name" => $loginName));
-        $i18n = new I18n("base-console", $user['localePreference']);
-        $system = $cceClient->getObject("System");
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
 
-        // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        $i18n = new I18n("base-console", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
+        $user = $CI->BX_SESSION['loginUser'];
 
-        // -- Actual page logic start:
-
-        // Not serverConfig? Bye, bye!
-        if (!$Capabilities->getAllowed('serverConfig')) {
+        // Not 'serverConfig'? Bye, bye!
+        if (!$CI->serverScriptHelper->getAllowed('serverConfig')) {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403");
         }
 
@@ -119,8 +113,8 @@ class Ablstatus extends MX_Controller {
             // No errors. Reload the entire page to load it with the updated values:
             if ((count($errors) == "0")) {
                 // Nice people say goodbye, or CCEd waits forever:
-                $cceClient->bye();
-                $serverScriptHelper->destructor();              
+                $CI->cceClient->bye();
+                $CI->serverScriptHelper->destructor();              
                 header("Location: /console/ablstatus");
                 exit;
             }
@@ -136,10 +130,10 @@ class Ablstatus extends MX_Controller {
         if (isset($get_form_data['action'])) {
             // Remove the pam_abl databases altogether:
             $runas = 'root';
-            $ret = $serverScriptHelper->shell("/bin/rm -f /var/lib/pam_abl/*", $nfk, $runas, $sessionId);
+            $ret = $CI->serverScriptHelper->shell("/bin/rm -f /var/lib/pam_abl/*", $nfk, $runas, $CI->BX_SESSION['sessionId']);
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             header("Location: /console/ablstatus");
             exit;
         }
@@ -151,12 +145,12 @@ class Ablstatus extends MX_Controller {
                 if (filter_var($get_form_data['host'], FILTER_VALIDATE_IP)) {
                     $runas = 'root';
                     $e_ip = $get_form_data['host'];
-                    $ret = $serverScriptHelper->shell("/usr/bin/pam_abl -wH $e_ip", $nfk, $runas, $sessionId);
+                    $ret = $CI->serverScriptHelper->shell("/usr/bin/pam_abl -wH $e_ip", $nfk, $runas, $CI->BX_SESSION['sessionId']);
                 }
             }
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             header("Location: /console/ablstatus");
             exit;
         }
@@ -166,7 +160,7 @@ class Ablstatus extends MX_Controller {
         //
 
         $runas = 'root';
-        $ret = $serverScriptHelper->shell("/usr/bin/pam_abl -v", $nfk, $runas, $sessionId);
+        $ret = $CI->serverScriptHelper->shell("/usr/bin/pam_abl -v", $nfk, $runas, $CI->BX_SESSION['sessionId']);
         $hostList = explode(PHP_EOL, $nfk);
         $clean_hostlist = array();
         foreach ($hostList as $key => $value) {
@@ -233,12 +227,12 @@ class Ablstatus extends MX_Controller {
         //
 
         // Prepare Page:
-        $factory = $serverScriptHelper->getHtmlComponentFactory("base-console", "/console/ablstatus");
+        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-console", "/console/ablstatus");
         $BxPage = $factory->getPage();
         $BxPage->setErrors($errors);
         $i18n = $factory->getI18n();
 
-        $product = new Product($cceClient);
+        $product = new Product($CI->cceClient);
 
         // Set Menu items:
         $BxPage->setVerticalMenu('base_security');
@@ -271,16 +265,16 @@ class Ablstatus extends MX_Controller {
         $scrollList->setColumnWidths(array("180", "180", "75", "75", "75", "75", "75")); // Max: 739px
 
         // host_rule:
-        $CODBDATA = $cceClient->getObject("pam_abl_settings");
+        $CODBDATA = $CI->cceClient->getObject("pam_abl_settings");
         $host_rule_raw = $CODBDATA['host_rule'];
         $hr_diss = explode(':', $host_rule_raw);
         if (!isset($hr_diss[1])) {
             // 'host_rule' in CODB is fubar. Set it to default:
             $attributes['host_rule'] = "*:30/1h";
-            $cceClient->setObject("pam_abl_settings", $attributes);
+            $CI->cceClient->setObject("pam_abl_settings", $attributes);
 
             // Now try it again:
-            $CODBDATA = $cceClient->getObject("pam_abl_settings");
+            $CODBDATA = $CI->cceClient->getObject("pam_abl_settings");
             $host_rule_raw = $CODBDATA['host_rule'];
             $hr_diss = explode(':', $host_rule_raw);
         }
@@ -357,10 +351,6 @@ class Ablstatus extends MX_Controller {
 
         $block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
         $block->addButton($factory->getCancelButton("/console/ablstatus"));
-
-        // Nice people say goodbye, or CCEd waits forever:
-        $cceClient->bye();
-        $serverScriptHelper->destructor();
 
         $page_body[] = $block->toHtml();
 

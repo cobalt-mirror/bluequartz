@@ -12,38 +12,32 @@ class Console_logfile_viewer extends MX_Controller {
     public function index() {
 
         $CI =& get_instance();
-        
+
         // We load the BlueOnyx helper library first of all, as we heavily depend on it:
         $this->load->helper('blueonyx');
         init_libraries();
 
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
-        $MX =& get_instance();
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
-        $locale = $CI->input->cookie('locale');
+        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set) and store them in $CI->BX_SESSION:
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
-        // Line up the ducks for CCE-Connection:
+        // Line up the ducks for CCE-Connection and store them for re-usability in $CI:
         include_once('ServerScriptHelper.php');
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        $cceClient = $serverScriptHelper->getCceClient();
-        $user = $cceClient->getObject("User", array("name" => $loginName));
-        $i18n = new I18n("base-console", $user['localePreference']);
-        $system = $cceClient->getObject("System");
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
 
-        // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        $i18n = new I18n("base-console", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
+        $user = $CI->BX_SESSION['loginUser'];
 
-        // -- Actual page logic start:
-
-        // Not serverConfig? Bye, bye!
-        if (!$Capabilities->getAllowed('serverConfig')) {
+        // Not 'serverConfig'? Bye, bye!
+        if (!$CI->serverScriptHelper->getAllowed('serverConfig')) {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403");
         }
 
@@ -77,8 +71,8 @@ class Console_logfile_viewer extends MX_Controller {
         else {
             // This is not what we're looking for! Stop poking around!
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403#FU");
         }
 
@@ -94,12 +88,12 @@ class Console_logfile_viewer extends MX_Controller {
         //
 
         // Prepare Page:
-        $factory = $serverScriptHelper->getHtmlComponentFactory("base-console", "/console/console_logfile_viewer");
+        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-console", "/console/console_logfile_viewer");
         $BxPage = $factory->getPage();
         $BxPage->setErrors($errors);
         $i18n = $factory->getI18n();
 
-        $product = new Product($cceClient);
+        $product = new Product($CI->cceClient);
 
         // Set Menu items:
         $BxPage->setVerticalMenu('base_console_logfiles');
@@ -136,7 +130,7 @@ class Console_logfile_viewer extends MX_Controller {
                 $output .= "\n\n" . $i18n->getHtml("[[palette.403text]]");
             }
             else {
-                $ret = $serverScriptHelper->shell("$logfile", $output, 'root', $sessionId);
+                $ret = $CI->serverScriptHelper->shell("$logfile", $output, 'root', $CI->BX_SESSION['sessionId']);
             }
             $output = explode("\n", $output);
         }
@@ -150,10 +144,6 @@ class Console_logfile_viewer extends MX_Controller {
         }
         $out .= "</pre>";
 
-        // Nice people say goodbye, or CCEd waits forever:
-        $cceClient->bye();
-        $serverScriptHelper->destructor();
-
         // Page body:
         $page_body[] = $out;
 
@@ -161,7 +151,7 @@ class Console_logfile_viewer extends MX_Controller {
         $BxPage->setOutOfStyle(TRUE);
         $BxPage->render($page_module, $page_body);
 
-    }       
+    }
 }
 /*
 Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
