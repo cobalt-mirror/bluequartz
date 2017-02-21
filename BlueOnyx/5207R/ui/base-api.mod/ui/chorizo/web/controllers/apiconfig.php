@@ -11,47 +11,41 @@ class Apiconfig extends MX_Controller {
 
 	public function index() {
 
-		$CI =& get_instance();
-		
-	    // We load the BlueOnyx helper library first of all, as we heavily depend on it:
-	    $this->load->helper('blueonyx');
-	    init_libraries();
 
-  		// Need to load 'BxPage' for page rendering:
-  		$this->load->library('BxPage');
-		$MX =& get_instance();
+        $CI =& get_instance();
 
-	    // Get $sessionId and $loginName from Cookie (if they are set):
-	    $sessionId = $CI->input->cookie('sessionId');
-	    $loginName = $CI->input->cookie('loginName');
-	    $locale = $CI->input->cookie('locale');
+        // We load the BlueOnyx helper library first of all, as we heavily depend on it:
+        $this->load->helper('blueonyx');
+        init_libraries();
 
-	    // Line up the ducks for CCE-Connection:
-	    include_once('ServerScriptHelper.php');
-		$serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-		$cceClient = $serverScriptHelper->getCceClient();
-		$user = $cceClient->getObject("User", array("name" => $loginName));
-		$i18n = new I18n("base-api", $user['localePreference']);
-		$system = $cceClient->getObject("System");
+        // Need to load 'BxPage' for page rendering:
+        $this->load->library('BxPage');
 
-		// Initialize Capabilities so that we can poll the access rights as well:
-		$Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        // Get $sessionId and $loginName from Cookie (if they are set) and store them in $CI->BX_SESSION:
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
-		// -- Actual page logic start:
+        // Line up the ducks for CCE-Connection and store them for re-usability in $CI:
+        include_once('ServerScriptHelper.php');
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
 
-		// Not 'serverServerDesktop'? Bye, bye!
-		if (!$Capabilities->getAllowed('serverServerDesktop')) {
-			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
-			Log403Error("/gui/Forbidden403");
-		}
+        $i18n = new I18n("base-api", $CI->BX_SESSION['loginUser']['localePreference']);
+
+        // Not 'serverServerDesktop'? Bye, bye!
+        if (!$CI->serverScriptHelper->getAllowed('serverServerDesktop')) {
+            // Nice people say goodbye, or CCEd waits forever:
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
+            Log403Error("/gui/Forbidden403");
+        }
 
 		//
 		//--- Get CODB-Object of interest: 
 		//
 
-	    $CODBDATA = $cceClient->getObject("System", array(), "API");
+		$system = $CI->getSystem();
+		$CODBDATA = $CI->cceClient->get($system['OID'], "API");
 
 		//
 		//--- Handle form validation:
@@ -127,10 +121,10 @@ class Apiconfig extends MX_Controller {
 			// We have no errors. We submit to CODB.
 
 	  		// Actual submit to CODB:
-			$cceClient->setObject("System", $attributes, "API");
+			$CI->cceClient->setObject("System", $attributes, "API");
 
 			// CCE errors that might have happened during submit to CODB:
-			$CCEerrors = $cceClient->errors();
+			$CCEerrors = $CI->cceClient->errors();
 			foreach ($CCEerrors as $object => $objData) {
 				// When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
 				$errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
@@ -150,7 +144,7 @@ class Apiconfig extends MX_Controller {
 	    //
 
 		// Prepare Page:
-		$factory = $serverScriptHelper->getHtmlComponentFactory("base-api", "/api/apiconfig");
+		$factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-api", "/api/apiconfig");
 		$BxPage = $factory->getPage();
 		$BxPage->setErrors($errors);
 		$i18n = $factory->getI18n();
@@ -205,10 +199,6 @@ class Apiconfig extends MX_Controller {
 		// Add the buttons
 		$block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
 		$block->addButton($factory->getCancelButton("/api/apiconfig"));
-
-		// Nice people say goodbye, or CCEd waits forever:
-		$cceClient->bye();
-		$serverScriptHelper->destructor();
 
 		$page_body[] = $block->toHtml();
 
