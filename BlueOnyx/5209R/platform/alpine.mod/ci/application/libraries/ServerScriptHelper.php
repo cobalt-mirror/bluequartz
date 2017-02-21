@@ -202,6 +202,9 @@ class ServerScriptHelper {
 
             $auth_attempt = $cceClient->authkey($CI->input->cookie('loginName'), $CI->input->cookie('sessionId'));
             if (!$auth_attempt) {
+              // Auth failed. We redirect to GUI login page. But to speed things up we delete the cookies to prevent that another authkey is tried with them:
+              delete_cookie("loginName");
+              delete_cookie("sessionId");              
               error_log("ServerScriptHelper.ServerScriptHelper(): Cannot authenticate to CCE (login name: $loginName, session ID: $sessionId)"); 
               // tell users their sessions are expired and redirect
               // set the target here to point to where to go back to after login
