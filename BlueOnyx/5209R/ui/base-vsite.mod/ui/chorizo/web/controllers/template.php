@@ -174,6 +174,7 @@ class Template extends MX_Controller {
         // Prepare Page:
         $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-vsite", "/vsite/template");
         $BxPage = $factory->getPage();
+        $BxPage->setErrors($errors);
         $i18n = $factory->getI18n();
 
         $product = new Product($CI->cceClient);
@@ -286,18 +287,6 @@ class Template extends MX_Controller {
         // Add the buttons
         $block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
         $block->addButton($factory->getCancelButton("/vsite/template"));
-
-        //
-        //-- Error message handing:
-        //
-        $BXerrors = array();
-        foreach ($errors as $object => $objData) {
-            // When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
-            $BXerrors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
-        }
-
-        // Publish error messages:
-        $BxPage->setErrors($BXerrors);
 
         $page_body[] = $block->toHtml();
 
