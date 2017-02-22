@@ -12,41 +12,35 @@ class ServerDiskUsage extends MX_Controller {
     public function index() {
 
         $CI =& get_instance();
-        
+
         // We load the BlueOnyx helper library first of all, as we heavily depend on it:
         $this->load->helper('blueonyx');
         init_libraries();
 
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
-        $MX =& get_instance();
 
         // Load AM Detail Helper:
         $this->load->helper('amdetail');
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
-        $locale = $CI->input->cookie('locale');
+        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set) and store them in $CI->BX_SESSION:
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
-        // Line up the ducks for CCE-Connection:
+        // Line up the ducks for CCE-Connection and store them for re-usability in $CI:
         include_once('ServerScriptHelper.php');
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        $cceClient = $serverScriptHelper->getCceClient();
-        $user = $cceClient->getObject("User", array("name" => $loginName));
-        $i18n = new I18n("base-disk", $user['localePreference']);
-        $system = $cceClient->getObject("System");
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
 
-        // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        $i18n = new I18n("base-disk", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
+        $user = $CI->BX_SESSION['loginUser'];
 
-        // -- Actual page logic start:
-
-        // Not 'serverStatsServerDisk'? Bye, bye!
-        if (!$Capabilities->getAllowed('serverShowActiveMonitor')) {
+        // Not 'serverShowActiveMonitor'? Bye, bye!
+        if (!$CI->serverScriptHelper->getAllowed('serverShowActiveMonitor')) {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403");
         }
 
@@ -130,10 +124,10 @@ class ServerDiskUsage extends MX_Controller {
             // We have no errors. We submit to CODB.
 
             // Actual submit to CODB:
-            $cceClient->setObject("ActiveMonitor", $attributes, "Disk");
+            $CI->cceClient->setObject("ActiveMonitor", $attributes, "Disk");
 
             // CCE errors that might have happened during submit to CODB:
-            $CCEerrors = $cceClient->errors();
+            $CCEerrors = $CI->cceClient->errors();
             foreach ($CCEerrors as $object => $objData) {
                 // When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
                 $errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
@@ -147,7 +141,7 @@ class ServerDiskUsage extends MX_Controller {
         //
 
         // Prepare Page:
-        $factory =& $serverScriptHelper->getHtmlComponentFactory('base-disk', $_SERVER['PHP_SELF']);
+        $factory =& $CI->serverScriptHelper->getHtmlComponentFactory('base-disk', $_SERVER['PHP_SELF']);
         $BxPage = $factory->getPage();
         $i18n = $factory->getI18n();
 
@@ -214,11 +208,11 @@ class ServerDiskUsage extends MX_Controller {
         // only display partitions that are mounted
         $sort_index = $usage_list->getSortedIndex();
         if ($sort_index == 1) {
-            $partitions = $cceClient->findSorted('Disk', 'mountPoint', array('mounted' => true));
+            $partitions = $CI->cceClient->findSorted('Disk', 'mountPoint', array('mounted' => true));
         }
         else {
             $sort_map = array(2 => 'used', 3 => 'total');
-            $partitions = $cceClient->findNSorted('Disk', $sort_map[2], array('mounted' => true));
+            $partitions = $CI->cceClient->findNSorted('Disk', $sort_map[2], array('mounted' => true));
         }
             
         if ($usage_list->getSortOrder() == 'descending') {
@@ -226,12 +220,12 @@ class ServerDiskUsage extends MX_Controller {
         }
 
         // get AM object for quota percents and stuff
-        $am_obj = $cceClient->getObject('ActiveMonitor', array(), 'Disk');
+        $am_obj = $CI->cceClient->getObject('ActiveMonitor', array(), 'Disk');
 
         for ($i = 0; ($i < count($partitions)); $i++) {
             //refresh partition info first
-            $cceClient->set($partitions[$i], '', array('refresh' => time()));
-            $disk = $cceClient->get($partitions[$i]);
+            $CI->cceClient->set($partitions[$i], '', array('refresh' => time()));
+            $disk = $CI->cceClient->get($partitions[$i]);
             
             if ($disk['used'] && $disk['total']) {
                 $percent = round(100 * ($disk['used'] / $disk['total']));
@@ -331,7 +325,7 @@ class ServerDiskUsage extends MX_Controller {
 
         // Summary Stats:
         if (is_file("/var/log/sa/sa$gestern")) {
-            $ret = $serverScriptHelper->shell("/usr/bin/sar -b -p -f /var/log/sa/sa$gestern", $saStatsGestern, 'root', $sessionId);
+            $ret = $CI->serverScriptHelper->shell("/usr/bin/sar -b -p -f /var/log/sa/sa$gestern", $saStatsGestern, 'root', $CI->BX_SESSION['sessionId']);
 
             // If locale is 'ja_JP' and AdmServ has been restarted, then we'll get the date in Japanese format.
             // We do a search and replace for these Kanji's and replace them:
@@ -372,7 +366,7 @@ class ServerDiskUsage extends MX_Controller {
 
         // Summary Stats:
         if (is_file("/var/log/sa/sa$heute")) {
-            $ret = $serverScriptHelper->shell("/usr/bin/sar -b -p -f /var/log/sa/sa$heute", $saStatsHeute, 'root', $sessionId);
+            $ret = $CI->serverScriptHelper->shell("/usr/bin/sar -b -p -f /var/log/sa/sa$heute", $saStatsHeute, 'root', $CI->BX_SESSION['sessionId']);
 
             // If locale is 'ja_JP' and AdmServ has been restarted, then we'll get the date in Japanese format.
             // We do a search and replace for these Kanji's and replace them:
@@ -468,7 +462,7 @@ class ServerDiskUsage extends MX_Controller {
 
         // Logs for all partitions:
         if (is_file("/var/log/sa/sa$gestern")) {
-            $ret = $serverScriptHelper->shell("/usr/bin/sar -p -d -f /var/log/sa/sa$gestern", $saStatsGestern, 'root', $sessionId);
+            $ret = $CI->serverScriptHelper->shell("/usr/bin/sar -p -d -f /var/log/sa/sa$gestern", $saStatsGestern, 'root', $CI->BX_SESSION['sessionId']);
 
             // If locale is 'ja_JP' and AdmServ has been restarted, then we'll get the date in Japanese format.
             // We do a search and replace for these Kanji's and replace them:
@@ -509,7 +503,7 @@ class ServerDiskUsage extends MX_Controller {
 
         // Logs for all partitions:
         if (is_file("/var/log/sa/sa$heute")) {
-            $ret = $serverScriptHelper->shell("/usr/bin/sar -p -d -f /var/log/sa/sa$heute", $saStatsHeute, 'root', $sessionId);
+            $ret = $CI->serverScriptHelper->shell("/usr/bin/sar -p -d -f /var/log/sa/sa$heute", $saStatsHeute, 'root', $CI->BX_SESSION['sessionId']);
 
             // If locale is 'ja_JP' and AdmServ has been restarted, then we'll get the date in Japanese format.
             // We do a search and replace for these Kanji's and replace them:
@@ -761,7 +755,7 @@ class ServerDiskUsage extends MX_Controller {
 
         $cmd = "/usr/sausalito/sbin/get_quotas.pl --sites --sort=name --descending | /bin/awk '{if ($3 != 0 && ($2 > $3 || $2 * 1.11 > $3)) print $1,$2,$3;}'";
 
-        $handle = $serverScriptHelper->popen($cmd, "r", "root");
+        $handle = $CI->serverScriptHelper->popen($cmd, "r", "root");
         $sites = array();
         $numsites = 0;
         while (!feof($handle)) {
@@ -786,9 +780,9 @@ class ServerDiskUsage extends MX_Controller {
         }
 
         // this is used only when sites are sorted by name
-        $cce_vsites = $cceClient->findx('Vsite', array(), array(), 'hostname', 'fqdn');
+        $cce_vsites = $CI->cceClient->findx('Vsite', array(), array(), 'hostname', 'fqdn');
 
-        $am_obj = $cceClient->getObject('ActiveMonitor', array(), 'Disk');
+        $am_obj = $CI->cceClient->getObject('ActiveMonitor', array(), 'Disk');
 
         for ($i = 0; ($i < $numsites); $i++) {
             // repquota results are sorted correctly
@@ -796,16 +790,16 @@ class ServerDiskUsage extends MX_Controller {
             $site_info = $sites[$i];
             $name = $site_info[0];
             // lookup the CCE object corresponding to that sitename...
-            list($oid) = $cceClient->find('Vsite', array('name' => $name));
+            list($oid) = $CI->cceClient->find('Vsite', array('name' => $name));
             if (!$oid) {
                 error_log("couldn't find CCE object for site name $name");
                 continue;
             }
-            $site_obj = $cceClient->get($oid);
+            $site_obj = $CI->cceClient->get($oid);
             // so we can get the fqdn...
             $fqdn = $site_obj['fqdn'];
             
-            $site_obj = $cceClient->get($oid, 'Disk');
+            $site_obj = $CI->cceClient->get($oid, 'Disk');
             // and their over_quota status
             $user_over_quota = $site_obj['user_over_quota'];
 
@@ -897,7 +891,7 @@ class ServerDiskUsage extends MX_Controller {
 
         $cmd = "/usr/sausalito/sbin/get_quotas.pl --sites --sort=name descending";
 
-        $handle = $serverScriptHelper->popen($cmd, "r", "root");
+        $handle = $CI->serverScriptHelper->popen($cmd, "r", "root");
         $sites = array();
         $numsites = 0;
         while (!feof($handle)) {
@@ -922,12 +916,12 @@ class ServerDiskUsage extends MX_Controller {
         }
 
         // this is used only when sites are sorted by name
-        $cce_vsites = $cceClient->findx('Vsite', array(), array(), 'hostname', 'fqdn');
+        $cce_vsites = $CI->cceClient->findx('Vsite', array(), array(), 'hostname', 'fqdn');
 
-        $am_obj = $cceClient->getObject('ActiveMonitor', array(), 'Disk');
+        $am_obj = $CI->cceClient->getObject('ActiveMonitor', array(), 'Disk');
 
         foreach ($cce_vsites as $i => $oid) {
-            $site_obj = $cceClient->get($oid);
+            $site_obj = $CI->cceClient->get($oid);
 
             // Make sure we're really polling 'Vsite' items:
             if ($site_obj['CLASS'] == "Vsite") {
@@ -938,7 +932,7 @@ class ServerDiskUsage extends MX_Controller {
                 $name = $site_obj['name'];
 
                 // and the over_quota status...
-                $site_obj = $cceClient->get($oid, 'Disk');
+                $site_obj = $CI->cceClient->get($oid, 'Disk');
                 $user_over_quota = $site_obj['user_over_quota'];
 
                 // we then use the sitename to figure out which
@@ -1046,7 +1040,7 @@ class ServerDiskUsage extends MX_Controller {
         $usage_list_oq->setColumnWidths(array("20", "110", "180", "80", "80", "249", "20")); // Max: 739px
         
         $cmd = "/usr/sausalito/sbin/get_quotas.pl --sort=name --descending | /bin/awk '{if ($3 != 0 && ($2 > $3 || $2 * 1.11 > $3)) print $1,$2,$3;}'";
-        $handle = $serverScriptHelper->popen($cmd, "r", "root");
+        $handle = $CI->serverScriptHelper->popen($cmd, "r", "root");
         
         $users = array();
         while (!feof($handle)) {
@@ -1066,7 +1060,7 @@ class ServerDiskUsage extends MX_Controller {
             $users[] = $pieces;
         }
 
-        $am_obj = $cceClient->getObject('ActiveMonitor', array(), 'Disk');
+        $am_obj = $CI->cceClient->getObject('ActiveMonitor', array(), 'Disk');
 
         for ($i = 0; ($i < count($users)); $i++) {
             
@@ -1076,12 +1070,12 @@ class ServerDiskUsage extends MX_Controller {
             $quota = $user_info[2];
 
             // Get the Vsite of this user:
-            list($users_vsite) = $cceClient->find("User", array("name" => $name));
-            $user_siteObj = $cceClient->get($users_vsite);
+            list($users_vsite) = $CI->cceClient->find("User", array("name" => $name));
+            $user_siteObj = $CI->cceClient->get($users_vsite);
             $users_site = $user_siteObj["site"];
             if ($users_site) {
-                list($the_vsite) = $cceClient->find("Vsite", array("name" => $user_siteObj["site"]));
-                $the_siteObj = $cceClient->get($the_vsite);
+                list($the_vsite) = $CI->cceClient->find("Vsite", array("name" => $user_siteObj["site"]));
+                $the_siteObj = $CI->cceClient->get($the_vsite);
                 $fqdn = $the_siteObj["fqdn"];
                 $url = "/disk/groupDiskUsage?group=" . urlencode($users_site) . ($activeMonitor == 1 ? '&activeMonitor=1' : '&serverDiskUsage=1');
                 $site =& $factory->getUrl($i, $url, $fqdn, '', 'r');
@@ -1171,7 +1165,7 @@ class ServerDiskUsage extends MX_Controller {
         $usage_list_full->setColumnWidths(array("20", "110", "180", "80", "80", "249", "20")); // Max: 739px
 
         $cmd = "/usr/sausalito/sbin/get_quotas.pl --sort=name --descending";
-        $handle = $serverScriptHelper->popen($cmd, "r", "root");
+        $handle = $CI->serverScriptHelper->popen($cmd, "r", "root");
         
         $users = array();
         while (!feof($handle)) {
@@ -1191,7 +1185,7 @@ class ServerDiskUsage extends MX_Controller {
             $users[] = $pieces;
         }
     
-        $am_obj = $cceClient->getObject('ActiveMonitor', array(), 'Disk');
+        $am_obj = $CI->cceClient->getObject('ActiveMonitor', array(), 'Disk');
 
         for ($i = 0; ($i < count($users)); $i++){
             
@@ -1202,17 +1196,17 @@ class ServerDiskUsage extends MX_Controller {
 
             // Get the Vsite of this user:
             $users_vsite = '';
-            @list($users_vsite) = $cceClient->find("User", array("name" => $name));
+            @list($users_vsite) = $CI->cceClient->find("User", array("name" => $name));
             if (isset($users_vsite)) {
 
-                $user_siteObj = $cceClient->get($users_vsite);
+                $user_siteObj = $CI->cceClient->get($users_vsite);
                 $users_site = $user_siteObj["site"];
                 if ($users_vsite) {
                     $the_vsite = "";
-                    @list($the_vsite) = $cceClient->find("Vsite", array("name" => $user_siteObj["site"]));
+                    @list($the_vsite) = $CI->cceClient->find("Vsite", array("name" => $user_siteObj["site"]));
 
                     if (isset($the_vsite)) {
-                        $the_siteObj = $cceClient->get($the_vsite);
+                        $the_siteObj = $CI->cceClient->get($the_vsite);
                         $fqdn = $the_siteObj["fqdn"];
                         $url = "/disk/groupDiskUsage?group=" . urlencode($users_site) . ($activeMonitor == 1 ? '&activeMonitor=1' : '&serverDiskUsage=1');
                         $site =& $factory->getUrl($i, $url, $fqdn, '', 'r');
@@ -1363,10 +1357,6 @@ class ServerDiskUsage extends MX_Controller {
             // Full page display. Show "Back" Button:
             $page_body[] = am_back($factory);
         }
-
-        // Nice people say goodbye, or CCEd waits forever:
-        $cceClient->bye();
-        $serverScriptHelper->destructor();
 
         // Out with the page:
         $BxPage->setErrors($errors);

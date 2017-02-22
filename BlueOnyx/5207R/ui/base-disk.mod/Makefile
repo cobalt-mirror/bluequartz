@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=disk
 
 VERSION=3.0.0
-RELEASE=1BX14
+RELEASE=1BX15
 
 # add a buildarch if desired
 BUILDARCH=noarch

@@ -19,53 +19,40 @@ class UserDiskUsage extends MX_Controller {
     public function index() {
 
         $CI =& get_instance();
-        
+
         // We load the BlueOnyx helper library first of all, as we heavily depend on it:
         $this->load->helper('blueonyx');
         init_libraries();
 
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
-        $MX =& get_instance();
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
-        $locale = $CI->input->cookie('locale');
+        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set) and store them in $CI->BX_SESSION:
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
-        // Line up the ducks for CCE-Connection:
+        // Line up the ducks for CCE-Connection and store them for re-usability in $CI:
         include_once('ServerScriptHelper.php');
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        $cceClient = $serverScriptHelper->getCceClient();
-        $user = $cceClient->getObject("User", array("name" => $loginName));
-        $i18n = new I18n("base-disk", $user['localePreference']);
-        $system = $cceClient->getObject("System");
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
+
+        $i18n = new I18n("base-disk", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
+        $user = $CI->BX_SESSION['loginUser'];
 
         // Make the users fullName safe for all charsets:
         $user['fullName'] = bx_charsetsafe($user['fullName']);
-
-        // find all possible locales
-        $possibleLocales = array();
-        $possibleLocales = stringToArray($system["locales"]);
-        /*
-         * don't show browser option for admin, because then it becomes unclear
-         * what the system locale is.
-         */
-        if ($serverScriptHelper->getLoginName() != "admin") {
-            $possibleLocales = array_merge(array("browser"), $possibleLocales);
-        }
 
         // Required array setup:
         $errors = array();
         $extra_headers = array();
 
         //-- Get Diskspace info:
-        $cceClient->setObject("User", array("refresh" => time()), "Disk", array("name" => $loginName));
+        $CI->cceClient->setObject("User", array("refresh" => time()), "Disk", array("name" => $CI->BX_SESSION['loginName']));
 
         // get objects
-        list($user_oid) = $cceClient->find('User', array('name' => $loginName));
-        $userDisk = $cceClient->get($user_oid, 'Disk');
-        $user = $cceClient->get($user_oid);
+        $userDisk = $CI->cceClient->get($user['OID'], "Disk");
+        $user = $CI->cceClient->get($user['OID']);
 
         // get user disk information
         $used = $userDisk["used"];
@@ -75,7 +62,7 @@ class UserDiskUsage extends MX_Controller {
         // fix to correspond to new quota scheme, negative number means no quota set
         // 0 means 0, and any positive number is that number
         if ($available < 0) {
-            $home = $cceClient->getObject(
+            $home = $CI->cceClient->getObject(
                         'Disk', 
                         array('mountPoint' => $user['volume'])
                     );
@@ -128,7 +115,7 @@ class UserDiskUsage extends MX_Controller {
         $BxPage = new BxPage();
 
         $page_body[] = addInputForm(
-                                    $i18n->get("diskUsageFor", "base-disk", array("userName" => $loginName)), 
+                                    $i18n->get("diskUsageFor", "base-disk", array("userName" => $CI->BX_SESSION['loginName'])), 
                                     array("toggle" => "#"),
                                     addTextField("userDiskUsed", "", $used, "base-disk", "", "r", $i18n) .
                                     addTextField("userDiskFree", "", $free, "base-disk", "", "r", $i18n) .
@@ -139,10 +126,6 @@ class UserDiskUsage extends MX_Controller {
                                     $BxPage,
                                     $errors
                                     );
-
-        // Nice people say goodbye, or CCEd waits forever:
-        $cceClient->bye();
-        $serverScriptHelper->destructor();
 
         // Out with the page:
         $BxPage->render($page_module, $page_body);

@@ -12,46 +12,42 @@ class GroupDiskUsage extends MX_Controller {
     public function index() {
 
         $CI =& get_instance();
-        
+
         // We load the BlueOnyx helper library first of all, as we heavily depend on it:
         $this->load->helper('blueonyx');
         init_libraries();
 
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
-        $MX =& get_instance();
 
         // Load AM Detail Helper:
         $this->load->helper('amdetail');
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
-        $locale = $CI->input->cookie('locale');
+        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set) and store them in $CI->BX_SESSION:
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
-        // Line up the ducks for CCE-Connection:
+        // Line up the ducks for CCE-Connection and store them for re-usability in $CI:
         include_once('ServerScriptHelper.php');
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        $cceClient = $serverScriptHelper->getCceClient();
-        $user = $cceClient->getObject("User", array("name" => $loginName));
-        $i18n = new I18n("base-disk", $user['localePreference']);
-        $system = $cceClient->getObject("System");
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
 
-        // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        $i18n = new I18n("base-disk", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
+        $user = $CI->BX_SESSION['loginUser'];
 
         // -- Actual page logic start:
 
         // Access Rules:
-        if ((!$Capabilities->getAllowed('adminUser')) && 
-            (!$Capabilities->getAllowed('siteAdmin')) && 
-            (!$Capabilities->getAllowed('manageSite')) && 
-            (($user['site'] != $serverScriptHelper->loginUser['site']) && $Capabilities->getAllowed('siteAdmin')) &&
-            (($vsiteObj['createdUser'] != $loginName) && $Capabilities->getAllowed('manageSite'))
+        if ((!$CI->serverScriptHelper->getAllowed('adminUser')) && 
+            (!$CI->serverScriptHelper->getAllowed('siteAdmin')) && 
+            (!$CI->serverScriptHelper->getAllowed('manageSite')) && 
+            (($user['site'] != $CI->serverScriptHelper->loginUser['site']) && $CI->serverScriptHelper->getAllowed('siteAdmin')) &&
+            (($vsiteObj['createdUser'] != $CI->BX_SESSION['loginName']) && $CI->serverScriptHelper->getAllowed('manageSite'))
             ) {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403");
         }
 
@@ -95,8 +91,8 @@ class GroupDiskUsage extends MX_Controller {
         else {
             // Don't play games with us!
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403#2");
         }
 
@@ -105,7 +101,7 @@ class GroupDiskUsage extends MX_Controller {
         //
 
         // Prepare Page:
-        $factory =& $serverScriptHelper->getHtmlComponentFactory('base-disk', $_SERVER['PHP_SELF']);
+        $factory =& $CI->serverScriptHelper->getHtmlComponentFactory('base-disk', $_SERVER['PHP_SELF']);
         $BxPage = $factory->getPage();
         $i18n = $factory->getI18n();
 
@@ -128,15 +124,15 @@ class GroupDiskUsage extends MX_Controller {
 
         $type = 'Vsite';
 
-        list($group_oid) = $cceClient->find($type, array('name' => $group));
+        list($group_oid) = $CI->cceClient->find($type, array('name' => $group));
         // refresh only this group's quota info, not all users
-        $cceClient->set($group_oid, 'Disk', array( 'refresh' => time()));
+        $CI->cceClient->set($group_oid, 'Disk', array( 'refresh' => time()));
 
         // get objects
-        $group_disk = $cceClient->get($group_oid, 'Disk');
-        $group_info = $cceClient->get($group_oid);
+        $group_disk = $CI->cceClient->get($group_oid, 'Disk');
+        $group_info = $CI->cceClient->get($group_oid);
 
-        $am_obj = $cceClient->getObject('ActiveMonitor', array(), 'Disk');
+        $am_obj = $CI->cceClient->getObject('ActiveMonitor', array(), 'Disk');
 
         // get group disk information
         $used = $group_disk['used']*1000;
@@ -145,7 +141,7 @@ class GroupDiskUsage extends MX_Controller {
         // fix to correspond to new quota scheme, negative number means no quota set
         // 0 means 0, and any positive number is that number
         if($available < 0) {
-            $home = $cceClient->getObject('Disk', array('mountPoint' => $group_info['volume']));
+            $home = $CI->cceClient->getObject('Disk', array('mountPoint' => $group_info['volume']));
             $available = $home['total'] - $home['used'];
             $free = $available;
             $percentage = 0;
@@ -227,7 +223,7 @@ class GroupDiskUsage extends MX_Controller {
         $service_sort_index = $sysusage->getSortedIndex();
         $service_sort_prop = array(1 => 'label', 2 => 'used', 3 => 'quota');
         $service_sort_type = array(1 => 'ascii', 2 => 'old_numeric', 3 => 'old_numeric');
-        $sysquotas = $cceClient->findx('ServiceQuota', array('site' => $group), array(), "", "");
+        $sysquotas = $CI->cceClient->findx('ServiceQuota', array('site' => $group), array(), "", "");
 
         if ($sysusage->getSortOrder() == 'descending') {
             $sysquotas = array_reverse($sysquotas);
@@ -235,7 +231,7 @@ class GroupDiskUsage extends MX_Controller {
 
         $start = 0;
         for ($i = $start; ($i < count($sysquotas)); $i++) {
-            $service = $cceClient->get($sysquotas[$i]);
+            $service = $CI->cceClient->get($sysquotas[$i]);
 
             $quota = $service['quota'];
             $service['quota'] = $service['quota'] * 1000;
@@ -290,7 +286,7 @@ class GroupDiskUsage extends MX_Controller {
 
         $cmd = "/usr/sausalito/sbin/get_quotas.pl --sort=$sorttype --site=$group $order";
 
-        $handle = $serverScriptHelper->popen($cmd, "r", "root");
+        $handle = $CI->serverScriptHelper->popen($cmd, "r", "root");
 
         $users = array();
         while (!feof($handle)) {
@@ -391,10 +387,6 @@ class GroupDiskUsage extends MX_Controller {
             // Full page display. Show "Back" Button:
             $page_body[] = am_back($factory);
         }
-
-        // Nice people say goodbye, or CCEd waits forever:
-        $cceClient->bye();
-        $serverScriptHelper->destructor();
 
         // Out with the page:
         $BxPage->setErrors($errors);
