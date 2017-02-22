@@ -266,22 +266,24 @@ class Capabilities {
 
     // description: returns an array of ALL the capabilityGroups
     function getAllCapabilityGroups() {
-        $CI =& get_instance();
-        $this->debug_log("getAllCapabilityGroups: via Capabilities");
+        $this->debug_log("getAllCapabilityGroups: via ServerScriptHelper");
 
-        $capabilityGroups_file_name = "/usr/sausalito/capcache/" . $CI->BX_SESSION['loginName'] . "_capabilityGroups";
+        $capabilityGroups_file_name = "/usr/sausalito/capcache/$this->loginName" . "_capabilityGroups";
 
         if (isset($this->_gotAllCapabilityGroups)) {
             $this->debug_log("getAllCapabilityGroups: From memory");
             return $this->capabilityGroups;
         }
         elseif (is_file($capabilityGroups_file_name)) {
-            if (is_file($capabilityGroups_file_name)) {
-                $capabilityGroups_file_data = read_file($capabilityGroups_file_name);
-                $this->capabilityGroups = json_decode($capabilityGroups_file_data, true);
-                $this->debug_log("getAllCapabilityGroups: From file");
+            $capabilityGroups_file_data = read_file($capabilityGroups_file_name);
+            $this->capabilityGroups = json_decode($capabilityGroups_file_data, true);
+            if (!is_array($this->capabilityGroups)) {
+                system("rm -f $capabilityGroups_file_name");
+                error_log("getAllCapabilityGroups: Capability cache $capabilityGroups_file_name not readable or garbled. Deleting cachefile and continuing with full run for now.");
+            }
+            else {
                 $this->_gotAllCapabilityGroups = 1;
-                return $this->capabilityGroups;
+                return $this->capabilityGroups;                
             }
         }
         else {
