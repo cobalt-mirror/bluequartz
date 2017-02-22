@@ -2,280 +2,274 @@
 
 class Secondarydns extends MX_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Past the login page this loads the page for /dns/primarydns.
-	 *
-	 */
+    /**
+     * Index Page for this controller.
+     *
+     * Past the login page this loads the page for /dns/primarydns.
+     *
+     */
 
-	public function index() {
+    public function index() {
 
-		$CI =& get_instance();
-		
-	    // We load the BlueOnyx helper library first of all, as we heavily depend on it:
-	    $this->load->helper('blueonyx');
-	    init_libraries();
+        $CI =& get_instance();
 
-  		// Need to load 'BxPage' for page rendering:
-  		$this->load->library('BxPage');
-		$MX =& get_instance();
+        // We load the BlueOnyx helper library first of all, as we heavily depend on it:
+        $this->load->helper('blueonyx');
+        init_libraries();
 
-	    // Get $sessionId and $loginName from Cookie (if they are set):
-	    $sessionId = $CI->input->cookie('sessionId');
-	    $loginName = $CI->input->cookie('loginName');
-	    $locale = $CI->input->cookie('locale');
+        // Need to load 'BxPage' for page rendering:
+        $this->load->library('BxPage');
 
-	    // Line up the ducks for CCE-Connection:
-	    include_once('ServerScriptHelper.php');
-		$serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-		$cceClient = $serverScriptHelper->getCceClient();
-		$user = $cceClient->getObject("User", array("name" => $loginName));
-		$i18n = new I18n("base-dns", $user['localePreference']);
-		$system = $cceClient->getObject("System");
+        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set) and store them in $CI->BX_SESSION:
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
-		// Initialize Capabilities so that we can poll the access rights as well:
-		$Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        // Line up the ducks for CCE-Connection and store them for re-usability in $CI:
+        include_once('ServerScriptHelper.php');
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
 
-		// -- Actual page logic start:
+        $i18n = new I18n("base-apache", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
+        $user = $CI->BX_SESSION['loginUser'];
 
-		// Not siteDNS? Bye, bye!
-		if (!$Capabilities->getAllowed('siteDNS')) {
-			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
-			Log403Error("/gui/Forbidden403");
-		}
+        // Initialize Capabilities so that we can poll the access rights as well:
+        $Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
 
-		//
-		//--- Handle form validation:
-		//
+        // -- Actual page logic start:
 
-	    // We start without any active errors:
-	    $errors = array();
-	    $extra_headers =array();
-	    $ci_errors = array();
-	    $my_errors = array();
+        // Not siteDNS? Bye, bye!
+        if (!$Capabilities->getAllowed('siteDNS')) {
+            // Nice people say goodbye, or CCEd waits forever:
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
+            Log403Error("/gui/Forbidden403");
+        }
 
-		// Shove submitted input into $form_data after passing it through the XSS filter:
-		$form_data = $CI->input->post(NULL, TRUE);
+        //
+        //--- Handle form validation:
+        //
 
-		// Form fields that are required to have input:
-		$required_keys = array();
+        // We start without any active errors:
+        $errors = array();
+        $extra_headers =array();
+        $ci_errors = array();
+        $my_errors = array();
 
-    	// Set up rules for form validation. These validations happen before we submit to CCE and further checks based on the schemas are done:
+        // Shove submitted input into $form_data after passing it through the XSS filter:
+        $form_data = $CI->input->post(NULL, TRUE);
 
-		// Empty array for key => values we want to submit to CCE:
-    	$attributes = array();
-    	// Items we do NOT want to submit to CCE:
-    	$ignore_attributes = array("BlueOnyx_Info_Text");
-		if (is_array($form_data)) {
-			// Function GetFormAttributes() walks through the $form_data and returns us the $parameters we want to
-			// submit to CCE. It intelligently handles checkboxes, which only have "on" set when they are ticked.
-			// In that case it pulls the unticked status from the hidden checkboxes and addes them to $parameters.
-			// It also transformes the value of the ticked checkboxes from "on" to "1". 
-			//
-			// Additionally it generates the form_validation rules for CodeIgniter.
-			//
-			// params: $i18n				i18n Object of the error messages
-			// params: $form_data			array with form_data array from CI
-			// params: $required_keys		array with keys that must have data in it. Needed for CodeIgniter's error checks
-			// params: $ignore_attributes	array with items we want to ignore. Such as Labels.
-			// return: 						array with keys and values ready to submit to CCE.
-			$attributes = GetFormAttributes($i18n, $form_data, $required_keys, $ignore_attributes, $i18n);
-		}
-		//Setting up error messages:
-		$CI->form_validation->set_message('required', $i18n->get("[[palette.val_is_required]]", false, array("field" => "\"%s\"")));		
+        // Form fields that are required to have input:
+        $required_keys = array();
 
-	    // Do we have validation related errors?
-	    if ($CI->form_validation->run() == FALSE) {
+        // Set up rules for form validation. These validations happen before we submit to CCE and further checks based on the schemas are done:
 
-			if (validation_errors()) {
-				// Set CI related errors:
-				$ci_errors = array(validation_errors('<div class="alert dismissible alert_red"><img width="40" height="36" src="/.adm/images/icons/small/white/alarm_bell.png"><strong>', '</strong></div>'));
-			}		    
-			else {
-				// No errors. Pass empty array along:
-				$ci_errors = array();
-			}
-		}
+        // Empty array for key => values we want to submit to CCE:
+        $attributes = array();
+        // Items we do NOT want to submit to CCE:
+        $ignore_attributes = array("BlueOnyx_Info_Text");
+        if (is_array($form_data)) {
+            // Function GetFormAttributes() walks through the $form_data and returns us the $parameters we want to
+            // submit to CCE. It intelligently handles checkboxes, which only have "on" set when they are ticked.
+            // In that case it pulls the unticked status from the hidden checkboxes and addes them to $parameters.
+            // It also transformes the value of the ticked checkboxes from "on" to "1". 
+            //
+            // Additionally it generates the form_validation rules for CodeIgniter.
+            //
+            // params: $i18n                i18n Object of the error messages
+            // params: $form_data           array with form_data array from CI
+            // params: $required_keys       array with keys that must have data in it. Needed for CodeIgniter's error checks
+            // params: $ignore_attributes   array with items we want to ignore. Such as Labels.
+            // return:                      array with keys and values ready to submit to CCE.
+            $attributes = GetFormAttributes($i18n, $form_data, $required_keys, $ignore_attributes, $i18n);
+        }
+        //Setting up error messages:
+        $CI->form_validation->set_message('required', $i18n->get("[[palette.val_is_required]]", false, array("field" => "\"%s\"")));        
 
-		//
-		//--- Own error checks:
-		//
+        // Do we have validation related errors?
+        if ($CI->form_validation->run() == FALSE) {
 
-		if ($CI->input->post(NULL, TRUE)) {
-			// None.
-		}
+            if (validation_errors()) {
+                // Set CI related errors:
+                $ci_errors = array(validation_errors('<div class="alert dismissible alert_red"><img width="40" height="36" src="/.adm/images/icons/small/white/alarm_bell.png"><strong>', '</strong></div>'));
+            }           
+            else {
+                // No errors. Pass empty array along:
+                $ci_errors = array();
+            }
+        }
 
-		//
-		//--- At this point all checks are done. If we have no errors, we can submit the data to CODB:
-		//
+        //
+        //--- Own error checks:
+        //
 
-		// Join the various error messages:
-		$errors = array_merge($ci_errors, $my_errors);
+        if ($CI->input->post(NULL, TRUE)) {
+            // None.
+        }
 
-		// If we have no errors and have POST data, we submit to CODB:
-		if ((count($errors) == "0") && ($CI->input->post(NULL, TRUE))) {
+        //
+        //--- At this point all checks are done. If we have no errors, we can submit the data to CODB:
+        //
 
-			// We have no errors. We submit to CODB.
+        // Join the various error messages:
+        $errors = array_merge($ci_errors, $my_errors);
 
-			// Any additional parameters that we need to pass on?
-			$attributes['commit'] = time();
+        // If we have no errors and have POST data, we submit to CODB:
+        if ((count($errors) == "0") && ($CI->input->post(NULL, TRUE))) {
 
-	  		// Actual submit to CODB:
-			$cceClient->setObject("System", $attributes, "DNS");
+            // We have no errors. We submit to CODB.
 
-			// CCE errors that might have happened during submit to CODB:
-			$CCEerrors = $cceClient->errors();
-			foreach ($CCEerrors as $object => $objData) {
-				// When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
-				$errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
-			}
+            // Any additional parameters that we need to pass on?
+            $attributes['commit'] = time();
 
-			// Replace the CODB obtained values in our Form with the one we just posted to CCE:
-			$dns = $form_data;
-		}
+            // Actual submit to CODB:
+            $CI->cceClient->set($system['OID'], "DNS",  $attributes);
 
-		//
-		//-- Page Logic:
-		//
+            // CCE errors that might have happened during submit to CODB:
+            $CCEerrors = $CI->cceClient->errors();
+            foreach ($CCEerrors as $object => $objData) {
+                // When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
+                $errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
+            }
 
-		$iam = '/dns/secondarydns';
-		$edit = '/dns/secondarydnsmod';
-		$parent = '/dns/dnsmanager';
+            // Replace the CODB obtained values in our Form with the one we just posted to CCE:
+            $dns = $form_data;
+        }
 
-		// Grab system-DNS data
-		$sys_oid = $cceClient->find('System');
-		$sys_dns = $cceClient->get($sys_oid, 'DNS');
+        //
+        //-- Page Logic:
+        //
 
-		//
-	    //-- Generate page:
-	    //
+        $iam = '/dns/secondarydns';
+        $edit = '/dns/secondarydnsmod';
+        $parent = '/dns/dnsmanager';
 
-		// Prepare Page:
-		$factory = $serverScriptHelper->getHtmlComponentFactory("base-dns", "/dns/secondarydns");
-		$BxPage = $factory->getPage();
-		$BxPage->setErrors($errors);
-		$i18n = $factory->getI18n();
+        // Grab system-DNS data
+        $sys_dns = $CI->cceClient->get($system['OID'], 'DNS');
 
-		$product = new Product($cceClient);
+        //
+        //-- Generate page:
+        //
 
-		// Set Menu items:
-		$BxPage->setVerticalMenu('base_controlpanel');
-		$BxPage->setVerticalMenuChild('base_dns');
-		$page_module = 'base_sysmanage';
+        // Prepare Page:
+        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-dns", "/dns/secondarydns");
+        $BxPage = $factory->getPage();
+        $BxPage->setErrors($errors);
+        $i18n = $factory->getI18n();
 
-		$defaultPage = "basic";
+        $product = new Product($CI->cceClient);
 
-		$block =& $factory->getPagedBlock("sec_list", array($defaultPage));
+        // Set Menu items:
+        $BxPage->setVerticalMenu('base_controlpanel');
+        $BxPage->setVerticalMenuChild('base_dns');
+        $page_module = 'base_sysmanage';
 
-		$block->setToggle("#");
-		$block->setSideTabs(FALSE);
-//		$block->setShowAllTabs("#");
-		$block->setDefaultPage($defaultPage);
+        $defaultPage = "basic";
 
-		// pull-down add secondary service
-		$addList = array(	"add_secondary_forward" => "$edit?TYPE=FORWARD", "add_secondary_network" => "$edit?TYPE=NETWORK");
-		$addButton = $factory->getMultiButton("add_secondary", array_values($addList), array_keys($addList));
+        $block =& $factory->getPagedBlock("sec_list", array($defaultPage));
 
-		//
-		//--- Basic Tab
-		//
+        $block->setToggle("#");
+        $block->setSideTabs(FALSE);
+//      $block->setShowAllTabs("#");
+        $block->setDefaultPage($defaultPage);
 
-  		$ScrollList = $factory->getScrollList("sec_list", array("sec_authority", "sec_primaries", 'listAction'), array());
-	    $ScrollList->setAlignments(array("left", "center", "center"));
-	    $ScrollList->setDefaultSortedIndex('0');
-	    $ScrollList->setSortOrder('ascending');
-	    $ScrollList->setSortDisabled(array('3'));
-	    $ScrollList->setPaginateDisabled(FALSE);
-	    $ScrollList->setSearchDisabled(FALSE);
-	    $ScrollList->setSelectorDisabled(FALSE);
-	    $ScrollList->enableAutoWidth(FALSE);
-	    $ScrollList->setInfoDisabled(FALSE);
-	    $ScrollList->setColumnWidths(array("319", "319", "100")); // Max: 739px
+        // pull-down add secondary service
+        $addList = array(   "add_secondary_forward" => "$edit?TYPE=FORWARD", "add_secondary_network" => "$edit?TYPE=NETWORK");
+        $addButton = $factory->getMultiButton("add_secondary", array_values($addList), array_keys($addList));
 
-		// Populate elements in the scroll list
-		$rec_oids = $cceClient->find("DnsSlaveZone");
+        //
+        //--- Basic Tab
+        //
 
-		// display records
-		rsort($rec_oids);
-		if(count($rec_oids)) { 
-			for ($i = 0; $i < $rec_oids[0]; $i++) {
-				if(isset($rec_oids[$i])) {
-					$oid = $rec_oids[$i];
-					$rec = $cceClient->get($oid, "");
+        $ScrollList = $factory->getScrollList("sec_list", array("sec_authority", "sec_primaries", 'listAction'), array());
+        $ScrollList->setAlignments(array("left", "center", "center"));
+        $ScrollList->setDefaultSortedIndex('0');
+        $ScrollList->setSortOrder('ascending');
+        $ScrollList->setSortDisabled(array('3'));
+        $ScrollList->setPaginateDisabled(FALSE);
+        $ScrollList->setSearchDisabled(FALSE);
+        $ScrollList->setSelectorDisabled(FALSE);
+        $ScrollList->enableAutoWidth(FALSE);
+        $ScrollList->setInfoDisabled(FALSE);
+        $ScrollList->setColumnWidths(array("319", "319", "100")); // Max: 739px
 
-				    if($rec['ipaddr'] != '') {
-				      $label = $rec['ipaddr'].'/'.$rec['netmask'];
-				      $type = 'NETWORK';
-				    } else {
-				      // domain auth
-				      $label = $rec['domain'];
-				      $type = 'FORWARD';
-				    }
+        // Populate elements in the scroll list
+        $rec_oids = $CI->cceClient->find("DnsSlaveZone");
 
-				    $msg = $i18n->get("confirm_removal_of_sec");  // .$label.'?';
+        // display records
+        rsort($rec_oids);
+        if(count($rec_oids)) { 
+            for ($i = 0; $i < $rec_oids[0]; $i++) {
+                if(isset($rec_oids[$i])) {
+                    $oid = $rec_oids[$i];
+                    $rec = $CI->cceClient->get($oid, "");
 
-				    // Construct the buttons:
-					$modify_button = $factory->getModifyButton("$edit?_TARGET=$oid&_LOAD=1&TYPE=$type");
-					$modify_button->setImageOnly(TRUE);
-					$remove_button = $factory->getRemoveButton("$edit?_RTARGET=$oid");
-					$remove_button->setImageOnly(TRUE);
-					$combined_buttons = $factory->getCompositeFormField(array($modify_button, $remove_button));
+                    if($rec['ipaddr'] != '') {
+                      $label = $rec['ipaddr'].'/'.$rec['netmask'];
+                      $type = 'NETWORK';
+                    } else {
+                      // domain auth
+                      $label = $rec['domain'];
+                      $type = 'FORWARD';
+                    }
 
-					// Populate Scrollist
-				    $ScrollList->addEntry(array(
-						$label,
-						$rec['masters'],
-						$combined_buttons
-				    ));
-				}
-			}
-		}
+                    $msg = $i18n->get("confirm_removal_of_sec");  // .$label.'?';
 
-		$block->addFormField(
-			$factory->getRawHTML("filler", "&nbsp;"),
-			$factory->getLabel(" "),
-			$defaultPage
-		);
+                    // Construct the buttons:
+                    $modify_button = $factory->getModifyButton("$edit?_TARGET=$oid&_LOAD=1&TYPE=$type");
+                    $modify_button->setImageOnly(TRUE);
+                    $remove_button = $factory->getRemoveButton("$edit?_RTARGET=$oid");
+                    $remove_button->setImageOnly(TRUE);
+                    $combined_buttons = $factory->getCompositeFormField(array($modify_button, $remove_button));
 
-		// Add the "Add Secondary Service..." Pulldown:
-		$block->addFormField(
-			$addButton,
-			$factory->getLabel(" "),
-			$defaultPage
-		);
+                    // Populate Scrollist
+                    $ScrollList->addEntry(array(
+                        $label,
+                        $rec['masters'],
+                        $combined_buttons
+                    ));
+                }
+            }
+        }
 
-		// Commit-Integer: We need at least one form field to be able to submit data.
-		// So we use this hidden one:
-		$block->addFormField(
-			$factory->getTextField('commit', time(), ''),
-			$factory->getLabel("commit"), 
-			$defaultPage
-		);	
+        $block->addFormField(
+            $factory->getRawHTML("filler", "&nbsp;"),
+            $factory->getLabel(" "),
+            $defaultPage
+        );
 
-		// Show the ScrollList of the DNS Records:
-		$block->addFormField(
-			$factory->getRawHTML("sec_list", $ScrollList->toHtml()),
-			$factory->getLabel("sec_list"),
-			$defaultPage
-		);
+        // Add the "Add Secondary Service..." Pulldown:
+        $block->addFormField(
+            $addButton,
+            $factory->getLabel(" "),
+            $defaultPage
+        );
 
-		// Add the buttons
-		$block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
-		$block->addButton($factory->getCancelButton("/dns/dnsmanager"));
+        // Commit-Integer: We need at least one form field to be able to submit data.
+        // So we use this hidden one:
+        $block->addFormField(
+            $factory->getTextField('commit', time(), ''),
+            $factory->getLabel("commit"), 
+            $defaultPage
+        );  
 
-		// Nice people say goodbye, or CCEd waits forever:
-		$cceClient->bye();
-		$serverScriptHelper->destructor();
+        // Show the ScrollList of the DNS Records:
+        $block->addFormField(
+            $factory->getRawHTML("sec_list", $ScrollList->toHtml()),
+            $factory->getLabel("sec_list"),
+            $defaultPage
+        );
 
-		$page_body[] = $block->toHtml();
+        // Add the buttons
+        $block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
+        $block->addButton($factory->getCancelButton("/dns/dnsmanager"));
 
-		// Out with the page:
-	    $BxPage->render($page_module, $page_body);
+        $page_body[] = $block->toHtml();
 
-	}		
+        // Out with the page:
+        $BxPage->render($page_module, $page_body);
+
+    }       
 }
 /*
 Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET

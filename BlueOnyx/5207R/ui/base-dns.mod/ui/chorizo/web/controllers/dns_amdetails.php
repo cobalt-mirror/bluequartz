@@ -2,114 +2,104 @@
 
 class Dns_amdetails extends MX_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Past the login page this loads the page for /dns/dns_amdetails.
-	 *
-	 */
+    /**
+     * Index Page for this controller.
+     *
+     * Past the login page this loads the page for /dns/dns_amdetails.
+     *
+     */
 
-	public function index() {
+    public function index() {
 
-		$CI =& get_instance();
-		
-	    // We load the BlueOnyx helper library first of all, as we heavily depend on it:
-	    $this->load->helper('blueonyx');
-	    init_libraries();
+        $CI =& get_instance();
 
-  		// Need to load 'BxPage' for page rendering:
-  		$this->load->library('BxPage');
-		$MX =& get_instance();
+        // We load the BlueOnyx helper library first of all, as we heavily depend on it:
+        $this->load->helper('blueonyx');
+        init_libraries();
 
-		// Load AM Detail Helper:
-		$this->load->helper('amdetail');
+        // Need to load 'BxPage' for page rendering:
+        $this->load->library('BxPage');
 
-	    // Get $sessionId and $loginName from Cookie (if they are set):
-	    $sessionId = $CI->input->cookie('sessionId');
-	    $loginName = $CI->input->cookie('loginName');
-	    $locale = $CI->input->cookie('locale');
+        // Load AM Detail Helper:
+        $this->load->helper('amdetail');
 
-	    // Line up the ducks for CCE-Connection:
-	    include_once('ServerScriptHelper.php');
-		$serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-		$cceClient = $serverScriptHelper->getCceClient();
-		$user = $cceClient->getObject("User", array("name" => $loginName));
-		$i18n = new I18n("base-dns", $user['localePreference']);
-		$system = $cceClient->getObject("System");
+        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set) and store them in $CI->BX_SESSION:
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
-		// Initialize Capabilities so that we can poll the access rights as well:
-		$Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        // Line up the ducks for CCE-Connection and store them for re-usability in $CI:
+        include_once('ServerScriptHelper.php');
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
 
-		// -- Actual page logic start:
+        $i18n = new I18n("base-dns", $CI->BX_SESSION['loginUser']['localePreference']); 
 
-		// Not 'serverShowActiveMonitor'? Bye, bye!
-		if (!$Capabilities->getAllowed('serverShowActiveMonitor')) {
-			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
-			Log403Error("/gui/Forbidden403");
-		}
+        // -- Actual page logic start:
 
-		// -- Actual page logic start:
+        // Not 'serverShowActiveMonitor'? Bye, bye!
+        if (!$CI->serverScriptHelper->getAllowed('serverShowActiveMonitor')) {
+            // Nice people say goodbye, or CCEd waits forever:
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
+            Log403Error("/gui/Forbidden403");
+        }
 
-	    // We start without any active errors:
-	    $errors = array();
-	    $extra_headers =array();
-	    $ci_errors = array();
-	    $my_errors = array();
+        // -- Actual page logic start:
 
-	    // Find out if we display without menu or with menu:
-		$get_form_data = $CI->input->get(NULL, TRUE);
-		$fancy = FALSE;
-		if ($get_form_data['short'] == "1") {
-			$fancy = TRUE;
-		}
+        // We start without any active errors:
+        $errors = array();
+        $extra_headers =array();
+        $ci_errors = array();
+        $my_errors = array();
 
-		// Prepare Page:
-		$factory = $serverScriptHelper->getHtmlComponentFactory("base-dns");
-		$BxPage = $factory->getPage();
-		$i18n = $factory->getI18n();
+        // Find out if we display without menu or with menu:
+        $get_form_data = $CI->input->get(NULL, TRUE);
+        $fancy = FALSE;
+        if ($get_form_data['short'] == "1") {
+            $fancy = TRUE;
+        }
 
-		// Set Menu items:
-		$BxPage->setVerticalMenu('base_monitor');
-		$BxPage->setVerticalMenuChild('base_amStatus');
-		if ($fancy == TRUE) {		
-			$BxPage->setOutOfStyle(TRUE);
-		}
-		$page_module = 'base_sysmanage';
-		$defaultPage = "basicSettingsTab";
+        // Prepare Page:
+        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-dns");
+        $BxPage = $factory->getPage();
+        $i18n = $factory->getI18n();
 
-		if ($fancy == TRUE) {
-			$page_body[] = '<br><div id="main_container" class="container_16">';
-		}
+        // Set Menu items:
+        $BxPage->setVerticalMenu('base_monitor');
+        $BxPage->setVerticalMenuChild('base_amStatus');
+        if ($fancy == TRUE) {       
+            $BxPage->setOutOfStyle(TRUE);
+        }
+        $page_module = 'base_sysmanage';
+        $defaultPage = "basicSettingsTab";
+
+        if ($fancy == TRUE) {
+            $page_body[] = '<br><div id="main_container" class="container_16">';
+        }
 
 //---
 
-		//
-		//--- Print Detail Block:
-		//
+        //
+        //--- Print Detail Block:
+        //
 
-		$page_body[] = am_detail_block($factory, $cceClient, "DNS", "[[base-dns.amDetailsTitle]]");
+        $page_body[] = am_detail_block($factory, $CI->cceClient, "DNS", "[[base-dns.amDetailsTitle]]");
 
-//---	
+//---   
 
-		if ($fancy == TRUE) {
-			$page_body[] = '</div>';
-		}
-		else {
-			// Full page display. Show "Back" Button:
-			$page_body[] = am_back($factory);
-		}
+        if ($fancy == TRUE) {
+            $page_body[] = '</div>';
+        }
+        else {
+            // Full page display. Show "Back" Button:
+            $page_body[] = am_back($factory);
+        }
 
-		// Nice people say goodbye, or CCEd waits forever:
-		$cceClient->bye();
-		$serverScriptHelper->destructor();
+        // Out with the page:
+        $BxPage->setErrors($errors);
+        $BxPage->render($page_module, $page_body);
 
-		// Out with the page:
-		$BxPage->setErrors($errors);
-	    $BxPage->render($page_module, $page_body);
-
-	}
+    }
 }
 /*
 Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET

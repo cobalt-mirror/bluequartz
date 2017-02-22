@@ -2,392 +2,387 @@
 
 class Secondarydnsmod extends MX_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Past the login page this loads the page for /dns/secondarydnsmod.
-	 *
-	 */
+    /**
+     * Index Page for this controller.
+     *
+     * Past the login page this loads the page for /dns/secondarydnsmod.
+     *
+     */
 
-	public function index() {
+    public function index() {
 
-		$CI =& get_instance();
-		
-	    // We load the BlueOnyx helper library first of all, as we heavily depend on it:
-	    $this->load->helper('blueonyx');
-	    init_libraries();
+        $CI =& get_instance();
 
-  		// Need to load 'BxPage' for page rendering:
-  		$this->load->library('BxPage');
-		$MX =& get_instance();
+        // We load the BlueOnyx helper library first of all, as we heavily depend on it:
+        $this->load->helper('blueonyx');
+        init_libraries();
 
-	    // Get $sessionId and $loginName from Cookie (if they are set):
-	    $sessionId = $CI->input->cookie('sessionId');
-	    $loginName = $CI->input->cookie('loginName');
-	    $locale = $CI->input->cookie('locale');
+        // Need to load 'BxPage' for page rendering:
+        $this->load->library('BxPage');
 
-	    // Line up the ducks for CCE-Connection:
-	    include_once('ServerScriptHelper.php');
-		$serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-		$cceClient = $serverScriptHelper->getCceClient();
-		$user = $cceClient->getObject("User", array("name" => $loginName));
-		$i18n = new I18n("base-dns", $user['localePreference']);
-		$system = $cceClient->getObject("System");
+        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set) and store them in $CI->BX_SESSION:
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
-		// Initialize Capabilities so that we can poll the access rights as well:
-		$Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        // Line up the ducks for CCE-Connection and store them for re-usability in $CI:
+        include_once('ServerScriptHelper.php');
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
 
-		// -- Actual page logic start:
+        $i18n = new I18n("base-apache", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
+        $user = $CI->BX_SESSION['loginUser'];
 
-		$iam = '/dns/secondarydnsmod';
-		$parent = '/dns/secondarydns';
+        // Initialize Capabilities so that we can poll the access rights as well:
+        $Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
 
-		// Not siteDNS? Bye, bye!
-		if (!$Capabilities->getAllowed('siteDNS')) {
-			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
-			Log403Error("/gui/Forbidden403");
-		}
+        // -- Actual page logic start:
 
-		//
-		//--- Handle form validation:
-		//
+        $iam = '/dns/secondarydnsmod';
+        $parent = '/dns/secondarydns';
 
-	    // We start without any active errors:
-	    $errors = array();
-	    $extra_headers =array();
-	    $ci_errors = array();
-	    $my_errors = array();
+        // Not siteDNS? Bye, bye!
+        if (!$Capabilities->getAllowed('siteDNS')) {
+            // Nice people say goodbye, or CCEd waits forever:
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
+            Log403Error("/gui/Forbidden403");
+        }
 
-		// Shove submitted input into $form_data after passing it through the XSS filter:
-		$form_data = $CI->input->post(NULL, TRUE);
+        //
+        //--- Handle form validation:
+        //
 
-		// Form fields that are required to have input:
-		$required_keys = array();
+        // We start without any active errors:
+        $errors = array();
+        $extra_headers =array();
+        $ci_errors = array();
+        $my_errors = array();
 
-    	// Set up rules for form validation. These validations happen before we submit to CCE and further checks based on the schemas are done:
+        // Shove submitted input into $form_data after passing it through the XSS filter:
+        $form_data = $CI->input->post(NULL, TRUE);
 
-		// Empty array for key => values we want to submit to CCE:
-    	$attributes = array();
+        // Form fields that are required to have input:
+        $required_keys = array();
 
-    	// Items we do NOT want to submit to CCE:
-    	$ignore_attributes = array("BlueOnyx_Info_Text", "_TARGET");
+        // Set up rules for form validation. These validations happen before we submit to CCE and further checks based on the schemas are done:
 
-		if (is_array($form_data)) {
-			// Function GetFormAttributes() walks through the $form_data and returns us the $parameters we want to
-			// submit to CCE. It intelligently handles checkboxes, which only have "on" set when they are ticked.
-			// In that case it pulls the unticked status from the hidden checkboxes and addes them to $parameters.
-			// It also transformes the value of the ticked checkboxes from "on" to "1". 
-			//
-			// Additionally it generates the form_validation rules for CodeIgniter.
-			//
-			// params: $i18n				i18n Object of the error messages
-			// params: $form_data			array with form_data array from CI
-			// params: $required_keys		array with keys that must have data in it. Needed for CodeIgniter's error checks
-			// params: $ignore_attributes	array with items we want to ignore. Such as Labels.
-			// return: 						array with keys and values ready to submit to CCE.
-			$attributes = GetFormAttributes($i18n, $form_data, $required_keys, $ignore_attributes, $i18n);
-		}
-		//Setting up error messages:
-		$CI->form_validation->set_message('required', $i18n->get("[[palette.val_is_required]]", false, array("field" => "\"%s\"")));		
+        // Empty array for key => values we want to submit to CCE:
+        $attributes = array();
 
-	    // Do we have validation related errors?
-	    if ($CI->form_validation->run() == FALSE) {
+        // Items we do NOT want to submit to CCE:
+        $ignore_attributes = array("BlueOnyx_Info_Text", "_TARGET");
 
-			if (validation_errors()) {
-				// Set CI related errors:
-				$ci_errors = array(validation_errors('<div class="alert dismissible alert_red"><img width="40" height="36" src="/.adm/images/icons/small/white/alarm_bell.png"><strong>', '</strong></div>'));
-			}		    
-			else {
-				// No errors. Pass empty array along:
-				$ci_errors = array();
-			}
-		}
+        if (is_array($form_data)) {
+            // Function GetFormAttributes() walks through the $form_data and returns us the $parameters we want to
+            // submit to CCE. It intelligently handles checkboxes, which only have "on" set when they are ticked.
+            // In that case it pulls the unticked status from the hidden checkboxes and addes them to $parameters.
+            // It also transformes the value of the ticked checkboxes from "on" to "1". 
+            //
+            // Additionally it generates the form_validation rules for CodeIgniter.
+            //
+            // params: $i18n                i18n Object of the error messages
+            // params: $form_data           array with form_data array from CI
+            // params: $required_keys       array with keys that must have data in it. Needed for CodeIgniter's error checks
+            // params: $ignore_attributes   array with items we want to ignore. Such as Labels.
+            // return:                      array with keys and values ready to submit to CCE.
+            $attributes = GetFormAttributes($i18n, $form_data, $required_keys, $ignore_attributes, $i18n);
+        }
+        //Setting up error messages:
+        $CI->form_validation->set_message('required', $i18n->get("[[palette.val_is_required]]", false, array("field" => "\"%s\"")));        
 
-		//
-		//--- Own error checks:
-		//
+        // Do we have validation related errors?
+        if ($CI->form_validation->run() == FALSE) {
 
-		$get_form_data = $CI->input->get(NULL, TRUE);
+            if (validation_errors()) {
+                // Set CI related errors:
+                $ci_errors = array(validation_errors('<div class="alert dismissible alert_red"><img width="40" height="36" src="/.adm/images/icons/small/white/alarm_bell.png"><strong>', '</strong></div>'));
+            }           
+            else {
+                // No errors. Pass empty array along:
+                $ci_errors = array();
+            }
+        }
 
-		// Find out the TYPE of entry we're dealing with:
-		if (isset($get_form_data['TYPE'])) {
-			$TYPE = $get_form_data['TYPE'];
-		}
-		if (!isset($TYPE)) {
-			$TYPE = $form_data['TYPE'];
-		}
+        //
+        //--- Own error checks:
+        //
 
-		if ((!isset($TYPE)) && (!isset($get_form_data['_RTARGET']))) {
-			// We *still* have no $TYPE set? Then you should not be here!
-			// Exception: We want to delete an object specified via _RTARGET
-			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
-			Log403Error("/gui/Forbidden403#2");
-		}
+        $get_form_data = $CI->input->get(NULL, TRUE);
 
-		// Check the $_TARGET to see if this is a new entry or if it contains the OID of an object we edit:
-		if ((!isset($_TARGET)) && (isset($form_data['_TARGET']))) {
-			// We have form data of a $_TARGET OID:
-			$_TARGET =  $form_data['_TARGET'];
-		}
-		else {
-			// We don't? Assume it's a new object:
-			$_TARGET = "NEW";
-		}
+        // Find out the TYPE of entry we're dealing with:
+        if (isset($get_form_data['TYPE'])) {
+            $TYPE = $get_form_data['TYPE'];
+        }
+        if (!isset($TYPE)) {
+            $TYPE = $form_data['TYPE'];
+        }
 
-		//
-		//--- At this point all checks are done. If we have no errors, we can submit the data to CODB:
-		//
+        if ((!isset($TYPE)) && (!isset($get_form_data['_RTARGET']))) {
+            // We *still* have no $TYPE set? Then you should not be here!
+            // Exception: We want to delete an object specified via _RTARGET
+            // Nice people say goodbye, or CCEd waits forever:
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
+            Log403Error("/gui/Forbidden403#2");
+        }
 
-		// Join the various error messages:
-		$errors = array_merge($ci_errors, $my_errors);
+        // Check the $_TARGET to see if this is a new entry or if it contains the OID of an object we edit:
+        if ((!isset($_TARGET)) && (isset($form_data['_TARGET']))) {
+            // We have form data of a $_TARGET OID:
+            $_TARGET =  $form_data['_TARGET'];
+        }
+        else {
+            // We don't? Assume it's a new object:
+            $_TARGET = "NEW";
+        }
 
-		// If we have no errors and have POST data, we submit to CODB:
-		if ((count($errors) == "0") && ($CI->input->post(NULL, TRUE))) {
+        //
+        //--- At this point all checks are done. If we have no errors, we can submit the data to CODB:
+        //
 
-			// We have no errors. We submit to CODB.
-			if ($_TARGET == "NEW") {
-				// Create a new Object:
-				$cceClient->create("DnsSlaveZone", $attributes);
-			}
-			else {
-				// We update an existing Object:
-				$cceClient->set($_TARGET, "", $attributes);
-			}
+        // Join the various error messages:
+        $errors = array_merge($ci_errors, $my_errors);
 
-			// CCE errors that might have happened during submit to CODB:
-			$CCEerrors = $cceClient->errors();
-			foreach ($CCEerrors as $object => $objData) {
-				// When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
-				$errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
-			}
+        // If we have no errors and have POST data, we submit to CODB:
+        if ((count($errors) == "0") && ($CI->input->post(NULL, TRUE))) {
 
-			// Also commit the changes to restart the DNS server:
-			$update['commit'] = time();
-			$cceClient->setObject("System", $update, "DNS");
+            // We have no errors. We submit to CODB.
+            if ($_TARGET == "NEW") {
+                // Create a new Object:
+                $CI->cceClient->create("DnsSlaveZone", $attributes);
+            }
+            else {
+                // We update an existing Object:
+                $CI->cceClient->set($_TARGET, "", $attributes);
+            }
 
-			// No errors during submit? Redirect to previous page:
-			if (count($errors) == "0") {
-				$cceClient->bye();
-				$serverScriptHelper->destructor();
-				header("location: $parent");
-				exit;
-			}
-		}
+            // CCE errors that might have happened during submit to CODB:
+            $CCEerrors = $CI->cceClient->errors();
+            foreach ($CCEerrors as $object => $objData) {
+                // When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
+                $errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
+            }
 
-		//
-		//-- Page Logic:
-		//
+            // Also commit the changes to restart the DNS server:
+            $update['commit'] = time();
+            $CI->cceClient->set($system['OID'], "DNS",  $update);
 
-		$nm_to_dec = array(
-		  "0.0.0.0"   => "0",
-		  "128.0.0.0" => "1",	"255.128.0.0" => "9",	"255.255.128.0" => "17",	"255.255.255.128" => "25",
-		  "192.0.0.0" => "2", 	"255.192.0.0" => "10",	"255.255.192.0" => "18",	"255.255.255.192" => "26",
-		  "224.0.0.0" => "3",	"255.224.0.0" => "11",	"255.255.224.0" => "19",	"255.255.255.224" => "27",
-		  "240.0.0.0" => "4",	"255.240.0.0" => "12",	"255.255.240.0" => "20",	"255.255.255.240" => "28",
-		  "248.0.0.0" => "5",	"255.248.0.0" => "13",	"255.255.248.0" => "21",	"255.255.255.248" => "29",
-		  "252.0.0.0" => "6",	"255.252.0.0" => "14",	"255.255.252.0" => "22",	"255.255.255.252" => "30",
-		  "254.0.0.0" => "7",	"255.254.0.0" => "15",	"255.255.248.0" => "23",	"255.255.255.254" => "31",
-		  "255.0.0.0" => "8",	"255.255.0.0" => "16",	"255.255.255.0" => "24",	"255.255.255.255" => "32" );
+            // No errors during submit? Redirect to previous page:
+            if (count($errors) == "0") {
+                $CI->cceClient->bye();
+                $CI->serverScriptHelper->destructor();
+                header("location: $parent");
+                exit;
+            }
+        }
 
-		// Get the Object in question for edit:
-		if ((isset($get_form_data['_LOAD'])) && (isset($get_form_data['_TARGET']))) {
-			$_TARGET = $get_form_data['_TARGET'];
-			$DnsSlaveZone = $cceClient->get($_TARGET);
-		}
+        //
+        //-- Page Logic:
+        //
 
-		// Get the Object in question for the delete action:
-		if (isset($get_form_data['_RTARGET'])) {
-			$_RTARGET = $get_form_data['_RTARGET'];
-			$DnsSlaveZone = $cceClient->get($_RTARGET);
-		}
+        $nm_to_dec = array(
+          "0.0.0.0"   => "0",
+          "128.0.0.0" => "1",   "255.128.0.0" => "9",   "255.255.128.0" => "17",    "255.255.255.128" => "25",
+          "192.0.0.0" => "2",   "255.192.0.0" => "10",  "255.255.192.0" => "18",    "255.255.255.192" => "26",
+          "224.0.0.0" => "3",   "255.224.0.0" => "11",  "255.255.224.0" => "19",    "255.255.255.224" => "27",
+          "240.0.0.0" => "4",   "255.240.0.0" => "12",  "255.255.240.0" => "20",    "255.255.255.240" => "28",
+          "248.0.0.0" => "5",   "255.248.0.0" => "13",  "255.255.248.0" => "21",    "255.255.255.248" => "29",
+          "252.0.0.0" => "6",   "255.252.0.0" => "14",  "255.255.252.0" => "22",    "255.255.255.252" => "30",
+          "254.0.0.0" => "7",   "255.254.0.0" => "15",  "255.255.248.0" => "23",    "255.255.255.254" => "31",
+          "255.0.0.0" => "8",   "255.255.0.0" => "16",  "255.255.255.0" => "24",    "255.255.255.255" => "32" );
 
-		if (isset($DnsSlaveZone)) {
-			// Verify if it's an DnsSlaveZone Object:
-			if ($DnsSlaveZone['CLASS'] != "DnsSlaveZone") { 
-				// This is not what we're looking for! Stop poking around!
-				// Nice people say goodbye, or CCEd waits forever:
-				$cceClient->bye();
-				$serverScriptHelper->destructor();
-				Log403Error("/gui/Forbidden403#3");
-			}
-			else {
+        // Get the Object in question for edit:
+        if ((isset($get_form_data['_LOAD'])) && (isset($get_form_data['_TARGET']))) {
+            $_TARGET = $get_form_data['_TARGET'];
+            $DnsSlaveZone = $CI->cceClient->get($_TARGET);
+        }
 
-				// Handle the delete action if appropriate:
-				if (isset($_RTARGET)) {
-					$cceClient->destroy($_RTARGET);
+        // Get the Object in question for the delete action:
+        if (isset($get_form_data['_RTARGET'])) {
+            $_RTARGET = $get_form_data['_RTARGET'];
+            $DnsSlaveZone = $CI->cceClient->get($_RTARGET);
+        }
 
-					// CCE errors that might have happened during submit to CODB:
-					$CCEerrors = $cceClient->errors();
-					foreach ($CCEerrors as $object => $objData) {
-						// When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
-						$errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
-					}
+        if (isset($DnsSlaveZone)) {
+            // Verify if it's an DnsSlaveZone Object:
+            if ($DnsSlaveZone['CLASS'] != "DnsSlaveZone") { 
+                // This is not what we're looking for! Stop poking around!
+                // Nice people say goodbye, or CCEd waits forever:
+                $CI->cceClient->bye();
+                $CI->serverScriptHelper->destructor();
+                Log403Error("/gui/Forbidden403#3");
+            }
+            else {
 
-					// Also commit the changes to restart the DNS server:
-					$update['commit'] = time();
-					$cceClient->setObject("System", $update, "DNS");
+                // Handle the delete action if appropriate:
+                if (isset($_RTARGET)) {
+                    $CI->cceClient->destroy($_RTARGET);
 
-					// No errors during submit? Redirect to previous page:
-					if (count($errors) == "0") {
-						$cceClient->bye();
-						$serverScriptHelper->destructor();
-						header("location: $parent");
-						exit;
-					}
-				}
+                    // CCE errors that might have happened during submit to CODB:
+                    $CCEerrors = $CI->cceClient->errors();
+                    foreach ($CCEerrors as $object => $objData) {
+                        // When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
+                        $errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
+                    }
 
-				// Pre-populate the formfield strings for presentation:
-				if (isset($DnsSlaveZone['ipaddr'])) { 
-					$slave_ipaddr = $DnsSlaveZone['ipaddr'];
-				}
-				if (isset($DnsSlaveZone['domain'])) { 
-					$slave_domain = $DnsSlaveZone['domain'];
-				}
-				if (isset($DnsSlaveZone['netmask'])) { 
-					$slave_netmask = $DnsSlaveZone['netmask'];
-				}
-				if (isset($DnsSlaveZone['masters'])) { 
-					$slave_masters = $DnsSlaveZone['masters'];
-				}
-			}
-		}
+                    // Also commit the changes to restart the DNS server:
+                    $update['commit'] = time();
+                    $CI->cceClient->setObject("System", $update, "DNS");
 
-		//
-	    //-- Generate page:
-	    //
+                    // No errors during submit? Redirect to previous page:
+                    if (count($errors) == "0") {
+                        $CI->cceClient->bye();
+                        $CI->serverScriptHelper->destructor();
+                        header("location: $parent");
+                        exit;
+                    }
+                }
 
-		// Prepare Page:
-		if ($TYPE == "NETWORK") {
-			$url_suffix = "&TYPE=NETWORK";
-		}
-		if ($TYPE == "FORWARD") {
-			$url_suffix = "&TYPE=FORWARD";
-		}
+                // Pre-populate the formfield strings for presentation:
+                if (isset($DnsSlaveZone['ipaddr'])) { 
+                    $slave_ipaddr = $DnsSlaveZone['ipaddr'];
+                }
+                if (isset($DnsSlaveZone['domain'])) { 
+                    $slave_domain = $DnsSlaveZone['domain'];
+                }
+                if (isset($DnsSlaveZone['netmask'])) { 
+                    $slave_netmask = $DnsSlaveZone['netmask'];
+                }
+                if (isset($DnsSlaveZone['masters'])) { 
+                    $slave_masters = $DnsSlaveZone['masters'];
+                }
+            }
+        }
 
-		$factory = $serverScriptHelper->getHtmlComponentFactory("base-dns", $iam . "?_TARGET=" . $_TARGET . $url_suffix);
-		$BxPage = $factory->getPage();
-		$BxPage->setErrors($errors);
-		$i18n = $factory->getI18n();
+        //
+        //-- Generate page:
+        //
 
-		$product = new Product($cceClient);
+        // Prepare Page:
+        if ($TYPE == "NETWORK") {
+            $url_suffix = "&TYPE=NETWORK";
+        }
+        if ($TYPE == "FORWARD") {
+            $url_suffix = "&TYPE=FORWARD";
+        }
 
-		// Set Menu items:
-		$BxPage->setVerticalMenu('base_controlpanel');
-		$BxPage->setVerticalMenuChild('base_dns');
-		$page_module = 'base_sysmanage';
+        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-dns", $iam . "?_TARGET=" . $_TARGET . $url_suffix);
+        $BxPage = $factory->getPage();
+        $BxPage->setErrors($errors);
+        $i18n = $factory->getI18n();
 
-		$defaultPage = "basic";
+        $product = new Product($CI->cceClient);
 
-		if ($_TARGET == "NEW") {
-			$title = "create_slave_rec";
-		}
-		else {
-			$title = "modify_slave_rec";
-		}
+        // Set Menu items:
+        $BxPage->setVerticalMenu('base_controlpanel');
+        $BxPage->setVerticalMenuChild('base_dns');
+        $page_module = 'base_sysmanage';
 
-		$block =& $factory->getPagedBlock($title, array($defaultPage));
+        $defaultPage = "basic";
 
-		$block->setToggle("#");
-		$block->setSideTabs(FALSE);
-//		$block->setShowAllTabs("#");
-		$block->setDefaultPage($defaultPage);
+        if ($_TARGET == "NEW") {
+            $title = "create_slave_rec";
+        }
+        else {
+            $title = "modify_slave_rec";
+        }
 
-		//
-		//--- Basic Tab
-		//
-	
-		if ($TYPE == 'NETWORK') {
-			// Secondary Network Auth:
-			if (!isset($slave_netmask)) { 
-				$slave_netmask = '255.255.255.0';
-			}
-			if (!isset($slave_ipaddr)) { 
-				$slave_ipaddr = '';
-			}
-			if (!isset($slave_masters)) { 
-				$slave_masters = '';
-			}
+        $block =& $factory->getPagedBlock($title, array($defaultPage));
 
-			// Slave IP:
-			$slave_ip = $factory->getIpAddress('ipaddr', $slave_ipaddr, 'rw');
-			$slave_ip->setOptional(FALSE);
-			$block->addFormField(
-				$slave_ip,
-				$factory->getLabel("slave_ipaddr"), 
-				$defaultPage
-			);
+        $block->setToggle("#");
+        $block->setSideTabs(FALSE);
+//      $block->setShowAllTabs("#");
+        $block->setDefaultPage($defaultPage);
 
-			// Slave Subnet Netmask:
-			$slave_nm = $factory->getIpAddress('netmask', $slave_netmask, 'rw');
-			$slave_nm->setOptional(FALSE);
-			$block->addFormField(
-				$slave_nm,
-				$factory->getLabel("slave_netmask"), 
-				$defaultPage
-			);
+        //
+        //--- Basic Tab
+        //
+    
+        if ($TYPE == 'NETWORK') {
+            // Secondary Network Auth:
+            if (!isset($slave_netmask)) { 
+                $slave_netmask = '255.255.255.0';
+            }
+            if (!isset($slave_ipaddr)) { 
+                $slave_ipaddr = '';
+            }
+            if (!isset($slave_masters)) { 
+                $slave_masters = '';
+            }
 
-			// Slave's Master:
-			$slave_master = $factory->getIpAddress('masters', $slave_masters, 'rw');
-			$slave_master->setOptional(FALSE);
-			$block->addFormField(
-				$slave_master,
-				$factory->getLabel("slave_net_masters"), 
-				$defaultPage
-			);
-		}
-		else {
+            // Slave IP:
+            $slave_ip = $factory->getIpAddress('ipaddr', $slave_ipaddr, 'rw');
+            $slave_ip->setOptional(FALSE);
+            $block->addFormField(
+                $slave_ip,
+                $factory->getLabel("slave_ipaddr"), 
+                $defaultPage
+            );
 
-			if (!isset($slave_domain)) { 
-				$slave_domain = '';
-			}
-			if (!isset($slave_masters)) { 
-				$slave_masters = '';
-			}
+            // Slave Subnet Netmask:
+            $slave_nm = $factory->getIpAddress('netmask', $slave_netmask, 'rw');
+            $slave_nm->setOptional(FALSE);
+            $block->addFormField(
+                $slave_nm,
+                $factory->getLabel("slave_netmask"), 
+                $defaultPage
+            );
 
-			// Slave Domain:
-			$slave_ip = $factory->getDomainName('domain', $slave_domain, 'rw');
-			$slave_ip->setOptional(FALSE);
-			$block->addFormField(
-				$slave_ip,
-				$factory->getLabel("slave_domain"), 
-				$defaultPage
-			);
+            // Slave's Master:
+            $slave_master = $factory->getIpAddress('masters', $slave_masters, 'rw');
+            $slave_master->setOptional(FALSE);
+            $block->addFormField(
+                $slave_master,
+                $factory->getLabel("slave_net_masters"), 
+                $defaultPage
+            );
+        }
+        else {
 
-			// Slave's Master:
-			$slave_master = $factory->getIpAddress('masters', $slave_masters, 'rw');
-			$slave_master->setOptional(FALSE);
-			$block->addFormField(
-				$slave_master,
-				$factory->getLabel("slave_dom_masters"), 
-				$defaultPage
-			);
-		}
+            if (!isset($slave_domain)) { 
+                $slave_domain = '';
+            }
+            if (!isset($slave_masters)) { 
+                $slave_masters = '';
+            }
 
-		// We silently pass along the OID of the Object:
-		$block->addFormField(
-			$factory->getTextField('_TARGET', $_TARGET, ''),
-			$factory->getLabel("_TARGET"), 
-			$defaultPage
-		);
+            // Slave Domain:
+            $slave_ip = $factory->getDomainName('domain', $slave_domain, 'rw');
+            $slave_ip->setOptional(FALSE);
+            $block->addFormField(
+                $slave_ip,
+                $factory->getLabel("slave_domain"), 
+                $defaultPage
+            );
 
-		// Add the buttons
-		$block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
-		$block->addButton($factory->getCancelButton($parent));
+            // Slave's Master:
+            $slave_master = $factory->getIpAddress('masters', $slave_masters, 'rw');
+            $slave_master->setOptional(FALSE);
+            $block->addFormField(
+                $slave_master,
+                $factory->getLabel("slave_dom_masters"), 
+                $defaultPage
+            );
+        }
 
-		// Nice people say goodbye, or CCEd waits forever:
-		$cceClient->bye();
-		$serverScriptHelper->destructor();
+        // We silently pass along the OID of the Object:
+        $block->addFormField(
+            $factory->getTextField('_TARGET', $_TARGET, ''),
+            $factory->getLabel("_TARGET"), 
+            $defaultPage
+        );
 
-		$page_body[] = $block->toHtml();
+        // Add the buttons
+        $block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
+        $block->addButton($factory->getCancelButton($parent));
 
-		// Out with the page:
-	    $BxPage->render($page_module, $page_body);
+        $page_body[] = $block->toHtml();
 
-	}		
+        // Out with the page:
+        $BxPage->render($page_module, $page_body);
+
+    }       
 }
 /*
 Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
