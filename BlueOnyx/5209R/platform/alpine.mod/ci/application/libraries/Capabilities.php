@@ -30,6 +30,8 @@ class Capabilities {
     public $loginUser;
     var $_listAllowed;
     var $_gotAllCapabilityGroups;
+    var $loginName;
+    var $sessionId;
     var $debugActive;
 
     // Description: Constructor
@@ -59,6 +61,10 @@ class Capabilities {
         $this->getAllCapabilityGroups();
         $this->getAllCapabilities();
         $this->listAllowed();
+
+        // save parameters
+        $this->loginName = $loginName;
+        $this->sessionId = $sessionId;
 
         // Check if debugging is active
         if (is_file("/etc/DEBUGSSH")) {
