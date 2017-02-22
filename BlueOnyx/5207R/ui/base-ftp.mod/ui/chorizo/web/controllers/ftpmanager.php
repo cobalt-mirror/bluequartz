@@ -11,41 +11,37 @@ class Ftpmanager extends MX_Controller {
 
 	public function index() {
 
-		$CI =& get_instance();
+        $CI =& get_instance();
 
-	    // We load the BlueOnyx helper library first of all, as we heavily depend on it:
-	    $this->load->helper('blueonyx');
-	    init_libraries();
+        // We load the BlueOnyx helper library first of all, as we heavily depend on it:
+        $this->load->helper('blueonyx');
+        init_libraries();
 
-  		// Need to load 'BxPage' for page rendering:
-  		$this->load->library('BxPage');
-		$MX =& get_instance();
+        // Need to load 'BxPage' for page rendering:
+        $this->load->library('BxPage');
 
-	    // Get $sessionId and $loginName from Cookie (if they are set):
-	    $sessionId = $CI->input->cookie('sessionId');
-	    $loginName = $CI->input->cookie('loginName');
-	    $locale = $CI->input->cookie('locale');
+        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set) and store them in $CI->BX_SESSION:
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
-	    // Line up the ducks for CCE-Connection:
-	    include_once('ServerScriptHelper.php');
-		$serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-		$cceClient = $serverScriptHelper->getCceClient();
-		$user = $cceClient->getObject("User", array("name" => $loginName));
-		$i18n = new I18n("base-vsite", $user['localePreference']);
-		$system = $cceClient->getObject("System");
+        // Line up the ducks for CCE-Connection and store them for re-usability in $CI:
+        include_once('ServerScriptHelper.php');
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
 
-		// Initialize Capabilities so that we can poll the access rights as well:
-		$Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        $i18n = new I18n("base-ftp", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
+        $user = $CI->BX_SESSION['loginUser'];
+
+        // Not 'serverFTP'? Bye, bye!
+        if (!$CI->serverScriptHelper->getAllowed('serverFTP')) {
+            // Nice people say goodbye, or CCEd waits forever:
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
+            Log403Error("/gui/Forbidden403");
+        }
 
 		// -- Actual page logic start:
-
-		// Not 'serverFTP'? Bye, bye!
-		if (!$Capabilities->getAllowed('serverFTP')) {
-			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
-			Log403Error("/gui/Forbidden403");
-		}
 
 		//
 		//--- Handle form validation:
@@ -124,10 +120,10 @@ class Ftpmanager extends MX_Controller {
 			$attributes['maxConnections'] = "100000"; // <-- This is legacy RaQ stuff and has no impact on Proftpd.
 
 	  		// Actual submit to CODB:
-			$cceClient->setObject("System", $attributes, "Ftp");
+	  		$CI->cceClient->set($system['OID'], "Ftp",  $attributes);
 
 			// CCE errors that might have happened during submit to CODB:
-			$CCEerrors = $cceClient->errors();
+			$CCEerrors = $CI->cceClient->errors();
 			foreach ($CCEerrors as $object => $objData) {
 				// When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
 				$errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
@@ -141,7 +137,7 @@ class Ftpmanager extends MX_Controller {
 	    //
 
 		// Prepare Page:
-		$factory = $serverScriptHelper->getHtmlComponentFactory("base-ftp", "/ftp/ftpmanager");
+		$factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-ftp", "/ftp/ftpmanager");
 		$BxPage = $factory->getPage();
 		$BxPage->setErrors($errors);
 		$i18n = $factory->getI18n();
@@ -151,7 +147,7 @@ class Ftpmanager extends MX_Controller {
 		$page_module = 'base_sysmanage';
 
 		// get web
-		$web = $cceClient->getObject("System", array(), "Ftp");
+		$web = $CI->cceClient->get($system['OID'], "Ftp");
 
 		$defaultPage = "basicSettingsTab";
 
@@ -188,10 +184,6 @@ class Ftpmanager extends MX_Controller {
 		// Add the buttons
 		$block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
 		$block->addButton($factory->getCancelButton("/ftp/ftpmanager"));
-
-		// Nice people say goodbye, or CCEd waits forever:
-		$cceClient->bye();
-		$serverScriptHelper->destructor();
 
 		$page_body[] = $block->toHtml();
 

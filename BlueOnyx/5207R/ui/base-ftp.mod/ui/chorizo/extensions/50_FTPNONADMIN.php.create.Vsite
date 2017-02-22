@@ -19,6 +19,7 @@ class FTPNONADMINExtension extends UIExtension
 
     function display(&$helper, &$container, &$cce_info)
     {
+        $CI =& get_instance();
         $factory =& $helper->getHtmlComponentFactory("base-ftp");
 
         $cce =& $helper->getCceClient();
@@ -44,7 +45,7 @@ class FTPNONADMINExtension extends UIExtension
         //-- Reseller: Can the reseller that owns this Vsite modify this?
         //
         $access = 'rw';
-        $VsiteOwnerObj = $cce->get($cce->whoami());
+        $VsiteOwnerObj = $CI->BX_SESSION['loginUser'];
         if ($VsiteOwnerObj['name'] != "admin") {
             $resellerCaps = $cce->scalar_to_array($VsiteOwnerObj['capabilities']);
             if (!in_array('resellerFTP', $resellerCaps)) {
@@ -55,10 +56,10 @@ class FTPNONADMINExtension extends UIExtension
 
         //-- 
 
-	    $container->addFormField(
-		    $factory->getBoolean('ftpnonadmin', $defaults['enabled'], $access),
-		    $factory->getLabel('ftpnonadmin'),
-		    $pageId
+        $container->addFormField(
+            $factory->getBoolean('ftpnonadmin', $defaults['enabled'], $access),
+            $factory->getLabel('ftpnonadmin'),
+            $pageId
             );
     }
 
@@ -74,5 +75,4 @@ class FTPNONADMINExtension extends UIExtension
         $errors = array_merge($errors, $cce->errors());
     }
 }
-
-
+?>

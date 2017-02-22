@@ -26,13 +26,8 @@ class FTPNONADMINExtension extends UIExtension
         //--- Start: Capabilities handling:
         $CI =& get_instance();
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
-        $locale = $CI->input->cookie('locale');
-
         // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($cce, $loginName, $sessionId);
+        $Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
 
         // Only 'serverFTP' and 'manageSite' can modify things on this page.
         // Site admins can view it for informational purposes.
@@ -79,10 +74,10 @@ class FTPNONADMINExtension extends UIExtension
             $pageId = $cce_info['PAGED_BLOCK_DEFAULT_PAGE'];
         }
 
-	    $container->addFormField(
-		    $factory->getBoolean('ftpnonadmin', $defaults['enabled'], $access),
-		    $factory->getLabel('ftpnonadmin'),
-		    $pageId
+        $container->addFormField(
+            $factory->getBoolean('ftpnonadmin', $defaults['enabled'], $access),
+            $factory->getLabel('ftpnonadmin'),
+            $pageId
             );
     }
 
@@ -97,5 +92,4 @@ class FTPNONADMINExtension extends UIExtension
         $errors = array_merge($errors, $cce->errors());
     }
 }
-
-
+?>

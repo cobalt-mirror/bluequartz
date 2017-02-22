@@ -10,6 +10,7 @@ class AnonFtpExtension extends UIExtension
 {
     function display(&$ServerScriptHelper, &$container, $parameters)
     {
+        $CI =& get_instance();
         $factory = $ServerScriptHelper->getHtmlComponentFactory("base-ftp");
         $cce = $ServerScriptHelper->getCceClient();
 
@@ -38,7 +39,7 @@ class AnonFtpExtension extends UIExtension
         //-- Reseller: Can the reseller that owns this Vsite modify this?
         //
         $access = 'rw';
-        $VsiteOwnerObj = $cce->get($cce->whoami());
+        $VsiteOwnerObj = $CI->BX_SESSION['loginUser'];
         if ($VsiteOwnerObj['name'] != "admin") {
             $resellerCaps = $cce->scalar_to_array($VsiteOwnerObj['capabilities']);
             if (!in_array('resellerAnonFTP', $resellerCaps)) {

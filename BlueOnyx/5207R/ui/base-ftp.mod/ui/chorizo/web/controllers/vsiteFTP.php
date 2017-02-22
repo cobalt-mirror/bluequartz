@@ -2,250 +2,245 @@
 
 class vsiteFTP extends MX_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Past the login page this loads the page for /ftp/vsiteFTP.
-	 *
-	 * Note: This page runs entirely on Auto-Features.
-	 *
-	 */
+    /**
+     * Index Page for this controller.
+     *
+     * Past the login page this loads the page for /ftp/vsiteFTP.
+     *
+     * Note: This page runs entirely on Auto-Features.
+     *
+     */
 
-	public function index() {
+    public function index() {
 
-		$CI =& get_instance();
-		
-	    // We load the BlueOnyx helper library first of all, as we heavily depend on it:
-	    $this->load->helper('blueonyx');
-	    init_libraries();
+        $CI =& get_instance();
 
-  		// Need to load 'BxPage' for page rendering:
-  		$this->load->library('BxPage');
-		$MX =& get_instance();
+        // We load the BlueOnyx helper library first of all, as we heavily depend on it:
+        $this->load->helper('blueonyx');
+        init_libraries();
 
-	    // Get $sessionId and $loginName from Cookie (if they are set):
-	    $sessionId = $CI->input->cookie('sessionId');
-	    $loginName = $CI->input->cookie('loginName');
-	    $locale = $CI->input->cookie('locale');
+        // Need to load 'BxPage' for page rendering:
+        $this->load->library('BxPage');
 
-	    // Line up the ducks for CCE-Connection:
-	    include_once('ServerScriptHelper.php');
-		$serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-		$cceClient = $serverScriptHelper->getCceClient();
-		$user = $cceClient->getObject("User", array("name" => $loginName));
-		$i18n = new I18n("base-ftp", $user['localePreference']);
-		$system = $cceClient->getObject("System");
+        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set) and store them in $CI->BX_SESSION:
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
-		// Initialize Capabilities so that we can poll the access rights as well:
-		$Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        // Line up the ducks for CCE-Connection and store them for re-usability in $CI:
+        include_once('ServerScriptHelper.php');
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
 
-		// -- Actual page logic start:
+        $i18n = new I18n("base-ftp", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
+        $user = $CI->BX_SESSION['loginUser'];
 
-		// Get URL strings:
-		$get_form_data = $CI->input->get(NULL, TRUE);
+        // Initialize Capabilities so that we can poll the access rights as well:
+        $Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
 
-		//
-		//-- Validate GET data:
-		//
+        // -- Actual page logic start:
 
-		if (isset($get_form_data['group'])) {
-			// We have a delete transaction:
-			$group = $get_form_data['group'];
-		}
-		else {
-			// Don't play games with us!
-			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
-			Log403Error("/gui/Forbidden403#1");
-		}
+        // Get URL strings:
+        $get_form_data = $CI->input->get(NULL, TRUE);
 
-		//
-		//-- Access Rights Check for Vsite level pages:
-		// 
-		// 1.) Checks if the Group/Vsite exists.
-		// 2.) Checks if the user is systemAdministrator
-		// 3.) Checks if the user is Reseller of the given Group/Vsite
-		// 4.) Checks if the iser is siteAdmin of the given Group/Vsite
-		// Returns Forbidden403 if *none* of that is the case.
-		if (!$Capabilities->getGroupAdmin($group)) {
-			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
-			Log403Error("/gui/Forbidden403#2");
-		}
+        //
+        //-- Validate GET data:
+        //
 
-		//
-		//-- Prepare data:
-		//
+        if (isset($get_form_data['group'])) {
+            // We have a delete transaction:
+            $group = $get_form_data['group'];
+        }
+        else {
+            // Don't play games with us!
+            // Nice people say goodbye, or CCEd waits forever:
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
+            Log403Error("/gui/Forbidden403#1");
+        }
 
-		// Get data for the Vsite:
-		$vsite = $cceClient->getObject('Vsite', array('name' => $group));
+        //
+        //-- Access Rights Check for Vsite level pages:
+        // 
+        // 1.) Checks if the Group/Vsite exists.
+        // 2.) Checks if the user is systemAdministrator
+        // 3.) Checks if the user is Reseller of the given Group/Vsite
+        // 4.) Checks if the iser is siteAdmin of the given Group/Vsite
+        // Returns Forbidden403 if *none* of that is the case.
+        if (!$Capabilities->getGroupAdmin($group)) {
+            // Nice people say goodbye, or CCEd waits forever:
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
+            Log403Error("/gui/Forbidden403#2");
+        }
 
-		// Get vsiteServices information:
-		$vsiteServices = $cceClient->get($vsite['OID'], 'AnonFtp');
+        //
+        //-- Prepare data:
+        //
 
-		//
-		//--- Handle form validation:
-		//
+        // Get data for the Vsite:
+        $vsite = $CI->cceClient->getObject('Vsite', array('name' => $group));
 
-	    // We start without any active errors:
-	    $errors = array();
-	    $extra_headers =array();
-	    $ci_errors = array();
-	    $my_errors = array();
+        // Get vsiteServices information:
+        $vsiteServices = $CI->cceClient->get($vsite['OID'], 'AnonFtp');
 
-		// Shove submitted input into $form_data after passing it through the XSS filter:
-		$form_data = $CI->input->post(NULL, TRUE);
+        //
+        //--- Handle form validation:
+        //
 
-		// Form fields that are required to have input:
-		$required_keys = array();
+        // We start without any active errors:
+        $errors = array();
+        $extra_headers =array();
+        $ci_errors = array();
+        $my_errors = array();
 
-    	// Set up rules for form validation. These validations happen before we submit to CCE and further checks based on the schemas are done:
+        // Shove submitted input into $form_data after passing it through the XSS filter:
+        $form_data = $CI->input->post(NULL, TRUE);
 
-		// Empty array for key => values we want to submit to CCE:
-    	$attributes = array();
+        // Form fields that are required to have input:
+        $required_keys = array();
 
-    	// Items we do NOT want to submit to CCE:
-    	$ignore_attributes = array("BlueOnyx_Info_Text");
-		if (is_array($form_data)) {
-			// Function GetFormAttributes() walks through the $form_data and returns us the $parameters we want to
-			// submit to CCE. It intelligently handles checkboxes, which only have "on" set when they are ticked.
-			// In that case it pulls the unticked status from the hidden checkboxes and addes them to $parameters.
-			// It also transformes the value of the ticked checkboxes from "on" to "1". 
-			//
-			// Additionally it generates the form_validation rules for CodeIgniter.
-			//
-			// params: $i18n				i18n Object of the error messages
-			// params: $form_data			array with form_data array from CI
-			// params: $required_keys		array with keys that must have data in it. Needed for CodeIgniter's error checks
-			// params: $ignore_attributes	array with items we want to ignore. Such as Labels.
-			// return: 						array with keys and values ready to submit to CCE.
-			$attributes = GetFormAttributes($i18n, $form_data, $required_keys, $ignore_attributes, $i18n);
-		}
-		//Setting up error messages:
-		$CI->form_validation->set_message('required', $i18n->get("[[palette.val_is_required]]", false, array("field" => "\"%s\"")));		
+        // Set up rules for form validation. These validations happen before we submit to CCE and further checks based on the schemas are done:
 
-	    // Do we have validation related errors?
-	    if ($CI->form_validation->run() == FALSE) {
+        // Empty array for key => values we want to submit to CCE:
+        $attributes = array();
 
-			if (validation_errors()) {
-				// Set CI related errors:
-				$ci_errors = array(validation_errors('<div class="alert dismissible alert_red"><img width="40" height="36" src="/.adm/images/icons/small/white/alarm_bell.png"><strong>', '</strong></div>'));
-			}		    
-			else {
-				// No errors. Pass empty array along:
-				$ci_errors = array();
-			}
-		}
+        // Items we do NOT want to submit to CCE:
+        $ignore_attributes = array("BlueOnyx_Info_Text");
+        if (is_array($form_data)) {
+            // Function GetFormAttributes() walks through the $form_data and returns us the $parameters we want to
+            // submit to CCE. It intelligently handles checkboxes, which only have "on" set when they are ticked.
+            // In that case it pulls the unticked status from the hidden checkboxes and addes them to $parameters.
+            // It also transformes the value of the ticked checkboxes from "on" to "1". 
+            //
+            // Additionally it generates the form_validation rules for CodeIgniter.
+            //
+            // params: $i18n                i18n Object of the error messages
+            // params: $form_data           array with form_data array from CI
+            // params: $required_keys       array with keys that must have data in it. Needed for CodeIgniter's error checks
+            // params: $ignore_attributes   array with items we want to ignore. Such as Labels.
+            // return:                      array with keys and values ready to submit to CCE.
+            $attributes = GetFormAttributes($i18n, $form_data, $required_keys, $ignore_attributes, $i18n);
+        }
+        //Setting up error messages:
+        $CI->form_validation->set_message('required', $i18n->get("[[palette.val_is_required]]", false, array("field" => "\"%s\"")));        
 
-		//
-		//--- Own error checks:
-		//
+        // Do we have validation related errors?
+        if ($CI->form_validation->run() == FALSE) {
 
-		if ($CI->input->post(NULL, TRUE)) {
-		}
+            if (validation_errors()) {
+                // Set CI related errors:
+                $ci_errors = array(validation_errors('<div class="alert dismissible alert_red"><img width="40" height="36" src="/.adm/images/icons/small/white/alarm_bell.png"><strong>', '</strong></div>'));
+            }           
+            else {
+                // No errors. Pass empty array along:
+                $ci_errors = array();
+            }
+        }
 
-		//
-		//--- At this point all checks are done. If we have no errors, we can submit the data to CODB:
-		//
+        //
+        //--- Own error checks:
+        //
 
-		// Join the various error messages:
-		$errors = array_merge($ci_errors, $my_errors);
+        if ($CI->input->post(NULL, TRUE)) {
+        }
 
-		// If we have no errors and have POST data, we submit to CODB:
-		if ((count($errors) == "0") && ($CI->input->post(NULL, TRUE))) {
+        //
+        //--- At this point all checks are done. If we have no errors, we can submit the data to CODB:
+        //
 
-			// Handle AutoFeatures:
-			$autoFeatures = new AutoFeatures($serverScriptHelper, $attributes);
-			$cce_info = array('CCE_OID' => $vsite['OID']);
-			list($cce_info['CCE_SERVICES_OID']) = $cceClient->find('VsiteServices');
-			$af_errors = $autoFeatures->handle('modify.FTP', $cce_info);
-			$errors = array_merge($errors, $af_errors);
+        // Join the various error messages:
+        $errors = array_merge($ci_errors, $my_errors);
 
-			// No errors during submit? Reload page:
-			if (count($errors) == "0") {
-				$cceClient->bye();
-				$serverScriptHelper->destructor();
-				$redirect_URL = "/ftp/vsiteFTP?group=$group";
-				header("location: $redirect_URL");
-				exit;
-			}
-		}
+        // If we have no errors and have POST data, we submit to CODB:
+        if ((count($errors) == "0") && ($CI->input->post(NULL, TRUE))) {
 
-		//
-	    //-- Generate page:
-	    //
+            // Handle AutoFeatures:
+            $autoFeatures = new AutoFeatures($CI->serverScriptHelper, $attributes);
+            $cce_info = array('CCE_OID' => $vsite['OID']);
+            list($cce_info['CCE_SERVICES_OID']) = $CI->cceClient->find('VsiteServices');
+            $af_errors = $autoFeatures->handle('modify.FTP', $cce_info);
+            $errors = array_merge($errors, $af_errors);
 
-		// Prepare Page:
-		$factory = $serverScriptHelper->getHtmlComponentFactory("base-ftp", "/ftp/vsiteFTP?group=$group");
-		$BxPage = $factory->getPage();
-		$BxPage->setErrors($errors);
-		$i18n = $factory->getI18n();
+            // No errors during submit? Reload page:
+            if (count($errors) == "0") {
+                $CI->cceClient->bye();
+                $CI->serverScriptHelper->destructor();
+                $redirect_URL = "/ftp/vsiteFTP?group=$group";
+                header("location: $redirect_URL");
+                exit;
+            }
+        }
 
-		// Set Menu items:
-		$BxPage->setVerticalMenu('base_siteservices');
-		$BxPage->setVerticalMenuChild('base_ftp_vsite');
-		$page_module = 'base_sitemanage';
+        //
+        //-- Generate page:
+        //
 
-		$defaultPage = "basicSettings";
-		$block =& $factory->getPagedBlock("ChangeSiteFtp", array($defaultPage));
-		$block->setLabel($factory->getLabel('ChangeSiteFtp', false, array('fqdn' => $vsite['fqdn'])));
+        // Prepare Page:
+        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-ftp", "/ftp/vsiteFTP?group=$group");
+        $BxPage = $factory->getPage();
+        $BxPage->setErrors($errors);
+        $i18n = $factory->getI18n();
 
-		$block->setToggle("#");
-		$block->setSideTabs(FALSE);
-		$block->setDefaultPage($defaultPage);
+        // Set Menu items:
+        $BxPage->setVerticalMenu('base_siteservices');
+        $BxPage->setVerticalMenuChild('base_ftp_vsite');
+        $page_module = 'base_sitemanage';
 
-		// Only 'serverFTP' and 'manageSite' can modify things on this page.
-		// Site admins can view it for informational purposes.
-		if ($Capabilities->getAllowed('serverFTP')){
-		    $is_site_admin = FALSE;
-		    $access = 'rw';
-		}
-		elseif ($Capabilities->getAllowed('manageSite')) {
-		    $is_site_admin = FALSE;
-		    $access = 'rw';
-		}
-		elseif (($Capabilities->getAllowed('siteAdmin')) && ($group == $Capabilities->loginUser['site'])) {
-		    $access = 'r';
-		    $is_site_admin = TRUE;
-		}
-		else {
-			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
-			Log403Error("/gui/Forbidden403#2");
-		}
+        $defaultPage = "basicSettings";
+        $block =& $factory->getPagedBlock("ChangeSiteFtp", array($defaultPage));
+        $block->setLabel($factory->getLabel('ChangeSiteFtp', false, array('fqdn' => $vsite['fqdn'])));
 
-		//
-		//--- Add AutoFeatures:
-		//
+        $block->setToggle("#");
+        $block->setSideTabs(FALSE);
+        $block->setDefaultPage($defaultPage);
 
-		$autoFeatures = new AutoFeatures($serverScriptHelper, $attributes);
-		$cce_info = array('CCE_OID' => $vsite['OID'], 'FIELD_ACCESS' => $access, 'IS_SITE_ADMIN' => $is_site_admin, 'group' => $group);
-		list($cce_info['CCE_SERVICES_OID']) = $cceClient->find('VsiteServices');
-		$cce_info['PAGED_BLOCK_DEFAULT_PAGE'] = $defaultPage;
-		$autoFeatures->display($block, 'modify.FTP', $cce_info);
+        // Only 'serverFTP' and 'manageSite' can modify things on this page.
+        // Site admins can view it for informational purposes.
+        if ($Capabilities->getAllowed('serverFTP')){
+            $is_site_admin = FALSE;
+            $access = 'rw';
+        }
+        elseif ($Capabilities->getAllowed('manageSite')) {
+            $is_site_admin = FALSE;
+            $access = 'rw';
+        }
+        elseif (($Capabilities->getAllowed('siteAdmin')) && ($group == $Capabilities->loginUser['site'])) {
+            $access = 'r';
+            $is_site_admin = TRUE;
+        }
+        else {
+            // Nice people say goodbye, or CCEd waits forever:
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
+            Log403Error("/gui/Forbidden403#2");
+        }
 
-		// Need to embed this or things get confused:
-		$block->addFormField($factory->getTextField('group', $group, ''), $defaultPage);
+        //
+        //--- Add AutoFeatures:
+        //
 
-		// Add the buttons for those who can edit this page:
-		if ($access == 'rw') {
-			$block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
-			$block->addButton($factory->getCancelButton("/ftp/vsiteFTP?group=$group"));
-		}
+        $autoFeatures = new AutoFeatures($CI->serverScriptHelper, $attributes);
+        $cce_info = array('CCE_OID' => $vsite['OID'], 'FIELD_ACCESS' => $access, 'IS_SITE_ADMIN' => $is_site_admin, 'group' => $group);
+        list($cce_info['CCE_SERVICES_OID']) = $CI->cceClient->find('VsiteServices');
+        $cce_info['PAGED_BLOCK_DEFAULT_PAGE'] = $defaultPage;
+        $autoFeatures->display($block, 'modify.FTP', $cce_info);
 
-		// Nice people say goodbye, or CCEd waits forever:
-		$cceClient->bye();
-		$serverScriptHelper->destructor();
+        // Need to embed this or things get confused:
+        $block->addFormField($factory->getTextField('group', $group, ''), $defaultPage);
 
-		$page_body[] = $block->toHtml();
+        // Add the buttons for those who can edit this page:
+        if ($access == 'rw') {
+            $block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
+            $block->addButton($factory->getCancelButton("/ftp/vsiteFTP?group=$group"));
+        }
 
-		// Out with the page:
-	    $BxPage->render($page_module, $page_body);
+        $page_body[] = $block->toHtml();
 
-	}		
+        // Out with the page:
+        $BxPage->render($page_module, $page_body);
+
+    }       
 }
 
 /*

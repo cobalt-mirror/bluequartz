@@ -41,11 +41,9 @@ class FTPNONADMINExtension extends UIExtension
 
         $cce =& $helper->getCceClient();
 
-        $cce->set($cce_info["CCE_SERVICES_OID"], 'FTPNONADMIN', 
-                array('enabled' => $this->attributes['ftpnonadmin']));
+        $cce->set($cce_info["CCE_SERVICES_OID"], 'FTPNONADMIN', array('enabled' => $this->attributes['ftpnonadmin']));
 
         $errors = array_merge($errors, $cce->errors());
     }
 }
-
-
+?>
