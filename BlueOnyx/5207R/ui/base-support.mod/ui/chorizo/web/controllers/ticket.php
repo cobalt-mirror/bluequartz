@@ -19,31 +19,29 @@ class Ticket extends MX_Controller {
 
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
-        $MX =& get_instance();
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
-        $locale = $CI->input->cookie('locale');
+        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set):
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
         // Line up the ducks for CCE-Connection:
         include_once('ServerScriptHelper.php');
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        $cceClient = $serverScriptHelper->getCceClient();
-        $user = $cceClient->getObject("User", array("name" => $loginName));
-        $i18n = new I18n("base-support", $user['localePreference']);
-        $system = $cceClient->getObject("System");
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
+        $user = $CI->BX_SESSION['loginUser'];
+        $i18n = new I18n("base-support", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
 
         // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        $Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
 
         // -- Actual page logic start:
 
         // Not 'managePackage'? Bye, bye!
         if (!$Capabilities->getAllowed('managePackage')) {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403");
         }
 
@@ -52,10 +50,10 @@ class Ticket extends MX_Controller {
         //
 
         // Get Support-Settings:
-        $Support = $cceClient->getObject("System", array(), "Support");
+        $Support = $CI->getSupport();
 
         // Tempfile for the JSON encoded ticket:
-        $TicketTmpPath = '/var/cache/admserv/' . $loginName . '_ticket.tmp';
+        $TicketTmpPath = '/var/cache/admserv/' . $CI->BX_SESSION['loginName'] . '_ticket.tmp';
 
         // Location (URLs) of the various NewLinQ query resources:
         $bluelinq_server    = 'newlinq.blueonyx.it';
@@ -179,8 +177,7 @@ class Ticket extends MX_Controller {
         if (areWeOnline($newlinq_url)) {
 
           // Get Serial:
-          $SystemObj = $cceClient->getObject("System", array(), "");
-          $serialNumber = $SystemObj['serialNumber'];
+          $serialNumber = $system['serialNumber'];
 
           // Poll NewLinQ about our status:
           $snstatus = "RED";
@@ -235,7 +232,7 @@ class Ticket extends MX_Controller {
 
             if ($attributes['allow_access'] == '1') {
                 // Check if the 'Support-Account' already exists:
-                $SAadmins = $cceClient->findx('User', 
+                $SAadmins = $CI->cceClient->findx('User', 
                                 array("capLevels" => 'adminUser', 'name' => $Support['support_account']),
                                 array(), 
                                 "",
@@ -245,7 +242,7 @@ class Ticket extends MX_Controller {
 
                 if (count($SAadmins) == '0') {
                     // 'Support-Account' does not exists yet. Create it:
-                    $big_ok = $cceClient->create('User',
+                    $big_ok = $CI->cceClient->create('User',
                                     array(
                                         'fullName' => $Support['support_account_name'],
                                         'sortName' => "",
@@ -254,7 +251,7 @@ class Ticket extends MX_Controller {
                                         'capLevels' => '&adminUser&',
                                         'password' => $SA_Password
                                         ));
-                    $errors = array_merge($errors, $cceClient->errors());
+                    $errors = array_merge($errors, $CI->cceClient->errors());
 
                     // Get the OID of this transaction:
                     if ($big_ok) {
@@ -264,24 +261,24 @@ class Ticket extends MX_Controller {
                     // Create succeeded. So we set the rest as well:
                     if ($big_ok) {
                         // Set the disk quota:
-                        $cceClient->set($_oid, 'Disk', array('quota' => '200'));
-                        $errors = array_merge($errors, $cceClient->errors());
+                        $CI->cceClient->set($_oid, 'Disk', array('quota' => '200'));
+                        $errors = array_merge($errors, $CI->cceClient->errors());
 
                         // Set the rest of the settings:
                         $new_settings = array(
                                             'systemAdministrator' => '1',
                                             'ui_enabled' => '1'
                                             );
-                        $big_ok = $cceClient->set($_oid, '', $new_settings);
-                        $errors = array_merge($errors, $cceClient->errors());
+                        $big_ok = $CI->cceClient->set($_oid, '', $new_settings);
+                        $errors = array_merge($errors, $CI->cceClient->errors());
 
                         // Activate Shell Access:
-                        $ok = $cceClient->set($_oid, 'Shell', array('enabled' => 1));
-                        $errors = array_merge($errors, $cceClient->errors());
+                        $ok = $CI->cceClient->set($_oid, 'Shell', array('enabled' => 1));
+                        $errors = array_merge($errors, $CI->cceClient->errors());
 
                         // Activate 'RootAccess':
-                        $ok = $cceClient->set($_oid, 'RootAccess', array('enabled' => '1'));
-                        $errors = array_merge($errors, $cceClient->errors());
+                        $ok = $CI->cceClient->set($_oid, 'RootAccess', array('enabled' => '1'));
+                        $errors = array_merge($errors, $CI->cceClient->errors());
 
                         // Set the 'Sites' settings as well just for sake of completness:
                         $Sites_settings = array(
@@ -289,8 +286,8 @@ class Ticket extends MX_Controller {
                                             'user' => '1',
                                             'max' => '1'
                                             );
-                        $ok = $cceClient->set($_oid, 'Sites', $Sites_settings);
-                        $errors = array_merge($errors, $cceClient->errors());
+                        $ok = $CI->cceClient->set($_oid, 'Sites', $Sites_settings);
+                        $errors = array_merge($errors, $CI->cceClient->errors());
                     }
                 }
                 else {
@@ -298,8 +295,8 @@ class Ticket extends MX_Controller {
                     $_oid = $SAadmins[0];
 
                     // Set the disk quota:
-                    $cceClient->set($_oid, 'Disk', array('quota' => '200'));
-                    $errors = array_merge($errors, $cceClient->errors());
+                    $CI->cceClient->set($_oid, 'Disk', array('quota' => '200'));
+                    $errors = array_merge($errors, $CI->cceClient->errors());
 
                     // Set the rest of the settings:
                     $new_settings = array(
@@ -310,16 +307,16 @@ class Ticket extends MX_Controller {
                                         'capLevels' => '&adminUser&',
                                         'password' => $SA_Password
                                         );
-                    $big_ok = $cceClient->set($_oid, '', $new_settings);
-                    $errors = array_merge($errors, $cceClient->errors());
+                    $big_ok = $CI->cceClient->set($_oid, '', $new_settings);
+                    $errors = array_merge($errors, $CI->cceClient->errors());
 
                     // Activate Shell Access:
-                    $ok = $cceClient->set($_oid, 'Shell', array('enabled' => 1));
-                    $errors = array_merge($errors, $cceClient->errors());
+                    $ok = $CI->cceClient->set($_oid, 'Shell', array('enabled' => 1));
+                    $errors = array_merge($errors, $CI->cceClient->errors());
 
                     // Activate 'RootAccess':
-                    $ok = $cceClient->set($_oid, 'RootAccess', array('enabled' => '1'));
-                    $errors = array_merge($errors, $cceClient->errors());
+                    $ok = $CI->cceClient->set($_oid, 'RootAccess', array('enabled' => '1'));
+                    $errors = array_merge($errors, $CI->cceClient->errors());
                 }
 
                 //
@@ -331,11 +328,11 @@ class Ticket extends MX_Controller {
                 $runas = 'root';
 
                 // Delete existing .ssh directory:
-                $ret = $serverScriptHelper->shell("/bin/ls --directory ~$SA_account_name/.ssh", $is_there, $runas, $sessionId);
+                $ret = $CI->serverScriptHelper->shell("/bin/ls --directory ~$SA_account_name/.ssh", $is_there, $runas, $CI->BX_SESSION['sessionId']);
                 if ((preg_match('/^\/home\/\.users\/(.*)$/', $is_there)) || (preg_match('/^\/home\/\.sites\/(.*)$/', $is_there))) {
                     # ~$SA_account_name/.ssh exists
                     $full_path_to_dotsshdir = chop($is_there);
-                    $ret = $serverScriptHelper->shell("/bin/rm -Rf ~$SA_account_name/.ssh", $nfk, $runas, $sessionId);
+                    $ret = $CI->serverScriptHelper->shell("/bin/rm -Rf ~$SA_account_name/.ssh", $nfk, $runas, $CI->BX_SESSION['sessionId']);
                 }
 
                 // Array for SSH-Key Reset:
@@ -353,18 +350,18 @@ class Ticket extends MX_Controller {
                                     );
 
                 // Reset:
-                $ok = $cceClient->set($_oid, 'SSH', $ssh_reset);
-                $errors = array_merge($errors, $cceClient->errors());
+                $ok = $CI->cceClient->set($_oid, 'SSH', $ssh_reset);
+                $errors = array_merge($errors, $CI->cceClient->errors());
 
                 // Key/Cert generation:
                 //
                 // NOTE: This takes a moment to finish.
-                $ok = $cceClient->set($_oid, 'SSH', $ssh_creation);
-                $errors = array_merge($errors, $cceClient->errors());
+                $ok = $CI->cceClient->set($_oid, 'SSH', $ssh_creation);
+                $errors = array_merge($errors, $CI->cceClient->errors());
 
                 // Include the PEM file:
                 $action_file = $SA_account_name . '.pem';
-                $ret = $serverScriptHelper->shell("/bin/cat ~$SA_account_name/.ssh/$action_file", $output, $runas, $sessionId);
+                $ret = $CI->serverScriptHelper->shell("/bin/cat ~$SA_account_name/.ssh/$action_file", $output, $runas, $CI->BX_SESSION['sessionId']);
                 if ($ret != 0) {
                     # File not present.
                 }
@@ -432,12 +429,12 @@ class Ticket extends MX_Controller {
                 $attributes_clone['FQDN'] = $system['hostname'] . '.' . $system['domainname'];
 
                 // Add IP-Address:
-                $interfaces = $cceClient->findx('Network', array('real' => 1, 'enabled' => 1), array(), 'ascii', 'device');
-                $NET = $cceClient->get($interfaces[0]);
+                $interfaces = $CI->cceClient->findx('Network', array('real' => 1, 'enabled' => 1), array(), 'ascii', 'device');
+                $NET = $CI->cceClient->get($interfaces[0]);
                 $attributes_clone['ipaddr'] = $NET['ipaddr'];
 
                 // Get SSH Settings and include them:
-                $SSH = $cceClient->getObject("System", array(), "SSH");
+                $SSH = $CI->cceClient->get($system['OID'], "SSH");
                 $attributes_clone['SSH_Enabled'] = $SSH['enabled'];
                 $attributes_clone['SSH_Port'] = $SSH['Port'];
                 $attributes_clone['XPasswordAuthentication'] = $SSH['XPasswordAuthentication'];
@@ -472,8 +469,8 @@ class Ticket extends MX_Controller {
             //-- Priority/Severity:
             //
 
-            $attributes_clone['Priority'] = $cceClient->scalar_to_string($attributes_clone['Priority']);
-            $attributes_clone['Severity'] = $cceClient->scalar_to_string($attributes_clone['Severity']);
+            $attributes_clone['Priority'] = $CI->cceClient->scalar_to_string($attributes_clone['Priority']);
+            $attributes_clone['Severity'] = $CI->cceClient->scalar_to_string($attributes_clone['Severity']);
 
             // Assemble JSON encoded Bug-Report:
             $ticket = json_encode($attributes_clone);
@@ -483,17 +480,17 @@ class Ticket extends MX_Controller {
                  $errors[] = '<div class="alert alert_white"><img width="40" height="36" src="/.adm/images/icons/small/white/alarm_bell.png"><strong>' . $i18n->getHtml("[[base-support.Err_writing_tempfile]]") . '</strong></div>';
             }
             else {
-                $ret = $serverScriptHelper->shell("/bin/chmod 00640 $TicketTmpPath", $output, 'admserv', $sessionId);
+                $ret = $CI->serverScriptHelper->shell("/bin/chmod 00640 $TicketTmpPath", $output, 'admserv', $CI->BX_SESSION['sessionId']);
             }
 
             // Add Ticket tempfile path to CODB:
             $cleaned_attributes['ticket'] = $TicketTmpPath;
 
             // Actual submit to CODB:
-            $cceClient->setObject("System", $cleaned_attributes, "Support");
+            $CI->cceClient->set($system['OID'], "Support",  $cleaned_attributes);
 
             // CCE errors that might have happened during submit to CODB:
-            $CCEerrors = $cceClient->errors();
+            $CCEerrors = $CI->cceClient->errors();
             foreach ($CCEerrors as $object => $objData) {
                 // When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
                 $errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
@@ -522,12 +519,12 @@ class Ticket extends MX_Controller {
         //
 
         // Prepare Page:
-        $factory = $serverScriptHelper->getHtmlComponentFactory("base-support", "/support/ticket");
+        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-support", "/support/ticket");
         $BxPage = $factory->getPage();
         $BxPage->setErrors($errors);
         $i18n = $factory->getI18n();
 
-        $product = new Product($cceClient);
+        $product = new Product($CI->cceClient);
 
         // Set Menu items:
         $BxPage->setVerticalMenu('base_support');
@@ -739,10 +736,6 @@ class Ticket extends MX_Controller {
             $block->addButton($save_button);
             $block->addButton($factory->getCancelButton("/support/ticket"));
         }
-
-        // Nice people say goodbye, or CCEd waits forever:
-        $cceClient->bye();
-        $serverScriptHelper->destructor();
 
         $page_body[] = $block->toHtml();
 
