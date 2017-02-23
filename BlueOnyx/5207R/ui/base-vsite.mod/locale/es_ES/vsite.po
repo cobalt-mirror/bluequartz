@@ -1068,3 +1068,7 @@ msgstr "Max input vars:"
 msgid "max_input_vars_help"
 msgstr "Cuantas variables de entrada pueden ser aceptadas (el límite se aplica a los arrays superglobales $_GET, $_POST y $_COOKIE de forma separada). El uso de esta directiva mitiga la posibilidad de ataques de denegación de servicio que utilizan colisiones de hash. Si hay más variables de entrada que las especificadas por la presente directiva, un E_WARNING es emitido, y otras variables entrada son truncadas a partir de la solicitud. Si se establece en -1 vars entrada ilimitadas están permitidas. Por defecto: 1000."
 
+####
+
+msgid "openBaseDirPathRemovedError"
+msgstr "La siguiente ruta open_basedir no es legible por PHP y se ha eliminado automáticamente:"

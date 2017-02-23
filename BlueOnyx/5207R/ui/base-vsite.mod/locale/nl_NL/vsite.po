@@ -1066,3 +1066,7 @@ msgstr "Max ingang vars:"
 msgid "max_input_vars_help"
 msgstr "Dit bepaalt hoeveel inputvariabelen kunnen worden aanvaard (limiet wordt afzonderlijk toegepast op $ _GET, $ _POST en $ _COOKIE superglobal). Het gebruik van deze richtlijn vermindert de mogelijkheid van een denial of service-aanvallen die hash botsingen gebruiken. Als er meer variabelen dan die door deze richtlijn wordt een E_WARNING uitgegeven, en verdere input variabelen worden afgekapt van de aanvraag. Indien ingesteld op onbeperkt ingang vars -1 zijn toegestaan. Standaard: 1000."
 
+####
+
+msgid "openBaseDirPathRemovedError"
+msgstr "De volgende open_basedir pad is niet leesbaar voor PHP en is automatisch verwijderd:"
