@@ -16,6 +16,7 @@ define("MYSQL_Vsite_EXTENSION_CREATE_VSITE", 1);
 
 class MYSQL_VsiteExtension extends UIExtension {
     function display(&$ServerScriptHelper, &$container, $parameters) {
+        $CI =& get_instance();
         global $group;
         $mysql_error = "";
         $ret = ini_set("display_errors", "Off");
@@ -23,7 +24,8 @@ class MYSQL_VsiteExtension extends UIExtension {
         $factory = $ServerScriptHelper->getHtmlComponentFactory("base-mysql");
         $cce = $ServerScriptHelper->getCceClient();
 
-        $db_rights = $cce->getObject("System", array(), "MYSQLUSERS_DEFAULTS");
+        $system = $CI->getSystem();
+        $db_rights = $cce->get($system['OID'], "MYSQLUSERS_DEFAULTS");
 
         // will assume the container is a PagedBlock for the time being
         $page_id = $parameters['PAGED_BLOCK_DEFAULT_PAGE'];
@@ -52,10 +54,8 @@ class MYSQL_VsiteExtension extends UIExtension {
         }
 
         // Get FQDN of the server:
-        $getthisFQDN = $cce->find("System");
-        $this_FQDN_info = $cce->get($getthisFQDN[0]);
-        $this_host = $this_FQDN_info['hostname'];
-        $this_domain = $this_FQDN_info['domainname'];
+        $this_host = $system['hostname'];
+        $this_domain = $system['domainname'];
         $this_FQDN = $this_host . "." . $this_domain;
         
         // Test MySQL connection: (1 = OK, 0 = not OK)
@@ -170,7 +170,7 @@ class MYSQL_VsiteExtension extends UIExtension {
             //
             //-- Reseller: Can the reseller that owns this Vsite modify this?
             //
-            $VsiteOwnerObj = $cce->get($cce->whoami());
+            $VsiteOwnerObj = $CI->BX_SESSION['loginUser'];
             $access = "rw";
             if ($VsiteOwnerObj['name'] != "admin") {
                 $resellerCaps = $cce->scalar_to_array($VsiteOwnerObj['capabilities']);

@@ -19,23 +19,21 @@ class vsiteMySQL extends MX_Controller {
 
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
-        $MX =& get_instance();
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
-        $locale = $CI->input->cookie('locale');
-
+        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set):
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
+        
         // Line up the ducks for CCE-Connection:
         include_once('ServerScriptHelper.php');
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        $cceClient = $serverScriptHelper->getCceClient();
-        $user = $cceClient->getObject("User", array("name" => $loginName));
-        $i18n = new I18n("base-mysql", $user['localePreference']);
-        $system = $cceClient->getObject("System");
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
+        $user = $CI->BX_SESSION['loginUser'];
+        $i18n = new I18n("base-mysql", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
 
         // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        $Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
 
         // -- Actual page logic start:
 
@@ -53,8 +51,8 @@ class vsiteMySQL extends MX_Controller {
         else {
             // Don't play games with us!
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403#1");
         }
 
@@ -68,8 +66,8 @@ class vsiteMySQL extends MX_Controller {
         // Returns Forbidden403 if *none* of that is the case.
         if (!$Capabilities->getGroupAdmin($group)) {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403#2");
         }
 
@@ -88,8 +86,8 @@ class vsiteMySQL extends MX_Controller {
         }
         else {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403#2");
         }
 
@@ -98,22 +96,22 @@ class vsiteMySQL extends MX_Controller {
         //
 
         // Get data for the Vsite:
-        $vsite = $cceClient->getObject('Vsite', array('name' => $group));
+        $vsite = $CI->cceClient->getObject('Vsite', array('name' => $group));
 
         // Get the MySQL settings for this Vsite:
-        $vsite_MySQL = $cceClient->getObject('Vsite', array('name' => $group), "MYSQL_Vsite");
+        $vsite_MySQL = $CI->cceClient->get($vsite['OID'], "MYSQL_Vsite");
 
         // Get PHPVsite for this Vsite:
-        $PHPVsite = $cceClient->getObject('Vsite', array('name' => $group), "PHPVsite");
+        $PHPVsite = $CI->cceClient->get($vsite['OID'], "PHPVsite");
 
         // Get the existing MySQL data from CODB's "System" object:
-        $SystemMYSQL = $cceClient->getObject("System", array(), "mysql");
+        $SystemMYSQL = $CI->cceClient->get($system['OID'], "mysql");
 
         // Get the existing "MySQL" Object:
-        $AbsMYSQL = $cceClient->getObject("MySQL");
+        $AbsMYSQL = $CI->cceClient->getObject("MySQL");
 
         // Get Array of extra MySQL databases:
-        $mysql_databases_extra = $cceClient->scalar_to_array($vsite_MySQL['DBmulti']);
+        $mysql_databases_extra = $CI->cceClient->scalar_to_array($vsite_MySQL['DBmulti']);
 
         //
         //--- Handle form validation:
@@ -214,11 +212,11 @@ class vsiteMySQL extends MX_Controller {
         if (isset($get_form_data['db_del'])) {
             // Check if Database exists:
             if (in_array($get_form_data['db_del'], $mysql_databases_extra)) {
-                $cceClient->set($vsite['OID'], 'MYSQL_Vsite', array("DBdel" => $get_form_data['db_del'], 'DBmultiDel' => time()));
-                $my_errors = array_merge($errors, $cceClient->errors());
+                $CI->cceClient->set($vsite['OID'], 'MYSQL_Vsite', array("DBdel" => $get_form_data['db_del'], 'DBmultiDel' => time()));
+                $my_errors = array_merge($errors, $CI->cceClient->errors());
                 // Bye and redirect:
-                $cceClient->bye();
-                $serverScriptHelper->destructor();
+                $CI->cceClient->bye();
+                $CI->serverScriptHelper->destructor();
                 header("Location: /mysql/vsiteMySQL?group=$group");
                 exit;
             }
@@ -232,13 +230,13 @@ class vsiteMySQL extends MX_Controller {
         //
         if ((isset($get_form_data['reset'])) && ($access_advanced == 'rw')) {
             if ($get_form_data['reset'] == "defaults") {
-                $cceClient->set($vsite['OID'], 'MYSQL_Vsite', array("userPermsReset" => time()));
-                $my_errors = array_merge($errors, $cceClient->errors());
+                $CI->cceClient->set($vsite['OID'], 'MYSQL_Vsite', array("userPermsReset" => time()));
+                $my_errors = array_merge($errors, $CI->cceClient->errors());
             }
             if (count($errors) == "0") {
                 // Bye and redirect:
-                $cceClient->bye();
-                $serverScriptHelper->destructor();
+                $CI->cceClient->bye();
+                $CI->serverScriptHelper->destructor();
                 header("Location: /mysql/vsiteMySQL?group=$group");
                 exit;
             }
@@ -249,7 +247,7 @@ class vsiteMySQL extends MX_Controller {
         //
         if ((isset($get_form_data['perform'])) && ($access_advanced == 'rw')) {
             if ($get_form_data['perform'] == "all") {
-                $cceClient->set($vsite['OID'], 'MYSQL_Vsite', 
+                $CI->cceClient->set($vsite['OID'], 'MYSQL_Vsite', 
                     array(
                         'SELECT' => '1', 
                         'INSERT' => '1', 
@@ -276,12 +274,12 @@ class vsiteMySQL extends MX_Controller {
                         'MAX_CONNECTIONS_PER_HOUR' => '0', 
                         "userPermsUpdate" => time())
                     );
-                $my_errors = array_merge($errors, $cceClient->errors());
+                $my_errors = array_merge($errors, $CI->cceClient->errors());
             }
             if (count($errors) == "0") {
                 // Bye and redirect:
-                $cceClient->bye();
-                $serverScriptHelper->destructor();
+                $CI->cceClient->bye();
+                $CI->serverScriptHelper->destructor();
                 header("Location: /mysql/vsiteMySQL?group=$group");
                 exit;
             }
@@ -308,16 +306,16 @@ class vsiteMySQL extends MX_Controller {
 
                 if ((count($mysql_databases_extra) + 1) >= $vsite_MySQL['maxDBs']) {
                     // Someone tried to be *really* clever and tried to add more DBs than allowed:
-                    $cceClient->bye();
-                    $serverScriptHelper->destructor();
+                    $CI->cceClient->bye();
+                    $CI->serverScriptHelper->destructor();
                     Log403Error("/gui/Forbidden403#cheater");
                 }
 
                 if (in_array($attributes['new_db_name'], $mysql_databases_extra)) {
                     // Name conflict! DB already exists!
                     // Bye and redirect:
-                    $cceClient->bye();
-                    $serverScriptHelper->destructor();
+                    $CI->cceClient->bye();
+                    $CI->serverScriptHelper->destructor();
                     header("Location: /mysql/vsiteMySQL?group=$group&addDB=true&nameError=true");
                     exit;
                 }
@@ -336,8 +334,8 @@ class vsiteMySQL extends MX_Controller {
                         $result = $mysqli->query($sql);
                         if ($result->num_rows > 0) {
                             // A DB with that name already exists in MySQL:
-                            $cceClient->bye();
-                            $serverScriptHelper->destructor();
+                            $CI->cceClient->bye();
+                            $CI->serverScriptHelper->destructor();
                             header("Location: /mysql/vsiteMySQL?group=$group&addDB=true&nameError=true");
                             exit;
                         }
@@ -346,32 +344,32 @@ class vsiteMySQL extends MX_Controller {
 
                     // Adding new DB:
                     $mysql_databases_extra[] = $attributes['new_db_name'];
-                    $cceClient->set($vsite['OID'], 'MYSQL_Vsite', array("DBmulti" => $cceClient->array_to_scalar($mysql_databases_extra), 'DBmultiAdd' => time()));
-                    $errors = array_merge($errors, $cceClient->errors());
+                    $CI->cceClient->set($vsite['OID'], 'MYSQL_Vsite', array("DBmulti" => $CI->cceClient->array_to_scalar($mysql_databases_extra), 'DBmultiAdd' => time()));
+                    $errors = array_merge($errors, $CI->cceClient->errors());
                     if (count($errors) == "0") {
                         // Bye and redirect:
-                        $cceClient->bye();
-                        $serverScriptHelper->destructor();
+                        $CI->cceClient->bye();
+                        $CI->serverScriptHelper->destructor();
                         header("Location: /mysql/vsiteMySQL?group=$group");
                         exit;
                     }
                     else {
                         // DB with that name already exists for this Vsite:
-                        $cceClient->bye();
-                        $serverScriptHelper->destructor();
+                        $CI->cceClient->bye();
+                        $CI->serverScriptHelper->destructor();
                         header("Location: /mysql/vsiteMySQL?group=$group&addDB=true&nameError=true");
                         exit;
                     }
                 }
             }
 
-            $cceClient->set($vsite['OID'], 'MYSQL_Vsite', $attributes);
-            $errors = array_merge($errors, $cceClient->errors());
+            $CI->cceClient->set($vsite['OID'], 'MYSQL_Vsite', $attributes);
+            $errors = array_merge($errors, $CI->cceClient->errors());
 
             // No errors during submit? Reload page:
             if (count($errors) == "0") {
-                $cceClient->bye();
-                $serverScriptHelper->destructor();
+                $CI->cceClient->bye();
+                $CI->serverScriptHelper->destructor();
                 $redirect_URL = "/mysql/vsiteMySQL?group=$group";
                 header("location: $redirect_URL");
                 exit;
@@ -383,7 +381,7 @@ class vsiteMySQL extends MX_Controller {
         //
 
         // Prepare Page:
-        $factory = $serverScriptHelper->getHtmlComponentFactory("base-mysql", "/mysql/vsiteMySQL?group=$group");
+        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-mysql", "/mysql/vsiteMySQL?group=$group");
         $BxPage = $factory->getPage();
         $BxPage->setErrors($errors);
         $i18n = $factory->getI18n();
@@ -459,15 +457,15 @@ class vsiteMySQL extends MX_Controller {
                 }
                 else {
                     // Nice people say goodbye, or CCEd waits forever:
-                    $cceClient->bye();
-                    $serverScriptHelper->destructor();
+                    $CI->cceClient->bye();
+                    $CI->serverScriptHelper->destructor();
                     Log403Error("/gui/Forbidden403");
                 }
             }
             else {
                 // Nice people say goodbye, or CCEd waits forever:
-                $cceClient->bye();
-                $serverScriptHelper->destructor();
+                $CI->cceClient->bye();
+                $CI->serverScriptHelper->destructor();
                 Log403Error("/gui/Forbidden403");
             }
         }
@@ -807,10 +805,6 @@ class vsiteMySQL extends MX_Controller {
             $block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
             $block->addButton($factory->getCancelButton("/mysql/vsiteMySQL?group=$group"));
         }
-
-        // Nice people say goodbye, or CCEd waits forever:
-        $cceClient->bye();
-        $serverScriptHelper->destructor();
 
         $page_body[] = $block->toHtml();
 

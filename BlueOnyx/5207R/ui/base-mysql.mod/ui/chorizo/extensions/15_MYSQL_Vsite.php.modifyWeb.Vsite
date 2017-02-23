@@ -16,6 +16,7 @@ define("MYSQL_Vsite_EXTENSION_CREATE_VSITE", 1);
 
 class MYSQL_VsiteExtension extends UIExtension {
     function display(&$ServerScriptHelper, &$container, $parameters) {
+        $CI =& get_instance();
         $group = $parameters['group'];
         $mysql_error = "";
         //$ret = ini_set("display_errors", "Off");
@@ -23,7 +24,8 @@ class MYSQL_VsiteExtension extends UIExtension {
         $factory = $ServerScriptHelper->getHtmlComponentFactory("base-mysql");
         $cce = $ServerScriptHelper->getCceClient();
 
-        $db_rights = $cce->getObject("System", array(), "MYSQLUSERS_DEFAULTS");
+        $system = $CI->getSystem();
+        $db_rights = $cce->get($system['OID'], "MYSQLUSERS_DEFAULTS");
 
         // will assume the container is a PagedBlock for the time being
         $page_id = $parameters['PAGED_BLOCK_DEFAULT_PAGE'];
@@ -52,10 +54,8 @@ class MYSQL_VsiteExtension extends UIExtension {
         }
 
         // Get FQDN of the server:
-        $getthisFQDN = $cce->find("System");
-        $this_FQDN_info = $cce->get($getthisFQDN[0]);
-        $this_host = $this_FQDN_info['hostname'];
-        $this_domain = $this_FQDN_info['domainname'];
+        $this_host = $system['hostname'];
+        $this_domain = $system['domainname'];
         $this_FQDN = $this_host . "." . $this_domain;
         
         // Test MySQL connection: (1 = OK, 0 = not OK)
@@ -255,9 +255,7 @@ class MYSQL_VsiteExtension extends UIExtension {
                         // Bloody fracking hell! To get the MySQL error message localized we need to jump
                         // through so many loop-holes that it's no longer funny!
                         $CI =& get_instance();
-                        $loginName = $CI->input->cookie('loginName');
-                        $user = $cce->getObject("User", array("name" => $loginName));
-                        $i18n = new I18n("base-mysql", $user['localePreference']);
+                        $i18n = new I18n("base-mysql", $CI->BX_SESSION['loginUser']['localePreference']);
                         $sql_Status = $i18n->get("[[base-mysql.sqlstatus_fail]]");
 
                         $solmysqlStatus = $factory->getTextField('sql_status', $sql_Status, 'r');

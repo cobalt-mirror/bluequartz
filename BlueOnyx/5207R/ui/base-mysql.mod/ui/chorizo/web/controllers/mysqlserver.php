@@ -19,31 +19,29 @@ class Mysqlserver extends MX_Controller {
 
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
-        $MX =& get_instance();
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
-        $locale = $CI->input->cookie('locale');
-
+        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set):
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
+        
         // Line up the ducks for CCE-Connection:
         include_once('ServerScriptHelper.php');
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        $cceClient = $serverScriptHelper->getCceClient();
-        $user = $cceClient->getObject("User", array("name" => $loginName));
-        $i18n = new I18n("base-mysql", $user['localePreference']);
-        $system = $cceClient->getObject("System");
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
+        $user = $CI->BX_SESSION['loginUser'];
+        $i18n = new I18n("base-mysql", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
 
         // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        $Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
 
         // -- Actual page logic start:
 
         // Not serverNetwork? Bye, bye!
         if (!$Capabilities->getAllowed('serverNetwork')) {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403");
         }
 
@@ -106,10 +104,10 @@ class Mysqlserver extends MX_Controller {
         if ($CI->input->post(NULL, TRUE)) {
 
             // First we get the existing MySQL data from CODB's "System" object:
-            $SystemMYSQL = $cceClient->getObject("System", array(), "mysql");
+            $SystemMYSQL = $CI->cceClient->get($system['OID'], "mysql");
 
             // Then we get the existing "MySQL" Object:
-            $AbsMYSQL = $cceClient->getObject("MySQL");
+            $AbsMYSQL = $CI->cceClient->getObject("MySQL");
 
             $mysql_current_username = $AbsMYSQL['sql_root'];
             $mysql_current_password = $AbsMYSQL['sql_rootpassword'];
@@ -195,10 +193,10 @@ class Mysqlserver extends MX_Controller {
             // We have no errors. We submit to CODB.
 
             // Actual submit to CODB:
-            $cceClient->setObject("System", $attributes, "mysql");
+            $CI->cceClient->set($system['OID'], "mysql",  $attributes);
 
             // CCE errors that might have happened during submit to CODB:
-            $CCEerrors = $cceClient->errors();
+            $CCEerrors = $CI->cceClient->errors();
             foreach ($CCEerrors as $object => $objData) {
                 // When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
                 $errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
@@ -207,11 +205,11 @@ class Mysqlserver extends MX_Controller {
             if (count($errors) == "0") {
 
                 // Now handle the set to the CODB object "MySQL" as well:
-                $getthisOID = $cceClient->find("MySQL");
+                $getthisOID = $CI->cceClient->find("MySQL");
                 $mysql_settings_exists = 0;
-                $mysql_settings = $cceClient->get($getthisOID[0]);
+                $mysql_settings = $CI->cceClient->get($getthisOID[0]);
                 if (!$mysql_settings['timestamp']) {
-                    $mysqlOID = $cceClient->create("MySQL",
+                    $mysqlOID = $CI->cceClient->create("MySQL",
                         array(
                             'sql_host' => $form_data['sql_host'],
                             'sql_port' => $form_data['sql_port'],
@@ -223,8 +221,8 @@ class Mysqlserver extends MX_Controller {
                     );
                 }
                 else {
-                    $mysqlOID = $cceClient->find("MySQL");
-                    $cceClient->set($mysqlOID[0], "",
+                    $mysqlOID = $CI->cceClient->find("MySQL");
+                    $CI->cceClient->set($mysqlOID[0], "",
                         array(
                             'sql_host' => $form_data['sql_host'],
                             'sql_port' => $form_data['sql_port'],
@@ -237,7 +235,7 @@ class Mysqlserver extends MX_Controller {
                 }
 
                 // CCE errors that might have happened during submit to CODB:
-                $CCEerrors = $cceClient->errors();
+                $CCEerrors = $CI->cceClient->errors();
                 foreach ($CCEerrors as $object => $objData) {
                     // When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
                     $errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
@@ -289,17 +287,16 @@ class Mysqlserver extends MX_Controller {
             "enabled" => $my_enabled);
 
         // Push that info into CODB:
-        $cceClient->setObject("System", $cfg, "mysql");     
-
-        $nuMYSQL = $cceClient->getObject("System", array(), "mysql");
+        $CI->cceClient->set($system['OID'], "mysql",  $cfg);        
+        $nuMYSQL = $CI->cceClient->get($system['OID'], "mysql");
 
         if ($my_enabled == 1) {
             $nuMYSQL["enabled"] = "1";
         }
 
-        $getthisOID = $cceClient->find("MySQL");
+        $getthisOID = $CI->cceClient->find("MySQL");
         $mysql_settings_exists = 0;
-        $mysql_settings = $cceClient->get($getthisOID[0]);
+        $mysql_settings = $CI->cceClient->get($getthisOID[0]);
 
         if ($mysql_settings['timestamp'] != '') {
             $mysql_settings_exists = 1;
@@ -363,9 +360,9 @@ class Mysqlserver extends MX_Controller {
             $dumpcfg = array(
                 "username" => $sql_root, 
                 "password" => $sql_rootpassword, 
-                "dump" => $dump);           
-            $cceClient->setObject("System", $dumpcfg, "mysql");
-            $CCEerrors = $cceClient->errors();
+                "dump" => $dump);
+            $CI->cceClient->set($system['OID'], "mysql",  $dumpcfg);
+            $CCEerrors = $CI->cceClient->errors();
             foreach ($CCEerrors as $object => $objData) {
                 // When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
                 $errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
@@ -380,9 +377,9 @@ class Mysqlserver extends MX_Controller {
         if (preg_match("/^mysql\/mysqlserver\/delete\/1$/", uri_string(), $matches)) {
             $delete = date("U");
             $dumpcfg = array(
-                "delete" => $delete);           
-            $cceClient->setObject("System", $dumpcfg, "mysql");
-            $CCEerrors = $cceClient->errors();
+                "delete" => $delete);
+            $CI->cceClient->set($system['OID'], "mysql",  $dumpcfg);
+            $CCEerrors = $CI->cceClient->errors();
             foreach ($CCEerrors as $object => $objData) {
                 // When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
                 $errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
@@ -405,12 +402,12 @@ class Mysqlserver extends MX_Controller {
         //
 
         // Prepare Page:
-        $factory = $serverScriptHelper->getHtmlComponentFactory("base-mysql", "/mysql/mysqlserver");
+        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-mysql", "/mysql/mysqlserver");
         $BxPage = $factory->getPage();
         $BxPage->setErrors($errors);
         $i18n = $factory->getI18n();
 
-        $product = new Product($cceClient);
+        $product = new Product($CI->cceClient);
 
         // Set Menu items:
         $BxPage->setVerticalMenu('base_controlpanel');
@@ -581,10 +578,6 @@ class Mysqlserver extends MX_Controller {
 
         $block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
         $block->addButton($factory->getCancelButton("/mysql/mysqlserver"));
-
-        // Nice people say goodbye, or CCEd waits forever:
-        $cceClient->bye();
-        $serverScriptHelper->destructor();
 
         $page_body[] = $block->toHtml();
 
