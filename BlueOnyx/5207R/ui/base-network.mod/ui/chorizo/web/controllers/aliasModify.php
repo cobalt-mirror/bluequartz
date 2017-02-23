@@ -2,362 +2,353 @@
 
 class AliasModify extends MX_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Past the login page this loads the page for /network/aliasModify.
-	 *
-	 */
+    /**
+     * Index Page for this controller.
+     *
+     * Past the login page this loads the page for /network/aliasModify.
+     *
+     */
 
-	public function index() {
+    public function index() {
 
-		$CI =& get_instance();
-		
-	    // We load the BlueOnyx helper library first of all, as we heavily depend on it:
-	    $this->load->helper('blueonyx');
-	    init_libraries();
+        $CI =& get_instance();
+        
+        // We load the BlueOnyx helper library first of all, as we heavily depend on it:
+        $this->load->helper('blueonyx');
+        init_libraries();
 
-  		// Need to load 'BxPage' for page rendering:
-  		$this->load->library('BxPage');
-		$MX =& get_instance();
+        // Need to load 'BxPage' for page rendering:
+        $this->load->library('BxPage');
 
-	    // Get $sessionId and $loginName from Cookie (if they are set):
-	    $sessionId = $CI->input->cookie('sessionId');
-	    $loginName = $CI->input->cookie('loginName');
-	    $locale = $CI->input->cookie('locale');
+        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set):
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
-	    // Line up the ducks for CCE-Connection:
-	    include_once('ServerScriptHelper.php');
-	    include_once('uifc/Option.php');
+        // Line up the ducks for CCE-Connection:
+        include_once('ServerScriptHelper.php');
+        include_once('uifc/Option.php');
 
-		// Need to load the 'network_common' helper:
-		$CI->load->helper('network_common');
+        // Need to load the 'network_common' helper:
+        $CI->load->helper('network_common');
 
-		$serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-		$cceClient = $serverScriptHelper->getCceClient();
-		$user = $cceClient->getObject("User", array("name" => $loginName));
-		$i18n = new I18n("base-network", $user['localePreference']);
-		$system = $cceClient->getObject("System");
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
+        $user = $CI->BX_SESSION['loginUser'];
+        $i18n = new I18n("base-network", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
 
-		// Initialize Capabilities so that we can poll the access rights as well:
-		$Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        // Initialize Capabilities so that we can poll the access rights as well:
+        $Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
 
-		// -- Actual page logic start:
+        // -- Actual page logic start:
 
-		// Not 'serverNetwork'? Bye, bye!
-		if (!$Capabilities->getAllowed('serverNetwork')) {
-			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
-			Log403Error("/gui/Forbidden403");
-		}
+        // Not 'serverNetwork'? Bye, bye!
+        if (!$Capabilities->getAllowed('serverNetwork')) {
+            // Nice people say goodbye, or CCEd waits forever:
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
+            Log403Error("/gui/Forbidden403");
+        }
 
-		//
-		//--- Handle form validation:
-		//
+        //
+        //--- Handle form validation:
+        //
 
-	    // We start without any active errors:
-	    $errors = array();
-	    $extra_headers =array();
-	    $ci_errors = array();
-	    $my_errors = array();
+        // We start without any active errors:
+        $errors = array();
+        $extra_headers =array();
+        $ci_errors = array();
+        $my_errors = array();
 
-		// Shove submitted input into $form_data after passing it through the XSS filter:
-		$form_data = $CI->input->post(NULL, TRUE);
+        // Shove submitted input into $form_data after passing it through the XSS filter:
+        $form_data = $CI->input->post(NULL, TRUE);
 
-		// Form fields that are required to have input:
-		$required_keys = array("");
+        // Form fields that are required to have input:
+        $required_keys = array("");
 
-    	// Set up rules for form validation. These validations happen before we submit to CCE and further checks based on the schemas are done:
+        // Set up rules for form validation. These validations happen before we submit to CCE and further checks based on the schemas are done:
 
-		// Empty array for key => values we want to submit to CCE:
-    	$attributes = array();
-    	// Items we do NOT want to submit to CCE:
-    	$ignore_attributes = array("BlueOnyx_Info_Text");
-		if (is_array($form_data)) {
-			// Function GetFormAttributes() walks through the $form_data and returns us the $parameters we want to
-			// submit to CCE. It intelligently handles checkboxes, which only have "on" set when they are ticked.
-			// In that case it pulls the unticked status from the hidden checkboxes and addes them to $parameters.
-			// It also transformes the value of the ticked checkboxes from "on" to "1". 
-			//
-			// Additionally it generates the form_validation rules for CodeIgniter.
-			//
-			// params: $i18n				i18n Object of the error messages
-			// params: $form_data			array with form_data array from CI
-			// params: $required_keys		array with keys that must have data in it. Needed for CodeIgniter's error checks
-			// params: $ignore_attributes	array with items we want to ignore. Such as Labels.
-			// return: 						array with keys and values ready to submit to CCE.
-			$attributes = GetFormAttributes($i18n, $form_data, $required_keys, $ignore_attributes, $i18n);
-		}
-		//Setting up error messages:
-		$CI->form_validation->set_message('required', $i18n->get("[[palette.val_is_required]]", false, array("field" => "\"%s\"")));		
+        // Empty array for key => values we want to submit to CCE:
+        $attributes = array();
+        // Items we do NOT want to submit to CCE:
+        $ignore_attributes = array("BlueOnyx_Info_Text");
+        if (is_array($form_data)) {
+            // Function GetFormAttributes() walks through the $form_data and returns us the $parameters we want to
+            // submit to CCE. It intelligently handles checkboxes, which only have "on" set when they are ticked.
+            // In that case it pulls the unticked status from the hidden checkboxes and addes them to $parameters.
+            // It also transformes the value of the ticked checkboxes from "on" to "1". 
+            //
+            // Additionally it generates the form_validation rules for CodeIgniter.
+            //
+            // params: $i18n                i18n Object of the error messages
+            // params: $form_data           array with form_data array from CI
+            // params: $required_keys       array with keys that must have data in it. Needed for CodeIgniter's error checks
+            // params: $ignore_attributes   array with items we want to ignore. Such as Labels.
+            // return:                      array with keys and values ready to submit to CCE.
+            $attributes = GetFormAttributes($i18n, $form_data, $required_keys, $ignore_attributes, $i18n);
+        }
+        //Setting up error messages:
+        $CI->form_validation->set_message('required', $i18n->get("[[palette.val_is_required]]", false, array("field" => "\"%s\"")));        
 
-	    // Do we have validation related errors?
-	    if (($CI->form_validation->run() == FALSE) && (!isset($get_form_data['_TARGET']))) {
+        // Do we have validation related errors?
+        if (($CI->form_validation->run() == FALSE) && (!isset($get_form_data['_TARGET']))) {
 
-			if (validation_errors()) {
-				// Set CI related errors:
-				$ci_errors = array(validation_errors('<div class="alert dismissible alert_red"><img width="40" height="36" src="/.adm/images/icons/small/white/alarm_bell.png"><strong>', '</strong></div>'));
-			}		    
-			else {
-				// No errors. Pass empty array along:
-				$ci_errors = array();
-			}
-		}
+            if (validation_errors()) {
+                // Set CI related errors:
+                $ci_errors = array(validation_errors('<div class="alert dismissible alert_red"><img width="40" height="36" src="/.adm/images/icons/small/white/alarm_bell.png"><strong>', '</strong></div>'));
+            }           
+            else {
+                // No errors. Pass empty array along:
+                $ci_errors = array();
+            }
+        }
 
-		//
-		//--- Own error checks:
-		//
+        //
+        //--- Own error checks:
+        //
 
-		// Get TARGET of Modification request:
-		$action = "";
-		$get_form_data = $CI->input->get(NULL, TRUE);
-		if(isset($get_form_data['ACTION'])) {
-			if ($get_form_data['ACTION'] == "M") {
-				$action = "modify";
-			}
-			if ($get_form_data['ACTION'] == "D") {
-				// Security Check:
-				$oid = $get_form_data['_oid'];
-				$oidData = $cceClient->get($get_form_data['_oid']);
-				if ($oidData['CLASS'] != "Network") {
-					// These are not the droids we are looking for!
-					// Nice people say goodbye, or CCEd waits forever:
-					$cceClient->bye();
-					$serverScriptHelper->destructor();
-					Log403Error("/gui/Forbidden403");
-				}
-				if (!is_file("/etc/DEMO")) {
-					$ok = $cceClient->set($oid, '', array('enabled' => '0'));
-					$rawDCCEerrors = $cceClient->errors();
-	    			if (count($rawDCCEerrors) == 0) {
-	    				$cceClient->destroy($oid);
-	    			}
-	    			else {
-						foreach ($rawDCCEerrors as $object => $objData) {
-							// When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
-							$my_errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
-						}
-						$encoded_errors = json_encode($my_errors);
-						// Nice people say goodbye, or CCEd waits forever:
-						$cceClient->bye();
-						$serverScriptHelper->destructor();
-						// Redirect with error message:
-						header("Location: /network/ethernet?errorMsg=" . urlencode($encoded_errors) . "#tabs-2");
-						exit;
-	    			}
-	    		}
-				// Nice people say goodbye, or CCEd waits forever:
-				$cceClient->bye();
-				$serverScriptHelper->destructor();
-				// Redirect to the correct tab:
-				$hrmpf = $i18n->interpolate("[[base-network.aliasSettings]]");
-				header("Location: /network/ethernet?$hrmpf#tabs-2");
-				exit;
-			}
-		}
-		else {
-			$action = "create";
-		}
+        // Get TARGET of Modification request:
+        $action = "";
+        $get_form_data = $CI->input->get(NULL, TRUE);
+        if(isset($get_form_data['ACTION'])) {
+            if ($get_form_data['ACTION'] == "M") {
+                $action = "modify";
+            }
+            if ($get_form_data['ACTION'] == "D") {
+                // Security Check:
+                $oid = $get_form_data['_oid'];
+                $oidData = $CI->cceClient->get($get_form_data['_oid']);
+                if ($oidData['CLASS'] != "Network") {
+                    // These are not the droids we are looking for!
+                    // Nice people say goodbye, or CCEd waits forever:
+                    $CI->cceClient->bye();
+                    $CI->serverScriptHelper->destructor();
+                    Log403Error("/gui/Forbidden403");
+                }
+                if (!is_file("/etc/DEMO")) {
+                    $ok = $CI->cceClient->set($oid, '', array('enabled' => '0'));
+                    $rawDCCEerrors = $CI->cceClient->errors();
+                    if (count($rawDCCEerrors) == 0) {
+                        $CI->cceClient->destroy($oid);
+                    }
+                    else {
+                        foreach ($rawDCCEerrors as $object => $objData) {
+                            // When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
+                            $my_errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
+                        }
+                        $encoded_errors = json_encode($my_errors);
+                        // Nice people say goodbye, or CCEd waits forever:
+                        $CI->cceClient->bye();
+                        $CI->serverScriptHelper->destructor();
+                        // Redirect with error message:
+                        header("Location: /network/ethernet?errorMsg=" . urlencode($encoded_errors) . "#tabs-2");
+                        exit;
+                    }
+                }
+                // Nice people say goodbye, or CCEd waits forever:
+                $CI->cceClient->bye();
+                $CI->serverScriptHelper->destructor();
+                // Redirect to the correct tab:
+                $hrmpf = $i18n->interpolate("[[base-network.aliasSettings]]");
+                header("Location: /network/ethernet?$hrmpf#tabs-2");
+                exit;
+            }
+        }
+        else {
+            $action = "create";
+        }
 
-		// Join the various error messages:
-		$errors = array_merge($ci_errors, $my_errors);
+        // Join the various error messages:
+        $errors = array_merge($ci_errors, $my_errors);
 
-		// If we have no errors and have POST data, we submit to CODB:
-		if ((count($errors) == "0") && ($CI->input->post(NULL, TRUE))) {
+        // If we have no errors and have POST data, we submit to CODB:
+        if ((count($errors) == "0") && ($CI->input->post(NULL, TRUE))) {
 
-			// We have no errors. We submit to CODB.
+            // We have no errors. We submit to CODB.
 
-			if ($action == "create") {
+            if ($action == "create") {
 
-				// Create new interface, but first find an available one
-				$real_device_name = find_free_device($cceClient, $attributes['device']);
+                // Create new interface, but first find an available one
+                $real_device_name = find_free_device($CI->cceClient, $attributes['device']);
 
-				if (!is_file("/etc/DEMO")) {				
-					$ok = $cceClient->create('Network',
-						array(
-							'device' => $real_device_name,
-							'ipaddr' => $attributes['ipaddr'],
-							'netmask' => $attributes['netmask'],
-							'enabled' => '1'
-							));
-				}
-			}
+                if (!is_file("/etc/DEMO")) {                
+                    $ok = $CI->cceClient->create('Network',
+                        array(
+                            'device' => $real_device_name,
+                            'ipaddr' => $attributes['ipaddr'],
+                            'netmask' => $attributes['netmask'],
+                            'enabled' => '1'
+                            ));
+                }
+            }
 
-			if ($action == "modify") {
+            if ($action == "modify") {
 
-				// check for duplicates, because it will fail on this
-				$dups = $cceClient->find('Network', array('ipaddr' => $attributes['ipaddr']));
+                // check for duplicates, because it will fail on this
+                $dups = $CI->cceClient->find('Network', array('ipaddr' => $attributes['ipaddr']));
 
-				$settings = array('ipaddr' => $attributes['ipaddr'], 'netmask' => $attributes['netmask']);
+                $settings = array('ipaddr' => $attributes['ipaddr'], 'netmask' => $attributes['netmask']);
 
-				if ((isset($attributes['device'])) && (isset($attributes['old_device']))) {
-					if ($attributes['device'] != $attributes['old_device']) {
-						$settings['device'] = find_free_device($cceClient, $attributes['device']);
-					}
-				}
+                if ((isset($attributes['device'])) && (isset($attributes['old_device']))) {
+                    if ($attributes['device'] != $attributes['old_device']) {
+                        $settings['device'] = find_free_device($CI->cceClient, $attributes['device']);
+                    }
+                }
 
-				// Security Check:
-				$oid = $get_form_data['_oid'];
-				$oidData = $cceClient->get($get_form_data['_oid']);
-				if ($oidData['CLASS'] != "Network") {
-					// These are not the droids we are looking for!
-					// Nice people say goodbye, or CCEd waits forever:
-					$cceClient->bye();
-					$serverScriptHelper->destructor();
-					Log403Error("/gui/Forbidden403");
-				}
-				if (!is_file("/etc/DEMO")) {
-					$ok = $cceClient->set($oid, '', $settings);
-				}
-			}
+                // Security Check:
+                $oid = $get_form_data['_oid'];
+                $oidData = $CI->cceClient->get($get_form_data['_oid']);
+                if ($oidData['CLASS'] != "Network") {
+                    // These are not the droids we are looking for!
+                    // Nice people say goodbye, or CCEd waits forever:
+                    $CI->cceClient->bye();
+                    $CI->serverScriptHelper->destructor();
+                    Log403Error("/gui/Forbidden403");
+                }
+                if (!is_file("/etc/DEMO")) {
+                    $ok = $CI->cceClient->set($oid, '', $settings);
+                }
+            }
 
-			// CCE errors that might have happened during submit to CODB:
-			$CCEerrors = $cceClient->errors();
-			foreach ($CCEerrors as $object => $objData) {
-				// When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
-				$errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
-			}
+            // CCE errors that might have happened during submit to CODB:
+            $CCEerrors = $CI->cceClient->errors();
+            foreach ($CCEerrors as $object => $objData) {
+                // When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
+                $errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
+            }
 
-			// We have no errors and have POST data, we submitted to CODB without errors? Redirect.
-			if ((count($errors) == "0") && ($CI->input->post(NULL, TRUE)) && (count($CCEerrors) == 0)) {
-				// Nice people say goodbye, or CCEd waits forever:
-				$cceClient->bye();
-				$serverScriptHelper->destructor();
-				// Redirect to the correct tab:
-				$hrmpf = $i18n->interpolate("[[base-network.aliasSettings]]");
-				header("Location: /network/ethernet?$hrmpf#tabs-2");
-				exit;
-			}
-		}
+            // We have no errors and have POST data, we submitted to CODB without errors? Redirect.
+            if ((count($errors) == "0") && ($CI->input->post(NULL, TRUE)) && (count($CCEerrors) == 0)) {
+                // Nice people say goodbye, or CCEd waits forever:
+                $CI->cceClient->bye();
+                $CI->serverScriptHelper->destructor();
+                // Redirect to the correct tab:
+                $hrmpf = $i18n->interpolate("[[base-network.aliasSettings]]");
+                header("Location: /network/ethernet?$hrmpf#tabs-2");
+                exit;
+            }
+        }
 
-		//
-	    //-- Generate page:
-	    //
+        //
+        //-- Generate page:
+        //
 
-		// Prepare Page:
-		$post_URL = "/network/aliasModify";
-		if ((isset($get_form_data['ACTION'])) && (isset($get_form_data['_oid']))) {
-			if ($get_form_data['ACTION'] == "M") {
-				$post_URL = "/network/aliasModify?ACTION=M&_oid=" . $get_form_data['_oid'];
-			}
-			if ($get_form_data['ACTION'] == "D") {
-				$post_URL = "/network/aliasModify?ACTION=D&_oid=" . $get_form_data['_oid'];
-			}			
-		}
+        // Prepare Page:
+        $post_URL = "/network/aliasModify";
+        if ((isset($get_form_data['ACTION'])) && (isset($get_form_data['_oid']))) {
+            if ($get_form_data['ACTION'] == "M") {
+                $post_URL = "/network/aliasModify?ACTION=M&_oid=" . $get_form_data['_oid'];
+            }
+            if ($get_form_data['ACTION'] == "D") {
+                $post_URL = "/network/aliasModify?ACTION=D&_oid=" . $get_form_data['_oid'];
+            }           
+        }
 
-		$factory = $serverScriptHelper->getHtmlComponentFactory("base-network", $post_URL);
-		$BxPage = $factory->getPage();
-		$BxPage->setErrors($errors);
-		$i18n = $factory->getI18n();
+        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-network", $post_URL);
+        $BxPage = $factory->getPage();
+        $BxPage->setErrors($errors);
+        $i18n = $factory->getI18n();
 
-		// Set Menu items:
-		$BxPage->setVerticalMenu('base_serverconfig');
-		$BxPage->setVerticalMenuChild('base_ethernet');
-		$page_module = 'base_sysmanage';
+        // Set Menu items:
+        $BxPage->setVerticalMenu('base_serverconfig');
+        $BxPage->setVerticalMenuChild('base_ethernet');
+        $page_module = 'base_sysmanage';
 
-		$defaultPage = "basicSettingsTab";
+        $defaultPage = "basicSettingsTab";
 
-		if (isset($get_form_data['_oid'])) {
-			$add = false;
-			$pbTitle = 'modAlias';
-			$current = $cceClient->get($get_form_data['_oid']);
-		}
-		else {
-			$add = true;
-			$pbTitle = 'addAlias';
-			$current['ipaddr'] = "";
-			$current['netmask'] = "";
-		}
+        if (isset($get_form_data['_oid'])) {
+            $add = false;
+            $pbTitle = 'modAlias';
+            $current = $CI->cceClient->get($get_form_data['_oid']);
+        }
+        else {
+            $add = true;
+            $pbTitle = 'addAlias';
+            $current['ipaddr'] = "";
+            $current['netmask'] = "";
+        }
 
-		$block =& $factory->getPagedBlock($pbTitle, array($defaultPage));
+        $block =& $factory->getPagedBlock($pbTitle, array($defaultPage));
 
-		$block->setToggle("#");
-		$block->setSideTabs(FALSE);
-		$block->setDefaultPage($defaultPage);
+        $block->setToggle("#");
+        $block->setSideTabs(FALSE);
+        $block->setDefaultPage($defaultPage);
 
-		// display choice of interfaces to associate this alias with
-		$assoc_if =& $factory->getMultiChoice('device');
-		$real_ifs = $cceClient->find('Network', array('enabled' => 1, 'real' => 1));
+        // display choice of interfaces to associate this alias with
+        $assoc_if =& $factory->getMultiChoice('device');
+        $real_ifs = $CI->cceClient->find('Network', array('enabled' => 1, 'real' => 1));
 
 
-		// get the current real device for this alias, if modifying
-		if (!$add) {
-			preg_match("/^([^:]+)/", $current['device'], $matches);
-			$current_if = $matches[1];
-		}
+        // get the current real device for this alias, if modifying
+        if (!$add) {
+            preg_match("/^([^:]+)/", $current['device'], $matches);
+            $current_if = $matches[1];
+        }
 
-		foreach ($real_ifs as $oid) {
-			$eth =& $cceClient->get($oid);
-			preg_match('/([0-9]+)/', $eth['device'], $matches);
-			$option = new Option(
-							$factory->getLabel($eth['device']),
-							$eth['device'],
-							"",
-							$i18n
-							);
-			if (!$add && ($eth['device'] == $current_if)) {
-				$option->setSelected(true);
-			}
-			$assoc_if->addOption($option);
-		}
+        foreach ($real_ifs as $oid) {
+            $eth =& $CI->cceClient->get($oid);
+            preg_match('/([0-9]+)/', $eth['device'], $matches);
+            $option = new Option(
+                            $factory->getLabel($eth['device']),
+                            $eth['device'],
+                            "",
+                            $i18n
+                            );
+            if (!$add && ($eth['device'] == $current_if)) {
+                $option->setSelected(true);
+            }
+            $assoc_if->addOption($option);
+        }
 
-		$block->addFormField($assoc_if, $factory->getLabel('assocIface'));
+        $block->addFormField($assoc_if, $factory->getLabel('assocIface'));
 
-		if (!$add) {
-			$block->addFormField(
-				$factory->getTextField('old_device', $current_if, ''), $defaultPage);
-		}
+        if (!$add) {
+            $block->addFormField(
+                $factory->getTextField('old_device', $current_if, ''), $defaultPage);
+        }
 
-		// now add the stuff common to adding or modifying
-		$ipfield = $factory->getIpAddress('ipaddr', $current['ipaddr']);
-		$ipfield->setInvalidMessage($i18n->getJs('aliasModIpaddr_invalid'));
-		$ipfield->setEmptyMessage($i18n->getJs('aliasModIpaddr_empty'));
+        // now add the stuff common to adding or modifying
+        $ipfield = $factory->getIpAddress('ipaddr', $current['ipaddr']);
+        $ipfield->setInvalidMessage($i18n->getJs('aliasModIpaddr_invalid'));
+        $ipfield->setEmptyMessage($i18n->getJs('aliasModIpaddr_empty'));
 
-		// Need to set Label/Description manually, as it's not working in the addFormField() call below:
-		$ipfield->setCurrentLabel($i18n->getClean('[[base-network.aliasIpaddr]]'));
-		$ipfield->setDescription($i18n->getClean('[[base-network.aliasIpaddr_help]]'));
+        // Need to set Label/Description manually, as it's not working in the addFormField() call below:
+        $ipfield->setCurrentLabel($i18n->getClean('[[base-network.aliasIpaddr]]'));
+        $ipfield->setDescription($i18n->getClean('[[base-network.aliasIpaddr_help]]'));
 
-		$block->addFormField(
-					$ipfield,
-					$factory->getLabel('aliasModIpaddr'), 
-					$defaultPage
-				);
-				
-		$netmaskfield = $factory->getNetAddress('netmask', $current['netmask']);
-		$netmaskfield->setInvalidMessage($i18n->getJs('aliasNetmask_invalid'));
-		$netmaskfield->setEmptyMessage($i18n->getJs('aliasNetmask_empty'));
+        $block->addFormField(
+                    $ipfield,
+                    $factory->getLabel('aliasModIpaddr'), 
+                    $defaultPage
+                );
+                
+        $netmaskfield = $factory->getNetAddress('netmask', $current['netmask']);
+        $netmaskfield->setInvalidMessage($i18n->getJs('aliasNetmask_invalid'));
+        $netmaskfield->setEmptyMessage($i18n->getJs('aliasNetmask_empty'));
 
-		$block->addFormField(
-		            $netmaskfield,
-					$factory->getLabel('aliasNetmask'), $defaultPage
-				);
+        $block->addFormField(
+                    $netmaskfield,
+                    $factory->getLabel('aliasNetmask'), $defaultPage
+                );
 
-		// store old settings if this is modify to check for the admin if
-		if ($_SERVER['SERVER_ADDR'] == $current['ipaddr']) {
-			$block->addFormField(
-				$factory->getTextField('oldIpaddr', $current['ipaddr'], ''), $defaultPage);
-			$block->addFormField(
-				$factory->getTextField('oldNetmask', $current['netmask'], ''), $defaultPage);
-		}
+        // store old settings if this is modify to check for the admin if
+        if ($_SERVER['SERVER_ADDR'] == $current['ipaddr']) {
+            $block->addFormField($factory->getTextField('oldIpaddr', $current['ipaddr'], ''), $defaultPage);
+            $block->addFormField($factory->getTextField('oldNetmask', $current['netmask'], ''), $defaultPage);
+        }
 
+        // Add the buttons
+        $block->addButton($factory->getSaveButton("/network/aliasModify"));
+        $hrmpf = $i18n->interpolate("[[base-network.aliasSettings]]");
+        $cancURL = "/network/ethernet?$hrmpf#tabs-2";
+        $block->addButton($factory->getCancelButton($cancURL));
 
-		// Add the buttons
-		$block->addButton($factory->getSaveButton("/network/aliasModify"));
-		$hrmpf = $i18n->interpolate("[[base-network.aliasSettings]]");
-		$cancURL = "/network/ethernet?$hrmpf#tabs-2";
-		$block->addButton($factory->getCancelButton($cancURL));
+        $page_body[] = $block->toHtml();
 
-		// Nice people say goodbye, or CCEd waits forever:
-		$cceClient->bye();
-		$serverScriptHelper->destructor();
+        // Out with the page:
+        $BxPage->render($page_module, $page_body);
 
-		$page_body[] = $block->toHtml();
-
-		// Out with the page:
-	    $BxPage->render($page_module, $page_body);
-
-	}		
+    }       
 }
 
 /*

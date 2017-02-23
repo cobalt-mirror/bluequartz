@@ -19,34 +19,32 @@ class Network_details extends MX_Controller {
 
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
-        $MX =& get_instance();
-
+        
         // Load AM Detail Helper:
         $this->load->helper('amdetail');
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
-        $locale = $CI->input->cookie('locale');
+        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set):
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
         // Line up the ducks for CCE-Connection:
         include_once('ServerScriptHelper.php');
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        $cceClient = $serverScriptHelper->getCceClient();
-        $user = $cceClient->getObject("User", array("name" => $loginName));
-        $i18n = new I18n("base-network", $user['localePreference']);
-        $system = $cceClient->getObject("System");
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
+        $user = $CI->BX_SESSION['loginUser'];
+        $i18n = new I18n("base-network", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
 
         // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        $Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
 
         // -- Actual page logic start:
 
         // Not 'serverNetwork'? Bye, bye!
         if (!$Capabilities->getAllowed('serverShowActiveMonitor')) {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403");
         }
 
@@ -66,7 +64,7 @@ class Network_details extends MX_Controller {
         }
 
         // Prepare Page:
-        $factory = $serverScriptHelper->getHtmlComponentFactory("base-network");
+        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-network");
         $BxPage = $factory->getPage();
         $i18n = $factory->getI18n();
 
@@ -89,7 +87,7 @@ class Network_details extends MX_Controller {
         //--- Print Detail Block:
         //
 
-        $page_body[] = am_detail_block($factory, $cceClient, "Network", "[[base-network.amNetDetails]]");
+        $page_body[] = am_detail_block($factory, $CI->cceClient, "Network", "[[base-network.amNetDetails]]");
 
         //
         //--- Print Sub Block:
@@ -117,13 +115,13 @@ class Network_details extends MX_Controller {
 
         if (file_exists( "/proc/user_beancounters" )) {
             // OpenVZ Network Interfaces:
-            $eth0_obj = $cceClient->getObject('Network', array('device' => 'venet0'));
-            $eth1_obj = $cceClient->getObject('Network', array('device' => 'venet1'));
+            $eth0_obj = $CI->cceClient->getObject('Network', array('device' => 'venet0'));
+            $eth1_obj = $CI->cceClient->getObject('Network', array('device' => 'venet1'));
         }
         else {
             // Regular Network Interfaces:
-            $eth0_obj = $cceClient->getObject('Network', array('device' => 'eth0'));
-            $eth1_obj = $cceClient->getObject('Network', array('device' => 'eth1'));
+            $eth0_obj = $CI->cceClient->getObject('Network', array('device' => 'eth0'));
+            $eth1_obj = $CI->cceClient->getObject('Network', array('device' => 'eth1'));
         }
                                
         // Get eth0 info
@@ -221,7 +219,7 @@ class Network_details extends MX_Controller {
         $heute_cleaned_prefixed = array();
 
         if (is_file("/var/log/sa/sa$gestern")) {
-            $ret = $serverScriptHelper->shell("/usr/bin/sar -n DEV -f /var/log/sa/sa$gestern", $saStatsGestern, 'root', $sessionId);
+            $ret = $CI->serverScriptHelper->shell("/usr/bin/sar -n DEV -f /var/log/sa/sa$gestern", $saStatsGestern, 'root', $CI->BX_SESSION['sessionId']);
 
             // If locale is 'ja_JP' and AdmServ has been restarted, then we'll get the date in Japanese format.
             // We do a search and replace for these Kanji's and replace them:
@@ -261,7 +259,7 @@ class Network_details extends MX_Controller {
         }
 
         if (is_file("/var/log/sa/sa$heute")) {
-            $ret = $serverScriptHelper->shell("/usr/bin/sar -n DEV  -f /var/log/sa/sa$heute", $saStatsHeute, 'root', $sessionId);
+            $ret = $CI->serverScriptHelper->shell("/usr/bin/sar -n DEV  -f /var/log/sa/sa$heute", $saStatsHeute, 'root', $CI->BX_SESSION['sessionId']);
 
             // If locale is 'ja_JP' and AdmServ has been restarted, then we'll get the date in Japanese format.
             // We do a search and replace for these Kanji's and replace them:
@@ -463,10 +461,6 @@ class Network_details extends MX_Controller {
             // Full page display. Show "Back" Button:
             $page_body[] = am_back($factory);
         }
-
-        // Nice people say goodbye, or CCEd waits forever:
-        $cceClient->bye();
-        $serverScriptHelper->destructor();
 
         // Out with the page:
         $BxPage->setErrors($errors);
