@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=netdata
 
 VERSION=1.0.0
-RELEASE=0BX03
+RELEASE=0BX05
 
 # add a buildarch if desired
 BUILDARCH=noarch

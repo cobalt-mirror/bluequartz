@@ -1,5 +1,5 @@
 <!-- This is the AM Namespace for monitoring Shellinabox -->
-<class name="ActiveMonitor"     namespace="Netdata"     version="1.0">
+<class name="ActiveMonitor"     namespace="Netdata"     version="1.1">
     <property name="enabled"        type="boolean"  default="0"/>
     <property name="monitor"    writeACL="ruleCapable(serverActiveMonitor)"
     type="boolean"  default="0"/>

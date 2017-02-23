@@ -20,33 +20,31 @@ class Netdata extends MX_Controller {
 
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
-        $MX =& get_instance();
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
-        $locale = $CI->input->cookie('locale');
+        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set):
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
-        $cookie = array('name' => 'netdata', 'path' => '/', 'value' => $sessionId, 'expire' => '0');
+        $cookie = array('name' => 'netdata', 'path' => '/', 'value' => $CI->BX_SESSION['sessionId'], 'expire' => '0');
         $this->input->set_cookie($cookie);
 
         // Line up the ducks for CCE-Connection:
         include_once('ServerScriptHelper.php');
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        $cceClient = $serverScriptHelper->getCceClient();
-        $user = $cceClient->getObject("User", array("name" => $loginName));
-        $i18n = new I18n("base-disk", $user['localePreference']);
-        $system = $cceClient->getObject("System");
-        $systemNetdata = $cceClient->get($system['OID'], "Netdata");
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
+        $user = $CI->BX_SESSION['loginUser'];
+        $i18n = new I18n("base-netdata", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
+        $systemNetdata = $CI->cceClient->get($system['OID'], "Netdata");
 
         // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        $Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
 
         // No Shell access? Bye, bye!
         if ((!$Capabilities->getAllowed('serverShell')) || (!$Capabilities->getAllowed('siteShell')) || (!$Capabilities->getAllowed('resellerShell'))) {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403");
         }
 
@@ -94,7 +92,7 @@ class Netdata extends MX_Controller {
             // params: $required_keys       array with keys that must have data in it. Needed for CodeIgniter's error checks
             // params: $ignore_attributes   array with items we want to ignore. Such as Labels.
             // return:                      array with keys and values ready to submit to CCE.
-            $attributes = GetFormAttributes($i18n, $form_data, $required_keys, $ignore_attributes, $i18n);
+            $attributes = GetFormAttributes($i18n, $form_data, $required_keys, $ignore_attributes);
         }
         //Setting up error messages:
         $CI->form_validation->set_message('required', $i18n->get("[[palette.val_is_required]]", false, array("field" => "\"%s\"")));        
@@ -136,15 +134,15 @@ class Netdata extends MX_Controller {
             $attributes['force_update'] = time();
 
             // Actual submit to CODB:
-            $cceClient->setObject("System", $attributes, "Netdata");
+            $CI->cceClient->set($system['OID'], "Netdata",  $attributes);
 
             // CCE errors that might have happened during submit to CODB:
-            $CCEerrors = $cceClient->errors();
+            $CCEerrors = $CI->cceClient->errors();
             foreach ($CCEerrors as $object => $objData) {
                 // When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
                 $errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
             }
-            $systemNetdata = $cceClient->get($system['OID'], "Netdata");
+            $systemNetdata = $CI->cceClient->get($system['OID'], "Netdata");
         }
 
         //
@@ -152,7 +150,7 @@ class Netdata extends MX_Controller {
         //
 
         // Prepare Page:
-        $factory = $serverScriptHelper->getHtmlComponentFactory("base-netdata", "/netdata/netdata/");
+        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-netdata", "/netdata/netdata/");
         $BxPage = $factory->getPage();
         $BxPage->setErrors($errors);
         $i18n = $factory->getI18n();
@@ -179,7 +177,6 @@ class Netdata extends MX_Controller {
                 $page_module = 'base_sysmanage';
             }
             else {
-                
                 $BxPage->setVerticalMenu('base_programsSite');
                 $BxPage->setVerticalMenuChild('netdata_vsite');
                 $page_module = 'base_sitemanage';
@@ -195,12 +192,12 @@ class Netdata extends MX_Controller {
         $block->setSideTabs(FALSE);
         $block->setDefaultPage($defaultPage);
 
-        $uri_full = 'https://' . $_SERVER['SERVER_NAME'] . ':81/bxnetdata/?' . $loginName . '=' . time() . '#menu_system_submenu_cpu;theme=' . $theme . ';help=true';
-        $uri_short = '/bxnetdata/?' . $loginName . '=' . time() . '#menu_system_submenu_cpu;theme=' . $theme . ';help=true';
+        $uri_full = 'https://' . $_SERVER['SERVER_NAME'] . ':81/bxnetdata/?' . $CI->BX_SESSION['loginName'] . '=' . time() . '#menu_system_submenu_cpu;theme=' . $theme . ';help=true';
+        $uri_short = '/bxnetdata/?' . $CI->BX_SESSION['loginName'] . '=' . time() . '#menu_system_submenu_cpu;theme=' . $theme . ';help=true';
 
         if (!isset($systemNetdata['enabled'])) {
-            $uri_full = 'https://' . $_SERVER['SERVER_NAME'] . ':81/bxshell/noaccess/?' . $loginName . '=' . time();
-            $uri_short = '/bxshell/noaccess/?' . $loginName . '=' . time();
+            $uri_full = 'https://' . $_SERVER['SERVER_NAME'] . ':81/bxshell/noaccess/?' . $CI->BX_SESSION['loginName'] . '=' . time();
+            $uri_short = '/bxshell/noaccess/?' . $CI->BX_SESSION['loginName'] . '=' . time();
         }
 
         if (uri_string() != "netdata/netdata/full") {
@@ -237,9 +234,6 @@ class Netdata extends MX_Controller {
             $block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
             $block->addButton($factory->getCancelButton("/apache/apache"));
 
-            // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
             $page_body[] = $block->toHtml();
         }
         else {
@@ -275,9 +269,6 @@ class Netdata extends MX_Controller {
             $block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
             $block->addButton($factory->getCancelButton("/apache/apache"));
 
-            // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
             $page_body[] = $block->toHtml();
 
         }
