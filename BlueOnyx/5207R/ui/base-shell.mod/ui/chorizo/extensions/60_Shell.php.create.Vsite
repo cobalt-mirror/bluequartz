@@ -9,6 +9,7 @@ class ShellExtension extends UIExtension
 {
     function display(&$ServerScriptHelper, &$container, $parameters)
     {
+        $CI =& get_instance();
         $factory = $ServerScriptHelper->getHtmlComponentFactory('base-shell');
         $cce = $ServerScriptHelper->getCceClient();
         
@@ -17,7 +18,7 @@ class ShellExtension extends UIExtension
         //
         //-- Reseller: Can the reseller that owns this Vsite modify this?
         //
-        $VsiteOwnerObj = $cce->get($cce->whoami());
+        $VsiteOwnerObj =  $CI->BX_SESSION['loginUser'];
         $access = 'rw';
         if ($VsiteOwnerObj['name'] != "admin") {
             $resellerCaps = $cce->scalar_to_array($VsiteOwnerObj['capabilities']);

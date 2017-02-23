@@ -19,23 +19,22 @@ class personalSSH extends MX_Controller {
 
   		// Need to load 'BxPage' for page rendering:
   		$this->load->library('BxPage');
-		$MX =& get_instance();
-
-	    // Get $sessionId and $loginName from Cookie (if they are set):
-	    $sessionId = $CI->input->cookie('sessionId');
-	    $loginName = $CI->input->cookie('loginName');
-	    $locale = $CI->input->cookie('locale');
+		
+	    // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set):
+	    $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+	    $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
+	    $loginName = $CI->BX_SESSION['loginName'];
 
 	    // Line up the ducks for CCE-Connection:
 	    include_once('ServerScriptHelper.php');
-		$serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-		$cceClient = $serverScriptHelper->getCceClient();
-		$user = $cceClient->getObject("User", array("name" => $loginName));
-		$i18n = new I18n("base-ssh", $user['localePreference']);
-		$system = $cceClient->getObject("System");
+		$CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+		$CI->cceClient = $CI->serverScriptHelper->getCceClient();
+		$user = $CI->BX_SESSION['loginUser'];
+		$i18n = new I18n("base-ssh", $CI->BX_SESSION['loginUser']['localePreference']);
+		$system = $CI->getSystem();
 
 		// Initialize Capabilities so that we can poll the access rights as well:
-		$Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+		$Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
 
 		// Define who runs CCEwrap:
 		$runas = 'root';
@@ -53,8 +52,8 @@ class personalSSH extends MX_Controller {
 		// Not 'shellAccessEnabled'? Bye, bye!
 		if (!$Capabilities->getAllowed('shellAccessEnabled')) {
 			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
+			$CI->cceClient->bye();
+			$CI->serverScriptHelper->destructor();
 			Log403Error("/gui/Forbidden403");
 		}
 
@@ -88,7 +87,7 @@ class personalSSH extends MX_Controller {
 			);
 
 		// Find out if ~$loginName/.ssh/ exists:
-		$ret = $serverScriptHelper->shell("/bin/ls --directory ~$loginName/.ssh", $is_there, $runas, $sessionId);
+		$ret = $CI->serverScriptHelper->shell("/bin/ls --directory ~$loginName/.ssh", $is_there, $runas, $CI->BX_SESSION['sessionId']);
 		if ((preg_match('/^\/home\/\.users\/(.*)$/', $is_there)) || (preg_match('/^\/home\/\.sites\/(.*)$/', $is_there))) {
 			# ~$loginName/.ssh exists
 			$full_path_to_dotsshdir = chop($is_there);
@@ -98,11 +97,11 @@ class personalSSH extends MX_Controller {
 			$full_path_to_dotsshdir = "~$loginName/.ssh";
 
 			# Create it:
-			$ret = $serverScriptHelper->shell("/bin/mkdir ~$loginName/.ssh", $nfk, $runas, $sessionId);
-			$ret = $serverScriptHelper->shell("/bin/touch ~$loginName/.ssh/authorized_keys", $nfk, $runas, $sessionId);
-			$ret = $serverScriptHelper->shell("/bin/chmod 00700 -R ~$loginName/.ssh", $nfk, $runas, $sessionId);
-			$ret = $serverScriptHelper->shell("/bin/chown $loginName:$group -R ~$loginName/.ssh", $nfk, $runas, $sessionId);
-			$ret = $serverScriptHelper->shell("/bin/chmod 00644 ~$loginName/.ssh/authorized_keys", $nfk, $runas, $sessionId);
+			$ret = $CI->serverScriptHelper->shell("/bin/mkdir ~$loginName/.ssh", $nfk, $runas, $CI->BX_SESSION['sessionId']);
+			$ret = $CI->serverScriptHelper->shell("/bin/touch ~$loginName/.ssh/authorized_keys", $nfk, $runas, $CI->BX_SESSION['sessionId']);
+			$ret = $CI->serverScriptHelper->shell("/bin/chmod 00700 -R ~$loginName/.ssh", $nfk, $runas, $CI->BX_SESSION['sessionId']);
+			$ret = $CI->serverScriptHelper->shell("/bin/chown $loginName:$group -R ~$loginName/.ssh", $nfk, $runas, $CI->BX_SESSION['sessionId']);
+			$ret = $CI->serverScriptHelper->shell("/bin/chmod 00644 ~$loginName/.ssh/authorized_keys", $nfk, $runas, $CI->BX_SESSION['sessionId']);
 		}
 
 		if ((isset($action)) && (isset($action_file))) {
@@ -112,7 +111,7 @@ class personalSSH extends MX_Controller {
 			// and other shenannigans:
 			if (($action == 'export') && (in_array($action_file, $allowed_files))) {
 
-				$ret = $serverScriptHelper->shell("/bin/cat ~$loginName/.ssh/$action_file", $output, $runas, $sessionId);
+				$ret = $CI->serverScriptHelper->shell("/bin/cat ~$loginName/.ssh/$action_file", $output, $runas, $CI->BX_SESSION['sessionId']);
 			    if ($ret != 0) {
 			    	# File not present.
 			    }
@@ -137,24 +136,24 @@ class personalSSH extends MX_Controller {
 				// Create a unique temporary file name:
 				$tempname = tempnam("/var/cache/admserv/", $loginName . "_");
 
-				$ret = $serverScriptHelper->shell("/bin/cat $full_path_to_dotsshdir/authorized_keys|/bin/grep -v $key_id", $finder, $runas, $sessionId);
+				$ret = $CI->serverScriptHelper->shell("/bin/cat $full_path_to_dotsshdir/authorized_keys|/bin/grep -v $key_id", $finder, $runas, $CI->BX_SESSION['sessionId']);
 				if ($ret == 0) {
 					write_file($tempname, $finder);
-					$ret = $serverScriptHelper->shell("/bin/cp $tempname ~$loginName/.ssh/authorized_keys", $res, $runas, $sessionId);
-					$ret = $serverScriptHelper->shell("/bin/rm -f $tempname", $res, $runas, $sessionId);
+					$ret = $CI->serverScriptHelper->shell("/bin/cp $tempname ~$loginName/.ssh/authorized_keys", $res, $runas, $CI->BX_SESSION['sessionId']);
+					$ret = $CI->serverScriptHelper->shell("/bin/rm -f $tempname", $res, $runas, $CI->BX_SESSION['sessionId']);
 				}
 				else {
 					// Check if this is the only key in there:
-					$ret = $serverScriptHelper->shell("/bin/cat $full_path_to_dotsshdir/authorized_keys|/usr/bin/wc -l", $finder, $runas, $sessionId);
+					$ret = $CI->serverScriptHelper->shell("/bin/cat $full_path_to_dotsshdir/authorized_keys|/usr/bin/wc -l", $finder, $runas, $CI->BX_SESSION['sessionId']);
 					$finder = chop($finder);
 					if (($finder == "") || ($finder == "0") || ($finder == "1")) {
 						// Seems so: Delete it and recreate it:
-						$ret = $serverScriptHelper->shell("/bin/rm -f $full_path_to_dotsshdir/authorized_keys", $finder, $runas, $sessionId);
-						$ret = $serverScriptHelper->shell("/bin/touch $full_path_to_dotsshdir/authorized_keys", $nfk, $runas, $sessionId);
-						$ret = $serverScriptHelper->shell("/bin/chown $loginName:$group -R $full_path_to_dotsshdir", $nfk, $runas, $sessionId);
-						$ret = $serverScriptHelper->shell("/bin/chmod 00644 $full_path_to_dotsshdir/authorized_keys", $nfk, $runas, $sessionId);
+						$ret = $CI->serverScriptHelper->shell("/bin/rm -f $full_path_to_dotsshdir/authorized_keys", $finder, $runas, $CI->BX_SESSION['sessionId']);
+						$ret = $CI->serverScriptHelper->shell("/bin/touch $full_path_to_dotsshdir/authorized_keys", $nfk, $runas, $CI->BX_SESSION['sessionId']);
+						$ret = $CI->serverScriptHelper->shell("/bin/chown $loginName:$group -R $full_path_to_dotsshdir", $nfk, $runas, $CI->BX_SESSION['sessionId']);
+						$ret = $CI->serverScriptHelper->shell("/bin/chmod 00644 $full_path_to_dotsshdir/authorized_keys", $nfk, $runas, $CI->BX_SESSION['sessionId']);
 					}
-					$ret = $serverScriptHelper->shell("/bin/rm -f $tempname", $res, $runas, $sessionId);
+					$ret = $CI->serverScriptHelper->shell("/bin/rm -f $tempname", $res, $runas, $CI->BX_SESSION['sessionId']);
 				}
 			}
 			// Redirect to correct Tab:
@@ -234,12 +233,12 @@ class personalSSH extends MX_Controller {
 				$tmp_cert = $data['full_path'];
 
 				// Check if it is a valid public key:
-				$ret = $serverScriptHelper->shell("/usr/bin/ssh-keygen -lf $tmp_cert", $keylength, $runas, $sessionId);
+				$ret = $CI->serverScriptHelper->shell("/usr/bin/ssh-keygen -lf $tmp_cert", $keylength, $runas, $CI->BX_SESSION['sessionId']);
 				$kl = preg_split('/[\ \n\,]+/', $keylength);
 				if ((in_array('(RSA)', $kl)) || (in_array('(DSA)', $kl))) {
 
 	                // Get current authorized_keys:
-	                $ret = $serverScriptHelper->shell("/bin/cat ~$loginName/.ssh/authorized_keys", $authorized_keys, $runas, $sessionId);
+	                $ret = $CI->serverScriptHelper->shell("/bin/cat ~$loginName/.ssh/authorized_keys", $authorized_keys, $runas, $CI->BX_SESSION['sessionId']);
 
 	                // Read uploaded file:
 	                $tmp_cert_data = read_file($tmp_cert);
@@ -259,18 +258,18 @@ class personalSSH extends MX_Controller {
 	                write_file($tempname, $out_data_cleaned);
 
 	                // Move it to the right location and delete the temporary files:
-					$ret = $serverScriptHelper->shell("/bin/cp $tempname ~$loginName/.ssh/authorized_keys", $output, $runas, $sessionId);
-					$ret = $serverScriptHelper->shell("/bin/chmod 00644 ~$loginName/.ssh/authorized_keys", $output, $runas, $sessionId);
-					$ret = $serverScriptHelper->shell("/bin/rm -f $tempname", $output, $runas, $sessionId);
-					$ret = $serverScriptHelper->shell("/bin/rm -f $tempnameShort", $output, $runas, $sessionId);
-					$ret = $serverScriptHelper->shell("/bin/rm -f $tmp_cert", $output, $runas, $sessionId);
+					$ret = $CI->serverScriptHelper->shell("/bin/cp $tempname ~$loginName/.ssh/authorized_keys", $output, $runas, $CI->BX_SESSION['sessionId']);
+					$ret = $CI->serverScriptHelper->shell("/bin/chmod 00644 ~$loginName/.ssh/authorized_keys", $output, $runas, $CI->BX_SESSION['sessionId']);
+					$ret = $CI->serverScriptHelper->shell("/bin/rm -f $tempname", $output, $runas, $CI->BX_SESSION['sessionId']);
+					$ret = $CI->serverScriptHelper->shell("/bin/rm -f $tempnameShort", $output, $runas, $CI->BX_SESSION['sessionId']);
+					$ret = $CI->serverScriptHelper->shell("/bin/rm -f $tmp_cert", $output, $runas, $CI->BX_SESSION['sessionId']);
 
 					// Redirect to correct Tab:
 					header("Location: /shell/personalSSH");
 					exit;
 				}
 				else {
-					$ret = $serverScriptHelper->shell("/bin/rm -f $tmp_cert", $output, $runas, $sessionId);
+					$ret = $CI->serverScriptHelper->shell("/bin/rm -f $tmp_cert", $output, $runas, $CI->BX_SESSION['sessionId']);
 					$ci_errors[] = new CceError('huh', 0, 'cert', "[[base-ssl.sslImportError4]]");
 				}
 			}
@@ -308,10 +307,10 @@ class personalSSH extends MX_Controller {
 			}
 
 	  		// Actual submit to CODB:
-			$cceClient->set($user['OID'], 'SSH', $SSHCODB);
+			$CI->cceClient->set($user['OID'], 'SSH', $SSHCODB);
 
 			// CCE errors that might have happened during submit to CODB:
-			$CCEerrors = $cceClient->errors();
+			$CCEerrors = $CI->cceClient->errors();
 			foreach ($CCEerrors as $object => $objData) {
 				// When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
 				$errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
@@ -329,7 +328,7 @@ class personalSSH extends MX_Controller {
 	    //
 
 		// Prepare Page:
-		$factory = $serverScriptHelper->getHtmlComponentFactory("base-ssh", "/shell/personalSSH");
+		$factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-ssh", "/shell/personalSSH");
 		$BxPage = $factory->getPage();
 		$BxPage->setErrors($errors);
 		$i18n = $factory->getI18n();
@@ -353,11 +352,11 @@ class personalSSH extends MX_Controller {
 		//
 
 		// Start sane:
-		$ret = $serverScriptHelper->shell("/bin/rm -f /var/cache/admserv/*.tmp", $junk, $runas, $sessionId);
-		$ret = $serverScriptHelper->shell("/bin/rm -f /var/cache/admserv/*.pub", $junk, $runas, $sessionId);
+		$ret = $CI->serverScriptHelper->shell("/bin/rm -f /var/cache/admserv/*.tmp", $junk, $runas, $CI->BX_SESSION['sessionId']);
+		$ret = $CI->serverScriptHelper->shell("/bin/rm -f /var/cache/admserv/*.pub", $junk, $runas, $CI->BX_SESSION['sessionId']);
 
 		# authorized_keys:
-		$ret = $serverScriptHelper->shell("/bin/cat ~$loginName/.ssh/authorized_keys", $authorized_keys, $runas, $sessionId);
+		$ret = $CI->serverScriptHelper->shell("/bin/cat ~$loginName/.ssh/authorized_keys", $authorized_keys, $runas, $CI->BX_SESSION['sessionId']);
 	    if ($ret != 0) {
 	    	# File not present.
 	    }
@@ -382,10 +381,10 @@ class personalSSH extends MX_Controller {
 
 						// Continue: Write it to a temporary file and parse it:
 						write_file($tempname, $split_lines[0] . " " . $split_lines[1] . " " . $split_lines[2]);
-						$ret = $serverScriptHelper->shell("/usr/bin/ssh-keygen -lf $tempname", $keylength, $runas, $sessionId);
+						$ret = $CI->serverScriptHelper->shell("/usr/bin/ssh-keygen -lf $tempname", $keylength, $runas, $CI->BX_SESSION['sessionId']);
 						$kl = preg_split('/[\ \n\,]+/', $keylength);
-						$ret = $serverScriptHelper->shell("/bin/rm -f $tempname", $junk, $runas, $sessionId);
-						$ret = $serverScriptHelper->shell("/bin/rm -f $tempnameShort", $junk, $runas, $sessionId);
+						$ret = $CI->serverScriptHelper->shell("/bin/rm -f $tempname", $junk, $runas, $CI->BX_SESSION['sessionId']);
+						$ret = $CI->serverScriptHelper->shell("/bin/rm -f $tempnameShort", $junk, $runas, $CI->BX_SESSION['sessionId']);
 
 						if (is_file('/etc/DEMO')) {
 							// On a Demo server we don't even want to show the partial payload:
@@ -404,14 +403,14 @@ class personalSSH extends MX_Controller {
 	    }
 
 	    # id_rsa:
-		$ret = $serverScriptHelper->shell("/bin/cat ~$loginName/.ssh/id_rsa", $id_rsa, $runas, $sessionId);
+		$ret = $CI->serverScriptHelper->shell("/bin/cat ~$loginName/.ssh/id_rsa", $id_rsa, $runas, $CI->BX_SESSION['sessionId']);
 	    if ($ret != 0) {
 	    	# File not present.
 	    	unset($id_rsa);
 	    }
 	    else {
 	    	// Detect private key length:
-	    	$ret = $serverScriptHelper->shell("/usr/bin/openssl rsa -text -noout -in ~$loginName/.ssh/id_rsa|/bin/grep '^Private-Key:'", $id_rsa_length, $runas, $sessionId);
+	    	$ret = $CI->serverScriptHelper->shell("/usr/bin/openssl rsa -text -noout -in ~$loginName/.ssh/id_rsa|/bin/grep '^Private-Key:'", $id_rsa_length, $runas, $CI->BX_SESSION['sessionId']);
 	    	preg_match('/^Private-Key: \((.*)\)$/', $id_rsa_length, $rs_matches);
 	    	if (isset($rs_matches[1])) {
 	    		$id_rsa_length = $rs_matches[1];
@@ -420,7 +419,7 @@ class personalSSH extends MX_Controller {
 	    }
 
 	    # id_rsa.pub:
-		$ret = $serverScriptHelper->shell("/bin/cat ~$loginName/.ssh/id_rsa.pub", $id_rsa_pub, $runas, $sessionId);
+		$ret = $CI->serverScriptHelper->shell("/bin/cat ~$loginName/.ssh/id_rsa.pub", $id_rsa_pub, $runas, $CI->BX_SESSION['sessionId']);
 	    if ($ret != 0) {
 	    	# File not present.
 	    }
@@ -445,9 +444,9 @@ class personalSSH extends MX_Controller {
 					if (($split_lines[0] == "ssh-rsa") || ($split_lines[0] == "ssh-dsa")) {
 
 						write_file($tempname, $split_lines[0] . " " . $split_lines[1] . " " . $split_lines[2]);
-						$ret = $serverScriptHelper->shell("/usr/bin/ssh-keygen -lf $tempname", $keylength, $runas, $sessionId);
+						$ret = $CI->serverScriptHelper->shell("/usr/bin/ssh-keygen -lf $tempname", $keylength, $runas, $CI->BX_SESSION['sessionId']);
 						$kl = preg_split('/[\ \n\,]+/', $keylength);
-						$ret = $serverScriptHelper->shell("/bin/rm -f $tempname", $junk, $runas, $sessionId);
+						$ret = $CI->serverScriptHelper->shell("/bin/rm -f $tempname", $junk, $runas, $CI->BX_SESSION['sessionId']);
 
 						$id_rsa_pub = array(
 													'key_userhost' => $split_lines[2], 
@@ -459,9 +458,9 @@ class personalSSH extends MX_Controller {
 					}
 				}
 				else {
-					$ret = $serverScriptHelper->shell("/bin/rm -f $tempname", $junk, $runas, $sessionId);
+					$ret = $CI->serverScriptHelper->shell("/bin/rm -f $tempname", $junk, $runas, $CI->BX_SESSION['sessionId']);
 				}
-				$ret = $serverScriptHelper->shell("/bin/rm -f $tempnameShort", $junk, $runas, $sessionId);
+				$ret = $CI->serverScriptHelper->shell("/bin/rm -f $tempnameShort", $junk, $runas, $CI->BX_SESSION['sessionId']);
 			}
 	    }
 
@@ -470,7 +469,7 @@ class personalSSH extends MX_Controller {
 		//
 
 	    # $loginName.pem:
-		$ret = $serverScriptHelper->shell("/bin/cat ~$loginName/.ssh/$loginName.pem", $root_pem, $runas, $sessionId);
+		$ret = $CI->serverScriptHelper->shell("/bin/cat ~$loginName/.ssh/$loginName.pem", $root_pem, $runas, $CI->BX_SESSION['sessionId']);
 	    if ($ret != 0) {
 	    	# File not present.
 	    	unset($root_pem);
@@ -478,7 +477,7 @@ class personalSSH extends MX_Controller {
 	    }
 	    else {
 	    	// Detect private key length:
-	    	$ret = $serverScriptHelper->shell("/usr/bin/openssl rsa -text -noout -in ~$loginName/.ssh/$loginName.pem|/bin/grep '^Private-Key:'", $root_pem_length, $runas, $sessionId);
+	    	$ret = $CI->serverScriptHelper->shell("/usr/bin/openssl rsa -text -noout -in ~$loginName/.ssh/$loginName.pem|/bin/grep '^Private-Key:'", $root_pem_length, $runas, $CI->BX_SESSION['sessionId']);
 	    	preg_match('/^Private-Key: \((.*)\)$/', $root_pem_length, $root_pem_matches);
 	    	if (isset($root_pem_matches[1])) {
 	    		$root_pem_length = $root_pem_matches[1];
@@ -487,7 +486,7 @@ class personalSSH extends MX_Controller {
 	    }
 
 	    # $loginName.pem.pub:
-		$ret = $serverScriptHelper->shell("/bin/cat ~$loginName/.ssh/$loginName.pem.pub", $root_pem_pub, $runas, $sessionId);
+		$ret = $CI->serverScriptHelper->shell("/bin/cat ~$loginName/.ssh/$loginName.pem.pub", $root_pem_pub, $runas, $CI->BX_SESSION['sessionId']);
 	    if ($ret != 0) {
 	    	$root_pem_pub_present = '0';
 	    }
@@ -501,7 +500,7 @@ class personalSSH extends MX_Controller {
 				// Detect key length:
 				$kl = array();
 				$keylength = "";
-				$ret = $serverScriptHelper->shell("/usr/bin/ssh-keygen -lf ~$loginName/.ssh/$loginName.pem.pub", $keylength, $runas, $sessionId);
+				$ret = $CI->serverScriptHelper->shell("/usr/bin/ssh-keygen -lf ~$loginName/.ssh/$loginName.pem.pub", $keylength, $runas, $CI->BX_SESSION['sessionId']);
 				$kl = preg_split('/[\ \n\,]+/', $keylength);
 
 				$root_pem_pub = array(
@@ -516,7 +515,7 @@ class personalSSH extends MX_Controller {
 
 	    //---
 
-		$SSHsettings = $cceClient->get($user['OID'], 'SSH');
+		$SSHsettings = $CI->cceClient->get($user['OID'], 'SSH');
 
 		// Show selector for SSH key length:
 		$available_ssh_key_length_selector = array_flip($available_ssh_key_length_selector);
@@ -698,10 +697,6 @@ class personalSSH extends MX_Controller {
 		// Add the buttons
 		$block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
 		$block->addButton($factory->getCancelButton("/shell/personalSSH"));
-
-		// Nice people say goodbye, or CCEd waits forever:
-		$cceClient->bye();
-		$serverScriptHelper->destructor();
 
 		$page_body[] = $block->toHtml();
 
