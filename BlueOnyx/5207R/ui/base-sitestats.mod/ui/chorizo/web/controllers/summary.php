@@ -19,32 +19,40 @@ class Summary extends MX_Controller {
     public function index() {
 
         $CI =& get_instance();
-        
+
         // We load the BlueOnyx helper library first of all, as we heavily depend on it:
         $this->load->helper('blueonyx');
         init_libraries();
-        $this->load->helper('selector_helper');
-        $this->load->library('ReportHelper');
 
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
-        $MX =& get_instance();
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
-        $locale = $CI->input->cookie('locale');
+        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set) and store them in $CI->BX_SESSION:
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
-        // Line up the ducks for CCE-Connection:
+        // Line up the ducks for CCE-Connection and store them for re-usability in $CI:
         include_once('ServerScriptHelper.php');
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        $cceClient = $serverScriptHelper->getCceClient();
-        $user = $cceClient->getObject("User", array("name" => $loginName));
-        $i18n = new I18n("base-sitestats", $user['localePreference']);
-        $system = $cceClient->getObject("System");
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
+
+        $i18n = new I18n("base-sitestats", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
+        $user = $CI->BX_SESSION['loginUser'];
+
+        // Not 'serverHttpd'? Bye, bye!
+        if (!$CI->serverScriptHelper->getAllowed('serverHttpd')) {
+            // Nice people say goodbye, or CCEd waits forever:
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
+            Log403Error("/gui/Forbidden403");
+        }
+
+        $this->load->helper('selector_helper');
+        $this->load->library('ReportHelper');
 
         // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        $Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
 
         // -- Actual page logic start:
 
@@ -90,8 +98,8 @@ class Summary extends MX_Controller {
             !($Capabilities->getAllowed('siteAdmin') &&
               $group == $Capabilities->loginUser['site'])) {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403");
         }
 
@@ -181,10 +189,10 @@ class Summary extends MX_Controller {
             );
 
             // Actual submit to CODB:
-            $cceClient->setObject("System", $config, "Sitestats");
+            $CI->cceClient->set($system['OID'], "Sitestats",  $config); 
 
             // CCE errors that might have happened during submit to CODB:
-            $CCEerrors = $cceClient->errors();
+            $CCEerrors = $CI->cceClient->errors();
             foreach ($CCEerrors as $object => $objData) {
                 // When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
                 $errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
@@ -192,8 +200,8 @@ class Summary extends MX_Controller {
 
             // No errors during submit? Reload page:
             if (count($errors) == "0") {
-                $cceClient->bye();
-                $serverScriptHelper->destructor();
+                $CI->cceClient->bye();
+                $CI->serverScriptHelper->destructor();
                 $redirect_URL = "/sitestats/summary?group=$group&type=$type";
                 header("location: $redirect_URL");
                 exit;
@@ -205,12 +213,12 @@ class Summary extends MX_Controller {
         //--- Get CODB Item of Interest:
         //
 
-        $Sitestats = $cceClient->getObject("System", array(), "Sitestats");
+        $Sitestats = $CI->cceClient->get($system['OID'], "Sitestats");
 
 //---
 
         $defaultPage = "basicSettingsTab";
-        $factory =& $serverScriptHelper->getHtmlComponentFactory('base-sitestats', "/sitestats/summary?group=$group&type=$type");
+        $factory =& $CI->serverScriptHelper->getHtmlComponentFactory('base-sitestats', "/sitestats/summary?group=$group&type=$type");
 
         // Prepare Page:
         $BxPage = $factory->getPage();
@@ -272,8 +280,8 @@ class Summary extends MX_Controller {
         $typestring = $i18n->interpolate("[[base-sitestats." . $type . "usage]]");
         $i18nvars['type'] = $typestring;
         if (isset($group) && $group != 'server') {
-            list($vsite) = $cceClient->find('Vsite', array('name' => $group));
-            $vsiteObj = $cceClient->get($vsite);
+            list($vsite) = $CI->cceClient->find('Vsite', array('name' => $group));
+            $vsiteObj = $CI->cceClient->get($vsite);
             $i18nvars['fqdn'] = $vsiteObj['fqdn'];
             $block->setLabel($factory->getLabel('generateSettingsVsite', false, $i18nvars));
         }
@@ -465,9 +473,9 @@ class Summary extends MX_Controller {
 
             // figure out if this is the server or site stats
             if (isset($group) && ($group != 'server')) {
-                $cceClient = $serverScriptHelper->getCceClient();
-                list($vsite) = $cceClient->find('Vsite', array('name' => $group));
-                $vsiteObj = $cceClient->get($vsite);
+                $CI->cceClient = $CI->serverScriptHelper->getCceClient();
+                list($vsite) = $CI->cceClient->find('Vsite', array('name' => $group));
+                $vsiteObj = $CI->cceClient->get($vsite);
                 $i18nvars['fqdn'] = $vsiteObj['fqdn'];
                 $blocksummaryStats->setLabel($factory->getLabel('summaryStatsVsite', false, $i18nvars));
             } else {
@@ -577,11 +585,6 @@ class Summary extends MX_Controller {
             }
         }
 //---
-
-        // Nice people say goodbye, or CCEd waits forever:
-        $cceClient->bye();
-        $serverScriptHelper->destructor();
-
 
         // Out with the page:
         $BxPage->render($page_module, $page_body);

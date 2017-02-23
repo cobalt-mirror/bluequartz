@@ -12,30 +12,37 @@ class Webalizer extends MX_Controller {
     public function index() {
 
         $CI =& get_instance();
-        
+
         // We load the BlueOnyx helper library first of all, as we heavily depend on it:
         $this->load->helper('blueonyx');
         init_libraries();
 
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
-        $MX =& get_instance();
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
-        $locale = $CI->input->cookie('locale');
+        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set) and store them in $CI->BX_SESSION:
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
-        // Line up the ducks for CCE-Connection:
+        // Line up the ducks for CCE-Connection and store them for re-usability in $CI:
         include_once('ServerScriptHelper.php');
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        $cceClient = $serverScriptHelper->getCceClient();
-        $user = $cceClient->getObject("User", array("name" => $loginName));
-        $i18n = new I18n("base-sitestats", $user['localePreference']);
-        $system = $cceClient->getObject("System");
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
+
+        $i18n = new I18n("base-sitestats", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
+        $user = $CI->BX_SESSION['loginUser'];
+
+        // Not 'serverHttpd'? Bye, bye!
+        if (!$CI->serverScriptHelper->getAllowed('serverHttpd')) {
+            // Nice people say goodbye, or CCEd waits forever:
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
+            Log403Error("/gui/Forbidden403");
+        }
 
         // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        $Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
 
         // Required array setup:
         $errors = array();
@@ -68,23 +75,23 @@ class Webalizer extends MX_Controller {
             !($Capabilities->getAllowed('siteAdmin') &&
               $group == $Capabilities->loginUser['site'])) {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403");
         }
 
         if ($inframe == "1") {
             if ($group) {
                 if ($group != 'server') {
-                    @list($oid) = $cceClient->find('Vsite', array('name' => $group));
+                    @list($oid) = $CI->cceClient->find('Vsite', array('name' => $group));
                     if (count($oid) == "0") {
                         // Nice people say goodbye, or CCEd waits forever:
-                        $cceClient->bye();
-                        $serverScriptHelper->destructor();                      
+                        $CI->cceClient->bye();
+                        $CI->serverScriptHelper->destructor();                      
                         header("Location: /404");
                         exit;
                     }
-                    $vsite_info = $cceClient->get($oid);
+                    $vsite_info = $CI->cceClient->get($oid);
                     $fqdn = $vsite_info['fqdn'];
                     $fullPath = "/home/sites/" . $vsite_info['fqdn'] . "/webalizer/" . $file;
                 }
@@ -98,15 +105,11 @@ class Webalizer extends MX_Controller {
             }
             else {
                 // Nice people say goodbye, or CCEd waits forever:
-                $cceClient->bye();
-                $serverScriptHelper->destructor();
+                $CI->cceClient->bye();
+                $CI->serverScriptHelper->destructor();
                 header("Location: /404");
                 exit;
             }
-
-            // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
 
             if (file_exists($fullPath)) {
                 $fp = fopen ($fullPath, "r");
@@ -132,7 +135,7 @@ class Webalizer extends MX_Controller {
             else{
 
                 // Prepare Page:
-                $factory = $serverScriptHelper->getHtmlComponentFactory("base-sitestats", "/sitestats/statSettings?group=$group");
+                $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-sitestats", "/sitestats/statSettings?group=$group");
                 $BxPage = $factory->getPage();
                 $BxPage->setErrors($errors);
                 $BxPage->setOutOfStyle('yes');
@@ -173,10 +176,6 @@ class Webalizer extends MX_Controller {
                     $defaultPage
                     );
 
-                // Nice people say goodbye, or CCEd waits forever:
-                $cceClient->bye();
-                $serverScriptHelper->destructor();
-
                 $page_body[] = "<p>&nbsp;</p>" . $block->toHtml();
 
                 // Out with the page:
@@ -203,10 +202,6 @@ class Webalizer extends MX_Controller {
             }
 
             $url = "/sitestats/webalizer?inframe=1&group=" . $group;
-
-            // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
 
             // Page body:
             $page_body[] = addInputForm(
