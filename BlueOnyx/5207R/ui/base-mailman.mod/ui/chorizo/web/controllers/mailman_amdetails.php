@@ -11,34 +11,56 @@ class Mailman_amdetails extends MX_Controller {
 
 	public function index() {
 
-		$CI =& get_instance();
-		
-	    // We load the BlueOnyx helper library first of all, as we heavily depend on it:
-	    $this->load->helper('blueonyx');
-	    init_libraries();
+        $CI =& get_instance();
 
-  		// Need to load 'BxPage' for page rendering:
-  		$this->load->library('BxPage');
-		$MX =& get_instance();
+        // We load the BlueOnyx helper library first of all, as we heavily depend on it:
+        $this->load->helper('blueonyx');
+        init_libraries();
 
-		// Load AM Detail Helper:
-		$this->load->helper('amdetail');
+        // Need to load 'BxPage' for page rendering:
+        $this->load->library('BxPage');
 
-	    // Get $sessionId and $loginName from Cookie (if they are set):
+        // Load AM Detail Helper:
+        $this->load->helper('amdetail');
+
+        // Get $sessionId and $CI->BX_SESSION['loginName'] from Cookie (if they are set) and store them in $CI->BX_SESSION:
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
+
+        // Line up the ducks for CCE-Connection and store them for re-usability in $CI:
+        include_once('ServerScriptHelper.php');
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
+
+        $i18n = new I18n("base-am", $CI->BX_SESSION['loginUser']['localePreference']); 
+
+        // -- Actual page logic start:
+
+        // Not 'serverShowActiveMonitor'? Bye, bye!
+        if (!$CI->serverScriptHelper->getAllowed('serverShowActiveMonitor')) {
+            // Nice people say goodbye, or CCEd waits forever:
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
+            Log403Error("/gui/Forbidden403");
+        }
+
+//
+
+	    // Get $sessionId and $CI->BX_SESSION['loginName'] from Cookie (if they are set):
 	    $sessionId = $CI->input->cookie('sessionId');
-	    $loginName = $CI->input->cookie('loginName');
+	    $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 	    $locale = $CI->input->cookie('locale');
 
 	    // Line up the ducks for CCE-Connection:
 	    include_once('ServerScriptHelper.php');
-		$serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
+		$serverScriptHelper = new ServerScriptHelper($sessionId, $CI->BX_SESSION['loginName']);
 		$cceClient = $serverScriptHelper->getCceClient();
-		$user = $cceClient->getObject("User", array("name" => $loginName));
+		$user = $cceClient->getObject("User", array("name" => $CI->BX_SESSION['loginName']));
 		$i18n = new I18n("base-mailman", $user['localePreference']);
 		$system = $cceClient->getObject("System");
 
 		// Initialize Capabilities so that we can poll the access rights as well:
-		$Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+		$Capabilities = new Capabilities($cceClient, $CI->BX_SESSION['loginName'], $sessionId);
 
 		// -- Actual page logic start:
 
