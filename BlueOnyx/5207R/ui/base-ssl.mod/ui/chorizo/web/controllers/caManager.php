@@ -19,23 +19,21 @@ class CaManager extends MX_Controller {
 
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
-        $MX =& get_instance();
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
-        $locale = $CI->input->cookie('locale');
-
+        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set):
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
+        
         // Line up the ducks for CCE-Connection:
         include_once('ServerScriptHelper.php');
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        $cceClient = $serverScriptHelper->getCceClient();
-        $user = $cceClient->getObject("User", array("name" => $loginName));
-        $i18n = new I18n("base-ssl", $user['localePreference']);
-        $system = $cceClient->getObject("System");
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
+        $user = $CI->BX_SESSION['loginUser'];
+        $i18n = new I18n("base-ssl", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
 
         // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        $Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
 
         // -- Actual page logic start:
 
@@ -54,19 +52,19 @@ class CaManager extends MX_Controller {
             if (!$Capabilities->getAllowed('manageSite')) {
                 if (($Capabilities->getAllowed('siteAdmin')) && ($get_form_data['group'] != $Capabilities->loginUser['site'])) {
                     // Nice people say goodbye, or CCEd waits forever:
-                    $cceClient->bye();
-                    $serverScriptHelper->destructor();
+                    $CI->cceClient->bye();
+                    $CI->serverScriptHelper->destructor();
                     Log403Error("/gui/Forbidden403#ohcomeone");
                 }
             }
 
-            $CODBDATA =& $cceClient->getObject('Vsite', array('name' => $get_form_data['group']), 'SSL');
+            $CODBDATA =& $CI->cceClient->getObject('Vsite', array('name' => $get_form_data['group']), 'SSL');
             $CODBDATA['group'] = $get_form_data['group'];
-            list($oid) = $cceClient->find('Vsite', array('name' => $get_form_data['group']));
+            list($oid) = $CI->cceClient->find('Vsite', array('name' => $get_form_data['group']));
         }
         else {
-            $CODBDATA =& $cceClient->getObject('System', array(), 'SSL');
-            list($oid) = $cceClient->find('System');
+            $CODBDATA = $CI->cceClient->get($system['OID'], "SSL");
+            $oid = $system['OID'];
             $CODBDATA['group'] = "";
         }
 
@@ -74,8 +72,8 @@ class CaManager extends MX_Controller {
         if (!$Capabilities->getAllowed('serverSSL') && !$Capabilities->getAllowed('manageSite') && 
             !($Capabilities->getAllowed('siteAdmin') && $CODBDATA['group'] == $user['site'])) {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403");
         }
 
@@ -92,7 +90,7 @@ class CaManager extends MX_Controller {
         if (isset($get_form_data['_RTARGET'])) {
             if ($get_form_data['_RTARGET'] != '') {
 
-                $current_cas = $cceClient->scalar_to_array($CODBDATA['caCerts']);
+                $current_cas = $CI->cceClient->scalar_to_array($CODBDATA['caCerts']);
                 $removed_cas = stringToArray($get_form_data['_RTARGET']);
                 
                 $length = count($current_cas);
@@ -102,13 +100,13 @@ class CaManager extends MX_Controller {
                     }
                 }
 
-                $set_value = $cceClient->array_to_scalar($current_cas);
-                $ok = $cceClient->set($oid, 'SSL', array('caCerts' => $set_value));
-                $ci_errors[] = $cceClient->errors();
+                $set_value = $CI->cceClient->array_to_scalar($current_cas);
+                $ok = $CI->cceClient->set($oid, 'SSL', array('caCerts' => $set_value));
+                $ci_errors[] = $CI->cceClient->errors();
 
                 // Redirect to reload the page:
-                $cceClient->bye();
-                $serverScriptHelper->destructor();          
+                $CI->cceClient->bye();
+                $CI->serverScriptHelper->destructor();          
                 header("Location: /ssl/caManager?group=" . $CODBDATA['group']);
                 exit;
             }
@@ -189,9 +187,9 @@ class CaManager extends MX_Controller {
                     $tmp_cert = $data['full_path'];
                     $group = $attributes['group'];
                     $addCaIdent = $attributes['caIdent'];
-                    $runas = ($Capabilities->getAllowed('adminUser') ? 'root' : $loginName);
+                    $runas = ($Capabilities->getAllowed('adminUser') ? 'root' : $CI->BX_SESSION['loginName']);
 
-                    $ret = $serverScriptHelper->shell("/usr/sausalito/sbin/ssl_import.pl $tmp_cert --group=$group --type=caCert --ca-ident=$addCaIdent", $output, $runas, $sessionId);
+                    $ret = $CI->serverScriptHelper->shell("/usr/sausalito/sbin/ssl_import.pl $tmp_cert --group=$group --type=caCert --ca-ident=$addCaIdent", $output, $runas, $CI->BX_SESSION['sessionId']);
                     if ($ret != 0) {
                         // deal with error
                         $ci_errors[] = new CceError('huh', 0, 'cert', "[[base-ssl.sslImportError$ret]]");
@@ -203,8 +201,8 @@ class CaManager extends MX_Controller {
                         if (is_file($tmp_cert)) {
                             unlink($tmp_cert);
                         }
-                        $cceClient->bye();
-                        $serverScriptHelper->destructor();
+                        $CI->cceClient->bye();
+                        $CI->serverScriptHelper->destructor();
                         header("Location: /ssl/caManager?group=$group");
                         exit;
                     }
@@ -229,15 +227,15 @@ class CaManager extends MX_Controller {
                 // use the same ui for admin server and vhosts, so assume System
                 // if $attributes['group'] is empty
                 if ($attributes['group'] != '') {
-                    list($vsite) = $cceClient->find('Vsite', array('name' => $attributes['group']));
+                    list($vsite) = $CI->cceClient->find('Vsite', array('name' => $attributes['group']));
                 }
                 else {
-                    list($vsite) = $cceClient->find('System');
+                    list($vsite) = $CI->cceClient->find('System');
                 }
             }
 
             // CCE errors that might have happened during submit to CODB:
-            $CCEerrors = $cceClient->errors();
+            $CCEerrors = $CI->cceClient->errors();
             foreach ($CCEerrors as $object => $objData) {
                 // When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
                 $errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
@@ -246,8 +244,8 @@ class CaManager extends MX_Controller {
             // No errors. Reload the entire page to load it with the updated values:
             if ((count($errors) == "0")) {
                 // Nice people say goodbye, or CCEd waits forever:
-                $cceClient->bye();
-                $serverScriptHelper->destructor();
+                $CI->cceClient->bye();
+                $CI->serverScriptHelper->destructor();
                 header("Location: /ssl/caManager?group=" . $attributes['group']);
                 exit;
             }
@@ -271,12 +269,12 @@ class CaManager extends MX_Controller {
         else {
             $URLsuffix = "";
         }
-        $factory = $serverScriptHelper->getHtmlComponentFactory("base-ssl", "/ssl/caManager$URLsuffix");
+        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-ssl", "/ssl/caManager$URLsuffix");
         $BxPage = $factory->getPage();
         $BxPage->setErrors($errors);
         $i18n = $factory->getI18n();
 
-        $product = new Product($cceClient);
+        $product = new Product($CI->cceClient);
 
         // Set Menu items:
         if ($CODBDATA['group'] != "") {
@@ -298,8 +296,8 @@ class CaManager extends MX_Controller {
 
         $header = 'caManager';
         if ($CODBDATA['group']) {
-            list($vsite) = $cceClient->find("Vsite", array("name" => $CODBDATA['group']));
-            $vsiteObj = $cceClient->get($vsite);
+            list($vsite) = $CI->cceClient->find("Vsite", array("name" => $CODBDATA['group']));
+            $vsiteObj = $CI->cceClient->get($vsite);
             $fqdn = $vsiteObj['fqdn'];
         }
         else {
@@ -337,7 +335,7 @@ class CaManager extends MX_Controller {
             );
 
         // Scrollist of the CA-Certs - if there are any:
-        $cas = $cceClient->scalar_to_array($CODBDATA['caCerts']);
+        $cas = $CI->cceClient->scalar_to_array($CODBDATA['caCerts']);
         if (count($cas) && $cas[0] != '') {
             $addmod = '/ssl/caManager';
             $scrollList = $factory->getScrollList("removeCAIdent", array("caIdent", " "), array()); 
@@ -392,10 +390,6 @@ class CaManager extends MX_Controller {
         else {
             $block->addButton($factory->getCancelButton("/ssl/siteSSL"));
         }
-
-        // Nice people say goodbye, or CCEd waits forever:
-        $cceClient->bye();
-        $serverScriptHelper->destructor();
 
         $page_body[] = $block->toHtml();
 

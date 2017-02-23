@@ -19,23 +19,21 @@ class SiteSSL extends MX_Controller {
 
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
-        $MX =& get_instance();
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
-        $locale = $CI->input->cookie('locale');
-
+        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set):
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
+        
         // Line up the ducks for CCE-Connection:
         include_once('ServerScriptHelper.php');
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        $cceClient = $serverScriptHelper->getCceClient();
-        $user = $cceClient->getObject("User", array("name" => $loginName));
-        $i18n = new I18n("base-ssl", $user['localePreference']);
-        $system = $cceClient->getObject("System");
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
+        $user = $CI->BX_SESSION['loginUser'];
+        $i18n = new I18n("base-ssl", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
 
         // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        $Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
 
         // -- Actual page logic start:
 
@@ -57,27 +55,27 @@ class SiteSSL extends MX_Controller {
             if ((!$Capabilities->getAllowed('adminUser')) && 
                 (!$Capabilities->getAllowed('siteAdmin')) && 
                 (!$Capabilities->getAllowed('manageSite')) && 
-                (($user['site'] != $serverScriptHelper->loginUser['site']) && $Capabilities->getAllowed('siteAdmin')) &&
-                (($vsiteObj['createdUser'] != $loginName) && $Capabilities->getAllowed('manageSite'))
+                (($user['site'] != $CI->serverScriptHelper->loginUser['site']) && $Capabilities->getAllowed('siteAdmin')) &&
+                (($vsiteObj['createdUser'] != $CI->BX_SESSION['loginName']) && $Capabilities->getAllowed('manageSite'))
                 ) {
 
                 // Nice people say goodbye, or CCEd waits forever:
-                $cceClient->bye();
-                $serverScriptHelper->destructor();
+                $CI->cceClient->bye();
+                $CI->serverScriptHelper->destructor();
                 Log403Error("/gui/Forbidden403#ohcomeon");
             }
 
-            $CODBDATA =& $cceClient->getObject('Vsite', array('name' => $get_form_data['group']), 'SSL');
+            $CODBDATA =& $CI->cceClient->getObject('Vsite', array('name' => $get_form_data['group']), 'SSL');
             if ($CODBDATA == "") {
                 // Nice people say goodbye, or CCEd waits forever:
-                $cceClient->bye();
-                $serverScriptHelper->destructor();
+                $CI->cceClient->bye();
+                $CI->serverScriptHelper->destructor();
                 Log403Error("/gui/Forbidden403#donthavethat");
             }
             $CODBDATA['group'] = $siteGroup;
         }
         else {
-            $CODBDATA =& $cceClient->getObject('System', array(), 'SSL');
+            $CODBDATA = $CI->cceClient->get($system['OID'], "SSL");
             $CODBDATA['group'] = "";
         }
 
@@ -85,8 +83,8 @@ class SiteSSL extends MX_Controller {
         if (!$Capabilities->getAllowed('serverSSL') && !$Capabilities->getAllowed('manageSite') && 
             !($Capabilities->getAllowed('siteAdmin') && $CODBDATA['group'] == $user['site'])) {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403");
         }
 
@@ -108,7 +106,7 @@ class SiteSSL extends MX_Controller {
                     $runas = "root";
                 }
                 else {
-                    $runas = $loginName;
+                    $runas = $CI->BX_SESSION['loginName'];
                 }
 
                 // Extra check to make sure a siteAdmin isn't messing with the URL param for "group"
@@ -116,13 +114,13 @@ class SiteSSL extends MX_Controller {
                 if (!$Capabilities->getAllowed('manageSite')) {
                     if (($Capabilities->getAllowed('siteAdmin')) && ($get_form_data['group'] != $Capabilities->loginUser['site'])) {
                         // Nice people say goodbye, or CCEd waits forever:
-                        $cceClient->bye();
-                        $serverScriptHelper->destructor();
+                        $CI->cceClient->bye();
+                        $CI->serverScriptHelper->destructor();
                         Log403Error("/gui/Forbidden403#ohcomeon-seriously");
                     }
                 }
 
-                if ($serverScriptHelper->shell("/usr/sausalito/sbin/ssl_get.pl " . $get_form_data['type'] . " " . $get_form_data['group'] . "", $cert, $runas, $sessionId) != 0) {
+                if ($CI->serverScriptHelper->shell("/usr/sausalito/sbin/ssl_get.pl " . $get_form_data['type'] . " " . $get_form_data['group'] . "", $cert, $runas, $CI->BX_SESSION['sessionId']) != 0) {
                     // Command failed - Raise an error:
                     $my_errors[] = '<div class="alert dismissible alert_red"><img width="28" height="28" src="/.adm/images/icons/small/white/alert.png"><strong>' . $i18n->getHtml("[[base-ssl.sslGetFailed]]") . '</strong></div>';
                 }        
@@ -199,15 +197,15 @@ class SiteSSL extends MX_Controller {
         if ((count($errors) == "0") && ($CI->input->post(NULL, TRUE))) {
             // We have no errors. We submit to CODB.
             if ($get_form_data['group'] != '') {
-                list($oid) = $cceClient->find('Vsite', array('name' => $get_form_data['group']));
+                list($oid) = $CI->cceClient->find('Vsite', array('name' => $get_form_data['group']));
                 if ($attributes['enabled'] == "0") {
-                    $cceClient->set($oid, 'SSL', array('uses_letsencrypt' => '0'));
+                    $CI->cceClient->set($oid, 'SSL', array('uses_letsencrypt' => '0'));
                 }
-                $cceClient->set($oid, 'SSL', array('enabled' => $attributes['enabled']));
+                $CI->cceClient->set($oid, 'SSL', array('enabled' => $attributes['enabled']));
             }
 
             // CCE errors that might have happened during submit to CODB:
-            $CCEerrors = $cceClient->errors();
+            $CCEerrors = $CI->cceClient->errors();
             foreach ($CCEerrors as $object => $objData) {
                 // When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
                 $errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
@@ -216,8 +214,8 @@ class SiteSSL extends MX_Controller {
             // No errors. Reload the entire page to load it with the updated values:
             if ((count($errors) == "0")) {
                 // Nice people say goodbye, or CCEd waits forever:
-                $cceClient->bye();
-                $serverScriptHelper->destructor();
+                $CI->cceClient->bye();
+                $CI->serverScriptHelper->destructor();
                 header("Location: /ssl/siteSSL?group=" . $get_form_data['group']);
                 exit;
             }
@@ -245,12 +243,12 @@ class SiteSSL extends MX_Controller {
         //
 
         // Prepare Page:
-        $factory = $serverScriptHelper->getHtmlComponentFactory("base-ssl", "/ssl/siteSSL$urlAppendix");
+        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-ssl", "/ssl/siteSSL$urlAppendix");
         $BxPage = $factory->getPage();
         $BxPage->setErrors($errors);
         $i18n = $factory->getI18n();
 
-        $product = new Product($cceClient);
+        $product = new Product($CI->cceClient);
 
         // Set Menu items:
 
@@ -293,8 +291,8 @@ class SiteSSL extends MX_Controller {
         $exportButton->setDisabled(TRUE);
 
         if ($CODBDATA['group']) {
-            list($oid) = $cceClient->find('Vsite', array('name' => $CODBDATA['group']));
-            $vsite_info = $cceClient->get($oid);
+            list($oid) = $CI->cceClient->find('Vsite', array('name' => $CODBDATA['group']));
+            $vsite_info = $CI->cceClient->get($oid);
             $fqdn = $vsite_info['fqdn'];
         }
         else {
@@ -309,7 +307,7 @@ class SiteSSL extends MX_Controller {
             $file = '/etc/admserv/certs/certificate';
         }
         $cmd = '/bin/cat ' . $file . '|/usr/bin/wc -l';
-        $serverScriptHelper->shell($cmd, $cert_cmd_return, 'root', $sessionId);
+        $CI->serverScriptHelper->shell($cmd, $cert_cmd_return, 'root', $CI->BX_SESSION['sessionId']);
         $certificate_present = rtrim($cert_cmd_return);
 
         if ($fqdn != '[[base-ssl.serverDesktop]]') {
@@ -319,7 +317,7 @@ class SiteSSL extends MX_Controller {
             $file = '/etc/admserv/certs/key';
         }
         $cmd = '/bin/cat ' . $file . '|/usr/bin/wc -l';
-        $serverScriptHelper->shell($cmd, $key_cmd_return, 'root', $sessionId);
+        $CI->serverScriptHelper->shell($cmd, $key_cmd_return, 'root', $CI->BX_SESSION['sessionId']);
         $key_present = rtrim($key_cmd_return);
 
         // If we have an expiration date, a key and a cert, then we allow the cert to be exported:
@@ -365,9 +363,9 @@ class SiteSSL extends MX_Controller {
         //-- Reseller: Can the reseller that owns this Vsite modify this?
         //
         if ($CODBDATA['group']) {
-            $VsiteOwnerObj = $cceClient->getObject("User", array("name" => $vsite_info['createdUser']));
+            $VsiteOwnerObj = $CI->cceClient->getObject("User", array("name" => $vsite_info['createdUser']));
             if ($VsiteOwnerObj['name'] != "admin") {
-                $resellerCaps = $cceClient->scalar_to_array($VsiteOwnerObj['capabilities']);
+                $resellerCaps = $CI->cceClient->scalar_to_array($VsiteOwnerObj['capabilities']);
                 if (!in_array('resellerSSL', $resellerCaps)) {
                     $CODBDATA["enabled"] = '0';
                     $access = 'r';
@@ -446,10 +444,6 @@ class SiteSSL extends MX_Controller {
             $block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
             $block->addButton($factory->getCancelButton("/ssl/siteSSL?group=" . $CODBDATA['group']));
         }
-
-        // Nice people say goodbye, or CCEd waits forever:
-        $cceClient->bye();
-        $serverScriptHelper->destructor();
 
         $page_body[] = $buttonContainer_a->toHtml();
         $page_body[] = $buttonContainer_b->toHtml();

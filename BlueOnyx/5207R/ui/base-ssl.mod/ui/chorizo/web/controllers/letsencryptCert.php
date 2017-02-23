@@ -19,23 +19,21 @@ class LetsencryptCert extends MX_Controller {
 
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
-        $MX =& get_instance();
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
-        $locale = $CI->input->cookie('locale');
+        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set):
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
         // Line up the ducks for CCE-Connection:
         include_once('ServerScriptHelper.php');
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        $cceClient = $serverScriptHelper->getCceClient();
-        $user = $cceClient->getObject("User", array("name" => $loginName));
-        $i18n = new I18n("base-ssl", $user['localePreference']);
-        $system = $cceClient->getObject("System");
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
+        $user = $CI->BX_SESSION['loginUser'];
+        $i18n = new I18n("base-ssl", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
 
         // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        $Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
 
         // -- Actual page logic start:
 
@@ -54,17 +52,17 @@ class LetsencryptCert extends MX_Controller {
             if (!$Capabilities->getAllowed('manageSite')) {
                 if (($Capabilities->getAllowed('siteAdmin')) && ($get_form_data['group'] != $Capabilities->loginUser['site'])) {
                     // Nice people say goodbye, or CCEd waits forever:
-                    $cceClient->bye();
-                    $serverScriptHelper->destructor();
+                    $CI->cceClient->bye();
+                    $CI->serverScriptHelper->destructor();
                     Log403Error("/gui/Forbidden403#ohcomeon");
                 }
             }
 
-            $CODBDATA =& $cceClient->getObject('Vsite', array('name' => $get_form_data['group']), 'SSL');
+            $CODBDATA =& $CI->cceClient->getObject('Vsite', array('name' => $get_form_data['group']), 'SSL');
             $CODBDATA['group'] = $get_form_data['group'];
         }
         else {
-            $CODBDATA =& $cceClient->getObject('System', array(), 'SSL');
+            $CODBDATA = $CI->cceClient->get($system['OID'], "SSL");
             $CODBDATA['group'] = "";
         }
 
@@ -80,8 +78,8 @@ class LetsencryptCert extends MX_Controller {
         if (!$Capabilities->getAllowed('serverSSL') && !$Capabilities->getAllowed('manageSite') && 
             !($Capabilities->getAllowed('siteAdmin') && $CODBDATA['group'] == $user['site'])) {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403");
         }
 
@@ -162,10 +160,10 @@ class LetsencryptCert extends MX_Controller {
                 // use the same ui for admin server and vhosts, so assume System
                 // if $attributes['group'] is empty
                 if ($attributes['group'] != '') {
-                    list($vsite) = $cceClient->find('Vsite', array('name' => $attributes['group']));
+                    list($vsite) = $CI->cceClient->find('Vsite', array('name' => $attributes['group']));
                 }
                 else {
-                    list($vsite) = $cceClient->find('System');
+                    $vsite = $system['OID'];
                 }
 
                 // Always push these out to CODB:
@@ -189,7 +187,7 @@ class LetsencryptCert extends MX_Controller {
                     $settings['performLEinstall'] = time();
                 }
 
-                $ok = $cceClient->set($vsite, 'SSL', $settings);
+                $ok = $CI->cceClient->set($vsite, 'SSL', $settings);
                 if ($ok) {
                     // Redirect the web browser
                     if ($attributes['type'] == 'csr') {
@@ -204,15 +202,15 @@ class LetsencryptCert extends MX_Controller {
                             $url = '/ssl/siteSSL?group=' . $attributes['group'];
                         }
                     }
-                    $cceClient->bye();
-                    $serverScriptHelper->destructor();
+                    $CI->cceClient->bye();
+                    $CI->serverScriptHelper->destructor();
                     header("location: $url");
                     exit;           
                 }
             }
 
             // CCE errors that might have happened during submit to CODB:
-            $CCEerrors = $cceClient->errors();
+            $CCEerrors = $CI->cceClient->errors();
             foreach ($CCEerrors as $object => $objData) {
                 // When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
                 $errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
@@ -225,11 +223,11 @@ class LetsencryptCert extends MX_Controller {
             }
             else {
                 if ($group != "") {
-                    $CODBDATA =& $cceClient->getObject('Vsite', array('name' => $group), 'SSL');
+                    $CODBDATA =& $CI->cceClient->getObject('Vsite', array('name' => $group), 'SSL');
                     $CODBDATA['group'] = $get_form_data['group'];
                 }
                 else {
-                    $CODBDATA =& $cceClient->getObject('System', array(), 'SSL');
+                    $CODBDATA = $CI->cceClient->get($system['OID'], "SSL");
                     $CODBDATA['group'] = "";
                 }
             }
@@ -244,12 +242,12 @@ class LetsencryptCert extends MX_Controller {
         //
 
         // Prepare Page:
-        $factory = $serverScriptHelper->getHtmlComponentFactory("base-ssl", $form_url);
+        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-ssl", $form_url);
         $BxPage = $factory->getPage();
         $BxPage->setErrors($errors);
         $i18n = $factory->getI18n();
 
-        $product = new Product($cceClient);
+        $product = new Product($CI->cceClient);
 
         // Set Menu items:
         if ($CODBDATA['group'] != "") {
@@ -275,8 +273,8 @@ class LetsencryptCert extends MX_Controller {
         }
 
         if ($CODBDATA['group']) {
-            list($vsite) = $cceClient->find("Vsite", array("name" => $CODBDATA['group']));
-            $vsiteObj = $cceClient->get($vsite);
+            list($vsite) = $CI->cceClient->find("Vsite", array("name" => $CODBDATA['group']));
+            $vsiteObj = $CI->cceClient->get($vsite);
             $fqdn = $vsiteObj['fqdn'];
         }
         else {
@@ -365,15 +363,15 @@ class LetsencryptCert extends MX_Controller {
                 // We do have 'webAliases':
                 if ($vsiteObj['webAliases'] != "") {
                     // They're not empty either. See what we've got:
-                    $webAliases = $cceClient->scalar_to_array($vsiteObj['webAliases']);
-                    $LEwantedAliases = $cceClient->scalar_to_array($CODBDATA['LEwantedAliases']);
+                    $webAliases = $CI->cceClient->scalar_to_array($vsiteObj['webAliases']);
+                    $LEwantedAliases = $CI->cceClient->scalar_to_array($CODBDATA['LEwantedAliases']);
 
                     // If a webAliases equals the domain of the FQDN, add it to the list of items enabled by default: 
                     if (in_array($vsiteObj['domain'], $webAliases)) {
                         if ((!in_array($vsiteObj['domain'], $LEwantedAliases)) && ($CODBDATA['LEwantedAliases'] == "")) {
                             // But we only add it if the stored aliases for SSL aren't empty:
                             $LEwantedAliases[] = $vsiteObj['domain'];
-                            $CODBDATA['LEwantedAliases'] = $cceClient->array_to_scalar($LEwantedAliases);
+                            $CODBDATA['LEwantedAliases'] = $CI->cceClient->array_to_scalar($LEwantedAliases);
                         }
                     }
 
@@ -441,10 +439,6 @@ class LetsencryptCert extends MX_Controller {
         //
         $block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
         $block->addButton($factory->getCancelButton($return_url));
-
-        // Nice people say goodbye, or CCEd waits forever:
-        $cceClient->bye();
-        $serverScriptHelper->destructor();
 
         $page_body[] = $block->toHtml();
 
