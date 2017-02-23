@@ -16,9 +16,9 @@ class noaccess extends MX_Controller {
         // Profiling and Benchmarking:
         bx_profiler(FALSE);
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
+        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set):
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
         // Get the IP address of the user accessing the GUI:
         $userip = $CI->input->ip_address();

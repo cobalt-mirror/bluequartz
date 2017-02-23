@@ -10,25 +10,18 @@ class RemoteExtension extends UIExtension {
 
         $settings = $cce->get($prams['CCE_OID'], 'Remote');
 
-    	$pageId = $prams['PAGED_BLOCK_DEFAULT_PAGE'];
+        $pageId = $prams['PAGED_BLOCK_DEFAULT_PAGE'];
 
         $container->addFormField(
-          $factory->getBoolean("enabled", $settings["enabled"]),
-          $factory->getLabel("ShellinaboxEnabled"),
-          $pageId
+            $factory->getBoolean("enabled", $settings["enabled"]),
+            $factory->getLabel("ShellinaboxEnabled"),
+            $pageId
         );
     }
 
     function handle(&$helper, &$errors, $prams) {
 
         $cce = $helper->getCceClient();
-
-        // Make CI instance available:
-        $CI =& get_instance();
-
-        // Locale:
-        $locale = $CI->input->cookie('locale');
-        $i18n = new I18n("base-remote", $locale);
 
         // Get form data:
         $form_data = $CI->input->post(NULL, TRUE);
@@ -41,11 +34,7 @@ class RemoteExtension extends UIExtension {
 
         if (count($errors) == "0") {
             // We have no errors. We submit to CODB:
-            $cce->set($prams['CCE_OID'], 'Remote',
-                        array(
-                    	'enabled' => $attributes['enabled']
-                    	));
-
+            $cce->set($prams['CCE_OID'], 'Remote', array('enabled' => $attributes['enabled']));
             $errors = array_merge($errors, $cce->errors());
         }
     }

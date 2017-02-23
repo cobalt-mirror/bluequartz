@@ -7,7 +7,7 @@ VENDORNAME='Team BlueOnyx'
 SERVICE=remote
 
 VERSION=1.3.0
-RELEASE=0BX01
+RELEASE=0BX02
 
 # add a buildarch if desired
 BUILDARCH=noarch

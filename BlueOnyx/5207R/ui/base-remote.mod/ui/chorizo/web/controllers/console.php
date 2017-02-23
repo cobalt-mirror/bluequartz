@@ -20,34 +20,32 @@ class Console extends MX_Controller {
 
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
-        $MX =& get_instance();
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
-        $locale = $CI->input->cookie('locale');
+        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set):
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
-        $cookie = array('name' => 'remote', 'path' => '/', 'value' => $sessionId, 'expire' => '0');
+        $cookie = array('name' => 'remote', 'path' => '/', 'value' => $CI->BX_SESSION['sessionId'], 'expire' => '0');
         $this->input->set_cookie($cookie);
 
         // Line up the ducks for CCE-Connection:
         include_once('ServerScriptHelper.php');
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        $cceClient = $serverScriptHelper->getCceClient();
-        $user = $cceClient->getObject("User", array("name" => $loginName));
-        $userShell = $cceClient->getObject("User", array("name" => $loginName), "Shell");
-        $i18n = new I18n("base-disk", $user['localePreference']);
-        $system = $cceClient->getObject("System");
-        $systemRemote = $cceClient->get($system['OID'], "Remote");
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
+        $user = $CI->BX_SESSION['loginUser'];
+        $userShell = $CI->cceClient->getObject("User", array("name" => $CI->BX_SESSION['loginName']), "Shell");
+        $i18n = new I18n("base-disk", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
+        $systemRemote = $CI->cceClient->get($system['OID'], "Remote");
 
         // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        $Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
 
         // No Shell access? Bye, bye!
         if ((!$Capabilities->getAllowed('serverShell')) || (!$Capabilities->getAllowed('siteShell')) || (!$Capabilities->getAllowed('resellerShell'))) {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403");
         }
 
@@ -67,7 +65,7 @@ class Console extends MX_Controller {
         //-- Generate page:
 
         // Prepare Page:
-        $factory = $serverScriptHelper->getHtmlComponentFactory("base-remote", "/remote/console/");
+        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-remote", "/remote/console/");
         $BxPage = $factory->getPage();
         $BxPage->setErrors($errors);
         $i18n = $factory->getI18n();
@@ -102,12 +100,12 @@ class Console extends MX_Controller {
         $block->setSideTabs(FALSE);
         $block->setDefaultPage($defaultPage);
 
-        $uri_full = 'https://' . $_SERVER['SERVER_NAME'] . ':81/bxshell/?' . $loginName . '=' . time();
-        $uri_short = '/bxshell/?$loginName=' . time();
+        $uri_full = 'https://' . $_SERVER['SERVER_NAME'] . ':81/bxshell/?' . $CI->BX_SESSION['loginName'] . '=' . time();
+        $uri_short = '/bxshell/?' . $CI->BX_SESSION['loginName'] . '=' . time();
 
         if (!isset($userShell['enabled'])) {
-            $uri_full = 'https://' . $_SERVER['SERVER_NAME'] . ':81/remote/noaccess/?' . $loginName . '=' . time();
-            $uri_short = '/remote/noaccess/?' . $loginName . '=' . time();
+            $uri_full = 'https://' . $_SERVER['SERVER_NAME'] . ':81/remote/noaccess/?' . $CI->BX_SESSION['loginName'] . '=' . time();
+            $uri_short = '/remote/noaccess/?' . $CI->BX_SESSION['loginName'] . '=' . time();
         }
 
         if (uri_string() != "remote/console/full") {
@@ -133,7 +131,7 @@ class Console extends MX_Controller {
                   $defaultPage
                 );
 
-                if ($loginName == 'admin') {
+                if ($CI->BX_SESSION['loginName'] == 'admin') {
 
                     $admin_TEXT = "<div class='flat_area grid_16'><br>" . $i18n->getClean("[[base-remote.admin_text]]") . "</div>";
                     $admintext = $factory->getHtmlField("admin_text", $admin_TEXT, 'r');
@@ -155,9 +153,6 @@ class Console extends MX_Controller {
                 );
             }
 
-            // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
             $page_body[] = $block->toHtml();
         }
         else {
@@ -191,7 +186,7 @@ class Console extends MX_Controller {
                   $defaultPage
                 );
 
-                if ($loginName == 'admin') {
+                if ($CI->BX_SESSION['loginName'] == 'admin') {
 
                     $admin_TEXT = "<div class='flat_area grid_16'><br>" . $i18n->getClean("[[base-remote.admin_text]]") . "</div>";
                     $admintext = $factory->getHtmlField("admin_text", $admin_TEXT, 'r');
@@ -204,16 +199,13 @@ class Console extends MX_Controller {
                 }
             }
 
-            // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
             $page_body[] = $block->toHtml();
 
         }
         // Out with the page:
         $BxPage->render($page_module, $page_body);
 
-    }       
+    }
 }
 /*
 Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
