@@ -234,6 +234,9 @@ class vsitePHP extends MX_Controller {
                         if (is_dir($entry)) {
                             array_push($open_basedir_nocrap, $entry);
                         }
+                        else {
+                            $ci_errors[] = new Error($i18n->get("[[base-vsite.openBaseDirPathRemovedError]]") . ' ' . $entry);
+                        }
                     }
                 }
             }

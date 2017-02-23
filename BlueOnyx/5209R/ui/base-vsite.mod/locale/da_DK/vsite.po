@@ -1252,3 +1252,8 @@ msgstr "Max Børn (FPM)"
 msgid "fpm_max_children_help"
 msgstr "Denne indstilling sætter grænser for antallet af samtidige anmodninger, der vil blive betjent af hver PHP-FPM pool. Det virker ligner direktivet MaxClients for Apache."
 
+####
+
+msgid "openBaseDirPathRemovedError"
+msgstr "Følgende open_basedir sti er ikke læses af PHP og er blevet fjernet automatisk:"
+

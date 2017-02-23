@@ -1133,4 +1133,9 @@ msgstr "マックス子供（FPM）"
 msgid "fpm_max_children_help"
 msgstr "このオプションは、各PHP-FPMプールによって提供されます同時リクエスト数の制限を設定します。これは、ApacheのMaxClientsディレクティブと同様の働きをします。"
 
+####
+
+msgid "openBaseDirPathRemovedError"
+msgstr "次のopen_basedirパスはPHPによって読み取られず、自動的に削除されます。"
+
 

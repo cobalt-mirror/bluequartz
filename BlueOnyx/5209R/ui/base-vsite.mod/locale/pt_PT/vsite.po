@@ -1076,3 +1076,8 @@ msgstr "Max Crianças (FPM)"
 msgid "fpm_max_children_help"
 msgstr "Esta opção define o limite para o número de solicitações simultâneas que serão servidos por cada piscina PHP-FPM. Ele funciona de forma semelhante à directiva MaxClients para Apache."
 
+####
+
+msgid "openBaseDirPathRemovedError"
+msgstr "O seguinte caminho open_basedir não é legível pelo PHP e foi removido automaticamente:"
+

@@ -1142,4 +1142,9 @@ msgstr "Max. Prozesse (FPM)"
 msgid "fpm_max_children_help"
 msgstr "Diese Option setzt die Begrenzung für die Anzahl von Kind-Prozessen, die von jeder PHP-FPM Pool maximal starten darf. Funktioniert ähnlich wie die MaxClients Richtlinie für Apache."
 
+####
+
+msgid "openBaseDirPathRemovedError"
+msgstr "Der folgende open_basedir-Pfad ist für PHP nicht lesbar und wurde automatisch entfernt:"
+
 
