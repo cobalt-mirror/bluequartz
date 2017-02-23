@@ -2,160 +2,144 @@
 
 class Pusher extends MX_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 */
+    /**
+     * Index Page for this controller.
+     *
+     */
 
-	public function index() {
+    public function index() {
 
-		$CI =& get_instance();
-		
-	    // We load the BlueOnyx helper library first of all, as we heavily depend on it:
-	    $this->load->helper('blueonyx');
-	    init_libraries();
+        $CI =& get_instance();
+        
+        // We load the BlueOnyx helper library first of all, as we heavily depend on it:
+        $this->load->helper('blueonyx');
+        init_libraries();
 
-  		// Need to load 'BxPage' for page rendering:
-  		$this->load->library('BxPage');
-		$MX =& get_instance();
+        // Need to load 'BxPage' for page rendering:
+        $this->load->library('BxPage');
+        
+        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set):
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
-	    // Get $sessionId and $loginName from Cookie (if they are set):
-	    $sessionId = $CI->input->cookie('sessionId');
-	    $loginName = $CI->input->cookie('loginName');
-	    $locale = $CI->input->cookie('locale');
+        // Line up the ducks for CCE-Connection:
+        include_once('ServerScriptHelper.php');
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
+        $user = $CI->BX_SESSION['loginUser'];
+        $i18n = new I18n("base-disk", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
 
-	    // Line up the ducks for CCE-Connection:
-	    include_once('ServerScriptHelper.php');
-		$serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-		$cceClient = $serverScriptHelper->getCceClient();
-		$user = $cceClient->getObject("User", array("name" => $loginName));
-		$i18n = new I18n("base-disk", $user['localePreference']);
-		$system = $cceClient->getObject("System");
+        // Initialize Capabilities so that we can poll the access rights as well:
+        $Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);       
 
-		// Initialize Capabilities so that we can poll the access rights as well:
-		$Capabilities = new Capabilities($cceClient, $loginName, $sessionId);		
+        // Required array setup:
+        $errors = array();
+        $extra_headers = array();
 
-		// Required array setup:
-		$errors = array();
-		$extra_headers = array();
+        // Get URL params:
+        $get_form_data = $CI->input->get(NULL, TRUE);
 
-		// Get URL params:
-		$get_form_data = $CI->input->get(NULL, TRUE);
+        // Check if we have a $pm cookie:
+        $pm_cookie = $CI->input->cookie('pm');
+        if (isset($pm_cookie)) {
+            // Yes? Use it!
+            $pm = $CI->input->cookie('pm');
+        }
+        if (isset($get_form_data['pm'])) {
+            $pm = $get_form_data['pm'];
+        }
 
-		// Check if we have a $pm cookie:
-		$pm_cookie = $CI->input->cookie('pm');
-		if (isset($pm_cookie)) {
-			// Yes? Use it!
-			$pm = $CI->input->cookie('pm');
-		}
-		if (isset($get_form_data['pm'])) {
-			$pm = $get_form_data['pm'];
-		}
+        // -- Actual page logic start:
+        if ($Capabilities->getAllowed('systemAdministrator')) {
+            if ((isset($pm)) && (isset($get_form_data['group']))) {
+                // Get MYSQL_Vsite settings for this site:
+                list($sites) = $CI->cceClient->find("Vsite", array("name" => $get_form_data['group']));
+                $MYSQL_Vsite = $CI->cceClient->get($sites, 'MYSQL_Vsite');
+                // Fetch MySQL details for this site:
+                $db_enabled = $MYSQL_Vsite['enabled'];
+                $db_username = $MYSQL_Vsite['username'];
+                $db_pass = $MYSQL_Vsite['pass'];
+                $db_host = $MYSQL_Vsite['host'];
+            }
+            else {
+                $systemOid = $CI->cceClient->get($system['OID'], "mysql");
+                $db_username = $systemOid{'mysqluser'};
+                $mysqlOid = $CI->cceClient->find("MySQL");
+                $mysqlData = $CI->cceClient->get($mysqlOid[0]);
+                $db_pass = $mysqlData{'sql_rootpassword'};
+                $db_host = $mysqlData{'sql_host'};
+            }
+        }
+        elseif ($Capabilities->getAllowed('siteAdmin')) {
+            if ($Capabilities->getAllowed('manageSite')) {
+                if (isset($get_form_data['group'])) {
+                    $group = $get_form_data['group'];
+                }
+            }
+            else {
+                $group = $user["site"];
+            }
 
-		// -- Actual page logic start:
-		if ($Capabilities->getAllowed('systemAdministrator')) {
-			if ((isset($pm)) && (isset($get_form_data['group']))) {
-			    // Get MYSQL_Vsite settings for this site:
-			    list($sites) = $cceClient->find("Vsite", array("name" => $get_form_data['group']));
-			    $MYSQL_Vsite = $cceClient->get($sites, 'MYSQL_Vsite');
-			    // Fetch MySQL details for this site:
-			    $db_enabled = $MYSQL_Vsite['enabled'];
-			    $db_username = $MYSQL_Vsite['username'];
-			    $db_pass = $MYSQL_Vsite['pass'];
-			    $db_host = $MYSQL_Vsite['host'];
-			}
-			else {
-				$systemOid = $cceClient->getObject("System", array(), "mysql");
-				$db_username = $systemOid{'mysqluser'};
-				$mysqlOid = $cceClient->find("MySQL");
-				$mysqlData = $cceClient->get($mysqlOid[0]);
-				$db_pass = $mysqlData{'sql_rootpassword'};
-				$db_host = $mysqlData{'sql_host'};
-			}
-		}
-		elseif ($Capabilities->getAllowed('siteAdmin')) {
-		    // get user:
-		    $oids = $cceClient->find("User", array("name" => $loginName));
-		    $useroid = $oids[0];
+            if (isset($group)) {
+                // Get MYSQL_Vsite settings for this site:
+                list($sites) = $CI->cceClient->find("Vsite", array("name" => $group));
+                $MYSQL_Vsite = $CI->cceClient->get($sites, 'MYSQL_Vsite');
 
-		    // determine site he belongs to:
-		    $user = $cceClient->get($oids[0]);
+                // Fetch MySQL details for this site:
+                $db_enabled = $MYSQL_Vsite['enabled'];
+                $db_username = $MYSQL_Vsite['username'];
+                $db_pass = $MYSQL_Vsite['pass'];
+                $db_host = $MYSQL_Vsite['host'];
+            }
+            else {
+                $db_enabled = "0";
+            }
 
-		    if ($Capabilities->getAllowed('manageSite')) {
-		    	if (isset($get_form_data['group'])) {
-		    		$group = $get_form_data['group'];
-		    	}
-		    }
-		    else {
-			    $group = $user["site"];
-		    }
+            if ($db_enabled == "0") {
+                $db_host = "localhost";
+                $db_username = "";
+                $db_pass = "";
+            }
+        }
 
-			if (isset($group)) {
-			    // Get MYSQL_Vsite settings for this site:
-			    list($sites) = $cceClient->find("Vsite", array("name" => $group));
-			    $MYSQL_Vsite = $cceClient->get($sites, 'MYSQL_Vsite');
+        // Sanity checks:
+        if (!isset($db_host)) {
+            // Nice people say goodbye, or CCEd waits forever:
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
+            header("Location: /phpmyadmin/signon");
+            exit;
+        }
 
-			    // Fetch MySQL details for this site:
-			    $db_enabled = $MYSQL_Vsite['enabled'];
-			    $db_username = $MYSQL_Vsite['username'];
-			    $db_pass = $MYSQL_Vsite['pass'];
-			    $db_host = $MYSQL_Vsite['host'];
-			}
-			else {
-				$db_enabled = "0";
-			}
+        //-- Generate page:
 
-		    if ($db_enabled == "0") {
-		        $db_host = "localhost";
-		        $db_username = "";
-		        $db_pass = "";
-		    }
-		}
-		else {
-		  $loginName = "";
-		}
+        // Tell BxPage which module we are currently in:
+        $page_module = 'base_programs';
 
-		// Sanity checks:
-		if (!isset($db_host)) {
-			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
-			header("Location: /phpmyadmin/signon");
-			exit;
-		}
+        // Assemble page_body:
+        $BxPage = new BxPage();
 
-	    //-- Generate page:
+        $BxPage->setVerticalMenu('base_phpmyadmin');
+        $BxPage->setOutOfStyle('yes');      
 
-	    // Tell BxPage which module we are currently in:
-		$page_module = 'base_programs';
+        // Page body for auto-logins
+        $page_body[] = '
+            <form action="signon" method="post" name="frm" onLoad="document.frm.submit()">
+            <input type="hidden" name="PMA_user" value="' . $db_username . '">
+            <input type="hidden" name="PMA_password" value="' . $db_pass . '">
+            <input type="hidden" name="hostname" value="' . $db_host . '">
+            <input type="image" name="" value="">
+            </form>
+            <script language="JavaScript">
+                   document.frm.submit();
+            </script>
+        ';
 
-		// Assemble page_body:
-		$BxPage = new BxPage();
+        // Out with the page:
+        $BxPage->render($page_module, $page_body);
 
-		$BxPage->setVerticalMenu('base_phpmyadmin');
-		$BxPage->setOutOfStyle('yes');		
-
-		// Page body for auto-logins
-		$page_body[] = '
-			<form action="signon" method="post" name="frm" onLoad="document.frm.submit()">
-			<input type="hidden" name="PMA_user" value="' . $db_username . '">
-			<input type="hidden" name="PMA_password" value="' . $db_pass . '">
-			<input type="hidden" name="hostname" value="' . $db_host . '">
-			<input type="image" name="" value="">
-			</form>
-			<script language="JavaScript">
-			       document.frm.submit();
-			</script>
-		';
-
-		// Nice people say goodbye, or CCEd waits forever:
-		$cceClient->bye();
-		$serverScriptHelper->destructor();
-
-		// Out with the page:
-	    $BxPage->render($page_module, $page_body);
-
-	}		
+    }       
 }
 /*
 Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET

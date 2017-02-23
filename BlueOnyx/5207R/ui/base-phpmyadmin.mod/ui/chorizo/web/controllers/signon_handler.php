@@ -17,20 +17,18 @@ class SignonHandler extends MX_Controller {
 
   		// Need to load 'BxPage' for page rendering:
   		$this->load->library('BxPage');
-		$MX =& get_instance();
-
-	    // Get $sessionId and $loginName from Cookie (if they are set):
-	    $sessionId = $CI->input->cookie('sessionId');
-	    $loginName = $CI->input->cookie('loginName');
-	    $locale = $CI->input->cookie('locale');
+		
+	    // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set):
+	    $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+	    $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
 	    // Line up the ducks for CCE-Connection:
 	    include_once('ServerScriptHelper.php');
-		$serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-		$cceClient = $serverScriptHelper->getCceClient();
-		$user = $cceClient->getObject("User", array("name" => $loginName));
-		$i18n = new I18n("base-disk", $user['localePreference']);
-		$system = $cceClient->getObject("System");
+		$CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+		$CI->cceClient = $CI->serverScriptHelper->getCceClient();
+		$user = $CI->BX_SESSION['loginUser'];
+		$i18n = new I18n("base-disk", $CI->BX_SESSION['loginUser']['localePreference']);
+		$system = $CI->getSystem();
 
 		// Required array setup:
 		$errors = array();
@@ -38,19 +36,19 @@ class SignonHandler extends MX_Controller {
 
 		// -- Actual page logic start:
 
-		if ($loginName == "admin") {
-		    $systemOid = $cceClient->getObject("System", array(), "mysql");
+		if ($CI->BX_SESSION['loginName'] == "admin") {
+		    $systemOid = $CI->cceClient->get($system['OID'], "mysql");
 		    $db_username = $systemOid{'mysqluser'};
-		    $mysqlOid = $cceClient->find("MySQL");
-		    $mysqlData = $cceClient->get($mysqlOid[0]);
+		    $mysqlOid = $CI->cceClient->find("MySQL");
+		    $mysqlData = $CI->cceClient->get($mysqlOid[0]);
 		    $db_pass = $mysqlData{'sql_rootpassword'};
 		    $db_host = $mysqlData{'sql_host'};
 		}
-		elseif ($serverScriptHelper->getAllowed('siteAdmin')) {
+		elseif ($CI->serverScriptHelper->getAllowed('siteAdmin')) {
 
 		}
 		else {
-		  $loginName = "";
+		  $CI->BX_SESSION['loginName'] = "";
 		}
 
 		// Sanity checks:
@@ -65,13 +63,6 @@ class SignonHandler extends MX_Controller {
 
 		// Assemble page_body:
 		$BxPage = new BxPage();
-
-		//$page_body[] = addIframe("/.iframe/demo/iframe_1.html", "auto", $BxPage); 
-		//$page_body[] = addIframe("/gui", "auto", $BxPage); 
-
-		// Nice people say goodbye, or CCEd waits forever:
-		$cceClient->bye();
-		$serverScriptHelper->destructor();
 
 		$page_body[] = '
 			<form action="signon" method="post" name="frm" onLoad="document.frm.submit()">

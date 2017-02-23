@@ -2,116 +2,108 @@
 
 class SignOn extends MX_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 */
+    /**
+     * Index Page for this controller.
+     *
+     */
 
-	public function index() {
+    public function index() {
 
-		$CI =& get_instance();
-		
-	    // We load the BlueOnyx helper library first of all, as we heavily depend on it:
-	    $this->load->helper('blueonyx');
-	    init_libraries();
+        $CI =& get_instance();
+        
+        // We load the BlueOnyx helper library first of all, as we heavily depend on it:
+        $this->load->helper('blueonyx');
+        init_libraries();
 
-  		// Need to load 'BxPage' for page rendering:
-  		$this->load->library('BxPage');
-		$MX =& get_instance();
+        // Need to load 'BxPage' for page rendering:
+        $this->load->library('BxPage');
 
-	    // Get $sessionId and $loginName from Cookie (if they are set):
-	    $sessionId = $CI->input->cookie('sessionId');
-	    $loginName = $CI->input->cookie('loginName');
-	    $locale = $CI->input->cookie('locale');
+        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set):
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
+        
+        // Line up the ducks for CCE-Connection:
+        include_once('ServerScriptHelper.php');
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
+        $user = $CI->BX_SESSION['loginUser'];
+        $i18n = new I18n("base-phpmyadmin", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
 
-	    // Line up the ducks for CCE-Connection:
-	    include_once('ServerScriptHelper.php');
-		$serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-		$cceClient = $serverScriptHelper->getCceClient();
-		$user = $cceClient->getObject("User", array("name" => $loginName));
-		$i18n = new I18n("base-phpmyadmin", $user['localePreference']);
-		$system = $cceClient->getObject("System");
+        // Required array setup:
+        $errors = array();
+        $extra_headers = array();
 
-		// Required array setup:
-		$errors = array();
-		$extra_headers = array();
+        // -- Actual page logic start:
 
-		// -- Actual page logic start:
+        // Sanity checks:
+        if (isset($db_enabled)) {
+            if ($db_enabled == "0") {
+                $db_host = "localhost";
+                $db_username = "";
+                $db_pass = "";
+            }
+        }
+        else {
+            $db_username = "";
+            $db_pass = "";
+        }
+        if (!isset($db_host)) {
+            $db_host = "localhost";
+        }
 
-		// Sanity checks:
-		if (isset($db_enabled)) {
-			if ($db_enabled == "0") {
-				$db_host = "localhost";
-				$db_username = "";
-				$db_pass = "";
-			}
-		}
-		else {
-			$db_username = "";
-			$db_pass = "";
-		}
-		if (!isset($db_host)) {
-			$db_host = "localhost";
-		}
+        // Shove submitted input into $form_data after passing it through the XSS filter:
+        $form_data = $CI->input->post(NULL, TRUE);
 
-		// Shove submitted input into $form_data after passing it through the XSS filter:
-		$form_data = $CI->input->post(NULL, TRUE);
+        /* Was data posted? */
+        if ($form_data) {
+            if (isset($form_data['PMA_user'])) {
+            /* Need to have cookie visible from parent directory */
+            session_set_cookie_params(0, '/', '', 0);
+            /* Create signon session */
+            $session_name = 'SignonSession';
+            session_name($session_name);
+            session_start();
+            /* Store there credentials */
+            $_SESSION['PMA_single_signon_user'] = $form_data['PMA_user'];
+            $_SESSION['PMA_single_signon_password'] = $form_data['PMA_password'];
+            $_SESSION['PMA_single_signon_host'] = $form_data['hostname'];
+            $id = session_id();
+            /* Close that session */
+            session_write_close();
+            /* Redirect to phpMyAdmin (should use absolute URL here!) */
+            header('Location: /phpMyAdmin/index.php');
+            } 
+        } 
+        else {
 
-		/* Was data posted? */
-		if ($form_data) {
-		    if (isset($form_data['PMA_user'])) {
-			/* Need to have cookie visible from parent directory */
-			session_set_cookie_params(0, '/', '', 0);
-			/* Create signon session */
-			$session_name = 'SignonSession';
-			session_name($session_name);
-			session_start();
-			/* Store there credentials */
-			$_SESSION['PMA_single_signon_user'] = $form_data['PMA_user'];
-			$_SESSION['PMA_single_signon_password'] = $form_data['PMA_password'];
-			$_SESSION['PMA_single_signon_host'] = $form_data['hostname'];
-			$id = session_id();
-			/* Close that session */
-			session_write_close();
-			/* Redirect to phpMyAdmin (should use absolute URL here!) */
-			header('Location: /phpMyAdmin/index.php');
-		    } 
-		} 
-		else {
+            // Tell BxPage which module we are currently in:
+            $page_module = 'base_programs';
 
-		    // Tell BxPage which module we are currently in:
-			$page_module = 'base_programs';
+            // New Page:
+            $BxPage = new BxPage();
 
-			// New Page:
-			$BxPage = new BxPage();
+            // Manually set the correct vertical menu entry:
+            $BxPage->setVerticalMenu('base_phpmyadmin');
+            $BxPage->setOutOfStyle('yes');
 
-			// Manually set the correct vertical menu entry:
-			$BxPage->setVerticalMenu('base_phpmyadmin');
-			$BxPage->setOutOfStyle('yes');
+            $page_body[] = "<br><br>" . addInputForm(
+                                            $i18n->get("[[base-phpmyadmin.PMA_logon]]"), 
+                                            array("toggle" => "#"),
+                                            '<IMG BORDER="0" WIDTH="720" HEIGHT="0" SRC="/libImage/spaceHolder.gif">' . 
+                                            addTextField("PMA_user", "text", $db_username, "base-phpmyadmin", "required", "rw", $i18n) .
+                                            addTextField("PMA_password", "password", $db_pass, "base-phpmyadmin", "required", "rw", $i18n) .
+                                            addTextField("hostname", "text", $db_host, "base-phpmyadmin", "required", "hidden", $i18n),
+                                            addSaveButton($i18n),
+                                            $i18n,
+                                            $BxPage,
+                                            $errors
+                                        ) . "<br><br>";
 
-			$page_body[] = "<br><br>" . addInputForm(
-											$i18n->get("[[base-phpmyadmin.PMA_logon]]"), 
-											array("toggle" => "#"),
-											'<IMG BORDER="0" WIDTH="720" HEIGHT="0" SRC="/libImage/spaceHolder.gif">' . 
- 											addTextField("PMA_user", "text", $db_username, "base-phpmyadmin", "required", "rw", $i18n) .
-											addTextField("PMA_password", "password", $db_pass, "base-phpmyadmin", "required", "rw", $i18n) .
-											addTextField("hostname", "text", $db_host, "base-phpmyadmin", "required", "hidden", $i18n),
-											addSaveButton($i18n),
-											$i18n,
-											$BxPage,
-											$errors
-										) . "<br><br>";
-
-			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
-
-			// Out with the page:
-		    $BxPage->render($page_module, $page_body);
-
-
-		}
-	}		
+            // Out with the page:
+            $BxPage->render($page_module, $page_body);
+        }
+    }       
 }
 /*
 Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
