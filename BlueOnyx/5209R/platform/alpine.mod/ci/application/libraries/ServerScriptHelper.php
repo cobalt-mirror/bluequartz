@@ -114,10 +114,6 @@ class ServerScriptHelper {
         $this->loginName = $loginName;
         $this->sessionId = $sessionId;
 
-        $CI->BX_SESSION['sessionId'] = $this->sessionId;
-        $CI->BX_SESSION['loginName'] = $this->loginName;
-
-
         // Check if debugging is active
         if (is_file("/etc/DEBUGSSH")) {
             $this->debugActive = TRUE;
@@ -205,7 +201,6 @@ class ServerScriptHelper {
             // only AUTH if not on Monterey
             if (!$this->isMonterey) {
                 $auth_attempt = $cceClient->authkey($CI->input->cookie('loginName'), $CI->input->cookie('sessionId'));
-                //print_rp("Attempt: " . $auth_attempt . " LN: " . $CI->input->cookie('loginName') . " - SID: " . $CI->input->cookie('sessionId'));
                 if (!$auth_attempt) {
                     // Auth failed. We redirect to GUI login page. But to speed things up we delete the cookies to prevent that another authkey is tried with them:
                     delete_cookie("loginName");
