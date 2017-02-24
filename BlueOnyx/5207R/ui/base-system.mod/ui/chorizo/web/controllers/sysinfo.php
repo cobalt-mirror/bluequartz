@@ -19,31 +19,29 @@ class Sysinfo extends MX_Controller {
 
   		// Need to load 'BxPage' for page rendering:
   		$this->load->library('BxPage');
-		$MX =& get_instance();
 
-	    // Get $sessionId and $loginName from Cookie (if they are set):
-	    $sessionId = $CI->input->cookie('sessionId');
-	    $loginName = $CI->input->cookie('loginName');
-	    $locale = $CI->input->cookie('locale');
+	    // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set):
+	    $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+	    $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
 	    // Line up the ducks for CCE-Connection:
 	    include_once('ServerScriptHelper.php');
-		$serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-		$cceClient = $serverScriptHelper->getCceClient();
-		$user = $cceClient->getObject("User", array("name" => $loginName));
-		$i18n = new I18n("base-system", $user['localePreference']);
-		$system = $cceClient->getObject("System");
+		$CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+		$CI->cceClient = $CI->serverScriptHelper->getCceClient();
+		$user = $CI->BX_SESSION['loginUser'];
+		$i18n = new I18n("base-system", $CI->BX_SESSION['loginUser']['localePreference']);
+		$system = $CI->getSystem();
 
 		// Initialize Capabilities so that we can poll the access rights as well:
-		$Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+		$Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
 
 		// -- Actual page logic start:
 
 		// Not 'serverInformation'? Bye, bye!
 		if (!$Capabilities->getAllowed('serverInformation')) {
 			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
+			$CI->cceClient->bye();
+			$CI->serverScriptHelper->destructor();
 			Log403Error("/gui/Forbidden403");
 		}
 
@@ -53,27 +51,26 @@ class Sysinfo extends MX_Controller {
 
 		// refresh information
 		$unique = microtime();
-		$cceClient->setObject("System", array("refresh" => $unique), "Memory");
+		$CI->cceClient->set($system['OID'], "Memory",  array("refresh" => $unique));
 
-		$product = new Product($cceClient);
+		$product = new Product($CI->cceClient);
 
-		if(!$product->isRaq()) {
-		  $cceClient->setObject("System", array("refresh" => $unique), "Disk");
+		if (!$product->isRaq()) {
+			$CI->cceClient->set($system['OID'], "Disk",  array("refresh" => $unique));
 		}
 
 		// get objects
-		$system = $cceClient->getObject("System", array(), "");
-		$systemDisk = $cceClient->getObject("System", array(), "Disk");
-		$systemMemory = $cceClient->getObject("System", array(), "Memory");
-		$eth0 = $cceClient->getObject("Network", array("device" => "eth0"));
-		$eth1 = $cceClient->getObject("Network", array("device" => "eth1"));
+		$systemDisk = $CI->cceClient->get($system['OID'], "Disk");
+		$systemMemory = $CI->cceClient->get($system['OID'], "Memory");
+		$eth0 = $CI->cceClient->getObject("Network", array("device" => "eth0"));
+		$eth1 = $CI->cceClient->getObject("Network", array("device" => "eth1"));
 
 		//
 	    //-- Generate page:
 	    //
 
 		// Prepare Page:
-		$factory = $serverScriptHelper->getHtmlComponentFactory("base-system", "/system/sysinfo");
+		$factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-system", "/system/sysinfo");
 		$BxPage = $factory->getPage();
 		$BxPage->setErrors(array());
 		$i18n = $factory->getI18n();
@@ -90,7 +87,7 @@ class Sysinfo extends MX_Controller {
 		$block->setSideTabs(FALSE);
 		$block->setDefaultPage($defaultPage);
 
-		if($system["productName"] != "") {
+		if ($system["productName"] != "") {
 		  $block->addFormField(
 		    $factory->getTextField("productNameField", $system["productName"], "r"),
 		    $factory->getLabel("productNameField")
@@ -106,8 +103,8 @@ class Sysinfo extends MX_Controller {
 
 		// System may contain the literal "Uninitialized"
 		$formattedSerial = $system["productSerialNumber"];
-		if($formattedSerial != "") {
-		  if($formattedSerial == 'Uninitialized') {
+		if ($formattedSerial != "") {
+		  if ($formattedSerial == 'Uninitialized') {
 		    $formattedSerial = $i18n->get("serialUninitialized");
 		  }
 
@@ -118,21 +115,21 @@ class Sysinfo extends MX_Controller {
 		  );
 		}
 
-		if($system["serialNumber"] != "") {
+		if ($system["serialNumber"] != "") {
 		  $block->addFormField(
 		    $factory->getTextField("serialNumberField", $system["serialNumber"], "r"),
 		    $factory->getLabel("serialNumberField")
 		  );
 		}
 
-		if($eth0["mac"] != "") {
+		if ($eth0["mac"] != "") {
 		  $block->addFormField(
 		    $factory->getMacAddress("mac0Field", $eth0["mac"], "r"),
 		    $factory->getLabel("mac0Field")
 		  );
 		}
 
-		if($eth1["mac"] != "") {
+		if ($eth1["mac"] != "") {
 		  $block->addFormField(
 		    $factory->getMacAddress("mac1Field", $eth1["mac"], "r"),
 		    $factory->getLabel("mac1Field")
@@ -142,7 +139,7 @@ class Sysinfo extends MX_Controller {
 		// convert to GB
 		if (isset($systemDisk["disk1Total"])) {
 			$diskTotal = round($systemDisk["disk1Total"]*10/1024/1024)/10;
-			if($diskTotal != 0) {
+			if ($diskTotal != 0) {
 			  $block->addFormField(
 			    $factory->getInteger("diskField", $diskTotal, "", "", "r"),
 			    $factory->getLabel("diskField")
@@ -150,7 +147,7 @@ class Sysinfo extends MX_Controller {
 			}
 		}
 
-		if($systemMemory["physicalMemTotal"] != "") {
+		if ($systemMemory["physicalMemTotal"] != "") {
 		  $block->addFormField(
 		    $factory->getInteger("memoryField", $systemMemory["physicalMemTotal"], "", "", "r"),
 		    $factory->getLabel("memoryField")
@@ -161,10 +158,6 @@ class Sysinfo extends MX_Controller {
 		$webLink = $factory->getButton($i18n->get("webLink"), "webLinkText");
 		$webLink->setTarget("_blank");
 		$buttonContainer = $factory->getButtonContainer("", array($webLink));
-
-		// Nice people say goodbye, or CCEd waits forever:
-		$cceClient->bye();
-		$serverScriptHelper->destructor();
 
 		$page_body[] = $block->toHtml();
 		$page_body[] = $buttonContainer->toHtml();
