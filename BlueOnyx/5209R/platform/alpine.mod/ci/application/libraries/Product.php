@@ -51,7 +51,8 @@ class Product {
     // this should return something 
     // e.g. raq, qube..
     function getProductType () {
-        $system = $this->cce->getObject("System", array(), "");
+        $CI =& get_instance();
+        $system = $CI->getSystem();
         $productCode = $system["productBuild"];
 
         if ( preg_match("/[0-9]+R$/", $productCode) ) 
