@@ -12,43 +12,34 @@ class News extends MX_Controller {
     public function index() {
 
         $CI =& get_instance();
-        
+
         // We load the BlueOnyx helper library first of all, as we heavily depend on it:
         $this->load->helper('blueonyx');
         init_libraries();
 
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
-        $MX =& get_instance();
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
-        $locale = $CI->input->cookie('locale');
+        // Get $sessionId and $loginName from Cookie (if they are set) and store them in $CI->BX_SESSION:
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
-        // Line up the ducks for CCE-Connection:
+        // Line up the ducks for CCE-Connection and store them for re-usability in $CI:
         include_once('ServerScriptHelper.php');
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        $cceClient = $serverScriptHelper->getCceClient();
-        $user = $cceClient->getObject("User", array("name" => $loginName));
-        $i18n = new I18n("base-yum", $user['localePreference']);
-        $system = $cceClient->getObject("System");
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
 
-        // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        $i18n = new I18n("base-yum", $CI->BX_SESSION['loginUser']['localePreference']);
 
         // Required array setup:
         $errors = array();
         $extra_headers = array();
 
-        // -- Actual page logic start:
-
         // Not 'managePackage'? Bye, bye!
-        //print_rp($Capabilities->getAllowed('managePackage'));
-        if (!$Capabilities->getAllowed('managePackage')) {
+        if (!$CI->serverScriptHelper->getAllowed('managePackage')) {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403");
         }
         else {
@@ -61,7 +52,7 @@ class News extends MX_Controller {
             // Do we have any PKGs listed in CODB that are visible and have the 'new' flag set?
             $update_errors = array();
             $search = array('new' => '1', 'isVisible' => '1', 'installState' => 'Available');
-            $oids = $cceClient->findNSorted("Package", 'version', $search);
+            $oids = $CI->cceClient->findNSorted("Package", 'version', $search);
             if (count($oids) > "0") {
                 $msg = '[[base-swupdate.UpdatesAvailablePackagesBody]]';
                 $new_msg[] = '<a href="/swupdate/newSoftware"><div class="alert alert_light"><img width="40" height="30" src="/.adm/images/icons/small/white/alert_2.png"><strong>' . $i18n->interpolateHtml($msg) . '</strong></a></div>';
@@ -69,7 +60,7 @@ class News extends MX_Controller {
             }
 
             // Prepare Page:
-            $factory = $serverScriptHelper->getHtmlComponentFactory("base-yum", "/swupdate/news");
+            $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-yum", "/swupdate/news");
             $BxPage = $factory->getPage();
             $i18n = $factory->getI18n();
 
@@ -248,12 +239,7 @@ class News extends MX_Controller {
         $errors = array_merge($errors, $update_errors);
         $BxPage->setErrors($errors);
 
-        // Nice people say goodbye, or CCEd waits forever:
-        $cceClient->bye();
-        $serverScriptHelper->destructor();
-
         $page_body[] = $donate->toHtml();
-
         $page_body[] = $scrollList->toHtml();
 
         // Out with the page:

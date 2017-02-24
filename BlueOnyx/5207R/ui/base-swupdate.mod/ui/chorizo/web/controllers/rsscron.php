@@ -19,7 +19,6 @@ class Rsscron extends MX_Controller {
 
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
-        $MX =& get_instance();
 
         // Load CodeIgniter file helper:
         $CI->load->helper('file');

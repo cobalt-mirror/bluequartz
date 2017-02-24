@@ -19,23 +19,21 @@ class SoftwareList extends MX_Controller {
 
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
-        $MX =& get_instance();
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
-        $locale = $CI->input->cookie('locale');
-
+        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set):
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
+        
         // Line up the ducks for CCE-Connection:
         include_once('ServerScriptHelper.php');
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        $cceClient = $serverScriptHelper->getCceClient();
-        $user = $cceClient->getObject("User", array("name" => $loginName));
-        $i18n = new I18n("base-swupdate", $user['localePreference']);
-        $system = $cceClient->getObject("System");
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
+        $user = $CI->BX_SESSION['loginUser'];
+        $i18n = new I18n("base-swupdate", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
 
         // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        $Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
 
         // Required array setup:
         $errors = array();
@@ -46,8 +44,8 @@ class SoftwareList extends MX_Controller {
         // Not 'managePackage'? Bye, bye!
         if (!$Capabilities->getAllowed('managePackage')) {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403");
         }
         else {
@@ -56,15 +54,15 @@ class SoftwareList extends MX_Controller {
             $pkgList = array();
 
             // Get a list of installed PKGs:
-            $pkgOIDs = $cceClient->findNSorted("Package", 'version', array('installState' => 'Installed'));
+            $pkgOIDs = $CI->cceClient->findNSorted("Package", 'version', array('installState' => 'Installed'));
 
             // Prepare Page:
-            $factory = $serverScriptHelper->getHtmlComponentFactory("base-swupdate", "/swupdate/softwareList");
+            $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-swupdate", "/swupdate/softwareList");
             $BxPage = $factory->getPage();
             $i18n = $factory->getI18n();
 
             for($i = 0; $i < count($pkgOIDs); $i++) {
-                $package = $cceClient->get($pkgOIDs[$i]);
+                $package = $CI->cceClient->get($pkgOIDs[$i]);
 
                 $packageName = $package["nameTag"] ? $i18n->interpolate($package["nameTag"]) : $package["name"];
                 $version = $package["versionTag"] ? $i18n->interpolate($package["versionTag"]) : substr($package["version"], 1);
@@ -172,10 +170,6 @@ class SoftwareList extends MX_Controller {
         $scrollList->enableAutoWidth(FALSE);
         $scrollList->setInfoDisabled(FALSE);
         $scrollList->setColumnWidths(array("180", "80", "200", "243", "35")); // Max: 739px
-
-        // Nice people say goodbye, or CCEd waits forever:
-        $cceClient->bye();
-        $serverScriptHelper->destructor();
 
         $page_body[] = $scrollList->toHtml();
 

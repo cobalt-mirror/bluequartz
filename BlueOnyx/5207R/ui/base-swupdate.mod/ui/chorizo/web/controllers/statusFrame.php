@@ -21,31 +21,29 @@ class StatusFrame extends MX_Controller {
 
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
-        $MX =& get_instance();
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
-        $locale = $CI->input->cookie('locale');
-
+        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set):
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
+        
         // Line up the ducks for CCE-Connection:
         include_once('ServerScriptHelper.php');
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        $cceClient = $serverScriptHelper->getCceClient();
-        $user = $cceClient->getObject("User", array("name" => $loginName));
-        $i18n = new I18n("base-swupdate", $user['localePreference']);
-        $system = $cceClient->getObject("System");
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
+        $user = $CI->BX_SESSION['loginUser'];
+        $i18n = new I18n("base-swupdate", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
 
         // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        $Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
 
         // -- Actual page logic start:
 
         // Not 'managePackage'? Bye, bye!
         if (!$Capabilities->getAllowed('managePackage')) {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403#1");
         }
 
@@ -57,8 +55,8 @@ class StatusFrame extends MX_Controller {
 
         if ((!isset($get_form_data['packageOID'])) || (!isset($get_form_data['backUrl']))) {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403#2");
         }
 
@@ -72,7 +70,7 @@ class StatusFrame extends MX_Controller {
         if (!isset($get_form_data['A'])) {
             // "A" is set to "U" during uninstalls to skip the verification at
             // this stage. Because the shell script has already removed the Object:
-            $package = $cceClient->get($packageOID);
+            $package = $CI->cceClient->get($packageOID);
             if ((!is_array($package)) || ($package['CLASS'] != "Package")) {
                 // OID isn't a Package or doesn't exist:
                 // This could mean that the command line installer has run,
@@ -80,7 +78,7 @@ class StatusFrame extends MX_Controller {
                 // CODB Object "System" . "SWUpdate" will tell us the error
                 // message:
 
-                $swupdate = $cceClient->getObject("System", array(), "SWUpdate");
+                $swupdate = $CI->cceClient->get($system['OID'], "SWUpdate");
 
                 if (($swupdate["progress"] == "100") && ($swupdate["uiCMD"] == "") && isset($swupdate["message"])) {
                     // When we are here, the install went to 100% and bailed due to success or failure.
@@ -96,8 +94,8 @@ class StatusFrame extends MX_Controller {
                 else {
                     // If we get to this point, something else went wrong. So we bail to a 403.
                     // Nice people say goodbye, or CCEd waits forever:
-                    $cceClient->bye();
-                    $serverScriptHelper->destructor();
+                    $CI->cceClient->bye();
+                    $CI->serverScriptHelper->destructor();
                     Log403Error("/gui/Forbidden403#3");
                 }
             }
@@ -109,7 +107,7 @@ class StatusFrame extends MX_Controller {
             }
         }
 
-        $swupdate = $cceClient->getObject("System", array(), "SWUpdate");
+        $swupdate = $CI->cceClient->get($system['OID'], "SWUpdate");
         $swupdate["progress"] = round( $swupdate["progress"] );
         $cmd = &$swupdate["uiCMD"];
 
@@ -119,7 +117,7 @@ class StatusFrame extends MX_Controller {
             $newBackURL = "/swupdate/softwareList";
         }
 
-        $factory = $serverScriptHelper->getHtmlComponentFactory("base-swupdate", $newBackURL);
+        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-swupdate", $newBackURL);
         $BxPage = $factory->getPage();
         $BxPage->setErrors(array()); // We do have an $errors array set, but intentionally don't use it as we show 'messages' anyway.
         $BxPage->setOutOfStyle(TRUE);
@@ -128,10 +126,10 @@ class StatusFrame extends MX_Controller {
         // Check to see if we need to redirect to the download page:
         if (preg_match("/packageOID=([0-9]+)/i", $cmd, $reg)) {
             $oid = &$reg[1];
-            $cceClient->setObject("System", array("uiCMD" => '', 'progress' => '100'), "SWUpdate");
+            $CI->cceClient->set($system['OID'], "SWUpdate",  array("uiCMD" => '', 'progress' => '100'));
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();          
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();          
             header("Location: /swupdate/download?packageOID=$oid&backUrl=$backUrl");
             exit;
         }
@@ -151,7 +149,7 @@ class StatusFrame extends MX_Controller {
             }
             elseif (strstr($cmd, 'reboot')) {
                 $hideBackButton = TRUE;
-                $cceClient->setObject("System", array("uiCMD" => '', 'progress' => '100'), "SWUpdate");
+                $CI->cceClient->set($system['OID'], "SWUpdate",  array("uiCMD" => '', 'progress' => '100'));
                 $message = $i18n->get("rebooting");
             }
 
@@ -196,7 +194,7 @@ class StatusFrame extends MX_Controller {
                 $block->addButton($doneButton);
             }
             else {
-                $cceClient->setObject("System", array("uiCMD" => '', 'progress' => '100'), "SWUpdate");
+                $CI->cceClient->set($system['OID'], "SWUpdate",  array("uiCMD" => '', 'progress' => '100'));
                 // Redirect to backUrl after a delay:
                 $BxPage->setExtraHeaders('<SCRIPT LANGUAGE="javascript">setTimeout("top.location.reload();", 7000);</SCRIPT>');
             }
@@ -206,10 +204,6 @@ class StatusFrame extends MX_Controller {
 
             // Spacer at the bottom:
             $page_body[] = '<div><br></div>';
-
-            // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
 
             // Out with the page:
             $BxPage->render($page_module, $page_body);
@@ -302,10 +296,6 @@ class StatusFrame extends MX_Controller {
 
             // Spacer at the bottom:
             $page_body[] = '<div><br></div>';
-
-            // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
 
             // Out with the page:
             $BxPage->render($page_module, $page_body);

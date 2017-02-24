@@ -19,31 +19,29 @@ class Settings extends MX_Controller {
 
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
-        $MX =& get_instance();
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
-        $locale = $CI->input->cookie('locale');
+        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set):
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
         // Line up the ducks for CCE-Connection:
         include_once('ServerScriptHelper.php');
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        $cceClient = $serverScriptHelper->getCceClient();
-        $user = $cceClient->getObject("User", array("name" => $loginName));
-        $i18n = new I18n("base-swupdate", $user['localePreference']);
-        $system = $cceClient->getObject("System");
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
+        $user = $CI->BX_SESSION['loginUser'];
+        $i18n = new I18n("base-swupdate", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
 
         // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        $Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
 
         // -- Actual page logic start:
 
         // Not 'managePackage'? Bye, bye!
         if (!$Capabilities->getAllowed('managePackage')) {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403");
         }
 
@@ -52,16 +50,16 @@ class Settings extends MX_Controller {
         //
 
         // Get settings
-        $swUpdate = $cceClient->getObject("System", array(), "SWUpdate");
+        $swUpdate = $CI->cceClient->get($system['OID'], "SWUpdate");
 
         // We use the first server object as the default for properties like proxies
         // because they have the same value anyway. These properties should actually be
         // in System.SWUpdate
-        $oids = $cceClient->findNSorted("SWUpdateServer", "orderPreference");
+        $oids = $CI->cceClient->findNSorted("SWUpdateServer", "orderPreference");
         $servers = array();
 
         for($i = 0; $i < count($oids); $i++) {
-            $servers[] = $cceClient->get($oids[$i]);
+            $servers[] = $CI->cceClient->get($oids[$i]);
         }
 
         //
@@ -143,10 +141,10 @@ class Settings extends MX_Controller {
 
             // We have no errors. We submit to CODB after making sure we have the minimum of data:
             $AutoUpdateList = array();
-            $BasePKG = $cceClient->getObject("Package", array("name" => 'base', 'vendor' => 'Compass', 'installState' => 'Installed'));
-            $webappPKG = $cceClient->getObject("Package", array("name" => 'webapp', 'vendor' => 'Compass', 'installState' => 'Installed'));
+            $BasePKG = $CI->cceClient->getObject("Package", array("name" => 'base', 'vendor' => 'Compass', 'installState' => 'Installed'));
+            $webappPKG = $CI->cceClient->getObject("Package", array("name" => 'webapp', 'vendor' => 'Compass', 'installState' => 'Installed'));
             if (isset($attributes['AutoUpdateList'])) {
-                $AutoUpdateList = $cceClient->scalar_to_array($attributes['AutoUpdateList']);
+                $AutoUpdateList = $CI->cceClient->scalar_to_array($attributes['AutoUpdateList']);
                 if ($BasePKG) {
                     if (!in_array('base', $AutoUpdateList)) {
                         // Base PKG installed but not selected. Set it to autoupdate:
@@ -159,7 +157,7 @@ class Settings extends MX_Controller {
                         $AutoUpdateList[] = 'webapp';
                     }
                 }
-                $attributes['AutoUpdateList'] = $cceClient->array_to_scalar($AutoUpdateList);
+                $attributes['AutoUpdateList'] = $CI->cceClient->array_to_scalar($AutoUpdateList);
             }
             else {
                 // AutoUpdatesList was empty. We populate it with the required minimums:
@@ -171,30 +169,30 @@ class Settings extends MX_Controller {
                     // WebApp PKG installed. Set it to autoupdate:
                     $AutoUpdateList[] = 'webapp';
                 }
-                $attributes['AutoUpdateList'] = $cceClient->array_to_scalar($AutoUpdateList);
+                $attributes['AutoUpdateList'] = $CI->cceClient->array_to_scalar($AutoUpdateList);
             }
 
             // Actual submit to CODB:
-            $cceClient->setObject("System", $attributes, "SWUpdate");
+            $CI->cceClient->set($system['OID'], "SWUpdate",  $attributes);
 
             // CCE errors that might have happened during submit to CODB:
-            $CCEerrors = $cceClient->errors();
+            $CCEerrors = $CI->cceClient->errors();
             foreach ($CCEerrors as $object => $objData) {
                 // When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
                 $errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
             }
 
             // Remove all the existing servers first
-            $cceClient->destroyObjects("SWUpdateServer");
+            $CI->cceClient->destroyObjects("SWUpdateServer");
 
             // Add back all the specified ones
             $notifyModeMap = array("all" => "AllNew", "updates" => "UpdatesOnly");
             $servers = stringToArray($attributes['servers']);
             if (!count($servers)) { $servers = array(""); }
             for($i = 0; $i < count($servers); $i++) {
-              $cceClient->create("SWUpdateServer", array("location" => $servers[$i],
+              $CI->cceClient->create("SWUpdateServer", array("location" => $servers[$i],
                 "notificationMode" => $notifyModeMap[$notificationLightField], "orderPreference" => $i+1));
-              $errors = array_merge($errors, $cceClient->errors());
+              $errors = array_merge($errors, $CI->cceClient->errors());
             }
 
             // No errors. Reload the entire page to load it with the updated values:
@@ -216,12 +214,12 @@ class Settings extends MX_Controller {
         //
 
         // Prepare Page:
-        $factory = $serverScriptHelper->getHtmlComponentFactory("base-swupdate", "/swupdate/settings");
+        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-swupdate", "/swupdate/settings");
         $BxPage = $factory->getPage();
         $BxPage->setErrors($errors);
         $i18n = $factory->getI18n();
 
-        $product = new Product($cceClient);
+        $product = new Product($CI->cceClient);
 
         // Set Menu items:
         $BxPage->setVerticalMenu('base_software');
@@ -260,7 +258,7 @@ class Settings extends MX_Controller {
         );
 
         // Use ActiveMonitor's email contact list if possible
-        $am_obj = $cceClient->getObject('ActiveMonitor', array(), '');
+        $am_obj = $CI->cceClient->getObject('ActiveMonitor', array(), '');
         if( ! $am_obj["alertEmailList"] ) {
           $email = $factory->getEmailAddressList("emailField", $swUpdate["updateEmailNotification"]);
           $email->setOptional(true);
@@ -286,23 +284,23 @@ class Settings extends MX_Controller {
         $allowed_caps = array();
         $possible_caps = array();
 
-        $BasePKG = $cceClient->getObject("Package", array("name" => 'base', 'vendor' => 'Compass', 'installState' => 'Installed'));
+        $BasePKG = $CI->cceClient->getObject("Package", array("name" => 'base', 'vendor' => 'Compass', 'installState' => 'Installed'));
         if ($BasePKG) {
             $allowed_labels[] = $i18n->get($BasePKG['nameTag']);
             $allowed_caps[] = $BasePKG['name'];
         }
 
-        $AutoUpdatePKGs = $cceClient->scalar_to_array($swUpdate["AutoUpdateList"]);
+        $AutoUpdatePKGs = $CI->cceClient->scalar_to_array($swUpdate["AutoUpdateList"]);
         foreach ($AutoUpdatePKGs as $key => $AU_PKG_Name) {
-            $PKG = $cceClient->getObject("Package", array("name" => $AU_PKG_Name));
+            $PKG = $CI->cceClient->getObject("Package", array("name" => $AU_PKG_Name));
             $allowed_labels[] = $i18n->get($PKG['nameTag']);
             $allowed_caps[] = $AU_PKG_Name;
         }
 
         $search = array('installState' => 'Installed', 'isVisible' => '1');
-        $oids = $cceClient->findNSorted("Package", 'version', $search);
+        $oids = $CI->cceClient->findNSorted("Package", 'version', $search);
         foreach ($oids as $key => $OID) {
-            $PKG = $cceClient->get($OID);
+            $PKG = $CI->cceClient->get($OID);
             if (($PKG['vendor'] != "BlueOnyx") && ($PKG['vendor'] != "Project_BlueOnyx")) {
                 $possible_labels[] = $i18n->get($PKG['nameTag']);
                 $possible_caps[] = $PKG['name'];
@@ -310,12 +308,12 @@ class Settings extends MX_Controller {
         }
 
         $select_caps =& $factory->getSetSelector('AutoUpdateList',
-                                $cceClient->array_to_scalar($allowed_labels), 
-                                $cceClient->array_to_scalar($possible_labels),
+                                $CI->cceClient->array_to_scalar($allowed_labels), 
+                                $CI->cceClient->array_to_scalar($possible_labels),
                                 'allowedAbilities', 'disallowedAbilities',
                                 'rw', 
-                                $cceClient->array_to_scalar($allowed_caps),
-                                $cceClient->array_to_scalar($possible_caps)
+                                $CI->cceClient->array_to_scalar($allowed_caps),
+                                $CI->cceClient->array_to_scalar($possible_caps)
                             );
 
         $select_caps->setOptional(true);
@@ -388,10 +386,6 @@ class Settings extends MX_Controller {
 
         $block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
         $block->addButton($factory->getCancelButton("/swupdate/settings"));
-
-        // Nice people say goodbye, or CCEd waits forever:
-        $cceClient->bye();
-        $serverScriptHelper->destructor();
 
         $page_body[] = $block->toHtml();
 

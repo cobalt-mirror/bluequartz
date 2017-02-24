@@ -21,12 +21,10 @@ class ManualInstall extends MX_Controller {
 
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
-        $MX =& get_instance();
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
-        $locale = $CI->input->cookie('locale');
+        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set):
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
         // Adds settings to avoid changing php.ini
         ini_set('memory_limit', '256M');
@@ -37,22 +35,22 @@ class ManualInstall extends MX_Controller {
 
         // Line up the ducks for CCE-Connection:
         include_once('ServerScriptHelper.php');
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        $cceClient = $serverScriptHelper->getCceClient();
-        $user = $cceClient->getObject("User", array("name" => $loginName));
-        $i18n = new I18n("base-swupdate", $user['localePreference']);
-        $system = $cceClient->getObject("System");
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
+        $user = $CI->BX_SESSION['loginUser'];
+        $i18n = new I18n("base-swupdate", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
 
         // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        $Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
 
         // -- Actual page logic start:
 
         // Not 'managePackage'? Bye, bye!
         if (!$Capabilities->getAllowed('managePackage')) {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403");
         }
 
@@ -102,7 +100,7 @@ class ManualInstall extends MX_Controller {
 
         if ($CI->input->post(NULL, TRUE)) {
 
-            $runas = ($Capabilities->getAllowed('adminUser') ? 'root' : $loginName);
+            $runas = ($Capabilities->getAllowed('adminUser') ? 'root' : $CI->BX_SESSION['loginName']);
 
             // Check which install method was selected:
             if ($form_data['locationField'] == 'urlField') {
@@ -130,7 +128,7 @@ class ManualInstall extends MX_Controller {
                     // than sorry. Note to self: This check requires PHP-5.2 or better.
                     $ret = -1;
                     if (filter_var($urlField, FILTER_VALIDATE_URL)) {
-                        $ret = $serverScriptHelper->shell("$prepare_cmd -u \"$urlField\"", $output, $runas, $sessionId);
+                        $ret = $CI->serverScriptHelper->shell("$prepare_cmd -u \"$urlField\"", $output, $runas, $CI->BX_SESSION['sessionId']);
                     }
 
                     if ($ret != 0) {
@@ -139,13 +137,13 @@ class ManualInstall extends MX_Controller {
                     }
                     else {
                         // If the 'prepare_cmd' was sucessful, we now have the raw PKG info in CODB:
-                        $SWUpdate = $cceClient->getObject("System", array(), "SWUpdate");
+                        $SWUpdate = $CI->cceClient->get($system['OID'], "SWUpdate");
                         $raw_packageOID = preg_split('/=/', $SWUpdate['uiCMD']);
                         $packageOID = $raw_packageOID[1];
 
                         // Nice people say goodbye, or CCEd waits forever:
-                        $cceClient->bye();
-                        $serverScriptHelper->destructor();
+                        $CI->cceClient->bye();
+                        $CI->serverScriptHelper->destructor();
 
                         // Ob wir hier richtig sind, oder nicht, sagt uns gleich das Licht.
                         // The "download" page will show us the PKG info and will ask to install.
@@ -180,7 +178,7 @@ class ManualInstall extends MX_Controller {
                     $tmp_pkg = $data['full_path'];
 
                     // Install uploaded PKG:
-                    $ret = $serverScriptHelper->shell("$prepare_cmd -f $tmp_pkg", $output, $runas, $sessionId);
+                    $ret = $CI->serverScriptHelper->shell("$prepare_cmd -f $tmp_pkg", $output, $runas, $CI->BX_SESSION['sessionId']);
                     if ($ret != 0) {
                         // Deal with errors:
                         $ci_errors[] = new CceError('huh', 0, 'fileField', "[[base-swupdate.badFormat]]");
@@ -190,7 +188,7 @@ class ManualInstall extends MX_Controller {
                     }
                     else {
                         // If the 'prepare_cmd' was sucessful, we now have the raw PKG info in CODB:
-                        $SWUpdate = $cceClient->getObject("System", array(), "SWUpdate");
+                        $SWUpdate = $CI->cceClient->get($system['OID'], "SWUpdate");
                         $raw_packageOID = preg_split('/=/', $SWUpdate['uiCMD']);
                         $packageOID = $raw_packageOID[1];
 
@@ -199,8 +197,8 @@ class ManualInstall extends MX_Controller {
                         }
 
                         // Nice people say goodbye, or CCEd waits forever:
-                        $cceClient->bye();
-                        $serverScriptHelper->destructor();
+                        $CI->cceClient->bye();
+                        $CI->serverScriptHelper->destructor();
 
                         // Ob wir hier richtig sind, oder nicht, sagt uns gleich das Licht.
                         // The "download" page will show us the PKG info and will ask to install.
@@ -219,20 +217,20 @@ class ManualInstall extends MX_Controller {
                 $nameField = $form_data['loaded'];
 
                 // Install uploaded PKG:
-                $ret = $serverScriptHelper->shell("$prepare_cmd -f \"$packageDir/$nameField\"", $output, $runas, $sessionId);
+                $ret = $CI->serverScriptHelper->shell("$prepare_cmd -f \"$packageDir/$nameField\"", $output, $runas, $CI->BX_SESSION['sessionId']);
                 if ($ret != 0) {
                     // Deal with errors:
                     $ci_errors[] = new CceError('huh', 0, 'fileField', "[[base-swupdate.badFormat]]");
                 }
                 else {
                     // If the 'prepare_cmd' was sucessful, we now have the raw PKG info in CODB:
-                    $SWUpdate = $cceClient->getObject("System", array(), "SWUpdate");
+                    $SWUpdate = $CI->cceClient->get($system['OID'], "SWUpdate");
                     $raw_packageOID = preg_split('/=/', $SWUpdate['uiCMD']);
                     $packageOID = $raw_packageOID[1];
 
                     // Nice people say goodbye, or CCEd waits forever:
-                    $cceClient->bye();
-                    $serverScriptHelper->destructor();
+                    $CI->cceClient->bye();
+                    $CI->serverScriptHelper->destructor();
 
                     // Ob wir hier richtig sind, oder nicht, sagt uns gleich das Licht.
                     // The "download" page will show us the PKG info and will ask to install.
@@ -244,8 +242,8 @@ class ManualInstall extends MX_Controller {
             }
             else {
                 // Nice people say goodbye, or CCEd waits forever:
-                $cceClient->bye();
-                $serverScriptHelper->destructor();
+                $CI->cceClient->bye();
+                $CI->serverScriptHelper->destructor();
 
                 // Wow. No method selected. Reload page and try that again:
                 header("Location: /swupdate/manualInstall?backUrl=$backUrl");
@@ -267,7 +265,7 @@ class ManualInstall extends MX_Controller {
             if ($file[0] == '.') {
                 continue;
             }
-            $serverScriptHelper->shell("$magic_cmd $packageDir/$file", $output, 'root');
+            $CI->serverScriptHelper->shell("$magic_cmd $packageDir/$file", $output, 'root');
             if (preg_match("/(tar|compressed|PGP\s+armored|\sdata$)/", $output)) {
                 $packages[] = $file;
             }
@@ -276,7 +274,7 @@ class ManualInstall extends MX_Controller {
         }
 
         // Prepare Page:
-        $factory = $serverScriptHelper->getHtmlComponentFactory("base-swupdate", "/swupdate/manualInstall");
+        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-swupdate", "/swupdate/manualInstall");
         $BxPage = $factory->getPage();
         $BxPage->setErrors($errors);
         $i18n = $factory->getI18n();
@@ -291,7 +289,7 @@ class ManualInstall extends MX_Controller {
         $defaultPage = "licenseField";
 
         $block =& $factory->getPagedBlock("manualInstall", array($defaultPage));
-        $block->processErrors($serverScriptHelper->getErrors());
+        $block->processErrors($CI->serverScriptHelper->getErrors());
 
         $block->setToggle("#");
         $block->setSideTabs(FALSE);
@@ -353,10 +351,6 @@ class ManualInstall extends MX_Controller {
         // Add the buttons
         $block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
         $block->addButton($factory->getCancelButton($backUrl));
-
-        // Nice people say goodbye, or CCEd waits forever:
-        $cceClient->bye();
-        $serverScriptHelper->destructor();
 
         // Page parts:
         $page_body[] = $block->toHtml();

@@ -21,31 +21,29 @@ class NewSoftware extends MX_Controller {
 
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
-        $MX =& get_instance();
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
-        $locale = $CI->input->cookie('locale');
+        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set):
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
         // Line up the ducks for CCE-Connection:
         include_once('ServerScriptHelper.php');
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        $cceClient = $serverScriptHelper->getCceClient();
-        $user = $cceClient->getObject("User", array("name" => $loginName));
-        $i18n = new I18n("base-swupdate", $user['localePreference']);
-        $system = $cceClient->getObject("System");
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
+        $user = $CI->BX_SESSION['loginUser'];
+        $i18n = new I18n("base-swupdate", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
 
         // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        $Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
 
         // -- Actual page logic start:
 
         // Not 'managePackage'? Bye, bye!
         if (!$Capabilities->getAllowed('managePackage')) {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403");
         }
 
@@ -66,8 +64,8 @@ class NewSoftware extends MX_Controller {
             }
 
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
 
             // Redirect to continue Auto-Install of shop purchases:
             header('Location: ' . $targetLocation);
@@ -77,7 +75,7 @@ class NewSoftware extends MX_Controller {
         //--- Get CODB-Object of interest: 
         //
 
-        $CODBDATA = $cceClient->getObject("System", array(), "yum");
+        $CODBDATA = $CI->cceClient->get($system['OID'], "yum");
 
         //
         //--- Handle form validation:
@@ -94,12 +92,12 @@ class NewSoftware extends MX_Controller {
         $nl_check = $CI->input->cookie('nl_check');
         if (($nl_check == "") || ($nl_check <= time()-$refresh)) {
             $new_msg = array();
-            $i = $serverScriptHelper->shell("/usr/sausalito/sbin/grab_updates.pl -u", $ret, 'root', $sessionId);
+            $i = $CI->serverScriptHelper->shell("/usr/sausalito/sbin/grab_updates.pl -u", $ret, 'root', $CI->BX_SESSION['sessionId']);
             setcookie("nl_check", time(), "0", "/");
         }
 
         $search = array('installState' => 'Available', 'new' => '1', 'isVisible' => '1');
-        $oids = $cceClient->findNSorted("Package", 'version', $search);
+        $oids = $CI->cceClient->findNSorted("Package", 'version', $search);
         if (count($oids) > "0") {
             $msg = '[[base-swupdate.NewUpdatesSubject]]';
             $color = 'alert_green';
@@ -189,12 +187,12 @@ class NewSoftware extends MX_Controller {
         //
 
         // Prepare Page:
-        $factory = $serverScriptHelper->getHtmlComponentFactory("base-swupdate", "/swupdate/newSoftware");
+        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-swupdate", "/swupdate/newSoftware");
         $BxPage = $factory->getPage();
         $BxPage->setErrors($errors);
         $i18n = $factory->getI18n();
 
-        $product = new Product($cceClient);
+        $product = new Product($CI->cceClient);
 
         // Set Menu items:
         $BxPage->setVerticalMenu('base_software');
@@ -243,20 +241,20 @@ class NewSoftware extends MX_Controller {
 
         // Do we have any updates or complete PKGs to install?
         $search = array('installState' => 'Available', 'isVisible' => 1);
-        $oids = $cceClient->findNSorted("Package", 'version', $search);
+        $oids = $CI->cceClient->findNSorted("Package", 'version', $search);
 
         // Find all installed PKGs:
         $i_search = array('installState' => 'Installed');
-        $i_oids = $cceClient->findNSorted("Package", 'version', $i_search);
+        $i_oids = $CI->cceClient->findNSorted("Package", 'version', $i_search);
         $installed_package = array();
         foreach ($i_oids as $key => $i_pkg_oid) {
-            $inst_pkg = $cceClient->get($i_pkg_oid);
+            $inst_pkg = $CI->cceClient->get($i_pkg_oid);
             // Build an array with all already installed PKGs and their versions:
             $installed_package[$inst_pkg['name']] = $inst_pkg['version'];
         }
 
         for($i = 0; $i < count($oids); $i++) {
-          $package = $cceClient->get($oids[$i]);
+          $package = $CI->cceClient->get($oids[$i]);
           $oid = &$oids[$i];
           $new = $package["new"] ? "new" : "old";
           $packageName = $package["nameTag"] ? $i18n->interpolate($package["nameTag"]) : $package["name"];
@@ -265,7 +263,7 @@ class NewSoftware extends MX_Controller {
           $packageType = $package["packageType"];
           $description = $i18n->interpolate($package["shortDesc"]);
           $url = $package["url"];
-          $options = updates_geturloptions($cceClient, $package["urloptions"]);
+          $options = updates_geturloptions($CI->cceClient, $package["urloptions"]);
 
           if (isset($package["location"])) {
             if (preg_match("/^file:/", $package["location"])) {
@@ -312,10 +310,6 @@ class NewSoftware extends MX_Controller {
             $factory->getLabel("availableListNew"),
             $defaultPage
         );
-
-        // Nice people say goodbye, or CCEd waits forever:
-        $cceClient->bye();
-        $serverScriptHelper->destructor();
 
         $page_body[] = $block->toHtml();
 

@@ -21,31 +21,29 @@ class License extends MX_Controller {
 
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
-        $MX =& get_instance();
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
-        $locale = $CI->input->cookie('locale');
+        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set):
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
         // Line up the ducks for CCE-Connection:
         include_once('ServerScriptHelper.php');
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        $cceClient = $serverScriptHelper->getCceClient();
-        $user = $cceClient->getObject("User", array("name" => $loginName));
-        $i18n = new I18n("base-swupdate", $user['localePreference']);
-        $system = $cceClient->getObject("System");
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
+        $user = $CI->BX_SESSION['loginUser'];
+        $i18n = new I18n("base-swupdate", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
 
         // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        $Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
 
         // -- Actual page logic start:
 
         // Not 'managePackage'? Bye, bye!
         if (!$Capabilities->getAllowed('managePackage')) {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403");
         }
 
@@ -54,8 +52,8 @@ class License extends MX_Controller {
 
         if ((!isset($get_form_data['packageOID'])) || (!isset($get_form_data['backUrl']))) {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403");
         }
 
@@ -66,7 +64,7 @@ class License extends MX_Controller {
         //--- Get CODB-Object of interest: 
         //
 
-        $package = $cceClient->get($packageOID);
+        $package = $CI->cceClient->get($packageOID);
         $license = $package["licenseDesc"];
         $splash = strstr($package["splashPages"], 'pre-install');
 
@@ -77,8 +75,8 @@ class License extends MX_Controller {
         // Redirect if we don't have license info:
         $location = "/swupdate/downloadHandler?packageOID=$packageOID&backUrl=$backUrl";
         if (!($license || $splash)) {
-            $cceClient->bye();
-            $serverScriptHelper->destructor();          
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();          
             header("Location: $location");
             exit;
         }
@@ -103,8 +101,8 @@ class License extends MX_Controller {
             }
 
             if (!$license) {
-                $cceClient->bye();
-                $serverScriptHelper->destructor();              
+                $CI->cceClient->bye();
+                $CI->serverScriptHelper->destructor();              
                 header("Location: $location");
                 exit;
             }
@@ -120,12 +118,12 @@ class License extends MX_Controller {
         $errors = array();
 
         // Prepare Page:
-        $factory = $serverScriptHelper->getHtmlComponentFactory("base-swupdate", "/swupdate/newSoftware");
+        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-swupdate", "/swupdate/newSoftware");
         $BxPage = $factory->getPage();
         $BxPage->setErrors($errors);
         $i18n = $factory->getI18n();
 
-        $product = new Product($cceClient);
+        $product = new Product($CI->cceClient);
 
         // Set Menu items:
         $BxPage->setVerticalMenu('base_software');
@@ -162,10 +160,6 @@ class License extends MX_Controller {
             $factory->getLabel(" "),
             $defaultPage
             );
-
-        // Nice people say goodbye, or CCEd waits forever:
-        $cceClient->bye();
-        $serverScriptHelper->destructor();
 
         $page_body[] = $block->toHtml();
 

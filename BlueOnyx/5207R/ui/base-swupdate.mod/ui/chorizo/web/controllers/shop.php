@@ -19,23 +19,21 @@ class Shop extends MX_Controller {
 
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
-        $MX =& get_instance();
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
-        $locale = $CI->input->cookie('locale');
-
+        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set):
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
+        
         // Line up the ducks for CCE-Connection:
         include_once('ServerScriptHelper.php');
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        $cceClient = $serverScriptHelper->getCceClient();
-        $user = $cceClient->getObject("User", array("name" => $loginName));
-        $i18n = new I18n("base-shop", $user['localePreference']);
-        $system = $cceClient->getObject("System");
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
+        $user = $CI->BX_SESSION['loginUser'];
+        $i18n = new I18n("base-shop", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
 
         // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        $Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
 
         // We start without any active errors:
         $errors = array();
@@ -53,21 +51,19 @@ class Shop extends MX_Controller {
         // Not 'managePackage'? Bye, bye!
         if (!$Capabilities->getAllowed('managePackage')) {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403");
         }
         else {
 
             // Get CODB-Object Shop:
-            $shopObj = $cceClient->getObject("Shop", array(), "");
+            $shopObj = $CI->cceClient->getObject("Shop", array(), "");
             $api_url = $shopObj['shop_url'];
             $cat_from_codb = $shopObj['shop_category'];
 
             // Get Serial:
-            $SystemObj = $cceClient->getObject("System", array(), "");
-            $serialNumber = $SystemObj['serialNumber'];
-
+            $serialNumber = $system['serialNumber'];
 
             if (strlen($serialNumber) == 0) {
                 $url_ext = '';
@@ -117,7 +113,7 @@ class Shop extends MX_Controller {
                 $errors[] = '<div class="alert alert_light"><img width="40" height="36" src="/.adm/images/icons/small/white/alert_2.png"><strong>' . $i18n->getHtml("[[base-yum.ErrorMSGdesc]]") . '</strong></div>';
 
                 // Prepare Page:
-                $factory = $serverScriptHelper->getHtmlComponentFactory("base-yum", "/swupdate/shop");
+                $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-yum", "/swupdate/shop");
                 $BxPage = $factory->getPage();
                 $i18n = $factory->getI18n();
 
@@ -137,10 +133,6 @@ class Shop extends MX_Controller {
                                                 $BxPage,
                                                 $errors
                                             );
-                // Nice people say goodbye, or CCEd waits forever:
-                $cceClient->bye();
-                $serverScriptHelper->destructor();
-
                 // Out with the page:
                 $BxPage->render($page_module, $page_body);
                 return;
@@ -150,7 +142,7 @@ class Shop extends MX_Controller {
             if (($snstatus === "RED") || ($snstatus === "ORANGE") || ($snstatus === "GREEN")) {
 
                 // Prepare Page:
-                $factory = $serverScriptHelper->getHtmlComponentFactory("base-shop", "/swupdate/shop");
+                $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-shop", "/swupdate/shop");
                 $BxPage = $factory->getPage();
                 $i18n = $factory->getI18n();
 
@@ -337,7 +329,7 @@ class Shop extends MX_Controller {
             // If we have no errors and have POST data, we submit to CODB:
             if (((count($errors) == "0") && ($CI->input->post(NULL, TRUE))) || ((count($errors) == "0") && ($CI->input->get(NULL, TRUE)))) {
                 if (isset($form_data["SHOP_SELECTOR"])) {
-                    $cceClient->setObject("Shop", 
+                    $CI->cceClient->setObject("Shop", 
                                                     array(
                                                         "shop_url" => $api_url, 
                                                         "update" => time()
@@ -345,18 +337,15 @@ class Shop extends MX_Controller {
                                             "");
                 }
                 if (isset($cat)) {
-                    $cceClient->setObject("Shop", 
+                    $CI->cceClient->setObject("Shop", 
                                                     array(
                                                         "shop_category" => $cat, 
                                                         "update" => time()
                                                     ), 
                                             "");
                 }
-                // Nice people say goodbye, or CCEd waits forever:
-                $cceClient->bye();
-                $serverScriptHelper->destructor();
                 // CCE errors that might have happened during submit to CODB:
-                $errors = $cceClient->errors();
+                $errors = $CI->cceClient->errors();
             }
         }
         else {
@@ -441,9 +430,15 @@ class Shop extends MX_Controller {
                 if ($num_prods > "0") {
                     foreach ($cat_product[$cats] as $product) {
                         // Populate the scroll list rows:
+                        if (is_https() == TRUE) {
+                            $proto = 'http://'; // We will change this to HTTPS later on.
+                        }
+                        else {
+                            $proto = 'http://';
+                        }
                         if (isset($product["product_id"]) && isset($product["category"]) && isset($product["product_name"]) && isset($product["product_url"]) && isset($product["product_img"])) {
-                          $image = 'http://' . $api_url . '/get.php/media/catalog/product' . $product["product_img"];
-                          $url_product = 'http://' . $api_url . '/index.php/' . $product["category"] . '/' . $product["product_url"];
+                          $image = $proto . $api_url . '/get.php/media/catalog/product' . $product["product_img"];
+                          $url_product = $proto . $api_url . '/index.php/' . $product["category"] . '/' . $product["product_url"];
                           $out_img = "<a class=\"various\" target=\"_blank\" href=\"$url_product\" data-fancybox-type=\"iframe\"><img src=\"$image\" width=\"150\" height=\"150\" align=\"left\"></a>";
                           $out_prod = "<H3>" . $product["product_name"] . "</H3>" . $product["product_desc"];
                           $product_output = "<table width=\"100%\" border=\"1\" cellspacing=\"2\" cellpadding=\"2\">\n  <tr>\n    <td>\n    <p align=\"left\">\n      <table width=\"180\" border=\"0\" align=\"left\" cellpadding=\"5\" cellspacing=\"5\">\n         <tr>\n        <td>\n        $out_img\n        </td>\n       </tr>\n       </table>\n    $out_prod\n   </p>\n    </td>\n  </tr>\n</table>\n";
@@ -484,10 +479,6 @@ class Shop extends MX_Controller {
 
             $page_body[] = $scrollList->toHtml();
         }
-
-        // Nice people say goodbye, or CCEd waits forever:
-        $cceClient->bye();
-        $serverScriptHelper->destructor();
 
         // Out with the page:
         $BxPage->render($page_module, $page_body);

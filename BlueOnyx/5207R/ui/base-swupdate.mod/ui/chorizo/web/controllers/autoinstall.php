@@ -19,31 +19,29 @@ class Autoinstall extends MX_Controller {
 
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
-        $MX =& get_instance();
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
-        $locale = $CI->input->cookie('locale');
-
+        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set):
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
+        
         // Line up the ducks for CCE-Connection:
         include_once('ServerScriptHelper.php');
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        $cceClient = $serverScriptHelper->getCceClient();
-        $user = $cceClient->getObject("User", array("name" => $loginName));
-        $i18n = new I18n("base-swupdate", $user['localePreference']);
-        $system = $cceClient->getObject("System");
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
+        $user = $CI->BX_SESSION['loginUser'];
+        $i18n = new I18n("base-swupdate", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
 
         // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        $Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
 
         // -- Actual page logic start:
 
         // Not 'managePackage'? Bye, bye!
         if (!$Capabilities->getAllowed('managePackage')) {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403");
         }
 
@@ -59,9 +57,8 @@ class Autoinstall extends MX_Controller {
             include_once("/usr/sausalito/ui/chorizo/ci/application/modules/Compass/base/controllers/autolib.php");
             $SerialNumber = $system["serialNumber"];
             if ($SerialNumber == "") {
-                $ret = $serverScriptHelper->shell("/usr/sausalito/sbin/get_serial.pl", $is_there, 'root', $sessionId);
+                $ret = $CI->serverScriptHelper->shell("/usr/sausalito/sbin/get_serial.pl", $is_there, 'root', $CI->BX_SESSION['sessionId']);
                 // Get Serial again from System object:
-                $system = $cceClient->getObject("System");
                 $SerialNumber = $system["serialNumber"];
             }
             $shopEmail = get_nl_username($SerialNumber);
@@ -90,24 +87,24 @@ class Autoinstall extends MX_Controller {
         //
 
         // Get settings
-        $swUpdate = $cceClient->getObject("System", array(), "SWUpdate");
+        $swUpdate = $CI->cceClient->get($system['OID'], "SWUpdate");
 
         //
         //--- Check if the NewLinQ PKG is installed. If not, install it:
         //
-        //$BasePKG = $cceClient->getObject("Package", array("name" => 'base', 'vendor' => 'Compass', 'installState' => 'Installed'));
-        $BasePKG = $cceClient->getObject("Package", array("name" => 'base', 'vendor' => 'Compass'));
+        //$BasePKG = $CI->cceClient->getObject("Package", array("name" => 'base', 'vendor' => 'Compass', 'installState' => 'Installed'));
+        $BasePKG = $CI->cceClient->getObject("Package", array("name" => 'base', 'vendor' => 'Compass'));
         if (!isset($BasePKG['OID'])) {
             // NewLinQ PKG not installed! We refresh the list of available updates first:
-            $ret = $serverScriptHelper->shell("/usr/sausalito/sbin/grab_updates.pl -u", $result, 'root', $sessionId);
+            $ret = $CI->serverScriptHelper->shell("/usr/sausalito/sbin/grab_updates.pl -u", $result, 'root', $CI->BX_SESSION['sessionId']);
             // Now find out what OID NewLinQ has:
-            $BasePKG = $cceClient->getObject("Package", array("name" => 'base', 'vendor' => 'Compass', 'installState' => 'Available'));
+            $BasePKG = $CI->cceClient->getObject("Package", array("name" => 'base', 'vendor' => 'Compass', 'installState' => 'Available'));
 
             // Set 30 minute 'ai' cookie:
             setcookie("ai", '1', time()+60*30, "/");
         }
         // Check again:
-        $BasePKG = $cceClient->getObject("Package", array("name" => 'base', 'vendor' => 'Compass'));
+        $BasePKG = $CI->cceClient->getObject("Package", array("name" => 'base', 'vendor' => 'Compass'));
         if (isset($BasePKG['installState'])) {
             if ($BasePKG['installState'] == "Available") {
                 // We do a little round-about to install the PKG
@@ -117,8 +114,8 @@ class Autoinstall extends MX_Controller {
                 }
 
                 // Nice people say goodbye, or CCEd waits forever:
-                $cceClient->bye();
-                $serverScriptHelper->destructor();
+                $CI->cceClient->bye();
+                $CI->serverScriptHelper->destructor();
 
                 // Install the NewLinQ PKG and come back here once that's done:
                 header('Location: /swupdate/download?backUrl=' . $backUrl . '&packageOID=' . $BasePKG['OID']);
@@ -213,8 +210,8 @@ class Autoinstall extends MX_Controller {
             if ((isset($attributes['ShopEmail'])) && (isset($attributes['ShopPass']))) {
 
                 // Nice people say goodbye, or CCEd waits forever:
-                $cceClient->bye();
-                $serverScriptHelper->destructor();
+                $CI->cceClient->bye();
+                $CI->serverScriptHelper->destructor();
 
                 // Next step: Link the packages:
                 header('Location: /base/link');
@@ -230,12 +227,12 @@ class Autoinstall extends MX_Controller {
         //
 
         // Prepare Page:
-        $factory = $serverScriptHelper->getHtmlComponentFactory("base-swupdate", "/base/link");
+        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-swupdate", "/base/link");
         $BxPage = $factory->getPage();
         $BxPage->setErrors($errors);
         $i18n = $factory->getI18n();
 
-        $product = new Product($cceClient);
+        $product = new Product($CI->cceClient);
 
         // Set Menu items:
         $BxPage->setVerticalMenu('base_software');
@@ -279,10 +276,6 @@ class Autoinstall extends MX_Controller {
         //
 
         $block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
-
-        // Nice people say goodbye, or CCEd waits forever:
-        $cceClient->bye();
-        $serverScriptHelper->destructor();
 
         $page_body[] = $block->toHtml();
 
