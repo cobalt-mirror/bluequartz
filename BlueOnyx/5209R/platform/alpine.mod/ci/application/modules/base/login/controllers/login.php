@@ -95,6 +95,8 @@ class Login extends MX_Controller {
           if (is_file($capabilityGroups_file_name)) {
             system("rm -f $capabilityGroups_file_name");
           }
+          // Delete sesssionId cookie:
+          delete_cookie("sessionId");
           $CI->cceClient = new CceClient();
           $CI->cceClient->connect();
         }
@@ -141,9 +143,22 @@ class Login extends MX_Controller {
         // Get 'System' object
         $system = $CI->cceClient->getObject('System');
         if ((!$system['isLicenseAccepted']) && ($wizard == FALSE)) {
+            error_log("License not accepted. Trying default 'admin' password.");
             // Web based setup has not been completed. Redirect to /wizard
-            header("Location: /wizard?from=login");
-            exit;
+            $sessionId = $CI->cceClient->auth("admin", "blueonyx");
+            if ($sessionId) {
+                // Auth worked. Set cookies:
+                error_log("Default 'admin' password worked. Setting cookies and redirecting to /wizard?from=login");
+                setcookie("sessionId", $sessionId, "0", "/");
+                setcookie("loginName", "admin", time()+60*60*24*365, "/");
+                header("Location: /wizard?from=login");
+                exit;
+            }
+            else {
+                error_log("AUTH result: admin pass no longer stock. Reloading login form with special conditions to allow entering of password.");
+                header("Location: /login?action=wizard");
+                exit;
+            }
         }
 
         // Handle redirects to HTTP(S) and/or FQDN of server:
