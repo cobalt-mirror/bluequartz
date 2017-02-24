@@ -143,9 +143,12 @@ class Login extends MX_Controller {
         // Get 'System' object
         $system = $CI->cceClient->getObject('System');
         if ((!$system['isLicenseAccepted']) && ($wizard == FALSE)) {
-            error_log("License not accepted. Trying default 'admin' password.");
-            // Web based setup has not been completed. Redirect to /wizard
-            $sessionId = $CI->cceClient->auth("admin", "blueonyx");
+            // Use default password, which we pull from the product name in base-alpine. Special case for Aventurin{e}: Strip '{' and '}' from the product name:
+            $default_pass = strtolower($i18n->get("[[base-alpine.osName]]"));
+            $default_pass = preg_replace('/{/', '', $default_pass);
+            $default_pass = preg_replace('/}/', '', $default_pass);
+            error_log("License not accepted. Trying default 'admin' password: " . $default_pass);
+            $sessionId = $CI->cceClient->auth("admin", $default_pass);
             if ($sessionId) {
                 // Auth worked. Set cookies:
                 error_log("Default 'admin' password worked. Setting cookies and redirecting to /wizard?from=login");
