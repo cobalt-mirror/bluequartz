@@ -19,34 +19,32 @@ class Adm_amdetails extends MX_Controller {
 
   		// Need to load 'BxPage' for page rendering:
   		$this->load->library('BxPage');
-		$MX =& get_instance();
 
 		// Load AM Detail Helper:
 		$this->load->helper('amdetail');
 
-	    // Get $sessionId and $loginName from Cookie (if they are set):
-	    $sessionId = $CI->input->cookie('sessionId');
-	    $loginName = $CI->input->cookie('loginName');
-	    $locale = $CI->input->cookie('locale');
-
+	    // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set):
+	    $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+	    $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
+	    
 	    // Line up the ducks for CCE-Connection:
 	    include_once('ServerScriptHelper.php');
-		$serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-		$cceClient = $serverScriptHelper->getCceClient();
-		$user = $cceClient->getObject("User", array("name" => $loginName));
-		$i18n = new I18n("base-apache", $user['localePreference']);
-		$system = $cceClient->getObject("System");
+		$CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+		$CI->cceClient = $CI->serverScriptHelper->getCceClient();
+		$user = $CI->BX_SESSION['loginUser'];
+		$i18n = new I18n("base-apache", $CI->BX_SESSION['loginUser']['localePreference']);
+		$system = $CI->getSystem();
 
 		// Initialize Capabilities so that we can poll the access rights as well:
-		$Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+		$Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
 
 		// -- Actual page logic start:
 
 		// Not 'serverShowActiveMonitor'? Bye, bye!
 		if (!$Capabilities->getAllowed('serverShowActiveMonitor')) {
 			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
+			$CI->cceClient->bye();
+			$CI->serverScriptHelper->destructor();
 			Log403Error("/gui/Forbidden403");
 		}
 
@@ -66,7 +64,7 @@ class Adm_amdetails extends MX_Controller {
 		}
 
 		// Prepare Page:
-		$factory = $serverScriptHelper->getHtmlComponentFactory("base-apache");
+		$factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-apache");
 		$BxPage = $factory->getPage();
 		$i18n = $factory->getI18n();
 
@@ -89,7 +87,7 @@ class Adm_amdetails extends MX_Controller {
 		//--- Print Detail Block:
 		//
 
-		$page_body[] = am_detail_block($factory, $cceClient, "Admserv", "[[base-apache.amAdmservDetails]]");
+		$page_body[] = am_detail_block($factory, $CI->cceClient, "Admserv", "[[base-apache.amAdmservDetails]]");
 
 //---	
 
@@ -100,10 +98,6 @@ class Adm_amdetails extends MX_Controller {
 			// Full page display. Show "Back" Button:
 			$page_body[] = am_back($factory);
 		}
-
-		// Nice people say goodbye, or CCEd waits forever:
-		$cceClient->bye();
-		$serverScriptHelper->destructor();
 
 		// Out with the page:
 		$BxPage->setErrors($errors);
