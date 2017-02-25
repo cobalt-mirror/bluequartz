@@ -1063,6 +1063,9 @@ function init_libraries() {
   $CI->load->library('CceClient');
   $CI->load->library('BXEncoding');
 
+  // Load 'session' library:
+  //$CI->load->library('session');
+
   // Load UIFC NG library:
   $CI->load->helper('uifc_ng');
 

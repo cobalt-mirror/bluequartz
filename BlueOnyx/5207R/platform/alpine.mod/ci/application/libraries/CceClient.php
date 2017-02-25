@@ -28,31 +28,31 @@ class CceClient {
   // private variables
   //
 
-  var $handle;
-  var $isConnected;
+  public $handle;
+  public $isConnected;
 
   // Connection method: 
   // TRUE = PHP Class
   // FALSE = PHP Module
-  var $NATIVE;
+  public $NATIVE;
 
   // Username:
-  var $Username;
+  public $Username;
 
   // SessionId:
-  var $SessionId;
+  public $SessionId;
 
   // Password:
-  var $Password;
+  public $Password;
 
   // Self:
-  var $self;
+  public $self;
 
   // ERRORS:
-  var $ERRORS;
+  public $ERRORS;
 
   // OID (for errors related to SET transactions):
-  var $OID;
+  public $OID;
 
   //
   // public methods
@@ -107,7 +107,7 @@ class CceClient {
   }
 
   // description: constructor
-  function CceClient() {
+  public function CceClient() {
 
     // Check if cce.so is loaded:
     if (function_exists('ccephp_new')) {
@@ -141,10 +141,10 @@ class CceClient {
   // param: password: password in string
   // returns: session ID if succeed, empty string if failed
   function auth($userName, $password) {
+    if ($this->DEBUG) {
+      error_log("Command: AUTH $userName XXXX");
+    }
     if (!$this->getNative()) {
-      if ($this->DEBUG) {
-        error_log("Command: AUTH $userName XXXX");
-      }
       return ccephp_auth($this->handle, $userName, $password);
     }
     else {
@@ -157,10 +157,10 @@ class CceClient {
   // param: reason: reason for CCE being read-only
   // returns: true is successful
   function suspend( $reason ) {
+    if ($this->DEBUG) {
+      error_log("Command: SUSPEND");
+    }
     if (!$this->getNative()) {
-      if ($this->DEBUG) {
-        error_log("Command: SUSPEND");
-      }
       return ccephp_suspend( $this->handle, $reason );
     }
     else {
@@ -172,10 +172,10 @@ class CceClient {
   // Requires: systemAdministrator access
   // returns: true is successful
   function resume( ) {
+    if ($this->DEBUG) {
+      error_log("Command: RESUME");
+    }
     if (!$this->getNative()) {
-      if ($this->DEBUG) {
-        error_log("Command: RESUME");
-      }
       return ccephp_resume( $this->handle );
     }
     else {
@@ -185,10 +185,10 @@ class CceClient {
 
   // description: authenticate using a session id
   function authkey( $userName, $sessionId ) {
+    if ($this->DEBUG) {
+      error_log("Command: AUTHKEY $userName $sessionId");
+    }
     if (!$this->getNative()) {
-      if ($this->DEBUG) {
-        error_log("Command: AUTHKEY $userName $sessionId");
-      }
       return ccephp_authkey( $this->handle, $userName, $sessionId );
     }
     else {
@@ -199,10 +199,10 @@ class CceClient {
   // description: determine the currently authenticated user
   // returns: the oid of the user object
   function whoami( ) {
+    if ($this->DEBUG) {
+      error_log("Command: WHOAMI");
+    }
     if (!$this->getNative()) {
-      if ($this->DEBUG) {
-        error_log("Command: WHOAMI");
-      }
       return ccephp_whoami( $this->handle );
     }
     else {
@@ -211,12 +211,15 @@ class CceClient {
   }
 
   // description: disconnect from cce
-  function bye() {
+  function bye($whodidit='') {
+    if (($whodidit != '') && ($this->DEBUG)) {
+      error_log("CceClient: BYE initiated by $whodidit");
+    }
     $this->isConnected = false;
+    if ($this->DEBUG) {
+      error_log("Command: BYE");
+    }
     if (!$this->getNative()) {
-      if ($this->DEBUG) {
-        error_log("Command: BYE");
-      }
       return ccephp_bye($this->handle);
     }
     else {
@@ -226,10 +229,10 @@ class CceClient {
 
   // description: begin delayed-handler mode
   function begin() {
+    if ($this->DEBUG) {
+      error_log("Command: BEGIN");
+    }
     if (!$this->getNative()) {
-      if ($this->DEBUG) {
-        error_log("Command: BEGIN");
-      }
       return ccephp_begin($this->handle);
     }
     else {
@@ -241,10 +244,10 @@ class CceClient {
   // returns: a success code based on the success or failure of all
   //          operations since begin()
   function commit() {
+    if ($this->DEBUG) {
+      error_log("Command: COMMIT");
+    }
     if (!$this->getNative()) {
-      if ($this->DEBUG) {
-        error_log("Command: COMMIT");
-      }
       return ccephp_commit($this->handle);
     }
     else {
@@ -254,10 +257,10 @@ class CceClient {
 
   // end authenticated session to cce
   function endkey() {
+    if ($this->DEBUG) {
+      error_log("Command: ENDKEY");
+    }
     if (!$this->getNative()) {
-      if ($this->DEBUG) {
-        error_log("Command: ENDKEY");
-      }
       return ccephp_endkey($this->handle);
     }
     else {
@@ -300,15 +303,10 @@ class CceClient {
   // returns: oid of created object, or 0 on failure
   // usage: $oid = $cce->create($class, array( 'property' => 'value' ));
   function create($class, $vars = array()) {
+    if ($this->DEBUG) {
+      error_log("Command: CREATE $class " . json_encode($vars));
+    }
     if (!$this->getNative()) {
-      if ($this->DEBUG) {
-        $varline = " ";
-        foreach ($vars as $key => $value) {
-          $varline .= "$key = \"" . CceClient::_escape($value) . "\" ";
-        }
-        $varline = rtrim($varline);
-        error_log("Command: CREATE $class $varline");
-      }
       return ccephp_create($this->handle, $class, $vars);
     }
     else {
@@ -320,10 +318,10 @@ class CceClient {
   // returns: boolean true for success, false for failure
   // usage: $ok = $cce->destroy($oid);
   function destroy($oid) {
+    if ($this->DEBUG) {
+      error_log("Command: DESTROY $oid ");
+    }
     if (!$this->getNative()) {
-      if ($this->DEBUG) {
-        error_log("Command: DESTROY $oid ");
-      }
       return ccephp_destroy($this->handle, $oid);
     }
     else {
@@ -338,6 +336,9 @@ class CceClient {
   // usage: $cce->destroyObjects($class, array( 'findkey' => 'findvalue'));
   // DEPRECATED
   function destroyObjects($class, $vars = array()) {
+    if ($this->DEBUG) {
+      error_log("Command: DestroyObjects $class " . json_encode($vars));
+    }
     $oids = $this->find($class, $vars);
     for($i = 0; $i < count($oids); $i++)
       $this->destroy($oids[$i]);
@@ -392,15 +393,10 @@ class CceClient {
   // returns: matching $oids
   // usage: $oids = $cce->find($class, array( 'property' => 'value'));
   function find($class, $vars = array()) {
+    if ($this->DEBUG) {
+      error_log("Command: FIND $class " . json_encode($vars));
+    }
     if (!$this->getNative()) {
-      if ($this->DEBUG) {
-        $varline = " ";
-        foreach ($vars as $key => $value) {
-          $varline .= "$key = \"" . CceClient::_escape($value) . "\" ";
-        }
-        $varline = rtrim($varline);
-        error_log("Command: FIND $class $varline");
-      }
       return ccephp_find($this->handle, $class, $vars, "", 0);
     }
     else {
@@ -415,6 +411,9 @@ class CceClient {
   // usage: $oids = $cce->findSorted($class, $sortkey, array( 'property' => 'value'));
   // DEPRECATED - this just does a regular find()
   function findSorted($class, $key, $vars = array()) {
+    if ($this->DEBUG) {
+      error_log("Command: FINDSORTED $class $key " . json_encode($vars));
+    }
     if (!$this->getNative()) {
       return ccephp_find($this->handle, $class, $vars, $key, 0);
     }
@@ -428,6 +427,9 @@ class CceClient {
   // usage: $oids = $cce->findSorted($class, $sortkey, array( 'property' => 'value'));
   // DEPRECATED - this just does a regular find()
   function findNSorted($class, $key, $vars = array()) {
+    if ($this->DEBUG) {
+      error_log("Command: FINDSORTED $class $key " . json_encode($vars));
+    }
     if (!$this->getNative()) {
       return ccephp_find($this->handle, $class, $vars, $key, 1);
     }
@@ -447,15 +449,10 @@ class CceClient {
   // returns: matching $oids
   // usage: $oids = $cce->findx($class, $vars, $regex_vars, $sorttype, $sortkey);
   function findx($class, $vars = array(), $revars = array(), $sorttype="", $sortprop = "") {
+    if ($this->DEBUG) {
+      error_log("Command: FINDX $class " . json_encode(array('vars' => $vars, 'revars' => $revars, 'sorttype' => $sorttype, 'sortprop' => $sortprop)));
+    }
     if (!$this->getNative()) {
-      if ($this->DEBUG) {
-        $varline = " ";
-        foreach ($vars as $key => $value) {
-          $varline .= "$key = \"" . CceClient::_escape($value) . "\" ";
-        }
-        $varline = rtrim($varline);
-        error_log("Command: FINDX $class $varline");
-      }
       return ccephp_findx($this->handle, $class, $vars, $revars, $sorttype, $sortprop);
     }
     else {
@@ -467,25 +464,25 @@ class CceClient {
   // returns: a property hash or null if the object cannot be found
   // usage: $object = $cce->get($oid, $namespace);
   function get($oid, $namespace = "") {
-    if (!$this->getNative()) {
-      if ($this->DEBUG) {
-        if ($namespace != "") {
-          if (is_string($oid)) {
-            error_log("Command: GET $oid . $namespace");
-          }
-          else {
-            error_log("Command: GET " . array_to_scalar($oid) . " . $namespace");
-          }
+    if ($this->DEBUG) {
+      if ($namespace != "") {
+        if (is_string($oid)) {
+          error_log("Command: GET $oid . $namespace");
         }
         else {
-          if (is_string($oid)) {
-            error_log("Command: GET $oid");
-          }
-          else {
-            error_log("Command: GET " . array_to_scalar($oid));
-          }
+          error_log("Command: GET " . json_encode($oid) . " . $namespace");
         }
       }
+      else {
+        if (is_string($oid)) {
+          error_log("Command: GET $oid");
+        }
+        else {
+          error_log("Command: GET " . json_encode($oid));
+        }
+      }
+    }
+    if (!$this->getNative()) {
       return ccephp_get($this->handle, $oid, $namespace);
     }
     else {
@@ -499,6 +496,9 @@ class CceClient {
   // returns: a property hash or null if the object cannot be found
   // usage: $object = $cce->getObject($class, array( 'property' => 'value'), $namespace);
   function getObject($class, $vars = array(), $namespace = "") {
+    if ($this->DEBUG) {
+      error_log("Command: GetObject $class " . json_encode($vars) . ' ' . $namespace);
+    }
     $oids = $this->find($class, $vars);
     if ((count($oids) > 0) && (isset($oids[0]))) {
       return $this->get($oids[0], $namespace);
@@ -514,8 +514,10 @@ class CceClient {
   // returns: an array of property hashes, or null if no objects can be found
   // usage: $objects = $cce->getObjects($class, array( 'property' => 'value'), $namespace);
   function getObjects($class, $vars = array(), $namespace = "") {
+    if ($this->DEBUG) {
+      error_log("Command: GetObjects $class" . json_encode($vars) . " . $namespace");
+    }
     $oids = $this->find($class, $vars);
-
     $objects = array();
     for($i = 0; $i < count($oids); $i++)
       $objects[] = $this->get($oids[$i], $namespace);
@@ -533,10 +535,10 @@ class CceClient {
   // usage: $namespaces = $cce->names($oid); OR
   // usage: $namespaces = $cce->names($classname);
   function names($arg) {
+    if ($this->DEBUG) {
+      error_log("Command: NAMES $arg");
+    }
     if (!$this->getNative()) {
-      if ($this->DEBUG) {
-        error_log("Command: NAMES $arg");
-      }
       return ccephp_names($this->handle, $arg);
     }
     else {
@@ -548,20 +550,16 @@ class CceClient {
   // returns: boolean true for success, boolean false for failure
   // usage: $ok = $cce->set($oid, $namespace, array( 'property' => 'value'));
   function set($oid, $namespace = "", $vars = array()) {
-    if (!$this->getNative()) {
-      if ($this->DEBUG) {
-        $varline = " ";
-        foreach ($vars as $key => $value) {
-          $varline .= "$key = \"" . CceClient::_escape($value) . "\" ";
-        }
-        $varline = rtrim($varline);
-        if ($namespace == "") {
-          error_log("Command: SET $oid $varline");
-        }
-        else {
-          error_log("Command: SET $oid . $namespace  $varline");
-        }
+    if ($this->DEBUG) {
+      if ($namespace == "") {
+        error_log("Command: SET $oid " . json_encode($vars));
       }
+      else {
+        error_log("Command: SET $oid $namespace " . json_encode($vars));
+      }
+    }
+
+    if (!$this->getNative()) {
       return ccephp_set($this->handle, $oid, $namespace, $vars);
     }
     else {
@@ -575,6 +573,9 @@ class CceClient {
   // returns: true on success, false otherwise
   // usage: $ok = $cce->set($class, array( 'property' => 'value'), $namespace, array( 'findkey' => 'findvalue'));
   function setObject($class, $setVars = array(), $namespace = "", $findVars = array()) {
+    if ($this->DEBUG) {
+      error_log("Command: setObject $class " . json_encode($setVars) . ' ' . $namespace . ' ' . json_encode($findVars));
+    }
     $oids = $this->find($class, $findVars);
     if (count($oids) > 0) {
       return $this->set($oids[0], $namespace, $setVars);
@@ -590,8 +591,10 @@ class CceClient {
   // returns: true on success, false otherwise
   // usage: $ok = $cce->set($class, array( 'property' => 'value'), $namespace, array( 'findkey' => 'findvalue'));
   function setObjectForce($class, $setVars = array(), $namespace = "", $findVars = array()) {
+    if ($this->DEBUG) {
+      error_log("Command: setObjectForce $class " . json_encode($setVars) . ' ' . $namespace . ' ' . json_encode($findVars));
+    }
     $oids = $this->find($class, $findVars);
-
     // create if necessary
     if(count($oids) == 0)
       if(!$this->create($class))

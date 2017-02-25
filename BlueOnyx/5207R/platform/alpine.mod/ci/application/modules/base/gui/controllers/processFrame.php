@@ -21,31 +21,23 @@ class ProcessFrame extends MX_Controller {
 
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
-        $MX =& get_instance();
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
-        $locale = $CI->input->cookie('locale');
+        // Get $sessionId and $loginName from Cookie (if they are set) and store them in $CI->BX_SESSION:
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
-        // Line up the ducks for CCE-Connection:
+        // Line up the ducks for CCE-Connection and store them for re-usability in $CI:
         include_once('ServerScriptHelper.php');
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        $cceClient = $serverScriptHelper->getCceClient();
-        $user = $cceClient->getObject("User", array("name" => $loginName));
-        $i18n = new I18n("base-swupdate", $user['localePreference']);
-        $system = $cceClient->getObject("System");
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
 
-        // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        $i18n = new I18n("base-swupdate", $CI->BX_SESSION['loginUser']['localePreference']);
 
-        // -- Actual page logic start:
-
-        // Not 'manageSite'? Bye, bye!
-        if (!$Capabilities->getAllowed('manageSite')) {
+        // Not 'serverEmail'? Bye, bye!
+        if (!$CI->serverScriptHelper->getAllowed('manageSite')) {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403#1");
         }
 
@@ -57,8 +49,8 @@ class ProcessFrame extends MX_Controller {
 
         if (!isset($get_form_data['statusId'])) {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $this->cceClient->bye();
+            $this->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403#2");
         }
         else {
@@ -203,7 +195,7 @@ class ProcessFrame extends MX_Controller {
         // Prepare Page:
         $newBackURL = "/vsite/vsiteList";
 
-        $factory = $serverScriptHelper->getHtmlComponentFactory("palette", $newBackURL);
+        $factory = $this->serverScriptHelper->getHtmlComponentFactory("palette", $newBackURL);
         $BxPage = $factory->getPage();
         $BxPage->setErrors(array()); // We do have an $errors array set, but intentionally don't use it as we show 'messages' anyway.
         $BxPage->setOutOfStyle(TRUE);
@@ -299,18 +291,14 @@ class ProcessFrame extends MX_Controller {
         // Spacer at the bottom:
         $page_body[] = '<div><br></div>';
 
-        // Nice people say goodbye, or CCEd waits forever:
-        $cceClient->bye();
-        $serverScriptHelper->destructor();
-
         // Out with the page:
         $BxPage->render($page_module, $page_body);
 
     }       
 }
 /*
-Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2015-2017 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2015-2017 Team BlueOnyx, BLUEONYX.IT
 All Rights Reserved.
 
 1. Redistributions of source code must retain the above copyright 

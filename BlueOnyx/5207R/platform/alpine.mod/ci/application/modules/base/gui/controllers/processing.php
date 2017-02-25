@@ -21,42 +21,36 @@ class Processing extends MX_Controller {
 
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
-        $MX =& get_instance();
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
-        $locale = $CI->input->cookie('locale');
+        // Get $sessionId and $loginName from Cookie (if they are set) and store them in $CI->BX_SESSION:
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
-        // Line up the ducks for CCE-Connection:
+        // Line up the ducks for CCE-Connection and store them for re-usability in $CI:
         include_once('ServerScriptHelper.php');
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        $cceClient = $serverScriptHelper->getCceClient();
-        $user = $cceClient->getObject("User", array("name" => $loginName));
-        $i18n = new I18n("base-swupdate", $user['localePreference']);
-        $system = $cceClient->getObject("System");
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
 
-        // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        $i18n = new I18n("base-swupdate", $CI->BX_SESSION['loginUser']['localePreference']);
+
+        // Not 'serverEmail'? Bye, bye!
+        if (!$CI->serverScriptHelper->getAllowed('manageSite')) {
+            // Nice people say goodbye, or CCEd waits forever:
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
+            Log403Error("/gui/Forbidden403#1");
+        }
 
         // -- Actual page logic start:
-
-        // Not 'manageSite'? Bye, bye!
-        if (!$Capabilities->getAllowed('manageSite')) {
-            // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
-            Log403Error("/gui/Forbidden403");
-        }
 
         // Get URL params:
         $get_form_data = $CI->input->get(NULL, TRUE);
 
         if (!isset($get_form_data['statusId'])) {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
-            Log403Error("/gui/Forbidden403");
+            $this->cceClient->bye();
+            $this->serverScriptHelper->destructor();
+            Log403Error("/gui/Forbidden403#2");
         }
         else {
             $statusId = $get_form_data['statusId'];
@@ -200,15 +194,15 @@ class Processing extends MX_Controller {
         // Redirect
         if ($redirectUrl != "") {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $this->cceClient->bye();
+            $this->serverScriptHelper->destructor();
             header("location: $redirectUrl");
             return;
         }
 
         // Prepare Page:
         $errors = array();
-        $factory = $serverScriptHelper->getHtmlComponentFactory("base-swupdate", "/gui/processing");
+        $factory = $this->serverScriptHelper->getHtmlComponentFactory("base-swupdate", "/gui/processing");
         $BxPage = $factory->getPage();
         $BxPage->setErrors($errors);
         $i18n = $factory->getI18n();
@@ -218,10 +212,6 @@ class Processing extends MX_Controller {
         // Set Menu items:
         $BxPage->setVerticalMenu('base_siteList1');
         $page_module = 'base_sitemanageVSL';
-
-        // Nice people say goodbye, or CCEd waits forever:
-        $cceClient->bye();
-        $serverScriptHelper->destructor();
 
         // Assemble iFrame URL:
         $uri = "/gui/processFrame?statusId=" . $statusId . "&title=" . $title . "&message=" . $message . "&progress=" . $progress . "&submessage=" . $submessage . "&subprogress=" . $subprogress . "&backUrl=" . $backUrl . "&cancelUrl=" . $cancelUrl . "&redirectUrl=" . $redirectUrl . "&isNoRefresh=" . $isNoRefresh . "&isNoGarbageCollect=" . $isNoGarbageCollect;
@@ -240,11 +230,11 @@ class Processing extends MX_Controller {
         // Out with the page:
         $BxPage->render($page_module, $page_body);
 
-    }       
+    }
 }
 /*
-Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2014-2017 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2014-2017 Team BlueOnyx, BLUEONYX.IT
 All Rights Reserved.
 
 1. Redistributions of source code must retain the above copyright 

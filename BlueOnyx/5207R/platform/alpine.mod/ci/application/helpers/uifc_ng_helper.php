@@ -975,6 +975,11 @@ function simplify_number_diskspace ($number, $literal, $cnt, $extra) {
             $mod = $multi*$multi*$multi;
             $number = $number/$mod;
         }
+        if ($len > "12") {
+            $format = "E";
+            $mod = $multi*$multi*$multi*$multi;
+            $number = $number/$mod;
+        }
         return sprintf("%.${cnt}f$format$extra", "$number");
     }
 }

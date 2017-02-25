@@ -14,35 +14,20 @@ class PluginsMin extends MX_Controller {
         $this->load->helper('blueonyx');
         init_libraries();
 
+        // Start sane:
+        $locale = "en_US";
+        $charset = "UTF-8";
 
         // Get $sessionId and $loginName from Cookie (if they are set):
         $sessionId = $CI->input->cookie('sessionId');
         $loginName = $CI->input->cookie('loginName');
+        $locale = $CI->input->cookie('locale');
 
-        // Call 'ServerScriptHelper.php' and check if the login is still valid:
-        // And bloody hell! We can't use the load->helper() function for this one or it blows up:
-        include_once('ServerScriptHelper.php');
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        //$this->cceClient->authkey($loginName, $sessionId);
-        $this->cceClient = $serverScriptHelper->getCceClient();
-
-        $user = $this->cceClient->getObject("User", array("name" => $loginName));
-        $access = $serverScriptHelper->getAccessRights($this->cceClient);
-
-        // I cannot stress how important this is: Say 'bye' and use the deconstructor() whenever
-        // you are done talking to CCE. If you don't and the script buggers out, the cced-child
-        // process will hang around forever. So we do this religiously here, just to be damn sure:
-        $this->cceClient->bye();
-        $serverScriptHelper->destructor();
-
-        // locale and charset setup:
-        $ini_langs = initialize_languages(TRUE);
-        $locale = $ini_langs['locale'];
-        $charset = $ini_langs['charset'];
-
-        // Now set the locale based on the users localePreference - if specified and known:
-        if ($user['localePreference']) {
-            $locale = $user['localePreference'];
+        if (!isset($locale)) {
+            $locale = 'en_US';
+        }
+        if ($locale == '') {
+            $locale = 'en_US';
         }
 
         // Set headers:
@@ -70,8 +55,8 @@ class PluginsMin extends MX_Controller {
 }
 
 /*
-Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2014-2017 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2014-2017 Team BlueOnyx, BLUEONYX.IT
 All Rights Reserved.
 
 1. Redistributions of source code must retain the above copyright 
