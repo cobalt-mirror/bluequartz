@@ -19,31 +19,29 @@ class AdminList extends MX_Controller {
 
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
-        $MX =& get_instance();
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
-        $locale = $CI->input->cookie('locale');
+        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set):
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
         // Line up the ducks for CCE-Connection:
         include_once('ServerScriptHelper.php');
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        $cceClient = $serverScriptHelper->getCceClient();
-        $user = $cceClient->getObject("User", array("name" => $loginName));
-        $i18n = new I18n("base-vsite", $user['localePreference']);
-        $system = $cceClient->getObject("System");
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
+        $user = $CI->BX_SESSION['loginUser'];
+        $i18n = new I18n("base-vsite", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
 
         // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        $Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
 
         // -- Actual page logic start:
 
         // Only "systemAdministrator" should be here. This is important. Boot anyone else:
         if (!$Capabilities->getAllowed('systemAdministrator')) {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403");
         }
 
@@ -124,12 +122,10 @@ class AdminList extends MX_Controller {
         //
 
         // Prepare Page:
-        $factory = $serverScriptHelper->getHtmlComponentFactory("base-vsite", "/vsite/adminList");
+        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-vsite", "/vsite/adminList");
         $BxPage = $factory->getPage();
         $BxPage->setErrors($errors);
         $i18n = $factory->getI18n();
-
-        $product = new Product($cceClient);
 
         // Set Menu items:
         $BxPage->setVerticalMenu('base_controlpanel');
@@ -161,7 +157,7 @@ class AdminList extends MX_Controller {
         $adminList->setColumnWidths(array("320", "178", "120", "120")); // Max: 739px
 
         // Get a list of all 'adminUser'. As is this excludes user 'admin':
-        $admins = $cceClient->findx('User', 
+        $admins = $CI->cceClient->findx('User', 
                         array("capLevels" => 'adminUser'),
                         array(), 
                         "",
@@ -169,7 +165,7 @@ class AdminList extends MX_Controller {
 
         for($i=0; $i < count($admins); $i++) {
             $oid = $admins[$i];
-            $current = $cceClient->get($admins[$i]);
+            $current = $CI->cceClient->get($admins[$i]);
 
             // Add the Modify / Delete buttons. The Delete button is done manually as
             // we need to wiggle a confirm dialog into it.
@@ -189,7 +185,7 @@ class AdminList extends MX_Controller {
                 $activeStatus = '<button class="light tiny text_only has_text tooltip hover" title="' . $i18n->getHtml("[[palette.disabled]]") . '"><span>' . $i18n->getHtml("[[palette.disabled_short]]") . '</span></button>';
             }
 
-            if ($current['name'] == $loginName) {
+            if ($current['name'] == $CI->BX_SESSION['loginName']) {
                 // We don't allow a systemAdministrator to edit or delete himself.
                 // Remove the buttons and add s spacer to stretch to correct height.
                 $actions = '<IMG BORDER="0" WIDTH="0" HEIGHT="45" SRC="/libImage/spaceHolder.gif">';
@@ -271,10 +267,6 @@ class AdminList extends MX_Controller {
                             </div>
                 </div>';
         }
-
-        // Nice people say goodbye, or CCEd waits forever:
-        $cceClient->bye();
-        $serverScriptHelper->destructor();
 
         $page_body[] = $block->toHtml();
 

@@ -19,23 +19,21 @@ class vsitePHP extends MX_Controller {
 
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
-        $MX =& get_instance();
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
-        $locale = $CI->input->cookie('locale');
+        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set):
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
         // Line up the ducks for CCE-Connection:
         include_once('ServerScriptHelper.php');
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        $cceClient = $serverScriptHelper->getCceClient();
-        $user = $cceClient->getObject("User", array("name" => $loginName));
-        $i18n = new I18n("base-vsite", $user['localePreference']);
-        $system = $cceClient->getObject("System");
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
+        $user = $CI->BX_SESSION['loginUser'];
+        $i18n = new I18n("base-vsite", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
 
         // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        $Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
 
         // -- Actual page logic start:
 
@@ -53,8 +51,8 @@ class vsitePHP extends MX_Controller {
         else {
             // Don't play games with us!
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403#1");
         }
 
@@ -68,8 +66,8 @@ class vsitePHP extends MX_Controller {
         // Returns Forbidden403 if *none* of that is the case.
         if (!$Capabilities->getGroupAdmin($group)) {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403#2");
         }
 
@@ -78,16 +76,16 @@ class vsitePHP extends MX_Controller {
         //
 
         // Get data for the Vsite:
-        $vsite = $cceClient->getObject('Vsite', array('name' => $group));
+        $vsite = $CI->cceClient->getObject('Vsite', array('name' => $group));
 
         // Get the PHP settings for this Vsite:
-        $vsite_php = $cceClient->getObject('Vsite', array('name' => $group), "PHP");
+        $vsite_php = $CI->cceClient->getObject('Vsite', array('name' => $group), "PHP");
 
         // Get PHPVsite for this Vsite:
-        $systemObj = $cceClient->getObject('Vsite', array('name' => $group), "PHPVsite");
+        $systemObj = $CI->cceClient->getObject('Vsite', array('name' => $group), "PHPVsite");
 
         // Find out which PHP version we use:
-        $system_php = $cceClient->getObject('PHP');
+        $system_php = $CI->cceClient->getObject('PHP');
         $platform = $system_php["PHP_version"];
 
         if (($platform >= "5.3") && ($system_php["show_safemode"] == "0")) {
@@ -187,9 +185,6 @@ class vsitePHP extends MX_Controller {
                         if (is_dir($entry)) {
                             array_push($open_basedir_nocrap, $entry);
                         }
-                        else {
-                            $ci_errors[] = new Error($i18n->get("[[base-vsite.openBaseDirPathRemovedError]]") . ' ' . $entry);
-                        }
                     }
                 }
             }
@@ -241,7 +236,7 @@ class vsitePHP extends MX_Controller {
 
             if ($platform >= "5.3") {
               // We need to skip updating some legacy PHP settings that no longer work in PHP-5.3 or better:
-              $cceClient->set($vsite['OID'], 'PHPVsite',
+              $CI->cceClient->set($vsite['OID'], 'PHPVsite',
                     array(
                           "force_update" => time(),
                           "register_globals" => $attributes['register_globals'],
@@ -259,7 +254,7 @@ class vsitePHP extends MX_Controller {
             }
             else {
               // Update all settings for PHP older than 5.3:
-              $cceClient->set($vsite['OID'], 'PHPVsite',
+              $CI->cceClient->set($vsite['OID'], 'PHPVsite',
                     array(
                           "force_update" => time(),
                           "register_globals" => $attributes['register_globals'],
@@ -280,12 +275,12 @@ class vsitePHP extends MX_Controller {
                           "memory_limit" => $attributes['memory_limit']
                       ));
             }
-            $errors = array_merge($errors, $cceClient->errors());
+            $errors = array_merge($errors, $CI->cceClient->errors());
 
             // No errors during submit? Reload page:
             if (count($errors) == "0") {
-                $cceClient->bye();
-                $serverScriptHelper->destructor();
+                $CI->cceClient->bye();
+                $CI->serverScriptHelper->destructor();
                 $redirect_URL = "/vsite/vsitePHP?group=$group";
                 header("location: $redirect_URL");
                 exit;
@@ -297,7 +292,7 @@ class vsitePHP extends MX_Controller {
         //
 
         // Prepare Page:
-        $factory = $serverScriptHelper->getHtmlComponentFactory("base-vsite", "/vsite/vsitePHP?group=$group");
+        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-vsite", "/vsite/vsitePHP?group=$group");
         $BxPage = $factory->getPage();
         $BxPage->setErrors($errors);
         $i18n = $factory->getI18n();
@@ -328,8 +323,8 @@ class vsitePHP extends MX_Controller {
         }
         else {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403#2");
         }
 
@@ -765,10 +760,6 @@ class vsitePHP extends MX_Controller {
             $block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
             $block->addButton($factory->getCancelButton("/vsite/vsitePHP?group=$group"));
         }
-
-        // Nice people say goodbye, or CCEd waits forever:
-        $cceClient->bye();
-        $serverScriptHelper->destructor();
 
         $page_body[] = $block->toHtml();
 

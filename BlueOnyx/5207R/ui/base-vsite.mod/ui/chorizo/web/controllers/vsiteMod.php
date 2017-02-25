@@ -19,23 +19,21 @@ class vsiteMod extends MX_Controller {
 
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
-        $MX =& get_instance();
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
-        $locale = $CI->input->cookie('locale');
+        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set):
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
         // Line up the ducks for CCE-Connection:
         include_once('ServerScriptHelper.php');
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        $cceClient = $serverScriptHelper->getCceClient();
-        $user = $cceClient->getObject("User", array("name" => $loginName));
-        $i18n = new I18n("base-vsite", $user['localePreference']);
-        $system = $cceClient->getObject("System");
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
+        $user = $CI->BX_SESSION['loginUser'];
+        $i18n = new I18n("base-vsite", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
 
         // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        $Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
 
         // -- Actual page logic start:
 
@@ -53,8 +51,8 @@ class vsiteMod extends MX_Controller {
         else {
             // Don't play games with us!
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403#1");
         }
 
@@ -68,8 +66,8 @@ class vsiteMod extends MX_Controller {
         // Returns Forbidden403 if *none* of that is the case.
         if (!$Capabilities->getGroupAdmin($group)) {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403#2");
         }
 
@@ -78,7 +76,7 @@ class vsiteMod extends MX_Controller {
         //
 
         // Get data for the Vsite:
-        $vsite = $cceClient->getObject('Vsite', array('name' => $group));
+        $vsite = $CI->cceClient->getObject('Vsite', array('name' => $group));
 
         //
         //--- Handle form validation:
@@ -165,8 +163,8 @@ class vsiteMod extends MX_Controller {
         // If we have no errors and have POST data, we submit to CODB:
         if ((count($errors) == "0") && ($CI->input->post(NULL, TRUE))) {
             // Actual submit to CODB:
-            $vsiteOID = $cceClient->find("Vsite", array("name" => $group));
-            $cceClient->set($vsiteOID[0], "", 
+            $vsiteOID = $CI->cceClient->find("Vsite", array("name" => $group));
+            $CI->cceClient->set($vsiteOID[0], "", 
                   array(
                     "hostname" => $attributes['hostName'],
                     "domain" => $attributes['domain'],
@@ -184,7 +182,7 @@ class vsiteMod extends MX_Controller {
                  );
 
             // CCE errors that might have happened during submit to CODB:
-            $CCEerrors = $cceClient->errors();
+            $CCEerrors = $CI->cceClient->errors();
             foreach ($CCEerrors as $object => $objData) {
                 // When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
                 $errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
@@ -204,10 +202,10 @@ class vsiteMod extends MX_Controller {
                     $quota = $attributes['quota'];
                 }
                 // Set the quota:
-                $cceClient->set($vsiteOID[0], 'Disk', array('quota' => $quota));
+                $CI->cceClient->set($vsiteOID[0], 'Disk', array('quota' => $quota));
 
                 // CCE errors that might have happened during submit to CODB:
-                $CCEerrors = $cceClient->errors();
+                $CCEerrors = $CI->cceClient->errors();
                 foreach ($CCEerrors as $object => $objData) {
                     // When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
                     $errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
@@ -216,8 +214,8 @@ class vsiteMod extends MX_Controller {
 
             // No errors during submit? Reload page:
             if (count($errors) == "0") {
-                $cceClient->bye();
-                $serverScriptHelper->destructor();
+                $CI->cceClient->bye();
+                $CI->serverScriptHelper->destructor();
                 $redirect_URL = "/vsite/vsiteMod?group=$group";
                 header("location: $redirect_URL");
                 exit;
@@ -229,7 +227,7 @@ class vsiteMod extends MX_Controller {
         //
 
         // Prepare Page:
-        $factory = $serverScriptHelper->getHtmlComponentFactory("base-vsite", "/vsite/vsiteMod?group=$group");
+        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-vsite", "/vsite/vsiteMod?group=$group");
         $BxPage = $factory->getPage();
         $BxPage->setErrors($errors);
         $i18n = $factory->getI18n();
@@ -260,23 +258,23 @@ class vsiteMod extends MX_Controller {
         }
         else {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403#2");
         }
 
         // With IP Pooling enabled, display the IP field with a 
         // range of possible choices
-        @list($sysoid) = $cceClient->find("System");
-        $net_opts = $cceClient->get($sysoid, "Network");
+        @list($sysoid) = $CI->cceClient->find("System");
+        $net_opts = $CI->cceClient->get($sysoid, "Network");
         if (($net_opts["pooling"] == "1") && $Capabilities->getAllowed('manageSite')) {
             $range_strings = array();
 
-            $oids = $cceClient->findx('IPPoolingRange', array(), array(), 'old_numeric', 'creation_time');
+            $oids = $CI->cceClient->findx('IPPoolingRange', array(), array(), 'old_numeric', 'creation_time');
             foreach ($oids as $oid) {
-                $range = $cceClient->get($oid);
-                $adminArray = $cceClient->scalar_to_array($range['admin']); 
-                if ($loginName == 'admin' || in_array($loginName, $adminArray)) { 
+                $range = $CI->cceClient->get($oid);
+                $adminArray = $CI->cceClient->scalar_to_array($range['admin']); 
+                if ($CI->BX_SESSION['loginName'] == 'admin' || in_array($CI->BX_SESSION['loginName'], $adminArray)) { 
                         $range_strings[] = $range['min'] . ' - ' . $range['max']; 
                 } 
             }
@@ -343,14 +341,14 @@ class vsiteMod extends MX_Controller {
         //-- Start Owner Management
 
         // Find all 'adminUsers' with the capability 'manageSite':
-        $admins = $cceClient->findx('User', 
+        $admins = $CI->cceClient->findx('User', 
                         array('systemAdministrator' => "0", 'capLevels' => 'manageSite'),
                         array());
 
         // Set up an array that - at least - has 'admin' in it:
         $adminNames = array('admin');
         foreach ($admins as $num => $oid) {
-            $current = $cceClient->get($oid);
+            $current = $CI->cceClient->get($oid);
             // Found a reseller, adding him to the array as well:
             $adminNames[] = $current['name'];
         }
@@ -395,15 +393,15 @@ class vsiteMod extends MX_Controller {
                 );
 
         // vsite disk info
-        $disk = $cceClient->get($vsite['OID'], 'Disk');
+        $disk = $CI->cceClient->get($vsite['OID'], 'Disk');
 
-        $disk_dev = $cceClient->getObject('Disk', array('mountPoint' => $vsite['volume']), '');
+        $disk_dev = $CI->cceClient->getObject('Disk', array('mountPoint' => $vsite['volume']), '');
 
         // Dirty hack not to use /home partition. Kicks in if we don't have a disk partition
         // after our last search or if the reported disk has no size information. Then we use
         // the size information from the / partition instead:
         if ((count($disk_dev) == 0) || ($disk_dev['total'] == "")) { 
-                $disk_dev = $cceClient->getObject('Disk', array('mountPoint' => '/'), ''); 
+                $disk_dev = $CI->cceClient->getObject('Disk', array('mountPoint' => '/'), ''); 
         } 
 
         if ($disk_dev['total']) {
@@ -426,13 +424,13 @@ class vsiteMod extends MX_Controller {
         // If the site is not owned by 'admin', we need to gather information
         // about the allowances and usage info for this 'manageSite' administrator:
         $exact = array();
-        $exact = array_merge($exact, array('createdUser' => $loginName));
+        $exact = array_merge($exact, array('createdUser' => $CI->BX_SESSION['loginName']));
 
         // Get the info about the 'manageSite' administrator:
-        @list($user_oid) = $cceClient->find('User', array('name' => $vsite['createdUser'])); 
+        @list($user_oid) = $CI->cceClient->find('User', array('name' => $vsite['createdUser'])); 
 
         // Get the site allowance settings for this 'manageSite' user:
-        $AdminAllowances = $cceClient->get($user_oid, 'Sites'); 
+        $AdminAllowances = $CI->cceClient->get($user_oid, 'Sites'); 
 
         if (!isset($AdminAllowances['user'])) {
             $AdminAllowances['user'] = 'admin';
@@ -440,10 +438,10 @@ class vsiteMod extends MX_Controller {
         }
         
         // Get a list of all sites he owns: 
-        $Userowned_Sites = $cceClient->find('Vsite', array('createdUser' => $vsite['createdUser'])); 
+        $Userowned_Sites = $CI->cceClient->find('Vsite', array('createdUser' => $vsite['createdUser'])); 
         $Quota_of_Userowned_Sites = 0; 
         foreach ($Userowned_Sites as $oid) { 
-            $user_vsiteDisk = $cceClient->get($oid, 'Disk'); 
+            $user_vsiteDisk = $CI->cceClient->get($oid, 'Disk'); 
             $Quota_of_Userowned_Sites += $user_vsiteDisk['quota']; 
         }
         // Variable $Quota_of_Userowned_Sites includes the quota of the current Vsite. We need
@@ -458,11 +456,11 @@ class vsiteMod extends MX_Controller {
         $CreatedUserAccountsAllSites = 0;
         $CreatedUserAccountsThisSite = 0;
         foreach ($Userowned_Sites as $oid) { 
-            $user_vsite = $cceClient->get($oid); 
+            $user_vsite = $CI->cceClient->get($oid); 
             $AllocatedUserAccounts += $user_vsite['maxusers'];
 
             // How many accounts are set up on this Vsite?
-            $useduser_oids = $cceClient->find('User', array("site" => $user_vsite['name']));
+            $useduser_oids = $CI->cceClient->find('User', array("site" => $user_vsite['name']));
             // Add them to the total:
             $CreatedUserAccountsAllSites += count($useduser_oids);
             // How many accounts does THIS site have at the moment?
@@ -472,7 +470,7 @@ class vsiteMod extends MX_Controller {
         }
 
         // Check if the amount of allocated accounts is greater than what the user is allowed to:
-        if (($Capabilities->getAllowed('manageSite')) && ($vsite['createdUser'] == "admin") && ($loginName == 'admin')) {
+        if (($Capabilities->getAllowed('manageSite')) && ($vsite['createdUser'] == "admin") && ($CI->BX_SESSION['loginName'] == 'admin')) {
             $Can_Modify_Quantity_of_Users = "1";
         }
         elseif ($AllocatedUserAccounts > $AdminAllowances['user']) {
@@ -595,10 +593,6 @@ class vsiteMod extends MX_Controller {
             $block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
             $block->addButton($factory->getCancelButton("/vsite/vsiteMod?group=$group"));
         }
-
-        // Nice people say goodbye, or CCEd waits forever:
-        $cceClient->bye();
-        $serverScriptHelper->destructor();
 
         $page_body[] = $block->toHtml();
 

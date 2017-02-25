@@ -19,23 +19,21 @@ class fileOwner extends MX_Controller {
 
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
-        $MX =& get_instance();
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
-        $locale = $CI->input->cookie('locale');
-
+        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set):
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
+        
         // Line up the ducks for CCE-Connection:
         include_once('ServerScriptHelper.php');
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        $cceClient = $serverScriptHelper->getCceClient();
-        $user = $cceClient->getObject("User", array("name" => $loginName));
-        $i18n = new I18n("base-vsite", $user['localePreference']);
-        $system = $cceClient->getObject("System");
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
+        $user = $CI->BX_SESSION['loginUser'];
+        $i18n = new I18n("base-vsite", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
 
         // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        $Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
 
         // -- Actual page logic start:
 
@@ -53,8 +51,8 @@ class fileOwner extends MX_Controller {
         else {
             // Don't play games with us!
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403#1");
         }
 
@@ -68,8 +66,8 @@ class fileOwner extends MX_Controller {
         // Returns Forbidden403 if *none* of that is the case.
         if (!$Capabilities->getGroupAdmin($group)) {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403#2");
         }
 
@@ -78,16 +76,16 @@ class fileOwner extends MX_Controller {
         //
 
         // Get data for the Vsite:
-        $vsite = $cceClient->getObject('Vsite', array('name' => $group));
+        $vsite = $CI->cceClient->getObject('Vsite', array('name' => $group));
 
         // Get the PHP settings for this Vsite:
-        $vsite_php = $cceClient->getObject('Vsite', array('name' => $group), "PHP");
+        $vsite_php = $CI->cceClient->getObject('Vsite', array('name' => $group), "PHP");
 
         // Get PHPVsite for this Vsite:
-        $systemObj = $cceClient->getObject('Vsite', array('name' => $group), "PHPVsite");
+        $systemObj = $CI->cceClient->getObject('Vsite', array('name' => $group), "PHPVsite");
 
         // Find out which PHP version we use:
-        $system_php = $cceClient->getObject('PHP');
+        $system_php = $CI->cceClient->getObject('PHP');
         $platform = $system_php["PHP_version"];
 
         //
@@ -163,13 +161,13 @@ class fileOwner extends MX_Controller {
         if ((count($errors) == "0") && ($CI->input->post(NULL, TRUE))) {
 
             // Update CODB:
-            $cceClient->set($vsite['OID'], 'PHP', array("prefered_siteAdmin" => $attributes['prefered_siteAdmin']));
-            $errors = array_merge($errors, $cceClient->errors());
+            $CI->cceClient->set($vsite['OID'], 'PHP', array("prefered_siteAdmin" => $attributes['prefered_siteAdmin']));
+            $errors = array_merge($errors, $CI->cceClient->errors());
 
             // No errors during submit? Reload page:
             if (count($errors) == "0") {
-                $cceClient->bye();
-                $serverScriptHelper->destructor();
+                $CI->cceClient->bye();
+                $CI->serverScriptHelper->destructor();
                 $redirect_URL = "/vsite/fileOwner?group=$group";
                 header("location: $redirect_URL");
                 exit;
@@ -181,7 +179,7 @@ class fileOwner extends MX_Controller {
         //
 
         // Prepare Page:
-        $factory = $serverScriptHelper->getHtmlComponentFactory("base-vsite", "/vsite/fileOwner?group=$group");
+        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-vsite", "/vsite/fileOwner?group=$group");
         $BxPage = $factory->getPage();
         $BxPage->setErrors($errors);
         $i18n = $factory->getI18n();
@@ -212,13 +210,13 @@ class fileOwner extends MX_Controller {
         }
         else {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403#2");
         }
 
         // Get list of all siteAdmin's for this site:
-        $my_siteAdmins_list = $cceClient->find('User', array('site' => $group, 'capLevels' => 'siteAdmin', 'enabled' => '1'));
+        $my_siteAdmins_list = $CI->cceClient->find('User', array('site' => $group, 'capLevels' => 'siteAdmin', 'enabled' => '1'));
 
         // Build an array of siteAdmin names, but start sane:
         if ($Capabilities->getAllowed('adminUser')) {
@@ -232,7 +230,7 @@ class fileOwner extends MX_Controller {
 
         // Fetch siteAdmin names and store them in array $my_siteAdmins:
         foreach ($my_siteAdmins_list as $siteAdmin_Obj) {
-            $user_siteAdmin = $cceClient->get($siteAdmin_Obj);
+            $user_siteAdmin = $CI->cceClient->get($siteAdmin_Obj);
             array_push($my_siteAdmins, $user_siteAdmin{'name'});
         }
 
@@ -254,10 +252,6 @@ class fileOwner extends MX_Controller {
             $block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
             $block->addButton($factory->getCancelButton("/vsite/fileOwner?group=$group"));
         }
-
-        // Nice people say goodbye, or CCEd waits forever:
-        $cceClient->bye();
-        $serverScriptHelper->destructor();
 
         $page_body[] = $block->toHtml();
 

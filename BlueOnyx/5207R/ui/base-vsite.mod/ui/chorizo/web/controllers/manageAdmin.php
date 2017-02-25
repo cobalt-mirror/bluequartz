@@ -19,31 +19,29 @@ class ManageAdmin extends MX_Controller {
 
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
-        $MX =& get_instance();
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
-        $locale = $CI->input->cookie('locale');
+        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set):
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
         // Line up the ducks for CCE-Connection:
         include_once('ServerScriptHelper.php');
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        $cceClient = $serverScriptHelper->getCceClient();
-        $User = $cceClient->getObject("User", array("name" => $loginName));
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
+        $User = $CI->cceClient->getObject("User", array("name" => $CI->BX_SESSION['loginName']));
         $i18n = new I18n("base-vsite", $User['localePreference']);
-        $system = $cceClient->getObject("System");
+        $system = $CI->getSystem();
 
         // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        $Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
 
         // -- Actual page logic start:
 
         // Only "systemAdministrator" should be here. This is important. Boot anyone else:
         if (!$Capabilities->getAllowed('systemAdministrator')) {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403");
         }
 
@@ -59,7 +57,7 @@ class ManageAdmin extends MX_Controller {
                     'serverShell' => 1,
                     'serveriStat' => 1,
                     'serverSSL' => 1,
-		    'serverMemcache' => 1,
+		            'serverMemcache' => 1,
                     'serverNetwork' => 1,
                     'serverIpPooling' => 1,
                     'serverPower' => 1,
@@ -78,14 +76,14 @@ class ManageAdmin extends MX_Controller {
                     //'serverVsite' => 1, <- Removed for now. Stand alone it makes no sense.
 
         // Get 'reseller' CapabilityGroup and get the possible reseller Capabilities from within that:
-        $reseller_caps = $cceClient->getObject("CapabilityGroup", array("name" => 'reseller'));
+        $reseller_caps = $CI->cceClient->getObject("CapabilityGroup", array("name" => 'reseller'));
         $possible_reseller_caps = scalar_to_array($reseller_caps['capabilities']);
 
         // Build an associative array with Capabilities and their default states:
         $possible_reseller_caps_with_defaults = array();
         foreach ($possible_reseller_caps as $key => $value) {
-            $thisCap = $cceClient->getObject('Capabilities');
-            $thisCapValue = $cceClient->get($thisCap['OID'], $value);
+            $thisCap = $CI->cceClient->getObject('Capabilities');
+            $thisCapValue = $CI->cceClient->get($thisCap['OID'], $value);
             $possible_reseller_caps_with_defaults[$value] = $thisCapValue['capable'];
         }
 
@@ -96,18 +94,18 @@ class ManageAdmin extends MX_Controller {
         // We get our $get_form_data early, as this page handles both Add/Edit of admin-users.
 
         // Get Support-Settings:
-        $Support = $cceClient->getObject("System", array(), "Support");
+        $Support = $CI->cceClient->getObject("System", array(), "Support");
 
         $get_form_data = $CI->input->get(NULL, TRUE);
         $CODBDATA = array('fullName' => '', 'sortName' => '', 'name' => '', 'ui_enabled' => '', 'capLevels' => '');
         if ($get_form_data['_oid'] != '') {
             $_oid = $get_form_data['_oid'];
-            $tempdata = $cceClient->get($_oid);
+            $tempdata = $CI->cceClient->get($_oid);
             if ($tempdata['CLASS'] != 'User') {
                 // Object is not a User-Object!
                 // Nice people say goodbye, or CCEd waits forever:
-                $cceClient->bye();
-                $serverScriptHelper->destructor();
+                $CI->cceClient->bye();
+                $CI->serverScriptHelper->destructor();
                 Log403Error("/gui/Forbidden403#right-notsofastthere");
             }
             $CurrCaps = scalar_to_array($tempdata['capLevels']);
@@ -117,17 +115,17 @@ class ManageAdmin extends MX_Controller {
             else {
                 // Sneaky bastard. Trying to modify something you're not supposed to modify?
                 // Nice people say goodbye, or CCEd waits forever:
-                $cceClient->bye();
-                $serverScriptHelper->destructor();
+                $CI->cceClient->bye();
+                $CI->serverScriptHelper->destructor();
                 Log403Error("/gui/Forbidden403#notsofastthere");
             }
         }
 
         // A 'systemAdministrator' tries to edit or delete himself. Can't have that!
-        if (($User['systemAdministrator'] == "1") && ($CODBDATA['name'] == $loginName)) {
+        if (($User['systemAdministrator'] == "1") && ($CODBDATA['name'] == $CI->BX_SESSION['loginName'])) {
             // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403#etutbrutus");
         }
 
@@ -148,25 +146,25 @@ class ManageAdmin extends MX_Controller {
 
                         // If this user has 'root' access or is 'systemAdministrator',
                         // then we take his elevated abilities away first:
-                        $ok = $cceClient->set($_oid, 'RootAccess', array('enabled' => '0'));
-                        $errors = array_merge($errors, $cceClient->errors());
+                        $ok = $CI->cceClient->set($_oid, 'RootAccess', array('enabled' => '0'));
+                        $errors = array_merge($errors, $CI->cceClient->errors());
 
-                        $ok = $cceClient->set($_oid, '', array('systemAdministrator' => '0'));
-                        $errors = array_merge($errors, $cceClient->errors());
+                        $ok = $CI->cceClient->set($_oid, '', array('systemAdministrator' => '0'));
+                        $errors = array_merge($errors, $CI->cceClient->errors());
 
-                        $ok = $cceClient->set($_oid, 'Shell', array('enabled' => 0));
-                        $errors = array_merge($errors, $cceClient->errors());
+                        $ok = $CI->cceClient->set($_oid, 'Shell', array('enabled' => 0));
+                        $errors = array_merge($errors, $CI->cceClient->errors());
 
                         // Now with that out of the way we delete him:
-                        $ok = $cceClient->destroy($_oid);
-                        $my_errors = array_merge($my_errors, $cceClient->errors());
+                        $ok = $CI->cceClient->destroy($_oid);
+                        $my_errors = array_merge($my_errors, $CI->cceClient->errors());
                     }
                 }
                 if (count($my_errors == "0")) {
                     // No errors. Redirect to adminList:
                     // Nice people say goodbye, or CCEd waits forever:
-                    $cceClient->bye();
-                    $serverScriptHelper->destructor();
+                    $CI->cceClient->bye();
+                    $CI->serverScriptHelper->destructor();
                     header("location: /vsite/adminList");
                     exit;                   
                 }
@@ -261,7 +259,7 @@ class ManageAdmin extends MX_Controller {
 
             // Remove the special capabilities from the user's current ones:
             if (isset($attributes['adminPowers'])) {
-                $current_caps = $cceClient->scalar_to_array($attributes['adminPowers']);
+                $current_caps = $CI->cceClient->scalar_to_array($attributes['adminPowers']);
             }
             else {
                 $attributes['adminPowers'] = "";
@@ -303,13 +301,13 @@ class ManageAdmin extends MX_Controller {
 
             // Handle create of user if necessary:
             if (!isset($_oid)) {
-                $big_ok = $cceClient->create('User',
+                $big_ok = $CI->cceClient->create('User',
                                 array(
                                     'fullName' => $attributes['fullName'],
                                     'sortName' => "",
                                     'name' => $attributes['userName'],
                                     'password' => $attributes['password'],
-                                    'capLevels' => $cceClient->array_to_scalar($current_caps)
+                                    'capLevels' => $CI->cceClient->array_to_scalar($current_caps)
                                     ));
                 // Get the OID of this transaction:
                 if ($big_ok) {
@@ -332,7 +330,7 @@ class ManageAdmin extends MX_Controller {
                 $new_settings = array(
                                     'fullName' => $attributes['fullName'],
                                     'sortName' => "",
-                                    'capLevels' => $cceClient->array_to_scalar($current_caps),
+                                    'capLevels' => $CI->cceClient->array_to_scalar($current_caps),
                                     'ui_enabled' => $ui_enabled
                                     );
 
@@ -342,10 +340,10 @@ class ManageAdmin extends MX_Controller {
                     }
                 }
 
-                $big_ok = $cceClient->set($_oid, '', $new_settings);
+                $big_ok = $CI->cceClient->set($_oid, '', $new_settings);
 
                 // CCE errors that might have happened during submit to CODB:
-                $errors = array_merge($errors, $cceClient->errors());
+                $errors = array_merge($errors, $CI->cceClient->errors());
 
                 if ((isset($Support['support_account'])) && (!isset($_oid))) {
                     if ($Support['support_account'] == $attributes['userName']) {
@@ -363,49 +361,49 @@ class ManageAdmin extends MX_Controller {
                         }
                         // Update expiry date in CODB:
                         $sup_cfg = array('access_epoch' => $attributes['SAExpiry']);
-                        $cceClient->setObject("System", $sup_cfg, "Support");
+                        $CI->cceClient->setObject("System", $sup_cfg, "Support");
                         // CCE errors that might have happened during submit to CODB:
-                        $errors = array_merge($errors, $cceClient->errors());
+                        $errors = array_merge($errors, $CI->cceClient->errors());
                     }
                 }
 
             }
 
             // CCE errors that might have happened during submit to CODB:
-            $errors = array_merge($errors, $cceClient->errors());
+            $errors = array_merge($errors, $CI->cceClient->errors());
 
             // Set the disk quota:
             if ($big_ok) {
                 $attributes['diskQuota'] = preg_replace('/\,/', '.', $attributes['diskQuota']);
                 $diskQuota = floor(unsimplify_number($attributes['diskQuota'], "KB")/1024);
-                $cceClient->set($_oid, 'Disk', array('quota' => $diskQuota));
+                $CI->cceClient->set($_oid, 'Disk', array('quota' => $diskQuota));
             }
 
             // CCE errors that might have happened during submit to CODB:
-            $errors = array_merge($errors, $cceClient->errors());
+            $errors = array_merge($errors, $CI->cceClient->errors());
 
             // Set the root access flag:
             if ($big_ok) {
-                $ok = $cceClient->set($_oid, 'RootAccess', array('enabled' => $rootAccess));
-                $errors = array_merge($errors, $cceClient->errors());
+                $ok = $CI->cceClient->set($_oid, 'RootAccess', array('enabled' => $rootAccess));
+                $errors = array_merge($errors, $CI->cceClient->errors());
             }
 
             // Set the systemAdministrator flag:
             if ($big_ok) {
-                $ok = $cceClient->set($_oid, '', array('systemAdministrator' => $systemAdministrator));
-                $errors = array_merge($errors, $cceClient->errors());
+                $ok = $CI->cceClient->set($_oid, '', array('systemAdministrator' => $systemAdministrator));
+                $errors = array_merge($errors, $CI->cceClient->errors());
             }
 
             // Handle Shell access:
             // Granted if Shell is ticked, OR user is systemAdministrator OR has rootAccess:
             if ($big_ok) {
                 if (($attributes['shell'] == "1") || ($systemAdministrator == "1") || ($rootAccess == "1")) {
-                    $ok = $cceClient->set($_oid, 'Shell', array('enabled' => 1));
-                    $errors = array_merge($errors, $cceClient->errors());
+                    $ok = $CI->cceClient->set($_oid, 'Shell', array('enabled' => 1));
+                    $errors = array_merge($errors, $CI->cceClient->errors());
                 }
                 else {
-                    $ok = $cceClient->set($_oid, 'Shell', array('enabled' => 0));
-                    $errors = array_merge($errors, $cceClient->errors());
+                    $ok = $CI->cceClient->set($_oid, 'Shell', array('enabled' => 0));
+                    $errors = array_merge($errors, $CI->cceClient->errors());
                 }
             }
 
@@ -413,17 +411,17 @@ class ManageAdmin extends MX_Controller {
             if ($big_ok) {
                 $attributes['siteQuota'] = preg_replace('/\,/', '.', $attributes['siteQuota']);
                 $siteQuota = unsimplify_number($attributes['siteQuota'], "K");
-                $cceClient->set($_oid, 'Sites',
+                $CI->cceClient->set($_oid, 'Sites',
                     array('quota' => ($siteQuota == '' ? '0' : $siteQuota),
                           'max' => ($attributes['siteMax'] == '' ? '0' : $attributes['siteMax']),
                           'user' => ($attributes['siteUser'] == '' ? '0' : $attributes['siteUser'])));
-                $errors = array_merge($errors, $cceClient->errors());
+                $errors = array_merge($errors, $CI->cceClient->errors());
             }
 
             // Handle 'resellerPowers' if the user has 'manageSite' Capability:
             if ((in_array('manageSite', $current_caps)) && (isset($attributes['resellerPowers']))) {
                 // Get current User object:
-                $tempResData = $cceClient->get($_oid);
+                $tempResData = $CI->cceClient->get($_oid);
                 $tempCurrCaps = scalar_to_array($tempResData['capabilities']);
                 foreach ($possible_reseller_caps as $key => $value) {
                     // Remove all reseller caps from currently used caps:
@@ -432,16 +430,16 @@ class ManageAdmin extends MX_Controller {
                     }
                 }
                 $modified_settings = array(
-                    'capabilities' => $cceClient->array_to_scalar(array_unique(array_merge($tempCurrCaps, $cceClient->scalar_to_array($attributes['resellerPowers']))))
+                    'capabilities' => $CI->cceClient->array_to_scalar(array_unique(array_merge($tempCurrCaps, $CI->cceClient->scalar_to_array($attributes['resellerPowers']))))
                     );
-                $big_ok = $cceClient->set($_oid, '', $modified_settings);
-                $errors = array_merge($errors, $cceClient->errors());
+                $big_ok = $CI->cceClient->set($_oid, '', $modified_settings);
+                $errors = array_merge($errors, $CI->cceClient->errors());
             }
             else {
                 $tmpresellerPowers = array();
                 if (isset($_oid)) {
                     // Get current User object:
-                    $tempResData = $cceClient->get($_oid);
+                    $tempResData = $CI->cceClient->get($_oid);
                     $tempCurrCaps = scalar_to_array($tempResData['capabilities']);
                     foreach ($possible_reseller_caps as $key => $value) {
                         // Remove all reseller caps from currently used caps:
@@ -450,10 +448,10 @@ class ManageAdmin extends MX_Controller {
                         }
                     }
                     $modified_settings = array(
-                        'capabilities' => $cceClient->array_to_scalar(array_unique(array_merge($tempCurrCaps, $tmpresellerPowers)))
+                        'capabilities' => $CI->cceClient->array_to_scalar(array_unique(array_merge($tempCurrCaps, $tmpresellerPowers)))
                         );
-                    $big_ok = $cceClient->set($_oid, '', $modified_settings);
-                    $errors = array_merge($errors, $cceClient->errors());
+                    $big_ok = $CI->cceClient->set($_oid, '', $modified_settings);
+                    $errors = array_merge($errors, $CI->cceClient->errors());
                 }
             }
 
@@ -466,8 +464,8 @@ class ManageAdmin extends MX_Controller {
             // No errors. Reload the entire page to load it with the updated values:
             if ((count($errors) == "0")) {
                 // Nice people say goodbye, or CCEd waits forever:
-                $cceClient->bye();
-                $serverScriptHelper->destructor();              
+                $CI->cceClient->bye();
+                $CI->serverScriptHelper->destructor();              
                 header("Location: /vsite/adminList");
                 exit;
             }
@@ -484,7 +482,7 @@ class ManageAdmin extends MX_Controller {
         }
 
         // Prepare Page:
-        $factory = $serverScriptHelper->getHtmlComponentFactory("base-vsite", $iam);
+        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-vsite", $iam);
         $BxPage = $factory->getPage();
         $BxPage->setErrors($errors);
         $i18n = $factory->getI18n();
@@ -567,7 +565,7 @@ class ManageAdmin extends MX_Controller {
             );
 
         if (isset($_oid)) {
-            $disk = $cceClient->get($_oid, 'Disk');
+            $disk = $CI->cceClient->get($_oid, 'Disk');
             $displayed_quota = simplify_number($disk['quota']*1024*1024, "KB", "2");
         }
         else {
@@ -585,7 +583,7 @@ class ManageAdmin extends MX_Controller {
 
         // Server Admin Shell
         if (isset($_oid)) {
-            $userShell = $cceClient->get($_oid, 'Shell');
+            $userShell = $CI->cceClient->get($_oid, 'Shell');
         }
         else {
             $userShell['enabled'] = '0';
@@ -619,7 +617,7 @@ class ManageAdmin extends MX_Controller {
                 $defaultPage
                 );
 
-        $Currcaps = $cceClient->scalar_to_array($CODBDATA['capLevels']);
+        $Currcaps = $CI->cceClient->scalar_to_array($CODBDATA['capLevels']);
 
         $resCAP['manageSite'] = '0';
         if (in_array('manageSite', $Currcaps)) {
@@ -643,7 +641,7 @@ class ManageAdmin extends MX_Controller {
             $defaultPage);
 
         if (isset($_oid)) {
-            $site = $cceClient->get($_oid, 'Sites');
+            $site = $CI->cceClient->get($_oid, 'Sites');
             $sites_quota = ($site['quota'] == -1 ? '' : $site['quota']);
             $sites_quota = simplify_number($sites_quota*1000, "K", "2");
             $sites_max = ($site['max'] == -1 ? '' : $site['max']);
@@ -685,10 +683,10 @@ class ManageAdmin extends MX_Controller {
         //
 
         // Get strings to use as labels
-        list($caps_oid) = $cceClient->find('Capabilities');
+        list($caps_oid) = $CI->cceClient->find('Capabilities');
         $possible_reseller_labels = array();
         foreach ($possible_reseller_caps_with_defaults as $cap => $junk) {
-            $ns = $cceClient->get($caps_oid, $cap);
+            $ns = $CI->cceClient->get($caps_oid, $cap);
             $possible_reseller_labels[$cap] = $i18n->get($ns['nameTag']);
         }
 
@@ -696,7 +694,7 @@ class ManageAdmin extends MX_Controller {
         $reseller_allowed_labels = array();
         if (isset($_oid)) {
             if (count($CODBDATA['capabilities']) > "0") {
-                $resCaps = $cceClient->scalar_to_array($CODBDATA['capabilities']);
+                $resCaps = $CI->cceClient->scalar_to_array($CODBDATA['capabilities']);
             }
             else {
                 $resCaps = array();
@@ -737,12 +735,12 @@ class ManageAdmin extends MX_Controller {
 //--
 
         $select_reseller_caps =& $factory->getSetSelector('resellerPowers',
-                                $cceClient->array_to_scalar($reseller_allowed_labels), 
-                                $cceClient->array_to_scalar($possible_reseller_labels),
+                                $CI->cceClient->array_to_scalar($reseller_allowed_labels), 
+                                $CI->cceClient->array_to_scalar($possible_reseller_labels),
                                 'allowedAbilities', 'disallowedAbilities',
                                 $cap_access, 
-                                $cceClient->array_to_scalar($reseller_allowed_caps),
-                                $cceClient->array_to_scalar(array_keys($possible_reseller_caps_with_defaults))
+                                $CI->cceClient->array_to_scalar($reseller_allowed_caps),
+                                $CI->cceClient->array_to_scalar(array_keys($possible_reseller_caps_with_defaults))
                             );
 
         $select_reseller_caps->setOptional(true);
@@ -781,21 +779,21 @@ class ManageAdmin extends MX_Controller {
 
         // display admin controls
         if (isset($_oid)) {
-            $root_access = $cceClient->get($_oid, 'RootAccess');
+            $root_access = $CI->cceClient->get($_oid, 'RootAccess');
         }
 
         // Get strings to use as labels
-        list($caps_oid) = $cceClient->find('Capabilities');
+        list($caps_oid) = $CI->cceClient->find('Capabilities');
         $possible_labels = array();
         foreach ($possible_caps as $cap => $junk) {
-            $ns = $cceClient->get($caps_oid, $cap);
+            $ns = $CI->cceClient->get($caps_oid, $cap);
             $possible_labels[$cap] = $i18n->get($ns['nameTag']);
         }
 
         $allowed_caps = array();
         $allowed_labels = array();
         if (count($CODBDATA['capLevels']) > "0") {
-            $caps = $cceClient->scalar_to_array($CODBDATA['capLevels']);
+            $caps = $CI->cceClient->scalar_to_array($CODBDATA['capLevels']);
         }
         else {
             $caps = array();
@@ -872,12 +870,12 @@ class ManageAdmin extends MX_Controller {
         }
 
         $select_caps =& $factory->getSetSelector('adminPowers',
-                                $cceClient->array_to_scalar($allowed_labels), 
-                                $cceClient->array_to_scalar($possible_labels),
+                                $CI->cceClient->array_to_scalar($allowed_labels), 
+                                $CI->cceClient->array_to_scalar($possible_labels),
                                 'allowedAbilities', 'disallowedAbilities',
                                 $cap_access, 
-                                $cceClient->array_to_scalar($allowed_caps),
-                                $cceClient->array_to_scalar(array_keys($possible_caps))
+                                $CI->cceClient->array_to_scalar($allowed_caps),
+                                $CI->cceClient->array_to_scalar(array_keys($possible_caps))
                             );
 
         $select_caps->setOptional(true);
@@ -891,10 +889,6 @@ class ManageAdmin extends MX_Controller {
         // Add the buttons
         $block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
         $block->addButton($factory->getCancelButton("/vsite/adminList"));
-
-        // Nice people say goodbye, or CCEd waits forever:
-        $cceClient->bye();
-        $serverScriptHelper->destructor();
 
         $page_body[] = $block->toHtml();
 
