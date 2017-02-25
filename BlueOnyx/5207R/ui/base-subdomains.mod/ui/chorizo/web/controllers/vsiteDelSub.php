@@ -2,109 +2,107 @@
 
 class VsiteDelSub extends MX_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Past the login page this loads the page for /subdomains/vsiteDelSub.
-	 *
-	 */
+    /**
+     * Index Page for this controller.
+     *
+     * Past the login page this loads the page for /subdomains/vsiteDelSub.
+     *
+     */
 
-	public function index() {
+    public function index() {
 
-		$CI =& get_instance();
-		
-	    // We load the BlueOnyx helper library first of all, as we heavily depend on it:
-	    $this->load->helper('blueonyx');
-	    init_libraries();
+        $CI =& get_instance();
+        
+        // We load the BlueOnyx helper library first of all, as we heavily depend on it:
+        $this->load->helper('blueonyx');
+        init_libraries();
 
-  		// Need to load 'BxPage' for page rendering:
-  		$this->load->library('BxPage');
-		$MX =& get_instance();
+        // Need to load 'BxPage' for page rendering:
+        $this->load->library('BxPage');
+        
+        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set):
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
+        
+        // Line up the ducks for CCE-Connection:
+        include_once('ServerScriptHelper.php');
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
+        $user = $CI->BX_SESSION['loginUser'];
+        $i18n = new I18n("base-subdomains", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
 
-	    // Get $sessionId and $loginName from Cookie (if they are set):
-	    $sessionId = $CI->input->cookie('sessionId');
-	    $loginName = $CI->input->cookie('loginName');
-	    $locale = $CI->input->cookie('locale');
+        // Initialize Capabilities so that we can poll the access rights as well:
+        $Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
 
-	    // Line up the ducks for CCE-Connection:
-	    include_once('ServerScriptHelper.php');
-		$serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-		$cceClient = $serverScriptHelper->getCceClient();
-		$user = $cceClient->getObject("User", array("name" => $loginName));
-		$i18n = new I18n("base-subdomains", $user['localePreference']);
-		$system = $cceClient->getObject("System");
+        // -- Actual page logic start:
 
-		// Initialize Capabilities so that we can poll the access rights as well:
-		$Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        // Get URL strings:
+        $get_form_data = $CI->input->get(NULL, TRUE);
 
-		// -- Actual page logic start:
+        //
+        //-- Validate GET data:
+        //
 
-		// Get URL strings:
-		$get_form_data = $CI->input->get(NULL, TRUE);
+        if ((isset($get_form_data['group'])) && (isset($get_form_data['OID'])) && (isset($get_form_data['fqdn']))) {
+            // We have a delete transaction:
+            $group = $get_form_data['group'];
+            $OID = $get_form_data['OID'];
+            $fqdn = $get_form_data['fqdn'];
+        }
+        else {
+            // Don't play games with us!
+            // Nice people say goodbye, or CCEd waits forever:
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
+            Log403Error("/gui/Forbidden403#1");
+        }
 
-		//
-		//-- Validate GET data:
-		//
+        //
+        //-- Access Rights Check for Vsite level pages:
+        // 
+        // 1.) Checks if the Group/Vsite exists.
+        // 2.) Checks if the user is systemAdministrator
+        // 3.) Checks if the user is Reseller of the given Group/Vsite
+        // 4.) Checks if the iser is siteAdmin of the given Group/Vsite
+        // Returns Forbidden403 if *none* of that is the case.
+        if (!$Capabilities->getGroupAdmin($group)) {
+            // Nice people say goodbye, or CCEd waits forever:
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
+            Log403Error("/gui/Forbidden403#2");
+        }
 
-		if ((isset($get_form_data['group'])) && (isset($get_form_data['OID'])) && (isset($get_form_data['fqdn']))) {
-			// We have a delete transaction:
-			$group = $get_form_data['group'];
-			$OID = $get_form_data['OID'];
-			$fqdn = $get_form_data['fqdn'];
-		}
-		else {
-			// Don't play games with us!
-			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
-			Log403Error("/gui/Forbidden403#1");
-		}
+        //
+        //-- Prepare data:
+        //
 
-		//
-		//-- Access Rights Check for Vsite level pages:
-		// 
-		// 1.) Checks if the Group/Vsite exists.
-		// 2.) Checks if the user is systemAdministrator
-		// 3.) Checks if the user is Reseller of the given Group/Vsite
-		// 4.) Checks if the iser is siteAdmin of the given Group/Vsite
-		// Returns Forbidden403 if *none* of that is the case.
-		if (!$Capabilities->getGroupAdmin($group)) {
-			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
-			Log403Error("/gui/Forbidden403#2");
-		}
+        // Get data for the Vsite:
+        $vsite = $CI->cceClient->getObject('Vsite', array('name' => $group));
 
-		//
-		//-- Prepare data:
-		//
+        //
+        //--- Handle form validation:
+        //
 
-		// Get data for the Vsite:
-		$vsite = $cceClient->getObject('Vsite', array('name' => $group));
+        // We start without any active errors:
+        $errors = array();
+        $extra_headers =array();
+        $ci_errors = array();
+        $my_errors = array();
 
-		//
-		//--- Handle form validation:
-		//
+        // Check 
+        $subdomain = $CI->cceClient->get($OID);
+        if (($subdomain['group'] == $group) && (!is_file('/etc/DEMO'))) {
+            $CI->cceClient->destroy($OID);
+            $errors = $CI->cceClient->errors();
+        }
 
-	    // We start without any active errors:
-	    $errors = array();
-	    $extra_headers =array();
-	    $ci_errors = array();
-	    $my_errors = array();
-
-	    // Check 
-		$subdomain = $cceClient->get($OID);
-		if (($subdomain['group'] == $group) && (!is_file('/etc/DEMO'))) {
-			$cceClient->destroy($OID);
-			$errors = $cceClient->errors();
-		}
-
-		$cceClient->bye();
-		$serverScriptHelper->destructor();
-		$redirect_URL = "/subdomains/vsiteSub?group=$group";
-		header("location: $redirect_URL");
-		exit;
-	}		
+        $CI->cceClient->bye();
+        $CI->serverScriptHelper->destructor();
+        $redirect_URL = "/subdomains/vsiteSub?group=$group";
+        header("location: $redirect_URL");
+        exit;
+    }       
 }
 
 /*

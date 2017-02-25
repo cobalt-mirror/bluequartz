@@ -2,197 +2,191 @@
 
 class Subconfig extends MX_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Past the login page this loads the page for /subdomains/snmpconfig.
-	 *
-	 */
+    /**
+     * Index Page for this controller.
+     *
+     * Past the login page this loads the page for /subdomains/snmpconfig.
+     *
+     */
 
-	public function index() {
+    public function index() {
 
-		$CI =& get_instance();
-		
-	    // We load the BlueOnyx helper library first of all, as we heavily depend on it:
-	    $this->load->helper('blueonyx');
-	    init_libraries();
+        $CI =& get_instance();
+        
+        // We load the BlueOnyx helper library first of all, as we heavily depend on it:
+        $this->load->helper('blueonyx');
+        init_libraries();
 
-  		// Need to load 'BxPage' for page rendering:
-  		$this->load->library('BxPage');
-		$MX =& get_instance();
+        // Need to load 'BxPage' for page rendering:
+        $this->load->library('BxPage');
 
-	    // Get $sessionId and $loginName from Cookie (if they are set):
-	    $sessionId = $CI->input->cookie('sessionId');
-	    $loginName = $CI->input->cookie('loginName');
-	    $locale = $CI->input->cookie('locale');
+        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set):
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
-	    // Line up the ducks for CCE-Connection:
-	    include_once('ServerScriptHelper.php');
-		$serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-		$cceClient = $serverScriptHelper->getCceClient();
-		$user = $cceClient->getObject("User", array("name" => $loginName));
-		$i18n = new I18n("base-vsite", $user['localePreference']);
-		$system = $cceClient->getObject("System");
+        // Line up the ducks for CCE-Connection:
+        include_once('ServerScriptHelper.php');
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
+        $user = $CI->BX_SESSION['loginUser'];
+        $i18n = new I18n("base-vsite", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
 
-		// Initialize Capabilities so that we can poll the access rights as well:
-		$Capabilities = new Capabilities($cceClient, $loginName, $sessionId);
+        // Initialize Capabilities so that we can poll the access rights as well:
+        $Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
 
-		// -- Actual page logic start:
+        // -- Actual page logic start:
 
-		// Not 'serverServerDesktop'? Bye, bye!
-		if (!$Capabilities->getAllowed('serverHttpd')) {
-			// Nice people say goodbye, or CCEd waits forever:
-			$cceClient->bye();
-			$serverScriptHelper->destructor();
-			Log403Error("/gui/Forbidden403");
-		}
+        // Not 'serverServerDesktop'? Bye, bye!
+        if (!$Capabilities->getAllowed('serverHttpd')) {
+            // Nice people say goodbye, or CCEd waits forever:
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
+            Log403Error("/gui/Forbidden403");
+        }
 
-		//
-		//--- Handle form validation:
-		//
+        //
+        //--- Handle form validation:
+        //
 
-	    // We start without any active errors:
-	    $errors = array();
-	    $extra_headers =array();
-	    $ci_errors = array();
-	    $my_errors = array();
+        // We start without any active errors:
+        $errors = array();
+        $extra_headers =array();
+        $ci_errors = array();
+        $my_errors = array();
 
-		// Shove submitted input into $form_data after passing it through the XSS filter:
-		$form_data = $CI->input->post(NULL, TRUE);
+        // Shove submitted input into $form_data after passing it through the XSS filter:
+        $form_data = $CI->input->post(NULL, TRUE);
 
-		// Form fields that are required to have input:
-		$required_keys = array("default_max_subdomains");
+        // Form fields that are required to have input:
+        $required_keys = array("default_max_subdomains");
 
-    	// Set up rules for form validation. These validations happen before we submit to CCE and further checks based on the schemas are done:
+        // Set up rules for form validation. These validations happen before we submit to CCE and further checks based on the schemas are done:
 
-		// Empty array for key => values we want to submit to CCE:
-    	$attributes = array();
-    	// Items we do NOT want to submit to CCE:
-    	$ignore_attributes = array();
-		if (is_array($form_data)) {
-			// Function GetFormAttributes() walks through the $form_data and returns us the $parameters we want to
-			// submit to CCE. It intelligently handles checkboxes, which only have "on" set when they are ticked.
-			// In that case it pulls the unticked status from the hidden checkboxes and addes them to $parameters.
-			// It also transformes the value of the ticked checkboxes from "on" to "1". 
-			//
-			// Additionally it generates the form_validation rules for CodeIgniter.
-			//
-			// params: $i18n				i18n Object of the error messages
-			// params: $form_data			array with form_data array from CI
-			// params: $required_keys		array with keys that must have data in it. Needed for CodeIgniter's error checks
-			// params: $ignore_attributes	array with items we want to ignore. Such as Labels.
-			// return: 						array with keys and values ready to submit to CCE.
-			$attributes = GetFormAttributes($i18n, $form_data, $required_keys, $ignore_attributes, $i18n);
-		}
-		//Setting up error messages:
-		$CI->form_validation->set_message('required', $i18n->get("[[palette.val_is_required]]", false, array("field" => "\"%s\"")));		
+        // Empty array for key => values we want to submit to CCE:
+        $attributes = array();
+        // Items we do NOT want to submit to CCE:
+        $ignore_attributes = array();
+        if (is_array($form_data)) {
+            // Function GetFormAttributes() walks through the $form_data and returns us the $parameters we want to
+            // submit to CCE. It intelligently handles checkboxes, which only have "on" set when they are ticked.
+            // In that case it pulls the unticked status from the hidden checkboxes and addes them to $parameters.
+            // It also transformes the value of the ticked checkboxes from "on" to "1". 
+            //
+            // Additionally it generates the form_validation rules for CodeIgniter.
+            //
+            // params: $i18n                i18n Object of the error messages
+            // params: $form_data           array with form_data array from CI
+            // params: $required_keys       array with keys that must have data in it. Needed for CodeIgniter's error checks
+            // params: $ignore_attributes   array with items we want to ignore. Such as Labels.
+            // return:                      array with keys and values ready to submit to CCE.
+            $attributes = GetFormAttributes($i18n, $form_data, $required_keys, $ignore_attributes, $i18n);
+        }
+        //Setting up error messages:
+        $CI->form_validation->set_message('required', $i18n->get("[[palette.val_is_required]]", false, array("field" => "\"%s\"")));        
 
-	    // Do we have validation related errors?
-	    if ($CI->form_validation->run() == FALSE) {
+        // Do we have validation related errors?
+        if ($CI->form_validation->run() == FALSE) {
 
-			if (validation_errors()) {
-				// Set CI related errors:
-				$ci_errors = array(validation_errors('<div class="alert dismissible alert_red"><img width="40" height="36" src="/.adm/images/icons/small/white/alarm_bell.png"><strong>', '</strong></div>'));
-			}		    
-			else {
-				// No errors. Pass empty array along:
-				$ci_errors = array();
-			}
-		}
+            if (validation_errors()) {
+                // Set CI related errors:
+                $ci_errors = array(validation_errors('<div class="alert dismissible alert_red"><img width="40" height="36" src="/.adm/images/icons/small/white/alarm_bell.png"><strong>', '</strong></div>'));
+            }           
+            else {
+                // No errors. Pass empty array along:
+                $ci_errors = array();
+            }
+        }
 
-		//
-		//--- Own error checks:
-		//
+        //
+        //--- Own error checks:
+        //
 
-		if ($CI->input->post(NULL, TRUE)) {
-			// Not needed. Thank you, jQuery!
-		}
+        if ($CI->input->post(NULL, TRUE)) {
+            // Not needed. Thank you, jQuery!
+        }
 
-		//
-		//--- At this point all checks are done. If we have no errors, we can submit the data to CODB:
-		//
+        //
+        //--- At this point all checks are done. If we have no errors, we can submit the data to CODB:
+        //
 
-		// Join the various error messages:
-		$errors = array_merge($ci_errors, $my_errors);
+        // Join the various error messages:
+        $errors = array_merge($ci_errors, $my_errors);
 
-		// If we have no errors and have POST data, we submit to CODB:
-		if ((count($errors) == "0") && ($CI->input->post(NULL, TRUE))) {
+        // If we have no errors and have POST data, we submit to CODB:
+        if ((count($errors) == "0") && ($CI->input->post(NULL, TRUE))) {
 
-			// We have no errors. We submit to CODB.
+            // We have no errors. We submit to CODB.
 
-	  		// Actual submit to CODB:
-			$cceClient->setObject("System", $attributes, "subdomains");
+            // Actual submit to CODB:
+            $CI->cceClient->setObject("System", $attributes, "subdomains");
 
-			// CCE errors that might have happened during submit to CODB:
-			$CCEerrors = $cceClient->errors();
-			foreach ($CCEerrors as $object => $objData) {
-				// When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
-				$errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
-			}
-			// Replace the CODB obtained values in our Form with the one we just posted to CCE:
-			$web = $form_data;
-		}
+            // CCE errors that might have happened during submit to CODB:
+            $CCEerrors = $CI->cceClient->errors();
+            foreach ($CCEerrors as $object => $objData) {
+                // When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
+                $errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
+            }
+            // Replace the CODB obtained values in our Form with the one we just posted to CCE:
+            $web = $form_data;
+        }
 
-		//
-	    //-- Generate page:
-	    //
+        //
+        //-- Generate page:
+        //
 
-		// Prepare Page:
-		$factory = $serverScriptHelper->getHtmlComponentFactory("base-subdomains", "/subdomains/subconfig");
-		$BxPage = $factory->getPage();
-		$BxPage->setErrors($errors);
-		$i18n = $factory->getI18n();
+        // Prepare Page:
+        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-subdomains", "/subdomains/subconfig");
+        $BxPage = $factory->getPage();
+        $BxPage->setErrors($errors);
+        $i18n = $factory->getI18n();
 
-		// Set Menu items:
-		$BxPage->setVerticalMenu('base_controlpanel');
-		$page_module = 'base_sysmanage';
+        // Set Menu items:
+        $BxPage->setVerticalMenu('base_controlpanel');
+        $page_module = 'base_sysmanage';
 
-		// get web
-		$web = $cceClient->getObject("System", array(), "subdomains");
+        // get web
+        $web = $CI->cceClient->get($system['OID'], "subdomains");
 
-		$defaultPage = "basicSettingsTab";
+        $defaultPage = "basicSettingsTab";
 
-		$block =& $factory->getPagedBlock("subdomain_header", array($defaultPage));
+        $block =& $factory->getPagedBlock("subdomain_header", array($defaultPage));
 
-		$block->setToggle("#");
-		$block->setSideTabs(FALSE);
-		$block->setDefaultPage($defaultPage);
+        $block->setToggle("#");
+        $block->setSideTabs(FALSE);
+        $block->setDefaultPage($defaultPage);
 
-		// Add divider:
-		$block->addFormField(
-		        $factory->addBXDivider("default_settings", ""),
-		        $factory->getLabel("default_settings", false),
-		        $defaultPage
-		        );			
+        // Add divider:
+        $block->addFormField(
+                $factory->addBXDivider("default_settings", ""),
+                $factory->getLabel("default_settings", false),
+                $defaultPage
+                );          
 
-		$block->addFormField(
-			$factory->getBoolean("vsite_enabled", $web["vsite_enabled"]),
-			$factory->getLabel("vsite_enabled")
-		);
+        $block->addFormField(
+            $factory->getBoolean("vsite_enabled", $web["vsite_enabled"]),
+            $factory->getLabel("vsite_enabled")
+        );
 
-		$default_max_subdomains = $factory->getInteger("default_max_subdomains", $web["default_max_subdomains"], 1, 1000);
-		$default_max_subdomains->setWidth(4);
-		$default_max_subdomains->showBounds(1);
+        $default_max_subdomains = $factory->getInteger("default_max_subdomains", $web["default_max_subdomains"], 1, 1000);
+        $default_max_subdomains->setWidth(4);
+        $default_max_subdomains->showBounds(1);
 
-		$block->addFormField(
-			$default_max_subdomains,
-			$factory->getLabel("default_max_subdomains")
-		);
+        $block->addFormField(
+            $default_max_subdomains,
+            $factory->getLabel("default_max_subdomains")
+        );
 
-		// Add the buttons
-		$block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
-		$block->addButton($factory->getCancelButton("/subdomains/subconfig"));
+        // Add the buttons
+        $block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
+        $block->addButton($factory->getCancelButton("/subdomains/subconfig"));
 
-		// Nice people say goodbye, or CCEd waits forever:
-		$cceClient->bye();
-		$serverScriptHelper->destructor();
+        $page_body[] = $block->toHtml();
 
-		$page_body[] = $block->toHtml();
+        // Out with the page:
+        $BxPage->render($page_module, $page_body);
 
-		// Out with the page:
-	    $BxPage->render($page_module, $page_body);
-
-	}		
+    }       
 }
 /*
 Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
