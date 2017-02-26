@@ -2,130 +2,126 @@
 
 class PersonalEmail extends MX_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Past the login page this loads the page for /user/personalEmail.
-	 *
-	 * This page runs entirely via AutoFeatures ('UserExtraServices').
-	 * Which allows us to later splice in email related add ons such 
-	 * as the pages for the AV-SPAM without additional menu entries.
-	 * Makes things a bit more seamless. Oh, and it hides the terrible
-	 * mess of extensions/User.Email/10_EmailSettings.php. That one 
-	 * works, but it's *really* ugly. Don't use it as example.
-	 *
-	 */
+    /**
+     * Index Page for this controller.
+     *
+     * Past the login page this loads the page for /user/personalEmail.
+     *
+     * This page runs entirely via AutoFeatures ('UserExtraServices').
+     * Which allows us to later splice in email related add ons such 
+     * as the pages for the AV-SPAM without additional menu entries.
+     * Makes things a bit more seamless. Oh, and it hides the terrible
+     * mess of extensions/User.Email/10_EmailSettings.php. That one 
+     * works, but it's *really* ugly. Don't use it as example.
+     *
+     */
 
-	public function index() {
+    public function index() {
 
-		$CI =& get_instance();
-		
-	    // We load the BlueOnyx helper library first of all, as we heavily depend on it:
-	    $this->load->helper('blueonyx');
-	    init_libraries();
+        $CI =& get_instance();
+        
+        // We load the BlueOnyx helper library first of all, as we heavily depend on it:
+        $this->load->helper('blueonyx');
+        init_libraries();
 
-  		// Need to load 'BxPage' for page rendering:
-  		$this->load->library('BxPage');
-		$MX =& get_instance();
+        // Need to load 'BxPage' for page rendering:
+        $this->load->library('BxPage');
+        
 
-	    // Get $sessionId and $loginName from Cookie (if they are set):
-	    $sessionId = $CI->input->cookie('sessionId');
-	    $loginName = $CI->input->cookie('loginName');
+        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set):
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
-	    // Line up the ducks for CCE-Connection:
-	    include_once('ServerScriptHelper.php');
-		$serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-		$cceClient = $serverScriptHelper->getCceClient();
-		$user = $cceClient->getObject("User", array("name" => $loginName));
+        // Line up the ducks for CCE-Connection:
+        include_once('ServerScriptHelper.php');
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
+        $user = $CI->BX_SESSION['loginUser'];
 
-		$i18n = new I18n("base-user", $user['localePreference']);
-		$system = $cceClient->getObject("System");
+        $i18n = new I18n("base-user", $CI->BX_SESSION['loginUser']['localePreference']);
+        $system = $CI->getSystem();
 
-		//-- Handle form validation:
+        //-- Handle form validation:
 
-	    // We start without any active errors:
-	    $errors = array();
-	    $ci_errors = array();
-	    $my_errors = array();
+        // We start without any active errors:
+        $errors = array();
+        $ci_errors = array();
+        $my_errors = array();
 
-		// Shove submitted input into $form_data after passing it through the XSS filter:
-		$form_data = $CI->input->post(NULL, TRUE);
+        // Shove submitted input into $form_data after passing it through the XSS filter:
+        $form_data = $CI->input->post(NULL, TRUE);
 
-		// If we have POST data, we run it through AutoFeatures:
-		if ($CI->input->post(NULL, TRUE)) {
+        // If we have POST data, we run it through AutoFeatures:
+        if ($CI->input->post(NULL, TRUE)) {
 
-			// Handle AutoFeatures:
-			$autoFeatures = new AutoFeatures($serverScriptHelper, $form_data);
-			list($userservices) = $cceClient->find("UserExtraServices");
-			$af_errors = $autoFeatures->handle("User.Email", array("CCE_SERVICES_OID" => $userservices, "CCE_OID" => $user['OID'], 'i18n' => $i18n), $form_data);
-			$errors = array_merge($errors, $af_errors);
+            // Handle AutoFeatures:
+            $autoFeatures = new AutoFeatures($CI->serverScriptHelper, $form_data);
+            list($userservices) = $CI->cceClient->find("UserExtraServices");
+            $af_errors = $autoFeatures->handle("User.Email", array("CCE_SERVICES_OID" => $userservices, "CCE_OID" => $user['OID'], 'i18n' => $i18n), $form_data);
+            $errors = array_merge($errors, $af_errors);
 
-			// No errors during submit? Reload page:
-			if (count($errors) == "0") {
-				$cceClient->bye();
-				$serverScriptHelper->destructor();
-				$redirect_URL = "/user/personalEmail";
-				header("location: $redirect_URL");
-				exit;
-			}
-		}
+            // No errors during submit? Reload page:
+            if (count($errors) == "0") {
+                $CI->cceClient->bye();
+                $CI->serverScriptHelper->destructor();
+                $redirect_URL = "/user/personalEmail";
+                header("location: $redirect_URL");
+                exit;
+            }
+        }
 
-		//
-	    //-- Generate page:
-	    //
+        //
+        //-- Generate page:
+        //
 
-		// Prepare Page:
-		$factory = $serverScriptHelper->getHtmlComponentFactory("base-user", "/user/personalEmail");
-		$BxPage = $factory->getPage();
-		$BxPage->setErrors($errors);
-		$i18n = $factory->getI18n();
+        // Prepare Page:
+        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-user", "/user/personalEmail");
+        $BxPage = $factory->getPage();
+        $BxPage->setErrors($errors);
+        $i18n = $factory->getI18n();
 
-		// Set Menu items:
-		$BxPage->setVerticalMenu('base_controlpanel');
-		$page_module = 'base_personalProfile';
+        // Set Menu items:
+        $BxPage->setVerticalMenu('base_controlpanel');
+        $page_module = 'base_personalProfile';
 
-	    // Set extra headers for fullcalendar and datepicker:
-		$BxPage->setExtraHeaders('<script src="/gui/fullcalendar"></script>');
-		$BxPage->setExtraHeaders('<script src="/gui/datepicker"></script>');
+        // Set extra headers for fullcalendar and datepicker:
+        $BxPage->setExtraHeaders('<script src="/gui/fullcalendar"></script>');
+        $BxPage->setExtraHeaders('<script src="/gui/datepicker"></script>');
 
-		// Find out which modules are active and use their names as Tab headers:
-		$autoFeatures = new AutoFeatures($serverScriptHelper);
-		$TABs = array_values($autoFeatures->ListFeatures("User.Email"));
+        // Find out which modules are active and use their names as Tab headers:
+        $autoFeatures = new AutoFeatures($CI->serverScriptHelper);
+        $TABs = array_values($autoFeatures->ListFeatures("User.Email"));
 
-		// Configure the pagedBlock:
-		$block =& $factory->getPagedBlock("emailSettingsFor", $TABs);
-		$block->setLabel($factory->getLabel('[[base-user.emailSettingsFor]]', false, array("userName" => $loginName)));
+        // Configure the pagedBlock:
+        $block =& $factory->getPagedBlock("emailSettingsFor", $TABs);
+        $block->setLabel($factory->getLabel('[[base-user.emailSettingsFor]]', false, array("userName" => $CI->BX_SESSION['loginName'])));
 
-		$block->setToggle("#");
-		$block->setSideTabs(FALSE);
-		$block->setShowAllTabs("#");
-		$block->setDefaultPage($TABs[0]);
+        $block->setToggle("#");
+        $block->setSideTabs(FALSE);
+        $block->setShowAllTabs("#");
+        $block->setDefaultPage($TABs[0]);
 
 
-		//
-		//--- Add AutoFeatures:
-		//
+        //
+        //--- Add AutoFeatures:
+        //
 
-		$autoFeatures = new AutoFeatures($serverScriptHelper, $attributes);
-		$cce_info = array('CCE_OID' => $user['OID'], 'FIELD_ACCESS' => 'rw');
-		list($cce_info['CCE_SERVICES_OID']) = $cceClient->find('UserExtraServices');
-		$cce_info['PAGED_BLOCK_DEFAULT_PAGE'] = $TABs[0];
-		$autoFeatures->display($block, 'User.Email', $cce_info);
+        $autoFeatures = new AutoFeatures($CI->serverScriptHelper, $attributes);
+        $cce_info = array('CCE_OID' => $user['OID'], 'FIELD_ACCESS' => 'rw');
+        list($cce_info['CCE_SERVICES_OID']) = $CI->cceClient->find('UserExtraServices');
+        $cce_info['PAGED_BLOCK_DEFAULT_PAGE'] = $TABs[0];
+        $autoFeatures->display($block, 'User.Email', $cce_info);
 
-		// Add the buttons
-		$block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
-		$block->addButton($factory->getCancelButton("/user/personalEmail"));
+        // Add the buttons
+        $block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
+        $block->addButton($factory->getCancelButton("/user/personalEmail"));
 
-		// Nice people say goodbye, or CCEd waits forever:
-		$cceClient->bye();
-		$serverScriptHelper->destructor();
+        $page_body[] = $block->toHtml();
 
-		$page_body[] = $block->toHtml();
+        // Out with the page:
+        $BxPage->render($page_module, $page_body);
 
-		// Out with the page:
-	    $BxPage->render($page_module, $page_body);
-
-	}		
+    }       
 }
 /*
 Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
