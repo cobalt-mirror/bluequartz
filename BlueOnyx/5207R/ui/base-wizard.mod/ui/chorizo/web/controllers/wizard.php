@@ -6,10 +6,10 @@ class Wizard extends MX_Controller {
      * Index Page for the web based Setup-Wizard.
      *
      * NOTE: This page doesn't follow the usual semantics that we use for the
-     * rest of the GUI. You HAVE to be REALLY careful with $cceClient, or you
+     * rest of the GUI. You HAVE to be REALLY careful with $CI->cceClient, or you
      * leave a lot of unneeded /usr/sausalito/sbin/cced childs around.
      * So be REALLY sure to close all of them that you don't need. 
-     * And there is a REASON why we use $cceClient->bye(); so often in here!
+     * And there is a REASON why we use $CI->cceClient->bye(); so often in here!
      */
 
     public function wizard_reload() {
@@ -26,9 +26,9 @@ class Wizard extends MX_Controller {
         // Profiling and Benchmarking:
         bx_profiler(FALSE);
 
-        // Get $sessionId and $loginName from Cookie (if they are set):
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
+        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set):
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
         // Get the IP address of the user accessing the GUI:
         $userip = $CI->input->ip_address();
@@ -100,6 +100,7 @@ class Wizard extends MX_Controller {
 
         // Set Localization:
         $data_head['localization'] = $localization;
+        $data_head['bx_css'] = '';
 
         // Show the HTML Page:
         $this->load->view('neutral_header_view', $data_head);
@@ -109,82 +110,34 @@ class Wizard extends MX_Controller {
 
     public function index() {
         // We load the BlueOnyx helper library first of all, as we heavily depend on it:
+        $CI =& get_instance();
         $this->load->helper('blueonyx');
         init_libraries();
 
         // Profiling and Benchmarking:
         bx_profiler();
 
-        // Find out if CCEd is running. If it is not, we display an error message and quit:
-        $cceClient = new CceClient();
-
         // Get authentication cookies - if present:
-        $CI =& get_instance();
-        $sessionId = $CI->input->cookie('sessionId');
-        $loginName = $CI->input->cookie('loginName');
-        $locale = $CI->input->cookie('locale');
+        $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
+        $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
-        // Need to load 'BxPage' for page rendering:
-        $MX =& get_instance();
-        $this->load->library('BxPage');
-
-        // If we have no cookies, login name is empty. Set default:
-        if ($loginName == "") {
-            $loginName = 'admin';
-        }
-
-        // Connect to CCEd:
-        $cceClient->connect();
-
-        // We do have a $sessionId? Try it:
-        if ($sessionId != "") {
-            $cceClient->authkey($loginName, $sessionId);
-            // The sessionId we had was from a cookie and it was invalid.
-            // Delete the cookies:
-            delete_cookie("loginName");
-            delete_cookie("sessionId");
-            delete_cookie("userip");
-            $cceClient->bye();
-        }
-        else {
-            // Try the default password that is set after BlueOnyx installations.
-            // This will (on success) yield a valid sessionId:
-            $sessionId = $cceClient->auth("admin", "blueonyx");
-            $cceClient->bye();
-        }
-
-        // Check if either of the two login methods worked and if we DO have
-        // a valid sessionId now:
-        if ($sessionId == "") {
-            // We don't! Login failed!
-            // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-
-            // If we're here, the password was changed and is no longer the default one. 
-            // Redirect to the login page and let the user enter the new password.
-            // Afterwards the login page will redirect him back to us. With valid
-            // Cookies for username and sessionId.
-            // 
-            header("Location: /login?action=wizard");
+        if (($CI->BX_SESSION['sessionId'] == "") && ($CI->BX_SESSION['loginName'] == "")) {
+            header("Location: /login");
             exit;
         }
 
-        // Nice people say goodbye, or CCEd waits forever:
-        $cceClient->bye();
+        $locale = $CI->input->cookie('locale');
 
-        // Basics:
-        //
-        // If we get to this point, we do have a loginName and a sessionId. Run them
-        // against $serverScriptHelper. If that works, we automatically go on with the
-        // rest of the page. But if $serverScriptHelper gets handed incorrect login
-        // details, then it will bump us back to the /login page. So this method does
-        // two things: It provides us with $serverScriptHelper, a working $cceClient
-        // and on top of that it also checks if we're privileged to be here with
-        // the correct login details:
-        //
-        $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-        $cceClient = $serverScriptHelper->getCceClient();
-        $i18n = new I18n("base-wizard", $locale);
+        // Need to load 'BxPage' for page rendering:
+        $this->load->library('BxPage');
+
+        // Line up the ducks for CCE-Connection and store them for re-usability in $CI:
+        include_once('ServerScriptHelper.php');
+        $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+        $CI->cceClient = $CI->serverScriptHelper->getCceClient();
+
+        $system = $CI->getSystem();
+        $user = $CI->BX_SESSION['loginUser'];
 
         // Shove submitted input into $form_data after passing it through the XSS filter:
         $form_data = $CI->input->post(NULL, TRUE);
@@ -207,8 +160,8 @@ class Wizard extends MX_Controller {
 
         // Send cookies that expire in one hour: 
         setcookie("loginName", 'admin', time()+60*60*24*365, "/");
-        if ($sessionId != "") {
-            setcookie("sessionId", $sessionId, "0", "/");
+        if ($CI->BX_SESSION['sessionId'] != "") {
+            setcookie("sessionId", $CI->BX_SESSION['sessionId'], "0", "/");
         }
 
         // Set new locale to cookie, too, but set an expiry of 365 days:
@@ -231,7 +184,7 @@ class Wizard extends MX_Controller {
             $agent = $CI->agent->is_mobile();
         }
 
-        //$i18n = new I18n("base-wizard", $locale);
+        $i18n = new I18n("base-wizard", $locale);
 
         // We start without any active errors:
         $errors = array();
@@ -379,13 +332,13 @@ class Wizard extends MX_Controller {
                 }
 
                 // Set User locale and password first:
-                $cceClient->setObject("User", $user_attributes, "", array("name" => 'admin'));
-                $errors = array_merge($errors, $cceClient->errors());
+                $CI->cceClient->setObject("User", $user_attributes, "", array("name" => 'admin'));
+                $errors = array_merge($errors, $CI->cceClient->errors());
 
                 // Set system-language
-                $oids = $cceClient->find("System");
-                $cceClient->set($oids[0], "", array("productLanguage" => $attributes['localeField']));
-                $errors = array_merge($errors, $cceClient->errors());
+                $oids = $CI->cceClient->find("System");
+                $CI->cceClient->set($oids[0], "", array("productLanguage" => $attributes['localeField']));
+                $errors = array_merge($errors, $CI->cceClient->errors());
 
                 // Set new locale to cookie, too:
                 $cookie = array('name' => 'locale', 'path' => '/', 'value' => $attributes['localeField'], 'expire' => '31536000');
@@ -407,15 +360,15 @@ class Wizard extends MX_Controller {
                     );
 
                 // Actual submit to CODB:
-                $cceClient->setObject("System", $mysql_data, "mysql");
-                $errors = array_merge($errors, $cceClient->errors());
+                $CI->cceClient->setObject("System", $mysql_data, "mysql");
+                $errors = array_merge($errors, $CI->cceClient->errors());
 
                 // Now handle the set to the CODB object "MySQL" as well.
-                $getthisOID = $cceClient->find("MySQL");
+                $getthisOID = $CI->cceClient->find("MySQL");
                 $mysql_settings_exists = 0;
-                $mysql_settings = $cceClient->get($getthisOID[0]);
+                $mysql_settings = $CI->cceClient->get($getthisOID[0]);
                 if (!isset($mysql_settings['timestamp'])) {
-                    $mysqlOID = $cceClient->create("MySQL",
+                    $mysqlOID = $CI->cceClient->create("MySQL",
                         array(
                             'sql_host' => 'localhost',
                             'sql_port' => '3306',
@@ -427,8 +380,8 @@ class Wizard extends MX_Controller {
                     );
                 }
                 else {
-                    $mysqlOID = $cceClient->find("MySQL");
-                    $cceClient->set($mysqlOID[0], "",
+                    $mysqlOID = $CI->cceClient->find("MySQL");
+                    $CI->cceClient->set($mysqlOID[0], "",
                         array(
                             'sql_host' => 'localhost',
                             'sql_port' => '3306',
@@ -439,7 +392,7 @@ class Wizard extends MX_Controller {
                         )
                     );
                 }
-                $errors = array_merge($errors, $cceClient->errors());
+                $errors = array_merge($errors, $CI->cceClient->errors());
 
                 //
                 //-- Set TimeZone:
@@ -461,22 +414,22 @@ class Wizard extends MX_Controller {
 
                 // Actual submit to CODB:
                 // "deferCommit" is used by the setup wizard:
-                $cceClient->setObject('System', array(
+                $CI->cceClient->setObject('System', array(
                                             'deferCommit' => '1',
                                             'epochTime' => $date,
                                             'timeZone' => $timeZone,
                                             ), 'Time');
-                $errors = array_merge($errors, $cceClient->errors());
+                $errors = array_merge($errors, $CI->cceClient->errors());
 
                 // Work around for 5106R oddity. We use the extra handler to set the timezone instead:
-                $cceClient->setObject('System', array(
+                $CI->cceClient->setObject('System', array(
                                             'epochTime' => $date,
                                             'timeZone' => $timeZone,
                                             'trigger' => time()
                                             ), 'TempTime');
-                $errors = array_merge($errors, $cceClient->errors());
+                $errors = array_merge($errors, $CI->cceClient->errors());
 
-                $serverScriptHelper->shell("/usr/sausalito/sbin/setTime " . $date . " " . $timeZone . " " . "" . " false", $output, "root", $sessionId);
+                $CI->serverScriptHelper->shell("/usr/sausalito/sbin/setTime " . $date . " " . $timeZone . " " . "" . " false", $output, "root", $CI->BX_SESSION['sessionId']);
 
                 //
                 //-- Set Network:
@@ -490,24 +443,24 @@ class Wizard extends MX_Controller {
 
                 if (!file_exists("/proc/user_beancounters")) {
                     // Regular Network Interfaces
-                    $ok = $cceClient->set($oids[0], "", array("hostname" => $attributes['hostNameField'], "domainname" => $attributes['domainNameField'], "dns" => $attributes['dnsAddressesField'], "gateway" => $attributes['gatewayField']));
-                    $errors = array_merge($errors, $cceClient->errors());
+                    $ok = $CI->cceClient->set($oids[0], "", array("hostname" => $attributes['hostNameField'], "domainname" => $attributes['domainNameField'], "dns" => $attributes['dnsAddressesField'], "gateway" => $attributes['gatewayField']));
+                    $errors = array_merge($errors, $CI->cceClient->errors());
                 }
                 else {
                     // OpenVZ Network Interfaces
-                    $ok = $cceClient->set($oids[0], "", array("hostname" => $attributes['hostNameField'], "domainname" => $attributes['domainNameField'], "dns" => $attributes['dnsAddressesField']));
-                    $errors = array_merge($errors, $cceClient->errors());
+                    $ok = $CI->cceClient->set($oids[0], "", array("hostname" => $attributes['hostNameField'], "domainname" => $attributes['domainNameField'], "dns" => $attributes['dnsAddressesField']));
+                    $errors = array_merge($errors, $CI->cceClient->errors());
                 }               
 
                 // Check if 'localhost' or our own IP are used as DNS servers:
                 if (isset($attributes['ipAddressFieldeth0'])) {
                     // We're using our own DNS. Enable the DNS server:
-                    $cceClient->setObject("System", array("enabled" => '1'), "DNS");
+                    $CI->cceClient->setObject("System", array("enabled" => '1'), "DNS");
                 }
-                $ownDNS = $cceClient->scalar_to_array($attributes['dnsAddressesField']);
+                $ownDNS = $CI->cceClient->scalar_to_array($attributes['dnsAddressesField']);
                 if (in_array('127.0.0.1', $ownDNS)) {
                     // We're using our own DNS. Enable the DNS server:
-                    $cceClient->setObject("System", array("enabled" => '1'), "DNS");
+                    $CI->cceClient->setObject("System", array("enabled" => '1'), "DNS");
                 }
 
                 $adminIf = "eth1";
@@ -544,14 +497,14 @@ class Wizard extends MX_Controller {
                             // setup or set disabled
                             if ($ip_field == '') {
                                 // first migrate any aliases to eth0 (possibly do this better)
-                                $aliases = $cceClient->findx('Network', array(), array('device' => "^$devices[$i]:"));
+                                $aliases = $CI->cceClient->findx('Network', array(), array('device' => "^$devices[$i]:"));
                                 for ($k = 0; $k < count($aliases); $k++) {
-                                    $new_device = find_free_device($cceClient, 'eth0');
-                                    $ok = $cceClient->set($aliases[$k], '', array('device' => $new_device));
-                                    $errors = array_merge($errors, $cceClient->errors());
+                                    $new_device = find_free_device($CI->cceClient, 'eth0');
+                                    $ok = $CI->cceClient->set($aliases[$k], '', array('device' => $new_device));
+                                    $errors = array_merge($errors, $CI->cceClient->errors());
                                 }
 
-                                $cceClient->setObject(
+                                $CI->cceClient->setObject(
                                     'Network', 
                                     array("enabled" => "0"), 
                                     "",
@@ -559,10 +512,10 @@ class Wizard extends MX_Controller {
                                 );
 
                                 if ($devices[$i] == $adminIf) {
-                                    $admin_if_errors = $cceClient->errors();
+                                    $admin_if_errors = $CI->cceClient->errors();
                                 }
                                 else {
-                                    $errors = array_merge($errors, $cceClient->errors());
+                                    $errors = array_merge($errors, $CI->cceClient->errors());
                                 }
                             }
                             elseif ($ip_field && (($ip_field != $ip_orig) || ($nm_field != $nm_orig))) {
@@ -577,14 +530,14 @@ class Wizard extends MX_Controller {
                                     // the new ip address.  if there is, destroy the Network object
                                     // for this device, and assign the alias this device name.
 
-                                    $alias = $cceClient->find('Network', 
+                                    $alias = $CI->cceClient->find('Network', 
                                                         array(
                                                             'real' => 0,
                                                             'ipaddr' => $ip_field
                                                             ));
 
                                     if (isset($alias[0])) {
-                                        $ok = $cceClient->set($alias, '',
+                                        $ok = $CI->cceClient->set($alias, '',
                                             array(
                                                 'device' => $devices[$i],
                                                 'real' => 1,
@@ -593,7 +546,7 @@ class Wizard extends MX_Controller {
                                                 'enabled' => 1,
                                                 'bootproto' => 'none'
                                                 ));
-                                        $errors = array_merge($errors, $cceClient->errors());
+                                        $errors = array_merge($errors, $CI->cceClient->errors());
                                         if (!$ok) {
                                             break;
                                         }
@@ -602,7 +555,7 @@ class Wizard extends MX_Controller {
                                         }
                                     }
                                 }
-                                $cceClient->setObject('Network',
+                                $CI->cceClient->setObject('Network',
                                         array(
                                             'ipaddr' => $ip_field,
                                             'netmask' => $nm_field,
@@ -612,10 +565,10 @@ class Wizard extends MX_Controller {
                                        '', array('device' => $devices[$i]));
 
                                 if ($devices[$i] == $adminIf) {
-                                    $admin_if_errors = $cceClient->errors();
+                                    $admin_if_errors = $CI->cceClient->errors();
                                 }
                                 else {
-                                    $errors = array_merge($errors, $cceClient->errors());
+                                    $errors = array_merge($errors, $CI->cceClient->errors());
                                 }
                             }
                         }
@@ -627,12 +580,12 @@ class Wizard extends MX_Controller {
                 //
 
                 if (count($errors) == "0") {
-                    $cceClient->setObject('System', array('isLicenseAccepted' => '1', 'isRegistered' => '0'), '');
+                    $CI->cceClient->setObject('System', array('isLicenseAccepted' => '1', 'isRegistered' => '0'), '');
 
                     // Send cookies that expire in one hour:
                     setcookie("loginName", 'admin', time()+60*60*24*365, "/");
-                    if ($sessionId != "") {
-                        setcookie("sessionId", $sessionId, "0", "/");
+                    if ($CI->BX_SESSION['sessionId'] != "") {
+                        setcookie("sessionId", $CI->BX_SESSION['sessionId'], "0", "/");
                     }
 
                     // Set new locale to cookie, too, but set an expiry of 365 days:
@@ -658,16 +611,18 @@ class Wizard extends MX_Controller {
                         $this->input->set_cookie($theme_cookie);
                     }
 
-                    // Nice people say goodbye, or CCEd waits forever:
-                    $cceClient->bye();
-                    $serverScriptHelper->destructor();
-
                     if (!isset($redirect_to_new_ip)) {
+                        // Nice people say goodbye, or CCEd waits forever:
+                        $CI->cceClient->bye();
+                        $CI->serverScriptHelper->destructor();
                         // Simple redirect as IP hasn't changed:
                         header("Location: /gui");
                         exit;
                     }
                     else {
+                        // Nice people say goodbye, or CCEd waits forever:
+                        $CI->cceClient->bye();
+                        $CI->serverScriptHelper->destructor();
                         // Redirect to the new IP:
                         header("Location: http://$redirect_to_new_ip:444/gui");
                         exit;
@@ -681,8 +636,8 @@ class Wizard extends MX_Controller {
         //
 
         // Find out if the web based initial setup has been completed:
-        $system = $cceClient->getObject('System');
-        $TZ = $cceClient->getObject("System", array(), "Time");
+        $system = $CI->cceClient->getObject('System');
+        $TZ = $CI->cceClient->getObject("System", array(), "Time");
 
         if ((!isset($system['productLanguage'])) || (!isset($system['dns'])) || (!isset($system['gateway'])) || (!isset($TZ['timeZone'])) || (!isset($system['serialNumber']))) {
             // Vital information in CODB object 'System' is missing.
@@ -736,18 +691,8 @@ class Wizard extends MX_Controller {
         //-- Check if we are authed against CCEd:
         //
 
-        // Check if either of the two login methods worked:
-        if ($sessionId == "") {
-            // If we're here, the password was changed and is no longer the default one. 
-            // Redirect to the login page:
-            $cceClient->bye();
-            header("Location: /login?action=wizard");
-            exit;
-        }
-        elseif ($good_system_info == "TRUE") {
-            $cceClient->bye();
-
-            $factory = $serverScriptHelper->getHtmlComponentFactory("base-wizard", "/wizard");
+        if ($good_system_info == "TRUE") {
+            $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-wizard", "/wizard");
             $defaultPage = "Basic";
             //$i18n = new I18n("base-wizard", $locale);
             $BxPage = $factory->getPage();
@@ -860,10 +805,10 @@ nuclear facility.';
 
             // Network settings
 
-            $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-            $cceClient = $serverScriptHelper->getCceClient();
+            $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+            $CI->cceClient = $CI->serverScriptHelper->getCceClient();
 
-            $networkObj = $cceClient->getObject("System", array(), "Network");
+            $networkObj = $CI->cceClient->getObject("System", array(), "Network");
 
             // Add divider:
             $step_3->addHtmlComponent(
@@ -924,7 +869,7 @@ nuclear facility.';
 
             // real interfaces
             // ascii sorted, this may be a problem if there are more than 10 interfaces
-            $interfaces = $cceClient->findx('Network', array('real' => 1, 'enabled' => 1), array(), 'ascii', 'device');
+            $interfaces = $CI->cceClient->findx('Network', array('real' => 1, 'enabled' => 1), array(), 'ascii', 'device');
             $devices = array();
             $deviceList = array();
             $devnames = array();
@@ -932,7 +877,7 @@ nuclear facility.';
             for ($i = 0; $i < count($interfaces); $i++) {
 
                 $is_admin_if = false;
-                $iface = $cceClient->get($interfaces[$i]);
+                $iface = $CI->cceClient->get($interfaces[$i]);
                 $device = $iface['device'];
                 
                 // save the devices and strings for javascript fun
@@ -1382,12 +1327,7 @@ nuclear facility.';
             // Get current time from time():
             $t = time();
 
-            $CODBDATA = $cceClient->getObject("System", array(), "Time");
-
-            // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
-
+            $CODBDATA = $CI->cceClient->getObject("System", array(), "Time");
             if ($CODBDATA["timeZone"] == "") {
                 // Got nothing? Set a default:
                 $CODBDATA["timeZone"] == "US/Eastern";
@@ -1451,19 +1391,17 @@ nuclear facility.';
             // version of BlueOnyx you are using. The Serial Number is usually 
             // empty at this point and is passed along, too. Beyond this no further
             // tracking is done.
-            $serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
-            $cceClient = $serverScriptHelper->getCceClient();
+            $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
+            $CI->cceClient = $CI->serverScriptHelper->getCceClient();
             if (file_exists("/proc/user_beancounters")) {
                 // VENET interface:
-                $venetNetObj = $cceClient->find('Network', 
+                $venetNetObj = $CI->cceClient->find('Network', 
                                     array(
                                         'device' => 'venet0:0'
                                         ));
-                $venetNet = $cceClient->get($venetNetObj[0]);
+                $venetNet = $CI->cceClient->get($venetNetObj[0]);
                 $venetNetipAddr = $venetNet['ipaddr'];
             }
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
             $productBuild = $system['productBuild'];
             if (isset($dev['eth0'])) {
                 $ipaddr = $dev['eth0']['ipaddr'];
@@ -1571,10 +1509,6 @@ nuclear facility.';
                 'ipaddr' => $ipaddr,
                 'serialNumber' => $serialNumber
             );
-
-            // Nice people say goodbye, or CCEd waits forever:
-            $cceClient->bye();
-            $serverScriptHelper->destructor();
 
             // Show the login form:
             $this->load->view('wizard_view', $data);
