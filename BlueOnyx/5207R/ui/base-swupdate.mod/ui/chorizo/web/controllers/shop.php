@@ -225,8 +225,8 @@ class Shop extends MX_Controller {
 
                 foreach ($arr_catlist as $items) {
                     $item = explode(",", $items);
-                    // For now we ignore the empty platform specific categories that are just there for historic reasons:
                     if (isset($item[1])) {
+                        // For now we ignore the empty platform specific categories that are just there for historic reasons:
                         if (($item[1] != "blueonyx/5106r") && ($item[1] != "blueonyx/5107r") && ($item[1] != "blueonyx/5108r")) {
                              $categories[$item[0]] = $item[1];
                         }
@@ -293,7 +293,6 @@ class Shop extends MX_Controller {
                 $output = get_data($catprod_url);
                 $output = preg_replace('/"/', '', $output);
                 $arr_catprods = explode("\n", $output);
-
                 foreach ($arr_catprods as $items) {
                     $item = explode(",", $items);
                     if (isset($categories[$item[0]])) {
