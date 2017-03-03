@@ -137,6 +137,12 @@ fi
 
 <begin $CHANGELOG>
 
+* Thu Mar 02 2017 Michael Stauber <mstauber@solarspeed.net> 2.0-1BX069
+- Modified helpers/blueonyx_helper.php to add timeout param to get_data()
+- Modified helpers/uifc_ng_helper.php to overhaul simplify_numbers() yet
+  again. The last iteration of this function was faster, but occasionally
+  it returned NAN because the base of the exponent was -INF. Go figure.
+
 * Sat Feb 18 2017 Michael Stauber <mstauber@solarspeed.net> 2.0-1BX068
 - Another milestone in the 'Need for Speed'-Initiative. This warrants
   a major version bump to v2.0. By using CI itself as a storage for

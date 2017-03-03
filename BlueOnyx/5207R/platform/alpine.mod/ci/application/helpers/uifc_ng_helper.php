@@ -740,27 +740,14 @@ function simplify_number ($number, $literal, $cnt) {
     if (preg_match($pattern, $number, $matches, PREG_OFFSET_CAPTURE)) {
         return $number;
     }
-
-    if ((strlen($number)) > "12") {
+    if ((strlen($number)) > "16") {
         return "Unlimited";
     }
-    else {
-        // When we're here, $number *must* be an integer. Make sure it is:
-        $number = floor($number); // Round it down. If it's not a number, this won't give an error.
-        if (!((string) (int) $number === (string) $number)) {
-            $number = '0'; // It's not. Set it to '0'.
-        }
+    $units = array('B', 'K', 'M', 'G', 'T');
+    for ($i = 0; $number >= $multi && $i < count($units) - 1; $i++ ) {
+        $number /= $multi;
     }
-
-    $base = log($number, $multi);
-    $suffixes = array('', 'K', 'M', 'G', 'T');   
-
-    if (isset($suffixes[floor($base)])) {
-        $result = round(pow($multi, $base - floor($base)), $cnt) .''. $suffixes[floor($base)];
-    }
-    else {
-        $result = round(pow($multi, $base - floor($base)), $cnt);
-    }
+    $result = round($number, 1).''.$units[$i];
     return $result;
 }
 
