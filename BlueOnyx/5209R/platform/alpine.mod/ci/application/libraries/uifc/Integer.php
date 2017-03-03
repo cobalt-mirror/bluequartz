@@ -121,8 +121,8 @@ class Integer extends Number {
 
     if (isset($this->showBounds)) {
       if ($this->showBounds == "disk") {
-        $formatted_min = simplify_number_diskspace($this->min, "kb", "2", "B");
-        $formatted_max = simplify_number_diskspace($this->max, "kb", "2", "B");
+        $formatted_min = simplify_number_diskspace($this->min, "KB", "2", "B");
+        $formatted_max = simplify_number_diskspace($this->max, "KB", "2", "B");
 
         $i18n = $page->getI18n();
         $bound_text = $i18n->interpolate('[[palette.integerBounds]]', 
@@ -131,6 +131,15 @@ class Integer extends Number {
       elseif ($this->showBounds == "dezi") {
         $formatted_min = simplify_number($this->min, "K", "2", "B");
         $formatted_max = simplify_number($this->max, "K", "2", "B");
+
+        $i18n = $page->getI18n();
+        $bound_text = $i18n->interpolate('[[palette.integerBounds]]', 
+          array("minBound" => $formatted_min, "maxBound" => $formatted_max));
+
+      }
+      elseif ($this->showBounds == "diskquota") {
+        $formatted_min = simplify_number($this->min, "KB", "2", "B");
+        $formatted_max = simplify_number($this->max, "KB", "2", "B");
 
         $i18n = $page->getI18n();
         $bound_text = $i18n->interpolate('[[palette.integerBounds]]', 
