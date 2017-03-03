@@ -747,7 +747,7 @@ function simplify_number ($number, $literal, $cnt) {
     for ($i = 0; $number >= $multi && $i < count($units) - 1; $i++ ) {
         $number /= $multi;
     }
-    $result = round($number, 1).''.$units[$i];
+    $result = round($number, $cnt).''.$units[$i];
     return $result;
 }
 
