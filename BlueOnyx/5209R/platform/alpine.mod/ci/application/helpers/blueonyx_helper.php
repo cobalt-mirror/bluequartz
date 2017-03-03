@@ -567,9 +567,9 @@ function areWeOnline($domain, $awo_timeout = "10") {
     return false;
 }
 
-function get_data($url) {
+function get_data($url, $to = "15") {
     $ch = curl_init();
-    $timeout = 5;
+    $timeout = $to;
     curl_setopt($ch,CURLOPT_URL,$url);
     curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
     curl_setopt($ch,CURLOPT_TIMEOUT,$timeout);
