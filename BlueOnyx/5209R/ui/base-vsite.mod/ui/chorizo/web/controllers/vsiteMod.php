@@ -413,7 +413,7 @@ class vsiteMod extends MX_Controller {
         } 
 
         // We now know how large the partition is and how much of it is used.
-        $partitionMax = ($partitionMax-$partitionUsed)*1000;
+        $partitionMax = ($partitionMax-$partitionUsed);
         $VsiteTotalDiskSpace = $disk['quota']*1000*1000;
         $VsiteUsedDiskSpace = $disk['used']*1000*1000;
 
@@ -494,7 +494,7 @@ class vsiteMod extends MX_Controller {
         // If the Disk Space is editable, we show it as editable:
         if ($access == 'rw') {
             $site_quota = $factory->getInteger('quota', simplify_number($VsiteTotalDiskSpace, "K", "2"), 1, $partitionMax, $access); 
-            $site_quota->showBounds('dezi');
+            $site_quota->showBounds('disk');
             $site_quota->setType('memdisk');
             $block->addFormField(
                     $site_quota,

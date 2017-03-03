@@ -141,6 +141,14 @@ fi
 
 <begin $CHANGELOG>
 
+* Thu Mar 02 2017 Michael Stauber <mstauber@solarspeed.net> 4.2-0BX71
+- Changes in simplify_numbers() highlighted a logical fault in the
+  max disk space presentation of the getInteger() calls. We were using
+  the wrong base and/or wrong multiplicators for getInteger(), resulting
+  in a slightly incorrect available diskspace presentation.
+- Modified controllers/vsiteAdd.php disk space presentation.
+- Modified controllers/vsiteMod.php disk space presentation.
+
 * Sun Feb 19 2017 Michael Stauber <mstauber@solarspeed.net> 4.2-0BX70
 - Modified Controllers for base-alpine 2.0
 - Added an error message to ui/chorizo/web/controllers/vsitePHP.php

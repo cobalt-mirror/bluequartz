@@ -596,7 +596,7 @@ class VsiteAdd extends MX_Controller {
             } 
 
             // We now know how large the partition is and how much of it is used.
-            $partitionMax = ($partitionMax-$partitionUsed)*1000;
+            $partitionMax = ($partitionMax-$partitionUsed);
             $VsiteTotalDiskSpace = $vsiteDefaults["quota"]*1000*1000;
             $VsiteUsedDiskSpace = "0";
 
@@ -671,7 +671,7 @@ class VsiteAdd extends MX_Controller {
             // If the Disk Space is editable, we show it as editable:
             if ($access == 'rw') {
                 $site_quota = $factory->getInteger('quota', simplify_number($VsiteTotalDiskSpace, "K", "2"), 1, $partitionMax, $access); 
-                $site_quota->showBounds('dezi');
+                $site_quota->showBounds('disk');
                 $site_quota->setType('memdisk');
                 $settings->addFormField(
                         $site_quota,
@@ -683,7 +683,7 @@ class VsiteAdd extends MX_Controller {
                 // Else we show it as shiny bargraph:
                 $percent = round(100 * ($disk['used'] / $disk['quota']));
                 $disk_bar = $factory->getBar("quota", floor($percent), "");
-                $disk_bar->setBarText($i18n->getHtml("[[base-disk.userDiskPercentage_moreInfo]]", false, array("percentage" => $percent, "used" => simplify_number($VsiteUsedDiskSpace, "K", "2"), "total" => simplify_number($VsiteTotalDiskSpace, "K", "0"))));
+                $disk_bar->setBarText($i18n->getHtml("[[base-disk.userDiskPercentage_moreInfo]]", false, array("percentage" => $percent, "used" => simplify_number($VsiteUsedDiskSpace, "KB", "2"), "total" => simplify_number($VsiteTotalDiskSpace, "KB", "0"))));
                 $disk_bar->setLabelType("quota");
                 $disk_bar->setHelpTextPosition("bottom");   
 
