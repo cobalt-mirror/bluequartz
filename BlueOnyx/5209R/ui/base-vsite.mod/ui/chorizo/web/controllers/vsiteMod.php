@@ -202,8 +202,40 @@ class vsiteMod extends MX_Controller {
                     // Quota has no unit:
                     $quota = $attributes['quota'];
                 }
-                // Set the quota:
-                $CI->cceClient->set($vsiteOID[0], 'Disk', array('quota' => $quota));
+
+                // If this is a reseller, check if the disk space changes would make him exceed his allowance:
+                if (!$CI->serverScriptHelper->getAllowed('systemAdministrator')) {
+                    // Get a list of all sites he owns: 
+                    $Userowned_Sites = $CI->cceClient->find('Vsite', array('createdUser' => $attributes['createdUser'])); 
+                    $Quota_of_Userowned_Sites = $quota; // Set start quota to the value of the Quota the user wants this Vsite to have after the change. 
+                    foreach ($Userowned_Sites as $oid) { 
+                        if ($oid != $vsiteOID[0]) { // Skipp polling the quota that this Vsite currently has set in CODB.
+                            $user_vsiteDisk = $CI->cceClient->get($oid, 'Disk'); 
+                            $Quota_of_Userowned_Sites += $user_vsiteDisk['quota']; 
+                        }
+                    }
+                    $Quota_of_Userowned_Sites = $Quota_of_Userowned_Sites*1000;
+
+                    // Get the info about the 'manageSite' administrator:
+                    @list($user_oid) = $CI->cceClient->find('User', array('name' => $attributes['createdUser'])); 
+
+                    // Get the site allowance settings for this 'manageSite' user:
+                    $AdminAllowances = $CI->cceClient->get($user_oid, 'Sites'); 
+                    if ($Quota_of_Userowned_Sites > $AdminAllowances['quota']) {
+                        // Reseller is trying to set more quota than he's allowed to:
+                        $errors[] = ErrorMessage($i18n->get("[[base-vsite.quota]]") . '<br>&nbsp;');
+                    }
+                    else {
+                        // Set the quota:
+                        $CI->cceClient->set($vsiteOID[0], 'Disk', array('quota' => $quota));                        
+                    }
+                }
+                else {
+                    // Not a reseller:
+
+                    // Set the quota:
+                    $CI->cceClient->set($vsiteOID[0], 'Disk', array('quota' => $quota));
+                }
 
                 // CCE errors that might have happened during submit to CODB:
                 $CCEerrors = $CI->cceClient->errors();
@@ -441,15 +473,13 @@ class vsiteMod extends MX_Controller {
         $Userowned_Sites = $CI->cceClient->find('Vsite', array('createdUser' => $vsite['createdUser'])); 
         $Quota_of_Userowned_Sites = 0; 
         foreach ($Userowned_Sites as $oid) { 
-            $user_vsiteDisk = $CI->cceClient->get($oid, 'Disk'); 
-            $Quota_of_Userowned_Sites += $user_vsiteDisk['quota']; 
+            if ($oid != $vsite['OID']) {
+                $user_vsiteDisk = $CI->cceClient->get($oid, 'Disk'); 
+                $Quota_of_Userowned_Sites += $user_vsiteDisk['quota']; 
+            }
         }
-        // Variable $Quota_of_Userowned_Sites includes the quota of the current Vsite. We need
-        // to substract it from the total for now:
-        $Quota_of_Userowned_Sites -= $disk['quota'];
         // Multiply the quota to get it in bytes:
-        $Quota_of_Userowned_Sites = $Quota_of_Userowned_Sites*1000*1000;
-        $AdminAllowances['quota'] = $AdminAllowances['quota']*1000;
+        $Quota_of_Userowned_Sites = $Quota_of_Userowned_Sites*1000;
 
         // How many users accounts are allocated to Vsites this 'manageSite' administrator created?
         $AllocatedUserAccounts = 0;
@@ -488,13 +518,24 @@ class vsiteMod extends MX_Controller {
         //-- Site quota
         //
 
+        if ($CI->serverScriptHelper->getAllowed('systemAdministrator')) {
+            $partitionMin = '1048576';
+            $partitionMax = $partitionMax*1024;
+        }
+
         if ($vsite['createdUser'] != 'admin') {
-            $partitionMax = ($AdminAllowances['quota']-$Quota_of_Userowned_Sites);
+            $partitionMin = '1000000';
+            $partitionMax = ($AdminAllowances['quota']-$Quota_of_Userowned_Sites)*1000;
         }
         // If the Disk Space is editable, we show it as editable:
         if ($access == 'rw') {
-            $site_quota = $factory->getInteger('quota', simplify_number($VsiteTotalDiskSpace, "K", "2"), 1, $partitionMax, $access); 
-            $site_quota->showBounds('disk');
+            $site_quota = $factory->getInteger('quota', simplify_number($VsiteTotalDiskSpace, "K", "2"), $partitionMin, $partitionMax, $access); 
+            if ($CI->serverScriptHelper->getAllowed('systemAdministrator')) {
+                $site_quota->showBounds('diskquota');   // NOTE: This affects only the display of the range below the getInteger() field.
+            }                                           // Quota for disk off the actual disk is stored with base 1024.
+            else {
+                $site_quota->showBounds('dezi');        // NOTE: This affects only the display of the range below the getInteger() field.
+            }                                           // Quota for Resellers is stored with base 1000.
             $site_quota->setType('memdisk');
             $block->addFormField(
                     $site_quota,
