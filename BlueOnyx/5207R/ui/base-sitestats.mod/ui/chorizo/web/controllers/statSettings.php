@@ -33,8 +33,13 @@ class StatSettings extends MX_Controller {
         $system = $CI->getSystem();
         $user = $CI->BX_SESSION['loginUser'];
 
-        // Not 'serverHttpd'? Bye, bye!
-        if (!$CI->serverScriptHelper->getAllowed('serverHttpd')) {
+        // Access Rules:
+        if ((!$CI->serverScriptHelper->getAllowed('adminUser')) && 
+            (!$CI->serverScriptHelper->getAllowed('siteAdmin')) && 
+            (!$CI->serverScriptHelper->getAllowed('manageSite')) && 
+            (($user['site'] != $CI->serverScriptHelper->loginUser['site']) && $CI->serverScriptHelper->getAllowed('siteAdmin')) &&
+            (($vsiteObj['createdUser'] != $CI->BX_SESSION['loginName']) && $CI->serverScriptHelper->getAllowed('manageSite'))
+            ) {
             // Nice people say goodbye, or CCEd waits forever:
             $CI->cceClient->bye();
             $CI->serverScriptHelper->destructor();
