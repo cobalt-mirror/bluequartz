@@ -219,8 +219,8 @@ class Template extends MX_Controller {
                     );
 
         // default site quota
-        $quotaField = $factory->getInteger("quota", simplify_number($vsiteDefaults["quota"]*1000*1000, "K", "0"), 1, 0);
-        $quotaField->showBounds("disk");
+        $quotaField = $factory->getInteger("quota", simplify_number($vsiteDefaults["quota"]*1000*1000, "K", "0"), '1000000', 0);
+        $quotaField->showBounds(FALSE);
         $quotaField->setType('memdisk');
         $block->addFormField(
                     $quotaField,
