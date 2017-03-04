@@ -251,7 +251,7 @@ class UserDefaults extends MX_Controller {
 			$defaults["quota"] = "1";
 		}
 		$default_quota = $defaults["quota"]*1000*1000;
-		$quota = $factory->getInteger("maxDiskSpaceField", simplify_number($default_quota, "K", "0"), 1, simplify_number($site_quota, "K", "0"));
+		$quota = $factory->getInteger("maxDiskSpaceField", simplify_number($default_quota, "K", "0"), '1M', simplify_number($site_quota, "K", "0"));
 		$quota->setOptional('silent');
 	    $quota->showBounds('dezi');
 	    $quota->setType('memdisk');

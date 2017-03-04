@@ -144,6 +144,7 @@ class UserAdd extends MX_Controller {
 			// Handle setting the proper volume for vsite users
 			if (isset($group)) {
 			    $vsite = $CI->cceClient->getObject("Vsite", array("name" => $group));
+			    $vsiteDisk = $CI->cceClient->get($vsite['OID'], 'Disk');
 			    $attributes['volume'] = $vsite['volume'];
 			}
 			else {
@@ -273,8 +274,17 @@ class UserAdd extends MX_Controller {
 					    }
 					}
 
-					$CI->cceClient->set($_oid, "Disk", array("quota" => $quota));
-					$errors = array_merge($errors, $CI->cceClient->errors());
+					if (isset($vsiteDisk['quota'])) {
+	                    if ($quota > $vsiteDisk['quota']) {
+	                        // Someone is trying to set more quota for this User than allowed for the entire Vsite:
+	                        $errors[] = ErrorMessage($i18n->get("[[base-vsite.quota]]") . '<br>&nbsp;');
+	                    }
+	                }
+
+					if (count($errors) == "0") {
+						$CI->cceClient->set($_oid, "Disk", array("quota" => $quota));
+						$errors = array_merge($errors, $CI->cceClient->errors());
+					}
 
 					// Handle AutoFeatures:
 					list($userservices) = $CI->cceClient->find("UserServices", array("site" => $group));
@@ -408,10 +418,10 @@ class UserAdd extends MX_Controller {
 		// Load site quota
 		list($vsite_oid) = $CI->cceClient->find('Vsite', array("name" => $group));
 		$disk = $CI->cceClient->get($vsite_oid, 'Disk');
-		$vsite_quota = $disk['quota']*1024*1024;
-		$default_quota = $defaults['quota']*1024*1024;
+		$vsite_quota = $disk['quota']*1000*1000;
+		$default_quota = $defaults['quota']*1000*1000;
 
-		$site_quota = $factory->getInteger('maxDiskSpaceField', simplify_number($default_quota, "KB", "2"), 1, $vsite_quota, 'rw'); 
+		$site_quota = $factory->getInteger('maxDiskSpaceField', simplify_number($default_quota, "K", "2"), '1000000', $vsite_quota, 'rw'); 
 	    $site_quota->showBounds('dezi');
 	    $site_quota->setType('memdisk');
 		$block->addFormField(

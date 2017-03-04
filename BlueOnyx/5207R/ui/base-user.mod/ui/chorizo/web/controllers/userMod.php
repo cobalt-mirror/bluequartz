@@ -80,6 +80,7 @@ class UserMod extends MX_Controller {
 
         // Get data for the Vsite:
         $vsite = $CI->cceClient->getObject('Vsite', array('name' => $group));
+        $vsiteDisk = $CI->cceClient->get($vsite['OID'], 'Disk');
 
         // Get User:
         $User = $CI->cceClient->getObject("User", array("name" => $name, 'site' => $group));
@@ -258,10 +259,16 @@ class UserMod extends MX_Controller {
                         // Quota has no unit:
                         $quota = $attributes['maxDiskSpaceField'];
                     }
+                    if ($quota > $vsiteDisk['quota']) {
+                        // Someone is trying to set more quota for this User than allowed for the entire Vsite:
+                        $errors[] = ErrorMessage($i18n->get("[[base-vsite.quota]]") . '<br>&nbsp;');
+                    }
                 }
 
-                $CI->cceClient->set($useroid, "Disk", array("quota" => $quota));
-                $errors = array_merge($errors, $CI->cceClient->errors());
+                if (count($errors) == "0") {
+                    $CI->cceClient->set($useroid, "Disk", array("quota" => $quota));
+                    $errors = array_merge($errors, $CI->cceClient->errors());
+                }
 
                 //
                 //-- Handle AutoFeatures for UserServices:
@@ -380,7 +387,7 @@ class UserMod extends MX_Controller {
         $vsite_quota = $disk['quota']*1000*1000;
         $default_quota = $UserDisk['quota']*1000*1000;
 
-        $site_quota = $factory->getInteger('maxDiskSpaceField', simplify_number($default_quota, "K", "2"), 1, $vsite_quota, 'rw'); 
+        $site_quota = $factory->getInteger('maxDiskSpaceField', simplify_number($default_quota, "K", "2"), '1000000', $vsite_quota, 'rw'); 
         $site_quota->showBounds('dezi');
         $site_quota->setType('memdisk');
         $block->addFormField(
