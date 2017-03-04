@@ -518,19 +518,23 @@ class vsiteMod extends MX_Controller {
         //-- Site quota
         //
 
+        $admin_view = '0';
         if ($CI->serverScriptHelper->getAllowed('systemAdministrator')) {
             $partitionMin = '1048576';
             $partitionMax = $partitionMax*1024;
+            $admin_view = '1';
         }
 
         if ($vsite['createdUser'] != 'admin') {
             $partitionMin = '1000000';
             $partitionMax = ($AdminAllowances['quota']-$Quota_of_Userowned_Sites)*1000;
+            $admin_view = '0';
         }
+
         // If the Disk Space is editable, we show it as editable:
         if ($access == 'rw') {
             $site_quota = $factory->getInteger('quota', simplify_number($VsiteTotalDiskSpace, "K", "2"), $partitionMin, $partitionMax, $access); 
-            if ($CI->serverScriptHelper->getAllowed('systemAdministrator')) {
+            if ($admin_view == '1') {
                 $site_quota->showBounds('diskquota');   // NOTE: This affects only the display of the range below the getInteger() field.
             }                                           // Quota for disk off the actual disk is stored with base 1024.
             else {
