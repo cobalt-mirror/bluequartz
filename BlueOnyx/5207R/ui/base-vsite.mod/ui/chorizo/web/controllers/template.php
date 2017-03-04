@@ -12,33 +12,28 @@ class Template extends MX_Controller {
     public function index() {
 
         $CI =& get_instance();
-        
+
         // We load the BlueOnyx helper library first of all, as we heavily depend on it:
         $this->load->helper('blueonyx');
         init_libraries();
 
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
-        
-        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set):
+
+        // Get $sessionId and $loginName from Cookie (if they are set) and store them in $CI->BX_SESSION:
         $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
         $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
-        
-        // Line up the ducks for CCE-Connection:
+
+        // Line up the ducks for CCE-Connection and store them for re-usability in $CI:
         include_once('ServerScriptHelper.php');
         $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
         $CI->cceClient = $CI->serverScriptHelper->getCceClient();
-        $user = $CI->BX_SESSION['loginUser'];
+
         $i18n = new I18n("base-vsite", $CI->BX_SESSION['loginUser']['localePreference']);
         $system = $CI->getSystem();
 
-        // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
-
-        // -- Actual page logic start:
-
         // Not 'admin'? Bye, bye!
-        if (!$Capabilities->getAllowed('admin')) {
+        if (!$CI->serverScriptHelper->getAllowed('admin')) {
             // Nice people say goodbye, or CCEd waits forever:
             $CI->cceClient->bye();
             $CI->serverScriptHelper->destructor();
@@ -179,7 +174,10 @@ class Template extends MX_Controller {
         // Prepare Page:
         $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-vsite", "/vsite/template");
         $BxPage = $factory->getPage();
+        $BxPage->setErrors($errors);
         $i18n = $factory->getI18n();
+
+        $product = new Product($CI->cceClient);
 
         // Set Menu items:
         $BxPage->setVerticalMenu('base_sitemanage');
@@ -221,8 +219,8 @@ class Template extends MX_Controller {
                     );
 
         // default site quota
-        $quotaField = $factory->getInteger("quota", simplify_number($vsiteDefaults["quota"]*1000*1000, "K", "0"), 1, 0);
-        $quotaField->showBounds("disk");
+        $quotaField = $factory->getInteger("quota", simplify_number($vsiteDefaults["quota"]*1000*1000, "K", "0"), '1000000', 0);
+        $quotaField->showBounds(FALSE);
         $quotaField->setType('memdisk');
         $block->addFormField(
                     $quotaField,
@@ -289,18 +287,6 @@ class Template extends MX_Controller {
         // Add the buttons
         $block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
         $block->addButton($factory->getCancelButton("/vsite/template"));
-
-        //
-        //-- Error message handing:
-        //
-        $BXerrors = array();
-        foreach ($errors as $object => $objData) {
-            // When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
-            $BXerrors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
-        }
-
-        // Publish error messages:
-        $BxPage->setErrors($BXerrors);
 
         $page_body[] = $block->toHtml();
 

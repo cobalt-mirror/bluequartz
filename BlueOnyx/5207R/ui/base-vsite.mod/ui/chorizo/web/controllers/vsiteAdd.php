@@ -20,39 +20,35 @@ class VsiteAdd extends MX_Controller {
         // Need to load 'BxPage' for page rendering:
         $this->load->library('BxPage');
 
-        // Get $CI->BX_SESSION['sessionId'] and $CI->BX_SESSION['loginName'] from Cookie (if they are set):
+        // Get $sessionId and $CI->BX_SESSION['loginName'] from Cookie (if they are set) and store them in $CI->BX_SESSION:
         $CI->BX_SESSION['sessionId'] = $CI->input->cookie('sessionId');
         $CI->BX_SESSION['loginName'] = $CI->input->cookie('loginName');
 
-        // Line up the ducks for CCE-Connection:
+        // Line up the ducks for CCE-Connection and store them for re-usability in $CI:
         include_once('ServerScriptHelper.php');
         $CI->serverScriptHelper = new ServerScriptHelper($CI->BX_SESSION['sessionId'], $CI->BX_SESSION['loginName']);
         $CI->cceClient = $CI->serverScriptHelper->getCceClient();
-        $CODBDATA = $CI->cceClient->getObject("User", array("name" => $CI->BX_SESSION['loginName']));
-        $i18n = new I18n("base-vsite", $CODBDATA['localePreference']);
+
+        $i18n = new I18n("base-vsite", $CI->BX_SESSION['loginUser']['localePreference']);
         $system = $CI->getSystem();
-
-        // Initialize Capabilities so that we can poll the access rights as well:
-        $Capabilities = new Capabilities($CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
-
-        // We start without any active errors:
-        $errors = array();
-        $ci_errors = array();
-        $my_errors = array();
-
-        $extra_headers = array();
-
-        // -- Actual page logic start:
-
-        $access = 'rw';
+        $CODBDATA = $CI->BX_SESSION['loginUser'];
 
         // Not 'manageSite'? Bye, bye!
-        if (!$Capabilities->getAllowed('manageSite')) {
+        if (!$CI->serverScriptHelper->getAllowed('manageSite')) {
             // Nice people say goodbye, or CCEd waits forever:
             $CI->cceClient->bye();
             $CI->serverScriptHelper->destructor();
             Log403Error("/gui/Forbidden403");
         }
+
+        // -- Actual page logic start:
+        $extra_headers = array();
+        $access = 'rw';
+
+        // We start without any active errors:
+        $errors = array();
+        $ci_errors = array();
+        $my_errors = array();
 
         // Shove submitted input into $form_data after passing it through the XSS filter:
         $form_data = $CI->input->post(NULL, TRUE);
@@ -170,15 +166,12 @@ class VsiteAdd extends MX_Controller {
                              )
                             );
 
-                // CCE errors that might have happened during CREATE action:
-                $errors = array_merge($errors, $CI->cceClient->errors());
-
                 // CCE errors that might have happened during submit to CODB:
-//              $CCEerrors = $CI->cceClient->errors();
-//              foreach ($CCEerrors as $object => $objData) {
-//                  // When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
-//                  $errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
-//              }
+                $CCEerrors = $CI->cceClient->errors();
+                foreach ($CCEerrors as $object => $objData) {
+                    // When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
+                    $errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
+                }
 
                 // Setup Quota information:
                 if ($vsiteOID) {
@@ -193,8 +186,59 @@ class VsiteAdd extends MX_Controller {
                         // Quota has no unit:
                         $quota = $attributes['quota'];
                     }
-                    // Set the quota:
-                    $CI->cceClient->set($vsiteOID, 'Disk', array('quota' => $quota));
+
+                    // If this is a reseller, check if the disk space changes would make him exceed his allowance:
+                    if (!$CI->serverScriptHelper->getAllowed('systemAdministrator')) {
+                        // Get a list of all sites he owns: 
+                        $Userowned_Sites = $CI->cceClient->find('Vsite', array('createdUser' => $attributes['createdUser'])); 
+                        $Quota_of_Userowned_Sites = $quota; // Set start quota to the value of the Quota the user wants this Vsite to have after the change. 
+                        foreach ($Userowned_Sites as $oid) { 
+                            $user_vsiteDisk = $CI->cceClient->get($oid, 'Disk'); 
+                            $Quota_of_Userowned_Sites += $user_vsiteDisk['quota']; 
+                        }
+                        $Quota_of_Userowned_Sites = $Quota_of_Userowned_Sites*1000;
+
+                        // Get the info about the 'manageSite' administrator:
+                        @list($user_oid) = $CI->cceClient->find('User', array('name' => $attributes['createdUser'])); 
+
+                        // Get the site allowance settings for this 'manageSite' user:
+                        $AdminAllowances = $CI->cceClient->get($user_oid, 'Sites'); 
+                        if ($Quota_of_Userowned_Sites > $AdminAllowances['quota']) {
+                            // Reseller is trying to set more quota than he's allowed to:
+                            $errors[] = ErrorMessage($i18n->get("[[base-vsite.quota]]") . '<br>&nbsp;');
+                        }
+                        else {
+                            // Set the quota:
+                            $ok = $CI->cceClient->set($vsiteOID, 'Disk', array('quota' => $quota));                        
+                        }
+                    }
+                    else {
+                        // Not a reseller:
+
+                        // Set the quota:
+                        $ok = $CI->cceClient->set($vsiteOID, 'Disk', array('quota' => $quota));
+                    }
+
+                    $errors = array_merge($errors, $CI->cceClient->errors());
+
+                    // If the WebApp Installer is present and RoundCube Autoinstall is enabled,
+                    // then we might get a weird runtime issue with CCEd. So if the above SET
+                    // for diskspace doesn't go through, we wait 5 seconds and try again.
+                    // If THAT fails, too, then we do it yet again after 5 secs. If that STILL
+                    // fails, we raise an error.
+                    if ($ok === "0") {
+                        // Sleep and do it again:
+                        sleep(5);
+                        $ok = $CI->cceClient->set($vsiteOID, 'Disk', array('quota' => $quota));
+                        if ($ok === "0") {
+                            // Sleep and do it again:
+                            sleep(5);
+                            $ok = $CI->cceClient->set($vsiteOID, 'Disk', array('quota' => $quota));
+                            if ($ok === "0") {
+                                $errors[] = new Error('[[base-vsite.cantReadVsite]]');
+                            }
+                        }
+                    }
                     $errors = array_merge($errors, $CI->cceClient->errors());
                 }
 
@@ -229,8 +273,25 @@ class VsiteAdd extends MX_Controller {
                 else {
                     // We do have an error. And a partially create Vsite. So we destroy it:
                     if ((isset($vsiteOID)) && ($vsiteOID != "1") && ($vsiteOID != "0")) {
-                        $CI->cceClient->destroy($vsiteOID);
+                        $ok = $CI->cceClient->destroy($vsiteOID);
+                        if ($ok === FALSE) {
+                            // If the first destroy() failed, we wait 5 secs and try again:
+                            sleep(5);
+                            $ok = $CI->cceClient->destroy($vsiteOID);
+                            if ($ok === FALSE) {
+                                // Try it one more time:
+                                sleep(5);
+                                $ok = $CI->cceClient->destroy($vsiteOID);
+                                if ($ok === FALSE) {
+                                    // Pointless. Give up and raise error:
+                                    $errors[] = new Error('[[base-vsite.removeFailed]]');
+                                }
+                            }
+                        }
                     }
+
+                    // Remove duplicate Errors:
+                    $errors = array_map("unserialize", array_unique(array_map("serialize", $errors)));
                     // Then we redirect back to this page by passing the errors and the post vars:
                     print $CI->serverScriptHelper->toHandlerHtml("/vsite/vsiteAdd", $errors, TRUE);
                 }
@@ -278,9 +339,9 @@ class VsiteAdd extends MX_Controller {
 
         $vsite = $CI->cceClient->get($sysoid, "Vsite"); 
         $vsiteoids = $CI->cceClient->find("Vsite"); 
-        if ($vsite['maxVsite'] <= count($vsiteoids)) {
+        if ($vsite['maxVsite'] <= count($vsiteoids)) { 
             // The limit doesn't apply to systemAdministrators! 
-            if (!$Capabilities->getAllowed('systemAdministrator')) {
+            if (!$CI->serverScriptHelper->getAllowed('systemAdministrator')) {
                 // But to everyone else:
                 $errors[] = new Error('[[base-vsite.maxVsiteAlreadyMade]]');
             }
@@ -444,7 +505,7 @@ class VsiteAdd extends MX_Controller {
             }
 
             // If the current user has the cap 'serverManage', then he is allowed to change the owner:
-            if ($Capabilities->getAllowed('serverManage')) { 
+            if ($CI->serverScriptHelper->getAllowed('serverManage')) { 
                 // Sort the array values:
                 asort($adminNames);
                 // Build the MultiChoice selector:
@@ -567,7 +628,7 @@ class VsiteAdd extends MX_Controller {
             } 
 
             // We now know how large the partition is and how much of it is used.
-            $partitionMax = ($partitionMax-$partitionUsed)*1000;
+            $partitionMax = ($partitionMax-$partitionUsed);
             $VsiteTotalDiskSpace = $vsiteDefaults["quota"]*1000*1000;
             $VsiteUsedDiskSpace = "0";
 
@@ -617,7 +678,7 @@ class VsiteAdd extends MX_Controller {
             }
 
             // Check if the amount of allocated accounts is greater than what the user is allowed to:
-            if (($Capabilities->getAllowed('manageSite')) && ($CI->BX_SESSION['loginName'] == 'admin')) {
+            if (($CI->serverScriptHelper->getAllowed('manageSite')) && ($CI->BX_SESSION['loginName'] == 'admin')) {
                 $Can_Modify_Quantity_of_Users = "1";
             }
             elseif ($AllocatedUserAccounts > $AdminAllowances['user']) {
@@ -635,14 +696,24 @@ class VsiteAdd extends MX_Controller {
             //-- Site quota
             //
 
-            if ($CI->BX_SESSION['loginName'] != 'admin') {
+            if (!$CI->serverScriptHelper->getAllowed('systemAdministrator')) {
+                $partitionMin = '1000000';
                 $partitionMax = ($AdminAllowances['quota']-$Quota_of_Userowned_Sites);
+            }
+            else {
+                $partitionMin = '1048576';
+                $partitionMax = $partitionMax*1024;
             }
 
             // If the Disk Space is editable, we show it as editable:
             if ($access == 'rw') {
-                $site_quota = $factory->getInteger('quota', simplify_number($VsiteTotalDiskSpace, "K", "2"), 1, $partitionMax, $access); 
-                $site_quota->showBounds('dezi');
+                $site_quota = $factory->getInteger('quota', simplify_number($VsiteTotalDiskSpace, "K", "2"), $partitionMin, $partitionMax, $access); 
+                if ($CI->serverScriptHelper->getAllowed('systemAdministrator')) {
+                    $site_quota->showBounds('diskquota');   // NOTE: This affects only the display of the range below the getInteger() field.
+                }                                           // Quota for disk off the actual disk is stored with base 1024.
+                else {
+                    $site_quota->showBounds('dezi');        // NOTE: This affects only the display of the range below the getInteger() field.
+                }                                           // Quota for Resellers is stored with base 1000.
                 $site_quota->setType('memdisk');
                 $settings->addFormField(
                         $site_quota,
@@ -654,7 +725,7 @@ class VsiteAdd extends MX_Controller {
                 // Else we show it as shiny bargraph:
                 $percent = round(100 * ($disk['used'] / $disk['quota']));
                 $disk_bar = $factory->getBar("quota", floor($percent), "");
-                $disk_bar->setBarText($i18n->getHtml("[[base-disk.userDiskPercentage_moreInfo]]", false, array("percentage" => $percent, "used" => simplify_number($VsiteUsedDiskSpace, "K", "2"), "total" => simplify_number($VsiteTotalDiskSpace, "K", "0"))));
+                $disk_bar->setBarText($i18n->getHtml("[[base-disk.userDiskPercentage_moreInfo]]", false, array("percentage" => $percent, "used" => simplify_number($VsiteUsedDiskSpace, "KB", "2"), "total" => simplify_number($VsiteTotalDiskSpace, "KB", "0"))));
                 $disk_bar->setLabelType("quota");
                 $disk_bar->setHelpTextPosition("bottom");   
 
@@ -749,7 +820,6 @@ class VsiteAdd extends MX_Controller {
 
             // Add the buttons
             $btn = $factory->getSaveButton($BxPage->getSubmitAction());
-//          $btn->setDisabled(TRUE);
 
             $settings->addButton($btn);
             $settings->addButton($factory->getCancelButton("/vsite/vsiteList"));
@@ -781,8 +851,8 @@ class VsiteAdd extends MX_Controller {
     }
 }
 /*
-Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 All Rights Reserved.
 
 1. Redistributions of source code must retain the above copyright 
