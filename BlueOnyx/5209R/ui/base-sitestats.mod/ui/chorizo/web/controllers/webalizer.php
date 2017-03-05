@@ -33,8 +33,13 @@ class Webalizer extends MX_Controller {
         $system = $CI->getSystem();
         $user = $CI->BX_SESSION['loginUser'];
 
-        // Not 'serverHttpd'? Bye, bye!
-        if (!$CI->serverScriptHelper->getAllowed('serverHttpd')) {
+        // Access Rules:
+        if ((!$CI->serverScriptHelper->getAllowed('adminUser')) && 
+            (!$CI->serverScriptHelper->getAllowed('siteAdmin')) && 
+            (!$CI->serverScriptHelper->getAllowed('manageSite')) && 
+            (($user['site'] != $CI->serverScriptHelper->loginUser['site']) && $CI->serverScriptHelper->getAllowed('siteAdmin')) &&
+            (($vsiteObj['createdUser'] != $CI->BX_SESSION['loginName']) && $CI->serverScriptHelper->getAllowed('manageSite'))
+            ) {
             // Nice people say goodbye, or CCEd waits forever:
             $CI->cceClient->bye();
             $CI->serverScriptHelper->destructor();
@@ -111,10 +116,6 @@ class Webalizer extends MX_Controller {
                 exit;
             }
 
-            // Nice people say goodbye, or CCEd waits forever:
-            $CI->cceClient->bye();
-            $CI->serverScriptHelper->destructor();
-
             if (file_exists($fullPath)) {
                 $fp = fopen ($fullPath, "r");
                 $data = array();
@@ -179,10 +180,6 @@ class Webalizer extends MX_Controller {
                     $factory->getLabel(" "),
                     $defaultPage
                     );
-
-                // Nice people say goodbye, or CCEd waits forever:
-                $CI->cceClient->bye();
-                $CI->serverScriptHelper->destructor();
 
                 $page_body[] = "<p>&nbsp;</p>" . $block->toHtml();
 
