@@ -116,10 +116,6 @@ class Webalizer extends MX_Controller {
                 exit;
             }
 
-            // Nice people say goodbye, or CCEd waits forever:
-            $CI->cceClient->bye();
-            $CI->serverScriptHelper->destructor();
-
             if (file_exists($fullPath)) {
                 $fp = fopen ($fullPath, "r");
                 $data = array();
@@ -184,10 +180,6 @@ class Webalizer extends MX_Controller {
                     $factory->getLabel(" "),
                     $defaultPage
                     );
-
-                // Nice people say goodbye, or CCEd waits forever:
-                $CI->cceClient->bye();
-                $CI->serverScriptHelper->destructor();
 
                 $page_body[] = "<p>&nbsp;</p>" . $block->toHtml();
 
