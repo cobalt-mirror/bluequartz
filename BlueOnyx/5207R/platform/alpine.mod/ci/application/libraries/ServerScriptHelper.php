@@ -200,7 +200,7 @@ class ServerScriptHelper {
 
             // only AUTH if not on Monterey
             if (!$this->isMonterey) {
-                $auth_attempt = $cceClient->authkey($CI->input->cookie('loginName'), $CI->input->cookie('sessionId'));
+                $auth_attempt = $cceClient->authkey($this->loginName, $this->sessionId);
                 if (!$auth_attempt) {
                     // Auth failed. We redirect to GUI login page. But to speed things up we delete the cookies to prevent that another authkey is tried with them:
                     delete_cookie("loginName");
