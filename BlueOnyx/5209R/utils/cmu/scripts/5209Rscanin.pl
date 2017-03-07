@@ -67,6 +67,20 @@ $i18n->setLocale(I18n::i18n_getSystemLocale($cce));
 %{ $cce->{_encodeAttr} } = %encodeAttr;
 %{ $cce->{_classes} } = %classes;
 
+# Turn off Network Pooling or Reseller owned Vsites will *NOT* import:
+($SystemObjectOid) = $cce->find("System");
+($ok, $SystemObjectNetwork) = $cce->get($SystemObjectOid, 'Network');
+if ($ok) {
+    if ($SystemObjectNetwork->{'pooling'} eq "1") {
+        ($ok, $bad, @info) = $cce->set($SystemObjectOid, 'Network', { 'pooling' => '0' });
+        if ($ok == 0) { 
+            warn "INFO: CMU had to turn off Network-Pooling as it was enabled.\n";
+        }
+    }
+    else {
+        warn "INFO: Network-Pooling was turned off. Good.\n";
+    }
+}
 
 # setup the default archive objects
 my $varch = Archive->new(type => 'groups', destDir => $cfg->destDir, 

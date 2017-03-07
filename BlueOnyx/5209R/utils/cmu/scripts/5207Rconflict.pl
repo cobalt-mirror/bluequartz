@@ -39,11 +39,11 @@ my (@keys, $ret, $result, @queue);
 warn "\n===> Checking Virtual Sites <===\n";
 @keys = keys %{ $flict->getVsites($IM) };
 foreach my $site (@keys) {
-	$ret = $flict->detectIpService($site, 'ssl');
-	if(ref($ret) eq 'Resolve') { push(@queue, $ret) }
+	#$ret = $flict->detectIpService($site, 'ssl');
+	#if(ref($ret) eq 'Resolve') { push(@queue, $ret) }
 
-	$ret = $flict->detectIpService($site, 'ssl', $IM);
-	if(ref($ret) eq 'Resolve') { push(@queue, $ret) }
+	#$ret = $flict->detectIpService($site, 'ssl', $IM);
+	#if(ref($ret) eq 'Resolve') { push(@queue, $ret) }
 	
 	$ret = $flict->detectIpService($site, 'ftp');
 	if(ref($ret) eq 'Resolve') { push(@queue, $ret) }

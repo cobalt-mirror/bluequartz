@@ -3,7 +3,7 @@
 Summary: Cobalt Migration Utility
 Name: [PRODUCT]-cmu
 Version: [VERSION]
-Release: 0BX02%{?dist}
+Release: 0BX03%{?dist}
 Vendor: Team BlueOnyx
 License: Sun modified BSD
 Group: Applications/Archiving
@@ -65,6 +65,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(644,root,man) /usr/man/*/*
 
 %changelog
+
+* Tue Mar 07 2017 Michael Stauber <mstauber@solarspeed.net>
+- version 2.94-0BX03
+- Various fixes to squash bugs related to unclean imports.
 
 * Fri Jun 17 2016 Michael Stauber <mstauber@solarspeed.net>
 - version 2.94-0BX02

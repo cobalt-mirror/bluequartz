@@ -324,7 +324,7 @@ sub createTar
         $file_list .= $f->{name} . "\n";
     }
        
-    warn "creating tar (internal TAR): $tarName with ", scalar @files, " files\n";
+    warn "INFO: creating tar (internal TAR): $tarName with ", scalar @files, " files\n";
     my $tar = Archive::Tar->new();
     $tar->create_archive($tarName, 2, @files);
     my $err = $tar->error();
@@ -382,12 +382,12 @@ sub createTarNew
     close $fh;
 
     if (-e "/usr/bin/pigz") {
-        warn "creating tar (external TAR with PigZ): $tarName with ", scalar @files, " files\n";
-        warn "running: tar cf - --files-from=$fileListTmp | pigz > $tarName";
+        warn "INFO: creating tar (external TAR with PigZ): $tarName with ", scalar @files, " files\n";
+        warn "INFO: running: tar cf - --files-from=$fileListTmp | pigz > $tarName\n";
         system("tar cf - --files-from=$fileListTmp | pigz > $tarName");
     }
     else {
-        warn "creating tar (external TAR with GZip): $tarName with ", scalar @files, " files\n";
+        warn "INFO: creating tar (external TAR with GZip): $tarName with ", scalar @files, " files\n";
         system("tar cf - --files-from=$fileListTmp | gzip > $tarName");
     }
     if ($? == -1) {
@@ -729,7 +729,7 @@ sub setAttr
             }
         }
     
-        if(! -f $file->{name} && ! -d $file->{name}) {
+        if(! -f "$file->{name}" && ! -d "$file->{name}") {
             warn "ERROR Could not find file: $dir/", $file->{name}, "\n";
             next;
         }
