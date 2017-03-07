@@ -162,6 +162,13 @@ class Pooling extends MX_Controller {
                 // When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
                 $errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '&nbsp;');
             }
+            // No errors during submit? Reload page:
+            if (count($errors) == "0") {
+                $CI->cceClient->bye();
+                $CI->serverScriptHelper->destructor();
+                header("Location: /network/pooling");
+                exit;
+            }
         }
 
         //
