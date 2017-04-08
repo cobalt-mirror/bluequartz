@@ -705,6 +705,12 @@ sub read_pkgheader
         $settings{autoinstall} = "0"; 
     }
 
+    # Work around for Greg being lazy:
+    @pkg_options = split(/,/,$settings{options});
+    if (grep $_ == 'autoinstall', @pkg_options ) {
+        $settings{autoinstall} = "1"; 
+    }
+
     return %settings;
 }
 
