@@ -705,15 +705,21 @@ sub read_pkgheader
         $settings{autoinstall} = "0"; 
     }
 
-    # Work around for Greg being lazy:
+    # Work around for autoupdate being in options instead of being a separate NL flag:
+    undef(@pkg_options);
     @pkg_options = split(/,/,$settings{options});
-    if (grep $_ == 'autoinstall', @pkg_options ) {
-        $settings{autoinstall} = "1"; 
+    if (in_array(\@pkg_options, 'autoinstall')) {
+        $settings{autoinstall} = "1";
     }
 
     return %settings;
 }
 
+sub in_array {
+    my ($arr,$search_for) = @_;
+    my %items = map {$_ => 1} @$arr; # create a hash out of the array values
+    return (exists($items{$search_for}))?1:0;
+}
 
 sub swupdate_parselist
 {
