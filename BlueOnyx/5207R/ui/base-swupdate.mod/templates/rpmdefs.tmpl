@@ -64,6 +64,7 @@ information for [VENDOR]-[SERVICE].
 %attr(0755,root,root)/usr/sausalito/swatch/bin/am_updates.pl
 %attr(0644,root,root)%config /etc/yum/pluginconf.d/blueonyx.conf
 %attr(0700,root,root)%{RootDir}/sbin/cced_yum
+%attr(0700,root,root)%{RootDir}/sbin/pkgCleanup.pl
 %attr(0700,root,root) %{RootDir}/yumcce
 %attr(0644,root,root) /usr/lib/yum-plugins/blueonyx.py
 %attr(0644,root,root) /usr/sausalito/ui/web/.adm/images/btn_donateCC_LG.gif
@@ -108,7 +109,10 @@ if [ -d "/usr/sausalito/yumcce" ];then
 fi
 
 # Restart Crond:
-/sbin/service crond restart
+/sbin/service crond restart &>/dev/null || :
+
+# Cleanup CODB's list of available PKGs:
+/usr/sausalito/sbin/pkgCleanup.pl &>/dev/null || :
 
 <end glue>
 <begin ui>
@@ -141,6 +145,9 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Sun Apr 09 2017 Michael Stauber <mstauber@solarspeed.net> 1.6.1-0BX17
+- Added /usr/sausalito/sbin/pkgCleanup.pl
 
 * Sun Apr 09 2017 Michael Stauber <mstauber@solarspeed.net> 1.6.1-0BX16
 - Small fix in glue/sbin/SWUpdate.pm for autoinstall flag.
