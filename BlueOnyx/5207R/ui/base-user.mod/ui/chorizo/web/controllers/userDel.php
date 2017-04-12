@@ -126,7 +126,7 @@ class UserDel extends MX_Controller {
 		// One more security check: Is siteAdmin, not manageSite, not admin:
 		if (($Capabilities->getAllowed('siteAdmin')) && (!$Capabilities->getAllowed('manageSite')) && ($CI->BX_SESSION['loginName'] != "admin")) {
 			// So we have a siteAdmin. Is he of the same group as the user he wants to delete?
-			if ($user['site'] != $group) {
+			if ($CI->BX_SESSION['loginUser']['site'] != $group) {
 				// Don't play games with us!
 				// Nice people say goodbye, or CCEd waits forever:
 				$CI->cceClient->bye();
