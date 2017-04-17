@@ -216,8 +216,18 @@ class UserList extends MX_Controller {
 					$UserData['FEATURE']['Subdomain'] = "0";
 				}
 
+				// Does User have OpenVPN enabled?
+				$OpenVPN = $CI->cceClient->get($user, 'OpenVPN');
+				if ($OpenVPN['enabled'] == "1") {
+					$UserData['FEATURE']['OpenVPN'] = "1";
+				}
+				else {
+					$UserData['FEATURE']['OpenVPN'] = "0";
+				}
+
 				// Feature-List Icons:
 				$iconlist = array();
+
 				foreach ($UserData['FEATURE'] as $key => $value) {
 					if ($key == "siteAdmin") { $F_text = "siteAdmin"; $F_tooltip = "siteAdmin"; }
 					elseif ($key == "siteDNS") { $F_text = "siteDNS"; $F_tooltip = "siteDNS";  }
