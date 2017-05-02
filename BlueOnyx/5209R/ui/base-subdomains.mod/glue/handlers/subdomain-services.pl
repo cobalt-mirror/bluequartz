@@ -40,7 +40,7 @@ foreach $service (@services) {
   switch ($service) {
     case "PHP" {
       if (( $$service->{'enabled'} ) || ( $$service->{'force_update'} )) {
-	    &debug_msg("Case: PHP \n");
+        &debug_msg("Case: PHP \n");
 
             # Get Object PHP from CODB to find out which PHP version we use:
             @sysoids = $cce->find('PHP');
@@ -245,10 +245,19 @@ foreach $service (@services) {
 
     case "CGI" {
       if ( $$service->{'enabled'} ) {
-        $serviceCFG .= "  AddHandler cgi-wrapper .pl\n";
-        $serviceCFG .= "  AddHandler cgi-wrapper .cgi\n";
-	$serviceCFG .= "  ScriptAlias /cgi-bin/ /usr/local/blueonyx/cgiwrap/cgiwrap/\n";
-        $serviceCFG .= "  Action cgi-wrapper /cgi-bin\n";
+        if (-f "/usr/bin/systemctl") {
+            # 5209R and therefore Apache 2.4:
+            $serviceCFG .= "  <Directory $web_dir>\n";
+            $serviceCFG .= "      AddHandler cgi-script .cgi .pl\n";
+            $serviceCFG .= "      Options +ExecCGI\n";
+            $serviceCFG .= "  </Directory>\n";
+        }
+        else {
+            $serviceCFG .= "  AddHandler cgi-wrapper .pl\n";
+            $serviceCFG .= "  AddHandler cgi-wrapper .cgi\n";
+            $serviceCFG .= "  ScriptAlias /cgi-bin/ /usr/local/blueonyx/cgiwrap/cgiwrap/\n";
+            $serviceCFG .= "  Action cgi-wrapper /cgi-bin\n";
+        }
       }
     }
   
