@@ -122,6 +122,9 @@ class Settings extends MX_Controller {
 
             //$newScheduleMap = array("never" => "Never", "hourly" => "Hourly", "daily" => "Daily", "weekly" => "Weekly", "monthly" => "Monthly");
             $newScheduleMap = array("hourly" => "Hourly", "daily" => "Daily", "weekly" => "Weekly", "monthly" => "Monthly");
+            if ($attributes['updateInterval'] == 'never') {
+                $attributes['updateInterval'] = 'monthly';
+            }
             $attributes['updateInterval'] = $newScheduleMap[$attributes['updateInterval']];
 
             $notificationLightField = $attributes['notificationLightField'];
@@ -239,8 +242,8 @@ class Settings extends MX_Controller {
         //--- Basic:
         //
 
-        $scheduleMap = array("Never" => "never", "Hourly" => "hourly", "Daily" => "daily", "Weekly" => "weekly", "Monthly" => "monthly");
-        $scheduleField = $factory->getMultiChoice("updateInterval", array("hourly", "daily", "weekly", "monthly", "never"), array($scheduleMap));
+        $scheduleMap = array("Hourly" => "hourly", "Daily" => "daily", "Weekly" => "weekly", "Monthly" => "monthly");
+        $scheduleField = $factory->getMultiChoice("updateInterval", array("hourly", "daily", "weekly", "monthly"), array($scheduleMap));
         $scheduleField->setSelected($scheduleMap[$swUpdate['updateInterval']], true);
         $block->addFormField(
           $scheduleField,
