@@ -448,7 +448,7 @@ class vsiteMySQL extends MX_Controller {
             if ($get_form_data['addDB'] == "true") {
                 if ($num_dbs < $vsite_MySQL['maxDBs']) {
                     $ndbField = $factory->getTextField("new_db_name", '', 'rw');
-                    $ndbField->setMaxLength("16");
+                    $ndbField->setMaxLength("32");
                     $block->addFormField(
                         $ndbField,
                         $factory->getLabel("new_db_name"),

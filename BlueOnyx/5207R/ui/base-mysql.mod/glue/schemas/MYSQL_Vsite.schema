@@ -1,7 +1,7 @@
 <!--
  $Id: mysql.schema
- Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
- Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+ Copyright (c) 2017 Michael Stauber, SOLARSPEED.NET
+ Copyright (c) 2017 Team BlueOnyx, BLUEONYX.IT
  Copyright (c) 2008 NuOnce Networks, Inc.
  All Rights Reserved.
 -->
@@ -291,4 +291,4 @@
 </class>
 
 <typedef name="mysqlusername" type="re" data="^[A-Za-z0-9][-]{0,4}[A-Za-z0-9_%]{1,15}$" /> 
-<typedef name="mysqldatabase" type="re" data="^[A-Za-z0-9][-]{0,8}[A-Za-z0-9_%]{1,63}$" /> 
+<typedef name="mysqldatabase" type="re" data="^[A-Za-z0-9][-]{0,8}[A-Za-z0-9_%.]{1,63}$" />

@@ -118,6 +118,11 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+* Thu May 04 2017 Michael Stauber <mstauber@solarspeed.net> 2.4.0-0BX28
+- Modified glue/schemas/MYSQL_Vsite.schema to allow dot in DB names
+- Modified ui/chorizo/extensions/15_MYSQL_Vsite.php.create.Vsite for 32-char DB names
+- Modified ui/chorizo/extensions/15_MYSQL_Vsite.php.modifyWeb.Vsite for 32-char DB names
+- Modified ui/chorizo/web/controllers/vsiteMySQL.php for 32-char DB names
 
 * Wed Feb 22 2017 Michael Stauber <mstauber@solarspeed.net> 2.4.0-0BX27
 - Adjusted Extensions and Controllers for base-alpine 2.0

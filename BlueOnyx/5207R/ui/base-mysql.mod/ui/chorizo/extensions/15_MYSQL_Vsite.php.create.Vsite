@@ -88,7 +88,7 @@ class MYSQL_VsiteExtension extends UIExtension {
                         $enable->addFormField($solmysqlPass, $factory->getLabel('solmysqlPass'));
 
                         $solmysqlDB = $factory->getTextField('solmysql_DB', $featureMYSQL_Vsite['DB'], 'r');
-                        $solmysqlDB->setMaxLength("16");
+                        $solmysqlDB->setMaxLength("32");
                         $solmysqlDB->setOptional(false);
                         $solmysqlDB->setPreserveData(false);
                         $enable->addFormField($solmysqlDB, $factory->getLabel('solmysqlDB'));
@@ -199,7 +199,7 @@ class MYSQL_VsiteExtension extends UIExtension {
             $enable->addFormField($solmysqlPass, $factory->getLabel('solmysqlPass'));
 
             $solmysqlDB = $factory->getTextField('solmysql_DB', $my_dbname, $prot);
-            $solmysqlDB->setMaxLength("16");
+            $solmysqlDB->setMaxLength("32");
             $solmysqlDB->setOptional(FALSE);
             $solmysqlDB->setPreserveData(false);
             $enable->addFormField($solmysqlDB, $factory->getLabel('solmysqlDB'));
