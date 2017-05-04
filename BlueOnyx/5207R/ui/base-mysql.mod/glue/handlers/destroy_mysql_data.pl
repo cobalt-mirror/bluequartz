@@ -154,7 +154,7 @@ sub remove_db_and_user {
         exit(0);
     }
     
-    $query = "DROP DATABASE IF EXISTS $siteMysql_db";
+    $query = "DROP DATABASE IF EXISTS `$siteMysql_db`;";
     &debug_msg("Dumper: " . Dumper($query) . "\n");
     $return = $dbh->do($query);
     &debug_msg("Dumper: " . Dumper($return) . "\n");
@@ -220,7 +220,7 @@ sub remove_db_and_user {
         ## Drop extra-DB (Step #2):
         #
         &debug_msg("Deleting DB $extraDB\n");
-        $query = "DROP DATABASE IF EXISTS $extraDB";
+        $query = "DROP DATABASE IF EXISTS `$extraDB`;";
         &debug_msg("Dumper: " . Dumper($query) . "\n");
         $return = $dbh->do($query);
         &debug_msg("Dumper: " . Dumper($return) . "\n");

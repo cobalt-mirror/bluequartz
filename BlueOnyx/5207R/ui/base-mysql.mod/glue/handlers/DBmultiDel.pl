@@ -117,7 +117,7 @@ if (in_array(\@ExtraDBs, $vsite_mysql->{DBdel})) {
     ## Drop Database (Step #2):
     #
     &debug_msg("Deleting DB $vsite_mysql->{DBdel}\n");
-    $query = "DROP DATABASE IF EXISTS $vsite_mysql->{DBdel}";
+    $query = "DROP DATABASE IF EXISTS `$vsite_mysql->{DBdel}`;";
     &debug_msg("Dumper: " . Dumper($query) . "\n");
     $return = $dbh->do($query);
     &debug_msg("Dumper: " . Dumper($return) . "\n");
