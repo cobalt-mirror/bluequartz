@@ -50,6 +50,7 @@ class Timeconfig extends MX_Controller {
 		//
 
 		$CODBDATA = $CI->cceClient->get($system['OID'], "Time");
+		@date_default_timezone_set($CODBDATA["timeZone"]);
 
 		//
 		//--- Handle form validation:
