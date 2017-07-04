@@ -120,6 +120,11 @@ fi
 
 <begin $CHANGELOG>
 
+* Mon Jul 03 2017 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX26
+- Modified glue/handlers/check_deluser.pl to remove the check for files
+  outside of user homedirs. This is no longer practical, as the generated
+  CCE warning is never shown in the GUI.
+
 * Mon Apr 17 2017 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX25
 - Added display of feature OpenVPN to ui/chorizo/web/controllers/userList.php
 
