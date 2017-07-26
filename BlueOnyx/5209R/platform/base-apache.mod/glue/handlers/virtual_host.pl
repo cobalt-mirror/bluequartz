@@ -127,6 +127,10 @@ sub edit_vhost
 
     &debug_msg("Editing Vhost container for $vhost->{fqdn} and using Port $httpPort\n");
 
+    if (!$vhost->{serverAdmin}) {
+        $vhost->{serverAdmin} = 'admin';
+    }
+
     my $vhost_conf =<<END;
 # owned by VirtualHost
 #NameVirtualHost $vhost->{ipaddr}:$httpPort
