@@ -140,6 +140,12 @@ fi
 
 <begin $CHANGELOG>
 
+* Tue Jul 25 2017 Michael Stauber <mstauber@solarspeed.net> 4.0-0BX44
+- Modified glue/conf/vsite.conf to trigger base/vsite/php_vsite_handler.pl
+  on Vsite.SSL.* changes as well. This is is indeed not covered by the more
+  gracious Vsite.* which was supposed to do it. Fun and games. With this
+  in place we no longer loose the PHP settings during an LE cert renewal.
+
 * Sat Mar 04 2017  Michael Stauber <mstauber@solarspeed.net> 4.0-0BX43
 - Changes in simplify_numbers() highlighted a logical fault in the
   max disk space presentation of the getInteger() calls. We were using
