@@ -40,7 +40,7 @@
 <typedef
 	name="alphanum_plus_multiline"
 	type="re"
-	data="^([A-Za-z0-9\\._-]{2,})(([,]|[\\r\\n])[A-Za-z0-9\\._-]{2,})*$"
+	data="^([A-Za-z0-9\\._-]{1,})(([,]|[\\r\\n])[A-Za-z0-9\\._-]{1,})*$"
 />
 
 <!-- alphanum_plus_space is alphanumeric data plus a "safe" subset of punctuation, spaces and selected unicode characters-->
