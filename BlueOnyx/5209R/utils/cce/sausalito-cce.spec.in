@@ -221,6 +221,10 @@ fi
 
 %changelog
 
+* Wed Aug 02 2017 Michael Stauber <mstauber@solarspeed.net> 0.99.2-1BX11
+- Modified baseType Schema to allow 'alphanum_plus_multiline' to have a
+  minimum of one character instead of two.
+
 * Mon Oct 24 2016 Michael Stauber <mstauber@solarspeed.net> 0.99.2-1BX10
 - Modified baseType Schema to allow 'memdisk' to use non-integers.
 
