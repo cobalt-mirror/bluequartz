@@ -141,6 +141,10 @@ fi
 
 <begin $CHANGELOG>
 
+* Sat Aug 26 2017 Michael Stauber <mstauber@solarspeed.net> 4.2-0BX73
+- Modified glue/conf/vsite.conf to call web_alias_redirects handler during
+  Vsite create as suggested by Andreas Ebertus.
+
 * Tue Jul 25 2017 Michael Stauber <mstauber@solarspeed.net> 4.2-0BX72
 - Modified glue/conf/vsite.conf to trigger base/vsite/php_vsite_handler.pl
   on Vsite.SSL.* changes as well. This is is indeed not covered by the more
