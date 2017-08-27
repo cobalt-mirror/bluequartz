@@ -11,3 +11,6 @@ $route['vsite/template/'] = "template";
 $route['vsite/vsitePHP/'] = "vsitePHP";
 $route['vsite/fileOwner/'] = "fileOwner";
 $route['vsite/vsiteEmail/'] = "vsiteEmail";
+
+$route['vsite/vsite_amdetails'] = "vsite_amdetails";
+

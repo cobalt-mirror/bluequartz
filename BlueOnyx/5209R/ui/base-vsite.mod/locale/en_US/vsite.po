@@ -1125,3 +1125,21 @@ msgstr "This option sets the limit on the number of simultaneous requests that w
 
 msgid "openBaseDirPathRemovedError"
 msgstr "The following open_basedir path is not readable by PHP and has been removed automatically:"
+
+### AM-Extension:
+
+msgid "amvsiteNameTag"
+msgstr "Webserver Aliases"
+
+msgid "amVsiteDetails"
+msgstr "Vsite Webserver Alias status"
+
+msgid "amStatusOK"
+msgstr "The Webserver Aliases are currently OK."
+
+msgid "amNotRunning"
+msgstr "There was a problem with one or more Webserver Aliases, but it has been fixed automatically."
+
+msgid "amFixed"
+msgstr "There was a problem with one or more Webserver Aliases, but it has been fixed automatically."
+
