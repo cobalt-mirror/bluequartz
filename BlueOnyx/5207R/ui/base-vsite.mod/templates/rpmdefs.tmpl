@@ -140,6 +140,24 @@ fi
 
 <begin $CHANGELOG>
 
+* Sat Aug 26 2017 Michael Stauber <mstauber@solarspeed.net> 4.0-0BX46
+- We do have a problem with Web Server Aliases dropping out of the
+  Apache VirtualHost containers and have been unable to find out when
+  where or why this happens. To help us to identify the problem we added
+  the AM component base-vsite-am, which is now enabled by default. It
+  monitors CODB and VirtualHost for Web Server Alias discrepancies on all
+  Vsites and does so with very little overhead. If a Vsite has a
+  discrepancy related to Web Server aliases, then the CODB stored aliases
+  will be applied to the faulty Vsite again and Apache is restarted. AM
+  will raise a Yellow flag and will send the last 30 minutes of log entries
+  from /var/log/messages as attachment to help us to identify the faulty
+  handler that made the aliases go away.
+- Added glue/schemas/vsite-am.schema
+- Added src
+- Extended ui/chorizo/web/config/routes.php
+- Added ui/chorizo/web/controllers/vsite_amdetails.php
+- Extended locales
+
 * Sat Aug 26 2017 Michael Stauber <mstauber@solarspeed.net> 4.0-0BX45
 - Modified glue/conf/vsite.conf to call web_alias_redirects handler during
   Vsite create as suggested by Andreas Ebertus.

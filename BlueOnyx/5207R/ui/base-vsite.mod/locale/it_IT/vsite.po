@@ -1463,3 +1463,18 @@ msgstr "Sì"
 
 msgid "openBaseDirPathRemovedError"
 msgstr "Il seguente percorso open_basedir non è leggibile da PHP ed è stato rimosso automaticamente:"
+
+### AM-Extension:
+
+msgid "amvsiteNameTag"
+msgstr "[[base-vsite.webAliases]]"
+
+msgid "amVsiteDetails"
+msgstr "Stato Alias del server Web Vsite"
+
+msgid "amStatusOK"
+msgstr "Gli Alias del server Web sono attualmente OK."
+
+msgid "amFixed"
+msgstr "Si è verificato un problema con uno o più Alias del server Web, ma è stato risolto automaticamente."
+

@@ -1130,4 +1130,18 @@ msgstr "これは、（制限は別途$ _GET、$ _POSTおよび$ _COOKIEスー�
 msgid "openBaseDirPathRemovedError"
 msgstr "次のopen_basedirパスはPHPによって読み取られず、自動的に削除されます。"
 
+### AM-Extension:
+
+msgid "amvsiteNameTag"
+msgstr "[[base-vsite.webAliases]]"
+
+msgid "amVsiteDetails"
+msgstr "Vsite Web Serverエイリアスステータス"
+
+msgid "amStatusOK"
+msgstr "Webサーバーの別名は現在OKです。"
+
+msgid "amFixed"
+msgstr "1つ以上のWeb Server Aliasesに問題がありましたが、自動的に修正されました。"
+
 

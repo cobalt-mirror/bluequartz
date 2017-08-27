@@ -1073,3 +1073,17 @@ msgstr "Isso define quantas variáveis ​​de entrada pode ser aceite (limite 
 msgid "openBaseDirPathRemovedError"
 msgstr "O seguinte caminho open_basedir não é legível pelo PHP e foi removido automaticamente:"
 
+### AM-Extension:
+
+msgid "amvsiteNameTag"
+msgstr "[[base-vsite.webAliases]]"
+
+msgid "amVsiteDetails"
+msgstr "Status do alias do servidor da Web do Vsite"
+
+msgid "amStatusOK"
+msgstr "Os Alias do Servidor da Web estão atualmente OK."
+
+msgid "amFixed"
+msgstr "Ocorreu um problema com um ou mais Alias do Servidor da Web, mas foi corrigido automaticamente."
+

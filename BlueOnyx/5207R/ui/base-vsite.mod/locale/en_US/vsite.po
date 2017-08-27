@@ -1117,3 +1117,18 @@ msgstr "This defines how many input variables may be accepted (limit is applied 
 
 msgid "openBaseDirPathRemovedError"
 msgstr "The following open_basedir path is not readable by PHP and has been removed automatically:"
+
+### AM-Extension:
+
+msgid "amvsiteNameTag"
+msgstr "[[base-vsite.webAliases]]"
+
+msgid "amVsiteDetails"
+msgstr "Vsite Webserver Alias status"
+
+msgid "amStatusOK"
+msgstr "The Webserver Aliases are currently OK."
+
+msgid "amFixed"
+msgstr "There was a problem with one or more Webserver Aliases, but it has been fixed automatically."
+
