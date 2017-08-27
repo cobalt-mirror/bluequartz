@@ -1170,3 +1170,17 @@ msgstr "Cette option définit la limite sur le nombre de requêtes simultanées 
 msgid "openBaseDirPathRemovedError"
 msgstr "Le chemin open_basedir suivant n'est pas lisible par PHP et a été supprimé automatiquement:"
 
+### AM-Extension:
+
+msgid "amvsiteNameTag"
+msgstr "[[base-vsite.webAliases]]"
+
+msgid "amVsiteDetails"
+msgstr "Statut de l'alias du serveur Web Vsite"
+
+msgid "amStatusOK"
+msgstr "Les alias du serveur Web sont actuellement OK."
+
+msgid "amFixed"
+msgstr "Il y a eu un problème avec un ou plusieurs alias de serveur Web, mais il a été corrigé automatiquement."
+

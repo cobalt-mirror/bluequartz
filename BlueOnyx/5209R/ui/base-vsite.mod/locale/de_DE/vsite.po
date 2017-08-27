@@ -1147,4 +1147,18 @@ msgstr "Diese Option setzt die Begrenzung für die Anzahl von Kind-Prozessen, di
 msgid "openBaseDirPathRemovedError"
 msgstr "Der folgende open_basedir-Pfad ist für PHP nicht lesbar und wurde automatisch entfernt:"
 
+### AM-Extension:
+
+msgid "amvsiteNameTag"
+msgstr "[[base-vsite.webAliases]]"
+
+msgid "amVsiteDetails"
+msgstr "Vsite Webserver Alias status"
+
+msgid "amStatusOK"
+msgstr "Die Webserver Aliase sind derzeit OK."
+
+msgid "amFixed"
+msgstr "Es gab ein Problem mit einem oder mehreren Webserver Aliasen, aber dies wurde automatisch behoben."
+
 

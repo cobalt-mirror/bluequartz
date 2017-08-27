@@ -9,8 +9,6 @@
 
     <property name="greenMsg"		type="scalar"	
 	default="[[base-vsite.amStatusOK]]"/>
-    <property name="redMsg"		type="scalar"	
-	default="[[base-vsite.amNotRunning]]"/>
     <property name="yellowMsg"		type="scalar"	
 	default="[[base-vsite.amFixed]]"/>
 

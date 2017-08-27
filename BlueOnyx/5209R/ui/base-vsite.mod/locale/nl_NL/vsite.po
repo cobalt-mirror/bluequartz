@@ -1079,3 +1079,17 @@ msgstr "Deze optie stelt de limiet op het aantal gelijktijdige aanvragen dat wor
 msgid "openBaseDirPathRemovedError"
 msgstr "De volgende open_basedir pad is niet leesbaar voor PHP en is automatisch verwijderd:"
 
+### AM-Extension:
+
+msgid "amvsiteNameTag"
+msgstr "[[base-vsite.webAliases]]"
+
+msgid "amVsiteDetails"
+msgstr "Vsite Web Server Alias status"
+
+msgid "amStatusOK"
+msgstr "De Aliases van de Webserver zijn momenteel OK."
+
+msgid "amFixed"
+msgstr "Er was een probleem met een of meer Web Server Aliases, maar het is automatisch opgelost."
+
