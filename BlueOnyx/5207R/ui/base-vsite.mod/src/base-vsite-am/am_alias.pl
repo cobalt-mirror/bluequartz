@@ -48,7 +48,7 @@ for my $vsite (@vhosts) {
     if ($my_vsite->{webAliases}) {
         my @webAliases = $cce->scalar_to_array($my_vsite->{webAliases});
         my $vhostFile = $vhost_basepath . $my_vsite->{name};
-        my $vhost_conf = `/usr/bin/cat $vhostFile | /usr/bin/grep ^ServerAlias| /usr/bin/head -1`;
+        my $vhost_conf = `/bin/cat $vhostFile | /bin/grep ^ServerAlias| /usr/bin/head -1`;
         $vhost_conf =~ s/^ServerAlias\s+//;
         chomp($vhost_conf);
         my @siteAliases = split / /, $vhost_conf;
