@@ -11,6 +11,8 @@
 	default="[[base-vsite.amStatusOK]]"/>
     <property name="yellowMsg"		type="scalar"	
 	default="[[base-vsite.amFixed]]"/>
+    <property name="redMsg"		type="scalar"	
+	default="[[base-vsite.amFixed]]"/>
 
     <property name="currentState" 	type="amstate" 	default="N"/>
     <property name="lastChange"   	type="uint"     default="0"/>
