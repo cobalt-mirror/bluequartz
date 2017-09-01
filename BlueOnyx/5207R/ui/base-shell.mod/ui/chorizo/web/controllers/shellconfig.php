@@ -262,8 +262,8 @@ class Shellconfig extends MX_Controller {
 	                write_file($tempname, $out_data_cleaned);
 
 	                // Move it to the right location and delete the temporary files:
-					$ret = $CI->serverScriptHelper->shell("/bin/cp $tempname ~$ssh_homedir/authorized_keys", $output, $runas, $CI->BX_SESSION['sessionId']);
-					$ret = $CI->serverScriptHelper->shell("/bin/chmod 644 ~$ssh_homedir/authorized_keys", $output, $runas, $CI->BX_SESSION['sessionId']);
+					$ret = $CI->serverScriptHelper->shell("/bin/cp $tempname $ssh_homedir/authorized_keys", $output, $runas, $CI->BX_SESSION['sessionId']);
+					$ret = $CI->serverScriptHelper->shell("/bin/chmod 644 $ssh_homedir/authorized_keys", $output, $runas, $CI->BX_SESSION['sessionId']);
 					$ret = $CI->serverScriptHelper->shell("/bin/rm -f $tempname", $output, $runas, $CI->BX_SESSION['sessionId']);
 					$ret = $CI->serverScriptHelper->shell("/bin/rm -f $tempnameShort", $output, $runas, $CI->BX_SESSION['sessionId']);
 					$ret = $CI->serverScriptHelper->shell("/bin/rm -f $tmp_cert", $output, $runas, $CI->BX_SESSION['sessionId']);
