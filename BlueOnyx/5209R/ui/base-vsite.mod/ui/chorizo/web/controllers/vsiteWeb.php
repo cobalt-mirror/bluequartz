@@ -141,6 +141,18 @@ class vsiteWeb extends MX_Controller {
             $attributes['hostName'] = $vsite['hostname'];
             $attributes['domain'] = $vsite['domain'];
             $attributes['group'] = $group;
+
+            // Remove doublettes from WebAliases and also don't allow FQDN as webAlias:
+            $fqdnVsite = $vsite['hostname'] . '.' . $vsite['domain'];
+            $wa = array_unique($CI->cceClient->scalar_to_array($attributes['webAliases']));
+            if (in_array($fqdnVsite, $wa)) {
+                foreach ($wa as $key => $value) {
+                    if ($value == $fqdnVsite) {
+                        unset($wa[$key]);
+                    }
+                }
+            }
+            $attributes['webAliases'] = $CI->cceClient->array_to_scalar($wa);
         }
 
         //

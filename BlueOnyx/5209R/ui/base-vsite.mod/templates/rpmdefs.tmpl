@@ -141,6 +141,11 @@ fi
 
 <begin $CHANGELOG>
 
+* Tue Sep 05 2017 Michael Stauber <mstauber@solarspeed.net> 4.2-0BX75
+- Fix in ui/chorizo/web/controllers/vsiteWeb.php. We now weed out
+  doublettes in WebAliases and also automatically strip out the FQDN
+  if someone redundantly enters it as WebAlias.
+
 * Sat Aug 26 2017 Michael Stauber <mstauber@solarspeed.net> 4.2-0BX74
 - We do have a problem with Web Server Aliases dropping out of the
   Apache VirtualHost containers and have been unable to find out when
