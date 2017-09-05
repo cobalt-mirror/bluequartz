@@ -1,7 +1,7 @@
 Summary: Active Monitor support for base-vsite-am
 Name: base-vsite-am
 Version: 1.0.0
-Release: 0BX02%{?dist}
+Release: 0BX03%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -26,6 +26,9 @@ This package contains binaries and scripts used by the Active Monitor
 subsystem for base-vsite-am.  
 
 %changelog
+
+* Tue Sep 05 2017 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BX03
+- Small fix. We now use uniq() to weed out doublettes.
 
 * Sat Aug 26 2017 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BX02
 - Path fixes for cat and grep in am_alias.pl for EL6 based systems.
