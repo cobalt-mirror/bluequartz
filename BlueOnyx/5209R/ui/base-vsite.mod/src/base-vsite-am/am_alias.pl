@@ -14,6 +14,7 @@ use Sauce::Util;
 use Sauce::Config;
 use Base::Httpd qw(httpd_set_server_aliases);
 use Sauce::Service qw(service_run_init);
+use List::MoreUtils qw/ uniq /;
 
 # Email related:
 use Sys::Hostname;
@@ -56,6 +57,8 @@ for my $vsite (@vhosts) {
         # Sort both Arrays:
         my @sorted_webAliases = sort @webAliases;
         my @sorted_siteAliases = sort @siteAliases;
+        uniq(@sorted_webAliases);
+        uniq(@sorted_siteAliases);
 
         # Compare both Arrays:
         if (@sorted_webAliases != @sorted_siteAliases) {
