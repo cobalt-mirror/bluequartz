@@ -238,19 +238,38 @@ sub create_db_and_user {
     &debug_msg("Dumper: " . Dumper($query) . "\n");
     $return = $dbh->do($query);
     &debug_msg("Dumper: " . Dumper($return) . "\n");
-    
-    
+    if ($dbh->err) {
+         &debug_msg("Dumper: " . Dumper($dbh->err) . " ErrMsg: " . $dbh->errstr . "\n");
+    }
+
     # Create User
+    # Note to self: In MariaDB-10.1 the behavior changed. Now we need to explicitly create the user first before we can GRANT him any rights.
+    # In the past a GRANT on a non-existing User would create the User instead. Fun and games!
+    $query = "CREATE USER `$siteMysql_user`@`$siteMysql_host`;\n";
+    &debug_msg("Dumper: " . Dumper($query) . "\n");
+    $return = $dbh->do($query);
+    &debug_msg("Dumper: " . Dumper($return) . "\n");
+    if ($dbh->err) {
+         &debug_msg("Dumper: " . Dumper($dbh->err) . " ErrMsg: " . $dbh->errstr . "\n");
+    }
+
+    # Grant basic rights to User:
     $query = "GRANT $my_user_rights ON `$siteMysql_db`.* TO `$siteMysql_user`@`$siteMysql_host`;\n";
     &debug_msg("Dumper: " . Dumper($query) . "\n");
     $return = $dbh->do($query);
     &debug_msg("Dumper: " . Dumper($return) . "\n");
+    if ($dbh->err) {
+         &debug_msg("Dumper: " . Dumper($dbh->err) . " ErrMsg: " . $dbh->errstr . "\n");
+    }
     
-    # 
+    # Grant DB-rights to User:
     $query = "GRANT USAGE ON * . * TO `$siteMysql_user`@`$siteMysql_host` IDENTIFIED BY '$siteMysql_pass' WITH MAX_QUERIES_PER_HOUR $MAX_QUERIES_PER_HOUR MAX_CONNECTIONS_PER_HOUR $MAX_CONNECTIONS_PER_HOUR MAX_UPDATES_PER_HOUR $MAX_UPDATES_PER_HOUR;\n";
     &debug_msg("Dumper: " . Dumper($query) . "\n");
     $return = $dbh->do($query);
     &debug_msg("Dumper: " . Dumper($return) . "\n");
+    if ($dbh->err) {
+         &debug_msg("Dumper: " . Dumper($dbh->err) . " ErrMsg: " . $dbh->errstr . "\n");
+    }
     
     # FLUSH PRIVILEGES
     $query = "FLUSH PRIVILEGES;\n";
