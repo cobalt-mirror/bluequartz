@@ -373,6 +373,12 @@ sub make_sendmail_mc {
     select $out;
     $Dh_found = "0";
     $LC_found = "0";
+    $mms_found = "0";
+    $delayChecks_found = "0";
+    $smartHost_found = "0";
+    $hide_headers_found = "0";
+    $maxReceipients_found = "0";
+    $masquerade_found = "0";
     while (<$in>) {
         if (/^dnl DAEMON_OPTIONS\(\`Port=smtp, Name=MTA/o || /^DAEMON_OPTIONS\(\`Port=smtp, Name=MTA/o ) {
             print $smtpPort;
@@ -385,27 +391,30 @@ sub make_sendmail_mc {
         }
         elsif (/^define\(\`confMAX_MESSAGE_SIZE/o ) { # `
             print $maxMessageSize_out;
-        }
-        elsif ( /^define\(`confMAX_RCPTS_PER_MESSAGE'/o || /^dnl define\(`confMAX_RCPTS_PER_MESSAGE'/o ) { 
-            print $maxRecipientsPerMessage_line;
+            $mms_found = "1";
         }
         elsif ( /^define\(\`confDH_PARAMETERS/o ) { 
             # Do nothing and remove this line.
         }
         elsif ( /define\(\`SMART_HOST/ ) { 
             print $smartRelay_out;
+            $smartHost_found = "1";
         }
         elsif (( /^define\(\`confRECEIVED_HEADER(.*)$/ ) || ( /^dnl define\(\`confRECEIVED_HEADER(.*)$/ )) { 
             print $hideHeaders_out;
+            $hide_headers_found = "1";
         }
-        elsif (( /^FEATURE(delay_checks)dnl/ ) || ( /^dnl FEATURE(delay_checks)dnl/ )) { 
+        elsif (( /^FEATURE\(delay_checks\)dnl$/) || ( /^dnl FEATURE\(delay_checks\)dnl$/ )) { 
             print $delayChecks_out;
+            $delayChecks_found = "1";
         }
         elsif ( /^MASQUERADE_AS(.*)$/ ) { 
             print $masqAddress;
+            $masquerade_found = "1";
         }
         elsif (( /^define\(`confMAX_RCPTS_PER_MESSAGE(.*)$/o ) || ( /^dnl define\(`confMAX_RCPTS_PER_MESSAGE(.*)$/o )) { 
             print $maxRecipientsPerMessage_out;
+            $maxReceipients_found = "1";
         }
         elsif ( /^MAILER\(procmail\)dnl/o ) {
             print $_;
@@ -427,6 +436,25 @@ sub make_sendmail_mc {
         else {
             print $_;
         }
+    }
+    # If we not found certain critical elements, then we add them at the bottom:
+    if ($mms_found eq "0") {
+        print $maxMessageSize_out;
+    }
+    if ($delayChecks_found eq "0") {
+        print $delayChecks_out;
+    }
+    if ($smartHost_found eq "0") {
+        print $smartRelay_out;
+    }    
+    if ($hide_headers_found eq "0") {
+        print $hideHeaders_out;
+    }
+    if ($masquerade_found eq "0") {
+        print $masqAddress;
+    }
+    if ($maxReceipients_found eq "0") {
+        print $maxRecipientsPerMessage_out;
     }
     return 1;
 }
@@ -561,4 +589,4 @@ sub debug_msg {
 # You acknowledge that this software is not designed or intended for 
 # use in the design, construction, operation or maintenance of any 
 # nuclear facility.
-# 
+#
