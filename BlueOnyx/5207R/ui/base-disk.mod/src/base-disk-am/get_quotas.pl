@@ -158,18 +158,32 @@ sub sites {
     }
 
     # find all numeric hashes
-    my @hashdirs = ();
-    foreach my $mount (@mounts) {
-        &debug_msg("Processing disk for mountpoint " . $mount . "\n");
-        if (($num_of_disks == "1") && ($mount eq "/")) {
-            $mount = '/home';
-            &debug_msg("As this is the only disk, we look for the Vsites on " . $mount . " instead.\n");
-        }
-        opendir(SITEDIR, "$mount/.sites");
-        my @dirs = map { "$mount/.sites/$_" } grep /^\d+$/, readdir(SITEDIR);
-        push @hashdirs, @dirs;
-        close(SITEDIR);
-    }
+#    my @hashdirs = ();
+#    foreach my $mount (@mounts) {
+#        &debug_msg("Processing disk for mountpoint " . $mount . "\n");
+#        if (($num_of_disks == "0") && ($mount eq "/")) {
+#            $mount = '/home';
+#            &debug_msg("As this is the only disk, we look for the Vsites on " . $mount . " instead.\n");
+#        }
+#        opendir(SITEDIR, "$mount/.sites");
+#        my @dirs = map { "$mount/.sites/$_" } grep /^\d+$/, readdir(SITEDIR);
+#        push @hashdirs, @dirs;
+#        close(SITEDIR);
+#    }
+#
+# This code above kinda sucks, as it may not find the Vsites under $mount/.sites/ if /home is a 
+# subdirectory of the partition "/". As we currently only support Vsites on /home/, we can as well
+# strip this down and just search /home and be done with it. See below:
+
+# Replacement start
+    $mount = '/home';
+    &debug_msg("As this is the only disk, we look for the Vsites on " . $mount . " instead.\n");
+    opendir(SITEDIR, "$mount/.sites");
+    my @dirs = map { "$mount/.sites/$_" } grep /^\d+$/, readdir(SITEDIR);
+    push @hashdirs, @dirs;
+    close(SITEDIR);
+# Replacement end
+
 
     # find all dirs in all hashes
     my @some_sites = ();
@@ -211,17 +225,30 @@ sub siteusage {
     # or this is installed on another product, then this will need to change.
     # find all numeric hashes
     my @hashdirs = ();
-    foreach my $mount (@mounts) {
-        &debug_msg("Processing disk for mountpoint " . $mount . "\n");
-        if (($num_of_disks == "1") && ($mount eq "/")) {
-            $mount = '/home';
-            &debug_msg("As this is the only disk, we look for the Vsites on " . $mount . " instead.\n");
-        }
+#    foreach my $mount (@mounts) {
+#        &debug_msg("Processing disk for mountpoint " . $mount . "\n");
+#        if (($num_of_disks == "1") && ($mount eq "/")) {
+#            $mount = '/home';
+#            &debug_msg("As this is the only disk, we look for the Vsites on " . $mount . " instead.\n");
+#        }
+#        opendir(SITEDIR, "$mount/.sites");
+#        my @dirs = map { "$mount/.sites/$_" } grep /^\d+$/, readdir(SITEDIR);
+#        push @hashdirs, @dirs;
+#        close(SITEDIR);
+#    }
+#
+# This code above kinda sucks, as it may not find the Vsites under $mount/.sites/ if /home is a 
+# subdirectory of the partition "/". As we currently only support Vsites on /home/, we can as well
+# strip this down and just search /home and be done with it. See below:
+
+### replacement start
+        $mount = '/home';
+        &debug_msg("As this is the only disk, we look for the Vsites on " . $mount . " instead.\n");
         opendir(SITEDIR, "$mount/.sites");
         my @dirs = map { "$mount/.sites/$_" } grep /^\d+$/, readdir(SITEDIR);
         push @hashdirs, @dirs;
         close(SITEDIR);
-    }
+### replacement end
 
     # find all dirs in all hashes
     my @some_sites = ();
@@ -299,8 +326,8 @@ sub debug_msg {
 }
 
 # 
-# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2014-2017 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2014-2017 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 
@@ -332,4 +359,4 @@ sub debug_msg {
 # You acknowledge that this software is not designed or intended for 
 # use in the design, construction, operation or maintenance of any 
 # nuclear facility.
-# 
+#

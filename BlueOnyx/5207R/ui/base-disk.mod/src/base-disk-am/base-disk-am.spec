@@ -1,7 +1,7 @@
 Summary: Binaries and scripts used by Active Monitor for base-disk
 Name: base-disk-am
 Version: 1.2.0
-Release: 0BX02%{?dist}
+Release: 0BX03%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -29,6 +29,11 @@ This package contains a number of binaries and scripts used by the Active
 Monitor subsystem to monitor services provided by the base-disk module.  
 
 %changelog
+
+* Fri Sep 15 2017 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX03
+- Modified src/base-disk-am/get_quotas.pl to only look under /home/.sites/ for
+  the Vsites, as this is the only place where we really support them to be at
+  this time. This is faster and more reliable.
 
 * Mon Oct 13 2014 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX02
 - Modified src/base-disk-am/get_quotas.pl to add debugging. Also added a check that if
