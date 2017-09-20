@@ -164,6 +164,12 @@ fi
 
 <begin $CHANGELOG>
 
+* Tue Sep 19 2017 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX30
+- Modified glue/etc/admserv/conf.d/ssl.conf to improve the SSLCipherSuite
+  with the latest findings, which switch our TLS connections to 
+  ECDH secp256r1 for almost every browser that supports it, including
+  the hipster stuff from Apple.
+
 * Thu Jun 01 2017 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX29
 - Added glue/etc/admserv/conf.d/performance.conf to enable KeepAlive
   and Gzip compression by default. As the Romans said: 'Sus sit fugere!'
