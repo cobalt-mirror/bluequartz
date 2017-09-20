@@ -124,10 +124,9 @@ if [ -f /etc/httpd/conf/vhosts/preview ]; then
 fi
 
 # Run SSL_fixer.pl to enforce writing of updated SSL Vhost configs:
-#if [ -f /usr/sausalito/sbin/SSL_fixer.pl ]; then
-  # We no longer need this at this time. 
-  #/usr/sausalito/sbin/SSL_fixer.pl
-#fi
+if [ -f /usr/sausalito/sbin/SSL_fixer.pl ]; then
+  /usr/sausalito/sbin/SSL_fixer.pl
+fi
 
 # Run Swatch to get Apache back up if SSL_fixer.pl let it fell on its face:
 if [ -f /usr/sbin/swatch ]; then
@@ -172,6 +171,13 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Tue Sep 19 2017 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX24
+- Modified glue/handlers/virtual_host.pl to improve the SSLCipherSuite
+  with the latest findings, which switch our TLS connections to 
+  ECDH secp256r1 for almost every browser that supports it, including
+  the hipster stuff from Apple.
+- Re-enabled run of /usr/sausalito/sbin/SSL_fixer.pl
 
 * Tue Jul 25 2017 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX23
 - Modified glue/handlers/virtual_host.pl to set ServerAdmin to 'admin'

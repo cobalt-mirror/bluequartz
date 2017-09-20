@@ -173,7 +173,7 @@ NameVirtualHost $vhost->{ipaddr}:$sslPort
 SSLengine on
 SSLProtocol +ALL -SSLv2 -SSLv3
 SSLHonorCipherOrder On
-SSLCipherSuite EDH+CAMELLIA:EDH+aRSA:EECDH+aRSA+AESGCM:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH:+CAMELLIA256:+AES256:+CAMELLIA128:+AES128:+SSLv3:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!DSS:!RC4:!SEED:!ECDSA:CAMELLIA256-SHA:AES256-SHA:CAMELLIA128-SHA:AES128-SHA
+SSLCipherSuite HIGH:!LOW:!SEED:!DSS:!SSLv2:!aNULL:!eNULL:!NULL:!EXPORT:!ADH:!IDEA:!ECDSA:!3DES:!DES:!MD5:!PSK:!RC4:@STRENGTH
 $HSTS_line
 $cafile
 SSLCertificateFile $vhost->{basedir}/certs/certificate
@@ -197,29 +197,34 @@ Include $include_file
 END
     }
 
+    #
+    # Updated: 2017-09-19 by mstauber as per '[BlueOnyx:21390] Re: Apache Webserver SSLCipherSuite - request':
+    #
     # Explanation on the SSL Ciphers SSL Protocol and SSL CipherSuites: The fuckers at RedHat had 
     # crippled OpenSSL so that elliptic curve ciphers were missing. Go figure. Honest broker? My ass!
     #
     # They added some of them back in RHEL6.5. See: https://bugzilla.redhat.com/show_bug.cgi?id=319901
-    # As far as Apache is concerned, the ECDHE ciphers *still* do not work. For that we would need Apache 2.4.
-    # On the bright side, TLSv1.2 is finally working with this version of OpenSSL.
+    # As far as Apache is concerned, the ECDHE ciphers *still* did not work for a long time. This finally
+    # changed and we now do have access to ECDH secp256r1 both on CentOS 6 and CentOS 7. Woot! In fact:
+    # we do get identical results for protocols and ciphers on CentOS 6 and CentOS 7 with these settings.
     # 
     # For securing HTTPS we want to achieve the following:
     # - Do not use weak or comprimised ciphers: OK (as best as possible)
     # - Use Strict Transport Security (HSTS): OK, but make it optional, as it can be a pain in the ass.
     # - Support Forward Secrecy (PFS) for as many browsers as possible: OK, but fail for Internet Explorer.
+    # - Use ECDH secp256r1 wherever possible, even though we are fully aware about the (at this point rather
+    #   philosophical discussion) about wether or not the NSA had a say in the selection of the curve.
     #
-    # With ECDHE not available (which we'd need to get PFS working with IE browsers), we fall back to DHE,
-    # which allows Forward Secrecy on all browsers. Execept the ones from Microsoft. It's the next best 
-    # thing below ECDHE and if someone wants to use any version of IE, then I don't care about these lemmings.
+    # If ECDHE is not available for a browser, then we fall back to DH 4096 bit or at the worst to DH 4096,
+    # which allow Forward Secrecy. It's the next best thing below ECDHE.
     #
-    # Most Microsoft browsers post Windows XP's IE will use either TLS_RSA_WITH_AES_256_CBC_SHA instead.
-    # Chrome, Firefox, Opera and Safari will almost all use TLS_DHE_RSA_WITH_AES_256_CBC_SHA instead, which 
-    # allows Forward Secrecy. Anything but IE6/XP, IE8/XP, Java 6u45 and Java 7u25 (which will use 168bit keys)
-    # will use 256bit keys instead. 
+    # Most browsers we then get TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (ECDH secp256r1) or at least 
+    # TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (ECDH secp256r1) with TLS_DHE_RSA_WITH_AES_128_CBC_SHA (DH 4096)
+    # representing the bottom end with Android 2.3.7 or OpenSSL 0.9.8y.
     #
     # Protocols: Only IE6/XP would use SSLv3, which we disabled due to the 'Pootle'-vulnerability. So IE6/XP
-    # users will no longer be able to connect. All the rest default to TLSv1.2, TLSv1.1 or (at worst) TLSv1.0.
+    # and IE8/XP users will no longer be able to connect. All the rest default to TLSv1.2, TLSv1.1 or 
+    # (at worst) TLSv1.0.
     #
     # Ciphers: RC4 and other weak ciphers have been disabled.
     #
