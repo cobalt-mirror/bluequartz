@@ -226,6 +226,12 @@ fi
 
 <begin $CHANGELOG>
 
+* Tue Sep 19 2017 Michael Stauber <mstauber@solarspeed.net> 2.1.1-0BX52
+- Modified glue/handlers/virtual_host.pl to improve the SSLCipherSuite
+  with the latest findings, which switch our TLS connections to 
+  ECDH secp256r1 for almost every browser that supports it, including
+  the hipster stuff from Apple.
+
 * Tue Jul 25 2017 Michael Stauber <mstauber@solarspeed.net> 2.1.1-0BX51
 - Modified glue/handlers/virtual_host.pl to set ServerAdmin to 'admin'
   in case it has not been defined.
