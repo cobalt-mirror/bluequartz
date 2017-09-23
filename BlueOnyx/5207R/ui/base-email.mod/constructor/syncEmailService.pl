@@ -118,6 +118,28 @@ my $maxRecipientsPerMessage = $obj->{maxRecipientsPerMessage};
 system("/bin/cat /etc/mail/sendmail.mc|/bin/grep -v '^FEATURE(dnsbl' > /etc/mail/sendmail.mc.norbl");
 system("/bin/mv /etc/mail/sendmail.mc.norbl /etc/mail/sendmail.mc");
 
+# Get primary IP:
+my (@network_oids) = $cce->findx('Network', { 'enabled' => 1, 'real' => 1 });
+my $primaryIP = '127.0.0.1';
+&debug_msg("Primary IP: $primaryIP");
+foreach my $oid (@network_oids) {
+    my ($ok, $net) = $cce->get($oid);
+    &debug_msg("OID: $oid");
+    if ($ok) {
+        &debug_msg("Device: " . $net->{device});
+        if (($net->{device} ne "venet0") && ($primaryIP eq '127.0.0.1')) {
+            $primaryIP = $net->{ipaddr};
+        }
+    }
+    &debug_msg("Using primary IP: $primaryIP");
+}
+
+#
+## Update sendmail.mc:
+#
+
+Sauce::Util::editfile(Email::SendmailMC, *make_sendmail_mc, $obj );
+
 #
 ## Get RBL config (if present):
 #
@@ -133,9 +155,6 @@ foreach $rbloid (@rbloids) {
         exit(0);
     } 
 }
-
-# Edit the rest of the Sendmail settings back in:
-Sauce::Util::editfile(Email::SendmailMC, *make_sendmail_mc, $obj );
 
 # Cleanup:
 system('/bin/rm -f /etc/mail/sendmail.mc.backup.*');
@@ -219,6 +238,33 @@ sub make_sendmail_mc {
     my $out = shift;
     my $obj = shift;
 
+    my $privacy_line;
+    my $maxMessageSize_line;
+    my $maxRecipientsPerMessage_line;
+    my $smartRelay_line;
+    my $hideHeaders_line;
+    my $masqDomain_line;
+    my $deliveryMode_line;
+    my $delayChecks_line;
+
+    my %Printed_line = ( 
+        enableSMTP => 0,
+        enableSMTPS => 0,
+        enableSubmissionPort => 0,
+        maxMessageSize => 0,
+        smartRelay => 0,
+        privacy => 0,
+        queueTime => 0,
+        maxRecipientsPerMessage => 0,
+        masqAddress => 0,
+        delayChecks => 0,
+        hideHeaders => 0,
+        popRelay => 0,
+        Dh_found => 0,
+        LC_found => 0 );
+
+    my @Mailer_line = ();
+
     # smtp port
     if ($obj->{enableSMTP}) {
         $smtpPort = "DAEMON_OPTIONS(`Port=smtp, Name=MTA')\n";
@@ -243,12 +289,19 @@ sub make_sendmail_mc {
         $submissionPort = "dnl DAEMON_OPTIONS(`Port=submission, Name=MSA, M=Ea')\n";
     }
 
-    # MaxMessageSize
-    if ($obj->{maxMessageSize}) {
-        $maxMessageSize_out = "define(`confMAX_MESSAGE_SIZE'," . $obj->{maxMessageSize}*1024 . ")dnl\n";
+    if ($obj->{smartRelay} ) {
+        $smartRelay_line = "define(`SMART_HOST', `". $obj->{smartRelay} . "')\n";
     }
     else {
-        $maxMessageSize_out = "define(`confMAX_MESSAGE_SIZE',0)dnl\n";
+        $smartRelay_line = "define(`SMART_HOST', `')\n";
+    }
+
+    if ($obj->{maxMessageSize} ) {
+        # Max message size is in kilos. Sendmail needs bytes.
+        $maxMessageSize_line = "define(`confMAX_MESSAGE_SIZE',". $obj->{maxMessageSize}*1024 .")\n";
+    }
+    else {
+        $maxMessageSize_line = "define(`confMAX_MESSAGE_SIZE',0)\n";
     }
 
     # SmartRelay:
@@ -259,36 +312,56 @@ sub make_sendmail_mc {
         $smartRelay_out = "dnl define(`SMART_HOST', `')dnl\n";
     }
 
-    # hideHeaders:
-    if ($obj->{hideHeaders} eq "1") {
-        $hideHeaders_out = "define(`confRECEIVED_HEADER',`by \$j \$?r with \$r\$. id \$i; \$b')dnl\n";
+    if ($obj->{privacy} ) {
+        $privacy_line = "define(`confPRIVACY_FLAGS', `noexpn noexpn authwarnings')\n";
+        
     }
     else {
-        $hideHeaders_out = "dnl define(`confRECEIVED_HEADER',`by \$j \$?r with \$r\$. id \$i; \$b')dnl\n";
+        $privacy_line = "define(`confPRIVACY_FLAGS', `authwarnings')\n";
     }
 
-    # delayChecks:
-    if ($obj->{delayChecks} eq "1") {
-        $delayChecks_out = "FEATURE(delay_checks)dnl\n";
+    if ($obj->{queueTime} eq 'immediate') {
+        $deliveryMode_line = "define(`confDELIVERY_MODE', `background')\n";
     }
     else {
-        $delayChecks_out = "dnl FEATURE(delay_checks)dnl\n";
+        $deliveryMode_line = "define(`confDELIVERY_MODE', `deferred')\n";
     }
 
-    # masqAddress:
-    if ($obj->{masqAddress}) {
-        $masqAddress_out = "MASQUERADE_AS(`" . $obj->{masqAddress} . "')\n";
+    if ($obj->{maxRecipientsPerMessage} ) {
+        # Maximum number of recipients per SMTP envelope:
+        $maxRecipientsPerMessage_line = "define(`confMAX_RCPTS_PER_MESSAGE',". $obj->{maxRecipientsPerMessage} .")\n";
     }
     else {
-        $masqAddress = "MASQUERADE_AS()dnl\n";
+        $maxRecipientsPerMessage_line = "define(`confMAX_RCPTS_PER_MESSAGE',0)\n";
     }
 
-    # maxRecipientsPerMessage:
-    if ($obj->{maxRecipientsPerMessage}) {
-        $maxRecipientsPerMessage_out = "define(`confMAX_RCPTS_PER_MESSAGE'," . $obj->{maxRecipientsPerMessage} . ")\n";
+    if ($obj->{masqAddress} ) {
+        $masqDomain_line = "MASQUERADE_AS(`". $obj->{masqAddress} ."')\n"
     }
     else {
-        $maxRecipientsPerMessage_out = "define(`confMAX_RCPTS_PER_MESSAGE',0)\n";
+        $masqDomain_line = "MASQUERADE_AS(`')\n";
+    }
+
+    if ($obj->{delayChecks} ) {
+        $delayChecks_line = "FEATURE(delay_checks)dnl\n";
+    }
+    else {
+        $delayChecks_line = "dnl FEATURE(delay_checks)dnl\n";
+    }
+
+    if ($obj->{hideHeaders} ) {
+        #$hideHeaders_line = "define(`confRECEIVED_HEADER',`by \$j \$?r with \$r\$. id \$i; \$b')dnl\n";
+        $hideHeaders_line = "define(`confRECEIVED_HEADER',`\$?{auth_type}from \${auth_authen} (\$j [$primaryIP]) \$|_REC_HDR_\$.\n\t_REC_BY_\n\t_REC_TLS_\n\t_REC_END_')\n";
+    }
+    else {
+        $hideHeaders_line = "dnl define(`confRECEIVED_HEADER',`by \$j \$?r with \$r\$. id \$i; \$b')dnl\n";
+    }
+
+    if ($obj->{popRelay} ) {
+        $popRelay_line = "HACK(popauth)dnl\n";
+    }
+    else {
+        $popRelay_line = "";
     }
 
     # Diffie-Hellmann File:
@@ -360,102 +433,154 @@ sub make_sendmail_mc {
     $local_config .= 'O ServerSSLOptions=+SSL_OP_NO_SSLv2 +SSL_OP_NO_SSLv3 +SSL_OP_CIPHER_SERVER_PREFERENCE' . "\n";
     $local_config .= 'O ClientSSLOptions=+SSL_OP_NO_SSLv2 +SSL_OP_NO_SSLv3' . "\n";
 
-    # MaxRecipientsPerMessage
-    if ($obj->{maxRecipientsPerMessage} ) {
-        # Maximum number of recipients per SMTP envelope:
-        $maxRecipientsPerMessage_line = "define(`confMAX_RCPTS_PER_MESSAGE',". $obj->{maxRecipientsPerMessage} .")\n";
-    }
-    else {
-        $maxRecipientsPerMessage_line = "define(`confMAX_RCPTS_PER_MESSAGE',0)\n";
-    }
+    #
+    ### Process changes:
+    #
 
-
+    my $mailer_lines = 0;
+    my @Mailer_line = ();    
     select $out;
-    $Dh_found = "0";
-    $LC_found = "0";
-    $mms_found = "0";
-    $delayChecks_found = "0";
-    $smartHost_found = "0";
-    $hide_headers_found = "0";
-    $maxReceipients_found = "0";
-    $masquerade_found = "0";
-    while (<$in>) {
+    while (<$in> ) {
+
         if (/^dnl DAEMON_OPTIONS\(\`Port=smtp, Name=MTA/o || /^DAEMON_OPTIONS\(\`Port=smtp, Name=MTA/o ) {
+            $Printed_line{'enableSMTP'}++;
             print $smtpPort;
         }
         elsif (/^dnl DAEMON_OPTIONS\(\`Port=smtps, Name=TLSMTA/o || /^DAEMON_OPTIONS\(\`Port=smtps, Name=TLSMTA/o ) {
+            $Printed_line{'enableSMTPS'}++;
             print $smtpsPort;
         }
         elsif (/^dnl DAEMON_OPTIONS\(\`Port=submission, Name=MSA/o || /^DAEMON_OPTIONS\(\`Port=submission, Name=MSA/o ) {
+            $Printed_line{'enableSubmissionPort'}++;
             print $submissionPort;
         }
-        elsif (/^define\(\`confMAX_MESSAGE_SIZE/o ) { # `
-            print $maxMessageSize_out;
-            $mms_found = "1";
+        elsif ( /^define\(`confMAX_MESSAGE_SIZE'/o || /^dnl define\(`confMAX_MESSAGE_SIZE'/o ) { #`
+            $Printed_line{'maxMessageSize'}++;
+            print $maxMessageSize_line;
+        }
+        elsif ( /^define\(`SMART_HOST'/o || /^dnl define\(`SMART_HOST'/o ) { #`
+            $Printed_line{'smartRelay'}++;
+            print $smartRelay_line;
+        }
+        elsif ((/^define\(`confPRIVACY_FLAGS'/o || /^dnl define\(`confPRIVACY_FLAGS'/o ) && ! $Printed_line{'privacy'} ) {
+            $Printed_line{'privacy'}++;
+            print $privacy_line;
+        }
+        elsif ( /^define\(`confDELIVERY_MODE'/o || /dnl ^define\(`confDELIVERY_MODE'/o ) { #`
+            $Printed_line{'queueTime'}++;
+            print $deliveryMode_line;
+        }
+        elsif (( /^define\(`confMAX_RCPTS_PER_MESSAGE'/o || /^dnl define\(`confMAX_RCPTS_PER_MESSAGE'/o ) && ! $Printed_line{'maxRecipientsPerMessage'}) {
+            $Printed_line{'maxRecipientsPerMessage'}++;
+            print $maxRecipientsPerMessage_line;
+        }
+        elsif ( /^MASQUERADE_AS/o || /^dnl MASQUERADE_AS/o ) {
+            $Printed_line{'masqAddress'}++;
+            print $masqDomain_line;
+        }
+        elsif ( /^FEATURE\(delay_checks/o || /^dnl FEATURE\(delay_checks/o ) {
+            $Printed_line{'delayChecks'}++;
+            print $delayChecks_line;
+        }
+        elsif( ( /^define\(`confRECEIVED_HEADER/ || /_REC_BY_/ || /_REC_TLS_/ || /_REC_END_/ || /^dnl define\(`confRECEIVED_HEADER/ ) && ! $Printed_line{'hideHeaders'} ) {
+            # If we find any of the above regexp, then we ignore them. The 'hideheaders' line will be added further below.
+        }
+        elsif ( /^HACK\(popauth\)dnl$/o  ) {
+            &debug_msg("Found POPAUTH line!");
+            $Printed_line{'popRelay'}++;
+            print $popRelay_line;
+        }
+        elsif ( /^MAILER\(procmail\)dnl/o ) {
+            print $_;
+            if ($Printed_line{'Dh_found'} eq "0") {
+                # Add the Diffie-Hellmann line:
+                print $DiffieHellmann;
+                $Printed_line{'Dh_found'} = "1";
+            }
+            if ($Printed_line{'LC_found'} eq "0") {
+                # Add the LOCAL_CONFIG line:
+                print $local_config;
+                $Printed_line{'LC_found'} = "1";
+            }
+        }        
+        elsif (( /^LOCAL_CONFIG$/o ) || (/^O CipherList(.*)$/o) || (/^O ServerSSLOptions(.*)$/o) || (/^O ClientSSLOptions(.*)$/o)) {
+            # If the information was already in sendmail.mc, then we ignore it as we're printing it again anyway.
+            next;
         }
         elsif ( /^define\(\`confDH_PARAMETERS/o ) { 
             # Do nothing and remove this line.
         }
-        elsif ( /define\(\`SMART_HOST/ ) { 
-            print $smartRelay_out;
-            $smartHost_found = "1";
+        elsif ( /^MAILER\(/o ) {
+            $Mailer_line[$mailer_lines] = $_;
+            $mailer_lines++;
         }
-        elsif (( /^define\(\`confRECEIVED_HEADER(.*)$/ ) || ( /^dnl define\(\`confRECEIVED_HEADER(.*)$/ )) { 
-            print $hideHeaders_out;
-            $hide_headers_found = "1";
-        }
-        elsif (( /^FEATURE\(delay_checks\)dnl$/) || ( /^dnl FEATURE\(delay_checks\)dnl$/ )) { 
-            print $delayChecks_out;
-            $delayChecks_found = "1";
-        }
-        elsif ( /^MASQUERADE_AS(.*)$/ ) { 
-            print $masqAddress;
-            $masquerade_found = "1";
-        }
-        elsif (( /^define\(`confMAX_RCPTS_PER_MESSAGE(.*)$/o ) || ( /^dnl define\(`confMAX_RCPTS_PER_MESSAGE(.*)$/o )) { 
-            print $maxRecipientsPerMessage_out;
-            $maxReceipients_found = "1";
-        }
-        elsif ( /^MAILER\(procmail\)dnl/o ) {
-            print $_;
-            if ($Dh_found eq "0") {
-                # Add the Diffie-Hellmann line:
-                print $DiffieHellmann;
-                $Dh_found = "1";
-            }
-            if ($LC_found eq "0") {
-                # Add the LOCAL_CONFIG line:
-                print $local_config;
-                $LC_found = "1";
-            }
-        }
-        elsif (( /^LOCAL_CONFIG$/o ) || (/^O CipherList(.*)$/o) || (/^O ServerSSLOptions(.*)$/o) || (/^O ClientSSLOptions(.*)$/o)) {
-            # If the information was already in sendmail.mc, then we ignore it as we're printing it again anyway.
-            next;
+        elsif( /^FEATURE\(dnsbl/ || /^dnl FEATURE\(dnsbl/ )  {
+            # We strip these out, because further down they are added anyway.
         }
         else {
             print $_;
         }
     }
-    # If we not found certain critical elements, then we add them at the bottom:
-    if ($mms_found eq "0") {
-        print $maxMessageSize_out;
+
+    foreach my $key ( keys %Printed_line ) {
+        if ($Printed_line{$key} == 0) {
+            if ($key eq 'enableSMTP') {
+                print $smtpPort;
+            }
+            elsif ($key eq 'enableSMTPS') {
+                print $smtpsPort;
+            }
+            elsif ($key eq 'enableSubmissionPort') {
+                print $submissionPort;
+            }
+            elsif ($key eq 'enableSubmissionPort') {
+                print $submissionPort;
+            }
+            elsif ($key eq 'maxMessageSize') {
+                print $maxMessageSize_line;
+            }
+            elsif ($key eq 'smartRelay') {
+                print $smartRelay_line;
+            }
+            elsif ($key eq 'privacy') {
+                print $privacy_line;
+            }
+            elsif ($key eq 'queueTime') {
+                print $deliveryMode_line;
+            }
+            elsif ($key eq 'maxRecipientsPerMessage') {
+                print $maxRecipientsPerMessage_line;
+            }
+            elsif ($key eq 'masqAddress') {
+                print $masqDomain_line;
+            }
+            elsif ($key eq 'masqAddress') {
+                print $masqDomain_line;
+            }
+            elsif ($key eq 'delayChecks') {
+                print $delayChecks_line;
+            }
+            elsif ($key eq 'hideHeaders') {
+                print $hideHeaders_line;
+                $Printed_line{'hideHeaders'}++;
+            }
+            elsif ($key eq 'popRelay') {
+                print $popRelay_line;
+                $Printed_line{'popRelay'}++;
+            }
+            else {
+                $cce->warn("error_writing_sendmail_mc");
+                print STDERR "Writing sendmail_mc found $Printed_line{$key} occurences of $key\n";
+            }
+        }
     }
-    if ($delayChecks_found eq "0") {
-        print $delayChecks_out;
+
+    if ($mailer_lines) {
+        foreach my $line (@Mailer_line) {
+            print $line;
+        }
     }
-    if ($smartHost_found eq "0") {
-        print $smartRelay_out;
-    }    
-    if ($hide_headers_found eq "0") {
-        print $hideHeaders_out;
-    }
-    if ($masquerade_found eq "0") {
-        print $masqAddress;
-    }
-    if ($maxReceipients_found eq "0") {
-        print $maxRecipientsPerMessage_out;
-    }
+
     return 1;
 }
 

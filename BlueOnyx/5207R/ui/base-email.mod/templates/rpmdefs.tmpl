@@ -155,6 +155,30 @@ fi
 
 <begin $CHANGELOG>
 
+* Sat Sep 23 2017 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX46
+- Between the AV-SPAM modifying sendmail.mc and base-email doing the same
+  we started to see massive discrepancies in the results. Same for the
+  base-email constructor and handler. All three of them wiggled different
+  settings in and forgot about others. Unified the routine in all three
+  of them that updates sendmail.mc. The results should now be much more
+  uniform.
+- Fixed bug of 'popauth' provision never being removed from sendmail.mc
+  even if the service was disabled.
+- Massively improved the 'Hide previous headers' feature and turned it
+  into something usable. Full credit for this to Andreas Schamanek from
+  the TU Wien who mentioned this approach in his blog. We now check if
+  am email came in via SMTP-AUTH and if so, we leave the header instead
+  of removing it. But we change its format to show the username of the
+  authed user, the FQDN and IP of our server. That way: If someone 
+  reports abuse, we can track the user immediately. But even better:
+  Headers from non-SMTP-Auth emails remain unchanged, which is what we
+  need if we're going after the IPs of people who send us shit. That
+  saves us digging the IP out of the log by using the MessageID. Or
+  doing some more arcane stuff like using Milter-Addheader.
+- Modified constructor/syncEmailService.pl
+- Modified glue/conf/email.conf
+- Modified glue/handlers/system.pl
+
 * Fri Sep 15 2017 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX45
 - Fixed constructor/syncEmailService.pl to now honor all relevant GUI
   settings. If need be by appending missing settings to sendmail.mc
