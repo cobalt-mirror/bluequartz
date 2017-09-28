@@ -1,0 +1,19 @@
+<!-- Author: Michael Stauber mstauber@solarspeed.net -->
+<!-- Copyright 2006-2017, SOLARSPEED.NET. All rights reserved. -->
+
+<class name="System" namespace="REDIRECT_DEFAULTS" version="1.0">
+
+       <property name="force_update"
+            type="scalar"
+            default=""
+            optional="true" 
+            writeacl="ruleCapable(adminUser)"
+        />
+
+        <property name="enabled"
+            type="scalar"
+            default="0"
+            optional="false"
+            writeacl="ruleCapable(adminUser)"
+        />
+</class>

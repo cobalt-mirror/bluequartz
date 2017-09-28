@@ -349,3 +349,26 @@ msgstr "HSTS:"
 msgid "HSTS_help"
 msgstr "HTTP Strict Transport Security (HSTS) est un mécanisme de politique de sécurité Web par lequel un serveur web déclare que conformes agents utilisateurs (comme un navigateur Web) sont d'interagir avec lui en utilisant des connexions HTTPS ne sécurisées (ie HTTP couches sur TLS / SSL). Gares TGV est une des normes voie de protocole IETF et est spécifié dans la RFC 6797. Pour plus d'informations, voir: http://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security"
 
+#### REDIRECT:
+
+msgid "REDIRECTI18nName"
+msgstr "[[base-apache.redirect_enabled]]"
+
+msgid "redirect_enabled"
+msgstr "Rediriger le site Web"
+
+msgid "redirect_enabled_help"
+msgstr "Cette option vous permet de rediriger l'ensemble du site de ce site virtuel vers une autre URL. Les redirections peuvent être temporaires (code de statut HTTP 302) ou permanentes (code de statut HTTP 301)."
+
+msgid "RedirectType"
+msgstr "Type de redirection"
+
+msgid "RedirectType_help"
+msgstr "Ceci spécifie le code de statut HTTP avec lequel tout accès web à une URL de ce site virtuel sera redirigé vers l'URL spécifiée. Les redirections peuvent être temporaires (code de statut HTTP 302) ou permanentes (code de statut HTTP 301)."
+
+msgid "target"
+msgstr "URL cible"
+
+msgid "target_help"
+msgstr "Veuillez entrer l'URL cible ici. Tout accès web à ce site virtuel sera redirigé vers l'URL indiquée. Il peut s'agir d'une URL http:// ou https:// Les URLs entrés peuvent contenir des sous-répertoires, des pages et des paramètres URL. Si vous le souhaitez, vous pouvez copier et coller l'URL cible désirée depuis votre navigateur et la coller ici."
+

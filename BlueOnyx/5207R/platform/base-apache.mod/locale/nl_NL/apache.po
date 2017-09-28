@@ -329,4 +329,26 @@ msgstr "HSTS"
 msgid "HSTS_help"
 msgstr "HTTP Strict Transport Security (HSTS) is een web veiligheidsbeleid mechanisme waarbij een webserver verklaart dat voldoet user agents (zoals een webbrowser) zijn om te interageren met het gebruik van alleen beveiligde HTTPS-verbindingen (dwz HTTP gelaagd over TLS / SSL). HST is een IETF-normen spoor protocol en is gespecificeerd in RFC 6797. Voor meer info zie: http://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security"
 
+#### REDIRECT:
+
+msgid "REDIRECTI18nName"
+msgstr "[[base-apache.redirect_enabled]]"
+
+msgid "redirect_enabled"
+msgstr "Omgekeerde website"
+
+msgid "redirect_enabled_help"
+msgstr "Met deze optie kunt u de gehele website van deze virtuele site doorsturen naar een andere URL. Heroriëntering kan tijdelijk zijn (HTTP Status Code 302) of permanent (HTTP Status Code 301)."
+
+msgid "RedirectType"
+msgstr "Herdirecte type"
+
+msgid "RedirectType_help"
+msgstr "Dit specificeert de HTTP Status Code waarmee elke webtoegang tot een URL van deze virtuele site zal worden omgeleid naar de gespecificeerde URL. Heroriëntering kan tijdelijk zijn (HTTP Status Code 302) of permanent (HTTP Status Code 301)."
+
+msgid "target"
+msgstr "Doelwit URL"
+
+msgid "target_help"
+msgstr "Voer hier de URL van het doel in. Elke webtoegang tot deze virtuele site wordt doorgestuurd naar de gespecificeerde URL. Dit kan een http:// of https:// URL zijn. De ingevoerde URL's kunnen submappen, pagina's en URL-parameters bevatten. Als u dat wenst kunt u de gewenste URL van uw browser kopiëren en plakken en hier plakken."
 

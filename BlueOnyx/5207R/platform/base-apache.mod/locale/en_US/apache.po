@@ -340,3 +340,26 @@ msgstr "HSTS"
 msgid "HSTS_help"
 msgstr "HTTP Strict Transport Security (HSTS) is a web security policy mechanism whereby a web server declares that complying user agents (such as a web browser) are to interact with it using only secure HTTPS connections (i.e. HTTP layered over TLS/SSL). HSTS is an IETF standards track protocol and is specified in RFC 6797. For more info see: http://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security"
 
+#### REDIRECT:
+
+msgid "REDIRECTI18nName"
+msgstr "[[base-apache.redirect_enabled]]"
+
+msgid "redirect_enabled"
+msgstr "Redirect Website"
+
+msgid "redirect_enabled_help"
+msgstr "This option allows you to redirect the entire website of this virtual site to another URL. Redirects can either be temporary (HTTP Status Code 302) or permanent (HTTP Status Code 301)."
+
+msgid "RedirectType"
+msgstr "Redirect Type"
+
+msgid "RedirectType_help"
+msgstr "This specifies the HTTP Status Code with which any web access to any URL of this virtual site will be redirected to the specified URL. Redirects can either be temporary (HTTP Status Code 302) or permanent (HTTP Status Code 301)."
+
+msgid "target"
+msgstr "Target URL"
+
+msgid "target_help"
+msgstr "Please enter the target URL here. Any web access to this virtual site will be redirected to the specified URL. This can either be an http:// or https:// URL. Entered URLs may contain subdirectories, pages and URL parameters. If you wish you can copy and paste the desired target URL from your browser and paste it here."
+

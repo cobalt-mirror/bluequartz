@@ -373,3 +373,25 @@ msgstr "HSTS"
 msgid "HSTS_help"
 msgstr "HTTP Strict Transport Security (HSTS) er et web sikkerhedspolitik mekanisme, hvorved en webserver erklærer, at opfylder bruger agenter (såsom en webbrowser) er at interagere med den ved hjælp af kun sikre HTTPS-forbindelser (dvs. HTTP lagdelt over TLS / SSL). TGV er en IETF standarder track protokol og er specificeret i RFC 6797. For mere info se: http://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security"
 
+#### REDIRECT:
+
+msgid "REDIRECTI18nName"
+msgstr "[[base-apache.redirect_enabled]]"
+
+msgid "redirect_enabled"
+msgstr "Omdirigere websted"
+
+msgid "redirect_enabled_help"
+msgstr "Denne mulighed giver dig mulighed for at omdirigere hele webstedet for dette virtuelle websted til en anden webadresse. Omdirigeringer kan enten være midlertidige (HTTP Status Code 302) eller permanent (HTTP Status Code 301)."
+
+msgid "RedirectType"
+msgstr "Omdirigeringstype"
+
+msgid "RedirectType_help"
+msgstr "Dette angiver HTTP Status Koden, som enhver webadgang til en hvilken som helst webadresse på dette virtuelle websted omdirigeres til den angivne webadresse. Omdirigeringer kan enten være midlertidige (HTTP Status Code 302) eller permanent (HTTP Status Code 301)."
+
+msgid "target"
+msgstr "Målwebadresse"
+
+msgid "target_help"
+msgstr "Indtast venligst måladressen her. Enhver webadgang til dette virtuelle websted bliver omdirigeret til den angivne webadresse. Dette kan enten være en http: // eller https: // URL. Indtastede webadresser kan indeholde underkataloger, sider og webadresseparametre. Hvis du ønsker, kan du kopiere og indsætte den ønskede målwebadresse fra din browser og indsætte den her."
