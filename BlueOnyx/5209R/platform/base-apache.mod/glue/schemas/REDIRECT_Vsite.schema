@@ -16,7 +16,7 @@
     <property name="featureEnabled" type="boolean" default="1"/>
     
     <property
-        name="i18nName" type="scalar" default="[[base-vsite.REDIRECTI18nName]]"
+        name="i18nName" type="scalar" default="[[base-apache.REDIRECTI18nName]]"
     />
 
     <property 
