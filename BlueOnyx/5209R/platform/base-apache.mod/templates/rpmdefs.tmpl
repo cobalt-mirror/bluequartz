@@ -161,10 +161,10 @@ if [ ! -f /etc/httpd/conf/mime.types ]; then
   /bin/cp /etc/mime.types /etc/httpd/conf/mime.types
 fi
 
-# Run SSL_fixer.pl to enforce writing of updated SSL Vhost configs:
-if [ -f /usr/sausalito/sbin/SSL_fixer.pl ]; then
-  /usr/sausalito/sbin/SSL_fixer.pl
-fi
+# Run SSL_fixer.pl to enforce writing of updated SSL Vhost configs: (currently not in use)
+#if [ -f /usr/sausalito/sbin/SSL_fixer.pl ]; then
+#  /usr/sausalito/sbin/SSL_fixer.pl
+#fi
 
 # One time conversion of PHP-FPM settings: (currently not in use)
 #if [ $1 -gt 1 ]; then
@@ -225,7 +225,7 @@ fi
 
 <begin $CHANGELOG>
 
-* Wed Sep 279 2017 Michael Stauber <mstauber@solarspeed.net> 2.1.1-0BX53
+* Wed Sep 27 2017 Michael Stauber <mstauber@solarspeed.net> 2.1.1-0BX53
 - Added provisions to permanently redirect a Vsite to another URL.
 
 * Tue Sep 19 2017 Michael Stauber <mstauber@solarspeed.net> 2.1.1-0BX52
