@@ -41,6 +41,7 @@ if ($my_event_oid_content->{'CLASS'} ne "Vsite") {
         ($ok, $php) = $cce->get($Vsite_oid, 'PHP');
         ($ok, $cgi) = $cce->get($Vsite_oid, 'CGI');
         ($ok, $ssi) = $cce->get($Vsite_oid, 'SSI');
+        ($ok, $redirect) = $cce->get($Vsite_oid, 'REDIRECT');
         ($ok, $Vsite) = $cce->get($Vsite_oid, '');
     }
     else {
@@ -54,6 +55,7 @@ else {
     ($ok, $php) = $cce->get($cce->event_oid(), 'PHP');
     ($ok, $cgi) = $cce->get($cce->event_oid(), 'CGI');
     ($ok, $ssi) = $cce->get($cce->event_oid(), 'SSI');
+    ($ok, $redirect) = $cce->get($cce->event_oid(), 'REDIRECT');
     ($ok, $Vsite) = $cce->get($cce->event_oid(), '');
 }
 
@@ -345,6 +347,19 @@ sub edit_vhost
         $prefered_siteAdmin = 'apache';
     }
 
+    if (($redirect->{enabled}) && (($redirect->{type} eq "302") || ($redirect->{type} eq "permanent")) && ($redirect->{target} ne "")) {
+        if ($redirect->{type} eq "permanent") {
+            $redirect->{type} = '301';
+        }
+        $redirect_line = "RewriteOptions inherit\n";
+        $redirect_line .= "### START REDIRECT ###\n";
+        $redirect_line .= 'RewriteRule ^(.*)$ ' . $redirect->{target} . ' [DPI,L,R=' . $redirect->{type} . "]\n";
+        $redirect_line .= "### END REDIRECT ###\n";
+    }
+    else {
+        $redirect_line = "RewriteOptions inherit\n";
+    }
+
     if ($php->{enabled})
     {
                 # Handle suPHP:
@@ -421,10 +436,15 @@ sub edit_vhost
     my $enableSSL = 0;
     while(<$in>)
     {
-        if(/^<\/VirtualHost>/i) { $last = $_; last; }
+        if (/^<\/VirtualHost>/i) { $last = $_; last; }
 
-        if(/^$begin$/)
-        {
+        if ((/^### START REDIRECT ###$/) || (/^RewriteRule(.*)\[DPI,L,R=(.*)\]$/) || (/^### END REDIRECT ###$/)) {
+            # Nothing
+        }
+        elsif (/^RewriteOptions inherit$/) {
+            print $out $redirect_line;
+        }
+        elsif (/^$begin$/) {
             while(<$in>)
             {
                 if(/^$end$/) { last; }
@@ -446,12 +466,20 @@ sub edit_vhost
     while(<$in>) {
         if(/^<\/VirtualHost>/i) { $enableSSL = 1; $last = $_; last; }
 
-        if(/^$begin$/) {
-            while(<$in>) {
+        if ((/^### START REDIRECT ###$/) || (/^RewriteRule(.*)\[DPI,L,R=(.*)\]$/) || (/^### END REDIRECT ###$/)) {
+            # Nothing
+        }
+        elsif (/^RewriteOptions inherit$/) {
+            print $out $redirect_line;
+        }
+        elsif (/^$begin$/) {
+            while(<$in>)
+            {
                 if(/^$end$/) { last; }
             }
         }
-        else {
+        else
+        {
             print $out $_;
         }
     }
@@ -483,8 +511,8 @@ sub debug_msg {
 }
 
 # 
-# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015-2017 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015-2017 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 

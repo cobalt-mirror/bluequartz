@@ -1,0 +1,73 @@
+<!--
+ $Id: mysql.schema
+ Copyright (c) 2017 Michael Stauber, SOLARSPEED.NET
+ Copyright (c) 2017 Team BlueOnyx, BLUEONYX.IT
+ All Rights Reserved.
+-->
+
+<typedef name="REDIRECT" type="re"   data="^(302|permanent)$"/>
+
+<typedef name="URL" type="re"   data="^(http:\\/\\/[a-z0-9]{1,}\\.[a-z0-9]{1,}(.*))|(https:\\/\\/[a-z0-9]{1,}\\.[a-z0-9]{1,}(.*))$"/>
+
+
+<class
+    name="VsiteServices" namespace="REDIRECT" version="1.0"
+>
+    <property name="featureEnabled" type="boolean" default="1"/>
+    
+    <property
+        name="i18nName" type="scalar" default="[[base-vsite.REDIRECTI18nName]]"
+    />
+
+    <property 
+        name="enabled" type="boolean" default="0"
+        writeacl="ruleCapable(adminUser)"
+    />
+
+    <property  
+        name="localpath" type="scalar" default="/" 
+        writeacl="ruleCapable(adminUser)" 
+    /> 
+ 
+    <property  
+        name="type" type="REDIRECT" default="302" 
+        writeacl="ruleCapable(adminUser)" 
+    /> 
+ 
+    <property  
+        name="target" type="scalar" default="" 
+        writeacl="ruleCapable(adminUser)" 
+    /> 
+
+</class>
+
+<class 
+    name="Vsite" namespace="REDIRECT" version="1.0"
+    createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)"
+>
+    <property 
+        name="enabled" type="boolean" default="0"
+        writeacl="ruleCapable(adminUser)"
+    />
+
+    <property  
+        name="localpath" type="scalar" default="/" 
+        writeacl="ruleCapable(adminUser)" 
+    /> 
+ 
+    <property  
+        name="type" type="REDIRECT" default="302" 
+        writeacl="ruleCapable(adminUser)" 
+    /> 
+ 
+    <property  
+        name="target" type="scalar" default="" 
+        writeacl="ruleCapable(adminUser)" 
+    /> 
+
+    <property  
+        name="force_update" type="scalar" default="" 
+        writeacl="ruleCapable(adminUser)" 
+    /> 
+
+</class>
