@@ -490,6 +490,26 @@ msgstr "O serviço PHP-FPM (para PHP-7.3) está funcionando normalmente."
 msgid "amPHPFPM73NotRunning"
 msgstr "O [[base-apache.amPHPFPM73NameTag]] serviço não está em execução e não pôde ser reiniciado. Por favor, verifique os arquivos de log para mensagens de erro relacionadas com este serviço e run 'estado systemctl php-fpm-7.3.service' como root na linha de comando para solucionar o problema. Se você ainda não conseguir acessar a [[base-apache.amPHPFPM73NameTag]], visite [[base-sauce-basic.techSupportURL]] para suporte técnico."
 
-#
+#### REDIRECT:
 
+msgid "REDIRECTI18nName"
+msgstr "[[base-apache.redirect_enabled]]"
+
+msgid "redirect_enabled"
+msgstr "Redirecionar site"
+
+msgid "redirect_enabled_help"
+msgstr "Esta opção permite redirecionar todo o site deste site virtual para outro URL. Os redirecionamentos podem ser temporários (Código de Status HTTP 302) ou permanente (Código de Status HTTP 301)."
+
+msgid "RedirectType"
+msgstr "Tipo de redirecionamento"
+
+msgid "RedirectType_help"
+msgstr "Isso especifica o Código de Status HTTP com o qual qualquer acesso à web a qualquer URL deste site virtual será redirecionado para o URL especificado. Os redirecionamentos podem ser temporários (Código de Status HTTP 302) ou permanente (Código de Status HTTP 301)."
+
+msgid "target"
+msgstr "Alvo URL"
+
+msgid "target_help"
+msgstr "Digite o URL alvo aqui. Qualquer acesso da web a este site virtual será redirecionado para o URL especificado. Isso pode ser um URL http: // ou https: //. Os URLs inseridos podem conter subdiretórios, páginas e parâmetros de URL. Se desejar, pode copiar e colar o URL alvo desejado no seu navegador e colá-lo aqui."
 

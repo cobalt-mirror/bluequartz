@@ -518,4 +518,25 @@ msgstr "Der Dienst PHP-FPM (für PHP-7.3) arbeitet normal."
 msgid "amPHPFPM73NotRunning"
 msgstr "Der Dienst [[base-apache.amPHPFPM73NameTag]] läuft nicht und konnte nicht gestartet werden. Bitte prüfen Sie die Protokolldateien auf Fehlermeldungen betreffend dieses Dienstes führen Sie den Befehl 'systemctl status php-fpm-7.3.service' als root auf der Kommandozeile zu Diagnosezwecken aus. Falls das nicht zu einer Lösung des Problemes beiträgt und Sie den Dienst [[base-apache.amPHPFPM73NameTag]] nicht manuell starten können, dann besuchen Sie bitte [[base-sauce-basic.techSupportURL]] für technischen Support."
 
-#
+#### REDIRECT:
+
+msgid "REDIRECTI18nName"
+msgstr "[[base-apache.redirect_enabled]]"
+
+msgid "redirect_enabled"
+msgstr "Webseite umleiten"
+
+msgid "redirect_enabled_help"
+msgstr "Diese Option ermöglicht es Ihnen, die gesamte Webseite dieser virtuellen Seite auf eine andere URL umzuleiten. Umleitungen können entweder temporär (HTTP-Statuscode 302) oder permanent (HTTP-Statuscode 301) sein."
+
+msgid "RedirectType"
+msgstr "Umleitungstyp"
+
+msgid "RedirectType_help"
+msgstr "Gibt den HTTP-Statuscode an, mit dem ein Client umgeleitet wird, sobald er auf eine beliebige URL dieser virtuellen Site zugreift. Umleitungen können entweder temporär (HTTP-Statuscode 302) oder permanent (HTTP-Statuscode 301) sein."
+
+msgid "target"
+msgstr "Ziel-URL"
+
+msgid "target_help"
+msgstr "Bitte geben Sie hier die Ziel-URL ein. Jeder Web-Zugriff auf dieser virtuellen Seite wird auf die hier angegebene URL umgeleitet. Dies kann entweder eine http:// oder https:// URL sein. Die eingegebenen URL kann auf ein Unterverzeichnis verweisen und Seiten- und URL-Parameter enthalten. Wenn Sie möchten, können Sie die gewünschte Ziel-URL aus Ihrem Browser kopieren und direkt hier einfügen."

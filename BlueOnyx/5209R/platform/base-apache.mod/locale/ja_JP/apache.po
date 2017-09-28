@@ -503,5 +503,27 @@ msgstr "サービスPHP-FPM（PHP-7.3用）が正常に動作しています。"
 msgid "amPHPFPM73NotRunning"
 msgstr "サービス[[base-apache.amPHPFPM73NameTag]]が実行されていないと再起動できませんでした。このサービスに関連するエラーメッセージをログファイルをチェックし、問題を解決するには、コマンドラインからルートとして「systemctlステータスのphp-FPM-7.3.service 'を実行してください。それでも[[base-apache.amPHPFPM73NameTag]]にアクセスできない場合は、技術サポートのために[[base-sauce-basic.techSupportURL]]をご覧ください。"
 
-#
+
+#### REDIRECT:
+
+msgid "REDIRECTI18nName"
+msgstr "[[base-apache.redirect_enabled]]"
+
+msgid "redirect_enabled"
+msgstr "リダイレクトウェブサイト"
+
+msgid "redirect_enabled_help"
+msgstr "このオプションを使用すると、この仮想サイトのWebサイト全体を別のURLにリダイレクトできます。 リダイレクトは、一時的（HTTPステータスコード302）または永続的（HTTPステータスコード301）のいずれかです。"
+
+msgid "RedirectType"
+msgstr "リダイレクトタイプ"
+
+msgid "RedirectType_help"
+msgstr "これは、この仮想サイトの任意のURLへのWebアクセスが指定されたURLにリダイレクトされるHTTPステータスコードを指定します。 リダイレクトは、一時的（HTTPステータスコード302）または永続的（HTTPステータスコード301）のいずれかです。"
+
+msgid "target"
+msgstr "ターゲットURL"
+
+msgid "target_help"
+msgstr "ここにターゲットURLを入力してください。 この仮想サイトへのWebアクセスは、指定されたURLにリダイレクトされます。 これは、http：//またはhttps：//のいずれかのURLになります。 入力されたURLには、サブディレクトリ、ページ、およびURLパラメータが含まれます。 希望の場合は、ブラウザから目的のターゲットURLをコピーして貼り付けて、ここに貼り付けることができます。"
 

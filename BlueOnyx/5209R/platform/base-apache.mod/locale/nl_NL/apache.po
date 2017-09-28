@@ -489,5 +489,28 @@ msgstr "De service PHP-FPM (voor PHP-7.3) werkt normaal."
 msgid "amPHPFPM73NotRunning"
 msgstr "De service [[base-apache.amPHPFPM73NameTag]] draait niet en kon niet worden hervat. Kijk dan op de logfiles voor foutmeldingen in verband met deze service en run 'systemctl status php-fpm-7.3.service' als root vanaf de opdrachtregel om het probleem op te lossen. Als u nog steeds geen toegang tot de [[base-apache.amPHPFPM73NameTag]], kunt u terecht op [[base-sauce-basic.techSupportURL]] voor technische ondersteuning."
 
-#
+#### REDIRECT:
+
+msgid "REDIRECTI18nName"
+msgstr "[[base-apache.redirect_enabled]]"
+
+msgid "redirect_enabled"
+msgstr "Omgekeerde website"
+
+msgid "redirect_enabled_help"
+msgstr "Met deze optie kunt u de gehele website van deze virtuele site doorsturen naar een andere URL. Heroriëntering kan tijdelijk zijn (HTTP Status Code 302) of permanent (HTTP Status Code 301)."
+
+msgid "RedirectType"
+msgstr "Herdirecte type"
+
+msgid "RedirectType_help"
+msgstr "Dit specificeert de HTTP Status Code waarmee elke webtoegang tot een URL van deze virtuele site zal worden omgeleid naar de gespecificeerde URL. Heroriëntering kan tijdelijk zijn (HTTP Status Code 302) of permanent (HTTP Status Code 301)."
+
+msgid "target"
+msgstr "Doelwit URL"
+
+msgid "target_help"
+msgstr "Voer hier de URL van het doel in. Elke webtoegang tot deze virtuele site wordt doorgestuurd naar de gespecificeerde URL. Dit kan een http:// of https:// URL zijn. De ingevoerde URL's kunnen submappen, pagina's en URL-parameters bevatten. Als u dat wenst kunt u de gewenste URL van uw browser kopiëren en plakken en hier plakken."
+
+
 

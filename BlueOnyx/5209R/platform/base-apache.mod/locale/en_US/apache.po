@@ -516,7 +516,7 @@ msgid "RedirectType"
 msgstr "Redirect Type"
 
 msgid "RedirectType_help"
-msgstr "This specifies the HTTP Status Code with which a client accessing any URL of this virtual site will be redirected to the specified URL. Redirects can either be temporary (HTTP Status Code 302) or permanent (HTTP Status Code 301)."
+msgstr "This specifies the HTTP Status Code with which any web access to any URL of this virtual site will be redirected to the specified URL. Redirects can either be temporary (HTTP Status Code 302) or permanent (HTTP Status Code 301)."
 
 msgid "target"
 msgstr "Target URL"
