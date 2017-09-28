@@ -500,3 +500,24 @@ msgstr "The service PHP-FPM (for PHP-7.3) is operating normally."
 
 msgid "amPHPFPM73NotRunning"
 msgstr "The service [[base-apache.amPHPFPM73NameTag]] is not running and could not be restarted. Please check the logfiles for error messages related to this service and run 'systemctl status php-fpm-7.3.service' as root from the command line to troubleshoot the problem. If you are still unable to access the [[base-apache.amPHPFPM73NameTag]], please visit [[base-sauce-basic.techSupportURL]] for technical support."
+
+#### REDIRECT:
+
+msgid "redirect_enabled"
+msgstr "Redirect Website"
+
+msgid "redirect_enabled_help"
+msgstr "This option allows you to redirect the entire website of this virtual site to another URL. Redirects can either be temporary (HTTP Status Code 302) or permanent (HTTP Status Code 301)."
+
+msgid "RedirectType"
+msgstr "Redirect Type"
+
+msgid "RedirectType_help"
+msgstr "This specifies the HTTP Status Code with which a client accessing any URL of this virtual site will be redirected to the specified URL. Redirects can either be temporary (HTTP Status Code 302) or permanent (HTTP Status Code 301)."
+
+msgid "target"
+msgstr "Target URL"
+
+msgid "target_help"
+msgstr "Please enter the target URL here. Any web access to this virtual site will be redirected to the specified URL. This can either be an http:// or https:// URL. Entered URLs may contain subdirectories, pages and URL parameters. If you wish you can copy and paste the desired target URL from your browser and paste it here."
+
