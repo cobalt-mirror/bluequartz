@@ -25,11 +25,15 @@ if [ -f "/usr/sausalito/yumcce/restart" ];then
 	/usr/sausalito/sbin/cced.init restart
 	rm -f /usr/sausalito/yumcce/restart
 	rm -f /usr/sausalito/yumcce/rehash
+	# Run Swatch:
+	/usr/sausalito/sbin/swatch.sh
 	exit
 fi
 
 if [ -f "/usr/sausalito/yumcce/rehash" ];then
 	/usr/sausalito/sbin/cced.init rehash
 	rm -f /usr/sausalito/yumcce/rehash
+	# Run Swatch:
+	/usr/sausalito/sbin/swatch.sh
 	exit
 fi
