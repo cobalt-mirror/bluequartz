@@ -610,7 +610,6 @@ class vsiteMySQL extends MX_Controller {
                 if ((isset($VsiteWAobj['sql_user'])) && (isset($VsiteWAobj['sql_pass']))) {
 
                     $my_TEXT = $i18n->getClean("[[base-mysql.NWAdbs_Info_Text]]");
-                    $my_TEXT = "If your Virtual Site has Web Applications installed via the GUI, then these use a separate MySQL username and password as shown below. These MySQL databases are independent of your MySQL database allowance limit. Although the Web Applications use their own MySQL user and password for access, your regular MySQL user has full rights to them as well. Therefore you can also see and manipulate these databases via 'Programs' / 'phpMyAdmin'. However, only do so with proper caution.";
                     $infotext = $factory->getTextField("NWAdbs_Info_Text", $my_TEXT, 'r');
                     $infotext->setLabelType("nolabel");
                     $block->addFormField(
