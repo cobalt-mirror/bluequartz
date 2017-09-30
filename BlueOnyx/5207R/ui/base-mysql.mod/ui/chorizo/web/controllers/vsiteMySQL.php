@@ -636,7 +636,7 @@ class vsiteMySQL extends MX_Controller {
                 $NWA_scrollList->setAlignments(array("left", "left", "center"));
                 $NWA_scrollList->setDefaultSortedIndex('0');
                 $NWA_scrollList->setSortOrder('ascending');
-                $NWA_scrollList->setSortDisabled(array('1'));
+                $NWA_scrollList->setSortDisabled(array('2'));
                 $NWA_scrollList->setPaginateDisabled(FALSE);
                 $NWA_scrollList->setSearchDisabled(FALSE);
                 $NWA_scrollList->setSelectorDisabled(FALSE);
