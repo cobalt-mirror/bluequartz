@@ -193,7 +193,15 @@ class vsiteMySQL extends MX_Controller {
                 // Set 'userPermsUpdate':
                 $attributes['userPermsUpdate'] = time();
             }
-
+            if (isset($attributes['NWAdbs_Info_Text'])) {
+                unset($attributes['NWAdbs_Info_Text']);
+            }
+            if (isset($attributes['NWA_uname'])) {
+                unset($attributes['NWA_uname']);
+            }
+            if (isset($attributes['NWA_pass'])) {
+                unset($attributes['NWA_pass']);
+            }
             // Special case: siteAdmin has a SAVE button, but not rights to save anything but 'new_db_name'.
             if ($access_advanced == 'r') {
                 if (isset($attributes['new_db_name'])) {
@@ -548,6 +556,102 @@ class vsiteMySQL extends MX_Controller {
                 $factory->getLabel("MySQLdbList"),
                 $defaultPage
             );
+
+            //
+            //-- WebApp related Databases:
+            //
+
+            $NWA_dbList = array();
+            $num_nwa_dbs = '0';
+            $WebApps_Vsite = $CI->cceClient->find("WebApplications", array('group' => 'site1'));
+            if (count($WebApps_Vsite) > '0') {
+                $ret = ini_set("display_errors", "Off");
+                $mysql_link = new mysqli($AbsMYSQL['sql_host'], $AbsMYSQL['sql_root'], $AbsMYSQL['sql_rootpassword']);
+                foreach ($WebApps_Vsite as $key => $oid) {
+                    $WA = $CI->cceClient->get($oid);
+
+                    if (!$mysql_link->connect_error) {
+                        if (mysqli_select_db($mysql_link, $WA['sqldb'])) {
+                            $NWA_dbList[0][$num_nwa_dbs] = $WA['appname'];
+                            $NWA_dbList[1][$num_nwa_dbs] = $WA['sqldb'];
+                            $NWA_dbList[2][$num_nwa_dbs] = '<a class="lbx" href="javascript:void(0)"><button class="red tiny icon_only div_icon tooltip hover dialog_button" title="' . $i18n->getWrapped("dbRemoveNotPoss") . '"><div class="ui-icon ui-icon-alert"></div></button></a><br>';
+                            $num_nwa_dbs++;
+
+                            // Grant rights on NWA-DBs:
+                            $sql = "CREATE USER '" . $vsite_MySQL["username"] . "'@'" . $vsite_MySQL["host"] . "' IDENTIFIED BY '" . $vsite_MySQL["pass"] . "';";
+                            $mysql_link->query($sql);
+
+                            $sql = "GRANT USAGE ON * . * TO '" . $vsite_MySQL["username"] . "'@'" . $vsite_MySQL["host"] . "' IDENTIFIED BY '" . $vsite_MySQL["pass"] . "' WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0 ;";
+                            $mysql_link->query($sql);
+
+                            $sql = "GRANT ALL PRIVILEGES ON `" . $WA['sqldb'] . "` . * TO '" . $vsite_MySQL["username"] . "'@'" . $vsite_MySQL["host"] . "';";
+                            $mysql_link->query($sql);
+
+                        }
+                        else {
+                            // Remove 'WebApplications' Objects for which we no longer have MySQL databases:
+                            $ret = $CI->cceClient->destroy($oid);
+                        }
+                    }
+                }
+                @mysqli_close($mysql_link);
+                $ret = ini_set("display_errors", "On");
+
+                // Get 'Vsite' . 'Compass_webapps' if present:
+                $VsiteWAobj = $CI->cceClient->get($vsite['OID'], "Compass_webapps");
+
+                // Add divider:
+                $block->addFormField(
+                        $factory->addBXDivider("DIVIDER_NWA_DBlist", ""),
+                        $factory->getLabel("DIVIDER_NWA_DBlist", false),
+                        $defaultPage
+                        );
+
+                if ((isset($VsiteWAobj['sql_user'])) && (isset($VsiteWAobj['sql_pass']))) {
+
+                    $my_TEXT = $i18n->getClean("[[base-mysql.NWAdbs_Info_Text]]");
+                    $my_TEXT = "If your Virtual Site has Web Applications installed via the GUI, then these use a separate MySQL username and password as shown below. These MySQL databases are independent of your MySQL database allowance limit. Although the Web Applications use their own MySQL user and password for access, your regular MySQL user has full rights to them as well. Therefore you can also see and manipulate these databases via 'Programs' / 'phpMyAdmin'. However, only do so with proper caution.";
+                    $infotext = $factory->getTextField("NWAdbs_Info_Text", $my_TEXT, 'r');
+                    $infotext->setLabelType("nolabel");
+                    $block->addFormField(
+                            $infotext,
+                            $factory->getLabel(" ", false),
+                            $defaultPage
+                    );
+
+                    $block->addFormField(
+                        $factory->getTextField("NWA_uname", $VsiteWAobj["sql_user"], 'r'),
+                        $factory->getLabel("NWA_uname"),
+                        $defaultPage
+                    );
+
+                    $block->addFormField(
+                        $factory->getTextField("NWA_pass", $VsiteWAobj["sql_pass"], 'r'),
+                        $factory->getLabel("NWA_pass"),
+                        $defaultPage
+                    );
+                }
+
+                // Assemble ScrollList for NWA MySQL database names:
+                $NWA_scrollList = $factory->getScrollList("NWAdbList", array("application", "db_name", "action"), $NWA_dbList); 
+                $NWA_scrollList->setAlignments(array("left", "left", "center"));
+                $NWA_scrollList->setDefaultSortedIndex('0');
+                $NWA_scrollList->setSortOrder('ascending');
+                $NWA_scrollList->setSortDisabled(array('1'));
+                $NWA_scrollList->setPaginateDisabled(FALSE);
+                $NWA_scrollList->setSearchDisabled(FALSE);
+                $NWA_scrollList->setSelectorDisabled(FALSE);
+                $NWA_scrollList->enableAutoWidth(FALSE);
+                $NWA_scrollList->setInfoDisabled(FALSE);
+                $NWA_scrollList->setColumnWidths(array("250", "430", "55")); // Max: 739px
+
+                // Push out the Scrollist:
+                $block->addFormField(
+                    $factory->getRawHTML("NWAdbList", $NWA_scrollList->toHtml()),
+                    $factory->getLabel("NWAdbList"),
+                    $defaultPage
+                );
+            }
 
             //
             //-- MySQL user rights:

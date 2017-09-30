@@ -118,6 +118,11 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+* Sat Sep 30 2017 Michael Stauber <mstauber@solarspeed.net> 2.4.0-0BX30
+- Modified ui/chorizo/web/controllers/vsiteMySQL.php to make NWA databases
+  visible in the GUI and to shovel permissions for them onto the Vsite
+  MySQL user.
+
 * Tue Sep 05 2017 Michael Stauber <mstauber@solarspeed.net> 2.4.0-0BX29
 - Modified glue/handlers/create_mysql_data.pl to create the User first before
   we grant him any rights. This is due to changed behavior in MariaDB-10.1.
