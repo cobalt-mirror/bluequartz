@@ -599,3 +599,31 @@ msgstr "Wil je echt om deze database te verwijderen?"
 
 msgid "DBremoveConfirmInfo"
 msgstr "Gelieve te bevestigen dat u wilt dit [[base-mysql.DBTYPE]] database te verwijderen. Let op: Deze actie kan niet ongedaan gemaakt worden en u zult alle informatie die is opgeslagen in deze [[base-mysql.DBTYPE]] databank verliezen."
+
+### NWA DB Integration:
+
+msgid "NWA_uname"
+msgstr "[[base-mysql.solmysql_username]]"
+
+msgid "NWA_uname_help"
+msgstr "[[base-mysql.solmysql_username_help]]"
+
+msgid "NWA_pass"
+msgstr "[[base-mysql.solmysql_pass]]"
+
+msgid "NWA_pass_help"
+msgstr "[[base-mysql.solmysql_pass_help]]"
+   
+msgid "DIVIDER_NWA_DBlist"
+msgstr "Web applicatie [[base-mysql.DBTYPE]] Database Toegang"
+
+msgid "NWAdbs_Info_Text"
+msgstr "Als uw Virtual Site Webtoepassingen via de GUI heeft geïnstalleerd, dan gebruiken deze een aparte gebruikersnaam en wachtwoord zoals hieronder getoond om toegang te krijgen tot de databases. Deze databanken zijn onafhankelijk van uw limiet voor de beschikbare gegevens. Hoewel de Webtoepassingen hun eigen gebruikersnaam en wachtwoord gebruiken voor toegang, heeft ook uw gewone gebruikers van de database er alle rechten op. Daarom kunt u deze databases ook via 'Programma' / 'phpMyAdmin' bekijken en manipuleren. Doe dit echter alleen met de nodige voorzichtigheid."
+
+msgid "application"
+msgstr "Web Application"
+
+msgid "application_help"
+msgstr "Specificeert de Web Application waartoe deze database behoort."
+
+

@@ -601,12 +601,6 @@ msgid "DBremoveConfirmInfo"
 msgstr "Please confirm that you want to delete this [[base-mysql.DBTYPE]] database. Please note: This action cannot be undone and you will loose any information that is stored in this [[base-mysql.DBTYPE]] database."
 
 ### NWA DB Integration:
-   
-msgid "DIVIDER_NWA_DBlist"
-msgstr "Web Application [[base-mysql.DBTYPE]] Database Access"
-
-msgid "NWAdbs_Info_Text"
-msgstr "If your Virtual Site has Web Applications installed via the GUI, then these use a separate username and password as shown below to access the databases. These databases are independent of your database allowance limit. Although the Web Applications use their own username and password for access, your regular database user has full rights to them as well. Therefore you can also see and manipulate these databases via 'Programs' / 'phpMyAdmin'. However, only do so with proper caution."
 
 msgid "NWA_uname"
 msgstr "[[base-mysql.solmysql_username]]"
@@ -619,6 +613,12 @@ msgstr "[[base-mysql.solmysql_pass]]"
 
 msgid "NWA_pass_help"
 msgstr "[[base-mysql.solmysql_pass_help]]"
+   
+msgid "DIVIDER_NWA_DBlist"
+msgstr "Web Application [[base-mysql.DBTYPE]] Database Access"
+
+msgid "NWAdbs_Info_Text"
+msgstr "If your Virtual Site has Web Applications installed via the GUI, then these use a separate username and password as shown below to access the databases. These databases are independent of your database allowance limit. Although the Web Applications use their own username and password for access, your regular database user has full rights to them as well. Therefore you can also see and manipulate these databases via 'Programs' / 'phpMyAdmin'. However, only do so with proper caution."
 
 msgid "application"
 msgstr "Web Application"

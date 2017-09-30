@@ -603,3 +603,30 @@ msgstr "Wollen Sie diese Datenbank wirklich löschen?"
 msgid "DBremoveConfirmInfo"
 msgstr "Bitte bestätigen Sie, dass Sie diese [[base-mysql.DBTYPE]]-Datenbank löschen möchten. Bitte beachten Sie: Diese Aktion kann nicht rückgängig gemacht werden. Beim Löschen verlieren Sie alle Informationen, die in dieser [[base-mysql.DBTYPE]]-Datenbank gespeichert sind."
 
+### NWA DB Integration:
+
+msgid "NWA_uname"
+msgstr "[[base-mysql.solmysql_username]]"
+
+msgid "NWA_uname_help"
+msgstr "[[base-mysql.solmysql_username_help]]"
+
+msgid "NWA_pass"
+msgstr "[[base-mysql.solmysql_pass]]"
+
+msgid "NWA_pass_help"
+msgstr "[[base-mysql.solmysql_pass_help]]"
+   
+msgid "DIVIDER_NWA_DBlist"
+msgstr "Webanwendungen [[base-mysql.DBTYPE]] Datenbankzugriff"
+
+msgid "NWAdbs_Info_Text"
+msgstr "Wenn auf Ihrer virtuellen Website Webanwendungen über die GUI installiert sind, verwenden diese einen separaten Benutzernamen und ein eigenes Passwort (wie unten gezeigt) um auf die Datenbanken zuzugreifen. Diese Datenbanken sind unabhängig von Ihrer Datenbank-Obergrenze. Obwohl die Web-Anwendungen einen eigenen Benutzernamen und ein eigenes Passwort für den Zugriff verwenden, hat auch Ihr regulärer Datenbankbenutzer die vollen Rechte auf diese Datenbanken. Daher können Sie diese Datenbanken auch über den Menüpunkt 'Programme' / 'phpMyAdmin' einsehen und manipulieren. Dabei allerdings bitte mit der gebotenen Vorsicht vorgehen."
+
+msgid "application"
+msgstr "Webanwendung"
+
+msgid "application_help"
+msgstr "Gibt die Webanwendung an, zu der diese Datenbank gehört."
+
+
