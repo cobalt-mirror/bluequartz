@@ -618,15 +618,15 @@ msgid "NWA_pass_help"
 msgstr "[[base-mysql.solmysql_pass_help]]"
    
 msgid "DIVIDER_NWA_DBlist"
-msgstr "Webanwendungen [[base-mysql.DBTYPE]] Datenbankzugriff"
+msgstr "[[base-mysql.DBTYPE]] Datenbankzugriff für Web-Applikationen"
 
 msgid "NWAdbs_Info_Text"
-msgstr "Wenn auf Ihrer virtuellen Website Webanwendungen über die GUI installiert sind, verwenden diese einen separaten Benutzernamen und ein eigenes Passwort (wie unten gezeigt) um auf die Datenbanken zuzugreifen. Diese Datenbanken sind unabhängig von Ihrer Datenbank-Obergrenze. Obwohl die Web-Anwendungen einen eigenen Benutzernamen und ein eigenes Passwort für den Zugriff verwenden, hat auch Ihr regulärer Datenbankbenutzer die vollen Rechte auf diese Datenbanken. Daher können Sie diese Datenbanken auch über den Menüpunkt 'Programme' / 'phpMyAdmin' einsehen und manipulieren. Dabei allerdings bitte mit der gebotenen Vorsicht vorgehen."
+msgstr "Wenn auf Ihrer virtuellen Website Web-Applikationen über die GUI installiert sind, verwenden diese einen separaten Benutzernamen und ein eigenes Passwort (wie unten gezeigt) um auf die Datenbanken zuzugreifen. Diese Datenbanken sind unabhängig von Ihrer Datenbank-Obergrenze. Obwohl die Web-Applikationen einen eigenen Benutzernamen und ein eigenes Passwort für den Zugriff verwenden, hat auch Ihr regulärer Datenbankbenutzer die vollen Rechte auf diese Datenbanken. Daher können Sie diese Datenbanken auch über den Menüpunkt 'Programme' / 'phpMyAdmin' einsehen und manipulieren. Dabei allerdings bitte mit der gebotenen Vorsicht vorgehen."
 
 msgid "application"
-msgstr "Webanwendung"
+msgstr "Web-Applikation"
 
 msgid "application_help"
-msgstr "Gibt die Webanwendung an, zu der diese Datenbank gehört."
+msgstr "Gibt die Web-Applikation an, zu der diese Datenbank gehört."
 
 
