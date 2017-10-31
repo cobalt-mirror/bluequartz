@@ -18,6 +18,21 @@ class IpAddress extends FormField {
   // public methods
   //
 
+  // description: Type of input validation. 
+  // param: size: an integer
+  function setType($type) {
+        $this->type = $type;
+  }
+
+  // Returns type of input validation:
+  // If none given, it defaults to "alphanum_plus":
+  function getType() {
+    if (!isset($this->type)) {
+         $this->type = "ipaddr";
+    }
+    return $this->type;
+  }
+
   // Sets the current label
   function setCurrentLabel($label) {
     $this->Label = $label;
@@ -82,14 +97,14 @@ class IpAddress extends FormField {
       $builder->setDescription("");
     }
 
-    $formField = $builder->makeTextField($id, $this->getValue(), $this->getAccess(), $this->getI18n(), "ipaddr", $this->isOptional(), $GLOBALS["_FormField_width"], 15, $GLOBALS["_FormField_change"], $this->getRange());
+    $formField = $builder->makeTextField($id, $this->getValue(), $this->getAccess(), $this->getI18n(), $this->getType(), $this->isOptional(), $GLOBALS["_FormField_width"], 50, $GLOBALS["_FormField_change"], $this->getRange());
     return $formField;
   }
 }
 
 /*
-Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2014-2017 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2014-2017 Team BlueOnyx, BLUEONYX.IT
 Copyright (c) 2003 Sun Microsystems, Inc. 
 All Rights Reserved.
 

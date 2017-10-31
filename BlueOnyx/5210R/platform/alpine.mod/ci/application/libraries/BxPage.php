@@ -495,6 +495,9 @@ class BxPage extends MX_Controller {
         $CI->output->set_header("Pragma: no-cache"); 
         $CI->output->set_header("Content-language: $localization");
 
+        // Get 'System' object
+        $system = $CI->getSystem();
+
         // Set page title:
         preg_match("/^([^:]+)/", $_SERVER['HTTP_HOST'], $matches);
         $hostname = $matches[0];
@@ -526,9 +529,6 @@ class BxPage extends MX_Controller {
             exit;
         }
 
-        // Get 'System' object
-        $system = $CI->getSystem();
-
         // Handle redirects to HTTP(S) and/or FQDN of server:
         if ((isset($system['GUIaccessType'])) && (isset($system['GUIredirects']))) {
           if ($system['GUIredirects'] == "1") {
@@ -549,8 +549,16 @@ class BxPage extends MX_Controller {
             }
           }
           else {
-            $http_url = 'http://' . $_SERVER['SERVER_NAME'] . ':444' . $_SERVER['REQUEST_URI'];
-            $https_url = 'https://' . $_SERVER['SERVER_NAME'] . ':81' . $_SERVER['REQUEST_URI'];  
+            if (filter_var($_SERVER['SERVER_NAME'], FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) { 
+                // SERVER_NAME is an IPv6 IP! Need to escape the IPv6 IP before using it in an URL:
+                $http_url = 'http://[' . $_SERVER['SERVER_NAME'] . ']:444' . $_SERVER['REQUEST_URI'];
+                $https_url = 'https://[' . $_SERVER['SERVER_NAME'] . ']:81' . $_SERVER['REQUEST_URI'];
+            } 
+            else { 
+                // SERVER_NAME is an IPv4 IP or FQDN, so we can use it directly:
+                $http_url = 'http://' . $_SERVER['SERVER_NAME'] . ':444' . $_SERVER['REQUEST_URI'];
+                $https_url = 'https://' . $_SERVER['SERVER_NAME'] . ':81' . $_SERVER['REQUEST_URI'];
+            }
           }
           if ((is_HTTPS() == FALSE) && ($system['GUIaccessType'] == "HTTPS")) {
             header("Location: $https_url");
