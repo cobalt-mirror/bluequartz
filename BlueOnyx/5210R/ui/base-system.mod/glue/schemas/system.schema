@@ -77,9 +77,21 @@
         writeacl="ruleCapable(adminUser)" readacl="ruleAll"
     />
     
-    <!-- ip address of the default gateway -->
+    <!-- IPv4 ip address of the default gateway -->
     <property 
         name="gateway" type="ipaddr" optional="true"
+        writeacl="ruleCapable(adminUser)"
+    />
+
+    <!-- IPv6 ip address of the default gateway -->
+    <property 
+        name="gateway_IPv6" type="ipaddrIPv6" optional="true"
+        writeacl="ruleCapable(adminUser)"
+    />
+
+    <!-- Trigger for handler base/system/modsystem.pl -->
+    <property 
+        name="nw_update" type="scalar" optional="true"
         writeacl="ruleCapable(adminUser)"
     />
 

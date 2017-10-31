@@ -1,7 +1,13 @@
-#!/usr/bin/perl -w -I/usr/sausalito/perl -I.
+#!/usr/bin/perl -I/usr/sausalito/perl -I.
 # $Id: modsystem.pl
 
-use strict;
+# Debugging switch:
+$DEBUG = "1";
+if ($DEBUG)
+{
+        use Sys::Syslog qw( :DEFAULT setlogsock);
+}
+
 use Sauce::Config;
 use Sauce::Util;
 use CCE;
@@ -18,6 +24,8 @@ if (!$oid) {
   $cce->bye('FAIL', 'Bad CSCP header');
   exit(1);
 }
+
+&debug_msg("Running modsystem.pl \n");
 
 my $obj = $cce->event_object();
 my $new = $cce->event_new();
@@ -66,45 +74,89 @@ if (defined($new->{hostname}) || defined($new->{domainname}))
   system('/bin/hostname', $name);
 }
 
-if (defined($new->{hostname}) || defined($new->{domainname}) || defined($new->{gateway}) ) {
-  # update /etc/sysconfig/network
-  {
-      my $fn = sub {
-      my ($fin, $fout) = (shift,shift);
-      my ($name, $gateway) = (shift, shift);
-      my %hash = ();
-      while ($_ = <$fin>) {
-        chomp($_);
-        if (m/^\s*([A-Za-z0-9_]+)\s*\=\s*(.*)/) { 
-	    $hash{$1} = $2; 
-	}
+# update /etc/sysconfig/network
+{
+    my @IPv4VARS = ("FORWARD_IPV4", "GATEWAY");
+    my @IPv6VARS = ("NETWORKING_IPV6", "IPV6FORWARDING", "IPV6_DEFAULTDEV", "IPV6_DEFAULTGW", "IPV6_AUTOCONF");
+    my $fn = sub {
+    my ($fin, $fout) = (shift,shift);
+    my ($name, $gateway, $gateway_IPv6) = (shift, shift, shift);
+    my %hash = ();
+    while ($_ = <$fin>) {
+      chomp($_);
+      if (m/^\s*([A-Za-z0-9_]+)\s*\=\s*(.*)/) { 
+        $hash{$1} = $2; 
       }
-      $hash{HOSTNAME} = $name;
+    }
+    $hash{HOSTNAME} = $name;
+
+    &debug_msg("DEBUG: gateway: $gateway \n");
+    &debug_msg("DEBUG: gateway_IPv6: $gateway_IPv6 \n");
+
+    if ($gateway eq '') {
+      # If we have no IPv4 Gateway, then IPv4 networking is disabled:
+      $hash{NETWORKING} = "no";
+    }
+    else {
       $hash{NETWORKING} = "yes";
-      $hash{FORWARD_IPV4} = $hash{FORWARD_IPV4} || "false";
+    }
 
-      if (!-e "/etc/is_aws") {
-	  $hash{GATEWAY} = $gateway || $hash{GATEWAY} || "";
-	  if (defined($gateway)) { $hash{GATEWAY} = $gateway; };
+    $hash{FORWARD_IPV4} = $hash{FORWARD_IPV4} || "false";
+    $hash{NOZEROCONF} = $hash{NOZEROCONF} || "yes";
+
+    if (!-e "/etc/is_aws") {
+      $hash{GATEWAY} = $gateway || $hash{GATEWAY} || "";
+      $hash{IPV6_DEFAULTGW} = $gateway_IPv6 || "";
+      if (defined($gateway)) { 
+        $hash{GATEWAY} = $gateway; 
       }
+      if (defined($gateway_IPv6)) { 
+        $hash{NETWORKING_IPV6} = 'yes';
+        $hash{IPV6FORWARDING} = 'yes';
+        $hash{IPV6_DEFAULTDEV} = 'eth0';
+        $hash{IPV6_DEFAULTGW} = $gateway_IPv6;
+        $hash{IPV6_AUTOCONF} = 'no';
+      }
+    }
 
-      foreach $_ ( sort keys %hash ) {
+    foreach $_ ( sort keys %hash ) {
+      if ((($gateway_IPv6 eq '') && (in_array(\@IPv6VARS, $_))) || (($gateway eq '') && (in_array(\@IPv4VARS, $_)))) {
+        # If we don't have an IPv4 or IPv6 Gatway, then we don't print the protocol related lines.
+      }
+      else {
         print $fout $_,"=",$hash{$_},"\n";
       }
-      return 1;
-    };
-    Sauce::Util::editfile("/etc/sysconfig/network", $fn, $name, $obj->{gateway});
-    Sauce::Util::chmodfile(0644,'/etc/sysconfig/network');
+    }
+    return 1;
   };
-}
+  Sauce::Util::editfile("/etc/sysconfig/network", $fn, $name, $obj->{gateway}, $obj->{gateway_IPv6});
+  Sauce::Util::chmodfile(0644,'/etc/sysconfig/network');
+};
 
 # comfortable shoes.
 $cce->bye('SUCCESS');
 exit(0);
 
+sub debug_msg {
+    if ($DEBUG) {
+        my $msg = shift;
+        $user = $ENV{'USER'};
+        setlogsock('unix');
+        openlog($0,'','user');
+        syslog('info', "$ARGV[0]: $msg");
+        closelog;
+    }
+}
+
+sub in_array {
+    my ($arr,$search_for) = @_;
+    my %items = map {$_ => 1} @$arr; # create a hash out of the array values
+    return (exists($items{$search_for}))?1:0;
+}
+
 # 
-# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2014-2017 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2014-2017 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 
