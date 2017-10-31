@@ -7,12 +7,12 @@
  *
  * @package   CceClient
  * @author    Michael Stauber
- * @copyright Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
- * @copyright Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+ * @copyright Copyright (c) 2014-2017 Michael Stauber, SOLARSPEED.NET
+ * @copyright Copyright (c) 2014-2017 Team BlueOnyx, BLUEONYX.IT
  * @copyright Copyright (c) 2003 Sun Microsystems, Inc.  All rights reserved.
  * @link      http://www.blueonyx.it
  * @license   http://devel.blueonyx.it/pub/BlueOnyx/licenses/SUN-modified-BSD-License.txt
- * @version   2.0
+ * @version   2.1
  */
 
 global $isCceClientDefined;
@@ -53,6 +53,11 @@ class CceClient {
 
   // OID (for errors related to SET transactions):
   public $OID;
+
+  // Array for CCE Replay Transaction
+  public $cce_replay;
+  public $cce_replay_file;
+  public $replay_errors;
 
   //
   // public methods
@@ -227,6 +232,188 @@ class CceClient {
     }
   }
 
+  //
+  //--- CCE Replay:
+  //
+  // This works similar to 'Delayed Transactions', but uses a different method.
+  // You can store SET transactions in a JSON encoded replay file. Several 
+  // independent transactions can be stored. First Array key is the number of the
+  // transaction. The value of each transaction is an Array as well. Index being
+  // the OID that the SET transaction is performed against and the rest of that
+  // Array being the key/value pairs to be performed.
+  //
+
+  // description: begin of CCE-Replay transaction (record to file):
+  function record($oid, $namespace = "", $vars = array()) {
+    if ($this->DEBUG) {
+      error_log("Command: RECORD REPLAY");
+    }
+
+    // Setup error array:
+    //$this->replay_errors = array();
+
+    // Get Username and SessionID:
+    $uname = $this->getUsername();
+    $sessionId = $this->getSessionId();
+
+    // Load file-helper class:
+    $CI =& get_instance();
+    $CI->load->helper('file');
+
+    // Define target file coupled to this uname: 
+    $this->cce_replay_file = '/usr/sausalito/license/json_cce_replay.' . $uname;
+
+    // Open replay file if it exists:
+    if (is_file($this->cce_replay_file)) {
+       $json_cce_replay = read_file($this->cce_replay_file);
+       $this->cce_replay = json_decode($json_cce_replay, true);
+    }
+
+    if (!is_array($this->cce_replay)) {
+      // Array to store CCEd transactions for later replay:
+      $this->cce_replay = array();
+    }
+
+    // Append Replay Transaction:
+    $this->cce_replay[][$oid] = array('namespace' => $namespace, 'transaction' => $vars);
+
+    // Encode Replay Transaction:
+    $json_cce_replay = json_encode($this->cce_replay);
+
+    // Delete old replay file:
+    $ret = $CI->serverScriptHelper->shell("/bin/rm -f " . $this->cce_replay_file, $nfk, 'root', $sessionId); 
+
+    // Write the new license file out to disk:
+    if (!write_file($this->cce_replay_file, $json_cce_replay)) {
+      error_log("ERROR: " . 'Could not write CCE replay-file ' .  $this->cce_replay_file);
+      $this->setReplayError('2', $oid, $this->cce_replay_file, 'Could not write CCE replay-file ' .  $this->cce_replay_file);
+      return FALSE;
+    }
+    else {
+      // No errors:
+      return TRUE;
+    }
+  }
+
+  // description: Report how many stored transactions (if any) are in the current CCE-Replay file.
+  function replayStatus() {
+    // Load file-helper class:
+    $CI =& get_instance();
+    $CI->load->helper('file');
+
+    // Get SessionID:
+    $uname = $this->getUsername();
+    $sessionId = $this->getSessionId();
+
+    // Define target file coupled to this uname: 
+    $this->cce_replay_file = '/usr/sausalito/license/json_cce_replay.' . $uname;
+
+    if (is_file($this->cce_replay_file)) {
+      $json_cce_replay = read_file($this->cce_replay_file);
+      $this->cce_replay = json_decode($json_cce_replay, true);
+
+      // Check if it contains an Array:
+      $num_of_stored_transactions = '0';
+      if (is_array($this->cce_replay)) {
+        $num_of_stored_transactions = count(array_keys($this->cce_replay));
+      }
+      return $num_of_stored_transactions;
+    }
+    else {
+      // No replay file present:
+      return '-1';
+    }
+  }
+
+  // description: Execution of transactions stored in the CCE-Replay file.
+  function replay($replayType = "auto") {
+
+    // Load file-helper class:
+    $CI =& get_instance();
+    $CI->load->helper('file');
+
+    // Get SessionID:
+    $uname = $this->getUsername();
+    $sessionId = $this->getSessionId();
+
+    // Define target file coupled to this uname: 
+    $this->cce_replay_file = '/usr/sausalito/license/json_cce_replay.' . $uname;
+
+    if (is_file($this->cce_replay_file)) {
+      $json_cce_replay = read_file($this->cce_replay_file);
+      $this->cce_replay = json_decode($json_cce_replay, true);
+
+      // Check if it contains an Array:
+      $num_of_stored_transactions = '0';
+      if (is_array($this->cce_replay)) {
+        $num_of_stored_transactions = count(array_keys($this->cce_replay));
+        if (($replayType == "auto") && ($num_of_stored_transactions > '0')) {
+          foreach ($this->cce_replay as $replayKey => $ReplayTransAction) {
+            foreach ($ReplayTransAction as $OID => $SetVal) {
+              $CI->cceClient->set($OID, $SetVal['namespace'], $SetVal['transaction']);
+              $num_of_stored_transactions--;
+              $this->replay_errors = $CI->cceClient->errors();
+              if (count($this->replay_errors) > '0') {
+                // We had an error. Assume the replay-file is messed up. Delete it:
+                $ret = $CI->serverScriptHelper->shell("/bin/rm -f " . $this->cce_replay_file, $nfk, 'root', $sessionId);
+                error_log("ERROR: " . 'Deleting messed up CCE Replay-File (' .  $this->cce_replay_file . ').');
+                return $this->replay_errors;
+              }
+            }
+          }
+        }
+        else {
+          // Take first transaction out of the Array and execute just this single transaction:
+          $one_step = array_shift($this->cce_replay);
+          foreach ($one_step as $OID => $SetVal) {
+            $CI->cceClient->set($OID, $SetVal['namespace'], $SetVal['transaction']);
+            $this->replay_errors = $CI->cceClient->errors();
+            if (count($this->replay_errors) > '0') {
+              // We had an error. Assume the replay-file is messed up. Delete it:
+              $ret = $CI->serverScriptHelper->shell("/bin/rm -f " . $this->cce_replay_file, $nfk, 'root', $sessionId);
+              error_log("ERROR: " . 'Deleting messed up CCE Replay-File (' .  $this->cce_replay_file . ').');
+              return $this->replay_errors;
+            }
+          }
+          $num_of_stored_transactions = count($this->cce_replay);
+          if ($num_of_stored_transactions != '0') {
+            // Write rest of unprocessed transactions back to file:
+            $json_cce_replay = json_encode($this->cce_replay);
+            write_file($this->cce_replay_file, $json_cce_replay);
+            return $num_of_stored_transactions;
+          }
+        }
+      }
+      else {
+        error_log("ERROR: " . 'CCE Replay-File (' .  $this->cce_replay_file . ') did not contain a readable Array of stored transactions.');
+        $this->setReplayError('2', '', $this->cce_replay_file, 'CCE Replay-File (' .  $this->cce_replay_file . ') did not contain a readable Array of stored transactions.');
+        return FALSE;
+      }
+
+      // Delete replay file:
+      $ret = $CI->serverScriptHelper->shell("/bin/rm -f " . $this->cce_replay_file, $nfk, 'root', $sessionId);
+
+      return $num_of_stored_transactions;
+    }
+  }
+
+  // description: Replay transactions cannot use regular CCEd error messages, so we mimick them with this function:
+  function setReplayError($code, $oid="", $key="", $msg) {
+    $numErrs = count($this->ERRORS);
+    $this->ERRORS[$numErrs]['code'] = $code;
+    $this->ERRORS[$numErrs]['oid'] = $oid;
+    $this->ERRORS[$numErrs]['key'] = $key;
+    $this->ERRORS[$numErrs]['message'] = $msg;
+    if ($numErrs != "0") {
+      $numErrs++;
+    }
+  }
+
+  // description: Function to poll replay errors:
+  function get_replay_errors() {
+    return $this->ERRORS;
+  }
+
   // description: begin delayed-handler mode
   function begin() {
     if ($this->DEBUG) {
@@ -357,6 +544,10 @@ class CceClient {
      $errors = CCE::ccephp_errors(); 
     }
 
+    if (is_array($this->get_replay_errors())) {
+      $errors = $this->get_replay_errors(); 
+    }
+
     for($i = 0; $i < count($errors); $i++) {
       $error = $errors[$i];
       if (isset($error["key"])){
@@ -373,7 +564,13 @@ class CceClient {
                                   "oid"  => $error["oid"],
                                   "key"  => $ekey));
     }
-
+    if (isset($this->replay_errors)) {
+      if (count($this->replay_errors) > '0') {
+        foreach ($this->replay_errors as $key => $value) {
+          $errorObjs[] = $value;
+        }
+      }
+    }
     return $errorObjs;
   }
 
