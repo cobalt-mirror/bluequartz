@@ -1,0 +1,666 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "software"
+msgstr "Software-updates"
+
+msgid "software_help"
+msgstr "De sectie [[base-swupdate.software]] kunt u controleren op en installeren van nieuwe of bijgewerkte softwarepakketten."
+
+msgid "softwareNew"
+msgstr "Third Party Software"
+
+msgid "softwareNew_help"
+msgstr "Klik hier om te controleren en installeren van beschikbare nieuwe software van derden."
+
+msgid "softwareNewSun"
+msgstr "[[base-alpine.osName]] Software"
+
+msgid "softwareNewSun_help"
+msgstr "Klik hier om te controleren en installeren van beschikbare nieuwe software van [[base-alpine.osVendor]]."
+
+msgid "softwareUpdate"
+msgstr "Derden Updates"
+
+msgid "softwareUpdate_help"
+msgstr "Klik hier om te controleren en installeren van beschikbare software-updates van derden."
+
+msgid "softwareUpdateSun"
+msgstr "[[base-alpine.osName]] Updates"
+
+msgid "softwareUpdateSun_help"
+msgstr "Klik hier om te controleren en installeren van beschikbare software-updates uit [[base-alpine.osVendor]]."
+
+msgid "softwareInstalled"
+msgstr "Geïnstalleerde software"
+
+msgid "softwareInstalled_help"
+msgstr "Klik hier voor een overzicht van softwarepakketten die momenteel zijn geïnstalleerd op het systeem."
+
+msgid "softwareSettings"
+msgstr "Instellingen"
+
+msgid "softwareSettings_help"
+msgstr "Klik hier om [[base-swupdate.software]] Instellingen."
+
+msgid "splashSoftwareMessage"
+msgstr "De sectie [[base-swupdate.software]] kunt u softwaretoepassingen op het systeem zijn geïnstalleerd te beheren."
+
+msgid "install"
+msgstr "Installeren"
+
+msgid "install_help"
+msgstr "Klik hier om de gespecificeerde softwarepakket installeren."
+
+msgid "installField"
+msgstr "Installeer Details"
+
+msgid "installField_help"
+msgstr "Klik op het pictogram om meer informatie over het verkrijgen en installeren van dit pakket zien."
+
+msgid "prepare"
+msgstr "Bereiden"
+
+msgid "prepare_help"
+msgstr "Klik hier om de software-pakket voor te bereiden op de installatie."
+
+msgid "nameField"
+msgstr "Naam"
+
+msgid "nameField_help"
+msgstr "Dit toont de naam van het softwarepakket."
+
+msgid "versionField"
+msgstr "Versie"
+
+msgid "versionField_help"
+msgstr "Dit toont de versie van het softwarepakket."
+
+msgid "vendorField"
+msgstr "Verkoper"
+
+msgid "vendorField_help"
+msgstr "Dit toont de leverancier van het softwarepakket."
+
+msgid "copyrightField"
+msgstr "Auteursrecht"
+
+msgid "copyrightField_help"
+msgstr "Dit toont het auteursrecht geassocieerd met het softwarepakket."
+
+msgid "descriptionField"
+msgstr "Beschrijving"
+
+msgid "descriptionField_help"
+msgstr "Dit geeft een beschrijving van de software."
+
+msgid "licenseField"
+msgstr "Licentie"
+
+msgid "licenseField_help"
+msgstr "Dit toont de licentieovereenkomst voor het pakket."
+
+msgid "accept"
+msgstr "Accepteren"
+
+msgid "accept_help"
+msgstr "Klik hier om de voorwaarden van de licentieovereenkomst te accepteren."
+
+msgid "decline"
+msgstr "Achteruitgang"
+
+msgid "decline_help"
+msgstr "Klik hier om de licentie overeenkomst te weigeren."
+
+msgid "typeField"
+msgstr "Type"
+
+msgid "typeField_help"
+msgstr "Dit toont het type verpakking."
+
+msgid "New"
+msgstr "Nieuw"
+
+msgid "Update"
+msgstr "Update"
+
+msgid "complete"
+msgstr "compleet"
+
+msgid "locationField"
+msgstr "Plaats"
+
+msgid "locationField_help"
+msgstr "Dit is de locatie van waaruit de software tijdens de installatie worden gedownload."
+
+msgid "locationLocal"
+msgstr "Deze server apparaat"
+
+msgid "sizeField"
+msgstr "Grootte (MB)"
+
+msgid "sizeField_help"
+msgstr "Dit is de grootte van het pakket."
+
+msgid "uninstallableField"
+msgstr "Uninstallable"
+
+msgid "uninstallableField_help"
+msgstr "Dit veld geeft aan of het pakket kan worden verwijderd nadat deze is geïnstalleerd."
+
+msgid "yes"
+msgstr "Ja"
+
+msgid "no"
+msgstr "Geen"
+
+msgid "none"
+msgstr "Geen"
+
+msgid "packagesNeededField"
+msgstr "Afhankelijke pakketten"
+
+msgid "packagesNeededField_help"
+msgstr "De hier genoemde verpakkingen moeten op het systeem worden geïnstalleerd voordat dit pakket veilig kan worden geïnstalleerd."
+
+msgid "locationFieldEnter"
+msgstr "Plaats"
+
+msgid "locationFieldEnter_help"
+msgstr "Voer de locatie van waaruit het softwarepakket te worden verkregen. Geef een URL begint met http:// of ftp:// om het pakket te downloaden vanaf een locatie op het internet, of voer het bestand locatie van een pakket te uploaden. Klik op Bladeren om een ​​bestand op uw lokale harde schijf te kiezen. Als u pakketten hebt gedownload naar de map /home/packages map op de server apparaat, een optie om een ​​van deze pakketten kiest zal ook beschikbaar zijn."
+
+msgid "invalidUrl"
+msgstr "De opgegeven URL is ongeldig. [[base-swupdate.urlField_rule]]"
+
+msgid "availableListNew"
+msgstr "Beschikbaar Nieuwe software Lijst"
+
+msgid "checkNow"
+msgstr "Beschikbaarheid Nu"
+
+msgid "checkNow_help"
+msgstr "Klik hier om te controleren of er nieuwe software pakketten zijn beschikbaar."
+
+msgid "manualInstall"
+msgstr "Handmatig installeren"
+
+msgid "manualInstall_help"
+msgstr "Klik hier om een ​​handmatige installatie van softwarepakketten uit te voeren."
+
+msgid "removePackage"
+msgstr "Heb je echt wilt de '[[VAR.packageName]]' pakket verwijderen uit het systeem? Dit pakket nog niet geïnstalleerd."
+
+msgid "checkNowUpdate"
+msgstr "[[base-swupdate.checkNow]]"
+
+msgid "checkNowUpdate_help"
+msgstr "Klik hier om te controleren of er software-updates beschikbaar zijn."
+
+msgid "manualInstallUpdate"
+msgstr "Handmatig installeren"
+
+msgid "manualInstallUpdate_help"
+msgstr "Klik hier om een ​​handmatige installatie van software-updates uit te voeren."
+
+msgid "availableListUpdates"
+msgstr "Beschikbare software-updates Lijst"
+
+msgid "downloadSoftware"
+msgstr "Software installeren"
+
+msgid "unknownSize"
+msgstr "Onbekend"
+
+msgid "rebootpopup"
+msgstr "Uw server apparaat moet rebooten na installatie van dit pakket. Wilt u doorgaan?"
+
+msgid "url"
+msgstr "URL"
+
+msgid "urlField"
+msgstr "[[base-swupdate.url]]"
+
+msgid "urlField_rule"
+msgstr "Geef een URL begint met http:// of ftp:// om het pakket te downloaden vanaf een locatie op het internet."
+
+msgid "upload"
+msgstr "Uploaden"
+
+msgid "loaded"
+msgstr "Pakketten in /home/packages"
+
+msgid "fileField"
+msgstr "Upload bestand locatie"
+
+msgid "fileField_empty"
+msgstr "Sorry, je hebt niet ingevoerd een bestand locatie van een pakket te uploaden. Klik op Bladeren om een ​​bestand op uw lokale harde schijf te kiezen."
+
+msgid "fileField_invalid"
+msgstr "[[base-swupdate.fileField_empty]]"
+
+msgid "invalidUpload"
+msgstr "Het opgegeven bestand kan niet met succes worden geüpload."
+
+msgid "installStatus"
+msgstr "Status - [[VAR.fileName]]"
+
+msgid "statusField"
+msgstr "Status Message"
+
+msgid "statusField_help"
+msgstr "Dit veld toont de huidige status van het pakket wordt geïnstalleerd of verwijderd."
+
+msgid "progressField"
+msgstr "Vooruitgang"
+
+msgid "progressField_help"
+msgstr "Dit is de voortgang van de installatie of verwijdering."
+
+msgid "dlPercent"
+msgstr "Bestand downloaden [[VAR.file]]: [[VAR.percent]]% klaar"
+
+msgid "initializing"
+msgstr "Initialiseren ..."
+
+msgid "downloading"
+msgstr "Het downloaden pakket ..."
+
+msgid "installing"
+msgstr "Installeren pakket ..."
+
+msgid "executingPreInstallScript"
+msgstr "Het uitvoeren van pre-installatie script (s) ..."
+
+msgid "executingPostInstallScript"
+msgstr "Het uitvoeren van post-installatie script (s) ..."
+
+msgid "installingRpm"
+msgstr "Component [[VAR.rpm]] Installeren ..."
+
+msgid "fail"
+msgstr "Mislukt"
+
+msgid "success"
+msgstr "Succes"
+
+msgid "currentlyUninstalling"
+msgstr "Pakket wordt momenteel verwijderd."
+
+msgid "cantUninstall"
+msgstr "Het pakket kan niet worden verwijderd omdat zij niet als uninstallable aangegeven."
+
+msgid "dependent"
+msgstr "Het pakket kan niet worden verwijderd omdat de volgende softwarepakketten verlangen dat die wordt geïnstalleerd: [[VAR.depend]]"
+
+msgid "removingRPM"
+msgstr "Het verwijderen van pakket RPM."
+
+msgid "runningUninstallScript"
+msgstr "Running Uninstall Script."
+
+msgid "uninstalled"
+msgstr "Verwijderen voltooid."
+
+msgid "notUninstalled"
+msgstr "Het verwijderen is mislukt omdat er was niets dat kan worden verwijderd."
+
+msgid "packageInstallSuccess"
+msgstr "Installatie van het pakket succesvol."
+
+msgid "notInstalled"
+msgstr "Het softwarepakket is niet geïnstalleerd."
+
+msgid "cannotDownloadUrl"
+msgstr "Sorry, het pakket bestand kan niet worden gedownload van de opgegeven URL. Controleer de URL en probeer het opnieuw. [[base-swupdate.notInstalled]]"
+
+msgid "badFileName"
+msgstr "Sorry, de bestandsnaam van het pakket is ongeldig. Controleer de naam en probeer het opnieuw. [[base-swupdate.notInstalled]]"
+
+msgid "packageAlreadyInstalled"
+msgstr "Het softwarepakket is al geïnstalleerd."
+
+msgid "verifyingPackage"
+msgstr "Het verifiëren pakket ..."
+
+msgid "badPackage"
+msgstr "Het pakket dossier onvolledig. De packing_list is ongeldig of ontbreekt. [[base-swupdate.notInstalled]]"
+
+msgid "badFormat"
+msgstr "Er is een fout opgetreden controleren van het pakket bestand. Het kan beschadigd zijn, of het kan niet de juiste verificatie-informatie. [[base-swupdate.notInstalled]]"
+
+msgid "CCEsetError"
+msgstr "Er is een fout opgetreden bij het toevoegen van het pakket om de CCE-database. Het pakket packing_list mogelijk ongeldig. [[base-swupdate.notInstalled]]"
+
+msgid "failedDep"
+msgstr "Het softwarepakket nodig andere software pakket (ten) eerst geïnstalleerd worden. Installeer de volgende pakket (ten): [[VAR.dep]]."
+
+msgid "installLock"
+msgstr "Een ander pakket wordt momenteel geïnstalleerd of verwijderd. Probeer het later opnieuw."
+
+msgid "obsoletePkg"
+msgstr "De [[VAR.name]] pakket werd niet geïnstalleerd omdat het niet meer actueel is."
+
+msgid "badProduct"
+msgstr "De [[VAR.name]] pakket werd niet geïnstalleerd omdat het niet compatibel is met deze versie van [[base-alpine.osName]]."
+
+msgid "hostNotFound"
+msgstr "De in de URL voor [[VAR.file]] gastheer is niet gevonden. [[base-swupdate.notInstalled]]"
+
+msgid "fileNotFound"
+msgstr "Het pakket [[VAR.file]] is niet gevonden op de opgegeven locatie."
+
+msgid "hostRefused"
+msgstr "De in de URL voor [[VAR.file]] gastheer weigerde de verbinding."
+
+msgid "notDownloaded"
+msgstr "Het pakket [[VAR.file]] niet naar behoren te downloaden, misschien omdat de server waar het pakket zich bevindt problemen ondervindt."
+
+msgid "noLocation"
+msgstr "Geen plaats gespecifieerd om pakket te krijgen."
+
+msgid "missingRPM"
+msgstr "Het pakket dossier onvolledig. Een of meer RPM(s) ontbreken."
+
+msgid "missingSRPM"
+msgstr "Het pakket dossier onvolledig. Een of meer SRPM(s) ontbreken."
+
+msgid "preInstallFailed"
+msgstr "Er was een probleem met het pakket bestand. De pre-installatie script mislukt."
+
+msgid "postInstallFailed"
+msgstr "Er was een probleem met het pakket bestand. Het na-installatie script mislukt."
+
+msgid "rpmInstallError"
+msgstr "Er was een probleem met het pakket bestand. Er is een fout opgetreden tijdens het installeren van de RPM [[VAR.rpm]]."
+
+msgid "errorWGET"
+msgstr "Er is een fout opgetreden tijdens het wget lopen."
+
+msgid "rebooting"
+msgstr "De server apparaat is nu rebooten. Het moet weer beschikbaar zijn in een paar minuten."
+
+msgid "uninstallrefresh"
+msgstr "Het pakket met succes verwijderd. In een ogenblik, zal de user interface te vernieuwen om de door het pakket diensten te verwijderen."
+
+msgid "installrefresh"
+msgstr "Het pakket met succes geïnstalleerd. In een ogenblik, zal de user interface te vernieuwen, om u te voorzien van toegang tot nieuwe diensten."
+
+msgid "installedList"
+msgstr "Geïnstalleerde software Lijst"
+
+msgid "uninstall"
+msgstr "Uninstall"
+
+msgid "uninstall_help"
+msgstr "Als het softwarepakket kan worden verwijderd, te klikken op de knop Verwijderen voor het pakket zal het te verwijderen uit het systeem."
+
+msgid "uninstallConfirm"
+msgstr "Weet u zeker dat u '[[VAR.packageName]]' verwijderen?"
+
+msgid "softwareInstallSettings"
+msgstr "[[base-swupdate.software]] Instellingen"
+
+msgid "basic"
+msgstr "Basisch"
+
+msgid "basic_help"
+msgstr "De meest gebruikte instellingen kunt u hier vinden."
+
+msgid "advanced"
+msgstr "Vergevorderd"
+
+msgid "advanced_help"
+msgstr "Minder vaak gebruikte instellingen kunt u hier vinden."
+
+msgid "scheduleField"
+msgstr "Query Schedule"
+
+msgid "scheduleField_help"
+msgstr "Wijzigen hoe vaak de [[base-swupdate.software]] server wordt gecontroleerd op nieuwe of bijgewerkte softwarepakketten."
+
+msgid "hourly"
+msgstr "Ieder uur"
+
+msgid "daily"
+msgstr "Dagelijks"
+
+msgid "weekly"
+msgstr "Wekelijks"
+
+msgid "monthly"
+msgstr "Maandelijks"
+
+msgid "never"
+msgstr "Nooit"
+
+msgid "emailField"
+msgstr "Kennisgeving Emails"
+
+msgid "emailField_help"
+msgstr "Voer het e-mailadres (sen) waarop de kennisgeving van nieuwe of bijgewerkte softwarepakketten of fouten in Software Update query's moeten worden verzonden. De optie die u voor de Software Notification Light selecteert, bepaalt wanneer e-mail notificaties worden verzonden. Laat dit veld leeg als u niet wenst om deze meldingen te ontvangen."
+
+msgid "pkgOIDmissing"
+msgstr "Er was een probleem ophalen van informatie over het pakket. Het pakket kan reeds verwijderd. Indien dit niet het geval is, probeer het opnieuw. Als het probleem aanhoudt, neem dan contact op met de technische ondersteuning ([[base-sauce-basic.techSupportEmail]])."
+
+msgid "serverField"
+msgstr "[[base-swupdate.software]] Servers"
+
+msgid "defaultServer"
+msgstr "newlinq.blueonyx.it"
+
+msgid "serverField_help"
+msgstr "Voer de URL van de server locaties moet worden gezocht naar nieuwe software en updates. De URL van de standaard server locatie is [[base-swupdate.defaultServer]]."
+
+msgid "serverFieldInvalid"
+msgstr "[[base-swupdate.software]] was niet in staat om met de server opgegeven. U zorgt ervoor dat het toegankelijk is vanaf uw server apparaat."
+
+msgid "httpProxyField"
+msgstr "HTTP-proxy: Port"
+
+msgid "httpProxyField_help"
+msgstr "Geef de proxy-server en poort voor HTTP-queries als een proxy-server nodig buiten uw firewall te bereiken. Voorbeeld: proxy.example.com: 8080."
+
+msgid "httpProxyInvalid"
+msgstr "[[base-swupdate.software]] was niet in staat om contact met de HTTP-proxy-server. Zorg ervoor dat het toegankelijk is vanaf uw server apparaat."
+
+msgid "ftpProxyField"
+msgstr "FTP-proxy: Port"
+
+msgid "ftpProxyField_help"
+msgstr "Geef de proxy-server en de poort voor FTP queries als een proxy-server nodig buiten uw firewall te bereiken. Voorbeeld: proxy.example.com: 8080."
+
+msgid "ftpProxyInvalid"
+msgstr "[[base-swupdate.software]] was niet in staat om contact met de FTP-proxyserver. Zorg ervoor dat het toegankelijk is vanaf uw server apparaat."
+
+msgid "autoField"
+msgstr "Updates automatisch installeren"
+
+msgid "autoField_help"
+msgstr "Indien ingeschakeld, zal [[base-swupdate.software]] automatisch geverifieerde pakketten te installeren."
+
+msgid "requireSignatureField"
+msgstr "Pakketten moet zijn geverifieerd"
+
+msgid "requireSignatureField_help"
+msgstr "Indien ingeschakeld, zal [[base-swupdate.software]] alleen pakketten die een verificatie zijn verstreken installeren."
+
+msgid "checkSetField"
+msgstr "Software om te controleren"
+
+msgid "checkSetField_help"
+msgstr "Kies het type software dat zal worden gecontroleerd op elke vraag Software Update."
+
+msgid "all"
+msgstr "Alle software"
+
+msgid "updates"
+msgstr "Updates alleen"
+
+msgid "notificationLightField"
+msgstr "Software Notification Light"
+
+msgid "notificationLightField_help"
+msgstr "Verander wat voor soort nieuwe software de software Notification Light wordt geactiveerd, en indien van toepassing, wat voor soort nieuwe software zal verschijnen in de kennisgeving e-mails."
+
+msgid "update"
+msgstr "Update"
+
+msgid "update_help"
+msgstr "Klik hier om te controleren op en installeren van nieuwe of bijgewerkte softwarepakketten. Dit pictogram verandert van kleur wanneer nieuwe of bijgewerkte software pakketten zijn beschikbaar."
+
+msgid "QueryErrorSubject"
+msgstr "Er was een probleem bevragen van de [[base-swupdate.software]] server."
+
+msgid "NoProductInfoBody"
+msgstr "De [[base-swupdate.software]] server heeft uw product.[[base-sauce-basic.contactTechSupport]] niet herkennen"
+
+msgid "NoSWUpdateServerSubject"
+msgstr "Geen URL opgegeven voor de [[base-swupdate.software]] server."
+
+msgid "NoSWUpdateServerBody"
+msgstr "De locatie voor de [[base-swupdate.software]] server kon niet worden vastgesteld. Ga naar de pagina [[base-swupdate.software]] Instellingen en geef een URL voor de [[base-swupdate.software]] server."
+
+msgid "NoSystemInfoSubject"
+msgstr "[[base-swupdate.software]] is niet in staat om informatie over het systeem te bepalen."
+
+msgid "NoSystemInfoBody"
+msgstr "De server kon informatiesysteem nodig is door de [[base-swupdate.software]] server bepalen. [[base-sauce-basic.contactTechSupport]]"
+
+msgid "NoPackageListBody"
+msgstr "[[base-swupdate.software]] was niet in staat om een ​​lijst van pakketten op te halen uit de [[base-swupdate.software]] server zich op [[VAR.location]]. Gelieve te controleren om ervoor te zorgen dat [[VAR.location]] een geldige [[base-swupdate.software]] server en dat u kunt het opvragen van uw web browser."
+
+msgid "BadPackageFmtBody"
+msgstr "De server heeft pakket informatie dat [[base-swupdate.software]] niet begreep. [[base-sauce-basic.contactTechSupport]]"
+
+msgid "NoPackagesBody"
+msgstr "Er zijn geen nieuwe pakketten beschikbaar voor download."
+
+msgid "UnknownErrorBody"
+msgstr "[[base-swupdate.software]] ontving een onbekende fout ([[VAR.error]]) bij een poging om met de server zich in [[VAR.location]]."
+
+msgid "NewUpdatesSubject"
+msgstr "Nieuwe software beschikbaar is voor uw server apparaat"
+
+msgid "NewUpdatesBody"
+msgstr "Controleer de [[base-swupdate.software]] menu als u een van de volgende pakketten te installeren:"
+
+msgid "capgroup_adminBlueLinq"
+msgstr "Beheer BluelinQ"
+
+msgid "capgroup_adminBlueLinq_help"
+msgstr "Deze administratieve rechter kan een gebruiker te beheren BluelinQ. Hierdoor kan een gebruiker om nieuwe software te installeren en de bestaande software te updaten."
+
+msgid "3rdpartypkg_warning"
+msgstr "LET OP: De installatie van een derde pakket of de update, zal de server niet goed functioneert, crash, of instabiel. Daarnaast kunnen pakketten van niet-vertrouwde bronnen een kwaadwillende uitgever of de gebruiker de controle over de server te nemen. Gelieve alleen pakketten te installeren vanaf een vertrouwde derde partij bron."
+
+msgid "warning_header"
+msgstr "Waarschuwing!"
+
+msgid "cap_managePackage"
+msgstr "Software-updates management"
+
+# ---
+
+msgid "urlField_help"
+msgstr "[[base-swupdate.urlField]]"
+
+msgid "fileField_help"
+msgstr "[[base-swupdate.fileField]]"
+
+msgid "loaded_help"
+msgstr "[[base-swupdate.loaded]]"
+
+msgid "BXnewpkg"
+msgstr "Nieuwe PKG"
+
+msgid "BXnewpkg_help"
+msgstr "Dit is een nieuw pakket."
+
+msgid "BXnewupdate"
+msgstr "Nieuwe update"
+
+msgid "BXnewupdate_help"
+msgstr "Dit is een nieuwe update voor een pakket dat u al hebt geïnstalleerd."
+
+msgid "BXpkg"
+msgstr "PKG"
+
+msgid "BXpkg_help"
+msgstr "Dit pakket is beschikbaar voor installatie."
+
+msgid "BXupdate"
+msgstr "Update"
+
+msgid "BXupdate_help"
+msgstr "Dit is een update voor een pakket dat u al hebt geïnstalleerd."
+
+# ---
+
+msgid "UpdatesAvailablePackagesBody"
+msgstr "Er zijn updates beschikbaar zijn voor pakketten die u al hebt geïnstalleerd."
+
+msgid "AutoUpdate"
+msgstr "Auto Update PKGS"
+
+msgid "AutoUpdate_help"
+msgstr "Als deze functie is ingeschakeld geselecteerde updates worden automatisch geïnstalleerd. Zodra een nieuw pakket voor één van de geselecteerde programma's beschikbaar, dan wordt de update automatisch geïnstalleerd. Houd er rekening mee dat bepaalde pakketten zijn vrij complex en onopgemerkte geautomatiseerde updates kunnen dingen breken. We ontmoedigen om dit te gebruiken voor het automatisch updaten van PHP-pakketten, omdat dit PHP gebruik op virtuele locaties kunnen breken. Gebruik deze functie in uw eigen discretie en risico."
+
+msgid "AutoUpdateList"
+msgstr "Auto Update Packages"
+
+msgid "AutoUpdateList_help"
+msgstr "Lijst met pakketten die automatisch moeten worden bijgewerkt met de nieuwste versie. Alle in de linkerkolom vermelde pakketten wordt automatisch bijgewerkt zodra nieuwere versies beschikbaar komen. Sommige pakketten zullen altijd automatisch bijgewerkt en kan niet worden uitgeschakeld. Houd er rekening mee dat bepaalde pakketten zijn vrij complex en onopgemerkte geautomatiseerde updates kunnen dingen breken. We ontmoedigen om dit te gebruiken voor het automatisch updaten van PHP-pakketten, omdat dit PHP gebruik op virtuele locaties kunnen breken. Gebruik deze functie in uw eigen discretie en risico."
+
+msgid "amUpdatesNameTag"
+msgstr "Software Updates"
+
+msgid "amUpdatesGreen"
+msgstr "Alle geïnstalleerde pakketten zijn volledig up-to-date."
+
+msgid "amUpdatesYellow"
+msgstr "Een zekere pakket dat u hebt geïnstalleerd is verkrijgbaar in verschillende versies uit NewLinQ. Je hebt de oudere versie van dit pakket geïnstalleerd. Kunt u overwegen om de geïnstalleerde pakketten te upgraden naar de meest recente beschikbare versies."
+
+msgid "amUpdatesRed"
+msgstr "Er zijn bijgewerkte pakketten beschikbaar voor pakketten die u al hebt geïnstalleerd. Voer een upgrade van de geïnstalleerde pakketten naar de meest recente beschikbare versies."
+
+msgid "AutoEmailSubject"
+msgstr "Pakket kennisgeving installeren"
+
+msgid "autoinstallEmail_desc"
+msgstr "De volgende pakketten werden automatisch geïnstalleerd op uw BlueOnyx server:"
+
+msgid "autoupdateEmail_desc"
+msgstr "De volgende pakketten werden automatisch bijgewerkt naar de nieuwste versies beschikbaar NewLinQ:"
+
+msgid "autoEmail_finalwords"
+msgstr "Lees de status van uw server en zorg ervoor dat de geïnstalleerde pakketten uit te voeren zonder problemen."
+
+###
+
+msgid "autoinstallMenu"
+msgstr "Installeer PKGS"
+
+msgid "autoinstallMenu_help"
+msgstr "Via deze pagina kunt u pakketten van de BlueOnyx winkel te installeren. Je moet een geldige login van de BlueOnyx winkel om deze stap uit te voeren."
+
+msgid "AutoInstallPKGheader"
+msgstr "Voer uw BlueOnyx Shop login-gegevens:"
+
+msgid "ShopEmail"
+msgstr "Shop-mail"
+
+msgid "ShopEmail_help"
+msgstr "Vul het e-mailadres waarmee u in de BlueOnyx Shop geregistreerd."
+
+msgid "ShopPass"
+msgstr "Shop Wachtwoord"
+
+msgid "ShopPass_help"
+msgstr "Voer het wachtwoord in die u gebruikt om in te loggen op de BlueOnyx Shop."

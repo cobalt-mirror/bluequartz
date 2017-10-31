@@ -1,0 +1,9 @@
+<!-- this is the menu item 'Template'  -->
+<item id="base_siteTemplate" label="[[base-vsite.sitedefaultsbutNeutral]]" 
+    description="[[base-vsite.sitedefaultsbutNeutral_help]]"
+    icon="settings"
+    url="/vsite/template">
+    <parent id="base_sitemanageVSL" order="10">
+    	<access require="admin"/>
+    </parent>
+</item>

@@ -1,0 +1,9 @@
+<item id="solarspeed_mod_mysql" label="[[base-mysql.MySQL_Config]]"
+        description="[[base-mysql.MySQL_Config_desc_help]]"
+        url="/base/mysql/mysqlusers.php"
+>
+    <parent id="base_controlpanel" order="81">
+        <access require="networkServices"/>
+    </parent>
+</item>
+

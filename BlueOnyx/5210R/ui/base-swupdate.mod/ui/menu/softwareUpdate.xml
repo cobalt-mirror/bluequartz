@@ -1,0 +1,10 @@
+<item 
+    id="base_softwareUpdate" 
+    label="[[base-swupdate.softwareUpdate]]" 
+    description="[[base-swupdate.softwareUpdate_help]]" 
+    url="/base/swupdate/updatesList.php"
+>
+    <parent id="base_software" order="20">
+        <access require="managePackage"/>
+    </parent>
+</item>

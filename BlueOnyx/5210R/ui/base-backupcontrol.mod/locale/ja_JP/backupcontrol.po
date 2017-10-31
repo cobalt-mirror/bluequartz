@@ -1,0 +1,65 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "desktop_control"
+msgstr "サーバデスクトップ"
+
+msgid "description"
+msgstr "サーバデスクトップの操作モードを制御できます。"
+
+# UI menu
+
+msgid "desktop_control_settings"
+msgstr "[[base-backupcontrol.desktop_control]] の制御"
+
+msgid "lock_desktop"
+msgstr "サーバデスクトップをロックする"
+
+msgid "lock_desktop_help"
+msgstr "このオプションを選ぶと、管理ユーザインターフェイス (サーバデスクトップ) が読み取り専用になります。"
+ 
+msgid "lock_desktop_failed"
+msgstr "[[base-backupcontrol.desktop_control]] の状態を変更できませんでした。"
+ 
+msgid "lock_failed"
+msgstr "[[base-backupcontrol.desktop_control]] をロックできませんでした。"
+ 
+msgid "unlock_failed"
+msgstr "[[base-backupcontrol.desktop_control]] をアンロックできませんでした。"
+
+msgid "locked"
+msgstr "サーバデスクトップは、サーバ管理者によってロックされています。"
+
+msgid "cap_serverServerDesktop"
+msgstr "サーバ·デスクトップの設定"
+
+###
+
+msgid "GUIaccessType"
+msgstr "GUIアクセスプロトコル"
+
+msgid "GUIaccessType_help"
+msgstr "これは、プロトコルは、GUIへのアクセスを許可するかを定義します。あなたがHTTPとHTTPSの両方のアクセスを許可する場合は、「[[base-backupcontrol.BOTH]]」に設定します。 HTTPSのみアクセスを許可するには、「[[base-backupcontrol.HTTPS]]」に設定します。それとも、悪い考えである「[[base-backupcontrol.HTTP]]」としてのみ許可されたプロトコル、にそれを設定することができます。推奨：「[[base-backupcontrol.HTTPS]]」。デフォルト： '[[base-backupcontrol.BOTH]]」"
+
+msgid "GUIredirects"
+msgstr "サーバ名へのリダイレクト"
+
+msgid "GUIredirects_help"
+msgstr "GUIは（admservに）で実行されていることをApacheのWebサーバーは、別のSSL証明書を持っています。誰かが仮想サイト（します。https：//www.site.com：81/login）のドメイン名を経由して、HTTPSにより、GUIにアクセスすると、ブラウザは、サーバーのSSL証明書は、ドメイン名と一致しないという警告が表示されます。これを防ぐには、このボックスをチェックすることができますし、HTTPSは、GUIへのアクセスはすべて、サーバーの完全修飾ドメイン名にリダイレクトされます。注意：サーバーの完全修飾ドメイン名が有効なDNSレコードを持っている、またはGUIが到達不能になるかもしれない場合にのみ使用してください。"
+
+msgid "BOTH"
+msgstr "HTTPとHTTPS"
+
+msgid "HTTP"
+msgstr "HTTPのみ"
+
+msgid "HTTPS"
+msgstr "HTTPSのみ"
+

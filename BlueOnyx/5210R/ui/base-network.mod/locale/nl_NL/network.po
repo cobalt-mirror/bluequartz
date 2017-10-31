@@ -1,0 +1,1036 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "ethernet"
+msgstr "TCP/IP"
+
+msgid "ethernet_help"
+msgstr "Klik hier om de TCP/IP-instellingen wijzigen."
+
+msgid "tcpIpSettings"
+msgstr "TCP/IP-instellingen"
+
+msgid "wan"
+msgstr "Internet"
+
+msgid "wan_help"
+msgstr "Klik hier om Internet-instellingen te wijzigen."
+
+msgid "primarySettings"
+msgstr "Primaire Instellingen"
+
+msgid "primarySettings_help"
+msgstr "Instellingen voor de werkelijke Ethernetpoorten van de server naast de servers DNS instellingen en gastheer en domeinnamen."
+
+msgid "aliasSettings"
+msgstr "Interface Alias"
+
+msgid "aliasSettings_help"
+msgstr "Instellingen voor extra IP-adressen waarvoor deze server moet reageren."
+
+msgid "enterFqdn"
+msgstr "Host en Domain Name"
+
+msgid "enterFqdn_help"
+msgstr "Voer de hostnaam van de server in het eerste veld en de domeinnaam in het tweede veld. Bijvoorbeeld, www is een geldige hostnaam, en example.com is een geldige domeinnaam. Vul alleen kleine alfanumerieke tekens, streepjes of periodes."
+
+msgid "hostNameField"
+msgstr "Hostnaam"
+
+msgid "hostNameField_rule"
+msgstr "Vul alleen kleine alfanumerieke tekens, streepjes of periodes. Bijvoorbeeld, www is een geldige invoer."
+
+msgid "hostNameField_help"
+msgstr "Geef de naam van deze server apparaat gastheer. De hostnaam en de domeinnaam in combinatie met elkaar moeten een unieke deze server apparaat te identificeren. [[base-network.hostNameField_rule]]"
+
+msgid "domainNameField"
+msgstr "Domeinnaam"
+
+msgid "domainNameField_rule"
+msgstr "Vul alleen kleine alfanumerieke tekens, streepjes of periodes. Het eerste teken moet een letter zijn, en het laatste teken moet een letter of cijfer zijn. Bijvoorbeeld example.com een ​​geldige invoer."
+
+msgid "domainNameField_help"
+msgstr "Voer de domeinnaam van deze server apparaat. De hostnaam en de domeinnaam in combinatie met elkaar moeten een unieke deze server apparaat te identificeren. [[base-network.domainNameField_rule]]"
+
+msgid "dnsAddressesField"
+msgstr "DNS-servers"
+
+msgid "dnsAddressesField_rule"
+msgstr "Vul een reeks van vier getallen tussen 0 en 255, gescheiden door punten. Bijvoorbeeld, 192.168.1.1 een geldige invoer. Het verlaten van dit veld leeg wordt voorkomen dat deze machine van het vinden van andere machines door hostnaam of domeinnaam en zal leiden tot een netwerk problemen."
+
+msgid "dnsAddressesField_help"
+msgstr "Voer het IP-adres of de adressen van uw lokale DNS-server of servers. Een domeinnaam server vertaalt tekstuele hostnamen en domeinnamen in numerieke IP-adressen, en vice-versa. [[base-network.dnsAddressesField_rule]]"
+
+msgid "interfaceeth0"
+msgstr "Primaire Interface"
+
+msgid "interfaceeth1"
+msgstr "Secundaire Interface"
+
+msgid "interfaceeth2"
+msgstr "Derde Interface"
+
+msgid "helpeth2"
+msgstr "derde-interface"
+
+msgid "interfaceeth3"
+msgstr "Vierde Interface"
+
+msgid "helpeth3"
+msgstr "vierde-interface"
+
+msgid "interfaceeth4"
+msgstr "Vijfde Interface"
+
+msgid "helpeth4"
+msgstr "vijfde-interface"
+
+msgid "interfaceeth5"
+msgstr "Zesde Interface"
+
+msgid "helpeth5"
+msgstr "zesde-interface"
+
+msgid "interfaceeth6"
+msgstr "Zevende Interface"
+
+msgid "helpeth6"
+msgstr "zevende-interface"
+
+msgid "interfaceeth7"
+msgstr "Achtste Interface"
+
+msgid "helpeth7"
+msgstr "achtste-interface"
+
+msgid "interfaceeth8"
+msgstr "Negende Interface"
+
+msgid "helpeth8"
+msgstr "negende-interface"
+
+msgid "interfaceeth9"
+msgstr "Tiende Interface"
+
+msgid "helpeth9"
+msgstr "tiende-interface"
+
+msgid "primaryInterface"
+msgstr "Primaire Interface"
+
+msgid "secondaryInterface"
+msgstr "Secundaire Interface"
+
+msgid "ipAddressNetMaskMismatch"
+msgstr "Sorry, de IP Network Mask vereist als het veld IP-adres wordt ingevuld [[base-network.netMaskField_rule]]"
+
+msgid "netMaskIpAddressMismatch"
+msgstr "Sorry, is de [[base-network.ipAddressField]] vereist als het veld [[base-network.netMaskField]] wordt ingevuld [[base-network.ipAddressField_rule]]"
+
+msgid "macAddressField"
+msgstr "MAC-adres"
+
+msgid "macAddressField_help"
+msgstr "Het Media Access Control (MAC)-adres is het hardware-adres van de netwerkkaart. Deze hardware-adres is een unieke identificatie en kan niet na de fabricage worden gewijzigd."
+
+msgid "addAliasButton"
+msgstr "Voeg Alias"
+
+msgid "addAliasButton_help"
+msgstr "Voeg een nieuwe alias voor deze server."
+
+msgid "aliasName"
+msgstr "Interface Alias"
+
+msgid "aliasName_help"
+msgstr "De interface en de alias nummer waarmee deze alias is gekoppeld."
+
+msgid "aliasIpaddr"
+msgstr "[[base-network.ipAddressField]]"
+
+msgid "aliasIpaddr_help"
+msgstr "Het IP-adres waarop deze alias luistert."
+
+msgid "aliasNetmask"
+msgstr "Netmask"
+
+msgid "aliasNetmask_empty"
+msgstr "Sorry, je hebt een netmask voor deze alias niet ingevoerd. [[base-network.route_form_netmask_rule]]"
+
+msgid "aliasNetmask_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is geen geldige netmask. [[base-network.route_form_netmask_rule]]"
+
+msgid "aliasNetmask_help"
+msgstr "Het netmask voor deze alias."
+
+msgid "aliasActions"
+msgstr "Acties"
+
+msgid "aliasActions_help"
+msgstr "Klik op het pictogram Wijzigen om de instellingen voor deze alias wijzigen. Klik op het pictogram Verwijderen om dit alias te verwijderen."
+
+msgid "aliaseth0"
+msgstr "Primaire Interface Alias ​​[[VAR.num]]"
+
+msgid "aliaseth1"
+msgstr "Secundaire Interface Alias ​​[[VAR.num]]"
+
+msgid "aliaseth2"
+msgstr "Derde Interface Alias ​​[[VAR.num]]"
+
+msgid "aliaseth3"
+msgstr "Vierde Interface Alias ​​[[VAR.num]]"
+
+msgid "aliaseth4"
+msgstr "Vijfde Interface Alias ​​[[VAR.num]]"
+
+msgid "aliaseth5"
+msgstr "Zesde Interface Alias ​​[[VAR.num]]"
+
+msgid "aliaseth6"
+msgstr "Zevende Interface Alias ​​[[VAR.num]]"
+
+msgid "aliaseth7"
+msgstr "Achtste Interface Alias ​​[[VAR.num]]"
+
+msgid "aliaseth8"
+msgstr "Negende Interface Alias ​​[[VAR.num]]"
+
+msgid "aliaseth9"
+msgstr "Tiende Interface Alias ​​[[VAR.num]]"
+
+msgid "addAlias"
+msgstr "Voeg Alias"
+
+msgid "modAlias"
+msgstr "Wijzig Alias"
+
+msgid "assocIface"
+msgstr "Interface"
+
+msgid "assocIface_help"
+msgstr "De echte interface waarop deze alias moet worden gekoppeld."
+
+msgid "aliasModIpaddr"
+msgstr "[[base-network.ipAddressField]]"
+
+msgid "aliasModIpaddr_empty"
+msgstr "Sorry, je hebt het IP-adres waarop deze alias moeten luisteren niet ingevoerd. [[base-network.ipAddressField_rule]]"
+
+msgid "aliasModIpaddr_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is geen geldig IP-adres. [[base-network.ipAddressField_rule]]"
+
+msgid "aliasModIpaddr_help"
+msgstr "Het IP-adres waarop deze alias moeten luisteren."
+
+msgid "routes"
+msgstr "Wijzig Statische routes"
+
+msgid "routes_help"
+msgstr "Klik hier om statische routes vanaf deze server apparaat op andere subnetten maken."
+
+msgid "routeList-list-title"
+msgstr "Static Route Lijst"
+
+msgid "createRoute"
+msgstr "Toevoegen Static Route"
+
+msgid "route-target"
+msgstr "Doel Netwerk IP-adres"
+
+msgid "route-target_help"
+msgstr "Dit is het IP-adres van het subnet waar de genoemde statische route verwijst."
+
+msgid "route-netmask"
+msgstr "Doel subnetmasker voor het netwerk"
+
+msgid "route-netmask_help"
+msgstr "Dit is het netmasker van het subnet waar de genoemde statische route verwijst."
+
+msgid "route-gateway"
+msgstr "Poort"
+
+msgid "route-gateway_help"
+msgstr "Dit is de netwerk-gateway waarmee het netwerkverkeer van de doel-subnet gerouteerd worden."
+
+msgid "route-device"
+msgstr "Apparaat"
+
+msgid "route-device_help"
+msgstr "Dit is de netwerk interface waarmee alle verkeer voor de statische route wordt gerouteerd."
+
+msgid "modifyRoute"
+msgstr "Wijzig statische route"
+
+msgid "verify_delete"
+msgstr "Weet u zeker dat u de statische route [[VAR.route]] verwijderen?"
+
+msgid "route_form_target"
+msgstr "Doelsubnetwerk"
+
+msgid "route_form_target_help"
+msgstr "Voer het IP-adres van het subnet moet worden omgeleid. [[base-network.route_form_target_rule]]"
+
+msgid "route_form_target_rule"
+msgstr "Vul een reeks van vier getallen tussen 0 en 255, gescheiden door punten. Bijvoorbeeld, 192.168.1.0 een geldige invoer."
+
+msgid "route_form_target_empty"
+msgstr "Sorry, je hebt niet opgegeven en een waarde voor [[base-network.route_form_target]]. [[base-network.route_form_target_rule]]"
+
+msgid "route_form_target_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is een ongeldige waarde voor [[base-network.route_form_target]]. [[base-network.route_form_target_rule]]"
+
+msgid "route_form_netmask"
+msgstr "Target Network Mask"
+
+msgid "route_form_netmask_help"
+msgstr "Voer de netwerk-masker van het subnet worden omgeleid. [[base-network.route_form_netmask_rule]]"
+
+msgid "route_form_netmask_rule"
+msgstr "Vul een reeks van vier getallen tussen 0 en 255, gescheiden door punten. Bijvoorbeeld 255.255.255.0 een geldige invoer."
+
+msgid "route_form_netmask_empty"
+msgstr "Sorry, je hebt niet opgegeven en een waarde voor [[base-network.route_form_netmask]]. [[base-network.route_form_netmask_rule]]"
+
+msgid "route_form_netmask_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is een ongeldige waarde voor [[base-network.route_form_netmask]]. [[base-network.route_form_netmask_rule]]"
+
+msgid "route_form_gateway"
+msgstr "Poort"
+
+msgid "route_form_gateway_help"
+msgstr "Voer het IP-adres van de netwerk-gateway op het subnet van deze server waarlangs de pakketten op weg naar het doel subnet zal worden omgeleid. [[base-network.route_form_gateway_rule]]"
+
+msgid "route_form_gateway_rule"
+msgstr "Vul een reeks van vier getallen tussen 0 en 255, gescheiden door punten. Bijvoorbeeld, 192.168.1.1 een geldige invoer."
+
+msgid "route_form_gateway_empty"
+msgstr "Sorry, je hebt niet opgegeven en een waarde voor [[base-network.route_form_gateway]]. [[base-network.route_form_gateway_rule]]"
+
+msgid "route_form_gateway_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is een ongeldige waarde voor [[base-network.route_form_gateway]]. [[base-network.route_form_gateway_rule]]"
+
+msgid "route_form_device"
+msgstr "Network Interface"
+
+msgid "route_form_device_help"
+msgstr "Selecteer de netwerk interface waarmee pakketten weg naar het doel subnet zal worden omgeleid. Als er geen apparaat is opgegeven, zal een apparaat worden geselecteerd op basis van het IP-adres van de netwerk-gateway."
+
+msgid "route_form_device-eth0"
+msgstr "Primaire Ethernet-interface (eth0)"
+
+msgid "route_form_device-eth1"
+msgstr "Secundaire Ethernet-interface (eth1)"
+
+msgid "route_form_device-eth2"
+msgstr "Ethernet-interface (eth2)"
+
+msgid "route_form_device-eth3"
+msgstr "Ethernet-interface (eth3)"
+
+msgid "route_form_device-eth4"
+msgstr "Ethernet-interface (eth4)"
+
+msgid "route_form_device-eth5"
+msgstr "Ethernet-interface (eth5)"
+
+msgid "route_form_device-eth6"
+msgstr "Ethernet-interface (eth6)"
+
+msgid "route_form_device-eth7"
+msgstr "Ethernet-interface (eth7)"
+
+msgid "route_form_device-eth8"
+msgstr "Ethernet-interface (eth8)"
+
+msgid "route_form_device-eth9"
+msgstr "Ethernet-interface (eth9)"
+
+msgid "route_form_device-ppp0"
+msgstr "Point-to-Point Protocol Interface (ppp0)"
+
+msgid "routeList_action_header"
+msgstr "Acties"
+
+msgid "routeList_action_header_help"
+msgstr "Klik op het pictogram Aanpassen om instellingen voor een route wijzigen of klik op het pictogram Verwijderen om een ​​route te verwijderen."
+
+msgid "changeMode"
+msgstr "Verander Internetverbinding naar ..."
+
+msgid "none"
+msgstr "Geen of intranet Use Only"
+
+msgid "broadband"
+msgstr "Kabelmodem of DSL"
+
+msgid "lan"
+msgstr "Gateway op Local Area Network (LAN)"
+
+msgid "narrowband"
+msgstr "Analoge modem of ISDN"
+
+msgid "lanSettings"
+msgstr "Internet Settings - Gateway op Local Area Network (LAN)"
+
+msgid "gatewayField"
+msgstr "Server Gateway"
+
+msgid "gatewayField_rule"
+msgstr "Vul een reeks van vier getallen tussen 0 en 255, gescheiden door punten. Bijvoorbeeld, 192.168.1.1 een geldige invoer."
+
+msgid "gatewayField_help"
+msgstr "Voer het IP-adres van het lokale netwerk gateway voor deze server apparaat. Dit is de toegangspoort voor zowel de primaire als secundaire interfaces. Een netwerk-gateway kan uw server verbinding maken met de wereld buiten uw lokale netwerk omgeving. [[base-network.gatewayField_rule]]"
+
+msgid "forwardField"
+msgstr "IP Forwarding en Masquerading"
+
+msgid "forwardField_help"
+msgstr "Selecteer de methode van pakketjes doorstuurt via de server apparaat. Het kiezen van het doorsturen van pakketten met masquerading stelt Network Address Translation. Hierdoor kan uw organisatie toegang tot het internet te delen door het vertalen van alle netwerkverkeer tussen een openbaar toegankelijke IP-adres en vele particuliere IP-adressen via deze server apparaat. Het kiezen alleen packet forwarding zonder masquerading staat verkeer slechts over een netwerk interface en de andere zonder dat Network Address Translation. Het kiezen geen packet forwarding maakt geen verkeer tussen de een netwerkinterface en het andere niet laten."
+
+msgid "forward"
+msgstr "Forward IP-pakketten Only"
+
+msgid "forwardNat"
+msgstr "Forward IP-pakketten met Masquerading"
+
+msgid "forwardOff"
+msgstr "Niet doorsturen IP-pakketten"
+
+msgid "broadbandSettings"
+msgstr "Internet Settings - kabelmodem of DSL"
+
+msgid "networkField"
+msgstr "Secundaire Interface"
+
+msgid "networkField_help"
+msgstr "Selecteer de juiste netwerk configuratie voor de secundaire interface van deze server apparaat."
+
+msgid "dhcp"
+msgstr "Krijgen automatisch met behulp van Dynamic Host Configuration Protocol (DHCP)"
+
+msgid "dhcpHostNameField"
+msgstr "Client hostnaam"
+
+msgid "dhcpHostNameField_rule"
+msgstr "Vul alleen kleine alfanumerieke tekens, streepjes of periodes. Bijvoorbeeld, www is een geldige invoer."
+
+msgid "dhcpHostNameField_help"
+msgstr "Voer de hostnaam die deze server identificeert als een Dynamic Host Configuration Protocol (DHCP) client. [[base-network.dhcpHostNameField_rule]]"
+
+msgid "dhcpHostNameField_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is een ongeldige waarde voor [[base-network.dhcpHostNameField]]. [[base-network.dhcpHostNameField_rule]]"
+
+msgid "dhcpClientIdField"
+msgstr "Client Identifier"
+
+msgid "dhcpClientIdField_help"
+msgstr "Voer de identificatie string die deze server identificeert als een Dynamic Host Configuration Protocol (DHCP) client."
+
+msgid "pppoe"
+msgstr "Krijgen automatisch met behulp van Point-to-Point Protocol over Ethernet (PPPoE)"
+
+msgid "pppUserNameField"
+msgstr "Gebruikers Naam"
+
+msgid "pppUserNameField_help"
+msgstr "Voer de gebruikersnaam die wordt gebruikt om in te loggen met uw Internet service provider."
+
+msgid "pppUserNameField_empty"
+msgstr "Sorry, je hebt niet opgegeven en een waarde voor [[base-network.pppUserNameField]]."
+
+msgid "pppPasswordField"
+msgstr "Wachtwoord"
+
+msgid "pppPasswordField_help"
+msgstr "Voer het wachtwoord om in te loggen met uw Internet service provider."
+
+msgid "pppPasswordField_invalid"
+msgstr "Sorry, je hebt niet hetzelfde wachtwoord in beide velden ingevoerd. Hetzelfde wachtwoord in beide velden ingevoerd ter bescherming tegen typefouten. Probeer het opnieuw."
+
+msgid "static"
+msgstr "Geef handmatig"
+
+msgid "ipAddressField"
+msgstr "IP-adres"
+
+msgid "ipAddressField_rule"
+msgstr "Vul een reeks van vier getallen tussen 0 en 255, gescheiden door punten. Bijvoorbeeld, 192.168.1.1 een geldige invoer."
+
+msgid "ipAddressField_help"
+msgstr "Voer het IP-adres van de [[VAR.name]]. Als u slechts een netwerkinterface verbinding met de server apparaat, gebruikt u de primaire interface en laat de andere interfaces leeg. [[base-network.ipAddressField_rule]]"
+
+msgid "ipAddressField_invalid"
+msgstr "Sorry, de ingevoerde voor [[base-network.ipAddressField]] waarde is niet een IP-adres. [[base-network.ipAddressField_rule]]"
+
+msgid "netMaskField"
+msgstr "IP Network Mask"
+
+msgid "netMaskField_rule"
+msgstr "Vul een reeks van vier getallen tussen 0 en 255, gescheiden door punten. Bijvoorbeeld 255.255.255.0 een geldige invoer."
+
+msgid "netMaskField_help"
+msgstr "Voer het netwerk masker van de [[VAR.name]]. Als u slechts een netwerkinterface verbinding met de server apparaat, gebruikt u de primaire interface en laat de andere interfaces leeg. [[base-network.netMaskField_rule]]"
+
+msgid "netMaskField_invalid"
+msgstr "Sorry, de ingevoerde voor [[base-network.netMaskField]] waarde is niet een IP-netwerk masker. [[base-network.netMaskField_rule]]"
+
+msgid "ipAddressField1"
+msgstr "[[base-network.ipAddressField]]"
+
+msgid "ipAddressFieldeth0_empty"
+msgstr "Sorry, je hebt het IP-adres van de primaire interface, die meestal verbonden is aan de zijkant Intranet niet ingevoerd. [[base-network.ipAddressField_rule]]"
+
+msgid "ipAddressField_empty"
+msgstr "Sorry, je hebt het IP-adres van de [[VAR.interface]] niet ingevoerd. [[base-network.ipAddressField_rule]]"
+
+msgid "ipAddressField1_help"
+msgstr "Het IP-adres van de primaire interface, die typisch is verbonden met de zijkant intranet. Als u slechts een netwerkinterface verbinding met de server apparaat, gebruikt u de primaire interface en laat de secondaire interface leeg. [[base-network.ipAddressField_rule]]"
+
+msgid "ipAddressField2"
+msgstr "[[base-network.ipAddressField]]"
+
+msgid "ipAddressField2_help"
+msgstr "Het IP-adres van de secundaire interface, die kenmerkend is verbonden met internet kant. Als u slechts een netwerkinterface verbinding met de server apparaat, gebruikt u de primaire interface en laat de secondaire interface leeg. [[base-network.ipAddressField_rule]]"
+
+msgid "netMaskField1"
+msgstr "[[base-network.netMaskField]]"
+
+msgid "netMaskFieldeth0_empty"
+msgstr "Sorry, je hebt het netwerk masker van de primaire interface niet ingevoerd. [[base-network.netMaskField_rule]]"
+
+msgid "netMaskField_empty"
+msgstr "Sorry, je hebt het netwerk masker van de [[VAR.interface]] niet ingevoerd. [[base-network.netMaskField_rule]]"
+
+msgid "netMaskField1_help"
+msgstr "Voer het netwerk masker van de primaire interface. Als u slechts een netwerkinterface verbinding met de server apparaat, gebruikt u de primaire interface en laat de secondaire interface leeg. [[base-network.netMaskField_rule]]"
+
+msgid "netMaskField2"
+msgstr "[[base-network.netMaskField]]"
+
+msgid "netMaskField2_help"
+msgstr "Voer het netwerk masker van de secundaire interface. Als u slechts een netwerkinterface verbinding met de server apparaat, gebruikt u de primaire interface en laat de secondaire interface leeg. [[base-network.netMaskField_rule]]"
+
+msgid "ifaceUsedByRoute"
+msgstr "De interface kan niet worden uitgeschakeld, omdat het wordt gebruikt door een statische route (s). Verwijder de statische routes met behulp van deze interface voor het uitschakelen van de interface."
+
+msgid "ifaceUsedByAlias"
+msgstr "De interface kan niet worden uitgeschakeld, omdat het nodig is door een interface alias (sen). Alle interface aliassen voor de interface moet worden verwijderd voordat het kan worden uitgeschakeld."
+
+msgid "natField"
+msgstr "IP Masquerading"
+
+msgid "natField_help"
+msgstr "Selecteer of hebben deze server apparaat uitvoeren IP masquerading. IP masquerading maakt network address translation waarmee uw organisatie te delen toegang tot internet door het vertalen via deze server apparaat al het netwerkverkeer tussen uw een openbaar toegankelijke IP-adres en uw vele prive bereikbaar IP-adressen."
+
+msgid "wanNoneMessage"
+msgstr "Er is geen verbinding met internet."
+
+msgid "wanNoneConfirm"
+msgstr "Weet je zeker dat je niet wilt dat een type internetverbinding opgeven?"
+
+msgid "modemAuthModeField"
+msgstr "Authentication Mode"
+
+msgid "modemAuthModeField_help"
+msgstr "Er zijn twee gemeenschappelijke authenticatie modi voor gebruik met dial-up netwerkverbindingen. Raadpleeg uw serviceprovider voor de authenticatie-modus te gebruiken."
+
+msgid "pap"
+msgstr "PAP"
+
+msgid "chap"
+msgstr "CHAP"
+
+msgid "modemAuthHostField"
+msgstr "Server Hostname"
+
+msgid "modemAuthHostField_help"
+msgstr "De dial-up server hostnaam is noodzakelijk voor CHAP dial-up authenticatie. Raadpleeg uw serviceprovider voor de server hostname als CHAP authenticatie wordt gebruikt."
+
+msgid "modemAuthHostField_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is een ongeldige waarde voor [[base-network.modemAuthHostField]]."
+
+msgid "modemConnStatus"
+msgstr "Connection Status"
+
+msgid "modemConnStatus_help"
+msgstr "Dit toont de huidige status van de verbinding en geeft aan of de modem is verbonden met uw Internet service provider."
+
+msgid "modemSettings"
+msgstr "Internet Settings - analoge modem of ISDN"
+
+msgid "modemConnModeField"
+msgstr "Connection Mode"
+
+msgid "modemConnModeField_help"
+msgstr "Selecteer of de modem verbinding altijd moet worden vastgesteld, dient te worden vastgesteld wanneer dat echt nodig voor een uitgaande verbinding, of mag nooit worden vastgesteld."
+
+msgid "demand"
+msgstr "Aansluiting On Demand Alleen"
+
+msgid "on"
+msgstr "Aansluiting Always On"
+
+msgid "off"
+msgstr "Aansluiting Altijd uit"
+
+msgid "modemUserNameField"
+msgstr "Dial-Up account Gebruikersnaam"
+
+msgid "modemUserNameField_help"
+msgstr "Geef de gebruikersnaam van de inbelaccount gebruikt om in te loggen met uw Internet service provider."
+
+msgid "modemUserNameField_empty"
+msgstr "Sorry, je hebt niet opgegeven en een waarde voor [[base-network.modemUserNameField]]. Vul de gebruikersnaam van de inbelaccount gebruikt om in te loggen met uw Internet service provider."
+
+msgid "modemPasswordField"
+msgstr "Dial-Up Account Wachtwoord"
+
+msgid "modemPasswordField_help"
+msgstr "Voer het wachtwoord van de account dial-up gebruikt om in te loggen met uw Internet service provider. Hetzelfde wachtwoord in beide velden ingevoerd ter bescherming tegen typefouten."
+
+msgid "modemPasswordField_empty"
+msgstr "Sorry, je hebt niet opgegeven en een waarde voor [[base-network.modemPasswordField]]. Vul het wachtwoord van de account dial-up gebruikt om in te loggen met uw Internet service provider."
+
+msgid "modemPasswordField_invalid"
+msgstr "Sorry, je hebt niet hetzelfde wachtwoord in beide velden ingevoerd. Hetzelfde wachtwoord in beide velden ingevoerd ter bescherming tegen typefouten. Probeer het opnieuw."
+
+msgid "modemPhoneField"
+msgstr "Telefoonnummer"
+
+msgid "modemPhoneField_help"
+msgstr "Voert u het telefoonnummer van uw internet service provider."
+
+msgid "modemPhoneField_empty"
+msgstr "Sorry, je hebt niet opgegeven en een waarde voor [[base-network.modemPhoneField]]. Vul het telefoonnummer van uw internet service provider."
+
+msgid "modemInitStrField"
+msgstr "Modeminitialisatiereeks"
+
+msgid "modemInitStrField_help"
+msgstr "Voer de modeminitialisatiereeks die zal worden doorgegeven aan de modem voor het kiezen. U moet een initialisatie regel invoeren of uw server niet in staat zijn om uw modem te gebruiken. Als u niet weet wat uw modems juiste initialisatiereeks, probeert u 'ATZ' of raadpleeg uw modem documentatie."
+
+msgid "modemInitStrField_empty"
+msgstr "Sorry, je hebt niet opgegeven en een waarde voor [[base-network.modemInitStrField]]. U moet een initialisatie regel invoeren of uw server niet in staat zijn om uw modem te gebruiken. Als u niet weet wat uw modems juiste initialisatiereeks, probeert u 'ATZ' of raadpleeg uw modem documentatie."
+
+msgid "modemIpField"
+msgstr "Local IP Address"
+
+msgid "modemIpField_help"
+msgstr "Voer het lokale IP-adres aan deze kant van de modem alleen als men heeft statisch toegewezen door uw internetprovider."
+
+msgid "modemIpField_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is een ongeldige waarde voor [[base-network.modemIpField]]."
+
+msgid "modemSpeedField"
+msgstr "Modem Speed ​​(Baud)"
+
+msgid "modemSpeedField_help"
+msgstr "Selecteer de snelheid van de seriële lijn verbinding met de modem. De standaardwaarde is 115200."
+
+msgid "modemPulseField"
+msgstr "Enable Pulskiezen"
+
+msgid "modemPulseField_help"
+msgstr "Zet pulskiezen in-of uitschakelen. Deze functie inschakelt, zal puls in plaats van toonkiezen te gebruiken. De standaardwaarde is om pulskiezen off vertrekken."
+
+msgid "saveTest"
+msgstr "Opslaan en Test"
+
+msgid "saveTest_help"
+msgstr "Dit zal uw huidige instellingen op te slaan en proberen een test verbinding met uw internet service provider om de instellingen te controleren."
+
+msgid "confirmNoDhcp"
+msgstr "Uw [[VAR.interface]] instellingen werden verkregen uit een Dynamic Host Configuration Protocol (DHCP) server.\nChanging deze instellingen schakelt DHCP lookups op de [[VAR.interface]] zetten. Wil je doorgaan?"
+
+msgid "ethernetChanged"
+msgstr "Uw netwerkinstellingen zijn gewijzigd. Na enkele ogenblikken zal het systeem proberen om verbinding te maken met uw nieuwe IP-adres.\nAls de login pagina niet verschijnt, kunt u verbinding met de server het apparaat door het intikken van het nieuwe adres in uw webbrowser."
+
+msgid "confirmMigrateAliases"
+msgstr "De [[VAR.interface]] heeft er aliassen die afhankelijk. Het uitschakelen van de interface zal veroorzaken die er aliassen de primaire interface te verplaatsen. De aliassen kan naar andere interface worden verplaatst na de wijziging door het wijzigen van elke alias.\n\nWeet u zeker dat u de [[VAR.interface]] uitschakelen?"
+
+msgid "adminRedirect"
+msgstr "In een paar seconden, moet u omgeleid naar het nieuwe IP-adres. Als je niet wordt doorverwezen, klik dan op de onderstaande [[base-network.reconnect]] knop om te proberen verbinding te maken met het nieuwe IP-adres. Als dat niet lukt, het IP-adres te veranderen kan hebben gefaald, en je moet op de [[base-network.oldIPReconnect]] knop om te proberen verbinding te maken met de servers vorige IP-adres."
+
+msgid "reconnect"
+msgstr "Verbind naar nieuw adres"
+
+msgid "reconnect_help"
+msgstr "Klik hier om verbinding met de servers van nieuwe IP-adres."
+
+msgid "oldIPReconnect"
+msgstr "Verbinding maken met oude adres"
+
+msgid "oldIPReconnect_help"
+msgstr "Klik hier om te proberen verbinding te maken met de servers oude IP-adres. Dit moet alleen worden gebruikt als verbinding met het nieuwe IP-adres met de [[base-network.reconnect]] knop is mislukt."
+
+msgid "netUsage"
+msgstr "Netwerk"
+
+msgid "netUsage_help"
+msgstr "Netwerkgebruik statistieken kunt u hier vinden."
+
+msgid "amNetUsage"
+msgstr "Netwerkgebruik"
+
+msgid "eth0"
+msgstr "Primaire interface (eth0)"
+
+msgid "eth0_help"
+msgstr "De statistieken voor de primaire netwerkinterface"
+
+msgid "eth1"
+msgstr "Secundaire Interface (eth1)"
+
+msgid "eth1_help"
+msgstr "De statistieken voor de secundaire netwerkinterface"
+
+msgid "eth2"
+msgstr "Network Interface (eth2)"
+
+msgid "eth3"
+msgstr "Network Interface (eth3)"
+
+msgid "eth4"
+msgstr "Network Interface (eth4)"
+
+msgid "eth5"
+msgstr "Network Interface (eth5)"
+
+msgid "eth6"
+msgstr "Network Interface (eth6)"
+
+msgid "eth7"
+msgstr "Network Interface (eth7)"
+
+msgid "eth8"
+msgstr "Network Interface (eth8)"
+
+msgid "eth9"
+msgstr "Network Interface (eth9)"
+
+msgid "ppp0"
+msgstr "Point-to-Point Protocol Interface (ppp0)"
+
+msgid "amIface"
+msgstr "Network Interface"
+
+msgid "amIface_help"
+msgstr "Dit is de netwerk interface-id."
+
+msgid "amSentB"
+msgstr "Sent (Bytes)"
+
+msgid "amSentB_help"
+msgstr "Dit is het totale aantal bytes verzonden deze netwerkinterface."
+
+msgid "amRcvdB"
+msgstr "Ontvangen (Bytes)"
+
+msgid "amRcvdB_help"
+msgstr "Dit is het totale aantal bytes ontvangen deze netwerkinterface."
+
+msgid "amErrors"
+msgstr "Fouten"
+
+msgid "amErrors_help"
+msgstr "Dit is het totaal aantal fouten verzonden of ontvangen op deze netwerkinterface."
+
+msgid "amColls"
+msgstr "Botsingen"
+
+msgid "amColls_help"
+msgstr "Dit is het aantal botsingen gedetecteerd op deze netwerkinterface."
+
+msgid "amNetworkNameTag"
+msgstr "Netwerk Status"
+
+msgid "amNetDetails"
+msgstr "Netwerk Status Details"
+
+msgid "amIfaceIsDown"
+msgstr "De netwerkinterface [[VAR.iface]] is beneden."
+
+msgid "amGatewayIsUnreachable"
+msgstr "Het netwerk gateway niet bereikbaar. Controleer of de netwerkkabel juist is aangesloten, en dat uw netwerkinstellingen juist zijn geconfigureerd. U kunt de netwerkinstellingen configureren via de [[base-apache.amAdmservNameTag]], of via het voorpaneel LCD. Controleer ook of het netwerk zelf goed functioneert."
+
+msgid "amNetworkOK"
+msgstr "Het netwerk werkt normaal."
+
+msgid "dialoutWindowing"
+msgstr "Aansluiting Periode"
+
+msgid "dialoutWindowing_help"
+msgstr "Modem gebruik kan worden beperkt tot bepaalde uren van de dag. Standaard wordt de modem toegestaan ​​om elk moment van de dag te bellen."
+
+msgid "dialTimes"
+msgstr "Sluit Times"
+
+msgid "noDialTimes"
+msgstr "Niet aansluiten"
+
+msgid "modem_hour_0"
+msgstr "0:00-00:59"
+
+msgid "modem_hour_1"
+msgstr "1:00-01:59"
+
+msgid "modem_hour_2"
+msgstr "2:00-02:59"
+
+msgid "modem_hour_3"
+msgstr "3:00-03:59"
+
+msgid "modem_hour_4"
+msgstr "4:00-04:59"
+
+msgid "modem_hour_5"
+msgstr "5:00-05:59"
+
+msgid "modem_hour_6"
+msgstr "6:00-06:59"
+
+msgid "modem_hour_7"
+msgstr "7:00-07:59"
+
+msgid "modem_hour_8"
+msgstr "8:00-08:59"
+
+msgid "modem_hour_9"
+msgstr "9:00-09:59"
+
+msgid "modem_hour_10"
+msgstr "10:00-10:59"
+
+msgid "modem_hour_11"
+msgstr "11:00-11:59"
+
+msgid "modem_hour_12"
+msgstr "12:00-00:59"
+
+msgid "modem_hour_13"
+msgstr "13:00-13:59"
+
+msgid "modem_hour_14"
+msgstr "14:00-14:59"
+
+msgid "modem_hour_15"
+msgstr "15:00-15:59"
+
+msgid "modem_hour_16"
+msgstr "16:00-16:59"
+
+msgid "modem_hour_17"
+msgstr "17:00-17:59"
+
+msgid "modem_hour_18"
+msgstr "18:00-18:59"
+
+msgid "modem_hour_19"
+msgstr "19:00-19:59"
+
+msgid "modem_hour_20"
+msgstr "20:00-20:59"
+
+msgid "modem_hour_21"
+msgstr "21:00-21:59"
+
+msgid "modem_hour_22"
+msgstr "22:00-22:59"
+
+msgid "modem_hour_23"
+msgstr "23:00-23:59"
+
+msgid "cantGetModem"
+msgstr "[[base-modem.cantGetModem]]"
+
+msgid "modemProblem"
+msgstr "[[base-modem.modemProblem]]"
+
+msgid "offNow"
+msgstr "[[base-modem.offNow]]"
+
+msgid "onNow"
+msgstr "[[base-modem.onNow]]"
+
+msgid "gateway-not-reachable"
+msgstr "De gespecificeerde gateway kan niet worden bereikt. Controleer om er zeker van dat uw gateway is binnen een bereikbaar sub-netwerk. Misschien wilt u ook om uw Direct Routing regels te controleren."
+
+msgid "gatewayWithinOwnTargetSubnet"
+msgstr "Sorry, deze route kon niet worden toegevoegd aan de routeringstabel. De gateway ([[VAR.gateway]]) kan niet binnen de doelstelling subnet ([[VAR.target]]) liggen."
+
+msgid "invalid-route"
+msgstr "Sorry, de route naar [[VAR.network]] kon niet worden toegevoegd aan de routeringstabel. Het is mogelijk dat de gespecificeerde gateway, [[VAR.gateway]], onbereikbaar. Het doel is [[VAR.network]] die bereikbaar moeten zijn via de gateway, [[VAR.gateway]], en de route wordt toegevoegd aan de interface, [[VAR.device]]."
+
+msgid "badDefaultGateway"
+msgstr "Sorry, de default gateway, [[VAR.gateway]], is onbereikbaar met de huidige configuratie. Controleer de netwerkinstellingen om te controleren of ten minste een van de netwerkinterfaces is gelegen op hetzelfde netwerk als de default gateway."
+
+msgid "disable-interface-first"
+msgstr "Sorry, je kunt geen instellingen kiezen voor een actieve netwerkinterface verwijderen. Schakelt u de interface voordat u probeert om de instellingen te verwijderen."
+
+msgid "amNetStats"
+msgstr "Netwerkstatistieken"
+
+msgid "activity"
+msgstr "Activiteit"
+
+msgid "recv_bytes"
+msgstr "Bytes ontvangen"
+
+msgid "recv_bytes_help"
+msgstr "Het aantal bytes ontvangen op de netwerkinterface."
+
+msgid "recv_packets"
+msgstr "Ontvangen pakketten"
+
+msgid "recv_packets_help"
+msgstr "Het aantal ontvangen pakketten op de netwerkinterface."
+
+msgid "sent_bytes"
+msgstr "Bytes Sent"
+
+msgid "sent_bytes_help"
+msgstr "Het aantal verzonden bytes op de netwerkinterface."
+
+msgid "sent_packets"
+msgstr "Verzonden pakketten"
+
+msgid "sent_packets_help"
+msgstr "Het aantal verzonden pakketten op de netwerkinterface."
+
+msgid "errors"
+msgstr "Fouten"
+
+msgid "errors_help"
+msgstr "Het aantal verzenden en ontvangen fouten op de netwerkinterface. Een groot aantal fouten indicatief netwerkproblemen."
+
+msgid "collisions"
+msgstr "Botsingen"
+
+msgid "collisions_help"
+msgstr "Het aantal netwerkgebruikers botsingen. Een groot aantal botsingen kan een aanwijzing netwerkproblemen."
+
+msgid "stats_disabled"
+msgstr "Interface uitgeschakeld"
+
+msgid "pooling_block"
+msgstr "[[base-network.sitepooling]]"
+
+msgid "enabledField"
+msgstr "Ingeschakeld"
+
+msgid "enabledField_help"
+msgstr "Enable [[base-network.sitepooling]]. Alleen IP-adressen binnen de hieronder vermelde bereiken zal worden toegestaan ​​voor gebruik door virtuele sites."
+
+msgid "rangeList"
+msgstr "Aanvaardbare bereiken"
+
+msgid "min"
+msgstr "Begin van de Range"
+
+msgid "min_help"
+msgstr "Dit is het begin IP-adres van het bereik."
+
+msgid "max"
+msgstr "Einde van de Range"
+
+msgid "max_help"
+msgstr "Dit is het laatste IP-adres van het bereik."
+
+msgid "add"
+msgstr "Toevoegen"
+
+msgid "add_help"
+msgstr "Klik hier om het assortiment toe te voegen aan de lijst."
+
+msgid "save"
+msgstr "Besparen"
+
+msgid "save_help"
+msgstr "Klik hier om de wijzigingen in het assortiment op te slaan."
+
+msgid "saveEnabled"
+msgstr "Besparen"
+
+msgid "saveEnabled_help"
+msgstr "Klik hier om de Enabled-status op te slaan."
+
+msgid "sitepooling"
+msgstr "IP Address Allocation"
+
+msgid "sitepoolingDescription"
+msgstr "Klik hier om acceptabele IP-adresbereik op te geven voor deze server."
+
+msgid "restricted"
+msgstr "De toegang tot deze pagina is beperkt."
+
+msgid "cant_enable_pooling"
+msgstr "De volgende IP-adres (sen) zijn niet onder een van de toegestane bereik: [[VAR.ips_not_covered]]. Maak een bereik dat deze (sen) bevat voordat waardoor [[base-network.sitepooling]]."
+
+msgid "missing_part_of_range"
+msgstr "U heeft een ongeldige bereik ingevoerd. Voer beide een begin en een eind-IP-adres. Wilt u een bereik dat een IP-adres dekt voeren, voer het IP-adres als zowel het begin en het einde van het bereik."
+
+msgid "minGreaterThanMax"
+msgstr "Het begin IP [[VAR.range_min]] van het bereik groter is dan het eind-IP [[VAR.range_max]]. Voer een eerste IP-adres dat kleiner is dan of gelijk is aan het einde van het bereik."
+
+msgid "ip_not_in_range"
+msgstr "Het IP-adres [[VAR.ipaddr]] is niet onder een van de geldige bereik. Kies dan een andere IP-adres."
+
+msgid "cant_change_range"
+msgstr "Sorry, ik kan niet het opgegeven bereik te veranderen. De volgende IP-adres (sen) zijn binnen dat bereik: [[VAR.affected_ips]]."
+
+msgid "ip_restricted"
+msgstr "Het IP-adres [[VAR.ipaddr]] is niet toegestaan. Kies dan een andere IP-adres."
+
+msgid "cant_delete_range"
+msgstr "Sorry, ik kan niet het opgegeven bereik te verwijderen. De volgende IP-adres (sen) zijn binnen dat bereik: [[VAR.affected_ips]]."
+
+msgid "cancel"
+msgstr "Annuleren"
+
+msgid "cancel_help"
+msgstr "Klik hier om de wijzigingen in het assortiment te annuleren."
+
+msgid "valid_ranges"
+msgstr "Geldige bereiken:"
+
+msgid "valid_ranges_help"
+msgstr "Slechts IP binnen de vermelde bereiken zijn toegestaan ​​voor gebruik in het systeem."
+
+msgid "noDuplicateDevices"
+msgstr "Andere interface of alias is al de naam van het apparaat, [[VAR.device]] toegewezen. De naam van het apparaat voor elke interface en alias moet uniek zijn."
+
+msgid "noDuplicateIPsAllowed"
+msgstr "Andere interface of alias met het IP-adres, [[VAR.ipaddr]], al bestaat. Het IP-adres voor elke interface en alias moet uniek zijn."
+
+msgid "invalidNetmaskReal"
+msgstr "Sorry, de ingevoerde waarde voor netmask, [[VAR.netmask]], voor de [[VAR.device]] is niet een bruikbare netmask. [[base-network.validNetmaskHelp]]"
+
+msgid "invalidNetmaskAlias"
+msgstr "Sorry, de ingevoerde waarde voor netmask, [[VAR.netmask]], is niet een bruikbare netmask. [[base-network.validNetmaskHelp]]"
+
+msgid "validNetmaskHelp"
+msgstr "Bruikbare netmasks moet bestaan ​​uit een reeks van vier getallen tussen 0 en 255, gescheiden door punten. Als u een sub-netwerk opgeeft, moet de leidende nummers 255 en de sub-netwerk nummer moet zijn 128, 192, 224, 240, 248, 252, of 254. Bijvoorbeeld 255.255.0.0 en 255.128.0.0 zijn bruikbaar netmasks."
+
+msgid "openvz_vps"
+msgstr "Dit is een OpenVZ VPS. Netwerkinstellingen (zoals hostname, domeinnaam, DNS-servers en gateway) kunnen alleen worden gewijzigd op de master node. Niet in de VPS zelf. Hieronder vindt u de momenteel geconfigureerde instellingen voor deze VPS kunnen bekijken."
+
+msgid "cap_serverIpPooling"
+msgstr "IP Address Allocation Instellingen"
+
+msgid "cap_serverNetwork"
+msgstr "TCP/IP-instellingen"
+
+msgid "admin"
+msgstr "Server-beheerders"
+
+msgid "admin_help"
+msgstr "Dit zijn de server beheerder van deze IP-adresbereik."
+

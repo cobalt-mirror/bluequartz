@@ -1,0 +1,64 @@
+<!-- 
+  This file describes the schema of the following class types:
+	ActiveMonitor, RAID namespace
+  
+  These class definitions are predefined by Cobalt, and should not be
+  extended without Cobalt's permission.  To add application-specific
+  properties to an object, consider creating a new namespace.
+-->
+
+<class name="ActiveMonitor" 	namespace="RAID" 	version="1.1"
+	createacl="adminUser" destroyacl="adminUser">
+
+	<property name="enabled"    	type="boolean" 	default="1"
+		writeacl="ruleCapable(adminUser)"/>
+	<property name="monitor"	writeACL="ruleCapable(serverActiveMonitor)"
+	type="boolean" 	default="1"
+		writeacl="ruleCapable(adminUser)"/>
+	<property name="type"		type="scalar"	default="exec"
+		writeacl="ruleCapable(adminUser)"/>
+	<property name="typeData"		type="scalar"	
+		default="/usr/sausalito/swatch/bin/raidState.pl"
+		writeacl="ruleCapable(adminUser)"/>
+
+	<property name="currentState" 	type="amstate" 	default="G"
+		writeacl="ruleCapable(adminUser)"/>
+	<property name="lastChange"   	type="uint"     default="0"
+		writeacl="ruleCapable(adminUser)"/>
+	<property name="lastRun"      	type="uint"     default="0"
+		writeacl="ruleCapable(adminUser)"/>
+	<property name="currentMessage" 	type="scalar" 	default=""
+		writeacl="ruleCapable(adminUser)"/>
+	<property name="nameTag"      	type="scalar"  	
+		default="RAID"
+		writeacl="ruleCapable(adminUser)"/>
+	
+	<property name="greenMsg" 		type="scalar" 	
+		default="[[base-raid.raid_working_raq]]"/>
+
+	<property name="aggMember" 		type="boolean" 	default="1"
+		writeacl="ruleCapable(adminUser)"/>
+	<property name="hideUI" 		type="boolean" 	default="1"
+		writeacl="ruleCapable(adminUser)"/>
+	<property name="UIGroup"		type="scalar"   default="system"
+		writeacl="ruleCapable(adminUser)"/>
+	<property name="sysfault"           type="boolean"  default="0" 
+			writeacl="ruleCapable(adminUser)"/>
+
+	<property name="PERL5LIB"		type="scalar"	
+		default="/usr/sausalito/perl"
+		writeacl="ruleCapable(adminUser)"/>
+</class>
+
+<class name="System"	namespace="RAID"	version="1.0"
+	createacl="adminUser" destroyacl="adminUser">
+
+	<property name="configurable"	type="boolean" default="0"
+		writeacl="ruleCapable(adminUser)"/>
+	<property name="disks"	type="int"
+		writeacl="ruleCapable(adminUser)"/>
+	<property name="level"	type="int" optional="true"
+		writeacl="ruleCapable(adminUser)"/>
+</class>
+
+

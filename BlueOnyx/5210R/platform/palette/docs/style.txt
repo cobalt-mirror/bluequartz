@@ -1,0 +1,1197 @@
+Style System
+
+Author: Kevin K.M. Chiu
+Copyright 2000, Cobalt Networks.  All rights reserved.
+$Id: style.txt 3 2003-07-17 15:19:15Z will $
+
+Overview
+========
+
+Being in style is not easy and this document is going to tell you how to do it.
+UIFC contains Style class, Stylish interface and Stylist class. They work together to
+give the user interface interchangable styles. Style is the class that contains style
+properties such as color and border thickness. Stylish interface must be implemented
+by classes that wants to be sensitive to style change. Stylist is the class that
+makes style objects out of style files (See below).
+
+Style properties are described in stand-alone XML style files. Graphic designers can
+work on these style files and not having to worry about complex programming
+environment.
+
+Style File
+==========
+
+Style files are XML files located under the directory described by "styleDir"
+in ui.cfg. Currently it is /usr/sausalito/ui/style/. Each of these files
+contains all the information about a certain style resource. These XML files
+can contain "styleResource", "style" and "property" elements.
+
+An example of a style file is:
+<styleResource name="Good Looking">
+  <style id="Block">
+    <property name="backgroundColor" value="#FFFFFF"/>
+  </style>
+
+  <style id="Label">
+    <property name="color" value="#FFFFFF"/>
+  </style>
+</styleResource>
+
+Style files must be enclosed by a "styleResource" element. This element can
+have these attributes:
+
+name ::= internationalizable string
+
+  This is the name of the style resource. The interpolate function of I18n
+  module is used to internationalize this string.
+
+Within "styleResource", there are "style" elements.
+
+Each "style" element describes one style. The attributes of this element are:
+
+id ::= [a-zA-Z0-9_\-]+
+
+  This is the identifier of the style.
+
+variant ::= [a-zA-Z0-9_\-]+
+
+  This attribute is optional. It acts as a secondary identifier of the style.
+  No two styles in the same style file can have the same id and variant.
+
+Within "style" elements, there are "property" elements. Each of these elements
+describes a property of the style. The attributes are:
+
+name ::= [a-zA-Z0-9_\-]+
+
+  Each property is identified by a name.
+
+target ::= [a-zA-Z0-9_\-]+
+
+  This attribute is optional. It acts as a secondary identifier and specifies
+  the target the property applies to. Properties within a style element must
+  no have the same names and targets.
+
+value ::= string
+
+  The value of the property.
+
+Supported Styles
+================
+
+Property Types
+--------------
+Different properties have different value types. These are commonly used types
+for the properties:
+
+Align
+  String "LEFT", "CENTER" or "RIGHT".
+
+Boolean
+  String "true" or "false".
+
+Color
+  RGB format (i.e. #RRGGBB) or names (e.g. green).
+
+Positive integer
+  Positive integers including 0.
+
+URL
+  An URL.
+
+Common Properties
+-----------------
+These are properties used commonly in many different styles.
+
+aLinkColor
+  The color of activated links.
+
+  Value type
+    Color
+
+backgroundColor
+  The background color of the page. Should not be used with property
+  backgroundImage together.
+
+  Value type
+    Color
+
+backgroundImage
+  The background image of the page. Should not be used with property
+  backgroundColor together.
+
+  Value type
+    URL
+
+borderThickness
+  The pixel thickness of border.
+
+  Value type
+    Positive integer
+
+color
+  The color of text.
+
+  Value type
+    Color
+
+fontFamily
+  The family of the font being used.
+
+  Value type
+    Same as CSS-1 font-family definition. Generic families are cursive,
+    fantasy, monospace, sans-serif and serif.
+
+fontSize
+  The size of the font.
+
+  Value type
+    Same as CSS-1 font-size definition. For example, 12pt, large or 120%.
+
+fontStyle
+  The style of the font.
+
+  Value type
+    Same as CSS-1 font-style definition. For example, normal or italic.
+
+fontWeight
+  The weight (boldness) of the font.
+
+  Value type
+    Same as CSS-1 font-weight definition. For example, bold or 900.
+
+textDecoration
+  Decoration of text.
+
+  Value type
+    Same as CSS-1 text-decoration definition. For example, blink, line-through,
+    none or underline.
+
+width
+  Pixel width.
+
+  Value type
+    Positive integer
+
+Styles
+------
+Bar
+  For UIFC Bar class that represents a bar chart.
+
+  Common properties
+    color
+    fontFamily
+    fontSize
+    fontStyle
+    fontWeight
+    textDecoration
+
+  Unique properties
+    emptyImage
+      Image for the empty portion of the bar.
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+    endImage
+      Image for the end portion of the bar.
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+    filledImage
+      Image for the filled portion of the bar.
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+    startImage
+      Image for the start portion of the bar.
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+Button
+  For UIFC Button class that represent a clickable button.
+
+  Common properties
+    backgroundColor, backgroundImage, color, fontFamily, fontSize, fontStyle,
+    fontWeight, textDecoration
+    (Possible targets: normal, disabled)
+
+  Unique properties
+    leftImage
+      Image for the left side of the button.
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+    rightImage
+      Image for the right side of the button.
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+CancelButton
+  For UIFC CancelButton class that represent a button for the cancel action.
+
+  Common properties
+    backgroundColor, backgroundImage, color, fontFamily, fontSize, fontStyle,
+    fontWeight, textDecoration
+    (Possible targets: normal, disabled)
+
+  Unique properties
+    leftImage
+      Image for the left side of the button.
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+    rightImage
+      Image for the right side of the button.
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+DetailButton
+  For UIFC DetailButton class that represent a button for the more detail
+  action.
+
+  Unique properties
+    detailIcon
+      Icon for the button.
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+    detailIconDisabled
+      Icon for the button in disabled state.
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+Label
+  For UIFC Label class represent a text label with description.
+
+  Common properties
+    backgroundColor
+    backgroundImage
+    color
+    fontFamily
+    fontSize
+    fontStyle
+    fontWeight
+    textDecoration
+
+ModifyButton
+  For UIFC ModifyButton class that represent a button for the modify action.
+
+  Unique properties
+    modifyIcon
+      Icon for the button.
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+    modifyIconDisabled
+      Icon for the button in disabled state.
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+MultiChoice
+  For UIFC MultiChoice class that represent a widget for selecting choices. It
+  has choiceLabel, formFieldLabel and subscript. choiceLabel represents labels
+  of choices. formFieldLabel represents labels of form fields if choices have
+  them. subscript represents subscripts used in MultiChoice class such as
+  "optional".
+
+  Common properties
+    color, fontFamily, fontSize, fontStyle, fontWeight and textDecoration
+    (Possible targets: choiceLabel, formFieldLabel, subscript)
+
+Page
+  For UIFC Page class that represents a user interface page.
+
+  Common properties
+    aLinkColor
+    backgroundColor
+    backgroundImage
+    color
+    fontFamily
+    fontSize
+    fontStyle
+    fontWeight
+    textDecoration
+
+  Unique properties
+    center
+      Defines if all the content of the page should be centered.
+
+      Value type
+	Boolean
+
+      Possible target(s)
+        none
+
+PagedBlock
+  For UIFC PagedBlock class that represents blocks that group form fields
+  together. It has dividerCell, dividerLabel, formFieldCell, labelCell,
+  labelLabel, subscript, tabDivider, tabSelected, tabUnselected, titleCell and
+  titleLabel. dividerCell represents the cells that act as dividers. dividerLabel
+  represents labels in divider cells. formFieldCell represents cells where
+  form fields are in. labelCell represents cells where form field labels are
+  in. labelLabel represents labels in the form field label cells. subscript
+  represents possible subscripts used in PagedBlock class such as "optional".
+  tabDivider represents the divider between tabs and form field cells. tabSelected
+  represents the selected tab. tabUnselected represents tabs that are not selected.
+  titleCell represents the cell where title label sits. titleLabel represents the
+  label for the title.
+
+  Common properties
+    backgroundColor and backgroundImage (Possible targets: dividerCell,
+    formFieldCell, labelCell, tabCell, tabDivider, tabSelected, tabUnselected,
+    titleCell)
+    borderThickness
+    color, fontFamily, fontSize, fontStyle, fontWeight and textDecoration
+    (Possible targets: dividerLabel, labelLabel, subscript, tabSelected,
+    tabUnselected, titleLabel)
+    width
+
+  Unique properties
+    borderColor
+      The color of the block border.
+
+      Value type
+	Color
+
+      Possible target(s)
+        none
+
+    dividerAlign
+      The horizontal alignment of the divider label.
+
+      Value type
+	Align
+
+      Possible target(s)
+        none
+
+    dividerHeight
+      The pixel height of block dividers. If there is content within the
+      divider and it is taller than this value, the divider is expanded to
+      be greater than this value to fit the content.
+
+      Value type
+	Positive integer
+
+      Possible target(s)
+        none
+
+    leftImage
+      The image on the left side of the tabs.
+
+      Value type
+	URL
+
+      Possible target(s)
+        tabSelected, tabUnselected
+
+    rightImage
+      The image on the right side of the tabs.
+
+      Value type
+	URL
+
+      Possible target(s)
+        tabSelected, tabUnselected
+
+    tabAlign
+      The horizontal alignment of the tabs.
+
+      Value type
+	Align
+
+      Possible target(s)
+        none
+
+    tabDividerHeight
+      The pixel height of the tab divider.
+
+      Value type
+	Positive integer
+
+      Possible target(s)
+        none
+
+    titleAlign
+      The horizontal alignment of the title label.
+
+      Value type
+	Align
+
+      Possible target(s)
+        none
+
+Password
+  For UIFC Password class that represents a password. It has subscript.
+  subscript represents subscripts used in the Password class such as "repeat".
+
+  Common properties
+    color, fontFamily, fontSize, fontStyle, fontWeight and textDecoration
+    (Possible target: subscript)
+
+RemoveButton
+  For UIFC RemoveButton class that represent a button for the remove action.
+
+  Unique properties
+    removeIcon
+      Icon for the button.
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+    removeIconDisabled
+      Icon for the button in disabled state.
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+SaveButton
+  For UIFC SaveButton class that represent a button for the save action.
+
+  Common properties
+    backgroundColor, backgroundImage, color, fontFamily, fontSize, fontStyle,
+    fontWeight, textDecoration
+    (Possible targets: normal, disabled)
+
+  Unique properties
+    leftImage
+      Image for the left side of the button.
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+    rightImage
+      Image for the right side of the button.
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+SetSelector
+  For UIFC SetSelector class that represent a widget to select a subset out of
+  a full set.
+
+  Unique properties
+    addIcon
+      The icon for the add button to add entries to the set.
+
+      Value type
+	URL
+
+      Possible target(s)
+	none
+
+    addIconDisabled
+      The icon for the add button to add entries to the set in disabled state.
+
+      Value type
+	URL
+
+      Possible target(s)
+	none
+
+    removeIcon
+      The icon for the remove button to add entries to the set.
+
+      Value type
+	URL
+
+      Possible target(s)
+	none
+
+    removeIconDisabled
+      The icon for the remove button to add entries to the set in disabled
+      state.
+
+      Value type
+	URL
+
+      Possible target(s)
+	none
+
+ScrollList
+  For UIFC ScrollList class that represents a scrollable list. It has
+  controlCell, entryCell, labelCell, labelLabel, titleCell and titleLabel.
+  controlCell represents the cell where buttons and other control elements are
+  in. entryCell represents cells where entries are in. labelCell represents
+  cells where labels are in. labelLabel represents labels in label cells.
+  titleCell represents the cell where the title is in. titleLabel represents
+  the title label.
+
+  Common properties
+    backgroundColor and backgroundImage (Possible targets: controlCell,
+    entryCell, labelCell, titleCell)
+    borderThickness
+    color, fontFamily, fontSize, fontStyle, fontWeight and textDecoration
+    (Possible targets: controlLabel, entryCell, labelLabel, titleLabel)
+
+  Unique properties
+    borderColor
+      The color of the scroll list border.
+
+      Value type
+	URL
+
+      Possible target(s)
+	none
+
+    controlAlign
+      The horizontal alignment of the control cell.
+
+      Value type
+	Align
+
+      Possible target(s)
+        none
+
+    sortAscendingIcon
+      The icon for the button to sort entries in ascending order. Used in
+      unsorted columns.
+
+      Value type
+	URL
+
+      Possible target(s)
+	none
+
+    sortDescendingIcon
+      The icon for the button to sort entries in descending order. Used in
+      unsorted columns.
+
+      Value type
+	URL
+
+      Possible target(s)
+	none
+
+    sortedAscendingIcon
+      The icon for the button to sort entries in ascending order. Used in the
+      sorted column.
+
+      Value type
+	URL
+
+      Possible target(s)
+	none
+
+    sortedDescendingIcon
+      The icon for the button to sort entries in descending order. Used in the
+      sorted column.
+
+      Value type
+	URL
+
+      Possible target(s)
+	none
+
+    titleAlign
+      The horizontal alignment of the title label.
+
+      Value type
+	Align
+
+      Possible target(s)
+        none
+
+SimpleBlock
+  For UIFC SimpleBlock class that represents blocks of HTML components. It has
+  dividerCell, dividerLabel, htmlComponentCell, titleCell and titleLabel.
+  dividerCell represents the cells that act as dividers. dividerLabel
+  represents labels in divider cells. htmlComponentCell represents cells where
+  HTML components are in.
+  titleCell represents the cell where title label sits. titleLabel represents
+  the label for the title.
+
+  Common properties
+    backgroundColor and backgroundImage (Possible targets: dividerCell,
+    htmlComponentCell, titleCell)
+    borderThickness
+    color, fontFamily, fontSize, fontStyle, fontWeight and textDecoration
+    (Possible targets: dividerLabel, titleLabel)
+    width
+
+  Unique properties
+    borderColor
+      The color of the block border.
+
+      Value type
+	Color
+
+      Possible target(s)
+        none
+
+    dividerAlign
+      The horizontal alignment of the divider label.
+
+      Value type
+	Align
+
+      Possible target(s)
+        none
+
+    dividerHeight
+      The pixel height of block dividers. If there is content within the
+      divider and it is taller than this value, the divider is expanded to
+      be greater than this value to fit the content.
+
+      Value type
+	Positive integer
+
+      Possible target(s)
+        none
+
+    titleAlign
+      The horizontal alignment of the title label.
+
+      Value type
+	Align
+
+      Possible target(s)
+        none
+
+StatusSignal
+  For UIFC StatusSignal class that represents a status signal.
+
+  Unique properties
+    failureIcon
+      The icon the indicate a failure state.
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+    newIcon
+      The icon the indicate a new state.
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+    noneIcon
+      The icon the indicate a none state.
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+    normalIcon
+      The icon the indicate a normal state.
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+    oldIcon
+      The icon the indicate an old state.
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+    problemIcon
+      The icon the indicate a problem state.
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+    repliedIcon
+      The icon the indicate a replied state.
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+    severeProblemIcon
+      The icon the indicate a severe problem state.
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+    successIcon
+      The icon the indicate a success state.
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+UninstallButton
+  For UIFC UninstallButton class that represent a button for the uninstall
+  action.
+
+  Unique properties
+    uninstallIcon
+      Icon for the button.
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+    uninstallIconDisabled
+      Icon for the button in disabled state.
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+cListNavigation
+  For the collapsible list navigation system.
+
+  Unique properties
+    collapsibleListWidth
+      The pixel width of the collapsible list widget.
+
+      Value type
+	Positive Integer
+
+      Possible target(s)
+        none
+
+    infoHeight
+      The pixel height of the information widget.
+
+      Value type
+	Positive Integer
+
+      Possible target(s)
+        none
+
+    tabHeight
+      The pixel height of the tab widget.
+
+      Value type
+	Positive Integer
+
+      Possible target(s)
+        none
+
+collapsibleList
+  For the collapsible list widget in the collapsible list navigation system.
+  listNear represents the list items near the selected item, listNormal
+  represents the normal unselected items and listSelected represents the
+  selected item.
+
+  Common properties
+    aLinkColor
+    backgroundColor and backgroundImage (Possible targets: listNear,
+    listNormal, listSelected, page)
+    borderThickness
+    color, fontFamily, fontSize, fontStyle, fontWeight and textDecoration
+    (Possible targets: near, normal, selected)
+    width
+
+  Unique properties
+    collapsedIcon
+      The icon to indicate an item with children is collapsed.
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+    expandedIcon
+      The icon to indicate an item with children is expanded.
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+    selectedIcon
+      The icon to indicate an item without children is selected.
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+    unselectedIcon
+      The icon to indicate an item without children is unselected.
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+flowControl
+  For the flow control widget in the flow navigation system.
+
+  Common properties
+    backgroundColor
+    backgroundImage
+
+  Unique properties
+    backImage
+      The image for the back button
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+    backImageDisabled
+      The image for the back button in disabled state
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+    finishImage
+      The image for the finish button
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+    finishImageDisabled
+      The image for the finish button in disabled state
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+    nextImage
+      The image for the next button
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+    nextImageDisabled
+      The image for the next button in disabled state
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+info
+  For the information widget used in several navigation systems.
+
+  Common properties
+    backgroundColor and backgroundImage (Possible targets: error, help)
+    color, fontFamily, fontSize, fontStyle, fontWeight and textDecoration
+    (Possible targets: error, help)
+
+  Unique properties
+    errorIcon
+      The icon for the error icon.
+
+      Value type
+	URL
+
+      Possible target(s)
+        error, help, status, wait
+
+    lastIcon
+      The icon for the button for going to the last error information.
+
+      Value type
+	URL
+
+      Possible target(s)
+        error, help, status, wait
+
+    lastIconDisabled
+      The icon for the button for going to the last error information in
+      disabled state.
+
+      Value type
+	URL
+
+      Possible target(s)
+        error, help, status, wait
+
+    nextIcon
+      The icon for the button for going to the next error information.
+
+      Value type
+	URL
+
+      Possible target(s)
+        error, help, status, wait
+
+    nextIconDisabled
+      The icon for the button for going to the next error information in
+      disabled state.
+
+      Value type
+	URL
+
+      Possible target(s)
+        error, help, status, wait
+
+    typeIcon
+      The icon to indicate the type of the information.
+
+      Value type
+	URL
+
+      Possible target(s)
+        error, help
+
+tab
+  For the tab widget in the collapsible list navigation system.
+
+  Common properties
+    aLinkColor
+    backgroundColor
+    backgroundImage
+    color, fontFamily, fontSize, fontStyle, fontWeight and textDecoration
+    (Possible targets: selected, unselected)
+
+  Unique properties
+    logo
+      The logo to be shown next to the tabs.
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+    logout
+      The image for navigation items of "logout" type.
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+    monitorOff
+      The image for navigation items of "monitorOff" type.
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+    monitorOn
+      The image for navigation items of "monitorOn" type.
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+    manualOff
+      The image for navigation items of "manualOff" type (product manuals in .pdf).
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+    selectedImageLeft
+      The image put on the left of the selected tab item.
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+    selectedImageRight
+      The image put on the right of the selected tab item.
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+    unselectedImageLeft
+      The image put on the left of unselected tab items.
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+    unselectedImageRight
+      The image put on the right of unselected tab items.
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+    updateOff
+      The image for navigation items of "updateOff" type.
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+    updateOn
+      The image for navigation items of "updateOn" type.
+
+      Value type
+	URL
+
+      Possible target(s)
+        none
+
+Internationalization
+====================
+
+Style properties can be locale specific. For example, a western font may not
+work for asian languages and color schemes may proof insulting in various
+cultures. Style files can be localized if needed.
+
+Take an example style called True Blue. It has a style file trueBlue.xml under
+the style directory. We call this a base style file. To localize True Blue
+into Japanese, a style file trueBlue.xml.ja is created. This files has the
+general style file format and contains Japanese specific style properties.
+Upon the request of the True Blue style in Japanese (locale ja), the style
+system reads in trueBlue.xml. Then, it searches for trueBlue.xml.ja. If it
+exist, it is read and style properties defined in this file will override
+those in trueBlue.xml.
+
+Overriding only happens at the property level, not the style level or higher.
+If the base style file has style S defined with properties A, B and C and
+localized style file has style S defined with properties C and D, the final
+style S will have properties A, B, C (from localized file) and D.
+
+Hierarchical searching of locales based on specificity is supported. If True
+Blue is requested with locale ja_JP.SJIS, trueBlue.xml is searched and read if
+it exists, then trueBlue.xml.ja, trueBlue.xml.ja_JP and finally
+trueBlue.ja_JP.SJIS. Searching is always 4 levels deep from no locale to
+language to country to variant. This allows more specific locales to override
+the more general ones.
+
+Stylish
+=======
+
+Only classes that implements the "Stylish" interface can be sensitive to style
+change. Every stylish class contains a stylist (See below). They also need to specify
+a default style. It is used when other objects ask stylish objects to give a
+representation of themselves without telling them what style should they be in. See
+toHtml() method of the HtmlComponent interface for details.
+
+Stylist
+=======
+
+Stylist is an UIFC class that gives you style. For stylist to use a style
+resource, a name needs to be supplied. Stylist then looks under "styleDir"
+(See above) for the style file <name>.xml.
+
+After loading the resource, users of the stylist (i.e. UIFC classes) can ask
+it for styles of certain id and variant. If the requested style cannot be
+found, stylist will try to get a style of the id without the variant. If that
+cannot be found either, stylist will give an empty style.
+
+Technically, there can be multiple stylists working on the same page. However,
+this may impose a negative impact on user interface usability as too many
+stylists can be confusing.
+
+Style
+=====
+
+A style is basically a bundle of name-value-pair properties. Stylish classes
+use the values in the name-value-pairs to determine how to represent
+themselves. Properties can have an optional target field. It is used as a
+secondary identifier besides name.

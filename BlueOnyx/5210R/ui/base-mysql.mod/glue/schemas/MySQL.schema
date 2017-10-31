@@ -1,0 +1,48 @@
+<!--
+ $Id: mysql.schema
+ Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+ Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+ Copyright (c) 2008 NuOnce Networks, Inc.
+ All Rights Reserved.
+-->
+
+<class
+    name="MySQL" version="1.0"
+    createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)">
+
+        <property name="sql_root"
+            type="alphanum_plus"
+            default="root"
+            optional="true"
+            writeacl="ruleCapable(adminUser)"
+        />
+        <property name="sql_rootpassword"
+            type="password"
+            optional="true"
+            default="" 
+            writeacl="ruleCapable(adminUser)"
+        />
+        <property name="sql_host"
+            type="scalar"
+            default="127.0.0.1"
+            optional="true"
+            writeacl="ruleCapable(adminUser)"
+        />
+        <property name="sql_port"
+            type="uint"
+            default="3306"
+            optional="true"
+            writeacl="ruleCapable(adminUser)"
+        />
+        <property name="savechanges"
+            type="scalar"
+            optional="true"
+            writeacl="ruleCapable(adminUser)"
+        />
+        <property name="timestamp"
+            type="scalar"
+            optional="true"
+            writeacl="ruleCapable(adminUser)"
+        />
+
+</class>

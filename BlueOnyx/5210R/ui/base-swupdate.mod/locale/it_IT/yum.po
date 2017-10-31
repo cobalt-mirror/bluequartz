@@ -1,0 +1,413 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "ErrorMSG"
+msgstr "Si prega di notare:"
+
+msgid "ErrorMSG_help"
+msgstr "Si prega di leggere quanto segue."
+
+msgid "ErrorMSGdesc"
+msgstr ""
+"Questa pagina di solito visualiza il newsfeed sugli aggiornamenti e altri "
+"annunci importanti dal sito www.blueonyx.it. Tuttavia, il server a quanto "
+"pare non è in grado di risolvere il dominio www.blueonyx.it, o l'accesso a "
+"quel dominio non è al momento possibile per altri motivi. Ciò non ha alcun "
+"impatto sulla funzionalità di questo server, tuttavia si potrebbe anche non "
+"essere in grado di ottenere gli aggiornamenti YUM finché il problema "
+"persiste."
+
+msgid "Logs"
+msgstr "Registri"
+
+msgid "Logs_help"
+msgstr ""
+"Questa pagina consente di rivedere il vostro file di log YUM, nel quale "
+"vengono registrate tutte le transazioni di Yum. Il file di log si trova in /"
+"var/log/yum.log"
+
+msgid "RSS_News_Menu"
+msgstr "Notizie BlueOnyx"
+
+msgid "RSS_News_Menu_Desc"
+msgstr ""
+"Questa pagina mostra una lista di informazioni relative a BlueOnyx dal sito "
+"www.BlueOnyx.it. Essa mostra annunci su aggiornamenti rilasciati e altre "
+"informazioni importanti."
+
+msgid "RSSnewsTitle"
+msgstr "BlueOnyx News:"
+
+msgid "Settings"
+msgstr "Impostazioni"
+
+msgid "Settings_help"
+msgstr ""
+"È possibile attivare YUM per scaricare e installare automaticamente tutti "
+"gli aggiornamenti - ogni giorno. Se abilitato verrà eseguito ogni mattina "
+"alle 6:00"
+
+msgid "addRepo"
+msgstr "Aggiungere repository"
+
+msgid "addRepo_help"
+msgstr "Clicca qui per aggiungere il repository yum."
+
+msgid "autoupdate"
+msgstr "Aggiornamento automatico abilitato"
+
+msgid "autoupdate_help"
+msgstr ""
+"È possibile attivare YUM per scaricare e installare automaticamente tutti "
+"gli aggiornamenti. Attivandolo e spuntando tutti i giorni feriali sarà "
+"eseguito ogni giorno. Se si desidera eseguire una volta a settimana basta "
+"selezionare solo il giorno desiderato."
+
+msgid "baseurlField"
+msgstr "BaseURL"
+
+msgid "baseurlField_help"
+msgstr ""
+"Questo campo contiene il BaseURL del repository. (Il campo deve essere vuoto "
+"se si utilizzano delle MirrorList)"
+
+msgid "cantRepoConf"
+msgstr "C'è stato un problema di modifica del repository-file."
+
+msgid "cantYUMCONF"
+msgstr "Impossibile modificare il file /etc/yum.conf"
+
+msgid "chooseBaseOrMirror"
+msgstr ""
+"Devi scegliere di utilizzare BaseURL o MirrorList, non è possibile "
+"utilizzare entrambi allo stesso tempo."
+
+msgid "date"
+msgstr "Data"
+
+msgid "date_help"
+msgstr "Data in cui è stato pubblicato l'articolo."
+
+msgid "desc"
+msgstr "Sommario"
+
+msgid "desc_help"
+msgstr "Breve riassunto dell'articolo."
+
+msgid "descriptionField"
+msgstr "Descrizione"
+
+msgid "descriptionField_help"
+msgstr "Questo campo descrive il repository."
+
+msgid "enabledField"
+msgstr "Abilitato"
+
+msgid "enabledField_help"
+msgstr ""
+"Questo campo permette a questa repo di essere inclusi negli aggiornamenti."
+
+msgid "excludeField"
+msgstr "Escludi"
+
+msgid "excludeField_help"
+msgstr ""
+"Elenco di pacchetti da escludere dagli aggiornamenti o installazioni. Questo "
+"dovrebbe essere un elenco separato da spazi. L'uso di wildcards (es. * e ?) "
+"e' ammesso."
+
+msgid "gpgcheckField"
+msgstr "Controllare la firma GPG"
+
+msgid "gpgcheckField_help"
+msgstr ""
+"Questa opzione dice a yum se dovrebbe o no eseguire un controllo di firma "
+"GPG sui pacchetti ottenuti da questo repository."
+
+msgid "gpgkeyField"
+msgstr "URL Chiave GPG"
+
+msgid "gpgkeyField_help"
+msgstr ""
+"Un URL che punta al file di chiave GPG con codifica ASCII per il repository. "
+"Questa opzione viene utilizzata se yum ha bisogno di una chiave pubblica per "
+"verificare un pacchetto e la chiave richiesta non è stata importata nel "
+"database RPM. Se questa opzione è impostata, yum importerà automaticamente "
+"la chiave da un URL specificato. Può essere http:// o https://, ftp:// o un "
+"file :/ /."
+
+msgid "includepkgsField"
+msgstr "Includere i pacchetti"
+
+msgid "includepkgsField_help"
+msgstr ""
+"Questa è una lista di pacchetti che si desidera utilizzareda un repository. "
+"Se questa opzione elenca solo un pacchetto quello sara' tutto cio' che YUM "
+"potrà mai vedere dal repository. Il valore predefinito è una lista vuota. Le "
+"variabili di sostituzione, descritti nel file yum.conf vengono presi in "
+"considerazione."
+
+msgid "internal"
+msgstr "Notizie"
+
+msgid "internal_help"
+msgstr ""
+"Quando si fa clic su una delle seguenti icone, le notizie verranno "
+"visualizzata all'interno della GUI."
+
+msgid "invalidUrlBase"
+msgstr ""
+"L'URL specificato per [[base-yum.baseurl]] non è valido. [[Base-swupdate."
+"urlField_rule]]"
+
+msgid "invalidUrlMirror"
+msgstr ""
+"L'URL specificato per [[base-yum.mirrolist]] non è valido. [[Base-swupdate."
+"urlField_rule]]"
+
+msgid "invalidUrlPki"
+msgstr ""
+"L'URL specificato per [[base-yum.pki]] non è valido. [[Base-swupdate."
+"urlField_rule]]"
+
+msgid "link"
+msgstr "URL"
+
+msgid "link_help"
+msgstr ""
+"Quando si fa clic su una delle seguenti icone, le notizie della pagina web "
+"www.BlueOnyx.it verranno visualizzata all'interno della GUI."
+
+msgid "mirrorlistField"
+msgstr "Mirror"
+
+msgid "mirrorlistField_help"
+msgstr ""
+"Questo campo contiene il mirror del repository. (Il campo deve essere vuoto "
+"se si utilizza baseurl invece del mirror.)"
+
+msgid "modRepo"
+msgstr "Modifica repository"
+
+msgid "modRepo_help"
+msgstr "Modificare le impostazioni del repository."
+
+msgid "name"
+msgstr "Nome"
+
+msgid "name_help"
+msgstr "Nome della RPM"
+
+msgid "openURL_help"
+msgstr "Fare clic su questa icona per visualizzare la notizia in questione."
+
+msgid "repoDescription"
+msgstr "Descrizione"
+
+msgid "repoDescription_help"
+msgstr "Descrizione del repository."
+
+msgid "repoFileCreationFailed"
+msgstr "Il repository-file specificato non può essere creato."
+
+msgid "repoFilePreExist"
+msgstr ""
+"Il file specificato per il repository esiste già in '/ etc / yum.repos.d', "
+"scegliere un altro nome per il repository"
+
+msgid "repoName"
+msgstr "Nome"
+
+msgid "repoNameField"
+msgstr "Nome"
+
+msgid "repoNameField_help"
+msgstr "Questo è il nome del repository."
+
+msgid "repoName_help"
+msgstr "Nome del repository."
+
+msgid "repoNotUnique"
+msgstr ""
+"Il nome del repository specificato non è univoco, scegliere un altro nome."
+
+msgid "repos"
+msgstr "Repository"
+
+msgid "repos_help"
+msgstr "Qui puoi amministrare i repository di YUM"
+
+msgid "status"
+msgstr "Repository"
+
+msgid "status_help"
+msgstr "Repository YUM in cui si trova il numero di giri"
+
+msgid "title"
+msgstr "Oggetto"
+
+msgid "title_help"
+msgstr "Oggetto di questo articolo."
+
+msgid "version"
+msgstr "Versione"
+
+msgid "version_help"
+msgstr "Versione del RPM"
+
+msgid "viewRepo"
+msgstr "Visualizza repository"
+
+msgid "viewRepo_help"
+msgstr ""
+"Visualizza le impostazioni del repository (questo è un repository del "
+"sistema ed è di sola lettura)."
+
+msgid "yumCheck"
+msgstr "Controlla aggiornamenti"
+
+msgid "yumCheck_help"
+msgstr ""
+"Interroga i repository YUM per controllare gli aggiornamenti disponibili. "
+"Questa operazione potrebbe richiedere tanto tempo."
+
+msgid "yumNOW"
+msgstr "Aggiornamento del sistema"
+
+msgid "yumNOW_help"
+msgstr ""
+"Esegui yum update adesso per scaricare e installare tutte le patch in attesa."
+
+msgid "yumTitle"
+msgstr "Aggiornamenti disponibili"
+
+msgid "yumTitle_help"
+msgstr ""
+"Visualizza la data e l'ora dell'ultimo aggiornamento YUM. È anche possibile "
+"interrogare i repository YUM per installare le patch in sospeso manualmente. "
+
+msgid "yumUpdateFR"
+msgstr "Esegui il venerdì"
+
+msgid "yumUpdateFR_help"
+msgstr "Spuntare se si desidera che venga eseguito ogni Venerdì."
+
+msgid "yumUpdateMO"
+msgstr "Esegui il lunedì"
+
+msgid "yumUpdateMO_help"
+msgstr "Spuntare se si desidera che venga eseguito ogni Lunedi."
+
+msgid "yumUpdateSA"
+msgstr "Esegui il sabato"
+
+msgid "yumUpdateSA_help"
+msgstr "Spuntare se si desidera che venga eseguito ogni Sabato."
+
+msgid "yumUpdateSU"
+msgstr "Esegui la domenica"
+
+msgid "yumUpdateSU_help"
+msgstr "Spuntare se si desidera che venga eseguito ogni Domenica."
+
+msgid "yumUpdateTH"
+msgstr "Esegui il giovedì"
+
+msgid "yumUpdateTH_help"
+msgstr "Spuntare se si desidera che venga eseguito ogni Giovedi."
+
+msgid "yumUpdateTU"
+msgstr "Esegui il martedì"
+
+msgid "yumUpdateTU_help"
+msgstr "Spuntare se si desidera che venga eseguito ogni Martedì."
+
+msgid "yumUpdateTime"
+msgstr "Tempo di aggiornamento"
+
+msgid "yumUpdateTime_help"
+msgstr ""
+"Consente di specificare a quale ora si desidera eseguire l'aggiornamento YUM "
+"Tuttavia verrà eseguito solo nei giorni selezionati."
+
+msgid "yumUpdateWE"
+msgstr "Esegui il mercoledì"
+
+msgid "yumUpdateWE_help"
+msgstr "Spuntare se si desidera che venga eseguito ogni mercoledì."
+
+msgid "yum_is_pulling_updates"
+msgstr "In fase di aggiornamento"
+
+msgid "yum_is_pulling_updates_help"
+msgstr ""
+"Questo sistema è in fase di aggiornamento. Ti invitiamo a riprovare tra un "
+"paio di minuti."
+
+msgid "yum_last_updated"
+msgstr "Ultimo aggiornamento"
+
+msgid "yum_last_updated_help"
+msgstr "Data e ora dell'ultimo aggiornamento YUM."
+
+msgid "yumguiEMAIL"
+msgstr "Abilita notifiche e-mail"
+
+msgid "yumguiEMAILADDY"
+msgstr "Indirizzo e-mail"
+
+msgid "yumguiEMAILADDY_help"
+msgstr ""
+"L'indirizzo di posta elettronica predefinito a cui YUM invierà le notifiche "
+"è 'admin'. Ma se lo si desidera è possibile specificare un indirizzo di "
+"posta elettronica alternativo."
+
+msgid "yumguiEMAIL_help"
+msgstr ""
+"Se abilitato YUM inviera' il file di log delle transazioni dell' "
+"aggiornamento eseguito."
+
+msgid "yumguiEXCLUDE"
+msgstr "Escludi questi RPM"
+
+msgid "yumguiEXCLUDE_help"
+msgstr ""
+"Escludi gli RPM elencati qui dall' aggiornamento. Aggiungere il nome RPM, ma "
+"lasciare vuoto le informazioni sulla versione. Solo una voce per riga"
+
+msgid "yumgui_head"
+msgstr "YUM - Updater"
+
+msgid "yumguimenuentry"
+msgstr "YUM Updater"
+
+msgid "yumguimenuentrydesc"
+msgstr ""
+"YUM è il programma di aggiornamento che BlueOnyx utilizza per mantenere il "
+"sistema operativo e l'interfaccia grafica aggiornata. È possibile eseguire "
+"YUM dalla riga di comando (vedere 'man yum'). Oppure è possibile eseguirlo "
+"automaticamente come un cronjob quotidiano. Questa funzionalità può essere "
+"abilitata o disabilitata da qui."
+
+msgid "yumlog"
+msgstr "yum.log"
+
+msgid "yumlog_empty"
+msgstr "Il file di log sembra essere vuoto."
+
+msgid "yumlog_help"
+msgstr ""
+"Questa pagina consente di rivedere il vostro file di log YUM, nel quale "
+"vengono registrate tutte le transazioni di YUM. Il file di log si trova in /"
+"var/log/yum.log"
+
+msgid "call_for_donations"
+msgstr "Se ti piace [[base-product.productName]], perche non donare al progetto o l'acquisto di moduli aggiuntivi nella BlueOnyx negozio.<br><br>Grazie e buon divertimento con [[base-product.productName]]!"
+

@@ -1,0 +1,72 @@
+<?php
+// $Id: 50_PHP.php.create.Vsite,v 1.1 2001/11/15 02:53:50 pbaltz Exp $
+// Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+//
+// ui extension to set settings for php Vsite creation
+
+if(defined("PHP_EXTENSION_CREATE_VSITE"))
+{
+    return 1;
+}
+define("PHP_EXTENSION_CREATE_VSITE", 1);
+
+include_once("UIExtension.php");
+
+class PHPExtension extends UIExtension
+{
+    function display(&$helper, &$container, &$cce_info)
+    {
+        $factory =& $helper->getHtmlComponentFactory("base-apache");
+        $cce =& $helper->getCceClient();
+    
+        $defaults = $cce->get($cce_info["CCE_SERVICES_OID"], "PHP");
+        
+        // only add page if not already there
+        if ($cce_info['CAN_ADD_PAGE'])
+        {
+            $pageId = 'webScripting';
+            if (!in_array('webScripting', $container->getPageIds()))
+            {
+                $container->addPage("webScripting", 
+                        $factory->getLabel("webScripting"));
+            }
+        }
+        else
+        {
+            $pageId = $cce_info['PAGED_BLOCK_DEFAULT_PAGE'];
+        }
+
+        $phpEnable = $factory->getOption("PHP_enabled", $defaults['enabled']); 
+        $phpEnable->addFormField( 
+          $factory->getBoolean("suPHP_enabled", $defaults['suPHP_enabled']), 
+          $factory->getLabel("enableSuPHP") 
+        ); 
+        $php = $factory->getMultiChoice("PHP_enabled"); 
+        $php->addOption($phpEnable); 
+        $container->addFormField($php, $factory->getLabel("php"), $pageId);         
+
+    }
+
+    function handle(&$helper, &$errors, &$cce_info)
+    {
+        global $PHP_enabled, $suPHP_enabled;
+
+        $cce =& $helper->getCceClient();
+
+        $cce->set($cce_info["CCE_OID"], 'PHP', 
+                array( 
+                    'enabled' => ($PHP_enabled ? 1 : 0), 
+                    'suPHP_enabled' => $suPHP_enabled 
+                )); 
+
+	if ($suPHP_enabled == "1") {
+	    // disable UserWebs if suPHP is activated
+            $cce->set($cce_info["CCE_OID"], 'USERWEBS',
+                array('enabled' => "0"));
+	}
+
+        $errors = array_merge($errors, $cce->errors());
+    }
+}
+
+

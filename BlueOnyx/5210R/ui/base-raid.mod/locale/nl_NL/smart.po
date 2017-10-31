@@ -1,0 +1,52 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "SMARTnameTag"
+msgstr "Self-Monitoring Analysis and Reporting Technology (SMART) Status Details"
+
+msgid "noAMobject"
+msgstr "Kan Actieve Monitor object niet vinden"
+
+msgid "errRefreshingSnapshot"
+msgstr "Fout opname momentopname van de SMART-status"
+
+msgid "errRegettingObject"
+msgstr "Fout re-finding Actieve Monitor object"
+
+msgid "smartFailures"
+msgstr "Een of meer van uw schijven heeft een fout. Maak een backup van uw systeem en vervang de beschadigde schijf. (FIXME! welke schijf moet ik vervangen?)"
+
+msgid "smartDeclining"
+msgstr "De volgende stations zijn begonnen te verzwakken, maar zijn in staat om te draaien zonder enig verlies van data: [[VAR.display_names]]. Raadpleeg [[base-sauce-basic.techSupportURL]] voor hulp bij het vervangen van een verzwakt rijden."
+
+msgid "smartOK"
+msgstr "Drive zelfcontrole presteert normaal gesproken geïnstalleerd op alle stations."
+
+msgid "turned_off_drives"
+msgstr "De volgende schijven beginnen te mislukken en zijn uitgeschakeld: [[VAR.display_names]]. Raadpleeg [[base-sauce-basic.techSupportURL]] voor hulp bij het maken van een back-up en vervang de defecte schijven."
+
+msgid "unsafe"
+msgstr "De volgende schijven beginnen te falen, maar kan niet worden uitgeschakeld zonder verlies van informatie: [[VAR.display_names]]. Raadpleeg [[base-sauce-basic.techSupportURL]] voor hulp bij het maken van een back-up en vervang de defecte schijven."
+
+msgid "standalone"
+msgstr "De volgende schijven beginnen te falen, maar kan niet worden uitgeschakeld zonder verlies van informatie: [[VAR.display_names]]. Raadpleeg [[base-sauce-basic.techSupportURL]] voor hulp bij het maken van een back-up en vervang stand-alone defecte schijven."
+
+msgid "drive_off"
+msgstr "Deze drive is uitgeschakeld, omdat het is mislukt. Raadpleeg [[base-sauce-basic.techSupportURL]] voor instructies over het vervangen van dit station."
+
+msgid "unsafe_drive"
+msgstr "Deze schijf is defect, maar kan niet worden uitgeschakeld, zonder informatie te verliezen. Raadpleeg [[base-sauce-basic.techSupportURL]] voor instructies over het vervangen van de schijf."
+
+msgid "unsafe_drive_standalone"
+msgstr "Deze schijf is defect, maar kan niet worden uitgeschakeld, zonder informatie te verliezen. Raadpleeg [[base-sauce-basic.techSupportURL]] voor instructies over het vervangen van een stand-alone drive."
+
+msgid "drive_declining"
+msgstr "Deze drive is begonnen te verzwakken, maar kan momenteel draaien zonder gegevens te verliezen. Raadpleeg [[base-sauce-basic.techSupportURL]] voor instructies over het vervangen van een dalende schijf."
+

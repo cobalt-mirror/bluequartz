@@ -1,0 +1,186 @@
+# configuration bits for mod_rpmize
+# syntax:
+# <begin [x]section>
+# <end [x]section>
+#
+# x an be $ for a string or % for a hash.
+# if a hash is being used, you can add sub-sections with
+# <begin sub-section>
+# <end sub-section>
+
+
+<begin $DESCRIPTION>
+%package [LABEL]
+Group: System Environment/BlueQuartz
+Summary: [LABEL] for [VENDOR]-[SERVICE].
+[AUTOFILL]
+[BUILDARCH]
+[PROVIDES]
+
+%description [LABEL]
+The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
+information for [VENDOR]-[SERVICE].
+
+<end $DESCRIPTION>
+
+<begin %PREP>
+<end %PREP>
+
+<begin %SETUP>
+<end %SETUP>
+
+<begin %BUILD>
+<end %BUILD>
+
+<begin %INSTALL>
+<end %INSTALL>
+
+<begin %FILES>
+<begin HEADER>
+%files [LABEL]
+%defattr(-,root,root)
+<end HEADER>
+
+<begin locale>
+[AUTOFILL]
+
+<end locale>
+
+<begin glue>
+[AUTOFILL]
+%attr(0755,root,root) /usr/sausalito/sbin/*
+%attr(0755,root,root) /etc/cron.weekly/*
+
+<end glue>
+
+<begin ui>
+[AUTOFILL]
+
+<end ui>
+
+<begin capstone>
+%{RootDir}/capstone/%{Vendor}-%{Service}.cap
+[AUTOFILL]
+
+<end capstone>
+<end %FILES>
+
+<begin %PRE-INSTALL>
+<begin HEADER>
+%pre [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue pre-install
+
+<end glue>
+<end %PRE-INSTALL>
+
+<begin %POST-INSTALL>
+<begin HEADER>
+%post [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-install
+if [ -S /usr/sausalito/cced.socket ]; then
+    /usr/sausalito/sbin/cced.init rehash
+fi
+
+# Turn memcache off:
+if [ -f /usr/sausalito/sbin/memcache_off.pl ];then
+	/usr/sausalito/sbin/memcache_off.pl
+fi
+
+<end glue>
+<begin ui>
+# ui post-install
+# this is somewhat nasty, but it always makes sure that there's a
+# default .html file in case the browser doesn't specify a locale
+if [ x"[DEFLOCALE]" != x ]; then
+	for dir in `find [CCEWEB] -type d`; do 
+		(cd $dir; 
+		if [ x"`ls *.htm[l].[DEFLOCALE] 2> /dev/null`" != x ]; then
+			for file in `ls *.htm[l].[DEFLOCALE]`; do
+				base=`basename $file .[DEFLOCALE]`
+				if [ ! -f $base ]; then
+					ln -s $file $base
+ 				fi
+			done
+		fi)
+	done
+fi
+
+<end ui>
+<begin locale>
+# locale post-install
+
+<end locale>
+<end %POST-INSTALL>
+
+<begin %POST-UNINSTALL>
+<begin HEADER>
+%postun [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-uninstall
+
+<end glue>
+<begin ui>
+# ui post-uninstall
+
+<end ui>
+<begin locale>
+# locale post-uninstall
+
+<end locale>
+<end %POST-UNINSTALL>
+
+<begin $TRIGGERIN>
+<end $TRIGGERIN>
+
+<begin $TRIGGERUN>
+<end $TRIGGERUN>
+
+<begin $CHANGELOG>
+
+* Wed Jan 13 2016 Michael Stauber <mstauber@blueonyx.it> 1.0.0-0BX7
+- To avoid a naming conflict with php-memcached I renamed our 
+  memcache class to ccecache instead.
+- Modified ui/chorizo/menu/mecache.xml
+- Modified ui/chorizo/web/config/route.php
+- Added ui/chorizo/web/controllers/ccecache.php
+- Removed ui/chorizo/web/controllers/memcache.php
+
+* Tue Jan 12 2016 Michael Stauber <mstauber@blueonyx.it> 1.0.0-0BX6
+- Fixed ACL in ui/chorizo/menu/mecache.xml as we can no longer use
+  'adminUser' alone. This would add such an item to to the menu of 
+  resellers. The ACL's of the actual page then still prevent access,
+  which leads to a nasty '403 Error' on Reseller login. Switched
+  ACL to use 'serverNetwork' instead.
+
+* Mon Jan 11 2016 Michael Stauber <mstauber@blueonyx.it> 1.0.0-0BX5
+- Memcache now defaults to off. Enforce turning it off, too.
+- Added glue/sbin/memcache_off.pl
+- Modified glue/sbin/delayRestartCce.sh to rehash instead of restart
+- Modified glue/schemas/memcache.schema to set 'enabled' to '0'.
+- Modified RPM post-install to enforce memcache off.
+
+* Mon Jan 11 2016 Michael Stauber <mstauber@blueonyx.it> 1.0.0-0BX4
+- Security fix. Restrict memcached to only bind to IPv4 localhost.
+- Modified constructor/memcached.pl
+- Modified glue/handlers/memcache.pl
+
+* Thu Dec 24 2015 Michael Stauber <mstauber@blueonyx.it> 1.0.0-0BX3
+- Fix in constructor. 
+
+* Thu Dec 24 2015 Michael Stauber <mstauber@blueonyx.it> 1.0.0-0BX2
+- Added the rest of the locales.
+- Some minor adjustments. Mostly cosmetics.
+- Constructor added
+- Defaults to 'enabled' now.
+
+* Tue Dec 15 2015 Hisao SHIBUYA <hisao@smack.jp> 1.0.0-0BX1
+- first release for 520XR.
+<end $CHANGELOG>

@@ -1,0 +1,36 @@
+<class
+    name="Capabilities" namespace="menuActiveMonitor" version="1.0"
+>
+    <property
+	name="capable" type="boolean" default="1"
+	readacl="ruleCapable(menuActiveMonitor)"
+    />
+    <property
+	name="nameTag" type="scalar" default="[[base-am.cap_menuActiveMonitor]]"
+    />
+</class>
+
+<class
+    name="Capabilities" namespace="serverShowActiveMonitor" version="1.0"
+>
+    <property
+	name="capable" type="boolean" default="1"
+	readacl="ruleCapable(serverShowActiveMonitor)"
+    />
+    <property
+	name="nameTag" type="scalar" default="[[base-am.cap_serverShowActiveMonitor]]"
+    />
+</class>
+
+<class
+    name="Capabilities" namespace="serverActiveMonitor" version="1.0"
+>
+    <property
+	name="capable" type="boolean" default="1"
+	readacl="ruleCapable(serverActiveMonitor)"
+    />
+    <property
+	name="nameTag" type="scalar" default="[[base-am.cap_serverActiveMonitor]]"
+    />
+</class>
+

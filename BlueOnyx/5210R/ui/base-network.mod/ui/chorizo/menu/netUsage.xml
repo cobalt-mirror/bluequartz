@@ -1,0 +1,7 @@
+<item 
+	id="base_netUsage" 
+	label="[[base-network.netUsage]]" 
+	description="[[base-network.netUsage_help]]" 
+	url="/network/netUsage">
+  		<parent id="base_usageInformation" order="30"/>
+</item>

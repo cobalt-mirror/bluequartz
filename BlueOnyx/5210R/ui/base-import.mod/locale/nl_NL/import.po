@@ -1,0 +1,208 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "import"
+msgstr "Import"
+
+msgid "import_help"
+msgstr "Klik hier om gebruikers te importeren op de server."
+
+msgid "importTitle"
+msgstr "Gebruiker importeren lijst te [[VAR.fqdn]]"
+
+msgid "dataUpload"
+msgstr "Bronbestand"
+
+msgid "dataUpload_help"
+msgstr "Voer de locatie van waaruit u de TSV verkrijgen (Tab Separated Value) bestand met een lijst van de gebruikers worden geüpload naar het systeem. Geef een URL begint met http:// of ftp:// om het bestand van een locatie op het internet te downloaden, of voer het volledige pad naar een bestand om te uploaden. Klik op Bladeren om een ​​bestand op uw lokale harde schijf te kiezen. Verwijzen wij u naar de server apparaat handleiding voor de volledige bestandsformaat beschrijving."
+
+msgid "dataUpload_empty"
+msgstr "Sorry, je hebt een bestand te uploaden naar de server voor invoer niet geselecteerd."
+
+msgid "urlField_empty"
+msgstr "[[base-import.dataUpload_empty]]"
+
+msgid "dataUpload_invalid"
+msgstr "[[base-import.dataUpload_empty]]"
+
+msgid "url"
+msgstr "URL"
+
+msgid "upload"
+msgstr "Uploaden"
+
+msgid "fileImport"
+msgstr "Importeren uit bestand"
+
+msgid "attempt"
+msgstr "Niet geprobeerd."
+
+msgid "creating"
+msgstr "Het toevoegen [[VAR.class]] genoemd [[VAR.name]]"
+
+msgid "modifying"
+msgstr "Modificeren [[VAR.class]] genoemd [[VAR.name]]"
+
+msgid "importResults"
+msgstr "Import Resultaat"
+
+msgid "result"
+msgstr "Resultaat"
+
+msgid "action"
+msgstr "Actie"
+
+msgid "reason"
+msgstr "Reden"
+
+msgid "noFileSpecified"
+msgstr "Fout bij het ontvangen bestand"
+
+msgid "fileWasNoGood"
+msgstr "Er is een fout opgetreden bij het ontvangen van het opgegeven bestand. Probeer het opnieuw uploaden van het bestand."
+
+msgid "badFileButtonCancel"
+msgstr "Terug"
+
+msgid "badFileButtonCancel_help"
+msgstr "Klik hier om terug te gaan."
+
+msgid "importResult"
+msgstr "Import Resultaat"
+
+msgid "couldNotOpenFile"
+msgstr "Er is een fout opgetreden tijdens het geüploade bestand te openen. Controleer de locatie en probeer het opnieuw. Als u de URL-methode en je moet inloggen, probeer dan een URL met een formaat als http://user:password@server.address/ bestand of ftp://gebruiker:wachtwoord@server.address/ bestand."
+
+msgid "success"
+msgstr "Succes"
+
+msgid "fail"
+msgstr "Mislukken"
+
+msgid "errorMessage"
+msgstr "[[VAR.error]] (lijn [[VAR.line]])"
+
+msgid "importNow"
+msgstr "Nu importeren"
+
+msgid "importNow_help"
+msgstr "Klik hier om de gebruikers te importeren uit het geselecteerde bestand."
+
+msgid "importErrors"
+msgstr "Fouten import"
+
+msgid "errorCountPlural"
+msgstr "[[VAR.count]] fouten"
+
+msgid "errorCountSingular"
+msgstr "[[VAR.count]] fout"
+
+msgid "fullName"
+msgstr "Volledige Naam"
+
+msgid "fullName_help"
+msgstr "Dit zijn volledige namen van de door het importbestand geleverde data."
+
+msgid "name"
+msgstr "Gebruikers Naam"
+
+msgid "name_help"
+msgstr "Dit zijn gebruikersnamen van de door het importbestand geleverde data."
+
+msgid "errorMessageHeader"
+msgstr "Bericht"
+
+msgid "errorMessageHeader_help"
+msgstr "Dit zijn gedetailleerde berichten voor fouten die opgetreden tijdens het importeren."
+
+msgid "importSucceeded"
+msgstr "Import Geslaagd"
+
+msgid "importSucceededMessage"
+msgstr "Geen fouten opgetreden tijdens het importeren."
+
+msgid "importSucceededMessage_help"
+msgstr "Geen fouten opgetreden tijdens het importeren."
+
+msgid "importStatus"
+msgstr "Import Status"
+
+msgid "progressField"
+msgstr "Vooruitgang"
+
+msgid "progressField_help"
+msgstr "Dit is de voortgang van de import. Als u dit gedeelte laat de gebruiker import zal blijven draaien in de achtergrond, maar de voortgangsbalk zal niet meer zichtbaar zijn."
+
+msgid "status"
+msgstr "Toestand"
+
+msgid "status_help"
+msgstr "Dit is de huidige status van de Import."
+
+msgid "creatingUsers"
+msgstr "Gebruikers toevoegen ([[VAR.pos]]/[[VAR.max]])"
+
+msgid "intname"
+msgstr "gebruikersnaam"
+
+msgid "intfullName"
+msgstr "fullname"
+
+msgid "intpassword"
+msgstr "wachtwoord"
+
+msgid "intaliases"
+msgstr "e-mail aliassen"
+
+msgid "importChanger"
+msgstr "Selecteer Importeren Methode ..."
+
+msgid "importChangerFile"
+msgstr "Bestand importeren"
+
+msgid "exportUsers"
+msgstr "Export"
+
+msgid "exportUsers_help"
+msgstr "Klik hier om gebruikers te exporteren vanuit de server. De export functie een TSV (Tab Separated Value) bestand dat compatibel is met de gebruiker import functie."
+
+msgid "userExport"
+msgstr "Gebruiker exporteren Lijst"
+
+msgid "exportTitle"
+msgstr "Gebruiker exporteren Lijst van [[VAR.fqdn]]"
+
+msgid "pwFormat"
+msgstr "Wachtwoord Format"
+
+msgid "pwFormat_help"
+msgstr "Vanwege de encryptie-algoritme dat wordt gebruikt voor het opslaan van wachtwoorden van gebruikers, kan de werkelijke wachtwoord van de gebruiker niet worden geëxporteerd. Als u ervoor kiest om gebruikersnamen te gebruiken, kunnen gebruikers om hun login naam te gebruiken als hun wachtwoord. Kies Willekeurig Strings voorkomt dat andere gebruikers van de mogelijkheid om het wachtwoord van een andere gebruiker gemakkelijk raden."
+
+msgid "namePw"
+msgstr "Gebruik Gebruikersnamen als wachtwoorden"
+
+msgid "randomPw"
+msgstr "Gebruik Random Strings als wachtwoorden"
+
+msgid "downloadList"
+msgstr "Nu exporteren"
+
+msgid "downloadList_help"
+msgstr "Klik hier om gebruikers te exporteren vanuit de server. De export functie een TSV (Tab Separated Value) bestand dat compatibel is met de gebruiker import functie."
+
+msgid "usersForExport"
+msgstr "[[VAR.number]] gebruikers zijn beschikbaar voor de export."
+
+msgid "oneUserForExport"
+msgstr "Een gebruiker is beschikbaar voor de export."
+
+msgid "noUsersForExport"
+msgstr "Er zijn geen gebruikers beschikbaar voor de export. Gebruikers moeten worden toegevoegd voordat ze kunnen worden geëxporteerd."
+

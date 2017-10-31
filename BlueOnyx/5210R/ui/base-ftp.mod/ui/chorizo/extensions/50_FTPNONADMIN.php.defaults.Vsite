@@ -1,0 +1,49 @@
+<?php
+// $Id: 50_FTPNONADMIN.php.defaults.Vsite
+// Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
+// Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+//
+// ui extension to set settings for user webs on Vsite creation
+
+if(defined("FTPNONADMIN_EXTENSION_CREATE_VSITE"))
+{
+    return 1;
+}
+define("FTPNONADMIN_EXTENSION_CREATE_VSITE", 1);
+
+include_once("UIExtension.php");
+
+class FTPNONADMINExtension extends UIExtension
+{
+    public $attributes;
+
+    function display(&$helper, &$container, &$cce_info)
+    {
+        $factory =& $helper->getHtmlComponentFactory("base-ftp");
+
+        $cce =& $helper->getCceClient();
+    
+        $defaults = $cce->get($cce_info["CCE_SERVICES_OID"], "FTPNONADMIN");
+
+        $pageId = $cce_info['PAGED_BLOCK_DEFAULT_PAGE'];
+
+        $container->addFormField(
+            $factory->getBoolean('ftpnonadmin', $defaults['enabled']),
+            $factory->getLabel('ftpnonadmin'),
+            $pageId
+            );
+    }
+
+    function handle(&$helper, &$errors, &$cce_info, &$attributes)
+    {
+        //global $FTPNONADMIN_enabled;
+        $this->attributes = $attributes;
+
+        $cce =& $helper->getCceClient();
+
+        $cce->set($cce_info["CCE_SERVICES_OID"], 'FTPNONADMIN', array('enabled' => $this->attributes['ftpnonadmin']));
+
+        $errors = array_merge($errors, $cce->errors());
+    }
+}
+?>

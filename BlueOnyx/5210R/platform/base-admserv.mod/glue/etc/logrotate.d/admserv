@@ -1,0 +1,19 @@
+
+/var/log/admserv/adm_access {
+    missingok
+    notifempty
+    sharedscripts
+    postrotate
+	/bin/kill -HUP `pidof httpd.admsrv` 2> /dev/null || true
+    endscript
+}
+
+/var/log/admserv/adm_error {
+    missingok
+    notifempty
+    sharedscripts
+    postrotate
+	/bin/kill -HUP `pidof httpd.admsrv` 2> /dev/null || true
+    endscript
+}
+

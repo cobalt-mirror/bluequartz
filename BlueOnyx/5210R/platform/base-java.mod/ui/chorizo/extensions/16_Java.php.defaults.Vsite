@@ -1,0 +1,37 @@
+<?php
+// $Id: 30_Java.php.defaults.Vsite
+// Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
+// Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+// Java.php.create.Vsite
+
+include_once('UIExtension.php');
+
+class JavaExtension extends UIExtension
+{
+	function display(&$ServerScriptHelper, &$container, $parameters)
+	{
+		$factory = $ServerScriptHelper->getHtmlComponentFactory("base-java");
+		$cce = $ServerScriptHelper->getCceClient();
+		
+		$defaults = $cce->get($parameters["CCE_SERVICES_OID"], "Java");
+	
+		$javaEnable = $factory->getBoolean("enableJava", $defaults["enabled"]);
+		
+		// assume PagedBlock because that is most likely going to be it
+		$page_id = $parameters['PAGED_BLOCK_DEFAULT_PAGE'];
+
+		$container->addFormField($javaEnable, $factory->getLabel("enableJava"), $page_id);
+	}
+
+	function handle(&$ServerScriptHelper, &$errors, &$parameters, &$attributes)
+	{
+		//global $Java_enabled;
+		$this->attributes = $attributes;
+
+		$cce = $ServerScriptHelper->getCceClient();
+		
+		$cce->set($parameters["CCE_SERVICES_OID"], "Java", array("enabled" => $this->attributes['enableJava']));
+		$errors = array_merge($errors, $cce->errors());
+	}
+}
+?>

@@ -1,0 +1,39 @@
+#!/bin/sh
+# $Id: cced_yum
+#
+# This script is called by the YUM plugin 'BlueOnyx'.
+# It checks if CCEd needs a restart or a rehash and
+# will then perform it. RPMs that need a rehash or
+# a restart should 'touch' the respecitive file in
+# their POST-INSTALL section.
+# 
+# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# All Rights Reserved.
+
+# Execute Hotfixes:
+/usr/sausalito/sbin/hotfixes.sh
+
+if [ ! -d "/usr/sausalito/yumcce" ];then
+	mkdir /usr/sausalito/yumcce
+	chmod 700 /usr/sausalito/yumcce
+else
+	chmod 700 /usr/sausalito/yumcce
+fi
+
+if [ -f "/usr/sausalito/yumcce/restart" ];then
+	/usr/sausalito/sbin/cced.init restart
+	rm -f /usr/sausalito/yumcce/restart
+	rm -f /usr/sausalito/yumcce/rehash
+	# Run Swatch:
+	/usr/sausalito/sbin/swatch.sh
+	exit
+fi
+
+if [ -f "/usr/sausalito/yumcce/rehash" ];then
+	/usr/sausalito/sbin/cced.init rehash
+	rm -f /usr/sausalito/yumcce/rehash
+	# Run Swatch:
+	/usr/sausalito/sbin/swatch.sh
+	exit
+fi

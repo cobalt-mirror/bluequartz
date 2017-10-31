@@ -1,0 +1,140 @@
+#!/usr/bin/perl
+# $Id: cmuConfig
+use strict;
+
+use lib "/usr/cmu/perl";
+require CmuCfg;
+
+my $cfg = CmuCfg->new(type => 'config');
+$cfg->parseOpts();
+
+require TreeXml;
+
+if(!$cfg->isGlb('cmuConfig')) {
+    $cfg->putGlb('cmuConfig', '/etc/cmu/cmuConfig.xml');
+}
+
+if($cfg->glb('name') eq 'cobaltBase') {
+    die "You cannot modify the Cobalt Base with this utility\n";
+}
+
+if($cfg->glb('action') eq 'add') { addConfig($cfg); } 
+elsif($cfg->glb('action') eq 'del') { delConfig($cfg); } 
+else { listConfig($cfg); }
+
+exit 0;
+
+sub addConfig
+{
+    my $conf = shift;
+
+    my $cmuConfig = {};
+    my $appList = TreeXml::readXml($conf->glb('cmuConfig'), 0);
+
+    # check to pieces
+    if(!$conf->isGlb('name')) {
+        die "You need to prodive a name (-n) to add a config\n";
+    } elsif(defined $appList->{ $conf->glb('name') }) {
+        die "Name already in use, cannot add ", $conf->glb('name'), "\n";
+    }
+
+    if(!$conf->isGlb('xmlConfig')) {
+        die "You need to provide a file name (-c) for the config file\n";
+    } elsif(!-f $conf->glb('xmlConfig')) {
+        die "Cannot find file: ", $conf->glb('xmlConfig'), "\n";
+    }
+    makeBackup($conf);
+
+    my $node = {};
+    $node->{configFile} = $conf->glb('xmlConfig');
+    TreeXml::addNode($conf->glb('name'), $node, $appList);
+    TreeXml::addNode('cmuConfig', $appList, $cmuConfig);
+    TreeXml::writeXml($cmuConfig, $conf->glb('cmuConfig'));
+    return 1;
+}
+
+sub delConfig
+{
+    my $conf = shift;
+    my $cmuConfig = {};
+    my $appList = TreeXml::readXml($conf->glb('cmuConfig'), 0);
+
+    use Data::Dumper;
+    warn Dumper($appList);
+    # check to pieces
+    if(!$conf->isGlb('name')) {
+        die "You need to prodive a name (-n) to remove a config\n";
+    } elsif(!defined $appList->{ $conf->glb('name') }) {
+        die "Name does not exist, cannot remove ", $conf->glb('name'), "\n";
+    }
+    makeBackup($conf);
+
+    TreeXml::deleteNode($conf->glb('name'), $appList);
+    TreeXml::addNode('cmuConfig', $appList, $cmuConfig);
+    TreeXml::writeXml($cmuConfig, $conf->glb('cmuConfig'));
+    return 1;
+
+}
+
+sub listConfig
+{
+    my $conf = shift;
+    print "Current Configurations:\n";
+    
+    my $appList = TreeXml::readXml($conf->glb('cmuConfig'), 0);
+
+    foreach my $app (keys %{ $appList }) {
+        if($app eq 'cobaltBase') {
+            print "$app uses config file ", $appList->{$app}->{configFile}, " (DEFAULT)\n";
+        } else {
+            print "$app uses config file ", $appList->{$app}->{configFile}, "\n";
+        }
+    }
+    return 1;
+}
+
+sub makeBackup
+{
+    my $conf = shift;
+    my $cmuConfig = $conf->glb('cmuConfig');
+    my $ret = system("cp ".$cmuConfig." ".$cmuConfig.".bak");
+    if($ret != 0) {
+        die "Could not make backup copy of $cmuConfig\n";
+    }
+    return 1;
+}
+# 
+# Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2003 Sun Microsystems, Inc. 
+# All Rights Reserved.
+# 
+# 1. Redistributions of source code must retain the above copyright 
+#     notice, this list of conditions and the following disclaimer.
+# 
+# 2. Redistributions in binary form must reproduce the above copyright 
+#     notice, this list of conditions and the following disclaimer in 
+#     the documentation and/or other materials provided with the 
+#     distribution.
+# 
+# 3. Neither the name of the copyright holder nor the names of its 
+#     contributors may be used to endorse or promote products derived 
+#     from this software without specific prior written permission.
+# 
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
+# COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+# POSSIBILITY OF SUCH DAMAGE.
+# 
+# You acknowledge that this software is not designed or intended for 
+# use in the design, construction, operation or maintenance of any 
+# nuclear facility.
+# 

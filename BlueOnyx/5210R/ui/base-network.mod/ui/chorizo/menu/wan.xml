@@ -1,0 +1,9 @@
+<item 
+  id="base_wan" 
+  label="[[base-network.wan]]" 
+  description="[[base-network.wan_help]]" 
+  icon="users_2"
+  url="/network/wan"
+>
+  <parent id="base_system" order="30"/>
+</item>

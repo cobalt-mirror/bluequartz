@@ -1,0 +1,11 @@
+<item 
+    id="base_information" 
+    label="[[base-system.systemInfo]]" 
+    description="[[base-system.systemInfo_help]]" 
+    url="/base/system/system.php"
+>
+    <parent id="base_system" order="70"/>
+    <parent id="base_serverconfig" order="90">
+        <access require="serverInformation"/>
+    </parent>
+</item>

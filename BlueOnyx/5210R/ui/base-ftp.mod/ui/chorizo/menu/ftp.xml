@@ -1,0 +1,8 @@
+<item id="base_ftp" label="[[base-ftp.ftp]]" 
+    description="[[base-ftp.ftp_help]]" 
+    url="/ftp/ftpmanager"
+>
+    <parent id="base_controlpanel" order="25">
+        <access require="serverFTP"/>
+    </parent>
+</item>

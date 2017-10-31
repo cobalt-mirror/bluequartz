@@ -1,0 +1,165 @@
+#
+# Configuration file for analog 4.x
+# Customized for Sun Cobalt products
+# See http://www.statslab.cam.ac.uk/~sret1/analog/
+#
+#
+LANGFILE us.lng
+HOSTNAME "BlueOnyx"
+OUTPUT COMPUTER
+
+# DNS lookup
+DNSFILE /var/cache/analog.dns
+DNSGOODHOURS 48
+#DNS WRITE
+DNS NONE
+
+WARNINGS -DR
+
+# REQINCLUDE pages
+LINKINCLUDE pages
+
+UNCOMPRESS *.gz,*.Z "gzip -cd"
+
+#BROWOUTPUTALIAS Mozilla Netscape
+#BROWOUTPUTALIAS "Mozilla (compatible)" "Netscape (compatible)"
+#BROWOUTPUTALIAS IWENG AOL
+
+#REFALIAS http://webcrawler.com/* http://www.webcrawler.com/*
+#REFALIAS http://excite.com/* http://www.excite.com/*
+#REFALIAS http://lycos.com/* http://www.lycos.com/*
+#REFALIAS http://infoseek.com/* http://www.infoseek.com/*
+#REFALIAS http://guide.infoseek.com/* http://www.infoseek.com/*
+
+# show all file types regardless of whether there has only been 1 request
+TYPEFLOOR 1r
+SUBTYPE *.gz,*.Z
+SUBTYPE *.htm,*.html
+TYPEOUTPUTALIAS .html    ".html [Hypertext Markup Language]"
+TYPEOUTPUTALIAS .htm     ".htm  [Hypertext Markup Language]"
+TYPEOUTPUTALIAS .ps      ".ps   [PostScript]"
+TYPEOUTPUTALIAS .gz      ".gz   [Gzip compressed files]"
+TYPEOUTPUTALIAS .html.gz ".html.gz [Gzipped HTML]"
+TYPEOUTPUTALIAS .ps.gz   ".ps.gz [Gzipped PostScript]"
+TYPEOUTPUTALIAS .xbm     ".xbm  [X11 bitmaps]"
+TYPEOUTPUTALIAS .tar.gz  ".tar.gz [Compressed archives]"
+TYPEOUTPUTALIAS .jpg     ".jpg  [JPEG graphics]"
+TYPEOUTPUTALIAS .jpeg    ".jpeg  [JPEG graphics]"
+TYPEOUTPUTALIAS .gif     ".gif  [GIF graphics]"
+TYPEOUTPUTALIAS .xbm     ".xbm  [X bitmap]"
+TYPEOUTPUTALIAS .txt     ".txt  [Plain text]"
+TYPEOUTPUTALIAS .class   ".class [Java class files]"
+TYPEOUTPUTALIAS .pdf     ".pdf  [Adobe Portable Document Format]"
+TYPEOUTPUTALIAS .zip     ".zip  [Zip archives]"
+TYPEOUTPUTALIAS .hqx     ".hqx  [Macintosh archives]"
+TYPEOUTPUTALIAS .exe     ".exe  [PC executables]"
+TYPEOUTPUTALIAS .wav     ".wav  [WAV sound files]"
+TYPEOUTPUTALIAS .png     ".png  [PNG graphics]"
+TYPEOUTPUTALIAS .avi     ".avi  [AVI movies]"
+TYPEOUTPUTALIAS .arc     ".arc  [Compressed archives]"
+TYPEOUTPUTALIAS .mid     ".mid  [MIDI sound files]"
+TYPEOUTPUTALIAS .doc     ".doc  [Microsoft Word document]"
+TYPEOUTPUTALIAS .rtf     ".rtf  [Rich Text Format]"
+
+REPORTORDER xrfBodh5cmDH4WiSEItzsKkuJvbZNnpP1Qw67lLRMjYy
+
+TIMECOLS P
+
+GENERAL ON
+MONTHLY ON
+WEEKLY OFF
+FULLDAILY OFF
+DAILY ON
+FULLHOURLY ON
+HOURLY ON
+QUARTER OFF
+#FIVE ON
+HOST ON
+DOMAIN ON
+REQUEST ON
+DIRECTORY ON
+FILETYPE OFF
+SIZE OFF
+REDIR OFF
+FAILURE OFF
+REFERRER ON
+REFSITE OFF
+REDIRREF OFF
+FAILREF OFF
+FULLBROWSER ON
+BROWSER OFF
+VHOST OFF
+USER OFF
+FAILUSER OFF
+
+
+# We want all the info we can get. No floors as we're doing mail logs and
+# having all email addresses for a domain shown is nowhere near as bad as
+# ahving all the web pages shown.
+HOSTCOLS RrBb
+HOSTFLOOR 1r
+BROWFLOOR 1r
+REFFLOOR 1r
+REQFLOOR 1r
+
+#HOURCOLS RrBb
+#WEEKCOLS
+#MONTHCOLS
+#DAYCOLS
+#FULLDAYCOLS
+#FULLHOURCOLS
+#QUARTERCOLS
+#FIVECOLS
+TIMECOLS RrBb
+
+# Only have five minute reports for the past day.
+FIVEROWS 288
+# Have hourly summaries from the past week.
+FULLHOURROWS 168
+# Only have weekly reports for the past two months.
+WEEKROWS 8
+# Have monthly for the past year..
+MONTHROWS 12
+#MONTHCOLS PRB
+
+APACHEDEFAULTLOGFORMAT (%v %h %l %u %t \"%r\" %s %b \"%{Referer}i\" \"%{User-Agent}i\")
+#PROGRESSFREQ 20000
+
+LOGFILE none
+
+ALL ON
+
+SUBDIR /*/
+DIRSUFFIX I-don't-need-no-stinking-directory-suffixes
+DIRFLOOR 1b
+DIRSORTBY BYTES
+HOSTSORTBY BYTES
+ORGSORTBY BYTES
+DOMSORTBY BYTES
+REFSORTBY BYTES
+REFSITESORTBY BYTES
+VHOSTSORTBY BYTES
+USERSORTBY BYTES
+SUBDIRSORTBY BYTES
+SUBDOMSORTBY BYTES
+SUBORGSORTBY BYTES
+REFDIRSORTBY BYTES
+REQSORTBY BYTES
+TYPESORTBY BYTES
+SUBTYPESORTBY BYTES
+
+
+VHOSTCOLS RrBb
+
+DOMCOLS RrBb
+DOMFLOOR -30r
+SUBDOMFLOOR 1r
+SUBDOMAIN *.*.*
+
+FULLBROWCOLS RrBb
+
+REFCOLS RrBb
+
+REQCOLS RrBb
+TYPECOLS RrBb
+

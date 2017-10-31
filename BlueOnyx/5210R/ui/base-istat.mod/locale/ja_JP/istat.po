@@ -1,0 +1,45 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "istat"
+msgstr "iStat"
+
+msgid "istat_help"
+msgstr "iStat の設定を変更できます。"
+
+msgid "iStatSettings"
+msgstr "iStat の設定"
+
+msgid "enableiStatField"
+msgstr "iStat サーバを有効にする"
+
+msgid "enableiStatField_help"
+msgstr "このボックスをチェックすると、iStat サービスが有効になります。iStat は、CPU, メモリ, ネットワーク, ディスクの使用状況と履歴を集計します。iStat iPhone/iPad アプリケーションを利用することで使用状況を見ることができます。"
+
+msgid "serverCodeField"
+msgstr "サーバコード"
+
+msgid "serverCodeField_help"
+msgstr "このサーバに接続する際の 5 桁のパスコードを設定してください。パスコードは半角の数字のみが使えます。"
+
+msgid "networkPortField"
+msgstr "ポート番号"
+
+msgid "networkPortField_help"
+msgstr "iStat サービスのポート番号をしてしてください。デフォルトは、5109 です。"
+
+msgid "errorWritingConfFile"
+msgstr "コンフィグファイルの書き込みに失敗しました。"
+
+msgid "cap_serveriStat"
+msgstr "iStat の設定"
+
+msgid "NetworkPortInUse"
+msgstr "新しいポートとして指定したポートが別のサービスですでに使用されています。代わりに別のポートを選択してください。"

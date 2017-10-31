@@ -1,0 +1,134 @@
+Security in Sausalito
+---------------------
+Tim Hockin <thockin@cobalt.com>
+May, 2000
+
+1. Overview
+
+	Security in Sausalito is provided almost completely independently of
+	the UNIX security mechanisms.  Every property has a list of read and
+	write security rules, and any reader/writer must pass these rules to
+	get the data.
+
+2. Syntax
+
+	Security rules are currently hardcoded into the system.  Eventually,
+	security rules can be made a modular piece of the system (like
+	handlers).  The mapping of rules to properties is defined in the
+	schema definitions (see Schema.txt).  
+	
+	Each property has two optional attributes: READACL and WRITEACL.
+	These define the read and write rule lists (respectively).  A rule
+	list consists of the logical OR of the comma or space delimited 
+	rule entries.  As soon as a rule entry evaluates to 'allow', no
+	further rule entries are tested.  The available rules entries are:
+		ruleAll
+		ruleUser
+		ruleSelf
+		ruleAdmin
+
+	If a property defines either READACL or WRITEACL as "", or opts 
+	not to define either attribute, the default values are used.  The 
+	default for a blank or undefined READACL is ruleUser.  The default for
+	a blank or undefined WRITEACL is ruleAdmin.
+
+	Currently, only users who pass ruleAdmin may CREATE or DESTROY
+	objects.  This will be enhanced in a later definition.
+
+	When a connection to CCE is made, the current user is set to the
+	"anonymous user".  When logged in anonymously, the WHOAMI CSCP
+	command will return -1.  To change users use the AUTH or AUTHKEY
+	commands (see CSCP.spec.txt).  The only exception to this is when the
+	connecting process is running under uid 0 (root).  The connection is
+	then given admin rights, until the AUTH or AUTHKEY commands are used.
+
+	Individual rules are defined below.
+	
+2.1 Rules: ruleAll
+
+	ruleAll always evaluates to 'allow'.  Any property that includes
+	ruleAll in an ACL allows any authenticated or unauthenticated user to
+	perform the specified operation on that property.  
+	
+2.2 Rules: ruleUser
+
+	ruleUser evalutes to 'allow' if and only if the user causing the
+	action is not the anonymous user.  In all other cases, ruleUser 
+	evaluates to 'deny'.
+	
+2.3 Rules: ruleSelf
+
+	ruleSelf evalutes to 'allow' if and only if the user causing the
+	action has the same object id (oid) as the target object.  In all
+	other cases, ruleSelf evaluates to 'deny'.
+
+2.4 Rules: ruleAdmin
+
+	ruleAdmin evalutes to 'allow' if and only if the user oid causing the
+	action has the systemAdministrator property set to true.  In all
+	other cases, ruleAdmin evaluates to 'deny'.  A user which passes
+	ruleAdmin has full privileges on the system.
+
+2.5 Rules: expansion
+
+	It is possible to extend this ruleset to include things like
+	ruleExec() or ruleTest(), which could take parameters, and let some
+	expression or external security handler decided on 'allow'/'deny'
+	evaluations.
+
+3.0 Authentication
+
+	Authentication is handled by the CSCP commands AUTH and AUTHKEY (see
+	CSCP.sepc.txt).  Once a password is provided, CCE uses PAM to
+	authenticate the user against the system, using the PAM id "cced".
+	This has advantages and drawbacks.  
+
+	The advantages we get are that we can use authentication schemes like
+	LDAP, where user passwords are not stored locally, and that
+	authentication is done is a standard way, and can be changed without
+	rebuilding CCE.
+
+	The drawbacks are that it is possible to authenticate to a user that
+	exists in PAM, but not in the object database, and that the odb is no
+	longer the final arbiter of access.  The first drawback is solved by
+	making that an ineligible case.  A user must exist in the odb, as
+	well as successfully navigate PAM to authenticate.
+
+4.0 Effects on CSCP operations
+
+	Security affects several CSCP operations: GET, SET, CREATE, DESTROY,
+	and FIND.  
+
+	CREATE and DESTROY have implied ruleAdmin rule lists.  This will be
+	enhanced at a later revision.
+
+	In the presence of a non-writeable property attempting to be written,
+	the entire SET operation will fail with the PERMISSION DENIED
+	message, and a list of offending data properties (see CSCP.spec.txt).
+
+	In the presence of non-readable properties attempting to be read with
+	a GET operation, offending properties will be filtered from the 
+	requesting user's view of the data set. 
+
+	In the case of a FIND operation, specifying properties to which the
+	caller does not have read access, all offending matches will fail.
+
+5.0 Sample security
+
+	<CLASS name='User' version='1.0'>
+		<PROPERTY 
+			name='name' 
+			type='alphanum' 
+			default='newuser' 
+			readacl='ruleSelf, ruleAdmin'
+			writeacl='ruleAdmin'
+		/>
+	</CLASS>
+
+6.0 Wishlist
+
+	Several features have been requested:
+
+	* CCE could be a PAM service (for login, etc)
+	* Default auth tokens could be set based on connection uid
+	* ruleExec and ruleTest have been requested as 'highly desirable'

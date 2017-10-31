@@ -1,0 +1,636 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Meaulnes Legler <blue@waveweb.ch>\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+# NOTE: Some of these strings, such as those for network setup, can also be found in other modules.
+
+msgid "wizardLicense"
+msgstr "Licence du code binaire"
+
+msgid "wizardLicense_help"
+msgstr " "
+
+msgid "wizardAdmin"
+msgstr "Paramètres Administrateur"
+
+msgid "wizardAdmin_help"
+msgstr " "
+
+msgid "adminSettings"
+msgstr "Paramètres Administrateur"
+
+msgid "adminMessage"
+msgstr "Le [[base-product.productName]] exige un administrateur pour gérer des tâches telles que l'ajout d'utilisateurs et de groupes, ainsi que la configuration des paramètres. Le nom d'utilisateur de l'administrateur est admin. saisir un mot de passe difficile à deviner pour l'administrateur. Veuillez n'oubliez pas le mot de passe pour une utilisation future."
+
+msgid "adminNameField"
+msgstr "Identifiant"
+
+msgid "adminNameField_help"
+msgstr "Il s'agit de l'identifiant d'utilisateur utilisé par le système pour reconnaître l'administrateur et n'est pas modifiable."
+
+msgid "alteradminField"
+msgstr "Compte Alteradmin"
+
+msgid "alteradminField_help"
+msgstr "Le compte Alteradmin peut être utilisé pour partager les responsabilités administratives entre plusieurs utilisateurs avec des mots de passe uniques. S'il est activé, l'administrateur et alteradmin peuvent s'authentifier sur cette interface d'administration. Une fois activé, seulement l'Alteradmin peut changer le mot de passe ou désactiver le compte."
+
+msgid "alteradminEnabled"
+msgstr "Activer"
+
+msgid "alteradminPassword"
+msgstr "Mot de passe de l'Alteradmin"
+
+msgid "alteradminPassword_help"
+msgstr "Le mot de passe que l'utilisateur Alteradmin emploiera pour s'authentifier. Si le compte Alteradmin est activé, ce mot de passe doit être différent de celui utilisé pour l'utilisateur admin."
+
+msgid "passwordField"
+msgstr "Mot de passe"
+
+msgid "passwordField_rule"
+msgstr "[[base-user.passwordField_rule]]"
+
+msgid "passwordField_help"
+msgstr "saisir le mot de passe de l'administrateur pour que le système puisse l'identifier. [[base-wizard.passwordField_rule]]"
+
+msgid "passwordField_invalid"
+msgstr "[[base-user.passwordField_invalid]]"
+
+msgid "passwordField_empty"
+msgstr "Désolé, vous n'avez pas entré de valeur pour [[base-wizard.passwordField]]. [[base-wizard.passwordField_rule]]"
+
+msgid "newPasswordField"
+msgstr "Nouveau mot de passe"
+
+msgid "newPasswordField_help"
+msgstr "saisir le nouveau mot de passe de l'administrateur pour que le système puisse l'identifier. [[base-wizard.passwordField_rule]]"
+
+msgid "wizardTime"
+msgstr "Paramètres date et heure"
+
+msgid "wizardTime_help"
+msgstr " "
+
+msgid "timeSettings"
+msgstr "Paramètres date et heure"
+
+msgid "timeMessage"
+msgstr "Le [[base-product.productName]] exige que la date et l'heure fonctionnent correctement. Veuillez saisir la date et l'heure ainsi que le fuseau horaire approprié."
+
+msgid "dateField"
+msgstr "Date :"
+
+msgid "dateField_help"
+msgstr "Saisir la date actuelle."
+
+msgid "timeField"
+msgstr "Heure :"
+
+msgid "timeField_help"
+msgstr "Taper l'heure actuelle."
+
+msgid "timeZoneField"
+msgstr "Fuseau horaire"
+
+msgid "timeZoneField_help"
+msgstr "Définir le fuseau horaire où ce serveur est situé."
+
+msgid "wizardUsers"
+msgstr "Paramètres de l'utilisateur"
+
+msgid "wizardUsers_help"
+msgstr " "
+
+msgid "wizardWorkgroups"
+msgstr "Paramètres de groupe"
+
+msgid "wizardWorkgroups_help"
+msgstr " "
+
+msgid "wizardNetwork"
+msgstr "Intégration réseau"
+
+msgid "w izardNetwork_help"
+msgstr ""
+
+msgid "networkSettings"
+msgstr "Paramètres réseau"
+
+msgid "networkMessage"
+msgstr "Le [[base-product.productName]] peut être utilisé dans un intranet au sein de votre organisation ainsi que dans l'Internet au sens large. Veuillez saisir le nom d'hôte et le nom de domaine de ce serveur, un serveur de noms de domaine DNS accessible ainsi qu'une méthode de connectivité réseau."
+
+msgid "enterFqdn"
+msgstr "Nom d'hôte et nom de domaine"
+
+msgid "enterFqdn_help"
+msgstr "saisir le nom d'hôte du serveur dans le premier champ et le nom de domaine dans le second champ. Par exemple, www est un nom d'hôte valide, et example.com est un nom de domaine valide. [[base-network.alphanum_rule]]"
+
+msgid "hostNameField"
+msgstr "Nom d'hôte"
+
+msgid "hostNameField_rule"
+msgstr "[[base-network.alphanum_rule]]. Par exemple, www est une entrée valide."
+
+msgid "hostNameField_help"
+msgstr "saisir le nom d'hôte de ce serveur. Le nom d'hôte et le nom de domaine combinés devraient identifier de manière unique ce serveur. [[base-wizard.hostNameField_rule]]"
+
+msgid "domainNameField"
+msgstr "Nom de domaine"
+
+msgid "domainNameField_rule"
+msgstr "[[base-network.alphanum_rule]]. Par exemple, example.com est une entrée valide."
+
+msgid "domainNameField_help"
+msgstr "saisir le nom de domaine de ce serveur. Le nom d'hôte et le nom de domaine combinés devraient identifier de manière unique ce serveur. [[base-wizard.domainNameField_rule]]"
+
+msgid "dnsAddressesField"
+msgstr "Serveurs DNS"
+
+msgid "dnsAddressesField_rule"
+msgstr "Veuillez saisir une série de quatre nombres compris entre 0 et 255 séparés par des points. Par exemple, 192.168.1.1 est une entrée valide. Laissant ce champ vide permet d'éviter cette machine de trouver d'autres machines par nom d'hôte ou de domaine et causera des difficultés de mise en réseau."
+
+msgid "dnsAddressesField_help"
+msgstr "Saisissez l'adresse IP ou les adresses IP de votre/vos serveur(s) de nom de domaine DNS, une adresse par ligne. Un serveur de nom de domaine DNS traduit les noms d'hôte et noms de domaine en adresses IP et vice-versa. [[base-wizard.dnsAddressesField_rule]]"
+
+msgid "dnsAddressesField_invalid"
+msgstr "Désolé, [[VAR.invalidValue]] est une valeur non valide dans [[base-wizard.dnsAddressesField]]. [[base-wizard.dnsAddressesField_rule]]"
+
+msgid "internetField"
+msgstr "Connexion Internet"
+
+msgid "internetField_help"
+msgstr "Sélectionnez le type de connexion Internet qui sera utilisé avec cet serveur."
+
+msgid "none"
+msgstr "Aucun ou uniquement Intranet"
+
+msgid "broadband"
+msgstr "câble Modem ou DSL"
+
+msgid "lan"
+msgstr "Passerelle sur réseau local (LAN)"
+
+msgid "narrowband"
+msgstr "Modem analogique ou RNIS"
+
+msgid "wizardBroadband"
+msgstr "Paramètres haut débit"
+
+msgid "wizardBroadband_help"
+msgstr " "
+
+msgid "broadbandSettings"
+msgstr "Paramètres haut débit"
+
+msgid "broadbandMessage"
+msgstr "Votre modem câble ou DSL doit être connecté à l'interface secondaire de la [[base-product.productName]]. Veuillez saisir les paramètres de configuration appropriés qui vous ont été donnés par votre FAI (Fournisseur d'Accès Internet)."
+
+msgid "networkField"
+msgstr "Interface secondaire"
+
+msgid "networkField_help"
+msgstr "Sélectionnez la configuration de réseau appropriée pour l'interface secondaire de ce serveur. Votre fournisseur de services Internet doit vous fournir les informations nécessaires pour compléter cette étape."
+
+msgid "dhcp"
+msgstr "Obtenir automatiquement en utilisant DHCP (Dynamic Host Configuration Protocol)"
+
+msgid "dhcpHostNameField"
+msgstr "Client Nom d'hôte"
+
+msgid "dhcpHostNameField_rule"
+msgstr "[[base-network.alphanum_rule]]. Par exemple, www est une entrée valide."
+
+msgid "dhcpHostNameField_help"
+msgstr "saisir le nom d'hôte qui identifie ce serveur en tant que client DHCP (Dynamic Host Configuration Protocol). [[base-wizard.dhcpHostNameField_rule]]"
+
+msgid "dhcpClientIdField"
+msgstr "L'identification du client"
+
+msgid "dhcpClientIdField_help"
+msgstr "saisir le texte-chaîne d'identification qui détermine ce serveur en tant que client DHCP (Dynamic Host Configuration Protocol)."
+
+msgid "pppoe"
+msgstr "Obtenir automatiquement en utilisant PPPoE (Point-to-Point Protocol Over Ethernet), le protocole point à point sur Ethernet"
+
+msgid "pppUserNameField"
+msgstr "Identifiant d'utilisateur"
+
+msgid "pppUserNameField_help"
+msgstr "saisir l'identifiant d'utilisateur utilisé pour se connecter à votre fournisseur d'accès à Internet."
+
+msgid "pppPasswordField"
+msgstr "Mot de passe"
+
+msgid "pppPasswordField_help"
+msgstr "Désolé, vous n'avez pas saisi de valeur pour [[base-wizard.pppPasswordField]]."
+
+msgid "static"
+msgstr "Spécifier manuellement"
+
+msgid "ipAddressField"
+msgstr "Adresse IP"
+
+msgid "ipAddressField_rule"
+msgstr "Veuillez saisir une série de quatre nombres compris entre 0 et 255 séparés par des points. Par exemple, 192.168.1.1 est une entrée valide."
+
+msgid "ipAddressField_help"
+msgstr "Saisissez l'adresse IP de l'interface secondaire qui est généralement reliée au côté Internet. Si vous utilisez une seule connexion d'interface réseau au serveur, utilisez l'interface primaire et laissez l'interface secondaire vide. [[base-wizard.ipAddressField_rule]]"
+
+msgid "netMaskField"
+msgstr "Masque de sous-réseau"
+
+msgid "netMaskField_rule"
+msgstr "Veuillez saisir une série de quatre nombres compris entre 0 et 255 séparés par des points. Par exemple, 255.255.255.0 est une entrée valide."
+
+msgid "netMaskField_help"
+msgstr "saisir le masque de réseau de l'interface principale. Si vous utilisez une seule connexion d'interface réseau à l'appareil de serveur, utilisez l'interface primaire et laissez l'interface secondaire vide. [[base-wizard.netMaskField_rule]]"
+
+msgid "gatewayField"
+msgstr "Passerelle"
+
+msgid "gatewayField_rule"
+msgstr "Veuillez saisir une série de quatre nombres compris entre 0 et 255 séparés par des points. Par exemple, 192.168.1.1 est une entrée valide."
+
+msgid "gatewayField_help"
+msgstr "saisir l'adresse IP de votre passerelle de réseau local. Une passerelle de réseau, parfois appelé un routeur, permet de vous connecter au monde extérieur depuis votre zone de réseau local. [[base-wizard.gatewayField_rule]]"
+
+msgid "secondaryInterface"
+msgstr "Interface secondaire"
+
+msgid "ipAddressField2"
+msgstr "Adresse IP"
+
+msgid "ipAddressField2_help"
+msgstr "Saisissez l'adresse IP de l'interface secondaire, qui est généralement reliée au côté Internet. Si vous utilisez une seule connexion d'interface réseau au serveur, utilisez l'interface primaire et laissez l'interface secondaire vide. [[base-network.ipAddressField1_rule]]"
+
+msgid "ipAddressNetMaskMismatch"
+msgstr "Soit le champs Adresse IP et Masque de réseau IP sont remplis tous les deux ou alors laissés vides ensemble."
+
+msgid "netMaskField2"
+msgstr "[[base-network.netMaskField1]]"
+
+msgid "netMaskField2_help"
+msgstr "saisir le masque de réseau de l'interface secondaire. Si vous utilisez une seule connexion d'interface réseau à l'appareil de serveur, utilisez l'interface primaire et laissez l'interface secondaire vide. [[base-network.netMaskField1_rule]]"
+
+msgid "macAddressField"
+msgstr "Adresse MAC"
+
+msgid "macAddressField_help"
+msgstr "Le Control (MAC) d'accès aux médias est l'adresse matérielle de la carte d'interface réseau. Cette adresse matérielle est un identifiant unique et ne peut être modifiée après la fabrication."
+
+msgid "wizardLan"
+msgstr "Les réglages réseau local (LAN)"
+
+msgid "wizardLan_help"
+msgstr " "
+
+msgid "lanMessage"
+msgstr "Saisissez la passerelle par défaut pour ce serveur. Si la passerelle est sur le réseau connecté à l'interface secondaire, saisissez les informations de l'interface ainsi."
+
+msgid "lanSettings"
+msgstr "Les réglages réseau local (LAN)"
+
+msgid "wizardModem"
+msgstr "Paramètres du modem"
+
+msgid "wizardModem_help"
+msgstr " "
+
+msgid "modemMessage"
+msgstr "Votre modem analogique ou RNIS doit être connecté à l'interface de port série de [[base-product.productName]]. Veuillez saisir les paramètres de configuration appropriés qui vous avez obtenu de votre FAI (Fournisseur d'Accès Internet)."
+
+msgid "modemSettings"
+msgstr "Paramètres du modem"
+
+msgid "connModeField"
+msgstr "Mode de connexion"
+
+msgid "connModeField_help"
+msgstr "Indiquez si la connexion du modem doit être établie seulement lorsque cela est nécessaire pour une connexion sortante, doit toujours être établie ou ne devrait jamais être établie."
+
+msgid "demand"
+msgstr "Connexion sur demande seulement"
+
+msgid "on"
+msgstr "Connexion permanente"
+
+msgid "off"
+msgstr "Connexion désactivée"
+
+msgid "userNameField"
+msgstr "Identifiant du compte Dial-Up"
+
+msgid "userNameField_help"
+msgstr "saisir l'identifiant utilisateur du compte dial-up d'accès à distance utilisé pour se connecter à votre FAI (Fournisseur d'Accès Internet)."
+
+msgid "userNameField_empty"
+msgstr "Désolé, vous n'avez pas saisi de valeur pour [[base-wizard.userNameField]]. [[base-wizard.userNameField_help]]"
+
+msgid "modemPasswordField"
+msgstr "Mot de passe du compte Dial-Up"
+
+msgid "modemPasswordField_help"
+msgstr "saisir le mot de passe du compte dial-up d'accès à distance permettant de se connecter à votre FAI (Fournisseur d'Accès Internet)."
+
+msgid "modemPasswordField_empty"
+msgstr "Désolé, vous n'avez pas saisi de valeur pour [[base-wizard.modemPasswordField]]. Veuillez saisir le mot de passe du compte d'accès à distance permettant de se connecter à votre FAI (Fournisseur d'Accès Internet)."
+
+msgid "modemPasswordField_invalid"
+msgstr "[[base-network.pppPasswordField_invalid]]"
+
+msgid "modemPhoneField"
+msgstr "Numéro de téléphone du Dial-Up"
+
+msgid "modemPhoneField_help"
+msgstr "Taper le numéro de téléphone utilisé pour la dial-up de l'accès à distance à votre FAI (Fournisseur d'Accès Internet)."
+
+msgid "initStringField"
+msgstr "Texte-chaîne d'initialisation du modem"
+
+msgid "initStringField_help"
+msgstr "saisir le texte-chaîne d'initialisation qui sera transmis au modem avant de composer le numéro."
+
+msgid "initStringField_empty"
+msgstr "Vous n'avez pas saisi de valeur pour [[base-wizard.initStringField]]. Vous devez saisir un texte-chaîne d'initialisation ou le serveur ne sera pas en mesure d'utiliser le modem. Si vous ne connaissez pas le texte-chaîne d'initialisation par défaut de votre modem, essayez de saisir « ATZ » ou consultez la documentation de votre modem."
+
+msgid "localIpField"
+msgstr "Adresse IP locale"
+
+msgid "localIpField_help"
+msgstr "saisir l'adresse IP locale à cette extrémité de la connexion modem seulement si l'on a été attribué par le fournisseur de service de votre Internet."
+
+msgid "pulseField"
+msgstr "Activer Pulse Dialing"
+
+msgid "pulseField_help"
+msgstr "Tournez impulsion ou désactiver la numérotation. L'activation de cette fonctionnalité va utiliser impulsion de numérotation au lieu de la numérotation par tonalité. La valeur par défaut est de laisser impulsion de numérotation off."
+
+msgid "wizardRegistration"
+msgstr "Responsabilité du produit"
+
+msgid "wizardRegistration_help"
+msgstr " "
+
+msgid "registration"
+msgstr "Responsabilité du produit"
+
+msgid "regRightArrow"
+msgstr "la flèche droite"
+
+msgid "regSubmit"
+msgstr "Soumettre"
+
+msgid "regSubmit_help"
+msgstr "[[base-product.productName]] est distribué en tant que source ouverte (Open Source)."
+
+msgid "regCancel"
+msgstr "Il n'y a aucune inscription"
+
+msgid "regCancel_help"
+msgstr "[[base-product.productName]] est distribué en tant que source ouverte (Open Source)."
+
+msgid "regText"
+msgstr "Le registratin n'est pas efficace en utilisant le formulaire ci-dessous."
+
+msgid "regTextOffline"
+msgstr "Il n'ya pas d'enregistrement ainsi que la garantie parce que [[base-product.productName]] est distribué en tant que source ouverte (Open Source)."
+
+msgid "empty_reg"
+msgstr "Cet enregistrement n'est pas efficace, [[base-product.productName]] est distribué en tant que source ouverte. Veuillez ignorer."
+
+msgid "fullNameField"
+msgstr "Nom et prénom"
+
+msgid "fullNameField_help"
+msgstr "Saisir votre nom complet."
+
+msgid "fullNameField_rule"
+msgstr "Veuillez saisir les caractères à l'exception des deux points. Par exemple, John Doe est une entrée valide."
+
+msgid "titleField"
+msgstr "Titre du poste"
+
+msgid "titleField_help"
+msgstr "Saisir le titre de votre emploi."
+
+msgid "companyField"
+msgstr "Nom de l'entreprise"
+
+msgid "companyField_help"
+msgstr "Saisir le nom de votre entreprise."
+
+msgid "addressField"
+msgstr "Adresse complète"
+
+msgid "addressField_help"
+msgstr "Saisir votre adresse complète."
+
+msgid "countryField"
+msgstr "Pays"
+
+msgid "countryField_help"
+msgstr "saisir votre pays."
+
+msgid "emailField"
+msgstr "Adresse E-mail"
+
+msgid "emailField_help"
+msgstr "Saisir votre adresse e-mail."
+
+msgid "emailField_rule"
+msgstr "Veuillez saisir une adresse e-mail valide dans le formulaire comme user@example.com."
+
+msgid "phoneField"
+msgstr "Numéro de téléphone"
+
+msgid "phoneField_help"
+msgstr "Saisir votre numéro de téléphone."
+
+msgid "faxField"
+msgstr "Numéro de télécopieur"
+
+msgid "faxField_help"
+msgstr "Saisir votre numéro de fax."
+
+msgid "wizardLocale"
+msgstr "Langue préférée"
+
+msgid "wizardLocale_help"
+msgstr ""
+
+msgid "localeMessage"
+msgstr "Sélectionnez la langue préférée pour l'administration de ce serveur. L'interface Web peut être consulté en utilisant n'importe quelle langue, mais les messages e-mail générés par [[base-am.activeMonitor]] utiliseront la langue préférée."
+
+msgid "localeField"
+msgstr "Sélectionnez votre langue préférée"
+
+msgid "localeField_help"
+msgstr "La langue préférée sera utilisée par [[base-am.activeMonitor]] lors de l'envoi de notifications par courriel et par l'interface Web d'administration si la langue de votre navigateur est introuvable."
+
+msgid "localeSettings"
+msgstr "Langue préférée"
+
+msgid "wizardRaid"
+msgstr "RAID Configuration"
+
+msgid "wizardRaid_help"
+msgstr " "
+
+msgid "raidMessage"
+msgstr "Votre serveur [[base-alpine.osName]] a une capacité de stockage RAID. Ce serveur dispose d'un ensemble de [[VAR.numdisk]] disques internes qui peuvent être configurés de deux manières différentes, en fonction de vos besoins. Une solution offre une capacité de disque plus élevée, tandis que l'autre fournit une plus grande fiabilité au détriment de la capacité. Veuillez choisir une configuration RAID à partir des options ci-dessous. AVERTISSEMENT : Cette décision ne peut pas être inversé sans perte de données. Veuillez assurez-vous de bien comprendre les implications de votre choix avant de procéder."
+
+msgid "raidAlreadyConfigured"
+msgstr "RAID a déjà été configuré et ne peut plus être changé."
+
+msgid "raidOption"
+msgstr "Niveau RAID"
+
+msgid "raidOption_help"
+msgstr "Stockage RAID permet à plusieurs disques pour être utilisés ensemble comme un seul. Lisez attentivement les options et sélectionnez la façon dont vous souhaitez utiliser les disques."
+
+msgid "raidSettings"
+msgstr "Configuration RAID"
+
+msgid "raid0"
+msgstr "Mode RAID 0 - également connu sous le nom striping, RAID 0 groupe tous les disques internes en un seul disque logique unique. Tout l'espace est utilisable pour stocker des données, mais toutes les informations seront perdues si un disque tombe en panne."
+
+msgid "raid1"
+msgstr "Mode RAID 1 - Aussi connu comme miroir, RAID 1 conserve des données identiques sur les deux disques internes. Si l'un disque tombe en panne Vos données seront disponibles à partir du disque survivant, mais seulement la moitié de l'espace disque est disponible pour le stockage d'informations."
+
+msgid "raid5"
+msgstr "Mode RAID 5 - Aussi connu comme entrelacement avec parité, RAID 5 gère les informations de parité pour les données écrites sur le disque. Si un seul disque tombe en panne, vos données peuvent être reconstruites à partir des informations de parité sur les disques restants. Stockage des données de parité diminue la quantité totale de stockage disponible. Les données seront perdues si plusieurs disques tombent en panne en même temps."
+
+msgid "onepageSettings"
+msgstr "Paramètres système"
+
+msgid "wizardOnepage"
+msgstr "Paramètres système"
+
+msgid "wizardOnepage_help"
+msgstr " "
+
+msgid "onepageMessage"
+msgstr "L'information suivante est nécessaire de configurer ce serveur. Déplacez votre souris au dessus des mots sur le côté gauche de la forme pour obtenir de l'aide sur les champs individuels. Si vous ne connaissez pas les informations nécéssaires, veuillez contacter votre administrateur système."
+
+msgid "mustSelectLicense"
+msgstr "Vous devez accepter ou refuser le contrat de licence en sélectionnant l'une des options en bas de l'accord. Assurez-vous de faire défiler vers le bas si vous ne pouvez pas voir les options « Accepter » et « Refuser »."
+
+msgid "accept"
+msgstr "Accepter"
+
+msgid "accept_help"
+msgstr "Appuyez sur « Accepter » si vous avez lu et accepté les termes du contrat de licence et que vous êtes prêt à continuer."
+
+msgid "decline"
+msgstr "Refuser"
+
+msgid "decline_help"
+msgstr "Si vous refusez les termes d'utilisation de logiciels Open Source, vous ne serez pas en mesure d'utiliser [[base-product.productName]]."
+
+msgid "licenseClick"
+msgstr "Pour accepter ou refuser les termes d'utilisation de logiciels Open Source, vous devez aller à la fin du document."
+
+msgid "mustAcceptToUse"
+msgstr "Vous devez accepter les conditions d'utilisation de logiciels open source afin d'utiliser [[base-alpine.osName]]."
+
+msgid "license"
+msgstr "[[base-product.productLicense]]"
+
+msgid "addVirtualsiteSettings"
+msgstr "Ajouter virtuels Paramètres du site"
+
+msgid "enterVsiteFqdn"
+msgstr "Hôte et le nom de domaine"
+
+msgid "enterVsiteFqdn_help"
+msgstr "Saisir le nom d'hôte de l'emplacement dans le premier champ et le nom de domaine dans le second champ. Par exemple, le nom d'hôte pourrait être www, mail, etc le nom de domaine pourrait être example.com, blueonyx.it, etc."
+
+msgid "vsite_hostNameField"
+msgstr "Nom d'hôte"
+
+msgid "vsite_hostNameField_rule"
+msgstr "[[base-network.alphanum_rule]]. Par exemple, www est une entrée valide."
+
+msgid "vsite_hostNameField_help"
+msgstr "Saisir le nom d'hôte de ce serveur. Le nom d'hôte et le nom de domaine combinés devraient identifier de manière unique ce serveur. [[base-wizard.vsite_hostNameField_rule]]"
+
+msgid "vsite_domainNameField"
+msgstr "Nom de domaine"
+
+msgid "vsite_domainNameField_rule"
+msgstr "[[base-network.alphanum_rule]]. Par exemple, example.com est une entrée valide."
+
+msgid "vsite_domainNameField_help"
+msgstr "Saisir le nom de domaine de ce serveur. Le nom d'hôte et le nom de domaine combinés devraient identifier de manière unique ce serveur. [[base-wizard.vsite_domainNameField_rule]]"
+
+##
+
+msgid "wiz_with_no_pass"
+msgstr "Bienvenue sur votre nouveau serveur BlueOnx. S'il vous plaît entrez le mot de passe admin pour démarrer l'assistant de configuration basée sur le Web."
+
+msgid "license_acceptance"
+msgstr "Licence d'acceptation"
+
+msgid "license_acceptance_help"
+msgstr "[[base-wizard.mustAcceptToUse]]"
+
+msgid "iso_wizard_title"
+msgstr "[[base-product.productName]] Setup-Wizard"
+
+msgid "wizard_locale_header"
+msgstr "Langue"
+
+msgid "wizard_locale_header_sub"
+msgstr "Configuration de la langue"
+
+msgid "wizard_license_header"
+msgstr "Licence"
+
+msgid "wizard_license_header_sub"
+msgstr "BlueOnyx Licence"
+
+msgid "wiz_finalize"
+msgstr "Finaliser"
+
+msgid "wiz_finalize_help"
+msgstr "Terminez l'installation"
+
+msgid "finalize_blurb_header"
+msgstr "Finaliser la configuration initiale:"
+
+msgid "finalize_blurb_text"
+msgstr "S'il vous plaît cliquer sur le bouton ci-dessous pour finaliser la configuration initiale de votre [[base-product.productName]]."
+
+msgid "finalize_help_us"
+msgstr "BlueOnyx est disponible gratuitement. À toutes fins, qu'ils soient personnels, commercial, éducatif ou ce que vous voudrez peut-être utiliser pour. Cependant: Garder BlueOnyx mises à jour, ajouter de nouvelles fonctionnalités et de libération des images ISO de mise à jour est beaucoup de travail. Si vous aimez BlueOnyx, alors s'il vous plaît envisager de faire don quelque chose au projet ou envisager l'achat d'ajouter des modules pour votre [[base-product.productName]] dans la <a href=\"http://shop.blueonyx.it/\" target=\"_blank\">Boutique BlueOnyx</a> . Merci et profiter de l'aide BlueOnyx!"
+
+msgid "wizardSysSettings_help"
+msgstr "Réseau et mot de passe."
+
+###
+
+msgid "wizardMySQLpassHeader"
+msgstr "[[base-mysql.mysql_header]]"
+
+msgid "sql_rootpassword"
+msgstr "[[base-mysql.password]]"
+
+msgid "sql_rootpassword_help"
+msgstr "[[base-mysql.password_help]]"
+
+#
+### New for Wizard Startup Page:
+#
+
+msgid "wizard_refresh_header"
+msgstr "Assistant de configuration BlueOnyx: Un moment se il vous plaît."
+
+msgid "wizard_refresh_text"
+msgstr "Une composante cruciale du système (CCED) est en cours de démarrage et n'a pas encore terminé toutes les tâches de configuration liées. <br><br> Avez-vous vous connectez déjà en tant qu'utilisateur 'root' et configuré les paramètres réseau? Si non, alors se il vous plaît le faire maintenant. Si une connexion de shell ne vous redirige pas automatiquement le programme d'installation pour configurer les paramètres réseau, alors vous pouvez exécuter ce programme manuellement. Vous pouvez le trouver à cet endroit: /root/network_settings.sh <br><br> Si les paramètres réseau ont déjà été configurés et vous voyez toujours ce message, puis se il vous plaît attendre les constructeurs CCED de terminer leurs tâches de configuration liées. <br><br> Cette page est rechargée automatiquement toutes les 10 secondes jusqu'à ce que CCED a fini de se exécuter les tâches de configuration liées."
+
+

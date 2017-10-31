@@ -1,0 +1,528 @@
+
+msgid "CFaccessDenied"
+msgstr "Acceso denegado"
+
+msgid "CFauthNotAllowed"
+msgstr "no se les permite actuar como"
+
+msgid "CFcolonInHostname"
+msgstr "Colon ilegal en parte el nombre de host"
+
+msgid "CFdomainRequired"
+msgstr "Nombre del dominio deseado"
+
+msgid "CFinvalidHostname"
+msgstr "Nombre de host no válido"
+
+msgid "CFinvalidListSyntax"
+msgstr "Lista:; sintaxis ilegal direcciones de los destinatarios"
+
+msgid "CFnotAuthenticated"
+msgstr "no autenticado"
+
+msgid "CFrealDomainRequired"
+msgstr "Real nombre de dominio requiere"
+
+msgid "CFrelayDenied"
+msgstr "Retransmisión denegada. Por favor revise su correo primero o reinicie su cliente de correo."
+
+msgid "CFrelayDeniedFailed"
+msgstr "Retransmisión denegada. Búsqueda de nombres IP no"
+
+msgid "CFrelayDeniedForged"
+msgstr "Retransmisión denegada. Nombre IP posiblemente falsificado"
+
+msgid "CFrelayDeniedTemp"
+msgstr "Retransmisión denegada temporalmente. No se puede resolver el registro PTR para la dirección del cliente"
+
+msgid "CFsenderDomainNoexist"
+msgstr "Dominio de la dirección del remitente no existe"
+
+msgid "CFuserAddressRequired"
+msgstr "Dirección de usuario que se necesita"
+
+msgid "IMAP"
+msgstr "Servicio IMAP"
+
+msgid "POP"
+msgstr "Servicio POP"
+
+msgid "SMTP"
+msgstr "Servicio SMTP"
+
+msgid "advanced"
+msgstr "Avanzado"
+
+msgid "advanced_help"
+msgstr "Haga clic aquí para configurar avanzado [[base-email.emailSettings]], tales como calendario de entrega y el tamaño máximo de correo electrónico."
+
+msgid "aliasInUse"
+msgstr "Lo sentimos, el alias de correo electrónico, [[VAR.name]], ya está en uso en este sistema. Por favor elija otra."
+
+msgid "amEmailGreen"
+msgstr "El sistema de correo electrónico está funcionando normalmente."
+
+msgid "amEmailNameTag"
+msgstr "Servidores de correo electrónico"
+
+msgid "amEmailRed"
+msgstr "Hay un problema grave con el sistema de correo electrónico."
+
+msgid "amEmailYellow"
+msgstr "Hay un problema con el sistema de correo electrónico."
+
+msgid "amIMAPBadResponse"
+msgstr "El servidor IMAP dio una mala respuesta."
+
+msgid "amIMAPDetails"
+msgstr "Internet Message Access Protocol (IMAP) Detalles del Servidor"
+
+msgid "amIMAPNameTag"
+msgstr "Servidor IMAP"
+
+msgid "amIMAPNotRunning"
+msgstr "El servidor IMAP no se está ejecutando y no podía ser reiniciado. En el [[base-apache.amAdmservNameTag]], intente girar el servidor IMAP y vuelva a encenderlo de nuevo para ver si esto soluciona el problema. Si el servidor IMAP es todavía no arranca, intente reiniciar el servidor sí mismo haciendo clic en el [[base-power.reboot]] en la [[base-power.power]] del menú en [[base-alpine.serverconfig]] . Si el servidor IMAP es todavía no arranca, consulte [[base-sauce-basic.techSupportURL]] para obtener asistencia técnica."
+
+msgid "amIMAPStatusOK"
+msgstr "El servidor IMAP está funcionando normalmente."
+
+msgid "amPOP3BadResponse"
+msgstr "El servidor POP dio una mala respuesta."
+
+msgid "amPOP3Details"
+msgstr "Post Office Protocol (POP) Detalles del Servidor"
+
+msgid "amPOP3NameTag"
+msgstr "Servidor POP"
+
+msgid "amPOP3NotRunning"
+msgstr "El servidor POP no se está ejecutando y no podía ser reiniciado. En el [[base-apache.amAdmservNameTag]], pruebe a un servidor POP y vuelva a encenderlo de nuevo para ver si esto soluciona el problema. Si el servidor POP es todavía no arranca, intente reiniciar el servidor sí mismo haciendo clic en el [[base-power.reboot]] en la [[base-power.power]] del menú en [[base-alpine.serverconfig]] . Si el servidor POP es todavía no arranca, consulte [[base-sauce-basic.techSupportURL]] para obtener asistencia técnica."
+
+msgid "amPOP3StatusOK"
+msgstr "El servidor POP está funcionando normalmente."
+
+msgid "amSMTPBadResponse"
+msgstr "El servidor SMTP dio una mala respuesta."
+
+msgid "amSMTPDetails"
+msgstr "Simple Mail Transfer Protocol (SMTP) Detalles del Servidor"
+
+msgid "amSMTPNameTag"
+msgstr "Servidor SMTP"
+
+msgid "amSMTPNotRunning"
+msgstr "El servidor SMTP no está en ejecución y no podía ser reiniciado. El servidor SMTP puede apagarse temporalmente bajo carga extrema. Compruebe la carga de la CPU en el servidor. Si la carga no parece ser el problema, vaya al [[base-apache.amAdmservNameTag]] e intente encender el servidor SMTP y vuelva a encenderlo de nuevo para ver si esto soluciona el problema. Si el servidor SMTP es todavía no arranca, intente reiniciar el servidor sí mismo haciendo clic en el [[base-power.reboot]] en la [[base-power.power]] del menú en [[base-alpine.serverconfig]] . Si el servidor SMTP es todavía no arranca, consulte [[base-sauce-basic.techSupportURL]] para obtener asistencia técnica."
+
+msgid "amSMTPStatusOK"
+msgstr "El servidor SMTP está funcionando normalmente."
+
+msgid "apopEnabled"
+msgstr "POP autenticado (APOP)"
+
+msgid "apopEnabled_help"
+msgstr "POP autenticado (APOP) está habilitada para este usuario."
+
+msgid "apopFullText"
+msgstr "Habilitar APOP"
+
+msgid "apopFullText_help"
+msgstr "Habilitar POP autenticado (APOP)."
+
+msgid "apopPwRequired"
+msgstr "Se requiere una contraseña para permitir APOP para un usuario."
+
+msgid "badUser"
+msgstr "Si los archivos de configuración del servidor de correo se eliminaron o modificados manualmente, restaurar las versiones originales y vuelva a intentarlo."
+
+msgid "bad_blockUserField"
+msgstr "Lo sentimos, usted ha entrado en una dirección no válida en [[base-email.blockUserField]]. Introduzca una dirección de correo electrónico con el formato adecuado. El valor predeterminado es dejar el campo vacío. Por ejemplo, user@example.com es una entrada válida."
+
+msgid "basic"
+msgstr "Básico"
+
+msgid "basic_help"
+msgstr "Haga clic aquí para configurar básica [[base-email.emailSettings]]."
+
+msgid "blockHostField"
+msgstr "Bloquear correo electrónico desde servidores / dominios"
+
+msgid "blockHostField_help"
+msgstr "Escriba los nombres de host y nombres de dominio que no se les permite enviar correo a este servidor. [[base-email.blockHostField_rule]]"
+
+msgid "blockHostField_rule"
+msgstr "Por favor ingrese un nombre de host con el formato correcto o el nombre de dominio. El valor predeterminado es dejar este campo vacío. Por ejemplo, www.example.com y example.com son entradas válidas."
+
+msgid "blockUserField"
+msgstr "Bloque Email De Usuarios"
+
+msgid "blockUserField_help"
+msgstr "Introduzca las direcciones de correo electrónico de usuarios que no tienen permiso para enviar correo a este servidor. [[base-email.blockUserField_rule]]"
+
+msgid "blockUserField_rule"
+msgstr "Introduzca una dirección de correo electrónico con el formato adecuado. El valor predeterminado es dejar este campo vacío. Por ejemplo, user@example.com es una entrada válida."
+
+msgid "cantCreateAlias"
+msgstr "Alias ​​de correo electrónico no se crearon para este usuario."
+
+msgid "cantEditFile"
+msgstr "Lo sentimos, ha ocurrido un error al intentar editar un archivo de configuración de correo electrónico. [[base-email.badUser]]"
+
+msgid "cantGetUserInfo"
+msgstr "Vacaciones no ha podido obtener información de los usuarios del CCE."
+
+msgid "could_not_tie_apop"
+msgstr "Lo sentimos, un error del sistema. [[base-email.badUser]]"
+
+msgid "couldnt_create_args_file"
+msgstr "Lo sentimos, ha ocurrido un error al intentar editar un archivo de configuración de correo electrónico. [[base-email.badUser]]"
+
+msgid "couldnt_enable_imap_pop"
+msgstr "Lo sentimos, el servidor POP o IMAP no se pudo restablecer en este momento debido a un error de configuración del sistema. [[base-email.badUser]]"
+
+msgid "couldnt_enable_sendmail"
+msgstr "Lo sentimos, el servidor SMTP no se pudo iniciar en este momento debido a un error de configuración del sistema. [[base-email.badUser]]"
+
+msgid "couldnt_make_map"
+msgstr "Lo sentimos, ha ocurrido un error al intentar crear un archivo de mapa del servidor de correo electrónico. [[base-email.badUser]]"
+
+msgid "couldnt_write_sendmailcf"
+msgstr "Lo sentimos, ha ocurrido un error al intentar escribir en el fichero de configuración del servidor SMTP. [[base-email.badUser]]"
+
+msgid "duplicateKeys"
+msgstr "El bloqueo y la transmisión de información no se puede actualizar. Hay hosts duplicados o dominios que figuran tanto para la retransmisión y el bloqueo. Correo electrónico de un host o de dominio no puede ser bloqueado y retransmitida simultáneamente."
+
+msgid "emailServers"
+msgstr "Servidores de correo electrónico"
+
+msgid "emailServers_help"
+msgstr "Haga clic aquí para configurar [[base-email.emailServers]]."
+
+msgid "emailServers_menu"
+msgstr "Email"
+
+msgid "emailServices"
+msgstr "Servicios de correo electrónico"
+
+msgid "emailServices_help"
+msgstr "Haga clic aquí para configurar [[base-email.emailServices]]."
+
+msgid "emailSettings"
+msgstr "Configuración de los servidores de correo electrónico"
+
+msgid "enableApop"
+msgstr "Habilitar APOP"
+
+msgid "enableApop_help"
+msgstr "Habilitar APOP para el usuario. APOP es un método seguro de autenticación a un servidor POP3. Esta opción sólo está disponible para algunos lectores de correo como Fetchmail o Eudora."
+
+msgid "enableImapField"
+msgstr "Habilitar IMAP Servidor"
+
+msgid "enableImapField_help"
+msgstr "Gire el servicio de protocolo de acceso a mensajes de Internet (IMAP) o desactivar. Habilitar este servicio permite a los usuarios recuperar correo electrónico de este aparato servidor usando clientes de correo que soporte IMAP. IMAP permite almacenar el correo electrónico en el servidor, sino que requiere un acceso continuo al servidor durante el tiempo que los usuarios están trabajando con su correo."
+
+msgid "enableImapsField"
+msgstr "Habilitar IMAPS servidor"
+
+msgid "enableImapsField_help"
+msgstr "Gire el Internet Message Access Protocol sobre el servicio de TLS / SSL (IMAPS) encendido o apagado. Habilitar este servicio permite a los usuarios recuperar correo electrónico de este aparato servidor usando clientes de correo que IMAPS apoyo. IMAPS permite a los usuarios almacenar el correo electrónico en el servidor, sino que requiere un acceso continuo al servidor durante el tiempo que los usuarios están trabajando con su correo."
+
+msgid "enablePopField"
+msgstr "Habilitar servidor POP"
+
+msgid "enablePopField_help"
+msgstr "Gire el Protocolo de oficina de correos (POP) Servicio de recuperación de correo de encendido o apagado. Habilitar este servicio permite a los usuarios recuperar correo electrónico de este aparato servidor usando clientes de correo más habituales."
+
+msgid "enablePopsField"
+msgstr "Habilitar servidor POPS"
+
+msgid "enablePopsField_help"
+msgstr "Gire el Protocolo de oficina de correos a través de TLS / SSL servicio de recuperación de correo electrónico (POP) o desactivar. Habilitar este servicio permite a los usuarios recuperar correo electrónico de este aparato servidor usando clientes de correo más habituales."
+
+msgid "enableSMTPAuthField"
+msgstr "Habilitar autenticación SMTP"
+
+msgid "enableSMTPAuthField_help"
+msgstr "Gire el servicio Protocolo simple de transferencia de correo (SMTP) o desactivar."
+
+msgid "enableSMTPSField"
+msgstr "Habilitar SMTPS servidor"
+
+msgid "enableSMTPSField_help"
+msgstr "Gire el servicio SMTP sobre SSL o desactivar."
+
+msgid "enableServersField"
+msgstr "Habilitar el servidor SMTP"
+
+msgid "enableServersField_help"
+msgstr "Gire el servicio Protocolo simple de transferencia de correo (SMTP) o desactivar. Habilitar SMTP permitirá que este dispositivo de servidor para que actúe como un servidor SMTP para enviar y recibir correo electrónico de Internet entre otros servidores. SMTP también permite a los usuarios utilizar este dispositivo de servidor para enviar correo electrónico."
+
+msgid "enableSubmissionPortField"
+msgstr "Habilitar puerto Sumisión"
+
+msgid "enableSubmissionPortField_help"
+msgstr "Gire el Puerto Sumisión (587) dentro o fuera."
+
+msgid "imapConnectRateField"
+msgstr "Máxima velocidad de conexión IMAP"
+
+msgid "imapConnectRateField_help"
+msgstr "Introduzca el número máximo de conexiones permitidas por minuto. Nuevas conexiones serán rechazadas si la velocidad de conexión se ha llegado a este límite."
+
+msgid "imapConnectRateField_invalid"
+msgstr "Por favor, introduzca un número dentro del rango especificado. El valor predeterminado es 1024."
+
+msgid "imapConnectRateField_missing"
+msgstr "[[base-email.imapConnectRateField_invalid]]"
+
+msgid "masqAddressCantBeLocalhost"
+msgstr "Lo siento, el dominio del remitente forzoso no puede ser localhost."
+
+msgid "masqAddressField"
+msgstr "Fuerza remitentes de dominios"
+
+msgid "masqAddressField_help"
+msgstr "Introduzca un nombre de dominio o dirección IP para reemplazar la dirección De: del correo electrónico enviado por los usuarios de este servidor. Esta función también se llama Masquerade dominio. [[base-email.masqAddressField_rule]]"
+
+msgid "masqAddressField_rule"
+msgstr "Por favor, introduzca una dirección IP con el formato correcto, nombre de host o nombre de dominio. El valor predeterminado es dejar este campo vacío. Por ejemplo, 192.168.1.100, www.example.com y example.com son entradas válidas."
+
+msgid "maxEmailSizeField"
+msgstr "Tamaño máximo del correo electrónico (MB)"
+
+msgid "maxEmailSizeField_help"
+msgstr "Establezca el tamaño máximo de los mensajes de correo electrónico que este servidor envíe o reciba. [[base-email.maxEmailSizeField_rule]]"
+
+msgid "maxEmailSizeField_rule"
+msgstr "Introduzca un número entero mayor que 0. El valor predeterminado es dejar este campo vacío que permitirá este servidor para enviar y recibir mensajes de correo electrónico de cualquier tamaño."
+
+msgid "nonExistentUser"
+msgstr "Forwarding no puede ser habilitado porque no existen los siguientes nombres de usuarios locales: [[VAR.users]]. Por favor, elimine estos usuarios de la lista de direcciones de reenvío, o crear los usuarios antes de permitir el reenvío."
+
+msgid "popConnectRateField"
+msgstr "Máxima velocidad de conexión POP"
+
+msgid "popConnectRateField_help"
+msgstr "[[base-email.imapConnectRateField_help]]"
+
+msgid "popConnectRateField_invalid"
+msgstr "Por favor, introduzca un número dentro del rango especificado. El valor por defecto es 80."
+
+msgid "popConnectRateField_missing"
+msgstr "[[base-email.popConnectRateField_invalid]]"
+
+msgid "popRelayField"
+msgstr "La retransmisión autenticada POP"
+
+msgid "popRelayField_help"
+msgstr "Marcar para habilitar fideicomisos relé SMTP mediante la autenticación POP. Si se selecciona, cualquier usuario que utilice correctamente POP para comprobar el correo se puede confiar durante 30 minutos para enviar correo electrónico utilizando el servicio SMTP. Esta característica es ideal para los usuarios que viajan con frecuencia."
+
+msgid "queue0"
+msgstr "Inmediato"
+
+msgid "queue1440"
+msgstr "Todos los días"
+
+msgid "queue15"
+msgstr "Cada 15 Minutos"
+
+msgid "queue30"
+msgstr "Cada 30 Minutos"
+
+msgid "queue360"
+msgstr "Cada 6 horas"
+
+msgid "queue60"
+msgstr "Cada hora"
+
+msgid "queueTimeField"
+msgstr "Programación de Entrega"
+
+msgid "queueTimeField_help"
+msgstr "Establecer la frecuencia con este dispositivo de servidor entregará el correo saliente. Entrega inmediata envía el correo lo más pronto posible, pero necesita una conexión a Internet a tiempo completo. La entrega periódica es mejor para usarse con a tiempo parcial conexiones a Internet, como la marcación bajo demanda."
+
+msgid "receiveField"
+msgstr "Recibir correo electrónico dirigido a servidores / dominios"
+
+msgid "receiveField_help"
+msgstr "Escriba una lista de nombres de host personalizados o nombres de dominio para los que este servidor va a recibir correo electrónico. Por ejemplo, www.example.com y example.com son entradas válidas."
+
+msgid "receiveField_rule"
+msgstr "Por favor ingrese un nombre de host con el formato correcto o el nombre de dominio. El valor por defecto es el nombre de dominio completo de su aparato servidor. Por ejemplo, www.example.com y example.com son entradas válidas."
+
+msgid "relayField"
+msgstr "Email Relay de servidores / dominios / direcciones IP"
+
+msgid "relayField_help"
+msgstr "Introduzca las direcciones IP, nombres de host o que tienen permiso para retransmitir correo a través de este servidor de dominio. Un usuario no podrá enviar correo electrónico saliente a través de este servidor a menos que se introduce la dirección IP, host o nombre de dominio de la máquina que se conectan desde en este campo. [[base-email.relayField_rule]]"
+
+msgid "relayField_rule"
+msgstr "Por favor, introduzca una lista de direcciones IP, host y nombres de dominio, que se puede confiar para retransmitir correo usando este servidor. Las redes pueden ser especificados usando la 0. Por ejemplo, para permitir la retransmisión para la red 192.168.1.1 con máscara de subred 255.255.0.0, especifique la dirección 192.168.0.0."
+
+msgid "smartRelayField"
+msgstr "Servidor Smart Relay"
+
+msgid "smartRelayField_help"
+msgstr "Introduzca el nombre de dominio completo de un servidor de correo electrónico a través del cual se encamina todo el correo electrónico saliente."
+
+msgid "smartRelayField_rule"
+msgstr "Por favor, introduzca un nombre de dominio totalmente calificado con el formato correcto. El valor predeterminado es dejar este campo vacío. Por ejemplo example.com es una entrada válida."
+
+msgid "mx"
+msgstr "Secondary Correo-servidor"
+
+msgid "mx_help"
+msgstr "Haga clic aquí para configurar los servicios de correo secundaria."
+
+msgid "mx2List"
+msgstr "Listas de Correo-servidor secundario"
+
+msgid "addmx"
+msgstr "Añadir"
+
+msgid "addmx_help"
+msgstr "Escribir un correo dominios aquí secundaria."
+
+msgid "secondaryDomain"
+msgstr "Servicio Secundaria"
+
+msgid "secondaryDomain_help"
+msgstr "Esta es una lista de los dominios que tienen correo-servicios secundarios en este servidor."
+
+msgid "secondarySettings"
+msgstr "Ajustes secundarios"
+
+msgid "domainField"
+msgstr "Nombre de Dominio"
+
+msgid "domainField_help"
+msgstr "Introduzca el nombre de dominio que desea que desea agregar un mailservice secundaria."
+
+msgid "maptoField"
+msgstr "Mail Server"
+
+msgid "maptoField_help"
+msgstr "Introduzca el servidor de correo principal para el dominio."
+
+msgid "domainExists_in_relay_error"
+msgstr "El nombre de dominio ya está en uso en el campo de correo electrónico relé."
+
+msgid "domainExists_in_site_error"
+msgstr "El nombre de dominio ya está en uso en un sitio en el servidor."
+
+msgid "domainExists_error"
+msgstr "El nombre de dominio ya está en uso en la sección Servidor de correo secundaria."
+
+msgid "mxRemoveEntry"
+msgstr "¿Está seguro que desea eliminar el [[VAR.mxHost]] MX del servidor de registro?"
+
+msgid "userEmail"
+msgstr "Opciones de correo electrónico para usuarios"
+
+msgid "blacklist"
+msgstr "Lista negra"
+
+msgid "blacklist_help"
+msgstr "Haz clic aquí para agregar listas negras DNSBLs al servicio de correo electrónico."
+
+msgid "blackList"
+msgstr "Servicios Blacklist"
+
+msgid "blackList_help"
+msgstr "Esta es la lista de los diferentes equipos que prestan servicios de lista negra. es decir, &#39;zen.spamhaus.org&#39;."
+
+msgid "activated"
+msgstr "Estado"
+
+msgid "activated_help"
+msgstr "Aquí se puede ver si la entrada de lista negra está activo o no."
+
+msgid "blacklistHostExists_error"
+msgstr "El servicio de lista negra ya se ha añadido, cambie el nombre de host a otra cosa."
+
+msgid "blacklistRemoveEntry"
+msgstr "¿Está seguro que desea eliminar el [[VAR.blacklistHost]] de entrada del servicio Lista Negra?"
+
+msgid "blacklistHostField"
+msgstr "Servicio de lista negra"
+
+msgid "blacklistHostField_help"
+msgstr "Introduzca el <FQDN> del servicio de lista negra que desea utilizar, es decir. &#39;Zen.spamhaus.org&#39;."
+
+msgid "deferField"
+msgstr "Aplazar Temporal"
+
+msgid "deferField_help"
+msgstr "Si hace clic en este campo, el servidor de correo, si hay un problema de llegar al servicio de lista negra, se devuelve un error temporal al correo del servidor de entrada y por lo tanto temporal diferir el mensaje. El comportamiento predeterminado del servidor de correo es aceptar el correo si no puede llegar a la lista negra de servicio."
+
+msgid "activeField"
+msgstr "Activar el servicio"
+
+msgid "activeField_help"
+msgstr "Seleccione esta opción si desea activar este servicio Blacklist."
+
+msgid "vacationSubject"
+msgstr "Respuesta automática de"
+
+msgid "amSMTPAuthBadResponse"
+msgstr "El servidor saslauthd (SMTP-Auth) dio una mala respuesta."
+
+msgid "amSMTPAuthDetails"
+msgstr "Saslauthd (SMTP-Auth) Detalles del Servidor"
+
+msgid "amSMTPAuthNameTag"
+msgstr "Servidor saslauthd"
+
+msgid "amSMTPAuthNotRunning"
+msgstr "El servidor saslauthd no se está ejecutando y no podía ser reiniciado. En el [[base-apache.amAdmservNameTag]], intente girar el servidor SMTP-Auth y vuelva a encenderlo de nuevo para ver si esto soluciona el problema. Si el servidor SMTP-Auth es todavía no arranca, intente reiniciar el servidor sí mismo haciendo clic en el [[base-power.reboot]] en la [[base-power.power]] del menú en [[base-alpine.serverconfig]]. Si el servidor SMTP-Auth es todavía no arranca, consulte [[base-sauce-basic.techSupportURL]] para obtener asistencia técnica."
+
+msgid "amSMTPAuthStatusOK"
+msgstr "El servidor SMTP-Auth está funcionando normalmente."
+
+msgid "ampopRelayBadResponse"
+msgstr "El servidor de retransmisión autenticada POP dio una mala respuesta."
+
+msgid "ampopRelayDetails"
+msgstr "POP autenticado retransmisión Detalles del servicio"
+
+msgid "ampopRelayNameTag"
+msgstr "Servicio de retransmisión POP autenticado"
+
+msgid "ampopRelayNotRunning"
+msgstr "El servicio de retransmisión autenticada POP no está en ejecución y no podía ser reiniciado. En el [[base-apache.amAdmservNameTag]], pruebe a el servicio de retransmisión autenticada POP y vuelva a encenderlo de nuevo para ver si esto soluciona el problema. Si el servicio de retransmisión autenticada POP es todavía no arranca, intente reiniciar el servidor sí mismo haciendo clic en el [[base-power.reboot]] en la [[base-power.power]] del menú en [[base-alpine.serverconfig]]. Si el servicio de retransmisión autenticada POP es todavía no arranca, consulte [[base-sauce-basic.techSupportURL]] para obtener asistencia técnica."
+
+msgid "ampopRelayStatusOK"
+msgstr "El servicio de retransmisión autenticada POP está funcionando normalmente."
+
+msgid "error_writing_sendmail_mc"
+msgstr "No se puede escribir una versión actualizada /etc/mail/sendmail.mc. Gracias por confirmar su sendmail.mc de corrupciones. Para restaurar un defecto seguro, copiar /usr/sausalito/configs/sendmail/sendmail.mc a /etc/mail/sendmail.mc y vuelva a intentarlo."
+
+msgid "maxRecipientsPerMessageField"
+msgstr "Destinatarios máximos por mensaje"
+
+msgid "maxRecipientsPerMessageField_help"
+msgstr "Define el número de beneficiarios de la dotación de un mensaje de correo electrónico puede tener. Si los correos electrónicos tienen más destinatarios que se especifican aquí, entonces se rechazó la dirección de correo electrónico."
+
+msgid "delayChecksField"
+msgstr "Habilitar delay_checks"
+
+msgid "delayChecksField_help"
+msgstr "delay_checks cambia los cheques Sendmail orden si una conexión es correcta o no, esta es una buena opción para nosotros si utiliza listas negras RBL."
+
+msgid "enableZpushField"
+msgstr "Habilitar Z-Push"
+
+msgid "enableZpushField_help"
+msgstr "Z-push es una aplicación de código abierto para sincronizar PDAs compatibles con ActiveSync y teléfonos móviles, lo que les permite acceder a los correos electrónicos. Para obtener más información acerca de cómo usar Z-Push ver: http://www.blueonyx.it/index.php?page=z-push"
+
+msgid "cap_serverEmail"
+msgstr "Configuración correo electrónico"
+
+###
+
+msgid "hideHeadersField"
+msgstr "Ocultar encabezados anteriores"
+
+msgid "hideHeadersField_help"
+msgstr "Cuando esta casilla está marcada, entonces el servidor de correo ocultará cualquier encabezado anteriores en los correos electrónicos que se transmite a los destinos remotos. El origen de los mensajes de correo electrónico aparecerá como este servidor de correo. Incluso si se ha recibido de otro lugar. Esto tiene las siguientes ventajas: Se oculta la dirección IP interna de remitentes de correo o servidores de correo autorizada que usted Relevo por. En el lado negativo: Si el servidor se utiliza para enviar SPAM, entonces los encabezados adicionales que faltan hacen que sea más difícil para usted para determinar el origen real de los mensajes de correo electrónico. Así que utilice esta función con precaución. Por defecto: no se ha activado."
+

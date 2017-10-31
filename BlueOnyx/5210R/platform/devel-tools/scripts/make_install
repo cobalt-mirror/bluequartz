@@ -1,0 +1,54 @@
+#!/usr/bin/perl
+
+use strict;
+use lib qw(/usr/sausalito/perl);
+use Getopt::Long;
+use Devel;
+
+my $BUILD_DIR = "/home/build";
+
+GetOptions(
+		"build-dir=s" => \$BUILD_DIR
+	);
+
+if (not @ARGV) {
+	print STDERR<<USAGE;
+Error: Not enough arguments.
+
+Usage: $0 <target> [ --build-dir=<directory to find the modules in> ]
+
+<target> should be replaced with the part of the modules you want to install.
+Currently, <target> can be ui, locale, glue, src, or capstone.
+USAGE
+
+	exit 1;
+}
+
+if (not -d $BUILD_DIR) {
+	print STDERR<<NODIR;
+ERROR: cannot find $BUILD_DIR.  Make sure you have checked out the modules. 
+If the modules are not in $BUILD_DIR, call this script as:
+'$0 $ARGV[0] --build-dir=<full path of the directory the modules are in>'
+NODIR
+
+	exit 1;
+}
+
+my $no_install = {
+			"locale" => { 
+					"devel-tools" => 1,
+					"i18n" => 1
+				}
+		};
+
+chdir $BUILD_DIR;
+
+opendir MODULES, $BUILD_DIR or die "Can't open $BUILD_DIR: $!\n";
+
+for my $entry (readdir(MODULES)) {
+	next if $entry =~ /^\.\.*$/;
+
+	if (-d $entry && -f "$entry/Makefile" && not $$no_install{$ARGV[0]}{$entry}) {
+		make_cmd("-C $entry install_$ARGV[0]") || exit 255;
+	}
+}

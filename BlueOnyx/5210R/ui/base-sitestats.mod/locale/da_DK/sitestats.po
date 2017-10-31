@@ -1,0 +1,624 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "2month"
+msgstr "2 måneder"
+
+msgid "2year"
+msgstr "2 år"
+
+msgid "3month"
+msgstr "3 måneder"
+
+msgid "3year"
+msgstr "3 år"
+
+msgid "4year"
+msgstr "4 år"
+
+msgid "5year"
+msgstr "5 år"
+
+msgid "6month"
+msgstr "6 måneder"
+
+msgid "Home"
+msgstr "Server"
+
+msgid "Site"
+msgstr "Det virtuelle websteds værtsnavn"
+
+msgid "Site_help"
+msgstr ""
+"Det aktive virtuelle websteds fuldt kvalificerede domænenavn.  'Server' "
+"repræsenterer forespørgsler der ikke er knyttet til et virtuelt websted."
+
+msgid "byIP"
+msgstr "Forbrug efter IP-adresse"
+
+msgid "bytes"
+msgstr "Byte"
+
+msgid "bytesTransfered"
+msgstr "Data overført"
+
+msgid "bytesTransfered_help"
+msgstr ""
+"Den totale mængde data der er overført via denne tjeneste i den "
+"specificerede periode."
+
+msgid "bytes_help"
+msgstr "Antal overførte byte."
+
+msgid "cantEnableLogrotate"
+msgstr "Kan ikke aktivere rotering af logfiler for dette websted."
+
+msgid "customizeBut"
+msgstr "Generer ny rapport"
+
+msgid "customizeBut_help"
+msgstr "Skræddersy en datobaseret forbrugsrapport."
+
+msgid "daily"
+msgstr "Dagligt forbrug"
+
+msgid "dailyHistory"
+msgstr "Daglig historik"
+
+msgid "dailyHistory_help"
+msgstr "Klik her for at se historisk aktivitet på daglig basis."
+
+msgid "dailySummaryDesc"
+msgstr ""
+"Denne rapport viser den daglige distribution af den kumulative aktivitet."
+
+msgid "directories"
+msgstr "Indexfiler"
+
+msgid "distinctFiles"
+msgstr "Specifikke filer"
+
+msgid "distinctFiles_help"
+msgstr "Antallet af unikke filer der er betjent."
+
+msgid "domain"
+msgstr "Domæne"
+
+msgid "domainStats"
+msgstr "[[VAR.type]] forbrug efter domæne"
+
+msgid "domainStatsVsite"
+msgstr "[[VAR.type]] forbrug efter domæne for [[VAR.fqdn]]"
+
+msgid "domain_help"
+msgstr ""
+"Domænet hvorfra forespørgslen har oprindelse.  Klienter der ikke har "
+"domænenavne er kategoriseret som \"[[base-sitestats.unresolved numerical "
+"addresses]]\".  Vær opmærksom på at summen af de indrykkede rækker er "
+"inkluderet i totalen for deres respektive forælderrækker.  Trafikken for "
+"alle værter der ender med .dk er, for eksempel, vist i rækken som oplister "
+".dk i domænerækken."
+
+msgid "downloadBut"
+msgstr "Download logfil"
+
+msgid "downloadBut_help"
+msgstr ""
+"Klik her for at downloade forbrugslogfilen for denne tjeneste.  Logfilen "
+"indeholder tjenesteaktivitet begyndende ved midnat på den dag hvor den "
+"første aktivitet er registreret til slutningen af den dag der blev valgt da "
+"denne rapport blev genereret.  Hvis logfiler er flyttet kan der mangle "
+"datoer i den resulterende logfil."
+
+msgid "downloadLogBut"
+msgstr "Download logil (alle datoer)"
+
+msgid "downloadLogBut_help"
+msgstr ""
+"Dette link giver dig mulighed for at downloade den rå logfil til din lokale "
+"maskine."
+
+msgid "endDate"
+msgstr "Slutter den"
+
+msgid "endDate_help"
+msgstr "Dette er dato for den seneste aktivitet der inkluderes i denne rapport."
+
+msgid "failedRequests"
+msgstr "Fejlslagne forespørgsler"
+
+msgid "failedRequests_help"
+msgstr "Dette er det totale antal fejlslagne forespørgsler til tjenesten."
+
+msgid "filetype"
+msgstr "Filtype"
+
+msgid "filetype_help"
+msgstr ""
+"Hvilken type fil der er forespurgt på, baseret på filens efternavn.  En fil "
+"med endelsen .jpg vil, for eksempel, være JPEG grafik."
+
+msgid "firstRequest"
+msgstr "Første aktivitet"
+
+msgid "firstRequest_help"
+msgstr ""
+"Dato for den første aktivitet der er dækket af denne rapport. Vær opmærksom "
+"på at datoerne der dækkes i denne rapport kan være mindre end det antal dage "
+"du valgte hvis der ingen aktivitet har været i hele den valgte periode."
+
+msgid "ftpusage"
+msgstr "FTP"
+
+msgid "ftpusageDescription"
+msgstr "Statistik over FTP-forbrug"
+
+msgid "fullDailyDesc"
+msgstr ""
+"Denne rapport viser den akkumulative aktivitet for hver dag der er "
+"inkluderet i denne rapport."
+
+msgid "fullMonthlyDesc"
+msgstr ""
+"Denne rapport viser den akkumulative aktivitet for hver måned der er "
+"inkluderet i denne rapport."
+
+msgid "fullWeeklyDesc"
+msgstr ""
+"Denne rapport viser den akkumulative aktivitet for hver uge der er "
+"inkluderet i denne rapport."
+
+msgid "generate"
+msgstr "Generer rapporter"
+
+msgid "generateBut"
+msgstr "Generer rapport"
+
+msgid "generateBut_help"
+msgstr "Generer rapporter med de specificerede indstillinger."
+
+msgid "generateSettings"
+msgstr "Konfigurer [[VAR.type]] rapporteringsindstillinger"
+
+msgid "generateSettingsVsite"
+msgstr "Konfigurer [[VAR.type]] rapporteringsindstillinger for [[VAR.fqdn]]"
+
+msgid "gigabyte_abbr"
+msgstr "GB"
+
+msgid "historicalReportBut"
+msgstr "Historisk forbrug efter dag, uge eller måned"
+
+msgid "historicalReportBut_help"
+msgstr "Rapporter over dagligt, ugentligt og månedligt forbrug."
+
+msgid "hourly"
+msgstr "Forbrug efter tid på dagen"
+
+msgid "hourlySummaryDesc"
+msgstr "Denne rapport viser den timemæssige fordeling af den samlede aktivitet."
+
+msgid "iDomain"
+msgstr "Modtagerdomæner"
+
+msgid "iDomain_help"
+msgstr ""
+"Modtagerdomæner på modtaget mail for de emailadresser der håndteres af denne "
+"server.  \"Server\" repræsenterer lokale modtagere som ikke har et domæne "
+"specificeret."
+
+msgid "ipAddr"
+msgstr "IP-adresse"
+
+msgid "ipAddr_help"
+msgstr ""
+"Denne servers IP-adresse.  IP-adressen 127.0.0.1 er til lokal netværkstrafik "
+"der ikke modtages fra en ekstern IP-adresse."
+
+msgid "kilobyte_abbr"
+msgstr "KB"
+
+msgid "lastRequest"
+msgstr "Sidste aktivitet"
+
+msgid "lastRequest_help"
+msgstr ""
+"Dato for den sidste aktivitet der dækkes af denne rapport. Vær opmærksom på "
+"at antallet  af datoer der dækkes i denne rapport kan være mindre end det "
+"antal dage du valgte, hvis der ikke har været aktivitet i hele den valgte "
+"periode."
+
+msgid "mailusage"
+msgstr "Email"
+
+msgid "mailusageDescription"
+msgstr "Statistikker over emailforbrug"
+
+msgid "megabyte_abbr"
+msgstr "MB"
+
+msgid "month"
+msgstr "1 måned"
+
+msgid "monthly"
+msgstr "Månedligt forbrug"
+
+msgid "monthlyHistory"
+msgstr "Månedlig historik"
+
+msgid "monthlyHistory_help"
+msgstr "Klik her for at se den historiske aktivitet på månedlig basis."
+
+msgid "netusage"
+msgstr "Netværk"
+
+msgid "netusageDescription"
+msgstr "Statistikker over netværksforbrug"
+
+msgid "never"
+msgstr "Fra oprettelsesdato(en)"
+
+msgid "noDataError"
+msgstr ""
+"Ingen aktivitetsdata er fundet i dem specificerede periode.  Du kan evt. "
+"forsøge andre datoer."
+
+msgid "oDomain"
+msgstr "Afsenderdomæne"
+
+msgid "oDomain_help"
+msgstr ""
+"Afsenderdomæner på modtaget mail for de emailadresser der håndteres af denne "
+"server.  \"Server\" repræsenterer lokaleafsendere som ikke har et domæne "
+"specificeret."
+
+msgid "otherStatistics"
+msgstr "Detaljerede statistikker"
+
+msgid "pageRequests"
+msgstr "Sucessfulde forespørgsler"
+
+msgid "pageRequests_help"
+msgstr "Dette er det totale antal sucessfulde forespørgsler efter tjenesten."
+
+msgid "pbytes"
+msgstr "Procentdel af byte"
+
+msgid "pbytes_help"
+msgstr "Procentdelen af det totale antal overførte byte."
+
+msgid "periodicReportBut"
+msgstr "Periodiske rapporter"
+
+msgid "periodicReportBut_help"
+msgstr "Hent rapport der viser aktivitet efter dag eller time."
+
+msgid "referringSite"
+msgstr "Rapport over referende websteder"
+
+msgid "reportGenerated"
+msgstr "Rapport genereret"
+
+msgid "reportGenerated_help"
+msgstr "Dette er dato og tidspunkt hvor rapporten blev genereret."
+
+msgid "reportType"
+msgstr "Rapport"
+
+msgid "reportType_help"
+msgstr "Følgende detaljerede statistikker er tilgængelige."
+
+msgid "requestCoverageHint"
+msgstr ""
+"Vær opmærksom på at de datoer der dækkes i denne rapport kan være færre end "
+"det antal dage du valgte hvis der ikke har været aktivitet i hele den valgte "
+"periode."
+
+msgid "requestFile"
+msgstr "Fil"
+
+msgid "requestFileIn"
+msgstr "Emailafsender"
+
+msgid "requestFileIn_help"
+msgstr ""
+"Dette er afsendernes emailadresser. Disse inkluderer email sendt af brugere "
+"som er medlemmer af webstedet og mail fra eksterne emailadresser sendt til "
+"medlemmer af webstedet."
+
+msgid "requestFileOut"
+msgstr "Modtager"
+
+msgid "requestFileOut_help"
+msgstr ""
+"Dette er modtagernes emailadresser. Disse inkluderer email modtaget af "
+"brugere som er medlemmer af webstedet og mail sendt til eksterne "
+"emailadresser fra medlemmer af webstedet."
+
+msgid "requestFile_help"
+msgstr "Navn på den forespurgt fil."
+
+msgid "requestInBut"
+msgstr "Vis emailmodtagere"
+
+msgid "requestInBut_help"
+msgstr ""
+"Klik for at se emailmodtagere for meddelelser der er håndteret af denne "
+"server."
+
+msgid "requestNumber"
+msgstr "Forespørgsler"
+
+msgid "requestNumber_help"
+msgstr "Antal forespørgsler efter denne fil."
+
+msgid "requestOutBut"
+msgstr "Vis emailafsendere"
+
+msgid "requestOutBut_help"
+msgstr ""
+"Klik for at se emailafsendere for beskeder der håndteres af denne server."
+
+msgid "requestReportBut"
+msgstr "Top-liste over forespurgte filer"
+
+msgid "requestReportBut_help"
+msgstr "Kategoriserer forespørgsler efter de forespurgte filer."
+
+msgid "requestReportButftp"
+msgstr "[[base-sitestats.requestReportButweb]]"
+
+msgid "requestReportButftp_help"
+msgstr "[[base-sitestats.requestReportButweb_help]]"
+
+msgid "requestReportButmail"
+msgstr "Afsendere og modtagere"
+
+msgid "requestReportButmail_help"
+msgstr "Kategoriserer emailaktivitet efter afsendere og modtagere."
+
+msgid "requestReportButweb"
+msgstr "Forespurgte filer"
+
+msgid "requestReportButweb_help"
+msgstr "Kategoriserer forespørgsler efter de forespurgte filer."
+
+msgid "requestStats"
+msgstr "Forespørgsler efter [[VAR.type]]-data"
+
+msgid "requestStatsIn"
+msgstr "Indkommende email"
+
+msgid "requestStatsInVsite"
+msgstr "Mailmodtagere via [[VAR.fqdn]]"
+
+msgid "requestStatsOut"
+msgstr "Udgående email"
+
+msgid "requestStatsOutVsite"
+msgstr "Mailafsendere via [[VAR.fqdn]]"
+
+msgid "requestStatsVsite"
+msgstr "Forespørgsler efter [[VAR.type]]-data på [[VAR.fqdn]]"
+
+msgid "requestorDomain"
+msgstr "Klientdomæner"
+
+msgid "requests"
+msgstr "Forespørgsler"
+
+msgid "requests_help"
+msgstr "Det totale antal forespørgsler til tjenesten efter websted."
+
+msgid "selectStat"
+msgstr "Vis detaljeret forbrug..."
+
+msgid "sendReceiveByDomain"
+msgstr "Afsender- og modtagerdomæner"
+
+msgid "serverusage"
+msgstr "Forbrugsinformation"
+
+msgid "serverusageDescription"
+msgstr ""
+"Klik her for at gennemse forbrugsstatistikker for server- og "
+"netværkstjenester."
+
+msgid "serviceName"
+msgstr "Forbrugsinformation"
+
+msgid "site"
+msgstr "Websted"
+
+msgid "site_help"
+msgstr ""
+"Navnet på det virtuelle websted.  \"Server\" repræsenterer traffik der ikke er "
+"knyttet til et websted."
+
+msgid "sitestatsConsolidate"
+msgstr "Detaljegrad"
+
+msgid "sitestatsConsolidateDaily"
+msgstr "Daglig"
+
+msgid "sitestatsConsolidateMonthly"
+msgstr "Månedlig"
+
+msgid "sitestatsConsolidate_help"
+msgstr ""
+"Detaljegraden bestemmer hvorvidt daglige statistikinformationer kombineres "
+"til en månedlig fil med statistikinformation.  Dette berører ikke "
+"indeværende måneds statistikinformation.  Hvis Daglig vælges kan du, for "
+"foregående måneder, generere rapporter der indeholder statistik for mindre "
+"end en måned.  Hvis Månedlig vælges kan du, for foregående måneder, kun "
+"generere rapporter for hele måneder.  Kombination af statistikker kan ikke "
+"fortrydes for måneder der allerede er kombineret.  Vælges Månedlig vil "
+"statistikkerne optage mindre plads end hvis Daglig vælges."
+
+msgid "sitestatsEnable"
+msgstr "Aktiver statistikgenerering"
+
+msgid "sitestatsEnable_help"
+msgstr ""
+"Sæt hak her for at aktivere statistik over web-. FTP- og emailforbrug på det "
+"virtuelle websted."
+
+msgid "sitestatsPurge"
+msgstr "Statistikhistorik"
+
+msgid "sitestatsPurge_help"
+msgstr ""
+"Denne valgmulighed bestemmer hvor langt tilbage i tiden du vil kunne dække i "
+"statistikrapporterne. En længere periode giver dig mulighed for at generere "
+"rapporter med en længere historisk dokumentation, på bekostning af "
+"diskplads."
+
+msgid "sitestatsSettings"
+msgstr "Indstillinger for forbrugsinformation for [[VAR.fqdn]]"
+
+msgid "sitestatsSettingsButton"
+msgstr "Indstillinger"
+
+msgid "sitestatsSettingsButtonHelp"
+msgstr ""
+"Klik her for at konfigurere forbrugsinformation og statistikgenerering for "
+"dette websted."
+
+msgid "sitestatsTabName"
+msgstr "Forbrugsinformation"
+
+msgid "sitestatsTabName_help"
+msgstr ""
+"Konfigurer generering af forbrugsstatistikker og lagrind af forbrugshistorik "
+"for det virtuelle websted."
+
+msgid "startDate"
+msgstr "Starter"
+
+msgid "startDate_help"
+msgstr ""
+"Dette er datoen for den første aktivitet der vil blive inkluderet i denne "
+"rapport."
+
+msgid "statsQuota"
+msgstr "Forbrugslogfiler"
+
+msgid "successfulRequests"
+msgstr "Totalt antal forespørgsler"
+
+msgid "successfulRequests_help"
+msgstr "Antallet af individuelle transaktioner denne tjeneste har foretaget."
+
+msgid "summary"
+msgstr "Opsummering"
+
+msgid "summaryStats"
+msgstr "Statistisk opsummering for [[VAR.type]]"
+
+msgid "summaryStatsVsite"
+msgstr "Statistisk opsummering for [[VAR.type]] på [[VAR.fqdn]]"
+
+msgid "systemError"
+msgstr ""
+"En systemfejl opstod i forbindelse med læsning af information.  Kontakt "
+"venligst teknisk support."
+
+msgid "totalReceived"
+msgstr "Totalt modtaget"
+
+msgid "totalReceived_help"
+msgstr "Antallet af indkommende forespørgsler til tjenesten."
+
+msgid "totalSent"
+msgstr "Totalt sendt"
+
+msgid "totalSent_help"
+msgstr "Antallet af udgående forespørgsler fra tjenesten."
+
+msgid "typeStats"
+msgstr "[[VAR.type]]-forbrug efter filtype"
+
+msgid "typeStatsVsite"
+msgstr "[[VAR.type]]-forbrug efter filtype for [[VAR.fqdn]]"
+
+msgid "typesReportBut"
+msgstr "Filtyper"
+
+msgid "uniqueHosts"
+msgstr "Unikke klienter"
+
+msgid "uniqueHosts_help"
+msgstr "Antallet af unikke computere der har lavet forespørgsler på tjenester."
+
+msgid "unresolved numerical addresses"
+msgstr "Ukendt"
+
+msgid "useByDayOfWeek"
+msgstr "Forbrug efter ugedag"
+
+msgid "view"
+msgstr "Vis"
+
+msgid "view_help"
+msgstr "Klik for at vise den detaljerede forbrugsrapport."
+
+msgid "vsiteStats"
+msgstr "[[VAR.type]]-forbrug efter websted"
+
+msgid "vsiteStatsIn"
+msgstr "Emailmodtagere efter domæne"
+
+msgid "vsiteStatsOut"
+msgstr "Emailafsendere efter domæne"
+
+msgid "vsiteStatsVsite"
+msgstr "[[VAR.type]]-forbrug efter websted på [[VAR.fqdn]]"
+
+msgid "vsitesReportBut"
+msgstr "Forbrug efter websted"
+
+msgid "vsitesReportBut_help"
+msgstr "Hent en rapport over forbrug baseret på virtuelle websted."
+
+msgid "vsites_in"
+msgstr "Emailmodtagere"
+
+msgid "vsites_in_help"
+msgstr ""
+"Klik her for at vise modtagerdomæner for email håndteret af denne server."
+
+msgid "vsites_out"
+msgstr "Emailafsendere"
+
+msgid "vsites_out_help"
+msgstr ""
+"Klik her for at vise afsenderdomæner for email håndteret af denne server."
+
+msgid "webusage"
+msgstr "Web"
+
+msgid "webusageDescription"
+msgstr "Statistikker over webforbrug"
+
+msgid "weekly"
+msgstr "Webforbrug"
+
+msgid "weeklyHistory"
+msgstr "Ugentlig historik"
+
+msgid "weeklyHistory_help"
+msgstr "Klik her for at se historisk aktivitet på ugentlig basis."
+
+msgid "year"
+msgstr "1 år"
+
+msgid "cap_menuServerServerStats"
+msgstr "Vis Brug Information"
+

@@ -1,0 +1,174 @@
+# configuration bits for mod_rpmize
+# syntax:
+# <begin [x]section>
+# <end [x]section>
+#
+# x an be $ for a string or % for a hash.
+# if a hash is being used, you can add sub-sections with
+# <begin sub-section>
+# <end sub-section>
+
+
+<begin $DESCRIPTION>
+%package [LABEL]
+Group: CCE/[VENDOR]
+Summary: [LABEL] for [VENDOR]-[SERVICE].
+#Requires: aventurine-conf
+
+[AUTOFILL]
+[BUILDARCH]
+[PROVIDES]
+
+Obsoletes: nuonce-mindterm
+
+%description [LABEL]
+The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
+information for [VENDOR]-[SERVICE].
+
+<end $DESCRIPTION>
+
+<begin %PREP>
+<end %PREP>
+
+<begin %SETUP>
+<end %SETUP>
+
+<begin %BUILD>
+<end %BUILD>
+
+<begin %INSTALL>
+<end %INSTALL>
+
+<begin %FILES>
+<begin HEADER>
+%files [LABEL]
+%defattr(-,root,root)
+<end HEADER>
+
+<begin locale>
+[AUTOFILL]
+
+<end locale>
+
+<begin glue>
+[AUTOFILL]
+<end glue>
+
+<begin ui>
+[AUTOFILL]
+
+<end ui>
+
+<begin capstone>
+%{RootDir}/capstone/%{Vendor}-%{Service}.cap
+[AUTOFILL]
+
+<end capstone>
+<end %FILES>
+
+<begin %POST-INSTALL>
+<begin HEADER>
+%post [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-install
+
+# Rehash CCEd: 
+if [ -d "/usr/sausalito/yumcce" ];then 
+  touch /usr/sausalito/yumcce/rehash
+fi
+
+<end glue>
+<begin ui>
+# ui post-install
+# this is somewhat nasty, but it always makes sure that there's a
+# default .html file in case the browser doesn't specify a locale
+if [ x"[DEFLOCALE]" != x ]; then
+	for dir in `find [CCEWEB] -type d`; do 
+		(cd $dir; 
+		if [ x"`ls *.htm[l].[DEFLOCALE] 2> /dev/null`" != x ]; then
+			for file in `ls *.htm[l].[DEFLOCALE]`; do
+				base=`basename $file .[DEFLOCALE]`
+				if [ ! -f $base ]; then
+					ln -s $file $base
+ 				fi
+			done
+		fi)
+	done
+fi
+
+<end ui>
+<begin locale>
+# locale post-install
+
+<end locale>
+<end %POST-INSTALL>
+
+<begin %POST-UNINSTALL>
+<begin HEADER>
+%postun [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-uninstall
+
+<end glue>
+<begin ui>
+# ui post-uninstall
+
+<end ui>
+<begin locale>
+# locale post-uninstall
+
+<end locale>
+<end %POST-UNINSTALL>
+
+<begin $CHANGELOG>
+
+* Wed Feb 22 2017 Michael Stauber <mstauber@solarspeed.net> 1.3.0-0BX02
+- Adjusted Extension and Controller for base-alpine 2.0
+
+* Wed Nov 23 2016 Michael Stauber <mstauber@solarspeed.net> 1.3.0-0BX01
+- Dropped Mindterm Applet and replaced it with Shellinabox.
+- Added requirement for Shellinabox
+- Updated GUI pages
+- Updated Menu File
+- Updated Locales
+- Added system.Shell UIExtension to enable/disable Shellinabox.
+- Added AM components
+- Added Schemas
+
+* Mon Mar 21 2016 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX06
+- Updated Italian locales added as provided by Simone Capra.
+
+* Thu Dec 04 2014 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX05
+- Systemd related fixes in post-install.
+
+* Fri Jul 11 2014 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX04
+- Chorizo GUI added, old GUI disabled.
+- Note to self: The mindterm.jar for the Chorizo version is in /.adm/
+
+* Sat Dec 14 2013 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX03
+- Merged in locales for the Netherlands ('nl_NL').
+
+* Sun Dec 08 2013 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX02
+- Fixed a localization issue.
+
+* Fri Dec 06 2013 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX01
+- Preparational build for 5207R/5208R. Doesn't include new GUI yet.
+- Merged in new locales from 5207R ("es_ES", "fr_FR", "it_IT", "pt_PT").
+- Dropped all two character locales.
+- Converted "ja_JP" from EUC-JP to UTF-8.
+
+* Mon Dec 17 2012 Michael Stauber <mstauber@blueonyx.it> 1.1.0-0BX03
+- Changed include() to include_once() in ui/web/ssh.php and ui/web/sshConnect.php
+
+* Sun Apr 01 2012 Michael Stauber <mstauber@blueonyx.it> 1.1.0-0BX02
+- Copied 'ja' locales to 'ja_JP'
+
+* Tue Jun 08 2010 Michael Stauber <mstauber@blueonyx.it> 1.1.0-0BX01
+- Former nuonce-mindterm wrapped into a properly build BX module
+
+<end $CHANGELOG>
+

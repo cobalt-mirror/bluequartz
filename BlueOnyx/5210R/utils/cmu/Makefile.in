@@ -1,0 +1,82 @@
+# Makefile to build Cobalt Migration Utility (CMU)
+# For the CPR phase of the project
+#
+# usage: make <product>
+#
+# $Id: Makefile.in
+# Written by
+#    Jeff Bilicki <jeffb@cobalt.com>
+
+CWD = `pwd`
+
+# Some definitions
+INSTALL = /usr/bin/install
+
+VERSION   =   [VERSION]
+PRODUCT_TYPE   =   [PRODUCT]
+
+CMUUSER   =   $(shell id -u)
+SBINDIR   =   /usr/sbin
+LIBDIR    =   /usr/cmu
+CONFDIR   =   /etc/cmu
+GROFFCMD  =   /usr/bin/groff -Tascii -man
+GZIP	  =	  /bin/gzip
+MANDIR    =   $(RPM_BUILD_ROOT)/usr/man
+SBINDIR   =   $(RPM_BUILD_ROOT)/usr/sbin
+LIBDIR    =   $(RPM_BUILD_ROOT)/usr/cmu
+CONFDIR   =   $(RPM_BUILD_ROOT)/etc/cmu
+
+
+SCRIPTS = \
+	$(wildcard scripts/*) 
+
+PERLMODS = \
+	$(wildcard perl/*.pm) \
+	$(wildcard perl/Archive/*.pm) \
+	$(wildcard perl/Archive/Zip/*.pm)
+
+CONFFILES = \
+	cobaltBase.xml \
+	cmuConfig.xml \
+	csoft.xml
+
+default::
+	@echo "For Cobalt Migration Utility: make cmu"
+	@echo "If building and RPM use: make install"
+
+scripts::
+	for t in $(SCRIPTS) ; do \
+         $(INSTALL) -o $(CMUUSER) -m0700 $$t $(LIBDIR)/$$t ; \
+    done
+
+pms::
+	for t in $(PERLMODS) ; do \
+         $(INSTALL) -o $(CMUUSER) -m0600 $$t $(LIBDIR)/$$t ; \
+    done 
+
+conf::
+	for t in $(CONFFILES) ; do \
+         $(INSTALL) -o $(CMUUSER) -m0600 conf/$$t $(CONFDIR)/$$t ; \
+    done
+
+sbinfiles::
+	(cd $(SBINDIR);ln -sf ../../usr/cmu/scripts/cmuExport)
+	(cd $(SBINDIR);ln -sf ../../usr/cmu/scripts/cmuImport)
+	(cd $(SBINDIR);ln -sf ../../usr/cmu/scripts/cmuConfig)
+	(cd $(SBINDIR);ln -sf ../../usr/cmu/scripts/cmuAdjust)
+	(cd $(SBINDIR);ln -sf ../../usr/cmu/scripts/cmuConflict)
+	(cd $(SBINDIR);ln -sf ../../usr/cmu/scripts/$(PRODUCT_TYPE)scanout.pl cmuScanout)
+	(cd $(SBINDIR);ln -sf ../../usr/cmu/scripts/$(PRODUCT_TYPE)scanin.pl cmuScanin)
+	#(cd $(SBINDIR);ln -sf ../../usr/cmu/scripts/$(PRODUCT_TYPE)conflict.pl cmuConflict)
+
+install-man:: 
+	$(GROFFCMD) man/cmuConfig.xml.groff &> $(MANDIR)/man5/cmuConfig.xml.5
+	$(GZIP) $(MANDIR)/man5/cmuConfig.xml.5
+	$(GROFFCMD) man/cmuExport.groff &> $(MANDIR)/man8/cmuExport.8
+	$(GZIP) $(MANDIR)/man8/cmuExport.8
+	$(GROFFCMD) man/cmuImport.groff &> $(MANDIR)/man8/cmuImport.8
+	$(GZIP) $(MANDIR)/man8/cmuImport.8
+	$(GROFFCMD) man/cmuConfig.groff &> $(MANDIR)/man8/cmuConfig.8
+	$(GZIP) $(MANDIR)/man8/cmuConfig.8
+	
+install:: scripts sbinfiles pms conf install-man

@@ -1,0 +1,386 @@
+<?php
+// $Id: 20_ImapSync.php
+//
+// This extension handles ImapSync.
+//
+
+include_once('UIExtension.php');
+
+class ImapSyncExtension extends UIExtension {
+    function display(&$serverScriptHelper, &$container, $prams) {
+        $CI =& get_instance();
+        $factory = $serverScriptHelper->getHtmlComponentFactory('base-user');
+        $cceClient = $serverScriptHelper->getCceClient();
+    	$pageId = 'ImapSync';
+
+        // Get $sessionId:
+        $sessionId = $CI->BX_SESSION['sessionId'];
+
+        // Get the User related Objects of interest:
+        $user = $cceClient->get($prams['CCE_OID']);
+        $userEmail = $cceClient->get($prams['CCE_OID'], "Email");
+        $userSync = $cceClient->get($prams['CCE_OID'], "ImapSync");
+        $system = $CI->getSystem();
+
+        $i18n = new I18n("base-user", $CI->BX_SESSION['loginUser']['localePreference']);
+
+        // Line up the Ducks:
+        $protocols = array('LOGIN', 'PLAIN', 'CRAM-MD5', 'OAUTH');
+        $IMAPtype = array('IMAP', 'SSL', 'TLS');
+
+        if ($userSync['target'] == "") {
+            $userSync['target'] = '127.0.0.1';
+        }
+
+        if ($userSync['targetUsername'] == "") {
+            $userSync['targetUsername'] = $user['name'];
+        }
+
+        //
+        //-- Present the form:
+        //
+
+        // Set extra headers:
+        $BxPage = $factory->getPage();
+        $BxPage->setExtraHeaders('
+                <script>
+                    $(document).ready(function() {
+                        $(".various").fancybox({
+                            overlayColor: "#000",
+                            fitToView   : false,
+                            width       : "80%",
+                            height      : "80%",
+                            autoSize    : false,
+                            closeClick  : false,
+                            openEffect  : "none",
+                            closeEffect : "none"
+                        });
+                    });
+                </script>');
+
+        // Show a text description of what this tab is for:
+        $sync_desc = $factory->getHtmlField("sync_desc", "<br>" . $i18n->getHtml("[[base-user.sync_desc_text]]"), 'r');
+        $sync_desc->setLabelType("nolabel");
+        $container->addFormField(
+                $sync_desc,
+                $factory->getLabel("sync_desc"),
+                $pageId
+                );
+
+        $ImapSyncField =& $factory->getMultiChoice('ImapSyncField');
+        $enable =& $factory->getOption('enable', '0');
+        $enable->setLabel($factory->getLabel('enable', false));
+
+        // Add divider:
+        $enable->addFormField(
+                $factory->addBXDivider("SourceHostHeader", ""),
+                $factory->getLabel("SourceHostHeader", false),
+                $pageId
+                );
+
+        // Source hostname or IP:
+        $sourceHost = $factory->getTextField("source", $userSync['source'], 'rw');
+        $sourceHost->setType("IP_or_FQDN");
+        $sourceHost->setOptional(FALSE);
+        $enable->addFormField(
+                $sourceHost,
+                $factory->getLabel("source"),
+                $pageId
+                );
+
+        // Source username or IP:
+        $sourceUsername = $factory->getTextField("sourceUsername", $userSync['sourceUsername'], 'rw');
+        $sourceUsername->setType("fq_email_address_or_username");
+        $sourceUsername->setOptional(FALSE);
+        $enable->addFormField(
+                $sourceUsername,
+                $factory->getLabel("sourceUsername"),
+                $pageId
+                );
+
+        // Source Password:
+        $sourcePass = $factory->getPassword("sourcePass", "", "rw");
+        $sourcePass->setOptional(FALSE);
+        $sourcePass->setConfirm(FALSE);
+        $sourcePass->setCheckPass(FALSE);
+        $enable->addFormField(
+                $sourcePass, 
+                $factory->getLabel("sourcePass"), 
+                $pageId
+                );
+
+        // MultiChoice selector for source Auth:
+        $sourceProto_select = $factory->getMultiChoice("sourceProto", array_values($IMAPtype));
+        $sourceProto_select->setSelected($userSync['sourceProto'], true);
+        $sourceProto_select->setOptional(FALSE);
+        $enable->addFormField(
+                $sourceProto_select, 
+                $factory->getLabel("sourceProto"), 
+                $pageId);
+
+        // MultiChoice selector for source Auth:
+        $sourceAuth_select = $factory->getMultiChoice("sourceAuth", array_values($protocols));
+        $sourceAuth_select->setSelected($userSync['sourceAuth'], true);
+        $enable->addFormField(
+                $sourceAuth_select, 
+                $factory->getLabel("sourceAuth"), 
+                $pageId);
+
+        // Add divider:
+        $enable->addFormField(
+                $factory->addBXDivider("TargetHostHeader", ""),
+                $factory->getLabel("TargetHostHeader", false),
+                $pageId
+                );
+
+        // Source hostname or IP:
+        $targetHost = $factory->getTextField("target", $userSync['target'], 'rw');
+        $targetHost->setType("IP_or_FQDN");
+        $targetHost->setOptional(FALSE);
+        $enable->addFormField(
+                $targetHost,
+                $factory->getLabel("target"),
+                $pageId
+                );
+
+        // Source username or IP:
+        $targetUsername = $factory->getTextField("targetUsername", $userSync['targetUsername'], 'rw');
+        $targetUsername->setType("fq_email_address_or_username");
+        $targetUsername->setOptional(FALSE);
+        $enable->addFormField(
+                $targetUsername,
+                $factory->getLabel("targetUsername"),
+                $pageId
+                );
+
+        // Source Password:
+        $targetPass = $factory->getPassword("targetPass", "", "rw");
+        $targetPass->setOptional(FALSE);
+        $targetPass->setConfirm(FALSE);
+        $targetPass->setCheckPass(FALSE);
+        $enable->addFormField(
+                $targetPass, 
+                $factory->getLabel("targetPass"), 
+                $pageId
+                );
+
+        // MultiChoice selector for target Auth:
+        $targetProto_select = $factory->getMultiChoice("targetProto", array_values($IMAPtype));
+        $targetProto_select->setSelected($userSync['targetProto'], true);
+        $enable->addFormField(
+                $targetProto_select, 
+                $factory->getLabel("targetProto"), 
+                $pageId);
+
+        // MultiChoice selector for target Auth:
+        $targetAuth_select = $factory->getMultiChoice("targetAuth", array_values($protocols));
+        $targetAuth_select->setSelected($userSync['targetAuth'], true);
+        $enable->addFormField(
+                $targetAuth_select, 
+                $factory->getLabel("targetAuth"), 
+                $pageId);
+
+        // Out with it:
+        $ImapSyncField->addOption($enable);
+        $container->addFormField(
+                $ImapSyncField,
+                $factory->getLabel('ImapSyncField'),
+                $pageId
+            );
+
+        // Check if we have a logfile from a previous run:
+        $logfile = '~' . $user['name'] . '/.imapsync.log';
+        $ret = $serverScriptHelper->shell("/bin/ls --directory $logfile", $is_there, 'root', $sessionId);
+        if ((preg_match('/^\/home\/\.users\/(.*)$/', $is_there)) || (preg_match('/^\/home\/\.sites\/(.*)$/', $is_there))) {
+
+            // Add divider:
+            $container->addFormField(
+                    $factory->addBXDivider("LogFileHeader", ""),
+                    $factory->getLabel("LogFileHeader", false),
+                    $pageId
+                    );
+
+            $logdelete = $factory->getBoolean("logdelete", '0', 'rw');
+            $logdelete->setOptional(TRUE);
+            $container->addFormField(
+                    $logdelete,
+                    $factory->getLabel("logdelete"),
+                    $pageId
+                    );
+
+            // Show the logfile viewer button:
+            $fancy_button = $factory->getFancyButton('/user/imapSyncLog' . "?userOid=" . $user['OID'], "ViewImapSyncLog");
+            $buttonContainer = $factory->getButtonContainer("", $fancy_button);
+            $container->addFormField(
+                    $buttonContainer,
+                    $factory->getLabel(""),
+                    $pageId
+                    );
+        }
+    }
+
+    function handle(&$serverScriptHelper, &$errors, $prams) {
+
+        $cceClient = $serverScriptHelper->getCceClient();
+
+        $i18n = $prams['i18n'];
+
+        // Make CI instance available:
+        $CI =& get_instance();
+
+        // Get form data:
+        $form_data = $CI->input->post(NULL, TRUE);
+
+        //Setting up error messages:
+        $CI->form_validation->set_message('required', $i18n->get("[[palette.val_is_required]]", false, array("field" => "\"%s\"")));
+
+        // Empty array for key => values we want to submit to CCE:
+        $attributes = array();
+
+        // Form fields that are required to have input:
+        if (isset($form_data['ImapSyncField'])) {
+            if ($form_data['ImapSyncField'] == 'on') {
+                $required_keys = array(
+                                'source',
+                                'sourceUsername',
+                                'sourcePass',
+                                'sourceProto',
+                                'sourceAuth',
+                                'target',
+                                'targetUsername',
+                                'targetPass',
+                                'targetProto',
+                                'targetAuth'
+                                );
+            }
+        }
+        else {
+            $required_keys = array();
+        }
+
+        // Items we do NOT want to submit to CCE:
+        $ignore_attributes = array("BlueOnyx_Info_Text", "sync_desc", "SourceHostHeader", "TargetHostHeader", "LogFileHeader");
+        if (is_array($form_data)) {
+
+            // Function GetFormAttributes() walks through the $form_data and returns us the $parameters we want to
+            // submit to CCE. It intelligently handles checkboxes, which only have "on" set when they are ticked.
+            // In that case it pulls the unticked status from the hidden checkboxes and addes them to $parameters.
+            // It also transformes the value of the ticked checkboxes from "on" to "1". 
+            //
+            // Additionally it generates the form_validation rules for CodeIgniter.
+            //
+            // params: $i18n                i18n Object of the error messages
+            // params: $form_data           array with form_data array from CI
+            // params: $required_keys       array with keys that must have data in it. Needed for CodeIgniter's error checks
+            // params: $ignore_attributes   array with items we want to ignore. Such as Labels.
+            // return:                      array with keys and values ready to submit to CCE.
+            $attributes = GetFormAttributes($i18n, $form_data, $required_keys, $ignore_attributes, $i18n);
+        }
+        // Do we have validation related errors?
+        if ($CI->form_validation->run() == FALSE) {
+
+            if (validation_errors()) {
+                // Set CI related errors:
+                $ci_errors = array(validation_errors('<div class="alert dismissible alert_red"><img width="40" height="36" src="/.adm/images/icons/small/white/alarm_bell.png"><strong>', '</strong><br><br></div>'));
+            }           
+            else {
+                // No errors. Pass empty array along:
+                $ci_errors = array();
+            }
+            $errors = array_merge($errors, $ci_errors);
+        }
+
+        //
+        //--- Own error checks:
+        //
+
+        if ($CI->input->post(NULL, TRUE)) {
+
+            $my_errors = array();
+
+            $errors = array_merge($errors, $my_errors);
+        }
+
+        // No errors? Submit to CODB:
+        if (count($errors) == "0") {
+            // Assemble the data we want to submit:
+            if (isset($attributes['logdelete'])) {
+                if ($attributes['logdelete'] == '1') {
+                    $logdelete = time();
+                }
+                else {
+                    $logdelete = '0';
+                }
+            }
+            else {
+                $logdelete = '0';
+            }
+
+            if (isset($attributes['ImapSyncField'])) {
+                if ($attributes['ImapSyncField'] == "1") {
+                    $CODBout = array(
+                                'source' => $attributes['source'],
+                                'target' => $attributes['target'],
+                                'sourceAuth' => $attributes['sourceAuth'],
+                                'targetAuth' => $attributes['targetAuth'],
+                                'sourceUsername' => $attributes['sourceUsername'],
+                                'targetUsername' => $attributes['targetUsername'],
+                                'sourcePass' => $attributes['sourcePass'],
+                                'targetPass' => $attributes['targetPass'],
+                                'sourceProto' => $attributes['sourceProto'],
+                                'targetProto' => $attributes['targetProto'],
+                                'dosync' => time(),
+                                );
+                }
+                else {
+                    $CODBout = array('dosync' => '0', 'logdelete' => $logdelete);
+                }
+            }
+            else {
+                $CODBout = array('dosync' => '0', 'logdelete' => $logdelete);
+            }
+
+            // Actual submit to CODB:
+            $cceClient->set($prams['CCE_OID'], "ImapSync", $CODBout);
+            $errors = array_merge($errors, $cceClient->errors());
+        }
+    }
+}
+
+/*
+Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2008 Brian Smith, NuOnce Networks, Inc.
+All Rights Reserved.
+
+1. Redistributions of source code must retain the above copyright 
+   notice, this list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright 
+   notice, this list of conditions and the following disclaimer in 
+   the documentation and/or other materials provided with the 
+   distribution.
+
+3. Neither the name of the copyright holder nor the names of its 
+   contributors may be used to endorse or promote products derived 
+   from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
+COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+POSSIBILITY OF SUCH DAMAGE.
+
+You acknowledge that this software is not designed or intended for 
+use in the design, construction, operation or maintenance of any 
+nuclear facility.
+
+*/
+?>

@@ -1,0 +1,75 @@
+#!/usr/bin/perl -w -I/usr/sausalito/perl -I.
+# $Id: regen_httpd_locales 259 2004-01-03 06:28:40Z shibuya $
+# Sets locale auto-negotiation order
+#
+# Depends on:
+#		System.LanguagePriority
+
+my $confdir = '/etc/httpd/conf';
+my $admconfdir = '/etc/admserv/conf';
+
+use Sauce::Config;
+use FileHandle;
+use File::Copy;
+use CCE;
+
+my $cce = new CCE('Domain' => 'base-apache');
+$cce->connectfd();
+
+my ($oid) = $cce->find("System");
+my ($ok, $obj) = $cce->get($oid);
+
+my $locale = $obj->{productLanguage};
+my $other_locales = $obj->{locales}; 
+$other_locales =~ s/\&/ /g;
+$other_locales =~ s/ $locale / /;
+
+umask(0077);
+
+# httpd public web server 
+$ok = Sauce::Util::editfile("$confdir/srm.conf", *language_edit, $locale,
+                        $other_locales);
+                        
+if (!$ok) {
+	$cce->bye("FAIL", 'editFileFailed', { 'file' => "$confdir/srm.conf" });
+    exit(1);
+}
+
+$ok = Sauce::Util::chmodfile(0644, "$confdir/srm.conf");
+
+if (!$ok) {
+	$cce->bye("FAIL", 'chmodFailed');
+    exit(1);
+}
+
+# administrative web server
+$ok = Sauce::Util::editfile("$admconfdir/srm.conf", *language_edit, $locale,
+                        $other_locales);
+
+if (!$ok) {
+	$cce->bye("FAIL", 'editFileFailed', { 'file' => "$admconfdir/srm.conf" });
+    exit(1);
+}
+
+$ok = Sauce::Util::chmodfile(0644, "$admconfdir/srm.conf");
+
+if (!$ok) {
+	$cce->bye("FAIL", 'chmodFailed');
+    exit(1);
+}
+
+$cce->bye("SUCCESS");
+exit(0);
+
+sub language_edit
+{
+	my ($fin, $fout, $locale, $other_locales) = @_;
+	my $l;
+	while ($l = <$fin>) 
+    {
+		$l =~ s/^LanguagePriority\s+\w+.*$/LanguagePriority $locale$other_locales/;
+		print $fout $l;
+	}
+
+    return 1;
+}

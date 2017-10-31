@@ -1,0 +1,119 @@
+BLOCK_1
+a
+(a)
+( a )
+
+BLOCK_2
+a and b
+(a and b)
+
+BLOCK_3
+a or b
+(a or b)
+
+BLOCK_4
+a,b,c
+a, b, (c and d)
+
+BLOCK_5
+a and b and c
+(a and b) and c
+a and (b and c)
+
+BLOCK_6
+a or b or c
+(a or b) or c
+a or (b or c)
+
+BLOCK_7
+a and b or c
+(a and b) or c
+a and (b or c)
+
+BLOCK_8
+a or b and c
+(a or b) and c
+a or (b and c)
+
+BLOCK_9
+a and b and (c or (d and e))
+a and (b and (c or d) and e)
+(a and (b and c) or d) and e
+
+BLOCK_10
+!a
+not a
+! a
+(!a)
+!(a)
+not (a)
+! (a)
+! ( a )
+( ! a )
+
+BLOCK_11
+!a and !b
+(!a and !b)
+!(a and b)
+
+BLOCK_12
+!a or !b
+(!a or !b)
+!(a or b)
+
+BLOCK_13
+!a,!b,!c
+!a, !b, (!c and !d)
+!(a, b, (c and d))
+!a, !b, !(c and d)
+
+BLOCK_14
+!a and !b and !c
+(!a and !b) and !c
+!(a and b) and !c
+!a and (!b and !c)
+!a and !(b and c)
+
+BLOCK_15
+!a or !b or !c
+(!a or !b) or !c
+!(a or b) or !c
+!a or (!b or !c)
+!a or !(b or c)
+
+BLOCK_16
+!a and !b or !c
+(!a and !b) or !c
+!(a and b) or !c
+!a and (!b or !c)
+!a and !(b or c)
+
+BLOCK_17
+!a or !b and !c
+(!a or !b) and !c
+!(a or b) and !c
+!a or (!b and !c)
+!a or !(b and c)
+
+BLOCK_18
+!a and !b and (!c or (!d and !e))
+!a and !b and !(c or (!d and !e))
+!a and !b and !(c or !(d and e))
+!a and !(b and !(c or d) and !e)
+(!a and (!b and !c) or !d) and !e
+!(a and !(b and c) or !d) and !e
+
+BLOCK_19
+a(b)
+a(b)
+a(b,c)
+a(b, c)
+a( b , c )
+a(b,c,d,e,f,g)
+
+BLOCK_20
+a(b) and c(d)
+a(b) and c(d) or e(f)
+a(b) and (c(d) or e(f))
+!a(b) and (!c(d) or !e(f))
+!a(b) and !(c(d) or e(f))

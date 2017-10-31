@@ -1,0 +1,30 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "emailSubject"
+msgstr "システムの状態に関するお知らせ"
+
+msgid "emailBody"
+msgstr "ご使用のサーバアプライアンスの動作状態に変化が生じました。\n詳しくは、「サーバ管理」画面の「アクティブモニタ」セクションをご覧ください。\n\n状態変化の概要："
+
+msgid "defGreenMsg"
+msgstr "正常に動作中です。"
+
+msgid "defYellowMsg"
+msgstr "問題があります。"
+
+msgid "defRedMsg"
+msgstr "深刻な問題があります。"
+
+msgid "defUnknownMsg"
+msgstr "状態は不明です。"
+
+msgid "cceDown"
+msgstr "CCE (Cobalt Configuration Engine) が動作していないため、アクティブモニタは動作できません。LCD パネルの電源ボタンを使ってサーバを再起動してみてください。それでもアクティブモニタが動作しない場合には、[[base-sauce-basic.techSupportURL]] にあるテクニカルサポートサービスをご利用ください。"

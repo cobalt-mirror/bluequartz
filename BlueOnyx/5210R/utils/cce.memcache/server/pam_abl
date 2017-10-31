@@ -1,0 +1,62 @@
+#!/bin/sh
+# $Id: pam_abl Thu 24 Sep 2015 13:19:34 AM COT mstauber $
+# Copyright 2015 Team BlueOnyx. All rights reserved.
+#
+# pam_abl       This shell script doesn't start or stop any service.
+#               Instead it resets the pam_abl host and user database
+#		This removes all temporary pam_abl blocks and the 
+#		failed login event history from the pam_abl databases.
+#
+# chkconfig: 2345 05 05
+# description: pam_abl is a PAM module to block hosts and accounts with failed login activity.
+# processname: pam_abl
+# config: 
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+[ -f /etc/security/pam_abl.conf ] || exit 0
+
+RETVAL=0
+
+# See how we were called.
+case "$1" in
+  start)
+	# Clearing pam_abl databases
+	echo -n "Clearing pam_abl databases: "
+	rm -f /var/lib/pam_abl/*
+	RETVAL=$?
+	[ $RETVAL -eq 0 ] && success || failure
+	echo
+	;;
+  stop)
+	# Clearing pam_abl databases
+	echo -n "Clearing pam_abl databases: "
+	rm -f /var/lib/pam_abl/*
+	RETVAL=$?
+        [ $RETVAL -eq 0 ] && success || failure
+        echo
+	;;
+  status)
+	/usr/bin/pam_abl -v
+	RETVAL=$?
+	;;
+  purge)
+        # Clearing pam_abl databases
+        echo -n "Clearing pam_abl databases: "
+	rm /var/lib/pam_abl/*
+	RETVAL=$?
+        [ $RETVAL -eq 0 ] && success || failure
+        echo
+	;;
+  restart)
+	$0 stop
+	$0 start
+	RETVAL=$?
+	;;
+  *)
+	echo "Usage: pam_abl {start|stop|status|purge}"
+	exit 1
+esac
+
+exit $RETVAL

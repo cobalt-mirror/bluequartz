@@ -1,0 +1,65 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Meaulnes Legler <blue@waveweb.ch>\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "desktop_control"
+msgstr "[[base-apache.amAdmservNameTag]]"
+
+msgid "description"
+msgstr "Cliquez ici pour vous rendre à l'interface d'administration «&nbsp;[[base-apache.amAdmservNameTag]]&nbsp;» pour gérer le fonctionnement du serveur."
+
+# UI menu
+
+msgid "desktop_control_settings"
+msgstr "Options [[base-backupcontrol.desktop_control]]"
+
+msgid "lock_desktop"
+msgstr "Verrouiller [[base-backupcontrol.desktop_control]]"
+
+msgid "lock_desktop_help"
+msgstr "Rendre l'interface d'administration [[base-backupcontrol.desktop_control]] inaltérable (en lecture seule)."
+
+msgid "lock_desktop_failed"
+msgstr "Impossible de modifier [[base-backupcontrol.desktop_control]]"
+
+msgid "lock_failed"
+msgstr "Le verrouillage de [[base-backupcontrol.desktop_control]] a échoué."
+
+msgid "unlock_failed"
+msgstr "Le déverrouillage de [[base-backupcontrol.desktop_control]] a échoué."
+
+msgid "locked"
+msgstr "Le [[base-backupcontrol.desktop_control]] a été verrouillé par un administrateur du serveur."
+
+msgid "cap_serverServerDesktop"
+msgstr "Paramètres [[base-backupcontrol.desktop_control]]"
+
+####
+
+msgid "GUIaccessType"
+msgstr "Protocoles d'accès GUI"
+
+msgid "GUIaccessType_help"
+msgstr "Ce qui définit les protocoles sont autorisés à accéder à l'interface graphique. Si vous voulez permettre à la fois accès HTTP et HTTPS, puis réglez-le sur '[[base-backupcontrol.BOTH]]'. Pour permettre l'accès HTTPS uniquement, réglez-le sur '[[base-backupcontrol.HTTPS]]'. Ou vous pouvez le configurer pour '[[base-backupcontrol.HTTP]]' que seulement permis protocole, qui est une mauvaise idée. Recommandé: '[[base-backupcontrol.HTTPS]]'. Par défaut: '[[base-backupcontrol.BOTH]]'"
+
+msgid "GUIredirects"
+msgstr "Redirection vers le serveur-Nom"
+
+msgid "GUIredirects_help"
+msgstr "Le serveur web Apache que l'interface graphique fonctionne sur (admserv) dispose d'un certificat SSL séparée. Si quelqu'un accède à l'interface graphique par HTTPS via le nom de domaine d'un site virtuel (exemple: https://www.site.com:81/login), le navigateur affiche un avertissement indiquant que le certificat SSL du serveur ne correspond pas au nom de domaine . Pour éviter cela, vous pouvez cocher cette case et tout HTTPS accède à l'interface utilisateur sera redirigé vers le nom de domaine complet du serveur. S'IL VOUS PLAÎT NOTE: Utiliser seulement ceci si les serveurs entièrement qualifié nom de domaine a un enregistrement DNS valide, ou l'interface graphique peut devenir inaccessible."
+
+msgid "BOTH"
+msgstr "HTTP et HTTPS"
+
+msgid "HTTP"
+msgstr "HTTP uniquement"
+
+msgid "HTTPS"
+msgstr "HTTPS uniquement"
+

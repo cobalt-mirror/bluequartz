@@ -1,0 +1,10 @@
+<item 
+    id="swupdate_shopMenu" 
+    label="[[base-shop.swupdate_shopLabel]]"
+    description="[[base-shop.swupdate_shopLabelDesc]]"
+    icon="shopping_cart"
+>
+    <parent id="base_software" order="1">
+        <access require="managePackage"/>
+    </parent>
+</item>

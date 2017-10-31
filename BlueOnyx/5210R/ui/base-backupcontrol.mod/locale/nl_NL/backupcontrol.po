@@ -1,0 +1,63 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "desktop_control"
+msgstr "Server Desktop"
+
+msgid "description"
+msgstr "Klik hier om de Server Desktop modus te controleren."
+
+msgid "desktop_control_settings"
+msgstr "[[base-backupcontrol.desktop_control]] Controle"
+
+msgid "lock_desktop"
+msgstr "Lock Server Desktop"
+
+msgid "lock_desktop_help"
+msgstr "Deze optie geeft de mogelijkheid om de administratieve gebruikersinterface (Server Desktop) alleen-lezen."
+
+msgid "lock_desktop_failed"
+msgstr "Mislukt om de toestand van de [[base-backupcontrol.desktop_control]] wijzigen"
+
+msgid "lock_failed"
+msgstr "De [[base-backupcontrol.desktop_control]] vergrendeling mislukt."
+
+msgid "unlock_failed"
+msgstr "Ontsluiting van het [[base-backupcontrol.desktop_control]] mislukt."
+
+msgid "locked"
+msgstr "De Server Desktop werd opgesloten door een serverbeheerder."
+
+msgid "cap_serverServerDesktop"
+msgstr "Server Desktop Settings"
+
+###
+
+msgid "GUIaccessType"
+msgstr "GUI toegang protocollen"
+
+msgid "GUIaccessType_help"
+msgstr "Dit bepaalt welke protocollen worden toegestaan ​​om toegang tot de GUI. Als u wilt zowel HTTP- en HTTPS-toegang mogelijk te maken, zet het dan op '[[base-backupcontrol.BOTH]]'. Alleen HTTPS-toegang toe te staan, zet deze op '[[base-backupcontrol.HTTPS]]'. Of u kunt het configureren om '[[base-backupcontrol.HTTP]]' als alleen toegestaan ​​protocol, dat is een slecht idee. Aanbevolen: '[[base-backupcontrol.HTTPS]]'. Standaard: '[[base-backupcontrol.BOTH]]'"
+
+msgid "GUIredirects"
+msgstr "Omleiden naar Server-Naam"
+
+msgid "GUIredirects_help"
+msgstr "De Apache Webserver dat de GUI draait op (AdmServ) heeft een apart SSL certificaat. Als iemand toegang heeft tot de GUI van HTTPS via de domeinnaam van een virtuele website (voorbeeld: https://www.site.com:81/login), dan is de browser zal een waarschuwing laten zien dat het SSL-certificaat van de server komt niet overeen met de domeinnaam . Om dit te voorkomen kunt u het vakje en alle HTTPS toegangen tot de GUI zal worden doorgestuurd naar de volledig gekwalificeerde domeinnaam van de server. LET OP: gebruik deze alleen als de servers volledig gekwalificeerde domeinnaam heeft een geldige DNS-record, of de GUI zou onbereikbaar geworden."
+
+msgid "BOTH"
+msgstr "HTTP- en HTTPS"
+
+msgid "HTTP"
+msgstr "HTTP alleen"
+
+msgid "HTTPS"
+msgstr "HTTPS alleen"
+

@@ -1,0 +1,45 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "istat"
+msgstr "iStat"
+
+msgid "istat_help"
+msgstr "ISTAT Indstillinger kan ændres her."
+
+msgid "iStatSettings"
+msgstr "ISTAT Indstillinger"
+
+msgid "enableiStatField"
+msgstr "Aktiver Server"
+
+msgid "enableiStatField_help"
+msgstr "Drej iStat server til eller fra. iStat indsamler data, såsom CPU, hukommelse, netværk og diskforbrug og holder historien. iStat afsoner statistik til din iStat iPhone / iPad applikation."
+
+msgid "serverCodeField"
+msgstr "Server Code"
+
+msgid "serverCodeField_help"
+msgstr "Indtast adgangskoden der er fem cifre for tilslutning af denne server. Adgangskoden, du indtaster kan kun indeholde numeriske tegn."
+
+msgid "networkPortField"
+msgstr "Port Number"
+
+msgid "networkPortField_help"
+msgstr "Indtast det portnummer, som serveren vil blive brugt. Som standard er portnummeret er 5109."
+
+msgid "errorWritingConfFile"
+msgstr "Undlader at skrive konfigurationsfilen."
+
+msgid "cap_serveriStat"
+msgstr "ISTAT Indstillinger"
+
+msgid "NetworkPortInUse"
+msgstr "Havnen, du har angivet som ny port er allerede i brug af en anden tjeneste. Vælg venligst en anden port i stedet."

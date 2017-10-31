@@ -1,0 +1,52 @@
+/var/log/httpd/access_log {
+    daily
+    prerotate
+        rm -rf /tmp/.logrotate_apache_access >/dev/null 2>&1
+        cp /var/log/httpd/access_log /tmp/.logrotate_apache_access >/dev/null 2>&1
+    endscript
+    missingok
+    notifempty
+    sharedscripts
+    postrotate
+        /bin/kill -HUP `pidof httpd` 2> /dev/null ; /bin/kill -HUP `pidof httpd` 2> /dev/null || true
+        /usr/local/sbin/split_logs web < /tmp/.logrotate_apache_access 
+        rm -f /tmp/.logrotate_apache_access >/dev/null 2>&1
+        /usr/bin/webalizer.pl
+    endscript
+}
+
+/var/log/httpd/agent_log {
+    missingok
+    notifempty
+    sharedscripts
+    postrotate
+        /bin/kill -HUP `pidof httpd` 2> /dev/null ; /bin/kill -HUP `pidof httpd` 2> /dev/null || true
+    endscript
+}
+
+/var/log/httpd/error_log {
+    missingok
+    notifempty
+    sharedscripts
+    postrotate
+        /bin/kill -HUP `pidof httpd` 2> /dev/null ; /bin/kill -HUP `pidof httpd` 2> /dev/null || true
+    endscript
+}
+
+/var/log/httpd/referer_log {
+    missingok
+    notifempty
+    sharedscripts
+    postrotate
+        /bin/kill -HUP `pidof httpd` 2> /dev/null ; /bin/kill -HUP `pidof httpd` 2> /dev/null || true
+    endscript
+}
+
+/var/log/httpd/ssl_*_log {
+    missingok
+    notifempty
+    sharedscripts
+    postrotate
+        /bin/kill -HUP `pidof httpd` 2> /dev/null ; /bin/kill -HUP `pidof httpd` 2> /dev/null || true
+    endscript
+}

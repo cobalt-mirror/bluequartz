@@ -1,0 +1,73 @@
+#!/usr/bin/perl
+
+my $errors = 0;
+sub error {
+  $errors++;
+  print STDERR "ERROR $errors: @_\n";
+}
+sub fatal {
+  $errors++;
+  print STDERR "FATAL $errors: @_\n";
+  exit($errors);
+}
+
+use lib qw( /usr/sausalito/perl );
+use CCE;
+
+$CCE::DEBUG = 0;
+$cce = new CCE; 
+$cce->connectuds();
+
+my ($sysoid) = $cce->find("System");
+my ($ok, $sysobj) = $cce->get($sysoid, "Network");
+if (!$ok) { fatal("No system object"); }
+
+($ok) = $cce->set($sysoid,"Network",{ipForwarding => 0});
+if (!$ok) { error("set ipForwarding=0 failed"); }
+
+if (is_fwd_enabled()) {
+  error("fwd=0, but fwd was not turned off.");
+}
+
+
+($ok) = $cce->set($sysoid,"Network",{ipForwarding => 1});
+if (!$ok) { error("set fwd=1 failed"); }
+
+if (!is_fwd_enabled()) {
+  error("fwd=1, but fwd was not turned on.");
+}
+
+sub is_fwd_enabled
+{
+  use FileHandle;
+  $fh = new FileHandle("</proc/sys/net/ipv4/ip_forward") || die;
+  my ($t1) = <$fh>; chomp($t1);
+  $fh->close();
+  
+  $fh = new FileHandle("</etc/sysconfig/network") || die;
+  my $t2 = undef;
+  while (defined($_=<$fh>)) {
+    if (m/^\s*FORWARD_IPV4\s*=\s*(\S+)/) {
+      if (defined($t2)) { 
+      	error("FORWARD_IPV4 occurs more than once\n");
+      }
+      $t2 = $1;
+    }
+  }
+  $fh->close();
+  
+  if (($t2 ne "true") && ($t2 ne "false")) {
+    error("FORWARD_IPV4 set to invalid value \"$t2\"\n");
+  }
+  
+  if ( (($t1) && ($t2 eq "false")) 
+    || ((!$t1) && ($t2 eq "true")) ) {
+      error("/etc/sysconfig/network and /proc/../ip_forward dont match ($t1 $t2)");
+  }
+
+  print STDERR $t1 ? "ip_forwarding enabled\n" : "ip_forwaring disabled\n";  
+  return $t1;
+}
+
+print "$errors errors.\n";
+exit($errors);

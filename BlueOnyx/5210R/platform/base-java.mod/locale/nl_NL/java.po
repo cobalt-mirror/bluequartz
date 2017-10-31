@@ -1,0 +1,304 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "java"
+msgstr "Java"
+
+msgid "java_help"
+msgstr "Klik hier om Java Server configuratie en prestatie-instellingen te wijzigen."
+
+msgid "warName"
+msgstr "Web Archive (.war)"
+
+msgid "warNames"
+msgstr "Web Archive (.war) Lijst voor [[VAR.fqdn]]"
+
+msgid "warNames_menu"
+msgstr "Web Archive (.war) Lijst"
+
+msgid "warName_help"
+msgstr "De naam van het archief van de geïnstalleerde [[base-java.warName]]."
+
+msgid "enabledField"
+msgstr "Enable Server (Tomcat)"
+
+msgid "enabledField_help"
+msgstr "Inschakelen van een Java Virtual Machine."
+
+msgid "maxClientsField"
+msgstr "Maximale Gelijktijdige Sessies"
+
+msgid "maxClientsField_help"
+msgstr "Geef het maximaal aantal gelijktijdige Java applicatie verbindingen."
+
+msgid "maxClientsField_invalid"
+msgstr "Het maximum aantal Java Sessies is ongeldig. Vul een geheel getal binnen het opgegeven bereik."
+
+msgid "javaSettings"
+msgstr "Java-instellingen"
+
+msgid "javaApps"
+msgstr "Web Deployment"
+
+msgid "javaApps_help"
+msgstr "Laden en te beheren [[base-java.warNames_menu]]."
+
+msgid "warList"
+msgstr "[[base-java.warNames]]"
+
+msgid "warNameHeader"
+msgstr "Naam"
+
+msgid "warNameHeader_help"
+msgstr "Dit is de bestandsnaam van de geïnstalleerde [[base-java.warName]]."
+
+msgid "warListPathHeader"
+msgstr "Plaats"
+
+msgid "warListPathHeader_help"
+msgstr "Dit is de site web subdirectory waarin de [[base-java.warName]] is geïnstalleerd."
+
+msgid "warListActionHeader"
+msgstr "Actie"
+
+msgid "warListActionHeader_help"
+msgstr "Klik op het pictogram Verwijderen om het webarchief verwijderen door herhaaldelijk te verwijderen van de installatie directory."
+
+msgid "addWar"
+msgstr "Nieuwe Web Archive [[VAR.item]]"
+
+msgid "modWar"
+msgstr "Wijzig [[base-java.warName]] Instellingen voor [[VAR.item]]"
+
+msgid "locationFieldEnter"
+msgstr "Webarchiefbestand"
+
+msgid "locationFieldEnter_help"
+msgstr "Voer de locatie van waaruit de oorlog bestand. Verkrijgen. Geef een URL begint met http:// of ftp:// om het archief te downloaden vanaf een locatie op het internet, of voer het bestand locatie van een. War-bestand te uploaden. Klik op Bladeren om een ​​bestand op uw lokale harde schijf te kiezen. Als je oorlog archieven hebt gedownload. Naar de web root, zal een optie om een ​​van deze bestanden kiezen ook beschikbaar zijn."
+
+msgid "url"
+msgstr "URL"
+
+msgid "urlField"
+msgstr "URL"
+
+msgid "urlField_empty"
+msgstr "De URL ontbreekt. [[locationFieldEnter_help]]"
+
+msgid "urlField_rule"
+msgstr "Geef een URL begint met http:// of ftp:// om het pakket te downloaden vanaf een locatie op het internet."
+
+msgid "invalidUrl"
+msgstr "De opgegeven URL is ongeldig. [[base-java.urlField_rule]]"
+
+msgid "upload"
+msgstr "Uploaden"
+
+msgid "fileField"
+msgstr "Uploaden"
+
+msgid "fileField_empty"
+msgstr "Het Bestand uploaden ontbreekt. [[locationFieldEnter_help]]"
+
+msgid "loaded"
+msgstr "Loaded"
+
+msgid "targetName"
+msgstr "Installatie Locatie"
+
+msgid "targetName_help"
+msgstr "De inhoud van de [[base-java.warName]] worden uitgepakt naar deze map. De map wordt aangemaakt indien nodig."
+
+msgid "targetName_missing"
+msgstr "Een doelmap worden opgegeven. [[base-java.targetName_help]]"
+
+msgid "targetName_invalid"
+msgstr "De opgegeven [[base-java.targetName]] bevat ongeldige tekens. Verwijder alle uitgebreide tekens uit dit veld."
+
+msgid "targetField"
+msgstr "Installatie Locatie"
+
+msgid "targetField_empty"
+msgstr "Plaats van installatie ontbreekt. [[base-java.targetName_help]]"
+
+msgid "confirm_archive_removal"
+msgstr "Weet u zeker dat u de map [[VAR.path]] en de inhoud permanent wilt verwijderen?"
+
+msgid "amJavaNameTag"
+msgstr "JavaServer Pages (JSP) en Servlets"
+
+msgid "amJavaDetails"
+msgstr "[[base-java.amJavaNameTag]] Details"
+
+msgid "amStatusOK"
+msgstr "JavaServer Pages en Servlets zijn normaal."
+
+msgid "amNotRunning"
+msgstr "JavaServer Pages en Servlets lopen niet en kon niet worden hervat. In de [[base-apache.amAdmservNameTag]], probeer dan de JavaServer Pages en Servlets dienst uit en weer om te zien of dit corrigeert het probleem. Als de JavaServer Pages en Servlets service is nog steeds niet in staat om te beginnen, probeer dan het rebooten van de server zelf door te klikken op de [[base-power.reboot]] knop in het menu onder [[base-power.power]] [[base-alpine.serverconfig]]. Als de JavaServer Pages en Servlets service is nog steeds niet in staat om te beginnen, zie [[base-sauce-basic.techSupportURL]] voor technische ondersteuning."
+
+msgid "javaName"
+msgstr "JavaServer Pages (JSP) en Servlets"
+
+msgid "enableJava"
+msgstr "Enable JSP en Servlets"
+
+msgid "enableJava_help"
+msgstr "Staat stellen het gebruik van JavaServer Pages (JSP) en Servlets toestaan."
+
+msgid "installStatus"
+msgstr "Installeer Status voor [[VAR.fileName]]"
+
+msgid "statusField"
+msgstr "Status Message"
+
+msgid "statusField_help"
+msgstr "Dit veld toont de huidige status van de [[base-java.warName]] wordt geïnstalleerd."
+
+msgid "progressField"
+msgstr "Vooruitgang"
+
+msgid "progressField_help"
+msgstr "Dit is de voortgang van de installatie."
+
+msgid "dlPercent"
+msgstr "Bestand downloaden [[VAR.file]]: [[VAR.percent]]% klaar"
+
+msgid "initializing"
+msgstr "Initialiseren ..."
+
+msgid "downloading"
+msgstr "Het downloaden [[base-java.warName]] ..."
+
+msgid "installing"
+msgstr "[[base-java.warName]] Installeren ..."
+
+msgid "fail"
+msgstr "Mislukt"
+
+msgid "success"
+msgstr "Succes"
+
+msgid "notInstalled"
+msgstr "De software [[base-java.warName]] niet geïnstalleerd."
+
+msgid "cannotDownloadUrl"
+msgstr "Sorry, de [[base-java.warName]] bestand kan niet worden gedownload van de opgegeven URL. Controleer de URL en probeer het opnieuw. [[base-java.notInstalled]]"
+
+msgid "badFileName"
+msgstr "Sorry, de bestandsnaam van het [[base-java.warName]] bestand is ongeldig. Controleer de naam en probeer het opnieuw. [[base-java.notInstalled]]"
+
+msgid "verifyingPackage"
+msgstr "Verifiëren [[base-java.warName]] ..."
+
+msgid "badPackage"
+msgstr "De [[base-java.warName]] dossier onvolledig. De packing_list is ongeldig of ontbreekt. [[base-swupdate.notInstalled]]"
+
+msgid "hostNotFound"
+msgstr "De in de URL ontvangende kon niet worden gecontacteerd. [[base-swupdate.notInstalled]]"
+
+msgid "fileNotFound"
+msgstr "De [[base-java.warName]] [[VAR.file]] is niet gevonden op de opgegeven locatie."
+
+msgid "hostRefused"
+msgstr "De in de URL voor [[VAR.file]] gastheer weigerde de verbinding."
+
+msgid "downloadFailure"
+msgstr "De [[base-java.warName]] niet gewoon downloaden. Dit kan gebeuren omdat de server waar het archief zich bevindt ondervindt problemen of omdat je onvoldoende rechten om te schrijven naar deze site."
+
+msgid "noLocation"
+msgstr "Geen plaats gespecifieerd te [[base-java.warName]] krijgen."
+
+msgid "errorWGET"
+msgstr "Er is een fout opgetreden tijdens het wget lopen."
+
+msgid "unknownFileFormat"
+msgstr "Het geüploade bestand is geen ondersteund formaat of is beschadigd."
+
+msgid "notToUserHome"
+msgstr "De oorlog kan niet worden geïnstalleerd in de home directory van de gebruiker."
+
+msgid "loadingWar"
+msgstr "De [[base-java.warName]] wordt geladen. Een ogenblik geduld."
+
+msgid "connectionRefused"
+msgstr "De download poging werd geweigerd door de server op afstand."
+
+msgid "installFailure"
+msgstr "De [[base-java.warName]] installatie is mislukt."
+
+msgid "couldNotCreateTarget"
+msgstr "De installatie doelmap kan niet worden gemaakt omdat u niet voldoende machtigingen."
+
+msgid "jarFailure"
+msgstr "De [[base-java.warName]] extractie mislukt. Het archief is beschadigd."
+
+msgid "installedWar"
+msgstr "De [[base-java.warName]] is met succes geïnstalleerd."
+
+msgid "javaNotEnabled"
+msgstr "Ondersteuning voor JSP en Servlets is momenteel niet ingeschakeld. Zorg dat u de systeembeheerder in staat JSP en Servlets ondersteuning in Web Instellingen voordat u Web Archive (.war)-bestanden in te zetten."
+
+msgid "TomcatAdminInterface"
+msgstr "Tomcat Admin Interface"
+
+msgid "TomcatManagerInterface"
+msgstr "Tomcat Manager Interface"
+
+msgid "TomcatHostManagerInterface"
+msgstr "Tomcat Host Interface Manager"
+
+msgid "TomcatManagerStatus"
+msgstr "Tomcat Manager Status"
+
+msgid "TomcatManager"
+msgstr "Kater"
+
+msgid "TomcatManager_desc"
+msgstr "Het beheren van de instellingen van uw Tomcat server."
+
+msgid "TomcatManager_help"
+msgstr "[[base-java.TomcatManager_desc]]"
+
+msgid "TomcatAdminPassHeader"
+msgstr "Tomcat Admin Password"
+
+msgid "AdminPassInformation"
+msgstr "Stel het wachtwoord voor Tomcat admin account:"
+
+msgid "TomcatAdminPassField"
+msgstr "Wachtwoord:"
+
+msgid "TomcatAdminPassField_help"
+msgstr "Te loggen op de backend van Tomcat dient u ingelogd als gebruiker 'admin' met het wachtwoord hier opgegeven. Dit wachtwoord kan (en mag!) Afwijken van de server wachtwoord."
+
+msgid "TomcatStausBox_header"
+msgstr "Let op: Tomcat is gestopt"
+
+msgid "TomCatStatusBox_info"
+msgstr "Zolang Tomcat wordt gestopt, zal u niet in staat om te klikken op een van de bestuurlijke knoppen in het menu hieronder te zijn. Tomcat zal automatisch starten zodra ten minste een virtuele site heeft de dienst JSP ingeschakeld."
+
+###
+
+msgid "urlField_help"
+msgstr "Geef een URL begint met http:// of ftp:// om het bestand op het internet te downloaden vanaf een locatie."
+
+msgid "fileField_help"
+msgstr "Upload een bestand van uw lokale computer."
+
+msgid "loaded_help"
+msgstr "Installeer een bestand dat momenteel in de /web directory van uw virtuele terrein."
+
+msgid "removeConfirmQuestion"
+msgstr "Weet je zeker dat je dit item wilt wissen?"
+
+msgid "userRemoveConfirmInfo"
+msgstr "Bevestig dat u dit item wilt verwijderen. Dit kan niet ongedaan worden gemaakt."
+
+

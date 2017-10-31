@@ -1,0 +1,12 @@
+<class
+    name="Capabilities" namespace="serverServerDesktop" version="1.0"
+>
+    <property
+	name="capable" type="boolean" default="1"
+	readacl="ruleCapable(serverServerDesktop)"
+    />
+    <property
+	name="nameTag" type="scalar" default="[[base-backupcontrol.cap_serverServerDesktop]]"
+    />
+</class>
+

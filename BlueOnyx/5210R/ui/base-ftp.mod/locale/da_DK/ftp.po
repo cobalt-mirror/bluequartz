@@ -1,0 +1,312 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "AnonFtp_maxConnections_empty"
+msgstr "[[base-ftp.ftpusers_empty]]"
+
+msgid "AnonFtp_maxConnections_invalid"
+msgstr "[[base-ftp.ftpusers_invalid]]"
+
+msgid "AnonFtp_quota_empty"
+msgstr "[[base-ftp.ftpquota_empty]]"
+
+msgid "AnonFtp_quota_invalid"
+msgstr ""
+"Beklager, men værdien indtastet for [[base-ftp.ftpQuota]] er enten ikke et "
+"tal eller også er det mindre end en.  Indtast venligst et positivt tal."
+
+msgid "advanced"
+msgstr "Avanceret"
+
+msgid "advanced_help"
+msgstr "Parametre for FTP serveren kan administreres her."
+
+msgid "amDetailsTitle"
+msgstr "File Transfer Protocol (FTP) serverdetaljer"
+
+msgid "amFTPNameTag"
+msgstr "File Transfer Protocol (FTP) server"
+
+msgid "amNotResponding"
+msgstr ""
+"FTP serveren kører ikke og kunne ikke genstartes. I menuen [[base-"
+"apache.amAdmservNameTag]], kan du prøve at slå serveren fra og til for at se "
+"om dette retter problemet. Hvis FTP serveren stadig ikke vil starte, prøv "
+"da at genstarte selve serveren ved at klikke på knappen [[base-"
+"power.reboot]] i menuen [[base-power.power]] under [[base-"
+"alpine.serverconfig]]. Hvis FTP serveren stadig ikke vil starte, se da "
+"[[base-sauce-basic.techSupportURL]] for teknisk support."
+
+msgid "amStatusOK"
+msgstr "FTP serveren kører som den skal."
+
+msgid "anonEnable"
+msgstr "Aktiver"
+
+msgid "anonFtp"
+msgstr "Anonym FTP"
+
+msgid "anonFtp_help"
+msgstr "Aktiver anonym FTP for dette websted."
+
+msgid "anonServiceQuota"
+msgstr "Anonym FTP"
+
+msgid "anonymousFtpInUse"
+msgstr ""
+"Anonym FTP kunne ikke aktiveres, fordi et andet site med den samme IP "
+"adresse, [[VAR.ipaddr]], allerede bruger anonym FTP."
+
+msgid "badUser"
+msgstr ""
+"Hvis serverens konfigurationsfiler er flyttet eller redigeret manuelt, "
+"gendan dem da venligst fra de oprindelige versioner og prøv igen."
+
+msgid "base-ftp.amBadResponse"
+msgstr "FTP serveren gav et ugyldigt svar."
+
+msgid "basic"
+msgstr "Basal"
+
+msgid "basic_help"
+msgstr "FTP serveren kan aktiveres og deaktiveres her."
+
+msgid "cantConfigFile"
+msgstr ""
+"Beklager, men en fejl opstod i forbindelse med forsøg på at ændre FTP "
+"konfigurationsfilerne. [[base-ftp.badUser]]"
+
+msgid "cantDetermineHomeDir"
+msgstr "Kan ikke fastslå hjemmemappen for webstedet med navnet [[VAR.site]]."
+
+msgid "cantReadAnonFtp"
+msgstr "Kunne ikke læse webstedets anonyme FTP-indstillinger."
+
+msgid "cantSuspendFtp"
+msgstr ""
+"Webstedet kunne ikke suspenderes fordi FTP-adgang for webstedet ikke kunne "
+"deaktiveres."
+
+msgid "cantSuspendFtpSite"
+msgstr ""
+"Det virtuelle websted kunne ikke suspenderes fordi FTP for sitet ikke kunne "
+"deaktiveres."
+
+msgid "cantUnsuspendFtp"
+msgstr ""
+"Webstedet kunne ikke afsuspenderes, fordi FTP adgangs ikke kunne genoprettes "
+"for dette websted."
+
+msgid "cantUnsuspendFtpSite"
+msgstr ""
+"Det virtuelle websted kunne ikke afsuspenderes fordi FTP adgang for "
+"webstedet ikke kunne genoprettes."
+
+msgid "cantUpdateFtpSite"
+msgstr "Anonyme FTP-indstillinger kunne ikke opdateres."
+
+msgid "connectRateField"
+msgstr "Maksimal forbindelsesrate"
+
+msgid "connectRateField_help"
+msgstr ""
+"Indtast det maksimale antal tilladte forbindelser per minut.  Nye "
+"forbindelser vil blive nægtet hvis forbindelsesraten har nået denne grænse. "
+
+msgid "connectRateField_rule"
+msgstr ""
+"Indtast venligst et tal inden for den specificerede mængde.  Standardværdien "
+"er 80."
+
+msgid "couldNotClearFtpQuotaMon"
+msgstr "[[base-ftp.couldNotSetFtpQuotaMon]]"
+
+msgid "couldNotSetFtpQuotaMon"
+msgstr "Kvoteovervågning for anonym FTP kunne ikke konfigureres korrekt. "
+
+msgid "couldNotUpdateFtpQuotaMon"
+msgstr "[[base-ftp.couldNotSetFtpQuotaMon]]"
+
+msgid "createFtpSiteFailed"
+msgstr "Kunne ikke oprette FTP-serverkonfigurationen for [[VAR.ipaddr]]."
+
+msgid "enableServerField"
+msgstr "Aktiver server"
+
+msgid "enableServerField_help"
+msgstr ""
+"Slå File Transfer Protocol (FTP) tjenesten til eller fra.Anonym FTP adgang "
+"for et specifikt websted kan konfigureres ved at gå til [[base-ftp.anonFtp]] "
+"i menuen [[base-vsite.services]] under [[base-alpine.sitemanage]] for det "
+"pågældende websted."
+
+msgid "ftp"
+msgstr "FTP"
+
+msgid "ftpFullText"
+msgstr "Aktiver [[base-ftp.anonFtp]]"
+
+msgid "ftpFullText_help"
+msgstr "Sæt hak her for at aktivere den anonyme FTP tjeneste for dette websted."
+
+msgid "ftpQuota"
+msgstr "Maksimalt tilladt [[base-ftp.uploadDiskSpace]] (MB)"
+
+msgid "ftpQuota_help"
+msgstr "Grænseværdi i megabyte (MB) for anonyme FTP-uploads."
+
+msgid "ftpSettings"
+msgstr "Indstillinger for File Transfer Protocol (FTP)"
+
+msgid "ftpTabName"
+msgstr "[[base-ftp.anonFtp]]"
+
+msgid "ftpTabName_help"
+msgstr "Rediger indstillinger for anonym FTP."
+
+msgid "ftpUsers"
+msgstr "Maksimalt antal samtidige forbindelser"
+
+msgid "ftpUsers_help"
+msgstr ""
+"Det maksimale antal anonyme FTP forbindelser som kan være forbundet til "
+"serveren på en gang."
+
+msgid "ftp_help"
+msgstr "Klik her for at ændre [[base-ftp.ftpSettings]]."
+
+msgid "ftpquota_empty"
+msgstr "Beklager, men du har ikke indtastet en værdi for [[base-ftp.ftpQuota]]."
+
+msgid "ftpquota_invalid"
+msgstr ""
+"Beklager, men den indtastede værdi for [[base-ftp.ftpQuota]] er enten ikke "
+"et tal eller ikke indenfor den mængde der er anført ved siden af feltet.  "
+"Indtast venligst et tal som er inden for den givne mængde."
+
+msgid "ftpusers_empty"
+msgstr ""
+"Beklager, men du har ikke indtastet en værdi for [[base-ftp.ftpUsers]].  "
+"Indtast venligst et tal som er større end eller lig med et."
+
+msgid "ftpusers_invalid"
+msgstr ""
+"Beklager, men den indtastede værdi for [[base-ftp.ftpUsers]] er enten ikke "
+"et tal, eller er mindre end et. Indtast venligst et tal som er større end "
+"eller lig med et."
+
+msgid "maxUserField"
+msgstr "Maksimalt antal samtidige brugere"
+
+msgid "maxUserField_help"
+msgstr ""
+"Indstil det maksimale antal samtidige brugere der kan være forbundet til FTP "
+"serveren på samme tid.  [[base-ftp.maxUserField_rule]]"
+
+msgid "maxUserField_rule"
+msgstr ""
+"Indtast venligst et tal inden for den specificerede mængde.  Standardværdien "
+"er 25."
+
+msgid "migrateAnonFtpFailed"
+msgstr ""
+"Det lykkedes ikke at migrere indstillinger for anonym FTP for dette websted."
+
+msgid "migrateAnonFtpImpossible"
+msgstr ""
+"IP adressen kan ikke ændres til [[VAR.ipaddr]].  Anonym FTP for dette "
+"websted er aktiveret, men der er et andet websted med den specificerede IP "
+"adresse som ligeledes benytter anonym FTP.  Deaktivering af anonym FTP for "
+"et af disse websteder vil løse dette problem."
+
+msgid "modAnonFtp"
+msgstr "[[base-ftp.anonFtp]] indstillinger for [[VAR.fqdn]]"
+
+msgid "quotaExceedsSiteQuota"
+msgstr ""
+"[[base-ftp.quoteExceedsSorry]]  Indtast venligst en værdi der er mindre end "
+"eller lig med [[VAR.quota]] MB som skal bruges til den anonyme FTP-kvote."
+
+msgid "quotaExceedsSiteQuotaEnabled"
+msgstr ""
+"[[base-ftp.quotaExceedsSorry]]  Anonym FTP blev ikke aktiveret.  Anonym FTP "
+"kan aktiveres ved at redigere siteindstillingerne for dette websted."
+
+msgid "quoteExceedsSorry"
+msgstr ""
+"Beklager, men kvoten for anonym FTP er højere end kvoten for webstedet, "
+"[[VAR.quota]] MB."
+
+msgid "siteQuotaLessThanFtpQuota"
+msgstr ""
+"Den maksimalt tilladte diskplads er mindre end den maksimale tilladte "
+"diskplads for upload vis anonym FTP, som i øjeblikket er [[VAR.quota]] MB. "
+"  Deaktiver anonym FTP eller sænk værdien for den maksimalt tilladte plads "
+"til upload med anonym FTP, så den er mindre end eller lig med, den ønskede "
+"maksimalt tilladte diskplads for webstedet."
+
+msgid "unsuspendAnonFtpInUse"
+msgstr ""
+"Det websted som er afsuspenderet brugte anonym FTP da det blev suspenderet, "
+"men et andet websted med samme IP bruger nu anonym FTP.  Anonym FTP for "
+"dette site er derfor deaktiveret."
+
+msgid "uploadDiskSpace"
+msgstr "Diskplads til upload"
+
+msgid "useReverseDNSField"
+msgstr "Værtsnavneopslag"
+
+msgid "useReverseDNSField_help"
+msgstr ""
+"Dette aktiverer værtsnavneopslag for FTP serveren. Dette medfører at "
+"serveren foretager et DNS opslag på klientens IP adresse, når denne "
+"forbinder til serveren, og logfører det i logfilerne. Uden denne funktion, "
+"vil kun klienternes IP adresser blive rapporteret i FTP serverens "
+"forbrugsrapport. ADVARSEL: Aktivering af denne funktion vil mindske "
+"serverens ydeevne."
+
+# Changes after adding functionality to disable FTP access for non-siteAdmins:
+
+msgid "ftpnonadmin"
+msgstr "Tillad bruger(e) at bruge FTP"
+
+msgid "ftpnonadmin_help"
+msgstr ""
+"Brugere som er siteadministratorer kan altid forbinde til serveren med FTP - "
+"i fald at FTP er slået til. Hvis du også vil tillade almindelige brugere at "
+"tilgå deres filer med FTP, så skal du sætte hak i dette afkrydsningsfelt."
+
+msgid "siteFtp"
+msgstr "FTP"
+
+msgid "siteFtp_help"
+msgstr "Administrér FTP-adgang til dette websted - inklusive anonym FTP-adgang."
+
+msgid "ChangeSiteFtp"
+msgstr "FTP-indstillinger for [[VAR.fqdn]]"
+
+msgid "cap_serverFTP"
+msgstr "FTP-indstillinger"
+
+# sftpd addition:
+
+msgid "enableServerFieldNew"
+msgstr "Aktiver FTP"
+
+msgid "enableServerFieldNew_help"
+msgstr "[[base-ftp.enableServerField_help]]"
+
+msgid "enableSFTPserverField"
+msgstr "Aktiver FTPS"
+
+msgid "enableSFTPserverField_help"
+msgstr "Drej FTPS (FTP med SSL/TLS) funktionen til eller fra. FTPS kører på port 990/TCP og tillader en sikker forbindelse til FTP-serveren. Det bør være den foretrukne metode til at forbinde til FTP. FTP klienter skal bruge 'udtrykkeligt FTP over TLS' at være i stand til at gøre brug af denne funktion."
+

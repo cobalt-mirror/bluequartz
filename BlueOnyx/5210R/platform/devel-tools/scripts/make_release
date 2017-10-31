@@ -1,0 +1,402 @@
+#!/usr/bin/perl -w
+
+
+# this script is called by the auto build and push script.
+
+use strict;
+use lib qw(/usr/sausalito/perl);
+use File::Copy;
+use FileHandle;
+use Devel;
+use Build;
+
+my $PRODUCT = "";
+my $BUILD_DIR = "/home/build";
+my $REMOTE_RPM_DIR = "";
+my $REMOTE_SRPM_DIR = "";
+my $LOCAL_RPM_DIR = "";
+my $LOCAL_SRPM_DIR = "";
+my $FORCE = 0;
+my $COMMIT = 0; # commit modules and copy rpm's
+my $DEBUG = 0;   # dry run with debugging statements
+my $XLOCALEPAT = ""; # locales to exclude when building locales (ie, ja)
+my $SAME_VERSION = 0;
+my $HELP = 0;
+my $QUIET;
+
+my %modules;
+my @modules_to_commit = ();
+my @modules_failed_build = ();
+
+use Getopt::Long;
+GetOptions( "force" => \$FORCE, 
+	"debug" => \$DEBUG,
+	"commit"   => \$COMMIT,
+	"exclude-locales=s" => \$XLOCALEPAT,
+	"build-dir=s" => \$BUILD_DIR,
+	"product=s" => \$PRODUCT,
+	"rpm-dir=s" => \$REMOTE_RPM_DIR,
+	"srpm-dir=s" => \$REMOTE_SRPM_DIR,
+	"rebuild" => \$SAME_VERSION,
+	"quiet"   => \$QUIET,
+	"help"    => \$HELP);
+
+if ($HELP || ($PRODUCT eq "")) {
+  print STDERR <<EOT ;
+You can specify these options:
+  --product=            <product name>
+  --build-dir=          <build directory> (defaults to "/home/build")
+  --exclude-locales=     <locales to exclude from build> (optional)
+  --cvs-tags=           <cvs tags for module commits>  (optional)
+  --rpm-dir=            <Remote directory to copy the built RPMs. Only used 
+                         with commit> (defaults to /fargo/<PRODUCT>)
+  --commit              (Will commit modules and copy RPMs to remote repository
+  --force               <force rebuilding of all modules>
+  --quiet               <only output on errors>
+  --debug               (Runs dry with debug statements)
+EOT
+  exit(1);
+}
+
+# Set RPM directories
+$LOCAL_RPM_DIR = "$BUILD_DIR/rpms";
+$LOCAL_SRPM_DIR = "$BUILD_DIR/srpms";
+if (!$REMOTE_RPM_DIR) {
+  $REMOTE_RPM_DIR = "/fargo/$PRODUCT";
+}
+if (!$REMOTE_SRPM_DIR) {
+  $REMOTE_SRPM_DIR = "/fargo/$PRODUCT";
+}
+
+# Set environment variables
+$ENV{RPM_DIR} = $REMOTE_RPM_DIR; 
+$ENV{SRPM_DIR} = $REMOTE_SRPM_DIR;
+$ENV{PRODUCT} = $PRODUCT;
+if ($XLOCALEPAT) {
+  $ENV{XLOCALEPAT} = $XLOCALEPAT;
+}
+
+# Print our options
+$QUIET || print STDERR "\nMAKE RELEASE\n\n";
+$QUIET || print STDERR "PRODUCT:            $PRODUCT\n";
+$QUIET || print STDERR "EXCLUDE LOCALES:    $XLOCALEPAT\n";
+$QUIET || print STDERR "BUILD DIR:          $BUILD_DIR\n";
+$QUIET || print STDERR "BUILT RPMs:         $LOCAL_RPM_DIR\n";
+$QUIET || print STDERR "WILL COPY TO:       $REMOTE_RPM_DIR\n";     
+
+if ($FORCE) {
+  $QUIET || print STDERR "Forcing the rebuilding of all modules.\n";
+}
+if ($COMMIT) {
+  $QUIET || print STDERR "Commit: Will check in modules and copy RPMs to $REMOTE_RPM_DIR.\n"
+}
+if ($DEBUG) {
+  $QUIET || print STDERR "Debugging mode: will output debugging statements.\n";
+}
+$QUIET || print STDERR "---------------------------------------------\n\n";
+
+
+# Get our list of modules
+$QUIET || print STDERR "*** Getting list of modules for $PRODUCT ***\n";
+%modules = get_Modules($PRODUCT, $BUILD_DIR);
+$QUIET || print STDERR "*** Installing latest devel-tools ***\n";
+install_Develtools($BUILD_DIR);
+
+# Make our RPM directory
+chdir($BUILD_DIR) || die "Can't use build dir $BUILD_DIR\n";
+if (!-d $LOCAL_RPM_DIR) {
+    mkdir($LOCAL_RPM_DIR, 0755)
+} 
+if (!-d $REMOTE_RPM_DIR) {
+    mkdir($REMOTE_RPM_DIR, 0755);
+}
+
+
+
+# a little sugar just, so I know how much is left to go since I'm using a hash
+my $num_modules = scalar(keys %modules);
+my $cur_module = 1;
+
+# build each module
+foreach my $module (keys %modules) {
+  $QUIET || print STDERR "\n*** processing $module $cur_module of $num_modules modules ***\n";
+  $cur_module++; 
+  my ($ok, $release, $tag) = build_rpms($module);
+  if ($ok) {
+    if ($release ne "NONE") {
+      $QUIET || print STDERR "\tSuccessfully built release $release of $module.\n";
+      push(@modules_to_commit, { 'name' => $module, 'release' => $release, 'tag' => $tag });
+    }
+  } else {
+    push(@modules_failed_build, $module);
+  }
+}
+
+# commit successful builds
+if ($COMMIT)
+{
+  $QUIET || print STDERR "Commiting successfully built modules.\n";
+  # hopefully, this doesn't hit the shell argument list length ceiling
+  my $long_string = join(' ', map({ $_->{name} } @modules_to_commit));
+  if (!cvs_cmd("commit -R -m \"automated build for $PRODUCT\" $long_string"))
+    {
+      print STDERR "COMMIT FAILED!\n";
+      exit -1;
+    }
+}
+
+# tag
+if ($COMMIT) {
+  $QUIET || print STDERR "Tagging successfully built modules.\n";
+  for my $module (@modules_to_commit)
+    {
+      my ($ok, $branch) = get_module_tag("$module->{name}");
+      my $ret =
+	cvs_cmd("tag -RF BUILD_$module->{release}_$branch $module->{name}");
+      $ret &= cvs_cmd("tag -RF $module->{tag} $module->{name}");
+      if (!$ret)
+        {
+	  $QUIET || print STDERR "TAGGING $module->{name} FAILED!";
+	  exit -1;
+        }
+    }
+}
+
+# copy all built rpm's to remote rpm directory
+if ($COMMIT) {
+  $QUIET || print STDERR "Copying built modules to $REMOTE_RPM_DIR.\n";
+  foreach my $module (keys %modules) {
+    if (! copy_rpms($module, "$REMOTE_RPM_DIR/$module")) {
+      print STDERR "Exit on rpm copy failure.\n";
+      exit -1;
+    }
+  }
+}
+
+# print out messages if there were problems with the build or install
+if(@modules_failed_build){
+	print STDERR "The following modules had build problems:\n";
+	for my $module (@modules_failed_build){
+		print STDERR "$module\n";
+	}
+}
+
+# exit if there was a problem
+if (@modules_failed_build) {
+  exit -1;
+}
+
+$QUIET || print STDERR "Normal Termination\n";
+exit 0;
+
+
+
+
+############################################################################
+
+sub smart_diff
+{
+    my ($tag, $module) = @_;
+
+    open(DIFF, "cvs diff -RN --brief -r $tag $module 2>&1|") 
+      || die "ERROR $module: Can't cvs diff $module with tag $tag: $!\n";
+    $DEBUG && open FOO, ">$module.diff";
+
+    while (<DIFF>)
+      {
+	$DEBUG && print FOO $_;
+	
+	# No tag, return 1
+	if (/no\ssuch\stag/) {
+	  return 1;
+	}
+	
+	# Gee, I hope cvs never gets i18ned
+	if (!/^Files ([^\s]+) and ([^\s]+) differ$/) { next; }
+	
+	my $last_rpm_version = $1;
+	my $most_recent_version = $2;
+
+	$DEBUG && print STDERR "most recent version file is $most_recent_version\n";
+
+	# as long as the most recent version is not /dev/null the file is
+	# actually one that was added or has changed, and is not just a removed file
+	if ($most_recent_version !~ /^\/dev\/null$/)
+	{
+	    close DIFF;
+	    $DEBUG && print STDERR "status from cvs diff is $?\n";
+	    $DEBUG && close FOO;
+	    return 1;
+	}
+    }
+
+    # if we get here, there are no real differences
+    close DIFF;
+    $DEBUG && print STDERR "status from cvs diff is $?\n";
+    $DEBUG && close FOO;
+    return 0;
+}
+######################################################
+#
+# Takes module 
+# 
+# Returns success, release number, and tag
+# ($ok, $release, $tag) 
+# Release is "NONE" if module is skipped
+
+sub build_rpms
+{
+  my $module = shift;
+  my $release = "unknown";
+  my $releaseString = "";
+  my $tag = "";
+
+  $QUIET || print STDERR "Building $module ...\n";
+  
+  # Get our branch tag of our module
+  my ($ok, $branch) = get_module_tag($module);
+  if (!$ok) {
+    print "Error getting branch tag of module $module!\n";
+    return 0;
+  }
+  $tag = "LAST_RPM_$branch";
+    
+  if (!$FORCE) {
+    my $diff_status =  smart_diff($tag, $module);
+    if ($diff_status) { 
+      $QUIET || print STDERR "\t$module has been updated since last build.\n"; 
+    }
+    # if packing_list is missing, always rebuild.)
+    if (!$diff_status && (-e "${module}/packing_list")) {
+      $QUIET || print STDERR "\t$module already up-to-date, skipping.\n";
+      return (1, "NONE");
+    } 
+  }
+
+  if (! -e "${module}/Makefile") {
+    $QUIET || print STDERR "\t$module has no Makefile, skipping.\n";
+    return (1, "NONE");
+  }
+  
+  # increment version numbers, wherever we may find them.
+  # don't increment with force
+  if ($COMMIT) {
+   $QUIET ||  print "Incrementing version numbers\n";
+    my $fh = new FileHandle("$module/Makefile");
+    if (defined($fh)) 
+      {
+        my $out = new FileHandle(">$module/Makefile~") || die;
+        while (defined($_ = <$fh>)) 
+	  {
+      	    if (m/^\s*RELEASE\s*=\s*(\d+)/) 
+	      {
+		$release = ($SAME_VERSION ? $1 : ($1 + 1));
+		$releaseString = "RELEASE=$release";
+		$_ =~ s/^\s*RELEASE\s*=\s*(\d+)/$releaseString/;
+	      }
+	    print $out $_;
+	  }
+        $out->close();
+        $fh->close();
+        unlink("$module/Makefile") 
+	  && link("$module/Makefile~", "$module/Makefile")
+            && unlink("$module/Makefile~");
+      }
+    
+    if ($release eq "unknown") {
+      print STDERR "ERROR $module: no version info in Makefile\n";
+      return 0;
+    }
+    make_cmd("-C $module update_version"); # ignore errors
+  }
+    
+  # make
+  make_cmd("-C $module rpm") || ( return 0 );
+     
+  # make certain that packing_list is in cvs:
+  # $COMMIT && system("cd $module ; cvs add $CVSTAG packing_list 2>&1 /dev/null");
+  
+  # copy rpm's into build directory
+  copy_rpms($module, "$LOCAL_RPM_DIR/$module");
+  return (1, $release, $tag);
+}
+
+
+# Takes a product, and a directory that has the products.prd
+# directory.
+sub get_Modules {
+  my ($PRODUCT, $DIR) = @_;
+  my %modules;
+
+  # Get our hash of modules
+  chdir($DIR) || die "Error on chdir $DIR\n";
+
+  if(-d "products.prd") {
+    if (!cvs_cmd("update -PAd products.prd")) {
+      die "Error on products.prd update.\n";
+    }
+  }else{
+    if (!cvs_cmd("co products.prd")) {
+      die "Error on products.prd.\n";
+    }
+  }
+  opendir PRODUCT, "products.prd/$PRODUCT/" ||
+    die "Can't open products.prd/$PRODUCT/, unable to access packing_list files\n";
+  foreach my $list (grep /^packing_list/o, readdir PRODUCT) {
+    $QUIET || print "Found $list\n";
+    open(PACKING_LIST, "products.prd/$PRODUCT/$list") || die "Can't open packing list $list\n";
+    # Go through packing_list and add modules to our hash
+    while(<PACKING_LIST>) {
+      if (m/^module: ([^:]+)(?::([^:]+)(?::(\S*))?)?/i) {
+	my $module = $1;
+	chomp $module;
+	$modules{$module} = 1;
+      }
+    }
+    close(PACKING_LIST);
+  }
+  closedir PRODUCT;
+
+  return %modules;
+}
+
+# copy rpm's from $module into $directory
+sub copy_rpms 
+{
+  my ($module, $directory) = @_;
+  my $retvalue = 1;
+  umask 022;
+ 
+  foreach my $rpm_dir ("rpms", "as_rpms") { 
+    
+    if (-d "$module/$rpm_dir") {
+      opendir RPMDIR, "$module/$rpm_dir";
+      
+      for my $rpm_file (grep /\.*\.rpm$/, readdir RPMDIR) {
+	$QUIET || print STDERR "Copying $rpm_file to $directory ... ";
+	if (-e "$directory/$rpm_file") {
+	  $QUIET || print "already exists.\n";
+	}
+	else {
+	  # make sure directory exists
+	  if (! -d "$directory") {
+	    mkdir("$directory");
+	  }
+	  if (copy("$module\/$rpm_dir\/$rpm_file", "$directory") && chmod(0644, "$directory\/$rpm_file")) {
+	    $QUIET || print STDERR "OK.\n";
+	  }
+	  else {
+	    print STDERR "\nFailed copying $rpm_file to $directory\n";
+	    $retvalue = 0;
+	  }
+	}
+      }
+      
+      closedir RPMDIR;
+    }
+  }
+  return $retvalue;
+}
+    
+    
+

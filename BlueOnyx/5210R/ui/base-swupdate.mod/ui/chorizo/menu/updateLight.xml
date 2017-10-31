@@ -1,0 +1,13 @@
+<item 
+    id="base_updateLight" 
+    label="[[base-swupdate.update]]" 
+    description="[[base-swupdate.update_help]]"
+    icon="alert"
+    icononly="TRUE" 
+    url="/swupdate/yum" 
+    type="updateOff"
+>
+    <parent id="root" order="800">
+        <access require="managePackage"/>
+    </parent>
+</item>

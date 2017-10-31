@@ -1,0 +1,12 @@
+<item 
+	id="base_mailmans" 
+	label="[[base-mailman.mailmans]]" 
+	description="[[base-mailman.mailmansHelp]]"
+	url="/mailman/mailmanList?group=[[VAR.group]]"
+	icon="mail"
+>
+	<parent id="base_sitemanage" order="40">
+        <access require="siteAdmin"/>
+    </parent>
+
+</item>

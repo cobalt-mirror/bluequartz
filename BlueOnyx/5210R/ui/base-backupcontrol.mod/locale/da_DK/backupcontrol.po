@@ -1,0 +1,69 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+# hmm, dette burde man kunne oversætte bedre
+msgid "description"
+msgstr "Klik her for at kontrollere Serverskrivebordets operationstilstand."
+
+msgid "desktop_control"
+msgstr "Serverskrivebord"
+
+msgid "desktop_control_settings"
+msgstr "[[base-backupcontrol.desktop_control]] Kontroller"
+
+msgid "lock_desktop"
+msgstr "Lås Serverskrivebord"
+
+msgid "lock_desktop_failed"
+msgstr ""
+"Fejl! Kunne ikke ændre status for [[base-backupcontrol.desktop_control]]."
+
+msgid "lock_desktop_help"
+msgstr ""
+"Denne indstilling giver mulighed for at skrivebeskytte [[base-"
+"backupcontrol.desktop_control]]et."
+
+msgid "lock_failed"
+msgstr "[[base-backupcontrol.desktop_control]]et kunne ikke skrivebeskyttes."
+
+msgid "locked"
+msgstr ""
+"[[base-backupcontrol.desktop_control]]et er gjort skrivebeskyttet af "
+"serveradministratoren."
+
+msgid "unlock_failed"
+msgstr "Det lykkedes ikke at låse [[base-backupcontrol.desktop_control]]et op."
+
+msgid "cap_serverServerDesktop"
+msgstr "Server Desktop-indstillinger"
+
+####
+
+msgid "GUIaccessType"
+msgstr "GUI access-protokoller"
+
+msgid "GUIaccessType_help"
+msgstr "Dette definerer hvilke protokoller får lov til at få adgang til GUI. Hvis du vil tillade både HTTP og HTTPS-adgang, så sæt den til '[[base-backupcontrol.BOTH]]'. Til kun at tillade HTTPS-adgang, indstille den til '[[base-backupcontrol.HTTPS]]'. Eller du kan konfigurere den til '[[base-backupcontrol.HTTP]]' som kun tilladt protokol, som er en dårlig idé. Anbefalet: '[[base-backupcontrol.HTTPS]]'. Standard: '[[base-backupcontrol.BOTH]]'"
+
+msgid "GUIredirects"
+msgstr "Omdirigere til server-navn"
+
+msgid "GUIredirects_help"
+msgstr "Apache Webserver at GUI kører på (AdmServ) har et separat SSL certifikat. Hvis nogen får adgang til GUI ved HTTPS via domænenavnet på en virtuel websted (eksempel: https://www.site.com:81/login), så browseren vil vise en advarsel om, at SSL-certifikat på serveren ikke svarer til domænenavnet . For at forhindre dette kan du tjekke dette felt og alle HTTPS adgange til GUI vil blive omdirigeret til det fuldt kvalificerede domænenavn på serveren. BEMÆRK: Brug kun dette, hvis serverne fuldt kvalificeret domænenavn har en gyldig DNS-post, eller GUI kan blive utilgængelig."
+
+msgid "BOTH"
+msgstr "HTTP og HTTPS"
+
+msgid "HTTP"
+msgstr "HTTP kun"
+
+msgid "HTTPS"
+msgstr "HTTPS kun"
+

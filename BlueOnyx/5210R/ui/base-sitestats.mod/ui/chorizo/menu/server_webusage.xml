@@ -1,0 +1,10 @@
+<item 
+    id="base_server_webusage" 
+    label="[[base-sitestats.webusage]]" 
+    description="[[base-sitestats.webusageDescription]]" 
+    url="/sitestats/summary?type=web&amp;group=server"
+>
+    <parent id="base_serverusage" order="20">
+        <access require="serverStatsServerWeb"/>
+    </parent>
+</item>

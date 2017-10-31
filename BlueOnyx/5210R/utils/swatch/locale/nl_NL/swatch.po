@@ -1,0 +1,31 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "cceDown"
+msgstr "De Cobalt Configuration Engine (CCE) is niet actief. Actieve Monitor kan niet worden uitgevoerd zonder de Cobalt Configuration Engine. Probeer de dienst 'cced.init' opnieuw op te starten of opnieuw opstarten ther server via SSH. Als Active Monitor nog steeds niet werkt, raadpleegt u [[base-sauce-basic.techSupportURL]] voor technische ondersteuning."
+
+msgid "defGreenMsg"
+msgstr "Deze component is normaal"
+
+msgid "defRedMsg"
+msgstr "Er is een ernstig probleem met deze component"
+
+msgid "defUnknownMsg"
+msgstr "De status is onbekend voor deze component"
+
+msgid "defYellowMsg"
+msgstr "Er is een probleem met dit apparaat"
+
+msgid "emailBody"
+msgstr "Actieve Monitor heeft recente veranderingen gedetecteerd in de staat van uw server apparaat\nVoor meer informatie, zie de actieve sectie Monitor van de Server Desktop\n\nSummary van veranderingen..:"
+
+msgid "emailSubject"
+msgstr "Actieve Monitor staat veranderingen"
+

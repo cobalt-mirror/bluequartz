@@ -1,0 +1,330 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "yumgui_head"
+msgstr "YUM - Updater"
+
+msgid "autoupdate"
+msgstr "Auto-update ingeschakeld"
+
+msgid "autoupdate_help"
+msgstr "U kunt YUM in staat om automatisch te downloaden en installeren van alle updates. Doordat het en controleren van alle weekdagen zal het dagelijks draaien. Als u wilt het uit te voeren eenmaal per week op maandag, kijk maar maandag plaats."
+
+msgid "yumlog"
+msgstr "yum.log"
+
+msgid "yumlog_help"
+msgstr "Op deze pagina kunt u uw YUM logfile, waarin alle transacties van YUM ingelogd beoordelen. De logfile is gelegen in /var/log/yum.log"
+
+msgid "Settings"
+msgstr "Instellingen"
+
+msgid "Settings_help"
+msgstr "U kunt YUM in staat om automatisch te downloaden en installeren van alle updates - op een dagelijkse basis. Indien ingeschakeld het elke ochtend zal draaien op 06:00"
+
+msgid "Logs"
+msgstr "Logs"
+
+msgid "Logs_help"
+msgstr "Op deze pagina kunt u uw YUM logfile, waarin alle transacties van YUM ingelogd beoordelen. De logfile is gelegen in /var/log/yum.log"
+
+msgid "yumguimenuentry"
+msgstr "YUM Updater"
+
+msgid "yumguimenuentrydesc"
+msgstr "YUM is de updater dat BlueOnyx gebruikt om het besturingssysteem en de GUI up to date te houden. U kunt YUM uitvoeren vanaf de opdrachtregel (zie 'man yum'). Of u kunt het volledig mee kunnen draaien geautomatiseerd als een dagelijkse cronjob. Die functionaliteit kan worden ingeschakeld of hier uitgeschakeld."
+
+msgid "yumlog_empty"
+msgstr "De logfile leeg lijkt te zijn."
+
+msgid "yumTitle"
+msgstr "Beschikbare updates"
+
+msgid "yumTitle_help"
+msgstr "Toont de datum en tijd van de laatste update van YUM. U kunt ook een query de YUM repositories voor hangende patches en kan het in afwachting van patches handmatig installeren."
+
+msgid "yumCheck"
+msgstr "Controleren op updates"
+
+msgid "yumCheck_help"
+msgstr "Poll de YUM repositories naar beschikbare updates. Dit kan een moment of twee duren."
+
+msgid "yumNOW"
+msgstr "System Update"
+
+msgid "yumNOW_help"
+msgstr "Voer je yum-update nu om alle hangende flarden te downloaden en te installeren."
+
+msgid "yum_last_updated"
+msgstr "Laatst bijgewerkt op"
+
+msgid "yum_last_updated_help"
+msgstr "Datum en tijd van de laatste update van YUM."
+
+msgid "yum_is_pulling_updates"
+msgstr "Werk in uitvoering"
+
+msgid "yum_is_pulling_updates_help"
+msgstr "Dit systeem wordt momenteel bijgewerkt. Probeer het over een paar minuten."
+
+msgid "yumguiEMAIL"
+msgstr "Schakel e-mail notificaties"
+
+msgid "yumguiEMAIL_help"
+msgstr "Indien ingeschakeld YUM mailen u het transactie logfile van de uitgevoerde actualisering."
+
+msgid "yumguiEMAILADDY"
+msgstr "E-mailadres"
+
+msgid "yumguiEMAILADDY_help"
+msgstr "De standaard e-mailadres waarnaar YUM de kennisgevingen sturen is natuurlijk 'admin'. Maar je kunt een ander e-mailadres hier opgeven indien gewenst."
+
+msgid "yumUpdateTime"
+msgstr "Update Tijd"
+
+msgid "yumUpdateTime_help"
+msgstr "Kunt u aangeven op welk uur en minuut de YUM update hoort te lopen. Het zal alleen draaien op de onderstaande geselecteerde dagen, dat wel."
+
+msgid "yumUpdateSU"
+msgstr "Run op zondag"
+
+msgid "yumUpdateSU_help"
+msgstr "Controleer of je wilt dat het elke zondag draaien."
+
+msgid "yumUpdateMO"
+msgstr "Run op maandag"
+
+msgid "yumUpdateMO_help"
+msgstr "Controleer of je wilt dat het elke maandag draaien."
+
+msgid "yumUpdateTU"
+msgstr "Run op dinsdag"
+
+msgid "yumUpdateTU_help"
+msgstr "Controleer of je wilt dat het iedere dinsdag uitgevoerd."
+
+msgid "yumUpdateWE"
+msgstr "Run op woensdag"
+
+msgid "yumUpdateWE_help"
+msgstr "Controleer of je wilt dat het iedere Wednesay lopen."
+
+msgid "yumUpdateTH"
+msgstr "Run op donderdag"
+
+msgid "yumUpdateTH_help"
+msgstr "Controleer of je wilt dat het elke donderdag draaien."
+
+msgid "yumUpdateFR"
+msgstr "Run op vrijdag"
+
+msgid "yumUpdateFR_help"
+msgstr "Controleer of je wilt dat het elke vrijdag draaien."
+
+msgid "yumUpdateSA"
+msgstr "Run op zaterdag"
+
+msgid "yumUpdateSA_help"
+msgstr "Controleer of je wilt dat het elke zaterdag draaien."
+
+msgid "name"
+msgstr "Naam"
+
+msgid "name_help"
+msgstr "Naam van de RPM"
+
+msgid "version"
+msgstr "Versie"
+
+msgid "version_help"
+msgstr "Versie van de RPM"
+
+msgid "status"
+msgstr "Opslagplaats"
+
+msgid "status_help"
+msgstr "YUM repository waarin de RPM is gevestigd"
+
+msgid "yumguiEXCLUDE"
+msgstr "Uitsluiten deze RPMS"
+
+msgid "yumguiEXCLUDE_help"
+msgstr "Sluit de hier genoemde worden bijgewerkt RPMS. Voeg de RPM Naam, maar laat u de versie-informatie. Slechts een item per regel"
+
+msgid "cantYUMCONF"
+msgstr "Kan /etc/yum.conf"
+
+msgid "repos"
+msgstr "Repositories"
+
+msgid "repos_help"
+msgstr "U beheert hier de YUM repositories."
+
+msgid "addRepo"
+msgstr "Repository"
+
+msgid "addRepo_help"
+msgstr "Klik hier om extra YUM repositories toevoegen."
+
+msgid "viewRepo"
+msgstr "Bekijk repository"
+
+msgid "viewRepo_help"
+msgstr "(Alleen-lezen Dit is een systeem repository, wordt deze repository) View repository instellingen."
+
+msgid "modRepo"
+msgstr "Repository te wijzigen"
+
+msgid "modRepo_help"
+msgstr "Wijzig repository instellingen."
+
+msgid "repoName"
+msgstr "Naam"
+
+msgid "repoName_help"
+msgstr "Naam van de repository."
+
+msgid "repoDescription"
+msgstr "Beschrijving"
+
+msgid "repoDescription_help"
+msgstr "Beschrijving van de repository."
+
+msgid "enabledField"
+msgstr "Ingeschakeld"
+
+msgid "enabledField_help"
+msgstr "Dit maakt deze repository worden opgenomen in updates."
+
+msgid "repoNameField"
+msgstr "Naam"
+
+msgid "repoNameField_help"
+msgstr "Dit is de naam van de repository."
+
+msgid "descriptionField"
+msgstr "Beschrijving"
+
+msgid "descriptionField_help"
+msgstr "Dit veld beschrijft de repository."
+
+msgid "baseurlField"
+msgstr "BaseURL"
+
+msgid "baseurlField_help"
+msgstr "Dit veld bevat de baseURL van de repository. (Dit veld moet leeg zijn als je mirrorlist te gebruiken.)"
+
+msgid "mirrorlistField"
+msgstr "Mirrorlist"
+
+msgid "mirrorlistField_help"
+msgstr "Dit veld bevat de mirror van de repository. (Dit veld moet leeg zijn als je baseurl te gebruiken.)"
+
+msgid "gpgkeyField"
+msgstr "GPG Key URL"
+
+msgid "gpgkeyField_help"
+msgstr "Een URL die verwijst naar de GPG sleutel file-ASCII gepantserde voor de repository. Deze optie wordt gebruikt als yum heeft behoefte aan een publieke sleutel om een ​​verpakking te controleren en de gewenste toets nog niet in de RPM-database zijn ingevoerd. Als deze optie is ingesteld, wordt yum automatisch de sleutel te importeren uit de opgegeven URL. Kan http:// of https://, ftp:// of een lokaal bestand :/ /."
+
+msgid "gpgcheckField"
+msgstr "Controleer GPG handtekening"
+
+msgid "gpgcheckField_help"
+msgstr "Dit vertelt yum of het een GPG handtekening controle moet uitvoeren op de verpakkingen gekregen van deze repository."
+
+msgid "excludeField"
+msgstr "Uitsluiten"
+
+msgid "excludeField_help"
+msgstr "Lijst van pakketten van updates of installaties te sluiten. Dit moet een door spaties gescheiden lijst zijn. Shell klodders met wildcards (bijv. * en?) Zijn toegestaan."
+
+msgid "includepkgsField"
+msgstr "Inclusief pakketten"
+
+msgid "includepkgsField_help"
+msgstr "Inverse van sluiten. Dit is een lijst van pakketten die u wilt gebruiken uit een repository. Als dit slechts een optie lijsten pakket dan is dat alle yum ooit zal zien uit de repository. Standaard ingesteld op een lege lijst. Substitutie variabelen, in de man pagina yum.conf (5) beschreven, worden hier vereerd."
+
+msgid "invalidUrlBase"
+msgstr "De opgegeven URL voor [[base-yum.baseurl]] is ongeldig. [[base-swupdate.urlField_rule]]"
+
+msgid "invalidUrlMirror"
+msgstr "De opgegeven URL voor [[base-yum.mirrolist]] is ongeldig. [[base-swupdate.urlField_rule]]"
+
+msgid "invalidUrlPki"
+msgstr "De opgegeven URL voor [[base-yum.pki]] is ongeldig. [[base-swupdate.urlField_rule]]"
+
+msgid "repoNotUnique"
+msgstr "De repository opgegeven naam is niet uniek, kies een andere naam."
+
+msgid "chooseBaseOrMirror"
+msgstr "Je moet kiezen om ofwel baseurl of mirrorlist gebruikt, kunt u niet beide tegelijk."
+
+msgid "repoFilePreExist"
+msgstr "Het opgegeven bestand voor de repository al bestaat in '/etc/yum.repos.d', kies een andere naam voor de repository"
+
+msgid "repoFileCreationFailed"
+msgstr "Het opgegeven repository-bestand kan niet worden gemaakt."
+
+msgid "cantRepoConf"
+msgstr "Er was een probleem de repository-file bewerking."
+
+msgid "RSS_News_Menu"
+msgstr "BlueOnyx Nieuws"
+
+msgid "RSS_News_Menu_Desc"
+msgstr "Deze pagina toont een newsfeed van nieuws met betrekking tot BlueOnyx van de www.BlueOnyx.it website. Het toont nieuws over uitgebrachte updates en andere belangrijke informatie."
+
+msgid "RSSnewsTitle"
+msgstr "BlueOnyx Nieuws:"
+
+msgid "title"
+msgstr "Onderwerp"
+
+msgid "title_help"
+msgstr "Onderwerp van het nieuwsartikel."
+
+msgid "desc"
+msgstr "Overzicht"
+
+msgid "desc_help"
+msgstr "Korte samenvatting van het nieuwsartikel."
+
+msgid "date"
+msgstr "Datum"
+
+msgid "date_help"
+msgstr "Datum waarop het artikel werd gepost."
+
+msgid "link"
+msgstr "URL"
+
+msgid "link_help"
+msgstr "Wanneer u klikt op een van de onderstaande iconen, nieuwsartikel op de www.BlueOnyx.it webpagina wordt in de GUI frameset geladen."
+
+msgid "internal"
+msgstr "Nieuws"
+
+msgid "internal_help"
+msgstr "Wanneer u klikt op een van de onderstaande iconen, zal nieuwsartikel in de GUI worden getoond."
+
+msgid "openURL_help"
+msgstr "Klik op dit icoon om het nieuwsartikel in kwestie te bekijken."
+
+msgid "ErrorMSG"
+msgstr "Let op:"
+
+msgid "ErrorMSG_help"
+msgstr "Gelieve de info tekst hieronder lezen."
+
+msgid "ErrorMSGdesc"
+msgstr "Deze pagina zou meestal weer de newsfeed over updates en andere belangrijke anouncements uit de www.blueonyx.it website. Echter, uw server kan blijkbaar niet het oplossen van de domeinnaam www.blueonyx.it, of de toegang tot dat domein is momenteel niet mogelijk om andere redenen. Dit heeft geen invloed op de functionaliteit van deze server, hoewel je ook niet in staat om YUM updates kunnen zijn zolang dit probleem zich blijft voordoen."
+
+msgid "call_for_donations"
+msgstr "Als je van [[base-product.productName]], kunt u overwegen doneren aan het project of de aankoop van add-on modules in de BlueOnyx Shop.<br><br>Dank u en veel plezier met [[base-product.productName]]!"

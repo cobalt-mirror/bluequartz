@@ -1,0 +1,6 @@
+#!/bin/sh
+
+date >> ./dumb_handler.log
+
+echo BYE SUCCESS
+

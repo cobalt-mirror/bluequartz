@@ -1,0 +1,520 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Meaulnes Legler <blue@waveweb.ch>\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+# --- Menu
+
+msgid "mailmans"
+msgstr "Listes de diffusion"
+
+msgid "mailmansHelp"
+msgstr "Les [[base-mailman.mailmanList_menu]] peuvent être gérées ici."
+
+# --- Mailing Lists page
+
+msgid "mailmanList_menu"
+msgstr "Listes de diffusion"
+
+msgid "mailmanList"
+msgstr "Listes de diffusion sur [[VAR.group]]"
+
+msgid "mailmanNameHeader"
+msgstr "Nom"
+
+msgid "mailmanNameHeader_help"
+msgstr "Le nom de la liste de diffusion."
+
+msgid "recipientsHeader"
+msgstr "Nombre d'abonnés"
+
+msgid "numSubs"
+msgstr "[[VAR.num]] abonné[[VAR.plural]]"
+
+msgid "recipientsHeader_help"
+msgstr "Le nombre d'utilisateurs qui ont souscrit à la liste de diffusion."
+
+msgid "groupSubscriber"
+msgstr "Tous les membres du groupe « [[VAR.group]] »"
+
+msgid "mailmanDescHeader"
+msgstr "Remarques"
+
+msgid "mailmanDescHeader_help"
+msgstr "Cette colonne contient des informations supplémentaires sur chaque liste de diffusion."
+
+msgid "mailmanActionHeader"
+msgstr "Action"
+
+msgid "mailmanActionHeader_help"
+msgstr "Ce sont les boutons utilisés pour modifier ou supprimer une liste de diffusion."
+
+msgid "confirm_removal_of_list"
+msgstr "Etes-vous sûr de vouloir supprimer la liste de diffusion « [[VAR.list]] » ?"
+
+msgid "subscribers"
+msgstr "Abonnés"
+
+msgid "subscribers_help"
+msgstr "Le répertoire de membres de la liste de diffusion peut être configuré ici."
+
+msgid "numLocals"
+msgstr "[[VAR.num]] abonné[[VAR.plural]] local[[VAR.plural]]"
+
+msgid "edit_locals"
+msgstr "Modifier"
+
+msgid "edit_locals_help"
+msgstr "Cliquez ici pour sélectionner les utilisateurs locaux qui sont abonnés à cette liste de diffusion."
+
+msgid "localsSearch"
+msgstr "Recherche dans la liste des utilisateurs"
+
+msgid "search"
+msgstr "Rechercher"
+
+msgid "search_help"
+msgstr "Cliquez ici pour afficher les utilisateurs qui correspondent aux critères saisis."
+
+msgid "showall"
+msgstr "Afficher tous les utilisateurs"
+
+msgid "showall_help"
+msgstr "Cliquez ici pour afficher tous les utilisateurs sur le site."
+
+msgid "showselected"
+msgstr "Afficher uniquement les utilisateurs sélectionnés"
+
+msgid "showselected_help"
+msgstr "Cliquez ici pour afficher uniquement les utilisateurs qui sont actuellement sélectionnés."
+
+msgid "localSubs_list"
+msgstr "[[VAR.criteria]] sur [[VAR.fqdn]]"
+
+msgid "matching"
+msgstr "Les utilisateurs correspondant à [[VAR.criteria]]"
+
+msgid "selected"
+msgstr "Utilisateurs sélectionnés"
+
+msgid "all"
+msgstr "Tous les utilisateurs"
+
+msgid "selectAll"
+msgstr "Sélectionnez tous les utilisateurs"
+
+msgid "selectAll_help"
+msgstr "Cliquez ici pour sélectionner tous les utilisateurs de ce site. La sélection comprendra tous les utilisateurs de cette page ainsi que tous les utilisateurs sur d'autres pages."
+
+msgid "selectPage"
+msgstr "Sélectionner cette page"
+
+msgid "selectPage_help"
+msgstr "Cliquez ici pour sélectionner tous les utilisateurs sur cette page."
+
+msgid "use_these"
+msgstr "Utiliser la sélection actuelle"
+
+msgid "use_these_help"
+msgstr "Cliquez ici pour utiliser la sélection actuelle comme liste [[base-mailman.localSubscribers]]."
+
+msgid "cancel"
+msgstr "Annuler"
+
+msgid "cancel_help"
+msgstr "Cliquez ici pour revenir à la page des paramètres et d'ignorer votre sélection actuelle."
+
+msgid "name"
+msgstr "Identifiant"
+
+msgid "name_help"
+msgstr "L'identifiant des utilisateurs sur ce site virtuel. Cochez les cases pour ajouter des utilisateurs à cette liste de diffusion."
+
+# ----- Add/modify a mailing list Basic
+
+msgid "createMailList"
+msgstr "[[base-maillist.createMailList]]"
+
+msgid "modifyMailList"
+msgstr "[[base-maillist.modifyMailList]]"
+
+msgid "basic"
+msgstr "[[base-maillist.basic]]"
+
+msgid "advanced"
+msgstr "[[base-maillist.advanced]]"
+
+msgid "basic_help"
+msgstr "[[base-maillist.basic_help]]"
+
+msgid "advanced_help"
+msgstr "[[base-maillist.advanced_help]]"
+
+msgid "listName"
+msgstr "[[base-maillist.listName]]"
+
+msgid "listName_rule"
+msgstr "[[base-maillist.listName_rule]]"
+
+msgid "listName_help"
+msgstr "[[base-maillist.listName_help]]"
+
+msgid "listName_invalid"
+msgstr "[[base-maillist.listName_invalid]]"
+
+msgid "listName_empty"
+msgstr "[[base-maillist.listName_empty]]"
+
+msgid "workgroupMembers"
+msgstr "[[base-maillist.workgroupMembers]]"
+
+msgid "workgroupMembers_help"
+msgstr "[[base-maillist.workgroupMembers_help]]"
+
+msgid "group_field"
+msgstr "[[base-maillist.group_field]]"
+
+msgid "group_field_help"
+msgstr "[[base-maillist.group_field_help]]"
+
+msgid "save"
+msgstr "[[base-maillist.save]]"
+
+msgid "save_help"
+msgstr "[[base-maillist.save_help]]"
+
+msgid "localSubscribers"
+msgstr "[[base-maillist.localSubscribers]]"
+
+msgid "localSubscribers_help"
+msgstr "[[base-maillist.localSubscribers_help]]"
+
+msgid "subscribed"
+msgstr "[[base-maillist.subscribed]]"
+
+msgid "unsubscribed"
+msgstr "[[base-maillist.unsubscribed]]"
+
+msgid "remoteSubscribers"
+msgstr "[[base-maillist.remoteSubscribers]]"
+
+msgid "remoteSubscribers_rule"
+msgstr "[[base-maillist.remoteSubscribers_rule]]"
+
+msgid "remoteSubscribers_help"
+msgstr "[[base-maillist.remoteSubscribers_help]]"
+
+msgid "remoteSubscribers_invalid"
+msgstr "[[base-maillist.remoteSubscribers_invalid]]"
+
+msgid "remoteSubscribersDigest"
+msgstr "[[base-mailman.remoteSubscribers]] (Digest)"
+
+msgid "remoteSubscribersDigest_rule"
+msgstr "[[base-mailman.remoteSubscribers_rule]] (Digest)"
+
+msgid "remoteSubscribersDigest_help"
+msgstr "[[base-mailman.remoteSubscribers_help]] (Digest)"
+
+msgid "remoteSubscribersDigest_invalid"
+msgstr "[[base-mailman.remoteSubscribers_invalid]] (Digest)"
+
+msgid "description"
+msgstr "[[base-maillist.description]]"
+
+msgid "description_help"
+msgstr "[[base-maillist.description_help]]"
+
+# ----- Add/modify a mailing list Advanced
+
+msgid "moderator"
+msgstr "[[base-maillist.moderator]]"
+
+msgid "moderator_rule"
+msgstr "[[base-maillist.moderator_rule]]"
+
+msgid "moderator_help"
+msgstr "[[base-maillist.moderator_help]]"
+
+msgid "moderator_invalid"
+msgstr "[[base-maillist.moderator_invalid]]"
+
+msgid "Moderator-does-not-exist"
+msgstr "[[base-maillist.Moderator-does-not-exist]]"
+
+msgid "moderator_empty"
+msgstr "[[base-maillist.moderator_empty]]"
+
+msgid "policies"
+msgstr "[[base-maillist.policies]]"
+
+msgid "apassword"
+msgstr "[[base-maillist.apassword]]"
+
+msgid "apassword_help"
+msgstr "[[base-maillist.apassword_help]]"
+
+msgid "postingPolicy"
+msgstr "[[base-maillist.postingPolicy]]"
+
+msgid "postingPolicy_help"
+msgstr "[[base-maillist.postingPolicy_help]]"
+
+msgid "any"
+msgstr "[[base-maillist.any]]"
+
+msgid "members"
+msgstr "[[base-maillist.members]]"
+
+msgid "moderated"
+msgstr "[[base-maillist.moderated]]"
+
+msgid "subscriptionPolicy"
+msgstr "[[base-maillist.subscriptionPolicy]]"
+
+msgid "subscriptionPolicy_help"
+msgstr "[[base-maillist.subscriptionPolicy_help]]"
+
+msgid "open"
+msgstr "[[base-maillist.open]]"
+
+msgid "closed"
+msgstr "[[base-maillist.closed]]"
+
+msgid "confirm"
+msgstr "[[base-maillist.confirm]]"
+
+msgid "maxlength"
+msgstr "[[base-maillist.maxlength]]"
+
+msgid "maxlength_help"
+msgstr "[[base-maillist.maxlength_help]]"
+
+msgid "5"
+msgstr "5 ko"
+
+msgid "50"
+msgstr "50 kb"
+
+msgid "500"
+msgstr "500 kb"
+
+msgid "10000"
+msgstr "10 Mo"
+
+msgid "100000"
+msgstr "100 Mo"
+
+msgid "replyToList"
+msgstr "[[base-maillist.replyToList]]"
+
+msgid "replyToList_help"
+msgstr "[[base-maillist.replyToList_help]]"
+
+msgid "replyList"
+msgstr "[[base-maillist.replyList]]"
+
+msgid "archiveSettings"
+msgstr "[[base-maillist.archiveSettings]]"
+
+msgid "archiveEnabled"
+msgstr "[[base-maillist.archiveEnabled]]"
+
+msgid "archiveEnabled_help"
+msgstr "[[base-maillist.archiveEnabled_help]]"
+
+msgid "keepForDays"
+msgstr "[[base-maillist.keepForDays]]"
+
+msgid "keepForDays_help"
+msgstr "[[base-maillist.keepForDays_help]]"
+
+msgid "keepForDays_rule"
+msgstr "[[base-maillist.keepForDays_rule]]"
+
+msgid "keepForDays_empty"
+msgstr "[[base-maillist.keepForDays_empty]]"
+
+msgid "keepForDays_invalid"
+msgstr "[[base-maillist.keepForDays_invalid]]"
+
+# ------ Handler messages
+
+msgid "name-already-taken"
+msgstr "[[base-maillist.name-already-taken]]"
+
+msgid "name-already-taken-by-user"
+msgstr "[[base-maillist.name-already-taken-by-user]]"
+
+msgid "Mail-alias-already-taken"
+msgstr "[[base-maillist.Mail-alias-already-taken]]"
+
+msgid "CannotDeleteGroupMaillist"
+msgstr "[[base-maillist.CannotDeleteGroupMaillist]]"
+
+msgid "Could-not-create-mailman"
+msgstr "[[base-maillist.Could-not-create-maillist]]"
+
+# ----- Archives for users with accounts
+
+	#--- List view
+msgid "mailmanArchive"
+msgstr "[[base-maillist.maillistArchive]]"
+
+msgid "title"
+msgstr "[[base-maillist.title]]"
+
+msgid "title_help"
+msgstr "[[base-maillist.title]]"
+
+msgid "author"
+msgstr "[[base-maillist.author]]"
+
+msgid "author_help"
+msgstr "[[base-maillist.author_help]]"
+
+msgid "date"
+msgstr "[[base-maillist.date]]"
+
+msgid "date_help"
+msgstr "[[base-maillist.date_help]]"
+
+	#--- Read message view
+msgid "readMessage"
+msgstr "[[base-maillist.readMessage]]"
+
+msgid "readMessage_help"
+msgstr "[[base-maillist.readMessage_help]]"
+
+msgid "from"
+msgstr "[[base-maillist.from]]"
+
+msgid "from_help"
+msgstr "[[base-maillist.from_help]]"
+
+msgid "subject"
+msgstr "[[base-maillist.subject]]"
+
+msgid "subject_help"
+msgstr "[[base-maillist.subject_help]]"
+
+msgid "message"
+msgstr "[[base-maillist.message]]"
+
+msgid "message_help"
+msgstr "[[base-maillist.message_help]]"
+
+msgid "replySender"
+msgstr "[[base-maillist.replySender]]"
+
+msgid "replySender_help"
+msgstr "[[base-maillist.replySender_help]]"
+
+msgid "replyAll"
+msgstr "[[base-maillist.replyAll]]"
+
+msgid "replyAll_help"
+msgstr "[[base-maillist.replyAll_help]]"
+
+# ------ Misc (i.e. I have no idea)
+
+msgid "membership"
+msgstr "[[base-maillist.membership]]"
+
+msgid "membership_help"
+msgstr "[[base-maillist.membership_help]]"
+
+# ------- Strings for email messages
+
+msgid "WelcomeMessageSubject"
+msgstr "[[base-maillist.WelcomeMessageSubject]]"
+
+msgid "WelcomeMessageBody"
+msgstr "[[base-maillist.WelcomeMessageBody]]"
+
+# ------- Strings for System tab of Mailman
+
+msgid "MailMan_header"
+msgstr "Mailman"
+
+msgid "mailman_enabled"
+msgstr "Activer [[base-mailman.MailMan_header]] :"
+
+msgid "mailman_enabled_help"
+msgstr "Mailman a un logiciel (daemon) qui opère en arrière-plan pour que des messages des listes puissent être acheminés. Vous pouvez activer ou désactiver ce service ici. En ligne de commande, la syntaxe pour arrêter, démarrer ou redémarrer Mailman est: /sbin/service mailman stop|start|restart"
+
+msgid "oldpass"
+msgstr "Mot de passe :"
+
+msgid "oldpass_help"
+msgstr "Les fonctions administratives de Mailman sont protégées par un mot de passe généré automatiquement. Ce champ affiche le mot de passe qui a été généré pour ce serveur lors de la configuration initiale."
+
+msgid "MailMan_Admin"
+msgstr "Interface d'administration de [[base-mailman.MailMan_header]]"
+
+msgid "MailMan_Admin_help"
+msgstr "Vous pouvez accéder ici à l'interface d'administration de Mailman bien qu'en pratique, il n'est pas nécessaire de l'utiliser (sauf si vous êtes vraiment sûr de ce que vous faites). Veuillez plutôt utiliser l'interface « BlueOnyx » pour ajouter ou supprimer des listes de diffusion."
+
+msgid "menu_system_mailman"
+msgstr "[[base-mailman.MailMan_header]]"
+
+msgid "menu_system_mailman_help"
+msgstr "Cliquez ici pour gérer le service de listes de diffusion Mailman."
+
+# ------- Extra strings for vsite management of Mailman:
+
+msgid "vsiteMailMan_Admin"
+msgstr "Interface d'administration de [[base-mailman.MailMan_header]]"
+
+msgid "vsiteMailMan_Admin_help"
+msgstr "Ce bouton vous permet d'accéder à l'interface d'administration de Mailman pour certaines des options de configuration plus avancées."
+
+msgid "MailMan_Archive"
+msgstr "Archives [[base-mailman.MailMan_header]]"
+
+msgid "MailMan_Archive_help"
+msgstr "Ce bouton vous permet d'accéder aux l'archives publiques de votre liste de diffusion Mailman."
+
+# ------- Extra strings for AM components of Mailman:
+
+msgid "amDetailsTitle"
+msgstr "Détails du service [[base-mailman.MailMan_header]]"
+
+msgid "amMAILMANNameTag"
+msgstr "Logiciel arrière-plan (daemon) [[base-mailman.MailMan_header]]"
+
+msgid "amMAILMANNotRunning"
+msgstr "Le service [[base-mailman.MailMan_header]] ne fonctionne pas normalement. Veuillez essayez de le redémarrer manuellement."
+
+msgid "amMAILMANStatusOK"
+msgstr "Le service [[base-mailman.MailMan_header]] fonctionne normalement."
+
+# ------- Extra strings for showing mailing list address:
+
+msgid "listAddress"
+msgstr "Liste d'adresses :"
+
+msgid "listAddress_help"
+msgstr "Cette liste de diffusion est accessible à cette adresse e-mail. Pour envoyer des messages à cette liste, envoyez vos courriels à cette adresse."
+
+###
+
+msgid "removeConfirmQuestion"
+msgstr "Etes-vous sûr de vouloir supprimer cette liste de diffusion?"
+
+msgid "ListRemoveConfirmInfo"
+msgstr "S'il vous plaît confirmer que vous voulez supprimer la liste de diffusion. La mailing-list et tous ses messages seront supprimés. Cette action ne peut être annulée."
+
+msgid "selected_help"
+msgstr "Affiche les utilisateurs locaux sont abonnés à la mailing-list. Vous pouvez cocher ou décocher les cases pour modifier le statut de l'abonnement."
+
+msgid "fullName"
+msgstr "Nom et prénom"
+
+msgid "fullName_help"
+msgstr "Nom complet de l'utilisateur."
