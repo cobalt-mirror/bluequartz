@@ -221,6 +221,10 @@ fi
 
 %changelog
 
+* Mon Oct 30 2017 Michael Stauber <mstauber@solarspeed.net> 0.99.2-1BX12
+- Modified server/basetypes.schema to update and add the regexp needed for 
+  IPv6 as well as IPv4+IPv6 validations. 
+
 * Wed Aug 02 2017 Michael Stauber <mstauber@solarspeed.net> 0.99.2-1BX11
 - Modified baseType Schema to allow 'alphanum_plus_multiline' to have a
   minimum of one character instead of two.
