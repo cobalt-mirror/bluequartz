@@ -3,4 +3,6 @@
 $route['validation/:any'] = "validation";
 $route['gui/processing'] = "processing";
 $route['gui/processFrame'] = "processFrame";
+$route['gui/working'] = "working";
+$route['gui/workFrame'] = "workFrame";
 

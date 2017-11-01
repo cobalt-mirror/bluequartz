@@ -380,6 +380,7 @@ class CceClient {
             // Write rest of unprocessed transactions back to file:
             $json_cce_replay = json_encode($this->cce_replay);
             write_file($this->cce_replay_file, $json_cce_replay);
+            error_log("INFO: " . "Updating up CCE Replay-File with $num_of_stored_transactions remaining transactions (" .  $this->cce_replay_file . ').');
             return $num_of_stored_transactions;
           }
         }
