@@ -61,6 +61,20 @@ class WorkFrame extends MX_Controller {
             $statusId = $get_form_data['statusId'];
         }
 
+        if (!isset($get_form_data['ReplayType'])) {
+            $ReplayType = 'step';
+        }
+        if (isset($get_form_data['ReplayType'])) {
+            if ($get_form_data['ReplayType'] == "step") {
+                $ReplayType = 'step';
+            }
+            if ($get_form_data['ReplayType'] == "full") {
+                $ReplayType = 'full';
+            }
+        }
+
+        $current_URL = $_SERVER['REQUEST_URI'];
+        $new_cur_URL = preg_replace('/statusId=1/', 'statusId=2', $current_URL);
         $newBackURL = "/network/ethernet";
 
         // Prepare Page:
@@ -116,65 +130,83 @@ class WorkFrame extends MX_Controller {
         //
 
         $num_of_trans = $CI->cceClient->replayStatus();
-        if (($num_of_trans < '1') || (!is_int($num_of_trans))) {
-            $num_of_trans = '1';
+        if (($num_of_trans <= '2') || (!is_int($num_of_trans))) {
+            $progress = '85';
         }
-        $progress = ceil('100' / $num_of_trans);
+        else {
+            $num_of_trans++;
+            $progress = ceil('100' / $num_of_trans);
+        }
 
-        // Perform first replay from Replay-File:
-        $CI->cceClient->replay("stepByStep");
+        // Perform replay from Replay-File:
+        if ($ReplayType == 'step') {
+            // Step through it one by one:
+            $CI->cceClient->replay("stepByStep");
+        }
+
+        if (($ReplayType == 'full') && ($statusId == '2')) {
+            // Do the whole shebang all at once:
+            $CI->cceClient->replay();
+        }
 
         // If there are no more replays in the file after this, then we insert the header to redirect back to our desired URL:
-        $num_of_trans = $CI->cceClient->replayStatus();
-        if ($num_of_trans <= '0') {
 
-            // Puzzle the redirect URL together:
-            if ($redirectType == 'ipv4') {
-                $our_redirect_URL = $redirectUrl;
-                $NIC = $CI->cceClient->getObject('Network', array('device' => 'eth0'));
-                if (isset($NIC['ipaddr'])) {
-                    if (is_HTTPS() == FALSE) {
-                        $our_redirect_URL = 'http://' . $NIC['ipaddr'] . ':444' . $redirectUrl;
-                    }
-                    else {
-                        $our_redirect_URL = 'https://' . $NIC['ipaddr'] . ':81' . $redirectUrl;
-                    }
-                }
-                else {
-                    // Fallback:
-                    $our_redirect_URL = $redirectUrl;
-                }
-            }
-            elseif ($redirectType == 'ipv6') {
-                $our_redirect_URL = $redirectUrl;
-                $NIC = $CI->cceClient->getObject('Network', array('device' => 'eth0'));
-                if (isset($NIC['ipaddr_IPv6'])) {
-                    if (is_HTTPS() == FALSE) {
-                        $our_redirect_URL = 'http://[' . $NIC['ipaddr_IPv6'] . ']:444' . $redirectUrl;
-                    }
-                    else {
-                        $our_redirect_URL = 'https://[' . $NIC['ipaddr_IPv6'] . ']:81' . $redirectUrl;
-                    }
-                }
-                else {
-                    // Fallback:
-                    $our_redirect_URL = $redirectUrl;
-                }
-            }
-            elseif ($redirectType == 'hn') {
-                $our_redirect_URL = $redirectUrl;
-                $servername = $system['hostname'] . '.' . $system['domainname'];
+        // Puzzle the redirect URL together:
+        if ($redirectType == 'ipv4') {
+            $our_redirect_URL = $redirectUrl;
+            $NIC = $CI->cceClient->getObject('Network', array('device' => 'eth0'));
+            if (isset($NIC['ipaddr'])) {
                 if (is_HTTPS() == FALSE) {
-                    $our_redirect_URL = 'http://' . $servername . ':444' . $redirectUrl;
+                    $our_redirect_URL = 'http://' . $NIC['ipaddr'] . ':444' . $redirectUrl;
+                    $shorty = 'http://' . $NIC['ipaddr'] . ':444';
                 }
                 else {
-                    $our_redirect_URL = 'https://' . $servername . ':81' . $redirectUrl;
+                    $our_redirect_URL = 'https://' . $NIC['ipaddr'] . ':81' . $redirectUrl;
+                    $shorty = 'https://' . $NIC['ipaddr'] . ':81';
                 }
             }
             else {
-                // Default:
+                // Fallback:
                 $our_redirect_URL = $redirectUrl;
             }
+        }
+        elseif ($redirectType == 'ipv6') {
+            $our_redirect_URL = $redirectUrl;
+            $NIC = $CI->cceClient->getObject('Network', array('device' => 'eth0'));
+            if (isset($NIC['ipaddr_IPv6'])) {
+                if (is_HTTPS() == FALSE) {
+                    $our_redirect_URL = 'http://[' . $NIC['ipaddr_IPv6'] . ']:444' . $redirectUrl;
+                    $shorty = 'http://[' . $NIC['ipaddr_IPv6'] . ']:444';
+                }
+                else {
+                    $our_redirect_URL = 'https://[' . $NIC['ipaddr_IPv6'] . ']:81' . $redirectUrl;
+                    $shorty = 'https://[' . $NIC['ipaddr_IPv6'] . ']:81';
+                }
+            }
+            else {
+                // Fallback:
+                $our_redirect_URL = $redirectUrl;
+            }
+        }
+        elseif (($redirectType == 'hn') || ($redirectType == 'standard')) {
+            $our_redirect_URL = $redirectUrl;
+            $servername = $system['hostname'] . '.' . $system['domainname'];
+            if (is_HTTPS() == FALSE) {
+                $our_redirect_URL = 'http://' . $servername . ':444' . $redirectUrl;
+                $shorty = 'http://' . $servername . ':444';
+            }
+            else {
+                $our_redirect_URL = 'https://' . $servername . ':81' . $redirectUrl;
+                $shorty = 'https://' . $servername . ':81';
+            }
+        }
+        else {
+            // Default:
+            $our_redirect_URL = $redirectUrl;
+        }
+
+        $num_of_trans = $CI->cceClient->replayStatus();
+        if (($num_of_trans <= '0') || (($ReplayType == 'full') && ($statusId == '2'))) {
 
             // Assemble framebreaker-Script:
             $framebreak = '<script language="JavaScript" type="text/javascript">' . "\n";
@@ -184,6 +216,10 @@ class WorkFrame extends MX_Controller {
             $framebreak .= '</script>' . "\n";
             $BxPage->setExtraHeaders($framebreak);
             $BxPage->setExtraBodyTag('<body onload=top.location.href=\'' . $our_redirect_URL . '\'>');
+        }
+        elseif (($ReplayType == 'full') && ($statusId == '1')) {
+            // If we're done sooner than the meta-equif in ethernetDeploy, then we try to break out of the iframe for an early return:
+            $BxPage->setExtraHeaders('<meta http-equiv="refresh" content="0; URL=' . $shorty . $new_cur_URL . '">');
         }
         else {
             // Add a refresh to reload this page:

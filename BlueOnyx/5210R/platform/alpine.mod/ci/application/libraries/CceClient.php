@@ -295,6 +295,30 @@ class CceClient {
     }
   }
 
+  // description: Deletes an existing CCE-Replay file without executing it:
+  function replayReset() {
+    // Load file-helper class:
+    $CI =& get_instance();
+    $CI->load->helper('file');
+
+    // Get SessionID:
+    $uname = $this->getUsername();
+    $sessionId = $this->getSessionId();
+
+    // Define target file coupled to this uname: 
+    $this->cce_replay_file = '/usr/sausalito/license/json_cce_replay.' . $uname;
+
+    if (is_file($this->cce_replay_file)) {
+      // Delete old replay file:
+      error_log("Deleting " . $this->cce_replay_file);
+      $ret = $CI->serverScriptHelper->shell("/bin/rm -f " . $this->cce_replay_file, $nfk, 'root', $sessionId); 
+      if (is_file($this->cce_replay_file)) {
+        error_log("Shits not gone! " . $this->cce_replay_file);
+      }
+    }
+    return TRUE;
+  }
+
   // description: Report how many stored transactions (if any) are in the current CCE-Replay file.
   function replayStatus() {
     // Load file-helper class:

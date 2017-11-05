@@ -75,6 +75,18 @@ class Working extends MX_Controller {
             $redirectType = 'standard';
         }
 
+        if (!isset($get_form_data['ReplayType'])) {
+            $ReplayType = 'step';
+        }
+        if (isset($get_form_data['ReplayType'])) {
+            if ($get_form_data['ReplayType'] == "step") {
+                $ReplayType = 'step';
+            }
+            if ($get_form_data['ReplayType'] == "full") {
+                $ReplayType = 'full';
+            }
+        }
+
         // Prepare Page:
         $errors = array();
         $factory = $this->serverScriptHelper->getHtmlComponentFactory("base-swupdate", "/gui/working");
@@ -97,7 +109,7 @@ class Working extends MX_Controller {
         }
 
         // Assemble iFrame URL:
-        $uri = "/gui/workFrame?statusId=" . $statusId . '&=redirectType=' . $redirectType . '&redirectUrl=' . $redirectUrl . '&redirectType=' . $redirectType;
+        $uri = "/gui/workFrame?statusId=" . $statusId . '&redirectType=' . $redirectType . '&redirectUrl=' . $redirectUrl . '&ReplayType=' . $ReplayType;
         // Page body:
         $page_body[] = addInputForm(
                                         "&nbsp;",
