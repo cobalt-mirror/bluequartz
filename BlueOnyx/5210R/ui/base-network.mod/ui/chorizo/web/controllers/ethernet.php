@@ -171,55 +171,19 @@ class Ethernet extends MX_Controller {
             //              [deviceList] => &eth0&
             //          )
 
+            // Remove any pre-existing CCE Replay-File:
+            $CI->cceClient->replayReset();
+
+            // Prevent handler change_route.pl from firing before we are entirely done with the network settings:
+            $CI->cceClient->record($oids['0'], '', array("nw_update" => '0'));
+
             if ($product->isRaq()) {
-                $CI->cceClient->set($oids[0], "", array("hostname" => $attributes['hostNameField'], "domainname" => $attributes['domainNameField'], "dns" => $attributes['dnsAddressesField'], "gateway" => $attributes['gatewayField']));
+                // Record CCE Replay-Transaction:
+                $CI->cceClient->record($oids['0'], '', array("hostname" => $attributes['hostNameField'], "domainname" => $attributes['domainNameField'], "dns" => $attributes['dnsAddressesField'], "gateway" => $attributes['gatewayField'], "gateway_IPv6" => $attributes['gatewayField_IPv6']));
             }
             else {
-                $CI->cceClient->set($oids[0], "", array("hostname" => $attributes['hostNameField'], "domainname" => $attributes['domainNameField'], "dns" => $attributes['dnsAddressesField']));
-            }
-
-            // Figure out if this is the admin if changing
-            if (isset($attributes['adminIf'])) {
-                if ($attributes['adminIf'] == "eth0") {
-                    if ((isset($attributes['ipAddressFieldeth0'])) && (isset($attributes['ipAddressOrigeth0']))) {
-                        if ($attributes['ipAddressFieldeth0'] != $attributes['ipAddressOrigeth0']) {
-                            // IP of admin interface eth0 is changing!
-                            $redirect = $attributes['ipAddressFieldeth0'];
-                        }
-                    }
-                }
-                elseif ($attributes['adminIf'] == "eth1") {
-                    if ((isset($attributes['ipAddressFieldeth1'])) && (isset($attributes['ipAddressOrigeth1']))) {
-                        if ($attributes['ipAddressFieldeth1'] != $attributes['ipAddressOrigeth1']) {
-                            // IP of admin interface eth1 is changing!
-                            $redirect = $attributes['ipAddressFieldeth1'];
-                        }
-                    }
-                }
-                elseif ($attributes['adminIf'] == "eth2") {
-                    if ((isset($attributes['ipAddressFieldeth2'])) && (isset($attributes['ipAddressOrigeth2']))) {
-                        if ($attributes['ipAddressFieldeth2'] != $attributes['ipAddressOrigeth2']) {
-                            // IP of admin interface eth2 is changing!
-                            $redirect = $attributes['ipAddressFieldeth2'];
-                        }
-                    }
-                }
-                elseif ($attributes['adminIf'] == "eth3") {
-                    if ((isset($attributes['ipAddressFieldeth3'])) && (isset($attributes['ipAddressOrigeth3']))) {
-                        if ($attributes['ipAddressFieldeth3'] != $attributes['ipAddressOrigeth3']) {
-                            // IP of admin interface eth3 is changing!
-                            $redirect = $attributes['ipAddressFieldeth3'];
-                        }
-                    }
-                }
-                elseif ($attributes['adminIf'] == "eth4") {
-                    if ((isset($attributes['ipAddressFieldeth4'])) && (isset($attributes['ipAddressOrigeth4']))) {
-                        if ($attributes['ipAddressFieldeth4'] != $attributes['ipAddressOrigeth4']) {
-                            // IP of admin interface eth4 is changing!
-                            $redirect = $attributes['ipAddressFieldeth4'];
-                        }
-                    }
-                }               
+                // Record CCE Replay-Transaction:
+                $CI->cceClient->record($oids['0'], '', array("hostname" => $attributes['hostNameField'], "domainname" => $attributes['domainNameField'], "dns" => $attributes['dnsAddressesField']));
             }
 
             //--> Redirect needs to be handled here.
@@ -241,9 +205,26 @@ class Ethernet extends MX_Controller {
 
             // special array for admin if errors
             $admin_if_errors = array();
+
+            $eth0_ipaddr = '';
+            $eth0_ipaddr_IPV6 = '';
+
             for ($i = 0; $i < count($devices); $i ++) {
                 $var_name = "ipAddressField" . $devices[$i];
                 $ip_field = $attributes[$var_name];
+                $var_name_IPv6 = "IPv6_ipAddressField" . $devices[$i];
+                $var_name_orig_IPv6 = "IPv6_ipAddressOrig" . $devices[$i];
+                $ip_orig_IPv6 = $attributes[$var_name_orig_IPv6];
+
+                if ($attributes['gatewayField_IPv6'] != '') {
+                    error_log("Setting interface " . $devices[$i] . " to " . $attributes[$var_name_IPv6]);
+                    $ip_field_IPv6 = $attributes[$var_name_IPv6];
+                }
+                else {
+                    // No IPv6 Gateway? Then remove IPv6 IP as well:
+                    error_log("Stripping interface " . $devices[$i] . " of " . $attributes[$var_name_IPv6]);
+                    $ip_field_IPv6 = '';
+                }
                 $var_name = "ipAddressOrig" . $devices[$i];
                 $ip_orig = $attributes[$var_name];
                 $var_name = "netMaskField" . $devices[$i];
@@ -252,106 +233,78 @@ class Ethernet extends MX_Controller {
                 $nm_orig = $attributes[$var_name];
                 $var_name = "bootProtoField" . $devices[$i];
                 $boot_field = $attributes[$var_name];
+
+                // No IPv4 Gateway? Then remove IPv4 IP and Netmask as well:
+                if ($attributes['gatewayField'] == '') {
+                    error_log("Stripping interface " . $devices[$i] . " of " . $ip_field . "/" . $nm_field);
+                    $ip_field = '';
+                    $nm_field = '';
+                    $ReplayType = 'full';
+                }
                
-                // setup or set disabled
-                if ($ip_field == '') {
-                    // first migrate any aliases to eth0 (possibly do this better)
-                    $aliases = $CI->cceClient->findx('Network', array(), array('device' => "^$devices[$i]:"));
-                    for ($k = 0; $k < count($aliases); $k++) {
-                        $new_device = find_free_device($CI->cceClient, 'eth0');
-                        $ok = $CI->cceClient->set($aliases[$k], '', array('device' => $new_device));
-                        
-                        $errors = array_merge($errors, $CI->cceClient->errors());
+                $target_OID = $CI->cceClient->findx('Network', array('device' => "$devices[$i]"), array(), 'ascii', 'device');
+                error_log("target_OID of interface " . $devices[$i] . ": " . $target_OID['0']);
+                if (isset($target_OID['0'])) {
+
+                    if ($devices[$i] == 'eth0') {
+                        $eth0_ipaddr = $ip_field;
+                        $eth0_ipaddr_IPV6 = $ip_field_IPv6;
                     }
 
-                    $CI->cceClient->setObject('Network',
-                            array(
-                                'enabled' => 0,
-                                'bootproto' => 'none'
-                                ),
-                           '', array('device' => $devices[$i]));
-                    $errors = array_merge($errors, $CI->cceClient->errors());
-
-                    if (count($errors == 0)) {
-                        if ($devices[$i] == 'eth0') {
-                            $BxPage->setOnLoad("top.location = 'http://$ip_field:444/network/ethernet'");
-                            $page_body[] = "";
-                            // Out with the page:
-                            $BxPage->render($page_module, $page_body);
-                        }
+                    // We *always* update 'eth0' on saving. No if, no but, we just do it. Because we *must* be sure that the network config is in sync with the GUI. And it might not be.
+                    // Any other network object only gets updated if there are changes in IP/Netmask or IPv6 IP address.
+                    if (($devices[$i] == 'eth0') || (($ip_field != $ip_orig) || ($ip_field_IPv6 != $ip_orig_IPv6) || ($nm_field != $nm_orig) || ($attributes['gatewayField'] != $attributes['gatewayFieldOrig']) || ($attributes['gatewayField_IPv6'] != $attributes['gatewayFieldOrig_IPv6']))) {
+                        $CI->cceClient->record($target_OID['0'], '', array('ipaddr' => $ip_field, 'netmask' => $nm_field, 'ipaddr_IPv6' => $ip_field_IPv6, 'enabled' => 1, 'bootproto' => 'none', 'refresh' => time()));
                     }
-                }
-                else if ($ip_field && (($ip_field != $ip_orig) || ($nm_field != $nm_orig))) {
-
-                    // since we only deal with real interfaces here, things are simpler
-                    // than they could be
-                    if (false && $ip_field != $ip_orig) {
-                        // check to see if there is an alias that is already using
-                        // the new ip address.  if there is, destroy the Network object
-                        // for this device, and assign the alias this device name.
-                        list($alias) = $CI->cceClient->find('Network', 
-                                            array(
-                                                'real' => 0,
-                                                'ipaddr' => $ip_field
-                                                ));
-                        if ($alias) {
-                            $ok = $CI->cceClient->set($alias, '',
-                                array(
-                                    'device' => $devices[$i],
-                                    'real' => 1,
-                                    'ipaddr' => $ip_field,
-                                    'netmask' => $nm_field,
-                                    'enabled' => 1,
-                                    'bootproto' => 'none'
-                                    ));
-                            $errors = array_merge($errors, $CI->cceClient->errors());
-                            if (!$ok) {
-                                break;
-                            }
-                            else {
-                                continue;
-                            }
-                        }
-                    }
-                    $CI->cceClient->setObject('Network',
-                            array(
-                                'ipaddr' => $ip_field,
-                                'netmask' => $nm_field,
-                                'enabled' => 1,
-                                'bootproto' => 'none'
-                                ),
-                           '', array('device' => $devices[$i]));
-                    $errors = array_merge($errors, $CI->cceClient->errors());
                 }
             }
 
-            // CCE errors that might have happened during submit to CODB:
-            foreach ($errors as $object => $objData) {
-                // When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
-                $errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
+            // Set nw_update:
+            if ($product->isRaq()) {
+                // Record CCE Replay-Transaction:
+                $CI->cceClient->record($oids['0'], '', array("nw_update" => time()));
             }
 
-            // No errors. Reload the entire page to load it with the updated values:
+            // Redirect to our new progress-display for CCE Stored-Transactions:
+            $system = $CI->getSystem();
+            $http_server_name = $_SERVER['SERVER_NAME'];
+            $http_server_name = preg_replace('/\[/', '', $http_server_name);
+            $http_server_name = preg_replace('/\]/', '', $http_server_name);
+            error_log("SERVER_NAME: " . $http_server_name);
             if ((count($errors) == "0")) {
-                if ($redirect != "") {
-                    header("Location: /network/ethernet");
-                    print_rp("Local");
-                    exit;
+                if ((filter_var($http_server_name, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) && ($eth0_ipaddr_IPV6 != '' )) { 
+                    // GUI is currently accessed via an IPv6 IP!
+                    $targetProto = 'ipv6';
+                    error_log("Redirect-Check: IPv6 possible");
+                }
+                elseif ((filter_var($http_server_name, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) && ($eth0_ipaddr != '' )) { 
+                    // GUI is currently accessed via an IPv4 IP!
+                    $targetProto = 'ipv4';
+                    error_log("Redirect-Check: IPv4 possible");
                 }
                 else {
-                    // Nice idea, but at that point the new network config is already in place.
-                    // So this never happens:
-                    $port = $_SERVER['SERVER_PORT'];
-                    $redirect = $attributes['ipAddressFieldeth0'];
-                    if ($port == '81') {
-                        header("Location: https://$redirect:$port/network/ethernet");
-                        exit;
+                    if (($eth0_ipaddr == '' ) && ($eth0_ipaddr_IPV6 != '' )) {
+                        $targetProto = 'ipv6';
+                        error_log("Redirect-Check: IPv4 disabled, IPv6 possible, using IPv6");
+                    }
+                    elseif (($eth0_ipaddr_IPV6 == '' ) && ($eth0_ipaddr != '' )) {
+                        $targetProto = 'ipv4';
+                        error_log("Redirect-Check: IPv6 disabled, IPv4 possible, using IPv4");
                     }
                     else {
-                        header("Location: http://$redirect:$port/network/ethernet");
-                        exit;
+                        // GUI is currently accessed via FQDN:
+                        error_log("Redirect-Check: Using 'standard'");
+                        $targetProto = 'standard';
                     }
                 }
+            
+                if (!isset($ReplayType)) {
+                    $ReplayType = 'full';
+                }
+                error_log("redirectType: " . $targetProto);
+                error_log("ReplayType: " . $ReplayType);
+                header("Location: /gui/working?statusId=1&VM=base_serverconfig&VMC=base_ethernet&PM=base_sysmanage&redirectType=$targetProto&ReplayType=$ReplayType");
+                exit;
             }
             else {
                 $system = $CI->getSystem();
@@ -401,7 +354,8 @@ class Ethernet extends MX_Controller {
         $default_page = 'primarySettings';
         if (($fieldprot == "rw") && ($is_aws == "0")) {
             // Show "Interface Aliasses" if not inside a VPS:
-            $pages = array($default_page, 'aliasSettings');
+            //$pages = array($default_page, 'aliasSettings');
+            $pages = array($default_page);
         }
         else {
             // Hide "Interface Aliasses" inside a VPS:
@@ -412,7 +366,7 @@ class Ethernet extends MX_Controller {
 
         $block->setToggle("#");
         $block->setSideTabs(FALSE);
-        $block->setShowAllTabs("#");
+        //$block->setShowAllTabs("#");
         $block->setDefaultPage($default_page);
 
         if ($redirect != "") {
@@ -447,6 +401,7 @@ class Ethernet extends MX_Controller {
 
         $dns = $factory->getIpAddressList("dnsAddressesField", $system["dns"], $fieldprot);
         $dns->setOptional(true);
+        $dns->setType('ipaddr_list_IPv4IPv6');
         $block->addFormField(
           $dns,
           $factory->getLabel("dnsAddressesField"),
@@ -479,6 +434,47 @@ class Ethernet extends MX_Controller {
             $gw = $factory->getIpAddress("gatewayField", $system["gateway"], $gwFprot);
             $gw->setOptional(true);
             $block->addFormField($gw, $factory->getLabel("gatewayField"), $default_page);
+
+            $block->addFormField(
+                    $factory->getIpAddress("gatewayFieldOrig", $system["gateway"], ""),
+                    '',
+                    $default_page
+                    );
+        }
+
+        if ($product->isRaq()) {
+            if ($is_aws == "1") {
+                if (!isset($system["gateway_IPv6"])) {
+                    // AWS and Gateway not defined. Make it editable:
+                    $gwFprot = 'rw';
+                }
+                else {
+                    if ($system["gateway_IPv6"] == "") {
+                        // AWS and Gateway not set. Make it editable:
+                        $gwFprot = 'rw';
+                    }
+                    else {
+                        // AWS, Gateway is set and not empty. Show it.
+                        // But do not allow to edit it:
+                        $gwFprot = 'r';
+                    }
+                }
+            }
+            else {
+                // Not AWS. Allow edits if they are allowed for any of
+                // the other network related fields:
+                $gwFprot = $fieldprot;
+            }
+            $gw_IPv6 = $factory->getIpAddress("gatewayField_IPv6", $system["gateway_IPv6"], $gwFprot);
+            $gw_IPv6->setOptional(true);
+            $gw_IPv6->setType('ipaddrIPv6');
+            $block->addFormField($gw_IPv6, $factory->getLabel("gatewayField_IPv6"), $default_page);
+
+            $block->addFormField(
+                    $factory->getIpAddress("gatewayFieldOrig_IPv6", $system["gateway_IPv6"], ""),
+                    '',
+                    $default_page
+                    );
         }
 
         // real interfaces
@@ -504,6 +500,7 @@ class Ethernet extends MX_Controller {
                 $dev[$device] = array (
                                 'ipaddr' => $iface["ipaddr"],
                                 'netmask' => $iface["netmask"],
+                                'ipaddr_IPv6' => $iface["ipaddr_IPv6"],
                                 'mac' => $iface["mac"],
                                 'device' => $device,
                                 'bootproto' => $iface["bootproto"],
@@ -515,6 +512,7 @@ class Ethernet extends MX_Controller {
         if (isset($dev['eth0'])) {
             $ipaddr = $dev['eth0']['ipaddr'];
             $netmask = $dev['eth0']['netmask'];
+            $ipaddr_IPv6 = $dev['eth0']['ipaddr_IPv6'];
             $device = $dev['eth0']['device'];
             $mac = $dev['eth0']['mac'];
             $enabled = $dev['eth0']['enabled'];
@@ -522,6 +520,7 @@ class Ethernet extends MX_Controller {
             
             $ip_label = 'ipAddressField1';
             $nm_label = 'netMaskField1';
+            $ip_label_IPv6 = 'IPv6_ipAddressField1';
 
             // Add divider:
             $block->addFormField(
@@ -541,6 +540,7 @@ class Ethernet extends MX_Controller {
             $ip_field0->setInvalidMessage($i18n->getJs('ipAddressField_invalid'));
             $ip_field0->setCurrentLabel($i18n->getHtml('[[base-network.ipAddressField1]]', true, array(), array('name' => "[[base-network.help$device]]")));
             $ip_field0->setDescription($i18n->getWrapped('[[base-network.ipAddressField1_help]]', true, array(), array('name' => "[[base-network.help$device]]")));
+            $ip_field0->setOptional(true);
 
             $block->addFormField(
                     $ip_field0,
@@ -555,11 +555,26 @@ class Ethernet extends MX_Controller {
             $netmask_field0->setDescription($i18n->getWrapped('[[base-network.netMaskField1_help]]', true, array(), array('name' => "[[base-network.help$device]]")));
 
             // Netmask is not optional for the admin iface and for eth0
-            $netmask_field0->setOptional(false);
+            $netmask_field0->setOptional(true);
             
             $block->addFormField(
                     $netmask_field0,
                     $factory->getLabel($nm_label, true,
+                                array(), array('name' => "[[base-network.help$device]]")),
+                    $default_page
+                );
+
+            // IPv6:
+            $IPv6_ip_field0 = $factory->getIpAddress("IPv6_ipAddressField$device", $ipaddr_IPv6, $devprot);
+            $IPv6_ip_field0->setInvalidMessage($i18n->getJs('IPv6_ipAddressField_invalid'));
+            $IPv6_ip_field0->setCurrentLabel($i18n->getHtml('[[base-network.IPv6_ipAddressField1]]', true, array(), array('name' => "[[base-network.help$device]]")));
+            $IPv6_ip_field0->setDescription($i18n->getWrapped('[[base-network.IPv6_ipAddressField1_help]]', true, array(), array('name' => "[[base-network.help$device]]")));
+            $IPv6_ip_field0->setOptional(true);
+            $IPv6_ip_field0->setType('ipaddrIPv6');
+
+            $block->addFormField(
+                    $IPv6_ip_field0,
+                    $factory->getLabel($ip_label_IPv6, true,
                                 array(), array('name' => "[[base-network.help$device]]")),
                     $default_page
                 );
@@ -585,6 +600,11 @@ class Ethernet extends MX_Controller {
                     $default_page
                     );
             $block->addFormField(
+                    $factory->getIpAddress("IPv6_ipAddressOrig$device", $ipaddr_IPv6, ""),
+                    '',
+                    $default_page
+                    );
+            $block->addFormField(
                     $factory->getIpAddress("netMaskOrig$device", $netmask, ""),
                     "",
                     $default_page
@@ -602,12 +622,18 @@ class Ethernet extends MX_Controller {
 
         }
         if (isset($dev['eth1'])) {
+
             $ipaddr = $dev['eth1']['ipaddr'];
             $netmask = $dev['eth1']['netmask'];
+            $ipaddr_IPv6 = $dev['eth1']['ipaddr_IPv6'];
             $device = $dev['eth1']['device'];
             $mac = $dev['eth1']['mac'];
             $enabled = $dev['eth1']['enabled'];
             $bootproto = $dev['eth1']['bootproto'];
+            
+            $ip_label = 'ipAddressField2';
+            $nm_label = 'netMaskField2';
+            $ip_label_IPv6 = 'IPv6_ipAddressField2';
 
             if ($enabled == "0") {
                 $ipaddr = "";
@@ -654,6 +680,21 @@ class Ethernet extends MX_Controller {
                     $default_page
                 );
 
+            // IPv6:
+            $IPv6_ip_field1 = $factory->getIpAddress("IPv6_ipAddressField$device", $ipaddr_IPv6, $devprot);
+            $IPv6_ip_field1->setInvalidMessage($i18n->getJs('IPv6_ipAddressField_invalid'));
+            $IPv6_ip_field1->setCurrentLabel($i18n->getHtml('[[base-network.IPv6_ipAddressField2]]', true, array(), array('name' => "[[base-network.help$device]]")));
+            $IPv6_ip_field1->setDescription($i18n->getWrapped('[[base-network.IPv6_ipAddressField2_help]]', true, array(), array('name' => "[[base-network.help$device]]")));
+            $IPv6_ip_field1->setOptional(true);
+            $IPv6_ip_field1->setType('ipaddrIPv6');
+
+            $block->addFormField(
+                    $IPv6_ip_field1,
+                    $factory->getLabel($ip_label_IPv6, true,
+                                array(), array('name' => "[[base-network.help$device]]")),
+                    $default_page
+                );
+
             // MAC:
             $macaddress_field1 = $factory->getMacAddress("macAddressField$device", $mac, "r");
             $macaddress_field1->setCurrentLabel($i18n->getHtml('[[base-network.macAddressField]]', true));
@@ -679,6 +720,11 @@ class Ethernet extends MX_Controller {
                     $default_page
                     );
             $block->addFormField(
+                    $factory->getIpAddress("IPv6_ipAddressOrig$device", $ipaddr_IPv6, ""),
+                    '',
+                    $default_page
+                    );
+            $block->addFormField(
                     $factory->getTextField("bootProtoField$device", $bootproto, ""),
                     "",
                     $default_page
@@ -693,11 +739,16 @@ class Ethernet extends MX_Controller {
         if (isset($dev['eth2'])) {
             $ipaddr = $dev['eth2']['ipaddr'];
             $netmask = $dev['eth2']['netmask'];
+            $ipaddr_IPv6 = $dev['eth2']['ipaddr_IPv6'];
             $device = $dev['eth2']['device'];
             $mac = $dev['eth2']['mac'];
             $enabled = $dev['eth2']['enabled'];
             $bootproto = $dev['eth2']['bootproto'];
             
+            $ip_label = 'ipAddressField3';
+            $nm_label = 'netMaskField3';
+            $ip_label_IPv6 = 'IPv6_ipAddressField3';
+
             if ($enabled == "0") {
                 $ipaddr = "";
                 $netmask = "";
@@ -742,6 +793,21 @@ class Ethernet extends MX_Controller {
                     $default_page
                 );
 
+            // IPv6:
+            $IPv6_ip_field2 = $factory->getIpAddress("IPv6_ipAddressField$device", $ipaddr_IPv6, $devprot);
+            $IPv6_ip_field2->setInvalidMessage($i18n->getJs('IPv6_ipAddressField_invalid'));
+            $IPv6_ip_field2->setCurrentLabel($i18n->getHtml('[[base-network.IPv6_ipAddressField3]]', true, array(), array('name' => "[[base-network.help$device]]")));
+            $IPv6_ip_field2->setDescription($i18n->getWrapped('[[base-network.IPv6_ipAddressField3_help]]', true, array(), array('name' => "[[base-network.help$device]]")));
+            $IPv6_ip_field2->setOptional(true);
+            $IPv6_ip_field2->setType('ipaddrIPv6');
+
+            $block->addFormField(
+                    $IPv6_ip_field2,
+                    $factory->getLabel($ip_label_IPv6, true,
+                                array(), array('name' => "[[base-network.help$device]]")),
+                    $default_page
+                );
+
             // MAC:
             $macaddress_field2 = $factory->getMacAddress("macAddressField$device", $mac, "r");
             $macaddress_field2->setCurrentLabel($i18n->getHtml('[[base-network.macAddressField]]', true));
@@ -767,6 +833,11 @@ class Ethernet extends MX_Controller {
                     $default_page
                     );
             $block->addFormField(
+                    $factory->getIpAddress("IPv6_ipAddressOrig$device", $ipaddr_IPv6, ""),
+                    '',
+                    $default_page
+                    );
+            $block->addFormField(
                     $factory->getTextField("bootProtoField$device", $bootproto, ""),
                     "",
                     $default_page
@@ -781,11 +852,16 @@ class Ethernet extends MX_Controller {
         if (isset($dev['eth3'])) {
             $ipaddr = $dev['eth3']['ipaddr'];
             $netmask = $dev['eth3']['netmask'];
+            $ipaddr_IPv6 = $dev['eth3']['ipaddr_IPv6'];
             $device = $dev['eth3']['device'];
             $mac = $dev['eth3']['mac'];
             $enabled = $dev['eth3']['enabled'];
             $bootproto = $dev['eth3']['bootproto'];
             
+            $ip_label = 'ipAddressField3';
+            $nm_label = 'netMaskField3';
+            $ip_label_IPv6 = 'IPv6_ipAddressField3';
+
             if ($enabled == "0") {
                 $ipaddr = "";
                 $netmask = "";
@@ -830,6 +906,21 @@ class Ethernet extends MX_Controller {
                     $default_page
                 );
 
+            // IPv6:
+            $IPv6_ip_field3 = $factory->getIpAddress("IPv6_ipAddressField$device", $ipaddr_IPv6, $devprot);
+            $IPv6_ip_field3->setInvalidMessage($i18n->getJs('IPv6_ipAddressField_invalid'));
+            $IPv6_ip_field3->setCurrentLabel($i18n->getHtml('[[base-network.IPv6_ipAddressField3]]', true, array(), array('name' => "[[base-network.help$device]]")));
+            $IPv6_ip_field3->setDescription($i18n->getWrapped('[[base-network.IPv6_ipAddressField3_help]]', true, array(), array('name' => "[[base-network.help$device]]")));
+            $IPv6_ip_field3->setOptional(true);
+            $IPv6_ip_field3->setType('ipaddrIPv6');
+
+            $block->addFormField(
+                    $IPv6_ip_field3,
+                    $factory->getLabel($ip_label_IPv6, true,
+                                array(), array('name' => "[[base-network.help$device]]")),
+                    $default_page
+                );
+
             // MAC:
             $macaddress_field3 = $factory->getMacAddress("macAddressField$device", $mac, "r");
             $macaddress_field3->setCurrentLabel($i18n->getHtml('[[base-network.macAddressField]]', true));
@@ -854,6 +945,11 @@ class Ethernet extends MX_Controller {
                     "",
                     $default_page
                     );
+            $block->addFormField(
+                    $factory->getIpAddress("IPv6_ipAddressOrig$device", $ipaddr_IPv6, ""),
+                    '',
+                    $default_page
+                    );            
             $block->addFormField(
                     $factory->getTextField("bootProtoField$device", $bootproto, ""),
                     "",
@@ -950,9 +1046,9 @@ class Ethernet extends MX_Controller {
             $block->addButton($factory->getCancelButton("/network/ethernet"));
         }
 
-        $routeButton = $factory->getButton("/network/routes", "routes", "DEMO-OVERRIDE");
-        $buttonRouteContainer = $factory->getButtonContainer(" ", array($routeButton));
-        $page_body[] = $buttonRouteContainer->toHtml();
+        //$routeButton = $factory->getButton("/network/routes", "routes", "DEMO-OVERRIDE");
+        //$buttonRouteContainer = $factory->getButtonContainer(" ", array($routeButton));
+        //$page_body[] = $buttonRouteContainer->toHtml();
 
         $page_body[] = $block->toHtml();
 
@@ -963,8 +1059,8 @@ class Ethernet extends MX_Controller {
 }
 
 /*
-Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2014-2017 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2014-2017 Team BlueOnyx, BLUEONYX.IT
 All Rights Reserved.
 
 1. Redistributions of source code must retain the above copyright 

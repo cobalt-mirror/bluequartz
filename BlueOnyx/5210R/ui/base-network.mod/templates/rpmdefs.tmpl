@@ -106,6 +106,33 @@ fi
 
 <begin $CHANGELOG>
 
+* Sat Nov 04 2017 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX01
+- IPv6 implementation for BlueOnyx and large rewrite of the network stack.
+  We only deal with REAL interfaces now. Screw Interface Aliases. We add
+  any extra IP on the fly that's not the primary IPv4 or IPv6 IP.
+- Modified glue/handlers/change_route.pl to dynamically add/remove extra
+  IPs and routes. This is run on every network restart, as we tie it also
+  into /etc/sysconfig/network-scripts/ifup-routes on the OS level.
+- Modified constructor/30_addNetwork.pl to detect and update NICs in CODB,
+  but this time only real interfaces. And we only update CODB if something
+  has changed.
+- Modified constructor/31_handle_aws_dhcp.pl
+- Modified constructor/40_addGateway.pl
+- Disabled constructor/updateMac.pl as 30_addNetwork.pl now does the MAC.
+- Modified glue/conf/base-network.conf
+- Modified glue/handlers/Network.pm to disable dependency on ifconfig.
+- Modified glue/handlers/rewrite-ifcfg.pl to deal with IPv6
+- Modified constructor/checkInterfaceConfigure.pl - needs more work
+- Modified glue/handlers/cleanup_aliases.pl - needs more work
+- Modified glue/handlers/etchosts.pl - needs more work
+- Modified glue/handlers/no_duplicates.pl - needs more work
+- Modified glue/handlers/set_imode.pl - needs more work
+- Modified glue/schemas/network.schema
+- Modified ui/chorizo/web/config/routes.php - now disabled anyway
+- Modified ui/chorizo/web/controllers/ethernet.php
+- Added ui/chorizo/web/controllers/ethernetDeploy.php - not really used
+- Added ui/chorizo/web/controllers/ethernetIframe.php - not really used
+
 * Mon Mar 06 2017 Michael Stauber <mstauber@solarspeed.net> 2.0.0-1BX22
 - Added redirect in ui/chorizo/web/controllers/pooling.php on error-free save.
 

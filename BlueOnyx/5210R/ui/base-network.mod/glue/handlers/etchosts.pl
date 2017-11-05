@@ -14,9 +14,13 @@ $cce->connectfd();
 
 $hostname = $System->{'hostname'};
 $servername = $System->{'hostname'} . '.' . $System->{'domainname'};
+$nw_update = $System->{nw_update};
 
 # Set hostname via /usr/bin/hostnamectl set-hostname $servername:
-if (-e '/usr/bin/hostnamectl') {
+# But not run it if 'nw_update' is '0', because then DBUS will
+# restart the network under our ass, which might interfere with
+# a GUI inititaed network change.
+if ((-e '/usr/bin/hostnamectl') && ($nw_update ne '0')) {
     system("/usr/bin/hostnamectl set-hostname $servername");
 }
 

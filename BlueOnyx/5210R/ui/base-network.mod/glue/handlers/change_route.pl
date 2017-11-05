@@ -1,54 +1,62 @@
 #!/usr/bin/perl -I/usr/sausalito/perl -I.
 #
-# $Id: change_route.pl 1136 2008-06-05 01:48:04Z mstauber $
-# Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
+# $Id: change_route.pl
 #
 # Keeps the routing table on a running machine up to date with
 # as little disturbance as possible.
 #
 # This script:
-#   1) parses the existing routing table
-#   2) computes a new "target" routing table
-#   3) calculates the differences between the two routing tables, and
-#   4) runs a minimum number of route commands to change from old
-#      routing to new.
+#
+#   1) If we're on AWS, we do nothing.
+#   2) If $System->{nw_update} doesn't have a recent timestamp it does nothing.
+#   3) If IPv6 is disabled (no IPv6 Gateway) it will disable IPv6.
+#   4) Binds all IPv4 extra IPs to eth0 and creates proper routes for them.
+#   5) Creates IPv4 loopback route (IPv6 lo route is created automatically!)
+#   6) Binds all IPv6 extra IPs to eth0. Routes are created automatically.
+#   7) OpenVZ provisions present to handle GATEWAY/GATEWAYDEV config.
 #
 # routes are gathered from:
-#   network interfaces (ie. the routes that ifconfig creates)
+#   network interfaces (/sbin/ip)
 #   the system default gateway
-#   explicit Route objects.
 #
 # Note: the "-c" option can be used to run change_route.pl as a standalone
 # command-line tool, rather than a handler.
 #
-# FIXME: for the next product, change_route.pl should probably be update
-# to get info from a config file, rather than from CCE.  Making change_route
-# more independent of CCE would be more better.  -jm.
+# Additional note: The extra_ips for eth0 *must* be stored in the 'System'
+# Object. Because if this runs as a handler, it cannot use $cce->get() in
+# Handler context to fetch the 'Network' object of eth0 that would contain
+# the info in a perfect world. 
+#
 
 use lib qw(/usr/sausalito/perl /usr/sausalito/handlers/base/network);
+
+# Debugging switch:
+$DEBUG = "1";
+if ($DEBUG) {
+        use Sys::Syslog qw( :DEFAULT setlogsock);
+}
 
 use FileHandle;
 use Data::Dumper;
 use Sauce::Config;
 use Sauce::Util;
+use Sauce::Service;
 use CCE;
 use Getopt::Long;
 use Network qw(find_eth_ifaces);
 
 my $CMDLINE = 0;
-my $DEBUG = 0;
 GetOptions('cmdline', \$CMDLINE, 'debug', \$DEBUG);
 
+&debug_msg("Running $0: starting\n");
 $DEBUG && print STDERR "$0: starting.\n";
 
 my $cce = new CCE(Domain => 'base-network');
 
-if ($CMDLINE) 
-{
+if ($CMDLINE) {
     $cce->connectuds();
 } 
-else 
-{
+else {
     $cce->connectfd();
 }
 
@@ -58,6 +66,186 @@ if (-f "/etc/is_aws") {
         exit(0);
 }
 
+# Special case: IPv6 default route:
+my $gateway_IPv6 = '';
+my ($sysoid) = $cce->find('System');
+&debug_msg("Running $0: My sysoid: " . $sysoid . "\n");
+my ($ok, $System) = $cce->get($sysoid);
+if (!$ok) {
+    &debug_msg("Running $0: No 'System' Object found, bailing.\n");
+    $cce->bye('FAIL');
+    exit 1;
+}
+else {
+    $gateway_IPv6 = $System->{gateway_IPv6};
+    $nw_update = $System->{nw_update};
+}
+
+if (($nw_update eq '0') || ($nw_update eq '')) {
+    &debug_msg("Running $0: Early exit to not restart network just yet.\n");
+    $cce->bye('SUCCESS');
+    exit(0);
+}
+
+# Check if a recent network update mandates a restart of the Network:
+$now = time();
+$time_window = $nw_update + '60';
+&debug_msg("Running $0: now: $now - time_window: $time_window.\n");
+if ($time_window gt $now) {
+    &debug_msg("Running $0: Flushing IPv6 and bringing up eth0\n");
+    # Soft Restart Network:
+    system("/sbin/ip -6 addr flush dev eth0");
+    #system("/bin/sleep 3");
+    #Sauce::Service::service_run_init('network', 'restart');
+    system("/sbin/ifup eth0");
+}
+
+if ($gateway_IPv6 eq "") {
+    &debug_msg("Running $0: Flushing IPv6 routes.\n");
+    system("/sbin/ip -6 addr flush dev eth0");
+    system("/sbin/ip -6 route del default");
+}
+else {
+    # Get existing IPv6 default route:
+    @ipv6_default_routes = split (/\n/, `LC_ALL=C /sbin/ip -6 route show default|awk -F "default via " '{print \$2}'|awk -F " dev" '{print \$1}'`);
+    if (in_array(\@ipv6_default_routes, $gateway_IPv6)) {
+        # IPv6 default route already present.
+    }
+    else {
+        &debug_msg("Running $0: Adding default IPv6 route.\n");
+        system("/sbin/ip -6 route add default via $gateway_IPv6");
+    }
+}
+
+#
+### Handle Assignment of Extra IPs to eth0:
+#
+
+# Get IP addresses currently bound to eth0 and also the existing routes:
+@arr_assigned_ipv4 = split (/\n/, `LC_ALL=C /sbin/ip address show dev eth0 |grep inet|grep global|awk -F "inet " '{print \$2}'|awk -F " brd " '{print \$1}'|cut -d / -f1|sed '/^\$/d'`);
+@arr_assigned_ipv6 = split (/\n/, `LC_ALL=C /sbin/ip address show dev eth0 |grep inet|grep global|awk -F "inet6 " '{print \$2}'|awk -F " brd " '{print \$1}'|cut -d / -f1|sed '/^\$/d'`);
+@routes_existing_ipv4 = split (/\n/, `LC_ALL=C /sbin/ip route show dev eth0|grep -v default|awk -F "/" '{print \$1}'|awk -F " scope link" '{print \$1}'`);
+
+# Get primary IPs of 'eth0' from Network Config file:
+$ipv4_ip = `LC_ALL=C cat /etc/sysconfig/network-scripts/ifcfg-eth0 | grep IPADDR= | awk -F "IPADDR=" '{print \$2}'`;
+chomp($ipv4_ip);
+&debug_msg("Running $0: My primary IPv4 ipaddr: " . $ipv4_ip . "\n");
+$ipv4_nm = `LC_ALL=C cat /etc/sysconfig/network-scripts/ifcfg-eth0 | grep NETMASK= | awk -F "NETMASK=" '{print \$2}'`;
+chomp($ipv4_nm);
+&debug_msg("Running $0: My primary IPv4 netmask: " . $ipv4_nm . "\n");
+$ipv6_ip = `LC_ALL=C cat /etc/sysconfig/network-scripts/ifcfg-eth0 | grep IPV6ADDR= | awk -F "IPV6ADDR=" '{print \$2}'`;
+chomp($ipv6_ip);
+&debug_msg("Running $0: My primary IPv6 ipaddr: " . $ipv6_ip . "\n");
+
+# Remove primary IPv4 and IPv6 IPs from our arrays:
+#@arr_assigned_ipv4 = grep {!/^$ipv4_ip$/} @arr_assigned_ipv4;
+@arr_assigned_ipv6 = grep {!/^$ipv6_ip$/} @arr_assigned_ipv6;
+@arr_existing_netroutes = ();
+
+#
+## Assign IPv4 IPs that are not yet bound to eth0:
+#
+
+# Make sure all IPv4 extra-IPs are bound:
+if ($System->{extra_ipaddr}) {
+    @extra_ipaddr = $cce->scalar_to_array($System->{extra_ipaddr});
+    push (@extra_ipaddr, $ipv4_ip);
+    foreach my $ip_extra (@extra_ipaddr) {
+        &debug_msg("Running $0: Found extra IPv4 IP: $ip_extra\n");
+        if (in_array(\@arr_assigned_ipv4, $ip_extra)) {
+            # Remove element from array:
+            @arr_assigned_ipv4 = grep {!/^$ip_extra$/} @arr_assigned_ipv4;
+        }
+        else {
+            &debug_msg("Running $0: Extra IPv4 IP $ip_extra needs to be bound.\n");
+            system("/sbin/ip addr add " . $ip_extra. "/32 dev eth0");
+            # Remove element from array:
+            @arr_assigned_ipv4 = grep {!/^$ip_extra$/} @arr_assigned_ipv4;
+        }
+
+        # Handle netroutes (just keep track of them here, process later):
+        my $netroute = ip_and_ip($ip_extra, $ipv4_nm);
+        if (in_array(\@unique_netroutes, $netroute)) {
+            # Nada
+        }
+        else {
+            push (@unique_netroutes, $netroute);
+        }
+
+        # Handle regular IPv4 routes:
+        if (in_array(\@routes_existing_ipv4, $ip_extra)) {
+            # ip_extra route exists, skipping
+            @routes_existing_ipv4 = grep {!/^$ip_extra$/} @routes_existing_ipv4;
+        }
+        else {
+            system("/sbin/ip route add " . $ip_extra. "/255.255.255.255 dev eth0");
+            @routes_existing_ipv4 = grep {!/^$ip_extra$/} @routes_existing_ipv4;
+        }
+    }
+}
+
+# Set up netroutes:
+foreach my $netroute (@unique_netroutes) {
+    if (in_array(\@routes_existing_ipv4, $netroute)) {
+        # Nada
+    }
+    else {
+        system("/sbin/ip route add " . $netroute . "/" . $ipv4_nm . " dev eth0");
+    }
+    @arr_assigned_ipv4 = grep {!/^$netroute$/} @arr_assigned_ipv4;
+    @routes_existing_ipv4 = grep {!/^$netroute$/} @routes_existing_ipv4;    
+}
+
+# Unbind any extra IPv4 IP that is still bound, but not known to the GUI:
+foreach my $ip_extra (@arr_assigned_ipv4) {
+    &debug_msg("Running $0: Unbinding Extra IPv4 IP $ip_extra.\n");
+    system("/sbin/ip addr del " . $ip_extra. "/32 dev eth0");
+}
+
+# Removing routes for that we no longer have IPs:
+foreach my $ip_extra (@routes_existing_ipv4) {
+    &debug_msg("Running $0: Removing route for $ip_extra.\n");
+    system("/sbin/ip route del " . $ip_extra . " dev eth0");
+}
+
+# Handle the the IPv4 loopback route:
+my $loop_ipv4 = `LC_ALL=C /sbin/ip route show dev lo|grep "127.0.0.0/8 scope link"|wc -l`;
+chomp($loop_ipv4);
+if ($loop_ipv4 ne "1") {
+    # No route present. Add one:
+    system("/sbin/ip route add " . '127.0.0.0/255.0.0.0' . " dev lo");
+}
+
+#
+## Assign IPv6 IPs that are not yet bound to eth0:
+#
+
+# Make sure all IPv6 extra-IPs are bound:
+if ($System->{extra_ipaddr_IPv6}) {
+    @extra_ipaddr = $cce->scalar_to_array($System->{extra_ipaddr_IPv6});
+    #push (@extra_ipaddr, $ipv6_ip);
+    foreach my $ip_extra (@extra_ipaddr) {
+        &debug_msg("Running $0: Found extra IPv6 IP: $ip_extra\n");
+        if (in_array(\@arr_assigned_ipv6, $ip_extra)) {
+            # Remove element from array:
+            @arr_assigned_ipv6 = grep {!/^$ip_extra$/} @arr_assigned_ipv6;
+        }
+        else {
+            &debug_msg("Running $0: Extra IPv6 IP $ip_extra needs to be bound.\n");
+            system("/sbin/ip addr add " . $ip_extra. "/128 dev eth0");
+            # Remove element from array:
+            @arr_assigned_ipv6 = grep {!/^$ip_extra$/} @arr_assigned_ipv6;
+        }
+    }
+}
+
+# Unbind any extra IPv6 IP that is still bound, but not known to the GUI:
+foreach my $ip_extra (@arr_assigned_ipv6) {
+    &debug_msg("Running $0: Unbinding Extra IPv6 IP $ip_extra.\n");
+    system("/sbin/ip addr del " . $ip_extra. "/128 dev eth0");
+}
+
+######################
 
 # Handle OpenVZ network situation:
 if (-e "/proc/user_beancounters") {
@@ -75,438 +263,72 @@ if (-e "/proc/user_beancounters") {
     # Parse /etc/sysconfig/network:
     $sys_network = "/etc/sysconfig/network";
     if (-f $sys_network) {
-	open (F, "/etc/sysconfig/network") || die "Could not open $sys_network $!";
-	while ($line = <F>) {
-    	    chomp($line);
-    	    next if $line =~ /^\s*$/;               # skip blank lines
-    	    next if $line =~ /^#$/;                 # skip comments
-    	    if ($line =~ /^GATEWAY=(.*)$/) {
+    open (F, "/etc/sysconfig/network") || die "Could not open $sys_network $!";
+    while ($line = <F>) {
+            chomp($line);
+            next if $line =~ /^\s*$/;               # skip blank lines
+            next if $line =~ /^#$/;                 # skip comments
+            if ($line =~ /^GATEWAY=(.*)$/) {
                 $my_gateway = $1;
                 if ($my_gateway =~ /^\"(.*)\"/g) {
-            	    $my_gateway = $1;
+                    $my_gateway = $1;
                 }
                 
-    	    }
-    	    if ($line =~ /^GATEWAYDEV=(.*)$/) {
+            }
+            if ($line =~ /^GATEWAYDEV=(.*)$/) {
                 $my_gatewaydev = $1;
                 if ($my_gatewaydev =~ /^\"(.*)\"/g) {
-            	    $my_gatewaydev = $1;
+                    $my_gatewaydev = $1;
                 }
-    	    }
-	}
-	close(F);
+            }
+    }
+    close(F);
     }
 
     # We're on OpenVZ. See if we have either GATEWAY or GATEWAYDEV defined:
     if ((!$my_gateway) || (!$my_gatewaydev)) {
-	# At least either GATEWAY or GATEWAYDEV are undefined. Test network connectivity
-	# to see if we can establish a network connection to the outside:
-	use Net::Ping;
-	$p = Net::Ping->new();
-	$host = "8.8.8.8";
-	if (!$p->ping($host)) {
-	    # Network is dead. We need to fix it.
+        # At least either GATEWAY or GATEWAYDEV are undefined. Test network connectivity
+        # to see if we can establish a network connection to the outside:
+        use Net::Ping;
+        $p = Net::Ping->new();
+        $host = "8.8.8.8";
+        if (!$p->ping($host)) {
+            # Network is dead. We need to fix it.
 
-	    # Build output hash:
-	    if ((!$my_gateway) && (!$my_gatewaydev)) {
-		$server_sys_network_writeoff = {
-		    'GATEWAY' => '"192.0.2.1"',
-		    'GATEWAYDEV' => '"venet0"'
-		};
-	    }
-	    elsif ((!$my_gateway) && ($my_gatewaydev)) {
-		$server_sys_network_writeoff = {
-		    'GATEWAY' => '"192.0.2.1"'
-		};
-	    }
-	    else {
-		$server_sys_network_writeoff = {
-		    'GATEWAYDEV' => '"venet0"'
-		};
-	    }
-
-	    # Edit /etc/sysconfig/network:
-	    &edit_sys_network;
-
-	    # Restart Network:
-	    system("/sbin/service network restart > /dev/null 2>&1");
-    	}
-	$p->close();
-    }
-}
-
-#$cce->bye('SUCCESS');
-#exit(0);
-
-# End for now
-
-$DEBUG && print STDERR "event oid is ", $cce->event_oid(), "\n";
-
-# 1. extract list of current routes:
-my $cur_routes = {};
-{
-    # read the current kernel routing table
-    my @data = `$Network::ROUTE -n`;
-
-    # skip headers
-    shift(@data); 
-    shift(@data);
-    
-    # process the current route
-    while (my $route = shift(@data)) 
-    {
-        # split up columns
-        my @a = split(/\s+/, $route);
-        
-        # treat default gw special:
-        if ($a[0] eq '0.0.0.0' && $a[2] eq '0.0.0.0') 
-        {
-            # dont' specify a device for the default gateway, because it's the default
-            $a[7] = '';
-        }
-        
-        my $key = $a[0] . '/' . $a[2];
-        if (defined($cur_routes->{$key})) { $key .= '/'; }
-        $cur_routes->{$key} = "$a[1]/$a[7]/$a[3]";
-    }
-};
-
-$DEBUG && print STDERR "$0: current routing table:\n",Dumper($cur_routes),"\n";
-
-# 2. compute set of desired routes
-my $new_routes = {};
-
-# the default Network routes:
-my (@networks) = $cce->find('Network');
-my @nets = ();
-for my $network_oid (@networks) 
-{
-    my ($ok, $net) = $cce->get($network_oid);
-    
-    # make sure this interface is up
-    next if (!defined($net->{enabled}) || !$net->{enabled} 
-            || !defined($net->{ipaddr})  || ($net->{ipaddr} eq '')
-            || !defined($net->{netmask}) || ($net->{netmask} eq ''));
-
-	# don't use aliases as devices for routes, not necessary, and it
-	# ends up breaking things sometimes
-	if (! -f "/proc/user_beancounters") { 
-		# Normal Network interfaces:
-		$net->{device} =~ s/^(eth\d+):*\d*$/$1/;
-	}
-	else {
-		# OpenVZ Network interfaces:
-		$net->{device} =~ s/^(venet\d+):*\d*$/$1/;
-	}
-    # add this interface's ip address to the routes to add
-    push (@nets, $net);
-    $new_routes->{$net->{ipaddr} . '/255.255.255.255'} =
-                                    '0.0.0.0/' . $net->{device} . '/UH';
-  
-    # add the network this interface should listen on to the routes to add
-    $new_routes->{ip_and_ip($net->{ipaddr}, $net->{netmask}) . '/' . $net->{netmask}} =
-                                    '0.0.0.0/' . $net->{device} . '/U';
-}
-
-# err, override the above info with info from ifconfig, if available:
-my @ifaces = find_eth_ifaces();
-for my $interface (@ifaces)
-{
-    my $data = `$Network::IFCONFIG $interface 2>/dev/null`;
-    
-    # check if the interface is up and add routes to the new_routes hash as necessary
-    if ($data =~ /^$interface/m && $data =~ /^\s+UP/m) 
-    {
-        if ($data =~ m/^\s+inet addr:(\S+).*?Mask:(\S+)/m) 
-        {
-            my ($ipaddr, $netmask) = ($1, $2);
-            $DEBUG && print STDERR "read from ifconfig: $interface $ipaddr/$netmask\n";
-			# don't use aliases for device names
-			if (! -f "/proc/user_beancounters") { 
-				# Normal Network interfaces:
-				$interface =~ s/^(eth\d+):*\d*$/$1/;
-			}
-			else {
-				# OpenVZ Network interfaces:
-				$interface =~ s/^(venet\d+):*\d*$/$1/;
-			}
-
-            # add a host entry for this interface
-            $new_routes->{$ipaddr . '/255.255.255.255'} =
-                                    '0.0.0.0/' . $interface . '/UH';
-
-            # add a network entry for this interface
-            $new_routes->{ ip_and_ip($ipaddr, $netmask) . '/' . $netmask } =
-                                    '0.0.0.0/' . $interface . '/U';
-        }
-    } 
-    else 
-    {
-        $DEBUG && print STDERR "$interface is not yet up.\n";
-    }
-}
-
-# handle adding the default gateway to the routes
-my ($system_oid) = $cce->find('System');
-$DEBUG && print STDERR "found system object with oid $system_oid\n";
-my ($ok, $system) = $cce->get($system_oid);
-if ($system->{gateway}) 
-{
-    my $default_dev = which_device($system->{gateway}, @nets);
-
-    $DEBUG && print STDERR "default_dev: $default_dev\n";
-    $DEBUG && print STDERR "sys-gateway: " . $system->{gateway} . "\n";
-
-    # More OpenVZ madness:
-    if ( -f "/proc/user_beancounters") {
-	# If we're under OpenVZ we have to set up a route for the system gateway first, or we cannot
-	# add the fake "192.0.2.1" IP as default gateway:
-	$new_routes->{$system->{gateway} . '/' . "255.255.255.255"} = "dev" . '/' . "venet0" . '/' . "U";
-	# Now that the route for the fake gateway is set, we can set the fake "192.0.2.1" IP as default gateway:
-	$new_routes->{"0.0.0.0/0.0.0.0"} = $system->{gateway} . "/venet0/UG";
-    }
-    else {
-	#$new_routes->{"0.0.0.0/0.0.0.0"} = $system->{gateway} . "/${default_dev}/UG";
-	# don't associate the default gw with a particular device:
-	$new_routes->{'0.0.0.0/0.0.0.0'} = $system->{gateway} . '//UG';
-    }
-}
-
-# handle the the loopback route (huh, now I'm sure this doesn't need to be here)
-{
-    # is the loopback interface up?
-    my $d = join('', `$Network::IFCONFIG lo 2>/dev/null`);
-    if ($d =~ m/UP LOOPBACK RUNNING/) 
-    {
-        # make sure it has a route:
-        $new_routes->{'127.0.0.0/255.0.0.0'} = '0.0.0.0/lo/U';
-    }
-}
-
-# additional user-entered static routes
-my (@routes) = $cce->find('Route');
-$DEBUG && print STDERR "routes: @routes\n";
-
-for my $route_oid (@routes) 
-{
-    my ($ok, $route) = $cce->get($route_oid);
-    my $gateway = $route->{gateway};
-    if (!$gateway) { $gateway = '0.0.0.0'; }
-
-    # what device for this route?
-    my $dev = $route->{device};
-    if (!$dev) { $dev = which_device($gateway, @nets); }
-    if (!$dev) 
-    {
-        $cce->warn('gateway-not-reachable', { 'gateway' => $gateway } );
-        $DEBUG && print STDERR "$0: gateway not reachable: $gateway\n";
-        next;
-    }
-    
-    # make sure the gateway for this route is not in the subnet to which we are
-    # trying to route
-    if ((ip2bin($route->{target}) & ip2bin($route->{netmask})) 
-            == (ip2bin($route->{gateway}) & ip2bin($route->{netmask}))) 
-    {
-        $cce->warn('gatewayWithinOwnTargetSubnet', 
-            { 
-                gateway => $route->{gateway},
-                target => bin2ip(ip2bin($route->{netmask}) & ip2bin($route->{target})) 
-            });
-        $cce->bye('FAIL');
-        exit(1);
-    }
-
-    my $flag = 'U'; 
-    if ($gateway && ($gateway ne '0.0.0.0')) 
-    {
-        $flag .= 'G'; 
-    }
-
-    # add the static route to our routing table
-    $new_routes->{ip_and_ip($route->{target}, $route->{netmask}) . '/' . $route->{netmask}}
-                = ${gateway} . '/' . $dev . '/' . $flag;
-}
-
-$DEBUG && print STDERR "$0: desired routes:\n",Dumper($new_routes),"\n";
-
-# 3. compute the differences
-my %del = %$cur_routes; # list of routes to delete
-my %add = %$new_routes; # list of routes to add
-
-# cancel out overlap:
-my ($key, $val);
-
-# remove routes from the delete hash that are in the new routing
-# table still, so they don't need to be removed and added again
-while (($key,$val) = each %$new_routes) 
-{
-    if (defined($del{$key}) && ($del{$key} eq $val)) 
-    { 
-        delete $del{$key};
-    }
-}
-
-# don't re-add routes that already exist
-while (($key,$val) = each %$cur_routes) 
-{
-    if (defined($add{$key}) && ($add{$key} eq $val)) 
-    { 
-        delete $add{$key};
-    }
-}
-
-
-# 4. sync the routing table.
-my $errors = 0;
-
-# delete old routes
-while (($key, $val) = each %del) 
-{
-    my ($target, $mask) = split(/\//, $key);
-    my ($gateway, $device, $flags) = split(/\//, $val);
-    my @opts;
-
-    # setup the correct arguments needed by the route command
-    if ($flags =~ m/H/) 
-    {
-        @opts = ('-host', $target, $device);
-    } 
-    else 
-    {
-        @opts = ('-net', $target, 'netmask', $mask, $device);
-    }
-    if (!$device) { pop(@opts); }
-    
-    $DEBUG && print STDERR "$0: route del @opts\n";
-    Sauce::Util::addrollbackcommand($Network::ROUTE, 'add', @opts);
-    system($Network::ROUTE, 'del', @opts);
-    if ($?) 
-    { 
-        $errors++; 
-        $DEBUG && print STDERR "FAILED($?): route del @opts\n";
-    }
-}
-
-# add new routes:
-my @bad_routes = ();
-{
-    my @routes = ();
-    my @defered = ();
-    my $last_defered = -1;
-    while (($key, $val) = each %add) 
-    {
-        push (@routes, $key . '/' . $val);
-    }
-    while (@routes) 
-    {
-        $DEBUG && print STDERR "myroutes: \n\t", join("\n\t", @routes), "\n";
-        while (@routes) 
-        {
-            my ($val) = shift (@routes);
-            my ($target, $mask, $gateway, $device, $flags) = split(/\//, $val);
-            my @opts;
-            if ($flags =~ m/H/) 
-            {
-                @opts = ('-host', $target);
-            } 
-            else 
-            {
-                if ($mask eq '0.0.0.0') 
-                {
-                    @opts = ('default');
-                } 
-                else 
-                {
-                    @opts = ('-net', $target, 'netmask', $mask);
-                }
+            # Build output hash:
+            if ((!$my_gateway) && (!$my_gatewaydev)) {
+                $server_sys_network_writeoff = {
+                    'GATEWAY' => '"192.0.2.1"',
+                    'GATEWAYDEV' => '"venet0"'
+                };
             }
-            if ($flags =~ m/G/) 
-            {
-                push (@opts, 'gw', $gateway);
+            elsif ((!$my_gateway) && ($my_gatewaydev)) {
+                $server_sys_network_writeoff = {
+                    'GATEWAY' => '"192.0.2.1"'
+                };
             }
-            if ($device) { push (@opts, $device); }
-            $DEBUG && print STDERR "$0: route add @opts\n";
-            Sauce::Util::addrollbackcommand($Network::ROUTE, 'del', @opts);
-            system($Network::ROUTE, 'add', @opts);
-            if ($?) 
-            { 
-                $DEBUG && print STDERR "\tfailed: defering.\n";
-                push (@defered, $val);
+            else {
+                $server_sys_network_writeoff = {
+                    'GATEWAYDEV' => '"venet0"'
+                };
             }
-        }
-        # check for deadlock:
-        if (($#defered+1) == $last_defered) 
-        {
-            # deadlock, we can not add these routes.
-            $errors++;
-            $DEBUG && print STDERR "No route: \n\t", join("\n\t", @defered), "\n";
-            @bad_routes = @defered;
-            @defered = ();
-        }
-        # set up next pass
-        $last_defered = 1 + $#defered;
-        @routes = @defered;
-        @defered = ();
-    }
-};
 
-if ($errors) 
-{ 
-    $DEBUG && print STDERR "$0: $errors errors!\n"; 
-   
-    for my $route (@bad_routes)
-    {
-        my @info = split('/', $route);
-        # check if the bad route is for the default gateway
-		if ($info[0] eq '0.0.0.0' && $info[3] eq '')
-		{
-			# if the default gateway route can't be added then bail
-			$cce->warn('badDefaultGateway', { 'gateway' => $info[2] });
-		}
-		else
-		{
-			$cce->warn('invalid-route', 
-                    { 
-                        'network' => $info[0],
-                        'gateway' => $info[2],
-                        'device' => "[[base-network.$info[3]]]"
-                    });
-		}
-    }
-    
-    # write debugging output:
-    if ($DEBUG)
-    {
-        my $fh = new FileHandle('>/tmp/.change_route.debug.' . scalar(time()));
-        if ($fh) 
-        {
-            print $fh 'cur_routes = ', Dumper($cur_routes), "\n\n";
-            print $fh 'new_routes = ', Dumper($new_routes), "\n\n";
-            print $fh 'del = ', Dumper(\%del), "\n\n";
-            print $fh 'add = ', Dumper(\%add), "\n\n";
-            print $fh 'bad_routes = ', Dumper(\@bad_routes), "\n\n";
-            print $fh "current state: \n", `$Network::ROUTE -n`, "\n\n";
-            $fh->close();
-        }
-    }
+            # Edit /etc/sysconfig/network:
+            &edit_sys_network;
 
-    ## don't fail: there's a reason for this.
-    ## think of a system where many routes are
-    ## being added and destroyed.  Sometimes,
-    ## destroying one route will make another route
-    ## invalid.  But, destroying that route must
-    ## still be legal!  We need to rethink a few
-    ## things here: perhaps the current state of the
-    ## routing table should be used to repopulate CCE
-    ## after every route change.  In any case, this
-    ## current solution will do for now.
-    # $cce->bye('FAIL');
-    # exit(1);
+            # Restart Network:
+            Sauce::Service::service_run_init('network', 'restart');
+        }
+        $p->close();
+    }
 }
 
 $cce->bye('SUCCESS');
 exit(0);
+
+#
+### Subroutines:
+#
 
 sub ip_and_ip
 {
@@ -538,7 +360,15 @@ sub which_device
             return ($net->{device});
         }
     }
-    return '';
+    if ( -f "/proc/user_beancounters") {
+        $GuessDevice = 'venet0';
+        return $GuessDevice;
+    }
+    else {
+        $GuessDevice = 'eth0';
+        return $GuessDevice;
+    }
+    #return '';
 }
 
 sub is_ip_in_net
@@ -565,22 +395,60 @@ sub edit_sys_network {
     system("/bin/rm -f /etc/sysconfig/network.backup.*");
 }
 
+sub in_array {
+    my ($arr,$search_for) = @_;
+    my %items = map {$_ => 1} @$arr; # create a hash out of the array values
+    return (exists($items{$search_for}))?1:0;
+}
+
+sub uniq {
+    my %seen;
+    grep !$seen{$_}++, @_;
+}
+
+sub debug_msg {
+    if ($DEBUG) {
+        my $msg = shift;
+        $user = $ENV{'USER'};
+        setlogsock('unix');
+        openlog($0,'','user');
+        syslog('info', "$ARGV[0]: $msg");
+        closelog;
+    }
+}
+
+# 
+# Copyright (c) 2017 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2017 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
+# All Rights Reserved.
 # 
-# Redistribution and use in source and binary forms, with or without 
-# modification, are permitted provided that the following conditions are met:
+# 1. Redistributions of source code must retain the above copyright 
+#    notice, this list of conditions and the following disclaimer.
 # 
-# -Redistribution of source code must retain the above copyright notice, 
-# this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright 
+#    notice, this list of conditions and the following disclaimer in 
+#    the documentation and/or other materials provided with the 
+#    distribution.
 # 
-# -Redistribution in binary form must reproduce the above copyright notice, 
-# this list of conditions and the following disclaimer in the documentation  
-# and/or other materials provided with the distribution.
+# 3. Neither the name of the copyright holder nor the names of its 
+#    contributors may be used to endorse or promote products derived 
+#    from this software without specific prior written permission.
 # 
-# Neither the name of Sun Microsystems, Inc. or the names of contributors may 
-# be used to endorse or promote products derived from this software without 
-# specific prior written permission.
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
+# COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+# POSSIBILITY OF SUCH DAMAGE.
 # 
-# This software is provided "AS IS," without a warranty of any kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY EXCLUDED. SUN MICROSYSTEMS, INC. ("SUN") AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+# You acknowledge that this software is not designed or intended for 
+# use in the design, construction, operation or maintenance of any 
+# nuclear facility.
 # 
-# You acknowledge that  this software is not designed or intended for use in the design, construction, operation or maintenance of any nuclear facility.

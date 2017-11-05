@@ -6,6 +6,7 @@ use lib qw(/usr/sausalito/handlers/base/network);
 use CCE;
 use Sauce::Config;
 use Sauce::Util;
+use Sauce::Service;
 use Network;
 
 my $DEBUG = 0;
@@ -14,6 +15,7 @@ my $errors = 0;
 
 my $conf = '/etc/sysconfig/network';
 my $gateway = '';
+my $gateway_IPv6 = '';
 
 my $cce = new CCE;
 $cce->connectuds();
@@ -30,10 +32,8 @@ unless ($ok and $obj) {
     exit 1;
 }
 
-# Modify /etc/sysconfig/network-scripts/ifup-routes if we're on OpenVZ:
-if ( -f "/proc/user_beancounters" ) {
-    &fix_if_up;
-}
+# Modify /etc/sysconfig/network-scripts/ifup-routes:
+&fix_if_up;
 
 # Parse /etc/sysconfig/network:
 $sys_network = "/etc/sysconfig/network";
@@ -47,6 +47,12 @@ if (-f $sys_network) {
             $gateway = $1;
             if ($gateway =~ /^\"(.*)\"/g) {
                 $gateway = $1;
+            }
+        }
+        if ($line =~ /^IPV6_DEFAULTGW=(.*)$/) {
+            $gateway_IPv6 = $1;
+            if ($gateway_IPv6 =~ /^\"(.*)\"/g) {
+                $gateway_IPv6 = $1;
             }
         }
         if ($line =~ /^GATEWAYDEV=(.*)$/) {
@@ -77,52 +83,57 @@ if ((!$gateway) || ((-f "/proc/user_beancounters") && (!$gatewaydev))) {
     }
     else {
 
-	# We're on OpenVZ. See if we have either GATEWAY or GATEWAYDEV defined:
-	if ((!$gateway) || (!$gatewaydev)) {
-    	    # At least either GATEWAY or GATEWAYDEV are undefined. Test network connectivity 
-    	    # to see if we can establish a network connection to the outside:
-    	    use Net::Ping;
-    	    $p = Net::Ping->new();
-    	    $host = "8.8.8.8";
-    	    if (!$p->ping($host)) {
-        	# Network is dead. We need to fix it.
+        # We're on OpenVZ. See if we have either GATEWAY or GATEWAYDEV defined:
+        if ((!$gateway) || (!$gatewaydev)) {
+            # At least either GATEWAY or GATEWAYDEV are undefined. Test network connectivity 
+            # to see if we can establish a network connection to the outside:
+            use Net::Ping;
+            $p = Net::Ping->new();
+            $host = "8.8.8.8";
+            if (!$p->ping($host)) {
+                # Network is dead. We need to fix it.
+                
+                # Build output hash:   
+                if ((!$gateway) && (!$gatewaydev)) {
+                        $server_sys_network_writeoff = {
+                        'GATEWAY' => '"192.0.2.1"',
+                        'GATEWAYDEV' => '"venet0"'
+                        };
+                }
+                elsif ((!$gateway) && ($gatewaydev)) {
+                        $server_sys_network_writeoff = {
+                        'GATEWAY' => '"192.0.2.1"'
+                        };
+                }
+                else {
+                        $server_sys_network_writeoff = {
+                        'GATEWAYDEV' => '"venet0"'
+                        };
+                }
+                
+                # Edit /etc/sysconfig/network:
+                &edit_sys_network;
             
-        	# Build output hash:   
-        	if ((!$gateway) && (!$gatewaydev)) {
-            	    $server_sys_network_writeoff = {
-                	'GATEWAY' => '"192.0.2.1"',
-                	'GATEWAYDEV' => '"venet0"'
-            	    };
-        	}
-        	elsif ((!$gateway) && ($gatewaydev)) {
-            	    $server_sys_network_writeoff = {
-                	'GATEWAY' => '"192.0.2.1"'
-            	    };
-        	}
-        	else {
-            	    $server_sys_network_writeoff = {
-                	'GATEWAYDEV' => '"venet0"'
-            	    };
-        	}
-            
-        	# Edit /etc/sysconfig/network:
-        	&edit_sys_network;
-        
-        	# Restart Network:
-        	system("/sbin/service network restart > /dev/null 2>&1");
-    	    }
-    	    $p->close();
-	}
+                # Restart Network:
+                Sauce::Service::service_run_init('network', 'restart');
+            }
+            $p->close();
+        }
     }
 }
 
 ($DEBUG && $gateway) && print STDERR "Gateway is $gateway\n";
 
-if ($gateway) {
-    $cce->set($oids[0], '', {'gateway' => $gateway});
-    $cce->bye();
+if (($gateway) || ($gateway_IPv6)) {
+    # Only do a SET transaction if there are changes that need to be applied:
+    if (($gateway ne $obj->{gateway}) || ($gateway_IPv6 ne $obj->{gateway_IPv6})) {
+        $cce->set($oids[0], '', {'gateway' => $gateway, 'gateway_IPv6' => $gateway_IPv6});
+    }
 }
-exit 0;
+
+# Done:
+$cce->bye('SUCCESS');
+exit(0);
 
 sub pingtest($$) {
   my ($ping) = @_;
@@ -152,38 +163,39 @@ sub edit_sys_network {
 
 sub fix_if_up {
 
-    # Now this is really dirty. If we're on OpenVZ, then a network restart will drop our custom routes. Sure, if we
-    # have the proper fake GATEWAY and GATEWAYDEV set, then we retain our network connectivity. Still, the routing 
-    # table will have only a single route left. Which is a bit misleading and may throw off other applications.
-    # To compensate for this, we add a single line to the very bottom of /etc/sysconfig/network-scripts/ifup-routes 
-    # to execute  '/usr/sausalito/handlers/base/network/change_route.pl -c 2' whenever the OS tries to set up routes
-    # for the network device 'venet:0:0'. This recreates the full routing table that we expect to see.
+    # Append a call to run /usr/sausalito/handlers/base/network/change_route.pl to /etc/sysconfig/network-scripts/ifup-routes.
+    # That handler adds all extra IP's and fixes up the routing.
 
     # Check if ifup-routes exists:
     if (-f "/etc/sysconfig/network-scripts/ifup-routes") {
-        # If it exists, check if it already has our 'venet0:0' provisions in it:
+        # If it exists, check if it already has our provisions in it:
         open (F, "/etc/sysconfig/network-scripts/ifup-routes") || die "Could not open /etc/sysconfig/network-scripts/ifup-routes $!";
         while ($line = <F>) {
             chomp($line);
             next if $line =~ /^\s*$/;               # skip blank lines
             next if $line =~ /^#$/;                 # skip comments
-            if ($line =~ /\"venet0:0\"/g) {
+            if ($line =~ /\/usr\/sausalito\/handlers\/base\/network\/change_route.pl -c 2/g) {
                 # Provisions found:
                 $result = "found";
             }
         }
         close(F);
 
-        # OpenVZ 'venet0:0' provisions not found. Adding them:
+        # Provisions not found. Adding them:
         if (!$result) {
-            system('echo \'if [[ "$1" =~ "venet0:0" ]];then /usr/sausalito/handlers/base/network/change_route.pl -c 2; fi\' >> /etc/sysconfig/network-scripts/ifup-routes');
+            if (! -f "/proc/user_beancounters") {
+                system('echo \'if [[ "$1" =~ "eth0" ]];then /usr/sausalito/handlers/base/network/change_route.pl -c 2; fi\' >> /etc/sysconfig/network-scripts/ifup-routes');
+            }
+            else {
+                system('echo \'if [[ "$1" =~ "venet0:0" ]];then /usr/sausalito/handlers/base/network/change_route.pl -c 2; fi\' >> /etc/sysconfig/network-scripts/ifup-routes');
+            }
         }
     }
 }
 
 # 
-# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015-2017 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015-2017 Team BlueOnyx, BLUEONYX.IT
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 

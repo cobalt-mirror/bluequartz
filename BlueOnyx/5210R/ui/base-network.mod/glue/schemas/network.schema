@@ -66,11 +66,18 @@
     />
     <property 
         name="ipaddr" type="ipaddr" 
+        optional="true" 
         writeacl="ruleCapable(adminUser)"
     />
     <property 
         name="netmask" type="ipaddr" 
+        optional="true" 
         writeacl="ruleCapable(adminUser)"
+    /> 
+    <property  
+        name="ipaddr_IPv6" type="ipaddrIPv6"  
+        optional="true"  
+        writeacl="ruleCapable(adminUser)" 
     /> 
     <property 
         name="mac" type="scalar" 
@@ -97,6 +104,7 @@
         name="real" type="boolean" default="0"
         writeacl="ruleCapable(adminUser)"
     />
+
 </class>
 
 <!-------------------------------------------------------------------------

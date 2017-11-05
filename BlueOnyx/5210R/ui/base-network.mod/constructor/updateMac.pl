@@ -1,45 +1,6 @@
-#!/usr/bin/perl -w -I/usr/sausalito/perl -I. -I/usr/sausalito/handlers/base/network
-# $Id$
+#!/usr/bin/perl
 
-use strict;
-use CCE;
-use Network;
-
-my $DEBUG = 0;
-
-my $cce = new CCE;
-$cce->connectuds();
-
-# Are we on OpenVZ?
-if (-f "/proc/user_beancounters") { 
-    # Apparently yes. Stopping right here, as we have no MACs.
-    exit(0);
-}
-
-my @oids = $cce->find('Network');
-foreach my $oid (@oids) {
-  my ($ok, $obj) = $cce->get($oid);
-  my $device = $obj->{'device'};
-
-  my $data = `$Network::IFCONFIG $device`;
-
-  my $hex = '[0-9a-fA-F]{2,}';
-  if ($data =~ m/HWaddr ($hex:$hex:$hex:$hex:$hex:$hex)/) {
-    my $mac = $1;
-    $DEBUG && print STDERR "mac address for device $device: $mac\n";
-    my ($ok) = $cce->set($oid, '', { 'mac' => $mac });
-  }
- 
-  # For 5209R (as ifconfig has a new format):
-  if ($data =~ m/ether ($hex:$hex:$hex:$hex:$hex:$hex)/) {
-    my $mac = $1;
-    $DEBUG && print STDERR "mac address for device $device: $mac\n";
-    my ($ok) = $cce->set($oid, '', { 'mac' => $mac });
-  }
-}
-
-$cce->bye('SUCCESS');
-exit(0);
+# This constructor is deprecated, as the MAC is now set by 30_addNetwork.pl
 
 # 
 # Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
