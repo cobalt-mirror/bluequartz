@@ -544,7 +544,49 @@ sub update
   $self->_send("GET", $oid);
   $self->_recv();
   
-  print "sub update: \n";
+  if ($self->{success} eq "1") {
+    my $need_to_run_set = '0';
+    CODB_CHECK: {
+      foreach my $k (keys %{ $object }) {
+        if ($self->{object}->{$k} ne $object->{$k}) {
+          # When we find the first value that's different in CODB, then we know already
+          # that we NEED to do the SET. And can therefore skip checking the rest and
+          # break out of this loop:
+          $need_to_run_set = '1';
+          last CODB_CHECK;
+        }
+      }
+    }
+  }
+  else {
+    # Fallback: Object wasn't found. We continue and let it error out like a normal SET:
+    $need_to_run_set = '1';
+  }
+
+  if ($need_to_run_set eq '1') {
+    $self->_send("SET", $oid, $object);
+    $self->_recv();
+
+    if ($DEBUG) { print STDERR $self->{success} ? "Set succeeded\n" : "Set Failed.\n"; }
+    return ($self->{success}, $self->{baddata}, @{$self->{info}});
+  }
+}
+
+# Duplicate of 'update' to speed things up:
+sub set {
+  my $self = shift;
+  my $oid = shift;
+  my $namespace = shift;
+  my $object = shift || {};
+  my $old = {};
+  my $new = {};
+
+  if ($namespace) { $oid .= "." . $namespace; }
+
+  # Get the Object in question:
+  $self->_send("GET", $oid);
+  $self->_recv();
+  
   if ($self->{success} eq "1") {
     my $need_to_run_set = '0';
     CODB_CHECK: {
@@ -574,8 +616,8 @@ sub update
 }
 
 # ($ok, $badkeys, @info) = $cce->set($oid, $namespace, \%object);
-sub set
-{
+# Old original 'set' routine. Now replaced with a copy of 'update'.
+sub set_old {
   my $self = shift;
   my $oid = shift;
   my $namespace = shift;
@@ -586,8 +628,7 @@ sub set
   $self->_send("SET", $oid, $object);
   $self->_recv();
 
-  if ($DEBUG) { print STDERR $self->{success} ?
-    "Set succeeded\n" : "Set Failed.\n"; }
+  if ($DEBUG) { print STDERR $self->{success} ? "Set succeeded\n" : "Set Failed.\n"; }
   return ($self->{success}, $self->{baddata}, @{$self->{info}});
 }
 

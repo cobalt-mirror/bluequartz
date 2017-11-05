@@ -221,6 +221,10 @@ fi
 
 %changelog
 
+* Sun Nov 05 2017 Michael Stauber <mstauber@solarspeed.net> 0.99.3-1BX02
+- Modified client/perl/CCE.pm to replace 'set' with 'update'. It works
+  and it's considerably faster.
+
 * Sun Nov 05 2017 Michael Stauber <mstauber@solarspeed.net> 0.99.3-1BX01
 - Modified client/perl/CCE.pm to extend it with the method 'update'. It's
   like a SET transaction, but only performs a SET if at least one of the
