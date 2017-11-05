@@ -1,6 +1,5 @@
 #!/usr/bin/perl
-# $Id: CCE.pm 259 2004-01-03 06:28:40Z shibuya $
-# Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+# $Id: CCE.pm
 #
 # a client library for communication between perl and cce
 
@@ -9,7 +8,12 @@ $| = 1; # always always always
 package CCE;
 
 use vars qw/ $DEBUG /;
-$DEBUG = 0;
+$DEBUG = "0";
+if ($DEBUG) {
+  use Sys::Syslog qw( :DEFAULT setlogsock);
+}
+
+use Data::Dumper;
 
 sub new
 {
@@ -522,6 +526,54 @@ sub destroy
 }
 
 # ($ok, $badkeys, @info) = $cce->set($oid, $namespace, \%object);
+# This works like a 'SET', but only does a 'SET' if we're setting
+# something that's not already set to the same values as already
+# in CODB:
+sub update
+{
+  my $self = shift;
+  my $oid = shift;
+  my $namespace = shift;
+  my $object = shift || {};
+  my $old = {};
+  my $new = {};
+
+  if ($namespace) { $oid .= "." . $namespace; }
+
+  # Get the Object in question:
+  $self->_send("GET", $oid);
+  $self->_recv();
+  
+  print "sub update: \n";
+  if ($self->{success} eq "1") {
+    my $need_to_run_set = '0';
+    CODB_CHECK: {
+      foreach my $k (keys %{ $object }) {
+        if ($self->{object}->{$k} ne $object->{$k}) {
+          # When we find the first value that's different in CODB, then we know already
+          # that we NEED to do the SET. And can therefore skip checking the rest and
+          # break out of this loop:
+          $need_to_run_set = '1';
+          last CODB_CHECK;
+        }
+      }
+    }
+  }
+  else {
+    # Fallback: Object wasn't found. We continue and let it error out like a normal SET:
+    $need_to_run_set = '1';
+  }
+
+  if ($need_to_run_set eq '1') {
+    $self->_send("SET", $oid, $object);
+    $self->_recv();
+
+    if ($DEBUG) { print STDERR $self->{success} ? "Set succeeded\n" : "Set Failed.\n"; }
+    return ($self->{success}, $self->{baddata}, @{$self->{info}});
+  }
+}
+
+# ($ok, $badkeys, @info) = $cce->set($oid, $namespace, \%object);
 sub set
 {
   my $self = shift;
@@ -871,6 +923,16 @@ sub validate_hash
   return 0;
 }
 
+sub debug_msg {
+    if ($DEBUG) {
+        my $msg = shift;
+        $user = $ENV{'USER'};
+        setlogsock('unix');
+        openlog($0,'','user');
+        syslog('info', "$ARGV[0]: $msg");
+        closelog;
+    }
+}
 
 1;
 
@@ -1203,22 +1265,38 @@ type.
 
 =cut
 
+# 
+# Copyright (c) 2014-2017 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2014-2017 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
+# All Rights Reserved.
 # 
-# Redistribution and use in source and binary forms, with or without 
-# modification, are permitted provided that the following conditions are met:
+# 1. Redistributions of source code must retain the above copyright 
+#    notice, this list of conditions and the following disclaimer.
 # 
-# -Redistribution of source code must retain the above copyright notice, 
-# this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright 
+#    notice, this list of conditions and the following disclaimer in 
+#    the documentation and/or other materials provided with the 
+#    distribution.
 # 
-# -Redistribution in binary form must reproduce the above copyright notice, 
-# this list of conditions and the following disclaimer in the documentation  
-# and/or other materials provided with the distribution.
+# 3. Neither the name of the copyright holder nor the names of its 
+#    contributors may be used to endorse or promote products derived 
+#    from this software without specific prior written permission.
 # 
-# Neither the name of Sun Microsystems, Inc. or the names of contributors may 
-# be used to endorse or promote products derived from this software without 
-# specific prior written permission.
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
+# COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+# POSSIBILITY OF SUCH DAMAGE.
 # 
-# This software is provided "AS IS," without a warranty of any kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY EXCLUDED. SUN MICROSYSTEMS, INC. ("SUN") AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+# You acknowledge that this software is not designed or intended for 
+# use in the design, construction, operation or maintenance of any 
+# nuclear facility.
 # 
-# You acknowledge that  this software is not designed or intended for use in the design, construction, operation or maintenance of any nuclear facility.
