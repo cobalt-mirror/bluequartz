@@ -91,7 +91,7 @@
 
     <!-- Trigger for handler base/system/modsystem.pl -->
     <property 
-        name="nw_update" type="scalar" optional="true"
+        name="nw_update" type="scalar" optional="true" default="0" 
         writeacl="ruleCapable(adminUser)"
     />
 
@@ -107,6 +107,18 @@
     <!-- an array of locale strings the system supports -->
     <property 
         name="locales" type="scalar" default="&amp;en&amp;" array="yes"
+        writeacl="ruleCapable(adminUser)"
+    />
+
+    <!-- an array of additional IPv4 IP addresses -->
+    <property 
+        name="extra_ipaddr" type="ipaddr" array="yes"
+        writeacl="ruleCapable(adminUser)"
+    />
+
+    <!-- an array of additional IPv6 IP addresses -->
+    <property 
+        name="extra_ipaddr_IPv6" type="ipaddrIPv6" array="yes"
         writeacl="ruleCapable(adminUser)"
     />
 
