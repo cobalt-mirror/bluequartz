@@ -166,14 +166,14 @@ sub feedthemonster {
         # Object already present in CCE. Updating it.
         ($sys_oid) = $cce->find('System');
         ($ok, $sys) = $cce->get($sys_oid);
-        ($ok) = $cce->set($sys_oid, 'SSH',{
-	    'Port' => $CONFIG{"Port"},  
-	    'Protocol' => $CONFIG{"Protocol"},   
-	    'PermitRootLogin' => $CONFIG{"PermitRootLogin"},
-	    'XPasswordAuthentication' => $CONFIG{"PasswordAuthentication"},
-	    'RSAAuthentication' => $CONFIG{"RSAAuthentication"},
-	    'PubkeyAuthentication' => $CONFIG{"PubkeyAuthentication"},
-	    'force_update' => time()  
+        ($ok) = $cce->update($sys_oid, 'SSH',{
+		    'Port' => $CONFIG{"Port"},  
+		    'Protocol' => $CONFIG{"Protocol"},   
+		    'PermitRootLogin' => $CONFIG{"PermitRootLogin"},
+		    'XPasswordAuthentication' => $CONFIG{"PasswordAuthentication"},
+		    'RSAAuthentication' => $CONFIG{"RSAAuthentication"},
+		    'PubkeyAuthentication' => $CONFIG{"PubkeyAuthentication"},
+		    'force_update' => time()  
         });
     
 
