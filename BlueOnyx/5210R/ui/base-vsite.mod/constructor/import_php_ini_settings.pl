@@ -93,10 +93,10 @@ if (defined($PHPObject[0])) {
             $known_php_versions_reverse{$reportedVersion} = $phpVer;
         }
         if (( -f $phpFpmPath) && ( -f $phpBinaryPath)) {
-            ($ok) = $cce->set($PHPObject[0], "$phpVer", { 'present' => '1', 'version' => $reportedVersion });
+            ($ok) = $cce->update($PHPObject[0], "$phpVer", { 'present' => '1', 'version' => $reportedVersion });
         }
         else {
-            ($ok) = $cce->set($PHPObject[0], "$phpVer", { 'present' => '0', 'enabled' => '0', 'version' => "" });
+            ($ok) = $cce->update($PHPObject[0], "$phpVer", { 'present' => '0', 'enabled' => '0', 'version' => "" });
         }
     }
 }
@@ -109,7 +109,7 @@ else {
 # Find out which version of PHP the OS is running and store it in CCE:
 $PHP_version = `/usr/bin/php -v|/bin/grep ^PHP | /bin/awk '\{print \$2\}'`;
 chomp($PHP_version);
-($ok) = $cce->set($PHPObject[0], '', { 'PHP_version_os' => $PHP_version });
+($ok) = $cce->update($PHPObject[0], '', { 'PHP_version_os' => $PHP_version });
 
 # Check if the OS supplied PHP is any different than the PHP that Apache DSO is currently using:
 if ($PHP_version ne $PHP->{PHP_version}) {
@@ -429,18 +429,18 @@ sub feedthemonster {
         }
 
         if ($sys->{'PHP_version'} eq "") {
-            ($ok) = $cce->set($sys_oid, '',{ 'PHP_version' => $PHP_version });
+            ($ok) = $cce->update($sys_oid, '',{ 'PHP_version' => $PHP_version });
         }
 
         if ($codb_update_needed eq "1") {
-            ($ok) = $cce->set($sys_oid, '', $new_data);
+            ($ok) = $cce->update($sys_oid, '', $new_data);
         }
 
         if (($CONFIG{"mysql.default_socket"} eq "") || ($CONFIG{"mysqli.default_socket"} eq "") || ($CONFIG{"pdo_mysql.default_socket"} eq "") ||
             (!$CONFIG{"mysql.default_socket"}) || (!$CONFIG{"mysqli.default_socket"}) || (!$CONFIG{"pdo_mysql.default_socket"})) {
             # MySQL socket configuration is either missing from php.ini, or not complete.
             # Force a write out of a modified php.ini that is complete:
-            ($ok) = $cce->set($sys_oid, '', { 'force_update' => time() });
+            ($ok) = $cce->update($sys_oid, '', { 'force_update' => time() });
         }
     }
 }
@@ -476,7 +476,7 @@ sub fpm_init {
         if ($fpm_check eq "1") {
             # Need to convert it. So we set the trigger to do it:
             ($sys_oid) = $cce->find('PHP', {'applicable' => 'server'});
-            ($ok) = $cce->set($sys_oid, '',{ 'force_update' => time() });
+            ($ok) = $cce->update($sys_oid, '',{ 'force_update' => time() });
         }
     }
 }
