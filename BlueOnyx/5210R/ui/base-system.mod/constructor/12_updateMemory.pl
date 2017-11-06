@@ -11,7 +11,7 @@ $cce->connectuds();
 # refresh information
 my $unique = time();
 (my $sys_oid) = $cce->find('System', '');
-$cce->set($sys_oid, "Memory", {refresh => $unique});
+$cce->update($sys_oid, "Memory");
 
 $cce->bye('SUCCESS');
 exit(0);

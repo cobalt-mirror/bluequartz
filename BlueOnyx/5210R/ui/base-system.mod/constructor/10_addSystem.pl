@@ -122,7 +122,7 @@ my @oids = $cce->find("System");
 if ($#oids == 0) {
 	# We have only one System object - update it:
     	($sys_oid) = $cce->find('System', '');
-    	($ok) = $cce->set($sys_oid, '',{
+    	($ok) = $cce->update($sys_oid, '',{
                 'hostname' => $myhost,
                 'domainname' => $mydomain,
                 'dns' => $nsscalar,
@@ -167,11 +167,11 @@ if ($#oids == 0) {
 # we do it this way, because the console flag may change at powerup
 #my $conval = `/sbin/nvram -c console`;
 #chomp($conval);
-#$cce->set($oids[0], "", { console => $conval eq "on" ? "1" : "0"}) if $oids[0];
+#$cce->update($oids[0], "", { console => $conval eq "on" ? "1" : "0"}) if $oids[0];
 
 # update System.locales everytime in case we add/remove a locale
 if ($oids[0]) {
-	$cce->set($oids[0], '', { 'locales' => $available_langs });
+	$cce->update($oids[0], '', { 'locales' => $available_langs });
 }
 
 $cce->bye();
