@@ -194,7 +194,7 @@ sub feedthemonster {
         # Object already present in CCE. Updating it, NOT forcing a rewrite of pam_abl.conf.
         ($sys_oid) = $cce->find('pam_abl_settings');
         ($ok, $sys) = $cce->get($sys_oid);
-        ($ok) = $cce->set($sys_oid, '',{
+        ($ok) = $cce->update($sys_oid, '',{
             'host_purge' => $CONFIG{"host_purge"},  
             'host_rule' => $CONFIG{"host_rule"},  
             'host_whitelist' => $CONFIG{"host_whitelist"}
@@ -205,7 +205,7 @@ sub feedthemonster {
     if ($oldstyle_config_found eq "1") {
         ($sys_oid) = $cce->find('pam_abl_settings');
         ($ok, $sys) = $cce->get($sys_oid);
-        ($ok) = $cce->set($sys_oid, '',{
+        ($ok) = $cce->update($sys_oid, '',{
             'update_config' => time(),
             'force_update' => time(),
             });
