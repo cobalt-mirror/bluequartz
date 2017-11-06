@@ -16,10 +16,12 @@ $yum = `ps axf|grep yum|grep -v grep|wc -l`;
 if (-e "/etc/yum.repos.d/sl.repo") {
     # Do we have $releasever in sl.repo? 
     $ver = `cat /etc/yum.repos.d/sl.repo |grep releasever|wc -l`;
+    chomp($ver);
 }
 else {
     # No sl.repo found:
-    $ver = "0";
+    $cce->bye('SUCCESS');
+    exit(0);    
 }
 
 # Execute if YUM is not running:

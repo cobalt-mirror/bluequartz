@@ -171,7 +171,7 @@ for my $cap (@groups)
         }
     } else {
     # reset capabilities
-        my ($ok) = $cce->set($oid, "",
+        my ($ok) = $cce->update($oid, "",
                                 {
                                     capabilities => $cap->{capabilities}
                                 });
