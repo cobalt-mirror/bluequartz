@@ -15,7 +15,7 @@ if (-l '/etc/localtime') {
 	if ($tz eq 'zoneinfo/UTC') {
 		$tz = 'UTC';
 	}
-	$cce->set($oid,"Time",{timeZone=>$tz}) if $sys->{timeZone} ne $tz;
+	$cce->update($oid,"Time",{timeZone=>$tz}) if $sys->{timeZone} ne $tz;
 }
 else {
 	system("/bin/rm -f /etc/localtime");
@@ -27,7 +27,7 @@ else {
 		if ($tz eq 'zoneinfo/UTC') {
 			$tz = 'UTC';
 		}
-        $cce->set($oid,"Time",{timeZone=>$tz}) if $sys->{timeZone} ne $tz;
+        $cce->update($oid,"Time",{timeZone=>$tz}) if $sys->{timeZone} ne $tz;
 }
 # If that doesn't work we're screwed, since that link is usually made by one of the scripts on the BTOS.
 # if it isn't there then knowing the correct time zone is likely to be the 
@@ -35,7 +35,7 @@ else {
 
 # Commit queued time changes, if necessary
 $sys->{timeZone} = $sys->{deferTimeZone} if($sys->{deferTimeZone});
-$cce->set($oid,"Time",{
+$cce->update($oid,"Time",{
  	 'deferCommit'		=>	0, 
 	 'timeZone'		=>	$sys->{timeZone}, 
 	 'deferTimeZone'	=>	'',
