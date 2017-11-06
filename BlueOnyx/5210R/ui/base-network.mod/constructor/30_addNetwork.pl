@@ -160,12 +160,12 @@ sub hack_on_nat {
 
         if (! -f "/proc/user_beancounters") {
             if (($System_Network->{nat} ne '1') || ($System_Network->{ipForwarding} ne '1')) {
-                my ($ok) = $cce->set($oid, 'Network', { 'nat' => '1', 'ipForwarding' => '1' });
+                my ($ok) = $cce->update($oid, 'Network', { 'nat' => '1', 'ipForwarding' => '1' });
             }
         }
         else {
             if (($System_Network->{nat} ne '0') || ($System_Network->{ipForwarding} ne '0')) {
-                my ($ok) = $cce->set($oid, 'Network', { 'nat' => '0', 'ipForwarding' => '0' });
+                my ($ok) = $cce->update($oid, 'Network', { 'nat' => '0', 'ipForwarding' => '0' });
             }
         }
     }

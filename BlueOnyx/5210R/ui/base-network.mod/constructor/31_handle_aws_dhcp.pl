@@ -41,7 +41,7 @@ if ($ip) {
     ($sys_oid) = $cce->find('System');
     ($ok, $sys) = $cce->get($sys_oid);
     if ($sys->{ipaddr} ne $ip) {
-        ($ok) = $cce->set($sys_oid, 'VsiteDefaults', { 'ipaddr' => $ip });
+        ($ok) = $cce->update($sys_oid, 'VsiteDefaults', { 'ipaddr' => $ip });
     }
 
     # Find all Vsites:
@@ -52,7 +52,7 @@ if ($ip) {
     for my $vsite (@vhosts) {
         ($ok, my $my_vsite) = $cce->get($vsite);
         if ($my_vsite->{'ipaddr'} ne $ip) {
-            ($ok) = $cce->set($vsite, '', { 'ipaddr' => $ip });
+            ($ok) = $cce->update($vsite, '', { 'ipaddr' => $ip });
         }
     }
 

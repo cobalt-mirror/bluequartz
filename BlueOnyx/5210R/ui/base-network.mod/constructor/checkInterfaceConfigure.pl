@@ -23,13 +23,13 @@ my $pooling = $sys_obj->{'pooling'};
 if (  (-f "/etc/is_aws") || (-f "/proc/user_beancounters")) {
 	if ($configure == 1 ) {
 		$configure = 0;
-		$cce->set($sys_oid, 'Network', { 'interfaceConfigure' => $configure });
+		$cce->update($sys_oid, 'Network', { 'interfaceConfigure' => $configure });
 	}
 } 
 else {
 	if ($configure == 0 ) {
 		$configure = 1;
-		$cce->set($sys_oid, 'Network', { 'interfaceConfigure' => $configure });
+		$cce->update($sys_oid, 'Network', { 'interfaceConfigure' => $configure });
 	}
 }
 
