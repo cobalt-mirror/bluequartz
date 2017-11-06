@@ -79,20 +79,18 @@ if (@OIDS) {
         system("/usr/bin/newaliases >/dev/null 2>&1");
 
         # Update CCE with the new info so that this snippet only runs once:
-        $cce->set($OIDS[0], 'MailListStatus', { 
-        'configured' => "1",
-        'enabled' => "1", 
-        'admin_pw' => $admin_pw, 
-        'force_update' => time()
+        $cce->update($OIDS[0], 'MailListStatus', { 
+            'configured' => "1",
+            'enabled' => "1", 
+            'admin_pw' => $admin_pw, 
+            'force_update' => time()
         });
 
         # While we're turning MailMan on, we also tell ActiveMonitor
         # to start monitoring this component:       
         @amOIDS = $cce->find('ActiveMonitor');
         if (@amOIDS) {
-        $cce->set($amOIDS[0], 'MAILMAN', { 
-        'enabled' => "1" 
-        });
+            $cce->update($amOIDS[0], 'MAILMAN', { 'enabled' => "1" });
         }
     }
 }

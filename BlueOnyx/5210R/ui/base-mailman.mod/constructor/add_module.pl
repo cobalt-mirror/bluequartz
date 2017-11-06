@@ -57,9 +57,7 @@ else {
     # Find the system object and set the version number:
     ($sys_oid) = $cce->find('Package', {'name' => $product});
     ($ok, $sys) = $cce->get($sys_oid);
-    ($ok) = $cce->set($sys_oid, '',{
-    'version' => "v$version"
-    });
+    ($ok) = $cce->update($sys_oid, '', { 'version' => "v$version" });
 }
 
 $cce->bye();
