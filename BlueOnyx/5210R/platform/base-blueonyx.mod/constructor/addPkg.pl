@@ -21,37 +21,34 @@ if ($#oids < 0) {
 
     # snarf in package list. avoid duplicates
     if (open(CONF, $conf)) {
-	while (<CONF>) {
-		next if /^\s*#/;
-		next unless /\S/;
-		next if /^\S+:/;
-		$rpms{"$1-$2"} = 1 if /^(\S+)\s+(\S+)/;
-	}
-	close(CONF);
+    while (<CONF>) {
+        next if /^\s*#/;
+        next unless /\S/;
+        next if /^\S+:/;
+        $rpms{"$1-$2"} = 1 if /^(\S+)\s+(\S+)/;
+    }
+    close(CONF);
     }
 
     $rpmlist = $cce->array_to_scalar(keys %rpms);
     $cce->create('Package', { 'name' => 'OS',
-			      'version' => "v4.$build",
-			      'vendor' => 'BlueOnyx',
-			      'nameTag' => '[[base-alpine.osName]]',
-			      'vendorTag' => '[[base-alpine.osVendor]]',
-			      'shortDesc' => '[[base-alpine.osDescription]]',
-			      'new' => 0, 'installState' => 'Installed',
-			      'RPMList' => $rpmlist
-			  });
+                  'version' => "v5.$build",
+                  'vendor' => 'BlueOnyx',
+                  'nameTag' => '[[base-alpine.osName]]',
+                  'vendorTag' => '[[base-alpine.osVendor]]',
+                  'shortDesc' => '[[base-alpine.osDescription]]',
+                  'new' => 0, 'installState' => 'Installed',
+                  'RPMList' => $rpmlist
+              });
     my ($sysoid) = $cce->find('System');
-    $cce->set($sysoid, 'SWUpdate', { 'rpmsInstalled' => 
-				     $cce->array_to_scalar(%rpms) });
+    $cce->update($sysoid, 'SWUpdate', { 'rpmsInstalled' => $cce->array_to_scalar(%rpms) });
 }
 
 if ($#oids == 0) {
         # Object already present in CCE. Updating it with current version information:
         ($sys_oid) = $cce->find('Package', {'name' => 'OS' });
         ($ok, $sys) = $cce->get($sys_oid);
-        ($ok) = $cce->set($sys_oid, '',{
-				'version' => "v4.$build"
-                          });
+        ($ok) = $cce->update($sys_oid, '',{ 'version' => "v5.$build" });
 }
 
 $cce->bye();
@@ -64,16 +61,16 @@ exit 0;
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 
-#	 notice, this list of conditions and the following disclaimer.
+#    notice, this list of conditions and the following disclaimer.
 # 
 # 2. Redistributions in binary form must reproduce the above copyright 
-#	 notice, this list of conditions and the following disclaimer in 
-#	 the documentation and/or other materials provided with the 
-#	 distribution.
+#    notice, this list of conditions and the following disclaimer in 
+#    the documentation and/or other materials provided with the 
+#    distribution.
 # 
 # 3. Neither the name of the copyright holder nor the names of its 
-#	 contributors may be used to endorse or promote products derived 
-#	 from this software without specific prior written permission.
+#    contributors may be used to endorse or promote products derived 
+#    from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
 # "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
