@@ -24,7 +24,7 @@ if (!defined($oids[0])) {
 }
 else {
     ($ok, $obj) = $cce->get($oids[0]);
-    if ($obj->{isLicenseAccepted} == "0") {
+    if ($obj->{'isLicenseAccepted'} == "0") {
         $firstboot = "1";
     }
 }
