@@ -62,9 +62,9 @@ if (@oids == 1) {
     # The level can only be set once (reconfiguration is not allowed)
     # therefore we don't set a level now for configurable systems
     if ($level) {
-	$ok = $cce->set($oids[0], 'RAID', { level => $level, configurable => $isConfigurable, disks => $disks }); 
+	$ok = $cce->update($oids[0], 'RAID', { level => $level, configurable => $isConfigurable, disks => $disks }); 
 	} else {
-	    $ok = $cce->set($oids[0], 'RAID', { configurable => $isConfigurable, disks => $disks }); 
+	    $ok = $cce->update($oids[0], 'RAID', { configurable => $isConfigurable, disks => $disks }); 
 	}
 }
 
