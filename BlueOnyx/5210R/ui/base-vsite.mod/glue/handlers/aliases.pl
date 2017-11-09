@@ -164,27 +164,6 @@ if ($cce->event_is_destroy())
             }
         }
     }
-
-    #
-    ### PLEASE NOTE: The following is now DEPRECATED through apache/virtual_host.pl!
-    #
-
-    # update web aliases, if necessary
-    #if (exists($vsite->{webAliases}))
-    #{
-    #    # map into a hash and then take the keys to avoid duplicates
-    #    &debug_msg("webAliases: " . $vsite->{webAliases} . "\n");
-    #    my %web_aliases = map { $_ => 1 } $cce->scalar_to_array($vsite->{webAliases});
-    #    my @web_aliases = keys %web_aliases;
-    #    if (!httpd_set_server_aliases(\@web_aliases, $vsite->{name}))
-    #    {
-    #        &debug_msg("[[base-vsite.cantUpdateWebAliases]]\n");
-    #        $cce->bye('FAIL', '[[base-vsite.cantUpdateWebAliases]]');
-    #        exit(1);
-    #    }
-    #
-    #    service_run_init('httpd', 'reload');
-    #}
 }
 
 sub debug_msg {
@@ -202,8 +181,8 @@ $cce->bye('SUCCESS');
 exit(0);
 
 # 
-# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015-2017 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015-2017 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 
