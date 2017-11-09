@@ -121,8 +121,7 @@ else
 
 $vsite = $object;
 
-$DEBUG && warn "JSP enabled? ".$jsp->{enabled}."\nfqdn: ".$vsite->{fqdn}.
-	"\ngroup: ".$vsite->{name}."\n";
+$DEBUG && warn "JSP enabled? ".$jsp->{enabled}."\nfqdn: ".$vsite->{fqdn}."\ngroup: ".$vsite->{name}."\n";
 
 
 #
@@ -203,65 +202,9 @@ close(HTA);
 chown($uid, $gid, $htaccess);
 chmod(00664, $htaccess);
 
-if(!Sauce::Util::editfile(httpd_get_vhost_conf_file($vsite->{name}), 
-                            *edit_vhost, $jsp))
-{
-    $cce->bye('FAIL', '[[base-apache.cantEditVhost]]');
-    exit(1);
-}
-
-
 $DEBUG && warn "$0 kissing CCE goodbye, SUCCESS\n";
 $cce->bye('SUCCESS');
 exit 0;
-
-sub edit_vhost
-{
-    my ($in, $out, $php, $cgi, $ssi) = @_;
-
-    my $script_conf = '';
-
-    my $begin = '# BEGIN JSP SECTION.  DO NOT EDIT MARKS OR IN BETWEEN.';
-    my $end = '# END JSP SECTION.  DO NOT EDIT MARKS OR IN BETWEEN.';
-
-        if ($jsp->{enabled})
-        {
-		# $script_conf .= "JkMount /* ajp13\n";
-		$script_conf .= "JkMount /*.jsp ajp13\n";
-		$script_conf .= "JkMount /servlet/* ajp13\n";
-        }
-
-    my $last;
-    while(<$in>)
-    {
-        if(/^<\/VirtualHost>/i) { $last = $_; last; }
-
-        if(/^$begin$/)
-        {
-            while(<$in>)
-            {
-                if(/^$end$/) { last; }
-            }
-        }
-        else
-        {
-            print $out $_;
-        }
-    }
-
-    print $out $begin, "\n";
-    print $out $script_conf;
-    print $out $end, "\n";
-    print $out $last;
-
-    # preserve the remainder of the config file
-    while(<$in>)
-    {
-        print $out $_;
-    }
-
-    return 1;
-}
 
 # Subs, less greasy than burgers but still a quick lunch #
 
