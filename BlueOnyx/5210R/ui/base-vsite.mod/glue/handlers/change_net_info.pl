@@ -52,10 +52,8 @@ if ($vsite_new->{fqdn})
     my $old_umask = umask(000);
     
     # update symlink in the filesystem
-    my ($old_link, $old_target) = homedir_create_group_link($vsite->{name}, 
-                        $vsite_old->{fqdn}, $vsite->{volume});
-    my ($new_link, $link_target) = homedir_create_group_link($vsite->{name},
-                        $vsite->{fqdn}, $vsite->{volume});
+    my ($old_link, $old_target) = homedir_create_group_link($vsite->{name}, $vsite_old->{fqdn}, $vsite->{volume});
+    my ($new_link, $link_target) = homedir_create_group_link($vsite->{name}, $vsite->{fqdn}, $vsite->{volume});
 
     unlink($old_link);
     Sauce::Util::addrollbackcommand("umask 000; /bin/ln -sf \"$old_target\" \"$old_link\"");

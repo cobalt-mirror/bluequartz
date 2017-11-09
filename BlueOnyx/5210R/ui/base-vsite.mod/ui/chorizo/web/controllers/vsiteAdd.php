@@ -258,6 +258,15 @@ class VsiteAdd extends MX_Controller {
                     $errors = array_merge($errors, $af_errors);
                 }
 
+                /*
+                 * Defer the httpd reload/restart until 'force_update' is set:
+                 */
+
+                if ($vsiteOID) {
+                    $ok = $CI->cceClient->set($vsiteOID, '', array('force_update' => time()));
+                    $errors = array_merge($errors, $CI->cceClient->errors());
+                }
+
                 // Error check:
                 if (count($errors) == "0") {
                     //

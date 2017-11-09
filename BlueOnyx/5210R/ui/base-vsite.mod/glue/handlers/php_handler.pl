@@ -39,6 +39,7 @@ use Sauce::Util;
 use Sauce::Config;
 use FileHandle;
 use File::Copy;
+use Data::Dumper;
 
 my $cce = new CCE;
 my $conf = '/var/lib/cobalt';
@@ -119,6 +120,10 @@ if ($whatami eq "handler") {
     # Check if known extra PHP versions are present. If so, update CODB accordingly:
     if (defined($PHP_server_OID)) {
         for $phpVer (keys %known_php_versions) {
+
+            # Get current state:
+            ($ok, $PHP_NOW) = $cce->get($PHP_server_OID, $phpVer);
+
             $phpFpmPath = $extra_PHP_basepath . "php-" . $known_php_versions{$phpVer} . "/sbin/php-fpm";
             $phpBinaryPath = $extra_PHP_basepath . "php-" . $known_php_versions{$phpVer} . "/bin/php";
             $known_php_inis{$phpVer} = $extra_PHP_basepath . "php-" . $known_php_versions{$phpVer} . "/etc/php.ini";
@@ -138,10 +143,16 @@ if ($whatami eq "handler") {
             }
             # If we don't have $reportedVersion the binary reported a failure:
             if (( -f $phpFpmPath) && ($reportedVersion ne "")) {
-                ($ok) = $cce->set($PHP_server_OID, "$phpVer", { 'present' => '1', 'version' => $reportedVersion });
+                # Only do a SET if we need to update something:
+                if (($PHP_NOW->{present} ne "1") && ($PHP_NOW->{version} ne $reportedVersion)) {
+                    ($ok) = $cce->set($PHP_server_OID, "$phpVer", { 'present' => '1', 'version' => $reportedVersion });
+                }
             }
             else {
-                ($ok) = $cce->set($PHP_server_OID, "$phpVer", { 'present' => '0', 'enabled' => '0', 'version' => "" });
+                # Only do a SET if we need to update something:
+                if (($PHP_NOW->{present} ne "0") && ($PHP_NOW->{enabled} ne '0') && ($PHP_NOW->{version} ne '')) {
+                    ($ok) = $cce->set($PHP_server_OID, "$phpVer", { 'present' => '0', 'enabled' => '0', 'version' => "" });
+                }
             }
         }
     }

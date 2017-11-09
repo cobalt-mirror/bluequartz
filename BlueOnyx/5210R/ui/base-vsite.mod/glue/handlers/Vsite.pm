@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w -I/usr/sausalito/perl
+#!/usr/bin/perl -I/usr/sausalito/perl
 # Vsite.pm: Functions for virtual hosting
 #
 # $Id: Vsite.pm
@@ -9,12 +9,27 @@
 #   Duncan Laurie <duncan@cobaltnet.com>
 #   Harris Vaegan-Lloyd <harris@cobaltnet.com>
 #
+# Cannibalized by: 
+#   Michael Stauber <mstauber@blueonyx.it>
+# 
+# Please note: Instead of adding/removing interface aliases, this
+# now adds/removes IPs from the 'extra_ip' arrays in the 'System' 
+# Object and then sets 'nw_update' to force change_route.pl to
+# dynamically bind extra_ips and build the routes for them.
+#
+
 
 package Vsite;
 
 require Exporter;
 
 use vars qw(@ISA @EXPORT @EXPORT_OK);
+
+# Debugging switch:
+$DEBUG = "1";
+if ($DEBUG) {
+        use Sys::Syslog qw( :DEFAULT setlogsock);
+}
 
 @ISA    = qw[ Exporter ];
 @EXPORT = qw[
@@ -130,63 +145,149 @@ sub vsite_add_network_interface
 
     $device ||= $DEFAULT_INTERFACE;
 
-    my ($net_if) = $cce->find('Network', 
-                        { 
-                            'ipaddr' => $ipaddr,
-                            'enabled' => 1
-                        });
-    if (not $net_if)
-    {
-        # need to create a new network interface
-        my ($eth) = $cce->find("Network", { 'device' => $device });
-        (my $ok, $eth) = $cce->get($eth);
-
-        for (my $alias = 0;; $alias++)
-        {
-            ($net_if) = $cce->find("Network", { 'device' => ($eth->{device} . ":$alias") });
-            if (not $net_if)
-            {
-                ($ok) = $cce->create("Network",
-                    { 'device' => ($eth->{device} . ":$alias"),
-                      'ipaddr' => $ipaddr,
-                      'netmask' => $eth->{netmask},
-                      'enabled' => 1 });
-
-                if (not $ok)
-                {
-                    $cce->bye('FAIL', '[[base-vsite.cantCreateNetwork]]');
-                    exit(1);
-                }
-                
-                last;
-            }
-        }
+    # Get 'System' Object:
+    my ($sysoid) = $cce->find('System');
+    my ($ok, $System) = $cce->get($sysoid);
+    if (!$ok) {
+        $cce->bye('FAIL');
+        exit 1;
     }
+    # Get primary IPs:
+    $ipv4_ip = `LC_ALL=C cat /etc/sysconfig/network-scripts/ifcfg-eth0 | grep IPADDR= | awk -F "IPADDR=" '{print \$2}'`;
+    chomp($ipv4_ip);    
+    $ipv6_ip = `LC_ALL=C cat /etc/sysconfig/network-scripts/ifcfg-eth0 | grep IPV6ADDR= | awk -F "IPV6ADDR=" '{print \$2}'`;
+    chomp($ipv6_ip);
 
+    # Assemble IP array:
+    my @extra_ipaddr = ();
+    @extra_ipaddr = $cce->scalar_to_array($System->{extra_ipaddr});
+    push (@extra_ipaddr, $ipv4_ip);
+
+    # Check if Vsite IP is already known to the server:
+    if (in_array(\@extra_ipaddr, $ipaddr)) {
+        # Yes, it is!
+        return 1;
+    }
+    else {
+        # No, it is not! Push it into the Array of IPs from CODB:
+        push (@extra_ipaddr, $ipaddr);
+
+        # Remove primary IP:
+        @extra_ipaddr = grep {!/^$ipv4_ip$/} @extra_ipaddr;
+
+        # Remove duplicates:
+        my @filtered_ipv4 = uniq(@extra_ipaddr);
+
+        # Sort IPs:
+        @extra_ipaddr = sort {
+            pack('C4' => $a =~
+              /(\d+)\.(\d+)\.(\d+)\.(\d+)/) 
+            cmp 
+            pack('C4' => $b =~
+              /(\d+)\.(\d+)\.(\d+)\.(\d+)/)
+          } @filtered_ipv4;
+
+        # Update 'System' Object with new IPs:
+        $new_extra_ipaddr = $cce->array_to_scalar(@extra_ipaddr);
+        ($ok) = $cce->set($sysoid, '', { 'extra_ipaddr' =>  $new_extra_ipaddr, 'nw_update' => time() });
+        if (not $ok) {
+            $cce->bye('FAIL', '[[base-vsite.cantCreateExtraIPv4]]');
+            exit(1);
+        }
+        return 1;
+    }
     return 1;
 }
 
 # this will bring down a Network interface that is no longer in use
-# as long as it is an alias
+# as long as it is an alias, but more importantly it will remove unused
+# extra_ips from the 'System' Object.
 sub vsite_del_network_interface
 {
     my ($cce, $ipaddr) = @_;
 
+    &debug_msg("Running $0: vsite_del_network_interface: Checking if Vsites still use IP $ipaddr.\n");
+
     # only destroy the interface if not in use
     my @vsite_oids = $cce->find('Vsite', { 'ipaddr' => $ipaddr });
-    if (scalar(@vsite_oids) == 0)
-    {
-        # destroy the interface, but only if it is not real
-        my ($net_oid) = $cce->find('Network', 
-                    { 'ipaddr' => $ipaddr, 'real' => 0 });
-        if ($net_oid)
-        {
+    if (scalar(@vsite_oids) == 0) {
+        # We leave this in for legacy: destroy the interface, but only if it is not real
+        my ($net_oid) = $cce->find('Network', { 'ipaddr' => $ipaddr, 'real' => 0 });
+        if ($net_oid) {
             $cce->set($net_oid, '', { 'enabled' => 0 });
             $cce->destroy($net_oid);
         }
-    }
 
+        #
+        ### Remove unusued 'extra_ip' from 'System' Object:
+        #
+
+        # Get 'System' Object:
+        my ($sysoid) = $cce->find('System');
+        my ($ok, $System) = $cce->get($sysoid);
+        if (!$ok) {
+            &debug_msg("Running $0: Could not find 'System' Object. Aborting.\n");
+            $cce->bye('FAIL');
+            exit 1;
+        }
+
+        # Extract 'extra_ipaddr':
+        my @extra_ipaddr = ();
+        @extra_ipaddr = $cce->scalar_to_array($System->{extra_ipaddr});
+        if (in_array(\@extra_ipaddr, $ipaddr)) {
+            # Remove element from array:
+            @extra_ipaddr = grep {!/^$ipaddr$/} @extra_ipaddr;
+        }
+
+        # Remove duplicates:
+        my @filtered_ipv4 = uniq(@extra_ipaddr);
+
+        # Sort IPs:
+        @extra_ipaddr = sort {
+            pack('C4' => $a =~
+              /(\d+)\.(\d+)\.(\d+)\.(\d+)/)
+
+            cmp
+
+            pack('C4' => $b =~
+              /(\d+)\.(\d+)\.(\d+)\.(\d+)/)
+          } @filtered_ipv4;
+
+        # Convert Array to Scalar and send it back into CODB:
+        $new_extra_ipaddr = $cce->array_to_scalar(@extra_ipaddr);
+        ($ok) = $cce->set($sysoid, '', { 'extra_ipaddr' =>  $new_extra_ipaddr, 'nw_update' => time() });
+        if (not $ok) {
+            $cce->bye('FAIL', '[[base-vsite.cantRemoveExtraIPv4]]');
+            exit(1);
+        }
+        return 1;
+    }
+    else {
+        &debug_msg("Running $0: Vsites still seem to be using IP $ipaddr. Doing nothing. Debug: " . scalar(@vsite_oids) . "\n");
+    }
     return 1;
+}
+
+sub in_array {
+    my ($arr,$search_for) = @_;
+    my %items = map {$_ => 1} @$arr; # create a hash out of the array values
+    return (exists($items{$search_for}))?1:0;
+}
+
+sub uniq {
+    my %seen;
+    grep !$seen{$_}++, @_;
+}
+
+sub debug_msg {
+    if ($DEBUG) {
+        my $msg = shift;
+        $user = $ENV{'USER'};
+        setlogsock('unix');
+        openlog($0,'','user');
+        syslog('info', "$ARGV[0]: $msg");
+        closelog;
+    }
 }
 
 1;

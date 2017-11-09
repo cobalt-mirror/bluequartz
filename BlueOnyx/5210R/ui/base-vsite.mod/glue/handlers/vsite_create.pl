@@ -18,7 +18,7 @@ use Base::Group qw(groupadd group_add_members);
 # use Base::User;
 
 # debugging flag, set to 1 to turn on logging to STDERR
-my $DEBUG = 0;
+my $DEBUG = 1;
 if ($DEBUG) 
 { 
     use Data::Dumper; 
@@ -57,8 +57,7 @@ group_add_members($group_name, @admins);
 # this is just a nice thing for sys admins, it serves no functional purpose
 my $site_dir = homedir_get_group_dir($group_name, $vsite->{volume});
 &debug_msg("home $site_dir\n");
-my ($site_link, $link_target) = homedir_create_group_link($group_name, 
-                        $vsite->{fqdn}, $vsite->{volume});
+my ($site_link, $link_target) = homedir_create_group_link($group_name, $vsite->{fqdn}, $vsite->{volume});
 &debug_msg("site link $site_link\n");
 # make sure the sites directory exists
 if (! -d "$vsite->{volume}/sites")
@@ -108,7 +107,7 @@ if (! -f $webindex)
 {
     Sauce::Util::modifyfile($webindex);
     open HACK, ">$webindex" or die;
-    print HACK "<HTML><TITLE>DIRTLY LITTLE HACK</TITLE></HTML><BODY>THIS IS JUST A HACK UNTIL THE LOCALE SKELETON STUFF GETS WORKED OUT.</BODY></HTML>";
+    print HACK "<HTML><TITLE>New BlueOnyx Vsite</TITLE></HTML><BODY>THIS PAGE IS JUST A PLACEHOLDER UNTIL THE HTML TEMPLATE FOR NEW VSITES GETS COPIED OVER.</BODY></HTML>";
     close HACK;
 }
 else
@@ -176,8 +175,7 @@ for my $alias (keys %DefaultAliases)
         else
         {
             # no idea why it can't be added
-            $cce->warn('cantAddSystemAlias', 
-                { 'alias' => "$alias\@$vsite->{fqdn}" });
+            $cce->warn('cantAddSystemAlias', { 'alias' => "$alias\@$vsite->{fqdn}" });
         }
 
         $cce->bye('FAIL');
@@ -200,9 +198,6 @@ if (not $ok)
     exit(1);
 }
 
-
-&debug_msg(Dumper($vsite));
-
 # setup ftp host if necessary
 # This is now taken care of in base-ftp
 my (@site_ftp) = $cce->find('FtpSite', { 'ipaddr' => $vsite->{ipaddr} });
@@ -218,7 +213,7 @@ if (!$site_ftp[0])
 else
 {
     # inform FTP that the site state has changed
-    ($ok) = $cce->set($site_ftp[0], '', {'commit' => time()});
+    ($ok) = $cce->set($site_ftp[0], '', { 'commit' => time() });
 }
 
 $cce->bye('SUCCESS');
@@ -261,8 +256,7 @@ sub create_system_group
     $DEBUG && print STDERR Dumper($vsite);
 
     # create dirs with looser permissions first
-    if (scalar(mkpath([ "$base/users", ("$base/" . Sauce::Config::webdir()) ], 
-                        0, 02775)) == 0) 
+    if (scalar(mkpath([ "$base/users", ("$base/" . Sauce::Config::webdir()) ], 0, 02775)) == 0) 
     {
         &debug_msg("$base failed to create users and web");
         if ($base =~ /^\/.+/)

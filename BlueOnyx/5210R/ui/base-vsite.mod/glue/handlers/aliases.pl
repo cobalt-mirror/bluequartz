@@ -8,8 +8,8 @@
 use CCE;
 use Sauce::Util;
 use Sauce::Config;
-use Base::Httpd qw(httpd_set_server_aliases);
-use Sauce::Service qw(service_run_init);
+#use Base::Httpd qw(httpd_set_server_aliases);
+#use Sauce::Service qw(service_run_init);
 
 # Debugging switch:
 $DEBUG = "0";
@@ -99,8 +99,7 @@ if ($cce->event_is_destroy())
                             });
             if (!$ok)
             {
-                $cce->bye('FAIL', 'cantUpdateMailAlias',
-                        { 'alias' => $alias });
+                $cce->bye('FAIL', 'cantUpdateMailAlias', { 'alias' => $alias });
                 exit(1);
             }
         }
@@ -166,22 +165,26 @@ if ($cce->event_is_destroy())
         }
     }
 
-    # update web aliases, if necessary
-    if (exists($vsite->{webAliases}))
-    {
-        # map into a hash and then take the keys to avoid duplicates
-        &debug_msg("webAliases: " . $vsite->{webAliases} . "\n");
-        my %web_aliases = map { $_ => 1 } $cce->scalar_to_array($vsite->{webAliases});
-        my @web_aliases = keys %web_aliases;
-        if (!httpd_set_server_aliases(\@web_aliases, $vsite->{name}))
-        {
-            &debug_msg("[[base-vsite.cantUpdateWebAliases]]\n");
-            $cce->bye('FAIL', '[[base-vsite.cantUpdateWebAliases]]');
-            exit(1);
-        }
+    #
+    ### PLEASE NOTE: The following is now DEPRECATED through apache/virtual_host.pl!
+    #
 
-        service_run_init('httpd', 'reload');
-    }
+    # update web aliases, if necessary
+    #if (exists($vsite->{webAliases}))
+    #{
+    #    # map into a hash and then take the keys to avoid duplicates
+    #    &debug_msg("webAliases: " . $vsite->{webAliases} . "\n");
+    #    my %web_aliases = map { $_ => 1 } $cce->scalar_to_array($vsite->{webAliases});
+    #    my @web_aliases = keys %web_aliases;
+    #    if (!httpd_set_server_aliases(\@web_aliases, $vsite->{name}))
+    #    {
+    #        &debug_msg("[[base-vsite.cantUpdateWebAliases]]\n");
+    #        $cce->bye('FAIL', '[[base-vsite.cantUpdateWebAliases]]');
+    #        exit(1);
+    #    }
+    #
+    #    service_run_init('httpd', 'reload');
+    #}
 }
 
 sub debug_msg {

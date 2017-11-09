@@ -157,6 +157,11 @@
         writeacl="ruleCapable(adminUser)" 
     /> 
 
+    <property 
+        name="force_update" type="scalar" default="" 
+        writeacl="ruleCapable(adminUser)" 
+    /> 
+
 </class>
 
 <!-- 

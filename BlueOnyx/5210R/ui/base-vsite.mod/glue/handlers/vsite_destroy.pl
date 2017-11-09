@@ -64,21 +64,10 @@ if (!$ok) {
 }
 
 # things to do if this is the last vsite using this IP
-unless (scalar($cce->find("Vsite", { 'ipaddr' => $vsite->{ipaddr} })))
-{
-    # find network object and disable and destroy
-    # only do this for aliases though
-    my ($network) = $cce->find('Network', 
-                        { 'ipaddr' => $vsite->{ipaddr}, 'real' => 0 });
-    if ($network)
-    {
-        $cce->set($network, '', { 'enabled' => 0 });
-        ($ok) = $cce->destroy($network);
-        if (not $ok)
-        {
-            $cce->warn('[[base-vsite.cantDestroyNetwork]]');
-        }
-    }
+unless (scalar($cce->find("Vsite", { 'ipaddr' => $vsite->{ipaddr} }))) {
+
+    # Use our routine from Vsite.pm to remove the extra-ips if needed:
+    ($ok) = vsite_del_network_interface($cce, $vsite->{ipaddr});
 
     # delete ftp virtual host
     my ($oid) = $cce->find('FtpSite', { 'ipaddr' => $vsite->{ipaddr} });
@@ -120,8 +109,8 @@ $cce->bye('SUCCESS');
 exit(0);
 
 # 
-# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015-2017 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015-2017 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 

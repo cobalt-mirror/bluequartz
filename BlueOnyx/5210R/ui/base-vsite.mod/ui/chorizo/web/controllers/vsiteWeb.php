@@ -173,7 +173,7 @@ class vsiteWeb extends MX_Controller {
             $errors = array_merge($errors, $af_errors);
 
             // Set webAliases & webAliasRedirects in 'Vsite':
-            $CI->cceClient->set($vsite['OID'], '', array("webAliases" => $attributes['webAliases'], "webAliasRedirects" => $attributes['webAliasRedirects']));
+            $CI->cceClient->set($vsite['OID'], '', array("webAliases" => $attributes['webAliases'], "webAliasRedirects" => $attributes['webAliasRedirects'], 'force_update' => time()));
 
             // CCE errors that might have happened during submit to CODB:
             $CCEerrors = $CI->cceClient->errors();
