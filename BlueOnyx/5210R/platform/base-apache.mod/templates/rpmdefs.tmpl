@@ -225,6 +225,24 @@ fi
 
 <begin $CHANGELOG>
 
+* Thu Nov 09 2017 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX01
+- Massive handler overhaul to keep Apache restarts down and to 
+  consolidate edit/modify of VirtualHost cfgs into apache/virtual_host.pl
+- Modified glue/conf/Apache.conf
+- Modified glue/handlers/config_suexec.pl
+- Modified glue/handlers/reload_httpd.pl
+- Modified glue/handlers/userwebs.pl
+- Modified glue/handlers/vhost_addrem.pl
+- Modified glue/handlers/vhost_destroy_cleanup.pl
+- Modified glue/handlers/vhost_suspend.pl
+- Modified glue/handlers/virtual_host.pl
+- Modified glue/handlers/webscripting.pl
+- Modified glue/handlers/webscripting2.pl
+- Modified glue/handlers/webscripting3.pl
+- Modified glue/schemas/vsite_services.schema
+- Modified ui/chorizo/extensions/52_REDIRECT.php.create.Vsite
+- Modified ui/chorizo/extensions/52_REDIRECT.php.modifyWeb.Vsite
+
 * Mon Nov 05 2017 Michael Stauber <mstauber@solarspeed.net> 2.1.1-0BX54
 - Modified constructors to use cce->update() insteadt of cce->set().
 

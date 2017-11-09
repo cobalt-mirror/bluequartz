@@ -5,8 +5,7 @@
 
 # Debugging switch:
 $DEBUG = "0";
-if ($DEBUG)
-{
+if ($DEBUG) {
         use Sys::Syslog qw( :DEFAULT setlogsock);
 }
 
@@ -16,7 +15,23 @@ use Sauce::Service;
 my $cce = new CCE;
 $cce->connectfd();
 
-&debug_msg("Issuing service_run_init('httpd', 'reload')");
+# Get Event Object:
+my $obj = $cce->event_object();
+
+# If the Event is CREATE or MODIFY and Vsite->{force_update} isn't yet set, then we do NOT
+# restart Apache. On CREATE this is empty until the GUI has populated CODB with all options.
+# Only then, as last act it sets Vsite->{force_update}. That is when we want to restart during
+# a CREATE transaction. During MODIFY this will already be set from the CREATE *or* the last 
+# MODIFY transaction. Hence during MODIFY we will always restart Apache. But only once, as there
+# is only Handler that runs that matters and all Parameters that trigger *this* handler are in
+# the same CLEANUP stage anyway.
+if ((($cce->event_is_create()) || ($cce->event_is_modify())) && ($obj->{force_update} eq '')) {
+	$cce->bye('SUCCESS');
+	exit(0);
+}
+
+&debug_msg("Issuing service_run_init('httpd', 'reload') for event_object: " . $obj->{OID} . "");
+
 service_run_init('httpd', 'reload');
 
 $cce->bye('SUCCESS');
@@ -35,8 +50,8 @@ sub debug_msg {
 }
 
 # 
-# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015-2017 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015-2017 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 

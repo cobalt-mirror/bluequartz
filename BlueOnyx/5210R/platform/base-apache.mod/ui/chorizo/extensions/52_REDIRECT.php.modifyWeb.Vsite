@@ -77,8 +77,7 @@ class REDIRECTEXTENSION extends UIExtension {
         $cce->set($parameters['CCE_OID'], 'REDIRECT', array(
                             'enabled' => $this->attributes['redirect_enabled'],
                             'type' => $this->attributes['RedirectType'],
-                            'target' => $this->attributes['target'],
-                            'force_update' => time()
+                            'target' => $this->attributes['target']
                             ));
         $errors = array_merge($errors, $cce->errors());
 

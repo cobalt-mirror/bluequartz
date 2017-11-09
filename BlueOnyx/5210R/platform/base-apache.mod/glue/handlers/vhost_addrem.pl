@@ -17,12 +17,10 @@ my ($ok, $vhost);
 my $vhost_new = $cce->event_new();
 if ($cce->event_is_create()) { 
     $vhost = $cce->event_object();
-    #Sauce::Util::addrollbackcommand("/sbin/service httpd restart >/dev/null 2>&1 &");
     $ok = httpd_add_include("$Base::Httpd::vhost_dir/$vhost->{name}");
 
 } elsif ($cce->event_is_destroy()) { 
     $vhost = $cce->event_old();
-    #Sauce::Util::addrollbackcommand("/sbin/service httpd restart >/dev/null 2>&1 &");
     $ok = httpd_remove_include("$Base::Httpd::vhost_dir/$vhost->{name}");
     # don't remove the file here to avoid a race condition
 }
@@ -40,15 +38,12 @@ if (not $ok) {
         exit(1);
 }
 
-# always register a reload, to make sure apache knows the file is gone
-service_run_init('httpd', 'reload');
-
 $cce->bye('SUCCESS');
 exit(0);
 
 # 
-# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015-2017 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015-2017 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 
