@@ -1,12 +1,17 @@
 #!/usr/bin/perl -I/usr/sausalito/perl -I/usr/sausalito/handlers/base/network
-# $Id: change_range.pl 259 2004-01-03 06:28:40Z shibuya $
-# Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
+# $Id: change_range.pl
 # If pooling is enabled, see if we can change this range.
 # If after this change, all the ranges still encompass all the ips, then
 # we can change this. Otherwise, we're not allowed to change this.
 
 use CCE;
 use IpPooling;
+
+# Debugging switch:
+$DEBUG = "0";
+if ($DEBUG) {
+    use Sys::Syslog qw( :DEFAULT setlogsock);
+}
 
 my $cce = new CCE('Domain' => 'base-network');
 $cce->connectfd();
@@ -32,9 +37,9 @@ if ($network->{pooling}) {
         }
     }
 
-    # put our new changed self on the stack of stuff to check against
-    push @ranges, $object;
-    
+    &debug_msg("Ranges: " . Dumper (\@ranges) . "\n");
+
+    # Get networks
     my (@network_oids) = $cce->findx('Network', { 'enabled' => 1 });
     foreach my $oid (@network_oids) {
         my ($ok, $net) = $cce->get($oid);
@@ -42,13 +47,51 @@ if ($network->{pooling}) {
             $cce->bye('FAIL');
             exit 1;
         }
-        if ($net->{device} ne "venet0") {
-            push @ips, $net->{ipaddr};
+        if ((in_array(\@IPs, $net->{ipaddr})) || ($net->{ipaddr} eq "")) {
+            # Nada
+        }
+        else {
+            push @IPs, $net->{ipaddr};
+        }
+        if ((in_array(\@IPs, $net->{ipaddr_IPv6})) || ($net->{ipaddr_IPv6} eq "")) {
+            # Nada
+        }
+        else {
+            push @IPs, $net->{ipaddr_IPv6};
         }
     }
 
-    my (@error_ips) = IpPooling::validate_pooling_state(\@ranges, \@ips);
+    # Get Vsites
+    my (@vsite_oids) = $cce->findx('Vsite');
+    foreach my $void (@vsite_oids) {
+        my ($ok, $vsite) = $cce->get($void);
+        if (!$ok) {
+            $cce->bye('FAIL');
+            exit 1;
+        }
+        if ((in_array(\@IPs, $vsite->{ipaddr})) || ($vsite->{ipaddr} eq "")) {
+            # Nada
+        }
+        else {
+            push @IPs, $vsite->{ipaddr};
+        }
+        if ((in_array(\@IPs, $vsite->{ipaddrIPv6})) || ($vsite->{ipaddrIPv6} eq "")) {
+            # Nada
+        }
+        else {
+            push @IPs, $vsite->{ipaddrIPv6};
+        }        
+    }
+
+    # Remove duplicates:
+    my @filtered_IPs = uniq(@IPs);
+
+    &debug_msg("IPs: " . Dumper (\@filtered_IPs) . "\n");
+
+    # Validate IPs:
+    my (@error_ips) = IpPooling::validate_pooling_state(\@ranges, \@filtered_IPs);
     if (@error_ips) {
+        &debug_msg("error_ips: " . Dumper (\@error_ips) . "\n");
         $cce->warn('cant_change_range', { 'affected_ips' => join(',', @error_ips)});
         $cce->bye('FAIL');
         exit 1;
@@ -58,9 +101,35 @@ if ($network->{pooling}) {
 $cce->bye('SUCCESS');
 exit 0;
 
+#
+### Subs:
+#
+
+sub in_array {
+    my ($arr,$search_for) = @_;
+    my %items = map {$_ => 1} @$arr; # create a hash out of the array values
+    return (exists($items{$search_for}))?1:0;
+}
+
+sub uniq {
+    my %seen;
+    grep !$seen{$_}++, @_;
+}
+
+sub debug_msg {
+    if ($DEBUG) {
+        my $msg = shift;
+        $user = $ENV{'USER'};
+        setlogsock('unix');
+        openlog($0,'','user');
+        syslog('info', "$ARGV[0]: $msg");
+        closelog;
+    }
+}
+
 # 
-# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015-2017 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015-2017 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 

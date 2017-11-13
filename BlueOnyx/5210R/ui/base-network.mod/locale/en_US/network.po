@@ -1069,3 +1069,20 @@ msgstr "Server Administrators"
  
 msgid "admin_help" 
 msgstr "This are the server administrators of this IP address range." 
+
+#####
+# IPv6 Additions
+#####
+
+msgid "both_ips_must_be_ipv4_or_ipv6"
+msgstr "The beginning IP [[VAR.range_min]] and the ending IP [[VAR.range_max]] are not of the same IP protocol. Please do not mix IPv4 and IPv6 IP addresses in ranges." 
+
+msgid "IPValidation_ipv4_specified_but_not_allowed"
+msgstr "You entered an IPv4 IP address, but IPv4 IP addresses are not allowed."
+
+msgid "IPValidation_ipv6_specified_but_not_allowed"
+msgstr "You entered an IPv6 IP address, but IPv6 IP addresses are not allowed."
+
+msgid "IPValidation_ip_must_be_specified"
+msgstr "Please enter an IP address for the virtual site [[VAR.fqdn]]"
+

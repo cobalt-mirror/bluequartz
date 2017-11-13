@@ -106,8 +106,7 @@ if ($enabled && $obj->{real} && $new->{ipaddr}) {
         my @cmd = ($Network::IFCONFIG, $alias->{device}, 'down');
         my @rollback_cmd = ($Network::IFCONFIG, $alias->{device});
         push @rollback_cmd, $alias->{ipaddr};
-        my $a_broadcast = (calcnetwork($alias->{ipaddr},
-                           $alias->{netmask}))[1];
+        my $a_broadcast = (calcnetwork($alias->{ipaddr}, $alias->{netmask}))[1];
         push @rollback_cmd, 'broadcast', $a_broadcast;
         push @rollback_cmd, 'netmask', $alias->{netmask}, 'up';
 
@@ -138,8 +137,7 @@ push @rollback_cmd, ($old_net->{device} ? $old_net->{device} : $device);
 if ($old_net->{ipaddr} && ($old_net->{ipaddr} ne '0.0.0.0'))
 {
     my ($junk, $bcast) = calcnetwork($old_net->{ipaddr}, $old_net->{netmask});
-    push @rollback_cmd, $old_net->{ipaddr},
-            'broadcast', $bcast, 'netmask', $old_net->{netmask};
+    push @rollback_cmd, $old_net->{ipaddr}, 'broadcast', $bcast, 'netmask', $old_net->{netmask};
 }
 push @rollback_cmd, ($old_net->{enabled} ? 'up' : 'down');
 $DEBUG && warn('rollback: ' . join(' ', @rollback_cmd));

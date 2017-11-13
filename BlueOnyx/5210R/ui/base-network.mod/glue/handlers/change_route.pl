@@ -33,11 +33,11 @@ use lib qw(/usr/sausalito/perl /usr/sausalito/handlers/base/network);
 # Debugging switch:
 $DEBUG = "1";
 if ($DEBUG) {
+        use Data::Dumper;
         use Sys::Syslog qw( :DEFAULT setlogsock);
 }
 
 use FileHandle;
-use Data::Dumper;
 use Sauce::Config;
 use Sauce::Util;
 use Sauce::Service;

@@ -20,6 +20,8 @@ BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=yes
 
+REQUIRES=perl-Net-IP
+
 #########
 # some useful defines
 INSTALL=install
