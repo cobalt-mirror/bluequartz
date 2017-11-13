@@ -225,6 +225,12 @@ fi
 
 <begin $CHANGELOG>
 
+* Sun Nov 12 2017 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX02
+- Rough first draft of IPv6 integration.
+- Modified glue/conf/Apache.conf
+- Modified glue/handlers/virtual_host.pl to be able to deal with 
+  VirtualHost containers using IPv4, dual stack or IPv6 only.
+
 * Thu Nov 09 2017 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX01
 - Massive handler overhaul to keep Apache restarts down and to 
   consolidate edit/modify of VirtualHost cfgs into apache/virtual_host.pl

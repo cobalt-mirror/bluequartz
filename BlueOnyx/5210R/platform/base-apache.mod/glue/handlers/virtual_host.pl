@@ -771,16 +771,46 @@ sub edit_vhost
         $vhost->{serverAdmin} = 'admin';
     }
 
+    # Assemble VirtualHost HTTP/HTTPS IP Address lines and IP related Rewrite-Conditions:
+    my $http_ipline = '';
+    my $https_ipline = '';
+    my $ip_rewrite_cond_http = '';
+    my $ip_rewrite_cond_https = '';
+    if (($vhost->{ipaddr} ne "") && ($vhost->{ipaddrIPv6} ne "")) {
+        # Dual stack:
+        $http_ipline = $vhost->{ipaddr} . ':' . $httpPort . ' [' . $vhost->{ipaddrIPv6} . ']:' . $httpPort;
+        $https_ipline = $vhost->{ipaddr} . ':' . $sslPort . ' [' . $vhost->{ipaddrIPv6} . ']:' . $sslPort;
+        $ip_rewrite_cond_http .= 'RewriteCond %{HTTP_HOST}                !^' . $vhost->{ipaddr} . '(:' . $httpPort . ')?$' . "\n";
+        $ip_rewrite_cond_http .= 'RewriteCond %{HTTP_HOST}                !^\[' . $vhost->{ipaddrIPv6} . '\](:' . $httpPort . ')?$';
+
+        $ip_rewrite_cond_https .= 'RewriteCond %{HTTP_HOST}                !^' . $vhost->{ipaddr} . '(:' . $sslPort . ')?$' . "\n";
+        $ip_rewrite_cond_https .= 'RewriteCond %{HTTP_HOST}                !^\[' . $vhost->{ipaddrIPv6} . '\](:' . $sslPort . ')?$';
+    }
+    elsif (($vhost->{ipaddr} eq "") && ($vhost->{ipaddrIPv6} ne "")) {
+        # IPv6 only:
+        $http_ipline = '[' . $vhost->{ipaddrIPv6} . ']:' . $httpPort;
+        $https_ipline = '[' . $vhost->{ipaddrIPv6} . ']:' . $sslPort;
+        $ip_rewrite_cond_http .= 'RewriteCond %{HTTP_HOST}                !^\[' . $vhost->{ipaddrIPv6} . '\](:' . $httpPort . ')?$';
+        $ip_rewrite_cond_https .= 'RewriteCond %{HTTP_HOST}                !^\[' . $vhost->{ipaddrIPv6} . '\](:' . $sslPort . ')?$';
+    }
+    else {
+        # IPv4 only (default):
+        $http_ipline = $vhost->{ipaddr} . ':' . $httpPort;
+        $https_ipline = $vhost->{ipaddr} . ':' . $sslPort;
+        $ip_rewrite_cond_http .= 'RewriteCond %{HTTP_HOST}                !^' . $vhost->{ipaddr} . '(:' . $httpPort . ')?$';
+        $ip_rewrite_cond_https .= 'RewriteCond %{HTTP_HOST}                !^' . $vhost->{ipaddr} . '(:' . $sslPort . ')?$';
+    }
+
     my $vhost_conf =<<END;
 # owned by VirtualHost
-#NameVirtualHost $vhost->{ipaddr}:$httpPort
+#NameVirtualHost $http_ipline
 
 # ServerRoot needs to be set. Otherwise all the vhosts 
 # need to go in httpd.conf, which could get very large 
 # since there could be thousands of vhosts:
 ServerRoot $Base::Httpd::server_root
 
-<VirtualHost $vhost->{ipaddr}:$httpPort>
+<VirtualHost $http_ipline>
 ServerName $vhost->{fqdn}
 $ServerAlias
 ServerAdmin $vhost->{serverAdmin}
@@ -790,7 +820,7 @@ ErrorDocument 403 /error/403-forbidden.html
 ErrorDocument 404 /error/404-file-not-found.html
 ErrorDocument 500 /error/500-internal-server-error.html
 RewriteEngine on
-RewriteCond %{HTTP_HOST}                !^$vhost->{ipaddr}(:$httpPort)?\$
+$ip_rewrite_cond_http
 RewriteCond %{HTTP_HOST}                !^$vhost->{fqdn}(:$httpPort)?\$ [NC]
 $aliasRewrite
 RewriteRule ^/(.*)                      http://$vhost->{fqdn}/\$1 [L,R=301]
@@ -814,8 +844,8 @@ END
 
         $vhost_conf .=<<END;
 
-NameVirtualHost $vhost->{ipaddr}:$sslPort
-<VirtualHost *:$sslPort>
+#NameVirtualHost $https_ipline
+<VirtualHost $https_ipline>
 SSLengine on
 SSLCompression off
 SSLProtocol +ALL -SSLv2 -SSLv3
@@ -834,7 +864,7 @@ ErrorDocument 403 /error/403-forbidden.html
 ErrorDocument 404 /error/404-file-not-found.html
 ErrorDocument 500 /error/500-internal-server-error.html
 RewriteEngine on
-RewriteCond %{HTTP_HOST}                !^$vhost->{ipaddr}(:$sslPort)?\$
+$ip_rewrite_cond_https
 RewriteCond %{HTTP_HOST}                !^$vhost->{fqdn}(:$sslPort)?\$ [NC]
 $aliasRewriteSSL
 RewriteRule ^/(.*)                      https://$vhost->{fqdn}/\$1 [L,R=301]
