@@ -55,7 +55,25 @@ class VsiteAdd extends MX_Controller {
         $get_data = $CI->input->get(NULL, TRUE);
 
         // Form fields that are required to have input:
-        $required_keys = array('hostName', 'domain', 'ipAddr', 'createdUser', 'volume', 'maxusers');
+        $required_keys = array('hostName', 'domain', 'createdUser', 'volume', 'maxusers');
+
+        // Check the status of IPv6 and if we show IPv6 related fields:
+        if ($system['gateway_IPv6'] != "") {
+            $access_ipv6 = 'rw';
+            $show_IPv6 = TRUE;
+        }
+        else {
+            $access_ipv6 = 'r';
+            $show_IPv6 = FALSE;
+        }
+
+        // Check the status of IPv4 and if we shizld show IPv4 related fields:
+        if ($system['gateway'] != "") {
+            $show_IPv4 = TRUE;
+        }
+        else {
+            $show_IPv4 = FALSE;
+        }
 
         // Empty array for key => values we want to submit to CCE:
         $attributes = array();
@@ -131,6 +149,12 @@ class VsiteAdd extends MX_Controller {
                 else {
                     $attributes['userPrefixEnabled'] = "0";
                 }
+                if (!isset($attributes['ipAddr'])) {
+                    $attributes['ipAddr'] = "";
+                }
+                if (!isset($attributes['ipaddrIPv6'])) {
+                    $attributes['ipaddrIPv6'] = "";
+                }                
             }
 
             //
@@ -150,6 +174,7 @@ class VsiteAdd extends MX_Controller {
                                 'domain' => $attributes['domain'],
                                 'fqdn' => ($attributes['hostName'] . '.' . $attributes['domain']),
                                 'ipaddr' => $attributes['ipAddr'],
+                                'ipaddrIPv6' => $attributes['ipaddrIPv6'],
                                 'createdUser' => $attributes['createdUser'], 
                                 'webAliases' => $attributes['webAliases'],
                                 'webAliasRedirects' => $attributes['webAliasRedirects'],
@@ -450,13 +475,27 @@ class VsiteAdd extends MX_Controller {
                 $ip_address = $factory->getIpAddress("ipAddr", $vsiteDefaults["ipaddr"]);
             }
 
-            // IP Address
-            $ip_address->setOptional(FALSE);
-            $settings->addFormField(
-                    $ip_address,
-                    $factory->getLabel("ipAddr"),
-                    $defaultPage
-                    );
+            // IPv4 IP Address
+            if ($show_IPv4) {
+                $ip_address->setOptional(TRUE);
+                $settings->addFormField(
+                        $ip_address,
+                        $factory->getLabel("ipAddr"),
+                        $defaultPage
+                        );
+            }
+
+            // IPv6 IP Address, without ranges
+            if ($show_IPv6) {
+                $ipv6_address = $factory->getIpAddress("ipaddrIPv6", $vsiteDefaults["ipaddrIPv6"], $access_ipv6);
+                $ipv6_address->setType("ipaddrIPv6");
+                $ipv6_address->setOptional(TRUE);
+                $settings->addFormField(
+                        $ipv6_address,
+                        $factory->getLabel("ipaddrIPv6"),
+                        $defaultPage
+                        );
+            }
 
             // host and domain names
             if (isset($vsiteDefaults['hostname'])) {

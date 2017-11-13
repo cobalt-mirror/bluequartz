@@ -97,7 +97,12 @@ class Template extends MX_Controller {
         //
 
         if ($CI->input->post(NULL, TRUE)) {
-
+            if (!isset($attributes['ipAddr'])) {
+                $attributes['ipAddr'] = "";
+            }
+            if (!isset($attributes['ipaddrIPv6'])) {
+                $attributes['ipaddrIPv6'] = "";
+            }                
         }
 
         //
@@ -125,6 +130,7 @@ class Template extends MX_Controller {
             $CI->cceClient->setObject("System",
                     array(
                         "ipaddr" => $attributes['ipAddr'],
+                        "ipaddrIPv6" => $attributes['ipaddrIPv6'],
                         "domain" => $attributes['domain'],
                         "quota" => $quota,
                         "maxusers" => $attributes['maxusers'],
@@ -200,12 +206,22 @@ class Template extends MX_Controller {
         //--- Basic Tab
         //
 
-        //default ip address
+        //default IPv4 ip address
         $ipAddrField = $factory->getIpAddress("ipAddr", $vsiteDefaults["ipaddr"]);
         $ipAddrField->setOptional('silent');
         $block->addFormField(
                     $ipAddrField,
                     $factory->getLabel("defaultIpAddr"),
+                    $pageId
+                    );
+
+        //default IPv6 ip address
+        $ipv6_address = $factory->getIpAddress("ipaddrIPv6", $vsiteDefaults["ipaddrIPv6"]);
+        $ipv6_address->setType("ipaddrIPv6");
+        $ipv6_address->setOptional('silent');
+        $block->addFormField(
+                    $ipv6_address,
+                    $factory->getLabel("ipaddrIPv6"),
                     $pageId
                     );
 

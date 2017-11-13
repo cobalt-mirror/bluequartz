@@ -140,6 +140,16 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+* Sun Nov 12 2017 Michael Stauber <mstauber@solarspeed.net> 4.3-0BX02
+- First rough draft of the IPv6 integration. Needs more refinement.
+- Modified glue/conf/vsite.conf
+- Added glue/handlers/ipv4_ipv6_check.pl
+- Modified glue/schemas/vsite.schema
+- Modified ui/chorizo/web/controllers/template.php
+- Modified ui/chorizo/web/controllers/vsiteAdd.php
+- Modified ui/chorizo/web/controllers/vsiteList.php
+- Modified ui/chorizo/web/controllers/vsiteMod.php
+
 * Thu Nov 09 2017 Michael Stauber <mstauber@solarspeed.net> 4.3-0BX01
 - Massive handler overhaul to keep Apache restarts down and to 
   consolidate edit/modify of VirtualHost cfgs into apache/virtual_host.pl

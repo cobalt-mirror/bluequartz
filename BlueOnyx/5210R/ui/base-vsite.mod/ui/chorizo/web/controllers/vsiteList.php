@@ -162,7 +162,7 @@ class VsiteList extends MX_Controller {
                 }
 
                 $siteList[0][$numsite] = $vsiteSettings['fqdn'];
-                $siteList[1][$numsite] = $vsiteSettings['ipaddr'];
+                $siteList[1][$numsite] = $vsiteSettings['ipaddr'] . "<br>" . $vsiteSettings['ipaddrIPv6'];
 
                 // Display the Owner of the Vsite:
                 if ($vsiteSettings['createdUser'] == "") {
