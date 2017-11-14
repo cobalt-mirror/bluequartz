@@ -1,15 +1,16 @@
 #!/usr/bin/perl
-# $Id: check_pool.pl
+# $Id: check_pool_admin.pl
 #
 # Description:
-#	Runs on Network creation, or change of Network.ipaddr property.
+#   Runs on Network creation, or change of Network.ipaddr property.
 #       If IP pooling enabled, checks that the given IP address is
 #       within the pool of acceptable IPs.
 
+# Debugging switch:
 $DEBUG = "0";
-if ($DEBUG)
-{
-        use Sys::Syslog qw( :DEFAULT setlogsock);
+if ($DEBUG) {
+    use Data::Dumper;
+    use Sys::Syslog qw( :DEFAULT setlogsock);
 }
 
 use lib qw(/usr/sausalito/perl);
@@ -23,54 +24,72 @@ my $cce = new CCE('Domain' => 'base-network');
 
 $cce->connectfd();
 
+&debug_msg("Starting check_pool_admin.pl.\n");
+
 my $vsite_new = $cce->event_new();
 
 my ($sysoid) = $cce->find('System');
 my ($ok, $network) = $cce->get($sysoid, 'Network');
 if (!$ok) {
-	$cce->bye('FAIL');
-	exit 1;
+    $cce->bye('FAIL');
+    exit 1;
 }
 
-if ($network->{pooling} && $vsite_new->{ipaddr}) {
-	my (@oids) = $cce->find('IPPoolingRange');
-	my @ranges = ();
+if ($network->{pooling} && ($vsite_new->{ipaddr} || $vsite_new->{ipaddrIPv6})) {
+    my (@oids) = $cce->find('IPPoolingRange');
+    my @ranges = ();
+    my @IPs = ();
 
-	# get ranges
-	foreach $a_oid (@oids) {
-		my ($ok, $range) = $cce->get($a_oid);
-		if (!$ok) {
-			$cce->bye('FAIL');
-			exit 1;
-		}
-		my @adminArray = $cce->scalar_to_array($range->{admin});
-		my $result = 0;
-		if ($vsite_new->{createdUser} ne 'admin') {
-			foreach my $admin (@adminArray) {
-				if ($admin eq $vsite_new->{createdUser}) {
-					$result = 1;
-				}
-			}
-		}
-		else {
-			$result = 1;
-		}
-		if ($result) {
-			push @ranges, $range;
-		}
-	}
+    if ($vsite_new->{ipaddrIPv6}) {
+        push @IPs, $vsite_new->{ipaddrIPv6};
+    }
+    if ($vsite_new->{ipaddr}) {
+        push @IPs, $vsite_new->{ipaddr};
+    }
 
-	my (@error_ips) = IpPooling::validate_pooling_state(\@ranges, [ $vsite_new->{ipaddr} ]);
-	if (@error_ips) {
-		&debug_msg("Warn: ip_restricted - " . $vsite_new->{ipaddr} . " \n");
-		$cce->warn('ip_restricted', {'ipaddr' => $vsite_new->{ipaddr}});
-		$cce->bye('FAIL');
-		exit 1;
-	}
+    # get ranges
+    foreach $a_oid (@oids) {
+        my ($ok, $range) = $cce->get($a_oid);
+        if (!$ok) {
+            $cce->bye('FAIL');
+            exit 1;
+        }
+        my @adminArray = $cce->scalar_to_array($range->{admin});
+        my $result = 0;
+        if ($vsite_new->{createdUser} ne 'admin') {
+            foreach my $admin (@adminArray) {
+                if ($admin eq $vsite_new->{createdUser}) {
+                    $result = 1;
+                }
+            }
+        }
+        else {
+            $result = 1;
+        }
+        if ($result) {
+            push @ranges, $range;
+        }
+    }
+
+    # Remove duplicates:
+    my @filtered_IPs = uniq(@IPs);
+
+    my (@error_ips) = IpPooling::validate_pooling_state(\@ranges, \@filtered_IPs);
+    if (@error_ips) {
+        &debug_msg("Warn: ip_restricted - " . $vsite_new->{ipaddr} . " \n");
+        $cce->warn('ip_restricted', {'ipaddr' => $vsite_new->{ipaddr}});
+        $cce->bye('FAIL');
+        exit 1;
+    }
 }
 
 $cce->bye('SUCCESS');
 exit 0;
+
+sub uniq {
+    my %seen;
+    grep !$seen{$_}++, @_;
+}
 
 sub debug_msg {
     if ($DEBUG) {
@@ -85,23 +104,23 @@ sub debug_msg {
 
 
 # 
-# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015-2017 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015-2017 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2010 Hisao Shibuya
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 
-#	 notice, this list of conditions and the following disclaimer.
+#    notice, this list of conditions and the following disclaimer.
 # 
 # 2. Redistributions in binary form must reproduce the above copyright 
-#	 notice, this list of conditions and the following disclaimer in 
-#	 the documentation and/or other materials provided with the 
-#	 distribution.
+#    notice, this list of conditions and the following disclaimer in 
+#    the documentation and/or other materials provided with the 
+#    distribution.
 # 
 # 3. Neither the name of the copyright holder nor the names of its 
-#	 contributors may be used to endorse or promote products derived 
-#	 from this software without specific prior written permission.
+#    contributors may be used to endorse or promote products derived 
+#    from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
 # "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 

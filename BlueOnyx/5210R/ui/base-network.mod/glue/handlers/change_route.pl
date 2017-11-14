@@ -66,6 +66,16 @@ if (-f "/etc/is_aws") {
         exit(0);
 }
 
+# Are we an OpenVZ mastern node?
+if ((-e "/proc/user_beancounters") && (-f "/etc/vz/conf/0.conf")) {
+    # Yes, we are.
+    $device = 'venet0:0';
+}
+else {
+    # No, we are not.
+    $device = 'eth0';
+}
+
 # Special case: IPv6 default route:
 my $gateway_IPv6 = '';
 my ($sysoid) = $cce->find('System');
@@ -92,17 +102,17 @@ $now = time();
 $time_window = $nw_update + '60';
 &debug_msg("Running $0: now: $now - time_window: $time_window.\n");
 if ($time_window gt $now) {
-    &debug_msg("Running $0: Flushing IPv6 and bringing up eth0\n");
+    &debug_msg("Running $0: Flushing IPv6 and bringing up $device\n");
     # Soft Restart Network:
-    system("/sbin/ip -6 addr flush dev eth0");
+    system("/sbin/ip -6 addr flush dev $device");
     #system("/bin/sleep 3");
     #Sauce::Service::service_run_init('network', 'restart');
-    system("/sbin/ifup eth0");
+    system("/usr/bin/flock -n /usr/sausalito/license/change_route.lock /sbin/ifup $device");
 }
 
 if ($gateway_IPv6 eq "") {
     &debug_msg("Running $0: Flushing IPv6 routes.\n");
-    system("/sbin/ip -6 addr flush dev eth0");
+    system("/sbin/ip -6 addr flush dev $device");
     system("/sbin/ip -6 route del default");
 }
 else {
@@ -118,22 +128,22 @@ else {
 }
 
 #
-### Handle Assignment of Extra IPs to eth0:
+### Handle Assignment of Extra IPs to $device:
 #
 
-# Get IP addresses currently bound to eth0 and also the existing routes:
-@arr_assigned_ipv4 = split (/\n/, `LC_ALL=C /sbin/ip address show dev eth0 |grep inet|grep global|awk -F "inet " '{print \$2}'|awk -F " brd " '{print \$1}'|cut -d / -f1|sed '/^\$/d'`);
-@arr_assigned_ipv6 = split (/\n/, `LC_ALL=C /sbin/ip address show dev eth0 |grep inet|grep global|awk -F "inet6 " '{print \$2}'|awk -F " brd " '{print \$1}'|cut -d / -f1|sed '/^\$/d'`);
-@routes_existing_ipv4 = split (/\n/, `LC_ALL=C /sbin/ip route show dev eth0|grep -v default|awk -F "/" '{print \$1}'|awk -F " scope link" '{print \$1}'`);
+# Get IP addresses currently bound to $device and also the existing routes:
+@arr_assigned_ipv4 = split (/\n/, `LC_ALL=C /sbin/ip address show dev $device |grep inet|grep global|awk -F "inet " '{print \$2}'|awk -F " brd " '{print \$1}'|cut -d / -f1|sed '/^\$/d'`);
+@arr_assigned_ipv6 = split (/\n/, `LC_ALL=C /sbin/ip address show dev $device |grep inet|grep global|awk -F "inet6 " '{print \$2}'|awk -F " brd " '{print \$1}'|cut -d / -f1|sed '/^\$/d'`);
+@routes_existing_ipv4 = split (/\n/, `LC_ALL=C /sbin/ip route show dev $device|grep -v default|awk -F "/" '{print \$1}'|awk -F " scope link" '{print \$1}'`);
 
-# Get primary IPs of 'eth0' from Network Config file:
-$ipv4_ip = `LC_ALL=C cat /etc/sysconfig/network-scripts/ifcfg-eth0 | grep IPADDR= | awk -F "IPADDR=" '{print \$2}'`;
+# Get primary IPs of '$device' from Network Config file:
+$ipv4_ip = `LC_ALL=C cat /etc/sysconfig/network-scripts/ifcfg-$device | grep IPADDR= | awk -F "IPADDR=" '{print \$2}'`;
 chomp($ipv4_ip);
 &debug_msg("Running $0: My primary IPv4 ipaddr: " . $ipv4_ip . "\n");
-$ipv4_nm = `LC_ALL=C cat /etc/sysconfig/network-scripts/ifcfg-eth0 | grep NETMASK= | awk -F "NETMASK=" '{print \$2}'`;
+$ipv4_nm = `LC_ALL=C cat /etc/sysconfig/network-scripts/ifcfg-$device | grep NETMASK= | awk -F "NETMASK=" '{print \$2}'`;
 chomp($ipv4_nm);
 &debug_msg("Running $0: My primary IPv4 netmask: " . $ipv4_nm . "\n");
-$ipv6_ip = `LC_ALL=C cat /etc/sysconfig/network-scripts/ifcfg-eth0 | grep IPV6ADDR= | awk -F "IPV6ADDR=" '{print \$2}'`;
+$ipv6_ip = `LC_ALL=C cat /etc/sysconfig/network-scripts/ifcfg-$device | grep IPV6ADDR= | awk -F "IPV6ADDR=" '{print \$2}'`;
 chomp($ipv6_ip);
 &debug_msg("Running $0: My primary IPv6 ipaddr: " . $ipv6_ip . "\n");
 
@@ -143,7 +153,7 @@ chomp($ipv6_ip);
 @arr_existing_netroutes = ();
 
 #
-## Assign IPv4 IPs that are not yet bound to eth0:
+## Assign IPv4 IPs that are not yet bound to $device:
 #
 
 # Make sure all IPv4 extra-IPs are bound:
@@ -158,7 +168,7 @@ if ($System->{extra_ipaddr}) {
         }
         else {
             &debug_msg("Running $0: Extra IPv4 IP $ip_extra needs to be bound.\n");
-            system("/sbin/ip addr add " . $ip_extra. "/32 dev eth0");
+            system("/sbin/ip addr add " . $ip_extra. "/32 dev $device");
             # Remove element from array:
             @arr_assigned_ipv4 = grep {!/^$ip_extra$/} @arr_assigned_ipv4;
         }
@@ -178,7 +188,7 @@ if ($System->{extra_ipaddr}) {
             @routes_existing_ipv4 = grep {!/^$ip_extra$/} @routes_existing_ipv4;
         }
         else {
-            system("/sbin/ip route add " . $ip_extra. "/255.255.255.255 dev eth0");
+            system("/sbin/ip route add " . $ip_extra. "/255.255.255.255 dev $device");
             @routes_existing_ipv4 = grep {!/^$ip_extra$/} @routes_existing_ipv4;
         }
     }
@@ -190,7 +200,7 @@ foreach my $netroute (@unique_netroutes) {
         # Nada
     }
     else {
-        system("/sbin/ip route add " . $netroute . "/" . $ipv4_nm . " dev eth0");
+        system("/sbin/ip route add " . $netroute . "/" . $ipv4_nm . " dev $device");
     }
     @arr_assigned_ipv4 = grep {!/^$netroute$/} @arr_assigned_ipv4;
     @routes_existing_ipv4 = grep {!/^$netroute$/} @routes_existing_ipv4;    
@@ -199,13 +209,13 @@ foreach my $netroute (@unique_netroutes) {
 # Unbind any extra IPv4 IP that is still bound, but not known to the GUI:
 foreach my $ip_extra (@arr_assigned_ipv4) {
     &debug_msg("Running $0: Unbinding Extra IPv4 IP $ip_extra.\n");
-    system("/sbin/ip addr del " . $ip_extra. "/32 dev eth0");
+    system("/sbin/ip addr del " . $ip_extra. "/32 dev $device");
 }
 
 # Removing routes for that we no longer have IPs:
 foreach my $ip_extra (@routes_existing_ipv4) {
     &debug_msg("Running $0: Removing route for $ip_extra.\n");
-    system("/sbin/ip route del " . $ip_extra . " dev eth0");
+    system("/sbin/ip route del " . $ip_extra . " dev $device");
 }
 
 # Handle the the IPv4 loopback route:
@@ -217,7 +227,7 @@ if ($loop_ipv4 ne "1") {
 }
 
 #
-## Assign IPv6 IPs that are not yet bound to eth0:
+## Assign IPv6 IPs that are not yet bound to $device:
 #
 
 # Make sure all IPv6 extra-IPs are bound:
@@ -232,7 +242,7 @@ if ($System->{extra_ipaddr_IPv6}) {
         }
         else {
             &debug_msg("Running $0: Extra IPv6 IP $ip_extra needs to be bound.\n");
-            system("/sbin/ip addr add " . $ip_extra. "/128 dev eth0");
+            system("/sbin/ip addr add " . $ip_extra. "/128 dev $device");
             # Remove element from array:
             @arr_assigned_ipv6 = grep {!/^$ip_extra$/} @arr_assigned_ipv6;
         }
@@ -242,13 +252,13 @@ if ($System->{extra_ipaddr_IPv6}) {
 # Unbind any extra IPv6 IP that is still bound, but not known to the GUI:
 foreach my $ip_extra (@arr_assigned_ipv6) {
     &debug_msg("Running $0: Unbinding Extra IPv6 IP $ip_extra.\n");
-    system("/sbin/ip addr del " . $ip_extra. "/128 dev eth0");
+    system("/sbin/ip addr del " . $ip_extra. "/128 dev $device");
 }
 
 ######################
 
 # Handle OpenVZ network situation:
-if (-e "/proc/user_beancounters") {
+if ((-e "/proc/user_beancounters") && (! -f "/etc/vz/conf/0.conf")) {
 
     # This is a bit special. Some time ago OpenVZ switched the network behaviour of VPS's
     # a little. In the past the fake GATEWAY of 192.0.2.1" was mandatory. Now it is no
@@ -360,7 +370,7 @@ sub which_device
             return ($net->{device});
         }
     }
-    if ( -f "/proc/user_beancounters") {
+    if ((-e "/proc/user_beancounters") && (! -f "/etc/vz/conf/0.conf")) {
         $GuessDevice = 'venet0';
         return $GuessDevice;
     }
