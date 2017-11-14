@@ -76,8 +76,9 @@ if ($network->{pooling} && ($vsite_new->{ipaddr} || $vsite_new->{ipaddrIPv6})) {
 
     my (@error_ips) = IpPooling::validate_pooling_state(\@ranges, \@filtered_IPs);
     if (@error_ips) {
-        &debug_msg("Warn: ip_restricted - " . $vsite_new->{ipaddr} . " \n");
-        $cce->warn('ip_restricted', {'ipaddr' => $vsite_new->{ipaddr}});
+        my $offenders = join(", ", @error_ips);
+        &debug_msg("Warn: ip_restricted - " . $offenders . " \n");
+        $cce->warn('ip_restricted', {'ipaddr' => $offenders});
         $cce->bye('FAIL');
         exit 1;
     }
