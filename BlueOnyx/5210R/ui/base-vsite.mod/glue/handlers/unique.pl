@@ -75,18 +75,18 @@ if (length($vsite_new->{prefix}) > 5) {
 # Make sure our prefix (if given) isn't used by any other vsite:
 if ($vsite_new->{prefix}) {
     if (length($vsite_new->{prefix}) > 0) {
-    # Prefix given. Now verify that no other site is using this prefix:
-    my @oids = $cce->findx("Vsite", {},
-                   { 
-                    'prefix' => &build_scalar_regi($vsite_new->{prefix})
-                   });
+        # Prefix given. Now verify that no other site is using this prefix:
+        my @oids = $cce->findx("Vsite", {},
+                       { 
+                        'prefix' => &build_scalar_regi($vsite_new->{prefix})
+                       });
 
-    # there should be no oids found
-    if (scalar(@oids) > 1) {
-        $cce->bye('FAIL', "[[base-vsite.prefixInUse,fqdn='$vsite_new->{prefix}']]");
-        &debug_msg("Fail: prefixInUse\n");
-        exit(1);
-    }
+        # there should be no oids found
+        if (scalar(@oids) > 1) {
+            $cce->bye('FAIL', "[[base-vsite.prefixInUse,fqdn='$vsite_new->{prefix}']]");
+            &debug_msg("Fail: prefixInUse\n");
+            exit(1);
+        }
     }
 }
 

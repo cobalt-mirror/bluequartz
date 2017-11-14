@@ -10,8 +10,7 @@ use POSIX qw(isalpha);
 
 # Debugging switch:
 $DEBUG = "1";
-if ($DEBUG)
-{
+if ($DEBUG) {
     use Data::Dumper;
     use Sys::Syslog qw( :DEFAULT setlogsock);
 }
@@ -27,8 +26,6 @@ my $vsite_old = $cce->event_old();
 &debug_msg("vsite: " . $vsite->{fqdn} . " : " . $vsite->{ipaddr} . " - " . $vsite->{ipaddrIPv6} . "\n");
 &debug_msg("vsite_new: " . $vsite_new->{fqdn} . " : " . $vsite_new->{ipaddr} . " - " . $vsite_new->{ipaddrIPv6} . "\n");
 &debug_msg("vsite_old: " . $vsite_old->{fqdn} . " : " . $vsite_old->{ipaddr} . " - " . $vsite_old->{ipaddrIPv6} . "\n");
-#&debug_msg("vsite_new: " . Dumper($vsite_new) . "\n");
-#&debug_msg("vsite_old: " . Dumper($vsite_old) . "\n");
 
 my @oids= $cce->find("System");
 my ($ok, $system) = $cce->get($oids[0]);

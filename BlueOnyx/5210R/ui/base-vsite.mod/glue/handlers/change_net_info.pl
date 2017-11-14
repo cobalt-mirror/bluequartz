@@ -1,6 +1,5 @@
 #!/usr/bin/perl -I/usr/sausalito/perl -I/usr/sausalito/handlers/base/vsite
 # $Id: change_net_info.pl
-# change_net_info.pl
 # do things like making sure casp, httpd.conf, aliases, maillists, email info,
 # etc. all get updated properly if the fqdn or ip address change for a vsite
 
@@ -11,15 +10,16 @@ use Sauce::Config;
 use Base::HomeDir qw(homedir_get_group_dir homedir_create_group_link);
 
 # Debugging switch:
-$DEBUG = "0";
-if ($DEBUG)
-{
-        use Sys::Syslog qw( :DEFAULT setlogsock);
+$DEBUG = "1";
+if ($DEBUG) {
+    use Sys::Syslog qw( :DEFAULT setlogsock);
 }
 
 my $cce = new CCE;
 
 $cce->connectfd();
+
+&debug_msg("change_net_info.pl starting up.\n");
 
 # gather some useful information
 my $vsite = $cce->event_object();
@@ -29,25 +29,22 @@ my $vsite_old = $cce->event_old();
 my $msg;
 
 # stuff to do if either the ip or fqdn has changed
-if ($vsite_new->{ipaddr} || $vsite_new->{fqdn} || $vsite_new->{webAliases})
-{
+if ($vsite_new->{ipaddr} || $vsite_new->{ipaddrIPv6} || $vsite_new->{fqdn} || $vsite_new->{webAliases}) {
     # modify VirtualHost entry for this site
     my ($vhost) = $cce->find('VirtualHost', { 'name' => $vsite->{name} });
 
     &debug_msg("Updating VirtualHost object.\n");
 
-    my ($ok) = $cce->set($vhost, '', { 'ipaddr' => $vsite->{ipaddr}, 'fqdn' => $vsite->{fqdn}, 'webAliases' => $vsite->{webAliases} });
+    my ($ok) = $cce->set($vhost, '', { 'ipaddr' => $vsite->{ipaddr}, 'ipaddrIPv6' => $vsite->{ipaddrIPv6}, 'fqdn' => $vsite->{fqdn}, 'webAliases' => $vsite->{webAliases} });
 
-    if (not $ok)
-    {
+    if (not $ok) {
         &debug_msg("FAILED: Updating VirtualHost object.\n");
         $cce->bye('FAIL', '[[base-vsite.cantUpdateVhost]]');
         exit(1);
     }
 }
 
-if ($vsite_new->{fqdn})
-{
+if ($vsite_new->{fqdn}) {
     # set umask or symlinks get created with funky permissions
     my $old_umask = umask(000);
     
@@ -66,16 +63,24 @@ if ($vsite_new->{fqdn})
 } # end of fqdn change specific
 
 # handle ip address change
-if ($vsite_new->{ipaddr})
-{
-    # make sure that there is a network interface for the new ip - but not on AWS:
-    if (!-f "/etc/is_aws") {
-       vsite_add_network_interface($cce, $vsite_new->{ipaddr});
-    }
-
-    # delete the old interface, this is a no op if another site is using the old ip still
+if ($vsite_new->{ipaddr}) {
+    # Add used IPs ro network interfaces:
+    vsite_add_network_interface($cce, $vsite_new->{ipaddr});
+    # Remove unused IPs from being bound to network interfaces:
     vsite_del_network_interface($cce, $vsite_old->{ipaddr});
 } # end of ip address change specific
+
+# handle ip address change
+if ($vsite_new->{ipaddrIPv6}) {
+    # Add used IPs ro network interfaces:
+    vsite_add_network_interface($cce, $vsite_new->{ipaddrIPv6});
+    # Remove unused IPs from being bound to network interfaces:
+    vsite_del_network_interface($cce, $vsite_old->{ipaddrIPv6});
+} # end of ip address change specific
+
+
+$cce->bye('SUCCESS');
+exit(0);
 
 sub debug_msg {
     if ($DEBUG) {
@@ -88,12 +93,9 @@ sub debug_msg {
     }
 }
 
-$cce->bye('SUCCESS');
-exit(0);
-
 # 
-# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2014-2017 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2014-2017 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 

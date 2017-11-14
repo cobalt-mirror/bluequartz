@@ -5,6 +5,12 @@
 # handle cleaning up when a Vsite is deleted
 #
 
+# Debugging switch:
+$DEBUG = "1";
+if ($DEBUG) {
+    use Sys::Syslog qw( :DEFAULT setlogsock);
+}
+
 use CCE;
 use Vsite;
 use File::Path;
@@ -14,11 +20,11 @@ use Sauce::Service;
 use Base::HomeDir qw(homedir_get_group_dir homedir_create_group_link);
 use Base::Group qw(groupdel);
 
-my $DEBUG = 0;
-
 my $cce = new CCE('Domain' => 'base-vsite');
 
 $cce->connectfd();
+
+&debug_msg("vsite_destroy.pl starting up.\n");
 
 my ($ok, $vsite);
 
@@ -59,25 +65,29 @@ if ($vsite->{dns_auto})
 my ($vhost_oid) = $cce->find('VirtualHost', { 'name' => $vsite->{name} });
 ($ok) = $cce->destroy($vhost_oid);
 if (!$ok) {
+    &debug_msg("vsite_destroy.pl FAIL: VirtualHostNotFound\n");
     $cce->bye('FAIL', 'VirtualHostNotFound');
     exit(1);
 }
 
 # things to do if this is the last vsite using this IP
-unless (scalar($cce->find("Vsite", { 'ipaddr' => $vsite->{ipaddr} }))) {
-
-    # Use our routine from Vsite.pm to remove the extra-ips if needed:
-    ($ok) = vsite_del_network_interface($cce, $vsite->{ipaddr});
-
-    # delete ftp virtual host
-    my ($oid) = $cce->find('FtpSite', { 'ipaddr' => $vsite->{ipaddr} });
-    if ($oid) {
-        ($ok) = $cce->destroy($oid);
-        if (!$ok) {
-            $cce->bye('FAIL', 'duringDeleteFTPvirtualHost');
-            exit(1);
-        }
+if ($vsite->{ipaddr} ne "") {
+    unless (scalar($cce->find("Vsite", { 'ipaddr' => $vsite->{ipaddr} }))) {
+        &debug_msg("vsite_del_network_interface " . $vsite->{ipaddr} . "\n");
+        # Use our routine from Vsite.pm to remove the extra-ips if needed:
+        ($ok) = vsite_del_network_interface($cce, $vsite->{ipaddr});
     }
+    &debug_msg("Done with vsite_del_network_interface " . $vsite->{ipaddr} . "\n");
+}
+
+# things to do if this is the last vsite using this IP
+if ($vsite->{ipaddrIPv6} ne "") {
+    unless (scalar($cce->find("Vsite", { 'ipaddrIPv6' => $vsite->{ipaddrIPv6} }))) {
+        &debug_msg("vsite_del_network_interface " . $vsite->{ipaddrIPv6} . "\n");
+        # Use our routine from Vsite.pm to remove the extra-ips if needed:
+        ($ok) = vsite_del_network_interface($cce, $vsite->{ipaddrIPv6});
+    }
+    &debug_msg("Done with vsite_del_network_interface " . $vsite->{ipaddrIPv6} . "\n");
 }
 
 # delete system group
@@ -105,8 +115,22 @@ if (-f $fpm_pool_cfg) {
     service_run_init('php-fpm', 'reload');
 }
 
+# Bring the network up with the updated IP bindings:
+($ok) = vsite_toggle_network_interface($cce);
+
 $cce->bye('SUCCESS');
 exit(0);
+
+sub debug_msg {
+    if ($DEBUG) {
+        my $msg = shift;
+        $user = $ENV{'USER'};
+        setlogsock('unix');
+        openlog($0,'','user');
+        syslog('info', "$ARGV[0]: $msg");
+        closelog;
+    }
+}
 
 # 
 # Copyright (c) 2015-2017 Michael Stauber, SOLARSPEED.NET

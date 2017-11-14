@@ -452,14 +452,18 @@ class VsiteAdd extends MX_Controller {
                     $range = $CI->cceClient->get($oid);
                     $adminArray = $CI->cceClient->scalar_to_array($range['admin']); 
                     if ($CI->BX_SESSION['loginName'] == 'admin' || in_array($CI->BX_SESSION['loginName'], $adminArray)) { 
-                            $range_strings[] = $range['min'] . ' - ' . $range['max']; 
+                        if (filter_var($range['min'], FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
+                            $range_strings['v4'][] = $range['min'] . ' - ' . $range['max']; 
+                        }
+                        else {
+                            $range_strings['v6'][] = $range['min'] . ' - ' . $range['max']; 
+                        }
                     } 
                 }
-                $string = arrayToString($range_strings);
 
                 $new_range_string = '';
                 $nrs_num = "0";
-                foreach ($range_strings as $key => $value) {
+                foreach ($range_strings['v4'] as $key => $value) {
                     if ($nrs_num > "0") {
                         $new_range_string .= "<br>";
                     }
@@ -485,9 +489,28 @@ class VsiteAdd extends MX_Controller {
                         );
             }
 
+            // IPv6:
+            $new_range_string = '';
+            $nrs_num = "0";
+            if ($net_opts["pooling"] == "1") {
+                // IPv6 IP Address, with ranges
+                foreach ($range_strings['v6'] as $key => $value) {
+                    if ($nrs_num > "0") {
+                        $new_range_string .= "<br>";
+                    }
+                    $new_range_string .= $value;
+                    $nrs_num++;
+                }
+                $ipv6_address = $factory->getIpAddress("ipaddrIPv6", $vsiteDefaults["ipaddrIPv6"], $access_ipv6);
+                $ipv6_address->setRange($new_range_string);
+            }
+            else {
+                // IPv6 IP Address, without ranges
+                $ipv6_address = $factory->getIpAddress("ipaddrIPv6", $vsiteDefaults["ipaddrIPv6"], $access_ipv6);
+            }
+
             // IPv6 IP Address, without ranges
             if ($show_IPv6) {
-                $ipv6_address = $factory->getIpAddress("ipaddrIPv6", $vsiteDefaults["ipaddrIPv6"], $access_ipv6);
                 $ipv6_address->setType("ipaddrIPv6");
                 $ipv6_address->setOptional(TRUE);
                 $settings->addFormField(

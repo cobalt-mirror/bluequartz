@@ -78,10 +78,12 @@ if (not $ok)
     exit(1);
 }
 
-# make sure there is a network interface for this ip. We skip this on AWS as anything
-# there runs on a single IP anyway:
-if (!-f "/etc/is_aws") {
+# make sure the Vsite IPs are bound to the network:
+if ($vsite->{ipaddr} ne "") {
     vsite_add_network_interface($cce, $vsite->{ipaddr});
+}
+if ($vsite->{ipaddrIPv6} ne "") {
+    vsite_add_network_interface($cce, $vsite->{ipaddrIPv6});
 }
 
 my $locale = I18n::i18n_getSystemLocale($cce);
@@ -187,6 +189,7 @@ for my $alias (keys %DefaultAliases)
 ($ok) = $cce->create('VirtualHost', 
             { 
                 'ipaddr' => $vsite->{ipaddr}, 
+                'ipaddrIPv6' => $vsite->{ipaddrIPv6}, 
                 'fqdn' => $vsite->{fqdn}, 
                 'documentRoot' => "$site_dir/web",
                 'name' => $group_name 
@@ -215,6 +218,9 @@ else
     # inform FTP that the site state has changed
     ($ok) = $cce->set($site_ftp[0], '', { 'commit' => time() });
 }
+
+# Bring the network up with the updated IP bindings:
+($ok) = vsite_toggle_network_interface($cce);
 
 $cce->bye('SUCCESS');
 exit(0);
@@ -331,8 +337,8 @@ sub find_skeleton
 }
 
 # 
-# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015-2017 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015-2017 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 

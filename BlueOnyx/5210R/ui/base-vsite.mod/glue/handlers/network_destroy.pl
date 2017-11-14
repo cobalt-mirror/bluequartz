@@ -1,14 +1,21 @@
 #!/usr/bin/perl -w -I/usr/sausalito/perl -I/usr/sausalito/handlers/base/vsite
 # $Id: network_destroy.pl
 #
-# ensure that there is always an interface or alias with the IP address of
-# each vsite
+# Ensure that each Vsite's IP is bound to an interface. 
+
+# Debugging switch:
+$DEBUG = "1";
+if ($DEBUG) {
+    use Sys::Syslog qw( :DEFAULT setlogsock);
+}
 
 use CCE;
 use Vsite;
 
 my $cce = new CCE;
 $cce->connectfd();
+
+&debug_msg("network_destroy.pl starting up.\n");
 
 # get network info
 my $network = $cce->event_object();
@@ -48,11 +55,11 @@ $cce->bye('SUCCESS');
 exit(0);
 
 sub get_candidate_iface {
-    if (! -f "/proc/user_beancounters") { 
-            $DEFAULT_INTERFACE = 'eth0'; 
+    if ((-e "/proc/user_beancounters") && (-f "/etc/vz/conf/0.conf")) {
+            $DEFAULT_INTERFACE = 'venet0'; 
     } 
     else { 
-            $DEFAULT_INTERFACE = 'venet0'; 
+            $DEFAULT_INTERFACE = 'eth0';
     } 
 }
 
@@ -63,9 +70,20 @@ sub fail {
     exit(1);
 }
 
+sub debug_msg {
+    if ($DEBUG) {
+        my $msg = shift;
+        $user = $ENV{'USER'};
+        setlogsock('unix');
+        openlog($0,'','user');
+        syslog('info', "$ARGV[0]: $msg");
+        closelog;
+    }
+}
+
 # 
-# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015-2017 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015-2017 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 
