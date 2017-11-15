@@ -155,6 +155,18 @@ fi
 
 <begin $CHANGELOG>
 
+* Wed Nov 17 2017 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX48
+- IPv6 support added. On Gateway changes (IPv4/IPv6) or when otherwise
+  triggered, our handlers/constructors check if IPv4, IPv6 or dual stack
+  is possible beased on the presence of the respective gateways. 
+  Depending on these checks dovecot.conf gets a new listen directive and
+  sendmail.mc is extended to bind to IPv4, IPv6 or both. The catch is
+  that Sendmail isn't truly dual stack. Best we can do in dual stack is
+  to bind it to all IPv4 addresses and the primary IPv6 IP address.
+- Modified constructor/syncEmailService.pl
+- Modified glue/handlers/enable.pl
+- Modified glue/conf/email.conf
+
 * Sat Nov 11 2017 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX47
 - Small conf update
 
