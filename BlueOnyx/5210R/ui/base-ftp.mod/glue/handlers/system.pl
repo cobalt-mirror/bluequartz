@@ -1,6 +1,5 @@
 #!/usr/bin/perl -I/usr/sausalito/handlers/base/ftp -I/usr/sausalito/perl
 # $Id: system.pl 
-# Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 #
 # handle ftp access
 #
@@ -21,10 +20,10 @@ my %settings;
 $settings{'MaxClients'} = $obj->{maxConnections};
 $settings{'UseReverseDNS'} = $obj->{useReverseDNS} ? 'on' : 'off';
 my $ok = Sauce::Util::editblock(ftp::ftp_getconf, 
-				 *Sauce::Util::keyvalue_edit_fcn,
-				 '# begin global -- do not delete',
-				 '# end global -- do not delete',
-				 '#', ' ', undef, %settings);
+         *Sauce::Util::keyvalue_edit_fcn,
+         '# begin global -- do not delete',
+         '# end global -- do not delete',
+         '#', ' ', undef, %settings);
 if (not $ok) {
     $cce->bye('FAIL', '[[base-ftp.cantConfigFile]]');
     exit 1;
@@ -65,8 +64,8 @@ $cce->bye('SUCCESS');
 exit 0;
 
 # 
-# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2014-2017 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2014-2017 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 

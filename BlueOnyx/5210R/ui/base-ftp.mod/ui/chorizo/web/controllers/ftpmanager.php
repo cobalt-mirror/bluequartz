@@ -193,8 +193,8 @@ class Ftpmanager extends MX_Controller {
 	}		
 }
 /*
-Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2014-2017 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2014-2017 Team BlueOnyx, BLUEONYX.IT
 All Rights Reserved.
 
 1. Redistributions of source code must retain the above copyright 

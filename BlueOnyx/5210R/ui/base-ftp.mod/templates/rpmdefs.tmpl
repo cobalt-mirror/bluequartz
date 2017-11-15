@@ -51,8 +51,6 @@ information for [VENDOR]-[SERVICE].
 [AUTOFILL]
 /usr/sausalito/bin/addIdentLookups.pl
 %attr(0755,-,-) /usr/sausalito/sbin/ftpaccess.pl
-%attr(0755,-,-) /usr/sausalito/sbin/fixproftpd_conf.pl
-%attr(0755,-,-) /usr/sausalito/sbin/fixproftpds_conf.pl
 
 <end glue>
 
@@ -93,12 +91,6 @@ fi
 #	# Re-add the now missing VirtualHost containers - but only do so
 #	# if a previous proftpd was already installed. Because then it was
 #	# an upgrade, not a first install:
-#	if [ -f /etc/proftpd.conf.bqold ]; then
-#	    /usr/sausalito/sbin/fixproftpd_conf.pl >> /etc/proftpd.conf
-#	    /usr/sausalito/sbin/fixproftpds_conf.pl >> /etc/proftpds.conf
-#	    # Restart of xinetd:
-#	    /sbin/service xinetd restart
-#	fi
 #fi
 
 <end glue>
@@ -147,6 +139,16 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Tue Nov 14 2017 Michael Stauber <mstauber@solarspeed.net> 1.4.0-0BX01
+- Major version bump. This update removes anything related to Anon-FTP.
+  Because nobody in his right mind would still use that anyway. Just
+  keeping the provisions for potential Anon-FTP usage around amounted
+  to about 80 percent of code of the FTP implementation. Not only that,
+  it also threw a wrench into the IPv6 implementation. So ... bye bye
+  Anon-FTP. We will not miss you. Net result is also a pretty slick
+  and clean ProFTPd config file without bloody VirtualHost containers.
+  Because without Anon-FTP we don't need them either.
 
 * Sat Nov 11 2017 Michael Stauber <mstauber@solarspeed.net> 1.3.1-0BX17
 - Code cleanup.

@@ -29,31 +29,7 @@
     />
 </class>
 
-<!-- register anonymous ftp as a feature available to Vsites -->
-<class name="VsiteServices" namespace="AnonFtp" version="1.0">
-	<property name="featureEnabled" type="boolean" default="1"/>
-
-    <!-- i18n name for ui to use -->
-    <property
-        name="i18nName" type="scalar" default="[[base-ftp.anonFtp]]"
-    />
-
-	<!-- default vsite settings -->
-	<!-- default settings for anonymous ftp for use in Vsite addition -->
-	<property 
-        name="enabled" type="boolean" default="0"
-        writeacl="ruleCapable(adminUser)"
-    />
-	<property 
-        name="maxConnections" type="int" default="10"
-        writeacl="ruleCapable(adminUser)"
-    />
-	<property 
-        name="quota" type="int" default="20"
-        writeacl="ruleCapable(adminUser)"
-    />
-</class>
-
+<!-- register FTPNONADMIN as a feature available to Vsites -->
 <class
     name="VsiteServices" namespace="FTPNONADMIN" version="1.0"
 >
@@ -70,29 +46,6 @@
 </class>
 
 
-<!-- 
-    transparency layer for vsites, really just toggles an FtpSite 
-    objects settings 
-    namespace for the per site anonymous ftp settings 
--->
-<class 
-    name="Vsite" namespace="AnonFtp" version="1.0"
-    createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)"
->
-	<property 
-        name="enabled" type="boolean" default="0"
-        writeacl="ruleCapable(adminUser)"
-    />
-	<property 
-        name="maxConnections" type="int" optional="yes"
-        writeacl="ruleCapable(adminUser)"
-    />
-	<property 
-        name="quota" type="int" optional="yes"
-        writeacl="ruleCapable(adminUser)"
-    />
-</class>
-
 <class
     name="Vsite" namespace="FTPNONADMIN" version="1.0"
     createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)"
@@ -103,6 +56,7 @@
     />
 </class>
 
+<!-- This Class can me removed after a transitional phase as it is no longer used. -->
 <class 
     name="FtpSite" version="1.0"
     createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)"
