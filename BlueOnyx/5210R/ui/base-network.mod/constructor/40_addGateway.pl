@@ -183,12 +183,23 @@ sub fix_if_up {
 
         # Provisions not found. Adding them:
         if (!$result) {
-            if (! -f "/proc/user_beancounters") {
-                system('echo \'if [[ "$1" =~ "eth0" ]];then /usr/sausalito/handlers/base/network/change_route.pl -c 2; fi\' >> /etc/sysconfig/network-scripts/ifup-routes');
-            }
-            else {
+            if ((-e "/proc/user_beancounters") && (-f "/etc/vz/conf/0.conf")) {
                 system('echo \'if [[ "$1" =~ "venet0:0" ]];then /usr/sausalito/handlers/base/network/change_route.pl -c 2; fi\' >> /etc/sysconfig/network-scripts/ifup-routes');
             }
+            else {
+                system('echo \'if [[ "$1" =~ "eth0" ]];then /usr/sausalito/handlers/base/network/change_route.pl -c 2; fi\' >> /etc/sysconfig/network-scripts/ifup-routes');
+            }
+        }
+    }
+
+    # Also fix /etc/sysconfig/network-scripts/ifup:
+    if (-f "/etc/sysconfig/network-scripts/ifup") {
+        # Check if ifup has our provisions to conditionally fire up the change_route.pl handler:
+        $check_ifup = `cat /etc/sysconfig/network-scripts/ifup|grep /usr/sausalito/handlers/base/network/change_route.pl|wc -l`;
+        chomp($check_ifup);
+        # Provisions not present. Add them:
+        if ($check_ifup eq "0") {
+            system('echo \'if [ -x /usr/sausalito/handlers/base/network/change_route.pl ]; then /usr/bin/flock -n /usr/sausalito/license/change_route.lock /usr/sausalito/handlers/base/network/change_route.pl -c 2>/dev/null; fi\' >> /etc/sysconfig/network-scripts/ifup');
         }
     }
 }
