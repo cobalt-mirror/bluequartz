@@ -201,24 +201,6 @@ if (not $ok)
     exit(1);
 }
 
-# setup ftp host if necessary
-# This is now taken care of in base-ftp
-my (@site_ftp) = $cce->find('FtpSite', { 'ipaddr' => $vsite->{ipaddr} });
-if (!$site_ftp[0])
-{
-     ($ok) = $cce->create('FtpSite', { 'ipaddr' => $vsite->{ipaddr}, 'enabled' => 1 });
-
-    if (not $ok)
-    {
-        $cce->warn('[[base-vsite.cantAddFtpVhost]]');
-    }
-} 
-else
-{
-    # inform FTP that the site state has changed
-    ($ok) = $cce->set($site_ftp[0], '', { 'commit' => time() });
-}
-
 # Bring the network up with the updated IP bindings:
 ($ok) = vsite_toggle_network_interface($cce);
 
