@@ -328,10 +328,8 @@ sub edit_vhost
 
     if ($cgi->{enabled})
     {
-        $script_conf .= "<Directory $Vsite->{basedir}/web>\n";
-        $script_conf .= "    AddHandler cgi-script .cgi .pl\n";
-        $script_conf .= "    Options +ExecCGI\n";
-        $script_conf .= "</Directory>\n";
+        $script_conf .= "AddHandler cgi-wrapper .cgi\n";
+        $script_conf .= "AddHandler cgi-wrapper .pl\n";
     }
 
     if ($ssi->{enabled})
