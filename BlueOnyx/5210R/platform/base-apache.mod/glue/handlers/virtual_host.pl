@@ -647,10 +647,8 @@ sub edit_vhost
     my $WebScripting_Config_Lines = "# BEGIN WebScripting SECTION.  DO NOT EDIT MARKS OR IN BETWEEN.\n";
 
     if ($cgi->{enabled}) {
-        $WebScripting_Config_Lines .= "<Directory $vsite->{basedir}/web>\n";
-        $WebScripting_Config_Lines .= "    AddHandler cgi-script .cgi .pl\n";
-        $WebScripting_Config_Lines .= "    Options +ExecCGI\n";
-        $WebScripting_Config_Lines .= "</Directory>\n";
+        $WebScripting_Config_Lines .= "AddHandler cgi-wrapper .cgi\n";
+        $WebScripting_Config_Lines .= "AddHandler cgi-wrapper .pl\n";        
     }
 
     if ($ssi->{enabled}) {
@@ -1359,8 +1357,8 @@ sub handle_fpm_pools {
 }
 
 # 
-# Copyright (c) 2017 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2017 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2018 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2018 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 
