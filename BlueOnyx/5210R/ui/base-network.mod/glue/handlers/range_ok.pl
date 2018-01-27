@@ -72,8 +72,8 @@ sub debug_msg {
 }
 
 # 
-# Copyright (c) 2014-2017 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2014-2017 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2014-2018 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2014-2018 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 

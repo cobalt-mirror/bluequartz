@@ -7,7 +7,7 @@
 #       within the pool of acceptable IPs.
 
 # Debugging switch:
-$DEBUG = "0";
+$DEBUG = "1";
 if ($DEBUG) {
     use Data::Dumper;
     use Sys::Syslog qw( :DEFAULT setlogsock);
@@ -34,6 +34,8 @@ if (!$ok) {
     $cce->bye('FAIL');
     exit 1;
 }
+
+&debug_msg("Pooling enabled: " . $network->{pooling} . "\n");
 
 if ($network->{pooling} && ($network_new->{ipaddr} || $network_new->{ipaddr_IPv6})) {
     my (@oids) = $cce->find('IPPoolingRange');
@@ -68,21 +70,33 @@ if ($network->{pooling} && ($network_new->{ipaddr} || $network_new->{ipaddr_IPv6
 
     # Remove duplicates:
     my @filtered_IPs = uniq(@IPs);
-    
     my (@error_ips) = IpPooling::validate_pooling_state(\@ranges, \@filtered_IPs);
     if (@error_ips) {
-    	$cce->warn('ip_restricted', {'ipaddr' => $network_new->{ipaddr}});
-    	$cce->bye('FAIL');
-    	exit 1;
+        my $offenders = join(", ", @error_ips);
+        &debug_msg("Warn: ip_restricted - " . $offenders . " \n");
+        $cce->warn('ip_restricted', {'ipaddr' => $offenders});
+        $cce->bye('FAIL');
+        exit 1;
     }
 }
 
 $cce->bye('SUCCESS');
 exit 0;
 
+sub debug_msg {
+    if ($DEBUG) {
+        my $msg = shift;
+        $user = $ENV{'USER'};
+        setlogsock('unix');
+        openlog($0,'','user');
+        syslog('info', "$ARGV[0]: $msg");
+        closelog;
+    }
+}
+
 # 
-# Copyright (c) 2013-2017 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2013-2017 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2013-2018 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2013-2018 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 

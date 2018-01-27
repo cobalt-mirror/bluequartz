@@ -73,7 +73,6 @@ if ($network->{pooling} && ($vsite_new->{ipaddr} || $vsite_new->{ipaddrIPv6})) {
 
     # Remove duplicates:
     my @filtered_IPs = uniq(@IPs);
-
     my (@error_ips) = IpPooling::validate_pooling_state(\@ranges, \@filtered_IPs);
     if (@error_ips) {
         my $offenders = join(", ", @error_ips);

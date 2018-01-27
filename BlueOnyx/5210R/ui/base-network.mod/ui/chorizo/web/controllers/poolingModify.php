@@ -122,8 +122,8 @@ class PoolingModify extends MX_Controller {
                     }
                     // construct object:
                     $obj = array(
-                        "min" => $attributes["range_min"],
-                        "max" => $attributes["range_max"],
+                        "min" => $attributes["min"],
+                        "max" => $attributes["max"],
                         "admin" => $attributes["admin"],
                         "creation_time" => time());
 
@@ -166,8 +166,8 @@ class PoolingModify extends MX_Controller {
                 if ($CI->input->post(NULL, TRUE)) {
                     // construct object:
                     $obj = array(
-                        "min" => $attributes["range_min"],
-                        "max" => $attributes["range_max"],
+                        "min" => $attributes["min"],
+                        "max" => $attributes["max"],
                         "admin" => $attributes["admin"],
                         "creation_time" => time());
 
@@ -235,26 +235,26 @@ class PoolingModify extends MX_Controller {
             $pbTitle = 'sitepooling';
             $oid = $get_form_data['_oid'];
             $current = $CI->cceClient->get($oid);
-            $min_string = "range_min";
-            $max_string = "range_max";
+            $min_string = "min";
+            $max_string = "max";
         }
         else {
             $add = true;
             $pbTitle = 'sitepooling';
-            if (isset($attributes["range_min"])) {
-                $current['min'] = $attributes["range_min"];
+            if (isset($attributes["min"])) {
+                $current['min'] = $attributes["min"];
             }
             else {
                 $current['min'] = "";
             }
-            if (isset($attributes["range_max"])) {
-                $current['max'] = $attributes["range_max"];
+            if (isset($attributes["max"])) {
+                $current['max'] = $attributes["max"];
             }
             else {
                 $current['max'] = "";
             }
-            $min_string = "range_min";
-            $max_string = "range_max";
+            $min_string = "min";
+            $max_string = "max";
         }
 
         $block =& $factory->getPagedBlock($pbTitle, array($defaultPage));
