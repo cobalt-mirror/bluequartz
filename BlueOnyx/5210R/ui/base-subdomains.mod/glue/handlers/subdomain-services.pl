@@ -247,6 +247,7 @@ foreach $service (@services) {
       if ( $$service->{'enabled'} ) {
         if (-f "/usr/bin/systemctl") {
             # 5209R and therefore Apache 2.4:
+            # Note: This doesn't use CGI-Wrapper, as I can't get that to work in subdomains.
             $serviceCFG .= "  <Directory $web_dir>\n";
             $serviceCFG .= "      AddHandler cgi-script .cgi .pl\n";
             $serviceCFG .= "      Options +ExecCGI\n";
@@ -300,8 +301,8 @@ $cce->bye('SUCCESS');
 exit(0);
 
 # 
-# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015-2018 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015-2018 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2008 NuOnce Networks, Inc.
 # All Rights Reserved.
 # 
