@@ -1138,6 +1138,12 @@ msgstr "There was a problem with one or more Webserver Aliases, but it has been 
 ### IPv6 Related additions:
 #
 
+msgid "comboIpAddr"
+msgstr "IP Address"
+
+msgid "comboIpAddr_help"
+msgstr "This is the IP address of the site."
+
 msgid "ipAddr"
 msgstr "IPv4 IP Address"
 
@@ -1160,5 +1166,4 @@ msgstr "Error: IPv6 IP Address specified, but IPv6 is not enabled on the server!
 
 msgid "IPValidation_ip_must_be_specified"
 msgstr "Error: IPv4 IP Address empty and IPv6 IP address were both left empty. At least one must be set!"
-
 

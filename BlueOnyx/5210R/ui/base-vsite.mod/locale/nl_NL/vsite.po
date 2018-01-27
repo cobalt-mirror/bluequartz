@@ -11,12 +11,6 @@ msgstr ""
 msgid "basicSettingsTab_help"
 msgstr "Configureren van de meest gebruikte instellingen."
 
-msgid "ipAddr"
-msgstr "IP-adres"
-
-msgid "ipAddr_help"
-msgstr "Dit is het IP-adres van de site."
-
 msgid "domain"
 msgstr "Domeinnaam"
 
@@ -1093,3 +1087,35 @@ msgstr "De Aliases van de Webserver zijn momenteel OK."
 msgid "amFixed"
 msgstr "Er was een probleem met een of meer Web Server Aliases, maar het is automatisch opgelost."
 
+#
+### IPv6 Related additions:
+#
+
+msgid "comboIpAddr"
+msgstr "IP-adres"
+
+msgid "comboIpAddr_help"
+msgstr "Dit is het IP-adres van de site."
+
+msgid "ipAddr"
+msgstr "IPv4 IP-adres"
+
+msgid "ipAddr_help"
+msgstr "Dit is het Ipv4 IP-adres van de site."
+
+msgid "ipaddrIPv6"
+msgstr "IPv6 IP-adres"
+
+msgid "ipaddrIPv6_help"
+msgstr "Dit is het Ipv6 IP-adres van de site."
+
+# Error messages:
+
+msgid "IPValidation_ipv4_specified_but_not_allowed"
+msgstr "Fout: IPv4 IP-adres opgegeven, maar IPv4 is niet ingeschakeld op de server!"
+
+msgid "IPValidation_ipv6_specified_but_not_allowed"
+msgstr "Fout: IPv6 IPv6 IP-adres opgegeven, maar IPv6 is niet ingeschakeld op de server!"
+
+msgid "IPValidation_ip_must_be_specified"
+msgstr "Fout: IPv4 IP-adres leeg en IPv6 IP-adres zijn beide leeg gelaten. Ten minste één moet ingesteld zijn!"

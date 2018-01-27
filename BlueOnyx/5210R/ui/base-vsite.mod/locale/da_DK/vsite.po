@@ -334,12 +334,6 @@ msgstr ""
 msgid "inSubnet"
 msgstr "er på subnettet"
 
-msgid "ipAddr"
-msgstr "IP-adresse"
-
-msgid "ipAddr_help"
-msgstr "Dette er webstedets IP-adresse."
-
 msgid "listSuspended"
 msgstr "Suspenderet"
 
@@ -1270,4 +1264,37 @@ msgstr "Webserver Aliases er for tiden OK."
 
 msgid "amFixed"
 msgstr "Der opstod et problem med en eller flere Webserver Aliases, men den er blevet rettet automatisk."
+
+#
+### IPv6 Related additions:
+#
+
+msgid "comboIpAddr"
+msgstr "IP-adresse"
+
+msgid "comboIpAddr_help"
+msgstr "Dette er webstedets IP-adresse."
+
+msgid "ipAddr"
+msgstr "IPv4 IP-adresse"
+
+msgid "ipAddr_help"
+msgstr "Dette er webstedets Ipv4 IP-adresse."
+
+msgid "ipaddrIPv6"
+msgstr "IPv6 IP-adresse"
+
+msgid "ipaddrIPv6_help"
+msgstr "Dette er webstedets Ipv6 IP-adresse."
+
+# Error messages:
+
+msgid "IPValidation_ipv4_specified_but_not_allowed"
+msgstr "Fejl: IPv4 IP-adresse angivet, men IPv4 er ikke aktiveret på serveren!"
+
+msgid "IPValidation_ipv6_specified_but_not_allowed"
+msgstr "Fejl: IPv6 IP-adresse angivet, men IPv6 er ikke aktiveret på serveren!"
+
+msgid "IPValidation_ip_must_be_specified"
+msgstr "Fejl: IPv4 IP-adresse tom og IPv6 IP-adresse blev begge tomt. Mindst en skal indstilles!"
 

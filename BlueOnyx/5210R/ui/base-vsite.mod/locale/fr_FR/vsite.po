@@ -11,12 +11,6 @@ msgstr ""
 msgid "basicSettingsTab_help"
 msgstr "Configurer les paramètres utilisés les plus couramment."
 
-msgid "ipAddr"
-msgstr "Adresse IP"
-
-msgid "ipAddr_help"
-msgstr "L'adresse IP du site."
-
 msgid "domain"
 msgstr "Nom de Domaine"
 
@@ -1183,4 +1177,37 @@ msgstr "Les alias du serveur Web sont actuellement OK."
 
 msgid "amFixed"
 msgstr "Il y a eu un problème avec un ou plusieurs alias de serveur Web, mais il a été corrigé automatiquement."
+
+#
+### IPv6 Related additions:
+#
+
+msgid "comboIpAddr"
+msgstr "Adresse IP"
+
+msgid "comboIpAddr_help"
+msgstr "C'est l'adresse IP du site."
+
+msgid "ipAddr"
+msgstr "IPv4 Adresse IP"
+
+msgid "ipAddr_help"
+msgstr "Il s'agit de l'adresse IP Ipv4 du site."
+
+msgid "ipaddrIPv6"
+msgstr "IPv6 Adresse IP"
+
+msgid "ipaddrIPv6_help"
+msgstr "Il s'agit de l'adresse IP Ipv6 du site."
+
+# Error messages:
+
+msgid "IPValidation_ipv4_specified_but_not_allowed"
+msgstr "Erreur: IPv4 IP Address spécifié, mais IPv4 n'est pas activé sur le serveur!"
+
+msgid "IPValidation_ipv6_specified_but_not_allowed"
+msgstr "Erreur: Adresse IPv6 IP spécifiée, mais IPv6 n'est pas activé sur le serveur!"
+
+msgid "IPValidation_ip_must_be_specified"
+msgstr "Erreur: IPv4 IP Address empty et IPv6 IP address ont tous deux été laissés vides. Il en faut au moins un!"
 

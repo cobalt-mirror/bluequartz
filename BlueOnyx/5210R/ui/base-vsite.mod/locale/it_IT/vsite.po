@@ -594,12 +594,6 @@ msgstr ""
 msgid "inSubnet"
 msgstr "è nella sottorete"
 
-msgid "ipAddr"
-msgstr "Indirizzo IP"
-
-msgid "ipAddr_help"
-msgstr "Questo è l'indirizzo IP del sito."
-
 msgid "listSuspended"
 msgstr "Sospeso"
 
@@ -1477,4 +1471,37 @@ msgstr "Gli Alias del server Web sono attualmente OK."
 
 msgid "amFixed"
 msgstr "Si è verificato un problema con uno o più Alias del server Web, ma è stato risolto automaticamente."
+
+#
+### IPv6 Related additions:
+#
+
+msgid "comboIpAddr"
+msgstr "Indirizzo IP"
+
+msgid "comboIpAddr_help"
+msgstr "Questo è l' indirizzo IP del sito."
+
+msgid "ipAddr"
+msgstr "Indirizzo IPv4 IP"
+
+msgid "ipAddr_help"
+msgstr "Questo è l' indirizzo IP Ipv4 del sito."
+
+msgid "ipaddrIPv6"
+msgstr "Indirizzo IPv6 IP"
+
+msgid "ipaddrIPv6_help"
+msgstr "Questo è l' indirizzo IP Ipv6 del sito."
+
+# Error messages:
+
+msgid "IPValidation_ipv4_specified_but_not_allowed"
+msgstr "Errore: indirizzo IPv4 IP specificato, ma IPv4 non è abilitato sul server!"
+
+msgid "IPValidation_ipv6_specified_but_not_allowed"
+msgstr "Errore: IPv6 IP Indirizzo IP specificato, ma IPv6 non è abilitato sul server!"
+
+msgid "IPValidation_ip_must_be_specified"
+msgstr "Errore: L' indirizzo IPv4 IP Address vuoto e l' indirizzo IPv6 sono rimasti entrambi vuoti. Almeno uno deve essere impostato!"
 
