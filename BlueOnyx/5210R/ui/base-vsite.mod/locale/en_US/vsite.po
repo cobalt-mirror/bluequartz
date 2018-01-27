@@ -1,18 +1,6 @@
 msgid "basicSettingsTab_help"
 msgstr "Configure the most commonly used settings."
 
-msgid "ipAddr"
-msgstr "IPv4 IP Address"
-
-msgid "ipAddr_help"
-msgstr "This is the Ipv4 IP address of the site."
-
-msgid "ipaddrIPv6"
-msgstr "IPv6 IP Address"
-
-msgid "ipaddrIPv6_help"
-msgstr "This is the Ipv6 IP address of the site."
-
 msgid "domain"
 msgstr "Domain Name"
 
@@ -1145,4 +1133,32 @@ msgstr "The Webserver Aliases are currently OK."
 
 msgid "amFixed"
 msgstr "There was a problem with one or more Webserver Aliases, but it has been fixed automatically."
+
+#
+### IPv6 Related additions:
+#
+
+msgid "ipAddr"
+msgstr "IPv4 IP Address"
+
+msgid "ipAddr_help"
+msgstr "This is the Ipv4 IP address of the site."
+
+msgid "ipaddrIPv6"
+msgstr "IPv6 IP Address"
+
+msgid "ipaddrIPv6_help"
+msgstr "This is the Ipv6 IP address of the site."
+
+# Error messages:
+
+msgid "IPValidation_ipv4_specified_but_not_allowed"
+msgstr "Error: IPv4 IP Address specified, but IPv4 is not enabled on the server!"
+
+msgid "IPValidation_ipv6_specified_but_not_allowed"
+msgstr "Error: IPv6 IP Address specified, but IPv6 is not enabled on the server!"
+
+msgid "IPValidation_ip_must_be_specified"
+msgstr "Error: IPv4 IP Address empty and IPv6 IP address were both left empty. At least one must be set!"
+
 
