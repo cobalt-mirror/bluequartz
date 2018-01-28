@@ -456,18 +456,28 @@ class VsiteAdd extends MX_Controller {
                     $owner_names = implode(", ", $adminArray);
                     if (($CI->serverScriptHelper->getAllowed('systemAdministrator')) || (in_array($CI->BX_SESSION['loginName'], $adminArray))) { 
                         if (filter_var($range['min'], FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
-                            $range_strings['v4'][] = $range['min'] . ' - ' . $range['max'] . ' [' . $owner_names . ']';
+                            if (($CI->serverScriptHelper->getAllowed('systemAdministrator'))) {
+                                $range_strings['v4'][] = $range['min'] . ' - ' . $range['max'] . ' [' . $owner_names . ']';
+                            }
+                            else {
+                                $range_strings['v4'][] = $range['min'] . ' - ' . $range['max'] . ' [' . $CI->BX_SESSION['loginName'] . ']';
+                            }
                             if ((!isset($reseller_first_range['IPv4']['min'])) && (in_array($CI->BX_SESSION['loginName'], $adminArray))) {
                                 $reseller_first_range['IPv4'] = $range;
                             }
                         }
                         else {
-                            $range_strings['v6'][] = $range['min'] . ' - ' . $range['max'] . ' [' . $owner_names . ']';
+                            if (($CI->serverScriptHelper->getAllowed('systemAdministrator'))) {
+                                $range_strings['v6'][] = $range['min'] . ' - ' . $range['max'] . ' [' . $owner_names . ']';
+                            }
+                            else {
+                                $range_strings['v6'][] = $range['min'] . ' - ' . $range['max'] . ' [' . $CI->BX_SESSION['loginName'] . ']';
+                            }
                             if ((!isset($reseller_first_range['IPv6']['min'])) && (in_array($CI->BX_SESSION['loginName'], $adminArray))) {
                                 $reseller_first_range['IPv6'] = $range;
                             }
                         }
-                    } 
+                    }
                 }
 
                 $new_range_string = '';
