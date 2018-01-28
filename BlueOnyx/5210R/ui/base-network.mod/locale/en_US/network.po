@@ -1071,7 +1071,32 @@ msgid "admin_help"
 msgstr "This are the server administrators of this IP address range." 
 
 #####
-# IPv6 Additions
+# IPv6 Additions - Do not translate
+#####
+
+msgid "IPv6_ipAddressField1"
+msgstr "[[base-network.IPv6_ipAddressField]]"
+
+msgid "IPv6_ipAddressField2"
+msgstr "[[base-network.IPv6_ipAddressField]]"
+
+msgid "IPv6_ipAddressField2_help"
+msgstr "[[base-network.IPv6_ipAddressField1_help]]"
+
+msgid "IPv6_ipAddressField3"
+msgstr "[[base-network.IPv6_ipAddressField]]"
+
+msgid "IPv6_ipAddressField3_help"
+msgstr "[[base-network.IPv6_ipAddressField1_help]]"
+
+msgid "IPv6_ipAddressField4"
+msgstr "[[base-network.IPv6_ipAddressField]]"
+
+msgid "IPv6_ipAddressField4_help"
+msgstr "[[base-network.IPv6_ipAddressField1_help]]"
+
+#####
+# IPv6 Additions - Translate
 #####
 
 msgid "both_ips_must_be_ipv4_or_ipv6"
@@ -1085,8 +1110,6 @@ msgstr "You entered an IPv6 IP address, but IPv6 IP addresses are not allowed."
 
 msgid "IPValidation_ip_must_be_specified"
 msgstr "Please enter an IP address for the virtual site [[VAR.fqdn]]"
-
-####
 
 msgid "gatewayField_IPv6"
 msgstr "IPv6 Server Gateway"
@@ -1109,27 +1132,6 @@ msgstr "Enter the IPv6 IP address of the [[VAR.name]]. If you are using only one
 msgid "IPv6_ipAddressField_invalid"
 msgstr "Sorry, the value entered for [[base-network.IPv6_ipAddressField]] is not an IPv6 IP address. [[base-network.IPv6_ipAddressField_rule]]"
 
-msgid "IPv6_ipAddressField1"
-msgstr "[[base-network.IPv6_ipAddressField]]"
-
 msgid "IPv6_ipAddressField1_help"
 msgstr "Enter the IPv6 IP address of the primary interface, which is typically connected to the Intranet side. If you are using only one network interface connection to the server appliance, use the primary interface and leave the secondary interface empty. [[base-network.IPv6_ipAddressField_rule]]"
-
-msgid "IPv6_ipAddressField2"
-msgstr "[[base-network.IPv6_ipAddressField]]"
-
-msgid "IPv6_ipAddressField2_help"
-msgstr "[[base-network.IPv6_ipAddressField1_help]]"
-
-msgid "IPv6_ipAddressField3"
-msgstr "[[base-network.IPv6_ipAddressField]]"
-
-msgid "IPv6_ipAddressField3_help"
-msgstr "[[base-network.IPv6_ipAddressField1_help]]"
-
-msgid "IPv6_ipAddressField4"
-msgstr "[[base-network.IPv6_ipAddressField]]"
-
-msgid "IPv6_ipAddressField4_help"
-msgstr "[[base-network.IPv6_ipAddressField1_help]]"
 

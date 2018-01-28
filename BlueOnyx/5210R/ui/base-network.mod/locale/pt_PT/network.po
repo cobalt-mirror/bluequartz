@@ -1034,3 +1034,68 @@ msgstr "Administradores de Servidor"
 msgid "admin_help"
 msgstr "Este são os administradores do servidor para esta faixa de endereços IP."
 
+#####
+# IPv6 Additions - Do not translate
+#####
+
+msgid "IPv6_ipAddressField1"
+msgstr "[[base-network.IPv6_ipAddressField]]"
+
+msgid "IPv6_ipAddressField2"
+msgstr "[[base-network.IPv6_ipAddressField]]"
+
+msgid "IPv6_ipAddressField2_help"
+msgstr "[[base-network.IPv6_ipAddressField1_help]]"
+
+msgid "IPv6_ipAddressField3"
+msgstr "[[base-network.IPv6_ipAddressField]]"
+
+msgid "IPv6_ipAddressField3_help"
+msgstr "[[base-network.IPv6_ipAddressField1_help]]"
+
+msgid "IPv6_ipAddressField4"
+msgstr "[[base-network.IPv6_ipAddressField]]"
+
+msgid "IPv6_ipAddressField4_help"
+msgstr "[[base-network.IPv6_ipAddressField1_help]]"
+
+#####
+# IPv6 Additions - Translate
+#####
+
+msgid "both_ips_must_be_ipv4_or_ipv6"
+msgstr "O IP inicial [[VAR.range_min]] eo IP final [[VAR.range_max]] não são do mesmo protocolo IP. Não misture os endereços IPv4 e IPv6 IP em intervalos." 
+
+msgid "IPValidation_ipv4_specified_but_not_allowed"
+msgstr "Você digitou um endereço IP IPv4, mas os endereços IP IP4 não são permitidos."
+
+msgid "IPValidation_ipv6_specified_but_not_allowed"
+msgstr "Você digitou um endereço IP IPv6, mas os endereços IP IPv6 não são permitidos."
+
+msgid "IPValidation_ip_must_be_specified"
+msgstr "Digite um endereço IP para o site virtual [[VAR.fqdn]]"
+
+msgid "gatewayField_IPv6"
+msgstr "Gateway do servidor IPv6"
+
+msgid "gatewayField_IPv6_rule"
+msgstr "Por exemplo, 2001:550:1f0e:1da::1 pode ser uma entrada válida."
+
+msgid "gatewayField_IPv6_help"
+msgstr "Digite o endereço IP IPv6 do gateway de rede local para este appliance de servidor. Este é o gateway para ambas as interfaces primária e secundária. Um gateway de rede permite que seu servidor se conecte ao mundo fora da sua área de rede local. [[base-network.gatewayField_IPv6_rule]]"
+
+msgid "IPv6_ipAddressField"
+msgstr "Endereço IP IPv6"
+
+msgid "IPv6_ipAddressField_rule"
+msgstr "Digite o endereço IP IPv6. Por exemplo, 2001:550:1f0e:1da::10 pode ser uma entrada válida."
+
+msgid "IPv6_ipAddressField_help"
+msgstr "Digite o endereço IP IPv6 do [[VAR.name]]. Se você estiver usando apenas uma conexão de interface de rede para o appliance do servidor, use a interface principal e deixe as outras interfaces vazias. [[base-network.IPv6_ipAddressField_rule]]"
+
+msgid "IPv6_ipAddressField_invalid"
+msgstr "Desculpe, o valor inserido para [[base-network.IPv6_ipAddressField]] não é um endereço IP IPv6. [[base-network.IPv6_ipAddressField_rule]]"
+
+msgid "IPv6_ipAddressField1_help"
+msgstr "Digite o endereço IP IPv6 da interface principal, que geralmente está conectado ao lado Intranet. Se você estiver usando apenas uma conexão de interface de rede para o appliance do servidor, use a interface principal e deixe a interface secundária vazia. [[base-network.IPv6_ipAddressField_rule]]"
+
