@@ -101,6 +101,10 @@ foreach my $fqdn (@vsiteNames) {
 	delete $vRef->{bwlimit} if(defined $vRef->{bwlimit});
 	delete $vRef->{basedir} if(defined $vRef->{basedir});
 
+    # Eliminate Vsite keys that were added for IPv6 support:
+    delete $vRef->{ipaddrIPv6} if (defined $vRef->{ipaddrIPv6});
+    delete $vRef->{force_update} if (defined $vRef->{force_update});
+
 	# default to /home
 	$vRef->{volume} = '/home';
 
