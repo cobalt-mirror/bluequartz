@@ -32,9 +32,6 @@ unless ($ok and $obj) {
     exit 1;
 }
 
-# Modify /etc/sysconfig/network-scripts/ifup-routes:
-&fix_if_up;
-
 # Parse /etc/sysconfig/network:
 $sys_network = "/etc/sysconfig/network";
 if (-f $sys_network) {
@@ -161,52 +158,9 @@ sub edit_sys_network {
     system("/bin/rm -f /etc/sysconfig/network.backup.*");
 }
 
-sub fix_if_up {
-
-    # Append a call to run /usr/sausalito/handlers/base/network/change_route.pl to /etc/sysconfig/network-scripts/ifup-routes.
-    # That handler adds all extra IP's and fixes up the routing.
-
-    # Check if ifup-routes exists:
-    if (-f "/etc/sysconfig/network-scripts/ifup-routes") {
-        # If it exists, check if it already has our provisions in it:
-        open (F, "/etc/sysconfig/network-scripts/ifup-routes") || die "Could not open /etc/sysconfig/network-scripts/ifup-routes $!";
-        while ($line = <F>) {
-            chomp($line);
-            next if $line =~ /^\s*$/;               # skip blank lines
-            next if $line =~ /^#$/;                 # skip comments
-            if ($line =~ /\/usr\/sausalito\/handlers\/base\/network\/change_route.pl -c 2/g) {
-                # Provisions found:
-                $result = "found";
-            }
-        }
-        close(F);
-
-        # Provisions not found. Adding them:
-        if (!$result) {
-            if ((-e "/proc/user_beancounters") && (-f "/etc/vz/conf/0.conf")) {
-                system('echo \'if [[ "$1" =~ "venet0:0" ]];then /usr/sausalito/handlers/base/network/change_route.pl -c 2; fi\' >> /etc/sysconfig/network-scripts/ifup-routes');
-            }
-            else {
-                system('echo \'if [[ "$1" =~ "eth0" ]];then /usr/sausalito/handlers/base/network/change_route.pl -c 2; fi\' >> /etc/sysconfig/network-scripts/ifup-routes');
-            }
-        }
-    }
-
-    # Also fix /etc/sysconfig/network-scripts/ifup:
-    if (-f "/etc/sysconfig/network-scripts/ifup") {
-        # Check if ifup has our provisions to conditionally fire up the change_route.pl handler:
-        $check_ifup = `cat /etc/sysconfig/network-scripts/ifup|grep /usr/sausalito/handlers/base/network/change_route.pl|wc -l`;
-        chomp($check_ifup);
-        # Provisions not present. Add them:
-        if ($check_ifup eq "0") {
-            system('echo \'if [ -x /usr/sausalito/handlers/base/network/change_route.pl ]; then /usr/bin/flock -n /usr/sausalito/license/change_route.lock /usr/sausalito/handlers/base/network/change_route.pl -c 2>/dev/null; fi\' >> /etc/sysconfig/network-scripts/ifup');
-        }
-    }
-}
-
 # 
-# Copyright (c) 2015-2017 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015-2017 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015-2018 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015-2018 Team BlueOnyx, BLUEONYX.IT
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 
