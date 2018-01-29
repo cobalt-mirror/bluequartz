@@ -112,6 +112,13 @@ foreach my $fqdn (@vsiteNames) {
     delete $vRef->{bwlimit} if(defined $vRef->{bwlimit});
     delete $vRef->{basedir} if(defined $vRef->{basedir});
 
+    # If Network-Constructor 10_fix_ifup.pl isn't present, this 5209R hasn't been YUM updated yet and is lacking IPv6 functionality.
+    if (!-f "/usr/sausalito/constructor/base/network/10_fix_ifup.pl") {
+        # Eliminate Vsite keys that were added for IPv6 support:
+        delete $vRef->{ipaddrIPv6} if (defined $vRef->{ipaddrIPv6});
+        delete $vRef->{force_update} if (defined $vRef->{force_update});
+    }
+
     # default to /home
     $vRef->{volume} = '/home';
 
