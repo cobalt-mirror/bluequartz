@@ -1,7 +1,7 @@
 Summary: System Watcher
 Name: swatch
 Version: XX_VER_XX
-Release: 0BX44%{?dist}
+Release: 0BX45%{?dist}
 Vendor: Project BlueOnyx
 License: BSD
 Group: System Environment/BlueOnyx
@@ -94,6 +94,9 @@ if [ -f /usr/bin/systemctl ]; then
 fi
 
 %changelog
+* Sun Jan 28 2018 Michael Stauber <mstauber@solarspeed.net> 4.0.0-0BX45
+- Modified Hotfixes and swatch.sh for our new IPv6 provisions.
+
 * Tue Dec 13 2016 Michael Stauber <mstauber@solarspeed.net> 4.0.0-BX44
 - MariaDB Galera hotfix removed.
 
