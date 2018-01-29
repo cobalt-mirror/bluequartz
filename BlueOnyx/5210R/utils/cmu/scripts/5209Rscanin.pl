@@ -68,12 +68,12 @@ $i18n->setLocale(I18n::i18n_getSystemLocale($cce));
 %{ $cce->{_classes} } = %classes;
 
 # Turn off Network Pooling or Reseller owned Vsites will *NOT* import:
-($SystemObjectOid) = $cce->find("System");
-($ok, $SystemObjectNetwork) = $cce->get($SystemObjectOid, 'Network');
+my ($SystemObjectOid) = $cce->find("System");
+my ($ok, $SystemObjectNetwork) = $cce->get($SystemObjectOid, 'Network');
 if ($ok) {
     if ($SystemObjectNetwork->{'pooling'} eq "1") {
-        ($ok, $bad, @info) = $cce->set($SystemObjectOid, 'Network', { 'pooling' => '0' });
-        if ($ok == 0) { 
+        my ($ok, $bad, @info) = $cce->set($SystemObjectOid, 'Network', { 'pooling' => '0' });
+        if ($ok == 0) {
             warn "INFO: CMU had to turn off Network-Pooling as it was enabled.\n";
         }
     }
