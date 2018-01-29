@@ -244,20 +244,23 @@ class Wizard extends MX_Controller {
             //--- Own error checks:
             //
 
-            if ($CI->input->post(NULL, TRUE)) {
 
+
+            if ($CI->input->post(NULL, TRUE)) {
                 //    [localeField] => en_US
                 //    [license_acceptance] => on
                 //    [hostNameField] => ng2
                 //    [domainNameField] => blueonyx.it
                 //    [dnsAddressesField] => &127.0.0.1&
                 //    [gatewayField] => 186.116.135.82
+                //    [gatewayField_IPv6] => 2001:470:1f0e:7da::3
                 //    [ipAddressFieldeth0] => 186.116.135.83
                 //    [netMaskFieldeth0] => 255.255.255.240
                 //    [macAddressFieldeth0] => 08:00:27:D4:2C:4E
                 //    [hasAliaseseth0] => 0
                 //    [ipAddressOrigeth0] => 186.116.135.83
                 //    [netMaskOrigeth0] => 255.255.255.240
+                //    [IPv6_ipAddressField1] => 2001:470:1f0e:7da::30
                 //    [bootProtoFieldeth0] => none
                 //    [enabledeth0] => 0
                 //    [deviceList] => &eth0&
@@ -439,11 +442,11 @@ class Wizard extends MX_Controller {
                 //    [domainNameField] => blueonyx.it
                 //    [dnsAddressesField] => &208.67.251.180&208.77.221.199&8.8.8.8&4.2.2.2&
                 //    [gatewayField] => 192.0.2.1
-
+                //    [gatewayField_IPv6] => 2001:470:1f0e:7da::3
 
                 if (!file_exists("/proc/user_beancounters")) {
                     // Regular Network Interfaces
-                    $ok = $CI->cceClient->set($oids[0], "", array("hostname" => $attributes['hostNameField'], "domainname" => $attributes['domainNameField'], "dns" => $attributes['dnsAddressesField'], "gateway" => $attributes['gatewayField']));
+                    $ok = $CI->cceClient->set($oids[0], "", array("hostname" => $attributes['hostNameField'], "domainname" => $attributes['domainNameField'], "dns" => $attributes['dnsAddressesField'], "gateway" => $attributes['gatewayField'], "gateway_IPv6" => $attributes['gatewayField_IPv6']));
                     $errors = array_merge($errors, $CI->cceClient->errors());
                 }
                 else {
@@ -458,7 +461,7 @@ class Wizard extends MX_Controller {
                     $CI->cceClient->setObject("System", array("enabled" => '1'), "DNS");
                 }
                 $ownDNS = $CI->cceClient->scalar_to_array($attributes['dnsAddressesField']);
-                if (in_array('127.0.0.1', $ownDNS)) {
+                if ((in_array('127.0.0.1', $ownDNS)) || (in_array('::1', $ownDNS))) {
                     // We're using our own DNS. Enable the DNS server:
                     $CI->cceClient->setObject("System", array("enabled" => '1'), "DNS");
                 }
@@ -473,103 +476,106 @@ class Wizard extends MX_Controller {
                     if (isset($attributes['deviceList'])) {
                         $devices = json_decode(urldecode($attributes['deviceList']));
                     }
+
                     // Screw ith. Only handle eth0 and eth1:
                     if (!is_array($devices)) {
-                        $devices = array('eth0', 'eth1');
+                        //$devices = array('eth0', 'eth1');
+                        $devices = array('eth0');
                     }
+                    // special array for admin if errors
+                    $admin_if_errors = array();
+                    for ($i = 0; $i < 1; $i++) { // Screw it, we only do the first device.
+                        $var_name = "ipAddressField" . $devices[$i];
+                        $ip_field = $attributes[$var_name];
+                        $var_name = "ipAddressOrig" . $devices[$i];
+                        $ip_orig = $attributes[$var_name];
+                        $var_name = "netMaskField" . $devices[$i];
+                        $nm_field = $attributes[$var_name];
+                        $var_name = "netMaskOrig" . $devices[$i];
+                        $nm_orig = $attributes[$var_name];
+                        $var_name = "bootProtoField" . $devices[$i];
+                        $boot_field = $attributes[$var_name];
 
-                    // Only set Network objects if we have interfaces to begin with:
-                    if (isset($devices['eth0'])) {
-                        // special array for admin if errors
-                        $admin_if_errors = array();
-                        for ($i = 0; $i < 1; $i++) { // Screw it, we only do the first two devices.
-                            $var_name = "ipAddressField" . $devices[$i];
-                            $ip_field = $attributes[$var_name];
-                            $var_name = "ipAddressOrig" . $devices[$i];
-                            $ip_orig = $attributes[$var_name];
-                            $var_name = "netMaskField" . $devices[$i];
-                            $nm_field = $attributes[$var_name];
-                            $var_name = "netMaskOrig" . $devices[$i];
-                            $nm_orig = $attributes[$var_name];
-                            $var_name = "bootProtoField" . $devices[$i];
-                            $boot_field = $attributes[$var_name];
-
-                            // setup or set disabled
-                            if ($ip_field == '') {
-                                // first migrate any aliases to eth0 (possibly do this better)
-                                $aliases = $CI->cceClient->findx('Network', array(), array('device' => "^$devices[$i]:"));
-                                for ($k = 0; $k < count($aliases); $k++) {
-                                    $new_device = find_free_device($CI->cceClient, 'eth0');
-                                    $ok = $CI->cceClient->set($aliases[$k], '', array('device' => $new_device));
-                                    $errors = array_merge($errors, $CI->cceClient->errors());
-                                }
-
-                                $CI->cceClient->setObject(
-                                    'Network', 
-                                    array("enabled" => "0"), 
-                                    "",
-                                    array("device" => $devices[$i])
-                                );
-
-                                if ($devices[$i] == $adminIf) {
-                                    $admin_if_errors = $CI->cceClient->errors();
-                                }
-                                else {
-                                    $errors = array_merge($errors, $CI->cceClient->errors());
-                                }
+                        // setup or set disabled
+                        if ($ip_field == '') {
+                            // first migrate any aliases to eth0 (possibly do this better)
+                            $aliases = $CI->cceClient->findx('Network', array(), array('device' => "^$devices[$i]:"));
+                            for ($k = 0; $k < count($aliases); $k++) {
+                                $new_device = find_free_device($CI->cceClient, 'eth0');
+                                $ok = $CI->cceClient->set($aliases[$k], '', array('device' => $new_device));
+                                $errors = array_merge($errors, $CI->cceClient->errors());
                             }
-                            elseif ($ip_field && (($ip_field != $ip_orig) || ($nm_field != $nm_orig))) {
 
-                                // Set redirect IP for when we're done:
-                                $redirect_to_new_ip = $ip_field;
+                            $CI->cceClient->setObject(
+                                'Network', 
+                                array("enabled" => "0"), 
+                                "",
+                                array("device" => $devices[$i])
+                            );
 
-                                // since we only deal with real interfaces here, things are simpler
-                                // than they could be
-                                if ($ip_field != $ip_orig) {
-                                    // check to see if there is an alias that is already using
-                                    // the new ip address.  if there is, destroy the Network object
-                                    // for this device, and assign the alias this device name.
+                            if ($devices[$i] == $adminIf) {
+                                $admin_if_errors = $CI->cceClient->errors();
+                            }
+                            else {
+                                $errors = array_merge($errors, $CI->cceClient->errors());
+                            }
+                        }
+                        //elseif ($ip_field && $attributes['IPv6_ipAddressField1'] && (($ip_field != $ip_orig) || ($nm_field != $nm_orig))) {
+                        elseif ($ip_field && $attributes['IPv6_ipAddressField1']) {
 
-                                    $alias = $CI->cceClient->find('Network', 
-                                                        array(
-                                                            'real' => 0,
-                                                            'ipaddr' => $ip_field
-                                                            ));
+                            // Set redirect IP for when we're done:
+                            $redirect_to_new_ip = $ip_field;
 
-                                    if (isset($alias[0])) {
-                                        $ok = $CI->cceClient->set($alias, '',
-                                            array(
-                                                'device' => $devices[$i],
-                                                'real' => 1,
-                                                'ipaddr' => $ip_field,
-                                                'netmask' => $nm_field,
-                                                'enabled' => 1,
-                                                'bootproto' => 'none'
-                                                ));
-                                        $errors = array_merge($errors, $CI->cceClient->errors());
-                                        if (!$ok) {
-                                            break;
-                                        }
-                                        else {
-                                            continue;
-                                        }
-                                    }
-                                }
-                                $CI->cceClient->setObject('Network',
+                            // since we only deal with real interfaces here, things are simpler
+                            // than they could be
+                            if ($ip_field != $ip_orig) {
+                                // check to see if there is an alias that is already using
+                                // the new ip address.  if there is, destroy the Network object
+                                // for this device, and assign the alias this device name.
+
+                                $alias = $CI->cceClient->find('Network', 
+                                                    array(
+                                                        'real' => 0,
+                                                        'ipaddr' => $ip_field
+                                                        ));
+
+                                if (isset($alias[0])) {
+                                    $ok = $CI->cceClient->set($alias, '',
                                         array(
+                                            'device' => $devices[$i],
+                                            'real' => 1,
                                             'ipaddr' => $ip_field,
                                             'netmask' => $nm_field,
+                                            'ipaddr_IPv6' => $attributes['IPv6_ipAddressField1'],
                                             'enabled' => 1,
-                                            'bootproto' => 'none'
-                                            ),
-                                       '', array('device' => $devices[$i]));
-
-                                if ($devices[$i] == $adminIf) {
-                                    $admin_if_errors = $CI->cceClient->errors();
-                                }
-                                else {
+                                            'bootproto' => 'none',
+                                            'refresh' => time()
+                                            ));
                                     $errors = array_merge($errors, $CI->cceClient->errors());
+                                    if (!$ok) {
+                                        break;
+                                    }
+                                    else {
+                                        continue;
+                                    }
                                 }
+                            }
+                            $CI->cceClient->setObject('Network',
+                                    array(
+                                        'ipaddr' => $ip_field,
+                                        'netmask' => $nm_field,
+                                        'ipaddr_IPv6' => $attributes['IPv6_ipAddressField1'],
+                                        'enabled' => 1,
+                                        'bootproto' => 'none',
+                                        'refresh' => time()
+                                        ),
+                                   '', array('device' => $devices[$i]));
+
+                            if ($devices[$i] == $adminIf) {
+                                $admin_if_errors = $CI->cceClient->errors();
+                            }
+                            else {
+                                $errors = array_merge($errors, $CI->cceClient->errors());
                             }
                         }
                     }
@@ -737,8 +743,8 @@ class Wizard extends MX_Controller {
 
 $licTextBody = '
 ------ SUN-modified-BSD-License for BlueOnyx: ------
-Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2018 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2018 Team BlueOnyx, BLUEONYX.IT
 Copyright (c) 2003 Sun Microsystems, Inc. 
 All Rights Reserved.
 
@@ -842,6 +848,7 @@ nuclear facility.';
 
             $dns = $factory->getIpAddressList("dnsAddressesField", $system["dns"]);
             $dns->setOptional(TRUE);
+            $dns->setType('ipaddr_list_IPv4IPv6');
             $step_3->addHtmlComponent(
               $dns,
               $factory->getLabel("dnsAddressesField")
@@ -858,14 +865,40 @@ nuclear facility.';
             // Are we running on AWS?
             if (is_file("/etc/is_aws")) {
                 $is_aws = "1";
+                if (!isset($system["gateway_IPv6"])) {
+                    // AWS and Gateway not defined. Make it editable:
+                    $gwFprot = 'rw';
+                }
+                else {
+                    if ($system["gateway_IPv6"] == "") {
+                        // AWS and Gateway not set. Make it editable:
+                        $gwFprot = 'rw';
+                    }
+                    else {
+                        // AWS, Gateway is set and not empty. Show it.
+                        // But do not allow to edit it:
+                        $gwFprot = 'r';
+                    }
+                }                
             }
             else {
                 $is_aws = "0";
+                // Not AWS. Allow edits if they are allowed for any of
+                // the other network related fields:
+                $gwFprot = $fieldprot;
             }
 
+            // Gateway IPv4
             $gw = $factory->getIpAddress("gatewayField", $system["gateway"], $fieldprot);
             $gw->setOptional(true);
             $step_3->addHtmlComponent($gw, $factory->getLabel("gatewayField"), $defaultPage);
+
+            // Gateway IPv6
+            $gw_IPv6 = $factory->getIpAddress("gatewayField_IPv6", $system["gateway_IPv6"], $gwFprot);
+            $gw_IPv6->setOptional(true);
+            $gw_IPv6->setType('ipaddrIPv6');
+            $gw_IPv6->setCurrentLabel($i18n->getHtml("[[base-network.gatewayField_IPv6]]", false));
+            $step_3->addHtmlComponent($gw_IPv6, $factory->getLabel("gatewayField_IPv6"), $defaultPage);
 
             // real interfaces
             // ascii sorted, this may be a problem if there are more than 10 interfaces
@@ -888,6 +921,7 @@ nuclear facility.';
                     // Devices:
                     $dev[$device] = array (
                                     'ipaddr' => $iface["ipaddr"],
+                                    'ipaddr_IPv6' => $iface["ipaddr_IPv6"],
                                     'netmask' => $iface["netmask"],
                                     'mac' => $iface["mac"],
                                     'device' => $device,
@@ -896,9 +930,9 @@ nuclear facility.';
                                     );
 
             }
-
             if (isset($dev['eth0'])) {
                 $ipaddr = $dev['eth0']['ipaddr'];
+                $IPv6_ipaddr = $dev['eth0']['ipaddr_IPv6'];
                 $netmask = $dev['eth0']['netmask'];
                 $device = $dev['eth0']['device'];
                 $mac = $dev['eth0']['mac'];
@@ -907,6 +941,7 @@ nuclear facility.';
                 
                 $ip_label = '[[base-network.ipAddressField1]]';
                 $nm_label = '[[base-network.netMaskField1]]';
+                $ipV6_label = '[[base-network.IPv6_ipAddressField1]]';
 
                 // Add divider:
                 $divider = $factory->addBXDivider("interface$device", "");
@@ -929,6 +964,7 @@ nuclear facility.';
                 $ip_field0->setInvalidMessage($i18n->getJs('ipAddressField_invalid'));
                 $ip_field0->setCurrentLabel($i18n->getHtml($ip_label, true, array(), array('name' => "[[base-network.help$device]]")));
                 $ip_field0->setDescription($i18n->getWrapped('[[base-network.ipAddressField1_help]]', true, array(), array('name' => "[[base-network.help$device]]")));
+                $ip_field0->setOptional(true);
                 $step_3->addHtmlComponent(
                         $ip_field0,
                         $factory->getLabel($ip_label, true,
@@ -942,13 +978,27 @@ nuclear facility.';
 
                 // Netmask is not optional for the admin iface and for eth0
                 $netmask_field0->setOptional(false);
-
                 $netmask_field0->setCurrentLabel($i18n->getHtml($nm_label, true, array(), array('name' => "[[base-network.help$device]]")));
                 $netmask_field0->setDescription($i18n->getWrapped('[[base-network.netMaskField1_help]]', true, array(), array('name' => "[[base-network.help$device]]")));
+                $netmask_field0->setOptional(true);
                 
                 $step_3->addHtmlComponent(
                         $netmask_field0,
                         $factory->getLabel($nm_label, true,
+                                    array(), array('name' => "[[base-network.help$device]]")),
+                        $defaultPage
+                    );
+
+                // IPv6 IP-Address:
+                $ipv6_field0 = $factory->getIpAddress("IPv6_ipAddressField1", $IPv6_ipaddr, $devprot);
+                $ipv6_field0->setInvalidMessage($i18n->getJs('ipAddressField_invalid'));
+                $ipv6_field0->setCurrentLabel($i18n->getHtml($ipV6_label, true, array(), array('name' => "[[base-network.help$device]]")));
+                $ipv6_field0->setDescription($i18n->getWrapped('[[base-network.IPv6_ipAddressField1_help]]', true, array(), array('name' => "[[base-network.help$device]]")));
+                $ipv6_field0->setOptional(true);
+                $ipv6_field0->setType('ipaddrIPv6');
+                $step_3->addHtmlComponent(
+                        $ipv6_field0,
+                        $factory->getLabel($ipV6_label, true,
                                     array(), array('name' => "[[base-network.help$device]]")),
                         $defaultPage
                     );
