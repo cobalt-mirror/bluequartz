@@ -108,16 +108,16 @@ $time_window = $nw_update + '60';
 if ($time_window gt $now) {
     &debug_msg("Running $0: Flushing IPv6 and bringing up $device\n");
     # Soft Restart Network:
-    print "/sbin/ip -6 addr flush dev $device\n";
+    #print "/sbin/ip -6 addr flush dev $device\n";
     system("/sbin/ip -6 addr flush dev $device");
     system("/usr/bin/flock -n /usr/sausalito/license/change_route.lock /sbin/ifup $device");
 }
 
 if ($gateway_IPv6 eq "") {
     &debug_msg("Running $0: Flushing IPv6 routes.\n");
-    print "/sbin/ip -6 addr flush dev $device\n";
+    #print "/sbin/ip -6 addr flush dev $device\n";
     system("/sbin/ip -6 addr flush dev $device");
-    print "/sbin/ip -6 route del default\n";
+    #print "/sbin/ip -6 route del default\n";
     system("/sbin/ip -6 route del default");
 }
 else {
@@ -128,7 +128,7 @@ else {
     }
     else {
         &debug_msg("Running $0: Adding default IPv6 route.\n");
-        print "/sbin/ip -6 route add default via $gateway_IPv6\n";
+        #print "/sbin/ip -6 route add default via $gateway_IPv6\n";
         system("/sbin/ip -6 route add default via $gateway_IPv6");
     }
 }
@@ -206,7 +206,7 @@ foreach my $netroute (@unique_netroutes) {
         # Nada
     }
     else {
-        print "/sbin/ip route add " . $netroute . "/" . $ipv4_nm . " dev $device\n";
+        #print "/sbin/ip route add " . $netroute . "/" . $ipv4_nm . " dev $device\n";
         system("/sbin/ip route add " . $netroute . "/" . $ipv4_nm . " dev $device");
     }
     @arr_assigned_ipv4 = grep {!/^$netroute$/} @arr_assigned_ipv4;
@@ -216,14 +216,14 @@ foreach my $netroute (@unique_netroutes) {
 # Unbind any extra IPv4 IP that is still bound, but not known to the GUI:
 foreach my $ip_extra (@arr_assigned_ipv4) {
     &debug_msg("Running $0: Unbinding Extra IPv4 IP $ip_extra.\n");
-    print "/sbin/ip addr del " . $ip_extra. "/32 dev $device\n";
+    #print "/sbin/ip addr del " . $ip_extra. "/32 dev $device\n";
     system("/sbin/ip addr del " . $ip_extra. "/32 dev $device");
 }
 
 # Removing routes for that we no longer have IPs:
 foreach my $ip_extra (@routes_existing_ipv4) {
     &debug_msg("Running $0: Removing route for $ip_extra.\n");
-    print "/sbin/ip route del " . $ip_extra . " dev $device\n";
+    #print "/sbin/ip route del " . $ip_extra . " dev $device\n";
     system("/sbin/ip route del " . $ip_extra . " dev $device");
 }
 
@@ -232,7 +232,7 @@ my $loop_ipv4 = `LC_ALL=C /sbin/ip route show dev lo|grep "127.0.0.0/8 scope lin
 chomp($loop_ipv4);
 if ($loop_ipv4 ne "1") {
     # No route present. Add one:
-    print "/sbin/ip route add " . '127.0.0.0/255.0.0.0' . " dev lo\n";
+    #print "/sbin/ip route add " . '127.0.0.0/255.0.0.0' . " dev lo\n";
     system("/sbin/ip route add " . '127.0.0.0/255.0.0.0' . " dev lo");
 }
 
