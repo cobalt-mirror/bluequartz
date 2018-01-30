@@ -368,7 +368,20 @@ class VsiteAdd extends MX_Controller {
             // we preserve the data that the user has entered before:
             $vsiteDefaults = $attributes;
             // Small correction due to naming inconsistencies:
-            $vsiteDefaults['ipaddr'] = $attributes['ipAddr'];
+            if (isset($attributes['ipAddr'])) {
+                $vsiteDefaults['ipaddr'] = $attributes['ipAddr'];
+            }
+            if (isset($attributes['ipaddrIPv6'])) {
+                $vsiteDefaults['ipaddrIPv6'] = $attributes['ipaddrIPv6'];
+            }
+            $vsiteDefaults['hostname'] = $attributes['hostName'];
+        }
+
+        if (!isset($vsiteDefaults['ipAddr'])) {
+            $vsiteDefaults['ipaddr'] = '';
+        }
+        if (!isset($vsiteDefaults['ipaddrIPv6'])) {
+            $vsiteDefaults['ipaddrIPv6'] = '';
         }
 
         $vsite = $CI->cceClient->get($sysoid, "Vsite"); 
