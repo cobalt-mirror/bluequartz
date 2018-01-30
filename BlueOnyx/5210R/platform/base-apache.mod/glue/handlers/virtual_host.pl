@@ -648,7 +648,7 @@ sub edit_vhost
 
     if ($cgi->{enabled}) {
         $WebScripting_Config_Lines .= "AddHandler cgi-wrapper .cgi\n";
-        $WebScripting_Config_Lines .= "AddHandler cgi-wrapper .pl\n";        
+        $WebScripting_Config_Lines .= "AddHandler cgi-wrapper .pl\n";       
     }
 
     if ($ssi->{enabled}) {

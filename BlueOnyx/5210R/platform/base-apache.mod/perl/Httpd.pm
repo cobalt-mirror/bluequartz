@@ -53,6 +53,13 @@ used as C<$Base::Httpd::variable> wherever they are used.
 
 use vars qw(@ISA @EXPORT_OK);
 
+# Debugging switch:
+$DEBUG = "0";
+if ($DEBUG)
+{
+        use Sys::Syslog qw( :DEFAULT setlogsock);
+}
+
 require Exporter;
 @ISA = qw(Exporter);
 @EXPORT_OK = qw(
@@ -68,7 +75,6 @@ use Sauce::Util;
 
 use vars qw($DEBUG);
 # debugging flag
-$DEBUG = 0;
 
 # static configuration variables
 $Base::Httpd::server_root = '/etc/httpd';
@@ -120,27 +126,22 @@ sub httpd_add_include
 {
 	my ($file_path, $vhost_name) = @_;
 
-	if ($DEBUG)
-	{
-		print STDERR "In Base::Httpd::httpd_add_include...\n";
-		print STDERR "PATH: $file_path\tVHOST: $vhost_name\n";
-	}
+	&debug_msg("In Base::Httpd::httpd_add_include...\n");
+	&debug_msg("PATH: $file_path - VHOST: $vhost_name\n");
 
 	# only enforce that it must be the full path (starts with /)
 	# and the file/directory must exist
 	if ($file_path !~ /^\// || !(-e $file_path))
 	{
-		if ($DEBUG) 
-		{ 
-			print STDERR "Not full path or non-existent file or directory.\n"; 
-		}
+
+		&debug_msg("Not full path or non-existent file or directory.\n");
 		return 0;
 	}
 
 	# figure out which file should be edited
 	if ($vhost_name && (-f "$Base::Httpd::vhost_dir/$vhost_name"))
 	{
-		if ($DEBUG) { print STDERR "Editing vhost file.\n"; }
+		&debug_msg("Editing vhost file.\n");
 		return Sauce::Util::editfile(
 				"$Base::Httpd::vhost_dir/$vhost_name",
 				*_include_in_vhost,
@@ -148,18 +149,12 @@ sub httpd_add_include
 	}
 	elsif ($vhost_name)
 	{
-		if ($DEBUG) 
-		{ 
-			print STDERR "Specified vhost does not exist.\n";
-		}
+		&debug_msg("Specified vhost does not exist: $Base::Httpd::vhost_dir/$vhost_name\n");
 		return 0;
 	}
 	else
 	{
-		if ($DEBUG) 
-		{ 
-			print STDERR "Editing main httpd configuration.\n"; 
-		}
+		&debug_msg("Editing main httpd configuration.\n");
 		return Sauce::Util::editfile(
 				$Base::Httpd::httpd_conf_file,
 				*_include_in_main,
@@ -184,11 +179,8 @@ sub httpd_remove_include
 {
 	my ($file_path, $vhost_name) = @_;
 
-	if ($DEBUG)
-	{
-		print STDERR "In Base::Httpd::httpd_remove_include...\n";
-		print STDERR "FILE: $file_path\tVHOST: $vhost_name\n";
-	}
+	&debug_msg("In Base::Httpd::httpd_remove_include...\n");
+	&debug_msg("FILE: $file_path - VHOST: $vhost_name\n");
 
 	# fail if this is a non-existent vhost, this may or may not be the right
 	# thing to do.  Maybe it should just succeed in this case.
@@ -199,7 +191,7 @@ sub httpd_remove_include
 
 	if ($vhost_name)
 	{
-		print STDERR "Editing vhost configuration...\n";
+		&debug_msg("Editing vhost configuration...\n");
 		return Sauce::Util::editfile(
 				"$Base::Httpd::vhost_dir/$vhost_name",
 				*_include_in_vhost,
@@ -207,7 +199,7 @@ sub httpd_remove_include
 	}
 	else
 	{
-		print STDERR "Editing main configuration...\n";
+		&debug_msg("Editing main configuration...\n");
 		return Sauce::Util::editfile(
 				$Base::Httpd::httpd_conf_file,
 				*_include_in_main,
@@ -255,10 +247,7 @@ sub httpd_add_module
 	return 0 unless ($module_name && $DSO);
 	return 0 unless (-r "$Base::Httpd::server_root/$DSO");
 
-	if ($DEBUG) 
-	{ 
-		warn "Editing main httpd configuration.\n"; 
-	}
+	&debug_msg("Editing main httpd configuration.\n");
 
 	# _module_control($nick, $dso, $add)
 	return Sauce::Util::editfile(
@@ -450,11 +439,8 @@ sub httpd_get_vhost_conf_file
 {
 	my $vhost_name = shift;
 
-	if ($DEBUG)
-	{
-		print STDERR "In Base::Httpd::httpd_get_vhost_conf_file...\n";
-		print STDERR "VHOST: $vhost_name\n";
-	}
+	&debug_msg("In Base::Httpd::httpd_get_vhost_conf_file...\n");
+	&debug_msg("VHOST: $vhost_name\n");
 
 	if ($vhost_name)
 	{
@@ -518,16 +504,13 @@ sub _include_in_vhost
 	my $found = 0;
 	my $include_line = "Include $file";
 
-	if ($DEBUG)
-	{
-		print STDERR "ADD: $add\tINCLUDE: $include_line\n";
-	}
+	&debug_msg("ADD: $add - INCLUDE: $include_line\n");
 
 	while (<$in>)
 	{
 		if (/^$include_line$/ && $add)
 		{
-			print STDERR "Found line, leaving it alone.\n" if ($DEBUG);
+			&debug_msg("Found line, leaving it alone.\n");
 			$found = 1;
 			# print it out if it should be added, already there is the same
 			# as adding it
@@ -535,11 +518,11 @@ sub _include_in_vhost
 		}
 		elsif (/^<\/VirtualHost>$/)
 		{
-			print STDERR "Found end of file.\n";
+			&debug_msg("Found end of file.\n");
 
 			if ($add && !$found)
 			{
-				print STDERR "Adding $include_line\n" if ($DEBUG);
+				&debug_msg("Adding $include_line\n");
 				print $out $include_line, "\n";
 			}
 
@@ -549,7 +532,7 @@ sub _include_in_vhost
 		elsif (!/^$include_line$/)
 		{
 			# just pass through everything else
-			if ($DEBUG > 1) { print STDERR "Passing through $_"; }
+			if ($DEBUG > 1) { &debug_msg("Passing through $_\n"); }
 			print $out $_;
 		}
 	}
@@ -569,16 +552,16 @@ sub _include_in_main
 	{
 		if (/^$include_line[\n\r]*$/)
 		{
-            $DEBUG && print STDERR "Found $include_line\n";
+            &debug_msg("Found $include_line\n");
 			$found = 1;
             if ($add)
             {
-                $DEBUG && print STDERR "Leaving found $include_line\n";
+                &debug_msg("Leaving found $include_line\n");
 			    print $out $_;
             }
             else
             {
-                $DEBUG && print STDERR "Removing found $include_line\n";
+                &debug_msg("Removing found $include_line\n");
             }
 		}
 		else
@@ -864,24 +847,52 @@ sub _set_server_aliases
 
     return 1;
 }
+
+sub debug_msg {
+    if ($DEBUG) {
+        my $msg = shift;
+        $user = $ENV{'USER'};
+        setlogsock('unix');
+        openlog($0,'','user');
+        syslog('info', "$ARGV[0]: $msg");
+        closelog;
+    }
+}
+
 1;
 
+# 
+# Copyright (c) 2017-2018 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2017-2018 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
+# All Rights Reserved.
 # 
-# Redistribution and use in source and binary forms, with or without 
-# modification, are permitted provided that the following conditions are met:
+# 1. Redistributions of source code must retain the above copyright 
+#    notice, this list of conditions and the following disclaimer.
 # 
-# -Redistribution of source code must retain the above copyright notice, 
-# this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright 
+#    notice, this list of conditions and the following disclaimer in 
+#    the documentation and/or other materials provided with the 
+#    distribution.
 # 
-# -Redistribution in binary form must reproduce the above copyright notice, 
-# this list of conditions and the following disclaimer in the documentation  
-# and/or other materials provided with the distribution.
+# 3. Neither the name of the copyright holder nor the names of its 
+#    contributors may be used to endorse or promote products derived 
+#    from this software without specific prior written permission.
 # 
-# Neither the name of Sun Microsystems, Inc. or the names of contributors may 
-# be used to endorse or promote products derived from this software without 
-# specific prior written permission.
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
+# COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+# POSSIBILITY OF SUCH DAMAGE.
 # 
-# This software is provided "AS IS," without a warranty of any kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY EXCLUDED. SUN MICROSYSTEMS, INC. ("SUN") AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+# You acknowledge that this software is not designed or intended for 
+# use in the design, construction, operation or maintenance of any 
+# nuclear facility.
 # 
-# You acknowledge that  this software is not designed or intended for use in the design, construction, operation or maintenance of any nuclear facility.
