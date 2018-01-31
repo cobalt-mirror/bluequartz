@@ -225,6 +225,11 @@ fi
 
 <begin $CHANGELOG>
 
+* Wed Jan 31 2018 Michael Stauber <mstauber@solarspeed.net> 2.1.1-0BX55
+- Modified glue/httpd/ssl_bx.conf to bring back default VirtualHost 
+  containers for non-SSL and SSL which redirect to GUI interface. The
+  SSL VirtualHost container uses the AdmServ certificate.
+
 * Wed Jan 10 2018 Michael Stauber <mstauber@solarspeed.net> 2.1.1-0BX54
 - Modified WebScripting Handlers to use CGI-Wrap again. Many thanks
   to Taco Scargo.
