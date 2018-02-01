@@ -395,12 +395,14 @@ class vsiteMod extends MX_Controller {
         $nrs_num = "0";
         if (($net_opts["pooling"] == "1") && $Capabilities->getAllowed('manageSite')) {
             // IPv6 IP Address, with ranges
-            foreach ($range_strings['v6'] as $key => $value) {
-                if ($nrs_num > "0") {
-                    $new_range_string .= "<br>";
+            if (isset($range_strings['v6'])) {
+                foreach ($range_strings['v6'] as $key => $value) {
+                    if ($nrs_num > "0") {
+                        $new_range_string .= "<br>";
+                    }
+                    $new_range_string .= $value;
+                    $nrs_num++;
                 }
-                $new_range_string .= $value;
-                $nrs_num++;
             }
             $ipv6_address = $factory->getIpAddress("ipaddrIPv6", $vsite["ipaddrIPv6"], $access_ipv6);
             $ipv6_address->setRange($new_range_string);
