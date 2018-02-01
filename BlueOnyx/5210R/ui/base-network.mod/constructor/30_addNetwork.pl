@@ -6,6 +6,7 @@
 use lib qw(/usr/sausalito/handlers/base/network);
 use CCE;
 use Network qw(find_eth_ifaces);
+use Net::IP qw(:PROC);
 use Data::Dumper;
 
 my $DEBUG = 0;
@@ -43,25 +44,77 @@ for my $device (@devices) {
     my $ipv4_ip = '';
     my $ipv4_nm = '';
     my $ipv6_ip = '';
+    my $ipv6_secs_ip = '';
+    my @ipv6_array = ();
+    my @ipv6_array_out = ();
 
     if (-f $net_device_cfg) {
         $DEBUG && print STDERR "net_device_cfg: $net_device_cfg \n";
 
         # Interface enabled?
-        $onboot = `LC_ALL=C cat $net_device_cfg | grep ONBOOT=yes | wc -l`;
+        $onboot = `LC_ALL=C cat $net_device_cfg | grep ^ONBOOT=yes | wc -l`;
         chomp($onboot);
 
         # Get IPv4 IP:
-        $ipv4_ip = `LC_ALL=C cat $net_device_cfg | grep IPADDR= | awk -F "IPADDR=" '{print \$2}'`;
+        $ipv4_ip = `LC_ALL=C cat $net_device_cfg | grep ^IPADDR= | awk -F "IPADDR=" '{print \$2}'`;
         chomp($ipv4_ip);
 
         # Get IPv4 Netmask:
-        $ipv4_nm = `LC_ALL=C cat $net_device_cfg | grep NETMASK= | awk -F "NETMASK=" '{print \$2}'`;
+        $ipv4_nm = `LC_ALL=C cat $net_device_cfg | grep ^NETMASK= | awk -F "NETMASK=" '{print \$2}'`;
         chomp($ipv4_nm);
 
         # Get IPv6 IP:
-        $ipv6_ip = `LC_ALL=C cat $net_device_cfg | grep IPV6ADDR= | awk -F "IPV6ADDR=" '{print \$2}'`;
+        $ipv6_ip = `LC_ALL=C cat $net_device_cfg | grep ^IPV6ADDR= | awk -F "IPV6ADDR=" '{print \$2}'`;
         chomp($ipv6_ip);
+
+        # Get IPv6 Secondaries:
+        if (($device eq "eth0") || ($device eq "venet0")) {
+            $ipv6_secs_ip = `LC_ALL=C cat $net_device_cfg| grep ^IPV6ADDR_SECONDARIES= | awk -F 'IPV6ADDR_SECONDARIES="' '{print \$2}'|awk -F '"' '{print \$1}'`;
+            chomp($ipv6_secs_ip);
+            $DEBUG && print STDERR "current ipv6_secs_ip: $ipv6_secs_ip\n";
+            @ipv6_array = split ' ', $ipv6_secs_ip;
+            foreach $ip_x (@ipv6_array) {
+                # Remove Suffix and return IP in shorthand:
+                $ip_test = Net::IP->new($ip_x);
+                $ip = $ip_test->ip($ip_test);
+                $ip_test = Net::IP->new($ip);
+                $ip = $ip_test->short($ip_test);
+                push @ipv6_array_out, $ip;
+            }
+            @ipv6_array_out = sort(@ipv6_array_out);
+            $DEBUG && print STDERR Dumper (\@ipv6_array_out) . "\n";
+            if (scalar(@ipv6_array_out)) {
+                $extra_ipaddr_IPv6 = $cce->array_to_scalar(@ipv6_array_out);
+                $DEBUG && print STDERR "IPv6 Scalar: $extra_ipaddr_IPv6\n";
+                my ($SysOid) = $cce->find('System');
+                if ($SysOid) {
+                    # Get 'System':
+                    my ($ok, $System) = $cce->get($SysOid);
+                    if ($System->{extra_ipaddr_IPv6} ne $extra_ipaddr_IPv6) {
+                        my ($ok) = $cce->update($SysOid, '', { 'extra_ipaddr_IPv6' => $extra_ipaddr_IPv6, 'nw_update' => time() });
+
+                        # Force the write-out of the "IPV6ADDR_SECONDARIES" line to the primary Network-Interface config file.
+                        if ((-e "/proc/user_beancounters") && (-f "/etc/vz/conf/0.conf")) {
+                            $DEFAULT_INTERFACE = 'venet0';
+                        }
+                        elsif ((-e "/proc/user_beancounters") && (!-f "/etc/vz/conf/0.conf")) {
+                            # No, we're in an OpenVZ VPS:
+                            $device = 'venet0';
+                        }
+                        else {
+                            $DEFAULT_INTERFACE = 'eth0';
+                        }
+                        my ($net_oid) = $cce->find('Network', { 'device' => $DEFAULT_INTERFACE, 'enabled' => 1, 'real' => 1 });
+                        if ($net_oid) {
+                            $cce->set($net_oid, '', { 'refresh' => time() });
+                        }                        
+                    }
+                    else {
+                        $DEBUG && print STDERR "No IPV6ADDR_SECONDARIES changes for $device\n";
+                    }
+                }
+            }
+        }
 
         $bootproto = 'none';
     }
@@ -172,8 +225,8 @@ sub hack_on_nat {
 }
 
 # 
-# Copyright (c) 2015-2017 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015-2017 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015-2018 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015-2018 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 

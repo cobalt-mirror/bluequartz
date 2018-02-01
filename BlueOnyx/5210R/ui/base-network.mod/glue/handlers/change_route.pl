@@ -31,7 +31,7 @@
 use lib qw(/usr/sausalito/perl /usr/sausalito/handlers/base/network);
 
 # Debugging switch:
-$DEBUG = "1";
+$DEBUG = "0";
 if ($DEBUG) {
         use Data::Dumper;
         use Sys::Syslog qw( :DEFAULT setlogsock);
@@ -48,7 +48,7 @@ use Network qw(find_eth_ifaces);
 my $CMDLINE = 0;
 GetOptions('cmdline', \$CMDLINE, 'debug', \$DEBUG);
 
-&debug_msg("Running $0: starting\n");
+&debug_msg("Running: starting\n");
 $DEBUG && print STDERR "$0: starting.\n";
 
 my $cce = new CCE(Domain => 'base-network');
@@ -62,11 +62,11 @@ else {
 
 # Handle bootproto=dhcp on AWS, where we do NOT change ifcfg-eth0:
 if (-f "/etc/is_aws") {
-        $cce->bye('SUCCESS');
-        exit(0);
+    $cce->bye('SUCCESS');
+    exit(0);
 }
 
-# Are we an OpenVZ mastern node?
+# Are we an OpenVZ master-node?
 if ((-e "/proc/user_beancounters") && (-f "/etc/vz/conf/0.conf")) {
     # Yes, we are.
     $device = 'venet0:0';
@@ -83,10 +83,9 @@ else {
 # Special case: IPv6 default route:
 my $gateway_IPv6 = '';
 my ($sysoid) = $cce->find('System');
-&debug_msg("Running $0: My sysoid: " . $sysoid . "\n");
 my ($ok, $System) = $cce->get($sysoid);
 if (!$ok) {
-    &debug_msg("Running $0: No 'System' Object found, bailing.\n");
+    &debug_msg("Running: No 'System' Object found, bailing.\n");
     $cce->bye('FAIL');
     exit 1;
 }
@@ -95,66 +94,61 @@ else {
     $nw_update = $System->{nw_update};
 }
 
-if (($nw_update eq '0') || ($nw_update eq '')) {
-    &debug_msg("Running $0: Early exit to not restart network just yet.\n");
-    $cce->bye('SUCCESS');
-    exit(0);
+# Are we an OpenVZ master-node?
+if ((-e "/proc/user_beancounters") && (-f "/etc/vz/conf/0.conf")) {
+    # Yes, we are.
+    $device = 'venet0:0';
 }
-
-# Check if a recent network update mandates a restart of the Network:
-$now = time();
-$time_window = $nw_update + '60';
-&debug_msg("Running $0: now: $now - time_window: $time_window.\n");
-if ($time_window gt $now) {
-    &debug_msg("Running $0: Flushing IPv6 and bringing up $device\n");
-    # Soft Restart Network:
-    #print "/sbin/ip -6 addr flush dev $device\n";
-    system("/sbin/ip -6 addr flush dev $device");
-    system("/usr/bin/flock -n /usr/sausalito/license/change_route.lock /sbin/ifup $device");
-}
-
-if ($gateway_IPv6 eq "") {
-    &debug_msg("Running $0: Flushing IPv6 routes.\n");
-    #print "/sbin/ip -6 addr flush dev $device\n";
-    system("/sbin/ip -6 addr flush dev $device");
-    #print "/sbin/ip -6 route del default\n";
-    system("/sbin/ip -6 route del default");
+elsif ((-e "/proc/user_beancounters") && (!-f "/etc/vz/conf/0.conf")) {
+    # No, we're in an OpenVZ VPS:
+    $device = 'venet0:0';
 }
 else {
-    # Get existing IPv6 default route:
-    @ipv6_default_routes = split (/\n/, `LC_ALL=C /sbin/ip -6 route show default|awk -F "default via " '{print \$2}'|awk -F " dev" '{print \$1}'`);
-    if (in_array(\@ipv6_default_routes, $gateway_IPv6)) {
-        # IPv6 default route already present.
-    }
-    else {
-        &debug_msg("Running $0: Adding default IPv6 route.\n");
-        #print "/sbin/ip -6 route add default via $gateway_IPv6\n";
-        system("/sbin/ip -6 route add default via $gateway_IPv6");
-    }
+    # No, we are not.
+    $device = 'eth0';
 }
 
 #
-### Handle Assignment of Extra IPs to $device:
+### Setting up routes:
+#
+
+my $gateway_IPv6 = '';
+my $gateway_IPv6 = $System->{gateway_IPv6};
+
+# Get existing IPv6 default route:
+@ipv6_default_routes = split (/\n/, `LC_ALL=C /sbin/ip -6 route show default|awk -F "default via " '{print \$2}'|awk -F " dev" '{print \$1}'`);
+if (in_array(\@ipv6_default_routes, $gateway_IPv6)) {
+    # IPv6 default route already present.
+    &debug_msg("Running: Default IPv6 route already present.\n");
+}
+else {
+    &debug_msg("Running: Adding default IPv6 route.\n");
+    system("/sbin/ip -6 route add default via $gateway_IPv6");
+}
+
+#
+### Handle Assignment of Routes to $device:
 #
 
 # Get IP addresses currently bound to $device and also the existing routes:
 @arr_assigned_ipv4 = split (/\n/, `LC_ALL=C /sbin/ip address show dev $device |grep inet|grep global|awk -F "inet " '{print \$2}'|awk -F " brd " '{print \$1}'|cut -d / -f1|sed '/^\$/d'`);
 @arr_assigned_ipv6 = split (/\n/, `LC_ALL=C /sbin/ip address show dev $device |grep inet|grep global|awk -F "inet6 " '{print \$2}'|awk -F " brd " '{print \$1}'|cut -d / -f1|sed '/^\$/d'`);
-@routes_existing_ipv4 = split (/\n/, `LC_ALL=C /sbin/ip route show dev $device|grep -v default|awk -F "/" '{print \$1}'|awk -F " scope link" '{print \$1}'`);
+@routes_existing_ipv4 = split (/\n/, `LC_ALL=C /sbin/ip -4 route show dev $device|grep -v default|awk -F "/" '{print \$1}'|awk -F " scope link" '{print \$1}'`);
+@routes_existing_ipv6 = split (/\n/, `LC_ALL=C /sbin/ip -6 route show dev $device|grep -v default|sed '/fe80::/d'|grep -v "/"|awk -F " " '{print \$1}'`);
 
 # Get primary IPs of '$device' from Network Config file:
 $ipv4_ip = `LC_ALL=C cat /etc/sysconfig/network-scripts/ifcfg-$device | grep IPADDR= | awk -F "IPADDR=" '{print \$2}'`;
 chomp($ipv4_ip);
-&debug_msg("Running $0: My primary IPv4 ipaddr: " . $ipv4_ip . "\n");
+&debug_msg("Running: My primary IPv4 ipaddr: " . $ipv4_ip . "\n");
 $ipv4_nm = `LC_ALL=C cat /etc/sysconfig/network-scripts/ifcfg-$device | grep NETMASK= | awk -F "NETMASK=" '{print \$2}'`;
 chomp($ipv4_nm);
-&debug_msg("Running $0: My primary IPv4 netmask: " . $ipv4_nm . "\n");
+&debug_msg("Running: My primary IPv4 netmask: " . $ipv4_nm . "\n");
 $ipv6_ip = `LC_ALL=C cat /etc/sysconfig/network-scripts/ifcfg-$device | grep IPV6ADDR= | awk -F "IPV6ADDR=" '{print \$2}'`;
 chomp($ipv6_ip);
-&debug_msg("Running $0: My primary IPv6 ipaddr: " . $ipv6_ip . "\n");
+&debug_msg("Running: My primary IPv6 ipaddr: " . $ipv6_ip . "\n");
 
 # Remove primary IPv4 and IPv6 IPs from our arrays:
-#@arr_assigned_ipv4 = grep {!/^$ipv4_ip$/} @arr_assigned_ipv4;
+@arr_assigned_ipv4 = grep {!/^$ipv4_ip$/} @arr_assigned_ipv4;
 @arr_assigned_ipv6 = grep {!/^$ipv6_ip$/} @arr_assigned_ipv6;
 @arr_existing_netroutes = ();
 
@@ -167,14 +161,8 @@ if ($System->{extra_ipaddr}) {
     @extra_ipaddr = $cce->scalar_to_array($System->{extra_ipaddr});
     push (@extra_ipaddr, $ipv4_ip);
     foreach my $ip_extra (@extra_ipaddr) {
-        &debug_msg("Running $0: Found extra IPv4 IP: $ip_extra\n");
+        #&debug_msg("Running: Found extra IPv4 IP: $ip_extra ");
         if (in_array(\@arr_assigned_ipv4, $ip_extra)) {
-            # Remove element from array:
-            @arr_assigned_ipv4 = grep {!/^$ip_extra$/} @arr_assigned_ipv4;
-        }
-        else {
-            &debug_msg("Running $0: Extra IPv4 IP $ip_extra needs to be bound.\n");
-            system("/sbin/ip addr add " . $ip_extra. "/32 dev $device");
             # Remove element from array:
             @arr_assigned_ipv4 = grep {!/^$ip_extra$/} @arr_assigned_ipv4;
         }
@@ -191,11 +179,40 @@ if ($System->{extra_ipaddr}) {
         # Handle regular IPv4 routes:
         if (in_array(\@routes_existing_ipv4, $ip_extra)) {
             # ip_extra route exists, skipping
+            &debug_msg("Running: Found extra IPv4 IP: $ip_extra ... already has a route.");
             @routes_existing_ipv4 = grep {!/^$ip_extra$/} @routes_existing_ipv4;
         }
         else {
+            &debug_msg("Running: Found extra IPv4 IP: $ip_extra ... needs a route.");
+            &debug_msg("/sbin/ip route add " . $ip_extra. "/255.255.255.255 dev $device\n");
             system("/sbin/ip route add " . $ip_extra. "/255.255.255.255 dev $device");
             @routes_existing_ipv4 = grep {!/^$ip_extra$/} @routes_existing_ipv4;
+        }
+    }
+}
+
+# Make sure all IPv6 extra-IPs are bound:
+if ($System->{extra_ipaddr_IPv6}) {
+    @extra_ipaddr_IPv6 = $cce->scalar_to_array($System->{extra_ipaddr_IPv6});
+    push (@extra_ipaddr_IPv6, $ipv6_ip);
+    foreach my $ip_extra (@extra_ipaddr_IPv6) {
+        #&debug_msg("Running: Found extra IPv4 IP: $ip_extra ");
+        if (in_array(\@arr_assigned_ipv6, $ip_extra)) {
+            # Remove element from array:
+            @arr_assigned_ipv6 = grep {!/^$ip_extra$/} @arr_assigned_ipv6;
+        }
+
+        # Handle regular IPv6 routes:
+        if (in_array(\@routes_existing_ipv6, $ip_extra)) {
+            # ip_extra route exists, skipping
+            &debug_msg("Running: Found extra IPv6 IP: $ip_extra ... already has a route.");
+            @routes_existing_ipv6 = grep {!/^$ip_extra$/} @routes_existing_ipv6;
+        }
+        else {
+            &debug_msg("Running: Found extra IPv6 IP: $ip_extra ... needs a route.");
+            &debug_msg("/sbin/ip -6 route add " . $ip_extra. " dev $device\n");
+            system("/sbin/ip -6 route add " . $ip_extra. " dev $device");
+            @routes_existing_ipv6 = grep {!/^$ip_extra$/} @routes_existing_ipv6;
         }
     }
 }
@@ -206,25 +223,23 @@ foreach my $netroute (@unique_netroutes) {
         # Nada
     }
     else {
-        #print "/sbin/ip route add " . $netroute . "/" . $ipv4_nm . " dev $device\n";
+        &debug_msg("/sbin/ip route add " . $netroute . "/" . $ipv4_nm . " dev $device\n");
         system("/sbin/ip route add " . $netroute . "/" . $ipv4_nm . " dev $device");
     }
     @arr_assigned_ipv4 = grep {!/^$netroute$/} @arr_assigned_ipv4;
     @routes_existing_ipv4 = grep {!/^$netroute$/} @routes_existing_ipv4;    
 }
 
-# Unbind any extra IPv4 IP that is still bound, but not known to the GUI:
-foreach my $ip_extra (@arr_assigned_ipv4) {
-    &debug_msg("Running $0: Unbinding Extra IPv4 IP $ip_extra.\n");
-    #print "/sbin/ip addr del " . $ip_extra. "/32 dev $device\n";
-    system("/sbin/ip addr del " . $ip_extra. "/32 dev $device");
+# IPv4: Removing routes for that we no longer have IPs:
+foreach my $ip_extra (@routes_existing_ipv4) {
+    &debug_msg("Running: Removing route for $ip_extra.\n");
+    system("/sbin/ip route del " . $ip_extra . " dev $device");
 }
 
-# Removing routes for that we no longer have IPs:
-foreach my $ip_extra (@routes_existing_ipv4) {
-    &debug_msg("Running $0: Removing route for $ip_extra.\n");
-    #print "/sbin/ip route del " . $ip_extra . " dev $device\n";
-    system("/sbin/ip route del " . $ip_extra . " dev $device");
+# IPv6: Removing routes for that we no longer have IPs:
+foreach my $ip_extra (@routes_existing_ipv6) {
+    &debug_msg("Running: Removing route for $ip_extra.\n");
+    system("/sbin/ip -6 route del " . $ip_extra . " dev $device");
 }
 
 # Handle the the IPv4 loopback route:
@@ -232,42 +247,18 @@ my $loop_ipv4 = `LC_ALL=C /sbin/ip route show dev lo|grep "127.0.0.0/8 scope lin
 chomp($loop_ipv4);
 if ($loop_ipv4 ne "1") {
     # No route present. Add one:
-    #print "/sbin/ip route add " . '127.0.0.0/255.0.0.0' . " dev lo\n";
+    &debug_msg("Running: Loopback ... needs a route.");
+    &debug_msg("/sbin/ip route add " . '127.0.0.0/255.0.0.0' . " dev lo\n");
     system("/sbin/ip route add " . '127.0.0.0/255.0.0.0' . " dev lo");
 }
-
-#
-## Assign IPv6 IPs that are not yet bound to $device:
-#
-
-# Make sure all IPv6 extra-IPs are bound:
-if ($System->{extra_ipaddr_IPv6}) {
-    @extra_ipaddr = $cce->scalar_to_array($System->{extra_ipaddr_IPv6});
-    #push (@extra_ipaddr, $ipv6_ip);
-    foreach my $ip_extra (@extra_ipaddr) {
-        &debug_msg("Running $0: Found extra IPv6 IP: $ip_extra\n");
-        if (in_array(\@arr_assigned_ipv6, $ip_extra)) {
-            # Remove element from array:
-            @arr_assigned_ipv6 = grep {!/^$ip_extra$/} @arr_assigned_ipv6;
-        }
-        else {
-            &debug_msg("Running $0: Extra IPv6 IP $ip_extra needs to be bound.\n");
-            system("/sbin/ip addr add " . $ip_extra. "/128 dev $device");
-            # Remove element from array:
-            @arr_assigned_ipv6 = grep {!/^$ip_extra$/} @arr_assigned_ipv6;
-        }
-    }
+else {
+    &debug_msg("Running: Loopback ... already has a route.");
 }
 
-# Unbind any extra IPv6 IP that is still bound, but not known to the GUI:
-foreach my $ip_extra (@arr_assigned_ipv6) {
-    &debug_msg("Running $0: Unbinding Extra IPv6 IP $ip_extra.\n");
-    system("/sbin/ip addr del " . $ip_extra. "/128 dev $device");
-}
+#
+### Handle OpenVZ network situation:
+#
 
-######################
-
-# Handle OpenVZ network situation:
 if ((-e "/proc/user_beancounters") && (! -f "/etc/vz/conf/0.conf")) {
 
     # This is a bit special. Some time ago OpenVZ switched the network behaviour of VPS's
@@ -283,26 +274,26 @@ if ((-e "/proc/user_beancounters") && (! -f "/etc/vz/conf/0.conf")) {
     # Parse /etc/sysconfig/network:
     $sys_network = "/etc/sysconfig/network";
     if (-f $sys_network) {
-    open (F, "/etc/sysconfig/network") || die "Could not open $sys_network $!";
-    while ($line = <F>) {
-            chomp($line);
-            next if $line =~ /^\s*$/;               # skip blank lines
-            next if $line =~ /^#$/;                 # skip comments
-            if ($line =~ /^GATEWAY=(.*)$/) {
-                $my_gateway = $1;
-                if ($my_gateway =~ /^\"(.*)\"/g) {
+        open (F, "/etc/sysconfig/network") || die "Could not open $sys_network $!";
+        while ($line = <F>) {
+                chomp($line);
+                next if $line =~ /^\s*$/;               # skip blank lines
+                next if $line =~ /^#$/;                 # skip comments
+                if ($line =~ /^GATEWAY=(.*)$/) {
                     $my_gateway = $1;
+                    if ($my_gateway =~ /^\"(.*)\"/g) {
+                        $my_gateway = $1;
+                    }
+                    
                 }
-                
-            }
-            if ($line =~ /^GATEWAYDEV=(.*)$/) {
-                $my_gatewaydev = $1;
-                if ($my_gatewaydev =~ /^\"(.*)\"/g) {
+                if ($line =~ /^GATEWAYDEV=(.*)$/) {
                     $my_gatewaydev = $1;
+                    if ($my_gatewaydev =~ /^\"(.*)\"/g) {
+                        $my_gatewaydev = $1;
+                    }
                 }
-            }
-    }
-    close(F);
+        }
+        close(F);
     }
 
     # We're on OpenVZ. See if we have either GATEWAY or GATEWAYDEV defined:
@@ -342,6 +333,9 @@ if ((-e "/proc/user_beancounters") && (! -f "/etc/vz/conf/0.conf")) {
         $p->close();
     }
 }
+
+# Reset 'nw_update';
+my ($ok) = $cce->update($sysoid, '', { 'nw_update' => '0' });
 
 $cce->bye('SUCCESS');
 exit(0);
@@ -442,8 +436,8 @@ sub debug_msg {
 }
 
 # 
-# Copyright (c) 2017 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2017 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2017-2018 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2017-2018 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 # All Rights Reserved.
 # 

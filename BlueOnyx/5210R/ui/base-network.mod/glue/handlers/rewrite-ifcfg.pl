@@ -10,7 +10,7 @@ use Sauce::Util;
 use Network;
 
 # Debugging switch:
-$DEBUG = "1";
+$DEBUG = "0";
 if ($DEBUG)
 {
         use Sys::Syslog qw( :DEFAULT setlogsock);
@@ -237,14 +237,50 @@ sub edit_ifcfg {
             print $fout "IPADDR=$ipaddr" . "\n";
         }
         print $fout "USERCTL=no" . "\n";
+        print $fout "ARPCHECK=no" . "\n";
         if (($ipaddr_IPv6 ne '') && ($gateway_IPv6 ne '')) {
             print $fout "IPV6INIT=yes" . "\n";
             print $fout "IPV6ADDR=$ipaddr_IPv6" . "\n";
             print $fout "IPV6_DEFAULTGW=$gateway_IPv6" . "\n";
+            if (($device eq "eth0") || ($device eq "venet0")) {
+                # Are we an OpenVZ master-node?
+                if ((-e "/proc/user_beancounters") && (-f "/etc/vz/conf/0.conf")) {
+                    # Yes, we are. We are NOT adding the below to either 'eth0' or 'venet0' on master nodes.
+                    return 1;
+                }
+                elsif ((-e "/proc/user_beancounters") && (!-f "/etc/vz/conf/0.conf")) {
+                    # No, we're in an OpenVZ VPS, so we stop here, because we may not edit our network config files.
+                    return 1;
+                }
+                else {
+                    # No, we are not. Go on then:
+                    if ($System->{extra_ipaddr_IPv6}) {
+                        @extra_ipaddr_out = ();
+                        @extra_ipaddr = $cce->scalar_to_array($System->{extra_ipaddr_IPv6});
+                        # Sort:
+                        @sorted_extra_ipaddr = sort @extra_ipaddr;
+                        # Remove doublettes:
+                        @extra_ipaddr = uniq(@sorted_extra_ipaddr);
+                        foreach my $ip_extra (@extra_ipaddr) {
+                            $ipv6_ip = $ip_extra . '/128';
+                            push (@extra_ipaddr_out, $ipv6_ip);
+                        }
+                        # Print if there is anything to print:
+                        if (scalar(@extra_ipaddr_out) gt "0") {
+                            &debug_msg('IPV6ADDR_SECONDARIES="' . join(" ", @extra_ipaddr_out) . '"' . "\n"); 
+                            print $fout 'IPV6ADDR_SECONDARIES="' . join(" ", @extra_ipaddr_out) . '"' . "\n";
+                        }
+                    }
+                }
+            }
         }
-        print $fout "ARPCHECK=no" . "\n";
         return 1;
     }
+}
+
+sub uniq {
+    my %seen;
+    grep !$seen{$_}++, @_;
 }
 
 sub debug_msg {

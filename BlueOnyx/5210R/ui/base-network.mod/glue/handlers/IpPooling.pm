@@ -161,8 +161,6 @@ sub validate_pooling_state
             if ($net_ip->overlaps($check_ip)) {
                 $ismember = 1;
             }
-
-
         }
         if (!$ismember) {
             push @errors, $ip;

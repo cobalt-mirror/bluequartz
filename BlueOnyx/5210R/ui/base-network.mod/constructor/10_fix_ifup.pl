@@ -4,6 +4,7 @@
 # this needs use lib because it isn't a handler
 use lib qw(/usr/sausalito/handlers/base/network);
 use CCE;
+use Sauce::Util;
 
 my $DEBUG = 0;
 my $errors = 0;
@@ -21,45 +22,49 @@ exit(0);
 
 sub fix_if_up {
 
-    # Append a call to run /usr/sausalito/handlers/base/network/change_route.pl to /etc/sysconfig/network-scripts/ifup-routes.
+    # Append a call to run /usr/sausalito/handlers/base/network/change_route.pl to /etc/sysconfig/network-scripts/ifup.
     # That handler adds all extra IP's and fixes up the routing.
 
-    # Check if ifup-routes exists:
-    if (-f "/etc/sysconfig/network-scripts/ifup-routes") {
-        # If it exists, check if it already has our provisions in it:
-        open (F, "/etc/sysconfig/network-scripts/ifup-routes") || die "Could not open /etc/sysconfig/network-scripts/ifup-routes $!";
-        while ($line = <F>) {
-            chomp($line);
-            next if $line =~ /^\s*$/;               # skip blank lines
-            next if $line =~ /^#$/;                 # skip comments
-            if ($line =~ /\/usr\/sausalito\/handlers\/base\/network\/change_route.pl -c 2/g) {
-                # Provisions found:
-                $result = "found";
-            }
-        }
-        close(F);
-
-        # Provisions not found. Adding them:
-        if (!$result) {
-            if ((-e "/proc/user_beancounters") && (-f "/etc/vz/conf/0.conf")) {
-                system('echo \'if [[ "$1" =~ "venet0:0" ]];then /usr/sausalito/handlers/base/network/change_route.pl -c 2; fi\' >> /etc/sysconfig/network-scripts/ifup-routes');
-            }
-            else {
-                system('echo \'if [[ "$1" =~ "eth0" ]];then /usr/sausalito/handlers/base/network/change_route.pl -c 2; fi\' >> /etc/sysconfig/network-scripts/ifup-routes');
-            }
-        }
-    }
-
-    # Also fix /etc/sysconfig/network-scripts/ifup:
+    # Fix /etc/sysconfig/network-scripts/ifup:
     if (-f "/etc/sysconfig/network-scripts/ifup") {
         # Check if ifup has our provisions to conditionally fire up the change_route.pl handler:
         $check_ifup = `cat /etc/sysconfig/network-scripts/ifup|grep /usr/sausalito/handlers/base/network/change_route.pl|wc -l`;
         chomp($check_ifup);
         # Provisions not present. Add them:
         if ($check_ifup eq "0") {
-            system('echo \'if [ -x /usr/sausalito/handlers/base/network/change_route.pl ]; then /usr/bin/flock -n /usr/sausalito/license/change_route.lock /usr/sausalito/handlers/base/network/change_route.pl -c 2>/dev/null; fi\' >> /etc/sysconfig/network-scripts/ifup');
+            system('echo \'if [ -x /usr/sausalito/handlers/base/network/change_route.pl ]; then' . "\n" . '    /usr/bin/flock -n /usr/sausalito/license/change_route.lock /usr/sausalito/handlers/base/network/change_route.pl -c 2>/dev/null;' . "\n". 'fi\' >> /etc/sysconfig/network-scripts/ifup');
         }
     }
+
+    # Create /sbin/ifup-local if it's missing:
+    if (!-f "/sbin/ifup-local") {
+        my $filename = "/sbin/ifup-local";
+        system("touch $filename");
+        my $ok = Sauce::Util::editfile($filename, *edit_ifcfg, $filename);
+        system("chmod 755 $filename");
+        system("chown root:root $filename");
+    }
+    else {
+        # If it's there, make sure it has what we need:
+        $check_ifuplocal = `cat /sbin/ifup-local|grep /usr/sausalito/handlers/base/network/change_route.pl|wc -l`;
+        chomp($check_ifuplocal);
+        if ($check_ifuplocal eq "0") {
+            # Not containing correct info. Fixing that:
+            my $filename = "/sbin/ifup-local";
+            my $ok = Sauce::Util::editfile($filename, *edit_ifcfg, $filename);
+            system("chmod 755 $filename");
+            system("chown root:root $filename");
+        }
+    }
+}
+
+sub edit_ifcfg {
+    my ($fin, $fout, $filename) = @_;
+    print $fout '#!/bin/sh' . "\n";
+    print $fout 'if [ "$1" == "eth0" ] || [ "$1" == "venet0" ]  ;then' . "\n";
+    print $fout '    /usr/sausalito/handlers/base/network/change_route.pl -c 2>/dev/null' . "\n";
+    print $fout 'fi' . "\n";
+    return 1;
 }
 
 # 

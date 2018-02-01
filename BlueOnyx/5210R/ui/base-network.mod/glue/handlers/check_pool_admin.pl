@@ -27,6 +27,7 @@ $cce->connectfd();
 &debug_msg("Starting check_pool_admin.pl.\n");
 
 my $vsite_new = $cce->event_new();
+my $vsite_obj = $cce->event_object();
 
 my ($sysoid) = $cce->find('System');
 my ($ok, $network) = $cce->get($sysoid, 'Network');
@@ -49,6 +50,7 @@ if ($network->{pooling} && ($vsite_new->{ipaddr} || $vsite_new->{ipaddrIPv6})) {
 
     # get ranges
     foreach $a_oid (@oids) {
+
         my ($ok, $range) = $cce->get($a_oid);
         if (!$ok) {
             $cce->bye('FAIL');
@@ -56,6 +58,11 @@ if ($network->{pooling} && ($vsite_new->{ipaddr} || $vsite_new->{ipaddrIPv6})) {
         }
         my @adminArray = $cce->scalar_to_array($range->{admin});
         my $result = 0;
+
+        if (!$vsite_new->{createdUser}) {
+            $vsite_new->{createdUser} = $vsite_obj->{createdUser};
+        }
+
         if ($vsite_new->{createdUser} ne 'admin') {
             foreach my $admin (@adminArray) {
                 if ($admin eq $vsite_new->{createdUser}) {
@@ -66,14 +73,17 @@ if ($network->{pooling} && ($vsite_new->{ipaddr} || $vsite_new->{ipaddrIPv6})) {
         else {
             $result = 1;
         }
-        if ($result) {
+        if ($result eq "1") {
             push @ranges, $range;
         }
     }
 
     # Remove duplicates:
     my @filtered_IPs = uniq(@IPs);
+    &debug_msg("Warn: filtered_IPs " . Dumper (\@filtered_IPs) . " \n");
+    &debug_msg("Warn: ranges " . Dumper (\@ranges) . " \n");
     my (@error_ips) = IpPooling::validate_pooling_state(\@ranges, \@filtered_IPs);
+    &debug_msg("Warn: error_ips " . Dumper (\@error_ips) . " \n");
     if (@error_ips) {
         my $offenders = join(", ", @error_ips);
         &debug_msg("Warn: ip_restricted - " . $offenders . " \n");
