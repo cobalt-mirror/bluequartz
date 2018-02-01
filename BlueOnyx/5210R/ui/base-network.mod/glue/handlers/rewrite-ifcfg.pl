@@ -209,7 +209,7 @@ sub edit_ifcfg {
         print $fout "BOOTPROTO=$bootproto" . "\n";
         print $fout "ONBOOT=$onboot" . "\n";
         print $fout "USERCTL=no" . "\n";
-        return 1;    
+        return 1;
     }
     else {
         print $fout "# $filename" . "\n";
