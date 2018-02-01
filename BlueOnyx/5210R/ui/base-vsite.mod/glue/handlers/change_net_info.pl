@@ -10,7 +10,7 @@ use Sauce::Config;
 use Base::HomeDir qw(homedir_get_group_dir homedir_create_group_link);
 
 # Debugging switch:
-$DEBUG = "1";
+$DEBUG = "0";
 if ($DEBUG) {
     use Sys::Syslog qw( :DEFAULT setlogsock);
 }
@@ -76,6 +76,33 @@ if ($vsite_new->{ipaddrIPv6}) {
     vsite_add_network_interface($cce, $vsite_new->{ipaddrIPv6});
     # Remove unused IPs from being bound to network interfaces:
     vsite_del_network_interface($cce, $vsite_old->{ipaddrIPv6});
+
+    #
+    ### IPv6 extra-IP cleanup:
+    #
+    my ($sysoid) = $cce->find('System');
+    my ($ok, $System) = $cce->get($sysoid);
+
+    if ($sysoid->{extra_ipaddr_IPv6}) {
+        @extra_ipaddr_IPv6 = $cce->scalar_to_array($System->{extra_ipaddr_IPv6});
+        foreach my $ip_extra (@extra_ipaddr_IPv6) {
+            &debug_msg("Checking if Vsite uses $ip_extra\n");
+            my @vsite_oids = $cce->find('Vsite', { 'ipaddrIPv6' => $ip_extra });
+            if (scalar(@vsite_oids) == 0) {
+                # Remove element from array:
+                &debug_msg("Removing $ip_extra\n");
+                @extra_ipaddr_IPv6 = grep {!/^$ip_extra$/} @extra_ipaddr_IPv6;
+            }
+        }
+        # Remove duplicates:
+        my @filtered_ipv6 = uniq(@extra_ipaddr_IPv6);
+        # Sort:
+        @extra_ipaddr_IPv6 = sort @filtered_ipv6;
+        # Convert Array to Scalar and send it back into CODB:
+        $new_extra_ipaddr_IPv6 = $cce->array_to_scalar(@extra_ipaddr_IPv6);
+        ($ok) = $cce->update($sysoid, '', { 'extra_ipaddr_IPv6' =>  $new_extra_ipaddr_IPv6 });
+    }
+
 } # end of ip address change specific
 
 
@@ -94,8 +121,8 @@ sub debug_msg {
 }
 
 # 
-# Copyright (c) 2014-2017 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2014-2017 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2014-2018 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2014-2018 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 

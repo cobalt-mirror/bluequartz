@@ -12,12 +12,6 @@
 # Cannibalized by: 
 #   Michael Stauber <mstauber@blueonyx.it>
 # 
-# Please note: Instead of adding/removing interface aliases, this
-# now adds/removes IPs from the 'extra_ip' arrays in the 'System' 
-# Object and then sets 'nw_update' to force change_route.pl to
-# dynamically bind extra_ips and build the routes for them.
-#
-
 
 package Vsite;
 
@@ -25,9 +19,10 @@ require Exporter;
 
 use vars qw(@ISA @EXPORT @EXPORT_OK);
 use Net::IP qw(:PROC);
+use Data::Dumper;
 
 # Debugging switch:
-$DEBUG = "1";
+$DEBUG = "0";
 if ($DEBUG) {
         use Sys::Syslog qw( :DEFAULT setlogsock);
 }
@@ -60,6 +55,10 @@ use vars qw(
 # globals used here
 if ((-e "/proc/user_beancounters") && (-f "/etc/vz/conf/0.conf")) {
     $DEFAULT_INTERFACE = 'venet0';
+}
+elsif ((-e "/proc/user_beancounters") && (!-f "/etc/vz/conf/0.conf")) {
+    # No, we're in an OpenVZ VPS:
+    $device = 'venet0';
 }
 else {
     $DEFAULT_INTERFACE = 'eth0';
@@ -140,6 +139,8 @@ sub vsite_add_network_interface
 {
     my $cce = shift;
     my $ipaddr = shift;
+    my $user = shift;
+    my $device = shift;
 
     $device ||= $DEFAULT_INTERFACE;
 
@@ -174,6 +175,35 @@ sub vsite_add_network_interface
     #
 
     if ($ip_check eq "4") {
+        my ($net_if) = $cce->find('Network', { 'ipaddr' => $ipaddr, 'enabled' => 1 });
+        if (not $net_if) {
+
+            # Need to create a new network interface
+            my ($eth) = $cce->find("Network", { 'device' => $device });
+            (my $ok, $eth) = $cce->get($eth);
+
+            for (my $alias = 0;; $alias++) {
+                ($net_if) = $cce->find("Network", { 'device' => ($eth->{device} . ":$alias") });
+                if (not $net_if) {
+                    ($ok) = $cce->create("Network",
+                        { 'device' => ($eth->{device} . ":$alias"),
+                          'ipaddr' => $ipaddr,
+                          'netmask' => $eth->{netmask},
+                          'enabled' => 1,
+                          'refresh' => time()
+                        });
+
+                    if (not $ok) {
+                        $cce->bye('FAIL', '[[base-vsite.cantCreateNetwork]]');
+                        exit(1);
+                    }
+                    &debug_msg("Running: /sbin/ip -4 route add $ipaddr dev $eth->{device}\n");
+                    system("/sbin/ip -4 route add $ipaddr dev $eth->{device}");
+                    last;
+                }
+            }
+        }
+
         # Check if Vsite IP is already known to the server:
         if (in_array(\@extra_ipaddr, $ipaddr)) {
             # Yes, it is!
@@ -200,6 +230,7 @@ sub vsite_add_network_interface
 
             # Update 'System' Object with new IPs:
             $new_extra_ipaddr = $cce->array_to_scalar(@extra_ipaddr);
+            #($ok) = $cce->set($sysoid, '', { 'extra_ipaddr' =>  $new_extra_ipaddr, 'nw_update' => time() });
             ($ok) = $cce->set($sysoid, '', { 'extra_ipaddr' =>  $new_extra_ipaddr });
             if (not $ok) {
                 $cce->bye('FAIL', '[[base-vsite.cantCreateExtraIPv4]]');
@@ -207,6 +238,7 @@ sub vsite_add_network_interface
             }
             return 1;
         }
+        return 1;
     }
 
     #
@@ -229,23 +261,52 @@ sub vsite_add_network_interface
             # Remove duplicates:
             my @filtered_ipv6 = uniq(@extra_ipaddr_IPv6);
 
+            # Sort:
+            @extra_ipaddr_IPv6 = sort @filtered_ipv6;
+
+            # Check if each IPv6 extra IP is actually in use:
+            foreach my $ip_extra (@extra_ipaddr_IPv6) {
+                &debug_msg("Checking if Vsite uses $ip_extra\n");
+                my @vsite_oids = $cce->find('Vsite', { 'ipaddrIPv6' => $ip_extra });
+                if (scalar(@vsite_oids) == 0) {
+                    # Not in use, remove element from array:
+                    &debug_msg("Removing $ip_extra\n");
+                    @filtered_ipv6 = grep {!/^$ip_extra$/} @extra_ipaddr_IPv6;
+                }
+            }
+            # Sort:
+            @extra_ipaddr_IPv6 = sort @filtered_ipv6;
+            # Convert Array to Scalar and send it back into CODB:
+            $new_extra_ipaddr_IPv6 = $cce->array_to_scalar(@extra_ipaddr_IPv6);
             # Update 'System' Object with new IPs:
-            $new_extra_ipaddr_IPv6 = $cce->array_to_scalar(@filtered_ipv6);
             ($ok) = $cce->set($sysoid, '', { 'extra_ipaddr_IPv6' =>  $new_extra_ipaddr_IPv6 });
             if (not $ok) {
                 $cce->bye('FAIL', '[[base-vsite.cantCreateExtraIPv6]]');
                 exit(1);
             }
+
+            &debug_msg("In vsite_add_network_interface IPv6 Mechanism, DEFAULT_INTERFACE: $DEFAULT_INTERFACE\n");
+
+            # Force the write-out of the "IPV6ADDR_SECONDARIES" line to the primary Network-Interface config file.
+            my ($net_oid) = $cce->find('Network', { 'device' => $DEFAULT_INTERFACE, 'enabled' => 1, 'real' => 1 });
+            if ($net_oid) {
+                &debug_msg("In vsite_add_network_interface IPv6 Mechanism, net_oid: $net_oid\n");
+                ($ok) = $cce->set($net_oid, '', { 'refresh' => time() });
+                if (not $ok) {
+                    $cce->bye('FAIL', '[[base-vsite.cantCreateExtraIPv6]]');
+                    exit(1);
+                }
+                &debug_msg("Running: /sbin/ip -6 route add $ipaddr dev $DEFAULT_INTERFACE\n");
+                system("/sbin/ip -6 route add $ipaddr dev $DEFAULT_INTERFACE");
+            }
             return 1;
         }
     }
-
     return 1;
 }
 
 # this will bring down a Network interface that is no longer in use
-# as long as it is an alias, but more importantly it will remove unused
-# extra_ips from the 'System' Object.
+# as long as it is an alias
 sub vsite_del_network_interface
 {
     my ($cce, $ipaddr) = @_;
@@ -287,6 +348,12 @@ sub vsite_del_network_interface
             # We leave this in for legacy: destroy the interface, but only if it is not real
             my ($net_oid) = $cce->find('Network', { 'ipaddr' => $ipaddr, 'real' => 0 });
             if ($net_oid) {
+
+                # Delete IPv4 Route while we are at it:
+                &debug_msg("Running: /sbin/ip -4 route del $ipaddr\n");
+                system("/sbin/ip -4 route del $ipaddr");
+
+                # Destroy Network Alias Object:                
                 $cce->set($net_oid, '', { 'enabled' => 0 });
                 $cce->destroy($net_oid);
             }
@@ -315,13 +382,13 @@ sub vsite_del_network_interface
 
             # Convert Array to Scalar and send it back into CODB:
             $new_extra_ipaddr = $cce->array_to_scalar(@extra_ipaddr);
+            #($ok) = $cce->set($sysoid, '', { 'extra_ipaddr' =>  $new_extra_ipaddr, 'nw_update' => time() });
             ($ok) = $cce->set($sysoid, '', { 'extra_ipaddr' =>  $new_extra_ipaddr });
             if (not $ok) {
                 &debug_msg("Running $0: IP Fail: cantRemoveExtraIPv4\n");
                 $cce->bye('FAIL', '[[base-vsite.cantRemoveExtraIPv4]]');
                 exit(1);
             }
-            return 1;
         }
         else {
             &debug_msg("Running $0: Vsites still seem to be using IP $ipaddr. Doing nothing. Debug: " . scalar(@vsite_oids) . "\n");
@@ -329,46 +396,71 @@ sub vsite_del_network_interface
     }
 
     #
-    ### Deal with IPv4:
+    ### Deal with IPv6:
     #
 
     if ($ip_check eq "6") {
 
-        # only destroy the interface if not in use
+        $need_config_writeout = '0';
+
+        # Check if there is a Vsite that still uses this IPv6 IP:
         my @vsite_oids = $cce->find('Vsite', { 'ipaddrIPv6' => $ipaddr });
         if (scalar(@vsite_oids) == 0) {
-            # We leave this in for legacy: destroy the interface, but only if it is not real
-            my ($net_oid) = $cce->find('Network', { 'ipaddr_IPv6' => $ipaddr, 'real' => 0 });
-            if ($net_oid) {
-                $cce->set($net_oid, '', { 'enabled' => 0 });
-                $cce->destroy($net_oid);
-            }
-
-            #
-            ### Remove unusued 'extra_ip' from 'System' Object:
-            #
-
+            # IP is no longer in use:
+            $need_config_writeout++;
             if (in_array(\@extra_ipaddr_IPv6, $ipaddr)) {
                 # Remove element from array:
                 @extra_ipaddr_IPv6 = grep {!/^$ipaddr$/} @extra_ipaddr_IPv6;
-            }
 
-            # Remove duplicates:
-            my @filtered_ipv6 = uniq(@extra_ipaddr_IPv6);
-
-            # Convert Array to Scalar and send it back into CODB:
-            $new_extra_ipaddr_IPv6 = $cce->array_to_scalar(@filtered_ipv6);
-            ($ok) = $cce->set($sysoid, '', { 'extra_ipaddr_IPv6' =>  $new_extra_ipaddr_IPv6 });
-            if (not $ok) {
-                &debug_msg("Running $0: IP Fail: cantRemoveExtraIPv6\n");
-                $cce->bye('FAIL', '[[base-vsite.cantRemoveExtraIPv6]]');
-                exit(1);
+                # Remove route for this IPv6 IP as well:
+                &debug_msg("Running: /sbin/ip -6 route del $ipaddr\n");
+                system("/sbin/ip -6 route del $ipaddr");                
             }
-            return 1;
+        }
+
+        # Check if each *remaining* IPv6 extra IP is actually still in use:
+        foreach my $ip_extra (@extra_ipaddr_IPv6) {
+            &debug_msg("Checking if Vsite uses $ip_extra\n");
+            my @vsite_oids = $cce->find('Vsite', { 'ipaddrIPv6' => $ip_extra });
+            if (scalar(@vsite_oids) == 0) {
+                # Not in use, remove element from array:
+                $need_config_writeout++;
+                &debug_msg("Removing $ip_extra\n");
+                @filtered_ipv6 = grep {!/^$ip_extra$/} @extra_ipaddr_IPv6;
+                # Remove routes for IPv6 IP's that are no longer in use:
+                &debug_msg("Running: /sbin/ip -6 route del $ipaddr\n");
+                system("/sbin/ip -6 route del $ipaddr");
+            }
+        }
+
+        # Remove duplicates:
+        my @extra_ipaddr_IPv6 = uniq(@filtered_ipv6);
+
+        # Sort:
+        @filtered_ipv6 = sort @extra_ipaddr_IPv6;
+
+        # Convert Array to Scalar and send it back into CODB:
+        $new_extra_ipaddr_IPv6 = $cce->array_to_scalar(@filtered_ipv6);
+
+        # Update 'System' Object with new IPs:
+        ($ok) = $cce->set($sysoid, '', { 'extra_ipaddr_IPv6' =>  $new_extra_ipaddr_IPv6 });
+        if (not $ok) {
+            &debug_msg("Running $0: IP Fail: cantRemoveExtraIPv6\n");
+            $cce->bye('FAIL', '[[base-vsite.cantRemoveExtraIPv6]]');
+            exit(1);
+        }
+
+        # Force the write-out of the "IPV6ADDR_SECONDARIES" line to the primary Network-Interface config file.
+        if ($need_config_writeout ne '0') {
+            my ($net_oid) = $cce->find('Network', { 'device' => $DEFAULT_INTERFACE, 'enabled' => 1 });
+            if ($net_oid) {
+                $cce->set($net_oid, '', { 'refresh' => time() });
+            }
         }
         else {
-            &debug_msg("Running $0: Vsites still seem to be using IP $ipaddr. Doing nothing. Debug: " . scalar(@vsite_oids) . "\n");
+            &debug_msg("Running $0: Vsites still seem to be using IP $ipaddr.\n");
         }
+        return 1;
     }
     return 1;
 }
@@ -422,8 +514,8 @@ sub debug_msg {
 1;
 
 # 
-# Copyright (c) 2015-2017 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015-2017 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015-2018 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015-2018 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 

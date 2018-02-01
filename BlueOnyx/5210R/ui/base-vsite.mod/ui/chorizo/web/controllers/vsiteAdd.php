@@ -377,7 +377,8 @@ class VsiteAdd extends MX_Controller {
             $vsiteDefaults['hostname'] = $attributes['hostName'];
         }
 
-        if (!isset($vsiteDefaults['ipAddr'])) {
+
+        if (!isset($vsiteDefaults['ipaddr'])) {
             $vsiteDefaults['ipaddr'] = '';
         }
         if (!isset($vsiteDefaults['ipaddrIPv6'])) {
@@ -506,7 +507,7 @@ class VsiteAdd extends MX_Controller {
                 }
                 if ($CI->serverScriptHelper->getAllowed('systemAdministrator')) {
                     // User 'admin' or systemAdministrator
-                    $ip_address = $factory->getIpAddress("ipAddr", $vsiteDefaults["ipaddr"]);
+                    $ip_address = $factory->getIpAddress("ipAddr", $vsiteDefaults['ipaddr']);
                 }
                 else {
                     // Reseller:
@@ -516,7 +517,7 @@ class VsiteAdd extends MX_Controller {
             }
             else {
                 // IP Address, without ranges
-                $ip_address = $factory->getIpAddress("ipAddr", $vsiteDefaults["ipaddr"]);
+                $ip_address = $factory->getIpAddress("ipAddr", $vsiteDefaults['ipaddr']);
             }
 
             // IPv4 IP Address

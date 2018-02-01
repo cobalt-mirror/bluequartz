@@ -12,7 +12,7 @@
 # least one Vsite is using that pool.
 
 # Debugging switch:
-$DEBUG = "1";
+$DEBUG = "0";
 if ($DEBUG)
 {
         use Sys::Syslog qw( :DEFAULT setlogsock);

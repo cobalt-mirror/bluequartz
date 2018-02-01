@@ -18,7 +18,7 @@ use Base::Group qw(groupadd group_add_members);
 # use Base::User;
 
 # debugging flag, set to 1 to turn on logging to STDERR
-my $DEBUG = 1;
+my $DEBUG = 0;
 if ($DEBUG) 
 { 
     use Data::Dumper; 
@@ -319,8 +319,8 @@ sub find_skeleton
 }
 
 # 
-# Copyright (c) 2015-2017 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015-2017 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015-2018 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015-2018 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 

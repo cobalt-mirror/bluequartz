@@ -9,7 +9,7 @@ use CCE;
 use POSIX qw(isalpha);
 
 # Debugging switch:
-$DEBUG = "1";
+$DEBUG = "0";
 if ($DEBUG) {
     use Data::Dumper;
     use Sys::Syslog qw( :DEFAULT setlogsock);
