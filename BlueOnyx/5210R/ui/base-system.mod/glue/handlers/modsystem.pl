@@ -2,7 +2,7 @@
 # $Id: modsystem.pl
 
 # Debugging switch:
-$DEBUG = "1";
+$DEBUG = "0";
 if ($DEBUG)
 {
         use Sys::Syslog qw( :DEFAULT setlogsock);
@@ -155,8 +155,8 @@ sub in_array {
 }
 
 # 
-# Copyright (c) 2014-2017 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2014-2017 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2014-2018 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2014-2018 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 
