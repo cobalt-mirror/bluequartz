@@ -79,22 +79,36 @@ class vsiteMod extends MX_Controller {
         // Get data for the Vsite:
         $vsite = $CI->cceClient->getObject('Vsite', array('name' => $group));
 
-        // Check the status of IPv6 and if we show IPv6 related fields:
-        if ($system['gateway_IPv6'] != "") {
-            $access_ipv6 = 'rw';
-            $show_IPv6 = TRUE;
-        }
-        else {
-            $access_ipv6 = 'r';
-            $show_IPv6 = FALSE;
-        }
-
-        // Check the status of IPv4 and if we shizld show IPv4 related fields:
-        if ($system['gateway'] != "") {
+        // Determine visibility of IP protocol related fields:
+        $show_IPv4 = FALSE;
+        $show_IPv6 = FALSE;
+        if (in_array($system['IPType'], array('IPv4', 'VZv4', 'BOTH', 'VZBOTH'))) {
             $show_IPv4 = TRUE;
+            if (in_array($system['IPType'], array('IPv4', 'BOTH'))) {
+                if ($system['gateway'] != "") {
+                    $show_IPv4 = TRUE;
+                }
+                else {
+                    $show_IPv4 = FALSE;
+                }
+            }
         }
-        else {
-            $show_IPv4 = FALSE;
+        if (in_array($system['IPType'], array('IPv6', 'VZv6', 'BOTH', 'VZBOTH'))) {
+            $show_IPv6 = TRUE;
+            if (in_array($system['IPType'], array('IPv6', 'BOTH'))) {
+                if ($system['gateway_IPv6'] != "") {
+                    $access_ipv6 = 'rw';
+                    $show_IPv6 = TRUE;
+                }
+                else {
+                    $access_ipv6 = 'r';
+                    $show_IPv6 = FALSE;
+                }
+            }
+            else {
+                // Special case: OpenVZ
+                $access_ipv6 = 'rw';
+            }
         }
 
         //
@@ -330,31 +344,36 @@ class vsiteMod extends MX_Controller {
 
             $oids = $CI->cceClient->findx('IPPoolingRange', array(), array(), 'old_numeric', 'creation_time');
             $reseller_first_range = '';
+
             foreach ($oids as $oid) {
                 $range = $CI->cceClient->get($oid);
+                if ($range['admin'] == '') {
+                    $range['admin'] = '&admin&';
+                }
+
                 $adminArray = $CI->cceClient->scalar_to_array($range['admin']);
                 sort($adminArray);
                 $owner_names = implode(", ", $adminArray);
-                if (($CI->serverScriptHelper->getAllowed('systemAdministrator')) || (in_array($CI->BX_SESSION['loginName'], $adminArray))) { 
+                if (($CI->serverScriptHelper->getAllowed('systemAdministrator')) || (in_array($vsite['createdUser'], $adminArray))) { 
                     if (filter_var($range['min'], FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
-                        if (($CI->serverScriptHelper->getAllowed('systemAdministrator'))) {
+                        if ((($CI->serverScriptHelper->getAllowed('systemAdministrator'))) && (in_array($vsite['createdUser'], $adminArray))) {
                             $range_strings['v4'][] = $range['min'] . ' - ' . $range['max'] . ' [' . $owner_names . ']';
                         }
-                        else {
+                        elseif (in_array($vsite['createdUser'], $adminArray)) {
                             $range_strings['v4'][] = $range['min'] . ' - ' . $range['max'] . ' [' . $CI->BX_SESSION['loginName'] . ']';
                         }
-                        if ((!isset($reseller_first_range['IPv4']['min'])) && (in_array($CI->BX_SESSION['loginName'], $adminArray))) {
+                        if ((!isset($reseller_first_range['IPv4']['min'])) && (in_array($vsite['createdUser'], $adminArray))) {
                             $reseller_first_range['IPv4'] = $range;
                         }
                     }
                     else {
-                        if (($CI->serverScriptHelper->getAllowed('systemAdministrator'))) {
+                        if ((($CI->serverScriptHelper->getAllowed('systemAdministrator'))) && (in_array($vsite['createdUser'], $adminArray))) {
                             $range_strings['v6'][] = $range['min'] . ' - ' . $range['max'] . ' [' . $owner_names . ']';
                         }
-                        else {
+                        elseif (in_array($vsite['createdUser'], $adminArray)) {
                             $range_strings['v6'][] = $range['min'] . ' - ' . $range['max'] . ' [' . $CI->BX_SESSION['loginName'] . ']';
                         }
-                        if ((!isset($reseller_first_range['IPv6']['min'])) && (in_array($CI->BX_SESSION['loginName'], $adminArray))) {
+                        if ((!isset($reseller_first_range['IPv6']['min'])) && (in_array($vsite['createdUser'], $adminArray))) {
                             $reseller_first_range['IPv6'] = $range;
                         }
                     }

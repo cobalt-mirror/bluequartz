@@ -10,7 +10,7 @@ use Sauce::Config;
 use Base::HomeDir qw(homedir_get_group_dir homedir_create_group_link);
 
 # Debugging switch:
-$DEBUG = "0";
+$DEBUG = "1";
 if ($DEBUG) {
     use Sys::Syslog qw( :DEFAULT setlogsock);
 }
@@ -67,7 +67,9 @@ if ($vsite_new->{ipaddr}) {
     # Add used IPs ro network interfaces:
     vsite_add_network_interface($cce, $vsite_new->{ipaddr});
     # Remove unused IPs from being bound to network interfaces:
-    vsite_del_network_interface($cce, $vsite_old->{ipaddr});
+    if ($vsite_old->{ipaddr}) {
+        vsite_del_network_interface($cce, $vsite_old->{ipaddr});
+    }
 } # end of ip address change specific
 
 # handle ip address change
@@ -75,7 +77,9 @@ if ($vsite_new->{ipaddrIPv6}) {
     # Add used IPs ro network interfaces:
     vsite_add_network_interface($cce, $vsite_new->{ipaddrIPv6});
     # Remove unused IPs from being bound to network interfaces:
-    vsite_del_network_interface($cce, $vsite_old->{ipaddrIPv6});
+    if ($vsite_old->{ipaddrIPv6}) {
+        vsite_del_network_interface($cce, $vsite_old->{ipaddrIPv6});
+    }
 
     #
     ### IPv6 extra-IP cleanup:
@@ -100,7 +104,15 @@ if ($vsite_new->{ipaddrIPv6}) {
         @extra_ipaddr_IPv6 = sort @filtered_ipv6;
         # Convert Array to Scalar and send it back into CODB:
         $new_extra_ipaddr_IPv6 = $cce->array_to_scalar(@extra_ipaddr_IPv6);
-        ($ok) = $cce->update($sysoid, '', { 'extra_ipaddr_IPv6' =>  $new_extra_ipaddr_IPv6 });
+
+        if (($System->{IPType} eq 'VZv6') || ($System->{IPType} eq 'VZBOTH')) {
+            &debug_msg("OpenVZ: Setting 'System' - 'nw_update' \n");
+            ($ok) = $cce->set($sysoid, '', { 'nw_update' => time() });
+        }
+        else {
+            &debug_msg("NOT OpenVZ: NOT setting 'System' - 'nw_update' \n");
+            ($ok) = $cce->update($sysoid, '', { 'extra_ipaddr_IPv6' =>  $new_extra_ipaddr_IPv6 });
+        }
     }
 
 } # end of ip address change specific

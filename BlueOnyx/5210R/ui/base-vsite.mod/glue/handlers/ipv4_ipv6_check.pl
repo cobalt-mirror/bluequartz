@@ -27,20 +27,24 @@ my $vsite_old = $cce->event_old();
 &debug_msg("vsite_new: " . $vsite_new->{fqdn} . " : " . $vsite_new->{ipaddr} . " - " . $vsite_new->{ipaddrIPv6} . "\n");
 &debug_msg("vsite_old: " . $vsite_old->{fqdn} . " : " . $vsite_old->{ipaddr} . " - " . $vsite_old->{ipaddrIPv6} . "\n");
 
-my @oids= $cce->find("System");
+my @oids = $cce->find("System");
 my ($ok, $system) = $cce->get($oids[0]);
-
 &debug_msg("Start of IPv4/IPv6 IP address validation.\n");
+&debug_msg("IPType: " . $system->{IPType} . "\n");
+
+#
+### Check availability of protocols:
+#
 
 # IPv4 Gateway is empty, but Vsite has IPv4 IP address specified:
-if (($system->{'gateway'} eq "") && ($vsite->{ipaddr} ne "")) {
+if ((($system->{IPType} ne 'IPv4') && ($system->{IPType} ne 'BOTH') && ($system->{IPType} ne 'VZv4') && ($system->{IPType} ne 'VZBOTH')) && ($vsite->{ipaddr} ne "")) {
     $cce->bye('FAIL', "[[base-vsite.IPValidation_ipv4_specified_but_not_allowed,fqdn='$vsite_old->{fqdn}']]");
     &debug_msg("Fail: IPv4 IP Address specified, but IPv4 is not enabled on the server!\n");
     exit(1);
 }
 
 # IPv6 Gateway is empty, but Vsite has IPv6 IP address specified:
-if (($system->{'gateway_IPv6'} eq "") && ($vsite->{ipaddrIPv6} ne "")) {
+if ((($system->{IPType} ne 'IPv6') && ($system->{IPType} ne 'BOTH') && ($system->{IPType} ne 'VZv6') && ($system->{IPType} ne 'VZBOTH')) && ($vsite->{ipaddrIPv6} ne "")) {
     $cce->bye('FAIL', "[[base-vsite.IPValidation_ipv6_specified_but_not_allowed,fqdn='$vsite_old->{fqdn}']]");
     &debug_msg("Fail: IPv6 IP Address specified, but IPv6 is not enabled on the server!\n");
     exit(1);
@@ -94,8 +98,8 @@ sub debug_msg {
 }
 
 # 
-# Copyright (c) 2017 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2017 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2017-2018 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2017-2018 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 

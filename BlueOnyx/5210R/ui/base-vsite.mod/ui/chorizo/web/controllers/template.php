@@ -193,6 +193,20 @@ class Template extends MX_Controller {
         list($sysoid) = $CI->cceClient->find("System");
         $vsiteDefaults = $CI->cceClient->get($sysoid, "VsiteDefaults");
 
+        // Determine visibility of IP protocol related fields:
+        $show_IPv4 = FALSE;
+        $show_IPv6 = FALSE;
+        $access_IPv4 = '';
+        $access_IPv6 = '';
+        if (in_array($system['IPType'], array('IPv4', 'VZv4', 'BOTH', 'VZBOTH'))) {
+            $show_IPv4 = TRUE;
+            $access_IPv4 = 'rw';
+        }
+        if (in_array($system['IPType'], array('IPv6', 'VZv6', 'BOTH', 'VZBOTH'))) {
+            $show_IPv6 = TRUE;
+            $access_IPv6 = 'rw';
+        }
+
         $pageId = "siteDefaultsTab";
 
         $block =& $factory->getPagedBlock("vsiteDefaults", array($pageId, 'otherServices'));
@@ -207,7 +221,7 @@ class Template extends MX_Controller {
         //
 
         //default IPv4 ip address
-        $ipAddrField = $factory->getIpAddress("ipAddr", $vsiteDefaults["ipaddr"]);
+        $ipAddrField = $factory->getIpAddress("ipAddr", $vsiteDefaults["ipaddr"], $access_IPv4);
         $ipAddrField->setOptional('silent');
         $block->addFormField(
                     $ipAddrField,

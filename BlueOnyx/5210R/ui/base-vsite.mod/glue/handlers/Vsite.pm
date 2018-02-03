@@ -22,7 +22,7 @@ use Net::IP qw(:PROC);
 use Data::Dumper;
 
 # Debugging switch:
-$DEBUG = "0";
+$DEBUG = "1";
 if ($DEBUG) {
         use Sys::Syslog qw( :DEFAULT setlogsock);
 }
@@ -156,6 +156,8 @@ sub vsite_add_network_interface
     $ip = Net::IP->new($ipaddr);
     $ip_check = $ip->version();
 
+    &debug_msg("vsite_add_network_interface: Processing IP: $ipaddr - IP Protocol: $ip_check\n");
+
     # Get primary IPs:
     $ipv4_ip = `LC_ALL=C cat /etc/sysconfig/network-scripts/ifcfg-$device | grep IPADDR= | awk -F "IPADDR=" '{print \$2}'`;
     chomp($ipv4_ip);    
@@ -230,7 +232,6 @@ sub vsite_add_network_interface
 
             # Update 'System' Object with new IPs:
             $new_extra_ipaddr = $cce->array_to_scalar(@extra_ipaddr);
-            #($ok) = $cce->set($sysoid, '', { 'extra_ipaddr' =>  $new_extra_ipaddr, 'nw_update' => time() });
             ($ok) = $cce->set($sysoid, '', { 'extra_ipaddr' =>  $new_extra_ipaddr });
             if (not $ok) {
                 $cce->bye('FAIL', '[[base-vsite.cantCreateExtraIPv4]]');
@@ -248,11 +249,13 @@ sub vsite_add_network_interface
     if ($ip_check eq "6") {
         # Check if Vsite IP is already known to the server:
         if (in_array(\@extra_ipaddr_IPv6, $ipaddr)) {
+            &debug_msg("vsite_add_network_interface: IP: $ipaddr - is in Array \@extra_ipaddr_IPv6, returning early.\n");
             # Yes, it is!
             return 1;
         }
         else {
             # No, it is not! Push it into the Array of IPs from CODB:
+            &debug_msg("vsite_add_network_interface: IP: $ipaddr - is *NOT* in Array \@extra_ipaddr_IPv6\n");
             push (@extra_ipaddr_IPv6, $ipaddr);
 
             # Remove primary IP:
@@ -263,7 +266,6 @@ sub vsite_add_network_interface
 
             # Sort:
             @extra_ipaddr_IPv6 = sort @filtered_ipv6;
-
             # Check if each IPv6 extra IP is actually in use:
             foreach my $ip_extra (@extra_ipaddr_IPv6) {
                 &debug_msg("Checking if Vsite uses $ip_extra\n");
@@ -276,9 +278,18 @@ sub vsite_add_network_interface
             }
             # Sort:
             @extra_ipaddr_IPv6 = sort @filtered_ipv6;
-            # Convert Array to Scalar and send it back into CODB:
-            $new_extra_ipaddr_IPv6 = $cce->array_to_scalar(@extra_ipaddr_IPv6);
+
+            if (($System->{IPType} eq 'VZv6') || ($System->{IPType} eq 'VZBOTH')) {
+                # Special case OpenVZ IPv6: All our IPs are always bound and don't change:
+                $new_extra_ipaddr_IPv6 = $System->{extra_ipaddr_IPv6};
+            }
+            else {
+                # Convert Array to Scalar and send it back into CODB:
+                $new_extra_ipaddr_IPv6 = $cce->array_to_scalar(@extra_ipaddr_IPv6);
+            }
+
             # Update 'System' Object with new IPs:
+            &debug_msg("Updating 'System' with 'extra_ipaddr_IPv6':\n");
             ($ok) = $cce->set($sysoid, '', { 'extra_ipaddr_IPv6' =>  $new_extra_ipaddr_IPv6 });
             if (not $ok) {
                 $cce->bye('FAIL', '[[base-vsite.cantCreateExtraIPv6]]');
@@ -311,17 +322,19 @@ sub vsite_del_network_interface
 {
     my ($cce, $ipaddr) = @_;
 
+    &debug_msg("vsite_del_network_interface: Processing IP: $ipaddr\n");
+
     # Check if IP is IPv4 or IPv6:
     $ip = Net::IP->new($ipaddr);
     $ip_check = $ip->version();
 
-    &debug_msg("Running $0: vsite_del_network_interface: Checking if Vsites still use IP $ipaddr.\n");
+    &debug_msg("Running: vsite_del_network_interface: Checking if Vsites still use IP $ipaddr.\n");
 
     # Get 'System' Object:
     my ($sysoid) = $cce->find('System');
     my ($ok, $System) = $cce->get($sysoid);
     if (!$ok) {
-        &debug_msg("Running $0: Could not find 'System' Object. Aborting.\n");
+        &debug_msg("Running: Could not find 'System' Object. Aborting.\n");
         $cce->bye('FAIL');
         exit 1;
     }
@@ -334,7 +347,7 @@ sub vsite_del_network_interface
     @extra_ipaddr = $cce->scalar_to_array($System->{extra_ipaddr});
     @extra_ipaddr_IPv6 = $cce->scalar_to_array($System->{extra_ipaddr_IPv6});
 
-    &debug_msg("Running $0: IP address is an IPv" . $ip_check .  " address.\n");
+    &debug_msg("Running: IP address is an IPv" . $ip_check .  " address.\n");
 
     #
     ### Deal with IPv4:
@@ -385,13 +398,13 @@ sub vsite_del_network_interface
             #($ok) = $cce->set($sysoid, '', { 'extra_ipaddr' =>  $new_extra_ipaddr, 'nw_update' => time() });
             ($ok) = $cce->set($sysoid, '', { 'extra_ipaddr' =>  $new_extra_ipaddr });
             if (not $ok) {
-                &debug_msg("Running $0: IP Fail: cantRemoveExtraIPv4\n");
+                &debug_msg("Running: IP Fail: cantRemoveExtraIPv4\n");
                 $cce->bye('FAIL', '[[base-vsite.cantRemoveExtraIPv4]]');
                 exit(1);
             }
         }
         else {
-            &debug_msg("Running $0: Vsites still seem to be using IP $ipaddr. Doing nothing. Debug: " . scalar(@vsite_oids) . "\n");
+            &debug_msg("Running: Vsites still seem to be using IP $ipaddr. Doing nothing. Debug: " . scalar(@vsite_oids) . "\n");
         }
     }
 
@@ -439,13 +452,20 @@ sub vsite_del_network_interface
         # Sort:
         @filtered_ipv6 = sort @extra_ipaddr_IPv6;
 
-        # Convert Array to Scalar and send it back into CODB:
-        $new_extra_ipaddr_IPv6 = $cce->array_to_scalar(@filtered_ipv6);
+
+        if (($System->{IPType} eq 'VZv6') || ($System->{IPType} eq 'VZBOTH')) {
+            # Special case OpenVZ IPv6: All our IPs are always bound and don't change:
+            $new_extra_ipaddr_IPv6 = $System->{extra_ipaddr_IPv6};
+        }
+        else {
+            # Convert Array to Scalar and send it back into CODB:
+            $new_extra_ipaddr_IPv6 = $cce->array_to_scalar(@filtered_ipv6);
+        }
 
         # Update 'System' Object with new IPs:
         ($ok) = $cce->set($sysoid, '', { 'extra_ipaddr_IPv6' =>  $new_extra_ipaddr_IPv6 });
         if (not $ok) {
-            &debug_msg("Running $0: IP Fail: cantRemoveExtraIPv6\n");
+            &debug_msg("Running: IP Fail: cantRemoveExtraIPv6\n");
             $cce->bye('FAIL', '[[base-vsite.cantRemoveExtraIPv6]]');
             exit(1);
         }
@@ -458,7 +478,7 @@ sub vsite_del_network_interface
             }
         }
         else {
-            &debug_msg("Running $0: Vsites still seem to be using IP $ipaddr.\n");
+            &debug_msg("Running: Vsites still seem to be using IP $ipaddr.\n");
         }
         return 1;
     }
@@ -469,13 +489,13 @@ sub vsite_del_network_interface
 sub vsite_toggle_network_interface {
     my $cce = shift;
 
-    &debug_msg("Running $0: vsite_toggle_network_interface\n");
+    &debug_msg("Running: vsite_toggle_network_interface\n");
 
     # Get 'System' Object:
     my ($sysoid) = $cce->find('System');
     my ($ok, $System) = $cce->get($sysoid);
     if (!$ok) {
-        &debug_msg("Running $0: Could not find 'System' Object. Aborting.\n");
+        &debug_msg("Running: Could not find 'System' Object. Aborting.\n");
         $cce->bye('FAIL');
         exit 1;
     }

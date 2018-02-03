@@ -57,22 +57,36 @@ class VsiteAdd extends MX_Controller {
         // Form fields that are required to have input:
         $required_keys = array('hostName', 'domain', 'createdUser', 'volume', 'maxusers');
 
-        // Check the status of IPv6 and if we show IPv6 related fields:
-        if ($system['gateway_IPv6'] != "") {
-            $access_ipv6 = 'rw';
-            $show_IPv6 = TRUE;
-        }
-        else {
-            $access_ipv6 = 'r';
-            $show_IPv6 = FALSE;
-        }
-
-        // Check the status of IPv4 and if we shizld show IPv4 related fields:
-        if ($system['gateway'] != "") {
+        // Determine visibility of IP protocol related fields:
+        $show_IPv4 = FALSE;
+        $show_IPv6 = FALSE;
+        if (in_array($system['IPType'], array('IPv4', 'VZv4', 'BOTH', 'VZBOTH'))) {
             $show_IPv4 = TRUE;
+            if (in_array($system['IPType'], array('IPv4', 'BOTH'))) {
+                if ($system['gateway'] != "") {
+                    $show_IPv4 = TRUE;
+                }
+                else {
+                    $show_IPv4 = FALSE;
+                }
+            }
         }
-        else {
-            $show_IPv4 = FALSE;
+        if (in_array($system['IPType'], array('IPv6', 'VZv6', 'BOTH', 'VZBOTH'))) {
+            $show_IPv6 = TRUE;
+            if (in_array($system['IPType'], array('IPv6', 'BOTH'))) {
+                if ($system['gateway_IPv6'] != "") {
+                    $access_ipv6 = 'rw';
+                    $show_IPv6 = TRUE;
+                }
+                else {
+                    $access_ipv6 = 'r';
+                    $show_IPv6 = FALSE;
+                }
+            }
+            else {
+                // Special case: OpenVZ
+                $access_ipv6 = 'rw';
+            }
         }
 
         // Empty array for key => values we want to submit to CCE:
@@ -470,7 +484,7 @@ class VsiteAdd extends MX_Controller {
                     $owner_names = implode(", ", $adminArray);
                     if (($CI->serverScriptHelper->getAllowed('systemAdministrator')) || (in_array($CI->BX_SESSION['loginName'], $adminArray))) { 
                         if (filter_var($range['min'], FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
-                            if (($CI->serverScriptHelper->getAllowed('systemAdministrator'))) {
+                            if ((($CI->serverScriptHelper->getAllowed('systemAdministrator'))) && (count($adminArray) > '0')) {
                                 $range_strings['v4'][] = $range['min'] . ' - ' . $range['max'] . ' [' . $owner_names . ']';
                             }
                             else {
@@ -481,7 +495,7 @@ class VsiteAdd extends MX_Controller {
                             }
                         }
                         else {
-                            if (($CI->serverScriptHelper->getAllowed('systemAdministrator'))) {
+                            if ((($CI->serverScriptHelper->getAllowed('systemAdministrator'))) && (count($adminArray) > '0')) {
                                 $range_strings['v6'][] = $range['min'] . ' - ' . $range['max'] . ' [' . $owner_names . ']';
                             }
                             else {
