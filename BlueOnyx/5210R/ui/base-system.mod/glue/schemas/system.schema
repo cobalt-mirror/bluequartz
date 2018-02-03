@@ -10,6 +10,10 @@
   data = "^(BOTH|HTTP|HTTPS)$"
 />
 
+<typedef name="IP_Protocol_Type"  type="re"
+  data = "^(IPv4|IPv6|BOTH|VZv4|VZv6|VZBOTH)$"
+/>
+
 <!-------------------------------------------------------------------------
   SYSTEM 
     Stores all system-wide configuration settings.  There should be
@@ -109,6 +113,9 @@
         name="locales" type="scalar" default="&amp;en&amp;" array="yes"
         writeacl="ruleCapable(adminUser)"
     />
+
+    <!-- Defines if IPv4, IPv6 or both are enabled and configured. Defaults to IPv4: -->
+    <property name="IPType" type="IP_Protocol_Type" default="IPv4" writeacl="ruleCapable(adminUser)" readacl="ruleAll" />
 
     <!-- an array of additional IPv4 IP addresses -->
     <property 

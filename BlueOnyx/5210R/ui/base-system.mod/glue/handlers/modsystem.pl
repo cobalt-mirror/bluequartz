@@ -55,6 +55,10 @@ if ($name =~ m/^localhost\./) {
       $name = "localhost";
 }
 
+# Get IPType:
+$IPType = $obj->{IPType};
+&debug_msg("DEBUG: IPType: $IPType \n");
+
 if (defined($new->{hostname}) || defined($new->{domainname}))
 {
 
@@ -72,6 +76,15 @@ if (defined($new->{hostname}) || defined($new->{domainname}))
   # run the hostname command 
   Sauce::Util::addrollbackcommand("/bin/hostname " . `/bin/hostname`);
   system('/bin/hostname', $name);
+}
+
+# If this runs on an OpenVZ VPS, then we can stop right here. Under no bloody
+# circumstance are we editing /etc/sysconfig/network, as it's off limits and
+# will be redone from scratch by the node on Container restarts anway.
+if (($IPType eq 'VZv4') || ($IPType eq 'VZv6') || ($IPType eq 'VZBOTH')) {
+  # Comfortable shoes are even more comfortable if you don't have to wear them.
+  $cce->bye('SUCCESS');
+  exit(0);
 }
 
 # update /etc/sysconfig/network
