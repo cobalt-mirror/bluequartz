@@ -156,6 +156,11 @@ sub validate_pooling_state
         $ismember = 0;
         foreach my $range (@{$ranges}) {
 
+            if (($ip eq $range->{min}) || ($ip eq $range->{max})) {
+              # Fast check:
+              $ismember = 1;
+            }
+
             $net_ip = Net::IP->new($range->{min} . " - "  . $range->{max});
             $check_ip = Net::IP->new($ip);
             if ($net_ip->overlaps($check_ip)) {

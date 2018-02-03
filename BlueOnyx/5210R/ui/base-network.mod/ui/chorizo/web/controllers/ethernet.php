@@ -59,7 +59,7 @@ class Ethernet extends MX_Controller {
         }
 
         // Protect certain form fields read-only inside VPS's:
-        if (is_file("/proc/user_beancounters")) {
+        if (in_array($system['IPType'], array('VZv4', 'VZv6', 'VZBOTH'))) {
             $fieldprot = "r";
         }
         else {
@@ -75,12 +75,6 @@ class Ethernet extends MX_Controller {
         }
 
         $redirect = "";
-
-        //
-        //--- Get CODB-Object of interest: 
-        //
-
-        $system = $CI->getSystem();
 
         //
         //--- Handle form validation:
@@ -330,7 +324,7 @@ class Ethernet extends MX_Controller {
         }
 
         // Show OpenVZ message:
-        if (is_file("/proc/user_beancounters")) {
+        if (in_array($system['IPType'], array('VZv4', 'VZv6', 'VZBOTH'))) {
             $vps_msg[] = '<div class="alert dismissible alert_green"><img width="40" height="36" src="/.adm/images/icons/small/white/alarm_bell.png"><strong>' . $i18n->interpolateHtml('[[base-network.openvz_vps]]') . '</strong></div>';
             $errors = array_merge($vps_msg, $errors);
         }
@@ -461,9 +455,15 @@ class Ethernet extends MX_Controller {
                 }
             }
             else {
-                // Not AWS. Allow edits if they are allowed for any of
-                // the other network related fields:
-                $gwFprot = $fieldprot;
+                // Not AWS, but OpenVZ Container: 
+                if (in_array($system['IPType'], array('VZv4', 'VZv6', 'VZBOTH'))) {
+                    $gwFprot = '';
+                }
+                else {
+                    // Allow edits if they are allowed for any of
+                    // the other network related fields:
+                    $gwFprot = $fieldprot;
+                }
             }
             $gw_IPv6 = $factory->getIpAddress("gatewayField_IPv6", $system["gateway_IPv6"], $gwFprot);
             $gw_IPv6->setOptional(true);
@@ -970,8 +970,7 @@ class Ethernet extends MX_Controller {
         //--- TAB: aliasSettings
         //
 
-        if ((!is_file("/proc/user_beancounters")) && (!is_file("/etc/is_aws"))) {
-
+        if ((in_array($system['IPType'], array('IPv4', 'IPv6', 'BOTH'))) && (!is_file("/etc/is_aws"))) {
             // Add-Button:
             $addAlias = "/network/aliasModify";
             $addbutton = $factory->getAddButton($addAlias, '[[base-network.addAliasButton]]', "DEMO-OVERRIDE");

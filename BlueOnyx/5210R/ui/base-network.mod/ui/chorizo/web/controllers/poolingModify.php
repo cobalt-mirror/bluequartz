@@ -120,6 +120,9 @@ class PoolingModify extends MX_Controller {
                         $CI->serverScriptHelper->destructor();
                         Log403Error("/gui/Forbidden403");
                     }
+                    if (!isset($attributes["admin"])) {
+                        $attributes["admin"] = 'admin';
+                    }
                     // construct object:
                     $obj = array(
                         "min" => $attributes["min"],

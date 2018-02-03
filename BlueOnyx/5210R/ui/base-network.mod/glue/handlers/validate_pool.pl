@@ -41,7 +41,7 @@ if ($network->{pooling}) {
             $cce->bye('FAIL');
             exit 1;
         }
-        if ((in_array(\@IPs, $net->{ipaddr})) || ($net->{ipaddr} eq "")) {
+        if ((in_array(\@IPs, $net->{ipaddr})) || ($net->{ipaddr} eq "") || ($net->{ipaddr} eq "127.0.0.1")) {
             # Nada
         }
         else {

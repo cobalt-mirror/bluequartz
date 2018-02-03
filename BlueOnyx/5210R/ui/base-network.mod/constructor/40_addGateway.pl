@@ -9,7 +9,12 @@ use Sauce::Util;
 use Sauce::Service;
 use Network;
 
-my $DEBUG = 0;
+# Debugging switch:
+$DEBUG = "1";
+if ($DEBUG) {
+        use Data::Dumper;
+        use Sys::Syslog qw( :DEFAULT setlogsock);
+}
 
 my $errors = 0;
 
@@ -19,6 +24,8 @@ my $gateway_IPv6 = '';
 
 my $cce = new CCE;
 $cce->connectuds();
+
+&debug_msg("Running: starting\n");
 
 my @oids = $cce->find('System');
 if (not @oids) {
@@ -31,6 +38,13 @@ unless ($ok and $obj) {
     $cce->bye('FAIL');
     exit 1;
 }
+
+# Start sane:
+$IPType = "BOTH";
+$gateway = '';
+$gateway_IPv6 = '';
+$gatewaydev_IPv6 = '';
+$NETWORKING_IPV6 = '';
 
 # Parse /etc/sysconfig/network:
 $sys_network = "/etc/sysconfig/network";
@@ -52,24 +66,88 @@ if (-f $sys_network) {
                 $gateway_IPv6 = $1;
             }
         }
+        if ($line =~ /^IPV6_DEFAULTDEV=(.*)$/) {
+            $gatewaydev_IPv6 = $1;
+            if ($gatewaydev_IPv6 =~ /^\"(.*)\"/g) {
+                $gatewaydev_IPv6 = $1;
+            }
+        }
         if ($line =~ /^GATEWAYDEV=(.*)$/) {
             $gatewaydev = $1;
             if ($gatewaydev =~ /^\"(.*)\"/g) {
                 $gatewaydev = $1;
             }
         }
+        if ($line =~ /^NETWORKING_IPV6=(.*)$/) {
+            $NETWORKING_IPV6 = $1;
+            if ($NETWORKING_IPV6 =~ /^\"(.*)\"/g) {
+                $NETWORKING_IPV6 = $1;
+            }
+        }
     }
     close(F);
 }
+
+#
+### Determine which IP protocol is available: IPv4, IPv6 or BOTH:
+#
+
+# Are we an OpenVZ master-node?
+if ((-e "/proc/user_beancounters") && (-f "/etc/vz/conf/0.conf")) {
+    # Yes, we are.
+    if (($gateway ne '') && ($gateway_IPv6 ne '')) {
+        $IPType = 'BOTH';
+    }
+    elsif (($gateway eq '') && ($gateway_IPv6 ne '')) {
+        $IPType = 'IPv6';
+    }
+    elsif (($gateway ne '') && ($gateway_IPv6 eq '')) {
+        $IPType = 'IPv4';
+    }
+}
+elsif ((-e "/proc/user_beancounters") && (!-f "/etc/vz/conf/0.conf")) {
+    # No, we're in an OpenVZ VPS. Here we have the problem that $gateway_IPv6
+    # is not set. But we do have $gatewaydev_IPv6 set to 'venet0'.
+    if (($gateway eq '192.0.2.1') && ($gatewaydev_IPv6 eq 'venet0') && (-f '/etc/sysconfig/network-scripts/ifcfg-venet0:0')) {
+        $IPType = 'VZBOTH';
+    }
+    elsif (($gateway eq '192.0.2.1') && ($gatewaydev_IPv6 eq 'venet0') && (!-f '/etc/sysconfig/network-scripts/ifcfg-venet0:0')) {
+        $IPType = 'VZv6';
+    }
+    elsif (($gateway eq '192.0.2.1') && ($gatewaydev_IPv6 ne 'venet0') && (-f '/etc/sysconfig/network-scripts/ifcfg-venet0:0')) {
+        $IPType = 'VZv4';
+    }    
+}
+else {
+    # No, we are neither an OpenVZ node nor OpenVZ Container:
+    if (($gateway ne '') && ($gateway_IPv6 ne '')) {
+        $IPType = 'BOTH';
+    }
+    elsif (($gateway eq '') && ($gateway_IPv6 ne '')) {
+        $IPType = 'IPv6';
+    }
+    elsif (($gateway ne '') && ($gateway_IPv6 eq '')) {
+        $IPType = 'IPv4';
+    }
+}
+
+&debug_msg("IPType: $IPType\n");
 
 if ((!$gateway) || ((-f "/proc/user_beancounters") && (!$gatewaydev))) {
 
     # Attempt to determine Gateway through other means:
     if ( ! -f "/proc/user_beancounters" ) {
 
-        # Test network connection:
-        $test1 = &pingtest("8.8.8.8");
+        if (($IPType eq 'IPv6') || ($IPType eq 'VZv6')) {
+            $pingTarget = "2001:4860:4860::8888";
+        }
+        else {
+            $pingTarget = "8.8.8.8";
+        }
 
+        # Test network connection:
+        $test1 = &pingtest($pingTarget);
+        &debug_msg("Ping-Test1: $test1\n");
         if ($test eq "1") {
             # Not running on OpenVZ, so check the route to find the Gateway:
             my $data = `$Network::ROUTE -n|grep '^0\.0\.0\.0'`;
@@ -84,10 +162,10 @@ if ((!$gateway) || ((-f "/proc/user_beancounters") && (!$gatewaydev))) {
         if ((!$gateway) || (!$gatewaydev)) {
             # At least either GATEWAY or GATEWAYDEV are undefined. Test network connectivity 
             # to see if we can establish a network connection to the outside:
-            use Net::Ping;
-            $p = Net::Ping->new();
-            $host = "8.8.8.8";
-            if (!$p->ping($host)) {
+
+            $test2 = &pingtest($pingTarget);
+            &debug_msg("Ping-Test2: $test2\n");
+            if (test2 eq "1") {
                 # Network is dead. We need to fix it.
                 
                 # Build output hash:   
@@ -114,17 +192,16 @@ if ((!$gateway) || ((-f "/proc/user_beancounters") && (!$gatewaydev))) {
                 # Restart Network:
                 Sauce::Service::service_run_init('network', 'restart');
             }
-            $p->close();
         }
     }
 }
 
-($DEBUG && $gateway) && print STDERR "Gateway is $gateway\n";
-
-if (($gateway) || ($gateway_IPv6)) {
+&debug_msg("Gateway is $gateway - \$gateway_IPv6: $gateway_IPv6 - \$gatewaydev: $gatewaydev - \$IPType: $IPType\n");
+if (($gateway) || ($gateway_IPv6) || ($IPType)) {
     # Only do a SET transaction if there are changes that need to be applied:
-    if (($gateway ne $obj->{gateway}) || ($gateway_IPv6 ne $obj->{gateway_IPv6})) {
-        $cce->set($oids[0], '', {'gateway' => $gateway, 'gateway_IPv6' => $gateway_IPv6});
+    if (($gateway ne $obj->{gateway}) || ($gateway_IPv6 ne $obj->{gateway_IPv6}) || ($IPType ne $obj->{IPType})) {
+        &debug_msg("Updating CODB Obj.: $oids[0]\n");
+        $cce->set($oids[0], '', {'gateway' => $gateway, 'gateway_IPv6' => $gateway_IPv6, 'IPType' => $IPType });
     }
 }
 
@@ -133,16 +210,19 @@ $cce->bye('SUCCESS');
 exit(0);
 
 sub pingtest($$) {
-  my ($ping) = @_;
-  system(sprintf("ping -q -c 1 %s>/dev/null", $ping));
-  $retcode = $? >> 8;
-  # ping returns 1 if unable to connect
-  return $retcode;
-
- }
+    my ($ping) = @_;
+    if (($IPType eq 'IPv6') || ($IPType eq 'VZv6')) {
+        system(sprintf("ping6 -q -w 3 -c 1 %s >/dev/null", $ping));
+    }
+    else {
+        system(sprintf("ping -q -w 3-c 1 %s >/dev/null", $ping));
+    }
+    $retcode = $? >> 8;
+    # ping returns 1 if unable to connect
+    return $retcode;
+}
 
 sub edit_sys_network {
-
     $ok = Sauce::Util::editfile(
         $sys_network,
         *Sauce::Util::hash_edit_function,
@@ -156,6 +236,17 @@ sub edit_sys_network {
         exit(1);
     }
     system("/bin/rm -f /etc/sysconfig/network.backup.*");
+}
+
+sub debug_msg {
+    if ($DEBUG) {
+        my $msg = shift;
+        $user = $ENV{'USER'};
+        setlogsock('unix');
+        openlog($0,'','user');
+        syslog('info', "$ARGV[0]: $msg");
+        closelog;
+    }
 }
 
 # 

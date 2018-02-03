@@ -35,6 +35,7 @@ my $onboot = $enabled ? 'yes' : 'no';
 
 my $gateway = '';
 my $gateway_IPv6 = '';
+my $IPType = 'IPv4';
 my ($sysoid) = $cce->find('System');
 my ($ok, $System) = $cce->get($sysoid);
 if (!$ok) {
@@ -44,6 +45,7 @@ if (!$ok) {
 else {
     $gateway = $System->{gateway};
     $gateway_IPv6 = $System->{gateway_IPv6};
+    $IPType = $System->{IPType};
 }
 
 &debug_msg("Running rewrite-ifcfg.pl\n");
@@ -193,7 +195,7 @@ sub calcnetwork
 
 sub edit_ifcfg {
 
-    &debug_msg("Running rewrite-ifcfg.pl (inside 'edit_ifcfg'): device: $device - gw: $gateway - gw6: $gateway_IPv6\n"); 
+    &debug_msg("Running rewrite-ifcfg.pl (inside 'edit_ifcfg'): IPType: $IPType - device: $device - gw: $gateway - gw6: $gateway_IPv6\n"); 
 
     my ($fin, $fout, $filename) = @_;
     
@@ -238,10 +240,15 @@ sub edit_ifcfg {
         }
         print $fout "USERCTL=no" . "\n";
         print $fout "ARPCHECK=no" . "\n";
-        if (($ipaddr_IPv6 ne '') && ($gateway_IPv6 ne '')) {
+
+        if (($IPType eq 'IPv6') || ($IPType eq 'VZv6') || ($IPType eq 'BOTH') || ($IPType eq 'VZBOTH')) {
             print $fout "IPV6INIT=yes" . "\n";
-            print $fout "IPV6ADDR=$ipaddr_IPv6" . "\n";
-            print $fout "IPV6_DEFAULTGW=$gateway_IPv6" . "\n";
+            if (($IPType eq 'IPv6') || ($IPType eq 'BOTH')) {
+                # Note: We do NOT need these on OpenVZ VPS's. Primary IP there is the 
+                # first extra-IP and we use venet0 as Gateway instead of IPV6_DEFAULTGW.
+                print $fout "IPV6ADDR=$ipaddr_IPv6" . "\n";
+                print $fout "IPV6_DEFAULTGW=$gateway_IPv6" . "\n";
+            }
             if (($device eq "eth0") || ($device eq "venet0")) {
                 # Are we an OpenVZ master-node?
                 if ((-e "/proc/user_beancounters") && (-f "/etc/vz/conf/0.conf")) {

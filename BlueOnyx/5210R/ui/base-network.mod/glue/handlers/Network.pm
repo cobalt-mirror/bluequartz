@@ -21,7 +21,7 @@ $Network::ROUTE = '/sbin/route';
 $Network::IP = '/sbin/ip';
 # exportable routines
 
-sub find_eth_ifaces  {
+sub find_eth_ifaces_experimental  {
 
     my @eth_ifaces = ();
     my @ifaces = split (/\n/, `LC_ALL=C ls -k1 /sys/class/net`);
@@ -46,7 +46,7 @@ sub find_eth_ifaces  {
 }
 
 # find the interface names for all real and alias interfaces
-sub old_find_eth_ifaces
+sub find_eth_ifaces
 {
     my @eth_ifaces = ();
 

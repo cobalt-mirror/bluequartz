@@ -9,7 +9,11 @@ use Network qw(find_eth_ifaces);
 use Net::IP qw(:PROC);
 use Data::Dumper;
 
-my $DEBUG = 0;
+$DEBUG = "0";
+if ($DEBUG) {
+        use Data::Dumper;
+        use Sys::Syslog qw( :DEFAULT setlogsock);
+}
 
 my $errors = 0;
 
@@ -18,6 +22,8 @@ $cce->connectuds();
 
 # get all the names of all current interfaces and aliases
 my @devices = find_eth_ifaces();
+
+&debug_msg("\@devices: " . Dumper (\@devices) . "\n");
 
 # find_eth_ifaces failed if @devices is empty
 if (!scalar(@devices))
@@ -31,12 +37,21 @@ if (-f "/etc/is_aws") {
     $is_aws = "1";
 }
 
+my ($sysoid) = $cce->find('System');
+my ($ok, $System) = $cce->get($sysoid);
+if (!$ok) {
+    &debug_msg("Running: No 'System' Object found, bailing.\n");
+    $cce->bye('FAIL');
+    exit 1;
+}
+my $IPType = $System->{IPType};
+
 # for each inteface or alias
 # get information from ifconfig
 # make sure a Network object exists in CCE
 # if necessary, destroy duplicates in CCE
 for my $device (@devices) {
-    $DEBUG && print STDERR "current device: $device\n";
+    &debug_msg("current device: $device\n");
 
     $net_device_cfg = $Network::NET_SCRIPTS_DIR . '/ifcfg-' . $device;
 
@@ -49,7 +64,7 @@ for my $device (@devices) {
     my @ipv6_array_out = ();
 
     if (-f $net_device_cfg) {
-        $DEBUG && print STDERR "net_device_cfg: $net_device_cfg \n";
+        &debug_msg("net_device_cfg: $net_device_cfg\n");
 
         # Interface enabled?
         $onboot = `LC_ALL=C cat $net_device_cfg | grep ^ONBOOT=yes | wc -l`;
@@ -67,11 +82,15 @@ for my $device (@devices) {
         $ipv6_ip = `LC_ALL=C cat $net_device_cfg | grep ^IPV6ADDR= | awk -F "IPV6ADDR=" '{print \$2}'`;
         chomp($ipv6_ip);
 
+        &debug_msg("Running: My primary IPv4 ipaddr: " . $ipv4_ip . "\n");
+        &debug_msg("Running: My primary IPv4 netmask: " . $ipv4_nm . "\n");
+        &debug_msg("Running: My primary IPv6 ipaddr: " . $ipv6_ip . "\n");
+
         # Get IPv6 Secondaries:
         if (($device eq "eth0") || ($device eq "venet0")) {
             $ipv6_secs_ip = `LC_ALL=C cat $net_device_cfg| grep ^IPV6ADDR_SECONDARIES= | awk -F 'IPV6ADDR_SECONDARIES="' '{print \$2}'|awk -F '"' '{print \$1}'`;
             chomp($ipv6_secs_ip);
-            $DEBUG && print STDERR "current ipv6_secs_ip: $ipv6_secs_ip\n";
+            &debug_msg("current ipv6_secs_ip: $ipv6_secs_ip\n");
             @ipv6_array = split ' ', $ipv6_secs_ip;
             foreach $ip_x (@ipv6_array) {
                 # Remove Suffix and return IP in shorthand:
@@ -82,10 +101,10 @@ for my $device (@devices) {
                 push @ipv6_array_out, $ip;
             }
             @ipv6_array_out = sort(@ipv6_array_out);
-            $DEBUG && print STDERR Dumper (\@ipv6_array_out) . "\n";
+            &debug_msg("\@ipv6_array_out: " . Dumper (\@ipv6_array_out) . "\n");
             if (scalar(@ipv6_array_out)) {
                 $extra_ipaddr_IPv6 = $cce->array_to_scalar(@ipv6_array_out);
-                $DEBUG && print STDERR "IPv6 Scalar: $extra_ipaddr_IPv6\n";
+                &debug_msg("IPv6 Scalar: $extra_ipaddr_IPv6\n");
                 my ($SysOid) = $cce->find('System');
                 if ($SysOid) {
                     # Get 'System':
@@ -110,7 +129,7 @@ for my $device (@devices) {
                         }                        
                     }
                     else {
-                        $DEBUG && print STDERR "No IPV6ADDR_SECONDARIES changes for $device\n";
+                        &debug_msg("No IPV6ADDR_SECONDARIES changes for $device\n");
                     }
                 }
             }
@@ -119,11 +138,16 @@ for my $device (@devices) {
         $bootproto = 'none';
     }
     else {
-        $DEBUG && print STDERR "net_device_cfg does not yet exist: $net_device_cfg \n";
+        &debug_msg("net_device_cfg does not yet exist: $net_device_cfg\n");
     }
 
     # Get MAC:
-    my $mac = `cat /sys/class/net/$device/address`;
+    if (-f "/sys/class/net/$device/address") {
+        my $mac = `cat /sys/class/net/$device/address`;
+    }
+    else {
+        my $mac = '';
+    }
     chomp($mac);
 
     my $bootproto = 'none';
@@ -162,12 +186,12 @@ for my $device (@devices) {
         $DEBUG && print STDERR "ipv6_ip: $ipv6_ip - " . $obj->{ipaddr_IPv6} .  "\n\n\n";
 
         if (($ipv4_ip ne $obj->{ipaddr}) || ($ipv4_nm ne $obj->{netmask}) || ($ipv6_ip ne $obj->{ipaddr_IPv6}) || ($onboot ne $obj->{enabled}) || ($mac ne $obj->{mac}) || ($bootproto ne $obj->{bootproto})) {
-            $DEBUG && print STDERR "Something has changed. Need to update CODB for $device\n";
+            &debug_msg("Something has changed. Need to update CODB for $device\n");
             my ($ok) = $cce->set($oid, '', $new_obj);
         }
         else {
             # No changes, no SET transaction.
-            $DEBUG && print STDERR "No changes for $device\n";
+            &debug_msg("No changes for $device\n");
         }
     } 
     elsif (scalar(@oids) == 0) {
@@ -176,11 +200,11 @@ for my $device (@devices) {
 
         my ($success) = $cce->create('Network', $new_obj);
         if (!$success) {
-            $DEBUG && print STDERR "Failed to create Network object for $device\n";
+            &debug_msg("Failed to create Network object for $device\n");
             $errors++;
         } 
         else {
-            $DEBUG && print STDERR "Created Network object for $device.\n";
+            &debug_msg("Created Network object for $device.\n");
         }
         # turn on NAT and IPForwarding
         hack_on_nat();
@@ -191,10 +215,10 @@ for my $device (@devices) {
         for my $network (@oids) {
             my ($success) = $cce->destroy($network);
             if ($success) {
-                $DEBUG && print STDERR "Destroyed surplus Network.$device object $network\n";
+                &debug_msg("Destroyed surplus Network.$device object $network\n");
             } 
             else {
-                $DEBUG && print STDERR "Failed to destroy surplus Network.$device object $network\n";
+                &debug_msg("Failed to destroy surplus Network.$device object $network\n");
                 $errors++;
             }
         }
@@ -221,6 +245,18 @@ sub hack_on_nat {
                 my ($ok) = $cce->update($oid, 'Network', { 'nat' => '0', 'ipForwarding' => '0' });
             }
         }
+    }
+}
+
+sub debug_msg {
+    if ($DEBUG) {
+        my $msg = shift;
+        $user = $ENV{'USER'};
+        setlogsock('unix');
+        openlog($0,'','user');
+        syslog('info', "$ARGV[0]: $msg");
+        closelog;
+        print STDERR "$msg\n";
     }
 }
 

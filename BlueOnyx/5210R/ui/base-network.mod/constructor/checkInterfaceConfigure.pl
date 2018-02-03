@@ -14,17 +14,29 @@ $cce->connectuds();
 # Get system object, and some current values from it
 my @oids = $cce->find('System');
 my $sys_oid = $oids[0];
-my ($ok, $sys_obj) = $cce->get($sys_oid, 'Network');
+my ($ok, $System) = $cce->get($sys_oid);
+my ($aok, $sys_obj) = $cce->get($sys_oid, 'Network');
 my $configure = $sys_obj->{'interfaceConfigure'};
 my $pooling = $sys_obj->{'pooling'};
 
+my @arr_assigned_ipv6 = split (/\n/, `LC_ALL=C /sbin/ip address show |grep inet|grep global|awk -F "inet6 " '{print \$2}'|awk -F " brd " '{print \$1}'|cut -d / -f1|sed '/^\$/d'`);
+
+# Get IPType:
+my $IPType = $System->{IPType};
+
 # If we're using DHCP (like in AWS) or if we're under OpenVZ, then we cannot
 # change the IP address ranges via the GUI:
-if (  (-f "/etc/is_aws") || (-f "/proc/user_beancounters")) {
+if ((-f "/etc/is_aws") || (($IPType eq 'VZv4') || ($IPType eq 'VZv6') || ($IPType eq 'VZBOTH'))) {
 	if ($configure == 1 ) {
 		$configure = 0;
 		$cce->update($sys_oid, 'Network', { 'interfaceConfigure' => $configure });
 	}
+  foreach my $ip_v6 (@arr_assigned_ipv6) {
+    @oids = $cce->find('IPPoolingRange', {'min' => $ip_v6});
+    if ($#oids < 0) {
+      $ok = $cce->create('IPPoolingRange', {'min' => $ip_v6, 'max' => $ip_v6, 'admin' => '&admin&' });
+    }    
+  }
 } 
 else {
 	if ($configure == 0 ) {
@@ -41,8 +53,8 @@ if ($configure == 0) {
     my ($ok, $obj) = $cce->get($oid);
     my $ipaddr = $obj->{'ipaddr'};
     @oids = $cce->find('IPPoolingRange', {'min' => $ipaddr});
-    if ($#oids < 0) {
-      $ok = $cce->create('IPPoolingRange', {'min' => $ipaddr, 'max' => $ipaddr});
+    if (($ipaddr ne '127.0.0.1') && ($#oids < 0)) {
+      $ok = $cce->create('IPPoolingRange', {'min' => $ipaddr, 'max' => $ipaddr, 'admin' => '&admin&'});
     }
   }
 
@@ -56,7 +68,12 @@ if ($configure == 0) {
     my $ipaddr = $obj->{'min'};
     my @net_oids = $cce->find('Network', {'ipaddr' => $ipaddr});
     if ($#net_oids < 0 ) {
-      my ($ok) = $cce->destroy($oid);
+      if (in_array(\@arr_assigned_ipv6, $ipaddr)) {
+        # Nada
+      }
+      else {
+        my ($ok) = $cce->destroy($oid);
+      }
     }
   }
   if ($pooling == 0) {
@@ -67,9 +84,15 @@ if ($configure == 0) {
 $cce->bye('SUCCESS');
 exit(0);
 
+sub in_array {
+    my ($arr,$search_for) = @_;
+    my %items = map {$_ => 1} @$arr; # create a hash out of the array values
+    return (exists($items{$search_for}))?1:0;
+}
+
 # 
-# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015-2018 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015-2018 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 

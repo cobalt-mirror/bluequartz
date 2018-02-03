@@ -106,6 +106,24 @@ fi
 
 <begin $CHANGELOG>
 
+* Fri Feb 02 2018 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX07
+- Massive code cleanup on 'My stuipd idea of 2018', whereas I started
+  the IPv6 port of BlueOnyx on a real server instead of under OpenVZ.
+  And paid dearly for that because I had to fix a lot of shit in more
+  places than I dared to imagine. Well, it's done now.
+- Modified constructor/30_addNetwork.pl
+- Modified constructor/40_addGateway.pl
+- Modified constructor/checkInterfaceConfigure.pl
+- Modified glue/handlers/IpPooling.pm
+- Modified glue/handlers/Network.pm
+- Modified glue/handlers/change_route.pl
+- Modified glue/handlers/rewrite-ifcfg.pl
+- Modified glue/handlers/validate_pool.pl
+- Modified src/base-network-am/am_network.sh
+- Modified src/base-network-am/base-network-am.spec
+- Modified ui/chorizo/web/controllers/ethernet.php
+- Modified ui/chorizo/web/controllers/poolingModify.php
+
 * Wed Jan 31 2018 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX06
 - Concept change in IPv6 implementation for compliance with standards.
 - Modified constructor/10_fix_ifup.pl
