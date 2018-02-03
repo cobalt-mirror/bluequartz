@@ -10,7 +10,7 @@ use Sauce::Config;
 use Base::HomeDir qw(homedir_get_group_dir homedir_create_group_link);
 
 # Debugging switch:
-$DEBUG = "1";
+$DEBUG = "0";
 if ($DEBUG) {
     use Sys::Syslog qw( :DEFAULT setlogsock);
 }
