@@ -439,15 +439,14 @@ sub httpd_get_vhost_conf_file
 {
 	my $vhost_name = shift;
 
-	&debug_msg("In Base::Httpd::httpd_get_vhost_conf_file...\n");
+	&debug_msg("In Base::Httpd::httpd_get_vhost_conf_file ...\n");
 	&debug_msg("VHOST: $vhost_name\n");
 
-	if ($vhost_name)
-	{
+	if ($vhost_name) {
+		&debug_msg("$Base::Httpd::vhost_dir/$vhost_name\n");
 		return "$Base::Httpd::vhost_dir/$vhost_name";
 	}
-	else
-	{
+	else {
 		return '';
 	}
 }

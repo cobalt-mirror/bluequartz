@@ -145,6 +145,8 @@ if ($objWeb->{'HSTS'} == '1') {
 &debug_msg("HTTP Port: $httpPort\n");
 &debug_msg("SSL Port: $sslPort\n");
 &debug_msg("HSTS: $HSTS\n");
+&debug_msg("Base::Httpd::vhost_dir: $Base::Httpd::vhost_dir\n");
+&debug_msg("vhost->{name}: $vhost->{name}\n");
 
 # make sure the directory exists before trying to edit the file
 if (!-d $Base::Httpd::vhost_dir)
