@@ -417,8 +417,8 @@ if ((-e "/proc/user_beancounters") && (! -f "/etc/vz/conf/0.conf")) {
 # Reset 'nw_update';
 my ($ok) = $cce->update($sysoid, '', { 'nw_update' => '0' });
 
-#$cce->bye('SUCCESS');
-#exit(0);
+$cce->bye('SUCCESS');
+exit(0);
 
 #
 ### Subroutines:
