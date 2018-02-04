@@ -4,7 +4,7 @@
 /usr/sausalito/constructor/base/network/10_fix_ifup.pl
 
 # Make sure our IPs are all bound and our routes are all OK:
-/usr/sausalito/handlers/base/network/change_route.pl -c 2 >/dev/null 2>&1 || :
+#/usr/sausalito/handlers/base/network/change_route.pl -c 2 >/dev/null 2>&1 || :
 
 # Fix PHP Session dir GID if needed:
 if [ -d "/var/lib/php/session" ];then
