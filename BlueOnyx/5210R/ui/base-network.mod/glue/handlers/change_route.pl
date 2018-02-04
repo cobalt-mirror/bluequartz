@@ -60,6 +60,14 @@ else {
     $cce->connectfd();
 }
 
+my $eo = $cce->event_object();
+my $eo_new = $cce->event_new();
+my $eo_old = $cce->event_old();
+
+#&debug_msg("eo: " . Dumper($eo) . "\n");
+#&debug_msg("eo_new: " . Dumper($eo_new) . "\n");
+#&debug_msg("eo_old: " . Dumper($eo_old) . "\n");
+
 # Handle bootproto=dhcp on AWS, where we do NOT change ifcfg-eth0:
 if (-f "/etc/is_aws") {
     $cce->bye('SUCCESS');
@@ -89,13 +97,27 @@ if (!$ok) {
 }
 
 #
+### Do we need to restart the network? Yes, if there was a Gateway change:
+#
+
+if (($eo_old->{gateway} ne $eo_new->{eo_old})) {
+    &debug_msg("INFO: ********** NETWORK RESTART **********\n");
+    # Restart Network:
+    Sauce::Service::service_run_init('network', 'restart');
+}
+elsif (($eo_old->{gateway_IPv6} ne $eo_new->{gateway_IPv6})) {
+    &debug_msg("INFO: ********** NETWORK RESTART **********\n");
+    # Restart Network:
+    Sauce::Service::service_run_init('network', 'restart');
+}
+
+#
 ### Setting up routes:
 #
 
 my $gateway_IPv6 = $System->{gateway_IPv6};
-my $IPType = $System->{IPType};
 
-if (($IPType eq 'IPv6') || ($IPType eq 'VZv6')) {
+if (($System->{IPType} eq 'IPv6') || ($System->{IPType} eq 'VZv6')) {
     $pingTarget = "2001:4860:4860::8888";
 }
 else {
@@ -106,7 +128,7 @@ else {
 @ipv6_default_routes = split (/\n/, `LC_ALL=C /sbin/ip -6 route show default|awk -F "default via " '{print \$2}'|awk -F " dev" '{print \$1}'`);
 
 # Apply default IPv6 route in case we have IPv6:
-if (($IPType eq 'IPv6') || ($IPType eq 'BOTH') || ($IPType eq 'VZv6') || ($IPType eq 'VZBOTH')) {
+if (($System->{IPType} eq 'IPv6') || ($System->{IPType} eq 'BOTH') || ($System->{IPType} eq 'VZv6') || ($System->{IPType} eq 'VZBOTH')) {
     $ovz6_def_route = `/sbin/ip -6 route show default|grep "^default dev venet0 metric 1 mtu 1500 hoplimit 255"|wc -l`;
     chomp($ovz6_def_route);
     if ((in_array(\@ipv6_default_routes, $gateway_IPv6)) || ($ovz6_def_route eq "1")) {
@@ -114,12 +136,12 @@ if (($IPType eq 'IPv6') || ($IPType eq 'BOTH') || ($IPType eq 'VZv6') || ($IPTyp
         &debug_msg("Running: Default IPv6 route already present.\n");
     }
     else {
-        if (($IPType eq 'VZv6') || ($IPType eq 'VZBOTH')) {
-            &debug_msg("Running: Adding default OpenVZ IPv6 route.\n");
+        if (($System->{IPType} eq 'VZv6') || ($System->{IPType} eq 'VZBOTH')) {
+            &debug_msg("Running: Adding default OpenVZ IPv6 route: /sbin/ip -6 route add default dev venet0 metric 1 mtu 1500 hoplimit 255\n");
             system("/sbin/ip -6 route add default dev venet0 metric 1 mtu 1500 hoplimit 255");
         }
         else {
-            &debug_msg("Running: Adding default IPv6 route.\n");
+            &debug_msg("Running: Adding default IPv6 route: /sbin/ip -6 route add default via $gateway_IPv6\n");
             system("/sbin/ip -6 route add default via $gateway_IPv6");
         }
     }    
@@ -132,18 +154,18 @@ if (($IPType eq 'IPv6') || ($IPType eq 'BOTH') || ($IPType eq 'VZv6') || ($IPTyp
 # Get IP addresses currently bound to $device and also the existing routes:
 @arr_assigned_ipv4 = split (/\n/, `LC_ALL=C /sbin/ip address show dev $device |grep inet|grep global|awk -F "inet " '{print \$2}'|awk -F " brd " '{print \$1}'|cut -d / -f1|sed '/^\$/d'`);
 @arr_assigned_ipv6 = split (/\n/, `LC_ALL=C /sbin/ip address show dev $device |grep inet|grep global|awk -F "inet6 " '{print \$2}'|awk -F " brd " '{print \$1}'|cut -d / -f1|sed '/^\$/d'`);
-@routes_existing_ipv4 = split (/\n/, `LC_ALL=C /sbin/ip -4 route show dev $device|grep -v default|awk -F "/" '{print \$1}'|awk -F " scope link" '{print \$1}'`);
+@routes_existing_ipv4 = split (/\n/, `LC_ALL=C /sbin/ip -4 route show dev $device|grep -v default|grep -v src|awk -F "/" '{print \$1}'|awk -F " scope link" '{print \$1}'`);
 @routes_existing_ipv6 = split (/\n/, `LC_ALL=C /sbin/ip -6 route show dev $device|grep -v default|sed '/fe80::/d'|grep -v "/"|awk -F " " '{print \$1}'`);
 
 # Get primary IPs of '$device' from Network Config file:
-if (($IPType eq 'VZv4') || ($IPType eq 'VZBOTH')) {
+if (($System->{IPType} eq 'VZv4') || ($System->{IPType} eq 'VZBOTH')) {
     # Special case OpenVZ: Primary public IPv4 IP is in 'venet0:0' and not in 'venet0':
     # Additionally: We do NOT have a primary IPv6 IP address under OpenVZ anyway, just extra-IPs.
     $ipv4_ip = `LC_ALL=C cat /etc/sysconfig/network-scripts/ifcfg-venet0:0 | grep IPADDR= | awk -F "IPADDR=" '{print \$2}'`;
     $ipv4_nm = `LC_ALL=C cat /etc/sysconfig/network-scripts/ifcfg-venet0:0 | grep NETMASK= | awk -F "NETMASK=" '{print \$2}'`;
     $ipv6_ip = '';
 }
-elsif ($IPType eq 'VZv6') {
+elsif ($System->{IPType} eq 'VZv6') {
     # Special case OpenVZ in pure IPv6 mode: We don't have an IPv4 address or netmask and we don't risk to grab the dummy '127.0.0.1' from 'venet0' either.
     # Additionally: We do NOT have a primary IPv6 IP address under OpenVZ anyway, just extra-IPs.
     $ipv4_ip = '';
@@ -163,21 +185,53 @@ chomp($ipv6_ip);
 &debug_msg("Running: My primary IPv6 ipaddr: " . $ipv6_ip . "\n");
 
 # Remove primary IPv4 and IPv6 IPs from our arrays:
-@arr_assigned_ipv4 = grep {!/^$ipv4_ip$/} @arr_assigned_ipv4;
-@arr_assigned_ipv6 = grep {!/^$ipv6_ip$/} @arr_assigned_ipv6;
+if (($System->{IPType} eq 'IPv4') || ($System->{IPType} eq 'IPv6') || ($System->{IPType} eq 'BOTH')) {
+    @arr_assigned_ipv4 = grep {!/^$ipv4_ip$/} @arr_assigned_ipv4;
+    @arr_assigned_ipv6 = grep {!/^$ipv6_ip$/} @arr_assigned_ipv6;
+}
 @arr_existing_netroutes = ();
 
 #
 ## Assign IPv4 IPs routes for $device:
 #
 
+# Route for primary IPv4 IP:
+if ($ipv4_ip ne "") {
+    if (in_array(\@routes_existing_ipv4, $ipv4_ip)) {
+        @routes_existing_ipv4 = grep {!/^$ipv4_ip$/} @routes_existing_ipv4;
+        &debug_msg("Route for primary IPv4 IP $ipv4_ip already exists.\n");
+    }
+    else {
+        &debug_msg("/sbin/ip route add " . $ipv4_ip. "/255.255.255.255 dev $device\n");
+        system("/sbin/ip route add " . $ipv4_ip. "/255.255.255.255 dev $device");
+    }
+    # Make sure we have the default route:
+    $gw_defaut_ipv4_route = `/sbin/ip route show default | awk '/default/ {print \$3}'`;
+    chomp($gw_defaut_ipv4_route);
+    if ($System->{gateway} ne $gw_defaut_ipv4_route) {
+        &debug_msg("Default IPv4 route ($gw_defaut_ipv4_route - $System->{gateway}) is missing. Adding it: /sbin/ip route add default via " . $System->{gateway} . "\n");
+        system("/sbin/ip route add default via " . $System->{gateway});
+    }
+}
+# Route for primary IPv6 IP:
+if ($ipv6_ip ne "") {
+    if (in_array(\@routes_existing_ipv6, $ipv6_ip)) {
+        @routes_existing_ipv6 = grep {!/^$ipv6_ip$/} @routes_existing_ipv6;
+        &debug_msg("Route for primary IPv6 IP $ipv6_ip already exists.\n");
+    }
+    else {
+        &debug_msg("/sbin/ip route add " . $ipv6_ip. "/128 dev $device\n");
+        system("/sbin/ip route add " . $ipv6_ip. "/128 dev $device");
+    }
+}
+
 # Make sure all IPv4 extra-IPs have routes:
-if (($IPType eq 'IPv4') || ($IPType eq 'BOTH') || ($IPType eq 'VZv4') || ($IPType eq 'VZBOTH')) {
+if (($System->{IPType} eq 'IPv4') || ($System->{IPType} eq 'BOTH') || ($System->{IPType} eq 'VZv4') || ($System->{IPType} eq 'VZBOTH')) {
     if ($System->{extra_ipaddr}) {
         @extra_ipaddr = $cce->scalar_to_array($System->{extra_ipaddr});
-        if ($ipv4_ip ne '') {
-            push (@extra_ipaddr, $ipv4_ip);
-        }
+        #if ($ipv4_ip ne '') {
+        #    push (@extra_ipaddr, $ipv4_ip);
+        #}
         foreach my $ip_extra (@extra_ipaddr) {
             #&debug_msg("Running: Found extra IPv4 IP: $ip_extra ");
             if (in_array(\@arr_assigned_ipv4, $ip_extra)) {
@@ -197,11 +251,11 @@ if (($IPType eq 'IPv4') || ($IPType eq 'BOTH') || ($IPType eq 'VZv4') || ($IPTyp
             # Handle regular IPv4 routes:
             if (in_array(\@routes_existing_ipv4, $ip_extra)) {
                 # ip_extra route exists, skipping
-                &debug_msg("Running: Found extra IPv4 IP: $ip_extra ... already has a route.");
+                &debug_msg("Running: Found extra IPv4 IP: $ip_extra ... already has a route.\n");
                 @routes_existing_ipv4 = grep {!/^$ip_extra$/} @routes_existing_ipv4;
             }
             else {
-                &debug_msg("Running: Found extra IPv4 IP: $ip_extra ... needs a route.");
+                &debug_msg("Running: Found extra IPv4 IP: $ip_extra ... needs a route.\n");
                 &debug_msg("/sbin/ip route add " . $ip_extra. "/255.255.255.255 dev $device\n");
                 system("/sbin/ip route add " . $ip_extra. "/255.255.255.255 dev $device");
                 @routes_existing_ipv4 = grep {!/^$ip_extra$/} @routes_existing_ipv4;
@@ -211,12 +265,12 @@ if (($IPType eq 'IPv4') || ($IPType eq 'BOTH') || ($IPType eq 'VZv4') || ($IPTyp
 }
 
 # Make sure all IPv6 extra-IPs have routes:
-if (($IPType eq 'IPv6') || ($IPType eq 'BOTH') || ($IPType eq 'VZv6') || ($IPType eq 'VZBOTH')) {
+if (($System->{IPType} eq 'IPv6') || ($System->{IPType} eq 'BOTH') || ($System->{IPType} eq 'VZv6') || ($System->{IPType} eq 'VZBOTH')) {
     if ($System->{extra_ipaddr_IPv6}) {
         @extra_ipaddr_IPv6 = $cce->scalar_to_array($System->{extra_ipaddr_IPv6});
-        if ($ipv6_ip ne '') {
-            push (@extra_ipaddr_IPv6, $ipv6_ip);
-        }
+        #if ($ipv6_ip ne '') {
+        #    push (@extra_ipaddr_IPv6, $ipv6_ip);
+        #}
         foreach my $ip_extra (@extra_ipaddr_IPv6) {
             #&debug_msg("Running: Found extra IPv4 IP: $ip_extra ");
             if (in_array(\@arr_assigned_ipv6, $ip_extra)) {
@@ -227,11 +281,11 @@ if (($IPType eq 'IPv6') || ($IPType eq 'BOTH') || ($IPType eq 'VZv6') || ($IPTyp
             # Handle regular IPv6 routes:
             if (in_array(\@routes_existing_ipv6, $ip_extra)) {
                 # ip_extra route exists, skipping
-                &debug_msg("Running: Found extra IPv6 IP: $ip_extra ... already has a route.");
+                &debug_msg("Running: Found extra IPv6 IP: $ip_extra ... already has a route.\n");
                 @routes_existing_ipv6 = grep {!/^$ip_extra$/} @routes_existing_ipv6;
             }
             else {
-                &debug_msg("Running: Found extra IPv6 IP: $ip_extra ... needs a route.");
+                &debug_msg("Running: Found extra IPv6 IP: $ip_extra ... needs a route.\n");
                 &debug_msg("/sbin/ip -6 route add " . $ip_extra. " dev $device\n");
                 system("/sbin/ip -6 route add " . $ip_extra. " dev $device");
                 @routes_existing_ipv6 = grep {!/^$ip_extra$/} @routes_existing_ipv6;
@@ -241,12 +295,15 @@ if (($IPType eq 'IPv6') || ($IPType eq 'BOTH') || ($IPType eq 'VZv6') || ($IPTyp
 }
 
 # Set up netroutes:
+&debug_msg("\@unique_netroutes: " . Dumper (\@unique_netroutes) . " \n");
+&debug_msg("\@routes_existing_ipv4: " . Dumper (\@routes_existing_ipv4) . " \n");
+&debug_msg("\@routes_existing_ipv6: " . Dumper (\@routes_existing_ipv6) . " \n");
 foreach my $netroute (@unique_netroutes) {
     if (in_array(\@routes_existing_ipv4, $netroute)) {
         # Nada
     }
     else {
-        if (($IPType eq 'IPv4') || ($IPType eq 'BOTH') || ($IPType eq 'VZv4') || ($IPType eq 'VZBOTH')) {
+        if (($System->{IPType} eq 'IPv4') || ($System->{IPType} eq 'BOTH') || ($System->{IPType} eq 'VZv4') || ($System->{IPType} eq 'VZBOTH')) {
             &debug_msg("/sbin/ip route add " . $netroute . "/" . $ipv4_nm . " dev $device\n");
             system("/sbin/ip route add " . $netroute . "/" . $ipv4_nm . " dev $device");
         }
@@ -257,13 +314,13 @@ foreach my $netroute (@unique_netroutes) {
 
 # IPv4: Removing routes for that we no longer have IPs:
 foreach my $ip_extra (@routes_existing_ipv4) {
-    &debug_msg("Running: Removing route for $ip_extra.\n");
+    &debug_msg("Running: Removing route for $ip_extra: /sbin/ip route del " . $ip_extra . " dev $device\n");
     system("/sbin/ip route del " . $ip_extra . " dev $device");
 }
 
 # IPv6: Removing routes for that we no longer have IPs:
 foreach my $ip_extra (@routes_existing_ipv6) {
-    &debug_msg("Running: Removing route for $ip_extra.\n");
+    &debug_msg("Running: Removing route for $ip_extra: /sbin/ip -6 route del " . $ip_extra . " dev $device\n");
     system("/sbin/ip -6 route del " . $ip_extra . " dev $device");
 }
 
@@ -277,7 +334,7 @@ if ($loop_ipv4 ne "1") {
     system("/sbin/ip route add " . '127.0.0.0/255.0.0.0' . " dev lo");
 }
 else {
-    &debug_msg("Running: Loopback ... already has a route.");
+    &debug_msg("Running: Loopback ... already has a route.\n");
 }
 
 #
@@ -360,8 +417,8 @@ if ((-e "/proc/user_beancounters") && (! -f "/etc/vz/conf/0.conf")) {
 # Reset 'nw_update';
 my ($ok) = $cce->update($sysoid, '', { 'nw_update' => '0' });
 
-$cce->bye('SUCCESS');
-exit(0);
+#$cce->bye('SUCCESS');
+#exit(0);
 
 #
 ### Subroutines:
@@ -369,7 +426,7 @@ exit(0);
 
 sub pingtest($$) {
     my ($ping) = @_;
-    if (($IPType eq 'IPv6') || ($IPType eq 'VZv6')) {
+    if (($System->{IPType} eq 'IPv6') || ($System->{IPType} eq 'VZv6')) {
         system(sprintf("ping6 -q -w 3 -c 1 %s >/dev/null", $ping));
     }
     else {
@@ -467,6 +524,7 @@ sub debug_msg {
         setlogsock('unix');
         openlog($0,'','user');
         syslog('info', "$ARGV[0]: $msg");
+        print STDERR "$msg";
         closelog;
     }
 }

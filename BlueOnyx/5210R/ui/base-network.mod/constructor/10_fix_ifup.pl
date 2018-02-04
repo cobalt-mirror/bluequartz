@@ -52,6 +52,7 @@ sub fix_if_up {
             # Not containing correct info. Fixing that:
             my $filename = "/sbin/ifup-local";
             my $ok = Sauce::Util::editfile($filename, *edit_ifcfg, $filename);
+            system("rm -f /sbin/ifup-local.backup.*");
             system("chmod 755 $filename");
             system("chown root:root $filename");
         }

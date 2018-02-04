@@ -28,7 +28,13 @@ my $device = $obj->{'device'};
 my $ipaddr = $obj->{'enabled'} ? $obj->{'ipaddr'} : '0.0.0.0';
 my $ipaddr_IPv6 = $obj->{'enabled'} ? $obj->{'ipaddr_IPv6'} : '';
 my $netmask = $obj->{'netmask'};
-my $enabled = $obj->{'enabled'} && $ipaddr;
+
+#my $enabled = $obj->{'enabled'} && $ipaddr;
+my $enabled = $obj->{'enabled'};
+if (($obj->{'ipaddr'} ne "") || ($obj->{'ipaddr_IPv6'} ne "")) {
+    $enabled = '1';
+}
+
 my $bootproto = $obj->{'bootproto'};
 my ($network, $broadcast) = calcnetwork($ipaddr, $netmask);
 my $onboot = $enabled ? 'yes' : 'no';

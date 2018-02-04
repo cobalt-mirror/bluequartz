@@ -59,7 +59,8 @@ class Ethernet extends MX_Controller {
         }
 
         // Protect certain form fields read-only inside VPS's:
-        if (in_array($system['IPType'], array('VZv4', 'VZv6', 'VZBOTH'))) {
+        //if (in_array($system['IPType'], array('VZv4', 'VZv6', 'VZBOTH'))) {
+        if (is_file("/proc/user_beancounters")) { 
             $fieldprot = "r";
         }
         else {
@@ -170,6 +171,31 @@ class Ethernet extends MX_Controller {
 
             // Prevent handler change_route.pl from firing before we are entirely done with the network settings:
             $CI->cceClient->record($oids['0'], '', array("nw_update" => '0'));
+
+            // Determine IPtype:
+            if (!is_file("/proc/user_beancounters")) {
+                $got_IPv4 = '0';
+                $got_IPv6 = '0';
+                $got_BOTH = '0';
+                if ((isset($attributes['ipAddressFieldeth0'])) && (isset($attributes['netMaskFieldeth0'])) && (isset($attributes['gatewayField']))) {
+                    if (($attributes['ipAddressFieldeth0'] != "") && ($attributes['netMaskFieldeth0'] != "") && ($attributes['gatewayField'] != "")) {
+                        $got_IPv4 = '1';
+                        $IPType = 'IPv4';
+                    }
+                }
+                if ((isset($attributes['IPv6_ipAddressFieldeth0'])) && (isset($attributes['gatewayField_IPv6']))) {
+                    if (($attributes['IPv6_ipAddressFieldeth0'] != "") && ($attributes['gatewayField_IPv6'] != "")) {
+                        $got_IPv6 = '1';
+                        $IPType = 'IPv6';
+                    }
+                }
+                if (($got_IPv4 == '1') && ($got_IPv6 == '1')) {
+                    $got_BOTH = '1';
+                    $IPType = 'BOTH';
+                }
+                // Record CCE Replay-Transaction:
+                $CI->cceClient->record($oids['0'], '', array("IPType" => $IPType));
+            }
 
             if ($product->isRaq()) {
                 // Record CCE Replay-Transaction:
