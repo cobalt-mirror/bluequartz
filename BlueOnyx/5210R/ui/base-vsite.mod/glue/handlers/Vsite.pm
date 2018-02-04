@@ -289,7 +289,7 @@ sub vsite_add_network_interface
             }
 
             # Update 'System' Object with new IPs:
-            &debug_msg("Updating 'System' with 'extra_ipaddr_IPv6':\n");
+            &debug_msg("Vsite.pm vsite_add_network_interface: Updating 'System' with 'extra_ipaddr_IPv6':\n");
             ($ok) = $cce->set($sysoid, '', { 'extra_ipaddr_IPv6' =>  $new_extra_ipaddr_IPv6 });
             if (not $ok) {
                 $cce->bye('FAIL', '[[base-vsite.cantCreateExtraIPv6]]');
@@ -444,10 +444,9 @@ sub vsite_del_network_interface
                 &debug_msg("Running: /sbin/ip -6 route del $ipaddr\n");
                 system("/sbin/ip -6 route del $ipaddr");
             }
+            # Remove duplicates:
+            my @extra_ipaddr_IPv6 = uniq(@filtered_ipv6);
         }
-
-        # Remove duplicates:
-        my @extra_ipaddr_IPv6 = uniq(@filtered_ipv6);
 
         # Sort:
         @filtered_ipv6 = sort @extra_ipaddr_IPv6;
@@ -463,6 +462,7 @@ sub vsite_del_network_interface
         }
 
         # Update 'System' Object with new IPs:
+        &debug_msg("Vsite.pm vsite_del_network_interface: Updating 'System' with 'extra_ipaddr_IPv6':\n");
         ($ok) = $cce->set($sysoid, '', { 'extra_ipaddr_IPv6' =>  $new_extra_ipaddr_IPv6 });
         if (not $ok) {
             &debug_msg("Running: IP Fail: cantRemoveExtraIPv6\n");

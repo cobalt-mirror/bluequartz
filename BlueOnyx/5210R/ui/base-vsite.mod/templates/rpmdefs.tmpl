@@ -55,6 +55,7 @@ information for [VENDOR]-[SERVICE].
 /etc/skel/vsite/*
 %attr(0755,-,-) /usr/sausalito/sbin/vsite_destroy.pl
 %attr(0755,-,-) /usr/sausalito/sbin/fix_user_suspension.pl
+%attr(0755,-,-) /usr/sausalito/sbin/fix_vsite_ips.pl
 %attr(0755,-,-) /usr/sausalito/sbin/web_alias_redirects.pl
 %attr(0755,-,-) /usr/sausalito/sbin/suPHP_fixer.pl
 %attr(0755,-,-) /usr/sausalito/sbin/php_settings_convert.pl
@@ -140,6 +141,13 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Sun Feb 04 2018 Michael Stauber <mstauber@solarspeed.net> 4.3-0BX08
+- More IPv6 related fixes.
+- Modified glue/Makefile
+- Modified glue/handlers/Vsite.pm
+- Modified glue/handlers/change_net_info.pl
+- Added glue/sbin/fix_vsite_ips.pl
 
 * Fri Feb 02 2018 Michael Stauber <mstauber@solarspeed.net> 4.3-0BX07
 - OpenVZ IPv6 fixes.

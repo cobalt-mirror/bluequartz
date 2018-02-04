@@ -62,6 +62,8 @@ if ($vsite_new->{fqdn}) {
     umask($old_umask);
 } # end of fqdn change specific
 
+&debug_msg("INFO: \$vsite_new->{ipaddr}: " . $vsite_new->{ipaddr} . " - \$vsite_old->{ipaddr}: " . $vsite_old->{ipaddr} . "\n");
+
 # handle ip address change
 if ($vsite_new->{ipaddr}) {
     # Add used IPs ro network interfaces:
@@ -70,7 +72,11 @@ if ($vsite_new->{ipaddr}) {
     if ($vsite_old->{ipaddr}) {
         vsite_del_network_interface($cce, $vsite_old->{ipaddr});
     }
-} # end of ip address change specific
+} 
+if ((!$vsite_new->{ipaddr}) && ($vsite_old->{ipaddr})) {
+    vsite_del_network_interface($cce, $vsite_old->{ipaddr});
+}
+# end of ip address change specific
 
 # handle ip address change
 if ($vsite_new->{ipaddrIPv6}) {
@@ -87,7 +93,7 @@ if ($vsite_new->{ipaddrIPv6}) {
     my ($sysoid) = $cce->find('System');
     my ($ok, $System) = $cce->get($sysoid);
 
-    if ($sysoid->{extra_ipaddr_IPv6}) {
+    if ($System->{extra_ipaddr_IPv6}) {
         @extra_ipaddr_IPv6 = $cce->scalar_to_array($System->{extra_ipaddr_IPv6});
         foreach my $ip_extra (@extra_ipaddr_IPv6) {
             &debug_msg("Checking if Vsite uses $ip_extra\n");
@@ -96,6 +102,9 @@ if ($vsite_new->{ipaddrIPv6}) {
                 # Remove element from array:
                 &debug_msg("Removing $ip_extra\n");
                 @extra_ipaddr_IPv6 = grep {!/^$ip_extra$/} @extra_ipaddr_IPv6;
+            }
+            else {
+                &debug_msg("Still being used: $ip_extra - by # of vsites: " . scalar(@vsite_oids) . "\n");
             }
         }
         # Remove duplicates:
