@@ -106,6 +106,10 @@ fi
 
 <begin $CHANGELOG>
 
+* Mon Feb 05 2018 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX10
+- Modified glue/conf/base-network.conf to call etchosts.pl on Vsite changes.
+- Fixed glue/handlers/etchosts.pl and added IPv6 support.
+
 * Sun Feb 04 2018 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX09
 - Small fix in constructor/40_addGateway.pl as some OpenVZ VPS's may not
   have the gatewaydev specified in /etc/sysconfig/network.

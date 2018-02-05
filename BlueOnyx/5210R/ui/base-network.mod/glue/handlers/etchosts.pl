@@ -2,9 +2,21 @@
 # $Id: etchosts.pl
 
 use CCE;
+use Getopt::Long;
+
+my $CMDLINE = 0;
+GetOptions('cmdline', \$CMDLINE, 'debug', \$DEBUG);
 
 my $cce = new CCE;
-$cce->connectfd();
+
+if ($CMDLINE) {
+    $cce->connectuds();
+} 
+else {
+    $cce->connectfd();
+}
+
+#$cce->connectfd();
 
 @RealNetOids = $cce->find('Network', { 'enabled' => '1', 'real' => '1' } );
 @OtherNetOids = $cce->find('Network', { 'enabled' => '1', 'real' => '0' } );
@@ -24,6 +36,10 @@ if ((-e '/usr/bin/hostnamectl') && ($nw_update ne '0')) {
     system("/usr/bin/hostnamectl set-hostname $servername");
 }
 
+#
+### Handle IPv4:
+#
+
 # Set up an array for all IP addresses of this box;
 @all_ips = ('127.0.0.1');
 
@@ -36,7 +52,7 @@ foreach $oid (@RealNetOids) {
     ($ok, $obj) = $cce->get($oid);
     $MainIpaddr = $obj->{'ipaddr'};
     push (@all_ips, $MainIpaddr);
-    $output .= $MainIpaddr . filler($MainIpaddr) . "\t" . $hostname . filler($hostname) . "\t" . $servername . "\n";
+    $output .= $MainIpaddr . filler($MainIpaddr) . "\t" . $servername . filler($servername) . "\t" . $hostname . "\n";
 }
 
 if (scalar(@OtherNetOids) gt "1") {
@@ -48,17 +64,73 @@ foreach $oid (@OtherNetOids) {
     $ipaddr = $obj->{'ipaddr'};
     if (($ipaddr ne "127.0.0.1") && ($ipaddr ne $MainIpaddr)) {
         push (@all_ips, $ipaddr);
-        $output .= $ipaddr . filler($ipaddr) . "\t" . $hostname . filler($hostname) . "\t" . $servername . "\n";
+        $output .= $ipaddr . filler($ipaddr) . "\t" . $servername . filler($servername) . "\t" . $hostname . "\n";
     }
 }
 
-$output .= "\n" . '# Entries for all Vsites on IP addresses of this server:' . "\n";
+$output .= "\n" . '# Entries for all Vsites on IPv4 IP addresses of this server:' . "\n";
 foreach $ip (@all_ips) {
     @Vsites_on_IP = $cce->find('Vsite', { 'ipaddr' => $ip } );
     if (scalar(@Vsites_on_IP) gt "0") {
         foreach $oid (@Vsites_on_IP) {
             ($ok, $Vsite) = $cce->get($oid);
-            $output .= $ip . filler($ip) . "\t" . $Vsite->{'hostname'} . filler($Vsite->{'hostname'}) . "\t" . $Vsite->{'fqdn'} . "\n";
+            $output .= $ip . filler($ip) . "\t" . $Vsite->{'fqdn'} . filler($Vsite->{'fqdn'}) . "\t" . $Vsite->{'hostname'} . "\n";
+        }
+    }
+}
+
+#
+### Handle IPv6:
+#
+
+if (($System->{IPType} eq 'IPv6') || ($System->{IPType} eq 'BOTH') || ($System->{IPType} eq 'VZv6') || ($System->{IPType} eq 'VZBOTH')) {
+    # Get primary IPs of '$device' from Network Config file:
+    if ($System->{IPType} eq 'VZBOTH') {
+        # Special case OpenVZ: Primary public IPv4 IP is in 'venet0:0' and not in 'venet0':
+        # Additionally: We do NOT have a primary IPv6 IP address under OpenVZ anyway, just extra-IPs.
+        $ipv4_ip = `LC_ALL=C cat /etc/sysconfig/network-scripts/ifcfg-venet0:0 | grep IPADDR= | awk -F "IPADDR=" '{print \$2}'`;
+        $ipv4_nm = `LC_ALL=C cat /etc/sysconfig/network-scripts/ifcfg-venet0:0 | grep NETMASK= | awk -F "NETMASK=" '{print \$2}'`;
+        $ipv6_ip = '';
+    }
+    elsif ($System->{IPType} eq 'VZv6') {
+        # Special case OpenVZ in pure IPv6 mode: We don't have an IPv4 address or netmask and we don't risk to grab the dummy '127.0.0.1' from 'venet0' either.
+        # Additionally: We do NOT have a primary IPv6 IP address under OpenVZ anyway, just extra-IPs.
+        $ipv4_ip = '';
+        $ipv4_nm = '';
+        $ipv6_ip = '';
+    }
+    else {
+        $ipv4_ip = `LC_ALL=C cat /etc/sysconfig/network-scripts/ifcfg-$device | grep IPADDR= | awk -F "IPADDR=" '{print \$2}'`;
+        $ipv4_nm = `LC_ALL=C cat /etc/sysconfig/network-scripts/ifcfg-$device | grep NETMASK= | awk -F "NETMASK=" '{print \$2}'`;
+        $ipv6_ip = `LC_ALL=C cat /etc/sysconfig/network-scripts/ifcfg-$device | grep IPV6ADDR= | awk -F "IPV6ADDR=" '{print \$2}'`;
+    }
+    chomp($ipv4_ip);
+    chomp($ipv4_nm);
+    chomp($ipv6_ip);
+
+    if ($System->{extra_ipaddr_IPv6}) {
+        @extra_ipaddr_IPv6 = $cce->scalar_to_array($System->{extra_ipaddr_IPv6});
+
+        $output .= "\n" . '# Entries for all Vsites on IPv6 IP addresses of this server:' . "\n";
+        $hn_set = '0';
+        if ($ipv6_ip ne '') {
+            $output .= $ipv6_ip . filler($ipv6_ip) . "\t" . $servername . filler($servername) . "\t" . $hostname . "\n";
+            $hn_set++;
+        }
+        foreach $ip (@extra_ipaddr_IPv6) {
+            @Vsites_on_IP = $cce->find('Vsite', { 'ipaddrIPv6' => $ip } );
+            if (scalar(@Vsites_on_IP) gt "0") {
+                foreach $oid (@Vsites_on_IP) {
+                    ($ok, $Vsite) = $cce->get($oid);
+                    if ($hn_set eq "0") {
+                        $output .= $ip . filler($ip) . "\t" . $servername . filler($servername) . "\t" . $hostname . "\n";
+                        $hn_set++;
+                    }
+                    $output .= $ip . filler($ip) . "\t" . $Vsite->{'fqdn'} . filler($Vsite->{'fqdn'}) . "\t" . $Vsite->{'hostname'} . "\n";
+                }
+            }
+            else {
+            }
         }
     }
 }
@@ -97,7 +169,7 @@ if (-f $etc_hosts) {
 }
 
 # Combine our output with user_additions:
-$output .= $user_additions;
+#$output .= $user_additions;
 
 # Update /etc/hosts
 open(CONF, ">$etc_hosts") || die "Can't write to $etc_hosts!";
@@ -121,8 +193,8 @@ sub filler {
 }
 
 # 
-# Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2016-2018 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2016-2018 Team BlueOnyx, BLUEONYX.IT
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 
