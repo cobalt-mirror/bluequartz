@@ -141,6 +141,17 @@ sub debug_msg {
     }
 }
 
+sub in_array {
+    my ($arr,$search_for) = @_;
+    my %items = map {$_ => 1} @$arr; # create a hash out of the array values
+    return (exists($items{$search_for}))?1:0;
+}
+
+sub uniq {
+    my %seen;
+    grep !$seen{$_}++, @_;
+}
+
 # 
 # Copyright (c) 2014-2018 Michael Stauber, SOLARSPEED.NET
 # Copyright (c) 2014-2018 Team BlueOnyx, BLUEONYX.IT
