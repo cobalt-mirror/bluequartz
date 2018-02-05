@@ -107,16 +107,20 @@ if ((-e "/proc/user_beancounters") && (-f "/etc/vz/conf/0.conf")) {
 }
 elsif ((-e "/proc/user_beancounters") && (!-f "/etc/vz/conf/0.conf")) {
     # No, we're in an OpenVZ VPS. Here we have the problem that $gateway_IPv6
-    # is not set. But we do have $gatewaydev_IPv6 set to 'venet0'.
-    if (($gateway eq '192.0.2.1') && ($gatewaydev_IPv6 eq 'venet0') && (-f '/etc/sysconfig/network-scripts/ifcfg-venet0:0')) {
+    # is not set. And $gatewaydev_IPv6 might not be set either. So we go by IPs:
+    $got_ipv4_ips = `/sbin/ip -4 -o addr show |grep venet|grep -v 127.0.0.1|wc -l`;
+    chomp($got_ipv4_ips);
+    $got_ipv6_ips = `/sbin/ip -6 -o addr show |grep venet|wc -l`;
+    chomp($got_ipv6_ips);
+    if (($got_ipv4_ips gt '0') && ($got_ipv6_ips gt '0') && (-f '/etc/sysconfig/network-scripts/ifcfg-venet0:0')) {
         $IPType = 'VZBOTH';
     }
-    elsif (($gateway eq '192.0.2.1') && ($gatewaydev_IPv6 eq 'venet0') && (!-f '/etc/sysconfig/network-scripts/ifcfg-venet0:0')) {
+    elsif (($got_ipv6_ips gt '0') && (!-f '/etc/sysconfig/network-scripts/ifcfg-venet0:0')) {
         $IPType = 'VZv6';
     }
-    elsif (($gateway eq '192.0.2.1') && ($gatewaydev_IPv6 ne 'venet0') && (-f '/etc/sysconfig/network-scripts/ifcfg-venet0:0')) {
+    elsif ((got_ipv4_ips gt '0') && (-f '/etc/sysconfig/network-scripts/ifcfg-venet0:0')) {
         $IPType = 'VZv4';
-    }    
+    }
 }
 else {
     # No, we are neither an OpenVZ node nor OpenVZ Container:
@@ -133,17 +137,17 @@ else {
 
 &debug_msg("IPType: $IPType\n");
 
+if (($IPType eq 'IPv6') || ($IPType eq 'VZv6')) {
+    $pingTarget = "2001:4860:4860::8888";
+}
+else {
+    $pingTarget = "8.8.8.8";
+}
+
 if ((!$gateway) || ((-f "/proc/user_beancounters") && (!$gatewaydev))) {
 
     # Attempt to determine Gateway through other means:
     if ( ! -f "/proc/user_beancounters" ) {
-
-        if (($IPType eq 'IPv6') || ($IPType eq 'VZv6')) {
-            $pingTarget = "2001:4860:4860::8888";
-        }
-        else {
-            $pingTarget = "8.8.8.8";
-        }
 
         # Test network connection:
         $test1 = &pingtest($pingTarget);
@@ -210,12 +214,12 @@ $cce->bye('SUCCESS');
 exit(0);
 
 sub pingtest($$) {
-    my ($ping) = @_;
+    my $ping = shift;
     if (($IPType eq 'IPv6') || ($IPType eq 'VZv6')) {
         system(sprintf("ping6 -q -w 3 -c 1 %s >/dev/null", $ping));
     }
     else {
-        system(sprintf("ping -q -w 3-c 1 %s >/dev/null", $ping));
+        system(sprintf("ping -q -w 3 -c 1 %s >/dev/null", $ping));
     }
     $retcode = $? >> 8;
     # ping returns 1 if unable to connect
@@ -246,6 +250,7 @@ sub debug_msg {
         openlog($0,'','user');
         syslog('info', "$ARGV[0]: $msg");
         closelog;
+        print STDERR $msg;
     }
 }
 
