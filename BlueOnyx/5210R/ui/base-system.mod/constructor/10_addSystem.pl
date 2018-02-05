@@ -24,15 +24,15 @@ my ($product, $build, $lang) = ($fullbuild =~ m/^build (\S+) for a (\S+) in (\S+
 
 # Supported languages:
 my %locales = (  
-	"en_US" => "&en_US&",
-	"da_DK" => "&da_DK&",
-	"de_DE" => "&de_DE&",
-	"es_ES" => "&es_ES&",
-	"fr_FR" => "&fr_FR&",
-	"it_IT" => "&it_IT&",
-	"ja_JP" => "&ja_JP&",
-	"nl_NL" => "&nl_NL&",
-	"pt_PT" => "&pt_PT&"
+    "en_US" => "&en_US&",
+    "da_DK" => "&da_DK&",
+    "de_DE" => "&de_DE&",
+    "es_ES" => "&es_ES&",
+    "fr_FR" => "&fr_FR&",
+    "it_IT" => "&it_IT&",
+    "ja_JP" => "&ja_JP&",
+    "nl_NL" => "&nl_NL&",
+    "pt_PT" => "&pt_PT&"
 );
 
 
@@ -48,25 +48,25 @@ if ($lang =~ /^ja/) {
     $lang = 'ja_JP';
 }
 elsif ($lang =~ /^da_DK/) { 
-	$lang = 'da_DK';
+    $lang = 'da_DK';
 }
 elsif ($lang =~ /^de_DE/) { 
-	$lang = 'de_DE';
+    $lang = 'de_DE';
 }
 elsif ($lang =~ /^es_ES/) { 
-	$lang = 'es_ES';
+    $lang = 'es_ES';
 }
 elsif ($lang =~ /^fr_FR/) { 
-	$lang = 'fr_FR';
+    $lang = 'fr_FR';
 }
 elsif ($lang =~ /^it_IT/) { 
-	$lang = 'it_IT';
+    $lang = 'it_IT';
 }
 elsif ($lang =~ /^pt_PT/) { 
-	$lang = 'pt_PT';
+    $lang = 'pt_PT';
 }
 elsif ($lang =~ /^nl_NL/) { 
-	$lang = 'nl_NL';
+    $lang = 'nl_NL';
 }
 else {
     $lang = 'en_US';
@@ -87,28 +87,33 @@ $mydomain = $fqdn;
 $mydomain =~ s/^$myhost\.//;
 
 if ( $myhost eq "" ) {
-	$myhost = "localhost";
+    $myhost = "localhost";
 }
 if ( $mydomain eq "" ) {
-	$mydomain = "localdomain";
+    $mydomain = "localdomain";
 }
 
 my @nss = ();
 if (open (FILE, '< /etc/resolv.conf')) {
-	while ( defined($_ = <FILE>) ) {
-		chomp ();
-		# print $_, "\n";
-		if (/nameserver\s*(\S.*)/) {
-			if (defined ($1)) {
-				push @nss, $1;
-			}
-		}
-	}
-	close (FILE);
+    while ( defined($_ = <FILE>) ) {
+        chomp ();
+        # print $_, "\n";
+        if (/nameserver\s*(\S.*)/) {
+            if (defined ($1)) {
+                if (in_array(\@nss, $1)) {
+                    # Nada
+                }
+                else {
+                    push @nss, $1;
+                }
+            }
+        }
+    }
+    close (FILE);
 }
 my $nsscalar = "";
 if ( @nss ) {
-	$nsscalar = CCE->array_to_scalar (@nss)
+    $nsscalar = CCE->array_to_scalar (@nss)
 }
 
 #
@@ -120,9 +125,9 @@ my $available_langs = $cce->array_to_scalar(I18n::getAvailableLocales('base-syst
 # count the systems;
 my @oids = $cce->find("System");
 if ($#oids == 0) {
-	# We have only one System object - update it:
-    	($sys_oid) = $cce->find('System', '');
-    	($ok) = $cce->update($sys_oid, '',{
+    # We have only one System object - update it:
+        ($sys_oid) = $cce->find('System', '');
+        ($ok) = $cce->update($sys_oid, '',{
                 'hostname' => $myhost,
                 'domainname' => $mydomain,
                 'dns' => $nsscalar,
@@ -135,32 +140,32 @@ if ($#oids == 0) {
         });
         $oids[0] = $cce->oid();
 } elsif ($#oids < 0) {
-	# we must create a System object with no properties.
-	$cce->create("System", {
-		'hostname' => $myhost,
-		'domainname' => $mydomain,
-		'dns' => $nsscalar,
-		'productBuildString'=>$fullbuild,
-		'productIdentity' => $product,
-		'productBuild' => $build,
-		'productLanguage' => $lang,
-		'console' =>"0",
-		'locales' => $available_langs
-	});
-	$oids[0] = $cce->oid();
+    # we must create a System object with no properties.
+    $cce->create("System", {
+        'hostname' => $myhost,
+        'domainname' => $mydomain,
+        'dns' => $nsscalar,
+        'productBuildString'=>$fullbuild,
+        'productIdentity' => $product,
+        'productBuild' => $build,
+        'productLanguage' => $lang,
+        'console' =>"0",
+        'locales' => $available_langs
+    });
+    $oids[0] = $cce->oid();
 } else { # we have more than one System object.
-	print STDERR "ERROR: Multiple system objects detected!\n";
-	print STDERR "       attempting to repair...\n";
-	shift(@oids); # don't delete this one.
-	foreach $_ (@oids) {
-		my ($success) = $cce->destroy($_);
-		if ($success) {
-			print STDERR "       Deleted System object $_\n";
-		} else {
-			print STDERR "       FAILED to delete System object $_\n";
-			$errors++;
-		}
-	}
+    print STDERR "ERROR: Multiple system objects detected!\n";
+    print STDERR "       attempting to repair...\n";
+    shift(@oids); # don't delete this one.
+    foreach $_ (@oids) {
+        my ($success) = $cce->destroy($_);
+        if ($success) {
+            print STDERR "       Deleted System object $_\n";
+        } else {
+            print STDERR "       FAILED to delete System object $_\n";
+            $errors++;
+        }
+    }
 }
 
 # sync console (redundant on first create, safe on all others)
@@ -171,29 +176,35 @@ if ($#oids == 0) {
 
 # update System.locales everytime in case we add/remove a locale
 if ($oids[0]) {
-	$cce->update($oids[0], '', { 'locales' => $available_langs });
+    $cce->update($oids[0], '', { 'locales' => $available_langs });
 }
 
 $cce->bye();
 exit($errors);
 
+sub in_array {
+    my ($arr,$search_for) = @_;
+    my %items = map {$_ => 1} @$arr; # create a hash out of the array values
+    return (exists($items{$search_for}))?1:0;
+}
+
 # 
-# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2014-2018 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2014-2018 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 
-#	 notice, this list of conditions and the following disclaimer.
+#    notice, this list of conditions and the following disclaimer.
 # 
 # 2. Redistributions in binary form must reproduce the above copyright 
-#	 notice, this list of conditions and the following disclaimer in 
-#	 the documentation and/or other materials provided with the 
-#	 distribution.
+#    notice, this list of conditions and the following disclaimer in 
+#    the documentation and/or other materials provided with the 
+#    distribution.
 # 
 # 3. Neither the name of the copyright holder nor the names of its 
-#	 contributors may be used to endorse or promote products derived 
-#	 from this software without specific prior written permission.
+#    contributors may be used to endorse or promote products derived 
+#    from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
 # "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
