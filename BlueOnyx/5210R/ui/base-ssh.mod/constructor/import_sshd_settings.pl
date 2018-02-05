@@ -25,7 +25,6 @@ use CCE;
 use Data::Dumper;
 
 my $cce = new CCE;
-my $conf = '/var/lib/cobalt';
 
 if ($whatami eq "handler") {
     $cce->connectfd();
@@ -134,6 +133,11 @@ sub verify {
 				$CONFIG{"$entry"} = "yes";
 		    }
 		}
+
+		if ($CONFIG{Protocol} eq "2") {
+			$CONFIG{RSAAuthentication} = "0";
+		}
+
 		# Convert selected config file values (No|no|Yes|yes) to bool (0|1) for CODB:
 		if (in_array(\@boolKeys, $entry)) {
 			if (in_array(\@yes, $CONFIG{$entry})) {
