@@ -31,6 +31,11 @@ if [ -d "/etc/apf" ];then
 	rm -f /etc/sysconfig/iptables
 	touch /etc/sysconfig/iptables
 	echo "# Empty, because APF is present" > /etc/sysconfig/iptables
+	rm -f /etc/sysconfig/ip6tables
+	touch /etc/sysconfig/ip6tables
+	echo "# Empty, because APF is present" > /etc/sysconfig/ip6tables
+	# We exit here. No point going further.
+	exit
 fi
 
 # Command line option clean - to reset all rules that we use

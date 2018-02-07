@@ -1,7 +1,7 @@
 Summary: Server and site statistics for web, ftp, email, and network traffic
 Name: base-sitestats-scripts
 Version: 2.0
-Release: 1BX03%{?dist}
+Release: 1BX04%{?dist}
 Vendor: Project BlueOnyx
 License: Sun modified BSD
 Group: System Environment/BlueOnax
@@ -50,6 +50,10 @@ else
     touch /etc/sysconfig/iptables
     echo "# Empty, because log_traffic hasn't run yet." > /etc/sysconfig/iptables
 
+    rm -f /etc/sysconfig/ip6tables
+    touch /etc/sysconfig/ip6tables
+    echo "# Empty, because log_traffic hasn't run yet." > /etc/sysconfig/ip6tables
+
     # Enable iptables:
     systemctl enable iptables.service
 
@@ -61,6 +65,10 @@ else
     rm -f /etc/sysconfig/iptables
     touch /etc/sysconfig/iptables
     echo "# Empty, because log_traffic hasn't run yet." > /etc/sysconfig/iptables
+
+    rm -f /etc/sysconfig/ip6tables
+    touch /etc/sysconfig/ip6tables
+    echo "# Empty, because log_traffic hasn't run yet." > /etc/sysconfig/ip6tables
 
     # Generate accounting rules for iptables:
     /etc/cron.hourly/log_traffic &>/dev/null || :
@@ -81,6 +89,9 @@ else
 fi
 
 %changelog
+
+* Tue Jan 06 2018 Michael Stauber <mstauber@solarspeed.net> 2.0-1BX04
+- Overhauled provisions for IPv6 and APF.
 
 * Fri Jun 10 2016 Michael Stauber <mstauber@solarspeed.net> 2.0-1BX03
 - Proper fix for preventing that the standard RHEL7 firewall rules
