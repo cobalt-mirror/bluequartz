@@ -36,6 +36,42 @@ print "Going through all Vsites to Re-Apply the IPv4 and IPv6 addresses. \n";
 
 $cce->update($sys_oid, 'Network', { 'pooling' => '0' });
 
+# Are we an OpenVZ master-node?
+if ((-e "/proc/user_beancounters") && (-f "/etc/vz/conf/0.conf")) {
+    # Yes, we are.
+    $device = 'venet0:0';
+}
+elsif ((-e "/proc/user_beancounters") && (!-f "/etc/vz/conf/0.conf")) {
+    # No, we're in an OpenVZ VPS:
+    $device = 'venet0:0';
+}
+else {
+    # No, we are not.
+    $device = 'eth0';
+}
+
+# Get IP addresses currently bound to $device and also the existing routes:
+@arr_assigned_ipv6 = split (/\n/, `LC_ALL=C /sbin/ip address show dev $device |grep inet|grep global|awk -F "inet " '{print \$2}'|awk -F " brd " '{print \$1}'|cut -d / -f1|sed '/^\$/d'`);
+
+# Get primary IPs of '$device' from Network Config file:
+if (($System->{IPType} eq 'VZv6') || ($System->{IPType} eq 'IPv6')) {
+    $ipv4_ip = '';
+    $ipv6_ip = `LC_ALL=C cat /etc/sysconfig/network-scripts/ifcfg-$device | grep IPV6ADDR_SECONDARIES= | awk -F "IPV6ADDR_SECONDARIES=" '{print \$2}'| sed 's/"//g'|awk -F '/' '{print \$1}'`;
+}
+elsif (($System->{IPType} eq 'VZv4') || ($System->{IPType} eq 'VZBOTH')) {
+    $ipv4_ip = `LC_ALL=C cat /etc/sysconfig/network-scripts/ifcfg-venet0:0 | grep IPADDR= | awk -F "IPADDR=" '{print \$2}'`;
+    $ipv6_ip = `LC_ALL=C cat /etc/sysconfig/network-scripts/ifcfg-venet0 | grep IPV6ADDR_SECONDARIES= | awk -F "IPV6ADDR_SECONDARIES=" '{print \$2}'| sed 's/"//g'|awk -F '/' '{print \$1}'`;
+}
+else {
+    $ipv4_ip = `LC_ALL=C cat /etc/sysconfig/network-scripts/ifcfg-$device | grep IPADDR= | awk -F "IPADDR=" '{print \$2}'`;
+    $ipv6_ip = `LC_ALL=C cat /etc/sysconfig/network-scripts/ifcfg-$device | grep IPV6ADDR= | awk -F "IPV6ADDR=" '{print \$2}'`;
+}
+chomp($ipv4_ip);
+chomp($ipv6_ip);
+
+print "Primary IPv4: $ipv4_ip\n";
+print "Primary IPv6: $ipv6_ip\n";
+
 my @ipv4 = ();
 my @ipv6 = ();
 
@@ -52,41 +88,20 @@ for my $vsite (@vhosts) {
     push (@ipv6, $my_vsite->{ipaddrIPv6});
   }
 
-  ($ok) = $cce->set($vsite, '',{
-      'ipaddr' => '127.0.0.10', 'ipaddrIPv6' => '::10'
-     });
-  ($ok) = $cce->set($vsite, '',{
-      'ipaddr' => $my_vsite->{ipaddr}, 'ipaddrIPv6' => $my_vsite->{ipaddrIPv6}
-     });
+  ($ok) = $cce->set($vsite, '',{ 'ipaddr' => '', 'ipaddrIPv6' => '::10' });
+  if (($System->{IPType} eq "VZv4") || ($System->{IPType} eq "IPv4")) {
+    ($ok) = $cce->set($vsite, '',{ 'ipaddr' => $ipv4_ip });
+  }
+  elsif (($System->{IPType} eq "VZv6") || ($System->{IPType} eq "IPv6")) {
+    ($ok) = $cce->set($vsite, '',{ 'ipaddr' => '', 'ipaddrIPv6' => $ipv6_ip });
+  }
+  elsif (($System->{IPType} eq "VZBOTH") || ($System->{IPType} eq "BOTH")) {
+    ($ok) = $cce->set($vsite, '',{ 'ipaddr' => $ipv4_ip, 'ipaddrIPv6' => $ipv6_ip });
+  }
+  else {
+    ($ok) = $cce->set($vsite, '',{ 'ipaddr' => $my_vsite->{ipaddr}, 'ipaddrIPv6' => $my_vsite->{ipaddrIPv6} });
+  }
 }
-
-@sorted_ipv4 = sort @ipv4;
-@sorted_ipv6 = sort @ipv6;
-@ipv4 = uniq(@sorted_ipv4);
-@ipv6 = uniq(@sorted_ipv6);
-
-# Get primary IPs of '$device' from Network Config file:
-if (($System->{IPType} eq 'VZv4') || ($System->{IPType} eq 'VZBOTH')) {
-    # Special case OpenVZ: Primary public IPv4 IP is in 'venet0:0' and not in 'venet0':
-    # Additionally: We do NOT have a primary IPv6 IP address under OpenVZ anyway, just extra-IPs.
-    $ipv4_ip = `LC_ALL=C cat /etc/sysconfig/network-scripts/ifcfg-venet0:0 | grep IPADDR= | awk -F "IPADDR=" '{print \$2}'`;
-    $ipv4_nm = `LC_ALL=C cat /etc/sysconfig/network-scripts/ifcfg-venet0:0 | grep NETMASK= | awk -F "NETMASK=" '{print \$2}'`;
-    $ipv6_ip = '';
-}
-elsif ($System->{IPType} eq 'VZv6') {
-    # Special case OpenVZ in pure IPv6 mode: We don't have an IPv4 address or netmask and we don't risk to grab the dummy '127.0.0.1' from 'venet0' either.
-    # Additionally: We do NOT have a primary IPv6 IP address under OpenVZ anyway, just extra-IPs.
-    $ipv4_ip = '';
-    $ipv4_nm = '';
-    $ipv6_ip = '';
-}
-else {
-    $ipv4_ip = `LC_ALL=C cat /etc/sysconfig/network-scripts/ifcfg-eth0 | grep IPADDR= | awk -F "IPADDR=" '{print \$2}'`;
-    $ipv6_ip = `LC_ALL=C cat /etc/sysconfig/network-scripts/ifcfg-eth0 | grep IPV6ADDR= | awk -F "IPV6ADDR=" '{print \$2}'`;
-}
-chomp($ipv4_ip);
-chomp($ipv4_nm);
-chomp($ipv6_ip);
 
 @ipv4 = grep {!/^$ipv4_ip$/} @ipv4;
 @ipv6 = grep {!/^$ipv6_ip$/} @ipv6;
