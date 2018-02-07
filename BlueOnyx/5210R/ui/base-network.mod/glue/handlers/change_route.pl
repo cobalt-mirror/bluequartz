@@ -100,15 +100,17 @@ if (!$ok) {
 ### Do we need to restart the network? Yes, if there was a Gateway change:
 #
 
-if (($eo_old->{gateway} ne $eo_new->{eo_old})) {
+if (($eo_old->{gateway} ne $eo_new->{gateway})) {
     &debug_msg("INFO: ********** NETWORK RESTART **********\n");
     # Restart Network:
     Sauce::Service::service_run_init('network', 'restart');
+    system("/usr/sbin/ifup $device");
 }
 elsif (($eo_old->{gateway_IPv6} ne $eo_new->{gateway_IPv6})) {
     &debug_msg("INFO: ********** NETWORK RESTART **********\n");
     # Restart Network:
     Sauce::Service::service_run_init('network', 'restart');
+    system("/usr/sbin/ifup $device");
 }
 
 #
