@@ -67,41 +67,38 @@ IPv4=$(/sbin/ip route | awk '/default/ { print $3 }')
 # IPv6 Gateway:
 IPv6=$(/sbin/ip -6 route | awk '/default/ { print $3 }')
 
-# test the gateway
-if [ -n $GATEWAY -a -n "`/sbin/route -n | grep "^0.0.0.0" 2>/dev/null`" ]; then
-    # Work around for unpingable gateway on OpenVZ:
-    if [ -f /proc/user_beancounters ];then
-        if [ `/sbin/ip addr show |grep inet4 |wc -l` -gt 0 ]; then
-            if [ `cat /proc/user_beancounters | grep kmemsize | awk '{print $1}' | cut -d : -f1` -gt 0 ]; then
-                # Ping the IP of the master node instead of the Gateway:
-                GATEWAY=`ping -t 1 -c 1 1.2.3.4 | grep "exceed\|Unreachable" | cut -d " " -f 2`
-            fi
-        else
-            # Then we try IPv6 instead:
-            GATEWAY=`ping6 -t 1 -c 1 2001:4860:4860::8888 | grep "exceed\|Unreachable" | cut -d " " -f 2`
-
+# Determine Gateway:
+if [ -f /proc/user_beancounters ];then
+    if [ `/sbin/ip addr show |grep inet4 |wc -l` -gt 0 ]; then
+        if [ `cat /proc/user_beancounters | grep kmemsize | awk '{print $1}' | cut -d : -f1` -gt 0 ]; then
+            # Ping the IP of the master node instead of the Gateway:
+            GATEWAY=`ping -t 1 -c 1 1.2.3.4 | grep "exceed\|Unreachable" | cut -d " " -f 2`
         fi
-    fi
-
-    if [[ $GATEWAY =~ .*:.* ]]
-    then
-      # IPv6:
-      $PING6 $GATEWAY > /dev/null 2>&1
     else
-      # IPv4
-      $PING $GATEWAY > /dev/null 2>&1
-    fi
+        # Then we try IPv6 instead:
+        GATEWAY=`ping6 -t 1 -c 1 2001:4860:4860::8888 | grep "exceed\|Unreachable" | cut -d " " -f 2`
 
+    fi
+fi
+
+# Test the gateway
+if [[ $GATEWAY =~ .*:.* ]];then
+  # IPv6:
+  $PING6 $GATEWAY > /dev/null 2>&1
+else
+  # IPv4
+  $PING $GATEWAY > /dev/null 2>&1
+fi
+
+RET=$?
+if [ "$RET" != "0" ]; then
+    # try again
+    $PING $GATEWAY > /dev/null 2>&1
     RET=$?
     if [ "$RET" != "0" ]; then
-        # try again
-        $PING $GATEWAY > /dev/null 2>&1
-        RET=$?
-        if [ "$RET" != "0" ]; then
-            echo -ne "[[base-network.amGatewayIsUnreachable]]"
-            if [ "$FINAL_RET" != "$AM_STATE_RED" ]; then
-                FINAL_RET=$AM_STATE_YELLOW  
-            fi
+        echo -ne "[[base-network.amGatewayIsUnreachable]]"
+        if [ "$FINAL_RET" != "$AM_STATE_RED" ]; then
+            FINAL_RET=$AM_STATE_YELLOW  
         fi
     fi
 fi
