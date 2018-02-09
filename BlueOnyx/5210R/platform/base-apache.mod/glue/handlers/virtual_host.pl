@@ -843,7 +843,7 @@ END
     # write SSL config
     my $cafile;
     &debug_msg("SSL <VirtualHost>: \$vhost_ssl->{enabled}: $vhost_ssl->{enabled} - \$vhost_ssl->{expires}: $vhost_ssl->{expires}\n");
-    if (($vhost_ssl->{enabled} eq "1") && ($vhost_ssl->{expires} ne "") && (-f "$vhost->{basedir}/certs/certificate") && (-f "$vhost->{basedir}/certs/key")) {
+    if (($vhost_ssl->{enabled} eq "1") && (-f "$vhost->{basedir}/certs/certificate") && (-f "$vhost->{basedir}/certs/key")) {
         &debug_msg("SSL <VirtualHost>: Condition #1: TRUE\n");
         if (-f "$vhost->{basedir}/certs/ca-certs") {
             $cafile = "SSLCACertificateFile $vhost->{basedir}/certs/ca-certs";
