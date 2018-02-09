@@ -82,6 +82,7 @@ class vsiteMod extends MX_Controller {
         // Determine visibility of IP protocol related fields:
         $show_IPv4 = FALSE;
         $show_IPv6 = FALSE;
+        $access_ipv6 = 'r';
         if (in_array($system['IPType'], array('IPv4', 'VZv4', 'BOTH', 'VZBOTH'))) {
             $show_IPv4 = TRUE;
             if (in_array($system['IPType'], array('IPv4', 'BOTH'))) {
