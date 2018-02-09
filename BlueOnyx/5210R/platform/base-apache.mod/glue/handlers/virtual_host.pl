@@ -40,6 +40,7 @@ my ($ok, $PHP_server) = $cce->get($PHPoid);
 
 my ($ok, $PHP_Vsite) = $cce->get($void, "PHPVsite");
 my ($ok, $vsite_php) = $cce->get($void, "PHP");
+my ($ok, $vhost_ssl) = $cce->get($void, 'SSL');
 my ($ok, $cgi) = $cce->get($void, 'CGI');
 my ($ok, $ssi) = $cce->get($void, 'SSI');
 my ($ok, $redirect) = $cce->get($void, 'REDIRECT');
@@ -841,10 +842,12 @@ END
 
     # write SSL config
     my $cafile;
-    if (($vhost->{ssl} && $vhost->{ssl_expires}) && (-f "$vhost->{basedir}/certs/certificate") && (-f "$vhost->{basedir}/certs/key")) {
-        if (-f "$vhost->{basedir}/certs/ca-certs")
-        {
+    &debug_msg("SSL <VirtualHost>: \$vhost_ssl->{enabled}: $vhost_ssl->{enabled} - \$vhost_ssl->{expires}: $vhost_ssl->{expires}\n");
+    if (($vhost_ssl->{enabled} eq "1") && ($vhost_ssl->{expires} ne "") && (-f "$vhost->{basedir}/certs/certificate") && (-f "$vhost->{basedir}/certs/key")) {
+        &debug_msg("SSL <VirtualHost>: Condition #1: TRUE\n");
+        if (-f "$vhost->{basedir}/certs/ca-certs") {
             $cafile = "SSLCACertificateFile $vhost->{basedir}/certs/ca-certs";
+            &debug_msg("SSL <VirtualHost>: Condition #2: TRUE\n");
         }
 
         $vhost_conf .=<<END;
