@@ -1,0 +1,25 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "bad_action"
+msgstr "Die ausgewählte Aktion existiert nicht oder kann nicht ausgeführt werden."
+
+msgid "bad_start_time"
+msgstr "Die gewählte Startzeit ist nicht korrekt."
+
+msgid "cannot_create_timer"
+msgstr "Es konnte kein neuer Cronjob zu /etc/cron.d/ hinzugefügt werden."
+
+msgid "timer_add_failed"
+msgstr "Es konnte kein neuer Cronjob angelegt werden."
+
+msgid "timer_delete_failed"
+msgstr "Der ausgewählte Cronjob konnte in /etc/cron.d/ nicht gelöscht werden."
+

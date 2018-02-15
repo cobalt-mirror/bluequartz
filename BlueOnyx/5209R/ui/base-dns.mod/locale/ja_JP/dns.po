@@ -1,0 +1,1282 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+# --- Menu
+
+msgid "dns"
+msgstr "DNS"
+
+msgid "title"
+msgstr "DNS"
+
+msgid "modifyDNS"
+msgstr "DNS の設定"
+
+msgid "dns_help"
+msgstr "DNS (Domain Name System) の設定を変更できます。"
+
+
+# --- Common
+
+msgid "basic"
+msgstr "基本"
+
+msgid "advanced"
+msgstr "詳細"
+
+msgid "defaults"	
+msgstr "デフォルト"
+
+msgid "basic_help"
+msgstr "基本的な DNS サーバの設定項目です。"
+
+msgid "advanced_help"
+msgstr "データ形式、セキュリティ保護、デフォルト値など、DNS サーバの詳細を設定できます。"
+
+msgid "defaults_help"	
+msgstr "デフォルトの SOA (Start of Authority) パラメータを設定できます。"
+
+# --- Basic settings
+
+msgid "enabled"
+msgstr "DNS サービスを有効にする"
+
+msgid "enabled_help"
+msgstr "このボックスをチェックすると、DNS（ドメインネームシステム）サービスが有効になり、このサーバがこのサーバおよびローカルネットワーク上のクライアントに対するドメインネームサーバとして機能します。ドメインネームサーバは、テキスト文字列で表記されるホスト名＋ドメインネームと、数値で表記される IP アドレスとの対応 （正引き、逆引き) 情報を提供します。"
+
+
+# --- Advanced settings
+
+msgid "soa_defaults"
+msgstr "SOA（Start of Authority）のデフォルト設定"
+
+msgid "soa_defaults_help"
+msgstr "ここでは、新規のドメインネームレコードを作成するときにデフォルトとして使われる値を設定できます。"
+
+msgid "admin_email"
+msgstr "DNS 管理者の電子メールアドレス"
+
+msgid "admin_email_rule"
+msgstr "（指定例： user@example.com）"
+
+msgid "admin_email_help"
+msgstr "新しいドメインやネットワークを DNS レコードに追加する際にデフォルトとして使われる管理者の電子メールアドレスを、正しい形式で入力してください。[[base-dns.admin_email_rule]]"
+
+msgid "admin_email_invalid"
+msgstr "[[VAR.invalidValue] は、[[base-dns.admin_email]] には指定できません。電子メールアドレスを正しい形式で入力してください。[[base-dns.admin_email_rule]]"
+
+msgid "default_refresh"
+msgstr "リフレッシュ間隔（秒）"
+
+msgid "default_refresh_rule"
+msgstr "1 〜 4096000 の整数を入力してください。初期値は 10800 です。"
+
+msgid "default_refresh_help"
+msgstr "新しいドメインやネットワークを DNS レコードに追加する際にデフォルトとして使われるリフレッシュ間隔を指定してください。リフレッシュ間隔とは、セカンダリドメインネームサーバがプライマリドメインネームサーバとレコードの同期を図る時間間隔です。[[base-dns.default_refresh_rule]]"
+
+msgid "default_refresh_invalid"
+msgstr "[[VAR.invalidValue]] は、[[base-dns.default_refresh]] には指定できません。[[base-dns.default_refresh_rule]]"
+
+msgid "default_refresh_empty"	
+msgstr "[[base-dns.default_refresh]]は必須です。[[base-dns.default_refresh_rule]]"
+
+msgid "default_retry"	
+msgstr "リトライ間隔（秒）"
+
+msgid "default_retry_rule"
+msgstr "1 〜 4096000 の整数を入力してください。初期値は 3600 です。"
+
+msgid "default_retry_help"
+msgstr "新しいドメインやネットワークを DNS レコードに追加する際にデフォルトとして使われるリトライ間隔を指定してください。リトライ間隔とは、何らかの理由でセカンダリドメインネームサーバがプライマリドメインネームサーバのレコードと同期を取れない場合に、繰り返しレコードの同期を試行する時間間隔です。[[base-dns.default_retry_rule]]"
+
+msgid "default_retry_invalid"
+msgstr "[[VAR.invalidValue]] は、[[base-dns.default_retry]] には指定できません。[[base-dns.default_retry_rule]]"
+
+msgid "default_retry_empty"
+msgstr "[[base-dns.default_retry]] は必須です。[[base-dns.default_retry_rule]]"
+
+msgid "default_expire"
+msgstr "失効間隔（秒）"
+
+msgid "default_expire_rule"
+msgstr "1 〜 4096000 の整数を入力してください。初期値は 604800 です。"
+
+msgid "default_expire_help"
+msgstr "新しいドメインやネットワークを DNS レコードに追加する際にデフォルトとして使われる失効間隔を指定してください。何らかの理由でセカンダリドメインネームサーバがプライマリドメインネームサーバとレコードを同期できず、繰り返し同期を試みる場合、失効間隔（秒）を経過しても同期できないと、セカンダリドメインネームサーバは自分の持つドメイン情報はもう有効ではないと判断し、プライマリドメインネームサーバへ再度連絡できるまでドメイン情報の提供を停止します。[[base-dns.default_expire_rule]]"
+
+msgid "default_expire_invalid"
+msgstr "[[VAR.invalidValue]] は、[[base-dns.default_expire]]には指定できません。[[base-dns.default_expire_rule]]"
+
+msgid "default_expire_empty"
+msgstr "[[base-dns.default_expire]] は必須です。[[base-dns.default_expire_rule]]"
+
+msgid "default_ttl"	
+msgstr "TTL 間隔（秒）"
+
+msgid "default_ttl_rule"
+msgstr "1 〜 4096000 の整数を入力してください。初期値は 86400 です。"
+
+msgid "default_ttl_help"	
+msgstr "新しいドメインやネットワークを DNS レコードに追加する際にデフォルトとして使われる TTL 間隔を指定してください。TTL 間隔とは、他のドメインネームサーバがこのドメインネームサーバから取得したドメイン情報をキャッシュに保管し、このドメインネームサーバに再び連絡しないままその情報が有効であると想定する期間です。[[base-dns.default_ttl_rule]]"
+
+msgid "default_ttl_invalid"
+msgstr "[[VAR.invalidValue]] は、[[base-dns.default_ttl]] には指定できません。[[base-dns.default_ttl_rule]]"
+
+msgid "default_ttl_empty"
+msgstr "[[base-dns.default_ttl]] は必須です。[[base-dns.default_ttl_rule]]"
+
+msgid "global_settings"
+msgstr "サーバの一般設定"
+
+msgid "global_settings_help"
+msgstr "ドメインネームサーバのデフォルト値です。"
+
+msgid "forwarders"
+msgstr "転送サーバ"
+
+msgid "forwarders_help"
+msgstr "転送ドメインネームサーバの IP アドレスを入力してください。インターネット接続に何らかの問題があり、ルートドメインネームサーバに直接アクセスできない場合に、転送ドメインネームサーバが使われます。[[base-dns.forwarders_rule]]"
+
+msgid "forwarders_rule"
+msgstr "0 〜 255 の数値４組を、ピリオドで区切って入力してください。（指定例： 192.168.1.1）"
+
+msgid "forwarders_invalid"
+msgstr "[[VAR.invalidValue]] は、[[base-dns.forwarders]]には指定できません。[[base-dns.forwarders_rule]]"
+
+msgid "zone_xfer_ipaddr"
+msgstr "ゾーン転送を許可する IP アドレス"
+
+msgid "zone_xfer_ipaddr_help"
+msgstr "ゾーン転送とは、このドメインネームサーバに保管されている全レコードのダウンロードを意味します。このフィールドには、ゾーン転送を許可したい IP アドレスを指定してください。セカンダリドメインネームサーバは、ゾーン転送によりプライマリドメインネームサーバとレコードを同期します。このフィールドを空白のまま残すと、ゾーン転送は一切許可されません。"
+
+msgid "zone_xfer_ipaddr_invalid"
+msgstr "[[VAR.invalidValue]] は、[[base-dns.zone_xfer_ipaddr]] として指定できません。"
+
+msgid "recursion_inetaddr_invalid"
+msgstr "[[VAR.invalidValue]] は、[[base-dns.recursion_inetaddr]] として指定できません。"
+
+msgid "zone_format_tab"
+msgstr "ゾーン形式"
+
+msgid "zone_format_tab_help"
+msgstr "ここをクリックすると、DNS レコードの[[base-dns.zone_format_tab]]を設定できます。システム管理者または ISP から特定の[[base-dns.zone_format_tab]]の設定を指示されない限り設定は不要です。"
+
+msgid "zone_format_settings_divider"
+msgstr "ゾーンファイル形式の設定"
+
+msgid "zone_format_user_defined_divider"
+msgstr "ユーザ定義のゾーンファイル形式"
+
+msgid "zone_format"
+msgstr "ゾーンファイルの形式"
+
+msgid "zone_format_help"
+msgstr "ローカルの逆引き権限委譲メソッドに対応する非オクテット境界上のサブネット用ゾーンファイル形式を選んでください。標準形式は RFC2317 で、DION と OCN-JT はあまり一般的ではありません。"
+
+msgid "zone_format_required_warning"
+msgstr "このフィールドへの入力は、指定されているゾーンファイルの形式が「ユーザ定義」の場合にのみ必須で、それ以外のゾーンファイル形式では無視されます。指定すべき値の形式については、ネットワーク管理者までお問い合わせください。"
+
+msgid "zone_format_24"
+msgstr "24 ビット以上のネットワーク用ゾーンファイル形式"
+
+msgid "zone_format_24_help"
+msgstr "24 ビットを超える非オクテット境界上のネットワーク用ゾーンファイル形式を指定してください。[[base-dns.zone_format_required_warning]]"
+
+msgid "zone_format_16"
+msgstr "16 ビット以上のネットワーク用ゾーンファイル形式"
+
+msgid "zone_format_16_help"
+msgstr "16 ビットを超える非オクテット境界上のネットワーク用ゾーンファイル形式を指定してください。[[base-dns.zone_format_required_warning]]"
+
+msgid "zone_format_8"
+msgstr "8 ビット以上のネットワーク用ゾーンファイル形式"
+
+msgid "zone_format_8_help"
+msgstr "8 ビットを超える非オクテット境界上のネットワーク用ゾーンファイル形式を指定してください。[[base-dns.zone_format_required_warning]]"
+
+msgid "zone_format_0"
+msgstr "0 ビット以上のネットワーク用ゾーンファイル形式"
+
+msgid "zone_format_0_help"
+msgstr "0 ビットを超える非オクテット境界上のネットワーク用ゾーンファイル形式を指定してください。[[base-dns.zone_format_required_warning]]"
+
+msgid "rfc2317"
+msgstr "RFC2317"
+
+msgid "dion"
+msgstr "DION"
+
+msgid "ocn-jt"
+msgstr "OCN-JT"
+
+msgid "USER"
+msgstr "ユーザ定義"
+
+# --- Record types (reused)
+
+msgid "a_record"
+msgstr "正引きアドレス（A）レコード"
+
+msgid "ptr_record"
+msgstr "逆引きアドレス（PTR）レコード"
+
+msgid "cname_record"
+msgstr "エイリアス（CNAME）レコード"
+
+msgid "mx_record"
+msgstr "メールサーバ（MX）レコード"
+
+msgid "txt_record"
+msgstr "テキスト（TXT）レコード"
+
+msgid "records_title"
+msgstr "ドメイン設定： "
+
+msgid "a_dir"
+msgstr "正引き"
+
+msgid "ptr_dir"
+msgstr "逆引き"
+
+msgid "cname_dir"
+msgstr "エイリアス"
+
+msgid "txt_dir"
+msgstr "テキスト"
+
+# --- Primary services
+
+msgid "primary_service_button"
+msgstr "プライマリサービスを設定"
+
+msgid "primary_service_button_help"
+msgstr "このサーバが提供する DNS レコードを管理できます。プライマリ DNS サービスは、「マスター DNS サービス」とも呼ばれます。"
+
+msgid "dnsSetting"
+msgstr "[[base-dns.title]] - プライマリサービスのリスト"
+
+msgid "select_dom"
+msgstr "ドメインを選択..."
+
+msgid "select_net"
+msgstr "ネットワークを選択..."
+
+# drop down menu
+
+msgid "add_record"
+msgstr "レコードを追加..."
+
+msgid "edit_soa"
+msgstr "SOA を修正"
+
+msgid "edit_soa_help"
+msgstr "特定のドメインまたはネットワークに適用される SOA（Start of Authority）を修正できます。"
+
+msgid "confirm_delall"
+msgstr "表示されている DNS レコードをすべて削除してよろしいですか？"
+
+msgid "del_records"
+msgstr "全レコードを削除"
+
+msgid "del_records_help"
+msgstr "このボタンをクリックすると、表示されている DNS レコードが全て削除されます。 削除は取り消しできませんのでご注意ください。"
+
+msgid "source"
+msgstr "問い合わせ"
+
+msgid "source_help"
+msgstr "このネームサーバが受信する問い合わせです。"
+
+msgid "direction"
+msgstr "レコードの種類"
+
+msgid "direction_help"
+msgstr "このネームサーバが受信する問い合わせと送信する回答とを関連付けるレコードの種類です。"
+
+msgid "resolution"
+msgstr "回答"
+
+msgid "resolution_help"
+msgstr "問い合わせに対してこのネームサーバから送信される回答です。"
+
+msgid "listAction"
+msgstr "詳細"
+
+msgid "listAction_help"
+msgstr "鉛筆アイコンをクリックすると、そのレコードを修正できます。ゴミ箱アイコンをクリックすると、そのレコードを削除できます。"
+
+msgid "confirm_removal"
+msgstr "[[VAR.rec]] というレコードを削除してよろしいですか？"
+
+
+# general IP address rule
+msgid "ipaddr_rule"
+msgstr "IP アドレスは、0 〜 255 の数値４組をピリオドで区切って入力してください。（指定例： 192.168.1.1）"
+
+msgid "inetaddr_rule"
+msgstr "IP アドレスは、0 〜 255 の数値４組をピリオドで区切り、/ の後にネットマクを入力してください。（指定例： 192.168.1.0/24）"
+
+# --- A record
+
+msgid "create_dns_recA"
+msgstr "[[base-dns.title]] - [[base-dns.a_record]]の追加"
+
+msgid "modify_dns_recA"
+msgstr "[[base-dns.title]] - [[base-dns.a_record]]の修正"
+
+msgid "a_record_explain"
+msgstr "[[base-dns.a_record]]は、ドメインネームから IP アドレスへの変換データを提供します。この場合の「ドメインネーム」は、ホスト名＋ドメインネームでも、ドメインネームのみでも構いません。"
+
+msgid "a_host_name"
+msgstr "ホスト名"
+
+msgid "a_host_name_help"
+msgstr "このレコードのホスト名を指定してください。[[base-dns.a_record_explain]]"
+
+msgid "a_host_name_invalid"
+msgstr "指定されたホスト名には、不正な文字が含まれています。"
+
+msgid "a_domain_name"
+msgstr "ドメインネーム"
+
+msgid "a_domain_name_help"
+msgstr "このレコードのドメインネームを指定してください。[[base-dns.a_record_explain]]"
+
+msgid "a_domain_name_invalid"
+msgstr "指定されたドメインネームには、不正な文字が含まれています。"
+
+msgid "a_domain_name_empty"
+msgstr "このレコードのドメインを指定してください。"
+
+msgid "a_ip_address"
+msgstr "IP アドレス"
+
+msgid "a_ip_address_help"
+msgstr "このレコードの IP アドレスを指定してください。[[base-dns.a_record_explain]]"
+
+msgid "a_ip_address_invalid"
+msgstr "指定された IP アドレスは不正です。[[base-dns.ipaddr_rule]]"
+
+msgid "a_ip_address_empty"
+msgstr "指定されたホスト名とドメインネームに対応する IP アドレスを入力してください。[[base-dns.ipaddr_rule]]"
+
+
+# --- PTR  record
+
+msgid "create_dns_recPTR"
+msgstr "[[base-dns.title]] - [[base-dns.ptr_record]]の追加"
+
+msgid "modify_dns_recPTR"
+msgstr "[[base-dns.title]] - [[base-dns.ptr_record]]の修正"
+
+msgid "ptr_explain"
+msgstr "[[base-dns.ptr_record]]は、IP アドレスからドメインネームへの変換データを提供します。この場合の「ドメインネーム」は、ホスト名＋ドメインネームでも、ドメインネームのみでも構いません。"
+
+msgid "ptr_ip_address"
+msgstr "IP アドレス"
+
+msgid "ptr_ip_address_help"
+msgstr "このレコードの IP アドレスを指定してください。[[base-dns.ptr_explain]]"
+
+
+
+msgid "ptr_mask"
+msgstr "サブネットマスク"
+
+msgid "ptr_mask_help"
+msgstr "このレコードの IP アドレスのネットワークマスクを指定してください。[[base-dns.ptr_explain]]"
+
+msgid "ptr_host_name"
+msgstr "ホスト名"
+
+msgid "ptr_host_name_help"
+msgstr "このレコードのホスト名を指定してください。[[base-dns.ptr_explain]]"
+
+msgid "ptr_domain_name"
+msgstr "ドメインネーム"
+
+msgid "ptr_domain_name_help"
+msgstr "このレコードのドメインネームを指定してください。[[base-dns.ptr_explain]]"
+
+msgid "a_generate_ptr"
+msgstr "逆引きアドレス（PTR）レコードを自動生成"
+
+msgid "ptr_generate_a"
+msgstr "正引きアドレス（A）レコードを自動生成"
+
+msgid "ptr_generate_a_help"
+msgstr "このボックスをチェックすると、指定された IP アドレスから指定されたホスト名＋ドメインネームへの対応を示す正引きアドレスレコードが自動的に生成されます。"
+
+msgid "ptr_subnet_mask_invalid"
+msgstr "指定されたサブネットマスクは不正です。サブネットマスクは、0 〜 255 の数値４組をピリオドで区切って指定してください。（指定例：255.255.255.0）"
+
+msgid "ptr_subnet_mask_empty"
+msgstr "このレコード用のサブネットマスクを指定してください。"
+
+msgid "ptr_ip_address_invalid"
+msgstr "指定された IP アドレスは不正です。[[base-dns.ipaddr_rule]]"
+
+msgid "ptr_host_name_invalid"
+msgstr "指定されたホスト名には、不正な文字が含まれています。"
+
+msgid "ptr_domain_name_invalid"
+msgstr "指定されたドメインネームには、不正な文字が含まれています。"
+
+msgid "ptr_ip_address_empty"
+msgstr "ご指定のホスト名とドメインネームに対応する IP アドレスを入力してください。[[base-dns.ipaddr_rule]]"
+
+msgid "ptr_domain_name_empty"
+msgstr "ご指定のIP アドレスに対応するドメインネームを入力してください。"
+
+
+# --- MX record
+
+msgid "create_dns_recMX"
+msgstr "[[base-dns.title]] - [[base-dns.mx_record]]の追加"
+
+msgid "modify_dns_recMX"
+msgstr "[[base-dns.title]] - [[base-dns.mx_record]]の修正"
+
+msgid "mx_host_name"
+msgstr "ホスト名"
+
+msgid "mx_explain"
+msgstr "[[base-dns.mx_record]] は、特定のホストとドメインネームへ電子メールを配信するメールサーバを指定します。"
+
+msgid "mx_host_name_help"
+msgstr "このフィールドに指定するホスト宛の電子メールは、[[base-dns.mx_target_server]]フィールドに指定するメールサーバにより配信されます。 [[base-dns.mx_explain]]"
+
+msgid "mx_domain_name"
+msgstr "ドメインネーム"
+
+msgid "mx_domain_name_empty"
+msgstr "「ドメインネーム」フィールドは省略できません。"
+
+msgid "mx_domain_name_help"
+msgstr "このフィールドに指定するドメインネーム宛の電子メールは、[[base-dns.mx_target_server]]フィールドに指定するメールサーバにより配信されます。[[base-dns.mx_explain]]"
+
+msgid "mx_target_server"
+msgstr "メールサーバ名"
+
+msgid "mx_target_server_help"
+msgstr "上記のホスト名とドメインネーム宛のメールを配信するメールサーバのホスト名＋ドメインネームを指定してください。[[base-dns.mx_explain]]"
+
+msgid "mx_priority"
+msgstr "配信の優先度"
+
+msgid "mx_priority_help"
+msgstr "上記のメールサーバに対するメール配信の優先度を指定してください。配信の優先度は、メール配信のためにメールサーバへ連絡を試みる順序を規定し、同一のドメインまたはネットワークに対して複数の MX レコードを指定する場合にのみ有効です。"
+
+msgid "mx_host_name_invalid"
+msgstr "指定されたホスト名には、不正な文字が含まれています。"
+
+msgid "mx_domain_name_invalid"
+msgstr "指定されたドメインネームには、不正な文字が含まれています。"
+
+msgid "mx_target_server_invalid"
+msgstr "指定された正式なドメインネームには、不正な文字が含まれています。"
+
+msgid "mx_target_server_empty"
+msgstr "メールサーバのホスト名＋ドメインネームを指定してください。"
+
+
+# --- CNAME record
+
+msgid "create_dns_recCNAME"
+msgstr "[[base-dns.title]] - [[base-dns.cname_record]]の追加"
+
+msgid "modify_dns_recCNAME"
+msgstr "[[base-dns.title]] - [[base-dns.cname_record]]の修正"
+
+msgid "cname_explain"
+msgstr "エイリアスレコードは、一つのドメインネームから別のドメインネームへの変換データを提供します。"
+
+msgid "cname_host_name"
+msgstr "エイリアスホスト名"
+
+msgid "cname_host_name_help"
+msgstr "実ホスト名または実ドメインネームに対応するエイリアスのホスト名を指定してください。[[base-dns.cname_explain]]"
+
+msgid "cname_domain_name"
+msgstr "エイリアスドメインネーム"
+
+msgid "cname_domain_name_help"
+msgstr "実ホスト名または実ドメインネームに対応するエイリアスのドメインネームを指定してください。[[base-dns.cname_explain]]"
+
+msgid "cname_host_target"
+msgstr "実ホスト名"
+
+msgid "cname_host_target_help"
+msgstr "実際 （正規） のホスト名を指定してください。[[base-dns.cname_explain]]"
+
+msgid "cname_domain_target"
+msgstr "実ドメインネーム"
+
+msgid "cname_domain_target_help"
+msgstr "実際 （正規） のドメインネームを指定してください。[[base-dns.cname_explain]]"
+
+
+# --- TXT record
+
+msgid "create_dns_recTXT"
+msgstr "[[base-dns.title]] - [[base-dns.txt_record]]の追加"
+
+msgid "modify_dns_recTXT"
+msgstr "[[base-dns.title]] - [[base-dns.txt_record]]の修正"
+
+msgid "txt_record_explain"
+msgstr "[[base-dns.txt_record]]は、ドメインネームのテキストレコードを記述します。"
+
+msgid "txt_host_name"
+msgstr "ホスト名"
+
+msgid "txt_host_name_help"
+msgstr "このレコードのホスト名を指定してください。[[base-dns.txt_record_explain]]"
+
+msgid "txt_host_name_invalid"
+msgstr "指定されたホスト名には、不正な文字が含まれています。"
+
+msgid "txt_domain_name"
+msgstr "ドメインネーム"
+
+msgid "txt_domain_name_help"
+msgstr "このレコードのドメインネームを指定してください。[[base-dns.txt_record_explain]]"
+
+msgid "txt_domain_name_invalid"
+msgstr "指定されたドメインネームには、不正な文字が含まれています。"
+
+msgid "txt_domain_name_empty"
+msgstr "このレコードのドメインを指定してください。"
+
+msgid "txt_strings"
+msgstr "テキストレコード"
+
+msgid "txt_strings_help"
+msgstr "テキストレコードを指定してください。"
+
+msgid "txt_strings_invalid"
+msgstr "指定されたテキストレコードは不正です。"
+
+msgid "txt_strings_empty"
+msgstr "指定されたホスト名とドメインネームに対応するテキストレコードを入力してください。"
+
+
+# --- SOA
+
+msgid "create_soa"
+msgstr "SOA レコードの追加"
+
+msgid "modify_soa"
+msgstr "[[base-dns.title]] - SOA レコードの修正"
+
+msgid "domain_soa"
+msgstr "適用ドメイン"
+
+msgid "domain_soa_help"
+msgstr "この SOA （Start of Authority）レコードが適用されるドメインです。"
+
+msgid "network_soa"
+msgstr "適用ネットワーク"
+
+msgid "network_soa_help"
+msgstr "この SOA （Start of Authority）レコードが適用されるネットワークです。"
+
+msgid "primary_dns"
+msgstr "プライマリネームサーバ（NS）"
+
+msgid "primary_dns_help"
+msgstr "適用ドメイン（またはネットワーク）に対応するプライマリネームサーバのドメインネームを入力してください。"
+
+msgid "secondary_dns"
+msgstr "セカンダリネームサーバ（NS）"
+
+msgid "secondary_dns_help"
+msgstr "適用ドメイン（またはネットワーク）に対応するセカンダリネームサーバのドメインネームを入力してください。"
+
+msgid "domain_admin"
+msgstr "DNS 管理者の電子メールアドレス"
+
+msgid "domain_admin_rule"
+msgstr "電子メールアドレスを正しい形式で入力してください。このフィールドに表示されるデフォルト値は、「DNSの設定」テーブルの「詳細」セクションで設定できます。（指定例： user@example.com）"
+
+msgid "domain_admin_help"
+msgstr "ここに指定する電子メールアドレスは、今後追加されるドメインおよびネットワークの管理者の連絡先として使われます。[[base-dns.domain_admin_rule]]"
+
+msgid "domain_admin_invalid"
+msgstr "[[VAR.invalidValue] は、[[base-dns.domain_admin]]の値としては不正です。[[base-dns.domain_admin_rule]]"
+
+msgid "domain_admin_empty"
+msgstr "[[base-dns.domain_admin]] は必須です。[[base-dns.domain_admin_rule]]"
+
+msgid "refresh"
+msgstr "リフレッシュ間隔（秒）"
+
+msgid "refresh_rule"
+msgstr "1 〜 4096000 の整数を入力してください。このフィールドに表示されるデフォルト値は、「DNSの設定」テーブルの「詳細」セクションで設定できます。"
+
+msgid "refresh_help"
+msgstr "ここに指定するリフレッシュ間隔は、今後追加されるドメインおよびネットワークで使われます。リフレッシュ間隔とは、セカンダリドメインネームサーバがプライマリドメインネームサーバとレコードの同期を図る時間間隔です。[[base-dns.refresh_rule]]"
+
+msgid "refresh_empty"
+msgstr "[[base-dns.refresh]] は必須です。[[base-dns.refresh_rule]]"
+
+msgid "retry"
+msgstr "リトライ間隔（秒）"
+
+msgid "retry_rule"
+msgstr "1 〜 4096000 の整数を入力してください。このフィールドに表示されるデフォルト値は、「DNSの設定」テーブルの「詳細」セクションで設定できます。"
+
+msgid "retry_help"
+msgstr "ここに指定するリトライ間隔は、今後追加されるドメインおよびネットワークで使われます。リトライ間隔とは、何らかの理由でセカンダリドメインネームサーバがプライマリドメインネームサーバのレコードと同期を取れない場合に、繰り返しレコードの同期を試行する時間間隔です。[[base-dns.retry_rule]]"
+
+msgid "retry_empty"
+msgstr "[[base-dns.retry]] は必須です。[[base-dns.retry_rule]]"
+
+msgid "expire"
+msgstr "失効間隔（秒）"
+
+msgid "expire_rule"
+msgstr "1 〜 4096000 の間の整数を入力してください。このフィールドに表示されるデフォルト値は、「DNSの設定」テーブルの「詳細」セクションで設定できます。"
+
+msgid "expire_help"
+msgstr "新しいドメインやネットワークを DNS レコードに追加する際にデフォルトとして使われる失効間隔を指定してください。何らかの理由でセカンダリドメインネームサーバがプライマリドメインネームサーバとレコードを同期できず、繰り返し同期を試みる場合、失効間隔（秒）を経過しても同期できないと、セカンダリドメインネームサーバは自分の持つドメイン情報はもう有効ではないと判断し、プライマリドメインネームサーバへ再度連絡できるまでドメイン情報の提供を停止します。[[base-dns.expire_rule]]"
+
+msgid "expire_empty"
+msgstr "[[base-dns.expire]] を指定してください。[[base-dns.expire_rule]]"
+
+
+msgid "ttl"
+msgstr "TTL 間隔（秒）"
+msgid "ttl_rule"
+msgstr "1 〜 4096000 の整数を入力してください。このフィールドに表示されるデフォルト値は、「DNSの設定」テーブルの「詳細」セクションで設定できます。"
+
+msgid "ttl_help"
+msgstr "新しいドメインやネットワークを DNS レコードに追加する際にデフォルトとして使われる TTL 間隔を指定してください。TTL 間隔とは、他のドメインネームサーバがこのドメインネームサーバから取得したドメイン情報をキャッシュに保管し、このドメインネームサーバに再び連絡しないままその情報が有効であると想定する期間です。[[base-dns.ttl_rule]]"
+
+msgid "ttl_invalid"
+msgstr "[[VAR.invalidValue] は、[[base-dns.ttl]]には指定できません。[[base-dns.ttl_rule]]"
+
+msgid "ttl_empty"
+msgstr "[[base-dns.ttl]]を指定してください。[[base-dns.ttl_rule]]"
+
+
+
+# ---- Secondary Services
+
+msgid "secondary_service_button"
+msgstr "セカンダリサービスを設定"
+
+msgid "secondary_service_button_help"
+msgstr "ドメインやネットワークに対するセカンダリ DNS サービスを管理できます。"
+
+msgid "sec_list"
+msgstr "[[base-dns.title]] - セカンダリサービスのリスト"
+
+msgid "create_slave_rec"
+msgstr "[[base-dns.title]] - セカンダリサービスの追加"
+
+msgid "modify_slave_rec"
+msgstr "[[base-dns.title]] - セカンダリサービスの修正"
+
+msgid "slave_domain_but"
+msgstr "ドメイン"
+
+msgid "slave_domain"
+msgstr "ドメインネーム"
+
+msgid "slave_domain_help"
+msgstr "セカンダリドメインネームサービスの提供先ドメインを指定してください。"
+
+msgid "slave_dom_masters"
+msgstr "プライマリ DNS サーバの IP アドレス"
+
+msgid "slave_dom_masters_help"
+msgstr "このドメインのプライマリドメインネームサーバの IP アドレスを入力してください。"
+
+msgid "slave_network_but"
+msgstr "ネットワーク"
+
+msgid "slave_ipaddr"
+msgstr "ネットワーク"
+
+msgid "slave_ipaddr_help"
+msgstr "セカンダリドメインネームサービスの提供先ネットワークの IP アドレスを入力してください。"
+
+msgid "slave_netmask"
+msgstr "ネットワークのサブネットマスク"
+
+msgid "slave_netmask_help"
+msgstr "セカンダリドメインネームサービスの提供先ネットワークのサブネットマスクを入力してください。"
+
+msgid "slave_net_masters"
+msgstr "プライマリ DNS サーバの IP アドレス"
+
+msgid "slave_net_masters_help"
+msgstr "このドメインのプライマリドメインネームサーバの IP アドレスを入力してください。"
+
+msgid "sec_authority"
+msgstr "セカンダリサービス"
+
+msgid "sec_authority_help"
+msgstr "このサーバがセカンダリドメインネームサービスを提供するドメイン（またはネットワーク）です。"
+
+msgid "sec_primaries"
+msgstr "プライマリ DNS サーバ"
+
+msgid "sec_primaries_help"
+msgstr "このドメイン（またはネットワーク）のプライマリドメインネームサーバの IP アドレスです。"
+
+msgid "recordlist_action"
+msgstr "詳細"
+
+msgid "recordlist_action_help"
+msgstr "鉛筆アイコンをクリックすると、そのレコードを修正できます。ゴミ箱アイコンをクリックすると、そのレコードを削除できます。"
+
+# end of sentence is completed
+
+msgid "confirm_removal_of_sec"
+msgstr "[[VAR.rec]] というセカンダリドメインネームサービスレコードを削除してよろしいですか？"
+
+msgid "slave_ipaddr_invalid"
+msgstr "指定された IP アドレスは不正です。"
+
+msgid "slave_netmask_invalid"
+msgstr "指定されたネットマスクは不正です。ネットマスクは、255.255.255.0 の形式で入力してください。"
+
+msgid "slave_net_masters_invalid"
+msgstr "指定されたプライマリ DNS サーバの IP アドレスは不正です。"
+
+msgid "slave_domain_invalid"
+msgstr "指定されたドメインネームは不正です。"
+
+msgid "slave_dom_masters_invalid"
+msgstr "指定されたプライマリ DNS サーバの IP アドレスは不正です。"
+
+msgid "apply_changes"
+msgstr "変更を適用"
+
+msgid "apply_changes_help"
+msgstr "このボタンをクリックすると、DNS レコードに加えた変更が適用されます。DNS レコードを修正しても、このボタンをクリックしない限り新しい設定は有効になりません。"
+
+msgid "apply_changes_disabledHelp"
+msgstr "DNS レコードが追加、修正されていないため、このボタンは現在無効です。DNS レコードを追加、修正してからこのボタンをクリックすると、新しい設定が有効になります。 "
+
+
+# ---- Active monitor
+
+msgid "amDNSNameTag"
+msgstr "DNS サーバ"
+
+msgid "amDetailsTitle"
+msgstr "DNS サーバの詳細"
+
+msgid "amNotRunning"
+msgstr "ドメインネームサーバは動作しておらず、起動することもできませんでした。[[base-apache.amAdmservNameTag]] で、ドメインネームサーバを一旦オフにして「保存」ボタンをクリックしてから、もう一度オンにして「保存」ボタンをクリックし、問題が解決するかどうかお試しください。ドメインネームサーバが正しく起動しない場合には、[[base-alpine.serverconfig]] の [[base-power.power]] メニューにある「[[base-power.reboot]]」ボタンをクリックして、サーバ本体を再起動してください。それでもドメインネームサーバが起動しない場合には、[[base-sauce-basic.techSupportURL]] にあるテクニカルサポートサービスをご利用ください。"
+
+msgid "amStatusOK"
+msgstr "ドメインネームサーバは正常に動作しています。"
+
+
+# --- Drop-down menu
+
+msgid "select_a_domain"	
+msgstr "ドメインを選択..."
+
+msgid "select_a_network"
+msgstr "ネットワークを選択..."
+
+msgid "no_records"	
+msgstr "ドメインまたはネットワーク権限がありません。"
+
+msgid "subdom_host_name"
+msgstr "サブドメインネーム"
+
+msgid "subdom_host_name_help"
+msgstr "サブドメインネームを指定してください。例えば、remote.ourcompany.com というサブドメインの権限を委譲するには、このサーバが ourcompany.com というドメインに対する権限を持っていなければなりません。このフィールドには、サブドメインネームである remote のみを指定します。" 
+
+msgid "subdom_domain_name"
+msgstr "親ドメインネーム"
+msgid "subdom_domain_name_help"
+msgstr "親ドメインネームを選択してください。例えば、remote.ourcompany.com というサブドメインの権限を委譲する場合には、ourcompany.com を選択します。"
+
+msgid "subdom_nameservers"
+msgstr "ネームサーバ"
+
+msgid "subdom_nameservers_help"
+msgstr "指定されたサブドメインに対する権限を持つネームサーバの IP アドレスを指定してください。複数指定する場合には、コンマで区切ってください。少なくとも１つは指定する必要があります。" 
+
+msgid "subdom_nameservers_invalid"
+msgstr "[[base-dns.subdom_nameservers]]のリストに不正な文字またはホスト名が含まれています。"
+
+msgid "subdom_nameservers_empty"
+msgstr "このサブドメインに対する権限を持つ DNS サーバを少なくとも１つは指定してください。"
+
+msgid "subnet_ip_address"
+msgstr "サブネットの IP アドレス"
+
+msgid "subnet_ip_address_help"
+msgstr "別の DNS サーバに権限を委譲したいサブネット上の IP アドレスを指定してください。"  
+
+msgid "subnet_mask"
+msgstr "サブネットのネットワークマスク"
+
+msgid "subnet_mask_help"
+msgstr "サブネットのネットワークマスクを指定してください。" 
+
+msgid "subnet_nameservers"
+msgstr "ネームサーバ"
+
+msgid "subnet_nameservers_help"
+msgstr "指定されたサブネットに対する権限を持つネームサーバの IP アドレスを指定してください。複数指定する場合には、コンマで区切ってください。少なくとも１つは指定する必要があります。" 
+
+msgid "subnet_nameservers_invalid"
+msgstr "[[base-dns.subnet_nameservers]] のリストに不正な文字またはホスト名が含まれています。"
+
+msgid "subnet_nameservers_empty"
+msgstr "このサブネットに対する権限を持つ DNS サーバを少なくとも１つは指定してください。"
+
+msgid "create_dns_rec"
+msgstr "DNS レコードを追加" 
+
+msgid "modify_dns_rec"	
+msgstr "[[base-dns.title]] - DNS レコードを修正" 
+
+msgid "authority"
+msgstr "権限"
+
+msgid "authority_help"
+msgstr "DNS 権限はドメインとネットワークです。"
+
+msgid "subnet_dir"
+msgstr "サブネット"
+
+msgid "subdom_dir"
+msgstr "サブドメイン"
+
+msgid "subnet"
+msgstr "サブネットの権限委譲"
+
+msgid "subdom"
+msgstr "サブドメインの権限委譲"
+
+msgid "modify_dns_recSUBDOM"
+msgstr "[[base-dns.title]] - サブドメインの権限委譲を修正"
+
+msgid "create_dns_recSUBDOM"
+msgstr "サブドメインの権限委譲を追加"
+
+msgid "modify_dns_recSUBNET"
+msgstr "[[base-dns.title]] - サブネットの権限委譲を修正"
+
+msgid "create_dns_recSUBNET"
+msgstr "サブネットの権限委譲を追加"
+
+msgid "add_secondary"
+msgstr "セカンダリサービスを追加..."
+
+msgid "add_secondary_forward"
+msgstr "ドメイン"
+
+msgid "add_secondary_network"
+msgstr "ネットワーク"
+
+
+# --- Lots of error messages
+
+msgid "cname_domain_name_invalid"
+msgstr "指定されたドメインネームには、不正な文字が含まれています。"
+
+msgid "cname_domain_target_invalid"
+msgstr "指定されたドメインネームには、不正な文字が含まれています。"
+
+msgid "cname_host_target_invalid"
+msgstr "指定されたホスト名には、不正な文字が含まれています。"
+
+msgid "subdom_host_name_invalid"
+msgstr "指定されたホスト名には、不正な文字が含まれています。"
+
+msgid "subdom_host_name_empty"
+msgstr "リモートの DNS サーバに権限委譲したいサブドメイン名を指定してください。"
+
+msgid "subdom_domain_name_invalid"
+msgstr "指定されたドメインネームには、不正な文字が含まれています。"
+
+msgid "subdom_namerservers_invalid"
+msgstr "プライマリ DNS サーバのドメインネームが不正です。"
+
+msgid "subnet_subnet_mask_invalid"
+msgstr "指定されたサブネットマスクは不正です。サブネットマスクは、255.255.255.0の形式で入力してください。"
+
+msgid "subnet_ip_address_invalid"
+msgstr "指定された IP アドレスは不正です。 "
+
+msgid "subnet_ip_address_empty"
+msgstr "権限委譲されるサブネットのメンバーの IP アドレスを指定してください。"
+
+msgid "primary_dns_invalid"
+msgstr "指定されたホスト名には、不正な文字が含まれています。"
+
+msgid "secondary_dns_invalid"
+msgstr "セカンダリネームサーバのホスト名に、不正な文字が含まれています。"
+
+msgid "refresh_invalid"
+msgstr "[[VAR.invalidValue]] は、[[base-dns.default_refresh]]には指定できません。[[base-dns.default_refresh_rule]]"
+
+msgid "retry_invalid"
+msgstr "[[VAR.invalidValue]] は、[[base-dns.default_retry]]には指定できません。  [[base-dns.default_retry_rule]]"
+
+msgid "expire_invalid"
+msgstr "[[VAR.invalidValue]] は、[[base-dns.default_expire]]には指定できません。  [[base-dns.default_expire_rule]]"
+
+msgid "cname_domain_name_empty"
+msgstr "エイリアスドメインネームを指定してください。"
+
+msgid "cname_domain_target_empty"
+msgstr "エイリアスホスト名とドメインネームに対応する実ドメインネームを指定してください。"
+
+msgid "slave_domain_empty"
+msgstr "このサーバがセカンダリ DNS サーバとなるドメインネームを指定してください。"
+
+msgid "slave_dom_masters_empty"
+msgstr "ドメインネームのプライマリ DNS サーバの IP アドレスを指定してください。"
+
+msgid "slave_ipaddr_empty"
+msgstr "プライマリ DNS サーバによって提供されるネットワーク上の IP アドレスを指定してください。"
+
+msgid "slave_net_masters_empty"
+msgstr "ネットワークのプライマリ DNS サーバの IP アドレスを指定してください。"
+
+msgid "slave_netmask_empty"
+msgstr "指定されたネットワーク IP アドレスと共に、プライマリ DNS サーバが権限を持つネットワークのネットワークマスクを、255.255.255.0 の形式で指定してください。"
+
+msgid "cname_host_name_empty"
+msgstr "このレコードのホスト名を指定してください。"
+
+msgid "cname_host_name_invalid"
+msgstr "指定されたホスト名には、不正な文字が含まれています。"
+
+msgid "parent_network"
+msgstr "親ネットワーク"
+
+msgid "parent_network_help"
+msgstr "このサーバが権限を持つ親ネットワークで、指定されたサブネット上にある全ての IP アドレスは、この親ネットワークに属する必要があります。"
+
+msgid "invalidDuplicate"
+msgstr "同一のドメインネームレコードが既に存在します。"
+
+msgid "named-did-not-start"
+msgstr "ネームサーバ (DNS) が正しく再起動しませんでした。"
+
+msgid "invalid-authority"
+msgstr "DNS レコードに必要不可欠な情報が欠如しています。"
+
+msgid "SOA-already-exists-for-zone"
+msgstr "このゾーン用の SOA (Start Of Authority) レコードは既に存在します。"
+
+msgid "secondaryZoneOverlap"
+msgstr "このレコードは、既存のセカンダリネットワークサービスと矛盾します。"
+
+msgid "secondaryZoneDuplicate"
+msgstr "このレコードは、既存のセカンダリネットワークサービスと矛盾します。"
+
+msgid "primaryZoneDuplicate"
+msgstr "このレコードは、既存のプライマリネットワークサービスと矛盾します。"
+
+msgid "primaryZoneOverlap"
+msgstr "このレコードは、既存のプライマリネットワークサービスと矛盾します。"
+
+msgid "auto_dns"
+msgstr "自動 DNS"
+
+msgid "auto_dns_help"
+msgstr "自動 DNS 設定"
+
+msgid "auto_a"
+msgstr "ホストネーム"
+
+msgid "auto_a_help"
+msgstr "自動 DNS のためのホスト名を追加します。"
+
+msgid "auto_mx"
+msgstr "メールサーバホスト名"
+
+msgid "auto_mx_help"
+msgstr "このドメインのメールサーバホスト名を追加します。メールサーバホストに domain.tld の様なドメイン名だけのものは追加しないでください。"
+
+msgid "dnsNames_header"
+msgstr "このサイトで管理するドメイン名を選択してください。"
+
+msgid "dnsNames"
+msgstr "ドメイン名の選択"
+
+msgid "dnsNames_help"
+msgstr "管理することドメイン名を選択します。"
+
+msgid "selected"
+msgstr "管理する"
+
+msgid "notSelected"
+msgstr "管理しない"
+
+msgid "nodnsmanage"
+msgstr "ドメイン名管理者が設定されていません。"
+
+msgid "dnsempty"
+msgstr ""
+"<br>"
+"このシステムの管理者はどのドメインの管理もあなたに許可していません。<br>"
+"もしエラーと感じたなら、管理者に連絡してください。<br>"
+"<br>"
+
+#------- New Advanced Settings: ---------------
+
+msgid "query"
+msgstr "DNSクエリアクセスを許可"
+
+msgid "query_help"
+msgstr "これはデフォルトで有効になっています。選択したIPアドレスの範囲は、DNS情報をDNSサーバを照会することができます。あなたは、アドレス範囲が 'これらのネットワークからのクエリを許可する]フィールドに以下のビットさらに、サーバーを照会することができますを指定することができます。"
+
+msgid "query_all_allowed"
+msgstr "みんなからのクエリを許可する"
+
+msgid "query_all_allowed_help"
+msgstr "インターネット全体からクエリアクセスを許可します。あなたがドメインの権限ネームサーバを実行する場合は、これを有効にする必要があります。あなたのネームサーバは、プライベートであるために仮定されている場合は、それをオフにすることができます。"
+
+msgid "query_inetaddr"
+msgstr "これらのネットワークからのクエリーを許可する"
+
+msgid "query_inetaddr_help"
+msgstr "このボックスでは、IPアドレスの範囲があなたのDNSサーバに照会を許可するかを指定することができます。デフォルトでは、localhostのみが（'127.0.0.1/32'）許可されています。 'は、みんなからのクエリを許可する'のはチェックボックスにチェックを入れた場合、それはあなたがここに入れ、誰クエリアクセスを許可しますどのような余分なアドレス範囲が優先されます。"
+
+msgid "caching"
+msgstr "DNSキャッシュのアクセスを許可"
+
+msgid "caching_help"
+msgstr "また、再帰と呼ばれる有効キャッシュは、他のネームサーバがの権威であることをドメインとネットワークゾーンの解像度を可能にします。しかし、そのような 'オープン'のDNSサーバーを実行すると、DDoS攻撃のリスクに自分と他人を公開します。あなたが探し権威ではないドメインを解決するために、DNSサーバが必要な場合は、それで、あなたは唯一のクエリを許可する必要があります、あなたはどちらかあなたのプロバイダのDNSサーバを使用するべきか、（あなたはまだそのための独自のDNSサーバを使用したい場合は！）このDNSサーバー上のローカルホスト（'127.0.0.1/32'）、または選択した、信頼できるネットワークアドレス範囲のアクセス。"
+
+msgid "caching_all_allowed"
+msgstr "オープンDNSサーバー（推奨されません！）"
+
+msgid "caching_all_allowed_help"
+msgstr "このボックスにチェックを入れた場合は、DNSサーバが完全にオープンになり、誰と誰のためにDNSを解決します。それは本当に悪い考えです。これは、DDoS攻撃のリスクに自分と他人を公開します。あなたが探し権威ではないドメインを解決するために、DNSサーバが必要な場合は、それで、あなたは唯一のクエリを許可する必要があります、あなたはどちらかあなたのプロバイダのDNSサーバを使用するべきか、（あなたはまだそのための独自のDNSサーバを使用したい場合は！）このDNSサーバー上のローカルホスト（'127.0.0.1/32'）、または選択した、信頼できるネットワークアドレス範囲のアクセス。"
+
+msgid "recursion_inetaddr"
+msgstr "これらのネットワークからキャッシュへのアクセスを許可する"
+
+msgid "recursion_inetaddr_help"
+msgstr "キャッシュサーバに再帰クエリーを要求するために、許可されているアドレス範囲のIPアドレス（ネットマスク付き！）を入力します。 [[ベースdns.inetaddr_rule]]"
+
+msgid "rate_limits"
+msgstr "DNSのレート制限："
+
+msgid "rate_limits_enabled"
+msgstr "レート制限が有効"
+
+msgid "rate_limits_enabled_help"
+msgstr "制限DNSレスポンスレート（DNS RRL）は増幅反射サービス拒否攻撃と同様に、部分的にサービス攻撃のいくつかの否定からBIND 9自体の保護に使用されているからBIND 9を保持します。デフォルトでは有効にする必要があります。"
+
+msgid "responses_per_second"
+msgstr "秒あたりの応答"
+
+msgid "responses_per_second_help"
+msgstr "回答毎秒代わりに単一のクライアントへのすべての応答、あるいはすべての回答には限界の同一の応答に限界がある。毎秒10と同一の応答は、多くのクライアントがネットワークアドレス変換（NAT）を介して単一のIPアドレスを使用しているかもしれない除く寛大な限界である。ゼロのデフォルトの制限はビューまたはのみレート制限NXDOMAINまたは他のエラーにレート制限をオフにする無限の制限を指定します。"
+
+msgid "window"
+msgstr "ウィンドウ"
+
+msgid "window_help"
+msgstr "レート制限は、クレジットカードまたはトークンバケット方式を採用しています。それぞれ同一の応答が毎秒RESPONSES-PER-SECONDとERRORS毎秒クレジット与えられている概念のアカウントを持っています。いくつかの所望の応答を誘発するDNS要求が1つのアカウントを借方に記入。アカウントが負である間の応答が送信されません。アカウントごとの秒の制限よりも正またはウィンドウ回あたりの秒の制限よりも負になることはできません。回答されていない要求を送信するDNSクライアントは、したがってさえ虐待クエリフローが停止した後にウィンドウ秒用に罰せられることができます。"
+
+msgid "dns_logging"
+msgstr "拡張DNSロギング："
+
+msgid "enable_dns_logging"
+msgstr "拡張DNSロギングをイネーブルに"
+
+msgid "enable_dns_logging_help"
+msgstr "警告：それはあなたのDNSサーバに任意のクエリをログに記録しますので、これが唯一、デバッグのために使用されるべきである。でも、軽く使用されるDNSサーバーに、これはログエントリの多くを作成します。しかし、あなたは簡単に（！）あなたの 'DNSのレート制限は、'正常に動作しているかどうかを確認するためにログを拡張DNSを有効にしたいかもしれません。"
+
+#------- New Advanced Settings: ---------------
+
+msgid "cap_serverDNS"
+msgstr "サーバーのDNS管理"
+
+msgid "cap_siteDNS"
+msgstr "サイトのDNS管理"
+
+#-------------------------
+
+msgid "extremely_high"
+msgstr "非常に高い（0）"
+
+msgid "very_high"
+msgstr "最優先（20）"
+
+msgid "high"
+msgstr "優先（30）"
+
+msgid "low"
+msgstr "低優先（40）"
+
+msgid "very_low"
+msgstr "最低優先（50）"
+
+#-------------------------
+
+msgid "mx_dir_extremely_high"
+msgstr "メール (非常に高い)"
+
+msgid "mx_dir_very_high"
+msgstr "メール (最優先)"
+
+msgid "mx_dir_high"	
+msgstr "メール (優先)"
+
+msgid "mx_dir_low"	
+msgstr "メール (低優先)"
+
+msgid "mx_dir_very_low"
+msgstr "メール (最低優先)"
+
+## ---------------------------------- SPF Wizard:
+
+msgid "spf_wizard"
+msgstr "SPFウィザード"
+
+msgid "spf_intro_text"
+msgstr "このウィザードは、DNSドメインのSPFレコードを作成または編集するプロセスをガイドします。 </p><p>あなたが上にあるフィールド 'テキストレコード'にこのDNSレコードを追加する必要があります。 </p><p>完全な詳細については、次のSPFレコードのホームページをご参照ください<a href='http://www.openspf.org/' target='_blank'>http://www.openspf.org/</a>"
+
+msgid "dns_entry_header"
+msgstr "DNSエントリ（ 'テキストレコード」にこれをコピーして貼り付ける）"
+
+msgid "your_domain"
+msgstr "あなたのドメイン："
+
+msgid "your_domain_help"
+msgstr "あなたがSPFレコードを追加するドメイン。 <br/>つまり<b>example.com</b>"
+
+msgid "allow_mx"
+msgstr "MXのようにリストされたサーバーは、このドメインの電子メールを送信することができます："
+
+msgid "allow_mx_help"
+msgstr "これらのMXサーバーは、このドメインの電子メールを送信ください現在のハンドラを？：<br><b>mx1.domain.com<br>mx2.domain.com</b>"
+
+msgid "no"
+msgstr "いいえ"
+
+msgid "yes_recommended"
+msgstr "はい（推奨）"
+
+msgid "allow_current_ip"
+msgstr "このドメインの電子メールを送信するドメインの現在のIPアドレスを許可する："
+
+msgid "allow_current_ip_help"
+msgstr "ドメインの主なIPは、このドメインの電子メールを送信しますか？ <br>メインIPアドレス<b>：10.0.0.1</b>"
+
+msgid "allow_hostname"
+msgstr "できるようで終わるすべてのホスト名<span id=\"domainSP\" style=\"font-weight: bold;\"></span>このドメインの電子メールを送信するには、次のように"
+
+msgid "allow_hostname_help"
+msgstr "すべてのサブドメインは、このメインドメインのために電子メールを送信することが許可されていますか？"
+
+msgid "no_recommended"
+msgstr "いいえ（推奨）しない"
+
+msgid "yes"
+msgstr "はい"
+
+msgid "allow_ip_cidr"
+msgstr "配送またはこのドメインのメールを中継CIDR形式のIPアドレス："
+
+msgid "allow_ip_cidr_help"
+msgstr "分離サブネットマスクスペースでメールを送信することができ、サーバのIPアドレスを追加します。 /32は、単一のIPのために使用してください。 <br />すなわち<b>10.0.0.1/32 192.168.0.1/28</b>"
+
+msgid "allow_other_hostname"
+msgstr "このドメインのメールの配信または中継することができる任意の他のサーバーのホスト名を追加します。"
+
+msgid "allow_other_hostname_help"
+msgstr "分離このドメイン空間のためのメールを送信することが許可されているサーバーを追加します。<br/>すなわち<b>ns1.example.com ns2.example.com</b>"
+
+msgid "any_other_domains"
+msgstr "このドメインのメールの配信または中継することができる任意のドメイン："
+
+msgid "any_other_domains_help"
+msgstr "このドメインの電子メールを送信することができ、他のドメインを追加し、このようなサードパーティのサービス空間を分離した。<br/>すなわち<b>3rdparty.com 1stparty.com</b>"
+
+msgid "how_strict"
+msgstr "どのように厳格な電子メールを処理するサーバーである必要がありますか？"
+
+msgid "how_strict_help"
+msgstr "最高のフィットオプションを選択します。"
+
+msgid "dash"
+msgstr "-"
+
+msgid "fail_notcompliant"
+msgstr "失敗（準拠したんは拒否されます）"
+
+msgid "softfail"
+msgstr "Softfailは（対応の受け入れられますが、マークされていません）"
+
+msgid "neutral_maybe"
+msgstr "ニュートラル（メールはおそらく受け入れられます）"
+
+### AAA Records:
+
+msgid "create_dns_recAAAA"
+msgstr "新しい[[base-dns.aaaa_record]]を追加[[base-dns.title]]"
+
+msgid "modify_dns_recAAAA"
+msgstr "[[base-dns.title]]変更[[base-dns.aaaa_record]]"
+
+msgid "aaaa_ip_address"
+msgstr "IPv6アドレス"
+
+msgid "aaaa_ip_address_help"
+msgstr "このレコードのIPv6アドレスを入力してください。 [[base-dns.aaaa_record_explain]]"
+
+msgid "aaaa_ip_address_invalid"
+msgstr "指定されたIPv6アドレスが無効です。 [[base-dns.ipV6addr_rule]]"
+
+msgid "aaaa_ip_address_empty"
+msgstr "ホスト名とドメイン名の解決先のIPv6アドレスを指定してください。 [[base-dns.ipV6addr_rule]]"
+
+msgid "aaaa_record"
+msgstr "IPv6のフォワードアドレス（AAAA）レコード"
+
+msgid "aaaa_record_explain"
+msgstr "[[base-dns.aaaa_record]]は、IPv6アドレスへの完全修飾ドメイン名からの翻訳を提供します。完全修飾ドメイン名、ホスト名とドメイン名またはドメイン名だけの両方で構成することができる。"
+
+msgid "ipV6addr_rule"
+msgstr "AAAAレコードは、レコードと同じように動作します。むしろ、IPv4のIPアドレス（例：213.171.111.2）に向かってウェブサイトを指しているよりも、彼らは（2214年：c32:2214:ff2aなど）のIPv6アドレスの方に指します。"
+
+msgid "aaaa_dir"
+msgstr "IPv6のフォワード"
+
+###
+
+msgid "masters"
+msgstr "[[base-dns.slave_dom_masters]]"
+
+msgid "masters_help"
+msgstr "[[base-dns.slave_dom_masters_help]]"
+
+msgid "ipaddr"
+msgstr "[[base-dns.slave_ipaddr]]"
+
+msgid "ipaddr_help"
+msgstr "[[base-dns.slave_ipaddr_help]]"
+
+msgid "netmask"
+msgstr "[[base-dns.slave_netmask]]"
+
+msgid "netmask_help"
+msgstr "[[base-dns.slave_netmask_help]]"
+

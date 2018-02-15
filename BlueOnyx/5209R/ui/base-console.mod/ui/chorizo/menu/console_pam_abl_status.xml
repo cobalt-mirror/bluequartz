@@ -1,0 +1,11 @@
+<item 
+    id="pam_abl_status" 
+    label="[[base-console.pam_abl_statusMenu]]" 
+    description="[[base-console.pam_abl_statusMenu_help]]" 
+    url="/console/ablstatus"
+>
+
+    <parent id="base_security" order="1">
+        <access require="serverConfig"/>
+    </parent>
+</item>

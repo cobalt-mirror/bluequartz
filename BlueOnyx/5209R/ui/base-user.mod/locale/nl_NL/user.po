@@ -1,0 +1,572 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "userList"
+msgstr "Gebruikers Lijst"
+
+msgid "userListTitle"
+msgstr "Gebruikers Lijst voor [[VAR.fqdn]]"
+
+msgid "users_help"
+msgstr "Klik hier om gebruikers te beheren."
+
+msgid "fullName"
+msgstr "Volledige Naam"
+
+msgid "fullName_help"
+msgstr "Dit is de volledige naam van de gebruiker."
+
+msgid "userName"
+msgstr "Gebruikers Naam"
+
+msgid "userName_help"
+msgstr "Dit is de naam die door het systeem aan de gebruiker te identificeren."
+
+msgid "listAction"
+msgstr "Actie"
+
+msgid "listAction_help"
+msgstr "Dit zijn de knoppen gebruikt om de instellingen van een gebruiker te wijzigen of om een ​​gebruiker te verwijderen."
+
+msgid "addNewUser"
+msgstr "Nieuwe gebruiker toevoegen"
+
+msgid "addNewUserTitle"
+msgstr "Nieuwe gebruiker toevoegen aan [[VAR.fqdn]]"
+
+msgid "fullNameField"
+msgstr "[[base-user.fullName]]"
+
+msgid "fullNameField_rule"
+msgstr "Vul alle tekens behalve dubbele punten. Bijvoorbeeld, John Doe is een geldige invoer."
+
+msgid "fullNameField_help"
+msgstr "Voer de volledige naam van de gebruiker. [[base-user.fullNameField_rule]]"
+
+msgid "userNameField"
+msgstr "[[base-user.userName]]"
+
+msgid "userNameField_rule"
+msgstr "Vul niet meer dan 31 tekens bevatten alleen kleine letters en cijfers, punten, koppeltekens en onderstrepingstekens. Het eerste teken moet een letter zijn. Bijvoorbeeld john.doe een geldige invoer."
+
+msgid "userNameField_help"
+msgstr "De naam die worden gebruikt door het systeem om de gebruiker te identificeren. [[base-user.userNameField_rule]]"
+
+msgid "userNameAlreadyTaken"
+msgstr "Sorry, je hebt een waarde voor [[base-user.userNameField]] die niet beschikbaar zijn op dit systeem ingevoerd. Vul een andere waarde voor [[base-user.userNameField]]."
+
+msgid "userNameSuggest"
+msgstr "[[base-user.userNameAlreadyTaken]] De volgende namen zijn beschikbaar: [[VAR.list]]."
+
+msgid "passwordField"
+msgstr "Wachtwoord"
+
+msgid "passwordField_help"
+msgstr "Voer het wachtwoord voor het systeem om de gebruiker te identificeren. [[base-user.passwordField_rule]]"
+
+msgid "passwordField_invalid"
+msgstr "Sorry, je hebt niet hetzelfde wachtwoord in beide velden ingevoerd. Hetzelfde wachtwoord in beide velden ingevoerd ter bescherming tegen typefouten. Probeer het opnieuw."
+
+msgid "error-invalid-password"
+msgstr "Sorry, de door u ingevoerde wachtwoord is ongeldig. [[base-user.passwordField_rule]]"
+
+msgid "maxDiskSpaceField"
+msgstr "Maximaal toegestaan ​​Disk Space"
+
+msgid "maxDiskSpaceField_rule"
+msgstr "De maximaal toegestane schijfruimte moet binnen de in haakjes bereik."
+
+msgid "maxDiskSpaceField_help"
+msgstr "Stel de disk quota van deze gebruiker. Dit is de maximale schijfruimte deze gebruiker voor het opslaan van webpagina's, e-mailberichten en alle andere gebruikersbestanden. [[base-user.maxDiskSpaceField_rule]] De standaardwaarde voor nieuwe gebruikers is ingesteld in het gedeelte Gebruiker Template."
+
+msgid "maxDiskSpaceFieldDefault"
+msgstr "[[base-user.maxDiskSpaceField]]"
+
+msgid "maxDiskSpaceFieldDefault_help"
+msgstr "Stel de standaard schijfruimte voor nieuwe gebruikers maximum. Dit is de maximale schijfruimte voor gebruikers voor het opslaan van webpagina's, e-mailberichten en alle andere gebruikersbestanden. [[base-user.maxDiskSpaceField_rule]]"
+
+msgid "memberGroupsField"
+msgstr "Groeplidmaatschap"
+
+msgid "memberGroupsField_help"
+msgstr "Stel de groep lidmaatschap van deze gebruiker. De linkerkolom toont de groepen waartoe deze gebruiker behoort momenteel. De rechterkolom toont de groepen waartoe deze gebruiker zou kunnen behoren. Om deze gebruiker toe te voegen als lid van een groep, verplaatsen de groep van de rechterkant naar de linkerkolom."
+
+msgid "memberGroups"
+msgstr "Groepen Aangesloten"
+
+msgid "allGroups"
+msgstr "Groepen niet aangesloten"
+
+msgid "modifyUser"
+msgstr "Wijzig Gebruikersinstellingen voor [[VAR.userName]]"
+
+msgid "newPasswordField"
+msgstr "Nieuw wachtwoord"
+
+msgid "newPasswordField_help"
+msgstr "[[base-user.passwordField_help]]"
+
+msgid "newPasswordField_invalid"
+msgstr "[[base-user.passwordField_invalid]]"
+
+msgid "emailSettingsFor"
+msgstr "E-mailinstellingen voor [[VAR.userName]]"
+
+msgid "emailAlias"
+msgstr "Email alias"
+
+msgid "emailAliasesField"
+msgstr "E-mail aliassen"
+
+msgid "emailAliasesField_rule"
+msgstr "Vul de karakters met alleen kleine letters en cijfers, punten, koppeltekens en onderstrepingstekens. De standaardwaarde is de kleine letters en achternaam van de gebruiker gescheiden door een punt. Bijvoorbeeld john.doe een geldige invoer."
+
+msgid "emailAliasesField_help"
+msgstr "Voer extra namen die de gebruiker e-mail zal ontvangen als. [[base-user.emailAliasesField_rule]]"
+
+msgid "forwardEnableField"
+msgstr "E-mail doorsturen"
+
+msgid "forwardEnableField_help"
+msgstr "Het inschakelen van e-mail forwarding veroorzaakt e-mail ontvangen in de toekomst automatisch worden doorgestuurd naar de e-mailadressen opgegeven."
+
+msgid "forwardEnable"
+msgstr "In staat stellen"
+
+msgid "forwardEmailField_rule"
+msgstr "Voer geldige e-mailadressen. Meerdere adressen zijn prima. Scheiden met een komma of zet elk adres op een aparte regel."
+
+msgid "forwardEmailField"
+msgstr "E-mailadressen"
+
+msgid "forwardEmailField_help"
+msgstr "Voer de e-mailadressen waarnaar wilt u uw e-mail doorgestuurd. [[base-user.forwardEmailField_rule]]"
+
+msgid "autoResponderField"
+msgstr "Vacation Message"
+
+msgid "autoResponderField_help"
+msgstr "Vakantie bericht kunt u een aangepast bericht automatisch sturen naar iedereen die je e-mail stuurt."
+
+msgid "enableAutoResponderField"
+msgstr "In staat stellen"
+
+msgid "autoResponderMessageField"
+msgstr "Auto-Reply"
+
+msgid "autoResponderMessageField_help"
+msgstr "Voer het bericht dat automatisch wordt verzonden als een antwoord naar de afzender van elke e-mail die u ontvangt."
+
+msgid "blank-vacation-msg"
+msgstr "Sorry, je hebt een ongeldige waarde voor [[base-user.autoResponderMessageField]] ingevoerd."
+
+msgid "userDefaults"
+msgstr "Edit User Template"
+
+msgid "userDefaults_help"
+msgstr "Klik hier om de standaardinstellingen voor nieuwe gebruikers te wijzigen."
+
+msgid "userDefaultsTitle"
+msgstr "Edit User Template voor [[VAR.fqdn]]"
+
+msgid "basicDefaults"
+msgstr "Basisch"
+
+msgid "serviceDefaults"
+msgstr "Diensten"
+
+msgid "usersPerPage"
+msgstr "Aantal gebruikers per pagina"
+
+msgid "usersPerPage_help"
+msgstr "Stel het aantal gebruikers per pagina weer te geven in de lijst van gebruikers."
+
+msgid "userNameGenField"
+msgstr "Gebruikers Naam Generation"
+
+msgid "userNameGenField_help"
+msgstr "Stel de methode waarmee gebruikersnamen automatisch worden gegenereerd na het invoeren van volledige namen. Bijvoorbeeld, als John Doe is de volledige naam, vervolgens johnd, jdoe, john of doe zou de automatisch gegenereerde gebruikersnaam zijn."
+
+msgid "first"
+msgstr "Alleen Voornaam"
+
+msgid "last"
+msgstr "Alleen Achternaam"
+
+msgid "firstInitLast"
+msgstr "Initiaal van Voornaam & Achternaam"
+
+msgid "firstLastInit"
+msgstr "Voornaam en initiaal van de familienaam"
+
+msgid "languageField"
+msgstr "Taalvoorkeur"
+
+msgid "languageField_help"
+msgstr "De server zal proberen om pagina's in de gewenste taal die u hier kunt selecteren. Als u 'Set Van Browser Opties' selecteert, zal de server proberen om pagina's op basis van taal voorkeuren van uw webbrowser te openen. Als de taal die u selecteert niet beschikbaar is, zal de server's weer te geven met behulp van de standaard taal die beschikbaar is voor uw server."
+
+msgid "account"
+msgstr "Rekening"
+
+msgid "account_help"
+msgstr "Klik hier om elementaire accountinstellingen configureren."
+
+msgid "email"
+msgstr "E-mail"
+
+msgid "email_help"
+msgstr "Klik hier om e-mail instellingen, zoals aliassen, expeditie en vakantie bericht te configureren."
+
+msgid "personalEmail"
+msgstr "E-mail"
+
+msgid "personalEmail_help"
+msgstr "Klik hier om uw e-mail forwarding en automatische reactie te beheren."
+
+msgid "styleField"
+msgstr "Stijl"
+
+msgid "styleField_help"
+msgstr "Verandert de grafische stijl gebruikt om menu's, knoppen en andere items weer te geven."
+
+msgid "personalAccount"
+msgstr "Rekening"
+
+msgid "personalAccount_help"
+msgstr "Klik hier om persoonlijke account informatie te beheren."
+
+msgid "accountSettings"
+msgstr "Accountinstellingen voor [[VAR.userName]]"
+
+msgid "removeUserConfirm"
+msgstr "Weet u zeker dat u de gebruiker [[VAR.userName]] verwijderen?"
+
+msgid "reloadMessage"
+msgstr "Uw browser zal nu vernieuwen automatisch naar de gekozen taal te gebruiken."
+
+msgid "forwardSaveField"
+msgstr "Kopie opslaan"
+
+msgid "forwardSaveField_help"
+msgstr "Kopie opslaan wordt een kopie van elke e-mail ontvangt in de mailbox in aanvulling op toezending van een afschrift aan de e-mailadressen opgegeven."
+
+msgid "userDesc"
+msgstr "Opmerkingen"
+
+msgid "userDesc_help"
+msgstr "Deze kolom bevat extra informatie over elke gebruiker."
+
+msgid "userDescField"
+msgstr "Opmerkingen"
+
+msgid "userDescField_help"
+msgstr "Voer hier aanvullende informatie of opmerkingen over de gebruiker."
+
+msgid "uidAlreadyTaken"
+msgstr "Er is een fout opgetreden. De ingevoerde uid is al genomen."
+
+msgid "aliasAlreadyTaken"
+msgstr "Sorry, deze gebruiker kan niet worden gemaakt met de opgegeven naam, omdat een e-mail alias bestaat reeds voor die naam."
+
+msgid "aliasAlreadyTaken2"
+msgstr "Helaas, mail aliassen deze gebruiker niet kan worden ingesteld omdat een of meer van de aliassen al in gebruik."
+
+msgid "add_user_help"
+msgstr "Klik hier om een ​​nieuwe gebruiker toe te voegen."
+
+msgid "administrator"
+msgstr "Beheerder"
+
+msgid "failed-to-add-user"
+msgstr "Een gebruikersaccount kan niet worden gemaakt vanwege een systeemfout."
+
+msgid "cantCreateUserServices"
+msgstr "Kan de UserServices object te maken."
+
+msgid "="
+msgstr "is"
+
+msgid "match"
+msgstr "bevat"
+
+msgid "nomatch"
+msgstr "bevat geen"
+
+msgid "searchbut"
+msgstr "Zoeken"
+
+msgid "searchbut_help"
+msgstr "Klik hier om een ​​lijst van gebruikers op basis van de ingevoerde criteria te halen."
+
+msgid "userSearch"
+msgstr "Zoek Gebruikers"
+
+msgid "userSearchCriteria"
+msgstr "Zoeken:"
+
+msgid "userSearchCriteria_help"
+msgstr "U kunt deze zoekopdracht tool gebruiken om gebruikers op basis van de criteria die u opgeeft vinden. Selecteer het veld waarop te zoeken en te kiezen hoe de tekst die u invoert, moet worden vergeleken met het veld."
+
+msgid "capgroup_adminUser"
+msgstr "Gebruikers beheren"
+
+msgid "capgroup_adminUser_help"
+msgstr "Deze administratieve rechter kan een gebruiker te creëren, vernietigen en andere gebruikers te wijzigen op deze machine"
+
+msgid "siteAdminEnabled"
+msgstr "Site Administrator"
+
+msgid "siteAdminEnabled_help"
+msgstr "Deze gebruiker een sitebeheerder is."
+
+msgid "userSuspended"
+msgstr "Gebruiker opgeschort"
+
+msgid "userSuspended_help"
+msgstr "Deze gebruiker is opgeschort en zal de toegang tot het systeem diensten in verband met die account zoals telnet, FTP, e-mail en web-toegang tot hun bestanden worden geweigerd E-mail verzonden naar deze account zal worden afgewezen en de afzender een foutmelding ontvangen."
+
+msgid "rights"
+msgstr "Toestand"
+
+msgid "rights_help"
+msgstr "Deze kolom geeft pictogrammen voor functies ingeschakeld voor de gebruiker. Beweeg uw muis over de iconen voor meer informatie over elk item."
+
+msgid "emailAliases"
+msgstr "E-mail aliassen"
+
+msgid "emailAliases_help"
+msgstr "Deze kolom geeft de e-mail aliassen voor de gebruiker. De gebruiker kan ontvangen email geadresseerd aan deze namen naast de gebruikersnaam."
+
+msgid "suspendUser"
+msgstr "Hangend"
+
+msgid "suspendUser_help"
+msgstr "Schorsing van een gebruiker wordt voorkomen dat de gebruiker toegang krijgt tot het systeem diensten in verband met die account zoals telnet, FTP, e-mail en web toegang tot hun bestanden. E-mail verzonden naar rekening van de geschorste gebruiker zullen worden afgewezen en de afzender een foutmelding ontvangen."
+
+msgid "siteAdministratorField"
+msgstr "Site Administrator"
+
+msgid "siteAdministratorField_help"
+msgstr "Sitebeheerders zijn gebruikers die in staat zijn het configureren van instellingen voor een site zijn."
+
+msgid "cantDeleteUser"
+msgstr "Machte is de gebruiker te verwijderen."
+
+msgid "cleanupOldFiles"
+msgstr "Deze gebruiker is eigenaar van bestanden die onder directory van de site, maar niet in de gebruikers home directory die je misschien wilt houden. U moet deze bestanden te verwijderen of de toewijzing van de eigendom aan een andere gebruiker voordat u deze gebruiker."
+
+msgid "cantGetRootAccess"
+msgstr "Kan de RootAccess namespace voor [[VAR.name]] krijgen van CCE."
+
+msgid "cantDisableRootAccess"
+msgstr "Kan geen root-toegang voor [[VAR.name]] uitschakelen."
+
+msgid "cantEnableRootAccess"
+msgstr "Kan geen root-toegang voor [[VAR.name]] schakelen."
+
+msgid "cantDeleteAlterRoot"
+msgstr "Niet in staat om de root-gebruikersaccount, [[VAR.root]] verwijderen."
+
+msgid "cantCreateAlterRoot"
+msgstr "Niet in staat om de root-gebruikersaccount, [[VAR.root]] creëren."
+
+msgid "cantUpdateAlterRoot"
+msgstr "Niet in staat om de root-gebruiker wachtwoord synchroniseren voor het root account, [[VAR.root]], om het wachtwoord voor rekening [[VAR.name]] passen."
+
+msgid "emailDisabled"
+msgstr "Schakel gebruiker E-mail"
+
+msgid "emailDisabled_help"
+msgstr "Dit e-mail van de gebruiker uit te schakelen voor zijn hoofd-account en alle aliassen"
+
+msgid "dnsAdministratorField"
+msgstr "DNS Administrator"
+
+msgid "dnsAdministratorField_help"
+msgstr "Deze gebruiker is een DNS-beheerder."
+
+msgid "passwordField_rule"
+msgstr "Het wachtwoord moet tussen de 6 en 24 tekens lang zijn. Een goed wachtwoord moet minstens 6 karakters met een mix van hoofdletters en kleine letters en cijfers en leestekens bevatten. Het moet niet precies welke woorden in het woordenboek. Wachtwoorden zijn hoofdlettergevoelig."
+
+msgid "error-password-equals-username"
+msgstr "Ongeldig wachtwoord - u misschien niet een wachtwoord dat gelijk is aan uw gebruikersnaam is te gebruiken!"
+
+msgid "error-password-invalid"
+msgstr "Ongeldig wachtwoord:"
+
+msgid "autoRespondStartDate"
+msgstr "Start datum:"
+
+msgid "autoRespondStartDate_help"
+msgstr "Datum en tijd waarop de auto-responder (indien ingeschakeld) begint te sturen vakantie berichten. Als start-en einddatum zijn identiek, terwijl de auto-responder is ingeschakeld, dan zal het uit te voeren totdat het wordt uitgeschakeld."
+
+msgid "autoRespondStopDate"
+msgstr "Einddatum:"
+
+msgid "autoRespondStopDate_help"
+msgstr "Datum en tijd waarop de auto-responder (indien ingeschakeld) stopt voor het verzenden van vakantie berichten. Als start-en einddatum zijn identiek, terwijl de auto-responder is ingeschakeld, dan zal het uit te voeren totdat het wordt uitgeschakeld."
+
+msgid "autoRespondStartTime"
+msgstr "Starttijd:"
+
+msgid "autoRespondStartTime_help"
+msgstr "Tijdstip waarop de autoresponder (indien ingeschakeld) begint te sturen vakantie berichten."
+
+msgid "autoRespondStoptTime"
+msgstr "Stop tijd:"
+
+msgid "autoRespondStoptTime_help"
+msgstr "Tijdstip waarop de autoresponder (indien ingeschakeld) stopt voor het verzenden van vakantie berichten."
+
+msgid "invalidVacationDate"
+msgstr "U heeft een ongeldig vakantie datum ingevoerd. De datum en tijd stop mag niet voor de startdatum."
+
+#---
+
+msgid "prefix"
+msgstr "[[base-vsite.prefix]]"
+
+msgid "prefix_help"
+msgstr "[[base-vsite.prefix_help]]"
+
+#---
+
+msgid "removeConfirmQuestion"
+msgstr "Weet u zeker dat u deze gebruiker wilt verwijderen?"
+
+msgid "userRemoveConfirmInfo"
+msgstr "Dit zal de rekening van deze gebruiker te verwijderen en zal ook verwijdert alle e-mails, bestanden en gegevens van deze gebruiker. Deze bewerking kan niet ongedaan worden gemaakt."
+
+### IMAP Sync:
+
+msgid "EmailSettings"
+msgstr "Basisinstellingen"
+
+msgid "ImapSync"
+msgstr "IMAP Synchronisatie"
+
+msgid "sync_desc_text"
+msgstr "IMAP synchronisatie kunt u de e-mails en IMAP-mappen van de ene mailbox naar de andere kopiëren. Dit kan worden gebruikt om e-mails van een gebruiker van een andere server na een server migratie importeren. Het kan ook worden gebruikt om e-mails van een lokale gebruiker een mailbox te exporteren lokaliseren op een andere server."
+
+msgid "ImapSyncField"
+msgstr "IMAP Synchronisatie"
+
+msgid "ImapSyncField_help"
+msgstr "Wanneer u het selectievakje 'Enable' aanvinken, hebben alle verplichte velden ingevuld en sla de wijzigingen, dan is deze server zal proberen om e-mails via imapsync importeren van de afstandsbediening om de lokale bestemming. Een logfile van de transactie wordt gemaakt en kan vervolgens worden bekeken om te bepalen of de overdracht wel of niet succesvol was."
+
+msgid "SourceHostHeader"
+msgstr "Server van waaruit u wilt importeren:"
+
+msgid "source"
+msgstr "Bron Server"
+
+msgid "source_help"
+msgstr "Dit kan de hostnaam of het IP-adres van de externe server van waaruit u wilt importeren zijn."
+
+msgid "sourceUsername"
+msgstr "Bron Gebruikersnaam"
+
+msgid "sourceUsername_help"
+msgstr "Vul de inloggegevens voor de externe server. Afhankelijk van de server architectuur dit kan zowel de gebruikersnaam of het e-mailadres. Niet alle servers ondersteunen logins met het e-mailadres, dat wel. In dat geval gebruikt u de gebruikersnaam in plaats daarvan. Als u exporteren vanuit een andere [[base-product.productName]] server, dan gewoon de gebruikersnaam."
+
+msgid "sourcePass"
+msgstr "Bron Password"
+
+msgid "sourcePass_help"
+msgstr "Vul het wachtwoord van de externe e-mailaccount."
+
+msgid "sourceProto"
+msgstr "Bron Protocol"
+
+msgid "sourceProto_help"
+msgstr "Dit is het IMAP-protocol gebruikt voor het verbinden met de externe server. Kies 'IMAP' voor ongecodeerde gewone IMAP. Als de remote server ondersteunt ofwel 'SSL' of 'TLS', kiezen ze dan in plaats daarvan naar een meer veilige verbinding tot stand."
+
+msgid "sourceAuth"
+msgstr "Bron Auth"
+
+msgid "sourceAuth_help"
+msgstr "Gelieve het authenticatie mechanisme dat de server op afstand ondersteunt. Dit is meestal 'PLAIN' of 'LOGIN', maar je kunt ook proberen 'CRAM-MD5'. Als u van plan bent om te importeren van Google Mail, probeer dan 'OAuth' plaats."
+
+msgid "TargetHostHeader"
+msgstr "Server waarmee u wilt importeren:"
+
+msgid "target"
+msgstr "Target Server"
+
+msgid "target_help"
+msgstr "Dit kan de hostnaam of het IP-adres van de server waarmee u wilt importeren zijn. Als u de e-mails naar deze [[base-product.productName]] server importeren, dan kunt u het IP-adres te verlaten op de standaard waarde van '127.0.0.1'."
+
+msgid "targetUsername"
+msgstr "Doel Gebruikersnaam"
+
+msgid "targetUsername_help"
+msgstr "Vul de inloggegevens van de server waarmee u de e-mails te importeren. Afhankelijk van de server architectuur dit kan zowel de gebruikersnaam of het e-mailadres. Als u importeert een [[base-product.productName]] server, dan gewoon de gebruikersnaam."
+
+msgid "targetPass"
+msgstr "Target Wachtwoord"
+
+msgid "targetPass_help"
+msgstr "Vul het wachtwoord van de e-mailaccount waaraan u de e-mails te importeren."
+
+msgid "targetProto"
+msgstr "Doel Protocol"
+
+msgid "targetProto_help"
+msgstr "Dit is het IMAP-protocol wordt gebruikt voor aansluiting op de lokale server. Kies 'IMAP' voor ongecodeerde gewone IMAP. Als de remote server ondersteunt ofwel 'SSL' of 'TLS', kiezen ze dan in plaats daarvan naar een meer veilige verbinding tot stand. Als u de e-mails naar deze [[base-product.productName]] server importeren, dan kun je meestal verlaat deze bij de standaard waarde van 'SSL', zolang de serverbeheerder heeft IMAP over SSL hier."
+
+msgid "targetAuth"
+msgstr "Doel Auth"
+
+msgid "targetAuth_help"
+msgstr "Gelieve het authenticatie mechanisme dat de server op afstand ondersteunt. Dit is meestal 'PLAIN' of 'LOGIN', maar je kunt ook proberen 'CRAM-MD5'. Als u van plan bent om te importeren van Google Mail, probeer dan 'OAuth' plaats. Als u van plan bent om te importeren om deze [[base-product.productName]] server, dan kun je deze op de standaardwaarde blijven 'plain'."
+
+msgid "LogFileHeader"
+msgstr "IMAP Synchronisatie Logfile:"
+
+msgid "logdelete"
+msgstr "Verwijder Logfile"
+
+msgid "logdelete_help"
+msgstr "Als u hier een vinkje zetten en sla deze pagina dan de logfile gemaakt tijdens de laatste IMAP synchronisatie zullen worden verwijderd."
+
+msgid "ViewImapSyncLog"
+msgstr "Bekijk Logfile"
+
+msgid "ViewImapSyncLog_help"
+msgstr "Hiermee kunt u het logbestand dat is ontstaan ​​tijdens de laatste IMAP synchronisatie onderzoeken."
+
+msgid "ImapSyncRunFailed"
+msgstr "De IMAP-synchronisatie is mislukt. Kijk dan in de logfile, als het kan een reden voor dit zou kunnen wijzen. Mogelijke oorzaken zijn meestal onjuist login gegevens of onjuiste protocol en / of authenticatie mechanismen. Corrigeer de problemen en probeer het opnieuw."
+
+#####
+
+msgid "PrefAliasComplete"
+msgstr "Sender Address"
+
+msgid "PrefAliasComplete_help"
+msgstr "Als uw e-mailaccount (of de virtuele plaats behoort het tot) heeft meerdere e-mail aliassen, dan kunt u het afzenderadres van auto-responder berichten hier opgeven."
+
+msgid "prefUserAlias"
+msgstr "Gebruikersnaam"
+
+msgid "prefUserAlias_help"
+msgstr "Dit definieert de gebruikersnaam deel van de afzender-adres."
+
+msgid "spacer"
+msgstr "&nbsp;"
+
+msgid "spacer_help"
+msgstr " "
+
+msgid "prefDomAlias"
+msgstr "Domein"
+
+msgid "prefDomAlias_help"
+msgstr "Dit definieert het domein deel van de afzender-adres."

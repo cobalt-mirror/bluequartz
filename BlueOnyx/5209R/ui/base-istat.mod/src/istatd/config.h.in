@@ -1,0 +1,274 @@
+/* config.h.in.  Generated from configure.ac by autoheader.  */
+
+/* default location of the configuration file */
+#undef CONFIG_FILE_PATH
+
+/* Define to 1 if you have the <alloca.h> header file. */
+#undef HAVE_ALLOCA_H
+
+/* Define to 1 if you have the <arpa/inet.h> header file. */
+#undef HAVE_ARPA_INET_H
+
+/* Define to 1 if you have the <errno.h> header file. */
+#undef HAVE_ERRNO_H
+
+/* Define to 1 if you have the <fcntl.h> header file. */
+#undef HAVE_FCNTL_H
+
+/* Define to 1 if you have the `fork' function. */
+#undef HAVE_FORK
+
+/* Define to 1 if you have the `gethostbyname' function. */
+#undef HAVE_GETHOSTBYNAME
+
+/* Define to 1 if you have the `getmntent' function. */
+#undef HAVE_GETMNTENT
+
+/* Define to 1 if you have the `getmntinfo' function. */
+#undef HAVE_GETMNTINFO
+
+/* Define to 1 if you have the `inet_ntoa' function. */
+#undef HAVE_INET_NTOA
+
+/* Define to 1 if you have the <inttypes.h> header file. */
+#undef HAVE_INTTYPES_H
+
+/* Define to 1 if you have the <kstat.h> header file. */
+#undef HAVE_KSTAT_H
+
+/* Define to 1 if you have the <kvm.h> header file. */
+#undef HAVE_KVM_H
+
+/* Define if libavahi-client is available */
+#undef HAVE_LIBAVAHI_CLIENT
+
+/* Define to 1 if you have the `dl' library (-ldl). */
+#undef HAVE_LIBDL
+
+/* Define if libkstat is available */
+#undef HAVE_LIBKSTAT
+
+/* Define if libkvm is available */
+#undef HAVE_LIBKVM
+
+/* Define to 1 if you have the 'xml2' library (-lxml2). */
+#undef HAVE_LIBXML2
+
+/* Define to 1 if you have the <memory.h> header file. */
+#undef HAVE_MEMORY_H
+
+/* Define to 1 if you have the `memset' function. */
+#undef HAVE_MEMSET
+
+/* Define to 1 if you have the `mkdir' function. */
+#undef HAVE_MKDIR
+
+/* Define to 1 if you have the <mntent.h> header file. */
+#undef HAVE_MNTENT_H
+
+/* Define to 1 if you have the <netdb.h> header file. */
+#undef HAVE_NETDB_H
+
+/* Define to 1 if you have the <netinet/in.h> header file. */
+#undef HAVE_NETINET_IN_H
+
+/* Define to 1 if you have the <net/if.h> header file. */
+#undef HAVE_NET_IF_H
+
+/* Define to 1 if you have the <net/if_mib.h> header file. */
+#undef HAVE_NET_IF_MIB_H
+
+/* Define to 1 if you have the <paths.h> header file. */
+#undef HAVE_PATHS_H
+
+/* Define to 1 if you have the `select' function. */
+#undef HAVE_SELECT
+
+/* Define to 1 if you have the `setmntent' function. */
+#undef HAVE_SETMNTENT
+
+/* Define to 1 if you have the `socket' function. */
+#undef HAVE_SOCKET
+
+/* Define to 1 if you have the `statvfs' function. */
+#undef HAVE_STATVFS
+
+/* define if statvfs has the f_frsize member */
+#undef HAVE_STATVFS_FRSIZE
+
+/* Define to 1 if stdbool.h conforms to C99. */
+#undef HAVE_STDBOOL_H
+
+/* Define to 1 if you have the <stdint.h> header file. */
+#undef HAVE_STDINT_H
+
+/* Define to 1 if you have the <stdlib.h> header file. */
+#undef HAVE_STDLIB_H
+
+/* Define to 1 if you have the `strerror' function. */
+#undef HAVE_STRERROR
+
+/* Define to 1 if you have the <strings.h> header file. */
+#undef HAVE_STRINGS_H
+
+/* Define to 1 if you have the <string.h> header file. */
+#undef HAVE_STRING_H
+
+/* Define if sysctl is available */
+#undef HAVE_SYSCTL
+
+/* Define to 1 if you have the <sys/loadavg.h> header file. */
+#undef HAVE_SYS_LOADAVG_H
+
+/* Define to 1 if you have the <sys/mnttab.h> header file. */
+#undef HAVE_SYS_MNTTAB_H
+
+/* Define to 1 if you have the <sys/mount.h> header file. */
+#undef HAVE_SYS_MOUNT_H
+
+/* Define to 1 if you have the <sys/param.h> header file. */
+#undef HAVE_SYS_PARAM_H
+
+/* Define to 1 if you have the <sys/processor.h> header file. */
+#undef HAVE_SYS_PROCESSOR_H
+
+/* Define to 1 if you have the <sys/resource.h> header file. */
+#undef HAVE_SYS_RESOURCE_H
+
+/* Define to 1 if you have the <sys/socket.h> header file. */
+#undef HAVE_SYS_SOCKET_H
+
+/* Define to 1 if you have the <sys/statfs.h> header file. */
+#undef HAVE_SYS_STATFS_H
+
+/* Define to 1 if you have the <sys/statvfs.h> header file. */
+#undef HAVE_SYS_STATVFS_H
+
+/* Define to 1 if you have the <sys/stat.h> header file. */
+#undef HAVE_SYS_STAT_H
+
+/* Define to 1 if you have the <sys/swap.h> header file. */
+#undef HAVE_SYS_SWAP_H
+
+/* Define to 1 if you have the <sys/sysctl.h> header file. */
+#undef HAVE_SYS_SYSCTL_H
+
+/* Define to 1 if you have the <sys/sysinfo.h> header file. */
+#undef HAVE_SYS_SYSINFO_H
+
+/* Define to 1 if you have the <sys/types.h> header file. */
+#undef HAVE_SYS_TYPES_H
+
+/* Define to 1 if you have the <sys/vmmeter.h> header file. */
+#undef HAVE_SYS_VMMETER_H
+
+/* Define to 1 if you have the <unistd.h> header file. */
+#undef HAVE_UNISTD_H
+
+/* Define to 1 if you have the `vfork' function. */
+#undef HAVE_VFORK
+
+/* Define to 1 if you have the <vfork.h> header file. */
+#undef HAVE_VFORK_H
+
+/* Define to 1 if `fork' works. */
+#undef HAVE_WORKING_FORK
+
+/* Define to 1 if `vfork' works. */
+#undef HAVE_WORKING_VFORK
+
+/* Define to 1 if the system has the type `_Bool'. */
+#undef HAVE__BOOL
+
+/* Name of package */
+#undef PACKAGE
+
+/* Define to the address where bug reports for this package should be sent. */
+#undef PACKAGE_BUGREPORT
+
+/* Define to the full name of this package. */
+#undef PACKAGE_NAME
+
+/* Define to the full name and version of this package. */
+#undef PACKAGE_STRING
+
+/* Define to the one symbol short name of this package. */
+#undef PACKAGE_TARNAME
+
+/* Define to the version of this package. */
+#undef PACKAGE_VERSION
+
+/* Define to 1 if you have the ANSI C header files. */
+#undef STDC_HEADERS
+
+/* Define to 1 if you can safely include both <sys/time.h> and <time.h>. */
+#undef TIME_WITH_SYS_TIME
+
+/* Use kstat(3) to probe CPU usage */
+#undef USE_CPU_KSTAT
+
+/* Use procfs to probe CPU usage */
+#undef USE_CPU_PROCFS
+
+/* Use sysctl to probe CPU usage */
+#undef USE_CPU_SYSCTL
+
+/* Use statfs/statvfs(2) to probe disk space */
+#undef USE_DISK_STATFS
+
+/* Use getloadavg(3) to probe load average */
+#undef USE_LOAD_GETLOADAVG
+
+/* Use kstat(3) to probe memory usage */
+#undef USE_MEM_KSTAT
+
+/* Use kvm(3) to probe memory usage */
+#undef USE_MEM_KVM
+
+/* Use procfs to probe memory usage */
+#undef USE_MEM_PROCFS
+
+/* Use kstat(3) to probe network activity */
+#undef USE_NET_KSTAT
+
+/* Use procfs to probe network activity */
+#undef USE_NET_PROCFS
+
+/* Use sysctl to probe network activity */
+#undef USE_NET_SYSCTL
+
+/* define to use 'struct mntent' */
+#undef USE_STRUCT_MNTENT
+
+/* define to use 'struct mnttab' */
+#undef USE_STRUCT_MNTTAB
+
+/* Use kvm(3) to probe swap */
+#undef USE_SWAP_KVM
+
+/* Use procfs to probe swap */
+#undef USE_SWAP_PROCFS
+
+/* Use swapctl(3) to probe swap */
+#undef USE_SWAP_SWAPCTL
+
+/* Use clock_gettime(2) to probe load uptime */
+#undef USE_UPTIME_GETTIME
+
+/* Use kstat(3) to probe uptime */
+#undef USE_UPTIME_KSTAT
+
+/* Use procfs to probe uptime */
+#undef USE_UPTIME_PROCFS
+
+/* Use sysctl(2) to probe uptime */
+#undef USE_UPTIME_SYSCTL
+
+/* Version number of package */
+#undef VERSION
+
+/* Define to `int' if <sys/types.h> does not define. */
+#undef pid_t
+
+/* Define as `fork' if `vfork' does not work. */
+#undef vfork

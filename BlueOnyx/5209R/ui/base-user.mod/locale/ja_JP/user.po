@@ -1,0 +1,599 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "userList"
+msgstr "ユーザのリスト"
+
+msgid "userListTitle"
+msgstr "ユーザのリスト - [[VAR.fqdn]]"
+
+msgid "users_help"
+msgstr "ユーザを管理できます。"
+
+msgid "fullName"
+msgstr "氏名"
+
+msgid "fullName_help"
+msgstr "ユーザの氏名です。"
+
+msgid "userName"
+msgstr "ユーザ名"
+
+msgid "userName_help"
+msgstr "ユーザを識別するためにシステムが使う識別名です。"
+
+msgid "listAction"
+msgstr "操作・削除"
+
+msgid "listAction_help"
+msgstr "鉛筆アイコンをクリックすると、ユーザの設定を変更できます。ゴミ箱アイコンをクリックすると、ユーザを削除できます。"
+
+msgid "addNewUser"
+msgstr "新規ユーザの追加"
+
+msgid "addNewUserTitle"
+msgstr "[[VAR.fqdn]] に新規ユーザを追加"
+
+msgid "fullNameField"
+msgstr "[[base-user.fullName]]"
+
+msgid "fullNameField_rule"
+msgstr "漢字、ひらがな、カタカナ、ローマ字などを自由に使えますが、半角のコロンは使えません。（指定例： 田辺純子、安田 豊）"
+
+msgid "fullNameField_help"
+msgstr "ユーザの氏名を入力してください。[[base-user.fullNameField_rule]]"
+
+msgid "userNameField"
+msgstr "[[base-user.userName]]"
+
+msgid "userNameField_rule"
+msgstr "半角の英小文字、数字、ピリオド、ハイフン、アンダースコアのみを使って、31 文字以内で入力してください。最初の一文字には英小文字をご使用ください。（指定例： h_shibuya）"
+
+msgid "userNameField_help"
+msgstr "ユーザの識別名です。電子メールの宛先アドレスとしても使われます。[[base-user.userNameField_rule]]"
+
+msgid "userNameAlreadyTaken"
+msgstr "ご指定の[[base-user.userNameField]]は、このシステム上で別のユーザが既に使用しています。別の[[base-user.userNameField]]をご指定ください。"
+
+msgid "userNameSuggest"
+msgstr "[[base-user.userNameAlreadyTaken]] 以下に利用可能な名前を示します: [[VAR.list]]."
+
+msgid "passwordField"
+msgstr "パスワード"
+
+msgid "passwordField_help"
+msgstr "このユーザのパスワードを入力してください。[[base-user.passwordField_rule]]"
+
+msgid "passwordField_invalid"
+msgstr "パスワードが一致しません。入力ミスを防ぐため、同じパスワードを２回入力してください。"
+
+msgid "error-invalid-password"
+msgstr "パスワードが不正です。[[base-user.passwordField_rule]]"
+
+msgid "maxDiskSpaceField"
+msgstr "最大許容ディスク容量"
+
+msgid "maxDiskSpaceField_rule"
+msgstr "最大許容ディスク容量は括弧で指定された範囲内で指定してください。"
+
+msgid "maxDiskSpaceField_help"
+msgstr "このユーザに割り当てるディスク容量を指定してください。このユーザは、ここで指定する量のサーバ空間をウェブページ用ファイル、電子メールメッセージなどのユーザファイルの保存に使えます。[[base-user.maxDiskSpaceField_rule]]ここに表示される新規ユーザ向けのデフォルト値は、[ユーザのデフォルトを修正］ページで設定できます。"
+
+msgid "maxDiskSpaceFieldDefault"
+msgstr "[[base-user.maxDiskSpaceField]]"
+
+msgid "maxDiskSpaceFieldDefault_help"
+msgstr "新規ユーザに割り当てるデフォルトのディスク容量を指定してください。各ユーザは、ここで指定する量のサーバ空間をウェブページ用ファイル、電子メールメッセージなどのユーザファイルの保存に使えます。[[base-user.maxDiskSpaceField_rule]]"
+
+msgid "memberGroupsField"
+msgstr "所属グループ"
+
+msgid "memberGroupsField_help"
+msgstr "このユーザが所属するグループを指定してください。左欄には現在所属しているグループが、右欄には所属していないグループが、それぞれ表示されます。所属グループを追加するには該当するグループを右欄から左欄へ、所属グループを解除するには左欄から右欄へ移動してください。"
+
+msgid "memberGroups"
+msgstr "所属しているグループ"
+
+msgid "allGroups"
+msgstr "所属していないグループ"
+
+msgid "modifyUser"
+msgstr "ユーザ設定の修正 - [[VAR.userName]]"
+
+msgid "newPasswordField"
+msgstr "新しいパスワード"
+
+msgid "newPasswordField_help"
+msgstr "[[base-user.passwordField_help]]"
+
+msgid "newPasswordField_invalid"
+msgstr "[[base-user.passwordField_invalid]]"
+
+msgid "emailSettingsFor"
+msgstr "電子メール設定 - [[VAR.userName]]"
+
+msgid "emailAlias"
+msgstr "電子メールエイリアス"
+
+msgid "emailAliasesField"
+msgstr "電子メールエイリアス"
+
+msgid "emailAliasesField_rule"
+msgstr "電子メールエイリアスには、半角の英小文字、数字、ピリオド、ハイフン、アンダースコアだけが使用できます。（指定例： hisao.shibuya）"
+
+msgid "emailAliasesField_help"
+msgstr "このユーザは、自分のユーザ名宛の電子メールに加えて、ここで指定するアドレス宛の電子メールを受信できます。[[base-user.emailAliasesField_rule]]"
+
+msgid "forwardEnableField"
+msgstr "電子メール転送"
+
+msgid "forwardEnableField_help"
+msgstr "電子メール転送を有効にすると、以後受信する電子メールは指定された電子メールアドレスに自動的に転送されます。"
+
+msgid "forwardEnable"
+msgstr "有効にする"
+
+msgid "forwardEmailField_rule"
+msgstr "有効なメールアドレスを入力します。複数のアドレスで大丈夫です。カンマで区切るか、または別々の行にアドレスを入れた。"
+
+msgid "forwardEmailField"
+msgstr "転送先アドレス"
+
+msgid "forwardEmailField_help"
+msgstr "電子メールの転送先アドレスを入力してください。[[base-user.forwardEmailField_rule]]"
+
+msgid "autoResponderField"
+msgstr "不在時自動応答メッセージ"
+
+msgid "autoResponderField_help"
+msgstr "不在時自動応答メッセージを有効にすると、受信した電子メールに対して自動的に返信メッセージが送られます。"
+
+msgid "enableAutoResponderField"
+msgstr "有効にする"
+
+msgid "autoResponderMessageField"
+msgstr "自動返信"
+
+msgid "autoResponderMessageField_help"
+msgstr "受信した電子メールの差出人宛に自動的に送信したいメッセージをここに入力してください。自動応答メッセージは、同じ差出人に対しては、週一通のみ送られます。"
+
+# Handler message if message is "blank", meaning no text, just space(s)/tab(s)
+msgid "blank-vacation-msg"
+msgstr "「[[base-user.autoResponderMessageField]]」フィールドに入力した値が不正です。設定し直してください。"
+
+msgid "userDefaults"
+msgstr "ユーザのデフォルトを修正"
+
+msgid "userDefaults_help"
+msgstr "ここをクリックすると、新規ユーザのデフォルト設定を変更できます。"
+
+msgid "userDefaultsTitle"
+msgstr "ユーザのデフォルトを修正 - [[VAR.fqdn]]"
+
+msgid "basicDefaults"
+msgstr "基本"
+
+msgid "serviceDefaults"
+msgstr "サービス"
+
+msgid "usersPerPage"
+msgstr "１ページあたりのユーザ数"
+
+msgid "usersPerPage_help"
+msgstr "ユーザのリストの１ページに表示するユーザ数を設定できます。"
+
+msgid "userNameGenField"
+msgstr "ユーザ名の自動生成"
+
+msgid "userNameGenField_help"
+msgstr "ここでは、ユーザの氏名を入力すると自動的に生成されるユーザ名を設定できます。例えば、氏名が Junko Tanabe の場合、junkot、jtanabe、junko、tanabe などを自動生成できます。"
+
+msgid "first"
+msgstr "名前のみ"
+
+msgid "last"
+msgstr "姓のみ"
+
+msgid "firstInitLast"
+msgstr "名前のイニシャルと姓"
+
+msgid "firstLastInit"
+msgstr "名前と姓のイニシャル"
+
+msgid "languageField"
+msgstr "言語設定"
+
+msgid "languageField_help"
+msgstr "このサーバのユーザインターフェイスは、ここで指定する言語で表示されます。「ブラウザのオプションから設定」を選択すると、お使いのウェブブラウザの言語設定に基づいて、サーバのインターフェイスが表示されます。指定した言語を表示できない場合には、サーバで使用できるデフォルト言語でインターフェイスが表示されます。"
+
+msgid "account"
+msgstr "アカウント設定"
+
+msgid "account_help"
+msgstr "基本的なユーザアカウント情報を設定、変更できます。"
+
+msgid "email"
+msgstr "電子メール設定"
+
+msgid "email_help"
+msgstr "電子メールエイリアス、メール転送、不在時応答メッセージなどを設定できます。"
+
+# Personal Profile Section
+msgid "personalEmail"
+msgstr "電子メール"
+
+msgid "personalEmail_help"
+msgstr "電子メール転送と自動応答設定を管理できます。"
+
+# --- Style settings are not currently used, but may be added some time in the future
+msgid "styleField"
+msgstr "スタイル"
+
+msgid "styleField_help"
+msgstr "メニューやボタンなどを表示するグラフィックスタイルを変更できます。"
+
+msgid "personalAccount"
+msgstr "アカウント情報"
+
+msgid "personalAccount_help"
+msgstr "ユーザアカウントを管理できます。"
+
+msgid "accountSettings"
+msgstr "アカウント情報 - [[VAR.userName]]"
+
+msgid "removeUserConfirm"
+msgstr "[[VAR.userName]]というユーザを削除してよろしいですか？"
+
+msgid "reloadMessage"
+msgstr "お使いのウェブブラウザは自動的に更新され、指定されたスタイルで画面が表示されます。"
+
+msgid "forwardSaveField"
+msgstr "コピーを保存"
+
+msgid "forwardSaveField_help"
+msgstr "このボックスをチェックすると、受信した各電子メールは指定アドレスに転送されると共に、このサーバのメールボックスにもそのコピーが保存されます。"
+
+msgid "userDesc"
+msgstr "備考"
+
+msgid "userDesc_help"
+msgstr "この欄には、各ユーザに関する情報やコメントが表示されます。"
+
+msgid "userDescField"
+msgstr "備考"
+
+msgid "userDescField_help"
+msgstr "このユーザに関する情報やコメントを記入できます。"
+
+msgid "uidAlreadyTaken"
+msgstr "エラーが発生しました。入力された uid はすでに使われています。"
+
+msgid "aliasAlreadyTaken"
+msgstr "指定されたユーザ名と同じ電子メールエイリアスが存在するため、ユーザを作成できませんでした。"
+
+msgid "aliasAlreadyTaken2"
+msgstr "指定された名前と同じ電子メールエイリアスが存在するため、電子メールエイリアスを設定できませんでした。"
+
+msgid "sortName"
+msgstr "よみがな"
+
+msgid "sortName_help"
+msgstr "氏名の読み仮名です。"
+
+msgid "sortNameField"
+msgstr "[[base-user.sortName]]"
+
+msgid "sortNameField_rule"
+msgstr "この情報に基づいて、ユーザの表示順序（よみがなの昇順または降順）が決まります。"
+
+msgid "sortNameField_help"
+msgstr "ユーザの氏名をひらがなで記入してください（例： たなべじゅんこ)。[[base-user.sortNameField_rule]]"
+
+msgid "add_user_help"
+msgstr "このボタンをクリックすると、新しいユーザを追加できます。"
+
+msgid "administrator"
+msgstr "管理者"
+
+msgid "failed-to-add-user"
+msgstr "システムエラーが発生したため、ユーザアカウントを作成できませんでした。"
+
+# for user_services.pl
+msgid "cantCreateUserServices"
+msgstr "UserServices オブジェクトを作成できませんでした。"
+
+# user search strings
+msgid "="
+msgstr "が、次と一致するユーザを表示"
+
+msgid "match"
+msgstr "に、次の文字を含むユーザを表示"
+
+msgid "nomatch"
+msgstr "に、次の文字を含まないユーザを表示"
+
+msgid "searchbut"
+msgstr "検索"
+
+msgid "searchbut_help"
+msgstr "指定した基準に基づいてユーザのリストが検索されます。"
+
+msgid "userSearch"
+msgstr "ユーザの検索"
+
+msgid "userSearchCriteria"
+msgstr "検索:"
+
+msgid "userSearchCriteria_help"
+msgstr "この検索機能を使うと、指定した基準に基づいてユーザを検索できます。検索するフィールドを指定し、入力したテキストの検索基準を選んでください。"
+
+# Capabilities
+msgid "capgroup_adminUser"
+msgstr "ユーザの管理"
+
+msgid "capgroup_adminUser_help"
+msgstr "この管理権限を許可すると、ユーザは、新規ユーザを作成したり、サーバ上のユーザを削除または修正できるようになります。"
+
+msgid "siteAdminEnabled"
+msgstr "サイト管理者"
+
+msgid "siteAdminEnabled_help"
+msgstr "このユーザはサイト管理者です。"
+
+msgid "userSuspended"
+msgstr "サスペンドされているユーザ"
+
+msgid "userSuspended_help"
+msgstr "このユーザはサスペンドされているため、ファイルへの Telnet、FTP、電子メール、ウェブアクセスなど、このアカウントに関するシステムサービスへのアクセスが拒否されます。また、サスペンドされているユーザ宛の電子メールは受信を拒否され、送信者へ返送されます。"
+
+msgid "rights"
+msgstr "与えられている権限"
+
+msgid "rights_help"
+msgstr "ユーザに対して有効にされている機能がアイコンで示されます。アイコンの上にマウスを置くと、その意味が表示されます。"
+
+msgid "emailAliases"
+msgstr "電子メールエイリアス"
+
+msgid "emailAliases_help"
+msgstr "このユーザの電子メールエイリアスが表示されます。ユーザは、自分のユーザ名に加えて、ここに入力した名前宛の電子メールも受信できます。"
+
+msgid "suspendUser"
+msgstr "サスペンド"
+
+msgid "suspendUser_help"
+msgstr "ユーザをサスペンドすると、そのユーザは、Telnet、FTP、電子メール、ウェブアクセスなど、自分のアカウントに関連するシステムサービスを利用できなくなります。また、サスペンドされているユーザ宛の電子メールは受信を拒否され、送信者へ返送されます。"
+
+msgid "siteAdministratorField"
+msgstr "サイト管理者"
+
+msgid "siteAdministratorField_help"
+msgstr "サイト管理者とは、サイトの設定などを行うユーザのことです。"
+
+msgid "cantDeleteUser"
+msgstr "指定したユーザを削除できません。"
+
+msgid "cleanupOldFiles"
+msgstr "このユーザは、ユーザのホームディレクトリではなく、サイトのディレクトリにファイルを保管しています。このユーザを削除する前に、ファイルを削除するか、ファイルの所有権を別のユーザに割り当てる必要があります。"
+
+# handler error messages for root_access.pl
+msgid "cantGetRootAccess"
+msgstr "CCE から [[VAR.name]] の RootAccess namespace を得られません。"
+
+msgid "cantDisableRootAccess"
+msgstr "[[VAR.name]] のルートアクセスを無効にできません。"
+
+msgid "cantEnableRootAccess"
+msgstr "[[VAR.name]] のルートアクセスを有効にできません。"
+
+msgid "cantDeleteAlterRoot"
+msgstr "ルートユーザアカウント [[VAR.root]] を削除できません。"
+
+msgid "cantCreateAlterRoot"
+msgstr "ルートユーザアカウント [[VAR.root]] を作成できません。"
+
+msgid "cantUpdateAlterRoot"
+msgstr "ルートアカウント [[VAR.root]] のルートアカウントパスワードを [[VAR.name]] アカウントのパスワードに同期して一致させることができません。"
+
+msgid "emailDisabled"
+msgstr "電子メールを無効にする"
+
+msgid "emailDisabled_help"
+msgstr "このユーザの電子メールが無効になります。"
+
+msgid "dnsAdministratorField"
+msgstr "DNS 管理者"
+
+msgid "dnsAdministratorField_help"
+msgstr "DNS 管理者とは、許可されたドメイン名の DNS の管理を行うユーザのことです。"
+
+msgid "passwordField_rule"
+msgstr "パスワードは6文字から24文字の間でなければなりません。さらに良いパスワードとは、大文字と小文字だけでなく、数字や句読点のミックスで少なくとも5文字を含める必要があります。これは、辞書に載っている、任意の単語を綴るべきではありません。パスワードは大文字と小文字が区別されます。"
+
+msgid "error-password-equals-username"
+msgstr "無効なパスワード - あなたのユーザ名と同一のパスワードを使用することはできません！"
+
+msgid "error-password-invalid"
+msgstr "無効なパスワード: "
+
+# Vacation Message start/stop additions:
+
+msgid "autoRespondStartDate"
+msgstr "日付を起動します。"
+
+msgid "autoRespondStartDate_help"
+msgstr "日付と自動応答が（有効な場合）休暇のメッセージを送信するために開始時間。自動応答が有効になっている開始および終了日が同一である場合、それがオフされるまで、それが実行されます。"
+
+msgid "autoRespondStopDate"
+msgstr "日付を終了します："
+
+msgid "autoRespondStopDate_help"
+msgstr "日付と自動応答が（有効な場合）休暇のメッセージを送信するために停止する時間。自動応答が有効になっている開始および終了日が同一である場合、それがオフされるまで、それが実行されます。"
+
+#---
+
+msgid "autoRespondStartTime"
+msgstr "開始時刻:"
+
+msgid "autoRespondStartTime_help"
+msgstr "オートレスポンダーは、（有効な場合）不在メッセージを送信するために開始された時刻。"
+
+
+msgid "autoRespondStoptTime"
+msgstr "停止時間:"
+
+msgid "autoRespondStoptTime_help"
+msgstr "オートレスポンダーは、（有効な場合）不在メッセージを送信するために停止する時間。"
+
+msgid "invalidVacationDate"
+msgstr "無効な休暇の日付を入力しました。停止日時は開始日より前であってはなりません。"
+
+#---
+
+msgid "prefix"
+msgstr "[[base-vsite.prefix]]"
+
+msgid "prefix_help"
+msgstr "[[base-vsite.prefix_help]]"
+
+#---
+
+msgid "removeConfirmQuestion"
+msgstr "あなたは、このユーザーを削除してもよろしいですか？"
+
+msgid "userRemoveConfirmInfo"
+msgstr "これは、このユーザーのアカウントを削除し、また、このユーザーのすべての電子メール、ファイルやデータを削除します。この操作は元に戻すことができません。"
+
+### IMAP-Sync
+
+msgid "EmailSettings"
+msgstr "基本設定"
+
+msgid "ImapSync"
+msgstr "IMAPの同期"
+
+msgid "sync_desc_text"
+msgstr "IMAPの同期では、別のメールボックスから電子メールやIMAPフォルダをコピーすることができます。これは、サーバーの移行後に、別のサーバーから単一のユーザの電子メールをインポートするために使用することができます。また、別のサーバー上にメールボックスにローカルユーザの電子メールをエクスポートするために使用することができます。"
+
+msgid "ImapSyncField"
+msgstr "IMAPの同期"
+
+msgid "ImapSyncField_help"
+msgstr "あなたは「有効にする」のチェックボックスにチェックを入れた場合に、すべての必須項目を記入し、変更を保存している場合、このサーバーはローカルの宛先にリモートからimapsyncのを経由して電子メールをインポートしようとします。トランザクションのログファイルが作成され、その後、転送が成功したかどうかを決定するために閲覧することができる。"
+
+msgid "SourceHostHeader"
+msgstr "インポートする元のサーバー："
+
+msgid "source"
+msgstr "ソースサーバ"
+
+msgid "source_help"
+msgstr "これは、インポート元のホスト名またはリモートサーバーのIPアドレスです。"
+
+msgid "sourceUsername"
+msgstr "ソース名"
+
+msgid "sourceUsername_help"
+msgstr "リモートサーバのログイン情報を入力してください。サーバーアーキテクチャによっては、これはどちらのユーザ名、または電子メール·アドレスを指定できます。ていないすべてのサーバーは、しかし、電子メールアドレスでのログインをサポートしています。その場合、代わりにユーザー名を使用しています。別[[base-product.productName]]サーバからエクスポートした場合は、単にユーザ名を指定します。"
+
+msgid "sourcePass"
+msgstr "ソースのパスワード"
+
+msgid "sourcePass_help"
+msgstr "リモートの電子メールアカウントのパスワードを入力してください。"
+
+msgid "sourceProto"
+msgstr "ソースプロトコル"
+
+msgid "sourceProto_help"
+msgstr "これは、リモートサーバーに接続するために使用するIMAPプロトコルである。暗号化されていない、通常のIMAPの「IMAP」を選択します。リモートサーバが「SSL」または「TLS」のどちらかをサポートしている場合は、より安全な接続を確立するために、代わりにそれらを選択します。"
+
+msgid "sourceAuth"
+msgstr "ソース認証"
+
+msgid "sourceAuth_help"
+msgstr "リモートサーバがサポートする認証メカニズムを指定してください。これは通常、 'PLAIN'または 'ログイン'ですが、あなたはまた、「CRAM-MD5」を試すことができます。あなたがGoogle Mailからインポートする場合は、代わりに「OAuthの」をお試しください。"
+
+msgid "TargetHostHeader"
+msgstr "インポートするために、サーバー："
+
+msgid "target"
+msgstr "ターゲット·サーバー"
+
+msgid "target_help"
+msgstr "これは、インポートする先のホスト名またはサーバーのIPアドレスです。この[[base-product.productName]]サーバーに電子メールをインポートしたい場合は、'127 .0.0.1 'のデフォルト値のIPアドレスを残すことができます。"
+
+msgid "targetUsername"
+msgstr "ターゲット·ユーザー名"
+
+msgid "targetUsername_help"
+msgstr "あなたが電子メールをインポートする先のサーバのログイン情報を入力してください。サーバーアーキテクチャによっては、これはどちらのユーザ名、または電子メール·アドレスを指定できます。あなたは[[base-product.productName]]サーバにインポートする場合は、ユーザ名だけを指定します。"
+
+msgid "targetPass"
+msgstr "パスワードをターゲットに"
+
+msgid "targetPass_help"
+msgstr "あなたが電子メールをインポートする先の電子メールアカウントのパスワードを入力してください。"
+
+msgid "targetProto"
+msgstr "ターゲットプロトコル"
+
+msgid "targetProto_help"
+msgstr "これは、ローカルサーバーへの接続に使用されるIMAPプロトコルである。暗号化されていない、通常のIMAPの「IMAP」を選択します。リモートサーバが「SSL」または「TLS」のどちらかをサポートしている場合は、より安全な接続を確立するために、代わりにそれらを選択します。この[[base-product.productName]]サーバーに電子メールをインポートしたい場合は、通常であれば、サーバ管理者がSSL経由でIMAPが、ここで有効になっているように、「SSL」のデフォルト値のままにしておくことができます。"
+
+msgid "targetAuth"
+msgstr "ターゲット認証"
+
+msgid "targetAuth_help"
+msgstr "リモートサーバがサポートする認証メカニズムを指定してください。これは通常、 'PLAIN'または 'ログイン'ですが、あなたはまた、「CRAM-MD5」を試すことができます。あなたがGoogle Mailからインポートする場合は、代わりに「OAuthの」をお試しください。この[[base-product.productName]]サーバにインポートする場合は、デフォルトの「PLAIN」のままにしておくことができます。"
+
+msgid "LogFileHeader"
+msgstr "IMAPの同期ログファイル："
+
+msgid "logdelete"
+msgstr "ログファイルを削除します"
+
+msgid "logdelete_help"
+msgstr "このボックスをチェックし、このページを保存した場合、最後のIMAP同期中に作成されたログファイルは削除されます。"
+
+msgid "ViewImapSyncLog"
+msgstr "ビュー·ログファイル"
+
+msgid "ViewImapSyncLog_help"
+msgstr "これは、最後のIMAP同期中に作成されたログファイルを調べることができます。"
+
+msgid "ImapSyncRunFailed"
+msgstr "IMAPの同期に失敗しました。それはこの理由を示している可能性がありますように、ログファイルを調べてください。考えられる原因は、通常、不正なログインの詳細や、誤ったプロトコルおよび/または認証メカニズムである。問題を修正して再度お試しください。"
+
+########
+
+msgid "PrefAliasComplete"
+msgstr "送信者アドレス"
+
+msgid "PrefAliasComplete_help"
+msgstr "メールアカウント（またはそれが属する仮想サイト）は、複数の電子メールエイリアスを持っている場合は、ここでは、自動応答メッセージの送信者アドレスを指定することができます。"
+
+msgid "prefUserAlias"
+msgstr "ユーザー名"
+
+msgid "prefUserAlias_help"
+msgstr "これは、送信者アドレスのユーザ名部分を定義します。"
+
+msgid "spacer"
+msgstr "&nbsp;"
+
+msgid "spacer_help"
+msgstr " "
+
+msgid "prefDomAlias"
+msgstr "ドメイン"
+
+msgid "prefDomAlias_help"
+msgstr "これは、送信者アドレスのドメイン部分を定義します。"

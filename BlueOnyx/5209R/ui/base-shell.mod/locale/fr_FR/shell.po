@@ -1,0 +1,66 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Meaulnes Legler <blue@waveweb.ch>\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+# strings for shell menu items
+
+msgid "shellMenu"
+msgstr "Shell"
+
+msgid "shellMenuDescription"
+msgstr "Configurer les services en ligne de commande Telnet et SSH pour les utilisateurs ayant un accès Shell."
+
+# server wide shell access page
+
+msgid "shell"
+msgstr "[[base-shell.shellMenu]]"
+
+# ui extensions
+
+msgid "shellName"
+msgstr "Accès Shell"
+
+msgid "enableShell"
+msgstr "Activer l'interface système Shell"
+
+msgid "enableShell_help"
+msgstr "Permettre l'accès à l'interface système Shell afin de permettre la création d'utilisateurs pouvant se connecter au serveur en utilisant des services en ligne de commande tels que Telnet et SSH."
+
+msgid "userEnableShell"
+msgstr "[[base-shell.enableShell]]"
+
+msgid "userEnableShell_help"
+msgstr "Activer l'accès Shell pour permettre à l'utilisateur d'être en mesure de se connecter au serveur en utilisant des services en ligne de commande tels que Telnet et SSH."
+
+msgid "shellIsEnabled"
+msgstr "Accès Shell"
+
+msgid "shellIsEnabled_help"
+msgstr "L'accès à l'interface système Shell est activé pour cet utilisateur."
+
+# handler error messages
+# user_shell.pl
+msgid "cantEnableNoVsiteShell"
+msgstr "L'accès à l'interface système Shell ne peut pas être activé pour cet utilisateur parce que le site virtuel dont il est membre n'a pas l'accès Shell activé."
+
+# site shell menus
+
+msgid "siteshell"
+msgstr "Accès Shell"
+
+msgid "siteshell_help"
+msgstr "Cliquer ici pour configurer l'accès à l'interface système Shell pour ce site."
+
+msgid "siteShellSettings"
+msgstr "Paramètres de l'interface système Shell pour [[VAR.fqdn]]"
+
+msgid "cap_serverShell"
+msgstr "Paramètres Shell"
+
+

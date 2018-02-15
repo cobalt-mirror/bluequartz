@@ -1,0 +1,637 @@
+# COnfiguration bits for mod_rpmize
+# syntax:
+# <begin [x]section>
+# <end [x]section>
+#
+# x an be $ for a string or % for a hash.
+# if a hash is being used, you can add sub-sections with
+# <begin sub-section>
+# <end sub-section>
+
+
+<begin $DESCRIPTION>
+%package [LABEL]
+Group: System Environment/BlueOnyx
+Summary: [LABEL] for [VENDOR]-[SERVICE].
+[AUTOFILL]
+[BUILDARCH]
+Obsoletes: nuonce-solarspeed-yumgui
+
+%description [LABEL]
+The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
+information for [VENDOR]-[SERVICE].
+
+<end $DESCRIPTION>
+
+<begin %PREP>
+<end %PREP>
+
+<begin %SETUP>
+<end %SETUP>
+
+<begin %BUILD>
+<end %BUILD>
+
+<begin %INSTALL>
+<end %INSTALL>
+
+<begin %FILES>
+<begin HEADER>
+%files [LABEL]
+%defattr(-,root,root)
+<end HEADER>
+
+<begin locale>
+[AUTOFILL]
+
+<end locale>
+
+<begin glue>
+%attr(0700,root,root)%{RootDir}/sbin/grab_updates.pl
+%attr(0700,root,root)%{RootDir}/sbin/pkg_install.pl
+%attr(0700,root,root)%{RootDir}/sbin/pkg_prepare.pl
+%attr(0700,root,root)%{RootDir}/sbin/pkg_uninstall.pl
+%attr(0700,root,root)%{RootDir}/sbin/swupdate_tmp_clean.pl
+%attr(0700,root,root)%{RootDir}/sbin/rpm-clean-duplicates.pl
+%attr(0700,root,root)%{RootDir}/sbin/locale-analyze.pl
+%attr(0644,root,root)%{RootDir}/perl/SWUpdate.pm
+%attr(0644,root,root)%config /etc/cron.d/swupdate_tmp_clean.cron
+%attr(0755,root,root)%config /etc/cron.daily/rsscache_cron.pl
+%attr(0700,root,root)%dir /root/.gnupg
+%attr(0644,root,root)%config /root/.gnupg/pubring.gpg
+%attr(0600,root,root)%config /root/.gnupg/secring.gpg
+%attr(0644,root,root)%config /root/.gnupg/trustdb.gpg
+%attr(0755,root,root)/usr/sausalito/swatch/bin/am_updates.pl
+%attr(0644,root,root)%config /etc/yum/pluginconf.d/blueonyx.conf
+%attr(0700,root,root)%{RootDir}/sbin/cced_yum
+%attr(0700,root,root)%{RootDir}/sbin/pkgCleanup.pl
+%attr(0700,root,root) %{RootDir}/yumcce
+%attr(0644,root,root) /usr/lib/yum-plugins/blueonyx.py
+%attr(0644,root,root) /usr/sausalito/ui/web/.adm/images/btn_donateCC_LG.gif
+[AUTOFILL]
+
+<end glue>
+
+<begin ui>
+[AUTOFILL]
+
+<end ui>
+
+<begin capstone>
+%{RootDir}/capstone/%{Vendor}-%{Service}.cap
+[AUTOFILL]
+
+<end capstone>
+<end %FILES>
+
+<begin %POST-INSTALL>
+<begin HEADER>
+%post [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-install
+
+if [ ! -e /home/.pkg_install_tmp ]; then
+  /bin/mkdir -p /home/.pkg_install_tmp
+  /bin/chmod 755 /home/.pkg_install_tmp
+fi
+
+if [ ! -d /usr/sausalito/license ];then
+  mkdir -p /usr/sausalito/license/
+  chown admserv:admserv /usr/sausalito/license
+  chmod 700 /usr/sausalito/license
+fi
+
+# Restart CCEd:
+if [ -d "/usr/sausalito/yumcce" ];then
+    touch /usr/sausalito/yumcce/rehash
+fi
+
+# Restart Crond:
+/sbin/service crond restart &>/dev/null || :
+
+# Cleanup CODB's list of available PKGs:
+/usr/sausalito/sbin/pkgCleanup.pl &>/dev/null || :
+
+<end glue>
+<begin ui>
+# ui post-install
+
+<end ui>
+<begin locale>
+# locale post-install
+
+<end locale>
+<end %POST-INSTALL>
+
+<begin %POST-UNINSTALL>
+<begin HEADER>
+%postun [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-uninstall
+
+<end glue>
+<begin ui>
+# ui post-uninstall
+
+<end ui>
+<begin locale>
+# locale post-uninstall
+
+<end locale>
+<end %POST-UNINSTALL>
+
+<begin $CHANGELOG>
+
+* Fri Sep 29 2017 Michael Stauber <mstauber@solarspeed.net> 1.6.1-0BX19
+- Modified glue/sbin/cced_yum to include a Swatch run at the end of
+  YUM updates during which CCEd is rehashed or restarted.
+
+* Mon May 02 2017 Michael Stauber <mstauber@solarspeed.net> 1.6.1-0BX18
+- Extended timout for online check in ui/chorizo/web/controllers/news.php
+- Removed option 'never' from ui/chorizo/web/controllers/settings.php
+
+* Sun Apr 09 2017 Michael Stauber <mstauber@solarspeed.net> 1.6.1-0BX17
+- Added /usr/sausalito/sbin/pkgCleanup.pl
+
+* Sun Apr 09 2017 Michael Stauber <mstauber@solarspeed.net> 1.6.1-0BX16
+- Small fix in glue/sbin/SWUpdate.pm for autoinstall flag.
+
+* Sat Apr 08 2017 Michael Stauber <mstauber@solarspeed.net> 1.6.1-0BX15
+- Modified glue/sbin/SWUpdate.pm to pull 'autoinstall' out of options and
+  to set the separate flag for that.
+
+* Wed Mar 01 2017 Michael Stauber <mstauber@solarspeed.net> 1.6.1-0BX14
+- Fix for the fix because NewLinQ doesn't do what it's supposed to do.
+
+* Wed Mar 01 2017 Michael Stauber <mstauber@solarspeed.net> 1.6.1-0BX13
+- Small fix in ui/chorizo/web/controllers/shop.php
+
+* Thu Feb 23 2017 Michael Stauber <mstauber@solarspeed.net> 1.6.1-0BX12
+- Adjusted Controllers for base-alpine 2.0
+
+* Wed Dec 21 2016 Michael Stauber <mstauber@solarspeed.net> 1.6.1-0BX11
+- Added requirement for new base-netdata-capstone
+
+* Wed Dec 21 2016 Michael Stauber <mstauber@solarspeed.net> 1.6.1-0BX10
+- Added glue/paypal/btn_donateCC_LG.gif 
+- Modified ui/chorizo/web/controllers/news.php with call for donations.
+
+* Thu Aug 18 2016 Michael Stauber <mstauber@solarspeed.net> 1.6.1-0BX09
+- Removed chmod from glue/yum-plugins/blueonyx.py.
+- Modified glue/sbin/cced_yum to add call for Swatch hotfixes.sh.
+- Added dependency for swatch.
+
+* Thu Aug 18 2016 Michael Stauber <mstauber@solarspeed.net> 1.6.1-0BX08
+- Small fix in ui/chorizo/web/controllers/newSoftware.php
+- Extended glue/yum-plugins/blueonyx.py to chmod 777 the PHP session dir.
+
+* Fri Jul 15 2016 Michael Stauber <mstauber@solarspeed.net> 1.6.1-0BX07
+- Added RSS News Cache for faster GUI logins.
+- Modified glue/Makefile
+- Added glue/etc/cron.daily/rsscache_cron.pl
+- Added ui/chorizo/web/controllers/rsscron.php
+- Modified ui/chorizo/web/controllers/news.php
+- Modified ui/chorizo/web/config/routes.php
+
+* Fri Jun 17 2016 Michael Stauber <mstauber@solarspeed.net> 1.6.1-0BX06
+- Small bugfix in constructor/addSWUpdateServer.pl
+
+* Thu Jun 16 2016 Michael Stauber <mstauber@solarspeed.net> 1.6.1-0BX05
+- Trimmed fat from constructor/addSWUpdateServer.pl
+
+* Tue Jun 14 2016 Michael Stauber <mstauber@solarspeed.net> 1.6.1-0BX04
+- Modified glue/am/am_updates.pl to prevent doing PKG auto-upate during
+  Swatch runs when the RPM database is currently locked. Because then
+  we already do have a PKG install or YUM update in progress.
+
+* Mon Mar 21 2016 Michael Stauber <mstauber@solarspeed.net> 1.6.1-0BX03
+- Updated Italian locales added as provided by Simone Capra.
+- Added /usr/sausalito/sbin/sbin/locale-analyze.pl
+
+* Fri Jan 15 2016 Michael Stauber <mstauber@solarspeed.net> 1.6.1-0BX02
+- Fixed 'Check for Updates' and 'Update System' buttons for YUM. Now they
+  use proper CCEwrapped calls which are more reliable.
+- Modified glue/ccewrap/pkg.xml
+- Modified glue/handlers/yum-checker.pl
+- Modified glue/handlers/yum-update.sh
+- Modified ui/chorizo/web/controllers/checkupdates.php
+- Modified ui/chorizo/web/controllers/yum.php
+- Modified ui/chorizo/web/controllers/yumupdate.php
+
+* Wed Jan 13 2016 Michael Stauber <mstauber@solarspeed.net> 1.6.1-0BX01
+- Added YUM plugin BlueOnyx to handle cced rehash/restart elegantly.
+- Added /usr/sausalito/yumcce/ directory. If a file named 'restart' is
+  in it, cced will be restarted at the end of a YUM run. If a file 
+  named 'rehash' is in it, CCEd will be rehashed at the end of a YUM run.
+  If both 'restart' and 'rehash' are present, a restart will be done and
+  the rehash will be ignored.
+- Added glue/etc/yum/pluginconf.d/blueonyx.conf
+- Added glue/yum-plugins/blueonyx.py
+- Added glue/sbin/cced_yum
+
+* Thu Nov 05 2015 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX07
+- Modified ui/chorizo/web/controllers/autoinstall.php with some more
+  fallbacks in case things don't go as expected.
+
+* Sat Oct 31 2015 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX06
+- Modified ui/chorizo/web/controllers/autoinstall.php to make sure a
+  serialNumber is set once the NewLinQ Package is installed.
+
+* Sun Oct 25 2015 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX05
+- Modified ui/chorizo/web/controllers/newSoftware.php to make the cookie
+  based check for updates a bit more sensical. The old routine was at
+  times showing errors on successful runs and then dissagreeing if new
+  PKGs were there or not. The new code should work better.
+- Modified ui/chorizo/web/controllers/checkHandler.php to rate available
+  updates to already installed PKGs as newsworthy.
+
+* Sat Oct 24 2015 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX04
+- Modified ui/chorizo/web/controllers/autoinstall.php to add a better
+  check if Base-Compass is already installed. The old one wasn't right.
+- Added constructor/ccewrap_fixer.pl as ccewrap seems to loose its SUID
+  bit and/or permissions rather frequently these days.
+
+* Sat Oct 24 2015 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX03
+- Retired UpdateInterval 'Never' for NewLinQ queries.
+- Modified constructor/addSWUpdateServer.pl
+- Modified glue/schemas/update.schema
+- Modified templates/rpmdefs.tmpl
+- Modified ui/chorizo/web/controllers/settings.php
+
+* Fri Oct 23 2015 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX02
+- Added requirement for perl-List-MoreUtils.
+
+* Sun Jul 19 2015 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX01
+- Modified 'Check Availability Now' to trigger on page load if we haven't
+  checked it already within the last 5 minutes.
+- Converted indentation from tabs to spaces.
+- Modified glue/sbin/grab_updates.pl extensively to run updates on CODB
+  instead of wiping all 'Available' PKGs every time and then recreating
+  them. This saves us around 14-15 seconds of processing time.
+- Modified ui/chorizo/web/controllers/newSoftware.php further to show
+  if a PKG is an Update to a PKG that is already installed.
+- Overhauled formatting in SWUpdate.pm
+- Modified ui/chorizo/web/controllers/news.php to suppress the datatable
+  error if the RSS feed cannot be pulled. This needed some loving. The
+  error messages for failed RSS pulls/parsing also weren't pushed to 
+  BxPage. Fixed that as well. Also added a notification to that page if 
+  updates to already installed PKGs are available.
+- Modified glue/schemas/update.schema to change default 'updateInterval'
+  from 'Never' to 'Weekly'.
+- Added glue/am/am_updates.pl as Swatch component.
+- Added ui/chorizo/web/controllers/updates_amdetails.php for AM status.
+- Modified glue/schemas/update.schema with AM related schema entries.
+- Extended ui/chorizo/web/controllers/settings.php with ability to mark
+  installed Packages to receive automatic updates via NewLinQ.
+- Extended glue/sbin/grab_updates.pl to automatically install packages
+  that are valid autoupdates or have the autoinstall flag set.
+- Extended locales with new text for the new GUI and AM messages.
+- Modified ui/chorizo/web/controllers/news.php to modify the News articles
+  fancybox URL to use HTTPS if the GUI is using HTTPS. Fancybox will not 
+  show non-HTTPS content in a HTTPS page. And www.blueonyx.it now has a
+  valid SSL certificate.
+- Added /usr/sausalito/swatch/bin/am_updates.pl to glue/ccewrap/pkg.xml
+- Added ui/chorizo/menu/autoinstall.xml
+- Added ui/chorizo/menu/shopMenu.xml
+- Added ui/chorizo/web/controllers/autoinstall.php
+- Updated locales.
+
+* Fri Jun 26 2015 Michael Stauber <mstauber@solarspeed.net> 1.5.0-0BX06
+- Added requirement for 'file'.
+
+* Sat Dec 20 2014 Michael Stauber <mstauber@solarspeed.net> 1.5.0-0BX05
+- For consistency reasons it makes no sense to use pulldowns here and
+  booleans there. So I modified the YUM update enabler to use booleans
+  as well. Also added a fallback default value, which had been missing
+  from the previous implementation in ui/chorizo/web/controllers/yum.php
+
+* Thu Dec 04 2014 Michael Stauber <mstauber@solarspeed.net> 1.5.0-0BX04
+- Systemd related fixes.
+
+* Sun Nov 23 2014 Michael Stauber <mstauber@solarspeed.net> 1.5.0-0BX03
+- Some cleanup in ui/chorizo/web/controllers/shop.php
+
+* Sat Jul 19 2014 Michael Stauber <mstauber@solarspeed.net> 1.5.0-0BX02
+- Small fix to ui/chorizo/web/controllers/yum.php
+
+* Sat Jul 12 2014 Michael Stauber <mstauber@solarspeed.net> 1.5.0-0BX01
+- Chorizo GUI added, old GUI disabled.
+- Added improved French translation as provided my Meaulnes Legler.
+- Dependency for base-support-capstone added.
+
+* Wed Apr 02 2014 Michael Stauber <mstauber@solarspeed.net> 1.4.1-0BX17
+- Small locale fix for Japanese.
+
+* Mon Mar 03 2014 Michael Stauber <mstauber@solarspeed.net> 1.4.1-0BX16
+- Security related fix to base-swupdate.mod/ui/web/manualHandler.php
+  An authenticated user with the privileges 'managePackage' was potentially
+  able to provide a carefully crafted URL to a remotely hosted PKG. When
+  trying to 'download' and 'pkg_prepare' the PKG with such a malicious 
+  payload, the payload might potentially break the shell escaping of the 
+  'pkg_prepare' command. In that case the malicious payload would be 
+  executed on the shell with the privileges of user 'admserv'. 
+
+* Sun Mar 02 2014 Michael Stauber <mstauber@solarspeed.net> 1.4.1-0BX15
+- Further locale extensions for 520XR.
+
+* Sun Mar 02 2014 Michael Stauber <mstauber@solarspeed.net> 1.4.1-0BX14
+- Extended locales for 520XR.
+
+* Sun Feb 09 2014 Michael Stauber <mstauber@solarspeed.net> 1.4.1-0BX13
+- Added /usr/sausalito/sbin/rpm-clean-duplicates.pl, which is a new
+  helper script to manually clean up the RPM database. It detects RPM
+  duplicates and dumps out shell commands that allow to remove these
+  RPM duplicates manually.
+
+* Tue Jan 07 2014 Michael Stauber <mstauber@solarspeed.net> 1.4.1-0BX12
+- Added cleaned up French translation as provided by Antoine Hayoz.
+- Small fix in German locale.
+
+* Sun Dec 29 2013 Michael Stauber <mstauber@solarspeed.net> 1.4.1-0BX11
+- Version number bump without any code changes. Just needed an Update on 
+- YUM to test the new YUM gui integration.
+
+* Sat Dec 28 2013 Michael Stauber <mstauber@solarspeed.net> 1.4.1-0BX10
+- Partial rollback of extended logging in glue/sbin/pkg_install.pl
+  and glue/sbin/pkg_prepare.pl. It is not yet finished and should not
+  have been included yet.
+- Modified glue/sbin/SWUpdate.pm to use Sys::Hostname, which had 
+  erronously been missing.
+- Modified Makefile to add dependency for perl-Sys-Hostname-FQDN.
+
+* Mon Dec 16 2013 Michael Stauber <mstauber@solarspeed.net> 1.4.1-0BX09
+- Updated glue/handlers/yum-update.sh yet again to redirect the output 
+  of the 'yum groupinstall' to /dev/null. Otherwise we get a crond email
+  every day for this transaction.
+
+* Sat Dec 14 2013 Michael Stauber <mstauber@solarspeed.net> 1.4.1-0BX08
+- Merged in locales for the Netherlands ('nl_NL').
+
+* Fri Dec 13 2013 Michael Stauber <mstauber@solarspeed.net> 1.4.1-0BX07
+- Added chmod 777 for /var/lib/php/session to yum-update.sh 
+
+* Mon Dec 09 2013 Michael Stauber <mstauber@solarspeed.net> 1.4.1-0BX06
+- Added require for base-api-capstone base-istat-capstone. Yeah, this is lazy.
+
+* Sat Dec 07 2013 Michael Stauber <mstauber@solarspeed.net> 1.4.1-0BX05
+- Fixed a translation issue on the shop page.
+
+* Sat Dec 07 2013 Michael Stauber <mstauber@solarspeed.net> 1.4.1-0BX04
+- Fixed a connection issue in the shop page.
+
+* Sat Dec 07 2013 Michael Stauber <mstauber@solarspeed.net> 1.4.1-0BX03
+- Fixed error in Schema file.
+
+* Sat Dec 07 2013 Michael Stauber <mstauber@solarspeed.net> 1.4.1-0BX02
+- Added a 'yum groupinstall blueonyx' to glue/handlers/yum-update.sh
+
+* Sat Dec 07 2013 Michael Stauber <mstauber@solarspeed.net> 1.4.1-0BX01
+- Preparational build for 5207R/5208R. Doesn't include new GUI yet.
+- Merged in new locales from 5207R ("es_ES", "fr_FR", "it_IT", "pt_PT").
+- Dropped all two character locales.
+- Converted "ja_JP" from EUC-JP to UTF-8.
+- New Capabilities for admin.
+- Shop integration added to this release. 
+
+* Fri May 03 2013 Michael Stauber <mstauber@solarspeed.net> 1.4.0-1BX8
+- Modified glue/sbin/SWUpdate.pm to include the hostname in the Email Subject.
+
+* Mon Mar 11 2013 Michael Stauber <mstauber@solarspeed.net> 1.4.0-1BX7
+- Modified glue/schemas/shop.schema to show category 'BlueOnyx' first.
+- Modified ui/web/shop/index.php and ui/web/shop/switcher.php to work with the productive version of the shop.
+- Modified glue/sbin/SWUpdate.pm to enabled logging to Syslog. Also added more logging messages.
+- Modified glue/sbin/pkg_install.pl and glue/sbin/pkg_prepare.pl with logging to Syslog.
+- The logging is not yet awfully complete and could need more final touches.
+- Modified ui/web/shop/index.php to work in Wizard mode, too.
+- Updated locale strings.
+
+* Fri Aug 10 2012 Michael Stauber <mstauber@solarspeed.net> 1.4.0-1BX6
+- Modified ui/web/rss-news.php to not use file() to pull the RSS feed, but cURL instead. This is smarter.
+- Updated ui/web/shop/index.php to add the extra NewLinQ calls to check for snstatus into the areWeOnline check.
+  Also turned the product image into a clickable link for the product URL.
+
+* Wed Jul 25 2012 Michael Stauber <mstauber@solarspeed.net> 1.4.0-1BX5
+- Updated ui/web/rss-news.php with a deeper check to see if the RSS news are parseable. A badly configured 
+  router or proxy could allow access to www.blueonyx.it, but would not allow the RSS feed to be served. If
+  that happens, we now display the connection problems error page instead.
+- Updated glue/schemas/shop.schema to save the last seen category in there, so that we can start browsing at
+  that category when we re-visit the page. Defaults to 'blueonyx/web-applications'.
+- Modified ui/web/shop/switcher.php to handle CODB saves of last visited category.
+- Updated locales with a missing string.
+- Modified ui/web/shop/index.php heavily. Cleaned up the HTML generation of the products table as it was not
+  yet pretty enough. That was the easy part. Then I noticed that the product descriptions were cut off partially
+  due to the sub-optimal format of the CSV. Better delimiters and end flags would help. Using str_getcsv()
+  instead for parsing didn't help either. Had to get a bit creative there and found a work around using
+  preg_split() on the mandatory doublequote followed by a newline at the end of each product. Some other small
+  fixes all around as the products array was now looking a bit different.
+- Updated Version regexp in glue/schemas/update.schema
+
+* Wed Jul 25 2012 Michael Stauber <mstauber@solarspeed.net> 1.4.0-1BX4
+- Updated Makefile for dependency sausalito-palette >= 0.5.2-0BX21 as we use the new getHtmlField() it provides.
+- Updated ui/web/shop/switcher.php to support product category changes.
+- Lots of changes to ui/web/shop/index.php. Category changes now work and when you change the category. Products
+  are now shown correctly with image and short_desc in HTML. This required some UIFC hacking and usage of off
+  the record methods.
+- Updated locales.
+
+* Mon Jul 23 2012 Michael Stauber <mstauber@solarspeed.net> 1.4.0-1BX3
+- Modified glue/handlers/yum-update.sh to remove linebreaks as per [BlueOnyx:10946]
+- Modified ui/web/shop/index.php to drop out all the legacy RSS functions and redundant code.
+  Also dropped the Magento API polls in favour for using the new NewLinQ methods for polls.
+  Added a rudimentary display of all products with their categories in one large table. This 
+  is just for testing purpose and the final presentation will look a lot nicer.
+
+* Wed Jul 18 2012 Michael Stauber <mstauber@solarspeed.net> 1.4.0-1BX2
+- Added constructor/create_shop.pl and glue/schemas/shop.schema
+- The new schema stores some shop related info in CODB and the constructor creates the object if it is missing.
+- Added ui/web/shop/switcher.php to update CODB on shop selector changes.
+- Updated ui/web/shop/index.php
+- Updated locales
+
+* Wed Jul 18 2012 Michael Stauber <mstauber@solarspeed.net> 1.4.0-1BX1
+- First experimental draft of the BlueOnyx Shop integration.
+- Must NOT be released to the public and must be kept outside the official repositories until the security
+  issues are worked out. If you read this and wonder: Tough luck, that version is gone now. 
+
+* Sun Jun 23 2012 Greg Kuhnert 1.3.0-1BX35
+- Modified glue/sbin/pkg_install.pl to fix a cosmetic bug in the progress indicator during PKG install.
+- The existing return value for progress was a float, but the schema defined an integer.
+
+* Mon May 14 2012 Michael Stauber <mstauber@solarspeed.net> 1.3.0-1BX34
+- Added requirement for wget and lynx to Makefile
+
+* Sun Apr 01 2012 Michael Stauber <mstauber@solarspeed.net> 1.3.0-1BX33
+- Modified constructor/addSWUpdateServer.pl to hard wire the SWupdate server to newlinq.blueonyx.it
+- Updated locales to reflect the new default URL.
+
+* Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 1.3.0-1BX32
+- Converted locale encoding from UTF-8 to ISO-8859-1.
+
+* Mon Mar 19 2012 Michael Stauber <mstauber@solarspeed.net> 1.3.0-1BX31
+- Fixed a localization display problem in ui/web/license.php (empty string)
+
+* Thu Mar 08 2012 Michael Stauber <mstauber@solarspeed.net> 1.3.0-1BX30
+- Added requirement for perl-Sort-Versions to Makefile. We use it to compare version and release numbers.
+- Modified glue/schemas/update.schema to change typedef 'versionType' to a better regular expression to
+  handle 'versionType' with and without release. The new regular expresssion isn't perfect, as it also
+  catches things like 'v1.000.1'. But it'll do as multiple leading zeros are caught later on in our 
+  version number checks.
+- Modified glue/sbin/SWUpdate.pm to use the Perl module 'Sort::Versions' for version number checking in
+  sub 'compareVersion'. With the new and much simpler way it now also handles version numbers with and
+  without release information. With this change 'Version' lines in PKG 'packing_list' may now use
+  version numbers with release information.
+
+* Tue Mar 06 2012 Michael Stauber <mstauber@solarspeed.net> 1.3.0-1BX29
+- Modified glue/schemas/update.schema and glue/sbin/SWUpdate.pm to add 'Autoinstall' and 
+  'Autoupdate' flags to PKG 'packing_list'. Key is either 'Yes' or 'No', defaults to 'No'.
+  In CODB this is stored as boolean (1|0).
+- Modified glue/sbin/pkg_install.pl and glue/sbin/pkg_uninstall.pl to support the flag 
+  'rehashcce', which reloads CCEd instead of restartung it. This restarts CCEd without
+  forcing it to run through the constructors, although it will still recognize new or 
+  modified schema files.
+
+* Fri Mar 02 2012 Greg Kuhnert 1.3.0-1BX28
+- Moved 3rd party warning from ui/web/newList.php and ui/web/updatesList.php  to ui/web/manual.php
+- Modified glue/schemas/update.schema to notify on all files at swupdate server by default
+- Modified constructor/addSWUpdateServer.pl to set default newlinq server
+
+* Fri Sep 23 2011 Michael Stauber <mstauber@solarspeed.net> 1.3.0-1BX27
+- Updated locale/ja/swupdate.po with Japanese translation provided by Eiji Hamano. Many thanks.
+- Modified constructor/addSWUpdateServer.pl to disable RHEL6 yum-autoupdate in /etc/sysconfig/yum-autoupdate.
+  We already fetch YUM updates via base-swupdate and don't have to do this twice.
+
+* Sun Sep 11 2011 Michael Stauber <mstauber@solarspeed.net> 1.3.0-1BX26
+- Removed check filter_var() from ui/web/rss-news.php and ui/web/rss-article.php as it requires PHP-5.2 or better.
+
+* Sun Sep 11 2011 Michael Stauber <mstauber@solarspeed.net> 1.3.0-1BX25
+- Added ability to extract and view the news on an internal GUI page by adding ui/web/rss-article.php
+- Modified ui/web/rss-news.php a bit to add a table row with the links to the internal articles.
+
+* Sat Sep 10 2011 Michael Stauber <mstauber@solarspeed.net> 1.3.0-1BX24
+- Added ui/web/rss-news.php and ui/menu/rssnews.xml to display BlueOnyx RSS newsfeed in the GUI.
+
+* Wed Jul 20 2011 Michael Stauber <mstauber@solarspeed.net> 1.3.0-1BX23
+- Rolled the last additions back out for now for further troubleshooting.
+
+* Tue Jul 19 2011 Michael Stauber <mstauber@solarspeed.net> 1.3.0-1BX22
+- Ported Rickard's additions to 5107R and distributed the new locale strings.
+- Added provisions to 'chmod 644' /var/log/yum.log in a constructor.
+  
+* Mon Jul 18 2011 Rickard Osser <rickard.osser@bluapp.com> 1.3.0-1BX21
+- Added repository handling in the GUI for YUM.
+
+* Tue May 17 2011 Michael Stauber <mstauber@solarspeed.net> 1.2.0-1BX20
+- Added glue/etc/cron.d/swupdate_tmp_clean.cron
+- Added glue/sbin/swupdate_tmp_clean.pl
+- These cronjob and script help us with restarting CCEd conditionally if PKGs were installed through the GUI.
+
+* Mon Jun 07 2010 Michael Stauber <mstauber@solarspeed.net> 1.2.0-1BX19
+- Various PHP-5.3 related fixes all over the place.
+
+* Sat Jun 05 2010 Michael Stauber <mstauber@solarspeed.net> 1.2.0-1BX18
+- Copied 'en' locales to 'en_US'
+
+* Thu Jun 03 2010 Michael Stauber <mstauber@solarspeed.net> 1.2.0-1BX17
+- Version number bump
+
+* Sun Aug 16 2009 Michael Stauber <mstauber@solarspeed.net> 1.2.0-1BQ16
+- Allowed limited wildcards in 'Product' fields again, but still blocking broad ones like '5...R'.
+- Modified glue/sbin/SWUpdate.pm for this again.
+
+* Wed Aug 12 2009 Michael Stauber <mstauber@solarspeed.net> 1.2.0-1BQ15
+- Update to prevent people from breaking their servers by installing incompatible PKGs.
+- Wildcard support for 'Product' in PKG packing_list's has been removed.
+- Updated glue/sbin/SWUpdate.pm to remove wildcards in product field.
+- Added README.txt with explanation to PKG makers.
+
+* Tue Aug 11 2009 Michael Stauber <mstauber@solarspeed.net> 1.2.0-1BQ14
+- Updated ui/web/yum.php to hide yum updates with empty names from generated 'Available Updates' output.
+
+* Sat Mar 07 2009 Michael Stauber <mstauber@solarspeed.net> 1.2.0-1BQ13
+- Fixed permission problem in yum-checker.sh, /tmp/yum.check-update was 444, works with 644
+- Edited glue/sbin/SWUpdate.pm to fix incorrect -A switch to -U for submitting custom user agent.
+
+* Tue Jan 13 2009 Michael Stauber <mstauber@solarspeed.net> 1.2.0-1BQ12
+- Page ui/web/yum.php sometimes has issues accessing our tempfiles on aborted YUM updates.
+- Added glue/handlers/yum-skiplock.pl to fix permissions on those tempfiles.
+- Added trigger 'skiplock' to glue/conf/yum.conf to force calls of glue/handlers/yum-skiplock.pl on access of ui/web/yum.php
+- Extended glue/schemas/yum.schema with the new trigger 'skiplock'.
+
+* Wed Dec 24 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-1BQ11
+- Rephrased third party software warning based on Chris Gebhardt's suggestion.
+
+* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-1BQ10
+- Rebuilt for BlueOnyx.
+
+* Thu Nov 27 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-1BQ9
+- Updated English, German and Danish locale to fix yumTitle_help msgid.
+
+* Wed Nov 26 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-1BQ8
+- Updated ui/web/updatesList.php and ui/web/newList.php
+- Modified 3rd party software warning to be more in line with the rest of the GUI.
+
+* Fri Jul 06 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-1BQ7
+- Removed softwareUpdateSun.xml softwareNewSun.xml entirely as comment only blocks in menu xml files now throws errors
+
+* Wed Jul 04 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-1BQ6
+- Updated yum.php for PHP5 usage (more explicit checking if files are present and readable)
+- Reworked yum-checker.sh yum-update.sh once more for enforcing 644 permissions on /var/log/yum.log
+
+* Sun Jan 27 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-1BQ5
+- German locales added.
+- Danish locales updated. Thanks to Jes Klittum!
+- Fixed a menu entry in yum.php so it gets localized
+
+* Thu Jan 24 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-1BQ4
+- Modified updateLight.xml so that it now points to yum_gui
+
+* Wed Jan 23 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-1BQ3
+- Different procedure to remove (obsolete) nuonce-solarspeed-yumgui
+
+* Tue Jan 22 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-1BQ2
+- Danish locales added. Thanks to Jes Klittum!
+
+* Fri Dec 21 2007 Brian Smith <brian@nuonce.net> 1.2.0-1BQ1
+- Changed version number to reflect new features.
+
+* Fri Dec 21 2007 Brian Smith <brian@nuonce.net> 1.1.0-120BQ16
+- RPM Removal of nuonce-solarspeed-yumgui didn't work
+- wrong path to the RPM tool
+
+* Thu Dec 20 2007 Brian Smith <brian@nuonce.net> 1.1.0-120BQ15
+- Changed BlueLinQ to Sofware Updates
+- Removed BlueQuartz BlueLinQ menu
+- Added 3rd party warning message
+- Integrated YUM GUI written by; Michael Stauber & Brian Smith
+- Added ability to exclude RPMs during yum update.
+
+* Thu Sep 21 2006 Brian Smith <brian@nuonce.net> 1.1.0-120BQ14
+- Modified the Manual*.php files to allow larger size package installs
+
+* Mon Apr 17 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-120BQ13
+- change temp directory on /home instead of /tmp by Brian.
+
+* Sun Dec 18 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-120BQ12
+- allow the BlueLinQ server is empty by Anders, BlackSun, Inc.
+- adds the extra option of doing Hourly package (PKG) updates by Anders, BlackSun, Inc.
+
+* Tue Nov 29 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-120BQ11
+- rebuild with devel-tools 0.5.1-0BQ7.
+
+* Tue Oct 18 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-120BQ10
+- rebuild with devel-tools 0.5.1
+
+* Thu Aug 18 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-120BQ9
+- clean up locale file.
+
+* Mon Aug 15 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-120BQ8
+- modified Group tag.
+
+* Sun Aug 14 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-120BQ7
+- fix security problem that can be accessed unauthorized function.
+- clean up spec file.
+<end $CHANGELOG>

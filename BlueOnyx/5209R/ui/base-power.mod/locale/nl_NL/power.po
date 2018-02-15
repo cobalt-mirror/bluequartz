@@ -1,0 +1,196 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "power"
+msgstr "Vermogen"
+
+msgid "powerHelp"
+msgstr "Klik hier om de server apparaat opnieuw opstarten."
+
+msgid "shutdownMessage"
+msgstr "Om veiligheidsredenen kan deze server apparaat niet worden afgesloten via de web interface. <BR> Behagen shutdown manualy."
+
+msgid "shutdownInstructions"
+msgstr "De stroomvoorziening naar de server apparaat Raadpleeg de handleiding van de server hardware."
+
+msgid "shutdownInstructions_softpower"
+msgstr "De stroomvoorziening naar de server apparaat Raadpleeg de handleiding van de server hardware."
+
+msgid "acpi_power_subject"
+msgstr "Vermogen Fout Shutdown"
+
+msgid "acpi_power_shutdown"
+msgstr "De voedingsspanning is buiten bereik. Voor de veiligheid wordt de server apparaat wordt uitgeschakeld. Als het probleem aanhoudt, kunt u bellen met de technische ondersteuning."
+
+msgid "rebootMessage"
+msgstr "Klik op de onderstaande knop om het systeem te herstarten. Het systeem zal niet beschikbaar voor enkele minuten, want het wordt uitgeschakeld en herstart alle diensten. Nadat het systeem opnieuw is opgestart, zal de Server Desktop weer beschikbaar zijn."
+
+msgid "reboot_title"
+msgstr "Het systeem herstarten"
+
+msgid "shutdown_title"
+msgstr "Afsluiten van het systeem"
+
+msgid "reboot_menu"
+msgstr "Opnieuw opstarten/afsluiten"
+
+msgid "reboot_menu_help"
+msgstr "Klik hier voor instructies over het afsluiten van de server en het apparaat opnieuw op te starten."
+
+msgid "reboot"
+msgstr "Reboot Now"
+
+msgid "reboot_help"
+msgstr "Klik hier om de server apparaat opnieuw opstarten."
+
+msgid "askRebootConfirmation"
+msgstr "Weet u zeker dat u de server apparaat opnieuw opstarten?"
+
+msgid "rebooting"
+msgstr "De server apparaat is nu rebooten. Het moet weer beschikbaar zijn in een paar minuten."
+
+msgid "poweroptions_menu"
+msgstr "Vermogen"
+
+msgid "poweroptions_menu_help"
+msgstr "Deze pagina kunt u opnieuw opstarten of afsluiten van de server."
+
+msgid "powerOptions_block"
+msgstr "Energiebeheer"
+
+msgid "powermode"
+msgstr "Ondernomen actie wanneer de stroom wordt hersteld na een stroomuitval"
+
+msgid "powermode_help"
+msgstr "Dit stelt het gedrag van het systeem wanneer de stroom is hersteld na een stroomstoring."
+
+msgid "same"
+msgstr "Breng het systeem naar dezelfde toestand als voor stroomuitval"
+
+msgid "on"
+msgstr "Schakel het systeem in"
+
+msgid "off"
+msgstr "Laat het systeem uit"
+
+msgid "controlPower"
+msgstr "Controle Vermogen"
+
+msgid "wakeOnlan"
+msgstr "Wake On LAN"
+
+msgid "wakeoptions_menu"
+msgstr "Wake Opties"
+
+msgid "wakeoptions_menu_help"
+msgstr "Klik hier om de Wake on LAN gedrag van het systeem."
+
+msgid "wakeMode_block"
+msgstr "Waakmode"
+
+msgid "wakemode"
+msgstr "Afstand Power Up The System (Wake On LAN)"
+
+msgid "wakemode_help"
+msgstr "Dit stelt Wake van het systeem On LAN-functionaliteit, waarmee u op afstand de macht van het systeem via een netwerk."
+
+msgid "none"
+msgstr "Nooit"
+
+msgid "magic"
+msgstr "Na ontvangst van Magic Packet"
+
+msgid "activity"
+msgstr "Activiteit"
+
+msgid "wakenow_menu"
+msgstr "Wake Nu"
+
+msgid "wakenow_menu_help"
+msgstr "Klik hier om andere machines op het netwerk wakker."
+
+msgid "wakeNow_block"
+msgstr "Wake Nu"
+
+msgid "mac_addresses"
+msgstr "MAC-adressen om wakker"
+
+msgid "mac_addresses_help"
+msgstr "Geef het MAC-adressen van de machines die u wilt wakker worden."
+
+msgid "wakenow_button"
+msgstr "Wake nu"
+
+msgid "wakenow_button_help"
+msgstr "Klik hier om de machines met de beursgenoteerde MAC-adressen wakker."
+
+msgid "shutdown_menu"
+msgstr "Stillegging"
+
+msgid "shutdown_menu_help"
+msgstr "Klik hier om de macht van de server. Dit zal de macht van de server en u zult fysieke toegang tot het nodig aan de macht het weer. Dit is misschien niet de beste van ideeën. Ik hoop dat je weet wat je doet. Serieus."
+
+msgid "couldNotWakeMachine"
+msgstr "Kon niet wakker worden van de machine met het MAC-adres [[VAR.address]]."
+
+msgid "willPowerUp1"
+msgstr "Will Power On"
+
+msgid "willPowerUp2"
+msgstr "Bij voeding"
+
+msgid "remainOff1"
+msgstr "Gedoofd"
+
+msgid "remainOff2"
+msgstr "Bij voeding"
+
+msgid "samePower1"
+msgstr "Zal op de macht Als"
+
+msgid "samePower2"
+msgstr "Op Voordat Verlies"
+
+msgid "powerName"
+msgstr "Systeem Vermogen"
+
+msgid "powerOK"
+msgstr "De voeding en de accu zijn normaal."
+
+msgid "powerLow"
+msgstr "De voeding is bijna op."
+
+msgid "batteryCritical"
+msgstr "De accuspanning loopt kritisch laag. Dit kan een teken van een falende batterij. Raadpleeg [[base-sauce-basic.techSupportURL]] voor technische ondersteuning."
+
+msgid "batteryCriticalSubject"
+msgstr "Systeem Batterij bijna leeg"
+
+msgid "powerCritical"
+msgstr "De voeding is niet actief tegen de opgegeven spanning. Dit kan een teken van een falende stroomvoorziening. Raadpleeg [[base-sauce-basic.techSupportURL]] voor technische ondersteuning."
+
+msgid "amPowerDetails"
+msgstr "Systeem Vermogen Details"
+
+msgid "errSettingWakeMode"
+msgstr "Het systeem faalde in het instellen van uw gevraagde wake instellingen. Raadpleeg [[base-sauce-basic.techSupportURL]] voor technische ondersteuning."
+
+msgid "cant_get_power_info"
+msgstr "Kan informatie over het systeem stroom waarden niet te krijgen."
+
+msgid "askShutdownConfirmation"
+msgstr "Weet u zeker dat u de server afsluiten apparaat?"
+
+msgid "shutting-down"
+msgstr "De server apparaat is nu afgesloten."
+
+msgid "cap_serverPower"
+msgstr "Instellingen voor energiebeheer"
+

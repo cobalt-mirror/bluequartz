@@ -1,0 +1,11 @@
+<item 	
+ id="base_monitor" 
+ label="[[base-am.activeMonitor]]" 
+ description="[[base-am.activeMonitor_help]]"
+ requiresChildren="1"
+>
+	<parent id="base_administration" order="80"/>
+	<parent id="base_sysmanage" order="80">
+        <access require="serverShowActiveMonitor"/>
+    </parent>
+</item>

@@ -1,0 +1,561 @@
+# NOTE: Some of these strings, such as those for network setup, can also be found in other modules.
+
+msgid "wizardLicense"
+msgstr "バイナリコードライセンスについて"
+
+msgid "wizardLicense_help"
+msgstr " "
+
+msgid "wizardAdmin"
+msgstr "管理者の設定"
+
+msgid "wizardAdmin_help"
+msgstr " "
+
+msgid "adminSettings"
+msgstr "管理者の設定"
+
+msgid "adminMessage"
+msgstr "[[base-product.productName]] には、ユーザやグループの追加、各種機能の設定などを行う「管理者」が必要です。管理者には「admin」というユーザ名が与えられます。管理者のユーザ名は変更できません。ここでは、管理者としてログインするために必要なパスワードを指定してください。管理者パスワードは、今後の操作に必要ですので忘れないようにしてください。また、他人に推測されにくいパスワードをお選びください。"
+
+msgid "adminNameField"
+msgstr "ユーザ名"
+
+msgid "adminNameField_help"
+msgstr "管理者を識別するためにシステムが使う名前で、変更はできません。"
+
+msgid "alteradminField"
+msgstr "Alteradminアカウント"
+
+msgid "alteradminField_help"
+msgstr "代理管理者（alteradmin）アカウントを利用すると、１つのパスワードを使って複数の人が管理権限を共有することができます。この機能を有効にすると、admin と alteradmin の両方が、管理画面にアクセスできるようになります。一旦 alteradmin が有効にされると、alteradmin アカウントのパスワードの変更や無効化は alteradmin しか行えません。"
+
+msgid "alteradminEnabled"
+msgstr "有効にする"
+
+msgid "alteradminPassword"
+msgstr "alteradmin パスワード"
+
+msgid "alteradminPassword_help"
+msgstr "alteradmin ユーザの認証に使うパスワードです。alteradmin アカウントを有効にする場合、このパスワードには、admin のパスワードとは違うパスワードを指定してください。"
+
+msgid "passwordField"
+msgstr "パスワード"
+
+msgid "passwordField_rule"
+msgstr "パスワードには 3 〜 16 文字から成る文字列が使用できます。5 文字以上で、大文字と小文字の両方を使い、数字や特殊記号を含むパスワードの使用をお勧めします。辞書に記載されているような単語は使用しないようにしてください。パスワード中の大文字と小文字は区別されます。"
+
+msgid "passwordField_help"
+msgstr "管理者であることを証明するためのパスワードを入力してください。 [[base-wizard.passwordField_rule]]"
+
+msgid "passwordField_invalid"
+msgstr "パスワードが一致しません。入力ミスを防ぐため、同じパスワードを２回入力してください。"
+
+msgid "passwordField_empty"
+msgstr "管理者の[[base-wizard.passwordField]]を指定してください。  [[base-wizard.passwordField_rule]]"
+
+msgid "newPasswordField"
+msgstr "新しいパスワード"
+
+msgid "newPasswordField_help"
+msgstr "管理者であることを証明するためのパスワードを指定してください。  [[base-wizard.passwordField_rule]]"
+
+msgid "wizardTime"
+msgstr "日付と時刻の設定"
+
+msgid "wizardTime_help"
+msgstr " "
+
+msgid "timeSettings"
+msgstr "日付と時刻の設定"
+
+msgid "timeMessage"
+msgstr "[[base-product.productName]]が正しく機能するためには、正確な日時を設定しておく必要があります。ここでは、現在の日時と時間帯を指定します。"
+
+msgid "dateField"
+msgstr "日付と時刻"
+
+msgid "dateField_help"
+msgstr "現在の日付と時刻を指定してください。"
+
+msgid "timeField"
+msgstr "時刻"
+
+msgid "timeField_help"
+msgstr "現在の時刻を指定してください。"
+
+msgid "timeZoneField"
+msgstr "時間帯"
+
+msgid "timeZoneField_help"
+msgstr "現在地の時間帯を指定してください。"
+
+msgid "wizardUsers"
+msgstr "ユーザの設定"
+
+msgid "wizardUsers_help"
+msgstr " "
+
+msgid "wizardWorkgroups"
+msgstr "グループの設定"
+
+msgid "wizardWorkgroups_help"
+msgstr " "
+
+msgid "wizardNetwork"
+msgstr "ネットワークの設定"
+
+msgid "wizardNetwork_help"
+msgstr " "
+
+msgid "networkSettings"
+msgstr "ネットワークの設定"
+
+msgid "networkMessage"
+msgstr "[[base-product.productName]] は、イントラネットのみで使うことも、インターネットへのアクセスを提供するように設定することもできます。ここでは、このサーバのホスト名、ドメインネーム、ドメインネームサーバ、インターネットへの接続方法を指定します。"
+
+msgid "enterFqdn"
+msgstr "ホスト名とドメインネーム"
+
+msgid "enterFqdn_help"
+msgstr "最初のフィールドにこのサーバのホスト名、２番目のフィールドにドメインネームを指定してください。(指定例: ホスト名に www、ドメインネームに kaishamei.co.jpなど)  半角の英小文字、数字、ハイフン、ピリオドだけが使用できます。"
+
+msgid "hostNameField"
+msgstr "ホスト名"
+
+msgid "hostNameField_rule"
+msgstr "半角の英小文字、数字、ハイフン、ピリオドだけが使用できます。（指定例： www、mail、shomu-2、eigyo13 など）"
+
+msgid "hostNameField_help"
+msgstr "このサーバのホスト名を指定してください。ホスト名とドメインネームの組み合せにより、このサーバを一意に識別する名前を付けてください。[[base-wizard.hostNameField_rule]]"
+
+msgid "domainNameField"
+msgstr "ドメインネーム"
+
+msgid "domainNameField_rule"
+msgstr "半角の英小文字、数字、ハイフン、ピリオドだけが使用できます。（指定例： blueonyx.it、cobaltqube.orgなど）"
+
+msgid "domainNameField_help"
+msgstr "このサーバのドメインネームを入力してください。ホスト名とドメインネームの組み合せにより、このサーバを一意に識別する名前を付けてください。[[base-wizard.domainNameField_rule]]"
+
+msgid "dnsAddressesField"
+msgstr "DNS サーバ"
+
+msgid "dnsAddressesField_rule"
+msgstr "0 〜 255 の 4 組の数値を、ピリオドで区切って入力してください。（指定例： 192.168.1.1）  このフィールドへの入力を省略すると、ホスト名とドメインネームを使って他のコンピュータやサーバを特定できなくなり、IP アドレスのみを使う必要が生じます。"
+
+msgid "dnsAddressesField_help"
+msgstr "ローカルネットワーク上にあるのドメインネームサーバの IP アドレスを入力してください。複数ある場合には、改行してください。ドメインネームサーバは、文字で記述される「ホスト名＋ドメインネーム」と、数字で記述される「IP アドレス」との関連付け（正引き、逆引き）を行います。 [[base-wizard.dnsAddressesField_rule]]"
+
+msgid "dnsAddressesField_invalid"
+msgstr "[[VAR.invalidValue]] は、[[base-wizard.dnsAddressesField]] には指定できません。[[base-wizard.dnsAddressesField_rule]]"
+
+msgid "internetField"
+msgstr "インターネットへの接続方法"
+
+msgid "internetField_help"
+msgstr "このサーバをインターネットに接続する場合、その接続方法を選択してください。"
+
+msgid "none"
+msgstr "接続しない（イントラネットのみ）"
+
+msgid "broadband"
+msgstr "ケーブルモデムまたは DSL"
+
+msgid "lan"
+msgstr "LAN のゲートウェイ"
+
+msgid "narrowband"
+msgstr "アナログモデムまたは ISDN"
+
+msgid "wizardBroadband"
+msgstr "ブロードバンドの設定"
+
+msgid "wizardBroadband_help"
+msgstr " "
+
+msgid "broadbandSettings"
+msgstr "ブロードバンドの設定"
+
+msgid "broadbandMessage"
+msgstr "ケーブルモデムまたは DSL モデムは、[[base-product.productName]]のセカンダリインターフェイスに接続してください。以下のフィールドには、インターネットサービスプロバイダから入手したネットワーク設定情報を入力してください。"
+
+msgid "networkField"
+msgstr "セカンダリインターフェイスの設定"
+
+msgid "networkField_help"
+msgstr "ここで指定する情報に基づき、このサーバのセカンダリインターフェイスが設定されます。入力する情報は、ご利用のインターネットサービスプロバイダ （ISP） から入手してください。"
+
+msgid "dhcp"
+msgstr "DHCP を参照"
+
+msgid "dhcpHostNameField"
+msgstr "クライアントのホスト名"
+
+msgid "dhcpHostNameField_rule"
+msgstr "半角の英小文字、ハイフン、ピリオドだけが使用できます。（指定例： www）"
+
+msgid "dhcpHostNameField_help"
+msgstr "このサーバを DHCP （Dynamic Host Configuration Protocol） クライアントとして識別するためのホスト名を入力してください。[[base-wizard.dhcpHostNameField_rule]]"
+
+msgid "dhcpClientIdField"
+msgstr "クライアントの識別子"
+
+msgid "dhcpClientIdField_help"
+msgstr "このサーバを DHCP （Dynamic Host Configuration Protocol） クライアントとして識別するための識別ストリングを入力してください。"
+
+msgid "pppoe"
+msgstr "PPPoE を参照 "
+
+msgid "pppUserNameField"
+msgstr "ユーザ名"
+
+msgid "pppUserNameField_help"
+msgstr "インターネットサービスプロバイダ （ISP） のアカウントへログインするために必要なユーザ名を入力してください。"
+
+msgid "pppPasswordField"
+msgstr "パスワード"
+
+#msgid "pppPasswordField_help"
+#msgstr "インターネットサービスプロバイダ （ISP） のアカウントへログインするために必要なパスワードを入力してください。"
+
+msgid "pppPasswordField_help"
+msgstr "[[base-wizard.pppPasswordField]]を指定してください。"
+
+msgid "static"
+msgstr "手動で設定"
+
+msgid "ipAddressField"
+msgstr "IP アドレス"
+
+msgid "ipAddressField_rule"
+msgstr "0 〜 255 の 4 組の数値を、ピリオドで区切って入力してください。（指定例： 192.168.1.1）"
+
+msgid "ipAddressField_help"
+msgstr "通常は、セカンダリインターフェイスをインターネットに、プライマリインターフェイスをイントラネットに接続します。その場合、ここにセカンダリインターフェイスの IP アドレスを入力してください。ネットワークインターフェイスが 1 つしかない場合には、プライマリインターフェイスに接続し、セカンダリインターフェイスは空けたまま残してください。[[base-wizard.ipAddressField_rule]]"
+
+msgid "netMaskField"
+msgstr "サブネットマスク"
+
+msgid "netMaskField_rule"
+msgstr "0 〜 255 の 4 組の数値を、ピリオドで区切って入力してください。（指定例： 255.255.255.0）"
+msgid "netMaskField_help"
+msgstr "プライマリインターフェイスのネットワークマスクを入力してください。ネットワークインターフェイスが 1 つしかない場合には、プライマリインターフェイスに接続し、セカンダリインターフェイスは空けたまま残してください。[[base-wizard.netMaskField_rule]]"
+
+msgid "gatewayField"
+msgstr "ゲートウェイ"
+msgid "gatewayField_rule"
+msgstr "0 〜 255 の 4 組の数値を、ピリオドで区切って入力してください。（指定例： 192.168.1.1）"
+
+msgid "gatewayField_help"
+msgstr "ローカルネットワーク上のゲートウェイの IP アドレスを入力してください。ゲートウェイ（「ルータ」とも呼ばれる）とは、ローカルネットワークの外部へのアクセスを提供するマシンです。[[base-wizard.gatewayField_rule]]"
+
+msgid "secondaryInterface"
+msgstr "セカンダリインターフェイス"
+
+msgid "ipAddressField2"
+msgstr "IP アドレス"
+
+msgid "ipAddressField2_help"
+msgstr "通常は、セカンダリインターフェイスをインターネットに、プライマリインターフェイスをイントラネットに接続します。その場合、ここにセカンダリインターフェイスの IP アドレスを入力してください。ネットワークインターフェイスが 1 つしかない場合には、プライマリインターフェイスに接続し、セカンダリインターフェイスは空けたまま残してください。[[base-network.ipAddressField1_rule]]"
+
+msgid "ipAddressNetMaskMismatch"
+msgstr "「IP アドレス」フィールドと「サブネットマスク」フィールドは、両方とも入力するか、両方とも空欄のまま残すか、のどちらかにする必要があります。"
+
+msgid "netMaskField2"
+msgstr "[[base-network.netMaskField1]]"
+
+msgid "netMaskField2_help"
+msgstr "セカンダリインターフェイスのネットワークマスクを入力してください。ネットワークインターフェイスが 1 つしかない場合には、プライマリインターフェイスに接続し、セカンダリインターフェイスは空けたまま残してください。[[base-network.netMaskField1_rule]]"
+
+msgid "macAddressField"
+msgstr "MAC アドレス"
+
+msgid "macAddressField_help"
+msgstr "MAC (Media Access Control) アドレスは、各ネットワークインターフェイスカードに固有のハードウェアアドレスで、このハードウェアを一意に識別します。出荷時に設定され、変更はできません。"
+
+msgid "wizardLan"
+msgstr "LAN （ローカルエリアネットワーク）の設定"
+
+msgid "wizardLan_help"
+msgstr " "
+
+msgid "lanMessage"
+msgstr "このサーバがデフォルトで使うゲートウェイを指定してください。ゲートウェイがセカンダリインターフェイスに接続されているネットワーク上にある場合には、セカンダリインターフェイスの IP アドレスとネットマスクも入力してください。"
+
+msgid "lanSettings"
+msgstr "LAN （ローカルエリアネットワーク）の設定"
+
+msgid "wizardModem"
+msgstr "アナログ／ISDN モデムの設定"
+
+msgid "wizardModem_help"
+msgstr " "
+
+msgid "modemMessage"
+msgstr "アナログモデムまたは ISDN モデムは、[[base-product.productName]]のシリアルポートに接続してください。以下のフィールドには、インターネットサービスプロバイダから入手したネットワーク設定情報を入力してください。"
+
+msgid "modemSettings"
+msgstr "モデムの設定"
+
+msgid "connModeField"
+msgstr "接続モード"
+
+msgid "connModeField_help"
+msgstr "モデムの接続形式を、外部への接続が必要なときにだけダイヤルアップ接続を行う、常時接続を維持する、全く接続しない、の中から選んでください。"
+
+msgid "demand"
+msgstr "必要時のみ接続"
+
+msgid "on"
+msgstr "常時接続"
+
+msgid "off"
+msgstr "接続しない"
+
+msgid "userNameField"
+msgstr "ユーザ名"
+
+msgid "userNameField_help"
+msgstr "インターネットサービスプロバイダ（ISP）のダイヤルアップアカウントへログインするために必要なユーザ名を入力してください。"
+
+msgid "userNameField_empty"
+msgstr "[[base-wizard.userNameField]]を指定してください。[[base-wizard.userNameField_help]]"
+
+msgid "modemPasswordField"
+msgstr "パスワード"
+
+msgid "modemPasswordField_help"
+msgstr "インターネットサービスプロバイダ（ISP）のダイヤルアップアカウントへログインするために必要なパスワードを入力してください。"
+
+msgid "modemPasswordField_empty"
+msgstr "[[base-wizard.modemPasswordField]]は省略できません。インターネットサービスプロバイダ（ISP）のダイヤルアップアカウントへログインするために必要なパスワードを入力してください。"
+
+msgid "modemPasswordField_invalid"
+msgstr "異なるパスワードが入力されました。入力ミスを防ぐため、同じパスワードを２回入力してください。もう一度お試しください。"
+
+msgid "modemPhoneField"
+msgstr "ダイヤルアップ接続先の電話番号"
+
+msgid "modemPhoneField_help"
+msgstr "インターネットサービスプロバイダ（ISP）へのダイヤルアップ接続に使う電話番号を入力してください。"
+
+msgid "initStringField"
+msgstr "モデム初期化ストリング"
+
+msgid "initStringField_help"
+msgstr "モデム初期化ストリングを入力してください。モデム初期化ストリングは、ダイヤル開始前にモデムに渡されます。"
+
+msgid "initStringField_empty"
+msgstr "[[base-wizard.initStringField]]は省略できません。モデム初期化ストリングを指定しないと、サーバがモデムを使用できません。デフォルトのモデム初期化ストリングが不明の場合には、「ATZ」と入力するか、ご使用のモデムに付属のマニュアルをご参照ください。"
+
+msgid "localIpField"
+msgstr "ローカル IP アドレス"
+
+msgid "localIpField_help"
+msgstr "インターネットサービスプロバイダ（ISP）からモデム接続のためのローカル IP アドレスが割り当てられている場合には、ここに入力してください。"
+
+msgid "pulseField"
+msgstr "パルスダイヤルを使う"
+
+msgid "pulseField_help"
+msgstr "このボックスをチェックすると、トーン（プッシュボタン式）ダイヤルの代わりにパルス（ロータリー式）ダイヤルが使われます。デフォルトでは、トーンダイヤルが使われます。"
+
+msgid "wizardRegistration"
+msgstr "製品の無保証性"
+
+msgid "wizardRegistration_help"
+msgstr " "
+
+msgid "registration"
+msgstr "製品の無保証性"
+
+msgid "regRightArrow"
+msgstr "右矢印"
+
+msgid "regSubmit"
+msgstr "送信"
+
+msgid "regSubmit_help"
+msgstr "[[base-product.productName]]は、オープンソースライセンスのもとに無保証で配布されています。"
+
+msgid "regCancel"
+msgstr "利用者登録などはありません"
+
+msgid "regCancel_help"
+msgstr "[[base-product.productName]]は、オープンソースライセンスのもとに無保証で配布されています。"
+
+msgid "regText"
+msgstr "以下のフォームを使った製品登録は現在は無効です。"
+
+msgid "regTextOffline"
+msgstr "[[base-product.productName]]は無保証のソフトウェアであり、テクニカルサポートなどはありません。そのため、製品登録、利用者登録などはありません。"
+
+msgid "empty_reg"
+msgstr "（ここの処理は余計です。無視してください。）先へ進んでよろしいですか？"
+
+msgid "fullNameField"
+msgstr "ご氏名 (英文)"
+
+msgid "fullNameField_help"
+msgstr "ご氏名を、半角英字でご記入ください。（指定例： Yutaka Yasuda）"
+
+msgid "fullNameField_rule"
+msgstr "コロンは使えません。"
+
+msgid "titleField"
+msgstr "役職 (英文)"
+
+msgid "titleField_help"
+msgstr "役職を、半角英字でご記入ください。（例： Engineer、Network Administrator、School Teacherなど）"
+
+msgid "companyField"
+msgstr "会社・団体名 (英文)"
+
+msgid "companyField_help"
+msgstr "会社名、半角英字でご記入ください。（例： Yasu System Individual、[[base-alpine.osVendor]] など）"
+
+msgid "addressField"
+msgstr "住所 (英文)"
+
+msgid "addressField_help"
+msgstr "ご住所を、半角英字でご記入ください。"
+
+msgid "countryField"
+msgstr "国 (英文)"
+
+msgid "countryField_help"
+msgstr "日本国内にご在住の場合には、Japan とご記入ください。"
+
+msgid "emailField"
+msgstr "電子メールアドレス"
+
+msgid "emailField_help"
+msgstr "電子メールアドレスをご記入ください。（例： yasuda@blueonyx.it）"
+
+msgid "emailField_rule"
+msgstr "電子メールアドレスを正しい形式で入力してください。（例： yasuda@blueonyx.it）"
+
+msgid "phoneField"
+msgstr "電話番号"
+
+msgid "phoneField_help"
+msgstr "電話番号をご記入ください。（例： 075-705-1673）"
+
+msgid "faxField"
+msgstr "ファックス番号"
+
+msgid "faxField_help"
+msgstr "ファックス番号をご記入ください。（例： 075-705-1674）"
+
+msgid "wizardLocale"
+msgstr "言語"
+
+msgid "wizardLocale_help"
+msgstr " "
+
+msgid "localeMessage"
+msgstr "このサーバの管理に使用する言語をお選びください。ブラウザ上の表示言語はあとで変更できますが、アクティブモニタの生成する電子メールには、ここで設定した言語が使われます。"
+
+msgid "localeField"
+msgstr "ご使用になりたい言語を選択してください"
+
+msgid "localeField_help"
+msgstr "ここで指定した言語は、アクティブモニタの生成する通知電子メールに使われます。また、ブラウザの設定言語が見つからない場合には、管理画面にも使われます。"
+
+msgid "localeSettings"
+msgstr "言語"
+
+msgid "wizardRaid"
+msgstr "RAID の設定"
+
+msgid "wizardRaid_help"
+msgstr " "
+
+msgid "raidMessage"
+msgstr "[[base-alpine.osName]] サーバアプライアンスでは RAID 機能を実装できます。この製品には、[[VAR.numdisk]] 台のディスクが内蔵されています。RAID 方式には２種類あり、ニーズに合わせてお選び頂けます。１つはディスク容量の大きなソリューションを提供し、もう１つは容量よりも信頼性に重点を置いています。以下のオプションからご希望の RAID 設定をお選びください。警告: この設定は、サーバを出荷時の状態に戻さない限り変更できません。各オプションを十分に理解した上で、正しい選択を行ってください。"
+
+msgid "raidAlreadyConfigured"
+msgstr "RAID はすでに設定済みのため、変更できません。"
+
+msgid "raidOption"
+msgstr "RAID のレベル"
+
+msgid "raidOption_help"
+msgstr "RAID の実装により、複数のディスクを１台のディスクとして使用できます。各オプションについてよく読んでから、ディスクの設定方法をお選びください。"
+
+msgid "raidSettings"
+msgstr "RAID の設定"
+
+msgid "raid0"
+msgstr "RAID 0 モード - 「ストライピング」とも呼ばれる RAID 0 では、複数の内部ディスクを１台の論理ディスクに見立てて使用します。すべての容量をデータの保存に使えますが、いずれかのディスクに問題が発生すると情報は失われます。"
+
+msgid "raid1"
+msgstr "RAID 1 モード - 「ミラーリング」とも呼ばれる RAID 1 では、全く同一のデータが２台の内部ディスクに保存されます。どちらかのディスクに問題が発生しても、データはもう１台のディスクから利用できますが、冗長性は失われますので耐障害性は低下します。"
+
+msgid "raid5"
+msgstr "RAID 5 モード - 「パリティ付きストライピング」とも呼ばれる RAID 5 では、ディスクに書き込まれたデータのパリティ情報が保存されます。１台のディスクに問題が発生しても、他のディスク上のパリティ情報からデータを再構築できます。パリティデータを保存するため、利用可能なディスク容量は他少減少します。また、複数のディスクに同時に問題が発生するとデータは失われます。"
+
+msgid "onepageSettings"
+msgstr "システムの設定"
+
+msgid "wizardOnepage"
+msgstr "システムの設定"
+
+msgid "wizardOnepage_help"
+msgstr " "
+
+msgid "onepageMessage"
+msgstr "サーバの設定には以下の情報が必要です。フォームの左側のテキストの上にマウスを置くと、各フィールドのヘルプが表示されます。入力する情報をご存知ない場合には、システム管理者にお問い合わせください。"
+
+msgid "mustSelectLicense"
+msgstr "本ライセンス契約の一番下にある「同意する」または「同意しない」のどちらかをお選びください。「同意する」または「同意しない」オプションが画面上に表示されていない場合には、一番下までスクロールしてください。"
+
+msgid "accept"
+msgstr "同意する"
+
+msgid "accept_help"
+msgstr "ソフトウェア利用の条件をお読みになり、同意いただける場合には、「同意する」をクリックして先にお進みください。"
+
+msgid "decline"
+msgstr "同意しない"
+
+msgid "decline_help"
+msgstr "ソフトウェア利用の条件に同意いただけない場合には、[[base-product.productName]] をご使用頂けません。"
+
+msgid "licenseClick"
+msgstr "本文書の最後までスクロールして、ソフトウェア利用条件に「同意する」または「同意しない」か選択してください。"
+
+msgid "mustAcceptToUse"
+msgstr "[[base-alpine.osName]] を利用するには、ソフトウェア利用条件に同意していただく必要があります。"
+
+msgid "license"
+msgstr "[[base-product.productLicense]]"
+
+# default virtual site settings
+msgid "addVirtualsiteSettings"
+msgstr "追加仮想サイトの設定"
+
+msgid "enterVsiteFqdn"
+msgstr "ホスト名とドメインネーム"
+
+msgid "enterVsiteFqdn_help"
+msgstr "最初のフィールドに追加する仮想サイトのホスト名、２番目のフィールドにドメインネームを指定してください。(指定例: ホスト名に www、ドメインネームに example.com>など)  半角の英小文字、数字、ハイフン、ピリオドだけが使用できます。"
+
+msgid "vsite_hostNameField"
+msgstr "ホスト名"
+
+msgid "vsite_hostNameField_rule"
+msgstr "半角の英小文字、数字、ハイフン、ピリオドだけが使用できます。（指定例： www、mail、shomu-2、eigyo13 など）"
+
+msgid "vsite_hostNameField_help"
+msgstr "このサーバのホスト名を指定してください。ホスト名とドメインネームの組み合せにより、このサーバを一意に識別する名前を付けてください。[[base-wizard.vsite_hostNameField_rule]]"
+
+msgid "vsite_domainNameField"
+msgstr "ドメインネーム"
+
+msgid "vsite_domainNameField_rule"
+msgstr "半角の英小文字、数字、ハイフン、ピリオドだけが使用できます。（指定例： blueonyx.it、cobaltqube.orgなど）"
+
+msgid "vsite_domainNameField_help"
+msgstr "このサーバのドメインネームを入力してください。ホスト名とドメインネームの組み合せにより、このサーバを一意に識別する名前を付けてください。[[base-wizard.vsite_domainNameField_rule]]"

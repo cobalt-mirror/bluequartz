@@ -1,0 +1,11 @@
+<class name="Capabilities" namespace="serverTime" version="1.0">
+        <property
+                name="capable" type="boolean" default="1"
+                readacl="ruleCapable(serverTime)"
+        />
+        <property
+                name="nameTag" type="scalar"
+                default="[[base-time.cap_serverTime]]"
+        />
+</class>
+

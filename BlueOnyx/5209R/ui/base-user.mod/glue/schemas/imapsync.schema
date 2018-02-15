@@ -1,0 +1,110 @@
+<!--
+
+    $Id: imapsync.schema 
+    Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
+    Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+    All Rights Reserved.
+
+-->
+
+<class 
+    name="User" namespace="ImapSync" version="1.0"
+    createacl="ruleAll" destroyacl="ruleAll"
+>
+	<property 
+        name="source" type="IP_or_FQDN"
+        readacl="ruleSelf OR ruleModifyUser"
+        writeacl="ruleSelf OR ruleModifyUser"
+    	/>
+
+    <property 
+        name="target" type="IP_or_FQDN"
+        readacl="ruleSelf OR ruleModifyUser"
+        writeacl="ruleSelf OR ruleModifyUser"
+        />
+
+    <property 
+        name="sourceAuth" type="AuthProtos" default="PLAIN"
+        readacl="ruleSelf OR ruleModifyUser"
+        writeacl="ruleSelf OR ruleModifyUser"
+        />
+
+    <property 
+        name="targetAuth" type="AuthProtos"  default="PLAIN"
+        readacl="ruleSelf OR ruleModifyUser"
+        writeacl="ruleSelf OR ruleModifyUser"
+        />
+
+    <property 
+        name="sourceUsername" type="fq_email_address_or_username" 
+        readacl="ruleSelf OR ruleModifyUser"
+        writeacl="ruleSelf OR ruleModifyUser"
+        />
+
+    <property 
+        name="targetUsername" type="fq_email_address_or_username" 
+        readacl="ruleSelf OR ruleModifyUser"
+        writeacl="ruleSelf OR ruleModifyUser"
+        />
+
+
+    <property 
+        name="sourcePass" type="scalar" 
+        readacl="ruleSelf OR ruleModifyUser"
+        writeacl="ruleSelf OR ruleModifyUser"
+        />
+
+    <property 
+        name="targetPass" type="scalar" 
+        readacl="ruleSelf OR ruleModifyUser"
+        writeacl="ruleSelf OR ruleModifyUser"
+        />
+
+    <property 
+        name="sourceProto" type="IMAPtype" default="SSL"
+        readacl="ruleSelf OR ruleModifyUser"
+        writeacl="ruleSelf OR ruleModifyUser"
+        />
+
+    <property 
+        name="targetProto" type="IMAPtype" default="SSL"
+        readacl="ruleSelf OR ruleModifyUser"
+        writeacl="ruleSelf OR ruleModifyUser"
+        />
+
+	<property 
+		name="dosync" 
+		type="int" 
+		readacl="ruleAll"
+		writeacl="ruleSelf OR ruleModifyUser"
+		default=""/>
+
+    <property 
+        name="logdelete" 
+        type="int" 
+        readacl="ruleAll"
+        writeacl="ruleSelf OR ruleModifyUser"
+        default=""/>
+
+</class>
+
+<CLASS name="UserExtraServices" namespace="ImapSync" version="1.0" writeacl="ruleAll" readacl="ruleAll" createacl="ruleModifyUser" destroyacl="ruleModifyUser">
+    <property name="featureEnabled" 
+    type="boolean" 
+    default="1"
+        type="boolean"
+        default="0"
+        writeacl="ruleAll"
+        readacl="ruleAll"
+        createacl="ruleModifyUser"
+        destroyacl="ruleModifyUser"
+    />
+  <property name="enabled" 
+    type="boolean" 
+    default="0" 
+    writeacl="ruleCapable(adminUser)"
+        readacl="ruleAll"
+        createacl="ruleModifyUser"
+        destroyacl="ruleModifyUser"
+   />
+</CLASS>

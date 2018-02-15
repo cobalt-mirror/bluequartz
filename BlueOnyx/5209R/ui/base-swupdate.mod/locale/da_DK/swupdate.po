@@ -1,0 +1,667 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "software"
+msgstr "Opdater"
+
+msgid "software_help"
+msgstr "Den [[base-swupdate.software]] sektion tillader dig at søge efter og installere nye eller opdaterede softwarepakker."
+
+msgid "softwareNew"
+msgstr "Third Party Software"
+
+msgid "softwareNew_help"
+msgstr "Klik her for at søge efter og installere tilgængelige ny software fra tredjepart."
+
+msgid "softwareNewSun"
+msgstr "[[base-alpine.osName]] Software"
+
+msgid "softwareNewSun_help"
+msgstr "Klik her for at søge efter og installere tilgængelige nye software fra [[base-alpine.osVendor]]."
+
+msgid "softwareUpdate"
+msgstr "Tredjemands Opdateringer"
+
+msgid "softwareUpdate_help"
+msgstr "Klik her for at søge efter og installere tilgængelige softwareopdateringer fra tredjepart."
+
+msgid "softwareUpdateSun"
+msgstr "[[base-alpine.osName]] Opdateringer"
+
+msgid "softwareUpdateSun_help"
+msgstr "Klik her for at søge efter og installere tilgængelige softwareopdateringer fra [[base-alpine.osVendor]]."
+
+msgid "softwareInstalled"
+msgstr "Installeret software"
+
+msgid "softwareInstalled_help"
+msgstr "Klik her for at se en liste over software-pakker, der er installeret på systemet."
+
+msgid "softwareSettings"
+msgstr "Indstillinger"
+
+msgid "softwareSettings_help"
+msgstr "Klik her for at ændre [[base-swupdate.software]] Settings."
+
+msgid "splashSoftwareMessage"
+msgstr "Den [[base-swupdate.software]] sektion tillader dig at styre programmer der er installeret på systemet."
+
+msgid "install"
+msgstr "Installer"
+
+msgid "install_help"
+msgstr "Klik her for at installere den angivne softwarepakke."
+
+msgid "installField"
+msgstr "Installer Detaljer"
+
+msgid "installField_help"
+msgstr "Klik på ikonet for at vise flere oplysninger om anskaffelse og installation af denne pakke."
+
+msgid "prepare"
+msgstr "Forbered"
+
+msgid "prepare_help"
+msgstr "Klik her for at forberede software-pakke til installation."
+
+msgid "nameField"
+msgstr "Navn"
+
+msgid "nameField_help"
+msgstr "Dette viser navnet på den software-pakke."
+
+msgid "versionField"
+msgstr "Version"
+
+msgid "versionField_help"
+msgstr "Dette viser den version af softwarepakken."
+
+msgid "vendorField"
+msgstr "Vendor"
+
+msgid "vendorField_help"
+msgstr "Dette viser leverandøren af ​​softwarepakken."
+
+msgid "copyrightField"
+msgstr "Copyright"
+
+msgid "copyrightField_help"
+msgstr "Dette viser copyright forbundet med softwarepakken."
+
+msgid "descriptionField"
+msgstr "Beskrivelse"
+
+msgid "descriptionField_help"
+msgstr "Dette viser en beskrivelse af softwarepakken."
+
+msgid "licenseField"
+msgstr "License"
+
+msgid "licenseField_help"
+msgstr "Dette viser licensaftalen for pakken."
+
+msgid "accept"
+msgstr "Accepter"
+
+msgid "accept_help"
+msgstr "Klik her for at acceptere vilkårene i licensaftalen."
+
+msgid "decline"
+msgstr "Afvise"
+
+msgid "decline_help"
+msgstr "Klik her for at afvise licensaftalen."
+
+msgid "typeField"
+msgstr "Type"
+
+msgid "typeField_help"
+msgstr "Dette viser, hvilken type pakke."
+
+msgid "New"
+msgstr "Nyt"
+
+msgid "Update"
+msgstr "Opdater"
+
+msgid "complete"
+msgstr "fuldføre"
+
+msgid "locationField"
+msgstr "Placering"
+
+msgid "locationField_help"
+msgstr "Dette er det sted, hvorfra den software pakke vil blive downloadet under installationen."
+
+msgid "locationLocal"
+msgstr "Denne server apparat"
+
+msgid "sizeField"
+msgstr "Størrelse (MB)"
+
+msgid "sizeField_help"
+msgstr "Dette er størrelsen af ​​pakken."
+
+msgid "uninstallableField"
+msgstr "Afinstalleres"
+
+msgid "uninstallableField_help"
+msgstr "Dette felt angiver, om pakken kan afinstalleres, efter den er blevet installeret."
+
+msgid "yes"
+msgstr "Ja"
+
+msgid "no"
+msgstr "Ingen"
+
+msgid "none"
+msgstr "Ingen"
+
+msgid "packagesNeededField"
+msgstr "Afhængige pakker"
+
+msgid "packagesNeededField_help"
+msgstr "Pakkerne er anført her skal være installeret på systemet, før denne pakke kan sikkert installeres."
+
+msgid "locationFieldEnter"
+msgstr "Placering"
+
+msgid "locationFieldEnter_help"
+msgstr "Indtast den placering, som den softwarepakke skal indhentes. Indtast en URL begynder med enten http:// eller ftp:// at hente pakken fra et sted på internettet, eller indtast filen placeringen af ​​en pakke til at uploade. Klik på Gennemse for at vælge en fil på din lokale harddisk. Hvis du har hentet pakker til /home/packages mappe på din server apparat, en mulighed for at vælge en af ​​disse pakker vil også være tilgængelige."
+
+msgid "invalidUrl"
+msgstr "Den angivne URL er ugyldig. [[base-swupdate.urlField_rule]]"
+
+msgid "availableListNew"
+msgstr "Tilgængelige Ny software List"
+
+msgid "checkNow"
+msgstr "Tjek Tilgængelighed Nu"
+
+msgid "checkNow_help"
+msgstr "Klik her for at kontrollere, om nye software-pakker er tilgængelige."
+
+msgid "manualInstall"
+msgstr "Installer manuelt"
+
+msgid "manualInstall_help"
+msgstr "Klik her for at udføre en manuel installation af softwarepakker."
+
+msgid "removePackage"
+msgstr "Har du virkelig ønsker at fjerne den \"[[VAR.packageName]]\" pakke fra systemet? Denne pakke er endnu ikke installeret."
+
+msgid "checkNowUpdate"
+msgstr "[[base-swupdate.checkNow]]"
+
+msgid "checkNowUpdate_help"
+msgstr "Klik her for at kontrollere, om softwareopdateringer er tilgængelige."
+
+msgid "manualInstallUpdate"
+msgstr "Installer manuelt"
+
+msgid "manualInstallUpdate_help"
+msgstr "Klik her for at udføre en manuel installation af software-opdateringer."
+
+msgid "availableListUpdates"
+msgstr "Tilgængelige softwareopdateringer List"
+
+msgid "downloadSoftware"
+msgstr "Installer software"
+
+msgid "unknownSize"
+msgstr "Ukendt"
+
+msgid "rebootpopup"
+msgstr "Din server apparat bliver nødt til at genstarte efter installation af denne pakke. Ønsker du at fortsætte?"
+
+msgid "url"
+msgstr "URL"
+
+msgid "urlField"
+msgstr "[[base-swupdate.url]]"
+
+msgid "urlField_rule"
+msgstr "Indtast en URL begynder med enten http:// eller ftp:// at hente pakken fra en placering på internettet."
+
+msgid "upload"
+msgstr "Upload"
+
+msgid "loaded"
+msgstr "Pakker i /home/packages"
+
+msgid "fileField"
+msgstr "Upload fil placering"
+
+msgid "fileField_empty"
+msgstr "Desværre, du har ikke indtastet en fil placering af en pakke til at uploade. Klik på Gennemse for at vælge en fil på din lokale harddisk."
+
+msgid "fileField_invalid"
+msgstr "[[base-swupdate.fileField_empty]]"
+
+msgid "invalidUpload"
+msgstr "Den angivne fil kunne ikke uploades med succes."
+
+msgid "installStatus"
+msgstr "Status - [[VAR.fileName]]"
+
+msgid "statusField"
+msgstr "Statusmeddelelse"
+
+msgid "statusField_help"
+msgstr "Dette felt viser den aktuelle status for den pakke, der installeres eller fjernes."
+
+msgid "progressField"
+msgstr "Progress"
+
+msgid "progressField_help"
+msgstr "Dette er forløbet af installationen eller fjernelse."
+
+msgid "dlPercent"
+msgstr "Downloader fil [[VAR.file]]: [[VAR.percent]]% færdig"
+
+msgid "initializing"
+msgstr "Initialiserer ..."
+
+msgid "downloading"
+msgstr "Downloader pakke ..."
+
+msgid "installing"
+msgstr "Installation pakke ..."
+
+msgid "executingPreInstallScript"
+msgstr "Udfører pre-install script (r) ..."
+
+msgid "executingPostInstallScript"
+msgstr "Udfører post-install script (r) ..."
+
+msgid "installingRpm"
+msgstr "Installation komponent [[VAR.rpm]] ..."
+
+msgid "fail"
+msgstr "Mislykket"
+
+msgid "success"
+msgstr "Succes"
+
+msgid "currentlyUninstalling"
+msgstr "Pakken er i øjeblikket ved at blive afinstalleret."
+
+msgid "cantUninstall"
+msgstr "Pakken kan ikke fjernes, da det ikke er markeret som afinstalleres."
+
+msgid "dependent"
+msgstr "Pakken kan ikke fjernes, da følgende softwarepakker kræver, at det skal installeres: [[VAR.depend]]"
+
+msgid "removingRPM"
+msgstr "Fjernelse pakke omdrejninger."
+
+msgid "runningUninstallScript"
+msgstr "Løb Uninstall Script."
+
+msgid "uninstalled"
+msgstr "Afinstaller fuldføre."
+
+msgid "notUninstalled"
+msgstr "Afinstallere mislykkedes, fordi der ikke var noget, der kunne fjernes."
+
+msgid "packageInstallSuccess"
+msgstr "Pakkeinstallationen succes."
+
+msgid "notInstalled"
+msgstr "Softwarepakken blev ikke installeret."
+
+msgid "cannotDownloadUrl"
+msgstr "Kunne desværre pakken filen ikke hentes fra den angivne URL. Kontroller webadressen, og prøv igen. [[base-swupdate.notInstalled]]"
+
+msgid "badFileName"
+msgstr "Beklager, filnavnet på pakken er ugyldig. Kontroller navnet, og prøv igen. [[base-swupdate.notInstalled]]"
+
+msgid "packageAlreadyInstalled"
+msgstr "Softwarepakken er allerede installeret."
+
+msgid "verifyingPackage"
+msgstr "Bekræfter pakke ..."
+
+msgid "badPackage"
+msgstr "Pakken fil er ufuldstændig. Den packing_list er ugyldig eller mangler. [[base-swupdate.notInstalled]]"
+
+msgid "badFormat"
+msgstr "Der opstod en fejl kontrollere pakken filen. Det kan blive beskadiget, eller det kan ikke have den korrekte godkendelsesinformationer. [[base-swupdate.notInstalled]]"
+
+msgid "CCEsetError"
+msgstr "Der opstod en fejl i at tilføje pakken til CCE-databasen. Pakken packing_list kan være ugyldigt. [[base-swupdate.notInstalled]]"
+
+msgid "failedDep"
+msgstr "Den softwarepakke behov anden softwarepakke (r), der skal installeres først. Du installere følgende pakke (r): [[VAR.dep]]."
+
+msgid "installLock"
+msgstr "En anden pakke er i øjeblikket ved at blive installeret eller afinstalleret. Prøv venligst igen senere."
+
+msgid "obsoletePkg"
+msgstr "Den [[VAR.name]] pakken blev ikke installeret, fordi den ikke længere er aktuel."
+
+msgid "badProduct"
+msgstr "Den [[VAR.name]] pakken blev ikke installeret, fordi det ikke blev oprettet for denne server apparatet."
+
+msgid "hostNotFound"
+msgstr "Værten er angivet i URL til [[VAR.file]] blev ikke fundet. [[base-swupdate.notInstalled]]"
+
+msgid "fileNotFound"
+msgstr "Pakken [[VAR.file]] blev ikke fundet på den angivne placering."
+
+msgid "hostRefused"
+msgstr "Værten er angivet i URL til [[VAR.file]] afviste forbindelsen."
+
+msgid "notDownloaded"
+msgstr "Pakken [[VAR.file]] har undladt at hente ordentligt, muligvis fordi den server, hvor pakken befinder oplever problemer."
+
+msgid "noLocation"
+msgstr "Ingen specificerede sted at få pakken."
+
+msgid "missingRPM"
+msgstr "Pakken fil er ufuldstændig. En eller flere RPM(r) mangler."
+
+msgid "missingSRPM"
+msgstr "Pakken fil er ufuldstændig. En eller flere SRPM(r) mangler."
+
+msgid "preInstallFailed"
+msgstr "Der opstod et problem med pakken filen. Den præ-install script mislykkedes."
+
+msgid "postInstallFailed"
+msgstr "Der opstod et problem med pakken filen. Den post-install script mislykkedes."
+
+msgid "rpmInstallError"
+msgstr "Der opstod et problem med pakken filen. Der opstod en fejl under installationen af ​​RPM [[VAR.rpm]]."
+
+msgid "errorWGET"
+msgstr "Beklager, der opstod en fejl under forsøg på at køre wget."
+
+msgid "rebooting"
+msgstr "Serveren apparat er nu genstart. Det bør være tilgængelig igen om et par minutter."
+
+msgid "uninstallrefresh"
+msgstr "Pakken afinstalleret med succes. I et øjeblik, vil brugergrænsefladen genopfriske for at fjerne de tjenester, som pakken."
+
+msgid "installrefresh"
+msgstr "Pakken installeret. I et øjeblik, vil brugergrænsefladen genopfriske for at give dig adgang til nye tjenester."
+
+msgid "installedList"
+msgstr "Installeret Software List"
+
+msgid "uninstall"
+msgstr "Afinstaller"
+
+msgid "uninstall_help"
+msgstr "Hvis softwaren pakke kan afinstalleres, vil klikke på knappen Afinstaller for pakken fjerne det fra systemet."
+
+msgid "uninstallConfirm"
+msgstr "Er du sikker på, du vil afinstallere \"[[VAR.packageName]]\"?"
+
+msgid "softwareInstallSettings"
+msgstr "[[base-swupdate.software]] Indstillinger"
+
+msgid "basic"
+msgstr "Grundlæggende"
+
+msgid "basic_help"
+msgstr "De mest almindeligt brugte indstillinger kan findes her."
+
+msgid "advanced"
+msgstr "Advanced"
+
+msgid "advanced_help"
+msgstr "Mindre almindeligt anvendte indstillinger kan findes her."
+
+msgid "scheduleField"
+msgstr "Query Schedule"
+
+msgid "scheduleField_help"
+msgstr "Ændre, hvor ofte [[base-swupdate.software]] server kontrolleres for nye eller opdaterede softwarepakker."
+
+msgid "hourly"
+msgstr "Hver time"
+
+msgid "daily"
+msgstr "Daglig"
+
+msgid "weekly"
+msgstr "Ugentlig"
+
+msgid "monthly"
+msgstr "Månedlig"
+
+msgid "never"
+msgstr "Aldrig"
+
+msgid "emailField"
+msgstr "Notification Emails"
+
+msgid "emailField_help"
+msgstr "Indtast e-mail adresse(r), som anmeldelsen af ​​nye eller opdaterede softwarepakker eller fejl i Software Update forespørgsler skal sendes. Den mulighed, du vælger for Software Notification Light bestemmer, hvornår e-mail meddelelser sendes. Lad dette felt være tomt, hvis du ikke ønsker at modtage disse meddelelser."
+
+msgid "pkgOIDmissing"
+msgstr "Der var et problem med at hente information om pakken. Pakken er muligvis allerede blevet slettet. Hvis dette ikke er tilfældet, skal du prøve igen. Hvis problemet fortsætter, skal du kontakte teknisk support ([[base-sauce-basic.techSupportEmail]])."
+
+msgid "serverField"
+msgstr "[[base-swupdate.software]] Servere"
+
+msgid "defaultServer"
+msgstr "newlinq.blueonyx.it"
+
+msgid "serverField_help"
+msgstr "Indtast webadresser af server-placeringer til at forespørge efter ny software og opdateringer. Webadressen på standard server placering er [[base-swupdate.defaultServer]]."
+
+msgid "serverFieldInvalid"
+msgstr "[[base-swupdate.software]] var i stand til at kontakte den angivne server. Venligst gør sikker på, at den er tilgængelig fra din server apparatet."
+
+msgid "httpProxyField"
+msgstr "HTTP proxy: Port"
+
+msgid "httpProxyField_help"
+msgstr "Indtast proxy server og port til HTTP-forespørgsler, hvis en proxyserver for at nå uden for din firewall. Eksempel: proxy.example.com: 8080."
+
+msgid "httpProxyInvalid"
+msgstr "[[base-swupdate.software]] var i stand til at kontakte HTTP-proxyserver. Sørg for, at den er tilgængelig fra din server apparatet."
+
+msgid "ftpProxyField"
+msgstr "FTP proxy: Port"
+
+msgid "ftpProxyField_help"
+msgstr "Indtast proxy server og port til FTP forespørgsler, hvis en proxyserver for at nå uden for din firewall. Eksempel: proxy.example.com: 8080."
+
+msgid "ftpProxyInvalid"
+msgstr "[[base-swupdate.software]] var i stand til at kontakte FTP proxy server. Sørg for, at den er tilgængelig fra din server apparatet."
+
+msgid "autoField"
+msgstr "Installer opdateringer automatisk"
+
+msgid "autoField_help"
+msgstr "Hvis aktiveret, [[base-swupdate.software]] vil automatisk installere bekræftede pakker."
+
+msgid "requireSignatureField"
+msgstr "Pakker skal godkendes"
+
+msgid "requireSignatureField_help"
+msgstr "Hvis aktiveret, [[base-swupdate.software]] vil kun installere pakker, der har bestået en authentication check."
+
+msgid "checkSetField"
+msgstr "Software til at kontrollere"
+
+msgid "checkSetField_help"
+msgstr "Vælg den type software, der vil blive kontrolleret for på hver Softwareopdatering forespørgsel."
+
+msgid "all"
+msgstr "Alt software"
+
+msgid "updates"
+msgstr "Opdateringer kun"
+
+msgid "notificationLightField"
+msgstr "Software Notification Light"
+
+msgid "notificationLightField_help"
+msgstr "Ændre, hvilken type nye software vil aktivere softwaren Notification lys, og hvis det er relevant, vil hvilken type af ny software vises i anmeldelsen e-mails."
+
+msgid "update"
+msgstr "Opdater"
+
+msgid "update_help"
+msgstr "Klik her for at søge efter og installere nye eller opdaterede softwarepakker. Dette ikon skifter farve, når nye eller opdaterede software pakker er tilgængelige."
+
+msgid "QueryErrorSubject"
+msgstr "Der opstod et problem forespørge [[base-swupdate.software]] server."
+
+msgid "NoProductInfoBody"
+msgstr "Den [[base-swupdate.software]] Serveren kunne ikke genkende dit produkt. [[base-sauce-basic.contactTechSupport]]"
+
+msgid "NoSWUpdateServerSubject"
+msgstr "Ingen URL er angivet for [[base-swupdate.software]] server."
+
+msgid "NoSWUpdateServerBody"
+msgstr "Placeringen for [[base-swupdate.software]] server kunne ikke bestemmes. Skal du gå til [[base-swupdate.software]] Indstillinger og angive en URL-adresse til [[base-swupdate.software]] server."
+
+msgid "NoSystemInfoSubject"
+msgstr "[[base-swupdate.software]] ikke er i stand til at bestemme systemets information."
+
+msgid "NoSystemInfoBody"
+msgstr "Serveren kunne ikke bestemme systemets nødvendige oplysninger af [[base-swupdate.software]] server. [[base-sauce-basic.contactTechSupport]]"
+
+msgid "NoPackageListBody"
+msgstr "[[base-swupdate.software]] var i stand til at hente en liste af pakker fra [[base-swupdate.software]] server placeret på [[VAR.location]]. Venligst tjek for at sikre, at [[VAR.location]] er en gyldig [[base-swupdate.software]] server, og at du kan forespørge den fra din web browser."
+
+msgid "BadPackageFmtBody"
+msgstr "Serveren returnerede pakke oplysninger, som [[base-swupdate.software]] ikke forstod. [[base-sauce-basic.contactTechSupport]]"
+
+msgid "NoPackagesBody"
+msgstr "Der er ingen nye pakker til download."
+
+msgid "UnknownErrorBody"
+msgstr "[[base-swupdate.software]] modtaget en ukendt fejl ([[VAR.error]]), når du forsøger at kontakte serveren placeret på [[VAR.location]]."
+
+msgid "NewUpdatesSubject"
+msgstr "Ny software er tilgængelig for din server apparat"
+
+msgid "NewUpdatesBody"
+msgstr "Tjek venligst [[base-swupdate.software]] menuen, hvis du ønsker at installere nogen af ​​følgende pakker:"
+
+msgid "capgroup_adminBlueLinq"
+msgstr "Administrer BlueLinQ"
+
+msgid "capgroup_adminBlueLinq_help"
+msgstr "Denne administrative ret tillader en bruger at styre BlueLinQ. Dette giver brugeren mulighed for at installere ny software og opdatere eksisterende software."
+
+msgid "3rdpartypkg_warning"
+msgstr "BEMÆRK: Installation af en tredjeparts-pakke eller opdatere kan få serveren til funktionsfejl, nedbrud eller bliver ustabil. Desuden kan pakker fra un-pålidelige kilder give en ondsindet forlag eller brugeren at tage kontrol over serveren. Venligst kun installere pakker fra en betroet tredjepart kilde."
+
+msgid "warning_header"
+msgstr "Advarsel!"
+
+msgid "cap_managePackage"
+msgstr "Softwareopdateringer Management"
+
+# ---
+
+msgid "urlField_help"
+msgstr "[[base-swupdate.urlField]]"
+
+msgid "fileField_help"
+msgstr "[[base-swupdate.fileField]]"
+
+msgid "loaded_help"
+msgstr "[[base-swupdate.loaded]]"
+
+msgid "BXnewpkg"
+msgstr "Ny PKG"
+
+msgid "BXnewpkg_help"
+msgstr "Dette er en ny pakke."
+
+msgid "BXnewupdate"
+msgstr "Ny opdatering"
+
+msgid "BXnewupdate_help"
+msgstr "Dette er en ny opdatering til en pakke, du allerede har installeret."
+
+msgid "BXpkg"
+msgstr "PKG"
+
+msgid "BXpkg_help"
+msgstr "Denne pakke er tilgængelig for installation."
+
+msgid "BXupdate"
+msgstr "Opdatering"
+
+msgid "BXupdate_help"
+msgstr "Dette er en opdatering til en pakke, du allerede har installeret."
+
+# ---
+
+msgid "UpdatesAvailablePackagesBody"
+msgstr "Der er opdateringer til rådighed for pakker, som du allerede har installeret."
+
+msgid "AutoUpdate"
+msgstr "Auto Opdater pkgs"
+
+msgid "AutoUpdate_help"
+msgstr "Hvis denne funktion er aktiveret valgte opdateringer vil blive installeret automatisk. Så snart en ny pakke til en af ​​de udvalgte programmer bliver tilgængelig, så opdateringen vil blive installeret automatisk. Bemærk, at visse pakker er temmelig komplekse og ikke-observerede automatiserede opdateringer kan bryde ting. Vi modvirke at bruge denne til automatisk at opdatere PHP pakker, da dette kan knække PHP forbrug på virtuelle websteder. Brug venligst denne funktion på dit eget skøn og risiko."
+
+msgid "AutoUpdateList"
+msgstr "Auto Opdater Pakker"
+
+msgid "AutoUpdateList_help"
+msgstr "Liste over pakker, der skal opdateres automatisk til den nyeste version. Alle pakker er anført i den venstre kolonne vil automatisk blive opdateret, når nye versioner bliver tilgængelige. Visse pakker vil altid opdatere automatisk og kan ikke fravælges. Bemærk, at visse pakker er temmelig komplekse og ikke-observerede automatiserede opdateringer kan bryde ting. Vi modvirke at bruge denne til automatisk at opdatere PHP pakker, da dette kan knække PHP forbrug på virtuelle websteder. Brug venligst denne funktion på dit eget skøn og risiko."
+
+msgid "amUpdatesNameTag"
+msgstr "Software opdateringer"
+
+msgid "amUpdatesGreen"
+msgstr "Alle installerede pakker er fuldt opdateret."
+
+msgid "amUpdatesYellow"
+msgstr "En vis pakke, du har installeret, er tilgængelig i forskellige versioner off NewLinQ. Du har den ældre version af denne pakke installeret. Overvej venligst at opgradere de installerede pakker til de nyeste tilgængelige versioner."
+
+msgid "amUpdatesRed"
+msgstr "Der er opdaterede pakker til rådighed for pakker, som du allerede har installeret. Opgrader de installerede pakker til de seneste tilgængelige versioner."
+
+msgid "AutoEmailSubject"
+msgstr "Pakke installere meddelelse"
+
+msgid "autoinstallEmail_desc"
+msgstr "Følgende pakker blev automatisk installeret på din BlueOnyx server:"
+
+msgid "autoupdateEmail_desc"
+msgstr "Følgende pakker blev automatisk opdateret til de nyeste versioner er tilgængelige på NewLinQ:"
+
+msgid "autoEmail_finalwords"
+msgstr "Gennemgå status for din server, og sørg for, at de installerede pakker udføre uden problemer."
+
+###
+
+msgid "autoinstallMenu"
+msgstr "Installer pkgs"
+
+msgid "autoinstallMenu_help"
+msgstr "Gennem denne side kan du installere pakker fra BlueOnyx butikken. Du har brug for et gyldigt login fra BlueOnyx butikken for at udføre dette trin."
+
+msgid "AutoInstallPKGheader"
+msgstr "Indtast dine BlueOnyx Shop login detaljer:"
+
+msgid "ShopEmail"
+msgstr "Shop E-mail"
+
+msgid "ShopEmail_help"
+msgstr "Indtast venligst den e-mailadresse, som du er registreret i BlueOnyx Shop."
+
+msgid "ShopPass"
+msgstr "Shop adgangskode"
+
+msgid "ShopPass_help"
+msgstr "Indtast venligst den adgangskode, som du bruger til at logge ind på BlueOnyx Shop."
+

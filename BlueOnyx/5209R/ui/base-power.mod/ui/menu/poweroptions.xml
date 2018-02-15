@@ -1,0 +1,13 @@
+<item 
+    id="base_poweroptions" 
+    label="[[base-power.poweroptions_menu]]" 
+    description="[[base-power.poweroptions_menu_help]]" 
+    url="/base/power/poweroptions.php"
+>
+    <parent id="base_system" order="40">
+        <access require="serverPower"/>
+    </parent>
+    <parent id="base_serverconfig" order="40">
+        <access require="serverPower"/>
+    </parent>
+</item>

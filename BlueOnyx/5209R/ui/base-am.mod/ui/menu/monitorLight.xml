@@ -1,0 +1,11 @@
+<item 
+	id="base_monitorLight" 
+	label="[[base-am.monitorLight]]" 
+	description="[[base-am.monitorLight_help]]" 
+	url="javascript: top.code.tab_selectPath('base_amStatus'); top.code.cList_selectPath('base_amStatus')" 
+	type="monitorOff"
+>
+  	<parent id="root" order="900">
+        <access require="serverShowActiveMonitor"/>
+  	</parent>
+</item>

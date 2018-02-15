@@ -1,0 +1,251 @@
+<!-- 
+  $Id: update.schema
+  Copyright 2000, Cobalt Networks.
+  author: asun@cobalt.com
+  
+  This file describes the schema for the SW Update mechanism.
+-->
+
+<!-------------------------------------------------------------------------
+  The Package class stores all the information on packages.
+-------------------------------------------------------------------------->
+<class name="Package" namespace="" version="1.0" 
+	createacl="ruleCapable(createPackage)" destroyacl="ruleCapable(destroyPackage)">
+	<!-- information on the package -->
+	<property name="name" type="swidType"
+		 writeacl="ruleCapable(managePackage)" readacl="ruleAll"/>
+        <property name="version" type="versionType" 
+		 writeacl="ruleCapable(managePackage)" readacl="ruleAll"/>
+	<property name="vendor" type="swidType" 
+		 writeacl="ruleCapable(managePackage)" readacl="ruleAll"/>
+
+	<!-- stuff that can be i18n'ized -->
+	<property name="nameTag" type="scalar" 
+		 writeacl="ruleCapable(managePackage)"/>
+	<property name="vendorTag" type="scalar" 
+		 writeacl="ruleCapable(managePackage)"/>
+        <property name="versionTag" type="scalar" 
+		 writeacl="ruleCapable(managePackage)" readacl="ruleAll"/>
+
+	<!-- if true, this package is not yet seen by users -->
+	<property name="new" type="boolean" default="1" 
+		 writeacl="ruleCapable(managePackage)"/>
+	<property name="isVisible" type="boolean" default="1" 
+		 writeacl="ruleCapable(managePackage)"/>
+
+	<!-- swupdate server for this package -->
+	<property name="updateServer" type="scalar" default="default" 
+		 writeacl="ruleCapable(managePackage)"/>
+
+	<!-- url for the file. this is only used for automated installs -->
+	<property name="location" type="scalar" default="" 
+		 writeacl="ruleCapable(managePackage)"/>
+
+	<! -- size is in bytes -->
+	<property name="size" type="uint" default="0" 
+		 writeacl="ruleCapable(managePackage)"/>
+
+        <property name="packageType" type="pType" default="complete" 
+		 writeacl="ruleCapable(managePackage)"/>
+	<property name="category" type="scalar" default="" 
+		 writeacl="ruleCapable(managePackage)"/>
+	<property name="copyright" type="scalar" 
+		 writeacl="ruleCapable(managePackage)"/>
+        <property name="longDesc" type="scalar" 
+		 writeacl="ruleCapable(managePackage)"/>
+        <property name="shortDesc" type="scalar" 
+		 writeacl="ruleCapable(managePackage)"/>
+        <property name="licenseDesc" type="scalar" 
+		 writeacl="ruleCapable(managePackage)"/>
+
+	<!-- list of RPM's in package.  Used for the uninstall -->
+	<property name="RPMList" type="scalar" 
+		 writeacl="ruleCapable(managePackage)"/>
+	<property name="SRPMList" type="scalar" 
+		 writeacl="ruleCapable(managePackage)"/>
+
+        <!-- package dependencies. the package doesn't show up in the
+	     ui unless these dependencies are met: -->
+	<property name="product" type="scalar" 
+		 writeacl="ruleCapable(managePackage)"/>
+	<property name="dependencyList" type="scalar" 
+		 writeacl="ruleCapable(managePackage)"/>
+
+	<!-- the package will show up even if the following dependencies
+	     aren't met: -->
+	<property name="visibleList" type="scalar" 
+		 writeacl="ruleCapable(managePackage)"/>
+
+	<!-- obsoletes the following packages -->
+	<property name="obsoleteList" type="scalar" 
+		 writeacl="ruleCapable(managePackage)"/>
+	
+	<!-- various options -->
+	<property name="splashPages" type="scalar" default="" 
+		 writeacl="ruleCapable(managePackage)"/>
+	<property name="options" type="scalar" default="" 
+		 writeacl="ruleCapable(managePackage)"/>
+
+	<property name="autoupdate" type="boolean" default="0"  
+		 writeacl="ruleCapable(managePackage)"/>
+
+	<property name="autoinstall" type="boolean" default="0" 
+		 writeacl="ruleCapable(managePackage)"/>
+
+	<property name="autotrigger" type="scalar" default="" 
+		 writeacl="ruleCapable(managePackage)"/>
+
+	<property name="build" type="scalar" default="" 
+		 writeacl="ruleCapable(managePackage)"/>
+
+	<!-- the url of the page that describes what the package is -->
+	<property name="url" type="scalar" optional="true" default="" 
+		 writeacl="ruleCapable(managePackage)"/>
+	<property name="urloptions" type="scalar" optional="true" default="" 
+		 writeacl="ruleCapable(managePackage)"/>
+
+	<property name="installState" type="installStateMode" default="Available" 
+		 writeacl="ruleCapable(managePackage)" readacl="ruleAll"/>
+
+	<!-- deal with encryption stuff -->
+	<property name="encryptionFormat" type="scalar" 
+		 writeacl="ruleCapable(managePackage)"/>
+	<property name="fileName" type="scalar" 
+		 writeacl="ruleCapable(managePackage)"/>
+</class>
+
+<class name="Package" namespace="License" version="1.0" createacl="ruleCapable(createPackage)" destroyacl="ruleCapable(destroyPackage)">
+	<property name="startDate" type="scalar" default="" 
+		 writeacl="ruleCapable(managePackage)"/>
+	<property name="stopDate" type="scalar" default="" 
+		 writeacl="ruleCapable(managePackage)"/>
+	<property name="keyType" type="scalar" default="" 
+		 writeacl="ruleCapable(managePackage)"/>
+	<property name="keyValue" type="scalar" default="" 
+		 writeacl="ruleCapable(managePackage)"/>
+</class>
+
+<!-----
+	SWUpdateServers are used to specify contact information for the
+	update server.  
+ ------>
+<class name="SWUpdateServer" namespace="" version="1.1" createacl="ruleCapable(createSWUpdateServer)" destroyacl="ruleCapable(destroySWUpdateServer)">
+	<property name="name" type="swidType" 
+		writeacl="ruleCapable(modifySWUpdateServer)"/>
+	<property name="nameTag" type="scalar" 
+		writeacl="ruleCapable(modifySWUpdateServer)"/>
+	<property name="enabled" type="boolean" 
+		writeacl="ruleCapable(modifySWUpdateServer)"/>
+	<property name="category" type="scalar" 
+		writeacl="ruleCapable(modifySWUpdateServer)"/>
+	<property name="description" type="scalar" default="[[base-swupdate.defaultSWChannelMsg]]" 
+		writeacl="ruleCapable(modifySWUpdateServer)"/>
+	<property name="location" type="scalar" 
+		writeacl="ruleCapable(modifySWUpdateServer)"/>
+	<property name="autoUpdate" type="boolean" default="0" 
+		writeacl="ruleCapable(modifySWUpdateServer)"/>
+	<property name="notificationMode" type="notifyType" default="AllNew" 
+		writeacl="ruleCapable(modifySWUpdateServer)"/>
+	<property name="status" type="status" default="up" 
+		writeacl="ruleCapable(modifySWUpdateServer)"/>
+	<property name="orderPreference" type="scalar"
+		writeacl="ruleCapable(modifySWUpdateServer)"/>
+	<property name="username" default="" type="scalar" 
+		writeacl="ruleCapable(modifySWUpdateServer)"/>
+	<property name="httppass" default="" type="scalar" 
+		writeacl="ruleCapable(modifySWUpdateServer)"/>
+</class>
+
+<!-----
+	The SWUpdate Namespace in the system object contains relevant
+	information on how to update.
+ ------>
+<class name="System" namespace="SWUpdate" version="1.0">
+	<property name="servers" type="scalar" optional="true" default=""
+		writeacl="ruleCapable(modifyServerSWUpdate)"/>
+	<!-- status lets us know if the client-side is okay -->
+	<property name="status" type="status" default="up" 
+		writeacl="ruleCapable(modifyServerSWUpdate)"/>
+	<property name="updateInterval" type="intervalType" default="Daily" 
+		writeacl="ruleCapable(modifyServerSWUpdate)"/>
+	<property name="updateEmailNotification" type="scalar" default="admin" 
+		writeacl="ruleCapable(modifyServerSWUpdate)"/>
+	<!-- a message tag in the format of [[domain.tag]] that tells the error
+	message of the last availability check. Empty if check succeed -->
+	<property name="availabilityCheckMessage" type="scalar" default=""
+		writeacl="ruleCapable(modifyServerSWUpdate)"/>
+
+	<!-- proxies to use to get out to servers outside the network -->
+	<property name="httpProxy" type="scalar" 
+		writeacl="ruleCapable(modifyServerSWUpdate)"/>
+	<property name="ftpProxy" type="scalar" 
+		writeacl="ruleCapable(modifyServerSWUpdate)"/>
+	
+	<!-- a reference counted list of all the rpms on the system -->
+	<property name="rpmsInstalled" type="scalar" 
+		writeacl="ruleCapable(modifyServerSWUpdate)"/>
+
+	<!-- These are used to return install/uninstall progress to the UI -->
+	<property name="message" type="scalar" default="" 
+		writeacl="ruleCapable(modifyServerSWUpdate)"/>
+	<property name="progress" type="int" default="0" 
+		writeacl="ruleCapable(modifyServerSWUpdate)"/>
+	<property name="installLock" type="int" default="0" 
+		writeacl="ruleCapable(modifyServerSWUpdate)"/>
+	<property name="requireSignature" type="boolean" default="0" 
+		writeacl="ruleCapable(modifyServerSWUpdate)"/>
+	<property name="uiCMD" type="scalar" default="" 
+		writeacl="ruleCapable(modifyServerSWUpdate)"/>
+
+	<!-- Auto-Update: -->
+    <property name="AutoUpdate"
+        type="boolean"
+        data="[0|1]"
+        default="0"
+        optional="false"
+        writeacl="ruleCapable(modifyServerSWUpdate)"
+    />
+    <property name="AutoUpdateList"
+        type="scalar"
+        array="true"
+        default=""
+        optional="true"
+        writeacl="ruleCapable(modifyServerSWUpdate)"
+    />
+
+</class>
+
+<!-- This is the AM Namespace for monitoring Updates -->
+<class name="ActiveMonitor"             namespace="Updates"  version="1.0">
+
+    <property name="enabled"            type="boolean"      default="1"/>
+    <property name="monitor"            writeACL="ruleCapable(serverActiveMonitor)" type="boolean"  default="1"/>
+
+    <property name="type"               type="scalar"       default="exec"/>
+    <property name="typeData"           type="scalar"       default="/usr/sausalito/swatch/bin/am_updates.pl"/>
+
+    <property name="greenMsg"           type="scalar"       default="[[base-swupdate.amUpdatesGreen]]"/>
+    <property name="yellowMsg"          type="scalar"       default="[[base-swupdate.amUpdatesYellow]]"/>
+    <property name="redMsg"             type="scalar"       default="[[base-swupdate.amUpdatesRed]]"/>
+
+    <property name="currentState"       type="amstate"      default="G"/>
+    <property name="lastChange"         type="uint"         default="0"/>
+    <property name="lastRun"            type="uint"         default="0"/>
+    <property name="currentMessage"     type="scalar"       default=""/>
+    <property name="nameTag"            type="scalar"       default="[[base-swupdate.amUpdatesNameTag]]"/>
+
+    <property name="URL"                type="scalar"       default="/base/swupdate/updates_amdetails.php"/>
+    <property name="UIGroup"            type="scalar"       default="system"/>
+</class>
+
+<!-----
+	SWUpdate specific typedefs
+ ------>
+<typedef name="swidType" type="re" data="^[A-z0-9+_]+$" />
+<typedef name="versionType" type="re" data="(^v([[0-9]{1,4}\.]{0,4}){0,3}[0-9]{1,3}[a-zA-Z]{0,1}$)|(^v([[0-9]{1,4}\.]{0,4}){0,3}[0-9]{1,4}[a-zA-Z]{0,1}-[a-zA-Z0-9]{1,8}$)"/>
+<typedef name="installStateMode" type="re" data="^(Available|Installed)$" />
+<typedef name="pType" type="re" data="^(update|complete)$" />
+<typedef name="uType" type="re" data="^(Updates|All)$" />
+<typedef name="intervalType" type="re" data="^(Never|Hourly|Daily|Weekly|Monthly)$" />
+<typedef name="status"	type="re" 	data="(up|down)"/>
+<typedef name="notifyType" type="re" data="^(AllNew|UpdatesOnly)$" />

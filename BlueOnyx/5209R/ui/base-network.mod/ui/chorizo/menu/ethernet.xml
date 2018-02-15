@@ -1,0 +1,11 @@
+<item 
+    id="base_ethernet" 
+    label="[[base-network.ethernet]]" 
+    description="[[base-network.ethernet_help]]" 
+    icon="users_2"
+    url="/network/ethernet"
+>
+    <parent id="base_serverconfig" order="20">
+        <access require="serverNetwork"/>
+    </parent>
+</item>

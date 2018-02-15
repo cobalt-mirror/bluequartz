@@ -1,0 +1,62 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "desktop_control"
+msgstr "Server Desktop"
+
+msgid "description"
+msgstr "Clique aqui para controlar o modo de operação Desktop Server."
+
+msgid "desktop_control_settings"
+msgstr "[[base-backupcontrol.desktop_control]] Controle"
+
+msgid "lock_desktop"
+msgstr "Bloqueio Server Desktop"
+
+msgid "lock_desktop_help"
+msgstr "Esta opção dá a capacidade de fazer a interface com o usuário administrativo (Server Desktop) somente leitura."
+
+msgid "lock_desktop_failed"
+msgstr "Falha ao alterar o estado da [[base-backupcontrol.desktop_control]]"
+
+msgid "lock_failed"
+msgstr "Bloquear o [[base-backupcontrol.desktop_control]] falhou."
+
+msgid "unlock_failed"
+msgstr "Desbloquear o [[base-backupcontrol.desktop_control]] falhou."
+
+msgid "locked"
+msgstr "O Server Desktop foi bloqueado pelo administrador do servidor."
+
+msgid "cap_serverServerDesktop"
+msgstr "Configurações da área de trabalho do servidor"
+
+###
+
+msgid "GUIaccessType"
+msgstr "Protocolos de acesso GUI"
+
+msgid "GUIaccessType_help"
+msgstr "Isso define quais protocolos são permitidos para acessar o GUI. Se você quiser permitir que HTTP e HTTPS acesso, em seguida, defina-o como '[[base-backupcontrol.BOTH]]'. Para permitir apenas o acesso HTTPS, defina-o como '[[base-backupcontrol.HTTPS]]'. Ou você pode configurá-lo para protocolo como só é permitido '[[base-backupcontrol.HTTP]]', que é uma má idéia. Recomendado: '[[base-backupcontrol.HTTPS]]'. Padrão: '[[base-backupcontrol.BOTH]]'"
+
+msgid "GUIredirects"
+msgstr "Redirecionar para servidor-Name"
+
+msgid "GUIredirects_help"
+msgstr "O servidor web Apache que o GUI é executado em (AdmServ) tem um certificado SSL separado. Se alguém acessa o GUI por HTTPS através do nome de domínio de um site virtual (exemplo: https://www.site.com:81/login), então o navegador irá mostrar um aviso de que o certificado SSL do servidor não corresponde ao nome de domínio . Para evitar isso, você pode marcar esta caixa e todos HTTPS acessos à GUI será redirecionado para o nome do servidor de domínio totalmente qualificado. ATENÇÃO: Só use esta opção se os servidores totalmente qualificado nome de domínio tem um registro de DNS válido ou a GUI pode se tornar inacessível."
+
+msgid "BOTH"
+msgstr "HTTP e HTTPS"
+
+msgid "HTTP"
+msgstr "HTTP única"
+
+msgid "HTTPS"
+msgstr "HTTPS única"

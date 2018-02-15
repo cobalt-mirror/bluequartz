@@ -1,0 +1,18 @@
+<item
+	id="base_dns"
+	label="[[base-dns.title]]"
+	description="[[base-dns.dns_help]]"
+	url="/dns/dnsmanager"
+>
+
+	<parent id="base_controlpanel" order="40">
+        <access require="serverDNS"/>
+    </parent>
+	<!--<parent id="base_networkServices" order="10">
+        <access require="adminUser"/>
+    </parent>
+	<parent id="base_controlpanel" order="41">
+        <access require="networkServices"/>
+    </parent>-->
+
+</item>

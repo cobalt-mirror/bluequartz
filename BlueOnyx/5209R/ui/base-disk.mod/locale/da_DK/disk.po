@@ -1,0 +1,350 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "amDetails"
+msgstr "Detaljer om diskforbrug"
+
+msgid "amDiskNameTag"
+msgstr "Diskforbrug"
+
+msgid "amDiskOk"
+msgstr "Normalt diskforbrug."
+
+msgid "amDiskWarning"
+msgstr ""
+"En partition på disken er næsten fuld. Diskplads på partitionen [[VAR.fs]] "
+"er [[VAR.pcnt]]% brugt. Partitionen har [[VAR.free]] MB ledig plads."
+
+msgid "cantCreateDisk"
+msgstr "Kunne ikke oprette et diskobjekt for [[VAR.device]]."
+
+msgid "cantExecuteDf"
+msgstr "Kan ikke eksekvere df kommandoen"
+
+msgid "cantUpdateDiskInfo"
+msgstr ""
+"Det er ikke muligt at opdatere informationerne om diskforbrug for "
+"[[VAR.device]]."
+
+msgid "cantUpdateDiskUsage"
+msgstr ""
+"Det er ikke muligt at opdatere informationerne om diskforbrug for "
+"[[VAR.name]]."
+
+msgid "choose_site"
+msgstr ""
+"Klik på et site ovenfor for at se diskforbrugsinformation for brugerne på "
+"det pågældende site."
+
+msgid "couldNotGetId"
+msgstr ""
+"Kunne ikke hente [[VAR.id]] for [[VAR.target]].[[VAR.target]] lader ikke til "
+"at eksistere på systemet."
+
+msgid "couldNotSetQuota"
+msgstr "Kunne ikke sætte kvote for [[VAR.name]]."
+
+msgid "couldNotSync"
+msgstr ""
+"Kunne ikke opdatere diskkvoteinformationerne med kvoteinformationerne i "
+"hukommelsen."
+
+msgid "diskUsageFor"
+msgstr "Diskforbrug for [[VAR.userName]]"
+
+msgid "diskUsed"
+msgstr "Diskforbrug"
+
+msgid "diskUsed_help"
+msgstr "Mængden af plads i brug på denne partition."
+
+msgid "errSettingEmails"
+msgstr ""
+"En fejl er opstået i forbindelse med lagring af "
+"notifikationsindstillingerne."
+
+msgid "groupDiskFree"
+msgstr "Ledig diskplads"
+
+msgid "groupDiskFree_help"
+msgstr "Den totale mængde plads som fortsat er tilgængelig."
+
+msgid "groupDiskPercentage"
+msgstr "Procent brugt"
+
+msgid "groupDiskPercentage_help"
+msgstr "Procentdelen af diskplads der i øjeblikket er i brug."
+
+msgid "groupDiskUsage"
+msgstr "Diskforbrug"
+
+msgid "groupDiskUsageFor"
+msgstr "Diskforbrug for [[VAR.groupName]]"
+
+msgid "groupDiskUsage_help"
+msgstr "Se informationer om det totale og individuelle diskforbrug for brugere."
+
+msgid "groupDiskUsage_menu"
+msgstr "Disk"
+
+msgid "groupDiskUsage_menu_help"
+msgstr "Se informationer om det totale og individuelle diskforbrug for brugere."
+
+msgid "groupDiskUsed"
+msgstr "Brugt diskplads"
+
+msgid "groupDiskUsed_help"
+msgstr "Den samlede diskplads, der bruges af brugerne."
+
+msgid "mail_admin_on_user"
+msgstr "Send varslingsemail"
+
+msgid "mail_admin_on_vsite"
+msgstr "Send varslingsemail"
+
+msgid "mail_user"
+msgstr "Send email til bruger"
+
+msgid "overQuotaMsg"
+msgstr ""
+"Du bruger i øjeblikket mere diskplads end du er tildelt på serveren. Slet "
+"unødvendige emails, vedhæftninger og andre filer, for at rette dette."
+
+msgid "partition"
+msgstr "Partition"
+
+msgid "partition_help"
+msgstr "Mærkat eller bibliotek for partitionen."
+
+msgid "percentage"
+msgstr "Procent brugt"
+
+msgid "percentage_help"
+msgstr "Procentdelen af den tilgængelige plads, der i øjeblikket er i brug."
+
+msgid "quota"
+msgstr "Tildelt diskplads"
+
+msgid "quota_help"
+msgstr ""
+"Mængden af diskplads som er tilgængelig for hver bruger."
+
+msgid "serverDiskUsage"
+msgstr "Diskforbrug"
+
+msgid "serverDiskUsageDesc"
+msgstr "Se en opsummering af diskforbrug for denne server."
+
+msgid "serverDiskUsageDesc_menu"
+msgstr "Se en opsummering af diskforbrug for denne server."
+
+msgid "serverDiskUsage_menu"
+msgstr "Disk"
+
+msgid "service"
+msgstr "Tjeneste"
+
+msgid "serviceDiskPercentage"
+msgstr "[[base-disk.userDiskPercentage]]"
+
+msgid "serviceDiskPercentage_help"
+msgstr ""
+"Dette viser procentdelen af tjenestens tildelte diskplads der i øjeblikket "
+"er i brug."
+
+msgid "service_help"
+msgstr "Disse applikationer eller systemtjenester kan optage diskplads."
+
+msgid "service_quota"
+msgstr "[[base-disk.quota]]"
+
+msgid "service_quota_help"
+msgstr "Mængden af diskplads tilgængelig til hver tjeneste."
+
+msgid "service_used"
+msgstr "[[base-disk.used]]"
+
+msgid "service_used_help"
+msgstr "Mængden af diskplads brugt af hver tjeneste."
+
+msgid "settings"
+msgstr "Notificeringsindstillinger"
+
+msgid "settings_help"
+msgstr ""
+"Klik her for at indstille den email der sendes når brugere eller sites "
+"overskrider deres kvoter."
+
+msgid "site_exceeds"
+msgstr "Når et site overskrider sin tildelte diskplads"
+
+msgid "site_exceeds_help"
+msgstr ""
+"Dette specificerer hvilken email der sendes når et site overskrider sin "
+"tildelte diskplads."
+
+msgid "site_over_quota"
+msgstr ""
+"Et eller flere sites har overskredet sin kvote. En separat email er sendt "
+"med flere detaljer."
+
+msgid "sites_over_quota"
+msgstr "Følgende virtuelle site(s) har overskredet sin kvote: [[VAR.sites]]."
+
+msgid "summary"
+msgstr "Opsummering"
+
+msgid "summaryVsite"
+msgstr "Sites"
+
+msgid "summaryVsite_help"
+msgstr "Diskforbrug for sites."
+
+msgid "summary_help"
+msgstr "Diskforbrug for hver partition."
+
+msgid "suspended_cce"
+msgstr ""
+"Rodpartitionen (/root) er ved at løbe tør for plads. For at forhindre mulig "
+"datakorruption er serverskrivebordet blevet låst. Ingen ændringer foretaget "
+"til serverskrivebordet vil blive gemt. Log venligst ind med telnet, SSH "
+"eller ftp og slet unødvendige filer. Aktivitetsovervågningen vil låse "
+"serverskrivebordet op når der er minimum 500 megabyte ledig diskplads på "
+"rodpartitionen. For at tvinge Aktivitetsovervågningen til at undersøge "
+"diskforbruget kan du klikke på knappen markeret med Check status nu i "
+"Aktivitetsovervågningens statussektion."
+
+msgid "sysQuota"
+msgstr "Systemets diskforbrug"
+
+msgid "total"
+msgstr "Total størrelse"
+
+msgid "total_help"
+msgstr "Denne partitions totale størrelse."
+
+msgid "unlimited"
+msgstr "Ubegrænset"
+
+msgid "used"
+msgstr "Diskforbrug"
+
+msgid "used_help"
+msgstr "Mængden af diskplads brugt af hver bruger."
+
+msgid "user"
+msgstr "Brugernavn"
+
+msgid "userDiskFree"
+msgstr "Ledig diskplads"
+
+msgid "userDiskFree_help"
+msgstr ""
+"Dette er en totale mængde diskplads der er ledig til brug."
+
+msgid "userDiskPercentage"
+msgstr "Procent i brug"
+
+msgid "userDiskPercentage_help"
+msgstr ""
+"Dette viser den procentvise andel af brugerens tildelte diskplads der er i "
+"brug."
+
+msgid "userDiskUsage"
+msgstr "Diskforbrug"
+
+msgid "userDiskUsage_help"
+msgstr "Viser oplysninger om din diskplads."
+
+msgid "userDiskUsed"
+msgstr "Diskplads brugt"
+
+msgid "userDiskUsed_help"
+msgstr ""
+"Dette er mængden af diskplads som du bruger i øjeblikket."
+
+msgid "userOverQuota"
+msgstr "Kvoteadvarsel"
+
+msgid "userOverQuota_help"
+msgstr ""
+"Dette indikerer at dui øjeblikket brugere mere diskplads end det der er "
+"tilladt på denne server. Fjern unødvendige emails, vedhæftninger og andre "
+"filer, for at rette dette."
+
+msgid "userQuota"
+msgstr "Brugers diskforbrug"
+
+msgid "user_exceeds"
+msgstr "Når en bruger overskrider sin tildelte diskplads"
+
+msgid "user_exceeds_help"
+msgstr ""
+"Her specificeres hvilken email der sendes når en bruger overskrider sin "
+"tildelte diskplads."
+
+msgid "user_help"
+msgstr "Hvert medlems brugernavn."
+
+msgid "users"
+msgstr "Alle brugere"
+
+msgid "users_help"
+msgstr "Diskforbrug for brugere"
+
+msgid "users_over_quota"
+msgstr "Følgende bruger(e) har overskredet deres kvote: [[VAR.users]]."
+
+msgid "vsiteName"
+msgstr "Fulde værtsnavn"
+
+msgid "vsiteName_help"
+msgstr "Dette sites fulde værtsnavn."
+
+msgid "vsiteQuota"
+msgstr "Tildelt diskplads"
+
+msgid "vsiteQuota_help"
+msgstr "Mængden af diskplads tildelt dette site."
+
+msgid "vsiteUsed"
+msgstr "Diskforbrug"
+
+msgid "vsiteUsed_help"
+msgstr ""
+"Mængden af diskplads der i øjeblikket er brugt på dette "
+"site."
+
+msgid "OverQuota_Users"
+msgstr "Over quota users:"
+
+msgid "All_Users"
+msgstr "All users:"
+
+msgid "OverQuota_Sites"
+msgstr "Over quota sites:"
+
+msgid "All_Sites"
+msgstr "All sites:"
+
+#-- New for BlueOnyx-NG:
+
+msgid "userDiskPercentage_moreInfo"
+msgstr "[[VAR.percentage]]% ([[VAR.used]]) af [[VAR.total]] brugt."
+
+msgid "mail_admin_on_user_help"
+msgstr "Send en mail til admin, hvis en bruger overskrider sin tildelte disk kvote."
+
+msgid "mail_user_help"
+msgstr "Send en e-mail til brugeren, hvis han overskrider sin disk kvote. Denne e-mail kan ikke gå igennem, hvis utilstrækkelig diskplads typerne for den pågældende bruger."
+
+msgid "mail_admin_on_vsite_help"
+msgstr "Send en mail til admin, hvis en virtuel hjemmeside overskrider sin tildelte disk kvote."
+

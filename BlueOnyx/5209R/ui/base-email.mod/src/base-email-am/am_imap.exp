@@ -1,0 +1,53 @@
+#!/usr/bin/expect
+# $Id: am_imap.exp 770 2006-06-10 14:28:15Z shibuya $
+source /usr/sausalito/swatch/statecodes.tcl
+
+# don't echo the dialog
+log_user 0
+
+# we use telnet to connect
+spawn telnet localhost 143
+expect {
+    "Connected to" {}
+    default { # we don't connect properly
+	# try to restart
+	# use catch so we don't report errors on the exec,
+	# only on the dialog itself
+	catch {exec /sbin/service dovecot restart >&/dev/null} 
+	sleep 3
+	# redo test, fail if get an error again
+	spawn telnet localhost 143
+	expect {
+	    "Connected to" {}
+	    default {
+		puts -nonewline $env(redMsg);
+		flush stdout;
+		exit $AM_STATE_RED;
+	    }
+	}
+    }
+}
+
+
+expect { 
+    -exact "* OK" {}
+    default { # fail if we don't get an OK
+	puts -nonewline $env(redMsg);
+	flush stdout;
+	exit $AM_STATE_RED
+    }
+}
+send "A001 LOGOUT\r"
+expect {
+    "A001 OK" {}
+    default { # fail if we don't get an OK
+	puts -nonewline $env(redMsg);
+	flush stdout;
+	exit $AM_STATE_RED
+    }
+}
+
+puts -nonewline $env(greenMsg)
+flush stdout;
+exit $AM_STATE_GREEN
+

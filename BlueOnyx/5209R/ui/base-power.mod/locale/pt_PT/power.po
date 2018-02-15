@@ -1,0 +1,195 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "power"
+msgstr "Poder"
+
+msgid "powerHelp"
+msgstr "Clique aqui para reiniciar a máquina servidor."
+
+msgid "shutdownMessage"
+msgstr "Por razões de segurança, este aparelho servidor não pode ser desligado através da interface de usuário web. <BR> Por favor desligamento manualmente."
+
+msgid "shutdownInstructions"
+msgstr "Para desligar o aparelho servidor, consulte o manual de hardware do servidor."
+
+msgid "shutdownInstructions_softpower"
+msgstr "Para desligar o aparelho servidor, consulte o manual de hardware do servidor."
+
+msgid "acpi_power_subject"
+msgstr "Erro poder Shutdown"
+
+msgid "acpi_power_shutdown"
+msgstr "A tensão de alimentação está fora do intervalo. Por razões de segurança, o aparelho servidor está sendo desligado. Se o problema persistir, por favor, ligue para o suporte técnico."
+
+msgid "rebootMessage"
+msgstr "Clique no botão abaixo para reiniciar o sistema. O sistema ficará indisponível por alguns minutos, como ele desliga e reinicia todos os serviços. Depois que o sistema for reiniciado, o Server Desktop estarão novamente disponíveis."
+
+msgid "reboot_title"
+msgstr "Reiniciando o sistema"
+
+msgid "shutdown_title"
+msgstr "Desligando o Sistema"
+
+msgid "reboot_menu"
+msgstr "Reiniciar / Fechar"
+
+msgid "reboot_menu_help"
+msgstr "Clique aqui para obter instruções sobre como desligar e reiniciar o aparelho servidor."
+
+msgid "reboot"
+msgstr "Reinicie Agora"
+
+msgid "reboot_help"
+msgstr "Clique aqui para reiniciar a máquina servidor."
+
+msgid "askRebootConfirmation"
+msgstr "Tem certeza de que deseja reiniciar a máquina servidor?"
+
+msgid "rebooting"
+msgstr "O aparelho servidor está agora a reinicialização. Deve estar disponível novamente em poucos minutos."
+
+msgid "poweroptions_menu"
+msgstr "Poder"
+
+msgid "poweroptions_menu_help"
+msgstr "Esta página permite que você reiniciar ou desligar o servidor."
+
+msgid "powerOptions_block"
+msgstr "Opções de Energia"
+
+msgid "powermode"
+msgstr "Ação tomada quando a energia for restaurada após uma falha de energia"
+
+msgid "powermode_help"
+msgstr "Isso define o comportamento do sistema quando a energia for restaurada após uma falha de energia."
+
+msgid "same"
+msgstr "Retornar o sistema ao mesmo estado que antes da falha de energia"
+
+msgid "on"
+msgstr "Ligue o sistema"
+
+msgid "off"
+msgstr "Deixe o sistema desligado"
+
+msgid "controlPower"
+msgstr "Poder de Controle"
+
+msgid "wakeOnlan"
+msgstr "Wake on LAN"
+
+msgid "wakeoptions_menu"
+msgstr "Opções de Wake"
+
+msgid "wakeoptions_menu_help"
+msgstr "Clique aqui para definir o Wake On LAN comportamento do sistema."
+
+msgid "wakeMode_block"
+msgstr "Modo de Wake"
+
+msgid "wakemode"
+msgstr "Remotamente, ligar o sistema (Wake On LAN)"
+
+msgid "wakemode_help"
+msgstr "Isso define Wake do sistema na capacidade de LAN, que permite ligar remotamente o sistema através de uma rede."
+
+msgid "none"
+msgstr "Nunca"
+
+msgid "magic"
+msgstr "Após a recepção do Magic Packet"
+
+msgid "activity"
+msgstr "Atividade"
+
+msgid "wakenow_menu"
+msgstr "Despertar Agora"
+
+msgid "wakenow_menu_help"
+msgstr "Clique aqui para acordar outras máquinas na rede."
+
+msgid "wakeNow_block"
+msgstr "Despertar Agora"
+
+msgid "mac_addresses"
+msgstr "Endereços MAC para acordar"
+
+msgid "mac_addresses_help"
+msgstr "Digite os endereços MAC das máquinas que você quer acordar."
+
+msgid "wakenow_button"
+msgstr "Acorde agora"
+
+msgid "wakenow_button_help"
+msgstr "Clique aqui para acordar as máquinas com os endereços MAC listados."
+
+msgid "shutdown_menu"
+msgstr "Encerramento"
+
+msgid "shutdown_menu_help"
+msgstr "Clique aqui para desligar o servidor. Isto irá desligar o servidor e você terá acesso físico a ele para ligá-lo novamente. Isso pode não ser a melhor das ideias. Eu espero que você saiba o que está fazendo. Sério."
+
+msgid "couldNotWakeMachine"
+msgstr "Não foi possível acordar a máquina com o endereço MAC [[VAR.address]]."
+
+msgid "willPowerUp1"
+msgstr "Will Power On"
+
+msgid "willPowerUp2"
+msgstr "Quando alimentado"
+
+msgid "remainOff1"
+msgstr "Permanecerá desligado"
+
+msgid "remainOff2"
+msgstr "Quando alimentado"
+
+msgid "samePower1"
+msgstr "Will Power On Se"
+
+msgid "samePower2"
+msgstr "Em antes da perda"
+
+msgid "powerName"
+msgstr "Power System"
+
+msgid "powerOK"
+msgstr "A fonte de alimentação e da bateria estão a funcionar normalmente."
+
+msgid "powerLow"
+msgstr "O fornecimento de energia está acabando."
+
+msgid "batteryCritical"
+msgstr "A tensão da bateria está muito baixa. Isto pode ser um sinal de uma bateria falhando. Por favor, consulte [[base-sauce-basic.techSupportURL]] para suporte técnico."
+
+msgid "batteryCriticalSubject"
+msgstr "Sistema de Baixa Tensão da bateria"
+
+msgid "powerCritical"
+msgstr "A fonte de alimentação não está funcionando em sua tensão especificada. Isto pode ser um sinal de uma fonte de alimentação falhar. Por favor, consulte [[base-sauce-basic.techSupportURL]] para suporte técnico."
+
+msgid "amPowerDetails"
+msgstr "Detalhes do sistema de energia"
+
+msgid "errSettingWakeMode"
+msgstr "O sistema falhou em definir suas configurações de vigília solicitados. Por favor, consulte [[base-sauce-basic.techSupportURL]] para suporte técnico."
+
+msgid "cant_get_power_info"
+msgstr "Não foi possível obter informações sobre os valores de energia do sistema."
+
+msgid "askShutdownConfirmation"
+msgstr "Tem certeza que você quer desligar o aparelho servidor?"
+
+msgid "shutting-down"
+msgstr "O aparelho servidor está agora encerrado."
+
+msgid "cap_serverPower"
+msgstr "Configurações de Energia"

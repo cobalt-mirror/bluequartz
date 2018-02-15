@@ -1,0 +1,91 @@
+<?php
+// $Id: 55_AnonFtp.php.create.Vsite
+// AnonFtp.php.create.Vsite
+// Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
+// Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
+
+include_once('UIExtension.php');
+
+class AnonFtpExtension extends UIExtension
+{
+    function display(&$ServerScriptHelper, &$container, $parameters)
+    {
+        $CI =& get_instance();
+        $factory = $ServerScriptHelper->getHtmlComponentFactory("base-ftp");
+        $cce = $ServerScriptHelper->getCceClient();
+
+        $defaults = $cce->get($parameters["CCE_SERVICES_OID"], "AnonFtp");
+
+        // construct all the form fields needed, note that only simple
+        // form fields are allowd.  no composite form fields
+        $ftpQuota =& $factory->getInteger("ftpQuota", $defaults["quota"], 1);
+        $ftpQuota->setType('memdisk');
+
+        $ftpUsers =& $factory->getInteger("ftpUsers", $defaults["maxConnections"], 1);
+        $ftpUsers->setType('number');
+
+        // now add the form fields to the block, assume PagedBlock
+        if ($parameters['CAN_ADD_PAGE'])
+        {
+            $pageId = "SiteFtp";
+            $container->addPage($pageId, $factory->getLabel("ftpTabName"));
+        }
+        else
+        {
+            $pageId = $parameters['PAGED_BLOCK_DEFAULT_PAGE'];
+        }
+
+        //
+        //-- Reseller: Can the reseller that owns this Vsite modify this?
+        //
+        $access = 'rw';
+        $VsiteOwnerObj = $CI->BX_SESSION['loginUser'];
+        if ($VsiteOwnerObj['name'] != "admin") {
+            $resellerCaps = $cce->scalar_to_array($VsiteOwnerObj['capabilities']);
+            if (!in_array('resellerAnonFTP', $resellerCaps)) {
+                $defaults["enabled"] = '0';
+                $access = 'r';
+            }
+        }
+
+        //-- 
+
+        $anonFtp =& $factory->getMultiChoice('anonFtp');
+        $enable =& $factory->getOption("anonEnable", $defaults["enabled"], $access);
+        $enable->setLabel($factory->getLabel('anonEnable', false));
+
+        $enable->addFormField($ftpQuota, $factory->getLabel("ftpQuota"), $pageId);
+        $enable->addFormField($ftpUsers, $factory->getLabel("ftpUsers"), $pageId);
+        $anonFtp->addOption($enable);
+
+        $container->addFormField(
+                    $anonFtp,
+                    $factory->getLabel('anonFtp'),
+                    $pageId);
+    }
+
+    function handle(&$ServerScriptHelper, &$errors, $parameters, &$attributes) {
+        $this->attributes = $attributes;
+
+        $cce = $ServerScriptHelper->getCceClient();
+
+        $anonFtp_enabled = "0";
+        if (isset($this->attributes['anonFtp'])) {
+            if ($this->attributes['anonFtp'] == "1") {
+                $anonFtp_enabled = "1";
+            }
+        }
+        
+        // simply set the values in CCE
+        $cce->set($parameters["CCE_OID"], "AnonFtp",
+            array(
+                "enabled" => $anonFtp_enabled, 
+                "quota" => unsimplify_number($this->attributes['ftpQuota'], "KB"), 
+                "maxConnections" => $this->attributes['ftpUsers']
+            ));
+    
+        // add any errors that occured so they can get back to the UI
+        $errors = array_merge($errors, $cce->errors());
+    }
+}
+?>

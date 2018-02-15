@@ -1,0 +1,10 @@
+<item 
+    id="base_dns_vsite" 
+    label="[[base-dns.title]]" 
+    description="[[base-dns.dns_help]]" 
+    url="/dns/vsiteDNS?group=[[VAR.group]]"
+>
+    <parent id="base_siteservices" order="20">
+        <access require="siteDNS"/>
+    </parent>
+</item>

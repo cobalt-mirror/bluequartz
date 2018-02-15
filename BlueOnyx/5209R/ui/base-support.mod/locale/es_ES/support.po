@@ -1,0 +1,366 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "supportMenu"
+msgstr "Soporte"
+
+msgid "supportMenu_help"
+msgstr "Este menú proporciona acceso a las instalaciones de depuración, el apoyo, los informes de errores y solicitudes de funciones."
+
+msgid "support_settingsMenu"
+msgstr "Configuración"
+
+msgid "support_settingsMenu_help"
+msgstr "Le permite configurar las funciones de apoyo BlueOnyx."
+
+msgid "support_settings"
+msgstr "Configuración de respaldo"
+
+msgid "basic_tab"
+msgstr "Ajustes básicos"
+
+msgid "wiki_tab"
+msgstr "Ajustes Wiki"
+
+msgid "isp_tab"
+msgstr "ISP Detalles"
+
+msgid "Error_NewLinQ_Down"
+msgstr "Una conexión a newlinq.blueonyx.it no pudo establecerse. Sin que usted no será capaz de presentar un informe de error o boleto."
+
+msgid "client_name"
+msgstr "Su nombre"
+
+msgid "client_name_help"
+msgstr "Introduzca su nombre aquí. Será utilizado en el correo electrónico de apoyo para identificar quién está enviando el correo electrónico."
+
+msgid "client_email"
+msgstr "Su correo electrónico"
+
+msgid "client_email_help"
+msgstr "Dirección de correo electrónico que se utiliza para la solicitud de ayuda. Si el servidor está conectado a través de NewLinQ, entonces esto será por defecto la dirección de correo electrónico que se ha utilizado para registrar este servidor con NewLinQ."
+
+msgid "support_account"
+msgstr "Cuenta de Apoyo"
+
+msgid "support_account_help"
+msgstr "Reservado nombre de cuenta para un 'admin' como cuenta del sistema-Administrador. Esta cuenta se crea cuando se decide conceder el acceso al servidor a BlueOnyx (o su ISP) para la solución de problemas. El correo electrónico de apoyo incluirá entonces los datos de acceso y la clave SSH pública de esta cuenta. La cuenta de apoyo es sólo temporal y expira después de un período de tiempo configurable. En la fecha de vencimiento, la cuenta de apoyo se eliminará automáticamente. O puede eliminar de forma manual una vez que la solicitud de ayuda se cierra."
+
+msgid "wiki_enabled"
+msgstr "Wiki habilitado"
+
+msgid "wiki_enabled_help"
+msgstr "Define si el BlueOnyx Wiki está habilitada. Si lo es, entonces todas las páginas GUI pertinentes tendrán un enlace en la parte inferior que enlaza la página GUI al tema Wiki respectiva."
+
+msgid "wiki_baseURL"
+msgstr "URL Wiki"
+
+msgid "wiki_baseURL_help"
+msgstr "El nombre de dominio al que el Wiki se encuentra. Por defecto: wiki.blueonyx.it"
+
+msgid "wiki_tabbed"
+msgstr "Wiki Overlay"
+
+msgid "wiki_tabbed_help"
+msgstr "Hay dos métodos disponibles en cuanto a cómo se abren las páginas Wiki. El valor predeterminado es una superposición en la que se carga la página Wiki externo. Esta muestra entonces en la parte superior de la página de GUI existente. Si desmarque esta casilla, luego de un clic en el icono de Wiki abrirá la página Wiki en una nueva pestaña del navegador."
+
+msgid "isp_support_name"
+msgstr "Nombre ISP"
+
+msgid "isp_support_name_help"
+msgstr "Además de solicitar el apoyo de BlueOnyx también puede dirigir sus solicitudes de soporte al ISP - en caso de que usted tiene derecho al apoyo de él. Si es así, escriba el nombre del proveedor de Internet aquí."
+
+msgid "isp_support_email"
+msgstr "ISP Email"
+
+msgid "isp_support_email_help"
+msgstr "Dirección de correo electrónico de apoyo a las consultas con su ISP. Si decide enviar la solicitud de la ayuda a su proveedor de Internet, esta es la dirección de correo electrónico que el pedido será entregado a."
+
+msgid "isp_support_identifier"
+msgstr "ID Servidor"
+
+msgid "isp_support_identifier_help"
+msgstr "Este campo se puede utilizar para especificar más información sobre el servidor en cuestión. Como por ejemplo el número de bastidor, ID de servidor u otros medios que su ISP utiliza para buscar el servidor del centro de datos."
+
+msgid "wiki"
+msgstr "Wiki"
+
+msgid "wiki_help"
+msgstr "Si hace clic en este botón se abrirá un enlace a un Wiki externo con más información sobre esta página."
+
+msgid "sos_reportMenu"
+msgstr "SOS-Informe"
+
+msgid "sos_reportMenu_help"
+msgstr "El SOS-Report es una característica que le permite crear un volcado de diagnóstico con todas las configuraciones y los archivos de registro de servidores correspondientes. Se puede incluir en todos los informes de errores y tickets de soporte y permite que un tercero (BlueOnyx.it Apoyo o su ISP) para diagnosticar el servidor sin necesidad de acceder a ella."
+
+msgid "sos_delete"
+msgstr "Suprimir Informar"
+
+msgid "sos_delete_help"
+msgstr "Si marca esta casilla y guardar los cambios, luego se eliminará el actual SOS-Report. Después se puede crear un nuevo SOS-Informe si lo desea."
+
+msgid "Err_sos_report_being_generated"
+msgstr "Se está generando actualmente un SOS-Report. Esto puede tomar varios minutos (no es broma). Puede tomar hasta por 5-10 minutos hasta que el informe esté listo. Por favor, vuelva más tarde para revisar el informe generado."
+
+msgid "sos_generate"
+msgstr "Generar SOS-Informe"
+
+msgid "sos_generate_help"
+msgstr "Marque esta casilla y guardar los cambios para generar un SOS-Report. La generación de la SOS-Report tomará varios minutos (no es broma). Puede tomar hasta por 5-10 minutos hasta que el informe esté listo."
+
+msgid "sos_present"
+msgstr "SOS-Informe"
+
+msgid "sos_present_help"
+msgstr "Muestra si un SOS-Informe está presente."
+
+msgid "sos_epoch"
+msgstr "Cree en"
+
+msgid "sos_epoch_help"
+msgstr "Muestra la fecha y hora de creación de la corriente SOS-Report."
+
+msgid "Err_sender_contact_details"
+msgstr "Por favor, complete sus datos de contacto en el menú '[[base-support.support_settingsMenu]]' primero."
+
+msgid "sender"
+msgstr "Remitente:"
+
+msgid "recipient"
+msgstr "Destinatario:"
+
+msgid "recipient_name"
+msgstr "Nombre reciepient"
+
+msgid "recipient_name_help"
+msgstr "Nombre del destinatario del informe de error."
+
+msgid "recipient_email"
+msgstr "Destinatario E-mail"
+
+msgid "recipient_email_help"
+msgstr "Dirección de correo electrónico del BlueOnyx.it Bugtracker."
+
+msgid "bugreportTitle"
+msgstr "Del informe de error"
+
+msgid "bugreport_subject"
+msgstr "Sujeto"
+
+msgid "bugreport_subject_help"
+msgstr "Por favor, introduzca un asunto descriptivo que mejor describa el problema que se está informando."
+
+msgid "server_model"
+msgstr "Modelo de servidor"
+
+msgid "server_model_help"
+msgstr "Muestra el modelo del servidor y la versión de compilación. Esto está incluido en informes de error y los billetes."
+
+msgid "bugURL"
+msgstr "URL Bug"
+
+msgid "bugURL_help"
+msgstr "Si el error ocurrió en una página de interfaz gráfica de usuario en particular, entonces por favor incluya la dirección URL de la página donde esto sucedió. Ejemplo: /vsite/addVsite"
+
+msgid "bugDescription"
+msgstr "Descripción"
+
+msgid "bugDescription_help"
+msgstr "Por favor, introduzca una descripción detallada del problema encontrado. También por favor incluir cualquier otra información que pueda ser relevante o cualquier mensaje de error que lo hiciste encuentro. Por favor sea específico y por favor ser detallado. 'No funciona!' no es un informe de error que podemos trabajar."
+
+msgid "include_sos"
+msgstr "Incluya SOS-Informe"
+
+msgid "include_sos_help"
+msgstr "Permite incluir el SOS-Report en su informe de error. En este caso la dirección URL externa a la SOS-Informe se incluirá en el correo electrónico de informe de error, por lo que los desarrolladores BlueOnyx pueden acceder a él. Presente, usted otorga su permiso para BlueOnyx.it para acceder a la SOS-Informe para la solución de problemas."
+
+msgid "Err_writing_tempfile"
+msgstr "Se ha producido un error al escribir el archivo temporal para el informe de error. El informe de error no se puede enviar, lo siento."
+
+msgid "ticketDescription"
+msgstr "Descripción"
+
+msgid "ticketDescription_help"
+msgstr "Por favor, introduzca una descripción detallada de su solicitud de ayuda. También por favor incluir cualquier otra información que pueda ser relevante o cualquier mensaje de error que lo hiciste encuentro. Por favor, ser específico y por favor sea detallado sobre el trabajo que usted quiere que nosotros llevamos a cabo en el servidor. Por favor, tenga en cuenta: Si pago por el trabajo que usted solicita, entonces vamos a ofrecerle un precio de cotización antes de que se está llevando a cabo algún trabajo remunerado."
+
+msgid "ticket_subject"
+msgstr "Asunto del Ticket"
+
+msgid "ticket_subject_help"
+msgstr "Por favor, introduzca un asunto descriptivo que mejor describe a su solicitud de apoyo."
+
+msgid "ticket_num_selector"
+msgstr "Número de entradas"
+
+msgid "ticket_num_selector_help"
+msgstr "Si tiene entradas abiertas con BlueOnyx Apoyo, los números de los billetes de estos billetes se muestra aquí (el más reciente al más antiguo). A continuación, puede añadir este nuevo billete a uno ya existente. O puede optar por 'New Ticket' para crear un nuevo ticket (que es el valor predeterminado)."
+
+msgid "ticketURL"
+msgstr "URL entradas"
+
+msgid "ticketURL_help"
+msgstr "Si su solicitud de asistencia se refiere a una URL concreta, por favor incluya aquí."
+
+msgid "ticket"
+msgstr "Soporte de pedidos"
+
+msgid "ticket_help"
+msgstr "Le permite presentar una solicitud de asistencia con BlueOnyx.it o (opcionalmente) su ISP."
+
+msgid "allow_access"
+msgstr "Permitir acceso"
+
+msgid "allow_access_help"
+msgstr "Por favor, lea con atención: Cuando usted envía un ticket con esta casilla marcada, entonces se crea una cuenta de administrador del sistema especial (por lo general 'alter-admin'). Esa cuenta tendrá un conjunto de contraseñas al azar, que se incluye en la solicitud de soporte. Además del certificado PEM pública de esta cuenta se adjunta a la presente solicitud de soporte, junto con la información sobre el nombre del servidor, la dirección IP y el puerto que SSH se ejecuta en. Al marcar esta casilla usted concede permiso técnicos BlueOnyx.it para acceder a su servidor para el diagnóstico de una para llevar a cabo el trabajo que ha especificado en su solicitud de soporte. Si los costos surgen de la labor de los técnicos BlueOnyx.it, a continuación, un precio de cotización será presentado a usted antes de que se inicie el trabajo remunerado. El trabajo remunerado sólo se lleva a cabo con su consentimiento."
+
+msgid "never"
+msgstr "Nunca"
+
+msgid "3_days"
+msgstr "3 días"
+
+msgid "5_days"
+msgstr "5 días"
+
+msgid "7_days"
+msgstr "7 días"
+
+msgid "10_days"
+msgstr "10 días"
+
+msgid "14_days"
+msgstr "14 días"
+
+msgid "30_days"
+msgstr "30 días"
+
+msgid "90_days"
+msgstr "90 días"
+
+msgid "180_days"
+msgstr "180 días"
+
+msgid "365_days"
+msgstr "365 días"
+
+msgid "SAExpiry"
+msgstr "Fecha de caducidad"
+
+msgid "SAExpiry_help"
+msgstr "Define una fecha de caducidad de la cuenta de apoyo. Predeterminado: 7 días. Después del tiempo seleccionado la cuenta será eliminada automáticamente - a menos que usted elija 'ilimitado'. Si crea otra Apoyo Cumplía con cuenta Servicio permitido antes de que termine la cuenta existente, entonces la cuenta de apoyo existente se eliminará y uno nuevo será creado. Que implica un cambio de contraseña y la nueva generación de claves SSH y certificados PEM."
+
+msgid "Error_support_account_reserved"
+msgstr "El nombre de usuario que ha elegido está reservado para la cuenta de apoyo. Por favor, elija otro nombre de usuario en su lugar."
+
+msgid "sa_desc_manageAdmin"
+msgstr "Este usuario Cuenta de Apoyo. Usted lo puede eliminar en cualquier momento que desee. Pero no se puede modificar la capacidad de esta cuenta, ya que necesita root / admin como capacidades para el diagnóstico y solución de problemas."
+
+msgid "Err_problem_sending_ticket"
+msgstr "Un problema ocurrió al intentar presentar su ticket de soporte. Podría ser que el sitio web nos https://support.blueonyx.it actualmente no accesible. Por favor, inténtelo de nuevo y / o cheque en su navegador si el sitio es accesible."
+
+msgid "Err_problem_sending_bugreport"
+msgstr "Un problema ocurrió al tratar de presentar su informe de error. Podría ser que el sitio web nos https://support.blueonyx.it actualmente no accesible. Por favor, inténtelo de nuevo y / o cheque en su navegador si el sitio es accesible."
+
+msgid "TicketSent"
+msgstr "Su Ticket ha sido enviado."
+
+msgid "BugreportSent"
+msgstr "Su informe de error ha sido enviado. Muchas gracias por tomarse el tiempo para hacerlo. Vamos a estudiar el asunto tan pronto como nos sea posible."
+
+msgid "prio_urgent"
+msgstr "Extremadamente importante"
+
+msgid "prio_high"
+msgstr "Muy importante"
+
+msgid "prio_medium"
+msgstr "Importancia media"
+
+msgid "prio_low"
+msgstr "No muy importante"
+
+msgid "prio_unspecified"
+msgstr "Importancia no especificada"
+
+msgid "prio_urgent_help"
+msgstr "[[base-support.prio_urgent]]"
+
+msgid "prio_high_help"
+msgstr "[[base-support.prio_high]]"
+
+msgid "prio_medium_help"
+msgstr "[[base-support.prio_medium]]"
+
+msgid "prio_low_help"
+msgstr "[[base-support.prio_low]]"
+
+msgid "prio_unspecified_help"
+msgstr "[[base-support.prio_unspecified]]"
+
+msgid "Priority"
+msgstr "Prioridad"
+
+msgid "Priority_help"
+msgstr "Este campo se utiliza para el peso interno de la importancia que los informes de error."
+
+msgid "Severity"
+msgstr "Severidad"
+
+msgid "Severity_help"
+msgstr "Este campo se utiliza para describir el carácter crítico de la cuestión que está informando y nos explicará qué impacto tiene el problema en su uso de nuestro producto."
+
+msgid "recipient_selector"
+msgstr "Beneficiario"
+
+msgid "recipient_selector_help"
+msgstr "Le permite elegir el destinatario de este Ticket."
+
+###
+
+msgid "bugreportTitle_help"
+msgstr "Le permite enviar un informe de error a BlueOnyx. Por favor, use este reportar problemas con y deficiencias de la GUI BlueOnyx."
+
+msgid "new_ticket"
+msgstr "Nuevo Ticket"
+
+###
+
+msgid "severity_urgent"
+msgstr "[[base-support.prio_urgent]]"
+
+msgid "severity_high"
+msgstr "[[base-support.prio_high]]"
+
+msgid "severity_medium"
+msgstr "[[base-support.prio_medium]]"
+
+msgid "severity_low"
+msgstr "[[base-support.prio_low]]"
+
+msgid "severity_unspecified"
+msgstr "[[base-support.prio_unspecified]]"
+
+###
+
+msgid "severity_urgent_help"
+msgstr "Problemas catastróficos que afectan gravemente a las operaciones de misión crítica de una organización. Esto puede significar que los servidores operativos, sistemas de desarrollo o aplicaciones de los clientes se han reducido o no funciona y no existe una solución procesal."
+
+msgid "severity_high_help"
+msgstr "Temas de alto impacto en la que se interrumpe la operación de los clientes, pero hay una cierta capacidad de producir."
+
+msgid "severity_medium_help"
+msgstr "Pérdida de funcionalidad no crítica parcial o cuestiones que deterioran algunas operaciones, pero permiten a los clientes realizar sus tareas críticas. Esto puede ser un problema menor con pérdida limitada o ninguna pérdida de funcionalidad e impacto limitado a la funcionalidad de los clientes."
+
+msgid "severity_low_help"
+msgstr "Preguntas generales de uso, las recomendaciones para la mejora de productos, o el trabajo de desarrollo."
+
+msgid "severity_unspecified_help"
+msgstr "Importancia no especificada"

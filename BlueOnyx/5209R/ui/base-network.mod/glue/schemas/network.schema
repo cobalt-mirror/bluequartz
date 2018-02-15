@@ -1,0 +1,134 @@
+<!--
+	$Id: network.schema 1437 2010-03-21 12:59:56Z shibuya $
+	Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+	
+	This is the schema for all things network.
+-->
+
+<typedef name="bootproto"  type="re"
+  data = "^(dhcp|none)$"
+/>
+
+<typedef name="internetMode"  type="re"
+  data = "^(none|broadband|lan|narrowband)$"
+/>
+
+<typedef name="interface" type="re"
+    data="(^eth[0-9]+(:[0-9]+)?$)|(^venet[0-9]+(:[0-9]+)?$)"/>
+
+<!-------------------------------------------------------------------------
+  System.Network
+    Stores system-wide network configuration settings.
+-------------------------------------------------------------------------->
+
+<class name="System" namespace="Network" version="1.0">
+    <!-- the Internet connectivity mode -->
+    <property 
+        name="internetMode" type="internetMode" default="none"
+        writeacl="ruleCapable(adminUser)"
+    />
+    <!-- set to true to enable ip forwarding -->
+    <property 
+        name="ipForwarding" type="boolean" default="0"
+        writeacl="ruleCapable(adminUser)"
+    />
+    <!-- set to true to enable NAT -->
+    <property 
+        name="nat" type="boolean" default="0"
+        writeacl="ruleCapable(adminUser)"
+    />
+    <!-- set to true to enable IP pooling -->
+    <property 
+        name="pooling" type="boolean" default="0"
+        writeacl="ruleCapable(serverIpPooling)"
+    />
+    <!-- Allow to change IP address -->
+    <property
+	name="interfaceConfigure" type="boolean" default="1"
+	writeacl="ruleCapable(adminUser)"
+    />
+</class>
+
+<!-------------------------------------------------------------------------
+  NETWORK
+    stores settings relevant to the basic and virtual TCP/IP network
+    interfaces.
+-------------------------------------------------------------------------->
+
+<class 
+    name="Network" namespace="" version="1.0"
+    createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)"
+>
+    <!-- usually eth0, eth1, etc. -->
+    <property 
+        name="device" type="interface" 
+        writeacl="ruleCapable(adminUser)"
+    />
+    <property 
+        name="ipaddr" type="ipaddr" 
+        writeacl="ruleCapable(adminUser)"
+    />
+    <property 
+        name="netmask" type="ipaddr" 
+        writeacl="ruleCapable(adminUser)"
+    /> 
+    <property 
+        name="mac" type="scalar" 
+        writeacl="ruleCapable(adminUser)"
+    /> <!-- READ ONLY -->
+    <property 
+        name="enabled" type="boolean" default="0"
+        writeacl="ruleCapable(adminUser)"
+    />
+    <property 
+        name="refresh" type="scalar" 
+        writeacl="ruleCapable(adminUser)"
+    />
+    <property 
+        name="bootproto" type="bootproto" default="none" 
+        writeacl="ruleCapable(adminUser)"
+    />
+
+    <!-- 
+        housekeeping attribute to distinguish real from alias interface
+        since there is no regex search yet
+    -->
+    <property 
+        name="real" type="boolean" default="0"
+        writeacl="ruleCapable(adminUser)"
+    />
+</class>
+
+<!-------------------------------------------------------------------------
+  ROUTE
+    used to add additional gateways for some routes
+-------------------------------------------------------------------------->
+
+<class 
+    name="Route" namespace="" version="1.0"
+    createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)"
+>
+    <!-- the destination subnet or host to perform routing for -->
+    <property 
+        name="target" type="ipaddr" 
+        writeacl="ruleCapable(adminUser)"
+    />
+    <!-- the netmask of target subnet -->
+    <property 
+        name="netmask" type="ipaddr" 
+        writeacl="ruleCapable(adminUser)"
+    />
+    
+    <!-- IP address of gateway for this subnet -->
+    <property 
+        name="gateway" type="ipaddr" default="0.0.0.0" optional="true"
+        writeacl="ruleCapable(adminUser)"
+    />
+  
+    <property 
+        name="device" type="interface" default="" optional="true"
+        writeacl="ruleCapable(adminUser)"
+    />
+</class>
+
+

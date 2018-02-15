@@ -1,0 +1,496 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "mailmans"
+msgstr "Listas de Discussão"
+
+msgid "mailmansHelp"
+msgstr "[[base-mailman.mailmanList_menu]] pode ser gerenciado aqui."
+
+msgid "mailmanList_menu"
+msgstr "Listas de Discussão"
+
+msgid "mailmanList"
+msgstr "Listas de Discussão sobre [[VAR.group]]"
+
+msgid "mailmanNameHeader"
+msgstr "Nome"
+
+msgid "mailmanNameHeader_help"
+msgstr "Este é o nome da lista de discussão."
+
+msgid "recipientsHeader"
+msgstr "Número de Assinantes"
+
+msgid "numSubs"
+msgstr "[[VAR.num]] Assinante [[VAR.plural]]"
+
+msgid "recipientsHeader_help"
+msgstr "Estes são o número de usuários que assinarem a lista de discussão."
+
+msgid "groupSubscriber"
+msgstr "Todos os membros da [[VAR.group]] grupo"
+
+msgid "mailmanDescHeader"
+msgstr "Observações"
+
+msgid "mailmanDescHeader_help"
+msgstr "Esta coluna contém informações adicionais sobre cada lista."
+
+msgid "mailmanActionHeader"
+msgstr "Ação"
+
+msgid "mailmanActionHeader_help"
+msgstr "Estes são os botões usados ​​para modificar ou excluir uma lista de discussão."
+
+msgid "confirm_removal_of_list"
+msgstr "Você tem certeza que deseja remover o [[VAR.list]] lista de discussão?"
+
+msgid "subscribers"
+msgstr "Inscritos"
+
+msgid "subscribers_help"
+msgstr "A lista de membros da lista de discussão pode ser configurado aqui."
+
+msgid "numLocals"
+msgstr "[[VAR.num]] Subscriber Local [[VAR.plural]]"
+
+msgid "edit_locals"
+msgstr "Editar"
+
+msgid "edit_locals_help"
+msgstr "Clique aqui para selecionar os usuários locais que são assinantes deste mailing list."
+
+msgid "localsSearch"
+msgstr "Pesquisa Lista de usuários"
+
+msgid "search"
+msgstr "Pesquisar"
+
+msgid "search_help"
+msgstr "Clique aqui para exibir os usuários que correspondem aos critérios inseridos."
+
+msgid "showall"
+msgstr "Exibir todos os usuários"
+
+msgid "showall_help"
+msgstr "Clique aqui para exibir todos os usuários do site."
+
+msgid "showselected"
+msgstr "Mostrar Somente usuários selecionados"
+
+msgid "showselected_help"
+msgstr "Clique aqui para exibir apenas os usuários que estão atualmente selecionados."
+
+msgid "localSubs_list"
+msgstr "[[VAR.criteria]] em [[VAR.fqdn]]"
+
+msgid "matching"
+msgstr "Usuários de correspondência [[VAR.criteria]]"
+
+msgid "selected"
+msgstr "Usuários Selecionados"
+
+msgid "all"
+msgstr "Todos os usuários"
+
+msgid "selectAll"
+msgstr "Selecione todos os usuários"
+
+msgid "selectAll_help"
+msgstr "Clique aqui para selecionar todos os usuários no site. A seleção incluirá todos os usuários nesta página e todos os usuários em outras páginas também."
+
+msgid "selectPage"
+msgstr "Selecione esta página"
+
+msgid "selectPage_help"
+msgstr "Clique aqui para selecionar todos os usuários desta página."
+
+msgid "use_these"
+msgstr "Use a seleção atual"
+
+msgid "use_these_help"
+msgstr "Clique aqui para usar a seleção atual como o [[base-mailman.localSubscribers]] lista."
+
+msgid "cancel"
+msgstr "Cancelar"
+
+msgid "cancel_help"
+msgstr "Clique aqui para voltar à página de configurações e ignorar a seleção atual."
+
+msgid "name"
+msgstr "Nome de usuário"
+
+msgid "name_help"
+msgstr "O nome dos usuários deste site virtual. Selecione as caixas de verificação para adicionar usuários a esta mailing list."
+
+msgid "createMailList"
+msgstr "Adicionar Mailing List para [[VAR.fqdn]]"
+
+msgid "modifyMailList"
+msgstr "Modificar Configurações da Lista de Discussão de [[VAR.listName]]"
+
+msgid "basic"
+msgstr "Básico"
+
+msgid "advanced"
+msgstr "Avançado"
+
+msgid "basic_help"
+msgstr "Clique aqui para configurar as opções básicas de lista de discussão."
+
+msgid "advanced_help"
+msgstr "Clique aqui para configurar as opções da lista de discussão avançados, tais como o envio e políticas de subscrição."
+
+msgid "listName"
+msgstr "Lista de Nome"
+
+msgid "listName_rule"
+msgstr "Por favor insira apenas minúsculas caracteres alfanuméricos, hífens, períodos e sublinhados. Por exemplo, as vendas é uma entrada válida."
+
+msgid "listName_help"
+msgstr "Digite o nome da lista de discussão. [[base-mailman.listName_rule]]"
+
+msgid "listName_invalid"
+msgstr "Desculpe, [[VAR.invalidValue]] é um valor inválido para [[base-mailman.listName]]. [[base-mailman.listName_rule]]"
+
+msgid "listName_empty"
+msgstr "Desculpe, você não tiver inserido um valor para [[base-mailman.listName]]. [[base-mailman.listName_rule]]"
+
+msgid "workgroupMembers"
+msgstr "Os membros do grupo"
+
+msgid "workgroupMembers_help"
+msgstr "Este campo contém uma lista de usuários que são atualmente membros do grupo que está associado a esta lista. Todos os membros deste grupo são sempre inscrito nesta lista."
+
+msgid "group_field"
+msgstr "Nome do Grupo Lista"
+
+msgid "group_field_help"
+msgstr "Este é o nome da lista de discussão do grupo. Todos os membros deste grupo estão automaticamente inscritos para esta lista."
+
+msgid "save"
+msgstr "Salvar"
+
+msgid "save_help"
+msgstr "Salvar esta mailing list."
+
+msgid "localSubscribers"
+msgstr "Inscritos locais"
+
+msgid "localSubscribers_help"
+msgstr "Clique no botão Editar para selecionar os usuários locais que são assinantes deste mailing list."
+
+msgid "subscribed"
+msgstr "Usuários inscritos"
+
+msgid "unsubscribed"
+msgstr "Usuários não subscritas"
+
+msgid "remoteSubscribers"
+msgstr "Inscritos remotas"
+
+msgid "remoteSubscribers_rule"
+msgstr "Por favor insira um endereço de e-mail corretamente formatado. Por exemplo, user@example.com é uma entrada válida."
+
+msgid "remoteSubscribers_help"
+msgstr "Digite os usuários remotos que são assinantes deste mailing list. Os usuários remotos são usuários que não têm contas sobre este aparelho servidor. [[base-mailman.remoteSubscribers_rule]]"
+
+msgid "remoteSubscribers_invalid"
+msgstr "Desculpe, [[VAR.invalidValue]] é um valor inválido para [[base-mailman.remoteSubscribers]]. [[base-mailman.remoteSubscribers_rule]]"
+
+msgid "remoteSubscribersDigest"
+msgstr "[[base-mailman.remoteSubscribers]] (Digest)"
+
+msgid "remoteSubscribersDigest_rule"
+msgstr "[[base-mailman.remoteSubscribers_rule]] (Digest)"
+
+msgid "remoteSubscribersDigest_help"
+msgstr "[[base-mailman.remoteSubscribers_help]] (Digest)"
+
+msgid "remoteSubscribersDigest_invalid"
+msgstr "[[base-mailman.remoteSubscribers_invalid]] (Digest)"
+
+msgid "description"
+msgstr "Observações"
+
+msgid "description_help"
+msgstr "Digite informações adicionais ou comentários sobre a lista de discussão aqui."
+
+msgid "moderator"
+msgstr "Owner / Moderador"
+
+msgid "moderator_rule"
+msgstr "Por favor insira um endereço de e-mail corretamente formatado ou o nome de usuário de um usuário válido neste aparelho servidor. O valor padrão é admin. Por exemplo, user@example.com e administrador são entradas válidas."
+
+msgid "moderator_help"
+msgstr "Digite o endereço de e-mail do usuário que executa todas as funções administrativas para a lista de discussão. [[base-mailman.moderator_rule]]"
+
+msgid "moderator_invalid"
+msgstr "Desculpe, [[VAR.invalidValue] é um valor inválido para [[base-mailman.moderator]]. [[base-mailman.moderator_rule]]"
+
+msgid "Moderator-does-not-exist"
+msgstr "Inválido Moderador: o usuário [[VAR.moderator]] parece não existir."
+
+msgid "moderator_empty"
+msgstr "Desculpe, você não tiver inserido um valor para [[base-mailman.moderator]]. Você deve digitar um valor, mesmo se nenhuma política de moderação foram especificados para a lista de discussão. [[base-mailman.moderator_rule]]"
+
+msgid "policies"
+msgstr "Políticas"
+
+msgid "apassword"
+msgstr "Senha"
+
+msgid "apassword_help"
+msgstr "Digite uma senha administrativa para esta lista. Esta senha é usada ao executar determinadas tarefas de administração de lista via e-mail (por exemplo, aprovar assinaturas, ou moderar as mensagens). Se você não planeja usar esses recursos, você pode deixar este campo em branco."
+
+msgid "postingPolicy"
+msgstr "Postando Política"
+
+msgid "postingPolicy_help"
+msgstr "Selecione uma política de lançamento para esta lista. Se você optar por Moderador Confirma todas as mensagens, todas as mensagens exigirá aprovação do proprietário do list / moderador."
+
+msgid "any"
+msgstr "Todos os usuários podem postar mensagens"
+
+msgid "members"
+msgstr "Apenas assinantes podem publicar mensagens"
+
+msgid "moderated"
+msgstr "Moderador Confirma todas as mensagens"
+
+msgid "subscriptionPolicy"
+msgstr "Política de Assinatura"
+
+msgid "subscriptionPolicy_help"
+msgstr "Selecione política de subscrição da lista. Os usuários podem se cadastrar ou descadastrar da lista, enviando e-mail para carteiro @ [[VAR.fqdn]] com as palavras 'lista subscribe' ou 'lista unsubscribe' (lista é o nome da lista) no corpo da mensagem. Se a política é 'fechado', a mensagem é enviada para o dono da lista para aprovação antes da assinatura é permitido. Aprovação nunca é obrigado a cancelar."
+
+msgid "open"
+msgstr "Abra: qualquer usuário pode se inscrever."
+
+msgid "closed"
+msgstr "Fechado: a aprovação do proprietário lista é necessária para a inscrição."
+
+msgid "confirm"
+msgstr "Confirme: E-mail de confirmação é necessária para a inscrição."
+
+msgid "maxlength"
+msgstr "Comprimento máximo da mensagem"
+
+msgid "maxlength_help"
+msgstr "Selecione o tamanho máximo em kilobytes ou megabytes permitidos para as mensagens enviadas para esta lista. Mensagens que excedam este tamanho será rejeitada."
+
+msgid "5"
+msgstr "5 kb"
+
+msgid "50"
+msgstr "50 kb"
+
+msgid "500"
+msgstr "500 kb"
+
+msgid "10000"
+msgstr "10 MB"
+
+msgid "100000"
+msgstr "100 MB"
+
+msgid "replyToList"
+msgstr "Responder Política"
+
+msgid "replyToList_help"
+msgstr "Definir a política de resposta para esta lista. Se você escolher Responder a lista, as respostas vão para a lista. Caso contrário, as respostas vão apenas para o autor original da mensagem."
+
+msgid "replyList"
+msgstr "Responder à lista"
+
+msgid "archiveSettings"
+msgstr "Arquivamento"
+
+msgid "archiveEnabled"
+msgstr "Permitir"
+
+msgid "archiveEnabled_help"
+msgstr "Defina se as mensagens enviadas para esta lista será arquivado. Usuários com contas no servidor este aparelho será capaz de acessar esses arquivos usando sua conta WebMail se WebMail está instalado."
+
+msgid "keepForDays"
+msgstr "Mantenha Período (Dias)"
+
+msgid "keepForDays_help"
+msgstr "Digite um número que especifica o período de tempo em dias que as mensagens serão mantidos no arquivo. Digite um zero (0) para manter as mensagens arquivadas indefinidamente."
+
+msgid "keepForDays_rule"
+msgstr "Por favor insira um número que especifica o período de tempo em dias que as mensagens serão mantidos no arquivo. Digite um zero (0) para manter as mensagens arquivadas indefinidamente."
+
+msgid "keepForDays_empty"
+msgstr "Desculpe, você não especificou um valor para [[base-mailman.keepForDays]]. [[base-mailman.keepForDays_rule]]"
+
+msgid "keepForDays_invalid"
+msgstr "Desculpe, o campo [[base-mailman.keepForDays]] contém um valor inválido. [[base-mailman.keepForDays_rule]]"
+
+msgid "name-already-taken"
+msgstr "Desculpe, a lista de discussão não pode ser criado porque o nome especificado já está em uso por uma lista de discussão. Por favor, indique um nome diferente e tente novamente."
+
+msgid "name-already-taken-by-user"
+msgstr "Desculpe, a lista de discussão não pode ser criada porque o nome especificado já está em uso por um usuário. Por favor, indique um nome diferente e tente novamente."
+
+msgid "Mail-alias-already-taken"
+msgstr "Desculpe, a lista de discussão não pode ser criado porque os aliases de e-mail necessários para a lista já existe. Tente dar a lista de discussão um nome diferente ou remover aliases de e-mail com nomes semelhantes."
+
+msgid "CannotDeleteGroupMaillist"
+msgstr "Desculpe, listas de discussão para grupos de usuários deste aparelho servidor não pode ser removido."
+
+msgid "Could-not-create-mailman"
+msgstr "Desculpe, ocorreu um erro. A lista de discussão não pode ser criado."
+
+msgid "mailmanArchive"
+msgstr "Mailing List Archive - [[VAR.name]]"
+
+msgid "title"
+msgstr "Assunto"
+
+msgid "title_help"
+msgstr "Este é o assunto da mensagem."
+
+msgid "author"
+msgstr "Remetente"
+
+msgid "author_help"
+msgstr "Este é o nome ou o endereço de e-mail da pessoa que enviou a mensagem."
+
+msgid "date"
+msgstr "Data"
+
+msgid "date_help"
+msgstr "Esta é a data em que a mensagem foi recebida."
+
+msgid "readMessage"
+msgstr "Ler Mensagem"
+
+msgid "readMessage_help"
+msgstr "Ler Mensagem"
+
+msgid "from"
+msgstr "De"
+
+msgid "from_help"
+msgstr "Este é o nome e / ou endereço de e-mail da pessoa que enviou a mensagem."
+
+msgid "subject"
+msgstr "Assunto"
+
+msgid "subject_help"
+msgstr "Este é o assunto da mensagem."
+
+msgid "message"
+msgstr "Mensagem"
+
+msgid "message_help"
+msgstr "Este é o texto da mensagem."
+
+msgid "replySender"
+msgstr "Responder ao Remetente"
+
+msgid "replySender_help"
+msgstr "Clique aqui para responder ao autor da mensagem."
+
+msgid "replyAll"
+msgstr "Responder a Todos"
+
+msgid "replyAll_help"
+msgstr "Clique aqui para responder ao autor e todos os outros destinatários da mensagem."
+
+msgid "membership"
+msgstr "Membership"
+
+msgid "membership_help"
+msgstr "Associação define os usuários associados a esta mailing list."
+
+msgid "WelcomeMessageSubject"
+msgstr "O arquivamento foi ativado"
+
+msgid "WelcomeMessageBody"
+msgstr "Este e-mail foi enviado a você para notificá-lo de que o arquivamento da lista de discussão '[[VAR.name]] foi habilitado para os usuários com contas neste servidor. Esses usuários serão capazes de acessar esse arquivo de dentro do WebMail. Não há necessidade de responder a esta mensagem."
+
+msgid "MailMan_header"
+msgstr "Mailman"
+
+msgid "mailman_enabled"
+msgstr "Ativar Mailman:"
+
+msgid "mailman_enabled_help"
+msgstr "Carteiro tem um daemon, que precisa ser executado para que as mensagens da lista de discussão a ser processos. Você pode ativar ou desativar este serviço aqui. O comando de linha de comando para parar, iniciar ou reiniciar Mailman é: /sbin/service mailman stop|start|restart"
+
+msgid "oldpass"
+msgstr "Senha:"
+
+msgid "oldpass_help"
+msgstr "As funções administrativas da Mailman são protegidos com uma senha gerada automaticamente. Este campo de texto mostra a senha que foi gerada por este servidor na configuração inicial."
+
+msgid "MailMan_Admin"
+msgstr "Mailman Administração interface"
+
+msgid "MailMan_Admin_help"
+msgstr "Este botão permite que você acesse a interface de administração Mailman. Este link foi adicionado para a sua conveniência, mas em termos práticos, você nunca deve usá-lo, a menos que você realmente saiba o que está fazendo ali. Por favor use o GUI BlueOnyx para adicionar ou excluir listas de discussão em seu lugar."
+
+msgid "menu_system_mailman"
+msgstr "Mailman"
+
+msgid "menu_system_mailman_help"
+msgstr "Clique aqui para gerenciar a lista de discussão serviço Mailman."
+
+msgid "vsiteMailMan_Admin"
+msgstr "Mailman Administração interface"
+
+msgid "vsiteMailMan_Admin_help"
+msgstr "Este botão permite que você acesse a interface de administração Mailman para algumas das opções de configuração mais avançadas de Mailman."
+
+msgid "MailMan_Archive"
+msgstr "Mailman Arquivo"
+
+msgid "MailMan_Archive_help"
+msgstr "Este botão permite que você acesse o arquivo Mailman pública de seu mailing list."
+
+msgid "amDetailsTitle"
+msgstr "Carteiro Serviço detalhes"
+
+msgid "amMAILMANNameTag"
+msgstr "Mailman Mailing List Daemon"
+
+msgid "amMAILMANNotRunning"
+msgstr "O serviço Mailman não está a funcionar normalmente. Por favor, tente reiniciá-lo manualmente."
+
+msgid "amMAILMANStatusOK"
+msgstr "O serviço Mailman está funcionando normalmente."
+
+msgid "listAddress"
+msgstr "Lista de Endereços:"
+
+msgid "listAddress_help"
+msgstr "Este é o endereço de e-mail que esta lista pode ser acessado no. Para enviar mensagens para esta lista, envie seus e-mails para este endereço."
+
+###
+
+msgid "removeConfirmQuestion"
+msgstr "Tem certeza de que deseja excluir esta lista?"
+
+msgid "ListRemoveConfirmInfo"
+msgstr "Por favor, confirme que você deseja excluir da lista de discussão. A mailing-list e todas as suas mensagens serão removidas. Essa ação não pode ser desfeita."
+
+msgid "selected_help"
+msgstr "Shows que os usuários locais são inscritos no mailing-list. Você pode marcar ou desmarcar as caixas de seleção para alterar o status da assinatura."
+
+msgid "fullName"
+msgstr "Nome completo"
+
+msgid "fullName_help"
+msgstr "O nome completo do usuário."
+
+

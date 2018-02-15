@@ -1,0 +1,37 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "connect"
+msgstr "Netdata"
+
+msgid "connect_help"
+msgstr "The Netdata dashboard allows you to review detailed system metrics of this server."
+
+msgid "header"
+msgstr "Netdata Dashboard"
+
+msgid "enabledField"
+msgstr "Netdata Service"
+
+msgid "enabledField_help"
+msgstr "In order to use the Netdata dashboard you need to enable the service Netdata first."
+
+msgid "service_disabled"
+msgstr "The service Netdata is currently not enabled. Therefore the Netdata dashboard is not accessible. Please enable the service Netdata by ticking the checkbox above and by saving this page."
+
+msgid "amNetdataNameTag"
+msgstr "Netdata Server"
+
+msgid "amStatusOK"
+msgstr "The service Netdata is working normally."
+
+msgid "amNotAccepting"
+msgstr "The service Netdata is currently not running and could not be restarted automatically."
+

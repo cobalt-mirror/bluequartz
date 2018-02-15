@@ -1,0 +1,62 @@
+<?php
+// $Id: 35_ApacheBandwidth.php.defaults.Vsite
+// Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
+// Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+//
+// ui extension to set settings for apache bandwidth Vsite creation
+
+if(defined("ApacheBandwidth_EXTENSION_CREATE_VSITE"))
+{
+    return 1;
+}
+define("ApacheBandwidth_EXTENSION_CREATE_VSITE", 1);
+
+include_once("UIExtension.php");
+
+class ApacheBandwidthExtension extends UIExtension
+{
+    function display(&$helper, &$container, &$cce_info)
+    {
+        $factory =& $helper->getHtmlComponentFactory("base-apache-bandwidth");
+        $cce =& $helper->getCceClient();
+    
+        $defaults = $cce->get($cce_info["CCE_SERVICES_OID"], "ApacheBandwidth");
+        
+        $bandSpeed =& $factory->getInteger("ApacheBandwidthSpeed", $defaults["speed"], 10);
+
+        $pageId = $cce_info['PAGED_BLOCK_DEFAULT_PAGE'];
+        
+        $bandToggle =& $factory->getMultiChoice('ApacheBandwidth');
+        $enable =& $factory->getOption('enable', $defaults['enabled']);
+        $enable->setLabel($factory->getLabel('enable', false));
+        $enable->addFormField($bandSpeed, $factory->getLabel("bandSpeed"), $pageId);
+        $bandToggle->addOption($enable);
+
+        $container->addFormField(
+                $bandToggle,
+                $factory->getLabel('ApacheBandwidth'),
+                $pageId
+            );
+    }
+
+    function handle(&$helper, &$errors, &$cce_info, &$attributes)
+    {
+        //global $ApacheBandwidth_enabled, $ApacheBandwidthSpeed;
+        $this->attributes = $attributes;
+
+        $cce =& $helper->getCceClient();
+
+        $settings['enabled'] = "0";
+        if (isset($this->attributes['ApacheBandwidth'])) {
+            if ($this->attributes['ApacheBandwidth'] == "1") {
+                $settings['enabled'] = "1";
+            }
+        }
+
+        $settings['speed'] = $this->attributes['ApacheBandwidthSpeed'];
+
+        $cce->set($cce_info["CCE_SERVICES_OID"], 'ApacheBandwidth',  $settings);
+        $errors = array_merge($errors, $cce->errors());
+    }
+}
+?>

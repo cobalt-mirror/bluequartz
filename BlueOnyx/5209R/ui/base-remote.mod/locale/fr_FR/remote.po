@@ -1,0 +1,48 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "header"
+msgstr "Connecter au serveur"
+
+msgid "connect"
+msgstr "Connexion console"
+
+msgid "connect_help"
+msgstr "Connectez-vous à la console de ce serveur via 'Shellinabox' pour ouvrir un shell."
+
+msgid "info_text"
+msgstr "Cette page GUI vous permet de vous connecter à la console de ce serveur. L'accès à «Shellinabox» n'est accordé que si le service est accessible via l'interface utilisateur graphique par un utilisateur authentifié qui a un accès shell activé."
+
+msgid "admin_text"
+msgstr "<b>Notez s'il vous plaît:</b><br><br>L'utilisateur 'admin' peut se connecter, mais il ne peut pas utiliser 'su -' pour obtenir l'accès 'root'. Si vous avez besoin d'un accès 'root', connectez-vous comme un autre 'Administrateur de serveur' avec l'option 'Accès Root' activé, puis utilisez 'votre nom d'utilisateur root' pour obtenir l'accès 'root'."
+
+msgid "ShellinaboxEnabled"
+msgstr "Accès à la console Shellinabox"
+
+msgid "ShellinaboxEnabled_help"
+msgstr "Cela permet le service 'Shellinabox' qui est nécessaire si vous souhaitez utiliser '[[base-remote.connect]]' via 'Profil Personnel' / 'Programmes' / '[[base-remote.connect]]'."
+
+msgid "service_disabled"
+msgstr "Le Service 'Shellinabox' n'est pas activé. La connexion à la console n'est donc pas possible pour le moment."
+
+##### --- Active monitor
+
+msgid "amRemoteNameTag"
+msgstr "Serveur Shellinabox"
+
+msgid "amDetailsTitle"
+msgstr "Détails du serveur Shellinabox"
+
+msgid "amStatusOK"
+msgstr "Le serveur Shellinabox fonctionne normalement."
+
+msgid "amNotAccepting"
+msgstr "Le serveur Shellinabox ne fonctionne pas et n'a pas pu être redémarré. Essayez de désactiver le serveur Shellinabox puis à nouveau pour voir si cela corrige le problème."
+

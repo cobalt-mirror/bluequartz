@@ -1,0 +1,12 @@
+<item 
+    id="netdata_personal" 
+    label="[[base-netdata.connect]]" 
+    description="[[base-netdata.connect_help]]" 
+    url="/netdata/netdata"
+    module="user"
+>
+    <parent id="base_programsPersonal" order="21">
+	 <access require="serverConfig"/>
+    </parent>
+
+</item>

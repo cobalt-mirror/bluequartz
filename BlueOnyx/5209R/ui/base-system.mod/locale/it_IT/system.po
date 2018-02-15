@@ -1,0 +1,127 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "bsdLicense"
+msgstr " "
+
+msgid "bsdTitle"
+msgstr "Licenza e Copyright BSD"
+
+msgid "cap_serverInformation"
+msgstr "Mostra le informazioni di sistema"
+
+msgid "codeNotice"
+msgstr ""
+"[[base-alpine.osName]] software sono liberamente ridistribuibili. La maggior "
+"parte dei componenti software di questo server sono distribuibili sotto il "
+"<A HREF=bsdlicense.php>copyright BSD</a> e la <A HREF=gnulicense.php>GNU "
+"Public License</a> . Il codice sorgente completo di [[base-alpine.osName]] è "
+"disponibile presso [[base-alpine.vendorSite]]."
+
+msgid "copyright"
+msgstr ""
+"[[base-product.longNoticeEnglish]]<BR><P><P><BR>[[base-product."
+"longNoticeFrench]]"
+
+msgid "creditsAcknoledgements"
+msgstr "Crediti e Ringraziamenti"
+
+msgid "creditsAcknoledgements_help"
+msgstr "Clicca qui per visualizzare [[base-system.creditsAcknoledgements]]"
+
+msgid "diskField"
+msgstr "Dimensioni Hard Disk (GB)"
+
+msgid "diskField_help"
+msgstr "Questa e' la quantita' totale di spazio disponibile sul server."
+
+msgid "gnuLicense"
+msgstr " "
+
+msgid "gnuTitle"
+msgstr "Licenza Pubblica GNU"
+
+msgid "mac0Field"
+msgstr "Indirizzo Interfaccia MAC Primaria"
+
+msgid "mac0Field_help"
+msgstr ""
+"Questo e' il numero seriale dell'hardware della prima scheda di rete "
+"installata nel tuo server."
+
+msgid "mac1Field"
+msgstr "Indirizzo Interfaccia MAC Secondiaria"
+
+msgid "mac1Field_help"
+msgstr ""
+"Questo e' il numero seriale dell'hardware della seconda scheda di rete "
+"installata nel tuo server."
+
+msgid "memoryField"
+msgstr "Dimensioni Memoria (MB)"
+
+msgid "memoryField_help"
+msgstr "Questa è la quantità totale di memoria fisica disponibile sul server."
+
+msgid "productBuildField"
+msgstr "Numero di Build"
+
+msgid "productBuildField_help"
+msgstr "Questo e' il numero di build del tuo server."
+
+msgid "productNameField"
+msgstr "Nome Prodotto"
+
+msgid "productNameField_help"
+msgstr "Questo e' il nome prodotto del tuo server."
+
+msgid "productSerialNumberField"
+msgstr "Numero Seriale del Prodotto"
+
+msgid "productSerialNumberField_help"
+msgstr "Questo e' il numero seriale del prodotto del tuo server."
+
+msgid "register"
+msgstr "Registra Ora"
+
+msgid "register_help"
+msgstr "Clicca qui per registrare il tuo server."
+
+msgid "rsaNotice"
+msgstr ""
+"Includi la crittografia BSAFE o il software del protocollo di sicurezza da "
+"RSA Security"
+
+msgid "serialNumberField"
+msgstr "Numero Seriale Hardware"
+
+msgid "serialNumberField_help"
+msgstr "Questo e' il numero seriale dell'hardware del tuo server."
+
+msgid "serialUninitialized"
+msgstr "Non inizializzato"
+
+msgid "systemInfo"
+msgstr "Informazioni"
+
+msgid "systemInfo_help"
+msgstr "[[base-system.systemInformation]] possono essere visualizzate qui."
+
+msgid "systemInformation"
+msgstr "Informazioni di sistema"
+
+msgid "webLink"
+msgstr "[[base-alpine.vendorSite]]"
+
+msgid "webLinkText"
+msgstr "Sito Web [[base-alpine.osVendor]]"
+
+msgid "webLinkText_help"
+msgstr "Clicca qui per andare a [[base-system.webLinkText]]."
