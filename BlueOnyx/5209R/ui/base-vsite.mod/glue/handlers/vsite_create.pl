@@ -57,8 +57,7 @@ group_add_members($group_name, @admins);
 # this is just a nice thing for sys admins, it serves no functional purpose
 my $site_dir = homedir_get_group_dir($group_name, $vsite->{volume});
 &debug_msg("home $site_dir\n");
-my ($site_link, $link_target) = homedir_create_group_link($group_name, 
-                        $vsite->{fqdn}, $vsite->{volume});
+my ($site_link, $link_target) = homedir_create_group_link($group_name, $vsite->{fqdn}, $vsite->{volume});
 &debug_msg("site link $site_link\n");
 # make sure the sites directory exists
 if (! -d "$vsite->{volume}/sites")
@@ -79,10 +78,12 @@ if (not $ok)
     exit(1);
 }
 
-# make sure there is a network interface for this ip. We skip this on AWS as anything
-# there runs on a single IP anyway:
-if (!-f "/etc/is_aws") {
+# make sure the Vsite IPs are bound to the network:
+if ($vsite->{ipaddr} ne "") {
     vsite_add_network_interface($cce, $vsite->{ipaddr});
+}
+if ($vsite->{ipaddrIPv6} ne "") {
+    vsite_add_network_interface($cce, $vsite->{ipaddrIPv6});
 }
 
 my $locale = I18n::i18n_getSystemLocale($cce);
@@ -108,7 +109,7 @@ if (! -f $webindex)
 {
     Sauce::Util::modifyfile($webindex);
     open HACK, ">$webindex" or die;
-    print HACK "<HTML><TITLE>DIRTLY LITTLE HACK</TITLE></HTML><BODY>THIS IS JUST A HACK UNTIL THE LOCALE SKELETON STUFF GETS WORKED OUT.</BODY></HTML>";
+    print HACK "<HTML><TITLE>New BlueOnyx Vsite</TITLE></HTML><BODY>THIS PAGE IS JUST A PLACEHOLDER UNTIL THE HTML TEMPLATE FOR NEW VSITES GETS COPIED OVER.</BODY></HTML>";
     close HACK;
 }
 else
@@ -176,8 +177,7 @@ for my $alias (keys %DefaultAliases)
         else
         {
             # no idea why it can't be added
-            $cce->warn('cantAddSystemAlias', 
-                { 'alias' => "$alias\@$vsite->{fqdn}" });
+            $cce->warn('cantAddSystemAlias', { 'alias' => "$alias\@$vsite->{fqdn}" });
         }
 
         $cce->bye('FAIL');
@@ -189,6 +189,7 @@ for my $alias (keys %DefaultAliases)
 ($ok) = $cce->create('VirtualHost', 
             { 
                 'ipaddr' => $vsite->{ipaddr}, 
+                'ipaddrIPv6' => $vsite->{ipaddrIPv6}, 
                 'fqdn' => $vsite->{fqdn}, 
                 'documentRoot' => "$site_dir/web",
                 'name' => $group_name 
@@ -200,26 +201,8 @@ if (not $ok)
     exit(1);
 }
 
-
-&debug_msg(Dumper($vsite));
-
-# setup ftp host if necessary
-# This is now taken care of in base-ftp
-my (@site_ftp) = $cce->find('FtpSite', { 'ipaddr' => $vsite->{ipaddr} });
-if (!$site_ftp[0])
-{
-     ($ok) = $cce->create('FtpSite', { 'ipaddr' => $vsite->{ipaddr}, 'enabled' => 1 });
-
-    if (not $ok)
-    {
-        $cce->warn('[[base-vsite.cantAddFtpVhost]]');
-    }
-} 
-else
-{
-    # inform FTP that the site state has changed
-    ($ok) = $cce->set($site_ftp[0], '', {'commit' => time()});
-}
+# Bring the network up with the updated IP bindings:
+($ok) = vsite_toggle_network_interface($cce);
 
 $cce->bye('SUCCESS');
 exit(0);
@@ -261,8 +244,7 @@ sub create_system_group
     $DEBUG && print STDERR Dumper($vsite);
 
     # create dirs with looser permissions first
-    if (scalar(mkpath([ "$base/users", ("$base/" . Sauce::Config::webdir()) ], 
-                        0, 02775)) == 0) 
+    if (scalar(mkpath([ "$base/users", ("$base/" . Sauce::Config::webdir()) ], 0, 02775)) == 0) 
     {
         &debug_msg("$base failed to create users and web");
         if ($base =~ /^\/.+/)
@@ -337,8 +319,8 @@ sub find_skeleton
 }
 
 # 
-# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015-2018 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015-2018 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 

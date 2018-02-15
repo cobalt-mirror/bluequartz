@@ -11,12 +11,6 @@ msgstr ""
 msgid "basicSettingsTab_help"
 msgstr "頻繁に使う設定を指定できます。"
 
-msgid "ipAddr"
-msgstr "IP アドレス"
-
-msgid "ipAddr_help"
-msgstr "このサイトの IP アドレスです。"
-
 msgid "domain"
 msgstr "ドメインネーム"
 
@@ -1151,4 +1145,37 @@ msgstr "Webサーバーの別名は現在OKです。"
 
 msgid "amFixed"
 msgstr "1つ以上のWeb Server Aliasesに問題がありましたが、自動的に修正されました。"
+
+#
+### IPv6 Related additions:
+#
+
+msgid "comboIpAddr"
+msgstr "IPアドレス"
+
+msgid "comboIpAddr_help"
+msgstr "これはサイトのIPアドレスです。"
+
+msgid "ipAddr"
+msgstr "IPv4 IPアドレス"
+
+msgid "ipAddr_help"
+msgstr "これは、サイトのIPv4 IPアドレスです。"
+
+msgid "ipaddrIPv6"
+msgstr "IPv6 IPアドレス"
+
+msgid "ipaddrIPv6_help"
+msgstr "これは、サイトのIPv6 IPアドレスです。"
+
+# Error messages:
+
+msgid "IPValidation_ipv4_specified_but_not_allowed"
+msgstr "エラー：IPv4 IPアドレスが指定されていますが、サーバ上でIPv4が有効になっていません！"
+
+msgid "IPValidation_ipv6_specified_but_not_allowed"
+msgstr "エラー：IPv6 IPアドレスが指定されていますが、サーバ上でIPv6が有効になっていません！"
+
+msgid "IPValidation_ip_must_be_specified"
+msgstr "エラー：IPv4 IPアドレスが空で、IPv6 IPアドレスが両方とも空です。 少なくとも1つは設定する必要があります。"
 

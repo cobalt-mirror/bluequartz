@@ -29,7 +29,7 @@ my @OIDS = $cce->find('SWUpdateServer');
 if ($OIDS[0] ne "") {
     my ($ok, $SWUpdateServer) = $cce->get($OIDS[0]);
     if ($SWUpdateServer->{location} ne 'newlinq.blueonyx.it') {
-        $cce->set($OIDS[0], '', { 'location' => 'newlinq.blueonyx.it', 'name' => 'default', 'enabled' => '1' });
+        $cce->update($OIDS[0], '', { 'location' => 'newlinq.blueonyx.it', 'name' => 'default', 'enabled' => '1' });
     }
 }
 else {
@@ -57,7 +57,7 @@ if (@OIDS) {
     # If Update-Interval is 'Never' (no longer supported), then change it to 'Daily':
     if ($interval eq "Never") {
         $interval = 'Daily';
-        $cce->set($OIDS[0], 'SWUpdate', { updateInterval => $interval });
+        $cce->update($OIDS[0], 'SWUpdate', { updateInterval => $interval });
     }
 }
 

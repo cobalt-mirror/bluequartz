@@ -11,12 +11,6 @@ msgstr ""
 msgid "basicSettingsTab_help"
 msgstr "Configure las opciones más utilizadas."
 
-msgid "ipAddr"
-msgstr "Dirección IP"
-
-msgid "ipAddr_help"
-msgstr "Esta es la dirección IP del sitio."
-
 msgid "domain"
 msgstr "Nombre de Dominio"
 
@@ -1094,4 +1088,37 @@ msgstr "Estado del alias del servidor web Vsite."
 
 msgid "amFixed"
 msgstr "Hubo un problema con uno o varios alias de servidor Web, pero se ha solucionado automáticamente."
+
+#
+### IPv6 Related additions:
+#
+
+msgid "comboIpAddr"
+msgstr "Dirección IP"
+
+msgid "comboIpAddr_help"
+msgstr "Esta es la dirección IP del sitio."
+
+msgid "ipAddr"
+msgstr "Dirección IPv4"
+
+msgid "ipAddr_help"
+msgstr "Esta es la dirección IP Ipv4 del sitio."
+
+msgid "ipaddrIPv6"
+msgstr "Dirección IPv6"
+
+msgid "ipaddrIPv6_help"
+msgstr "Esta es la dirección IP Ipv6 del sitio."
+
+# Error messages:
+
+msgid "IPValidation_ipv4_specified_but_not_allowed"
+msgstr "Error: ¡IPv4 Dirección IP especificada, pero IPv4 no está habilitado en el servidor!"
+
+msgid "IPValidation_ipv6_specified_but_not_allowed"
+msgstr "Error: ¡IPv6 Dirección IP especificada, pero IPv6 no está habilitado en el servidor!"
+
+msgid "IPValidation_ip_must_be_specified"
+msgstr "Error: La dirección IPv4 está vacía y la dirección IPv6 está vacía. Por lo menos uno debe estar configurado!"
 

@@ -3,15 +3,15 @@
 # service, and restart it if required. 
 
 if [ -f /usr/bin/systemctl ];then
-	if [ `lsof -c rsyslogd | grep -c var.log` -eq 1 ]; then
-	  /sbin/service rsyslog stop
+	if [ `/usr/sbin/lsof -c rsyslogd | grep -c var.log` -eq 1 ]; then
+	  /usr/bin/systemctl stop rsyslog
 	  rm -f /var/lib/rsyslog/imjournal.state
-	  /sbin/service rsyslog start
+	  /usr/bin/systemctl start rsyslog
 	fi
 fi
 
 # 
-# Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2016-2018 Team BlueOnyx, BLUEONYX.IT
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 

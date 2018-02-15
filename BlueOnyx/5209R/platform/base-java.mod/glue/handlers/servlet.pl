@@ -87,15 +87,16 @@ if (!Sauce::Util::editfile(
 #Now edit the /etc/httpd/conf/vhosts/siteXX file. The entries
 #in this file are for registering our servlets with apache.
 my $modjk_conf = "/etc/httpd/conf/vhosts/$sitename";
-if (!Sauce::Util::editfile(
-	$modjk_conf,
-	*edit_modjk, 
-	$enabled, $ipaddr, $fqdn, $name)
-	)
-{
-	$cce->bye('FAIL');
-	exit(1);
-}
+# Disabled for now until the whole JSP deal is sorted.
+#if (!Sauce::Util::editfile(
+#	$modjk_conf,
+#	*edit_modjk, 
+#	$enabled, $ipaddr, $fqdn, $name)
+#	)
+#{
+#	$cce->bye('FAIL');
+#	exit(1);
+#}
 
 $cce->bye('SUCCESS');
 exit(0);

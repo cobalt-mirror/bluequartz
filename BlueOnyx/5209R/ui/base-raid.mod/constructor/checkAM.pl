@@ -20,16 +20,16 @@ $cce->connectuds();
 my @oids = $cce->find ('ActiveMonitor');
 if ($#oids > -1) {
 	if ($on == "1") {
-  		$cce->set($oids[0], 'RAID', {"monitor" => "1"});
-  		$cce->set($oids[0], 'SMART', {"monitor" => "1"});
-  		$cce->set($oids[0], 'DMA', {"monitor" => "1"});
-  		$cce->set($oids[0], 'DiskIntegrity', {"monitor" => "1"});
+  		$cce->update($oids[0], 'RAID', {"monitor" => "1"});
+  		$cce->update($oids[0], 'SMART', {"monitor" => "1"});
+  		$cce->update($oids[0], 'DMA', {"monitor" => "1"});
+  		$cce->update($oids[0], 'DiskIntegrity', {"monitor" => "1"});
   	}
   	else {
-  		$cce->set($oids[0], 'RAID', {"monitor" => "0"});
-  		$cce->set($oids[0], 'SMART', {"monitor" => "0"});
-  		$cce->set($oids[0], 'DMA', {"monitor" => "0"});
-  		$cce->set($oids[0], 'DiskIntegrity', {"monitor" => "0"});
+  		$cce->update($oids[0], 'RAID', {"monitor" => "0"});
+  		$cce->update($oids[0], 'SMART', {"monitor" => "0"});
+  		$cce->update($oids[0], 'DMA', {"monitor" => "0"});
+  		$cce->update($oids[0], 'DiskIntegrity', {"monitor" => "0"});
   	}
 }
 $cce->bye();

@@ -25,7 +25,6 @@ use CCE;
 use Data::Dumper;
 
 my $cce = new CCE;
-my $conf = '/var/lib/cobalt';
 
 if ($whatami eq "handler") {
     $cce->connectfd();
@@ -134,6 +133,11 @@ sub verify {
 				$CONFIG{"$entry"} = "yes";
 		    }
 		}
+
+		if ($CONFIG{Protocol} eq "2") {
+			$CONFIG{RSAAuthentication} = "0";
+		}
+
 		# Convert selected config file values (No|no|Yes|yes) to bool (0|1) for CODB:
 		if (in_array(\@boolKeys, $entry)) {
 			if (in_array(\@yes, $CONFIG{$entry})) {
@@ -166,14 +170,14 @@ sub feedthemonster {
         # Object already present in CCE. Updating it.
         ($sys_oid) = $cce->find('System');
         ($ok, $sys) = $cce->get($sys_oid);
-        ($ok) = $cce->set($sys_oid, 'SSH',{
-	    'Port' => $CONFIG{"Port"},  
-	    'Protocol' => $CONFIG{"Protocol"},   
-	    'PermitRootLogin' => $CONFIG{"PermitRootLogin"},
-	    'XPasswordAuthentication' => $CONFIG{"PasswordAuthentication"},
-	    'RSAAuthentication' => $CONFIG{"RSAAuthentication"},
-	    'PubkeyAuthentication' => $CONFIG{"PubkeyAuthentication"},
-	    'force_update' => time()  
+        ($ok) = $cce->update($sys_oid, 'SSH',{
+		    'Port' => $CONFIG{"Port"},  
+		    'Protocol' => $CONFIG{"Protocol"},   
+		    'PermitRootLogin' => $CONFIG{"PermitRootLogin"},
+		    'XPasswordAuthentication' => $CONFIG{"PasswordAuthentication"},
+		    'RSAAuthentication' => $CONFIG{"RSAAuthentication"},
+		    'PubkeyAuthentication' => $CONFIG{"PubkeyAuthentication"},
+		    'force_update' => time()  
         });
     
 

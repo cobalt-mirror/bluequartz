@@ -6,8 +6,8 @@ VENDOR=base
 VENDORNAME='Project BlueOnyx'
 SERVICE=network
 
-VERSION=2.0.0
-RELEASE=1BX22
+VERSION=2.0.1
+RELEASE=1BX11
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -19,6 +19,8 @@ BUILDUI=new
 BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=yes
+
+REQUIRES=perl-Net-IP
 
 #########
 # some useful defines

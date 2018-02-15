@@ -97,7 +97,12 @@ class Template extends MX_Controller {
         //
 
         if ($CI->input->post(NULL, TRUE)) {
-
+            if (!isset($attributes['ipAddr'])) {
+                $attributes['ipAddr'] = "";
+            }
+            if (!isset($attributes['ipaddrIPv6'])) {
+                $attributes['ipaddrIPv6'] = "";
+            }                
         }
 
         //
@@ -125,6 +130,7 @@ class Template extends MX_Controller {
             $CI->cceClient->setObject("System",
                     array(
                         "ipaddr" => $attributes['ipAddr'],
+                        "ipaddrIPv6" => $attributes['ipaddrIPv6'],
                         "domain" => $attributes['domain'],
                         "quota" => $quota,
                         "maxusers" => $attributes['maxusers'],
@@ -187,6 +193,20 @@ class Template extends MX_Controller {
         list($sysoid) = $CI->cceClient->find("System");
         $vsiteDefaults = $CI->cceClient->get($sysoid, "VsiteDefaults");
 
+        // Determine visibility of IP protocol related fields:
+        $show_IPv4 = FALSE;
+        $show_IPv6 = FALSE;
+        $access_IPv4 = '';
+        $access_IPv6 = '';
+        if (in_array($system['IPType'], array('IPv4', 'VZv4', 'BOTH', 'VZBOTH'))) {
+            $show_IPv4 = TRUE;
+            $access_IPv4 = 'rw';
+        }
+        if (in_array($system['IPType'], array('IPv6', 'VZv6', 'BOTH', 'VZBOTH'))) {
+            $show_IPv6 = TRUE;
+            $access_IPv6 = 'rw';
+        }
+
         $pageId = "siteDefaultsTab";
 
         $block =& $factory->getPagedBlock("vsiteDefaults", array($pageId, 'otherServices'));
@@ -200,12 +220,22 @@ class Template extends MX_Controller {
         //--- Basic Tab
         //
 
-        //default ip address
-        $ipAddrField = $factory->getIpAddress("ipAddr", $vsiteDefaults["ipaddr"]);
+        //default IPv4 ip address
+        $ipAddrField = $factory->getIpAddress("ipAddr", $vsiteDefaults["ipaddr"], $access_IPv4);
         $ipAddrField->setOptional('silent');
         $block->addFormField(
                     $ipAddrField,
                     $factory->getLabel("defaultIpAddr"),
+                    $pageId
+                    );
+
+        //default IPv6 ip address
+        $ipv6_address = $factory->getIpAddress("ipaddrIPv6", $vsiteDefaults["ipaddrIPv6"]);
+        $ipv6_address->setType("ipaddrIPv6");
+        $ipv6_address->setOptional('silent');
+        $block->addFormField(
+                    $ipv6_address,
+                    $factory->getLabel("ipaddrIPv6"),
                     $pageId
                     );
 

@@ -225,17 +225,60 @@ fi
 
 <begin $CHANGELOG>
 
-* Wed Jan 31 2018 Michael Stauber <mstauber@solarspeed.net> 2.1.1-0BX56
-- Fixes.
+* Tue Feb 13 2018 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX09
+- To address timing issue handler virtual_host.pl is moved from CONFIGURE
+ to EXECUTE stage as base/vsite/vsite_create.pl must absolutely run first.
 
-* Wed Jan 31 2018 Michael Stauber <mstauber@solarspeed.net> 2.1.1-0BX55
-- Modified glue/httpd/ssl_bx.conf to bring back default VirtualHost 
+* Fri Feb 09 2018 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX08
+- Fix in glue/handlers/virtual_host.pl to remove check for SSL expiry date.
+
+* Fri Feb 09 2018 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX07
+- Fix in glue/handlers/virtual_host.pl as we weren't polling the SSL namespace.
+
+* Fri Feb 02 2018 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX06
+- OpenVZ IPv6 fixes.
+- Modified glue/handlers/virtual_host.pl
+- Modified perl/Httpd.pm
+
+* Mon Jan 29 2018 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX04
+- Modified glue/httpd/ssl_bx.conf to bring back default VirtualHost
   containers for non-SSL and SSL which redirect to GUI interface. The
   SSL VirtualHost container uses the AdmServ certificate.
 
-* Wed Jan 10 2018 Michael Stauber <mstauber@solarspeed.net> 2.1.1-0BX54
-- Modified WebScripting Handlers to use CGI-Wrap again. Many thanks
-  to Taco Scargo.
+* Mon Jan 29 2018 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX03
+- Better debugging in perl/Httpd.pm
+
+* Fri Jan 19 2018 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX02
+* Modified glue/handlers/virtual_host.pl to use CGI-Wrap again. Many thanks
+  to Taco Scargo for the pointers.
+
+* Sun Nov 12 2017 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX02
+- Rough first draft of IPv6 integration.
+- Modified glue/conf/Apache.conf
+- Modified glue/handlers/virtual_host.pl to be able to deal with 
+  VirtualHost containers using IPv4, dual stack or IPv6 only.
+- Modified glue/schemas/apache.schema
+
+* Thu Nov 09 2017 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX01
+- Massive handler overhaul to keep Apache restarts down and to 
+  consolidate edit/modify of VirtualHost cfgs into apache/virtual_host.pl
+- Modified glue/conf/Apache.conf
+- Modified glue/handlers/config_suexec.pl
+- Modified glue/handlers/reload_httpd.pl
+- Modified glue/handlers/userwebs.pl
+- Modified glue/handlers/vhost_addrem.pl
+- Modified glue/handlers/vhost_destroy_cleanup.pl
+- Modified glue/handlers/vhost_suspend.pl
+- Modified glue/handlers/virtual_host.pl
+- Modified glue/handlers/webscripting.pl
+- Modified glue/handlers/webscripting2.pl
+- Modified glue/handlers/webscripting3.pl
+- Modified glue/schemas/vsite_services.schema
+- Modified ui/chorizo/extensions/52_REDIRECT.php.create.Vsite
+- Modified ui/chorizo/extensions/52_REDIRECT.php.modifyWeb.Vsite
+
+* Mon Nov 05 2017 Michael Stauber <mstauber@solarspeed.net> 2.1.1-0BX54
+- Modified constructors to use cce->update() insteadt of cce->set().
 
 * Wed Sep 27 2017 Michael Stauber <mstauber@solarspeed.net> 2.1.1-0BX53
 - Added provisions to permanently redirect a Vsite to another URL.

@@ -55,7 +55,40 @@ class VsiteAdd extends MX_Controller {
         $get_data = $CI->input->get(NULL, TRUE);
 
         // Form fields that are required to have input:
-        $required_keys = array('hostName', 'domain', 'ipAddr', 'createdUser', 'volume', 'maxusers');
+        $required_keys = array('hostName', 'domain', 'createdUser', 'volume', 'maxusers');
+
+        // Determine visibility of IP protocol related fields:
+        $show_IPv4 = FALSE;
+        $show_IPv6 = FALSE;
+        $access_ipv6 = 'r';
+        if (in_array($system['IPType'], array('IPv4', 'VZv4', 'BOTH', 'VZBOTH'))) {
+            $show_IPv4 = TRUE;
+            if (in_array($system['IPType'], array('IPv4', 'BOTH'))) {
+                if ($system['gateway'] != "") {
+                    $show_IPv4 = TRUE;
+                }
+                else {
+                    $show_IPv4 = FALSE;
+                }
+            }
+        }
+        if (in_array($system['IPType'], array('IPv6', 'VZv6', 'BOTH', 'VZBOTH'))) {
+            $show_IPv6 = TRUE;
+            if (in_array($system['IPType'], array('IPv6', 'BOTH'))) {
+                if ($system['gateway_IPv6'] != "") {
+                    $access_ipv6 = 'rw';
+                    $show_IPv6 = TRUE;
+                }
+                else {
+                    $access_ipv6 = 'r';
+                    $show_IPv6 = FALSE;
+                }
+            }
+            else {
+                // Special case: OpenVZ
+                $access_ipv6 = 'rw';
+            }
+        }
 
         // Empty array for key => values we want to submit to CCE:
         $attributes = array();
@@ -131,6 +164,12 @@ class VsiteAdd extends MX_Controller {
                 else {
                     $attributes['userPrefixEnabled'] = "0";
                 }
+                if (!isset($attributes['ipAddr'])) {
+                    $attributes['ipAddr'] = "";
+                }
+                if (!isset($attributes['ipaddrIPv6'])) {
+                    $attributes['ipaddrIPv6'] = "";
+                }                
             }
 
             //
@@ -150,6 +189,7 @@ class VsiteAdd extends MX_Controller {
                                 'domain' => $attributes['domain'],
                                 'fqdn' => ($attributes['hostName'] . '.' . $attributes['domain']),
                                 'ipaddr' => $attributes['ipAddr'],
+                                'ipaddrIPv6' => $attributes['ipaddrIPv6'],
                                 'createdUser' => $attributes['createdUser'], 
                                 'webAliases' => $attributes['webAliases'],
                                 'webAliasRedirects' => $attributes['webAliasRedirects'],
@@ -258,6 +298,15 @@ class VsiteAdd extends MX_Controller {
                     $errors = array_merge($errors, $af_errors);
                 }
 
+                /*
+                 * Defer the httpd reload/restart until 'force_update' is set:
+                 */
+
+                if ($vsiteOID) {
+                    $ok = $CI->cceClient->set($vsiteOID, '', array('force_update' => time()));
+                    $errors = array_merge($errors, $CI->cceClient->errors());
+                }
+
                 // Error check:
                 if (count($errors) == "0") {
                     //
@@ -334,7 +383,21 @@ class VsiteAdd extends MX_Controller {
             // we preserve the data that the user has entered before:
             $vsiteDefaults = $attributes;
             // Small correction due to naming inconsistencies:
-            $vsiteDefaults['ipaddr'] = $attributes['ipAddr'];
+            if (isset($attributes['ipAddr'])) {
+                $vsiteDefaults['ipaddr'] = $attributes['ipAddr'];
+            }
+            if (isset($attributes['ipaddrIPv6'])) {
+                $vsiteDefaults['ipaddrIPv6'] = $attributes['ipaddrIPv6'];
+            }
+            $vsiteDefaults['hostname'] = $attributes['hostName'];
+        }
+
+
+        if (!isset($vsiteDefaults['ipaddr'])) {
+            $vsiteDefaults['ipaddr'] = '';
+        }
+        if (!isset($vsiteDefaults['ipaddrIPv6'])) {
+            $vsiteDefaults['ipaddrIPv6'] = '';
         }
 
         $vsite = $CI->cceClient->get($sysoid, "Vsite"); 
@@ -414,40 +477,109 @@ class VsiteAdd extends MX_Controller {
                 $range_strings = array();
 
                 $oids = $CI->cceClient->findx('IPPoolingRange', array(), array(), 'old_numeric', 'creation_time');
+                $reseller_first_range = '';
                 foreach ($oids as $oid) {
                     $range = $CI->cceClient->get($oid);
-                    $adminArray = $CI->cceClient->scalar_to_array($range['admin']); 
-                    if ($CI->BX_SESSION['loginName'] == 'admin' || in_array($CI->BX_SESSION['loginName'], $adminArray)) { 
-                            $range_strings[] = $range['min'] . ' - ' . $range['max']; 
-                    } 
+                    $adminArray = $CI->cceClient->scalar_to_array($range['admin']);
+                    sort($adminArray);
+                    $owner_names = implode(", ", $adminArray);
+                    if (($CI->serverScriptHelper->getAllowed('systemAdministrator')) || (in_array($CI->BX_SESSION['loginName'], $adminArray))) { 
+                        if (filter_var($range['min'], FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
+                            if ((($CI->serverScriptHelper->getAllowed('systemAdministrator'))) && (count($adminArray) > '0')) {
+                                $range_strings['v4'][] = $range['min'] . ' - ' . $range['max'] . ' [' . $owner_names . ']';
+                            }
+                            else {
+                                $range_strings['v4'][] = $range['min'] . ' - ' . $range['max'] . ' [' . $CI->BX_SESSION['loginName'] . ']';
+                            }
+                            if ((!isset($reseller_first_range['IPv4']['min'])) && (in_array($CI->BX_SESSION['loginName'], $adminArray))) {
+                                $reseller_first_range['IPv4'] = $range;
+                            }
+                        }
+                        else {
+                            if ((($CI->serverScriptHelper->getAllowed('systemAdministrator'))) && (count($adminArray) > '0')) {
+                                $range_strings['v6'][] = $range['min'] . ' - ' . $range['max'] . ' [' . $owner_names . ']';
+                            }
+                            else {
+                                $range_strings['v6'][] = $range['min'] . ' - ' . $range['max'] . ' [' . $CI->BX_SESSION['loginName'] . ']';
+                            }
+                            if ((!isset($reseller_first_range['IPv6']['min'])) && (in_array($CI->BX_SESSION['loginName'], $adminArray))) {
+                                $reseller_first_range['IPv6'] = $range;
+                            }
+                        }
+                    }
                 }
-                $string = arrayToString($range_strings);
 
                 $new_range_string = '';
                 $nrs_num = "0";
-                foreach ($range_strings as $key => $value) {
+                if (isset($range_strings['v4'])) {
+                    foreach ($range_strings['v4'] as $key => $value) {
+                        if ($nrs_num > "0") {
+                            $new_range_string .= "<br>";
+                        }
+                        $new_range_string .= $value;
+                        $nrs_num++;
+                    }
+                }
+                if ($CI->serverScriptHelper->getAllowed('systemAdministrator')) {
+                    // User 'admin' or systemAdministrator
+                    $ip_address = $factory->getIpAddress("ipAddr", $vsiteDefaults['ipaddr']);
+                }
+                else {
+                    // Reseller:
+                    $ip_address = $factory->getIpAddress("ipAddr", $reseller_first_range['IPv4']["min"]);
+                }
+                $ip_address->setRange($new_range_string);
+            }
+            else {
+                // IP Address, without ranges
+                $ip_address = $factory->getIpAddress("ipAddr", $vsiteDefaults['ipaddr']);
+            }
+
+            // IPv4 IP Address
+            if ($show_IPv4) {
+                $ip_address->setOptional(TRUE);
+                $settings->addFormField(
+                        $ip_address,
+                        $factory->getLabel("ipAddr"),
+                        $defaultPage
+                        );
+            }
+
+            // IPv6:
+            $new_range_string = '';
+            $nrs_num = "0";
+            if (($net_opts["pooling"] == "1") && (isset($range_strings['v6']))) {
+                // IPv6 IP Address, with ranges
+                foreach ($range_strings['v6'] as $key => $value) {
                     if ($nrs_num > "0") {
                         $new_range_string .= "<br>";
                     }
                     $new_range_string .= $value;
                     $nrs_num++;
                 }
-
-                $ip_address = $factory->getIpAddress("ipAddr", $vsiteDefaults["ipaddr"]);
-                $ip_address->setRange($new_range_string);
+                if ($CI->serverScriptHelper->getAllowed('systemAdministrator')) { 
+                    $ipv6_address = $factory->getIpAddress("ipaddrIPv6", $vsiteDefaults["ipaddrIPv6"], $access_ipv6);
+                }
+                elseif (in_array($CI->BX_SESSION['loginName'], $adminArray)) {
+                    $ipv6_address = $factory->getIpAddress("ipaddrIPv6", $reseller_first_range['IPv6']["min"], $access_ipv6);
+                }
+                $ipv6_address->setRange($new_range_string);
             }
             else {
-                // IP Address, without ranges
-                $ip_address = $factory->getIpAddress("ipAddr", $vsiteDefaults["ipaddr"]);
+                // IPv6 IP Address, without ranges
+                $ipv6_address = $factory->getIpAddress("ipaddrIPv6", $vsiteDefaults["ipaddrIPv6"], $access_ipv6);
             }
 
-            // IP Address
-            $ip_address->setOptional(FALSE);
-            $settings->addFormField(
-                    $ip_address,
-                    $factory->getLabel("ipAddr"),
-                    $defaultPage
-                    );
+            // IPv6 IP Address, without ranges
+            if ($show_IPv6) {
+                $ipv6_address->setType("ipaddrIPv6");
+                $ipv6_address->setOptional(TRUE);
+                $settings->addFormField(
+                        $ipv6_address,
+                        $factory->getLabel("ipaddrIPv6"),
+                        $defaultPage
+                        );
+            }
 
             // host and domain names
             if (isset($vsiteDefaults['hostname'])) {
@@ -851,8 +983,8 @@ class VsiteAdd extends MX_Controller {
     }
 }
 /*
-Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2015-2018 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2015-2018 Team BlueOnyx, BLUEONYX.IT
 All Rights Reserved.
 
 1. Redistributions of source code must retain the above copyright 

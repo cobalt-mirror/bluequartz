@@ -432,6 +432,7 @@ class Ticket extends MX_Controller {
                 $interfaces = $CI->cceClient->findx('Network', array('real' => 1, 'enabled' => 1), array(), 'ascii', 'device');
                 $NET = $CI->cceClient->get($interfaces[0]);
                 $attributes_clone['ipaddr'] = $NET['ipaddr'];
+                $attributes_clone['ipaddr_IPv6'] = $NET['ipaddr_IPv6'];
 
                 // Get SSH Settings and include them:
                 $SSH = $CI->cceClient->get($system['OID'], "SSH");

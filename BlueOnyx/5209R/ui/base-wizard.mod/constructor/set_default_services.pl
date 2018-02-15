@@ -18,12 +18,12 @@ if (not @oids) {
 
 $firstboot = "0";
 my ($ok, $obj) = $cce->get($oids[0]);
-if ($obj->{isLicenseAccepted} == "0") {
+if ($obj->{'isLicenseAccepted'} == "0") {
     $firstboot = "1";
 }
 
 if ($firstboot == "1") {
-    ($ok) = $cce->set($oids[0], 'Email',{
+    ($ok) = $cce->update($oids[0], 'Email',{
             "queueTime" => "immediate",
             "masqAddress" => "",
             "enableSubmissionPort" => "0",
@@ -43,7 +43,7 @@ if ($firstboot == "1") {
             "deniedHosts" => ""
     });
     # YUM updater:
-    ($ok) = $cce->set($oids[0], 'yum',{
+    ($ok) = $cce->update($oids[0], 'yum',{
             "yumUpdateTime" => "6:00",
             "y_force_update" => "2146835920",
             "yumguiEMAIL" => "1",

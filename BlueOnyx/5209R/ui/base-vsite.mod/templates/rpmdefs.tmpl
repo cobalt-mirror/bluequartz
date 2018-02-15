@@ -55,6 +55,7 @@ information for [VENDOR]-[SERVICE].
 /etc/skel/vsite/*
 %attr(0755,-,-) /usr/sausalito/sbin/vsite_destroy.pl
 %attr(0755,-,-) /usr/sausalito/sbin/fix_user_suspension.pl
+%attr(0755,-,-) /usr/sausalito/sbin/fix_vsite_ips.pl
 %attr(0755,-,-) /usr/sausalito/sbin/web_alias_redirects.pl
 %attr(0755,-,-) /usr/sausalito/sbin/suPHP_fixer.pl
 %attr(0755,-,-) /usr/sausalito/sbin/php_settings_convert.pl
@@ -140,6 +141,95 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Sun Feb 11 2018 Michael Stauber <mstauber@solarspeed.net> 4.3-0BX13
+- Small fix in ui/chorizo/web/controllers/vsiteAdd.php
+
+* Fri Feb 09 2018 Michael Stauber <mstauber@solarspeed.net> 4.3-0BX12
+- Small fix in ui/chorizo/web/controllers/vsiteMod.php
+
+* Tue Feb 06 2018 Michael Stauber <mstauber@solarspeed.net> 4.3-0BX11
+- Modified glue/conf/vsite.conf
+- Added glue/handlers/iptype_watcher.pl
+- Modified glue/sbin/fix_vsite_ips.pl
+
+* Mon Feb 05 2018 Michael Stauber <mstauber@solarspeed.net> 4.3-0BX10
+- Modified glue/conf/vsite.conf to remove NuOnce fixhost.
+
+* Mon Feb 05 2018 Michael Stauber <mstauber@solarspeed.net> 4.3-0BX09
+- Modified glue/handlers/change_net_info.pl
+
+* Sun Feb 04 2018 Michael Stauber <mstauber@solarspeed.net> 4.3-0BX08
+- More IPv6 related fixes.
+- Modified glue/Makefile
+- Modified glue/handlers/Vsite.pm
+- Modified glue/handlers/change_net_info.pl
+- Added glue/sbin/fix_vsite_ips.pl
+
+* Fri Feb 02 2018 Michael Stauber <mstauber@solarspeed.net> 4.3-0BX07
+- OpenVZ IPv6 fixes.
+- Modified glue/handlers/Vsite.pm
+- Modified glue/handlers/change_net_info.pl
+- Modified glue/handlers/ipv4_ipv6_check.pl
+- Modified ui/chorizo/web/controllers/template.php
+- Modified ui/chorizo/web/controllers/vsiteAdd.php
+- Modified ui/chorizo/web/controllers/vsiteList.php
+- Modified ui/chorizo/web/controllers/vsiteMod.php
+
+* Thu Feb 01 2018 Michael Stauber <mstauber@solarspeed.net> 4.3-0BX06
+- Small fix in ui/chorizo/web/controllers/vsiteMod.php
+
+* Wed Jan 31 2018 Michael Stauber <mstauber@solarspeed.net> 4.3-0BX05
+- Concept change in IPv6 implementation for compliance with standards.
+- Modified glue/handlers/Vsite.pm
+- Modified glue/handlers/change_net_info.pl
+- Modified glue/handlers/ipv4_ipv6_check.pl
+- Modified glue/handlers/network_destroy.pl
+- Modified glue/handlers/php_fpm-checker.pl
+- Modified glue/handlers/vsite_create.pl
+- Modified glue/handlers/vsite_destroy.pl
+- Modified ui/chorizo/web/controllers/vsiteAdd.php
+
+* Mon Jan 29 2018 Michael Stauber <mstauber@solarspeed.net> 4.3-0BX04
+- Modified ui/chorizo/web/controllers/vsiteAdd.php for better value
+  preservation on error.
+
+* Sat Jan 27 2018 Michael Stauber <mstauber@solarspeed.net> 4.3-0BX03
+- Modified IP-Pooling related code in vsiteAdd.php and vsiteMod.php
+- Locales extended.
+
+* Sun Nov 12 2017 Michael Stauber <mstauber@solarspeed.net> 4.3-0BX02
+- First rough draft of the IPv6 integration. Needs more refinement.
+- Modified glue/conf/vsite.conf
+- Added glue/handlers/ipv4_ipv6_check.pl
+- Modified glue/schemas/vsite.schema
+- Modified ui/chorizo/web/controllers/template.php
+- Modified ui/chorizo/web/controllers/vsiteAdd.php
+- Modified ui/chorizo/web/controllers/vsiteList.php
+- Modified ui/chorizo/web/controllers/vsiteMod.php
+
+* Thu Nov 09 2017 Michael Stauber <mstauber@solarspeed.net> 4.3-0BX01
+- Massive handler overhaul to keep Apache restarts down and to 
+  consolidate edit/modify of VirtualHost cfgs into apache/virtual_host.pl
+- Modified glue/conf/vsite.conf
+- Modified glue/handlers/Vsite.pm  
+- Modified glue/handlers/aliases.pl
+- Modified glue/handlers/change_net_info.pl
+- Modified glue/handlers/network_destroy.pl
+- Modified glue/handlers/php_fpm-checker.pl
+- Modified glue/handlers/php_handler.pl
+- Modified glue/handlers/php_toggler.pl
+- Modified glue/handlers/php_vsite_handler.pl
+- Modified glue/handlers/vsite_create.pl
+- Modified glue/handlers/vsite_destroy.pl
+- Modified glue/handlers/watch_disk.pl   
+- Modified glue/handlers/web_alias_redirects.pl
+- Modified glue/schemas/vsite.schema
+- Modified ui/chorizo/web/controllers/vsiteAdd.php
+- Modified ui/chorizo/web/controllers/vsiteWeb.php
+
+* Mon Nov 05 2017 Michael Stauber <mstauber@solarspeed.net> 4.2-0BX76
+- Modified constructors to use cce->update() instead of cce->set().
 
 * Tue Sep 05 2017 Michael Stauber <mstauber@solarspeed.net> 4.2-0BX75
 - Fix in ui/chorizo/web/controllers/vsiteWeb.php. We now weed out

@@ -18,8 +18,32 @@ $Network::ETC_HOSTS = '/etc/hosts';
 # programs
 $Network::IFCONFIG = '/sbin/ifconfig';
 $Network::ROUTE = '/sbin/route';
-
+$Network::IP = '/sbin/ip';
 # exportable routines
+
+sub find_eth_ifaces_experimental  {
+
+    my @eth_ifaces = ();
+    my @ifaces = split (/\n/, `LC_ALL=C ls -k1 /sys/class/net`);
+
+    foreach my $interface (@ifaces) {
+        if (! -f "/proc/user_beancounters") {
+            # Normal network interfaces:
+            if ($interface =~ /^(eth\d+)$/ ) {
+                # found an existing interface
+                push @eth_ifaces, $interface;
+            }
+        }
+        else {
+            # OpenVZ network interfaces:
+            if ($interface =~ /^(venet\d+)$/ ) {
+                # found an existing interface
+                push @eth_ifaces, $interface;
+            }
+        }
+    }
+    return @eth_ifaces;
+}
 
 # find the interface names for all real and alias interfaces
 sub find_eth_ifaces
@@ -27,48 +51,48 @@ sub find_eth_ifaces
     my @eth_ifaces = ();
 
     # first find real physical intefaces
-	if (defined(open(IFCONFIG, "$Network::IFCONFIG -a 2>/dev/null |")))
-	{
-		while (<IFCONFIG>)
-		{
-			if (! -f "/proc/user_beancounters") {
-				# Normal network interfaces:
-				if (!/^(eth\d+)(:){0,1}\s/) { next; }
-				# found an existing interface
-				push @eth_ifaces, $1;
-			}
-			else {
-				# OpenVZ network interfaces:
-				if (!/^(venet\d+)(:){0,1}\s/) { next; }
-				# found an existing interface
-				push @eth_ifaces, $1;
-			}
-		}
-		close(IFCONFIG);
+    if (defined(open(IFCONFIG, "LC_ALL=C $Network::IFCONFIG -a 2>/dev/null |"))) 
+    {
+        while (<IFCONFIG>)
+        {
+            if (! -f "/proc/user_beancounters") {
+                # Normal network interfaces:
+                if (!/^(eth\d+)(:){0,1}\s/) { next; }
+                # found an existing interface
+                push @eth_ifaces, $1;
+            }
+            else {
+                # OpenVZ network interfaces:
+                if (!/^(venet\d+)(:){0,1}\s/) { next; }
+                # found an existing interface
+                push @eth_ifaces, $1;
+            }
+        }
+        close(IFCONFIG);
     }
-	else
-	{
-		return ();
-	}
+    else
+    {
+        return ();
+    }
 
     # now search /etc/sysconfig/network-scripts for aliases
     if (opendir(IFCFG, $Network::NET_SCRIPTS_DIR)) {
         while (my $filename = readdir(IFCFG)) {
-			if (! -f "/proc/user_beancounters") {
-				if ($filename =~ /\-(eth\d+\:\d+)$/) {
-					push @eth_ifaces, $1;
-				}
-			}
-			else {
-				if ($filename =~ /\-(venet\d+\:\d+)$/) {
-					push @eth_ifaces, $1;
-				}
-			}
-    	}
+            if (! -f "/proc/user_beancounters") {
+                if ($filename =~ /\-(eth\d+\:\d+)$/) {
+                    push @eth_ifaces, $1;
+                }
+            }
+            else {
+                if ($filename =~ /\-(venet\d+\:\d+)$/) {
+                    push @eth_ifaces, $1;
+                }
+            }
+        }
         closedir(IFCFG);
     }
     else {
-		return ();
+        return ();
     }
 
     return @eth_ifaces;
@@ -81,16 +105,16 @@ sub find_eth_ifaces
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 
-#	 notice, this list of conditions and the following disclaimer.
+#    notice, this list of conditions and the following disclaimer.
 # 
 # 2. Redistributions in binary form must reproduce the above copyright 
-#	 notice, this list of conditions and the following disclaimer in 
-#	 the documentation and/or other materials provided with the 
-#	 distribution.
+#    notice, this list of conditions and the following disclaimer in 
+#    the documentation and/or other materials provided with the 
+#    distribution.
 # 
 # 3. Neither the name of the copyright holder nor the names of its 
-#	 contributors may be used to endorse or promote products derived 
-#	 from this software without specific prior written permission.
+#    contributors may be used to endorse or promote products derived 
+#    from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
 # "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 

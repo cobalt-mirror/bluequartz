@@ -23,13 +23,13 @@ if (!$oid)
 
 # setup stuff, don't bother with failure, because messages should be
 # propagated up, and, well, this is a constructor so what can we do?
-my ($ok) = $cce->set($oid, '', { 'productName' => $i18n->interpolate('[[base-product.productName]]') });
+my ($ok) = $cce->update($oid, '', { 'productName' => $i18n->interpolate('[[base-product.productName]]') });
 
 # set Telnet access appropriately for raqs
-my ($ok) = $cce->set($oid, 'Telnet', { 'access' => 'reg' });
+my ($ok) = $cce->update($oid, 'Telnet', { 'access' => 'reg' });
 
-# turn on console access, this should probably be removed before shipping
-($ok) = $cce->set($oid, '', { 'console' => 1 });
+# turn off console access as this is a deprecated Cobalt method:
+($ok) = $cce->update($oid, '', { 'console' => 0 });
 
 $cce->bye('SUCCESS');
 exit(0);

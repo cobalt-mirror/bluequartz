@@ -5,20 +5,39 @@ use Sauce::Service;
 use CCE;
 use Email;
 
-my $DEBUG = 0;
-$DEBUG && open(STDERR, ">>/tmp/email.enable");
-$DEBUG && warn `date`;
+# Debugging switch:
+$DEBUG = "0";
+if ($DEBUG) {
+    use Sys::Syslog qw( :DEFAULT setlogsock);
+}
 
-my $cce = new CCE( Namespace => 'Email',
-                      Domain => 'base-email' );
+my $cce = new CCE( Namespace => 'Email', Domain => 'base-email' );
 
 $cce->connectfd();
 
-my $old_obj = $cce->event_old();
-my $obj = $cce->event_object();
+# Get 'System' Object:
+my @oids = $cce->find('System');
+if (not @oids) {
+    $cce->bye('FAIL');
+    exit 1;
+}
+my ($ok, $System) = $cce->get($oids[0]);
+unless ($ok and $System) {
+    $cce->bye('FAIL');
+    exit 1;
+}
+
+# Get 'System' . 'Email' Object/Namespace:
+my ($ok, $obj) = $cce->get($oids[0], 'Email');
+unless ($ok and $obj) {
+    $cce->bye('FAIL');
+    exit 1;
+}
+
+&debug_msg("Running email/enable.pl\n");
 
 # dovecot settings first
-Sauce::Util::editfile('/etc/dovecot/dovecot.conf', *make_dovecot_conf, $obj );
+Sauce::Util::editfile('/etc/dovecot/dovecot.conf', *make_dovecot_conf, $obj, $System );
 
 if(!Sauce::Util::replaceblock('/etc/dovecot/conf.d/10-master.conf',
     'service imap-login {',
@@ -52,7 +71,7 @@ else {
 }
 
 # settings smtp, smtps and submission port
-Sauce::Util::editfile(Email::SendmailMC, *make_sendmail_mc, $obj );
+Sauce::Util::editfile(Email::SendmailMC, *make_sendmail_mc, $obj, $System );
 
 # need to start sendmail?
 my $run = 0;
@@ -72,15 +91,15 @@ if ($run) {
 my $popRelay = Sauce::Service::service_get_init('poprelayd') ? 'on' : 'off';
 my $newpopRelay = $obj->{popRelay} ? 'on' : 'off';
 
-$DEBUG && warn "Think poprelayd is running? $popRelay\nShould be? $newpopRelay\n";
+&debug_msg("Think poprelayd is running? $popRelay - Should be? $newpopRelay\n");
 
 Sauce::Service::service_toggle_init('poprelayd', $obj->{popRelay}); 
 
 if($newpopRelay eq 'on') {
-    $DEBUG && warn "linking custodiat into place\n";
+    &debug_msg("Linking custodiat into place\n");
     Sauce::Util::linkfile('/usr/local/sbin/poprelayd.custodiat', '/etc/cron.quarter-daily/poprelayd.custodiat');
 } else {
-    $DEBUG && warn "unlinking custodiat\n";
+    &debug_msg("Unlinking custodiat\n");
     Sauce::Util::unlinkfile('/etc/cron.quarter-daily/poprelayd.custodiat');
 }
 
@@ -98,8 +117,24 @@ sub make_dovecot_conf
     my $out = shift;
 
     my $obj = shift;
+    my $System = shift;
 
     my $protocols;
+    # Assume safe defaults: IPv4 only.
+    my $listen = 'listen = *';
+
+    if (($System->{gateway} ne "") && ($System->{gateway_IPv6} ne "")) {
+        # Dual Stack:
+        $listen = 'listen = *,[::]';
+    }
+    elsif (($System->{gateway} eq "") && ($System->{gateway_IPv6} ne "")) {
+        # IPv6 only:
+        $listen = 'listen = [::]';
+    }
+    else {
+        # IPv4 only:
+        $listen = 'listen = *';
+    }
 
     if (($obj->{enableImap}) || ($obj->{enableImaps})) {
         $protocols .= " imap";
@@ -113,7 +148,11 @@ sub make_dovecot_conf
     while (<$in>) {
         if (/protocols =/o) {
             print "protocols =$protocols\n";
-        } else {
+        }
+        elsif (/^listen/) {
+            print $listen . "\n";
+        }
+        else {
             print $_;
         }
     }
@@ -169,36 +208,150 @@ sub make_sendmail_mc
     my $out = shift;
 
     my $obj = shift;
+    my $System = shift;
 
-    # smtp port
-    if ($obj->{enableSMTP}) {
-        $smtpPort = "DAEMON_OPTIONS(`Port=smtp, Name=MTA')\n";
-    } else {
-        $smtpPort = "dnl DAEMON_OPTIONS(`Port=smtp, Name=MTA')\n";
+    # Are we an OpenVZ mastern node?
+    if ((-e "/proc/user_beancounters") && (-f "/etc/vz/conf/0.conf")) {
+        # Yes, we are.
+        $device = 'venet0:0';
+    }
+    else {
+        # No, we are not.
+        $device = 'eth0';
     }
 
-    # smtps port
-    if ($obj->{enableSMTPS}) {
-        $smtpsPort = "DAEMON_OPTIONS(`Port=smtps, Name=TLSMTA, M=s')\n";
-    } else {
-        $smtpsPort = "dnl DAEMON_OPTIONS(`Port=smtps, Name=TLSMTA, M=s')\n";
-    }
+    $ipv6_ip = `LC_ALL=C cat /etc/sysconfig/network-scripts/ifcfg-$device | grep IPV6ADDR= | awk -F "IPV6ADDR=" '{print \$2}'`;
+    chomp($ipv6_ip);
 
-    # submission(587) port
-    if ($obj->{enableSubmissionPort}) {
-        $submissionPort = "DAEMON_OPTIONS(`Port=submission, Name=MSA, M=Ea')\n";
-    } else {
-        $submissionPort = "dnl DAEMON_OPTIONS(`Port=submission, Name=MSA, M=Ea')\n";
+    #
+    ## Cheat Sheet:
+    #
+    # IPv4 only:
+    # DAEMON_OPTIONS(`Port=smtp, Name=MTA')
+    # DAEMON_OPTIONS(`Port=submission, Name=MSA, M=Ea')
+    # DAEMON_OPTIONS(`Port=smtps, Name=TLSMTA, M=s')
+    # 
+    # IPv6 only:
+    # DAEMON_OPTIONS(`Familiy=inet6, Port=smtp, Name=MTA, Modifier=O')
+    # DAEMON_OPTIONS(`Familiy=inet6, Port=submission, Name=MSA, M=Ea, Modifier=O')
+    # DAEMON_OPTIONS(`Familiy=inet6, Port=smtps, Name=TLSMTA, M=s, Modifier=O')
+    # 
+    # IPv6-Part in Dual Stack. Requires IPv4 part as well. And yes: We can only bind to the primary IPv6 IP, not all of them:
+    # DAEMON_OPTIONS(`Familiy=inet6, port=smtp, Name=MTA-v6, Modifier=O, Addr=2001:470:1f0e:7ee::30')
+    # DAEMON_OPTIONS(`Familiy=inet6, Port=submission, Name=MSA-v6, M=Ea, Modifier=O, Addr=2001:470:1f0e:7ee::30')
+    # DAEMON_OPTIONS(`Familiy=inet6, Port=smtps, Name=TLSMTA-v6, M=s, Modifier=O, Addr=2001:470:1f0e:7ee::30')
+
+    # Start with empty IPv6 related lines:
+    my $ipv6_part = '';
+
+    if (($System->{gateway} ne "") && ($System->{gateway_IPv6} ne "")) {
+        #
+        ### Dual Stack:
+        #
+
+        # smtp port
+        if ($obj->{enableSMTP}) {
+            $smtpPort = "DAEMON_OPTIONS(`Port=smtp, Name=MTA')\n";
+            $ipv6_part .= "DAEMON_OPTIONS(`Familiy=inet6, port=smtp, Name=MTA-v6, Modifier=O, Addr=$ipv6_ip')\n";
+        }
+        else {
+            $smtpPort = "dnl DAEMON_OPTIONS(`Port=smtp, Name=MTA')\n";
+        }
+
+        # smtps port
+        if ($obj->{enableSMTPS}) {
+            $smtpsPort = "DAEMON_OPTIONS(`Port=smtps, Name=TLSMTA, M=s')\n";
+            $ipv6_part .= "DAEMON_OPTIONS(`Familiy=inet6, Port=smtps, Name=TLSMTA-v6, M=s, Modifier=O, Addr=$ipv6_ip')\n";
+        }
+        else {
+            $smtpsPort = "dnl DAEMON_OPTIONS(`Port=smtps, Name=TLSMTA, M=s')\n";
+        }
+
+        # submission(587) port
+        if ($obj->{enableSubmissionPort}) {
+            $submissionPort = "DAEMON_OPTIONS(`Port=submission, Name=MSA, M=Ea')\n";
+            $ipv6_part .= "DAEMON_OPTIONS(`Familiy=inet6, Port=submission, Name=MSA-v6, M=Ea, Modifier=O, Addr=$ipv6_ip')\n";
+        }
+        else {
+            $submissionPort = "dnl DAEMON_OPTIONS(`Port=submission, Name=MSA, M=Ea')\n";
+        }
+    }
+    elsif (($System->{gateway} eq "") && ($System->{gateway_IPv6} ne "")) {
+        #
+        ### IPv6 only:
+        #
+        # smtp port
+        if ($obj->{enableSMTP}) {
+            $smtpPort = "dnl DAEMON_OPTIONS(`Port=smtp, Name=MTA')\n";
+            $ipv6_part .= "DAEMON_OPTIONS(`Familiy=inet6, port=smtp, Name=MTA-v6, Modifier=O')\n";
+        }
+        else {
+            $smtpPort = "dnl DAEMON_OPTIONS(`Port=smtp, Name=MTA')\n";
+        }
+
+        # smtps port
+        if ($obj->{enableSMTPS}) {
+            $smtpsPort = "dnl DAEMON_OPTIONS(`Port=smtps, Name=TLSMTA, M=s')\n";
+            $ipv6_part .= "DAEMON_OPTIONS(`Familiy=inet6, Port=smtps, Name=TLSMTA-v6, M=s, Modifier=O')\n";
+        }
+        else {
+            $smtpsPort = "dnl DAEMON_OPTIONS(`Port=smtps, Name=TLSMTA, M=s')\n";
+        }
+
+        # submission(587) port
+        if ($obj->{enableSubmissionPort}) {
+            $submissionPort = "dnl DAEMON_OPTIONS(`Port=submission, Name=MSA, M=Ea')\n";
+            $ipv6_part .= "DAEMON_OPTIONS(`Familiy=inet6, Port=submission, Name=MSA-v6, M=Ea, Modifier=O')\n";
+        }
+        else {
+            $submissionPort = "dnl DAEMON_OPTIONS(`Port=submission, Name=MSA, M=Ea')\n";
+        }
+    }
+    else {
+        #
+        ### IPv4 only:
+        #
+        # smtp port
+        if ($obj->{enableSMTP}) {
+            $smtpPort = "DAEMON_OPTIONS(`Port=smtp, Name=MTA')\n";
+        }
+        else {
+            $smtpPort = "dnl DAEMON_OPTIONS(`Port=smtp, Name=MTA')\n";
+        }
+
+        # smtps port
+        if ($obj->{enableSMTPS}) {
+            $smtpsPort = "DAEMON_OPTIONS(`Port=smtps, Name=TLSMTA, M=s')\n";
+        }
+        else {
+            $smtpsPort = "dnl DAEMON_OPTIONS(`Port=smtps, Name=TLSMTA, M=s')\n";
+        }
+
+        # submission(587) port
+        if ($obj->{enableSubmissionPort}) {
+            $submissionPort = "DAEMON_OPTIONS(`Port=submission, Name=MSA, M=Ea')\n";
+        }
+        else {
+            $submissionPort = "dnl DAEMON_OPTIONS(`Port=submission, Name=MSA, M=Ea')\n";
+        }
     }
 
     select $out;
     while (<$in>) {
-        if (/^dnl DAEMON_OPTIONS\(\`Port=smtp, Name=MTA/o || /^DAEMON_OPTIONS\(\`Port=smtp, Name=MTA/o ) {
+        if (/^dnl DAEMON_OPTIONS\(\`Port=smtp, Name=MTA'/o || /^DAEMON_OPTIONS\(\`Port=smtp, Name=MTA'/o ) {
             print $smtpPort;
-        } elsif (/^dnl DAEMON_OPTIONS\(\`Port=smtps, Name=TLSMTA/o || /^DAEMON_OPTIONS\(\`Port=smtps, Name=TLSMTA/o ) {
+        } elsif (/^dnl DAEMON_OPTIONS\(\`Port=smtps, Name=TLSMTA,/o || /^DAEMON_OPTIONS\(\`Port=smtps, Name=TLSMTA,/o ) {
             print $smtpsPort;
-        } elsif (/^dnl DAEMON_OPTIONS\(\`Port=submission, Name=MSA/o || /^DAEMON_OPTIONS\(\`Port=submission, Name=MSA/o ) {
+        } elsif (/^dnl DAEMON_OPTIONS\(\`Port=submission, Name=MSA,/o || /^DAEMON_OPTIONS\(\`Port=submission, Name=MSA,/o ) {
             print $submissionPort;
+        } elsif (/^DAEMON_OPTIONS\(\`Familiy=inet6/) {
+            # We remove any existing IPv6 DAEMON_OPTIONS lines first (and add the correct ones later).
+            next;
+        } elsif (/^dnl DAEMON_OPTIONS\(\`port=smtp,Addr=::1, Name=MTA-v6, Family=inet6'\)dnl/) {
+            # Insert IPv6 related lines below this marker:
+            print "dnl DAEMON_OPTIONS(`port=smtp,Addr=::1, Name=MTA-v6, Family=inet6')dnl\n";
+            # Insert IPv6 related lines (if there are any to insert):
+            print $ipv6_part;
         } else {
             print $_;
         }
@@ -206,9 +359,22 @@ sub make_sendmail_mc
     return 1;
 }
 
+sub debug_msg {
+    if ($DEBUG) {
+    my $msg = shift;
+    $DEBUG && print STDERR "$ARGV[0]: ", $msg, "\n";
+
+    $user = $ENV{'USER'};
+    setlogsock('unix');
+    openlog($0,'','user');
+    syslog('info', "$ARGV[0]: $msg");
+    closelog;
+    }
+}
+
 # 
-# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2014-2017 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2014-2017 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 

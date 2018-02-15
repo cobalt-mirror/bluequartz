@@ -1,29 +1,11 @@
-#!/usr/bin/perl -w -I/usr/sausalito/perl -I.
-# $Id: console.pl,v 1.5 2001/09/20 21:19:40 thockin Exp $
-# Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
+#!/usr/bin/perl -I/usr/sausalito/perl -I.
+# $Id: console.pl
+
+# This constructor is deprecated!
 
 use CCE;
-use Sauce::Config;
-use Sauce::Util;
-
 my $cce = new CCE;
 $cce->connectfd();
-
-my $obj = $cce->event_object();
-
-$cce->bye('SUCCESS');
-exit(0);
-
-# actuate the changes
-if ($obj->{console}) {
-	Sauce::Util::addrollbackcommand("/sbin/nvram -c console off");
-	system("/sbin/nvram -c console on > /dev/null 2>&1");
-} else {
-	Sauce::Util::addrollbackcommand("/sbin/nvram -c console on");
-	system("/sbin/nvram -c console off > /dev/null 2>&1");
-}
-system("/usr/bin/killall -HUP consoled");
-
 $cce->bye('SUCCESS');
 exit(0);
 

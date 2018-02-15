@@ -1034,3 +1034,68 @@ msgstr "Server-beheerders"
 msgid "admin_help"
 msgstr "Dit zijn de server beheerder van deze IP-adresbereik."
 
+#####
+# IPv6 Additions - Do not translate
+#####
+
+msgid "IPv6_ipAddressField1"
+msgstr "[[base-network.IPv6_ipAddressField]]"
+
+msgid "IPv6_ipAddressField2"
+msgstr "[[base-network.IPv6_ipAddressField]]"
+
+msgid "IPv6_ipAddressField2_help"
+msgstr "[[base-network.IPv6_ipAddressField1_help]]"
+
+msgid "IPv6_ipAddressField3"
+msgstr "[[base-network.IPv6_ipAddressField]]"
+
+msgid "IPv6_ipAddressField3_help"
+msgstr "[[base-network.IPv6_ipAddressField1_help]]"
+
+msgid "IPv6_ipAddressField4"
+msgstr "[[base-network.IPv6_ipAddressField]]"
+
+msgid "IPv6_ipAddressField4_help"
+msgstr "[[base-network.IPv6_ipAddressField1_help]]"
+
+#####
+# IPv6 Additions - Translate
+#####
+
+msgid "both_ips_must_be_ipv4_or_ipv6"
+msgstr "Het begin-IP [[VAR.range_min]] en het laatste IP [[VAR.range_max]] zijn niet van hetzelfde IP-protocol. Mix IPv4- en IPv6-IP-adressen niet in reeksen." 
+
+msgid "IPValidation_ipv4_specified_but_not_allowed"
+msgstr "U hebt een IPv4 IP-adres ingevoerd, maar IPv4 IP-adressen zijn niet toegestaan."
+
+msgid "IPValidation_ipv6_specified_but_not_allowed"
+msgstr "U hebt een IPv6 IP-adres ingevoerd, maar IPv6 IP-adressen zijn niet toegestaan."
+
+msgid "IPValidation_ip_must_be_specified"
+msgstr "Voer een IP-adres in voor de virtuele site [[VAR.fqdn]]"
+
+msgid "gatewayField_IPv6"
+msgstr "IPv6 Servergateway"
+
+msgid "gatewayField_IPv6_rule"
+msgstr "Bijvoorbeeld 2001:550:1f0e:1da::1 kan een geldige invoer zijn."
+
+msgid "gatewayField_IPv6_help"
+msgstr "Voer het IPv6 IP-adres van de lokale netwerkgateway in voor dit serverapparaat. Dit is de gateway voor zowel de primaire als secundaire interfaces. Via een netwerkgateway kan uw server verbinding maken met de wereld buiten uw lokale netwerkgebied. [[base-network.gatewayField_IPv6_rule]]"
+
+msgid "IPv6_ipAddressField"
+msgstr "IPv6 IP-adres"
+
+msgid "IPv6_ipAddressField_rule"
+msgstr "Voer het IPv6 IP-adres in. Bijvoorbeeld: 2001:550:1f0e:1da::10 kan een geldige invoer zijn."
+
+msgid "IPv6_ipAddressField_help"
+msgstr "Voer het IPv6 IP-adres in van [[VAR.name]]. Als u slechts één netwerkinterfaceaansluiting gebruikt met het serverapparaat, gebruikt u de primaire interface en laat u de andere interfaces leeg. [[base-network.IPv6_ipAddressField_rule]]"
+
+msgid "IPv6_ipAddressField_invalid"
+msgstr "Sorry, de ingevoerde waarde voor [[base-network.IPv6_ipAddressField]] is geen IPv6 IP-adres. [[base-network.IPv6_ipAddressField_rule]]"
+
+msgid "IPv6_ipAddressField1_help"
+msgstr "Voer het IPv6 IP-adres in van de primaire interface, die doorgaans is verbonden met de kant van het intranet. Als u slechts één netwerkinterfaceaansluiting met het serverapparaat gebruikt, gebruikt u de primaire interface en laat u de secundaire interface leeg. [[base-network.IPv6_ipAddressField_rule]]"
+

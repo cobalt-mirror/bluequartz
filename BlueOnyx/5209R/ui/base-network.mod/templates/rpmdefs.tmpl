@@ -106,6 +106,97 @@ fi
 
 <begin $CHANGELOG>
 
+* Tue Feb 06 2018 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX11
+- Small fix in glue/handlers/change_route.pl
+
+* Mon Feb 05 2018 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX10
+- Modified glue/conf/base-network.conf to call etchosts.pl on Vsite changes.
+- Fixed glue/handlers/etchosts.pl and added IPv6 support.
+
+* Sun Feb 04 2018 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX09
+- Small fix in constructor/40_addGateway.pl as some OpenVZ VPS's may not
+  have the gatewaydev specified in /etc/sysconfig/network.
+
+* Sun Feb 04 2018 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX08
+- After the great IPv6-calypse on my workstation got sorted I could apply
+  some more fixes for the IPv6 implementation.
+- Modified constructor/10_fix_ifup.pl
+- Modified constructor/40_addGateway.pl
+- Modified glue/handlers/change_route.pl
+- Modified glue/handlers/rewrite-ifcfg.pl
+- Modified ui/chorizo/web/controllers/ethernet.php
+
+* Fri Feb 02 2018 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX07
+- Massive code cleanup on 'My stuipd idea of 2018', whereas I started
+  the IPv6 port of BlueOnyx on a real server instead of under OpenVZ.
+  And paid dearly for that because I had to fix a lot of shit in more
+  places than I dared to imagine. Well, it's done now.
+- Modified constructor/30_addNetwork.pl
+- Modified constructor/40_addGateway.pl
+- Modified constructor/checkInterfaceConfigure.pl
+- Modified glue/handlers/IpPooling.pm
+- Modified glue/handlers/Network.pm
+- Modified glue/handlers/change_route.pl
+- Modified glue/handlers/rewrite-ifcfg.pl
+- Modified glue/handlers/validate_pool.pl
+- Modified src/base-network-am/am_network.sh
+- Modified src/base-network-am/base-network-am.spec
+- Modified ui/chorizo/web/controllers/ethernet.php
+- Modified ui/chorizo/web/controllers/poolingModify.php
+
+* Wed Jan 31 2018 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX06
+- Concept change in IPv6 implementation for compliance with standards.
+- Modified constructor/10_fix_ifup.pl
+- Modified constructor/30_addNetwork.pl
+- Modified glue/conf/base-network.conf
+- Modified glue/handlers/IpPooling.pm
+- Modified glue/handlers/change_route.pl
+- Modified glue/handlers/check_pool.pl
+- Modified glue/handlers/check_pool_admin.pl
+- Modified glue/handlers/rewrite-ifcfg.pl
+
+* Mon Jan 29 2018 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX05
+- Fixes in glue/handlers/change_route.pl                                                                                                                                                                                                                                    
+- Fixes in glue/handlers/rewrite-ifcfg.pl
+
+* Sun Jan 28 2018 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX04
+- Pulled fix_ifup out of constructor/40_addGateway.pl to make it stand alone.
+- Added constructor/10_fix_ifup.pl
+
+* Sat Jan 27 2018 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX03
+- Several fixes related to IP-Pooling.
+
+* Mon Nov 05 2017 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX02
+- Modified constructors to use cce->update() instead of cce->set().
+- Modified IP-Pooling to work with IPv4 and IPv6. Needs Net::IP.
+
+* Sat Nov 04 2017 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX01
+- IPv6 implementation for BlueOnyx and large rewrite of the network stack.
+  We only deal with REAL interfaces now. Screw Interface Aliases. We add
+  any extra IP on the fly that's not the primary IPv4 or IPv6 IP.
+- Modified glue/handlers/change_route.pl to dynamically add/remove extra
+  IPs and routes. This is run on every network restart, as we tie it also
+  into /etc/sysconfig/network-scripts/ifup-routes on the OS level.
+- Modified constructor/30_addNetwork.pl to detect and update NICs in CODB,
+  but this time only real interfaces. And we only update CODB if something
+  has changed.
+- Modified constructor/31_handle_aws_dhcp.pl
+- Modified constructor/40_addGateway.pl
+- Disabled constructor/updateMac.pl as 30_addNetwork.pl now does the MAC.
+- Modified glue/conf/base-network.conf
+- Modified glue/handlers/Network.pm to disable dependency on ifconfig.
+- Modified glue/handlers/rewrite-ifcfg.pl to deal with IPv6
+- Modified constructor/checkInterfaceConfigure.pl - needs more work
+- Modified glue/handlers/cleanup_aliases.pl - needs more work
+- Modified glue/handlers/etchosts.pl - needs more work
+- Modified glue/handlers/no_duplicates.pl - needs more work
+- Modified glue/handlers/set_imode.pl - needs more work
+- Modified glue/schemas/network.schema
+- Modified ui/chorizo/web/config/routes.php - now disabled anyway
+- Modified ui/chorizo/web/controllers/ethernet.php
+- Added ui/chorizo/web/controllers/ethernetDeploy.php - not really used
+- Added ui/chorizo/web/controllers/ethernetIframe.php - not really used
+
 * Mon Mar 06 2017 Michael Stauber <mstauber@solarspeed.net> 2.0.0-1BX22
 - Added redirect in ui/chorizo/web/controllers/pooling.php on error-free save.
 

@@ -103,6 +103,12 @@ if [ -f /usr/sausalito/constructor/virtbiz/branding/initial_site.pl ]; then
         /usr/sausalito/constructor/virtbiz/branding/initial_site.pl
 fi
 
+if [ ! -d /usr/sausalito/license ];then 
+        /bin/mkdir /usr/sausalito/license 
+        /bin/chmod 700 /usr/sausalito/license/ 
+        /bin/chown admserv:admserv /usr/sausalito/license/ 
+fi
+
 # This is a horrible script that old versions of the blueonyx-cd-installer might have
 # brought aboard. We need to remove it:
 if [ -f /usr/sausalito/constructor/base/blueonyx/51_set_default_services.pl ];then
@@ -136,6 +142,30 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Mon Nov 05 2017 Michael Stauber <mstauber@solarspeed.net> 2.0-1BX082
+- Modified constructors to use cce->update() insteadt of cce->set().
+
+* Tue Oct 31 2017 Michael Stauber <mstauber@solarspeed.net> 2.0-1BX081
+- Enhanced ci/application/libraries/CceClient.php with dedicated functions
+  to handle the CCE Replay-Transactions idea initially introduced in
+  6108R. Natively handling them in CceClient.php offers more flexibility.
+- Extended ci/application/modules/base/gui/config/routes.php
+- Added ci/application/modules/base/gui/controllers/working.php
+- Added ci/application/modules/base/gui/controllers/workFrame.php
+
+* Mon Oct 30 2017 Michael Stauber <mstauber@solarspeed.net> 2.0-1BX080
+- Added conditional creation of /usr/sausalito/license to post-install. 
+- In order to support IPv6 the IP related UIFC classes now understand 
+  IPv4, IPv6 as well as IPv4+IPv6 and can be configured accordingly to 
+  to do the required validation as per 'basetypes.schema'. Defaults 
+  to IPv4 validation to remain downwards compatible. 
+- Modified ci/application/libraries/uifc/IpAddress.php 
+- Modified ci/application/libraries/uifc/IpAddressList.php 
+- Modified ci/application/modules/base/login/controllers/login.php 
+  because IPv6 IPs need special provisions if used in an URL. 
+- Modified ci/application/libraries/BxPage.php for the same reason 
+  and to simplify obtaining of the hostname.
 
 * Mon Mar 06 2017 Michael Stauber <mstauber@solarspeed.net> 2.0-1BX070
 - Fixed libraries/ServerScriptHelper.php as AUTHKEY must not rely on cookies.

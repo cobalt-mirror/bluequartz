@@ -28,7 +28,7 @@ for my $partition (keys %$mounts) {
     my $info = disk_get_usage_info($partition);
 
     if ($oid) {
-        $cce->set($oid, "", { 'total' => $info->{$partition}->{Total}, 'used' => $info->{$partition}->{Used} });
+        $cce->update($oid, "", { 'total' => $info->{$partition}->{Total}, 'used' => $info->{$partition}->{Used} });
 
         # Check if there are duplicate 'Disk' entries with different devices for the same mountpoint:
         my (@xoid) = $cce->find("Disk", { 'mountPoint' => $info->{$partition}->{MountPoint} });

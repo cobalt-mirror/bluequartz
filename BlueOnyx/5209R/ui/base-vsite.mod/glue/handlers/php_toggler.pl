@@ -37,7 +37,6 @@ use FileHandle;
 use File::Copy;
 
 my $cce = new CCE;
-my $conf = '/var/lib/cobalt';
 
 if ($whatami eq "handler") {
     $cce->connectfd();

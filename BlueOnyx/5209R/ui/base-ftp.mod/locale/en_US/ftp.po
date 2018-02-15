@@ -1,0 +1,241 @@
+msgid "ftp"
+msgstr "FTP"
+
+msgid "anonFtp"
+msgstr "Anonymous FTP"
+
+msgid "anonFtp_help"
+msgstr "Enable anonymous FTP service for the site."
+
+msgid "ftp_help"
+msgstr "Click here to change [[base-ftp.ftpSettings]]."
+
+msgid "ftpSettings"
+msgstr "File Transfer Protocol (FTP) Settings"
+
+msgid "enableServerField"
+msgstr "Enable Server"
+
+msgid "enableServerField_help"
+msgstr "Turn File Transfer Protocol (FTP) functionality on or off.  Anonymous FTP access for a specific site can be configured by going to [[base-ftp.anonFtp]] in the [[base-vsite.services]] menu under [[base-alpine.sitemanage]] for the site."
+
+msgid "maxUserField"
+msgstr "Maximum Simultaneous Users"
+
+msgid "maxUserField_rule"
+msgstr "Please enter an number within the specified range.  The default value is 25."
+
+msgid "maxUserField_help"
+msgstr "Set the maximum number of users that can be connected to the FTP Server at the same time.  [[base-ftp.maxUserField_rule]]"
+
+msgid "useReverseDNSField"
+msgstr "Hostname Lookups"
+
+msgid "useReverseDNSField_help"
+msgstr "This turns on hostname lookups for the FTP server. This causes the server to do a DNS lookup on the client IP when it connects to the server, and record it in the log files. This hostname information is then available in the server usage FTP reports. Without this feature, only client IP addresses are reported in the FTP server usage domain report. WARNING: Enabling this option will decrease the performance of your FTP server."
+
+msgid "connectRateField"
+msgstr "Maximum Connection Rate"
+
+msgid "connectRateField_help"
+msgstr "Enter the maximum number of allowed connections per minute.  New connections will be denied if the connection rate has reached this limit. "
+
+msgid "connectRateField_rule"
+msgstr "Please enter an number within the specified range.  The default value is 80."
+
+msgid "basic"
+msgstr "Basic"
+
+msgid "advanced"
+msgstr "Advanced"
+
+msgid "basic_help"
+msgstr "The FTP server may be enabled or disabled here."
+
+msgid "advanced_help"
+msgstr "FTP server parameters may be managed here."
+
+# ----- Active Monitor
+
+msgid "amFTPNameTag"
+msgstr "File Transfer Protocol (FTP) Server"
+
+msgid "amDetailsTitle"
+msgstr "File Transfer Protocol (FTP) Server Details"
+
+msgid "amNotResponding"
+msgstr "The FTP server is not running and could not be restarted. In the [[base-apache.amAdmservNameTag]], try turning the FTP server off then on again to see if this corrects the problem. If the FTP server is still unable to start, try rebooting the server itself by clicking the [[base-power.reboot]] button in the [[base-power.power]] menu under [[base-alpine.serverconfig]]. If the FTP server is still unable to start, please refer [[base-sauce-basic.techSupportURL]] for technical support."
+
+msgid "base-ftp.amBadResponse"
+msgstr "The FTP server gave a bad response."
+
+msgid "amStatusOK"
+msgstr "The FTP server is operating normally."
+
+
+# ---- Handler messages
+
+msgid "badUser"
+msgstr "If server configuration files were removed or manually modified, please restore the original versions and try again."
+
+msgid "cantConfigFile"
+msgstr "Sorry, an error occurred while trying to modify the FTP configuration files. [[base-ftp.badUser]]"
+
+msgid "quoteExceedsSorry"
+msgstr "Sorry, the quota for anonymous FTP is higher than the quota for the site, [[VAR.quota]] MB."
+
+msgid "quotaExceedsSiteQuota"
+msgstr "[[base-ftp.quoteExceedsSorry]]  Please enter a value less than or equal to [[VAR.quota]] MB for the anonymous FTP quota."
+
+msgid "quotaExceedsSiteQuotaEnabled"
+msgstr "[[base-ftp.quotaExceedsSorry]]  Anonymous FTP was not enabled.  Anonymous FTP can be enabled by modifying the Site Settings for the new site."
+
+msgid "siteQuotaLessThanFtpQuota"
+msgstr "The maximum allowed disk space is less than the maximum allowed upload disk space for anonymous FTP which is currently [[VAR.quota]] MB.  Disable anonymous FTP or decrease the value for maximum allowed upload disk space for anonymous FTP, so it is less than or equal to the desired maximum allowed disk space for the site."
+
+# virtual site anonymous ftp page
+msgid "modAnonFtp"
+msgstr "[[base-ftp.anonFtp]] Settings for [[VAR.fqdn]]"
+
+msgid "ftpFullText"
+msgstr "Enable [[base-ftp.anonFtp]]"
+
+msgid "ftpFullText_help"
+msgstr "Check this box to enable anonymous FTP service for the site."
+
+msgid "uploadDiskSpace"
+msgstr "Upload Disk Space"
+
+msgid "ftpQuota"
+msgstr "Maximum Allowed [[base-ftp.uploadDiskSpace]] (MB)"
+
+msgid "ftpQuota_help"
+msgstr "The limit in megabytes (MB) for anonymous FTP uploads."
+
+msgid "ftpquota_invalid"
+msgstr "Sorry, the value entered for [[base-ftp.ftpQuota]] is either not a number or not in the range specified next to the field.  Please enter an number that is within the given range."
+
+msgid "ftpquota_empty"
+msgstr "Sorry, you have not entered a value for [[base-ftp.ftpQuota]]."
+
+msgid "AnonFtp_quota_invalid"
+msgstr "Sorry, the value entered for [[base-ftp.ftpQuota]] is either not a number or is less than one.  Please enter a number greater than or equal to one."
+
+msgid "AnonFtp_quota_empty"
+msgstr "[[base-ftp.ftpquota_empty]]"
+
+msgid "ftpUsers"
+msgstr "Maximum Simultaneous Connections"
+
+msgid "ftpUsers_help"
+msgstr "The maximum number of anonymous FTP users that can be connected to the server at one time."
+
+msgid "ftpusers_invalid"
+msgstr "Sorry, the value entered for [[base-ftp.ftpUsers]] is either not a number or less than one.  Please enter a number greater than or equal to one."
+
+msgid "ftpusers_empty"
+msgstr "Sorry, you have not entered a value for [[base-ftp.ftpUsers]].  Please enter a number greater than or equal to one."
+
+msgid "AnonFtp_maxConnections_invalid"
+msgstr "[[base-ftp.ftpusers_invalid]]"
+
+msgid "AnonFtp_maxConnections_empty"
+msgstr "[[base-ftp.ftpusers_empty]]"
+
+# ui extension strings
+msgid "ftpTabName"
+msgstr "[[base-ftp.anonFtp]]"
+
+msgid "ftpTabName_help"
+msgstr "Modify settings for anonymous FTP."
+
+msgid "anonEnable"
+msgstr "Enable"
+
+# handler error messages for Vsite related handlers
+msgid "anonymousFtpInUse"
+msgstr "Anonymous FTP could not be enabled, because another site with the same IP address, [[VAR.ipaddr]], is already using anonymous FTP."
+
+msgid "cantSuspendFtpSite"
+msgstr "The virtual site could not be suspended because FTP for the site could not be disabled."
+
+msgid "cantSuspendFtp"
+msgstr "The site could not be suspended because FTP access for the site could not be disabled."
+
+msgid "cantUnsuspendFtpSite"
+msgstr "The virtual site could not be unsuspended because FTP access for the site could not be restored."
+
+msgid "unsuspendAnonFtpInUse"
+msgstr "The site that has been unsuspended was using anonymous FTP when it was suspended, however another site with the same IP address is now using anonymous FTP.  Anonymous FTP for this site has been disabled."
+
+msgid "cantUnsuspendFtp"
+msgstr "The site could not be unsuspended, because FTP access could not be restored for this site."
+
+msgid "cantDetermineHomeDir"
+msgstr "Unable to determine the home directory for the site with the name, [[VAR.site]]."
+
+msgid "anonServiceQuota"
+msgstr "Anonymous FTP"
+
+msgid "couldNotSetFtpQuotaMon"
+msgstr "Anonymous FTP quota monitoring could not be correctly configured. "
+
+msgid "couldNotUpdateFtpQuotaMon"
+msgstr "[[base-ftp.couldNotSetFtpQuotaMon]]"
+
+msgid "couldNotClearFtpQuotaMon"
+msgstr "[[base-ftp.couldNotSetFtpQuotaMon]]"
+
+# error messages for vsite_change_ip.pl
+msgid "cantReadAnonFtp"
+msgstr "Unable to read this site's anonymous FTP settings."
+
+msgid "cantUpdateFtpSite"
+msgstr "Anonymous FTP settings could not be updated."
+
+msgid "createFtpSiteFailed"
+msgstr "Unable to create the FTP server configuration for [[VAR.ipaddr]]."
+
+msgid "migrateAnonFtpImpossible"
+msgstr "The IP address cannot be changed to [[VAR.ipaddr]].  Anonymous FTP for this site is enabled, but there is another site with the specified IP address that is also using anonymous FTP.  Disabling anonymous FTP for either site will correct this problem."
+
+msgid "migrateAnonFtpFailed"
+msgstr "Unable to migrate the anonymous FTP settings for this site."
+
+msgid ""
+msgstr ""
+
+# Changes after adding functionality to disable FTP access for non-siteAdmins:
+
+msgid "ftpnonadmin"
+msgstr "Allow User(s) access to FTP"
+
+msgid "ftpnonadmin_help"
+msgstr "Users who are SiteAdministrators can allways FTP to the server - as long as the FTP service in general is enabled. If you also want to allow regular users to access their filespace by FTP, then tick this box."
+
+msgid "siteFtp"
+msgstr "FTP"
+
+msgid "siteFtp_help"
+msgstr "Manage FTP access for this site - including anonymous FTP service."
+
+msgid "ChangeSiteFtp"
+msgstr "FTP Settings for [[VAR.fqdn]]"
+
+msgid "cap_serverFTP"
+msgstr "FTP Settings"
+
+## SFTPD addition:
+
+msgid "enableServerFieldNew"
+msgstr "Enable FTP"
+
+msgid "enableServerFieldNew_help"
+msgstr "[[base-ftp.enableServerField_help]]"
+
+msgid "enableSFTPserverField"
+msgstr "Enable FTPS"
+
+msgid "enableSFTPserverField_help"
+msgstr "Turn FTPS (FTP with SSL/TLS) functionality on or off. FTPS runs on port 990/TCP and allows a secure connection to the FTP server. It should be the preferred method for connecting to FTP. FTP clients should use 'explicit FTP over TLS' to be able to make use of this feature."
+

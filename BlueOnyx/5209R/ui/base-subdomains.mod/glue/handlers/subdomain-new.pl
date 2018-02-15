@@ -287,6 +287,7 @@ foreach $service (@services) {
       if ( $$service->{'enabled'} ) {
         if (-f "/usr/bin/systemctl") {
             # 5209R and therefore Apache 2.4:
+            # Note: This doesn't use CGI-Wrapper, as I can't get that to work in subdomains.
             $serviceCFG .= "  <Directory $web_dir>\n";
             $serviceCFG .= "      AddHandler cgi-script .cgi .pl\n";
             $serviceCFG .= "      Options +ExecCGI\n";
@@ -310,10 +311,40 @@ foreach $service (@services) {
   }
 }
 
+# Assemble VirtualHost HTTP/HTTPS IP Address lines and IP related Rewrite-Conditions:
+my $http_ipline = '';
+my $https_ipline = '';
+my $ip_rewrite_cond_http = '';
+my $ip_rewrite_cond_https = '';
+if (($vsite->{ipaddr} ne "") && ($vsite->{ipaddrIPv6} ne "")) {
+    # Dual stack:
+    $http_ipline = $vsite->{ipaddr} . ':' . $httpPort . ' [' . $vsite->{ipaddrIPv6} . ']:' . $httpPort;
+    $https_ipline = $vsite->{ipaddr} . ':' . $sslPort . ' [' . $vsite->{ipaddrIPv6} . ']:' . $sslPort;
+    $ip_rewrite_cond_http .= 'RewriteCond %{HTTP_HOST}                !^' . $vsite->{ipaddr} . '(:' . $httpPort . ')?$' . "\n";
+    $ip_rewrite_cond_http .= 'RewriteCond %{HTTP_HOST}                !^\[' . $vsite->{ipaddrIPv6} . '\](:' . $httpPort . ')?$';
+
+    $ip_rewrite_cond_https .= 'RewriteCond %{HTTP_HOST}                !^' . $vsite->{ipaddr} . '(:' . $sslPort . ')?$' . "\n";
+    $ip_rewrite_cond_https .= 'RewriteCond %{HTTP_HOST}                !^\[' . $vsite->{ipaddrIPv6} . '\](:' . $sslPort . ')?$';
+}
+elsif (($vsite->{ipaddr} eq "") && ($vsite->{ipaddrIPv6} ne "")) {
+    # IPv6 only:
+    $http_ipline = '[' . $vsite->{ipaddrIPv6} . ']:' . $httpPort;
+    $https_ipline = '[' . $vsite->{ipaddrIPv6} . ']:' . $sslPort;
+    $ip_rewrite_cond_http .= 'RewriteCond %{HTTP_HOST}                !^\[' . $vsite->{ipaddrIPv6} . '\](:' . $httpPort . ')?$';
+    $ip_rewrite_cond_https .= 'RewriteCond %{HTTP_HOST}                !^\[' . $vsite->{ipaddrIPv6} . '\](:' . $sslPort . ')?$';
+}
+else {
+    # IPv4 only (default):
+    $http_ipline = $vsite->{ipaddr} . ':' . $httpPort;
+    $https_ipline = $vsite->{ipaddr} . ':' . $sslPort;
+    $ip_rewrite_cond_http .= 'RewriteCond %{HTTP_HOST}                !^' . $vsite->{ipaddr} . '(:' . $httpPort . ')?$';
+    $ip_rewrite_cond_https .= 'RewriteCond %{HTTP_HOST}                !^' . $vsite->{ipaddr} . '(:' . $sslPort . ')?$';
+}
+
 $site_config = "#NameVirtualHost $ipadd:$httpPort
 ServerRoot /etc/httpd
 
-<VirtualHost $ipadd:$httpPort>
+<VirtualHost $http_ipline>
   ServerName  $fqdn
   ServerAdmin admin
   DocumentRoot $web_dir
@@ -347,8 +378,8 @@ $cce->bye('SUCCESS');
 exit(0);
 
 # 
-# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015-2018 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015-2018 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2008 NuOnce Networks, Inc.
 # All Rights Reserved.
 # 

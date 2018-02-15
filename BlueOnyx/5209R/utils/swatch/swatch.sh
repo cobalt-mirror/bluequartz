@@ -58,6 +58,10 @@ fi
 
 $TOUCH $lockfile
 
+# Run hotfix script:
+debug "Running hotfixes"
+/usr/sausalito/sbin/hotfixes.sh
+
 if [ -f "/tmp/.swatch.lock" ]; then
 	$FIND /tmp/.swatch.lock -type f -cmin +25 -print | $XARGS $REM >/dev/null 2>&1
 	#echo "Swatch executeable is already running. Delaying execution for now.";
@@ -79,10 +83,6 @@ if [ -f /usr/bin/systemctl ]; then
     systemctl enable swatch.service >/dev/null 2>&1 || : 
   fi 
 fi 
-
-# Run hotfix script:
-debug "Running hotfixes"
-/usr/sausalito/sbin/hotfixes.sh
 
 debug "Deleting lockfile"
 $REM -f $lockfile

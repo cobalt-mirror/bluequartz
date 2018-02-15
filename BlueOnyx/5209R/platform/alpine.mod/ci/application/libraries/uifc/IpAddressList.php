@@ -16,6 +16,21 @@ class IpAddressList extends FormField {
   // public methods
   //
 
+  // description: Type of input validation. 
+  // param: size: an integer
+  function setType($type) {
+        $this->type = $type;
+  }
+
+  // Returns type of input validation:
+  // If none given, it defaults to "alphanum_plus":
+  function getType() {
+    if (!isset($this->type)) {
+         $this->type = "ipaddr_list";
+    }
+    return $this->type;
+  }
+
   // Sets the current label
   function setCurrentLabel($label) {
     $this->Label = $label;
@@ -51,9 +66,6 @@ class IpAddressList extends FormField {
 
     $builder = new FormFieldBuilder();
 
-    // Verification type as per Schema file:
-    $type = "ipaddr_list";
-
     // Check Class BXPage to see if we have a label and description for this FormField:
     if (is_array($this->page->getLabel($id))) {
       foreach ($this->page->getLabel($id) as $label => $description) {
@@ -68,15 +80,15 @@ class IpAddressList extends FormField {
       $builder->setDescription("");
     }
 
-    $result = $builder->makeTextListField($this->getId(), stringToArray($this->getValue()), $this->getAccess(), $i18n, $type, $this->isOptional(), $formId, $GLOBALS["_FormField_height"], $GLOBALS["_FormField_width"]);
+    $result = $builder->makeTextListField($this->getId(), stringToArray($this->getValue()), $this->getAccess(), $i18n, $this->getType(), $this->isOptional(), $formId, $GLOBALS["_FormField_height"], $GLOBALS["_FormField_width"]);
 
     return $result;
   }
 }
 
 /*
-Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2014-2017 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2014-2017 Team BlueOnyx, BLUEONYX.IT
 Copyright (c) 2003 Sun Microsystems, Inc. 
 All Rights Reserved.
 

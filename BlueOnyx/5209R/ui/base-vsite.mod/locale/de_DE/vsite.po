@@ -257,12 +257,6 @@ msgstr "Dies ist der Hostname der Site. Ein Hostname ist der erste Teil eines vo
 msgid "inSubnet"
 msgstr "liegt im Subnetz"
 
-msgid "ipAddr"
-msgstr "IP-Adresse"
-
-msgid "ipAddr_help"
-msgstr "Dies ist die IP-Adresse der Site."
-
 msgid "listSuspended"
 msgstr "Suspendiert"
 
@@ -1161,4 +1155,35 @@ msgstr "Die Webserver Aliase sind derzeit OK."
 msgid "amFixed"
 msgstr "Es gab ein Problem mit einem oder mehreren Webserver Aliasen, aber dies wurde automatisch behoben."
 
+#
+### IPv6 Related additions:
+#
 
+msgid "comboIpAddr"
+msgstr "IP-Adresse"
+
+msgid "comboIpAddr_help"
+msgstr "Dies ist die IP-Adresse der Site."
+
+msgid "ipAddr"
+msgstr "IPv4 IP-Adresse"
+
+msgid "ipAddr_help"
+msgstr "Dies ist die IPv4 IP-Adresse der Site."
+
+msgid "ipaddrIPv6"
+msgstr "IPv6 IP-Adresse"
+
+msgid "ipaddrIPv6_help"
+msgstr "Dies ist die IPv6 IP-Adresse der Site."
+
+# Error messages:
+
+msgid "IPValidation_ipv4_specified_but_not_allowed"
+msgstr "Fehler: Es wurde eine IPv4 IP Addresse angegeben, aber IPv4 ist auf diesem Server deaktiviert."
+
+msgid "IPValidation_ipv6_specified_but_not_allowed"
+msgstr "Fehler: Es wurde eine IPv6 IP Addresse angegeben, aber IPv6 ist auf diesem Server deaktiviert."
+
+msgid "IPValidation_ip_must_be_specified"
+msgstr "Fehler: Es wurde weder eine IPv4 noch eine IPv6 IP Addresse angegeben. Mindestens eine der beiden muss jedoch angegeben werden."

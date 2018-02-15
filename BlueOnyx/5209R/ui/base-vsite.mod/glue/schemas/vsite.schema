@@ -40,8 +40,11 @@
 
     <!-- The ip address used by the site, may be shared by sites -->
     <property 
-        name="ipaddr" type="ipaddr" 
-        writeacl="ruleCapable(adminUser)"
+        name="ipaddr" type="ipaddr" optional="yes" writeacl="ruleCapable(adminUser)"
+    />
+
+    <property 
+        name="ipaddrIPv6" type="ipaddrIPv6" optional="yes" writeacl="ruleCapable(adminUser)"
     />
 
     <!-- fqdn aliases for the web server -->
@@ -157,6 +160,11 @@
         writeacl="ruleCapable(adminUser)" 
     /> 
 
+    <property 
+        name="force_update" type="scalar" default="" 
+        writeacl="ruleCapable(adminUser)" 
+    /> 
+
 </class>
 
 <!-- 
@@ -210,6 +218,9 @@
     <property 
         name="ipaddr" type="ipaddr" optional="yes"
         writeacl="ruleCapable(adminUser)"
+    />
+    <property 
+        name="ipaddrIPv6" type="ipaddrIPv6" optional="yes" writeacl="ruleCapable(adminUser)"
     />
     <property 
         name="domain" type="domainname" optional="yes"

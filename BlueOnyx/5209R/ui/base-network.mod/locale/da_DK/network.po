@@ -1335,3 +1335,68 @@ msgstr "Klik her for at ændre internetindstillinger."
 msgid "openvz_vps"
 msgstr "Dette er en OpenVZ VPS. Netværksindstillinger (såsom værtsnavn, domænenavn, DNS-servere og gateway) kan kun ændres på master node. Ikke i de VPS selv. Nedenfor kan du gennemgå de aktuelt konfigurerede indstillinger for denne VPS."
 
+#####
+# IPv6 Additions - Do not translate
+#####
+
+msgid "IPv6_ipAddressField1"
+msgstr "[[base-network.IPv6_ipAddressField]]"
+
+msgid "IPv6_ipAddressField2"
+msgstr "[[base-network.IPv6_ipAddressField]]"
+
+msgid "IPv6_ipAddressField2_help"
+msgstr "[[base-network.IPv6_ipAddressField1_help]]"
+
+msgid "IPv6_ipAddressField3"
+msgstr "[[base-network.IPv6_ipAddressField]]"
+
+msgid "IPv6_ipAddressField3_help"
+msgstr "[[base-network.IPv6_ipAddressField1_help]]"
+
+msgid "IPv6_ipAddressField4"
+msgstr "[[base-network.IPv6_ipAddressField]]"
+
+msgid "IPv6_ipAddressField4_help"
+msgstr "[[base-network.IPv6_ipAddressField1_help]]"
+
+#####
+# IPv6 Additions - Translate
+#####
+
+msgid "both_ips_must_be_ipv4_or_ipv6"
+msgstr "Begyndelsen IP [[VAR.range_min]] og den endelige IP [[VAR.range_max]] er ikke af samme IP-protokol. Bland ikke IPv4- og IPv6-IP-adresser i intervaller." 
+
+msgid "IPValidation_ipv4_specified_but_not_allowed"
+msgstr "Du har indtastet en IPv4 IP-adresse, men IPv4 IP-adresser er ikke tilladt."
+
+msgid "IPValidation_ipv6_specified_but_not_allowed"
+msgstr "Du har indtastet en IPv6 IP-adresse, men IPv6 IP-adresser er ikke tilladt."
+
+msgid "IPValidation_ip_must_be_specified"
+msgstr "Indtast venligst en IP-adresse for det virtuelle websted [[VAR.fqdn]]"
+
+msgid "gatewayField_IPv6"
+msgstr "IPv6 Server Gateway"
+
+msgid "gatewayField_IPv6_rule"
+msgstr "For eksempel 2001:550:1f0e:1da::1 kunne være en gyldig post."
+
+msgid "gatewayField_IPv6_help"
+msgstr "Indtast IPv6 IP-adressen på den lokale netværksgateway for denne serverenhed. Dette er indgangen til både primære og sekundære grænseflader. En netværksgateway giver din server mulighed for at oprette forbindelse til verden uden for dit lokale netværk. [[base-network.gatewayField_IPv6_rule]]"
+
+msgid "IPv6_ipAddressField"
+msgstr "IPv6 IP-adresse"
+
+msgid "IPv6_ipAddressField_rule"
+msgstr "Indtast venligst IPv6 IP-adressen. For eksempel 2001:550:1f0e:1da::10 kunne være en gyldig post."
+
+msgid "IPv6_ipAddressField_help"
+msgstr "Indtast IPv6 IP-adressen til [[VAR.name]]. Hvis du kun bruger en netværksgrænsefladeforbindelse til serverenheden, skal du bruge den primære grænseflade og lade de andre grænseflader være tomme. [[base-network.IPv6_ipAddressField_rule]]"
+
+msgid "IPv6_ipAddressField_invalid"
+msgstr "Beklager, værdien angivet for [[base-network.IPv6_ipAddressField]] er ikke en IPv6 IP-adresse. [[base-network.IPv6_ipAddressField_rule]]"
+
+msgid "IPv6_ipAddressField1_help"
+msgstr "Indtast IPv6 IP-adressen på den primære grænseflade, som typisk forbindes med intranetsiden. Hvis du kun bruger en netværksgrænsefladeforbindelse til serverenheden, skal du bruge den primære grænseflade og lade den sekundære grænseflade være tom. [[base-network.IPv6_ipAddressField_rule]]"
+

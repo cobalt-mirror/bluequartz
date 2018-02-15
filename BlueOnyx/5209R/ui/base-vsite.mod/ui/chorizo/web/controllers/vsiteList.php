@@ -162,7 +162,16 @@ class VsiteList extends MX_Controller {
                 }
 
                 $siteList[0][$numsite] = $vsiteSettings['fqdn'];
-                $siteList[1][$numsite] = $vsiteSettings['ipaddr'];
+
+                if (($vsiteSettings['ipaddr'] != "") && ($vsiteSettings['ipaddrIPv6'] != "")) {
+                    $siteList[1][$numsite] = $vsiteSettings['ipaddr'] . "<br>" . $vsiteSettings['ipaddrIPv6'];
+                }
+                elseif (($vsiteSettings['ipaddr'] != "") && ($vsiteSettings['ipaddrIPv6'] == "")) {
+                    $siteList[1][$numsite] = $vsiteSettings['ipaddr'];
+                }
+                else {
+                    $siteList[1][$numsite] = $vsiteSettings['ipaddrIPv6'];
+                }
 
                 // Display the Owner of the Vsite:
                 if ($vsiteSettings['createdUser'] == "") {
@@ -314,7 +323,7 @@ class VsiteList extends MX_Controller {
 
         $block =& $factory->getPagedBlock("virtualSiteList", array($defaultPage));
 
-        $scrollList = $factory->getScrollList("virtualSiteList", array("fqdn", "ipAddr", "createdUser", "listSuspended", "Features", " "), $siteList); 
+        $scrollList = $factory->getScrollList("virtualSiteList", array("fqdn", "comboIpAddr", "createdUser", "listSuspended", "Features", " "), $siteList); 
         $scrollList->setAlignments(array("left", "right", "center", "center", "center", "right"));
         $scrollList->setDefaultSortedIndex('0');
         $scrollList->setSortOrder('ascending');
@@ -417,8 +426,8 @@ class VsiteList extends MX_Controller {
     }       
 }
 /*
-Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2015-2018 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2015-2018 Team BlueOnyx, BLUEONYX.IT
 All Rights Reserved.
 
 1. Redistributions of source code must retain the above copyright 

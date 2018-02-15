@@ -11,7 +11,7 @@ $cce->connectuds();
 my $available_langs = $cce->array_to_scalar(I18n::getAvailableLocales('base-system'));
 
 my ($oid) = $cce->find('System');
-my ($ok) = $cce->set($oid, '', { 'locales' => $available_langs });
+my ($ok) = $cce->update($oid, '', { 'locales' => $available_langs });
 
 $cce->bye('SUCCESS');
 exit(0);

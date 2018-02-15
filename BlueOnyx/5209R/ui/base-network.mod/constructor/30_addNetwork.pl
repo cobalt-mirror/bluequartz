@@ -6,8 +6,14 @@
 use lib qw(/usr/sausalito/handlers/base/network);
 use CCE;
 use Network qw(find_eth_ifaces);
+use Net::IP qw(:PROC);
+use Data::Dumper;
 
-my $DEBUG = 0;
+$DEBUG = "0";
+if ($DEBUG) {
+        use Data::Dumper;
+        use Sys::Syslog qw( :DEFAULT setlogsock);
+}
 
 my $errors = 0;
 
@@ -16,6 +22,8 @@ $cce->connectuds();
 
 # get all the names of all current interfaces and aliases
 my @devices = find_eth_ifaces();
+
+&debug_msg("\@devices: " . Dumper (\@devices) . "\n");
 
 # find_eth_ifaces failed if @devices is empty
 if (!scalar(@devices))
@@ -29,161 +37,191 @@ if (-f "/etc/is_aws") {
     $is_aws = "1";
 }
 
+my ($sysoid) = $cce->find('System');
+my ($ok, $System) = $cce->get($sysoid);
+if (!$ok) {
+    &debug_msg("Running: No 'System' Object found, bailing.\n");
+    $cce->bye('FAIL');
+    exit 1;
+}
+my $IPType = $System->{IPType};
+
 # for each inteface or alias
 # get information from ifconfig
 # make sure a Network object exists in CCE
 # if necessary, destroy duplicates in CCE
-for my $device (@devices) 
-{
-    $DEBUG && print STDERR "current device: $device\n";
+for my $device (@devices) {
+    &debug_msg("current device: $device\n");
 
-    # parse ifconfig
-    my $ip = ''; 
-    my $nm = '';
-    my $mac = '';
-    my $data = join('', `$Network::IFCONFIG $device`);
-    if ($data =~ m/^$device/s) {
+    $net_device_cfg = $Network::NET_SCRIPTS_DIR . '/ifcfg-' . $device;
 
-        # Format EL5/EL6:
-        # venet0:0  Link encap:UNSPEC  HWaddr 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00  
-        #           inet addr:38.114.102.15  P-t-P:38.114.102.15  Bcast:38.114.102.15  Mask:255.255.255.255
-        #           UP BROADCAST POINTOPOINT RUNNING NOARP  MTU:1500  Metric:1
-        #
-        # Format EL7:
-        # venet0:0: flags=211<UP,BROADCAST,POINTOPOINT,RUNNING,NOARP>  mtu 1500
-        #         inet 38.114.102.16  netmask 255.255.255.255  broadcast 38.114.102.16  destination 38.114.102.16
-        #         unspec 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00  txqueuelen 0  (UNSPEC)
+    my $onboot = '0';
+    my $ipv4_ip = '';
+    my $ipv4_nm = '';
+    my $ipv6_ip = '';
+    my $ipv6_secs_ip = '';
+    my @ipv6_array = ();
+    my @ipv6_array_out = ();
 
-        if (($data =~ m/inet addr:\s*(\S+)/s) || ($data =~ m/inet \s*(\S+)/s))
-        {
-            $ip = $1;
-            $DEBUG && print STDERR "IP: $ip\n";
+    if (-f $net_device_cfg) {
+        &debug_msg("net_device_cfg: $net_device_cfg\n");
+
+        # Interface enabled?
+        $onboot = `LC_ALL=C cat $net_device_cfg | grep ^ONBOOT=yes | wc -l`;
+        chomp($onboot);
+
+        # Get IPv4 IP:
+        $ipv4_ip = `LC_ALL=C cat $net_device_cfg | grep ^IPADDR= | awk -F "IPADDR=" '{print \$2}'`;
+        chomp($ipv4_ip);
+
+        # Get IPv4 Netmask:
+        $ipv4_nm = `LC_ALL=C cat $net_device_cfg | grep ^NETMASK= | awk -F "NETMASK=" '{print \$2}'`;
+        chomp($ipv4_nm);
+
+        # Get IPv6 IP:
+        $ipv6_ip = `LC_ALL=C cat $net_device_cfg | grep ^IPV6ADDR= | awk -F "IPV6ADDR=" '{print \$2}'`;
+        chomp($ipv6_ip);
+
+        &debug_msg("Running: My primary IPv4 ipaddr: " . $ipv4_ip . "\n");
+        &debug_msg("Running: My primary IPv4 netmask: " . $ipv4_nm . "\n");
+        &debug_msg("Running: My primary IPv6 ipaddr: " . $ipv6_ip . "\n");
+
+        # Get IPv6 Secondaries:
+        if (($device eq "eth0") || ($device eq "venet0")) {
+            $ipv6_secs_ip = `LC_ALL=C cat $net_device_cfg| grep ^IPV6ADDR_SECONDARIES= | awk -F 'IPV6ADDR_SECONDARIES="' '{print \$2}'|awk -F '"' '{print \$1}'`;
+            chomp($ipv6_secs_ip);
+            &debug_msg("current ipv6_secs_ip: $ipv6_secs_ip\n");
+            @ipv6_array = split ' ', $ipv6_secs_ip;
+            foreach $ip_x (@ipv6_array) {
+                # Remove Suffix and return IP in shorthand:
+                $ip_test = Net::IP->new($ip_x);
+                $ip = $ip_test->ip($ip_test);
+                $ip_test = Net::IP->new($ip);
+                $ip = $ip_test->short($ip_test);
+                push @ipv6_array_out, $ip;
+            }
+            @ipv6_array_out = sort(@ipv6_array_out);
+            &debug_msg("\@ipv6_array_out: " . Dumper (\@ipv6_array_out) . "\n");
+            if (scalar(@ipv6_array_out)) {
+                $extra_ipaddr_IPv6 = $cce->array_to_scalar(@ipv6_array_out);
+                &debug_msg("IPv6 Scalar: $extra_ipaddr_IPv6\n");
+                my ($SysOid) = $cce->find('System');
+                if ($SysOid) {
+                    # Get 'System':
+                    my ($ok, $System) = $cce->get($SysOid);
+                    if ($System->{extra_ipaddr_IPv6} ne $extra_ipaddr_IPv6) {
+                        my ($ok) = $cce->update($SysOid, '', { 'extra_ipaddr_IPv6' => $extra_ipaddr_IPv6, 'nw_update' => time() });
+
+                        # Force the write-out of the "IPV6ADDR_SECONDARIES" line to the primary Network-Interface config file.
+                        if ((-e "/proc/user_beancounters") && (-f "/etc/vz/conf/0.conf")) {
+                            $DEFAULT_INTERFACE = 'venet0';
+                        }
+                        elsif ((-e "/proc/user_beancounters") && (!-f "/etc/vz/conf/0.conf")) {
+                            # No, we're in an OpenVZ VPS:
+                            $device = 'venet0';
+                        }
+                        else {
+                            $DEFAULT_INTERFACE = 'eth0';
+                        }
+                        my ($net_oid) = $cce->find('Network', { 'device' => $DEFAULT_INTERFACE, 'enabled' => 1, 'real' => 1 });
+                        if ($net_oid) {
+                            $cce->set($net_oid, '', { 'refresh' => time() });
+                        }                        
+                    }
+                    else {
+                        &debug_msg("No IPV6ADDR_SECONDARIES changes for $device\n");
+                    }
+                }
+            }
         }
-        if (($data =~ m/Mask:\s*(\S+)/s) || ($data =~ m/netmask\s*(\S+)/s))
-        {
-            $nm = $1;
-            $DEBUG && print STDERR "Mask: $nm\n";
-        }
-        if (($data =~ m/HWaddr\s*(\S+)/s) || ($data =~ m/unspec\s*(\S+)\s*txqueuelen/s))
-        {
-            $mac = $1;
-            $DEBUG && print STDERR "MAC: $mac\n";
-        }
+
+        $bootproto = 'none';
     }
+    else {
+        &debug_msg("net_device_cfg does not yet exist: $net_device_cfg\n");
+    }
+
+    # Get MAC:
+    if (-f "/sys/class/net/$device/address") {
+        my $mac = `cat /sys/class/net/$device/address`;
+    }
+    else {
+        my $mac = '';
+    }
+    chomp($mac);
+
+    my $bootproto = 'none';
+    if ($is_aws == "1") {
+        # If we're on AWS, set bootproto=dhcp:
+        $bootproto = 'dhcp';
+    }
+
+    # If interface has IP and netmask (or IPv6 IP) set it to enabled:
+    if (($ipv4_ip && $ipv4_nm) || ($ipv6_ip)) {
+        $onboot = '1';
+    }
+
+    # Assemble Array for SET transaction:
+    $new_obj->{enabled} = $onboot;
+    $new_obj->{bootproto} = $bootproto;
+    $new_obj->{mac} = $mac;
+    $new_obj->{ipaddr} = $ipv4_ip;
+    $new_obj->{netmask} = $ipv4_nm;
+    $new_obj->{ipaddr_IPv6} = $ipv6_ip;
+    $new_obj->{real} = '1';
 
     my @oids = $cce->find('Network', { 'device' => $device } );
 
     my $oid = 0;
-    if (scalar(@oids) == 1) 
-    {
+    # Update existing info in CODB:
+    if (scalar(@oids) == 1) {
         $oid = $oids[0];
+        my ($ok, $obj) = $cce->get($oid);
 
-        # Update info in CODB:
-        if ($ip && $nm) 
-        {
-            $obj->{ipaddr} = $ip;
-            $obj->{netmask} = $nm;
-            $obj->{mac} = $mac;
-            $obj->{enabled} = 1;
+        $DEBUG && print STDERR "onboot: $onboot - " . $obj->{enabled} .  "\n";
+        $DEBUG && print STDERR "bootproto: $bootproto - " . $obj->{bootproto} .  "\n";
+        $DEBUG && print STDERR "mac: $mac - " . $obj->{mac} .  "\n";
+        $DEBUG && print STDERR "ipv4_ip: $ipv4_ip - " . $obj->{ipaddr} .  "\n";
+        $DEBUG && print STDERR "ipv4_nm: $ipv4_nm - " . $obj->{netmask} .  "\n";
+        $DEBUG && print STDERR "ipv6_ip: $ipv6_ip - " . $obj->{ipaddr_IPv6} .  "\n\n\n";
 
-            # If we're on AWS, set bootproto=dhcp:
-            if ($is_aws == "1") {
-                $obj->{bootproto} = 'dhcp';
-            }
-
-            $DEBUG && print STDERR "Updating config: $ip/$nm in OID $oid\n";
-            my ($ok) = $cce->set($oid, '', $obj);
-        } 
-
+        if (($ipv4_ip ne $obj->{ipaddr}) || ($ipv4_nm ne $obj->{netmask}) || ($ipv6_ip ne $obj->{ipaddr_IPv6}) || ($onboot ne $obj->{enabled}) || ($mac ne $obj->{mac}) || ($bootproto ne $obj->{bootproto})) {
+            &debug_msg("Something has changed. Need to update CODB for $device\n");
+            my ($ok) = $cce->set($oid, '', $new_obj);
+        }
+        else {
+            # No changes, no SET transaction.
+            &debug_msg("No changes for $device\n");
+        }
     } 
-    elsif (scalar(@oids) == 0) 
-    {
+    elsif (scalar(@oids) == 0) {
         # no Network object for this device, so create one
-        my $obj = { 'device' => $device };
-        if ($device !~ /:\d+$/)
-        {
-            # this is a real interface
-            $obj->{real} = 1;
-        }
+        $new_obj->{device} = $device;
 
-        # if according to ifconfig this interface has an address and
-        # netmask, set those and mark it as enabled
-        if ($ip && $nm) 
-        {
-            $DEBUG && print STDERR "Using old config: $ip/$nm\n";
-            $obj->{ipaddr} = $ip;
-            $obj->{netmask} = $nm;
-            $obj->{mac} = $mac;
-            $obj->{enabled} = 1;
-
-            # If we're on AWS, set bootproto=dhcp:
-            if ($is_aws == "1") {
-                $obj->{bootproto} = 'dhcp';
-            }
-
-        } 
-        else 
-        {
-            # check the config file to see if this interface should
-            # be enabled on boot
-            $obj->{enabled} = &onboot($device);
-        }
-
-        my ($success) = $cce->create('Network', $obj);
-        if (!$success) 
-        {
-            $DEBUG && print STDERR "Failed to create Network object for $device\n";
+        my ($success) = $cce->create('Network', $new_obj);
+        if (!$success) {
+            &debug_msg("Failed to create Network object for $device\n");
             $errors++;
         } 
-        else 
-        {
-            $DEBUG && print STDERR "Created Network object for $device.\n";
+        else {
+            &debug_msg("Created Network object for $device.\n");
         }
         # turn on NAT and IPForwarding
         hack_on_nat();
-
-        # update MAC address
-        # don't update mac address
-        # $oid = $cce->oid();
     } 
-    else 
-    {
+    else {
         # destroy extras
         shift(@oids);
-        for my $network (@oids) 
-        {
+        for my $network (@oids) {
             my ($success) = $cce->destroy($network);
-            if ($success) 
-            {
-                $DEBUG && print STDERR "Destroyed surplus Network.$device object $network\n";
+            if ($success) {
+                &debug_msg("Destroyed surplus Network.$device object $network\n");
             } 
-            else 
-            {
-                $DEBUG && print STDERR "Failed to destroy surplus Network.$device object $network\n";
+            else {
+                &debug_msg("Failed to destroy surplus Network.$device object $network\n");
                 $errors++;
             }
         }
-    }
-
-    # make sure the real flag is properly set
-    if (! -f "/proc/user_beancounters") { 
-    # Handle standard ethX setups:
-        if ($oid && $device !~ /:\d+$/) {
-        $cce->set($oid, '', { 'real' => 1 });
-        }
-        elsif ($oid) {
-            $cce->set($oid, '', { 'real' => 0 });
-        }
-    }
-    else {
-    # Handle OpenVZ cases where venet0:0 is the (first) real interface
-    if ($oid && $device =~ /:0/) {
-        $cce->set($oid, '', { 'real' => 1 });
-        }
-        elsif ($oid) {
-            $cce->set($oid, '', { 'real' => 0 });
-        }
-    $cce->set($oid, '', { 'mac' => $mac });
     }
 }
 
@@ -193,61 +231,38 @@ exit($errors);
 sub hack_on_nat {
     my ($oid) = $cce->find('System');
     if ($oid) {
-    if (! -f "/proc/user_beancounters") {
-            my ($ok) = $cce->set($oid, 'Network', { 
-                            'nat' => '1',
-                            'ipForwarding' => '1',
-                        });
-    }
-    else {
-            my ($ok) = $cce->set($oid, 'Network', { 
-                            'nat' => '0',
-                            'ipForwarding' => '0',
-                        });
-    }
-        if (not $ok) {
-            $cce->warn('[[base-network.cantTurnOnNat]]');
-        }
 
-        # debugging:
-        if ($DEBUG) {
-            system('/bin/cp',
-                '/etc/sysconfig/network',
-                '/tmp/.network.' . scalar(time()) );
+        # Get 'System' / 'Network'
+        my ($ok, $System_Network) = $cce->get($oid, 'Network');
+
+        if (! -f "/proc/user_beancounters") {
+            if (($System_Network->{nat} ne '1') || ($System_Network->{ipForwarding} ne '1')) {
+                my ($ok) = $cce->update($oid, 'Network', { 'nat' => '1', 'ipForwarding' => '1' });
+            }
+        }
+        else {
+            if (($System_Network->{nat} ne '0') || ($System_Network->{ipForwarding} ne '0')) {
+                my ($ok) = $cce->update($oid, 'Network', { 'nat' => '0', 'ipForwarding' => '0' });
+            }
         }
     }
 }
-    
-# check if ifcfg has onboot flag set to yes
-# if so returns 1, else returns 0
-sub onboot
-{
-    my $device = shift;
 
-    my $onboot = 0;
-
-    if(open(IFCFG, "$Network::NET_SCRIPTS_DIR/ifcfg-$device")) 
-    {
-        while(<IFCFG>) 
-        {
-            if(/^ONBOOT=(\w+)$/i) 
-            {
-                if ($1 =~ /yes/i) 
-                {
-                    $onboot = 1;
-                }
-            }
-        }
-
-        close IFCFG;
+sub debug_msg {
+    if ($DEBUG) {
+        my $msg = shift;
+        $user = $ENV{'USER'};
+        setlogsock('unix');
+        openlog($0,'','user');
+        syslog('info', "$ARGV[0]: $msg");
+        closelog;
+        print STDERR "$msg\n";
     }
-
-    return $onboot;
 }
 
 # 
-# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015-2018 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015-2018 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 

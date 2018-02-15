@@ -120,10 +120,13 @@ class PoolingModify extends MX_Controller {
                         $CI->serverScriptHelper->destructor();
                         Log403Error("/gui/Forbidden403");
                     }
+                    if (!isset($attributes["admin"])) {
+                        $attributes["admin"] = 'admin';
+                    }
                     // construct object:
                     $obj = array(
-                        "min" => $attributes["range_min"],
-                        "max" => $attributes["range_max"],
+                        "min" => $attributes["min"],
+                        "max" => $attributes["max"],
                         "admin" => $attributes["admin"],
                         "creation_time" => time());
 
@@ -145,11 +148,20 @@ class PoolingModify extends MX_Controller {
                 if (!is_file("/etc/DEMO")) {
                     $ok = $CI->cceClient->destroy($oid);
                 }
-                // Nice people say goodbye, or CCEd waits forever:
-                $CI->cceClient->bye();
-                $CI->serverScriptHelper->destructor();
-                header("Location: /network/pooling");
-                exit;
+
+                $CCEerrors = $CI->cceClient->errors();
+                foreach ($CCEerrors as $object => $objData) {
+                    // When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
+                    $my_errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
+                }
+
+                if (count($my_errors) <= '0') {
+                    // Nice people say goodbye, or CCEd waits forever:
+                    $CI->cceClient->bye();
+                    $CI->serverScriptHelper->destructor();
+                    header("Location: /network/pooling");
+                    exit;
+                }
             }
         }
         else {
@@ -157,13 +169,19 @@ class PoolingModify extends MX_Controller {
                 if ($CI->input->post(NULL, TRUE)) {
                     // construct object:
                     $obj = array(
-                        "min" => $attributes["range_min"],
-                        "max" => $attributes["range_max"],
+                        "min" => $attributes["min"],
+                        "max" => $attributes["max"],
                         "admin" => $attributes["admin"],
                         "creation_time" => time());
 
                     // Set Object:
                     $ok = $CI->cceClient->create("IPPoolingRange", $obj);
+
+                    $CCEerrors = $CI->cceClient->errors();
+                    foreach ($CCEerrors as $object => $objData) {
+                        // When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
+                        $my_errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
+                    }
                 }           
         }
 
@@ -220,16 +238,26 @@ class PoolingModify extends MX_Controller {
             $pbTitle = 'sitepooling';
             $oid = $get_form_data['_oid'];
             $current = $CI->cceClient->get($oid);
-            $min_string = "range_min";
-            $max_string = "range_max";
+            $min_string = "min";
+            $max_string = "max";
         }
         else {
             $add = true;
             $pbTitle = 'sitepooling';
-            $current['min'] = "";
-            $current['max'] = "";
-            $min_string = "range_min";
-            $max_string = "range_max";
+            if (isset($attributes["min"])) {
+                $current['min'] = $attributes["min"];
+            }
+            else {
+                $current['min'] = "";
+            }
+            if (isset($attributes["max"])) {
+                $current['max'] = $attributes["max"];
+            }
+            else {
+                $current['max'] = "";
+            }
+            $min_string = "min";
+            $max_string = "max";
         }
 
         $block =& $factory->getPagedBlock($pbTitle, array($defaultPage));
@@ -239,9 +267,11 @@ class PoolingModify extends MX_Controller {
         $block->setDefaultPage($defaultPage);
 
         $minfield = $factory->getIpAddress($min_string, $current['min']);
+        $minfield->setType("ipaddrIPv4IPv6");
         $block->addFormField($minfield,$factory->getLabel('min'), $defaultPage);
 
         $maxfield = $factory->getIpAddress($max_string, $current['max']);
+        $maxfield->setType("ipaddrIPv4IPv6");
         $block->addFormField($maxfield,$factory->getLabel('max'), $defaultPage);
 
         // Get all adminUsers:

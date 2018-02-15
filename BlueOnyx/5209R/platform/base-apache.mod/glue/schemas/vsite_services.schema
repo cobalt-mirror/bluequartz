@@ -75,7 +75,7 @@
 <class
     name="VsiteServices" namespace="USERWEBS" version="1.0"
 >
-    <property name="featureEnabled" type="boolean" default="0"/>
+    <property name="featureEnabled" type="boolean" default="1"/>
     
     <property
         name="i18nName" type="scalar" default="[[base-apache.userwebsI18nName]]"

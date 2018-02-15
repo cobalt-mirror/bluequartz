@@ -10,26 +10,21 @@ my $cce = new CCE('Domain' => 'base-vsite');
 $cce->connectfd();
 
 my $disk = $cce->event_object();
-if ($cce->event_is_destroy())
-{
+if ($cce->event_is_destroy()) {
     $disk = $cce->event_old();
 }
 
 # just succeed for the /home partition
-if ($disk->{mountPoint} eq '/home')
-{
+if ($disk->{mountPoint} eq '/home') {
     $cce->bye('SUCCESS');
     exit(0);
 }
 
-my @sites = $cce->findx('Vsite', 
-                    { 'volume' => $disk->{mountPoint} });
+my @sites = $cce->findx('Vsite', { 'volume' => $disk->{mountPoint} });
 
-if (scalar(@sites))
-{
+if (scalar(@sites)) {
     my @site_names = ();
-    for my $site (@sites)
-    {
+    for my $site (@sites) {
         my ($ok, $site_info) = $cce->get($site);
         push @site_names, $site_info->{fqdn};
     }

@@ -17,7 +17,7 @@ my ($oid) = $cce->find("Disk", { 'mountPoint' => '/home' });
 
 if (!$oid) {
     my ($oid) = $cce->find("Disk", { 'mountPoint' => '/' });
-    $cce->set($oid, "", { 'isHomePartition' => 1 });
+    $cce->update($oid, "", { 'isHomePartition' => 1 });
 }
 
 $cce->bye('SUCCESS');

@@ -7,17 +7,15 @@ fi
 
 : ${DIALOG=dialog}
 
-CDTITLE="Team BluOnyx Presents - Network Reconfigure"
-TITLE="Network Setup Utility"
-
-
 IPADDRESS=`ifconfig  | grep 'inet '| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $2}'|head -1`
 NETMASK=`ifconfig | grep $IPADDRESS | awk '{ print $4}'`
 DEFAULTGW=`/sbin/ip route | awk '/default/ { print $3 }'|head -1`
 DNSSERVER=`cat /etc/resolv.conf |grep ^nameserver|awk '{ print $2}'|head -1`
+IPV6ADDRESS=`/sbin/ip -6 -o addr show |grep eth0|grep -v fe80|awk '{print$4}'| tr '/' ' ' | awk '{print$1}'|head -1`
+DEFAULTGWV6=`/sbin/ip -6 route show default|grep -v fe80|awk '{print$3}'|head -1`
 
 function GetIP() {
-MSG="Please Enter your IP Address\n\n"
+MSG="Please Enter your IPv4 IP Address\n\n"
 exec 3>&1
 IPADDRESS="`$DIALOG --nocancel --backtitle "$CDTITLE" --title "$TITLE"  \
   --inputbox "$MSG" 15 70 $IPADDRESS 2>&1 1>&3`"
@@ -37,7 +35,7 @@ RESET=0
 }
 
 function GetGW() {
-MSG="Please Enter your Default Gateway\n\n"
+MSG="Please Enter your Default IPv4 Gateway\n\n"
 exec 3>&1
 DEFAULTGW="`$DIALOG --nocancel --backtitle "$CDTITLE" --title "$TITLE"  \
   --inputbox "$MSG" 15 70 $DEFAULTGW 2>&1 1>&3`"
@@ -56,13 +54,87 @@ exec 3>&-
 RESET=0
 }
 
+function GetIPv6() {
+MSG="Please Enter your IPv6 IP Address\n\n"
+exec 3>&1
+IPV6ADDRESS="`$DIALOG --nocancel --backtitle "$CDTITLE" --title "$TITLE"  \
+  --inputbox "$MSG" 15 70 $IPV6ADDRESS 2>&1 1>&3`"
+retval=$?
+exec 3>&-
+RESET=0
+}
+
+function GetV6GW() {
+MSG="Please Enter your Default IPv6 Gateway\n\n"
+exec 3>&1
+DEFAULTGWV6="`$DIALOG --nocancel --backtitle "$CDTITLE" --title "$TITLE"  \
+  --inputbox "$MSG" 15 70 $DEFAULTGWV6 2>&1 1>&3`"
+retval=$?
+exec 3>&-
+RESET=0
+}
+
+CDTITLE="Team BluOnyx Presents - Network Reconfigure"
+TITLE="Network Setup Utility"
+
+IPv4=3
+IPv6=3
+
+function AskIPv4 {
+        MSG="Do you want to configure IPv4?"
+        $DIALOG --nocancel --backtitle "$CDTITLE" --title "$TITLE" \
+          --yesno "$MSG" 0 0
+        IPv4=$?
+}
+
+if [ "$IPv4" == "3" ]; then
+        AskIPv4
+fi
+if [ "$IPv4" == "0" ]; then
+  echo "IPv4 setup ..."
+  GetIP
+  GetNM
+  GetGW
+  GetDNS
+fi
+if [ "$IPv4" == "1" ]; then
+  echo "Skipping IPv4 setup"
+fi
+
+function AskIPv6 {
+        MSG="Do you want to configure IPv6?"
+        $DIALOG --nocancel --backtitle "$CDTITLE" --title "$TITLE" \
+          --yesno "$MSG" 0 0
+        IPv6=$?
+}
+
+if [ "$IPv6" == "3" ]; then
+        AskIPv6
+fi
+if [ "$IPv6" == "0" ]; then
+  echo "IPv6 setup ..."
+  GetIPv6
+  GetV6GW
+  GetDNS
+fi
+if [ "$IPv6" == "1" ]; then
+  echo "Skipping IPv6 setup"
+fi
+
+if [ "$IPv6" == "1" ] && [ "$IPv4" == "1" ];then
+  echo "Not configuring network at all."
+  exit
+fi
+
 function Confirm() {
 MSG="
 Please Confirm your Network Settings\n\n
-IP Address : $IPADDRESS\n
-Netmask    : $NETMASK\n
-Gateway    : $DEFAULTGW\n
-DNS Server : $DNSSERVER\n
+IPv4 Address : $IPADDRESS\n
+Netmask      : $NETMASK\n
+Gateway      : $DEFAULTGW\n
+DNS Server   : $DNSSERVER\n
+IPv6 Address : $IPV6ADDRESS\n
+IPv6 Gateway : $DEFAULTGWV6\n
 \n
 Accept?"
 $DIALOG --nocancel --backtitle "$CDTITLE" --title "$TITLE" \
@@ -70,18 +142,24 @@ $DIALOG --nocancel --backtitle "$CDTITLE" --title "$TITLE" \
 NO=$?
 }
 
-NO=1
-
-GetIP
-GetNM
-GetGW
-GetDNS
 Confirm
-if [ "$IPADDRESS" == "" ]; then NO=1; fi
-if [ "$NETMASK" == "" ]; then NO=1; fi
-if [ "$DEFAULTGW" == "" ]; then NO=1; fi
-if [ "$DNSSERVER" == "" ]; then NO=1; fi
-if [ "$NO" == "0" ]; then
+if [ "$NO" == "1" ];then
+  echo "Exiting without applying any changes."
+  exit
+fi
+
+GOTIPv4=0;
+if [ "$IPADDRESS" != "" ] && [ "$NETMASK" != "" ] && [ "$DEFAULTGW" != "" ];then
+  GOTIPv4=1;
+fi
+GOTIPv6=0;
+if [ "$IPV6ADDRESS" != "" ] && [ "$DEFAULTGWV6" != "" ];then
+  GOTIPv6=1;
+fi
+
+if [ "$GOTIPv4" == "1" ] || [ "$GOTIPv6" == "1" ]; then
+
+  echo "Applying new Network configuration. Please wait ... "
 
   # Change the default gateway
   /usr/bin/perl -pi -e "s#GATEWAY=.*#GATEWAY=$DEFAULTGW#" /etc/sysconfig/network
@@ -99,21 +177,64 @@ if [ "$NO" == "0" ]; then
     /bin/cp /tmp/ifcfg-lo /etc/sysconfig/network-scripts/
   fi
 
+  # Configure /etc/sysconfig/network:
+
+  /bin/echo "FORWARD_IPV4=false" > /etc/sysconfig/network
+  if [ "$GOTIPv4" == "1" ] && [ "$DEFAULTGW" != "" ];then
+    /bin/echo "GATEWAY=$DEFAULTGW" >> /etc/sysconfig/network
+    /bin/echo "NETWORKING=yes" >> /etc/sysconfig/network
+  fi
+  /bin/echo "HOSTNAME=localhost.localdomain" >> /etc/sysconfig/network
+  if [ "$GOTIPv6" == "1" ] && [ $DEFAULTGWV6 != "" ];then
+    /bin/echo "IPV6FORWARDING=yes" >> /etc/sysconfig/network
+    /bin/echo "IPV6_AUTOCONF=no" >> /etc/sysconfig/network
+    /bin/echo "IPV6_DEFAULTDEV=eth0" >> /etc/sysconfig/network
+    /bin/echo "IPV6_DEFAULTGW=$DEFAULTGWV6" >> /etc/sysconfig/network
+    /bin/echo "NETWORKING_IPV6=yes" >> /etc/sysconfig/network
+    sleep 5
+  fi
+  /bin/echo "NOZEROCONF=yes" >> /etc/sysconfig/network
+
   # Configure up the init scripts for eth0 properly.
   /bin/echo "DEVICE=eth0" > /etc/sysconfig/network-scripts/ifcfg-eth0
   /bin/echo "BOOTPROTO=none" >> /etc/sysconfig/network-scripts/ifcfg-eth0
   /bin/echo "ONBOOT=yes" >> /etc/sysconfig/network-scripts/ifcfg-eth0
-  /bin/echo "BROADCAST=$BROADCAST" >> /etc/sysconfig/network-scripts/ifcfg-eth0
-  /bin/echo "NETWORK=$NETWORKID" >> /etc/sysconfig/network-scripts/ifcfg-eth0
-  /bin/echo "NETMASK=$NETMASK" >> /etc/sysconfig/network-scripts/ifcfg-eth0
-  /bin/echo "IPADDR=$IPADDRESS" >> /etc/sysconfig/network-scripts/ifcfg-eth0
+  /bin/echo "DELAY=0" >> /etc/sysconfig/network-scripts/ifcfg-eth0
+  /bin/echo "NM_CONTROLLED=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0
+  if [ "$GOTIPv4" == "1" ] && [ "$IPADDRESS" != "" ] && [ "$NETMASK" != "" ];then
+    /bin/echo "BROADCAST=$BROADCAST" >> /etc/sysconfig/network-scripts/ifcfg-eth0
+    /bin/echo "NETWORK=$NETWORKID" >> /etc/sysconfig/network-scripts/ifcfg-eth0
+    /bin/echo "NETMASK=$NETMASK" >> /etc/sysconfig/network-scripts/ifcfg-eth0
+    /bin/echo "IPADDR=$IPADDRESS" >> /etc/sysconfig/network-scripts/ifcfg-eth0
+  fi
   /bin/echo "USERCTL=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0
+  /bin/echo "ARPCHECK=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0
+  if [ "$GOTIPv6" == "1" ] && [ "$IPV6ADDRESS" != "" ] && [ "$DEFAULTGWV6" != "" ];then
+    /bin/echo "IPV6INIT=yes" >> /etc/sysconfig/network-scripts/ifcfg-eth0
+    /bin/echo "IPV6ADDR=$IPV6ADDRESS" >> /etc/sysconfig/network-scripts/ifcfg-eth0
+    /bin/echo "IPV6_DEFAULTGW=$DEFAULTGWV6" >> /etc/sysconfig/network-scripts/ifcfg-eth0
+    sleep 5
+  fi
+
+  # Restart Network:
+  echo "Restarting Network ... "
+  systemctl disable NetworkManager.service &>/dev/null || :
+  systemctl stop NetworkManager.service --no-block &>/dev/null || :
+  rm -f /etc/systemd/system/multi-user.target.wants/NetworkManager.service
+  rm -f /etc/systemd/system/dbus-org.freedesktop.NetworkManager.service
+  rm -f /etc/systemd/system/dbus-org.freedesktop.nm-dispatcher.service
+  systemctl enable network.service &>/dev/null || :
+  systemctl restart network.service &>/dev/null || :
 
   # Convince Sausalito that we are using eth0 & have proper IP info already
-  /usr/sausalito/sbin/set_eth.pl configure eth0 $IPADDRESS $NETMASK
-  /usr/sausalito/sbin/set_gw.pl configure $DEFAULTGW
-  /usr/sausalito/sbin/set_dns.pl configure $DNSSERVER
+  /usr/sausalito/constructor/base/network/10_fix_ifup.pl
+  /usr/sausalito/constructor/base/network/30_addNetwork.pl
+  /usr/sausalito/constructor/base/network/40_addGateway.pl
+  /usr/sausalito/constructor/base/network/checkInterfaceConfigure.pl
+  /usr/sausalito/constructor/base/network/updateMac.pl
 
+  # restart daemons
+  echo "Restarting Daemons ... "
   # Remove all non-ethX style interfaces except for lo:
   ls -k1 /etc/sysconfig/network-scripts/ifcfg-*|grep -v ifcfg-lo|grep -v ifcfg-eth|xargs rm -f
 
@@ -123,22 +244,14 @@ if [ "$NO" == "0" ]; then
   rm -f /etc/systemd/system/dbus-org.fedoraproject.FirewallD1.service
   rm -f /etc/systemd/system/basic.target.wants/firewalld.service
 
-  # restart daemons
-  echo "Restarting Daemons ... "
-  systemctl disable NetworkManager.service &>/dev/null || :
-  systemctl stop NetworkManager.service --no-block &>/dev/null || :
-  rm -f /etc/systemd/system/multi-user.target.wants/NetworkManager.service
-  rm -f /etc/systemd/system/dbus-org.freedesktop.NetworkManager.service
-  rm -f /etc/systemd/system/dbus-org.freedesktop.nm-dispatcher.service
-
-  systemctl enable network.service &>/dev/null || :
-  systemctl restart network.service &>/dev/null || :
+  # Full constructor run, just to be sure:
+  /usr/sausalito/sbin/cced.init restart
 
 fi
 
 # 
-# Copyright (c) 2017 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2017 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2018 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2018 Team BlueOnyx, BLUEONYX.IT
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 

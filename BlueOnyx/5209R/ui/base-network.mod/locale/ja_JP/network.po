@@ -1066,3 +1066,69 @@ msgstr "サーバ管理者"
 
 msgid "admin_help"
 msgstr "許容範囲を管理できるサーバ管理者を選択します。"
+
+#####
+# IPv6 Additions - Do not translate
+#####
+
+msgid "IPv6_ipAddressField1"
+msgstr "[[base-network.IPv6_ipAddressField]]"
+
+msgid "IPv6_ipAddressField2"
+msgstr "[[base-network.IPv6_ipAddressField]]"
+
+msgid "IPv6_ipAddressField2_help"
+msgstr "[[base-network.IPv6_ipAddressField1_help]]"
+
+msgid "IPv6_ipAddressField3"
+msgstr "[[base-network.IPv6_ipAddressField]]"
+
+msgid "IPv6_ipAddressField3_help"
+msgstr "[[base-network.IPv6_ipAddressField1_help]]"
+
+msgid "IPv6_ipAddressField4"
+msgstr "[[base-network.IPv6_ipAddressField]]"
+
+msgid "IPv6_ipAddressField4_help"
+msgstr "[[base-network.IPv6_ipAddressField1_help]]"
+
+#####
+# IPv6 Additions - Translate
+#####
+
+msgid "both_ips_must_be_ipv4_or_ipv6"
+msgstr "開始IP [[VAR.range_min]] と終了IP [[VAR.range_max]] は、同じIPプロトコルではありません。範囲内にIPv4とIPv6のIPアドレスを混在させないでください。" 
+
+msgid "IPValidation_ipv4_specified_but_not_allowed"
+msgstr "IPv4 IPアドレスを入力しましたが、IPv4 IPアドレスは許可されていません。"
+
+msgid "IPValidation_ipv6_specified_but_not_allowed"
+msgstr "IPv6 IPアドレスを入力しましたが、IPv6 IPアドレスは許可されていません。"
+
+msgid "IPValidation_ip_must_be_specified"
+msgstr "仮想サイト[[VAR.fqdn]]のIPアドレスを入力してください"
+
+msgid "gatewayField_IPv6"
+msgstr "IPv6サーバーゲートウェイ"
+
+msgid "gatewayField_IPv6_rule"
+msgstr "たとえば、2001：550：1f0e：1da::1 は有効なエントリです。"
+
+msgid "gatewayField_IPv6_help"
+msgstr "このサーバーアプライアンスのローカルネットワークゲートウェイのIPv6 IPアドレスを入力します。これは、プライマリインターフェイスとセカンダリインターフェイスの両方のゲートウェイです。ネットワークゲートウェイを使用すると、サーバーをローカルネットワークエリア外の世界に接続できます。[[base-network.gatewayField_IPv6_rule]]"
+
+msgid "IPv6_ipAddressField"
+msgstr "IPv6 IPアドレス"
+
+msgid "IPv6_ipAddressField_rule"
+msgstr "IPv6のIPアドレスを入力してください。たとえば、2001：550：1f0e：1da :: 10は有効なエントリです。"
+
+msgid "IPv6_ipAddressField_help"
+msgstr "[[VAR.name]]のIPv6 IPアドレスを入力します。サーバアプライアンスへのネットワークインタフェース接続を1つしか使用しない場合は、プライマリインタフェースを使用し、他のインタフェースは空のままにします。 [[base-network.IPv6_ipAddressField_rule]]"
+
+msgid "IPv6_ipAddressField_invalid"
+msgstr "申し訳ありませんが、[[base-network.IPv6_ipAddressField]] に入力された値はIPv6のIPアドレスではありません。[[base-network.IPv6_ipAddressField_rule]]"
+
+msgid "IPv6_ipAddressField1_help"
+msgstr "イントラネット側に通常接続されているプラ​​イマリインターフェイスのIPv6 IPアドレスを入力します。サーバアプライアンスへのネットワークインターフェイス接続を1つしか使用しない場合は、プライマリインターフェイスを使用し、セカンダリインターフェイスを空のままにします。[[base-network.IPv6_ipAddressField_rule]]"
+

@@ -43,7 +43,7 @@ if ($obj->{isLicenseAccepted} == "0") {
 }
 
 if ($firstboot eq "1") {
-    ($ok) = $cce->set($oids[0], 'mysql',{
+    ($ok) = $cce->update($oids[0], 'mysql',{
         "enabled" => "1",
         "onoff" => time()
     });

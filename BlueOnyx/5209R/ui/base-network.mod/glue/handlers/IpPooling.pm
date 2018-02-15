@@ -1,61 +1,61 @@
 #!/usr/bin/perl -I/usr/sausalito/handlers/base/network
-# $Id: IpPooling.pm 259 2004-01-03 06:28:40Z shibuya $
+# $Id: IpPooling.pm
 #
-# Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 # Description:
-#	Library functions used to check IP ranges.
+#   Library functions used to check IP ranges.
 
 package IpPooling;
 
 
 use strict;
 require Exporter;
+use Net::IP;
 
 my @ISA = qw(Exporter);
 my @EXPORT = qw(ippool_is_network_subset
-		ippool_is_network_member
-		ippool_get_broadcast
-		ippool_get_network
-		);
+        ippool_is_network_member
+        ippool_get_broadcast
+        ippool_get_network
+        );
 
 
 my %netmasks = (
-		  32 => "255.255.255.255", 31 => "255.255.255.254",
-		  30 => "255.255.255.252", 29 => "255.255.255.248",
-		  28 => "255.255.255.240", 27 => "255.255.255.224",
-		  26 => "255.255.255.192", 25 => "255.255.255.128",
-		  24 => "255.255.255.0",   23 => "255.255.254.0",
-		  22 => "255.255.252.0",   21 => "255.255.248.0",
-		  20 => "255.255.240.0",   19 => "255.255.224.0",
-		  18 => "255.255.192.0",   17 => "255.255.128.0",
-		  16 => "255.255.0.0",     15 => "255.254.0.0",
-		  14 => "255.252.0.0",     13 => "255.248.0.0",
-		  12 => "255,240.0.0",     11 => "255.224.0.0",
-		  10 => "255.192.0.0",      9 => "255.128.0.0",
-		   8 => "255.0.0.0",        7 => "254.0.0.0",
-		   6 => "252.0.0.0",        5 => "248.0.0.0",
-		   4 => "240.0.0.0",        3 => "224.0.0.0",
-		   2 => "192.0.0.0",        1 => "128.0.0.0",
-		   0 => "0.0.0.0",
+          32 => "255.255.255.255", 31 => "255.255.255.254",
+          30 => "255.255.255.252", 29 => "255.255.255.248",
+          28 => "255.255.255.240", 27 => "255.255.255.224",
+          26 => "255.255.255.192", 25 => "255.255.255.128",
+          24 => "255.255.255.0",   23 => "255.255.254.0",
+          22 => "255.255.252.0",   21 => "255.255.248.0",
+          20 => "255.255.240.0",   19 => "255.255.224.0",
+          18 => "255.255.192.0",   17 => "255.255.128.0",
+          16 => "255.255.0.0",     15 => "255.254.0.0",
+          14 => "255.252.0.0",     13 => "255.248.0.0",
+          12 => "255,240.0.0",     11 => "255.224.0.0",
+          10 => "255.192.0.0",      9 => "255.128.0.0",
+           8 => "255.0.0.0",        7 => "254.0.0.0",
+           6 => "252.0.0.0",        5 => "248.0.0.0",
+           4 => "240.0.0.0",        3 => "224.0.0.0",
+           2 => "192.0.0.0",        1 => "128.0.0.0",
+           0 => "0.0.0.0",
 
-		  "0.0.0.0" => 0,          "128.0.0.0" => 1,
-		  "192.0.0.0" => 2,        "224.0.0.0" => 3,
-		  "240.0.0.0" => 4,        "248.0.0.0" => 5,
-		  "252.0.0.0" => 6,        "254.0.0.0" => 7,
-		  "255.0.0.0" => 8,        "255.128.0.0" => 9,
-		  "255.192.0.0" => 10,     "255.224.0.0" => 11,
-		  "255,240.0.0" => 12,     "255.248.0.0" => 13,
-		  "255.252.0.0" => 14,     "255.254.0.0" => 15,
-		  "255.255.0.0" => 16,     "255.255.128.0" => 17,
-		  "255.255.192.0" => 18,   "255.255.224.0" => 19,
-		  "255.255.240.0" => 20,   "255.255.248.0" => 21,
-		  "255.255.252.0" => 22,   "255.255.254.0" => 23,
-		  "255.255.255.0" => 24,   "255.255.255.128" => 25,
-		  "255.255.255.192" => 26, "255.255.255.224" => 27,
-		  "255.255.255.240" => 28, "255.255.255.248" => 29,
-		  "255.255.255.252" => 30, "255.255.255.254" => 31,
-		  "255.255.255.255" => 32,
-	     );
+          "0.0.0.0" => 0,          "128.0.0.0" => 1,
+          "192.0.0.0" => 2,        "224.0.0.0" => 3,
+          "240.0.0.0" => 4,        "248.0.0.0" => 5,
+          "252.0.0.0" => 6,        "254.0.0.0" => 7,
+          "255.0.0.0" => 8,        "255.128.0.0" => 9,
+          "255.192.0.0" => 10,     "255.224.0.0" => 11,
+          "255,240.0.0" => 12,     "255.248.0.0" => 13,
+          "255.252.0.0" => 14,     "255.254.0.0" => 15,
+          "255.255.0.0" => 16,     "255.255.128.0" => 17,
+          "255.255.192.0" => 18,   "255.255.224.0" => 19,
+          "255.255.240.0" => 20,   "255.255.248.0" => 21,
+          "255.255.252.0" => 22,   "255.255.254.0" => 23,
+          "255.255.255.0" => 24,   "255.255.255.128" => 25,
+          "255.255.255.192" => 26, "255.255.255.224" => 27,
+          "255.255.255.240" => 28, "255.255.255.248" => 29,
+          "255.255.255.252" => 30, "255.255.255.254" => 31,
+          "255.255.255.255" => 32,
+         );
 
 
 sub ippool_is_network_subset
@@ -147,39 +147,66 @@ sub validate_pooling_state
     my ($ranges, $ips) = @_;
     my $ismember = 0;
     my @errors = ();
+    my $net_ip = '';
+    my $check_ip = '';
 
     # check that each IP address
     # is within at least one range
     foreach my $ip (@{$ips}) {
-	$ismember = 0;
-	foreach my $range (@{$ranges}) {
-	    if (ippool_is_network_member($ip, $range->{min}, $range->{max})) {
-		$ismember = 1;
-	    }
-	}
-	if (!$ismember) {
-	    push @errors, $ip;
-	}
+        $ismember = 0;
+        foreach my $range (@{$ranges}) {
+
+            if (($ip eq $range->{min}) || ($ip eq $range->{max})) {
+              # Fast check:
+              $ismember = 1;
+            }
+
+            $net_ip = Net::IP->new($range->{min} . " - "  . $range->{max});
+            $check_ip = Net::IP->new($ip);
+            if ($net_ip->overlaps($check_ip)) {
+                $ismember = 1;
+            }
+        }
+        if (!$ismember) {
+            push @errors, $ip;
+        }
     }
     
     return @errors;
 }
-# Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
+
 # 
-# Redistribution and use in source and binary forms, with or without 
-# modification, are permitted provided that the following conditions are met:
+# Copyright (c) 2014-2018 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2014-2018 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2003 Sun Microsystems, Inc. 
+# All Rights Reserved.
 # 
-# -Redistribution of source code must retain the above copyright notice, 
-# this list of conditions and the following disclaimer.
+# 1. Redistributions of source code must retain the above copyright 
+#     notice, this list of conditions and the following disclaimer.
 # 
-# -Redistribution in binary form must reproduce the above copyright notice, 
-# this list of conditions and the following disclaimer in the documentation  
-# and/or other materials provided with the distribution.
+# 2. Redistributions in binary form must reproduce the above copyright 
+#     notice, this list of conditions and the following disclaimer in 
+#     the documentation and/or other materials provided with the 
+#     distribution.
 # 
-# Neither the name of Sun Microsystems, Inc. or the names of contributors may 
-# be used to endorse or promote products derived from this software without 
-# specific prior written permission.
+# 3. Neither the name of the copyright holder nor the names of its 
+#     contributors may be used to endorse or promote products derived 
+#     from this software without specific prior written permission.
 # 
-# This software is provided "AS IS," without a warranty of any kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY EXCLUDED. SUN MICROSYSTEMS, INC. ("SUN") AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
+# COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+# POSSIBILITY OF SUCH DAMAGE.
 # 
-# You acknowledge that  this software is not designed or intended for use in the design, construction, operation or maintenance of any nuclear facility.
+# You acknowledge that this software is not designed or intended for 
+# use in the design, construction, operation or maintenance of any 
+# nuclear facility.
+# 

@@ -221,6 +221,20 @@ fi
 
 %changelog
 
+* Sun Nov 05 2017 Michael Stauber <mstauber@solarspeed.net> 0.99.3-1BX02
+- Modified client/perl/CCE.pm to replace 'set' with 'update'. It works
+  and it's considerably faster.
+
+* Sun Nov 05 2017 Michael Stauber <mstauber@solarspeed.net> 0.99.3-1BX01
+- Modified client/perl/CCE.pm to extend it with the method 'update'. It's
+  like a SET transaction, but only performs a SET if at least one of the
+  values we're trying to submit to CODB are different than what's already
+  present in that Object or Namespace.
+
+* Mon Oct 30 2017 Michael Stauber <mstauber@solarspeed.net> 0.99.2-1BX12
+- Modified server/basetypes.schema to update and add the regexp needed for 
+  IPv6 as well as IPv4+IPv6 validations. 
+
 * Wed Aug 02 2017 Michael Stauber <mstauber@solarspeed.net> 0.99.2-1BX11
 - Modified baseType Schema to allow 'alphanum_plus_multiline' to have a
   minimum of one character instead of two.

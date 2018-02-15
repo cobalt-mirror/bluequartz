@@ -45,7 +45,7 @@ if ($difference < 0) {
 } 
 
 # set up ssl
-($ok) = $cce->set($sys_oid, 'SSL',
+($ok) = $cce->update($sys_oid, 'SSL',
 		  {
 			'createCert' => time(),
 			'daysValid' => $days_valid,
