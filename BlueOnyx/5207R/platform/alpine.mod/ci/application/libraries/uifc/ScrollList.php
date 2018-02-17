@@ -295,6 +295,9 @@ class ScrollList extends HtmlComponentFactory {
   // returns: an number
   // see: setSortables()
   function getDisplay() {
+    if (isset($_COOKIE['SLdisplay'])) {
+      $this->Display = $_COOKIE['SLdisplay'];
+    }
     return $this->Display;
   }
 
