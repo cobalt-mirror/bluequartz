@@ -225,6 +225,11 @@ fi
 
 <begin $CHANGELOG>
 
+* Wed Feb 21 2018 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX10
+- Modified glue/handlers/virtual_host.pl to wiggle in a PHP-FPM restart
+  after changes to the Vsite pool file. Renamed an incorrectly named 
+  variable for the PHP settings inside the pool editing routine.
+
 * Tue Feb 13 2018 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX09
 - To address timing issue handler virtual_host.pl is moved from CONFIGURE
  to EXECUTE stage as base/vsite/vsite_create.pl must absolutely run first.

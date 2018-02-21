@@ -6,6 +6,7 @@
 use CCE;
 use Sauce::Config;
 use Sauce::Util;
+use Sauce::Service;
 use Base::Httpd qw(httpd_get_vhost_conf_file);
 use FileHandle;
 use Data::Dumper;
@@ -120,6 +121,24 @@ my $php_ini = "/etc/php.ini";
                         'PHP77' => '8964',
                         'PHP78' => '8965',
                         'PHP79' => '8966'
+                        );
+
+# Known PHP Services:
+%known_php_services = (
+                        'PHP53' => 'php-fpm-5.3',
+                        'PHP54' => 'php-fpm-5.4',
+                        'PHP55' => 'php-fpm-5.5',
+                        'PHP56' => 'php-fpm-5.6',
+                        'PHP70' => 'php-fpm-7.0',
+                        'PHP71' => 'php-fpm-7.1',
+                        'PHP72' => 'php-fpm-7.2',
+                        'PHP73' => 'php-fpm-7.3',
+                        'PHP74' => 'php-fpm-7.4',
+                        'PHP75' => 'php-fpm-7.5',
+                        'PHP76' => 'php-fpm-7.6',
+                        'PHP77' => 'php-fpm-7.7',
+                        'PHP78' => 'php-fpm-7.8',
+                        'PHP79' => 'php-fpm-7.9'
                         );
 
 # HTTP and SSL ports:
@@ -1275,67 +1294,67 @@ sub handle_fpm_pools {
 
         if ($legacy_php == "1") {
             # These options only apply to PHP versions prior to PHP-5.3:
-            if ($vsite_php_settings->{"safe_mode"} ne "") {
-                $pool_conf .= 'php_admin_flag[safe_mode] = ' . $vsite_php_settings->{"safe_mode"} . "\n"; 
+            if ($PHP_Vsite->{"safe_mode"} ne "") {
+                $pool_conf .= 'php_admin_flag[safe_mode] = ' . $PHP_Vsite->{"safe_mode"} . "\n"; 
             }
-            if ($vsite_php_settings->{"safe_mode_gid"} ne "") {
-                $pool_conf .= 'php_admin_flag[safe_mode_gid] =' . $vsite_php_settings->{"safe_mode_gid"} . "\n";
+            if ($PHP_Vsite->{"safe_mode_gid"} ne "") {
+                $pool_conf .= 'php_admin_flag[safe_mode_gid] =' . $PHP_Vsite->{"safe_mode_gid"} . "\n";
             }
-            if ($vsite_php_settings->{"safe_mode_allowed_env_vars"} ne "") {
-                $pool_conf .= 'php_admin_value[safe_mode_allowed_env_vars] = ' . $vsite_php_settings->{"safe_mode_allowed_env_vars"} . "\n"; 
+            if ($PHP_Vsite->{"safe_mode_allowed_env_vars"} ne "") {
+                $pool_conf .= 'php_admin_value[safe_mode_allowed_env_vars] = ' . $PHP_Vsite->{"safe_mode_allowed_env_vars"} . "\n"; 
             }
-            if ($vsite_php_settings->{"safe_mode_exec_dir"} ne "") {
-                $pool_conf .= 'php_admin_value[safe_mode_exec_dir] = ' . $vsite_php_settings->{"safe_mode_exec_dir"} . "\n"; 
+            if ($PHP_Vsite->{"safe_mode_exec_dir"} ne "") {
+                $pool_conf .= 'php_admin_value[safe_mode_exec_dir] = ' . $PHP_Vsite->{"safe_mode_exec_dir"} . "\n"; 
             }
 
-            if ($vsite_php_settings->{"safe_mode_include_dir"} ne "") {
-                $pool_conf .= 'php_admin_value[safe_mode_include_dir] = ' . $vsite_php_settings->{"safe_mode_include_dir"} . "\n"; 
+            if ($PHP_Vsite->{"safe_mode_include_dir"} ne "") {
+                $pool_conf .= 'php_admin_value[safe_mode_include_dir] = ' . $PHP_Vsite->{"safe_mode_include_dir"} . "\n"; 
             }
-            if ($vsite_php_settings->{"safe_mode_protected_env_vars"} ne "") {
-                $pool_conf .= 'php_admin_value[safe_mode_protected_env_vars] = ' . $vsite_php_settings->{"safe_mode_protected_env_vars"} . "\n"; 
+            if ($PHP_Vsite->{"safe_mode_protected_env_vars"} ne "") {
+                $pool_conf .= 'php_admin_value[safe_mode_protected_env_vars] = ' . $PHP_Vsite->{"safe_mode_protected_env_vars"} . "\n"; 
             }
         }
 
         if ($vsite_php->{'version'} ne "PHP53") {
             &debug_msg("PHP version is $vsite_php->{'version'} - turning 'register_globals' off.\n");
-            $vsite_php_settings->{"register_globals"} = "Off";
+            $PHP_Vsite->{"register_globals"} = "Off";
         }
         else {
             &debug_msg("Keeping 'register_globals' as it is as we're using: " . $vsite_php->{'version'} . "\n");
         }
 
-        if ($vsite_php_settings->{"register_globals"} ne "") {
-            $pool_conf .= 'php_admin_flag[register_globals] = ' . $vsite_php_settings->{"register_globals"} . "\n"; 
+        if ($PHP_Vsite->{"register_globals"} ne "") {
+            $pool_conf .= 'php_admin_flag[register_globals] = ' . $PHP_Vsite->{"register_globals"} . "\n"; 
         }
-        if ($vsite_php_settings->{"allow_url_fopen"} ne "") {
-            $pool_conf .= 'php_admin_flag[allow_url_fopen] = ' . $vsite_php_settings->{"allow_url_fopen"} . "\n"; 
+        if ($PHP_Vsite->{"allow_url_fopen"} ne "") {
+            $pool_conf .= 'php_admin_flag[allow_url_fopen] = ' . $PHP_Vsite->{"allow_url_fopen"} . "\n"; 
         }
-        if ($vsite_php_settings->{"allow_url_include"} ne "") {
-            $pool_conf .= 'php_admin_flag[allow_url_include] = ' . $vsite_php_settings->{"allow_url_include"} . "\n"; 
-        }
-
-        if ($vsite_php_settings->{"open_basedir"} ne "") {
-            $pool_conf .= 'php_admin_value[open_basedir] = ' . $vsite_php_settings->{"open_basedir"} . "\n";
+        if ($PHP_Vsite->{"allow_url_include"} ne "") {
+            $pool_conf .= 'php_admin_flag[allow_url_include] = ' . $PHP_Vsite->{"allow_url_include"} . "\n"; 
         }
 
-        if ($vsite_php_settings->{"post_max_size"} ne "") {
-            $pool_conf .= 'php_admin_value[post_max_size] = ' . $vsite_php_settings->{"post_max_size"} . "\n"; 
+        if ($PHP_Vsite->{"open_basedir"} ne "") {
+            $pool_conf .= 'php_admin_value[open_basedir] = ' . $PHP_Vsite->{"open_basedir"} . "\n";
         }
-        if ($vsite_php_settings->{"upload_max_filesize"} ne "") {
-            $pool_conf .= 'php_admin_value[upload_max_filesize] = ' . $vsite_php_settings->{"upload_max_filesize"} . "\n"; 
+
+        if ($PHP_Vsite->{"post_max_size"} ne "") {
+            $pool_conf .= 'php_admin_value[post_max_size] = ' . $PHP_Vsite->{"post_max_size"} . "\n"; 
         }
-        if ($vsite_php_settings->{"max_execution_time"} ne "") {
-            $pool_conf .= 'php_admin_value[max_execution_time] = ' . $vsite_php_settings->{"max_execution_time"} . "\n"; 
+        if ($PHP_Vsite->{"upload_max_filesize"} ne "") {
+            $pool_conf .= 'php_admin_value[upload_max_filesize] = ' . $PHP_Vsite->{"upload_max_filesize"} . "\n"; 
         }
-        if ($vsite_php_settings->{"max_input_time"} ne "") {
-            $pool_conf .= 'php_admin_value[max_input_time] = ' . $vsite_php_settings->{"max_input_time"} . "\n"; 
+        if ($PHP_Vsite->{"max_execution_time"} ne "") {
+            $pool_conf .= 'php_admin_value[max_execution_time] = ' . $PHP_Vsite->{"max_execution_time"} . "\n"; 
         }
-        if ($vsite_php_settings->{"max_input_vars"} ne "") {
-            $pool_conf .= 'php_admin_value[max_input_vars] = ' . $vsite_php_settings->{"max_input_vars"} . "\n"; 
+        if ($PHP_Vsite->{"max_input_time"} ne "") {
+            $pool_conf .= 'php_admin_value[max_input_time] = ' . $PHP_Vsite->{"max_input_time"} . "\n"; 
         }
-        if ($vsite_php_settings->{"memory_limit"} ne "") {
-            $pool_conf .= 'php_admin_value[memory_limit] = ' . $vsite_php_settings->{"memory_limit"} . "\n"; 
-            &debug_msg("Setting 'memory_limit' to $vsite_php_settings->{'memory_limit'} \n");
+        if ($PHP_Vsite->{"max_input_vars"} ne "") {
+            $pool_conf .= 'php_admin_value[max_input_vars] = ' . $PHP_Vsite->{"max_input_vars"} . "\n"; 
+        }
+        if ($PHP_Vsite->{"memory_limit"} ne "") {
+            $pool_conf .= 'php_admin_value[memory_limit] = ' . $PHP_Vsite->{"memory_limit"} . "\n"; 
+            &debug_msg("Setting 'memory_limit' to $PHP_Vsite->{'memory_limit'} \n");
         }
 
         # Email related:
@@ -1358,6 +1377,11 @@ sub handle_fpm_pools {
 
         system("/usr/bin/chmod 644 $pool_file");
 
+        # Restart PHP-FPM:
+        $VsitePhpVer = $vsite_php->{'version'};
+        &debug_msg("Telling Sauce::Service to turn $known_php_services{$VsitePhpVer} on and to restart it.\n");
+        service_set_init($known_php_services{$VsitePhpVer}, 'on');
+        service_run_init($known_php_services{$VsitePhpVer}, 'restart');
     }
 }
 
