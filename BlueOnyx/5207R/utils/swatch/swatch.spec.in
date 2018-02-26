@@ -1,14 +1,14 @@
 Summary: System Watcher
 Name: swatch
 Version: XX_VER_XX
-Release: 0BX37%{?dist}
+Release: 0BX38%{?dist}
 Vendor: Project BlueOnyx
 License: BSD
 Group: System Environment/BlueOnyx
 Source: swatch.tar.gz
 BuildRoot: /tmp/swatch
 BuildArchitectures: noarch
-Obsoletes: base-swatch
+Obsoletes: base-swatch memcached
 Requires: perl-MIME-Lite >= 3.023-2
 Requires: perl-Email-Date-Format >= 1.002-1
 Requires: lsof
@@ -81,6 +81,9 @@ fi
 %preun
 
 %changelog
+
+* Mon Fed 26 2018 Michael Stauber <mstauber@solarspeed.net> 4.0.0-BX38
+- Specifically obsoleted memcached
 
 * Fri Sep 09 2016 Michael Stauber <mstauber@solarspeed.net> 4.0.0-BX37
 - Added post-install crond restart
