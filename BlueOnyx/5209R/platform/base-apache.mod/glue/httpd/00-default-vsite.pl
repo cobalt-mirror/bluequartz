@@ -28,8 +28,8 @@ $cce->connectuds();
 @ca_certs = $cce->scalar_to_array($objSSL->{caCerts});
 $CALine = '';
 if (scalar(@ca_certs) > 0) {
-	# We do have intermediate(s). Use it:
-	$CALine = 'SSLCACertificateFile  /etc/admserv/certs/ca-certs';
+    # We do have intermediate(s). Use it:
+    $CALine = 'SSLCACertificateFile  /etc/admserv/certs/ca-certs';
 }
 
 # Server-Name:
@@ -47,8 +47,8 @@ if ($objWeb->{'sslPort'}) {
 
 # Set up default error pages:
 if (!-d '/var/www/html/error') {
-	system("mkdir /var/www/html/error");
-	system("cp /etc/skel/vsite/en/web/error/*.html /var/www/html/error/")
+    system("mkdir /var/www/html/error");
+    system("cp /etc/skel/vsite/en/web/error/*.html /var/www/html/error/")
 }
 
 # Get all IPv4 IPs:
@@ -69,28 +69,28 @@ $config = <<CONFIG;
         ErrorDocument 500 /error/500-internal-server-error.html
     </VirtualHost>
 
-	<VirtualHost *:$sslPort>
-		ServerName $ServerName
-		SSLengine on
-		SSLCompression off
-		SSLProtocol TLSv1.2 +TLSv1.1
-		SSLHonorCipherOrder On
-		SSLCipherSuite HIGH:!LOW:!SEED:!DSS:!SSLv2:!aNULL:!eNULL:!NULL:!EXPORT:!ADH:!IDEA:!ECDSA:!3DES:!DES:!MD5:!PSK:!RC4:@STRENGTH
-		# Server Certificate:
-		$CALine
-		SSLCertificateFile    /etc/admserv/certs/certificate
-		SSLCertificateKeyFile /etc/admserv/certs/key
-		ServerAdmin admin
-		DocumentRoot /var/www/html
-		ErrorDocument 401 /error/401-authorization.html
-		ErrorDocument 403 /error/403-forbidden.html
-		ErrorDocument 404 /error/404-file-not-found.html
-		ErrorDocument 500 /error/500-internal-server-error.html
-	</VirtualHost>
+    <VirtualHost *:$sslPort>
+        ServerName $ServerName
+        SSLengine on
+        SSLCompression off
+        SSLProtocol TLSv1.2 +TLSv1.1
+        SSLHonorCipherOrder On
+        SSLCipherSuite HIGH:!LOW:!SEED:!DSS:!SSLv2:!aNULL:!eNULL:!NULL:!EXPORT:!ADH:!IDEA:!ECDSA:!3DES:!DES:!MD5:!PSK:!RC4:@STRENGTH
+        # Server Certificate:
+        $CALine
+        SSLCertificateFile    /etc/admserv/certs/certificate
+        SSLCertificateKeyFile /etc/admserv/certs/key
+        ServerAdmin admin
+        DocumentRoot /var/www/html
+        ErrorDocument 401 /error/401-authorization.html
+        ErrorDocument 403 /error/403-forbidden.html
+        ErrorDocument 404 /error/404-file-not-found.html
+        ErrorDocument 500 /error/500-internal-server-error.html
+    </VirtualHost>
 CONFIG
 
 foreach $x (@arr_assigned_ipv4) {
-	$config .= <<CONFIG;
+    $config .= <<CONFIG;
     <VirtualHost $x:$httpPort>
         ServerName $ServerName
         ServerAdmin admin
@@ -101,29 +101,29 @@ foreach $x (@arr_assigned_ipv4) {
         ErrorDocument 500 /error/500-internal-server-error.html
     </VirtualHost>
 
-	<VirtualHost $x:$sslPort>
-		ServerName $ServerName
-		SSLengine on
-		SSLCompression off
-		SSLProtocol TLSv1.2 +TLSv1.1
-		SSLHonorCipherOrder On
-		SSLCipherSuite HIGH:!LOW:!SEED:!DSS:!SSLv2:!aNULL:!eNULL:!NULL:!EXPORT:!ADH:!IDEA:!ECDSA:!3DES:!DES:!MD5:!PSK:!RC4:@STRENGTH
-		# Server Certificate:
-		$CALine
-		SSLCertificateFile    /etc/admserv/certs/certificate
-		SSLCertificateKeyFile /etc/admserv/certs/key
-		ServerAdmin admin
-		DocumentRoot /var/www/html
-		ErrorDocument 401 /error/401-authorization.html
-		ErrorDocument 403 /error/403-forbidden.html
-		ErrorDocument 404 /error/404-file-not-found.html
-		ErrorDocument 500 /error/500-internal-server-error.html
-	</VirtualHost>
+    <VirtualHost $x:$sslPort>
+        ServerName $ServerName
+        SSLengine on
+        SSLCompression off
+        SSLProtocol TLSv1.2 +TLSv1.1
+        SSLHonorCipherOrder On
+        SSLCipherSuite HIGH:!LOW:!SEED:!DSS:!SSLv2:!aNULL:!eNULL:!NULL:!EXPORT:!ADH:!IDEA:!ECDSA:!3DES:!DES:!MD5:!PSK:!RC4:@STRENGTH
+        # Server Certificate:
+        $CALine
+        SSLCertificateFile    /etc/admserv/certs/certificate
+        SSLCertificateKeyFile /etc/admserv/certs/key
+        ServerAdmin admin
+        DocumentRoot /var/www/html
+        ErrorDocument 401 /error/401-authorization.html
+        ErrorDocument 403 /error/403-forbidden.html
+        ErrorDocument 404 /error/404-file-not-found.html
+        ErrorDocument 500 /error/500-internal-server-error.html
+    </VirtualHost>
 CONFIG
 }
 
 foreach $z (@arr_assigned_ipv6) {
-	$config .= <<CONFIG;
+    $config .= <<CONFIG;
     <VirtualHost [$z]:$httpPort>
         ServerName $ServerName
         ServerAdmin admin
@@ -134,32 +134,32 @@ foreach $z (@arr_assigned_ipv6) {
         ErrorDocument 500 /error/500-internal-server-error.html
     </VirtualHost>
 
-	<VirtualHost [$z]:$sslPort>
-		ServerName $ServerName
-		SSLengine on
-		SSLCompression off
-		SSLProtocol TLSv1.2 +TLSv1.1
-		SSLHonorCipherOrder On
-		SSLCipherSuite HIGH:!LOW:!SEED:!DSS:!SSLv2:!aNULL:!eNULL:!NULL:!EXPORT:!ADH:!IDEA:!ECDSA:!3DES:!DES:!MD5:!PSK:!RC4:@STRENGTH
-		# Server Certificate:
-		$CALine
-		SSLCertificateFile    /etc/admserv/certs/certificate
-		SSLCertificateKeyFile /etc/admserv/certs/key
-		ServerAdmin admin
-		DocumentRoot /var/www/html
-		ErrorDocument 401 /error/401-authorization.html
-		ErrorDocument 403 /error/403-forbidden.html
-		ErrorDocument 404 /error/404-file-not-found.html
-		ErrorDocument 500 /error/500-internal-server-error.html
-	</VirtualHost>
+    <VirtualHost [$z]:$sslPort>
+        ServerName $ServerName
+        SSLengine on
+        SSLCompression off
+        SSLProtocol TLSv1.2 +TLSv1.1
+        SSLHonorCipherOrder On
+        SSLCipherSuite HIGH:!LOW:!SEED:!DSS:!SSLv2:!aNULL:!eNULL:!NULL:!EXPORT:!ADH:!IDEA:!ECDSA:!3DES:!DES:!MD5:!PSK:!RC4:@STRENGTH
+        # Server Certificate:
+        $CALine
+        SSLCertificateFile    /etc/admserv/certs/certificate
+        SSLCertificateKeyFile /etc/admserv/certs/key
+        ServerAdmin admin
+        DocumentRoot /var/www/html
+        ErrorDocument 401 /error/401-authorization.html
+        ErrorDocument 403 /error/403-forbidden.html
+        ErrorDocument 404 /error/404-file-not-found.html
+        ErrorDocument 500 /error/500-internal-server-error.html
+    </VirtualHost>
 CONFIG
 }
 
 # For debugging:
 if ($DEBUG) {
-	open($fh, '>', '/tmp/httpd.debug');
-	print $fh $config;
-	close $fh;
+    open($fh, '>', '/tmp/httpd.debug');
+    print $fh $config;
+    close $fh;
 }
 
 # Push out config:
