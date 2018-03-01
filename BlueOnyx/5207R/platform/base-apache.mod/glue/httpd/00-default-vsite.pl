@@ -72,7 +72,6 @@ $config = <<CONFIG;
     <VirtualHost *:$sslPort>
         ServerName $ServerName
         SSLengine on
-        SSLCompression off
         SSLProtocol TLSv1.2 +TLSv1.1
         SSLHonorCipherOrder On
         SSLCipherSuite HIGH:!LOW:!SEED:!DSS:!SSLv2:!aNULL:!eNULL:!NULL:!EXPORT:!ADH:!IDEA:!ECDSA:!3DES:!DES:!MD5:!PSK:!RC4:@STRENGTH
@@ -104,7 +103,6 @@ foreach $x (@arr_assigned_ipv4) {
     <VirtualHost $x:$sslPort>
         ServerName $ServerName
         SSLengine on
-        SSLCompression off
         SSLProtocol TLSv1.2 +TLSv1.1
         SSLHonorCipherOrder On
         SSLCipherSuite HIGH:!LOW:!SEED:!DSS:!SSLv2:!aNULL:!eNULL:!NULL:!EXPORT:!ADH:!IDEA:!ECDSA:!3DES:!DES:!MD5:!PSK:!RC4:@STRENGTH
@@ -137,7 +135,6 @@ foreach $z (@arr_assigned_ipv6) {
     <VirtualHost [$z]:$sslPort>
         ServerName $ServerName
         SSLengine on
-        SSLCompression off
         SSLProtocol TLSv1.2 +TLSv1.1
         SSLHonorCipherOrder On
         SSLCipherSuite HIGH:!LOW:!SEED:!DSS:!SSLv2:!aNULL:!eNULL:!NULL:!EXPORT:!ADH:!IDEA:!ECDSA:!3DES:!DES:!MD5:!PSK:!RC4:@STRENGTH
