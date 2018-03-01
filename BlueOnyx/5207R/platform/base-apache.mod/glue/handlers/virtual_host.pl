@@ -171,7 +171,7 @@ END
 NameVirtualHost $vhost->{ipaddr}:$sslPort
 <VirtualHost *:$sslPort>
 SSLengine on
-SSLProtocol +ALL -SSLv2 -SSLv3
+SSLProtocol TLSv1.2 +TLSv1.1
 SSLHonorCipherOrder On
 SSLCipherSuite HIGH:!LOW:!SEED:!DSS:!SSLv2:!aNULL:!eNULL:!NULL:!EXPORT:!ADH:!IDEA:!ECDSA:!3DES:!DES:!MD5:!PSK:!RC4:@STRENGTH
 $HSTS_line
@@ -223,8 +223,10 @@ END
     # representing the bottom end with Android 2.3.7 or OpenSSL 0.9.8y.
     #
     # Protocols: Only IE6/XP would use SSLv3, which we disabled due to the 'Pootle'-vulnerability. So IE6/XP
-    # and IE8/XP users will no longer be able to connect. All the rest default to TLSv1.2, TLSv1.1 or 
-    # (at worst) TLSv1.0.
+    # and IE8/XP users will no longer be able to connect. All the rest default to TLSv1.2 or TLSv1.1.
+    #
+    # As of 2018-02-28 we only support TLSv1.2 and TLSv1.1. This removes TLSv1.0 as well, as it will soon  
+    # fail PCI compliance tests. 
     #
     # Ciphers: RC4 and other weak ciphers have been disabled.
     #

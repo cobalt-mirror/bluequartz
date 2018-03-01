@@ -6,13 +6,14 @@
 # so the changes will only take effect during the next restart of these services.
 #
 # Depends on:
-#		System.hostname
-#		System.domainname
+#   System.hostname
+#   System.domainname
 
 my $confdir = '/etc/httpd/conf';
 my $aconfdir = '/etc/admserv/conf';
 
 use Sauce::Config;
+use Sauce::Util;
 use FileHandle;
 use File::Copy;
 use CCE;
@@ -94,17 +95,29 @@ else {
   $cce->bye("FAILURE");
 }
 
+# Add PerlConfigRequire line to httpd.conf:
+$cfg_block = 'PerlConfigRequire /etc/httpd/conf.perl/00-default-vsite.pl';
+
+$ok = Sauce::Util::replaceblock("$confdir/httpd.conf", '#</VirtualHost>', $cfg_block, '# Include /etc/httpd/conf.d/mod_jk.conf');
+# Error handling:
+unless ($ok) {
+    $cce->bye('FAIL', "Error while editing $confdir/httpd.conf!");
+    exit(1);
+}
+
+system("rm -f /etc/httpd/conf/httpd.conf.backup.*");
+
 # Fix GID and permissions one /etc/httpd/alias/ for new mod_nss:
 if ( -d "/etc/httpd/alias" ) {
-	system('find /etc/httpd/alias -user root -name "*.db" -exec /bin/chgrp apache {} \;');
-	system('find /etc/httpd/alias -user root -name "*.db" -exec /bin/chmod g+r {} \;');
+  system('find /etc/httpd/alias -user root -name "*.db" -exec /bin/chgrp apache {} \;');
+  system('find /etc/httpd/alias -user root -name "*.db" -exec /bin/chmod g+r {} \;');
 }
 
 exit(0);
 
 # 
-# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015-2018 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015-2018 Team BlueOnyx, BLUEONYX.IT
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 
