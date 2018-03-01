@@ -50,6 +50,7 @@ information for [VENDOR]-[SERVICE].
 #/etc/httpd/conf.d/ssl_perl.conf
 /etc/httpd/conf.d/ssl_bx.conf
 /etc/httpd/conf.d/security.conf
+/etc/httpd/conf.perl/00-default-vsite.pl
 /usr/sausalito/sbin/fix_302_httpd_redirects.pl 
 /usr/sausalito/sbin/fix_web-and-email-server-aliasses.pl 
 /usr/sausalito/sbin/set_default_php_settings.pl
@@ -224,6 +225,12 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Wed Feb 28 2018 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX11
+- Removed default VirtualHost's from glue/httpd/ssl_bx.conf
+- Added glue/httpd/00-default-vsite.pl instead.
+- Modified constructor/set_apache_hostname.pl to add new cfg to httpd.conf
+- Deprecating TLSv1.0 in Apache configs.
 
 * Wed Feb 21 2018 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX10
 - Modified glue/handlers/virtual_host.pl to wiggle in a PHP-FPM restart

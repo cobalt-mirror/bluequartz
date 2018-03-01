@@ -117,6 +117,18 @@ unless ($ok) {
     exit(1);
 }
 
+# Add PerlConfigRequire line to httpd.conf:
+$cfg_block = 'PerlConfigRequire /etc/httpd/conf.perl/00-default-vsite.pl';
+
+$ok = Sauce::Util::replaceblock("$confdir/httpd.conf", '# Supplemental configuration', $cfg_block, '#');
+# Error handling:
+unless ($ok) {
+    $cce->bye('FAIL', "Error while editing $confdir/httpd.conf!");
+    exit(1);
+}
+
+system("rm -f /etc/httpd/conf/httpd.conf.backup.*");
+
 # Fix GID and permissions one /etc/httpd/alias/ for new mod_nss:
 if ( -d "/etc/httpd/alias" ) {
   system('find /etc/httpd/alias -user root -name "*.db" -exec /bin/chgrp apache {} \;');
@@ -126,8 +138,8 @@ if ( -d "/etc/httpd/alias" ) {
 exit(0);
 
 # 
-# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015-2018 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015-2018 Team BlueOnyx, BLUEONYX.IT
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 
