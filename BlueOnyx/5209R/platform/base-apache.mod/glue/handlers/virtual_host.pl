@@ -877,7 +877,7 @@ SSLengine on
 SSLCompression off
 SSLProtocol TLSv1.2 +TLSv1.1
 SSLHonorCipherOrder On
-SSLCipherSuite HIGH:!LOW:!SEED:!DSS:!SSLv2:!aNULL:!eNULL:!NULL:!EXPORT:!ADH:!IDEA:!ECDSA:!3DES:!DES:!MD5:!PSK:!RC4:@STRENGTH
+SSLCipherSuite HIGH:!LOW:!MEDIUM:!DH:!ADH:!EXP:!SSLv2:!SSLv3:!aNULL:!eNULL:!NULL:!EXPORT:!ADH:!IDEA:!ECDSA:!3DES:!DES:!MD5:!PSK:!RC4:!SHA:@STRENGTH
 $HSTS_line
 $cafile
 SSLCertificateFile $vhost->{basedir}/certs/certificate

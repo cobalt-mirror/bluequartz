@@ -51,10 +51,6 @@ if (!-d '/var/www/html/error') {
     system("cp /etc/skel/vsite/en/web/error/*.html /var/www/html/error/")
 }
 
-# Get all IPv4 IPs:
-@arr_assigned_ipv4 = split (/\n/, `LC_ALL=C /sbin/ip address show |grep inet|grep global|awk -F "inet " '{print \$2}'|awk -F " brd " '{print \$1}'|cut -d / -f1|sed '/^\$/d'`);
-@arr_assigned_ipv6 = split (/\n/, `LC_ALL=C /sbin/ip address show |grep inet|grep global|awk -F "inet6 " '{print \$2}'|awk -F " brd " '{print \$1}'|cut -d / -f1|sed '/^\$/d'`);
-
 # Generate config on the fly:
 $config = '';
 $config = <<CONFIG;
@@ -75,7 +71,7 @@ $config = <<CONFIG;
         SSLCompression off
         SSLProtocol TLSv1.2 +TLSv1.1
         SSLHonorCipherOrder On
-        SSLCipherSuite HIGH:!LOW:!SEED:!DSS:!SSLv2:!aNULL:!eNULL:!NULL:!EXPORT:!ADH:!IDEA:!ECDSA:!3DES:!DES:!MD5:!PSK:!RC4:@STRENGTH
+        SSLCipherSuite HIGH:!LOW:!MEDIUM:!DH:!ADH:!EXP:!SSLv2:!SSLv3:!aNULL:!eNULL:!NULL:!EXPORT:!ADH:!IDEA:!ECDSA:!3DES:!DES:!MD5:!PSK:!RC4:!SHA:@STRENGTH
         # Server Certificate:
         $CALine
         SSLCertificateFile    /etc/admserv/certs/certificate
@@ -88,6 +84,17 @@ $config = <<CONFIG;
         ErrorDocument 500 /error/500-internal-server-error.html
     </VirtualHost>
 CONFIG
+
+# Note: Presence of the file '/etc/sysconfig/guissl' will disable default Vsite for all IPs:
+if (! -f '/etc/sysconfig/guissl') {
+    # Get all IPs:
+    @arr_assigned_ipv4 = split (/\n/, `LC_ALL=C /sbin/ip address show |grep inet|grep global|awk -F "inet " '{print \$2}'|awk -F " brd " '{print \$1}'|cut -d / -f1|sed '/^\$/d'`);
+    @arr_assigned_ipv6 = split (/\n/, `LC_ALL=C /sbin/ip address show |grep inet|grep global|awk -F "inet6 " '{print \$2}'|awk -F " brd " '{print \$1}'|cut -d / -f1|sed '/^\$/d'`);
+}
+else {
+    @arr_assigned_ipv4 = ();
+    @arr_assigned_ipv6 = ();
+}
 
 foreach $x (@arr_assigned_ipv4) {
     $config .= <<CONFIG;
@@ -107,7 +114,7 @@ foreach $x (@arr_assigned_ipv4) {
         SSLCompression off
         SSLProtocol TLSv1.2 +TLSv1.1
         SSLHonorCipherOrder On
-        SSLCipherSuite HIGH:!LOW:!SEED:!DSS:!SSLv2:!aNULL:!eNULL:!NULL:!EXPORT:!ADH:!IDEA:!ECDSA:!3DES:!DES:!MD5:!PSK:!RC4:@STRENGTH
+        SSLCipherSuite HIGH:!LOW:!MEDIUM:!DH:!ADH:!EXP:!SSLv2:!SSLv3:!aNULL:!eNULL:!NULL:!EXPORT:!ADH:!IDEA:!ECDSA:!3DES:!DES:!MD5:!PSK:!RC4:!SHA:@STRENGTH
         # Server Certificate:
         $CALine
         SSLCertificateFile    /etc/admserv/certs/certificate
@@ -140,7 +147,7 @@ foreach $z (@arr_assigned_ipv6) {
         SSLCompression off
         SSLProtocol TLSv1.2 +TLSv1.1
         SSLHonorCipherOrder On
-        SSLCipherSuite HIGH:!LOW:!SEED:!DSS:!SSLv2:!aNULL:!eNULL:!NULL:!EXPORT:!ADH:!IDEA:!ECDSA:!3DES:!DES:!MD5:!PSK:!RC4:@STRENGTH
+        SSLCipherSuite HIGH:!LOW:!MEDIUM:!DH:!ADH:!EXP:!SSLv2:!SSLv3:!aNULL:!eNULL:!NULL:!EXPORT:!ADH:!IDEA:!ECDSA:!3DES:!DES:!MD5:!PSK:!RC4:!SHA:@STRENGTH
         # Server Certificate:
         $CALine
         SSLCertificateFile    /etc/admserv/certs/certificate

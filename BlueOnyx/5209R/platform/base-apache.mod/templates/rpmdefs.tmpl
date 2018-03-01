@@ -226,6 +226,11 @@ fi
 
 <begin $CHANGELOG>
 
+* Thu Mar 01 2018 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX12
+- Small change in default ciphers for better sorting.
+- Modified glue/httpd/00-default-vsite.pl to add ability to disable
+  default virtualhost for IPs by creating /etc/sysconfig/guissl
+
 * Wed Feb 28 2018 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX11
 - Removed default VirtualHost's from glue/httpd/ssl_bx.conf
 - Added glue/httpd/00-default-vsite.pl instead.
