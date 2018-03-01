@@ -98,7 +98,8 @@ else {
 # Add PerlConfigRequire line to httpd.conf:
 $cfg_block = 'PerlConfigRequire /etc/httpd/conf.perl/00-default-vsite.pl';
 
-$ok = Sauce::Util::replaceblock("$confdir/httpd.conf", '#</VirtualHost>', $cfg_block, '# Include /etc/httpd/conf.d/mod_jk.conf');
+system("cp /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf.bak")
+$ok = Sauce::Util::replaceblock("$confdir/httpd.conf", '# VirtualHost example:', $cfg_block, '# Almost any Apache directive may go into a VirtualHost container.');
 # Error handling:
 unless ($ok) {
     $cce->bye('FAIL', "Error while editing $confdir/httpd.conf!");
