@@ -89,6 +89,9 @@ if ($do_admserv eq "1") {
         # Check if we have an LE cert::
         ($subject, $issuer, $expires) = ssl_get_cert_info($cert_dir);
 
+        # Munge date because they changed the strtotime function in php:
+        $expires =~ s/(\d{1,2}:\d{2}:\d{2})(\s+)(\d{4,})/$3$2$1/;
+
         # Make sure this is really a Let's Encrypt cert:
         $uses_letsencrypt = '0';
         if ($issuer->{'O'} eq 'Let\'s Encrypt') {
@@ -97,11 +100,11 @@ if ($do_admserv eq "1") {
             # Check expiration date:
             $renew_time = $System_SSL->{LEcreationDate} + ($System_SSL->{autoRenewDays} * 86400);
             if ($renew_time lt time()) {
-                &debug_msg("Renewing SSL certificate for 'AdmServ'.\n\n");
+                &debug_msg("Renewing SSL certificate for 'AdmServ'. (expiration date: $expires)\n\n");
                 $cce->set($sysoid, 'SSL', { 'uses_letsencrypt' => $uses_letsencrypt, 'performLEinstall' => time() });
             }
             else {
-                &debug_msg("NOT renewing SSL certificate for 'AdmServ' as it's still good.\n\n");
+                &debug_msg("NOT renewing SSL certificate for 'AdmServ' as it's still good. (expiration date: $expires)\n\n");
             }
         }
         else {
@@ -140,12 +143,12 @@ foreach  $vsiteOID (@vhosts) {
 
             # Check expiration date:
             $renew_time = $vsite_SSL->{LEcreationDate} + ($vsite_SSL->{autoRenewDays} * 86400);
-            if ($renew_time lt time()) {
-                &debug_msg("Renewing SSL certificate for Vsite '$vsite->{fqdn}'.\n");
+            if ($renew_time < time()) {
+                &debug_msg("Vsite '$vsite->{fqdn}' expiration date: $expires - renewing SSL certificate\n");
                 $cce->set($vsite->{'OID'}, 'SSL', { 'uses_letsencrypt' => $uses_letsencrypt, 'performLEinstall' => time() });
             }
             else {
-                &debug_msg("NOT renewing SSL certificate for Vsite '$vsite->{fqdn}' as it's still good.\n");
+                &debug_msg("Vsite '$vsite->{fqdn}' expiration date: $expires - still good, not renewing.\n");
             }
         }
         else {
@@ -211,8 +214,8 @@ sub debug_msg {
 }
 
 # 
-# Copyright (c) 2017 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2017 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2017-2018 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2017-2018 Team BlueOnyx, BLUEONYX.IT
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 
