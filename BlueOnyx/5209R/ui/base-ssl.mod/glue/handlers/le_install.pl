@@ -104,9 +104,10 @@ if (($vsite->{'CLASS'} eq "Vsite") || ($vsite->{'CLASS'} eq "System")) {
 
     # Obtain SSL cert:
     # --duplicate
-    &debug_msg("Running: /usr/sausalito/letsencrypt/letsencrypt-auto --text --no-self-upgrade certonly -a webroot --webroot-path $webroot -d $fqdn $alias_line $email --rsa-key-size 4096 --agree-tos $autoRenew --user-agent 
-BlueOnyx.it\n");
-    $result = `/usr/sausalito/letsencrypt/letsencrypt-auto --text --no-self-upgrade certonly -a webroot --webroot-path $webroot -d $fqdn $alias_line $email --rsa-key-size 4096 --agree-tos $autoRenew --user-agent BlueOnyx.it 
+    $dry_run = '';
+    #$dry_run = '--dry-run';
+    &debug_msg("Running: /usr/sausalito/letsencrypt/letsencrypt-auto $dry_run --text --no-self-upgrade certonly -a webroot --webroot-path $webroot -d $fqdn $alias_line $email --rsa-key-size 4096 --agree-tos $autoRenew --user-agent BlueOnyx.it\n");
+    $result = `/usr/sausalito/letsencrypt/letsencrypt-auto $dry_run --text --no-self-upgrade certonly -a webroot --webroot-path $webroot -d $fqdn $alias_line $email --rsa-key-size 4096 --agree-tos $autoRenew --user-agent BlueOnyx.it 
 2>&1`;
     &debug_msg("Result: $result\n");
     $result =~ s/^Updating letsencrypt(.*)\n//g;
@@ -129,6 +130,10 @@ BlueOnyx.it\n");
     # Find out where the certs were stored:
     if ($result =~ /\/etc\/letsencrypt\/live\/(.*)\/fullchain\.pem/) {
         $cert_path = '/etc/letsencrypt/live/' . $1;
+        &debug_msg("Path to cert-directory: $cert_path\n");
+    }
+    elsif ($result =~ /The dry run was successful/) {
+        $cert_path = '/etc/letsencrypt/live/' . $fqdn;
         &debug_msg("Path to cert-directory: $cert_path\n");
     }
     else {

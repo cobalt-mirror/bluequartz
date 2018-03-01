@@ -9,6 +9,11 @@ use SSL qw(ssl_rem_ca_cert);
 use Base::HomeDir qw(homedir_get_group_dir);
 use Base::Httpd qw(httpd_get_vhost_conf_file);
 
+$DEBUG = "0";
+if ($DEBUG) {
+    use Sys::Syslog qw( :DEFAULT setlogsock);
+}
+
 my $cce = new CCE;
 $cce->connectfd();
 
@@ -30,10 +35,14 @@ for my $old_ca (@old_cas) {
     }
 }
 
+&debug_msg("ca-certs.pl: Starting\n");
+
 my $ssl_conf = '/etc/admserv/conf.d/ssl.conf';
 if ($site->{CLASS} eq 'System') {
+    &debug_msg("AdmServ cfg: $ssl_conf\n");
     my @ca_certs = $cce->scalar_to_array($ssl->{caCerts});
     if (!Sauce::Util::editfile($ssl_conf, *edit_ssl_conf, scalar(@ca_certs))) {
+        &debug_msg("AdmServ edit cfg failed: $ssl_conf\n");
         $cce->bye('FAIL', '[[base-ssl.cantUpdateSSLConf]]');
         exit(1);
     }
@@ -77,6 +86,21 @@ else {
 # the server gets restarted by the ui script after this succeeds
 $cce->bye('SUCCESS');
 exit(0);
+
+#
+### Subroutines:
+#
+
+sub debug_msg {
+    if ($DEBUG eq "1") {
+        $msg = shift;
+        $user = $ENV{'USER'};
+        setlogsock('unix');
+        openlog($0,'','user');
+        syslog('info', "$ARGV[0]: $msg");
+        closelog;
+    }
+}
 
 sub edit_ssl_conf {
     my ($in, $out, $add) = @_;
