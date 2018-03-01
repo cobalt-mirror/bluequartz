@@ -82,12 +82,12 @@ if [ -d /usr/sausalito/yumcce ];then
 fi
 
 # Run fixer. One time:
-if [ -f /usr/sausalito/sbin/LE_SSL_fixer.pl ];then
+#if [ -f /usr/sausalito/sbin/LE_SSL_fixer.pl ];then
   # Fuck it. We need to rehash for this to work and the YUM plugin does it too late:
-  /usr/sausalito/sbin/cced.init rehash 
+  #/usr/sausalito/sbin/cced.init rehash 
   # Run fixer:
-	/usr/sausalito/sbin/LE_SSL_fixer.pl
-fi
+  #/usr/sausalito/sbin/LE_SSL_fixer.pl
+#fi
 
 <end glue>
 <begin ui>
