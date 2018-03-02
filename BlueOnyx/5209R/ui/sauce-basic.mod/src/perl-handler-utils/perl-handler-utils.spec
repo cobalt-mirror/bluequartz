@@ -1,7 +1,7 @@
 Summary: Perl modules that contain useful utility functions for handlers.
 Name: perl-handler-utils
 Version: 1.4.0
-Release: 0BX15%{?dist}
+Release: 0BX16%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -33,6 +33,11 @@ This package contains a number of perl modules that contain useful
 utility functions for writing cced event handler scripts.
 
 %changelog
+
+* Fri Mar 02 2018 Michael Stauber <mstauber@solarspeed.net> 1.4.0-0BX16
+- Modified perl-handler-utils/Sauce/Util.pm to fix replaceblock function.
+  If it never found the end tag it might have clean slated the rest of 
+  the file it was editing.
 
 * Tue Jun 14 2016 Michael Stauber <mstauber@solarspeed.net> 1.4.0-0BX15
 - More Systemd related improvements. Now that we split the unit files
