@@ -892,6 +892,7 @@ sub replaceblock
  
   # process file:
   my $mode = 'init';
+  my $editbuffer = '';
   while (defined($_ = <$fin>)) {
     if ($mode eq 'init') {
       # initial state (print anything but a start tag)
@@ -907,7 +908,8 @@ sub replaceblock
       next;
     }
     if ($mode eq 'inside') {
-      # inside block state (don't print anything)
+      # inside block state (don't print anything), but record it in $editbuffer:
+      $editbuffer .= $_;
       if ($_ =~ $end_re) {
         # encountered an end tag
         $mode = 'outside';
@@ -923,6 +925,13 @@ sub replaceblock
   if ($mode eq 'init' && defined($data)) {
     # tag was never found, so let's make one:
     print $fout $start_line,"\n",$data,"\n",$end_line,"\n";
+  }
+  if ($mode eq 'inside' && defined($data) && (length($editbuffer) > 0)) {
+  	# Fallback: We did find the $start_line and started adding our $data.
+  	# But we never found the $end_line. For that reason we now add anything
+  	# back that we stored in $editbuffer while we were 'inside' $start_line
+  	# tag and the never appearing $end_line.
+ 	print $fout $editbuffer;
   }
     
   # close file handles
