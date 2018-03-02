@@ -48,6 +48,8 @@ class Shop extends MX_Controller {
 
         // -- Actual page logic start:
 
+        $categories = array();
+
         // Not 'managePackage'? Bye, bye!
         if (!$Capabilities->getAllowed('managePackage')) {
             // Nice people say goodbye, or CCEd waits forever:
@@ -102,6 +104,12 @@ class Shop extends MX_Controller {
                     }
                 }
               }
+
+              $goodStatus = array("RED", "ORANGE", "GREEN");
+              if (!in_array($snstatus, $goodStatus)) {
+                $snstatus = "ORANGE";
+              }
+
               // Are we online and in the green?
               if ($snstatus == "GREEN") {
                   $online = "1";
@@ -221,7 +229,6 @@ class Shop extends MX_Controller {
                 $output = get_data($categories_url);
                 $output = preg_replace('/"/', '', $output);
                 $arr_catlist = explode("\n", $output);
-                $categories = array();
 
                 foreach ($arr_catlist as $items) {
                     $item = explode(",", $items);
@@ -300,60 +307,60 @@ class Shop extends MX_Controller {
                     }
                 }
             }
-        }
-        $end_time = time();
+            $end_time = time();
 
-        // Do we have form data?
-        if (isset($form_data["SHOP_SELECTOR"])) {
-            // If so, set the shop selector to the submitted form data:
-            $needle = $form_data["SHOP_SELECTOR"];
-            $api_url = $shop_url[$needle];
-        }
+            // Do we have form data?
+            if (isset($form_data["SHOP_SELECTOR"])) {
+                // If so, set the shop selector to the submitted form data:
+                $needle = $form_data["SHOP_SELECTOR"];
+                $api_url = $shop_url[$needle];
+            }
 
-        if (isset($get_data["CAT_SELECTOR"])) {
-            // If so, set the category selector to the submitted form data:
-            $needle = $get_data["CAT_SELECTOR"];
-            $cat = $needle;
-        }
-
-        if ((isset($form_data["SHOP_SELECTOR"])) || (isset($get_data["CAT_SELECTOR"]))) {
             if (isset($get_data["CAT_SELECTOR"])) {
-                $cat = $get_data["CAT_SELECTOR"];
+                // If so, set the category selector to the submitted form data:
+                $needle = $get_data["CAT_SELECTOR"];
+                $cat = $needle;
             }
 
-            if (isset($form_data["CAT_SELECTOR"])) {
-                $long_cat = preg_split('/=/', $form_data["CAT_SELECTOR"]);
-                $cat = $long_cat[1];
-            }
-
-            // Join the various error messages:
-            $errors = array_merge($ci_errors, $my_errors);
-
-            // If we have no errors and have POST data, we submit to CODB:
-            if (((count($errors) == "0") && ($CI->input->post(NULL, TRUE))) || ((count($errors) == "0") && ($CI->input->get(NULL, TRUE)))) {
-                if (isset($form_data["SHOP_SELECTOR"])) {
-                    $CI->cceClient->setObject("Shop", 
-                                                    array(
-                                                        "shop_url" => $api_url, 
-                                                        "update" => time()
-                                                    ), 
-                                            "");
+            if ((isset($form_data["SHOP_SELECTOR"])) || (isset($get_data["CAT_SELECTOR"]))) {
+                if (isset($get_data["CAT_SELECTOR"])) {
+                    $cat = $get_data["CAT_SELECTOR"];
                 }
-                if (isset($cat)) {
-                    $CI->cceClient->setObject("Shop", 
-                                                    array(
-                                                        "shop_category" => $cat, 
-                                                        "update" => time()
-                                                    ), 
-                                            "");
+
+                if (isset($form_data["CAT_SELECTOR"])) {
+                    $long_cat = preg_split('/=/', $form_data["CAT_SELECTOR"]);
+                    $cat = $long_cat[1];
                 }
-                // CCE errors that might have happened during submit to CODB:
-                $errors = $CI->cceClient->errors();
+
+                // Join the various error messages:
+                $errors = array_merge($ci_errors, $my_errors);
+
+                // If we have no errors and have POST data, we submit to CODB:
+                if (((count($errors) == "0") && ($CI->input->post(NULL, TRUE))) || ((count($errors) == "0") && ($CI->input->get(NULL, TRUE)))) {
+                    if (isset($form_data["SHOP_SELECTOR"])) {
+                        $CI->cceClient->setObject("Shop", 
+                                                        array(
+                                                            "shop_url" => $api_url, 
+                                                            "update" => time()
+                                                        ), 
+                                                "");
+                    }
+                    if (isset($cat)) {
+                        $CI->cceClient->setObject("Shop", 
+                                                        array(
+                                                            "shop_category" => $cat, 
+                                                            "update" => time()
+                                                        ), 
+                                                "");
+                    }
+                    // CCE errors that might have happened during submit to CODB:
+                    $errors = $CI->cceClient->errors();
+                }
             }
-        }
-        else {
-            // Set current category to the last one the user visited (as stored in CODB):
-            $cat = $cat_from_codb;
+            else {
+                // Set current category to the last one the user visited (as stored in CODB):
+                $cat = $cat_from_codb;
+            }
         }
 
         //
@@ -391,6 +398,11 @@ class Shop extends MX_Controller {
         $extra_page_body .= "\n" . '</p></div></fieldset>';
 
         //-- Generate page:
+
+        if (!isset($BxPage)) {
+            $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-yum", "/swupdate/shop");
+            $BxPage = $factory->getPage();
+        }
 
         // Show shop and category selector block:
         $page_body[] = addInputForm(
