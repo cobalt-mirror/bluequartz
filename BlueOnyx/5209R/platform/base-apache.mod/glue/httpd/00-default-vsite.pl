@@ -55,6 +55,24 @@ if (!-d '/var/www/html/error') {
 $config = '';
 $config = <<CONFIG;
     #NameVirtualHost *:$httpPort
+    #NameVirtualHost *:$sslPort
+
+    Listen 443 https
+
+    SSLProtocol TLSv1.2 +TLSv1.1
+    SSLCipherSuite HIGH:!LOW:!SEED:!DSS:!SSLv2:!aNULL:!eNULL:!NULL:!EXPORT:!ADH:!IDEA:!ECDSA:!3DES:!DES:!MD5:!PSK:!RC4:@STRENGTH
+
+    SSLHonorCipherOrder On
+    SSLStrictSNIVHostCheck off
+    SSLCompression off
+    
+    SSLUseStapling          on
+    SSLStaplingResponderTimeout 5
+    SSLStaplingReturnResponderErrors off
+    SSLStaplingCache        shmcb:/var/run/ocsp(128000)
+
+    SSLOptions +FakeBasicAuth +ExportCertData +StrictRequire
+
     <VirtualHost *:$httpPort>
         ServerName $ServerName
         ServerAdmin admin
@@ -68,10 +86,11 @@ $config = <<CONFIG;
     <VirtualHost *:$sslPort>
         ServerName $ServerName
         SSLengine on
-        SSLCompression off
         SSLProtocol TLSv1.2 +TLSv1.1
+        SSLCipherSuite HIGH:!LOW:!SEED:!DSS:!SSLv2:!aNULL:!eNULL:!NULL:!EXPORT:!ADH:!IDEA:!ECDSA:!3DES:!DES:!MD5:!PSK:!RC4:@STRENGTH
         SSLHonorCipherOrder On
-        SSLCipherSuite HIGH:!LOW:!MEDIUM:!DH:!ADH:!EXP:!SSLv2:!SSLv3:!aNULL:!eNULL:!NULL:!EXPORT:!ADH:!IDEA:!ECDSA:!3DES:!DES:!MD5:!PSK:!RC4:!SHA:@STRENGTH
+        SSLCompression off
+
         # Server Certificate:
         $CALine
         SSLCertificateFile    /etc/admserv/certs/certificate
@@ -113,8 +132,8 @@ foreach $x (@arr_assigned_ipv4) {
         SSLengine on
         SSLCompression off
         SSLProtocol TLSv1.2 +TLSv1.1
+        SSLCipherSuite HIGH:!LOW:!SEED:!DSS:!SSLv2:!aNULL:!eNULL:!NULL:!EXPORT:!ADH:!IDEA:!ECDSA:!3DES:!DES:!MD5:!PSK:!RC4:@STRENGTH
         SSLHonorCipherOrder On
-        SSLCipherSuite HIGH:!LOW:!MEDIUM:!DH:!ADH:!EXP:!SSLv2:!SSLv3:!aNULL:!eNULL:!NULL:!EXPORT:!ADH:!IDEA:!ECDSA:!3DES:!DES:!MD5:!PSK:!RC4:!SHA:@STRENGTH
         # Server Certificate:
         $CALine
         SSLCertificateFile    /etc/admserv/certs/certificate
@@ -146,8 +165,8 @@ foreach $z (@arr_assigned_ipv6) {
         SSLengine on
         SSLCompression off
         SSLProtocol TLSv1.2 +TLSv1.1
+        SSLCipherSuite HIGH:!LOW:!SEED:!DSS:!SSLv2:!aNULL:!eNULL:!NULL:!EXPORT:!ADH:!IDEA:!ECDSA:!3DES:!DES:!MD5:!PSK:!RC4:@STRENGTH
         SSLHonorCipherOrder On
-        SSLCipherSuite HIGH:!LOW:!MEDIUM:!DH:!ADH:!EXP:!SSLv2:!SSLv3:!aNULL:!eNULL:!NULL:!EXPORT:!ADH:!IDEA:!ECDSA:!3DES:!DES:!MD5:!PSK:!RC4:!SHA:@STRENGTH
         # Server Certificate:
         $CALine
         SSLCertificateFile    /etc/admserv/certs/certificate
