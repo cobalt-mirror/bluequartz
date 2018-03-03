@@ -205,6 +205,48 @@ class Primarydns extends MX_Controller {
 
         $get_form_data = $CI->input->get(NULL, TRUE);
 
+        if(isset($get_form_data['domauth'])) {
+            $domauth = urldecode($get_form_data['domauth']);
+            $netauth = '';
+        }
+        else {
+            $domauth = $default_domauth;
+        }
+        if ($domauth == "") {
+            $domauth = $default_domauth;
+        }
+
+        if(isset($get_form_data['netauth'])) {
+            $netauth = urldecode($get_form_data['netauth']);
+            $domauth = '';
+        }
+        else {
+            $netauth = '';
+        }
+
+        // Actually default
+        $title_authority = $domauth;
+        if ($title_authority == '') {
+            $title_authority = urldecode($netauth);
+        }
+        if (($domauth == '') && ($netauth == '')) { 
+            $domauth = $default_domauth;
+            if ($title_authority == '') {
+                $title_authority = $default_domauth;
+            }
+            $netauth = $default_netauth; 
+            if ($title_authority == '') {
+                $title_authority = urldecode($default_netauth);
+            }
+        }
+        if ($title_authority != '') { 
+            $title_members = preg_split('/\//', $title_authority);
+            $title_authority = $records_title_separator . $title_members[0];
+            if (isset($title_members[1])) {
+                $title_authority .= '/' . $dec_to_nm[$title_members[1]];
+            }
+        }
+
         // Handle mass deletion:
         if (isset($get_form_data['_DELMANY'])) {
             if (preg_match('/^[1-9][0-9]{0,15}$/', $get_form_data['_DELMANY'])) {
@@ -293,58 +335,24 @@ class Primarydns extends MX_Controller {
                     $update['commit'] = time();
                     $CI->cceClient->setObject("System", $update, "DNS");
 
+                    $r_suffix = '';
+                    if ($netauth != '') {
+                        $r_suffix = 'netauth=' . $netauth;
+                    }
+                    if ($domauth != '') {
+                        $r_suffix = 'domauth=' . $domauth;
+                    }
+
                     // No errors during submit? Redirect to previous page:
                     if (count($errors) == "0") {
                         $CI->cceClient->bye();
                         $CI->serverScriptHelper->destructor();
-                        header("location: $iam");
+                        header("location: $iam?$r_suffix");
                         exit;
                     }
                 }               
             }
         }       
-
-        if(isset($get_form_data['domauth'])) {
-            $domauth = urldecode($get_form_data['domauth']);
-            $netauth = '';
-        }
-        else {
-            $domauth = $default_domauth;
-        }
-        if ($domauth == "") {
-            $domauth = $default_domauth;
-        }
-
-        if(isset($get_form_data['netauth'])) {
-            $netauth = urldecode($get_form_data['netauth']);
-            $domauth = '';
-        }
-        else {
-            $netauth = '';
-        }
-
-        // Actually default
-        $title_authority = $domauth;
-        if ($title_authority == '') {
-            $title_authority = urldecode($netauth);
-        }
-        if (($domauth == '') && ($netauth == '')) { 
-            $domauth = $default_domauth;
-            if ($title_authority == '') {
-                $title_authority = $default_domauth;
-            }
-            $netauth = $default_netauth; 
-            if ($title_authority == '') {
-                $title_authority = urldecode($default_netauth);
-            }
-        }
-        if ($title_authority != '') { 
-            $title_members = preg_split('/\//', $title_authority);
-            $title_authority = $records_title_separator . $title_members[0];
-            if (isset($title_members[1])) {
-                $title_authority .= '/' . $dec_to_nm[$title_members[1]];
-            }
-        }
 
         //
         //-- Generate page:
@@ -567,7 +575,7 @@ class Primarydns extends MX_Controller {
 
                     $modify_button = $factory->getModifyButton("$addmod?_BlockID=_".$rec['type']."&_TARGET=$oid&_LOAD=1&TYPE=".$rec['type'].$auth_link);
                     $modify_button->setImageOnly(TRUE);
-                    $remove_button = $factory->getRemoveButton("$iam?_RTARGET=$oid");
+                    $remove_button = $factory->getRemoveButton("$iam?_RTARGET=$oid".$auth_link);
                     $remove_button->setImageOnly(TRUE);
 
                     $combined_buttons = $factory->getCompositeFormField(array($modify_button, $remove_button));
