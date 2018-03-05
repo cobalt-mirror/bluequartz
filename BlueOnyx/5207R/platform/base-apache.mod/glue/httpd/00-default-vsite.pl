@@ -54,7 +54,19 @@ if (!-d '/var/www/html/error') {
 # Generate config on the fly:
 $config = '';
 $config = <<CONFIG;
-    #NameVirtualHost *:$httpPort
+    NameVirtualHost *:$httpPort
+    NameVirtualHost *:$sslPort
+
+    Listen 443 https
+
+    SSLProtocol TLSv1.2 +TLSv1.1
+    SSLCipherSuite HIGH:!LOW:!SEED:!DSS:!SSLv2:!aNULL:!eNULL:!NULL:!EXPORT:!ADH:!IDEA:!ECDSA:!3DES:!DES:!MD5:!PSK:!RC4:@STRENGTH
+
+    SSLHonorCipherOrder On
+    SSLStrictSNIVHostCheck off
+
+    SSLOptions +FakeBasicAuth +ExportCertData +StrictRequire
+
     <VirtualHost *:$httpPort>
         ServerName $ServerName
         ServerAdmin admin
@@ -69,8 +81,9 @@ $config = <<CONFIG;
         ServerName $ServerName
         SSLengine on
         SSLProtocol TLSv1.2 +TLSv1.1
-        SSLHonorCipherOrder On
         SSLCipherSuite HIGH:!LOW:!SEED:!DSS:!SSLv2:!aNULL:!eNULL:!NULL:!EXPORT:!ADH:!IDEA:!ECDSA:!3DES:!DES:!MD5:!PSK:!RC4:@STRENGTH
+        SSLHonorCipherOrder On
+
         # Server Certificate:
         $CALine
         SSLCertificateFile    /etc/admserv/certs/certificate
