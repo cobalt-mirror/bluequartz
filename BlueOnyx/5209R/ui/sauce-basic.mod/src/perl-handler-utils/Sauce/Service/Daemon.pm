@@ -159,6 +159,42 @@ sub _daemonize
 }
 
 sub _check_apache_state {
+
+    # Traditional check polling the Init service:
+    my $service = 'httpd';
+    my $service_status = '';
+    if (-f "/usr/bin/systemctl") { 
+        # Got Systemd: 
+        $service_status = `/usr/bin/systemctl status $service|$grep "Active:"|$grep -E "(running|exited)"|$wc -l`;
+        chomp($service_status);
+    }
+    else {
+        # Thank God, no Systemd: 
+        $service_status = `/sbin/service $service status|$grep running|$wc -l`;
+        chomp($service_status);
+    }
+
+    # Early return, because: 'It's dead, Jim!'
+    if ($service_status eq '0') {
+        &_logmsg("_check_apache_state: Early return #1");
+        return $service_status;
+    }
+
+    # Additional check by making a real HTTP request and polling the status code:
+    use LWP::UserAgent;
+    use HTTP::Request;
+    my $ua = LWP::UserAgent->new;
+    $ua->agent('BlueOnyx Sauce::Service::Daemon(_check_apache_state) - Apache Check');
+    my $req = HTTP::Request->new(GET => 'http://127.0.0.1');
+    my $response = $ua->request($req);
+    if ($response->code ne '200') {
+        # If status code is not '200' we have a problem - regardless of what Init says:
+        $service_status = '0';
+        # Early return, because: 'It's dead, Jim!'
+        &_logmsg("_check_apache_state: Early return #2");
+        return $service_status;
+    }
+
     # Check how many Apache processes are currently attached around as 
     # primaries and not as children. There should be only one:
     $apache_state = `$ps axf|$grep /usr/sbin/httpd|$grep -v adm|$grep -v '\_'|$wc -l`;
@@ -168,6 +204,7 @@ sub _check_apache_state {
     #   0   Apache dead
     #   1   Apache probably running OK
     #  >1   Childs have detached (bad)
+    &_logmsg("_check_apache_state: Final return");
     return $apache_state;
 }
 
@@ -187,20 +224,24 @@ sub _kill_and_restart_apache {
         # Kill httpd (but not AdmServ!):
         &_logmsg("xchecker reported: Killing $xchecker 'httpd' processes, but not killing admserv.\n");
         `$ps axf|$grep /usr/sbin/httpd|$grep -v adm|$grep -v grep|$grep -v '\_'|$awk -F ' ' '{print \$1}'|/usr/bin/xargs $kill -9 >&/dev/null`;
-    }
 
-    # Perform action:
-    if (-f "/usr/bin/systemctl") { 
-        # Got Systemd: 
-        # Please note: For httpd we do not use systemctl with the --no-block option to
-        # enqueue the call. We issue it directly and wait for the result.
-        &_logmsg("_kill_and_restart_apache runs: /usr/bin/systemctl --job-mode=flush restart httpd.service\n");
-        `/usr/bin/systemctl --job-mode=flush restart httpd.service`; 
-    } 
-    else { 
-        # Thank God, no Systemd: 
-        &_logmsg("_kill_and_restart_apache runs: /sbin/service httpd restart");
-        `/sbin/service httpd restart`;
+        # Perform restart action:
+        if (-f "/usr/bin/systemctl") { 
+            # Got Systemd: 
+            # Please note: For httpd we do not use systemctl with the --no-block option to
+            # enqueue the call. We issue it directly and wait for the result.
+            &_logmsg("_kill_and_restart_apache runs: /usr/bin/systemctl --job-mode=flush restart httpd.service\n");
+            `/usr/bin/systemctl --job-mode=flush restart httpd.service`; 
+        } 
+        else { 
+            # Thank God, no Systemd: 
+            &_logmsg("_kill_and_restart_apache runs: /sbin/service httpd restart");
+            `/sbin/service httpd restart`;
+        }
+    }
+    else {
+        &_logmsg("_kill_and_restart_apache runs: /usr/bin/pkill -HUP httpd");
+        `$pkill -HUP httpd`;
     }
 }
 
@@ -230,6 +271,7 @@ sub _spawn_child
         $grep = '/usr/bin/grep';
         $ps = '/usr/bin/ps';
         $wc = '/usr/bin/wc';
+        $pkill = '/usr/bin/pkill';
     }
     else {
         $awk = '/bin/awk';
@@ -237,6 +279,7 @@ sub _spawn_child
         $grep = '/bin/grep';
         $ps = '/bin/ps';
         $wc = '/usr/bin/wc';
+        $pkill = '/usr/bin/pkill';
     }
 
     # check credentials of person connecting
@@ -502,8 +545,8 @@ sub debug_msg {
 1;
 
 # 
-# Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2016-2018 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2016-2018 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 
