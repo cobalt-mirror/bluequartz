@@ -240,8 +240,14 @@ sub _kill_and_restart_apache {
         }
     }
     else {
-        &_logmsg("_kill_and_restart_apache runs: /usr/bin/pkill -HUP httpd");
-        `$pkill -HUP httpd`;
+        if (-f "/usr/bin/systemctl") { 
+            &_logmsg("_kill_and_restart_apache runs: /usr/bin/pkill -HUP -x -f " . "/usr/sbin/httpd -DFOREGROUND");
+            `$pkill -HUP -x -f "/usr/sbin/httpd -DFOREGROUND"`;
+        }
+        else {
+            &_logmsg("_kill_and_restart_apache runs: /usr/bin/pkill -HUP -x -f /usr/sbin/httpd");
+            `$pkill -HUP -x -f /usr/sbin/httpd`;
+        }
     }
 }
 
