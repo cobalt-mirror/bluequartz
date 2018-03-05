@@ -1,7 +1,7 @@
 Summary: Perl modules that contain useful utility functions for handlers.
 Name: perl-handler-utils
 Version: 1.4.0
-Release: 0BX16%{?dist}
+Release: 0BX17%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -33,6 +33,21 @@ This package contains a number of perl modules that contain useful
 utility functions for writing cced event handler scripts.
 
 %changelog
+
+* Sun Mar 04 2018 Michael Stauber <mstauber@solarspeed.net> 1.4.0-0BX17
+- Extended src/perl-handler-utils/Sauce/Service/Daemon.pm to use
+  'pkill -HUP httpd' to restart Apache if it is still running with no
+  detached children. We still use '/sbin/service' or 'systemctl' in case
+  of Apache being dead already or in case of detached children. The net
+  result of using 'pkill -HUP httpd' is a more reliable and less intrusive
+  restart of Apache than anything that the regular init scripts perform
+  outside of a 'reload', which in itself is utterly unreliable as a 'reload'
+  will always fail if the service has detached children or is dead to begin
+  with.
+- Additionally _check_apache_state() now not only checks for detached
+  children, but (before that) also checks if the service is up via
+  '/sbin/service' or 'systemd' and additionally also does an actual
+  GET request to localhost of which we check the response code. 
 
 * Fri Mar 02 2018 Michael Stauber <mstauber@solarspeed.net> 1.4.0-0BX16
 - Modified perl-handler-utils/Sauce/Util.pm to fix replaceblock function.
