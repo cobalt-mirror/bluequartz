@@ -1460,7 +1460,13 @@ $result = "&";
 // description: converts a CCE-encoded scalar into an array
 function scalar_to_array( $scalar ) {
     // just in case trim off whitespace
-    $scalar = trim($scalar);
+    if (!is_array($scalar)) {
+        $scalar = trim($scalar);
+    }
+    else {
+        // We already got an array, so return that one instead:
+        return $scalar;
+    }
 
     $scalar = preg_replace("/^&/", "", $scalar);
     $scalar = preg_replace("/&$/", "", $scalar);
