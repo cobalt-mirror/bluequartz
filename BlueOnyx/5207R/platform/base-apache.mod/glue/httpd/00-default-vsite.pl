@@ -70,7 +70,12 @@ $config = <<CONFIG;
     <VirtualHost *:$httpPort>
         ServerName $ServerName
         ServerAdmin admin
-        DocumentRoot /var/www/html/
+        DocumentRoot /var/www/html
+
+        RewriteEngine On
+        RewriteCond %{HTTP_HOST}                ^([^:]+)
+        RewriteRule ^/login/?\$                 http://%1:444/login [L,R]
+
         ErrorDocument 401 /error/401-authorization.html
         ErrorDocument 403 /error/403-forbidden.html
         ErrorDocument 404 /error/404-file-not-found.html
@@ -90,6 +95,11 @@ $config = <<CONFIG;
         SSLCertificateKeyFile /etc/admserv/certs/key
         ServerAdmin admin
         DocumentRoot /var/www/html
+
+        RewriteEngine On
+        RewriteCond %{HTTP_HOST}                ^([^:]+)
+        RewriteRule ^/login/?\$                 https://%1:81/login [L,R]
+
         ErrorDocument 401 /error/401-authorization.html
         ErrorDocument 403 /error/403-forbidden.html
         ErrorDocument 404 /error/404-file-not-found.html
