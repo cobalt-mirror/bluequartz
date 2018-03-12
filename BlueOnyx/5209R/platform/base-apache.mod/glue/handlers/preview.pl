@@ -155,11 +155,10 @@ RewriteRule ^/login/?\$                 http://%1:444/login [L,R]
 Options +MultiViews
 </Directory>
 
-Alias /no-vhost-error/ /usr/sausalito/ui/web/error/
-ErrorDocument 401 /no-vhost-error/authorizationRequired.html
-ErrorDocument 403 /no-vhost-error/forbidden.html
-ErrorDocument 404 /no-vhost-error/fileNotFound.html
-ErrorDocument 500 /no-vhost-error/internalServerError.html
+ErrorDocument 401 /error/401-authorization.html
+ErrorDocument 403 /error/403-forbidden.html
+ErrorDocument 404 /error/404-file-not-found.html
+ErrorDocument 500 /error/500-internal-server-error.html
 $aliases
 </VirtualHost>
 END

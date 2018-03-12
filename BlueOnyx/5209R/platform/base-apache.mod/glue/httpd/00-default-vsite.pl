@@ -77,6 +77,14 @@ $config = <<CONFIG;
         ServerName $ServerName
         ServerAdmin admin
         DocumentRoot /var/www/html/
+
+        RewriteEngine On
+        RewriteCond %{HTTP_HOST}                ^([^:]+)
+        RewriteCond %{DOCUMENT_ROOT}            !-d
+        RewriteRule .*                          http://%1:444/gui/Forbidden403 [L,R]
+        RewriteCond %{HTTP_HOST}                ^([^:]+)
+        RewriteRule ^/login/?\$                 http://%1:444/login [L,R]
+
         ErrorDocument 401 /error/401-authorization.html
         ErrorDocument 403 /error/403-forbidden.html
         ErrorDocument 404 /error/404-file-not-found.html
@@ -97,6 +105,14 @@ $config = <<CONFIG;
         SSLCertificateKeyFile /etc/admserv/certs/key
         ServerAdmin admin
         DocumentRoot /var/www/html
+
+        RewriteEngine On
+        RewriteCond %{HTTP_HOST}                ^([^:]+)
+        RewriteCond %{DOCUMENT_ROOT}            !-d
+        RewriteRule .*                          http://%1:444/gui/Forbidden403 [L,R]
+        RewriteCond %{HTTP_HOST}                ^([^:]+)
+        RewriteRule ^/login/?\$                 http://%1:444/login [L,R]
+
         ErrorDocument 401 /error/401-authorization.html
         ErrorDocument 403 /error/403-forbidden.html
         ErrorDocument 404 /error/404-file-not-found.html
@@ -120,7 +136,15 @@ foreach $x (@arr_assigned_ipv4) {
     <VirtualHost $x:$httpPort>
         ServerName $ServerName
         ServerAdmin admin
-        DocumentRoot /var/www/html/
+        DocumentRoot /var/www/html
+
+        RewriteEngine On
+        RewriteCond %{HTTP_HOST}                ^([^:]+)
+        RewriteCond %{DOCUMENT_ROOT}            !-d
+        RewriteRule .*                          http://%1:444/gui/Forbidden403 [L,R]
+        RewriteCond %{HTTP_HOST}                ^([^:]+)
+        RewriteRule ^/login/?\$                 http://%1:444/login [L,R]
+
         ErrorDocument 401 /error/401-authorization.html
         ErrorDocument 403 /error/403-forbidden.html
         ErrorDocument 404 /error/404-file-not-found.html
@@ -140,6 +164,14 @@ foreach $x (@arr_assigned_ipv4) {
         SSLCertificateKeyFile /etc/admserv/certs/key
         ServerAdmin admin
         DocumentRoot /var/www/html
+
+        RewriteEngine On
+        RewriteCond %{HTTP_HOST}                ^([^:]+)
+        RewriteCond %{DOCUMENT_ROOT}            !-d
+        RewriteRule .*                          http://%1:444/gui/Forbidden403 [L,R]
+        RewriteCond %{HTTP_HOST}                ^([^:]+)
+        RewriteRule ^/login/?\$                 http://%1:444/login [L,R]
+
         ErrorDocument 401 /error/401-authorization.html
         ErrorDocument 403 /error/403-forbidden.html
         ErrorDocument 404 /error/404-file-not-found.html
@@ -154,6 +186,14 @@ foreach $z (@arr_assigned_ipv6) {
         ServerName $ServerName
         ServerAdmin admin
         DocumentRoot /var/www/html/
+
+        RewriteEngine On
+        RewriteCond %{HTTP_HOST}                ^([^:]+)
+        RewriteCond %{DOCUMENT_ROOT}            !-d
+        RewriteRule .*                          http://%1:444/gui/Forbidden403 [L,R]
+        RewriteCond %{HTTP_HOST}                ^([^:]+)
+        RewriteRule ^/login/?\$                 http://%1:444/login [L,R]
+
         ErrorDocument 401 /error/401-authorization.html
         ErrorDocument 403 /error/403-forbidden.html
         ErrorDocument 404 /error/404-file-not-found.html
@@ -173,6 +213,14 @@ foreach $z (@arr_assigned_ipv6) {
         SSLCertificateKeyFile /etc/admserv/certs/key
         ServerAdmin admin
         DocumentRoot /var/www/html
+
+        RewriteEngine On
+        RewriteCond %{HTTP_HOST}                ^([^:]+)
+        RewriteCond %{DOCUMENT_ROOT}            !-d
+        RewriteRule .*                          http://%1:444/gui/Forbidden403 [L,R]
+        RewriteCond %{HTTP_HOST}                ^([^:]+)
+        RewriteRule ^/login/?\$                 http://%1:444/login [L,R]
+
         ErrorDocument 401 /error/401-authorization.html
         ErrorDocument 403 /error/403-forbidden.html
         ErrorDocument 404 /error/404-file-not-found.html
