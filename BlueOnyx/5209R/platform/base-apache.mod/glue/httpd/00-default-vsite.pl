@@ -80,9 +80,6 @@ $config = <<CONFIG;
 
         RewriteEngine On
         RewriteCond %{HTTP_HOST}                ^([^:]+)
-        RewriteCond %{DOCUMENT_ROOT}            !-d
-        RewriteRule .*                          http://%1:444/gui/Forbidden403 [L,R]
-        RewriteCond %{HTTP_HOST}                ^([^:]+)
         RewriteRule ^/login/?\$                 http://%1:444/login [L,R]
 
         ErrorDocument 401 /error/401-authorization.html
@@ -108,10 +105,7 @@ $config = <<CONFIG;
 
         RewriteEngine On
         RewriteCond %{HTTP_HOST}                ^([^:]+)
-        RewriteCond %{DOCUMENT_ROOT}            !-d
-        RewriteRule .*                          http://%1:444/gui/Forbidden403 [L,R]
-        RewriteCond %{HTTP_HOST}                ^([^:]+)
-        RewriteRule ^/login/?\$                 http://%1:444/login [L,R]
+        RewriteRule ^/login/?\$                 https://%1:81/login [L,R]
 
         ErrorDocument 401 /error/401-authorization.html
         ErrorDocument 403 /error/403-forbidden.html
@@ -140,9 +134,6 @@ foreach $x (@arr_assigned_ipv4) {
 
         RewriteEngine On
         RewriteCond %{HTTP_HOST}                ^([^:]+)
-        RewriteCond %{DOCUMENT_ROOT}            !-d
-        RewriteRule .*                          http://%1:444/gui/Forbidden403 [L,R]
-        RewriteCond %{HTTP_HOST}                ^([^:]+)
         RewriteRule ^/login/?\$                 http://%1:444/login [L,R]
 
         ErrorDocument 401 /error/401-authorization.html
@@ -167,10 +158,7 @@ foreach $x (@arr_assigned_ipv4) {
 
         RewriteEngine On
         RewriteCond %{HTTP_HOST}                ^([^:]+)
-        RewriteCond %{DOCUMENT_ROOT}            !-d
-        RewriteRule .*                          http://%1:444/gui/Forbidden403 [L,R]
-        RewriteCond %{HTTP_HOST}                ^([^:]+)
-        RewriteRule ^/login/?\$                 http://%1:444/login [L,R]
+        RewriteRule ^/login/?\$                 https://%1:81/login [L,R]
 
         ErrorDocument 401 /error/401-authorization.html
         ErrorDocument 403 /error/403-forbidden.html
@@ -188,9 +176,6 @@ foreach $z (@arr_assigned_ipv6) {
         DocumentRoot /var/www/html/
 
         RewriteEngine On
-        RewriteCond %{HTTP_HOST}                ^([^:]+)
-        RewriteCond %{DOCUMENT_ROOT}            !-d
-        RewriteRule .*                          http://%1:444/gui/Forbidden403 [L,R]
         RewriteCond %{HTTP_HOST}                ^([^:]+)
         RewriteRule ^/login/?\$                 http://%1:444/login [L,R]
 
@@ -216,10 +201,7 @@ foreach $z (@arr_assigned_ipv6) {
 
         RewriteEngine On
         RewriteCond %{HTTP_HOST}                ^([^:]+)
-        RewriteCond %{DOCUMENT_ROOT}            !-d
-        RewriteRule .*                          http://%1:444/gui/Forbidden403 [L,R]
-        RewriteCond %{HTTP_HOST}                ^([^:]+)
-        RewriteRule ^/login/?\$                 http://%1:444/login [L,R]
+        RewriteRule ^/login/?\$                 https://%1:81/login [L,R]
 
         ErrorDocument 401 /error/401-authorization.html
         ErrorDocument 403 /error/403-forbidden.html
