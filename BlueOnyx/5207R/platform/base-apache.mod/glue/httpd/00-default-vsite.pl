@@ -60,7 +60,7 @@ $config = <<CONFIG;
     Listen 443 https
 
     SSLProtocol TLSv1.2 +TLSv1.1
-    SSLCipherSuite HIGH:!LOW:!SEED:!DSS:!SSLv2:!aNULL:!eNULL:!NULL:!EXPORT:!ADH:!IDEA:!ECDSA:!3DES:!DES:!MD5:!PSK:!RC4:@STRENGTH
+    SSLCipherSuite AES256+EECDH:AES256+EDH:AES128+EECDH:AES128+EDH:!aNULL:!eNULL:!NULL:!EXPORT:!IDEA:!3DES:!DES:!MD5:!PSK:!RC4:@STRENGTH
 
     SSLHonorCipherOrder On
     SSLStrictSNIVHostCheck off
@@ -86,7 +86,7 @@ $config = <<CONFIG;
         ServerName $ServerName
         SSLengine on
         SSLProtocol TLSv1.2 +TLSv1.1
-        SSLCipherSuite HIGH:!LOW:!SEED:!DSS:!SSLv2:!aNULL:!eNULL:!NULL:!EXPORT:!ADH:!IDEA:!ECDSA:!3DES:!DES:!MD5:!PSK:!RC4:@STRENGTH
+        SSLCipherSuite AES256+EECDH:AES256+EDH:AES128+EECDH:AES128+EDH:!aNULL:!eNULL:!NULL:!EXPORT:!IDEA:!3DES:!DES:!MD5:!PSK:!RC4:@STRENGTH
         SSLHonorCipherOrder On
 
         # Server Certificate:

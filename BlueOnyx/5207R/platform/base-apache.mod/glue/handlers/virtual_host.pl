@@ -173,7 +173,7 @@ NameVirtualHost $vhost->{ipaddr}:$sslPort
 SSLengine on
 SSLProtocol TLSv1.2 +TLSv1.1
 SSLHonorCipherOrder On
-SSLCipherSuite HIGH:!LOW:!SEED:!DSS:!SSLv2:!aNULL:!eNULL:!NULL:!EXPORT:!ADH:!IDEA:!ECDSA:!3DES:!DES:!MD5:!PSK:!RC4:@STRENGTH
+SSLCipherSuite AES256+EECDH:AES256+EDH:AES128+EECDH:AES128+EDH:!aNULL:!eNULL:!NULL:!EXPORT:!IDEA:!3DES:!DES:!MD5:!PSK:!RC4:@STRENGTH
 $HSTS_line
 $cafile
 SSLCertificateFile $vhost->{basedir}/certs/certificate
@@ -232,21 +232,15 @@ END
     #
     # As we now support SNI, some browsers or Robots are left out as far as HTTPS is concerned. 
     #
-    # That includes:
-    #
-    # - Android 2.3.7       No SNI
-    # - BingBot Dec 2013    No SNI
-    # - IE 6 / XP           No SNI, no available protocols, unable to connect.
-    # - IE 8 / XP           No SNI
-    # - Java 6u45           No SNI
-    # 
     # Which is not really our problem. We're not sacrificing our security for fuckers that haven't
     # heard the shot yet and who can't be assed to use a more recent OS.
     #
-    # Further reading: https://bettercrypto.org/static/applied-crypto-hardening.pdf
-    # But note: Their suggested cipher-string and ours are different. Despite that we
-    # achieve the same results for all browsers and also retained compatibility with IE6/XP
-    # and IE8/XP until we went all out for SNI. Since then it's bye, bye for IE users on XP.
+    # Updated: 2018-03-14: 
+    #
+    # With the deprecation of the weak DH curves and living within the limitations of the OpenSSL
+    # that CentOS provides us with, we switched to: AES256+EECDH:AES256+EDH:AES128+EECDH:AES128+EDH
+    # entirely.
+    #
 
     # append line marking the end of the section specifically owned by the VirtualHost
     my $end_mark = "# end of VirtualHost owned section\n";
