@@ -877,7 +877,7 @@ SSLengine on
 SSLCompression off
 SSLProtocol TLSv1.2 +TLSv1.1
 SSLHonorCipherOrder On
-SSLCipherSuite HIGH:!LOW:!MEDIUM:!DH:!ADH:!EXP:!SSLv2:!SSLv3:!aNULL:!eNULL:!NULL:!EXPORT:!ADH:!IDEA:!ECDSA:!3DES:!DES:!MD5:!PSK:!RC4:!SHA:@STRENGTH
+SSLCipherSuite AES256+EECDH:AES256+EDH:AES128+EECDH:AES128+EDH:!aNULL:!eNULL:!NULL:!EXPORT:!IDEA:!3DES:!DES:!MD5:!PSK:!RC4:@STRENGTH
 $HSTS_line
 $cafile
 SSLCertificateFile $vhost->{basedir}/certs/certificate
@@ -932,30 +932,24 @@ END
     # representing the bottom end with Android 2.3.7 or OpenSSL 0.9.8y.
     #
     # Protocols: Only IE6/XP would use SSLv3, which we disabled due to the 'Pootle'-vulnerability. So IE6/XP
-    # and IE8/XP users will no longer be able to connect. 
+    # and IE8/XP users will no longer be able to connect. All the rest default to TLSv1.2 or TLSv1.1.
     #
-    # As of 2018-02-28 we only support TLSv1.2 and TLSv1.1. This removes TLSv1.0 as well, as it will soon 
-    # fail PCI compliance tests.
+    # As of 2018-02-28 we only support TLSv1.2 and TLSv1.1. This removes TLSv1.0 as well, as it will soon  
+    # fail PCI compliance tests. 
     #
     # Ciphers: RC4 and other weak ciphers have been disabled.
     #
     # As we now support SNI, some browsers or Robots are left out as far as HTTPS is concerned. 
     #
-    # That includes:
-    #
-    # - Android 2.3.7       No SNI
-    # - BingBot Dec 2013    No SNI
-    # - IE 6 / XP           No SNI, no available protocols, unable to connect.
-    # - IE 8 / XP           No SNI
-    # - Java 6u45           No SNI
-    # 
     # Which is not really our problem. We're not sacrificing our security for fuckers that haven't
     # heard the shot yet and who can't be assed to use a more recent OS.
     #
-    # Further reading: https://bettercrypto.org/static/applied-crypto-hardening.pdf
-    # But note: Their suggested cipher-string and ours are different. Despite that we
-    # achieve the same results for all browsers and also retained compatibility with IE6/XP
-    # and IE8/XP until we went all out for SNI. Since then it's bye, bye for IE users on XP.
+    # Updated: 2018-03-14: 
+    #
+    # With the deprecation of the weak DH curves and living within the limitations of the OpenSSL
+    # that CentOS provides us with, we switched to: AES256+EECDH:AES256+EDH:AES128+EECDH:AES128+EDH
+    # entirely.
+    #
 
     # append line marking the end of the section specifically owned by the VirtualHost
     my $end_mark = "# end of VirtualHost owned section\n";

@@ -226,6 +226,13 @@ fi
 
 <begin $CHANGELOG>
 
+* Wed Mar 14 2018 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX14
+- Updated SSLCipherSuite again to return to a sensible set of ciphers
+  and to disable the weaker DH ciphers. In essence it boils down to
+  anything AES256+EECDH:AES256+EDH:AES128+EECDH:AES128+EDH related as
+  long as it uses GCM/SHA or CBC/SHA. AES256 is prefered, AES128 is 
+  also OK, but we might deprecate that next.
+
 * Mon Mar 12 2018 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX14
 - Small change related to error message pages in glue/handlers/preview.pl
 - Small change related to GUI redirect in glue/httpd/00-default-vsite.pl
