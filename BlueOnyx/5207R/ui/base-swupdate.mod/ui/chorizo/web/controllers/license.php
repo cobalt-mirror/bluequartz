@@ -153,7 +153,7 @@ class License extends MX_Controller {
         updates_prependsrc($license, $package['vendor'], $package['name'], $package['version'], $stage);
 
         $LICENSE = $i18n->interpolate($license);
-        $LICENSE_info_text = $factory->getTextField("_", $LICENSE, 'r');
+        $LICENSE_info_text = $factory->getHtmlField("_", $LICENSE, 'r');
         $LICENSE_info_text->setLabelType("nolabel");
         $block->addFormField(
             $LICENSE_info_text,
