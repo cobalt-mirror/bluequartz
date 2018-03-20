@@ -5,6 +5,33 @@ class Login extends MX_Controller {
     /**
      * Index Page for this controller.
      */
+    // XSS cleaner. 
+    //
+    // Please note: The regexp are taken from basetypes.schema for the corresponding inputs and conform 
+    // with what CODB would accept in the fields 'username' and 'password'.
+    public function xssafeLogin($data, $encoding='UTF-8', $type='') {
+        if ($type == 'username_field') {
+            if (!preg_match('/^[A-Za-z0-9\._-]+$/', $data)) {
+                $data = '';
+                return $data;
+            }
+            else {
+                return $data;
+            }
+        }
+        elseif ($type == 'password_field') {
+            if (!preg_match('/^[^\001-\040\042\046\047\057\074\076\077\100\133-\140\173-\177]{6,24}$/', $data)) {
+                $data = '';
+                return $data;
+            }
+            else {
+                return $data;
+            }
+        }
+        else {
+            return htmlspecialchars($data,ENT_QUOTES,$encoding);
+        }
+    }
 
     public function index() {
         // We load the BlueOnyx helper library first of all, as we heavily depend on it:
@@ -197,6 +224,31 @@ class Login extends MX_Controller {
 
         // Get Form data:
         $form_data = $CI->input->post(NULL, TRUE);
+        // If we have form data, we sanitize it:
+        $attributes = array();
+        $ignore_attributes = array();
+        if ($CI->input->post(NULL, TRUE)) {
+            foreach ($form_data as $key => $value) {
+                // Sanitize data received via form fields:
+                $form_data[$key] = Login::xssafeLogin($value, 'UTF-8', $key);
+            }
+            $required_keys = array('username_field', 'password_field', 'secureConnect', 'redirect_target');
+            $attributes = GetFormAttributes($i18n, $form_data, $required_keys, $ignore_attributes, $i18n);
+            $form_data = $attributes;
+        }
+
+        if (!isset($form_data['username_field'])) {
+            $form_data['username_field'] = '';
+        }
+        if (!isset($form_data['password_field'])) {
+            $form_data['password_field'] = '';
+        }
+        if (!isset($form_data['secureConnect'])) {
+            $form_data['secureConnect'] = '1';
+        }
+        if (!isset($form_data['redirect_target'])) {
+            $form_data['redirect_target'] = '/gui';
+        }
 
         // Get URI string:
         $get_uri_string = uri_string();
@@ -363,8 +415,8 @@ class Login extends MX_Controller {
 
             // Therefore we pre-populate the $data array with defaults:
             $data = array(
-                  'username_field' => set_value('username_field'),
-                  'password_field' => set_value('password_field'),
+                  'username_field' => $form_data['username_field'],
+                  'password_field' => $form_data['password_field'],
                   'secureConnect' => $secureConnect,
                   'page_title' => $page_title,
                   'WelcomeMsg' => $WelcomeMsg,
@@ -389,7 +441,7 @@ class Login extends MX_Controller {
             // Form data has been sanitized and validated. Now we check if it matches:
 
             // get session ID
-            $sessionId = $CI->cceClient->auth(set_value('username_field'), set_value('password_field'));
+            $sessionId = $CI->cceClient->auth($form_data['username_field'], $form_data['password_field']);
 
             // Get 'System' object
             $system = $CI->cceClient->getObject('System');
@@ -406,8 +458,8 @@ class Login extends MX_Controller {
               // Login failed. We need to show the login form again with error message.
               // Therefore we pre-populate the $data array with defaults:
               $data = array(
-                  'username_field' => set_value('username_field'),
-                  'password_field' => set_value('password_field'),
+                  'username_field' => $form_data['username_field'],
+                  'password_field' => $form_data['password_field'],
                   'secureConnect' => $secureConnect,
                   'page_title' => $page_title,
                   'WelcomeMsg' => $WelcomeMsg,
@@ -434,15 +486,15 @@ class Login extends MX_Controller {
               // Now if this user is known (and at this point he is), then we check his CODB object to 
               // learn which locale (and charset) he's usually using and use that one instead. After all,
               // it might be different from what his browser tells us:
-              $user = $CI->cceClient->getObject("User", array("name" => set_value('username_field')));
+              $user = $CI->cceClient->getObject("User", array("name" => $form_data['username_field']));
               // Now set the locale based on the users localePreference - if specified and known:
               if ($user['localePreference']) {
                 $locale = $user['localePreference'];
               }
 
               // Cleanup Cache:
-              $cap_file_name = "/usr/sausalito/capcache/" . set_value('username_field') . "_cap";
-              $capabilityGroups_file_name = "/usr/sausalito/capcache/" . set_value('username_field') . "_capabilityGroups";
+              $cap_file_name = "/usr/sausalito/capcache/" . $form_data['username_field'] . "_cap";
+              $capabilityGroups_file_name = "/usr/sausalito/capcache/" . $form_data['username_field'] . "_capabilityGroups";
               if (is_file($cap_file_name)) {
                 system("rm -f $cap_file_name");
               }
@@ -451,7 +503,7 @@ class Login extends MX_Controller {
               }
 
               // Send cookies that expire at end of the browser session. 
-              setcookie("loginName", set_value('username_field'), time()+60*60*24*365, "/");
+              setcookie("loginName", $form_data['username_field'], time()+60*60*24*365, "/");
               setcookie("sessionId", $sessionId, "0", "/");
               setcookie("userip", $userip, "0", "/");
 
@@ -460,7 +512,7 @@ class Login extends MX_Controller {
               $this->input->set_cookie($cookie);
 
               $CI->BX_SESSION['sessionId'] = $sessionId;
-              $CI->BX_SESSION['loginName'] = set_value('username_field');
+              $CI->BX_SESSION['loginName'] = $form_data['username_field'];
 
               //
               //-- Start: Chorizo's Style handling:
@@ -491,8 +543,8 @@ class Login extends MX_Controller {
               $nav_body = "<pre>Logging in ...</pre>";
 
               $data = array(
-                'username_field' => set_value('username_field'),
-                'password_field' => set_value('password_field'),
+                'username_field' => $form_data['username_field'],
+                'password_field' => $form_data['password_field'],
                 'secureConnect' => $secureConnect,
                 'page_title' => $page_title,
                 'WelcomeMsg' => $WelcomeMsg,
