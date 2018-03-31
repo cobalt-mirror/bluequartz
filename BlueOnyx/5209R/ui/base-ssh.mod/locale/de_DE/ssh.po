@@ -178,3 +178,11 @@ msgstr "Der SSHd Server arbeitet einwandfrei."
 msgid "amNotAccepting"
 msgstr "The SSHd Server läuft nicht und konnte auch nicht wieder neu gestartet werden. Bitte versuchen Sie den SSHd Server über die GUI zu deaktivieren und neu zu aktivieren."
 
+####
+
+msgid "AllowTcpForwarding"
+msgstr "TCP-Weiterleitung zulassen"
+
+msgid "AllowTcpForwarding_help"
+msgstr "Gibt an, ob TCP-Weiterleitung erlaubt ist. Standard: Nicht aktiviert. Hinweis: Die Aktivierung der TCP-Weiterleitung kann ein Sicherheitsrisiko darstellen, da sie verwendet werden kann, um die Firewall oder Zugriffskontrollregeln zu umgehen."
+

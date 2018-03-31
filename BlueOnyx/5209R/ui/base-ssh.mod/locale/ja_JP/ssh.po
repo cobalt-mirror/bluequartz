@@ -185,3 +185,11 @@ msgstr "SSHDサーバが正常に動作しています。"
 msgid "amNotAccepting"
 msgstr "SSHDサーバが稼働していないし、再起動することができませんでした。 [[base-apache.amAdmservNameTag]] では、これが問題を修正するかどうかを確認するために、その後に再びオフSSHDサーバを回してみてください。"
 
+####
+
+msgid "AllowTcpForwarding"
+msgstr "TCP転送を許可する"
+
+msgid "AllowTcpForwarding_help"
+msgstr "TCP転送を許可するかどうかを指定します。 デフォルト：有効になっていません。 注意：TCP転送を有効にすると、ファイアウォールやアクセス制御ルールをバイパスするためにセキュリティリスクが発生する可能性があります。"
+

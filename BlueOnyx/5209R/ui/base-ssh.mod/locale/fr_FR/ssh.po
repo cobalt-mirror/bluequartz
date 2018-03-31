@@ -175,3 +175,11 @@ msgstr "Le serveur SSHd fonctionne normalement."
 msgid "amNotAccepting"
 msgstr "Le serveur SSHd ne fonctionne pas et ne peut pas être redémarré. Dans le [[base-apache.amAdmservNameTag]], essayez de tourner le serveur SSHd hors tension puis à nouveau pour voir si cela résout le problème."
 
+####
+
+msgid "AllowTcpForwarding"
+msgstr "Autoriser le transfert TCP"
+
+msgid "AllowTcpForwarding_help"
+msgstr "Spécifie si le transfert TCP est autorisé. Par défaut : Non activé. Remarque : L'activation du transfert TCP peut poser un risque de sécurité car il peut être utilisé pour contourner le pare-feu ou les règles de contrôle d'accès."
+

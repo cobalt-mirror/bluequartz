@@ -232,3 +232,11 @@ msgstr "Il server SSHd funziona normalmente."
 msgid "amNotAccepting"
 msgstr "Il server SSHd non è in esecuzione e non poteva essere riavviato. Nel [[base-apache.amAdmservNameTag]], cercare di girare il server SSHd off riaccendere per vedere se questo risolve il problema."
 
+####
+
+msgid "AllowTcpForwarding"
+msgstr "Consenti inoltro TCP"
+
+msgid "AllowTcpForwarding_help"
+msgstr "Specifica se l'inoltro TCP è consentito. Default: Non abilitato. Nota bene: l'abilitazione dell'inoltro TCP può rappresentare un rischio per la sicurezza in quanto potrebbe essere utilizzato per aggirare le regole del firewall o del controllo degli accessi."
+

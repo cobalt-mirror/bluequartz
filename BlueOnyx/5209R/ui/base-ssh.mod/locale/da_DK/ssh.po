@@ -182,3 +182,12 @@ msgstr "The SSHd server fungerer normalt."
 
 msgid "amNotAccepting"
 msgstr "The SSHd-serveren kører ikke, og kunne ikke genstartes. I [[base-apache.amAdmservNameTag]], prøv at dreje sshd serveren off derefter igen for at se, om det løser problemet. Hvis sshd serveren er stadig ikke at starte, så prøv at genstarte serveren selv ved at klikke på [[base-power.power]] knappen i [[base-alpine.serverconfig]]. If the SSHd server is still unable to start, please refer [[base-sauce-basic.techSupportURL]] for technical support."
+
+####
+
+msgid "AllowTcpForwarding"
+msgstr "Tillad TCP videresendelse"
+
+msgid "AllowTcpForwarding_help"
+msgstr "Angiver, om TCP-videresendelse er tilladt. Standard: Ikke aktiveret. Bemærk: At aktivere TCP-videresendelse kan udgøre en sikkerhedsrisiko, da den kan bruges til at omgå firewall- eller adgangskontrolregler."
+

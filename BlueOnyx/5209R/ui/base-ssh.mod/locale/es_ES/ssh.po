@@ -175,3 +175,11 @@ msgstr "El servidor SSHd está funcionando normalmente."
 msgid "amNotAccepting"
 msgstr "El servidor SSHd no está en ejecución y no podía ser reiniciado. En el [[base-apache.amAdmservNameTag]], intente girar el servidor SSHd y luego encenderlo de nuevo para ver si se ha solucionado el problema."
 
+####
+
+msgid "AllowTcpForwarding"
+msgstr "Permitir reenvío TCP"
+
+msgid "AllowTcpForwarding_help"
+msgstr "Especifica si se permite el reenvío TCP. Predeterminado: No habilitado. Tenga en cuenta que la habilitación del reenvío TCP puede suponer un riesgo para la seguridad, ya que puede utilizarse para eludir el cortafuegos o las reglas de control de acceso."
+

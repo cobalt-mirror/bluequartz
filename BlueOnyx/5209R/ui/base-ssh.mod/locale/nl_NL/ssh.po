@@ -175,3 +175,11 @@ msgstr "De SSHd server werkt normaal."
 msgid "amNotAccepting"
 msgstr "De SSHd server draait niet en kon niet worden hernieuwd. In de [[base-apache.amAdmservNameTag]], probeer dan de SSHd server uit en dan weer aan om te zien of dit corrigeert het probleem."
 
+####
+
+msgid "AllowTcpForwarding"
+msgstr "TCP-forwarding"
+
+msgid "AllowTcpForwarding_help"
+msgstr "Geeft aan of TCP-forwarding is toegestaan. Standaardinstelling: Niet ingeschakeld. Let op: Het inschakelen van TCP forwarding kan een veiligheidsrisico vormen, omdat het gebruikt kan worden om firewall of toegangscontrole regels te omzeilen."
+
