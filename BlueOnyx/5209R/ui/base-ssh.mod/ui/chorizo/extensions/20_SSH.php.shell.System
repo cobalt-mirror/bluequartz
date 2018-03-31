@@ -104,6 +104,14 @@ class SSHExtension extends UIExtension {
             $pageId
             );
 
+        // AllowTcpForwarding enabled or not:
+        $TCPForwardingAccess =& $factory->getBoolean('AllowTcpForwarding', $settings['AllowTcpForwarding']);
+        $enable->addFormField(
+            $TCPForwardingAccess,
+            $factory->getLabel('AllowTcpForwarding'),
+            $pageId
+            );
+
         // Out with the container:
         $container->addFormField($sshToggleBox, $factory->getLabel('enableSSH'), $pageId);
 
@@ -130,7 +138,8 @@ class SSHExtension extends UIExtension {
                     'PermitRootLogin' => ($attributes['SSHrootLogin'] ? 1 : 0),
                     'XPasswordAuthentication' => ($attributes['PasswordAuthentication'] ? 1 : 0),
                     'RSAAuthentication' => ($attributes['RSAAuthentication'] ? 1 : 0),
-                	'PubkeyAuthentication' => ($attributes['PubkeyAuthentication'] ? 1 : 0),
+                    'PubkeyAuthentication' => ($attributes['PubkeyAuthentication'] ? 1 : 0),
+                	'AllowTcpForwarding' => ($attributes['AllowTcpForwarding'] ? 1 : 0),
                 	'force_update' => time()
                 	));
 
@@ -139,8 +148,8 @@ class SSHExtension extends UIExtension {
 }
 
 /*
-Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2014-2018 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2014-2018 Team BlueOnyx, BLUEONYX.IT
 Copyright (c) 2008 Brian Smith, NuOnce Networks, Inc.
 All Rights Reserved.
 

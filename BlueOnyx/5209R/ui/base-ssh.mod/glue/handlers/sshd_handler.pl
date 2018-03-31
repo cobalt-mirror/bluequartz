@@ -155,6 +155,9 @@ sub edit_sshd_config {
     if ($sshd_settings->{"AllowTcpForwarding"} eq "1") {
         $AllowTcpForwarding = 'yes';
     }
+    else {
+        $AllowTcpForwarding = 'no';
+    }
 
     # Build output hash:
     $server_sshd_settings_writeoff = { 
@@ -317,8 +320,8 @@ $cce->bye('SUCCESS');
 exit(0);
 
 # 
-# Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2016-2018 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2016-2018 Team BlueOnyx, BLUEONYX.IT
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 

@@ -170,3 +170,11 @@ msgstr "The SSHd server is operating normally."
 msgid "amNotAccepting"
 msgstr "The SSHd server is not running and could not be restarted. In the [[base-apache.amAdmservNameTag]], try turning the SSHd server off then on again to see if this corrects the problem. If the SSHd server is still unable to start, try rebooting the server itself by clicking the [[base-power.reboot]] button in the [[base-power.power]] menu under [[base-alpine.serverconfig]]. If the SSHd server is still unable to start, please refer [[base-sauce-basic.techSupportURL]] for technical support."
 
+####
+
+msgid "AllowTcpForwarding"
+msgstr "Allow TCP Forwarding"
+
+msgid "AllowTcpForwarding_help"
+msgstr "Specifies whether TCP forwarding is permitted. Default: Not enabled. Please note: Enabling TCP forwarding can pose an unmitigated security risk as it might be used to bypass firewall or access control rules."
+
