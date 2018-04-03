@@ -122,6 +122,11 @@ while (my $line = <CERT>) {
             $key_part .= "-----END RSA PRIVATE KEY-----\n";
             $in_key = 0;
         }
+        elsif ($part =~ /END PRIVATE KEY/) {
+          # same as BEGIN
+          $key_part .= "-----END RSA PRIVATE KEY-----\n";
+          $in_key = 0;
+        }
         elsif ($in_key) {
             $key_part .= "$part\n";
         }
@@ -292,8 +297,8 @@ sub debug_msg {
 }
 
 # 
-# Copyright (c) 2017 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2017 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2017-2018 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2017-2018 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 
