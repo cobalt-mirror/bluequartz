@@ -200,6 +200,31 @@ if (($vsite->{'CLASS'} eq "Vsite") || ($vsite->{'CLASS'} eq "System")) {
         $ssl_cert_path = $cert_path . '/' . 'cert.pem';
         system("cp $ssl_cert_path $cert_dir/certificate");
 
+        $combined_cert = $cert_dir . '/nginx_cert_ca_combined';
+        $the_ca_cert = $cert_dir . '/certs/ca-certs';
+        $the_cert = $cert_dir . '/certificate';
+        $the_blank = $cert_dir . '/blank.txt';
+
+        if (! -f $the_blank) {
+            system("echo \"\" > $the_blank");
+            system("chmod 640 $the_blank");
+        }
+
+        if ((-f $the_ca_cert) && (-f $the_cert)) {
+            system("cat $the_cert $the_blank $the_ca_cert > $combined_cert");
+            system("chmod 640 $combined_cert");
+        }
+        elsif ((! -f $the_ca_cert) && (-f $the_cert)) {
+            # We have no intermediate.
+            system("cat $the_cert > $combined_cert");
+            system("chmod 640 $combined_cert");
+        }
+        if (! -f $combined_cert) {
+            # If we still have noting, we go bare:
+            system("touch $combined_cert");
+            system("chmod 640 $combined_cert");
+        }
+
         # Delete request (if present):
         if (-f "$cert_dir/request") {
             system("rm -f $cert_dir/request");
