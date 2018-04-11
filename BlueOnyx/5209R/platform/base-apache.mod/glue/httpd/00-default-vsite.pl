@@ -21,6 +21,8 @@ $cce->connectuds();
 # Get "System" . "Web":
 ($ok, $objWeb) = $cce->get($oid, 'Web');
 
+($ok, $objNginx) = $cce->get($oid, 'Nginx');
+
 # Get "System" . "SSL":
 ($ok, $objSSL) = $cce->get($oid, 'SSL');
 
@@ -218,9 +220,20 @@ if ($DEBUG) {
     close $fh;
 }
 
+#
+### Disable if Nginx SSL-Proxy is enabled:
+#
+
+if ($objNginx->{enabled} eq '1') {
+    # We disable by zapping the config:
+    $config = '';
+}
+
 # Push out config:
 $server = Apache2::ServerUtil->server;
 $server->add_config([split /\n/, $config]);
+
+$cce->bye('SUCCESS');
 
 1;
 

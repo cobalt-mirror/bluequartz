@@ -32,7 +32,21 @@ if ((($cce->event_is_create()) || ($cce->event_is_modify())) && ($obj->{force_up
 
 &debug_msg("Issuing service_run_init('httpd', 'reload') for event_object: " . $obj->{OID} . "");
 
-service_run_init('httpd', 'reload');
+@SysOID = $cce->find('System');
+($ok, $Nginx) = $cce->get($SysOID[0], 'Nginx');
+
+if ($Nginx->{enabled} eq "1") {
+    &debug_msg("Restarting Nginx\n");
+    Sauce::Service::service_set_init('nginx', 'on');
+    Sauce::Service::service_run_init('httpd', 'reload');
+    Sauce::Service::service_run_init('nginx', 'restart');
+}
+else {
+    &debug_msg("Stopping and disabling Nginx\n");
+    Sauce::Service::service_set_init('nginx', 'off');
+    Sauce::Service::service_run_init('nginx', 'stop');
+    Sauce::Service::service_run_init('httpd', 'reload');
+}
 
 $cce->bye('SUCCESS');
 exit(0);
@@ -50,8 +64,8 @@ sub debug_msg {
 }
 
 # 
-# Copyright (c) 2015-2017 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015-2017 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015-2018 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015-2018 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 

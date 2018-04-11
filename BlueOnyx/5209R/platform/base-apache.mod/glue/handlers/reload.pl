@@ -14,15 +14,28 @@ $cce->connectfd();
 # doesn't clear Semaphores and leaves AdmServ often dead
 # in the water. So it has to go for now for sake of better
 # reliability:
-Sauce::Service::service_run_init('httpd', 'reload');
+
+@SysOID = $cce->find('System');
+($ok, $Nginx) = $cce->get($SysOID[0], 'Nginx');
+
+if ($Nginx->{enabled} eq "1") {
+    Sauce::Service::service_set_init('nginx', 'on');
+    Sauce::Service::service_run_init('httpd', 'reload');
+    Sauce::Service::service_run_init('nginx', 'restart');
+}
+else {
+    Sauce::Service::service_set_init('nginx', 'off');
+    Sauce::Service::service_run_init('nginx', 'stop');
+    Sauce::Service::service_run_init('httpd', 'reload');
+}
 
 $cce->bye('SUCCESS');
 
 exit 0;
 
 # 
-# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2014-2018 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2014-2018 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 
