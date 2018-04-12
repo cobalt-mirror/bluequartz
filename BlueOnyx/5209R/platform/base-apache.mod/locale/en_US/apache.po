@@ -550,7 +550,7 @@ msgid "GENERAL_NGINX_DIVIDER"
 msgstr "Nginx as a SSL-Proxy:"
 
 msgid "Nginx_Info_Text"
-msgstr "The Apache webserver that comes with BlueOnyx does a good job at serving traditional HTTP pages. But in terms of HTTPS it has a few shortcommings. For example it cannot answer HTTP/2 requests and the supported TLS ciphers are also not the best possible choices. As HTTP/2 is a considerable improvement and as we also want our TLS connections to be of the best possible quality and security, we now offer the ability to let Apache continue to serve HTTP requests and route all HTTPS connections through a Nginx forwarding proxy. If you tick the checkbox below this server will be reconfigured so that Apache looses authority over serving HTTPS pages and lets Nginx take over doing HTTPS. This feature can be reversed at any time by simply unticking the checkbox again."
+msgstr "The Apache webserver that comes with BlueOnyx does a good job at serving traditional HTTP pages. But in terms of HTTPS it has a few shortcomings. For example it cannot answer HTTP/2 requests and the supported TLS ciphers are also not the best possible choices. As HTTP/2 is a considerable improvement and as we also want our TLS connections to be of the best possible quality and security, we now offer the ability to let Apache continue to serve HTTP requests and route all HTTPS connections through a Nginx forwarding proxy. If you tick the checkbox below this server will be reconfigured so that Apache looses authority over serving HTTPS pages and lets Nginx take over doing HTTPS. This feature can be reversed at any time by simply unticking the checkbox again."
 
 msgid "NGINX_CFG_DIVIDER"
 msgstr "Nginx configuration:"
