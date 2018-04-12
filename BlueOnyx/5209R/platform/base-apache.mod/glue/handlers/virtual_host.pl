@@ -994,7 +994,7 @@ END
 
     my $cafile;
     &debug_msg("SSL <Nginx-Vhost>: \$vhost_ssl->{enabled}: $vhost_ssl->{enabled} - \$vhost_ssl->{expires}: $vhost_ssl->{expires}\n");
-    if (($vhost_ssl->{enabled} eq "1") && (-f "$vhost->{basedir}/certs/certificate") && (-f "$vhost->{basedir}/certs/key") && ($Nginx->{enabled} eq '1')) {
+    if (($vhost_ssl->{enabled} eq "1") && (-f "$vhost->{basedir}/certs/certificate") && (-f "$vhost->{basedir}/certs/key")) {
         &debug_msg("SSL <Nginx-Vhost>: Condition #1: TRUE\n");
 
         $combined_cert = $vhost->{basedir} . '/certs/nginx_cert_ca_combined';
