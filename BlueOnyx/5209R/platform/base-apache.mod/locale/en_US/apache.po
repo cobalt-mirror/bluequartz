@@ -524,3 +524,100 @@ msgstr "Target URL"
 msgid "target_help"
 msgstr "Please enter the target URL here. Any web access to this virtual site will be redirected to the specified URL. This can either be an http:// or https:// URL. Entered URLs may contain subdirectories, pages and URL parameters. If you wish you can copy and paste the desired target URL from your browser and paste it here."
 
+
+#
+### Nginx related
+#
+
+msgid "HSTS_Nginx_enabled"
+msgstr "[[base-apache.HSTS]]"
+
+msgid "HSTS_Nginx_enabled_help"
+msgstr "[[base-apache.HSTS_help]]"
+
+#####
+
+msgid "possvals"
+msgstr "Possible values: Interger followed by 's' (for second), 'm' (for minute), 'h' (for hour) or 'd' for day."
+
+msgid "basicSettingsTab"
+msgstr "Apache"
+
+msgid "nginxSettingsTab"
+msgstr "Nginx"
+
+msgid "GENERAL_NGINX_DIVIDER"
+msgstr "Nginx as a SSL-Proxy:"
+
+msgid "Nginx_Info_Text"
+msgstr "The Apache webserver that comes with [[base-alpine.productName]] does a good job at serving traditional HTTP pages. But in terms of HTTPS it has a few shortcommings. For example it cannot answer HTTP/2 requests and the supported TLS ciphers are also not the best possible choices. As HTTP/2 is a considerable improvement and as we also want our TLS connections to be of the best possible quality and security, we now offer the ability to let Apache continue to serve HTTP requests and route all HTTPS connections through a Nginx forwarding proxy. If you tick the checkbox below this server will be reconfigured so that Apache looses authority over serving HTTPS pages and lets Nginx take over doing HTTPS. This feature can be reversed at any time by simply unticking the checkbox again."
+
+msgid "NGINX_CFG_DIVIDER"
+msgstr "Nginx configuration:"
+
+msgid "worker_processes"
+msgstr "Worker Processes"
+
+msgid "worker_processes_help"
+msgstr "Defines the number of worker processes. The optimal value depends on many factors including (but not limited to) the number of CPU cores, the number of hard disk drives that store data, and load pattern. When one is in doubt, setting it to the number of available CPU cores would be a good start. The value 'auto' will try to autodetect it. Possible values: 'auto' or an integer."
+
+msgid "worker_connections"
+msgstr "Worker Connections"
+
+msgid "worker_connections_help"
+msgstr "Sets the maximum number of simultaneous connections that can be opened by a worker process. It should be kept in mind that this number includes all connections (e.g. connections with proxied servers, among others), not only connections with clients. Another consideration is that the actual number of simultaneous connections cannot exceed the current limit on the maximum number of open files."
+
+msgid "max_age"
+msgstr "Max age"
+
+msgid "max_age_help"
+msgstr "When a browser sees the HSTS header from an HTTPS website, it learns that this domain must only be accessed using HTTPS (SSL or TLS). It caches this information for the max-age period (typically 31,536,000 seconds, equal to about 1 year)."
+
+msgid "include_subdomains"
+msgstr "Include Subdomains"
+
+msgid "include_subdomains_help"
+msgstr "The optional include subdomains parameter tells the browser that the HSTS policy also applies to all subdomains of the current domain."
+
+msgid "ssl_session_timeout"
+msgstr "SSL Session Timeout"
+
+msgid "ssl_session_timeout_help"
+msgstr "Specifies a time during which a client may reuse the session parameters of the ongoing HTTPS session. [[base-apache.possvals]]"
+
+msgid "ssl_session_cache"
+msgstr "SSL Session Cache"
+
+msgid "ssl_session_cache_help"
+msgstr "Defines how long SSL session data is cached. [[base-apache.possvals]]"
+
+msgid "ssl_session_tickets"
+msgstr "SSL Session Tickets"
+
+msgid "ssl_session_tickets_help"
+msgstr "Enables or disables session resumption through TLS session tickets. "
+
+msgid "resolver_valid"
+msgstr "OCSP Resolver Validity"
+
+msgid "resolver_valid"
+msgstr "For the OCSP stapling to work Nginx needs to use DNS resolvers to connect to OCSP responders. This setting defines how often Nginx checks the validity of OCSP resolvers."
+
+msgid "resolver_timeout"
+msgstr "OCSP Resolver Timeout"
+
+msgid "resolver_timeout_help"
+msgstr "Defines how long Nginx waits for a response from an OCSP resolver before it decides that the connection isn't working. [[base-apache.possvals]]"
+
+msgid "ssl_stapling"
+msgstr "OCSP SSL Stapling"
+
+msgid "ssl_stapling"
+msgstr "Enables or disables stapling of OCSP responses by the server. OCSP stapling, formally known as the TLS Certificate Status Request extension, allows the presenter of a certificate to bear the resource cost involved in providing OCSP responses by appending ('stapling') a time-stamped OCSP response signed by the CA to the initial TLS handshake, eliminating the need for clients to contact the CA."
+
+msgid "ssl_stapling_verify"
+msgstr "OSCP Verification"
+
+msgid "ssl_stapling_verify_help"
+msgstr "Enables or disables verification of OCSP responses by the server. The default is: Not enabled. The reason for this is that after a restart of Nginx it can take several minutes before the OSCP status of all certificates is established again. During that time OSCP responses will be served, but with the attached note that they failed verification. Only turn this on if you know what you're doing."
+
