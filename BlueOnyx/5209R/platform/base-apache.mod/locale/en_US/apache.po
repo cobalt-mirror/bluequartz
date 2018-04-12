@@ -538,7 +538,7 @@ msgstr "[[base-apache.HSTS_help]]"
 #####
 
 msgid "possvals"
-msgstr "Possible values: Interger followed by 's' (for second), 'm' (for minute), 'h' (for hour) or 'd' for day."
+msgstr "Possible values: Interger followed by 's' (for seconds), 'm' (for minutes), 'h' (for hours) or 'd' (for days)."
 
 msgid "basicSettingsTab"
 msgstr "Apache"
@@ -550,7 +550,7 @@ msgid "GENERAL_NGINX_DIVIDER"
 msgstr "Nginx as a SSL-Proxy:"
 
 msgid "Nginx_Info_Text"
-msgstr "The Apache webserver that comes with [[base-alpine.productName]] does a good job at serving traditional HTTP pages. But in terms of HTTPS it has a few shortcommings. For example it cannot answer HTTP/2 requests and the supported TLS ciphers are also not the best possible choices. As HTTP/2 is a considerable improvement and as we also want our TLS connections to be of the best possible quality and security, we now offer the ability to let Apache continue to serve HTTP requests and route all HTTPS connections through a Nginx forwarding proxy. If you tick the checkbox below this server will be reconfigured so that Apache looses authority over serving HTTPS pages and lets Nginx take over doing HTTPS. This feature can be reversed at any time by simply unticking the checkbox again."
+msgstr "The Apache webserver that comes with BlueOnyx does a good job at serving traditional HTTP pages. But in terms of HTTPS it has a few shortcommings. For example it cannot answer HTTP/2 requests and the supported TLS ciphers are also not the best possible choices. As HTTP/2 is a considerable improvement and as we also want our TLS connections to be of the best possible quality and security, we now offer the ability to let Apache continue to serve HTTP requests and route all HTTPS connections through a Nginx forwarding proxy. If you tick the checkbox below this server will be reconfigured so that Apache looses authority over serving HTTPS pages and lets Nginx take over doing HTTPS. This feature can be reversed at any time by simply unticking the checkbox again."
 
 msgid "NGINX_CFG_DIVIDER"
 msgstr "Nginx configuration:"
@@ -600,7 +600,7 @@ msgstr "Enables or disables session resumption through TLS session tickets. "
 msgid "resolver_valid"
 msgstr "OCSP Resolver Validity"
 
-msgid "resolver_valid"
+msgid "resolver_valid_help"
 msgstr "For the OCSP stapling to work Nginx needs to use DNS resolvers to connect to OCSP responders. This setting defines how often Nginx checks the validity of OCSP resolvers."
 
 msgid "resolver_timeout"
@@ -612,7 +612,7 @@ msgstr "Defines how long Nginx waits for a response from an OCSP resolver before
 msgid "ssl_stapling"
 msgstr "OCSP SSL Stapling"
 
-msgid "ssl_stapling"
+msgid "ssl_stapling_help"
 msgstr "Enables or disables stapling of OCSP responses by the server. OCSP stapling, formally known as the TLS Certificate Status Request extension, allows the presenter of a certificate to bear the resource cost involved in providing OCSP responses by appending ('stapling') a time-stamped OCSP response signed by the CA to the initial TLS handshake, eliminating the need for clients to contact the CA."
 
 msgid "ssl_stapling_verify"
@@ -620,4 +620,12 @@ msgstr "OSCP Verification"
 
 msgid "ssl_stapling_verify_help"
 msgstr "Enables or disables verification of OCSP responses by the server. The default is: Not enabled. The reason for this is that after a restart of Nginx it can take several minutes before the OSCP status of all certificates is established again. During that time OSCP responses will be served, but with the attached note that they failed verification. Only turn this on if you know what you're doing."
+
+msgid "enabled"
+msgstr "Nginx SSL Proxy"
+
+msgid "enabled_help"
+msgstr "Enables the Nginx SSL Proxy. All HTTPS requests will then be answered by Nginx, which acts as a proxy between Apache and visiting web browsers."
+
+
 
