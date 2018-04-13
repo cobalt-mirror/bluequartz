@@ -21,7 +21,7 @@
 #
 
 # Debugging switch:
-$DEBUG = "0";
+$DEBUG = "1";
 if ($DEBUG)
 {
         use Sys::Syslog qw( :DEFAULT setlogsock);
@@ -78,6 +78,10 @@ if (($cce->event_is_modify())) {
         }
         else {
             &debug_msg("Response from https://support.blueonyx.it/index.php was: FAIL " . $response->status_line);
+
+            # Exit with a walk of shame:
+            $cce->bye('FAIL', $response->status_line);
+            exit(1);
         }
 
         # Cleanup:
