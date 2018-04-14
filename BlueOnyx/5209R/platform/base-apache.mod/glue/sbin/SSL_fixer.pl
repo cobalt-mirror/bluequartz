@@ -52,13 +52,11 @@ for $vsite (@vhosts) {
         print "Vsite $my_vsite->{fqdn} has SSL enabled. Toggling it off and back on.\n";
         ($ok) = $cce->set($vsite, 'SSL', { 'enabled' => '0' });
         ($ok) = $cce->set($vsite, 'SSL', { 'enabled' => '1' });
-#        ($ok) = $cce->set($vsite, 'PHPVsite',{ 'force_update' => time()});
     }
     if ($xvsite_SSL->{'enabled'} == "0") {
         print "Vsite $my_vsite->{fqdn} does not have SSL enabled. Toggling it on and back off.\n";
         ($ok) = $cce->set($vsite, 'SSL', { 'enabled' => '1' });
         ($ok) = $cce->set($vsite, 'SSL', { 'enabled' => '0' });
-#        ($ok) = $cce->set($vsite, 'PHPVsite',{ 'force_update' => time()});
     }
 }
 

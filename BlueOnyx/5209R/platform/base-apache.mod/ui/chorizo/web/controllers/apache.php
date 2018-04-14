@@ -407,7 +407,7 @@ class Apache extends MX_Controller {
                 $nginxPage
                 );
 
-        $nginx_TEXT = $i18n->getClean("[[base-nginx.Nginx_Info_Text]]");
+        $nginx_TEXT = $i18n->get("[[base-apache.Nginx_Info_Text]]");
         $NginxInfotext = $factory->getTextField("Nginx_Info_Text", $nginx_TEXT, 'r');
         $NginxInfotext->setLabelType("nolabel");
         $block->addFormField(
