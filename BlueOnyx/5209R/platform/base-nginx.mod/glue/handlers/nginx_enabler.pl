@@ -15,9 +15,23 @@ my $cce = new CCE;
 $cce->connectfd();
 
 @SysOID = $cce->find("System");
+($AMoid) = $cce->find('ActiveMonitor');
 
 ($ok, $System) = $cce->get($SysOID[0]);
 ($ok, $Nginx) = $cce->get($SysOID[0], 'Nginx');
+
+if ($Nginx->{enabled} eq "1") {
+    ($ok) = $cce->set($AMoid, 'Nginx',{
+        'enabled' => '1',
+        'monitor' => '1'
+    });
+}
+else {
+        ($ok) = $cce->set($AMoid, 'Nginx',{
+            'enabled' => '0',
+            'monitor' => '0'
+        });
+}
 
 # Find all Vsites:
 @vhosts = ();

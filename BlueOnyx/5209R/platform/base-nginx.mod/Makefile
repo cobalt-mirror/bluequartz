@@ -18,7 +18,7 @@ BUILDARCH=noarch
 BUILDUI=new
 BUILDGLUE=yes
 BUILDLOCALE=yes
-BUILDSRC=no
+BUILDSRC=yes
 REQUIRES= nginx php-fpm blueonyx-openssl
 
 #########
