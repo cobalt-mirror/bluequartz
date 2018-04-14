@@ -54,7 +54,7 @@ if ($nginx_status eq "0") {
     }
     # Now check again:
     $nginx_status = &check_ssl_nginx;
-        if ($nginx_status eq "0") {
+    if ($nginx_status eq "0") {
         print $ENV{redMsg};
         $cce->bye('SUCCESS'); 
         exit $am_states{AM_STATE_RED};
