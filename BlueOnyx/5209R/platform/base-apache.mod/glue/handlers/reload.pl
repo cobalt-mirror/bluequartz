@@ -19,12 +19,18 @@ $cce->connectfd();
 ($ok, $Nginx) = $cce->get($SysOID[0], 'Nginx');
 
 if ($Nginx->{enabled} eq "1") {
-    Sauce::Service::service_set_init('nginx', 'on');
+    $nginx_status = Sauce::Service::service_get_init("nginx");
+    if ($nginx_status == "0") {        
+        Sauce::Service::service_set_init('nginx', 'on');
+    }
     Sauce::Service::service_run_init('httpd', 'reload');
     Sauce::Service::service_run_init('nginx', 'restart');
 }
 else {
-    Sauce::Service::service_set_init('nginx', 'off');
+    $nginx_status = Sauce::Service::service_get_init("nginx");
+    if ($nginx_status == "1") {        
+        Sauce::Service::service_set_init('nginx', 'off');
+    }
     Sauce::Service::service_run_init('nginx', 'stop');
     Sauce::Service::service_run_init('httpd', 'reload');
 }
