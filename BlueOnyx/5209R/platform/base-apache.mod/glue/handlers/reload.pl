@@ -19,13 +19,11 @@ $cce->connectfd();
 ($ok, $Nginx) = $cce->get($SysOID[0], 'Nginx');
 
 if ($Nginx->{enabled} eq "1") {
-    &debug_msg("Restarting Nginx\n");
     Sauce::Service::service_set_init('nginx', 'on');
     Sauce::Service::service_run_init('httpd', 'reload');
     Sauce::Service::service_run_init('nginx', 'restart');
 }
 else {
-    &debug_msg("Stopping and disabling Nginx\n");
     Sauce::Service::service_set_init('nginx', 'off');
     Sauce::Service::service_run_init('nginx', 'stop');
     Sauce::Service::service_run_init('httpd', 'reload');
