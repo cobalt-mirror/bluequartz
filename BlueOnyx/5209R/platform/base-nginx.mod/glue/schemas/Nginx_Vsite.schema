@@ -1,0 +1,33 @@
+<!--
+ $Id: Nginx_Vsite.schema
+ Copyright (c) 2018 Michael Stauber, SOLARSPEED.NET
+ Copyright (c) 2018 Team BlueOnyx, BLUEONYX.IT
+ All Rights Reserved.
+-->
+
+<class 
+    name="Vsite" namespace="Nginx" version="1.0"
+    createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)"
+>
+
+    <property 
+        name="HSTS" type="boolean" default="0"
+        writeacl="ruleCapable(adminUser)"
+    />
+
+    <property 
+        name="max_age" type="int" default="31536000"
+        writeacl="ruleCapable(adminUser)"
+    />
+
+    <property 
+        name="include_subdomains" type="boolean" default="0"
+        writeacl="ruleCapable(adminUser)"
+    />
+
+    <property 
+        name="force_update" type="scalar" default=""
+        writeacl="ruleCapable(adminUser)"
+    />
+
+</class>

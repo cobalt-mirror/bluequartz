@@ -388,8 +388,7 @@ sub feedthemonster {
     }
     else {
         # Object already present in CCE. Updating it, NOT forcing a rewrite of nginx.conf.
-        ($ok, $sys) = $cce->get($oids[0], "Nginx");
-        ($ok) = $cce->set($oids[0], 'Nginx',{
+        ($ok) = $cce->update($oids[0], 'Nginx',{
             'worker_processes' => $CONFIG{'worker_processes'},
             'worker_connections' => $CONFIG{'worker_connections'},
             'ssl_session_timeout' => $CONFIG{'ssl_session_timeout'},
