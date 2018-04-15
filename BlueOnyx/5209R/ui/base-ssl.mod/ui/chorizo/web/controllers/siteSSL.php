@@ -73,10 +73,19 @@ class SiteSSL extends MX_Controller {
                 Log403Error("/gui/Forbidden403#donthavethat");
             }
             $CODBDATA['group'] = $siteGroup;
+
+            $NginxSystem = $CI->cceClient->getObject("System", array(), "Nginx");
+            $NginxVsite = $CI->cceClient->getObject('Vsite', array('name' => $get_form_data['group']), 'Nginx');
+
         }
         else {
             $CODBDATA = $CI->cceClient->get($system['OID'], "SSL");
             $CODBDATA['group'] = "";
+
+            $NginxSystem['enabled'] = '0';
+            $NginxVsite['HSTS'] = '0';
+            $NginxVsite['max_age'] = '0';
+            $NginxVsite['include_subdomains'] = '0';
         }
 
         // Only 'serverSSL', 'manageSite' and 'siteAdmin' should be here
@@ -202,6 +211,10 @@ class SiteSSL extends MX_Controller {
                     $CI->cceClient->set($oid, 'SSL', array('uses_letsencrypt' => '0'));
                 }
                 $CI->cceClient->set($oid, 'SSL', array('enabled' => $attributes['enabled']));
+
+                if ((isset($attributes['HSTS_Nginx_enabled'])) && (isset($attributes['max_age'])) && (isset($attributes['include_subdomains']))) {
+                    $CI->cceClient->set($oid, 'Nginx', array('HSTS' => $attributes['HSTS_Nginx_enabled'], 'max_age' => $attributes['max_age'], 'include_subdomains' => $attributes['include_subdomains']));
+                }
             }
 
             // CCE errors that might have happened during submit to CODB:
@@ -383,6 +396,37 @@ class SiteSSL extends MX_Controller {
             $factory->getLabel('enabled'),
             $defaultPage
             );
+
+        //
+        //-- HSTS for Nginx:
+        //
+
+        if (($NginxSystem['enabled'] == '1') && ($CODBDATA['group'] != '')) {
+
+            $HSTS_Nginx =& $factory->getMultiChoice('HSTS_Nginx_enabled');
+            $enable =& $factory->getOption('HSTS_Nginx', $NginxVsite["HSTS"], 'rw');
+            $enable->setLabel($factory->getLabel('enable', false));
+            $HSTS_Nginx->addOption($enable);
+
+            $max_age = $factory->getInteger("max_age", $NginxVsite["max_age"], '0', '31536000');
+            $max_age->setWidth(8);
+            $max_age->showBounds(1);
+            $enable->addFormField(
+                $max_age,
+                $factory->getLabel("max_age")
+            );
+
+            $include_subdomains = $factory->getBoolean("include_subdomains", $NginxVsite["include_subdomains"], 'rw');
+            $enable->addFormField(
+                $include_subdomains,
+                $factory->getLabel("include_subdomains")
+            );
+
+            $block->addFormField($HSTS_Nginx, $factory->getLabel('HSTS_NginxFullText'), $defaultPage);
+        }
+
+        //---
+
 
         // If we have an expiration date, a key and a cert, then we show the cert information:
         if (($CODBDATA['expires'] != "") && ($certificate_present > 0) && ($key_present > 0)) {
