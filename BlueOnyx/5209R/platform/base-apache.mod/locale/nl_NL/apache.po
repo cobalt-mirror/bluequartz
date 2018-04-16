@@ -538,8 +538,7 @@ msgid "GENERAL_NGINX_DIVIDER"
 msgstr "Gebruik Nginx als SSL-proxy:"
 
 msgid "Nginx_Info_Text"
-msgstr "De Apache webserver die bij BlueOnyx wordt geleverd, doet goed werk in het serveren van traditionele HTTP-pagina's. Maar in termen van HTTPS heeft het een paar tekortkomingen. Het kan bijvoorbeeld geen antwoord geven op HTTP/2-verzoeken en de ondersteunde TLS-codes zijn ook niet de best mogelijke keuzes. Aangezien HTTP/2 een aanzienlijke verbetering is en we ook willen dat onze TLS-verbindingen van de best mogelijke kwaliteit en veiligheid zijn, bieden we nu de mogelijkheid om Apache HTTP-verzoeken te laten blijven bedienen en alle HTTPS-verbindingen te routeren via een Nginx forwarding proxy. Als u het selectievakje hieronder inschakelt, wordt deze server opnieuw geconfigureerd zodat Apache geen gezag meer heeft over het serveren van HTTPS-pagina's en Nginx het HTTPS kan overnemen. Deze functie kan te allen tijde worden omgekeerd door het selectievakje weer uit te schakelen.
-."
+msgstr "De Apache webserver die bij BlueOnyx wordt geleverd, doet goed werk in het serveren van traditionele HTTP-pagina's. Maar in termen van HTTPS heeft het een paar tekortkomingen. Het kan bijvoorbeeld geen antwoord geven op HTTP/2-verzoeken en de ondersteunde TLS-codes zijn ook niet de best mogelijke keuzes. Aangezien HTTP/2 een aanzienlijke verbetering is en we ook willen dat onze TLS-verbindingen van de best mogelijke kwaliteit en veiligheid zijn, bieden we nu de mogelijkheid om Apache HTTP-verzoeken te laten blijven bedienen en alle HTTPS-verbindingen te routeren via een Nginx forwarding proxy. Als u het selectievakje hieronder inschakelt, wordt deze server opnieuw geconfigureerd zodat Apache geen gezag meer heeft over het serveren van HTTPS-pagina's en Nginx het HTTPS kan overnemen. Deze functie kan te allen tijde worden omgekeerd door het selectievakje weer uit te schakelen."
 
 msgid "NGINX_CFG_DIVIDER"
 msgstr "Nginx configuratie:"
