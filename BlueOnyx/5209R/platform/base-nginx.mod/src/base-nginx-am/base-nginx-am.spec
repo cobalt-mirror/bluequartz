@@ -1,7 +1,7 @@
 Summary: Active Monitor support for base-nginx-am
 Name: base-nginx-am
 Version: 1.0.0
-Release: 0BX01%{?dist}
+Release: 0BX02%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -25,6 +25,9 @@ This package contains binaries and scripts used by the Active Monitor
 subsystem for base-nginx-am.  
 
 %changelog
+
+* Sun Apr 15 2018 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BX02
+- Version number bump for Release Candidate
 
 * Fri Apr 13 2018 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BX01
 - First build
