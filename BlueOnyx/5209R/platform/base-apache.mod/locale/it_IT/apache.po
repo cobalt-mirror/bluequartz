@@ -602,7 +602,7 @@ msgid "ssl_stapling"
 msgstr "Pinzatura SSL OCSP"
 
 msgid "ssl_stapling_help"
-msgstr "Abilita o disabilita la pinzatura delle risposte OCSP da parte del server. La pinzatura OCSP, formalmente nota come estensione della richiesta di stato del certificato TLS, consente al presentatore di un certificato di sostenere il costo delle risorse necessarie per fornire risposte OCSP aggiungendo ("pinzatura") una risposta OCSP con data e ora firmata dalla CA all'handshake TLS iniziale, eliminando la necessità per i clienti di contattare l'Autorità di Certificazione."
+msgstr "Abilita o disabilita la pinzatura delle risposte OCSP da parte del server. La pinzatura OCSP, formalmente nota come estensione della richiesta di stato del certificato TLS, consente al presentatore di un certificato di sostenere il costo delle risorse necessarie per fornire risposte OCSP aggiungendo ('pinzatura') una risposta OCSP con data e ora firmata dalla CA all'handshake TLS iniziale, eliminando la necessità per i clienti di contattare l'Autorità di Certificazione."
 
 msgid "ssl_stapling_verify"
 msgstr "Verifica OSCP"
