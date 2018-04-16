@@ -1,5 +1,14 @@
-# --- Menu
+# --- Active Monitor:
 
-msgid "nginx"
-msgstr "Nginx"
+msgid "amNginxNameTag"
+msgstr "Nginx SSL-Proxy"
+
+msgid "amNginxDetails"
+msgstr "Nginx Server Details"
+
+msgid "amNotRunning"
+msgstr "Nginx is not running and could not be restarted. Please try to restart Nginx manually and see if that helps. Also check for any error messages or other indictations that you might get while restarting Nginx manually."
+
+msgid "amStatusOK"
+msgstr "The Nginx web server is operating normally."
 
