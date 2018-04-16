@@ -530,3 +530,107 @@ msgstr "URL cible"
 
 msgid "target_help"
 msgstr "Veuillez entrer l'URL cible ici. Tout accès web à ce site virtuel sera redirigé vers l'URL indiquée. Il peut s'agir d'une URL http:// ou https:// Les URLs entrés peuvent contenir des sous-répertoires, des pages et des paramètres URL. Si vous le souhaitez, vous pouvez copier et coller l'URL cible désirée depuis votre navigateur et la coller ici."
+
+
+#
+### Nginx related
+#
+
+msgid "HSTS_Nginx_enabled"
+msgstr "[[base-apache.HSTS]]"
+
+msgid "HSTS_Nginx_enabled_help"
+msgstr "[[base-apache.HSTS_help]]"
+
+#####
+
+msgid "possvals"
+msgstr "Valeurs possibles : Interger suivi de 's' (pour les secondes), 'm' (pour les minutes), 'h' (pour les heures) ou 'd' (pour les jours)."
+
+msgid "basicSettingsTab"
+msgstr "Apache"
+
+msgid "nginxSettingsTab"
+msgstr "Nginx"
+
+msgid "GENERAL_NGINX_DIVIDER"
+msgstr "Nginx comme un SSL-Proxy:"
+
+msgid "Nginx_Info_Text"
+msgstr "Le serveur web Apache qui vient avec BlueOnyx fait un bon travail pour servir les pages HTTP traditionnelles. Mais en termes de HTTPS, il a quelques défauts. Par exemple, il ne peut pas répondre aux requêtes HTTP/2 et les chiffrement TLS supportés ne sont pas non plus les meilleurs choix possibles. Comme HTTP/2 est une amélioration considérable et comme nous voulons aussi que nos connexions TLS soient de la meilleure qualité et sécurité possible, nous offrons maintenant la possibilité de laisser Apache continuer à servir les requêtes HTTP et à acheminer toutes les connexions HTTPS par l'intermédiaire d'un proxy de redirection Nginx. Si vous cochez la case ci-dessous, ce serveur sera reconfiguré pour qu'Apache perde son autorité sur les pages HTTPS et laisse Nginx s'en charger. Cette fonction peut être inversée à tout moment en décochant simplement la case à cocher à nouveau."
+
+msgid "NGINX_CFG_DIVIDER"
+msgstr "Configuration Nginx:"
+
+msgid "worker_processes"
+msgstr "Processus de travail"
+
+msgid "worker_processes_help"
+msgstr "Définit le nombre de processus de travailleurs. La valeur optimale dépend de nombreux facteurs, y compris (mais sans s'y limiter) le nombre de cœurs de CPU, le nombre de disques durs qui stockent les données et le modèle de charge. En cas de doute, le régler sur le nombre de cœurs CPU disponibles serait un bon début. La valeur'auto' essaiera de l'autodétecter. Valeurs possibles:'auto' ou un entier."
+
+msgid "worker_connections"
+msgstr "Connexions avec les travailleurs"
+
+msgid "worker_connections_help"
+msgstr "Définit le nombre maximum de connexions simultanées qui peuvent être ouvertes par un processus ouvrier. Il faut garder à l'esprit que ce nombre inclut toutes les connexions (par exemple, les connexions avec les serveurs proxy, entre autres), et pas seulement les connexions avec les clients. Une autre considération est que le nombre réel de connexions simultanées ne peut pas dépasser la limite actuelle du nombre maximum de fichiers ouverts."
+
+msgid "max_age"
+msgstr "Ages maximaux"
+
+msgid "max_age_help"
+msgstr "Lorsqu'un navigateur voit l'en-tête HSTS à partir d'un site Web HTTPS, il apprend que ce domaine ne doit être accessible qu'en HTTPS (SSL ou TLS). Il cache ces informations pour la période d'âge maximum (typiquement 31,536,000 secondes, ce qui équivaut à environ 1 an)."
+
+msgid "include_subdomains"
+msgstr "Inclure les sous-domaines"
+
+msgid "include_subdomains_help"
+msgstr "Le paramètre optionnel include subdomains indique au navigateur que la politique HSTS s'applique également à tous les sous-domaines du domaine courant."
+
+msgid "ssl_session_timeout"
+msgstr "Délai d'attente de la session SSL"
+
+msgid "ssl_session_timeout_help"
+msgstr "Spécifie une période pendant laquelle un client peut réutiliser les paramètres de session de la session HTTPS en cours. [[base-apache.possvals]]"
+
+msgid "ssl_session_cache"
+msgstr "Cache de session SSL"
+
+msgid "ssl_session_cache_help"
+msgstr "Définit la durée pendant laquelle les données de session SSL sont mises en cache. [[base-apache.possvals]]"
+
+msgid "ssl_session_tickets"
+msgstr "Billets de session SSL"
+
+msgid "ssl_session_tickets_help"
+msgstr "Active ou désactive la reprise de la session via les tickets de session TLS."
+
+msgid "resolver_valid"
+msgstr "OCSP Resolver Validité"
+
+msgid "resolver_valid_help"
+msgstr "Pour que l'agrafage OCSP fonctionne, Nginx doit utiliser des résolveurs DNS pour se connecter aux serveurs OCSP. Ce paramètre définit la fréquence à laquelle Nginx vérifie la validité des résolveurs OCSP."
+
+msgid "resolver_timeout"
+msgstr "Délai d'attente du résolveur OCSP"
+
+msgid "resolver_timeout_help"
+msgstr "Définit combien de temps Nginx attend une réponse d'un résolveur OCSP avant de décider que la connexion ne fonctionne pas. [[base-apache.possvals]]"
+
+msgid "ssl_stapling"
+msgstr "Agrafage SSL OCSP"
+
+msgid "ssl_stapling_help"
+msgstr "Active ou désactive l'agrafage des réponses OCSP par le serveur. L'agrafage OCSP, officiellement connu sous le nom d'extension TLS Certificate Status Request, permet au présentateur d'un certificat de supporter le coût des ressources nécessaires pour fournir des réponses OCSP en ajoutant ('agrafage') une réponse OCSP horodatée signée par l'autorité de certification à la poignée de main TLS initiale, éliminant ainsi le besoin pour les clients de contacter l'autorité de certification"
+
+msgid "ssl_stapling_verify"
+msgstr "Vérification OSCP"
+
+msgid "ssl_stapling_verify_help"
+msgstr "Active ou désactive la vérification des réponses OCSP par le serveur. La valeur par défaut est : Non activé. La raison en est qu'après un redémarrage de Nginx, il peut s'écouler plusieurs minutes avant que le statut OSCP de tous les certificats soit à nouveau établi. Pendant ce temps, les réponses du PCOS seront signifiées, mais avec la note ci-jointe indiquant qu'elles n'ont pas été vérifiées. Ne l'allumez que si vous savez ce que vous faites."
+
+msgid "enabled"
+msgstr "Nginx SSL Proxy"
+
+msgid "enabled_help"
+msgstr "Active le proxy SSL Nginx. Toutes les requêtes HTTPS seront alors répondues par Nginx, qui agit comme un proxy entre Apache et les navigateurs web en visite."
+

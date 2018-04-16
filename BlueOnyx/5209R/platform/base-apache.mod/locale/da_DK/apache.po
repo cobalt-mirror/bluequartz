@@ -557,3 +557,106 @@ msgstr "Målwebadresse"
 
 msgid "target_help"
 msgstr "Indtast venligst måladressen her. Enhver webadgang til dette virtuelle websted bliver omdirigeret til den angivne webadresse. Dette kan enten være en http: // eller https: // URL. Indtastede webadresser kan indeholde underkataloger, sider og webadresseparametre. Hvis du ønsker, kan du kopiere og indsætte den ønskede målwebadresse fra din browser og indsætte den her."
+
+#
+### Nginx related
+#
+
+msgid "HSTS_Nginx_enabled"
+msgstr "[[base-apache.HSTS]]"
+
+msgid "HSTS_Nginx_enabled_help"
+msgstr "[[base-apache.HSTS_help]]"
+
+#####
+
+msgid "possvals"
+msgstr "Mulige værdier: Interger efterfulgt af 's' (i sekunder), 'm' (i minutter), 'h' (i timer) eller 'd' (for dage)."
+
+msgid "basicSettingsTab"
+msgstr "Apache"
+
+msgid "nginxSettingsTab"
+msgstr "Nginx"
+
+msgid "GENERAL_NGINX_DIVIDER"
+msgstr "Nginx som en SSL-proxy:"
+
+msgid "Nginx_Info_Text"
+msgstr "Apache-webserveren, der følger med BlueOnyx, gør et godt stykke arbejde ved at betjene traditionelle HTTP-sider. Men i forhold til HTTPS har det nogle få fejl. For eksempel kan det ikke svare på HTTP/2-anmodninger, og de understøttede TLS-cifre er heller ikke den bedst mulige da HTTP/2 er en betydelig forbedring, og da vi også vil have vores TLS-forbindelser af den bedst mulige kvalitet og sikkerhed, tilbyder vi nu muligheden for at lade Apache fortsætte med at betjene HTTP-anmodninger og rute alle HTTPS-forbindelser via en Nginx-videresendelse proxy. Hvis du markerer afkrydsningsfeltet nedenfor, vil denne server blive omkonfigureret, så Apache mister autoritet over servering af HTTPS-sider og lader Nginx overtage at gøre HTTPS. Denne funktion kan vendes om til enhver tid ved blot at fjerne afkrydsningsfeltet igen."
+
+msgid "NGINX_CFG_DIVIDER"
+msgstr "Nginx-konfiguration:"
+
+msgid "worker_processes"
+msgstr "Arbejdsprocesser"
+
+msgid "worker_processes_help"
+msgstr "Definerer antallet af arbejdsprocesser. Den optimale værdi afhænger af mange faktorer, herunder (men ikke begrænset til) antallet af CPU-kerner, antallet af harddiskdrev, der lagrer data og lastmønster. Når man er i tvivl, indstiller Det vil være en god start til antallet af tilgængelige CPU-kerner. Værdien 'auto' vil forsøge at autodetektere den. Mulige værdier: 'auto' eller et helt tal." 
+
+msgid "worker_connections"
+msgstr "Arbejdsforbindelser"
+
+msgid "worker_connections_help"
+msgstr "Indstiller det maksimale antal samtidige forbindelser, der kan åbnes af en arbejdsproces. Det skal være opmærksom på, at dette nummer omfatter alle forbindelser (f.eks. forbindelser med proxy servere, blandt andre), ikke kun forbindelser med klienter. En anden overvejelse er at det faktiske antal samtidige forbindelser ikke kan overstige den nuværende grænse for det maksimale antal åbne filer."
+
+msgid "max_age"
+msgstr "Max alder"
+
+msgid "max_age_help"
+msgstr "Når en browser ser HSTS-overskriften fra en HTTPS-hjemmeside, lærer den, at dette domæne kun skal åbnes ved hjælp af HTTPS (SSL eller TLS). Den caches disse oplysninger i maksimal alder (typisk 31.536.000 sekunder, svarende til ca. år)."
+
+msgid "include_subdomains"
+msgstr "Inkluder underdomæner"
+
+msgid "include_subdomains_help"
+msgstr "Den valgfrie underdomæne parameter angiver browseren, at HSTS-politikken også gælder for alle underdomæner i det aktuelle domæne."
+
+msgid "ssl_session_timeout"
+msgstr "SSL-Sessionstidsindstilling"
+
+msgid "ssl_session_timeout_help"
+msgstr "Angiver en tid, hvor en klient kan genbruge sessionsparametrene for den igangværende HTTPS-session. [[base-apache.possvals]]"
+
+msgid "ssl_session_cache"
+msgstr "SSL-Sessionskort"
+
+msgid "ssl_session_cache_help"
+msgstr "Definerer hvor lang tid SSL-session data er cachelagret. [[base-apache.possvals]]"
+
+msgid "ssl_session_tickets"
+msgstr "SSL Session Tickets"
+
+msgid "ssl_session_tickets_help"
+msgstr "Aktiverer eller deaktiverer genoptagelse af session via TLS-sessionskort."
+
+msgid "resolver_valid"
+msgstr "OCSP Resolver Gyldighed"
+
+msgid "resolver_valid_help"
+msgstr "For OCSP-hæftning til at arbejde, skal Nginx bruge DNS-resolvere til at oprette forbindelse til OCSP-respondenter. Denne indstilling definerer, hvor ofte Nginx kontrollerer validiteten af ​​OCSP-resolvere."
+
+msgid "resolver_timeout"
+msgstr "OCSP Resolver Timeout"
+
+msgid "resolver_timeout_help"
+msgstr "Definerer, hvor længe Nginx venter på svar fra en OCSP-resolver, inden den beslutter at forbindelsen ikke virker. [[base-apache.possvals]]"
+
+msgid "ssl_stapling"
+msgstr "OCSP SSL Hæftning"
+
+msgid "ssl_stapling_help"
+msgstr "Aktiverer eller deaktiverer hæftning af OCSP-svar fra serveren. OCSP-hæftning, formelt kendt som TLS-certifikatstatusforespørgselsudvidelsen, gør det muligt for certifikatgiveren at bære ressourceomkostningerne, der er involveret i at levere OCSP-svar ved at tilføje ('hæftning') en tidsstemplet OCSP-svar underskrevet af CA til det oprindelige TLS-håndtryk, hvilket eliminerer behovet for, at kunderne skal kontakte CA."
+
+msgid "ssl_stapling_verify"
+msgstr "OSCP-Verifikation"
+
+msgid "ssl_stapling_verify_help"
+msgstr "Aktiverer eller deaktiverer verifikation af OCSP-svar fra serveren. Standarden er: Ikke aktiveret. Årsagen til dette er, at efter en genstart af Nginx kan det tage flere minutter, før OSCP-status for alle certifikater er etableret igen. OSCP-svar vil blive vist, men med den vedhæftede note, at de mislykkedes at verificere. Tænd kun dette, hvis du ved hvad du laver. "
+
+msgid "enabled"
+msgstr "Nginx SSL Proxy"
+
+msgid "enabled_help"
+msgstr "Aktiverer Nginx SSL Proxy. Alle HTTPS anmodninger besvares derefter af Nginx, som fungerer som en proxy mellem Apache og besøger web browsere."
+

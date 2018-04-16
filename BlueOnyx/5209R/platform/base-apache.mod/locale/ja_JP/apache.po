@@ -527,3 +527,106 @@ msgstr "ターゲットURL"
 msgid "target_help"
 msgstr "ここにターゲットURLを入力してください。 この仮想サイトへのWebアクセスは、指定されたURLにリダイレクトされます。 これは、http：//またはhttps：//のいずれかのURLになります。 入力されたURLには、サブディレクトリ、ページ、およびURLパラメータが含まれます。 希望の場合は、ブラウザから目的のターゲットURLをコピーして貼り付けて、ここに貼り付けることができます。"
 
+
+#
+### Nginx related
+#
+
+msgid "HSTS_Nginx_enabled"
+msgstr "[[base-apache.HSTS]]"
+
+msgid "HSTS_Nginx_enabled_help"
+msgstr "[[base-apache.HSTS_help]]"
+
+#####
+
+msgid "possvals"
+msgstr "可能な値：Intergerの後にs（秒）、m（分）、h（時間）またはd（日）が続きます。"
+
+msgid "basicSettingsTab"
+msgstr "Apache"
+
+msgid "nginxSettingsTab"
+msgstr "Nginx"
+
+msgid "GENERAL_NGINX_DIVIDER"
+msgstr "SSLプロキシとしてのNginx："
+
+msgid "Nginx_Info_Text"
+msgstr "BlueOnyxに付属しているApache Webサーバーは、従来のHTTPページを提供するのには良い仕事をしますが、HTTPSの点ではHTTP / 2要求に答えることができず、サポートされているTLS暗号も可能ではありませんHTTP / 2が大幅に改善され、TLS接続の品質とセキュリティが最高になるようにするために、ApacheはHTTPリクエストの配信を継続し、Nginx転送を介してすべてのHTTPS接続をルーティングできるようになりましたこのチェックボックスをオンにすると、このサーバはApacheがHTTPSページを提供する権限を失い、NginxがHTTPSを引き継ぐように再設定されます。この機能は、チェックボックスを再び解除するだけでいつでも元に戻すことができます。"
+
+msgid "NGINX_CFG_DIVIDER"
+msgstr "Nginxの設定："
+
+msgid "worker_processes"
+msgstr "ワーカープロセス"
+
+msgid "worker_processes_help"
+msgstr "ワーカープロセスの数を定義します。最適な値は、CPUコアの数、データを格納するハードディスクドライブの数、ロードパターンなどの多くの要因によって決まります。可能な値は 'auto'またはintegerです。 'auto'は自動検出しようとします。"
+
+msgid "worker_connections"
+msgstr "ワーカーの接続"
+
+msgid "worker_connections_help"
+msgstr "ワーカープロセスが開くことができる同時接続の最大数を設定します。この数には、クライアントとの接続だけでなく、すべての接続（プロキシ接続など）が含まれます。同時接続の実際の数は、開いているファイルの最大数の現在の制限を超えることはできません。"
+
+msgid "max_age"
+msgstr "最大年齢"
+
+msgid "max_age_help"
+msgstr "ブラウザがHTTPSウェブサイトからHSTSヘッダを見ると、このドメインはHTTPS（SSLまたはTLS）を使用してアクセスする必要があることを知り、最大の期間（通常は31,536,000秒、約1年）。"
+
+msgid "include_subdomains"
+msgstr "サブドメインを含む"
+
+msgid "include_subdomains_help"
+msgstr "オプションのincludeサブドメインパラメータは、HSTSポリシーが現在のドメインのすべてのサブドメインにも適用されることをブラウザに通知します。"
+
+msgid "ssl_session_timeout"
+msgstr "SSLセッションタイムアウト"
+
+msgid "ssl_session_timeout_help"
+msgstr "クライアントが進行中のHTTPSセッションのセッションパラメータを再利用する時間を指定します [[base-apache.possvals]]"
+
+msgid "ssl_session_cache"
+msgstr "SSLセッションキャッシュ"
+
+msgid "ssl_session_cache_help"
+msgstr "SSLセッションデータのキャッシュ時間を定義します [[base-apache.possvals]]"
+
+msgid "ssl_session_tickets"
+msgstr "SSLセッションチケット"
+
+msgid "ssl_session_tickets_help"
+msgstr "TLSセッションチケットによるセッションの再開を有効または無効にします。"
+
+msgid "resolver_valid"
+msgstr "OCSPリゾルバの有効性"
+
+msgid "resolver_valid_help"
+msgstr "OCSPステープルが動作するためにNginxはDNSリゾルバを使用してOCSPレスポンダに接続する必要があります。この設定は、NginxがOCSPリゾルバの有効性をチェックする頻度を定義します。"
+
+msgid "resolver_timeout"
+msgstr "OCSPリゾルバータイムアウト"
+
+msgid "resolver_timeout_help"
+msgstr "Nginxが接続が機能していないと判断する前に、NginxがOCSPリゾルバからの応答を待つ時間を定義します [[base-apache.possvals]]"
+
+msgid "ssl_stapling"
+msgstr "OCSP SSLステープル"
+
+msgid "ssl_stapling_help"
+msgstr "サーバーによるOCSP応答のステープル機能を有効または無効にします。正式にはTLS証明書ステータス要求拡張機能と呼ばれるOCSPステープル機能は、証明書のプレゼンターがOCSP応答の提供に関わるリソースコストを（ 'ステープル' CAが最初のTLSハンドシェイクに署名したタイムスタンプ付きOCSP応答で、クライアントがCAに連絡する必要はありません。"
+
+msgid "ssl_stapling_verify"
+msgstr "OSCP検証"
+
+msgid "ssl_stapling_verify_help"
+msgstr "サーバによるOCSP応答の検証を有効または無効にしますデフォルトは：有効ではありませんこの理由は、Nginxを再起動すると、すべての証明書のOSCPステータスが再び確立されるまでに数分かかることがあります。 OSCPの応答は提供されますが、添付文書で検証に失敗しました。あなたがしていることが分かっている場合にのみ、これを有効にしてください。"
+
+msgid "enabled"
+msgstr "Nginx SSLプロキシ"
+
+msgid "enabled_help"
+msgstr "Nginx SSLプロキシを有効にします。すべてのHTTPSリクエストは、Apacheと訪問Webブラウザの間のプロキシとして機能するNginxによって応答されます。"
+

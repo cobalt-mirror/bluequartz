@@ -513,3 +513,105 @@ msgstr "URL de destino"
 msgid "target_help"
 msgstr "Por favor, introduzca aquí la URL de destino. Cualquier acceso web a este sitio virtual será redirigido a la URL especificada. Esto puede ser una URL http:// o https:// Las URL introducidas pueden contener subdirectorios, páginas y parámetros de URL. Si lo desea puede copiar y pegar la URL de destino deseada desde su navegador y pegarla aquí."
 
+
+#
+### Nginx related
+#
+
+msgid "HSTS_Nginx_enabled"
+msgstr "[[base-apache.HSTS]]"
+
+msgid "HSTS_Nginx_enabled_help"
+msgstr "[[base-apache.HSTS_help]]"
+
+#####
+
+msgid "possvals"
+msgstr "Valores posibles: Interger seguido de 's' (para segundos), 'm' (para minutos), 'h' (para horas) o 'd' (para días)."
+
+msgid "basicSettingsTab"
+msgstr "Apache"
+
+msgid "nginxSettingsTab"
+msgstr "Nginx"
+
+msgid "GENERAL_NGINX_DIVIDER"
+msgstr "Nginx SSL-Proxy:"
+
+msgid "Nginx_Info_Text"
+msgstr "El servidor web Apache que viene con BlueOnyx hace un buen trabajo al servir páginas HTTP tradicionales. Pero en términos de HTTPS tiene algunos inconvenientes. Por ejemplo, no puede responder a peticiones HTTP/2 y las cifras TLS soportadas tampoco son las mejores opciones posibles. Como HTTP/2 es una mejora considerable y también queremos que nuestras conexiones TLS sean de la mejor calidad y seguridad posibles, ahora ofrecemos la posibilidad de permitir que Apache siga sirviendo peticiones HTTP y enrutando todas las conexiones HTTPS a través de un proxy de reenvío de Nginx. Si marca la casilla de verificación debajo, este servidor será reconfigurado para que Apache pierda autoridad sobre el servicio de páginas HTTPS y permita que Nginx se encargue de hacer HTTPS. Esta característica puede ser revertida en cualquier momento simplemente desmarcando la casilla de verificación de nuevo."
+
+msgid "NGINX_CFG_DIVIDER"
+msgstr "Configuración de Nginx:"
+
+msgid "worker_processes"
+msgstr "Procesos de trabajo"
+
+msgid "worker_processes_help"
+msgstr "Define el número de procesos de trabajo. El valor óptimo depende de muchos factores incluyendo (pero no limitado a) el número de núcleos de CPU, el número de unidades de disco duro que almacenan datos y el patrón de carga. Cuando uno tiene dudas, ajustarlo al número de núcleos de CPU disponibles sería un buen comienzo. El valor 'auto' intentará autodetectarlo. Valores posibles: 'auto' o un entero."
+
+msgid "worker_connections"
+msgstr "Conexiones de Trabajadores"
+
+msgid "worker_connections_help"
+msgstr "Establece el número máximo de conexiones simultáneas que se pueden abrir mediante un proceso de trabajo. Debe tenerse en cuenta que este número incluye todas las conexiones (por ejemplo, conexiones con servidores proxy, entre otros), no sólo las conexiones con clientes. Otra consideración es que el número real de conexiones simultáneas no puede exceder el límite actual del número máximo de archivos abiertos."
+
+msgid "max_age"
+msgstr "Edad máxima"
+
+msgid "max_age_help"
+msgstr "Cuando un navegador ve el encabezado HSTS desde un sitio web HTTPS, se entera de que sólo se puede acceder a este dominio utilizando HTTPS (SSL o TLS). Almacena esta información en caché durante el período de máxima edad (normalmente 31.536.000 segundos, lo que equivale a aproximadamente 1 año)."
+
+msgid "include_subdomains"
+msgstr "Incluir Subdominios"
+
+msgid "include_subdomains_help"
+msgstr "El parámetro opcional include subdomains indica al navegador que la política HSTS también se aplica a todos los subdominios del dominio actual."
+
+msgid "ssl_session_timeout"
+msgstr "Tiempo de espera de sesión SSL"
+
+msgid "ssl_session_timeout_help"
+msgstr "Especifica el tiempo durante el cual un cliente puede reutilizar los parámetros de sesión de la sesión HTTPS en curso. [[base-apache.possvals]]"
+
+msgid "ssl_session_cache"
+msgstr "SSL Sesión Caché"
+
+msgid "ssl_session_cache_help"
+msgstr "Define la duración de la caché de los datos de la sesión SSL. [[base-apache.possvals]]"
+
+msgid "ssl_session_tickets"
+msgstr "SSL Sesión Tickets"
+
+msgid "ssl_session_tickets_help"
+msgstr "Habilita o deshabilita la reanudación de sesión a través de los tickets de sesión TLS."
+
+msgid "resolver_valid"
+msgstr "OCSP Resolver Validez"
+
+msgid "resolver_valid_help"
+msgstr "Para que el grapado OCSP funcione, Nginx necesita usar resolvers DNS para conectarse a los respondedores OCSP. Este parámetro define la frecuencia con la que Nginx comprueba la validez de los resolvers OCSP."
+
+msgid "resolver_timeout"
+msgstr "OCSP Resolver Timeout"
+
+msgid "resolver_timeout_help"
+msgstr "Define cuánto tiempo espera Nginx una respuesta de un resolver OCSP antes de decidir que la conexión no está funcionando. [[base-apache.possvals]]"
+
+msgid "ssl_stapling"
+msgstr "OCSP SSL Stapling"
+
+msgid "ssl_stapling_help"
+msgstr "Habilita o deshabilita el grapado de respuestas OCSP por parte del servidor. El grapado OCSP, conocido formalmente como la extensión TLS Certificate Status Request (Solicitud de estado de certificado TLS), permite al presentador de un certificado asumir el coste de los recursos necesarios para proporcionar respuestas OCSP añadiendo ('grapado') una respuesta OCSP con fecha y hora firmada por la CA al apretón de manos TLS inicial, lo que elimina la necesidad de que los clientes se pongan en contacto con la CA."
+
+msgid "ssl_stapling_verify"
+msgstr "OSCP Verificación"
+
+msgid "ssl_stapling_verify_help"
+msgstr "Activa o desactiva la verificación de respuestas OCSP por parte del servidor. El valor predeterminado es: No habilitado. La razón de esto es que después de un reinicio de Nginx pueden pasar varios minutos antes de que se vuelva a establecer el estado OSCP de todos los certificados. Durante ese tiempo se entregarán las respuestas de la OSCP, pero con la nota adjunta de que fallaron en la verificación. Sólo enciende esto si sabes lo que haces."
+
+msgid "enabled"
+msgstr "Nginx SSL Proxy"
+
+msgid "enabled_help"
+msgstr "Habilita el proxy SSL de Nginx. Todas las peticiones HTTPS serán respondidas por Nginx, que actúa como un proxy entre Apache y los navegadores web visitantes."

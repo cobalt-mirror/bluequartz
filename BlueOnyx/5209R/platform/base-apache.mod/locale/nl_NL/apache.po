@@ -513,4 +513,106 @@ msgid "target_help"
 msgstr "Voer hier de URL van het doel in. Elke webtoegang tot deze virtuele site wordt doorgestuurd naar de gespecificeerde URL. Dit kan een http:// of https:// URL zijn. De ingevoerde URL's kunnen submappen, pagina's en URL-parameters bevatten. Als u dat wenst kunt u de gewenste URL van uw browser kopiëren en plakken en hier plakken."
 
 
+#
+### Nginx related
+#
+
+msgid "HSTS_Nginx_enabled"
+msgstr "[[base-apache.HSTS]]"
+
+msgid "HSTS_Nginx_enabled_help"
+msgstr "[[base-apache.HSTS_help]]"
+
+#####
+
+msgid "possvals"
+msgstr "Mogelijke waarden: tussenvoeging gevolgd door 's' (voor seconden), 'm' (voor minuten), 'h' (voor uren) of 'd' (voor dagen)."
+
+msgid "basicSettingsTab"
+msgstr "Apache"
+
+msgid "nginxSettingsTab"
+msgstr "Nginx"
+
+msgid "GENERAL_NGINX_DIVIDER"
+msgstr "Gebruik Nginx als SSL-proxy:"
+
+msgid "Nginx_Info_Text"
+msgstr "De Apache webserver die bij BlueOnyx wordt geleverd, doet goed werk in het serveren van traditionele HTTP-pagina's. Maar in termen van HTTPS heeft het een paar tekortkomingen. Het kan bijvoorbeeld geen antwoord geven op HTTP/2-verzoeken en de ondersteunde TLS-codes zijn ook niet de best mogelijke keuzes. Aangezien HTTP/2 een aanzienlijke verbetering is en we ook willen dat onze TLS-verbindingen van de best mogelijke kwaliteit en veiligheid zijn, bieden we nu de mogelijkheid om Apache HTTP-verzoeken te laten blijven bedienen en alle HTTPS-verbindingen te routeren via een Nginx forwarding proxy. Als u het selectievakje hieronder inschakelt, wordt deze server opnieuw geconfigureerd zodat Apache geen gezag meer heeft over het serveren van HTTPS-pagina's en Nginx het HTTPS kan overnemen. Deze functie kan te allen tijde worden omgekeerd door het selectievakje weer uit te schakelen.
+."
+
+msgid "NGINX_CFG_DIVIDER"
+msgstr "Nginx configuratie:"
+
+msgid "worker_processes"
+msgstr "Werknemersprocessen"
+
+msgid "worker_processes_help"
+msgstr "Legt het aantal arbeidersprocessen vast. De optimale waarde is afhankelijk van vele factoren, waaronder (maar niet beperkt tot) het aantal CPU-kernen, het aantal harde schijven dat gegevens opslaat en het belastingspatroon. In geval van twijfel zou het een goed begin zijn om deze in te stellen op het aantal beschikbare CPU-kernen. De waarde 'auto' zal proberen deze automatisch te detecteren. Mogelijke waarden: 'auto' of een geheel getal."
+
+msgid "worker_connections"
+msgstr "Aansluitingen van werknemers"
+
+msgid "worker_connections_help"
+msgstr "Stelt het maximale aantal gelijktijdige verbindingen in dat door een arbeidersproces kan worden geopend. Er dient rekening mee te worden gehouden dat dit nummer alle verbindingen omvat (bijvoorbeeld verbindingen met proxyservers), en niet alleen verbindingen met cliënten. Een andere overweging is dat het werkelijke aantal gelijktijdige verbindingen niet hoger mag zijn dan de huidige limiet op het maximale aantal openstaande bestanden."
+
+msgid "max_age"
+msgstr "Maximale leeftijd"
+
+msgid "max_age_help"
+msgstr "Wanneer een browser de HSTS-header vanaf een HTTPS-website ziet, leert hij dat dit domein alleen via HTTPS (SSL of TLS) toegankelijk moet zijn. Deze informatie wordt opgeslagen voor de maximumleeftijd (typisch 31.536.000 seconden, gelijk aan ongeveer 1 jaar)."
+
+msgid "include_subdomains"
+msgstr "Omvat subdomeinen"
+
+msgid "include_subdomains_help"
+msgstr "De optionele include subdomeinen parameter vertelt de browser dat het HSTS beleid ook van toepassing is op alle subdomeinen van het huidige domein."
+
+msgid "ssl_session_timeout"
+msgstr "SSL Gebruiksduur Sessie"
+
+msgid "ssl_session_timeout_help"
+msgstr "Specificeert een tijd waarin een cliënt de sessieparameters van de lopende HTTPS-sessie mag hergebruiken. [[base-apache.possvals]]"
+
+msgid "ssl_session_cache"
+msgstr "SSL Sessie Cache"
+
+msgid "ssl_session_cache_help"
+msgstr "Legt vast hoe lang SSL-sessiegegevens in de cache staan. [[base-apache.possvals]]"
+
+msgid "ssl_session_tickets"
+msgstr "SSL Sessie Tickets"
+
+msgid "ssl_session_tickets_help"
+msgstr "Hiermee schakelt u het hervatten van sessies in of uit via TLS-sessietickets."
+
+msgid "resolver_valid"
+msgstr "OCSP-resolver-geldigheid"
+
+msgid "resolver_valid_help"
+msgstr "Om de OCSP-nieten te laten werken, moet Nginx DNS-resolvers gebruiken om verbinding te maken met OCSP-responders. Deze instelling bepaalt hoe vaak Nginx de geldigheid van OCSP-oplossers controleert."
+
+msgid "resolver_timeout"
+msgstr "OCSP-oplossing Timeout"
+
+msgid "resolver_timeout_help"
+msgstr "Legt vast hoe lang Nginx wacht op een reactie van een OCSP-resolver voordat hij besluit dat de verbinding niet werkt. [[base-apache.possvals]]"
+
+msgid "ssl_stapling"
+msgstr "OSCP-verificatie"
+
+msgid "ssl_stapling_help"
+msgstr "Schakelt nieten van OCSP-reacties door de server in of uit. Door OCSP-nietdiensten, formeel bekend als de verlenging van het statusverzoek voor het TLS-certificaat, kan de houder van het certificaat de kosten van de OCSP-respons dragen door een door de CA ondertekend OCSP-antwoord met een tijdsvermelding toe te voegen aan de initiële TLS-handschok, waardoor klanten geen contact meer hoeven op te nemen met de certificeringsinstantie."
+
+msgid "ssl_stapling_verify"
+msgstr "OSCP Verification"
+
+msgid "ssl_stapling_verify_help"
+msgstr "Schakelt de verificatie van OCSP-reacties door de server in of uit. De standaardinstelling is: Niet ingeschakeld. De reden hiervoor is dat het na een herstart van Nginx enkele minuten kan duren voordat de OSCP-status van alle certificaten opnieuw is vastgesteld. Gedurende die periode worden de antwoorden van de OSCP's betekend, maar met de bijgevoegde opmerking dat de verificatie is mislukt. Schakel dit alleen in als je weet wat je aan het doen bent."
+
+msgid "enabled"
+msgstr "Nginx SSL Proxy"
+
+msgid "enabled_help"
+msgstr "Schakelt de Nginx SSL-proxy in. Alle HTTPS-verzoeken worden dan beantwoord door Nginx, die als proxy fungeert tussen Apache en de bezoekende webbrowser."
 
