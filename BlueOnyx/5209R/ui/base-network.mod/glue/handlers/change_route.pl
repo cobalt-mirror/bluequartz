@@ -227,40 +227,51 @@ if ($ipv6_ip ne "") {
     }
 }
 
-# Make sure all IPv4 extra-IPs have routes:
-if (($System->{IPType} eq 'IPv4') || ($System->{IPType} eq 'BOTH') || ($System->{IPType} eq 'VZv4') || ($System->{IPType} eq 'VZBOTH')) {
-    if ($System->{extra_ipaddr}) {
-        @extra_ipaddr = $cce->scalar_to_array($System->{extra_ipaddr});
-        #if ($ipv4_ip ne '') {
-        #    push (@extra_ipaddr, $ipv4_ip);
-        #}
-        foreach my $ip_extra (@extra_ipaddr) {
-            #&debug_msg("Running: Found extra IPv4 IP: $ip_extra ");
-            if (in_array(\@arr_assigned_ipv4, $ip_extra)) {
-                # Remove element from array:
-                @arr_assigned_ipv4 = grep {!/^$ip_extra$/} @arr_assigned_ipv4;
-            }
+# Optional extra routes for IPv4 extra-IPs:
+# 
+# Please note:
+#
+# We already *do* have netroutes that cover each and any extra-IPv4. So making these
+# <extra-IP>/255.255.255.255 routes as well seems to cause more grief than it is worth.
+# In fact it might also contribute to the issue that outgoing IPv4 traffic is occasionally
+# being sent from these alias-IPs. Hence we now make this optional with the default being
+# we do NOT create these rules. Unles the file /etc/sysconfig/ipv4_extra_routes is present.
+#
+if ( -f '/etc/sysconfig/ipv4_extra_routes' ) {
+    if (($System->{IPType} eq 'IPv4') || ($System->{IPType} eq 'BOTH') || ($System->{IPType} eq 'VZv4') || ($System->{IPType} eq 'VZBOTH')) {
+        if ($System->{extra_ipaddr}) {
+            @extra_ipaddr = $cce->scalar_to_array($System->{extra_ipaddr});
+            #if ($ipv4_ip ne '') {
+            #    push (@extra_ipaddr, $ipv4_ip);
+            #}
+            foreach my $ip_extra (@extra_ipaddr) {
+                #&debug_msg("Running: Found extra IPv4 IP: $ip_extra ");
+                if (in_array(\@arr_assigned_ipv4, $ip_extra)) {
+                    # Remove element from array:
+                    @arr_assigned_ipv4 = grep {!/^$ip_extra$/} @arr_assigned_ipv4;
+                }
 
-            # Handle netroutes (just keep track of them here, process later):
-            my $netroute = ip_and_ip($ip_extra, $ipv4_nm);
-            if (in_array(\@unique_netroutes, $netroute)) {
-                # Nada
-            }
-            else {
-                push (@unique_netroutes, $netroute);
-            }
+                # Handle netroutes (just keep track of them here, process later):
+                my $netroute = ip_and_ip($ip_extra, $ipv4_nm);
+                if (in_array(\@unique_netroutes, $netroute)) {
+                    # Nada
+                }
+                else {
+                    push (@unique_netroutes, $netroute);
+                }
 
-            # Handle regular IPv4 routes:
-            if (in_array(\@routes_existing_ipv4, $ip_extra)) {
-                # ip_extra route exists, skipping
-                &debug_msg("Running: Found extra IPv4 IP: $ip_extra ... already has a route.\n");
-                @routes_existing_ipv4 = grep {!/^$ip_extra$/} @routes_existing_ipv4;
-            }
-            else {
-                &debug_msg("Running: Found extra IPv4 IP: $ip_extra ... needs a route.\n");
-                &debug_msg("/sbin/ip route add " . $ip_extra. "/255.255.255.255 dev $device\n");
-                system("/sbin/ip route add " . $ip_extra. "/255.255.255.255 dev $device");
-                @routes_existing_ipv4 = grep {!/^$ip_extra$/} @routes_existing_ipv4;
+                # Handle regular IPv4 routes:
+                if (in_array(\@routes_existing_ipv4, $ip_extra)) {
+                    # ip_extra route exists, skipping
+                    &debug_msg("Running: Found extra IPv4 IP: $ip_extra ... already has a route.\n");
+                    @routes_existing_ipv4 = grep {!/^$ip_extra$/} @routes_existing_ipv4;
+                }
+                else {
+                    &debug_msg("Running: Found extra IPv4 IP: $ip_extra ... needs a route.\n");
+                    &debug_msg("/sbin/ip route add " . $ip_extra. "/255.255.255.255 dev $device\n");
+                    system("/sbin/ip route add " . $ip_extra. "/255.255.255.255 dev $device");
+                    @routes_existing_ipv4 = grep {!/^$ip_extra$/} @routes_existing_ipv4;
+                }
             }
         }
     }
