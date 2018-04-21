@@ -56,7 +56,7 @@ class Rsscron extends MX_Controller {
         //
 
         // Location (URL) of the RSS feed:
-        $rsslocation = 'http://www.blueonyx.it/index.php?mact=CGFeedMaker,cntnt01,default,0&cntnt01feed=BlueOnyx-News&cntnt01showtemplate=false';
+        $rsslocation = 'https://www.blueonyx.it/index.php?mact=CGFeedMaker,cntnt01,default,0&cntnt01feed=BlueOnyx-News&cntnt01showtemplate=false';
 
         // Check if we are online:
         if (areWeOnline($rsslocation, "5")) {

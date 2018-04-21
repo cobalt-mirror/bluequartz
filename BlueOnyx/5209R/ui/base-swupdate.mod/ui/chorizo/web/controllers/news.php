@@ -114,7 +114,7 @@ class News extends MX_Controller {
             if ($have_good_rss_cache == FALSE) {
 
                 // Location (URL) of the RSS feed:
-                $rsslocation = 'http://www.blueonyx.it/index.php?mact=CGFeedMaker,cntnt01,default,0&cntnt01feed=BlueOnyx-News&cntnt01showtemplate=false';
+                $rsslocation = 'https://www.blueonyx.it/index.php?mact=CGFeedMaker,cntnt01,default,0&cntnt01feed=BlueOnyx-News&cntnt01showtemplate=false';
 
                 // Check if we are online:
                 if (areWeOnline($rsslocation, "10")) {
@@ -185,9 +185,10 @@ class News extends MX_Controller {
                     preg_match_all("/articleid=(.*)&(.*)/Uism", $news[3][$num], $article_id);
                     $article = $article_id[1][0];
                     $exturl = $news[3][$num];
-                    if (is_HTTPS() == TRUE) {
-                        $exturl = str_replace('http://', 'https://', $exturl ); 
-                    }
+                    // Note: www.blueonyx.it now has HSTS enabled, so this is redundant:
+                    //if (is_HTTPS() == TRUE) {
+                    //    $exturl = str_replace('http://', 'https://', $exturl ); 
+                    //}
                     $news[3][$num] = '<a class="various" target="_blank" href="' . $exturl . '" data-fancybox-type="iframe">' . '<button class="fancybox tiny icon_only img_icon tooltip hover" title="' . $i18n->getWrapped("[[base-yum.openURL_help]]") .'"><img src="/.adm/images/icons/small/white/magnifying_glass.png"></button>' . '</a>';
                     $linkButton = $factory->getUrlButton($exturl);
                     $linkButton->setButtonSite("tiny");
