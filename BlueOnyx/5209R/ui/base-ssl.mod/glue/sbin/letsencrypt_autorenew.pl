@@ -179,17 +179,24 @@ if ($do_admserv eq "1") {
 @vhosts = ();
 (@vhosts) = $cce->findx('Vsite');
 foreach  $vsiteOID (@vhosts) {
+    ($ok, $vsite) = $cce->get($vsiteOID);
     ($ok, $vsite_SSL) = $cce->get($vsiteOID , 'SSL');
-    if ($vsite_SSL->{uses_letsencrypt} eq "1") {
-        ($ok, $vsite) = $cce->get($vsiteOID);
 
-        # Get cert_dir:
-        if ($vsite->{basedir}) {
-            $cert_dir = "$vsite->{basedir}/$SSL::CERT_DIR";
-        }
-        else {
-            $cert_dir = homedir_get_group_dir($group, $vsite->{volume}) . '/' . $SSL::CERT_DIR;
-        }
+    # We skip Vsites that don't have SSL enabled:
+    if ($vsite_SSL->{enabled} ne "1") {
+        next;
+    }
+
+    # Get cert_dir:
+    if ($vsite->{basedir}) {
+        $cert_dir = "$vsite->{basedir}/$SSL::CERT_DIR";
+    }
+    else {
+        $cert_dir = homedir_get_group_dir($group, $vsite->{volume}) . '/' . $SSL::CERT_DIR;
+    }
+
+    # Is 'autorenew' on?
+    if (($vsite_SSL->{autoRenew} eq "1") && (-d $cert_dir)) {
 
         # Check if we have a good cert:
         ($subject, $issuer, $expires) = ssl_get_cert_info($cert_dir);
@@ -197,6 +204,8 @@ foreach  $vsiteOID (@vhosts) {
         # Munge date because they changed the strtotime function in php:
         $expires =~ s/(\d{1,2}:\d{2}:\d{2})(\s+)(\d{4,})/$3$2$1/;
 
+        # Make sure this is really a Let's Encrypt cert:
+        $uses_letsencrypt = '0';
         if ($issuer->{'O'} eq 'Let\'s Encrypt') {
             $uses_letsencrypt = '1';
 
@@ -225,17 +234,17 @@ foreach  $vsiteOID (@vhosts) {
                     if (defined $ed->expire_date) {
                         $expire_date = $ed->expire_date;
                         if (($ed->is_expired) || ($ed->is_expired($ex_d))) {
-                            &debug_msg("WARNING: SSL certificate for '$vsite->{fqdn}' still has bad expiration date: $expire_date\n\n");
+                            &debug_msg("WARNING: SSL certificate for '$vsite->{fqdn}' still has bad expiration date: $expire_date\n");
                             push @failed_list, "* '$vsite->{fqdn}' (Expiry date: $expire_date)\n";
                         }
                         else {
                             push @success_list, "* '$vsite->{fqdn}' (New expiry date: $expire_date)\n";
-                            &debug_msg("INFO: SSL certificate for '$vsite->{fqdn}' has new expiration date: $expire_date\n\n");
+                            &debug_msg("INFO: SSL certificate for '$vsite->{fqdn}' has new expiration date: $expire_date\n");
                         }
                     }
                 }
                 else {
-                    &debug_msg("NOT renewing SSL certificate for '$vsite->{fqdn}' as it's still good. (expiration date: $expire_date)\n\n");
+                    &debug_msg("NOT renewing SSL certificate for '$vsite->{fqdn}' as it's still good. (expiration date: $expire_date)\n");
                 }
             }
         }
