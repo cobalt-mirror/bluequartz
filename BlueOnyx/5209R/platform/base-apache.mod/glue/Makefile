@@ -34,6 +34,7 @@ install_httpdconf:
 	install -o root -g root -m 644 httpd/security.conf $(PREFIX)/etc/httpd/conf.d
 	install -o root -g root -m 644 httpd/ssl_bx.conf $(PREFIX)/etc/httpd/conf.d
 	install -o root -g root -m 755 httpd/00-default-vsite.pl $(PREFIX)/etc/httpd/conf.perl/00-default-vsite.pl
+	install -o root -g root -m 644 httpd/nginx-ssl-proxy.conf $(PREFIX)/etc/httpd/conf.d
 
 install_sbin:
 	$(INSTALL) -d -o root -m 0755 $(PREFIX)/usr/sausalito/sbin; \
