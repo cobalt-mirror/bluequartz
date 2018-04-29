@@ -1,14 +1,14 @@
 Summary: Server and site statistics for web, ftp, email, and network traffic
 Name: base-sitestats-scripts
-Version: 2.0
-Release: 1BX04%{?dist}
+Version: 2.1
+Release: 1BX01%{?dist}
 Vendor: Project BlueOnyx
 License: Sun modified BSD
 Group: System Environment/BlueOnax
 Source: sitestats-scripts.tar.gz
 BuildRoot: /tmp/sitestats-scripts
 BuildArchitectures: noarch
-Requires: webalizer, tmpwatch
+Requires: webalizer, tmpwatch, httpd
 Requires: iptables-services
 
 %description
@@ -88,7 +88,19 @@ else
   fi
 fi
 
+if [ -f /etc/logrotate.conf ];then
+	sed -i 's/rotate 4/rotate 2/g' /etc/logrotate.conf 
+	sed -i 's/keep 4/keep 2/g' /etc/logrotate.conf 
+fi
+
 %changelog
+
+* Sat Apr 28 2018 Michael Stauber <mstauber@solarspeed.net> 2.1-1BX01
+- Added anonip.py
+- Edited /etc/logrotate.d/apache to anonymize IPs before they are 
+  moved over to the Vsite logs directory.
+- Post now edits /etc/logrotate.conf to keep only two weeks of logs.
+- Added logrotate for Let's Encrypt
 
 * Tue Jan 06 2018 Michael Stauber <mstauber@solarspeed.net> 2.0-1BX04
 - Overhauled provisions for IPv6 and APF.
@@ -323,10 +335,13 @@ rm -rf $RPM_BUILD_ROOT
 /etc/cron.daily/sitestats_purgeOmatic.pl
 /etc/logrotate.d/sitestats
 /etc/logrotate.d/apache
+/etc/logrotate.d/letsencrypt
 /usr/local/bin/generateGraph.pl
 /usr/local/sbin/split_logs
+/usr/local/sbin/anonip.py
 %attr(755,root,root) /usr/local/sbin/maillog2commonlog.pl
 %attr(755,root,root) /usr/local/sbin/ftplog2commonlog
 %attr(755,root,root) /usr/local/sbin/grab_logs.pl
 %attr(755,root,root) /usr/bin/webalizer.pl
+%attr(755,root,root) /usr/local/sbin/anonip.py
 

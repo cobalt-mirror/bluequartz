@@ -137,7 +137,17 @@ fi
 - Added new GUI page /sitestats/logconfig that allows to configure
   maximum renention time for logs. If Vsites have a longer retention
   time for their statistics, then their retention time is reset to
-  the new maximum.
+  the new maximum. Additionally this page can reset AWStats and
+  Webalizer stats as well as enable auto-pruning of the AV-SPAM
+  'milter_usage' table if the AV-SPAM is installed.
+- Added constructor/purge_avspam.pl
+- Modified glue/conf/sitestats.conf
+- Added glue/handlers/purge_avspam.pl
+- Added glue/handlers/purge_awstats.pl
+- Added glue/handlers/purge_webalizer.pl
+- Modified glue/handlers/purge_update.pl
+- Modified glue/schemas/sitestats.schema
+- Extended sitetstats-scripts
 
 * Sun Mar 05 2017 Michael Stauber <mstauber@solarspeed.net> 2.0-0BX17
 - Modified controllers/webalizer.php to remove two cceClient->bye().

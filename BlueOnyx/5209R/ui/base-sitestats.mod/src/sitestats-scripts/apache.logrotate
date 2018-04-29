@@ -1,8 +1,10 @@
 /var/log/httpd/access_log {
     daily
+    rotate 14
+    compress
     prerotate
         rm -rf /tmp/.logrotate_apache_access >/dev/null 2>&1
-        cp /var/log/httpd/access_log /tmp/.logrotate_apache_access >/dev/null 2>&1
+        cat /var/log/httpd/access_log | /usr/local/sbin/anonip.py --column 2 --output /tmp/.logrotate_apache_access
     endscript
     missingok
     notifempty
@@ -16,6 +18,9 @@
 }
 
 /var/log/httpd/agent_log {
+    daily
+    rotate 14
+    compress
     missingok
     notifempty
     sharedscripts
@@ -25,6 +30,9 @@
 }
 
 /var/log/httpd/error_log {
+    daily
+    rotate 14
+    compress
     missingok
     notifempty
     sharedscripts
@@ -34,6 +42,9 @@
 }
 
 /var/log/httpd/referer_log {
+    daily
+    rotate 14
+    compress
     missingok
     notifempty
     sharedscripts
@@ -43,6 +54,9 @@
 }
 
 /var/log/httpd/ssl_*_log {
+    daily
+    rotate 14
+    compress
     missingok
     notifempty
     sharedscripts

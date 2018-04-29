@@ -50,6 +50,7 @@ class Logconfig extends MX_Controller {
         //
 
         $CODBDATA = $CI->cceClient->get($system['OID'], "Sitestats");
+        $AVSPAM = $CI->cceClient->get($system['OID'], "AVSPAM_Settings");
 
         //
         //-- Prepare data:
@@ -138,14 +139,33 @@ class Logconfig extends MX_Controller {
             $Sitestats_purge = $attributes['Sitestats_purge'];
             $settings['purge'] = $purgeMap[$Sitestats_purge];
 
+            $webalizer = '0';
+            if ($attributes['webalizer'] == "1") {
+                $webalizer = time();
+            }
+            $awstats = '0';
+            if ($attributes['awstats'] == "1") {
+                $awstats = time();
+            }
+
             // Actual submit to CODB:
-            $CI->cceClient->setObject('System', array('purge' => $settings['purge']), 'Sitestats');
+            $CI->cceClient->setObject('System', array('purge' => $settings['purge'], 'webalizer' => $webalizer, 'awstats' => $awstats, 'avspam' => $attributes['avspam']), 'Sitestats');
 
             // CCE errors that might have happened during submit to CODB:
             $CCEerrors = $CI->cceClient->errors();
             foreach ($CCEerrors as $object => $objData) {
                 // When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
                 $errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
+            }
+
+            // Update AV-SPAM as well - if it's present:
+            if (isset($AVSPAM['avspam_expiry'])) {
+                $CI->cceClient->setObject('System', array('avspam_expiry' => $attributes['avspam']), 'AVSPAM_Settings');
+                $CCEerrors = $CI->cceClient->errors();
+                foreach ($CCEerrors as $object => $objData) {
+                    // When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
+                    $errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
+                }
             }
 
             // No errors. Reload the entire page to load it with the updated values:
@@ -191,6 +211,13 @@ class Logconfig extends MX_Controller {
         //--- TAB: basic
         //
 
+        // Add Divider:
+        $block->addFormField(
+                $factory->addBXDivider("DIV_USAGE_INFORMATION", ""),
+                $factory->getLabel("DIV_USAGE_INFORMATION", false),
+                $defaultPage
+                );
+
         // Yet again:
         $purgeLabels = array_keys($purgeMap);
         $purgeDays = array_values($purgeMap);
@@ -208,6 +235,54 @@ class Logconfig extends MX_Controller {
 
         $block->addFormField($purgeSelect, $factory->getLabel("sitestatsPurge"), $defaultPage);
         $block->addFormField($factory->getTextField('save', 1, ''));
+
+        // Add Divider:
+        $block->addFormField(
+                $factory->addBXDivider("DIV_Purge_Stats", ""),
+                $factory->getLabel("DIV_Purge_Stats", false),
+                $defaultPage
+                );
+
+        // Zap Webalizer:
+        $block->addFormField(
+                $factory->getBoolean("webalizer", '0'),
+                $factory->getLabel("webalizer"),
+                $defaultPage
+                );
+
+        // Zap AWStats:
+        if (file_exists('/usr/sausalito/capstone/solarspeed-awstats.cap')) {
+            $block->addFormField(
+                    $factory->getBoolean("awstats", '0'),
+                    $factory->getLabel("awstats"),
+                    $defaultPage
+                    );
+        }
+
+        // AV-SPAM:
+        if (isset($AVSPAM['use_sql'])) {
+
+            // Add Divider:
+            $block->addFormField(
+                    $factory->addBXDivider("DIV_AVSPAM_EXPIRY", ""),
+                    $factory->getLabel("DIV_AVSPAM_EXPIRY", false),
+                    $defaultPage
+                    );
+
+            $avspam_expiry = '0';
+            if (isset($CODBDATA['avspam'])) {
+                $avspam_expiry = $CODBDATA['avspam'];
+            }
+            if (isset($AVSPAM['avspam_expiry'])) {
+                $avspam_expiry = $AVSPAM['avspam_expiry'];
+            }
+
+            $block->addFormField(
+                    $factory->getBoolean("avspam", $avspam_expiry),
+                    $factory->getLabel("avspam"),
+                    $defaultPage
+                    );            
+        }
 
         //
         //--- Add the buttons

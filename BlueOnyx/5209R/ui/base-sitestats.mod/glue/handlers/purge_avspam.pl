@@ -1,10 +1,10 @@
 #!/usr/bin/perl -I /usr/sausalito/perl
 #
-# $Id: purge_update.pl
+# $Id: purge_avspam.pl
 # 
-# If 'System' . 'Sitestats' . 'purge' is updated, we update
-# all Vsites that have a 'purge' date larger than this to
-# reduce the 'purge' date to the new maximum allowable value.
+# If 'System' . 'Sitestats' . 'avspam' is updated we connect to MySQL and
+# in the AV-SPAM database we prune 'milter_usage' to cull entries older 
+# than our retention period for records.
 #
 
 # Debugging flag: Set to 1 to turn on logging to /var/log/messages
@@ -16,6 +16,7 @@ if ($DEBUG)
 }
 
 use CCE;
+use DBI;
 
 my $cce = new CCE;
 $cce->connectfd();
@@ -23,29 +24,60 @@ $cce->connectfd();
 my @sysoids = $cce->find('System');
 my ($ok, $sitestats) = $cce->get($sysoids[0], 'Sitestats');
 
-# Early exit if GUI says we keep stuff forever:
-if ($sitestats->{purge} eq "0") {
-    $cce->bye('SUCCESS');
-    exit(0);    
+# Early exit if pruning is disabled or AV-SPAM doesn't use SQL:
+if (($sitestats->{avspam} eq "0") || (! -f '/etc/mail/spamassassin/sql.cf') || ($sitestats->{purge} eq "0")) {
+  &debug_msg("Early exit as we're either not using SQL or don't want pruning.\n");
+  $cce->bye('SUCCESS');
+  exit(0);    
 }
 
-# Find all Vsites:
-my @vhosts = ();
-my (@vhosts) = $cce->findx('Vsite');
+# Get "System" Object MySQL:
+my ($ok, $sysMySQL) = $cce->get($sysoids[0], 'mysql');
+unless ($ok and $sysMySQL) {
+  $cce->bye('FAIL');
+  exit 1;
+}
 
-# Walk through all Vsites:
-for my $vsite_oid (@vhosts) {
-  ($ok, my $vsite) = $cce->get($vsite_oid);
-  ($ok, my $vsiteStats) = $cce->get($vsite_oid, 'SiteStats');
-  &debug_msg("Vsite " . $vsite->{name} . " \$vsiteStats->{purge} is: " . $vsiteStats->{purge} . "\n");
+# Get "AVSPAM_Settings" from CODB:
+($ok, $avspam) = $cce->get($sysoids[0], 'AVSPAM_Settings');
+unless ($ok and $avspam) {
+  $cce->bye('FAIL');
+  exit 1;
+}
 
-  # Vsite is configured to store indefinitely or for more days than the GUI allows:
-  if (($vsiteStats->{purge} eq '0') || ($vsiteStats->{purge} gt $sitestats->{purge})) {
-    # Set new 'purge' to the maximum that the GUI now allows:
-    ($ok) = $cce->set($vsite_oid, 'SiteStats',{ 'purge' => $sitestats->{purge} });
+# Get MySQL connection details:
+@myoids = $cce->find('MySQL');
+($ok, $sys_sql_config) = $cce->get($myoids[0], "");
+unless ($ok and $sys_sql_config) {
+  $cce->bye('FAIL');
+  exit 1;
+}
+
+# Debug output:
+&debug_msg("Debug: MySQL enabled: " . $sysMySQL->{'enabled'}  . "\n");
+&debug_msg("Debug: avs_dbname: " . $avspam->{'avs_dbname'}  . "\n");
+
+# AV-SPAM SQL is enabled:
+if ($sysMySQL->{'enabled'} eq "1") {
+
+  # Prune 'milter_usage' database:
+  $MySQLError = '0';
+  $dbh = DBI->connect("DBI:mysql:" . $avspam->{'avs_dbname'} . ":host=$sys_sql_config->{'sql_host'}", $sys_sql_config->{'sql_root'}, $sys_sql_config->{'sql_rootpassword'}, { PrintError => 0, RaiseError => 1, HandleError => \&handle_error });            
+  &debug_msg("Debug: MySQL Root Connection result: $MySQLError \n");
+  if ($MySQLError eq "0") {
+      $sql = "DELETE FROM `milter_usage` WHERE `date` < DATE_SUB(NOW() , INTERVAL " . $sitestats->{'purge'} . " DAY);\n";
+      &debug_msg("Debug: Running Query: $sql \n");
+      $sth = $dbh->prepare($sql);
+      $sth->execute();
   }
-  # Debgugger to reset all Vsites real quick to unlimited:
-  ($ok) = $cce->set($vsite_oid, 'SiteStats',{ 'purge' => '0' });
+
+  if ($MySQLError eq "0") {
+      &debug_msg("Debug: Pruning reported no error. \n");
+  }
+  else {
+    &debug_msg("Debug: Pruning reported error. \n");
+  }
+
 }
 
 $cce->bye('SUCCESS');
@@ -66,6 +98,13 @@ sub debug_msg {
     syslog('info', "$ARGV[0]: $msg");
     closelog;
   }
+}
+
+sub handle_error {
+    my $message = shift;
+    #write error message wherever you want
+    &debug_msg("Debug: MySQL-Error: " . $message . "\n");
+    $MySQLError = '1';
 }
 
 # 

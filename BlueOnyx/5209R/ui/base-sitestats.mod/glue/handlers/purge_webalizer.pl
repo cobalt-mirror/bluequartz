@@ -1,10 +1,9 @@
 #!/usr/bin/perl -I /usr/sausalito/perl
 #
-# $Id: purge_update.pl
+# $Id: purge_awstats.pl
 # 
-# If 'System' . 'Sitestats' . 'purge' is updated, we update
-# all Vsites that have a 'purge' date larger than this to
-# reduce the 'purge' date to the new maximum allowable value.
+# If 'System' . 'Sitestats' . 'webalizer' is updated we run through all
+# Vsites and remove the static files for Webalizer.
 #
 
 # Debugging flag: Set to 1 to turn on logging to /var/log/messages
@@ -23,11 +22,19 @@ $cce->connectfd();
 my @sysoids = $cce->find('System');
 my ($ok, $sitestats) = $cce->get($sysoids[0], 'Sitestats');
 
-# Early exit if GUI says we keep stuff forever:
-if ($sitestats->{purge} eq "0") {
+# Early exit if no reset is wanted:
+if ($sitestats->{webalizer} eq "0") {
     $cce->bye('SUCCESS');
     exit(0);    
 }
+
+# Remove server-stats:
+if (-d '/var/www/usage') {
+  system("rm -f /var/www/usage/*.*");
+  system("rm -f /var/www/usage/*.*");
+}
+
+# /var/www/usage
 
 # Find all Vsites:
 my @vhosts = ();
@@ -36,16 +43,13 @@ my (@vhosts) = $cce->findx('Vsite');
 # Walk through all Vsites:
 for my $vsite_oid (@vhosts) {
   ($ok, my $vsite) = $cce->get($vsite_oid);
-  ($ok, my $vsiteStats) = $cce->get($vsite_oid, 'SiteStats');
-  &debug_msg("Vsite " . $vsite->{name} . " \$vsiteStats->{purge} is: " . $vsiteStats->{purge} . "\n");
+  $webalizer_int = $vsite->{basedir} . '/webalizer';
+  $webalizer_int_files = $vsite->{basedir} . '/webalizer/*.*';
 
-  # Vsite is configured to store indefinitely or for more days than the GUI allows:
-  if (($vsiteStats->{purge} eq '0') || ($vsiteStats->{purge} gt $sitestats->{purge})) {
-    # Set new 'purge' to the maximum that the GUI now allows:
-    ($ok) = $cce->set($vsite_oid, 'SiteStats',{ 'purge' => $sitestats->{purge} });
+  if (-d $webalizer_int) {
+    &debug_msg("Vsite " . $vsite->{name} . " deleting $webalizer_int_files\n");
+    system("rm -f $webalizer_int_files");
   }
-  # Debgugger to reset all Vsites real quick to unlimited:
-  ($ok) = $cce->set($vsite_oid, 'SiteStats',{ 'purge' => '0' });
 }
 
 $cce->bye('SUCCESS');

@@ -30,12 +30,18 @@
 	 readacl="ruleAll" writeacl="ruleAll"/>
 	<property name="startDay" type="int" default="12"
 	 readacl="ruleAll" writeacl="ruleAll"/>
-	<property name="endYear" type="int" default="1999"
+	<property name="endYear" type="int" default="2099"
 	 readacl="ruleAll" writeacl="ruleAll"/>
 	<property name="endMonth" type="int" default="10"
 	 readacl="ruleAll" writeacl="ruleAll"/>
 	<property name="endDay" type="int" default="10"
 	 readacl="ruleAll" writeacl="ruleAll"/>
+
+	 <!-- Handle expiry of archived personal data -->
+	<property name="webalizer" type="scalar" default="0" writeacl="ruleCapable(adminUser)"/>
+	<property name="awstats" type="scalar" default="0" writeacl="ruleCapable(adminUser)"/>
+	<property name="avspam" type="boolean" default="0" writeacl="ruleCapable(adminUser)"/>
+
 </class>
 
 <!-- register as a feature available to Vsites -->
