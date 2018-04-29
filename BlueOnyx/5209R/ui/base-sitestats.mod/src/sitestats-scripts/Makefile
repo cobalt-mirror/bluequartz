@@ -28,6 +28,7 @@ install:
 	@$(INSTALL_OTH) apache.logrotate $(PREFIX)/etc/logrotate.d/apache
 	@$(INSTALL_OTH) letsencrypt.logrotate $(PREFIX)/etc/logrotate.d/letsencrypt
 	@$(INSTALL_BIN)	tmpwatch_sitestats $(PREFIX)/etc/cron.daily
+	@$(INSTALL_BIN) purge_avspam.sh $(PREFIX)/etc/cron.daily
 	@$(INSTALL_BIN) grab_logs.pl $(PREFIX)/usr/local/sbin
 	@$(INSTALL_BIN) webalizer.pl $(PREFIX)/usr/bin
 
