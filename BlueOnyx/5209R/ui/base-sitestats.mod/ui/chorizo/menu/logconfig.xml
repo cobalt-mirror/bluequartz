@@ -1,0 +1,10 @@
+<item 
+    id="logconfig" 
+    label="[[base-sitestats.logconfig]]" 
+    description="[[base-sitestats.logconfig_help]]" 
+    url="/sitestats/logconfig"
+>
+    <parent id="base_serverconfig" order="51">
+        <access require="serverNetwork"/>
+    </parent>
+</item>

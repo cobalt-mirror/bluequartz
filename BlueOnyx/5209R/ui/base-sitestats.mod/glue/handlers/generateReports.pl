@@ -55,10 +55,8 @@ foreach $type (@logtypes) {
     }
     $DEBUG && warn "Using temporary analog config file $thisConfigFn";
 
-    copy($configTmpl, $thisConfigFn) || 
-        die "Could not copy $configTmpl to $thisConfigFn: $!";
-    open(CFG, ">>$thisConfigFn") || 
-        die "Could not write staging analog config file $thisConfigFn: $!";
+    copy($configTmpl, $thisConfigFn) || die "Could not copy $configTmpl to $thisConfigFn: $!";
+    open(CFG, ">>$thisConfigFn") || die "Could not write staging analog config file $thisConfigFn: $!";
 
     # Need to append CACHEFILE references for each day there was a cachefile
     $nextTs = $firstTs;
@@ -145,8 +143,8 @@ if ($ret) {
 exit $ret;
 
 # 
-# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015-2018 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015-2018 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 

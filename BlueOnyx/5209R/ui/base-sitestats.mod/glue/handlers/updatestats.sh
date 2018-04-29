@@ -22,13 +22,11 @@ case "$1" in
 	;;
 
 	mail)
-		/usr/local/sbin/maillog2commonlog.pl sendmail \
-		< /var/log/maillog | /usr/local/sbin/split_logs mail $DATE 
+		/usr/local/sbin/maillog2commonlog.pl sendmail < /var/log/maillog | /usr/local/sbin/split_logs mail $DATE 
 	;;
 
 	ftp)
-		/usr/local/sbin/ftplog2commonlog < /var/log/xferlog \
-		| /usr/local/sbin/split_logs ftp $DATE
+		/usr/local/sbin/ftplog2commonlog < /var/log/xferlog | /usr/local/sbin/split_logs ftp $DATE
 	;;
 
 	*)
@@ -42,8 +40,8 @@ esac
 exit 0;
 
 # 
-# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015-2018 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015-2018 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 

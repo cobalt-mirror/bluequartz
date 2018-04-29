@@ -85,18 +85,113 @@ class StatSettings extends MX_Controller {
         //-- Prepare data:
         //
 
-        $purgeMap = array(
-                'never' =>      0,
-                'month' =>      32,
-                '2month' =>     62,
-                '3month' =>     93,
-                '6month' =>     181,
-                'year' =>       366,
-                '2year' =>      731,
-                '3year' =>      1096,
-                '4year' =>      1462,
-                '5year' =>      1802,
-                );
+        $SystemSiteStats =& $CI->cceClient->getObject('System', array(), 'Sitestats');
+
+        $purgeMap = array();
+        if ($SystemSiteStats['purge'] == '0') {
+            $purgeMap = array(
+                    'never' =>      0,
+                    'month' =>      32,
+                    '2month' =>     62,
+                    '3month' =>     93,
+                    '6month' =>     181,
+                    'year' =>       366,
+                    '2year' =>      732,
+                    '3year' =>      1096,
+                    '4year' =>      1462,
+                    '5year' =>      1827,
+                    );
+        }
+        elseif ($SystemSiteStats['purge'] == '32') {
+            $purgeMap = array(
+                    'month' =>      32,
+                    );
+        }
+        elseif ($SystemSiteStats['purge'] == '62') {
+            $purgeMap = array(
+                    'month' =>      32,
+                    '2month' =>     62,
+                    );
+        }
+        elseif ($SystemSiteStats['purge'] == '93') {
+            $purgeMap = array(
+                    'month' =>      32,
+                    '2month' =>     62,
+                    '3month' =>     93,
+                    );
+        }
+        elseif ($SystemSiteStats['purge'] == '181') {
+            $purgeMap = array(
+                    'month' =>      32,
+                    '2month' =>     62,
+                    '3month' =>     93,
+                    '6month' =>     181,
+                    );
+        }
+        elseif ($SystemSiteStats['purge'] == '366') {
+            $purgeMap = array(
+                    'month' =>      32,
+                    '2month' =>     62,
+                    '3month' =>     93,
+                    '6month' =>     181,
+                    'year' =>       366,
+                    );
+        }
+        elseif ($SystemSiteStats['purge'] == '732') {
+            $purgeMap = array(
+                    'month' =>      32,
+                    '2month' =>     62,
+                    '3month' =>     93,
+                    '6month' =>     181,
+                    'year' =>       366,
+                    '2year' =>      732,
+                    );
+        }
+        elseif ($SystemSiteStats['purge'] == '1096') {
+            $purgeMap = array(
+                    'month' =>      32,
+                    '2month' =>     62,
+                    '3month' =>     93,
+                    '6month' =>     181,
+                    'year' =>       366,
+                    '2year' =>      732,
+                    '3year' =>      1096,
+                    );
+        }
+        elseif ($SystemSiteStats['purge'] == '1462') {
+            $purgeMap = array(
+                    'month' =>      32,
+                    '2month' =>     62,
+                    '3month' =>     93,
+                    '6month' =>     181,
+                    'year' =>       366,
+                    '2year' =>      732,
+                    '3year' =>      1096,
+                    '4year' =>      1462,
+                    );
+        }
+        elseif ($SystemSiteStats['purge'] == '1827') {
+            $purgeMap = array(
+                    'month' =>      32,
+                    '2month' =>     62,
+                    '3month' =>     93,
+                    '6month' =>     181,
+                    'year' =>       366,
+                    '2year' =>      732,
+                    '3year' =>      1096,
+                    '4year' =>      1462,
+                    '5year' =>      1827,
+                    );
+        }
+        else {
+            $purgeMap = array(
+                    'month' =>      32,
+                    '2month' =>     62,
+                    '3month' =>     93,
+                    '6month' =>     181,
+                    'year' =>       366,
+                    );
+        }
 
         $detailMap = array(
             'sitestatsConsolidateDaily' =>      0,
@@ -115,6 +210,17 @@ class StatSettings extends MX_Controller {
         $sitestats =& $CI->cceClient->getObject('Vsite', array('name' => $group), 'SiteStats');
         list($vsite) = $CI->cceClient->find('Vsite', array('name' => $group));
         $vsiteObj = $CI->cceClient->get($vsite);
+
+        // Make sure our max val is not bigger than the max allowed by the System:
+        $possVals = array_values($purgeMap);
+        if (!in_array($sitestats['purge'], $possVals)) {
+            if (in_array('0', $possVals)) {
+                $sitestats['purge'] = '0';
+            }
+            else {
+                $sitestats['purge'] = array_pop($possVals);
+            }
+        }
 
         //
         //--- Handle form validation:

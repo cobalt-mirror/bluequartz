@@ -4,6 +4,14 @@
 # turn on/off log file rotation for sites, and adjust size if Vsite quota
 # changes
 
+# debugging flag, set to 1 to turn on logging to STDERR
+my $DEBUG = 1;
+if ($DEBUG) 
+{ 
+    use Data::Dumper; 
+    use Sys::Syslog qw( :DEFAULT setlogsock);
+}
+
 use CCE;
 use Sauce::Util;
 use Base::HomeDir qw(homedir_get_group_dir);
@@ -40,6 +48,19 @@ else
     }
 }
 
+#
+### Max age for logs to be kept:
+#
+($ok, my $VsiteSiteStats) = $cce->get($cce->event_oid(), 'SiteStats');
+&debug_msg("Vsite " . $vsite->{name} . " \$VsiteSiteStats->{purge} is: " . $VsiteSiteStats->{purge} . "\n");
+
+if (($VsiteSiteStats->{purge} eq "") || ($VsiteSiteStats->{purge} eq "0")) {
+    $maxage = '';
+}
+else {
+    $maxage = 'maxage ' . $VsiteSiteStats->{purge};
+}
+
 my $logrotate_file = "$LOGROTATE_DIR/$vsite->{name}";
 
 # on destroy just get rid of the file
@@ -49,15 +70,13 @@ if ($cce->event_is_destroy())
 }
 else # create or quota change
 {
-    my $log_dir = homedir_get_group_dir($vsite->{name}, $vsite->{volume}) .
-                    "/$LOG_DIR";
+    my $log_dir = homedir_get_group_dir($vsite->{name}, $vsite->{volume}) . "/$LOG_DIR";
     my $size = int($disk->{quota} / 10) || 1;
 
     # disk quota can be -1 to specify unlimited, so deal with it
     if ($disk->{quota} == -1) { $size = $DEFAULT_SIZE; }
 
-    if (!Sauce::Util::editfile($logrotate_file, *edit_logrotate, 
-                $log_dir, $size))
+    if (!Sauce::Util::editfile($logrotate_file, *edit_logrotate, $log_dir, $size))
     {
         $cce->bye('FAIL', '[[base-sitestats.cantEnableLogrotate]]');
         exit(1);
@@ -74,21 +93,30 @@ sub edit_logrotate
     $size .= 'M';
     my($rotate) = <<EOF;
 $log_dir/mail.log {
+   monthly
+   rotate 0
+   shred
+   $maxage
    missingok
-   compress
-   size $size
+   minsize $size
 }
 
 $log_dir/ftp.log {
+   monthly
+   rotate 0
+   shred
+   $maxage
    missingok
-   compress
-   size $size
+   minsize $size
 }
 
 $log_dir/web.log {
+   monthly
+   rotate 0
+   shred
+   $maxage
    missingok
-   compress
-   size $size
+   minsize $size
 }
 EOF
 
@@ -97,9 +125,22 @@ EOF
     return 1;
 }
 
+sub debug_msg {
+  if ($DEBUG) {
+    my $msg = shift;
+    $DEBUG && print STDERR "$ARGV[0]: ", $msg, "\n";
+
+    $user = $ENV{'USER'};
+    setlogsock('unix');
+    openlog($0,'','user');
+    syslog('info', "$ARGV[0]: $msg");
+    closelog;
+  }
+}
+
 # 
-# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015-2018 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015-2018 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 
