@@ -45,7 +45,7 @@ for my $vsite_oid (@vhosts) {
     ($ok) = $cce->set($vsite_oid, 'SiteStats',{ 'purge' => $sitestats->{purge} });
   }
   # Debgugger to reset all Vsites real quick to unlimited:
-  ($ok) = $cce->set($vsite_oid, 'SiteStats',{ 'purge' => '0' });
+  #($ok) = $cce->set($vsite_oid, 'SiteStats',{ 'purge' => '0' });
 }
 
 $cce->bye('SUCCESS');

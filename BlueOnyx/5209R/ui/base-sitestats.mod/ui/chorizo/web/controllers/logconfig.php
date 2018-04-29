@@ -136,7 +136,7 @@ class Logconfig extends MX_Controller {
         if ((count($errors) == "0") && ($CI->input->post(NULL, TRUE))) {
 
             $settings = array();
-            $Sitestats_purge = $attributes['Sitestats_purge'];
+            $Sitestats_purge = $attributes['GlobalSitestatsPurge'];
             $settings['purge'] = $purgeMap[$Sitestats_purge];
 
             $webalizer = '0';
@@ -230,10 +230,10 @@ class Logconfig extends MX_Controller {
             $CODBDATA['purge'] = '0';
         }
 
-        $purgeSelect = $factory->getMultiChoice('Sitestats_purge', $purgeLabels, array($revMap[$CODBDATA['purge']]), 'rw');
+        $purgeSelect = $factory->getMultiChoice('GlobalSitestatsPurge', $purgeLabels, array($revMap[$CODBDATA['purge']]), 'rw');
         $purgeSelect->setSelected($revMap[$CODBDATA['purge']], true);
 
-        $block->addFormField($purgeSelect, $factory->getLabel("sitestatsPurge"), $defaultPage);
+        $block->addFormField($purgeSelect, $factory->getLabel("GlobalSitestatsPurge"), $defaultPage);
         $block->addFormField($factory->getTextField('save', 1, ''));
 
         // Add Divider:
