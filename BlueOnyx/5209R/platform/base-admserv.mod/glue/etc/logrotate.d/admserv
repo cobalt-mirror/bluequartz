@@ -1,5 +1,8 @@
 
 /var/log/admserv/adm_access {
+    daily
+    rotate 14
+    compress
     missingok
     notifempty
     sharedscripts
@@ -9,6 +12,9 @@
 }
 
 /var/log/admserv/adm_error {
+    daily
+    rotate 14
+    compress
     missingok
     notifempty
     sharedscripts
