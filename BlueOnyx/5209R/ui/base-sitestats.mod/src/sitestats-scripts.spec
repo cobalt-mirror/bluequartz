@@ -102,6 +102,7 @@ fi
 - Post now edits /etc/logrotate.conf to keep only two weeks of logs.
 - Added logrotate for Let's Encrypt
 - Added /etc/cron.daily/purge_avspam.sh
+- Added /etc/cron.daily/sa_purgeOmatic.pl
 
 * Tue Jan 06 2018 Michael Stauber <mstauber@solarspeed.net> 2.0-1BX04
 - Overhauled provisions for IPv6 and APF.
@@ -333,6 +334,7 @@ rm -rf $RPM_BUILD_ROOT
 /etc/analog.cfg.tmpl
 /etc/cron.hourly/log_traffic
 /etc/cron.daily/tmpwatch_sitestats
+/etc/cron.daily/sa_purgeOmatic.pl
 /etc/cron.daily/sitestats_purgeOmatic.pl
 /etc/cron.daily/purge_avspam.sh
 /etc/logrotate.d/sitestats

@@ -38,8 +38,11 @@
 	 readacl="ruleAll" writeacl="ruleAll"/>
 
 	 <!-- Handle expiry of archived personal data -->
+	<property name="internal" type="scalar" default="0" writeacl="ruleCapable(adminUser)"/>
 	<property name="webalizer" type="scalar" default="0" writeacl="ruleCapable(adminUser)"/>
 	<property name="awstats" type="scalar" default="0" writeacl="ruleCapable(adminUser)"/>
+	<property name="SA_anonymize" type="boolean" default="0" writeacl="ruleCapable(adminUser)"/>
+	<property name="sendmailanalyzer" type="scalar" default="0" writeacl="ruleCapable(adminUser)"/>
 	<property name="avspam" type="boolean" default="0" writeacl="ruleCapable(adminUser)"/>
 
 </class>

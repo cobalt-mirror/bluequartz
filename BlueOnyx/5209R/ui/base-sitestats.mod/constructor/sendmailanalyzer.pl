@@ -1,9 +1,9 @@
 #!/usr/bin/perl -I /usr/sausalito/perl
 #
-# $Id: purge_webalizer.pl
+# $Id: purge_avspam.pl
 # 
-# If 'System' . 'Sitestats' . 'webalizer' is updated we run through all
-# Vsites and remove the static files for Webalizer.
+# Parses /etc/sendmailanalyzer.conf to find out if ANONYMIZE is set and
+# stores that value into CODB.
 #
 
 # Debugging flag: Set to 1 to turn on logging to /var/log/messages
@@ -17,38 +17,26 @@ if ($DEBUG)
 use CCE;
 
 my $cce = new CCE;
-$cce->connectfd();
+$cce->connectuds();
 
 my @sysoids = $cce->find('System');
 my ($ok, $sitestats) = $cce->get($sysoids[0], 'Sitestats');
 
-# Early exit if no reset is wanted:
-if ($sitestats->{webalizer} eq "0") {
-    $cce->bye('SUCCESS');
-    exit(0);    
-}
+if (-f '/etc/sendmailanalyzer.conf') {
+  $status = `cat /etc/sendmailanalyzer.conf |grep ANONYMIZE|grep 1|wc -l`;
+  chomp($status);
 
-# Remove server-stats:
-if (-d '/var/www/usage') {
-  system("rm -f /var/www/usage/*.*");
-  system("rm -f /var/www/usage/*.*");
-}
-
-# /var/www/usage
-
-# Find all Vsites:
-my @vhosts = ();
-my (@vhosts) = $cce->findx('Vsite');
-
-# Walk through all Vsites:
-for my $vsite_oid (@vhosts) {
-  ($ok, my $vsite) = $cce->get($vsite_oid);
-  $webalizer_int = $vsite->{basedir} . '/webalizer';
-  $webalizer_int_files = $vsite->{basedir} . '/webalizer/*.*';
-
-  if (-d $webalizer_int) {
-    &debug_msg("Vsite " . $vsite->{name} . " deleting $webalizer_int_files\n");
-    system("rm -f $webalizer_int_files");
+  # If values are not identical, update CODB:
+  if ($sitestats->{'SA_anonymize'} ne $status) {
+    &debug_msg("Updating CODB.\n");
+    my ($ok) = $cce->set($sysoids[0], 'Sitestats', { 'SA_anonymize' => $status});
+    if (!$ok) {
+      $cce->bye('FAIL');
+      exit(1);
+    }
+  }
+  else {
+    &debug_msg("CODB update not neccessary.\n");
   }
 }
 

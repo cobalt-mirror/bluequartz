@@ -23,6 +23,7 @@ install:
 	@$(INSTALL) anonip.py $(PREFIX)/usr/local/sbin
 	@$(INSTALL_SBIN) split_logs $(PREFIX)/usr/local/sbin
 	@$(INSTALL_SBIN) sitestats_purgeOmatic.pl $(PREFIX)/etc/cron.daily
+	@$(INSTALL_SBIN) sa_purgeOmatic.pl $(PREFIX)/etc/cron.daily
 	@$(INSTALL_OTH) analog.cfg.tmpl $(PREFIX)/etc
 	@$(INSTALL_OTH)	sitestats $(PREFIX)/etc/logrotate.d
 	@$(INSTALL_OTH) apache.logrotate $(PREFIX)/etc/logrotate.d/apache

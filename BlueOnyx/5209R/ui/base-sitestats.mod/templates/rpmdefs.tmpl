@@ -139,7 +139,12 @@ fi
   time for their statistics, then their retention time is reset to
   the new maximum. Additionally this page can reset AWStats and
   Webalizer stats as well as enable auto-pruning of the AV-SPAM
-  'milter_usage' table if the AV-SPAM is installed.
+  'milter_usage' table if the AV-SPAM is installed. It can also zap
+  all SendmailAnalyzer statistics.
+- SendmailAnalyzer now honors the purge parameter. If logs aren't
+  kept forever, then src/sitestats-scripts/sa_purgeOmatic.pl will
+  expire them once the retention period is up. Additionally added
+  switch to GUI page to allow anonymization of records.
 - Added constructor/purge_avspam.pl
 - Modified glue/conf/sitestats.conf
 - Added glue/handlers/purge_avspam.pl
@@ -148,6 +153,10 @@ fi
 - Modified glue/handlers/purge_update.pl
 - Modified glue/schemas/sitestats.schema
 - Extended sitetstats-scripts
+- Added constructor/sendmailanalyzer.pl
+- Added glue/handlers/SA_anonymize.pl
+- Added glue/handlers/purge_internal.pl
+- Added glue/handlers/purge_sendmailanalyzer.pl
 
 * Sun Mar 05 2017 Michael Stauber <mstauber@solarspeed.net> 2.0-0BX17
 - Modified controllers/webalizer.php to remove two cceClient->bye().

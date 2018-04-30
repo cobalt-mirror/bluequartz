@@ -139,6 +139,10 @@ class Logconfig extends MX_Controller {
             $Sitestats_purge = $attributes['GlobalSitestatsPurge'];
             $settings['purge'] = $purgeMap[$Sitestats_purge];
 
+            $internal = '0';
+            if ($attributes['internal'] == "1") {
+                $internal = time();
+            }
             $webalizer = '0';
             if ($attributes['webalizer'] == "1") {
                 $webalizer = time();
@@ -147,9 +151,21 @@ class Logconfig extends MX_Controller {
             if ($attributes['awstats'] == "1") {
                 $awstats = time();
             }
+            $sendmailanalyzer = '0';
+            if ($attributes['sendmailanalyzer'] == "1") {
+                $sendmailanalyzer = time();
+            }
 
             // Actual submit to CODB:
-            $CI->cceClient->setObject('System', array('purge' => $settings['purge'], 'webalizer' => $webalizer, 'awstats' => $awstats, 'avspam' => $attributes['avspam']), 'Sitestats');
+            $CI->cceClient->setObject('System', array(
+                                                        'purge' => $settings['purge'], 
+                                                        'internal' => $internal, 
+                                                        'webalizer' => $webalizer, 
+                                                        'awstats' => $awstats, 
+                                                        'SA_anonymize' => $attributes['SA_anonymize'], 
+                                                        'sendmailanalyzer' => $sendmailanalyzer, 
+                                                        'avspam' => $attributes['avspam']), 
+                                                        'Sitestats');
 
             // CCE errors that might have happened during submit to CODB:
             $CCEerrors = $CI->cceClient->errors();
@@ -174,7 +190,7 @@ class Logconfig extends MX_Controller {
                 exit;
             }
             else {
-                $CODBDATA = $attributes;
+                $CODBDATA = $CI->cceClient->get($system['OID'], "Sitestats");
             }
         }
 
@@ -243,6 +259,13 @@ class Logconfig extends MX_Controller {
                 $defaultPage
                 );
 
+        // Zap Internal Usage Statistics:
+        $block->addFormField(
+                $factory->getBoolean("internal", '0'),
+                $factory->getLabel("internal"),
+                $defaultPage
+                );
+
         // Zap Webalizer:
         $block->addFormField(
                 $factory->getBoolean("webalizer", '0'),
@@ -258,6 +281,27 @@ class Logconfig extends MX_Controller {
                     $defaultPage
                     );
         }
+
+        // Add Divider:
+        $block->addFormField(
+                $factory->addBXDivider("DIV_SendmailAnalyzer", ""),
+                $factory->getLabel("DIV_SendmailAnalyzer", false),
+                $defaultPage
+                );
+
+        // SendmailAnalyzer - enable ANONYMIZE:
+        $block->addFormField(
+                $factory->getBoolean("SA_anonymize", $CODBDATA['SA_anonymize']),
+                $factory->getLabel("SA_anonymize"),
+                $defaultPage
+                );
+
+        // Zap SendmailAnalyzer:
+        $block->addFormField(
+                $factory->getBoolean("sendmailanalyzer", '0'),
+                $factory->getLabel("sendmailanalyzer"),
+                $defaultPage
+                );
 
         // AV-SPAM:
         if (isset($AVSPAM['use_sql'])) {
@@ -281,7 +325,7 @@ class Logconfig extends MX_Controller {
                     $factory->getBoolean("avspam", $avspam_expiry),
                     $factory->getLabel("avspam"),
                     $defaultPage
-                    );            
+                    );
         }
 
         //

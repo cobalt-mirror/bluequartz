@@ -1,9 +1,9 @@
 #!/usr/bin/perl -I /usr/sausalito/perl
 #
-# $Id: purge_webalizer.pl
+# $Id: purge_sendmailanalyzer.pl
 # 
-# If 'System' . 'Sitestats' . 'webalizer' is updated we run through all
-# Vsites and remove the static files for Webalizer.
+# If 'System' . 'Sitestats' . 'sendmailanalyzer' is updated we wipe out
+# all aggregated SendmailAnalyzer statistics.
 #
 
 # Debugging flag: Set to 1 to turn on logging to /var/log/messages
@@ -15,41 +15,29 @@ if ($DEBUG)
 }
 
 use CCE;
+use Sauce::Util;
 
 my $cce = new CCE;
 $cce->connectfd();
 
 my @sysoids = $cce->find('System');
+my ($ok, $System) = $cce->get($sysoids[0]);
 my ($ok, $sitestats) = $cce->get($sysoids[0], 'Sitestats');
 
 # Early exit if no reset is wanted:
-if ($sitestats->{webalizer} eq "0") {
+if ($sitestats->{sendmailanalyzer} eq "0") {
     $cce->bye('SUCCESS');
     exit(0);    
 }
 
-# Remove server-stats:
-if (-d '/var/www/usage') {
-  system("rm -f /var/www/usage/*.*");
-  system("rm -f /var/www/usage/*.*");
-}
+# Statistics directory:
+$sa_dir = '/home/.sendmailanalyzer/' . $System->{'hostname'};
 
-# /var/www/usage
-
-# Find all Vsites:
-my @vhosts = ();
-my (@vhosts) = $cce->findx('Vsite');
-
-# Walk through all Vsites:
-for my $vsite_oid (@vhosts) {
-  ($ok, my $vsite) = $cce->get($vsite_oid);
-  $webalizer_int = $vsite->{basedir} . '/webalizer';
-  $webalizer_int_files = $vsite->{basedir} . '/webalizer/*.*';
-
-  if (-d $webalizer_int) {
-    &debug_msg("Vsite " . $vsite->{name} . " deleting $webalizer_int_files\n");
-    system("rm -f $webalizer_int_files");
-  }
+# Remove SendmailAnalyzer stats:
+if (-d $sa_dir) {
+  &debug_msg("Server deleting $sa_dir\n");
+  system("rm -Rf $sa_dir");
+  Sauce::Service::service_run_init('sendmailanalyzer', 'restart');
 }
 
 $cce->bye('SUCCESS');

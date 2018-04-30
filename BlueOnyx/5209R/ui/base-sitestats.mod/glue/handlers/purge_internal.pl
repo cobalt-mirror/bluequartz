@@ -1,9 +1,9 @@
 #!/usr/bin/perl -I /usr/sausalito/perl
 #
-# $Id: purge_webalizer.pl
+# $Id: purge_internal.pl
 # 
-# If 'System' . 'Sitestats' . 'webalizer' is updated we run through all
-# Vsites and remove the static files for Webalizer.
+# If 'System' . 'Sitestats' . 'internal' is updated we run through all
+# Vsites and remove their 'Usage Information' stored in the 'logs' directory.
 #
 
 # Debugging flag: Set to 1 to turn on logging to /var/log/messages
@@ -23,18 +23,16 @@ my @sysoids = $cce->find('System');
 my ($ok, $sitestats) = $cce->get($sysoids[0], 'Sitestats');
 
 # Early exit if no reset is wanted:
-if ($sitestats->{webalizer} eq "0") {
+if ($sitestats->{internal} eq "0") {
     $cce->bye('SUCCESS');
     exit(0);    
 }
 
 # Remove server-stats:
-if (-d '/var/www/usage') {
-  system("rm -f /var/www/usage/*.*");
-  system("rm -f /var/www/usage/*.*");
+if (-d '/home/.sites/server/logs') {
+  &debug_msg("Server deleting /home/.sites/server/logs/*.*\n");
+  system("rm -Rf /home/.sites/server/logs/*.*");
 }
-
-# /var/www/usage
 
 # Find all Vsites:
 my @vhosts = ();
@@ -43,12 +41,12 @@ my (@vhosts) = $cce->findx('Vsite');
 # Walk through all Vsites:
 for my $vsite_oid (@vhosts) {
   ($ok, my $vsite) = $cce->get($vsite_oid);
-  $webalizer_int = $vsite->{basedir} . '/webalizer';
-  $webalizer_int_files = $vsite->{basedir} . '/webalizer/*.*';
+  $logs_int = $vsite->{basedir} . '/logs';
+  $logs_int_files = $vsite->{basedir} . '/logs/*.*';
 
-  if (-d $webalizer_int) {
-    &debug_msg("Vsite " . $vsite->{name} . " deleting $webalizer_int_files\n");
-    system("rm -f $webalizer_int_files");
+  if (-d $logs_int) {
+    &debug_msg("Vsite " . $vsite->{name} . " deleting $logs_int_files\n");
+    system("rm -Rf $logs_int_files");
   }
 }
 

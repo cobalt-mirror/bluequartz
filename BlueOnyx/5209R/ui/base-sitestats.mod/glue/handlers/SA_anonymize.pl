@@ -1,9 +1,9 @@
 #!/usr/bin/perl -I /usr/sausalito/perl
 #
-# $Id: purge_webalizer.pl
+# $Id: SA_anonymize.pl
 # 
-# If 'System' . 'Sitestats' . 'webalizer' is updated we run through all
-# Vsites and remove the static files for Webalizer.
+# If 'System' . 'Sitestats' . 'SA_anonymize' is updated we update
+# /etc/sendmailanalyzer.conf and restart SendmailAnalyzer.
 #
 
 # Debugging flag: Set to 1 to turn on logging to /var/log/messages
@@ -15,6 +15,7 @@ if ($DEBUG)
 }
 
 use CCE;
+use Sauce::Util;
 
 my $cce = new CCE;
 $cce->connectfd();
@@ -22,42 +23,57 @@ $cce->connectfd();
 my @sysoids = $cce->find('System');
 my ($ok, $sitestats) = $cce->get($sysoids[0], 'Sitestats');
 
-# Early exit if no reset is wanted:
-if ($sitestats->{webalizer} eq "0") {
-    $cce->bye('SUCCESS');
-    exit(0);    
-}
-
-# Remove server-stats:
-if (-d '/var/www/usage') {
-  system("rm -f /var/www/usage/*.*");
-  system("rm -f /var/www/usage/*.*");
-}
-
-# /var/www/usage
-
-# Find all Vsites:
-my @vhosts = ();
-my (@vhosts) = $cce->findx('Vsite');
-
-# Walk through all Vsites:
-for my $vsite_oid (@vhosts) {
-  ($ok, my $vsite) = $cce->get($vsite_oid);
-  $webalizer_int = $vsite->{basedir} . '/webalizer';
-  $webalizer_int_files = $vsite->{basedir} . '/webalizer/*.*';
-
-  if (-d $webalizer_int) {
-    &debug_msg("Vsite " . $vsite->{name} . " deleting $webalizer_int_files\n");
-    system("rm -f $webalizer_int_files");
+if (-f '/etc/sendmailanalyzer.conf') {
+  if (!Sauce::Util::editfile(('/etc/sendmailanalyzer.conf'),*edit_blueonyx, $sitestats->{'SA_anonymize'})) {
+      $cce->bye('FAIL', '[[base-sitestats.cantEdit_sendmailanalyzer_conf]]');
+      exit(1);
   }
+  Sauce::Service::service_run_init('sendmailanalyzer', 'restart');
 }
 
 $cce->bye('SUCCESS');
 exit(0);
 
+#&debug_msg("Running: cp /home/sendmailanalyzer/sa_to_php.pl /root/sa_to_php.pl\n");
+
+# Anonymize reports. This remove sender and recipient adresses from reports.
+
 #
 ### Subs:
 #
+
+sub edit_blueonyx {
+    my ($in, $out, $webdata) = @_;
+    my $begin = '# Anonymize reports. This remove sender and recipient adresses from reports.';
+    my $script_conf = '';
+
+
+    $out_options = join(" ", @Options);
+    $out_AllowOverride = join(" ", @AllowOverride);
+    $script_conf = $begin . "\n";
+    $script_conf .= "ANONYMIZE     $webdata\n";
+
+    my $last;
+    while(<$in>) {
+        if(/^$begin$/) {
+            while(<$in>) {
+                if(/^ANONYMIZE(.*)$/) { last; }
+            }
+            print $out $script_conf;
+        }
+        else {
+            print $out $_;
+        }
+    }
+    print $out $last;
+
+    # preserve the remainder of the config file
+    while(<$in>) {
+        print $out $_;
+    }
+
+    return 1;
+}
 
 sub debug_msg {
   if ($DEBUG) {
