@@ -580,11 +580,26 @@ msgid "awstats_help"
 msgstr "If this checkbox is ticked, the AWStats directory of all Virtual Sites will be purged and all aggregated AWStats statistics will be deleted. This cannot be undone."
 
 msgid "DIV_AVSPAM_EXPIRY"
-msgstr "AV-SPAM data retention:"
+msgstr "AV-SPAM data handling:"
 
 msgid "avspam"
-msgstr "AV-SPAM data retention"
+msgstr "AV-SPAM data expiry"
 
 msgid "avspam_help"
 msgstr "Your server has the AV-SPAM installed. The AV-SPAM can keep track of the volume of email that your users send or receive. This includes their IP addresses, which is considered personal data. If you tick this checkbox, then a mechanism will be enabled that makes sure that sensitive data is automatically expired from the AV-SPAM SQL database. The retention period for this data is equal to the value that you have configured under '[[base-sitestats.GlobalSitestatsPurge]]' above."
+
+msgid "DIV_SendmailAnalyzer"
+msgstr "SendmailAnalyzer data expiry"
+
+msgid "SA_anonymize"
+msgstr "Anonymize data"
+
+msgid "SA_anonymize_help"
+msgstr "SendmailAnalyzer has a built in function to anonymize senders and recipients of emails. Tick this checkbox if you want to enable this feature. Please note that SendmailAnalyzer honors the data retention period that you have configured under '[[base-sitestats.GlobalSitestatsPurge]]' above."
+
+msgid "sendmailanalyzer"
+msgstr "Purge SendmailAnalyzer"
+
+msgid "sendmailanalyzer_help"
+msgstr "If this checkbox is ticked, the SendmailAnalyzer data directory will be purged and all aggregated SendmailAnalyzer statistics will be deleted. This cannot be undone."
 
