@@ -11,7 +11,7 @@
 	<!-- Vsite defaults -->
 	<property name="enabled" type="boolean" default="1"/>
 	<property name="consolidate" type="boolean" default="0"/>
-	<property name="purge" type="int" default="0"/>
+	<property name="purge" type="int" default="1827"/>
 
 	<!-- epoch trigger, just like System.Power.reboot -->
 	<!-- FIXME: we probably want to restrict this to site admins and better -->
