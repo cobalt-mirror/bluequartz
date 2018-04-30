@@ -159,6 +159,8 @@ fi
 - Added glue/handlers/purge_sendmailanalyzer.pl
 - Default internal statistics data retention was five years. Left 
   it at that for now.
+- Removed constructor/purge_avspam.pl as it is sufficient having it
+  as daily cronjob. No need to slow down constructor runs with it.
 
 * Sun Mar 05 2017 Michael Stauber <mstauber@solarspeed.net> 2.0-0BX17
 - Modified controllers/webalizer.php to remove two cceClient->bye().
