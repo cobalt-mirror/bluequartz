@@ -552,3 +552,67 @@ msgid "cap_menuServerServerStats"
 msgstr "Afficher les informations d'utilisation"
 
 
+#
+###
+#
+
+msgid "logconfig"
+msgstr "Conservation des données"
+
+msgid "logconfig_help"
+msgstr "Cette page vous permet de configurer la conservation des données d'utilisation agrégées à partir des fichiers journaux du serveur."
+
+msgid "DIV_USAGE_INFORMATION"
+msgstr "Conservation des informations sur l'utilisation du site:"
+
+msgid "GlobalSitestatsPurge"
+msgstr "Informations sur l'utilisation du site"
+
+msgid "GlobalSitestatsPurge_help"
+msgstr "Ce serveur conserve 14 jours de fichiers journaux. Ensuite, les fichiers journaux sont purgés. Chaque jour, les Sites Virtuels reçoivent une copie de l'activité du fichier journal qui les concerne et ces extraits de fichier journal sont stockés dans le répertoire des fichiers journaux du Site Virtuel. Les adresses IP contenues dans ces extraits de fichiers journaux copiés ont été rendues anonymes et ne devraient donc plus être considérées comme des renseignements personnels sensibles. Cependant, vous pouvez choisir ici la durée maximale pendant laquelle un site virtuel sur ce serveur peut conserver ses informations d'utilisation et ses extraits de fichier journal. Si des fichiers journaux plus anciens que ceux spécifiés ici sont trouvés, ils seront supprimés lors de la prochaine rotation journalière."
+
+msgid "DIV_Purge_Stats"
+msgstr "Purger toutes les statistiques d'utilisation agrégées:"
+
+msgid "internal"
+msgstr "Purge statistiques d'utilisation"
+
+msgid "internal_help"
+msgstr "Si cette case est cochée, le répertoire logfile de tous les sites virtuels sera purgé et toutes les statistiques d'utilisation agrégées seront supprimées. Cela ne peut pas être défait."
+
+msgid "webalizer"
+msgstr "Purge Webalizer"
+
+msgid "webalizer_help"
+msgstr "Si cette case est cochée, le répertoire Webalizer de tous les sites virtuels sera purgé et toutes les statistiques agrégées de Webalizer seront supprimées. Cela ne peut pas être défait."
+
+msgid "awstats"
+msgstr "Purge AWStats"
+
+msgid "awstats_help"
+msgstr "Si cette case est cochée, le répertoire AWStats de tous les sites virtuels sera purgé et toutes les statistiques agrégées AWStats seront supprimées. Cela ne peut pas être défait."
+
+msgid "DIV_AVSPAM_EXPIRY"
+msgstr "Traitement des données AV-SPAM:"
+
+msgid "avspam"
+msgstr "Expiration des données AV-SPAM"
+
+msgid "avspam_help"
+msgstr "Votre serveur a le AV-SPAM installé. L'AV-SPAM peut suivre le volume de courriels que vos utilisateurs envoient ou reçoivent. Cela inclut leurs adresses IP, qui sont considérées comme des données personnelles. Si vous cochez cette case, un mécanisme sera activé pour s'assurer que les données sensibles sont automatiquement expirées de la base de données SQL AV-SPAM. La durée de conservation de ces données est égale à la valeur que vous avez configurée sous '[[base-sitestats.GlobalSitestatsPurge]]' ci-dessus."
+
+msgid "DIV_SendmailAnalyzer"
+msgstr "Expiration des données de SendmailAnalyzer:"
+
+msgid "SA_anonymize"
+msgstr "Anonymiser les données"
+
+msgid "SA_anonymize_help"
+msgstr "SendmailAnalyzer a une fonction intégrée pour anonymiser les expéditeurs et les destinataires de courriels. Cochez cette case si vous voulez activer cette fonction. Veuillez noter que SendmailAnalyzer respecte la période de conservation des données que vous avez configurée sous '[[base-sitestats.GlobalSitestatsPurge]]' ci-dessus."
+
+msgid "sendmailanalyzer"
+msgstr "Purge SendmailAnalyzer"
+
+msgid "sendmailanalyzer_help"
+msgstr "Si cette case est cochée, le répertoire de données de SendmailAnalyzer sera purgé et toutes les statistiques agrégées de SendmailAnalyzer seront supprimées. Cela ne peut pas être défait."
+

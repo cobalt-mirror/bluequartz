@@ -539,3 +539,67 @@ msgstr "Ha ocurrido un error de sistema al leer la información. Por favor, pón
 msgid "cap_menuServerServerStats"
 msgstr "Mostrar información de uso"
 
+#
+###
+#
+
+msgid "logconfig"
+msgstr "Retención de datos"
+
+msgid "logconfig_help"
+msgstr "Esta página le permite configurar la retención de datos de uso agregados desde los archivos de registro del servidor."
+
+msgid "DIV_USAGE_INFORMATION"
+msgstr "Retención de información de uso de Vsite:"
+
+msgid "GlobalSitestatsPurge"
+msgstr "Información de Uso de Vsite"
+
+msgid "GlobalSitestatsPurge_help"
+msgstr "Este servidor mantiene 14 días de archivos de registro. Después se purgan los archivos de registro. Diariamente los Sitios Virtuales reciben una copia de la actividad del archivo de registro que se relaciona con ellos y estos fragmentos de archivo de registro se almacenan en el directorio de archivo de registro del Sitio Virtual. Las direcciones IP dentro de estos fragmentos de archivos de registro copiados se han anonimizado y, por lo tanto, ya no deben considerarse información personal confidencial. Sin embargo, usted puede elegir aquí el período máximo de tiempo que cualquier Sitio Virtual en este servidor puede retener su Información de Uso y fragmentos de archivos de registro. Si se encuentran archivos de registro más antiguos que los especificados aquí, serán eliminados en el próximo logrotate diario."
+
+msgid "DIV_Purge_Stats"
+msgstr "Purgar todas las estadísticas de uso:"
+
+msgid "internal"
+msgstr "Purga de Estadísticas de Uso"
+
+msgid "internal_help"
+msgstr "Si esta casilla de verificación está marcada, el directorio del archivo de registro de todos los Sitios Virtuales será purgado y todas las Estadísticas de Uso agregadas serán eliminadas. Esto no se puede deshacer."
+
+msgid "webalizer"
+msgstr "Purga Webalizer"
+
+msgid "webalizer_help"
+msgstr "Si esta casilla de verificación está marcada, el directorio Webalizer de todos los Sitios Virtuales será purgado y todas las estadísticas Webalizer agregadas serán eliminadas. Esto no se puede deshacer."
+
+msgid "awstats"
+msgstr "Purga AWStats"
+
+msgid "awstats_help"
+msgstr "Si esta casilla está marcada, el directorio AWStats de todos los Sitios Virtuales será purgado y todas las estadísticas agregadas de AWStats serán borradas. Esto no se puede deshacer."
+
+msgid "DIV_AVSPAM_EXPIRY"
+msgstr "Tratamiento de datos AV-SPAM:"
+
+msgid "avspam"
+msgstr "Expiración de datos AV-SPAM"
+
+msgid "avspam_help"
+msgstr "Su servidor tiene el AV-SPAM instalado. El AV-SPAM puede realizar un seguimiento del volumen de correo electrónico que sus usuarios envían o reciben. Esto incluye sus direcciones IP, que se consideran datos personales. Si marca esta casilla de verificación, se habilitará un mecanismo que se asegurará de que los datos sensibles caducan automáticamente de la base de datos SQL de AV-SPAM. El período de retención de estos datos es igual al valor configurado en '[[base-sitestats.GlobalSitestatsPurge]]' anterior."
+
+msgid "DIV_SendmailAnalyzer"
+msgstr "Expiración de datos de SendmailAnalyzer:"
+
+msgid "SA_anonymize"
+msgstr "Anonimizar datos"
+
+msgid "SA_anonymize_help"
+msgstr "SendmailAnalyzer tiene una función incorporada para anonimizar a los remitentes y destinatarios de correos electrónicos. Marque esta casilla de verificación si desea activar esta función. Tenga en cuenta que SendmailAnalyzer respeta el período de retención de datos que ha configurado en '[[base-sitestats.GlobalSitestatsPurge]]' anterior."
+
+msgid "sendmailanalyzer"
+msgstr "Purgar SendmailAnalyzer"
+
+msgid "sendmailanalyzer_help"
+msgstr "Si esta casilla está marcada, el directorio de datos de SendmailAnalyzer se eliminará y se eliminarán todas las estadísticas agregadas de SendmailAnalyzer. Esto no se puede deshacer."
+
