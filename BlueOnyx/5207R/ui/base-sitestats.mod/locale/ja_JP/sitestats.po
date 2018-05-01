@@ -554,3 +554,67 @@ msgstr "その他"
 msgid "cap_menuServerServerStats"
 msgstr "使用情報を表示する"
 
+#
+###
+#
+
+msgid "logconfig"
+msgstr "データ保持"
+
+msgid "logconfig_help"
+msgstr "このページでは、サーバログファイルから集められた使用量データの保存を設定できます。"
+
+msgid "DIV_USAGE_INFORMATION"
+msgstr "仮想サイト使用情報の保持："
+
+msgid "GlobalSitestatsPurge"
+msgstr "仮想サイト使用情報"
+
+msgid "GlobalSitestatsPurge_help"
+msgstr "このサーバは14日間のログファイルを保持し、その後ログファイルはパージされます。毎日、仮想サイトはそれらに関連するログファイルアクティビティのコピーを受け取り、これらのログファイルスニペットは仮想サイトのログファイルディレクトリに保存されます。これらのコピーされたログファイルスニペット内のアドレスは匿名化されているため、機密情報とはみなされなくなりましたが、このサーバー上の任意の仮想サイトが使用情報とログファイルスニペットを保持できる最大期間をここで選択できます。ここで指定されたより古いものが見つかった場合、それらは次の毎日のlogrotateの間に削除されます。"
+
+msgid "DIV_Purge_Stats"
+msgstr "すべての集約された使用統計情報を消去する："
+
+msgid "internal"
+msgstr "パージ使用統計"
+
+msgid "internal_help"
+msgstr "このチェックボックスをオンにすると、すべての仮想サイトのログファイルディレクトリが削除され、集計されたすべての使用統計情報が削除されます。元に戻すことはできません。"
+
+msgid "webalizer"
+msgstr "パージウェブライザー"
+
+msgid "webalizer_help"
+msgstr "このチェックボックスをオンにすると、すべての仮想サイトのWebalizerディレクトリが消去され、集計されたすべてのWebalizerの統計情報が削除されます。元に戻すことはできません。"
+
+msgid "awstats"
+msgstr "パージAWStats"
+
+msgid "awstats_help"
+msgstr "このチェックボックスをオンにすると、すべての仮想サイトのAWStatsディレクトリがパージされ、すべてのAWStats統計情報が削除されます。これは元に戻すことはできません。"
+
+msgid "DIV_AVSPAM_EXPIRY"
+msgstr "AV-SPAMデータ処理："
+
+msgid "avspam"
+msgstr "AV-SPAMデータの有効期限"
+
+msgid "avspam_help"
+msgstr "あなたのサーバーにはAV-SPAMがインストールされています。AV-SPAMは、ユーザーが送受信する電子メールの量を追跡することができます。 AV-SPAM SQLデータベースから機密データが自動的に期限切れになるメカニズムが有効になります。このデータの保存期間は、上記の[[base-sitestats.GlobalSitestatsPurge]]で設定した値と同じです。"
+
+msgid "DIV_SendmailAnalyzer"
+msgstr "SendmailAnalyzerデータの有効期限："
+
+msgid "SA_anonymize"
+msgstr "データの匿名化"
+
+msgid "SA_anonymize_help"
+msgstr "SendmailAnalyzerには、電子メールの送信者と受信者の匿名化機能が組み込まれていますので、この機能を有効にするにはこのチェックボックスをオンにしてください（[[base-sitestats.GlobalSitestatsPurge]]"
+
+msgid "sendmailanalyzer"
+msgstr "パージSendmailAnalyzer"
+
+msgid "sendmailanalyzer_help"
+msgstr "このチェックボックスをオンにすると、SendmailAnalyzerデータディレクトリが削除され、すべてのSendmailAnalyzer統計情報が削除されます。元に戻すことはできません。"
+

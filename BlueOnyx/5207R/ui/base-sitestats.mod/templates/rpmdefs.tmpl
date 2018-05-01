@@ -129,13 +129,46 @@ fi
 
 <begin $CHANGELOG>
 
+* Sat Apr 28 2018 Michael Stauber <mstauber@solarspeed.net> 2.1-0BX01
+- With the European Unions General Data Protection Regulation (GDPR)
+  and the EU-DSGVO creeping up on us it's time to provide the means
+  for our EU users to conform with the regulations. Even if the
+  regulations are as stupid as they are.
+- Added new GUI page /sitestats/logconfig that allows to configure
+  maximum renention time for logs. If Vsites have a longer retention
+  time for their statistics, then their retention time is reset to
+  the new maximum. Additionally this page can reset AWStats and
+  Webalizer stats as well as enable auto-pruning of the AV-SPAM
+  'milter_usage' table if the AV-SPAM is installed. It can also zap
+  all SendmailAnalyzer statistics.
+- SendmailAnalyzer now honors the purge parameter. If logs aren't
+  kept forever, then src/sitestats-scripts/sa_purgeOmatic.pl will
+  expire them once the retention period is up. Additionally added
+  switch to GUI page to allow anonymization of records.
+- Added constructor/purge_avspam.pl
+- Modified glue/conf/sitestats.conf
+- Added glue/handlers/purge_avspam.pl
+- Added glue/handlers/purge_awstats.pl
+- Added glue/handlers/purge_webalizer.pl
+- Modified glue/handlers/purge_update.pl
+- Modified glue/schemas/sitestats.schema
+- Extended sitetstats-scripts
+- Added constructor/sendmailanalyzer.pl
+- Added glue/handlers/SA_anonymize.pl
+- Added glue/handlers/purge_internal.pl
+- Added glue/handlers/purge_sendmailanalyzer.pl
+- Default internal statistics data retention was five years. Left 
+  it at that for now.
+- Removed constructor/purge_avspam.pl as it is sufficient having it
+  as daily cronjob. No need to slow down constructor runs with it.
+
 * Sun Mar 05 2017 Michael Stauber <mstauber@solarspeed.net> 2.0-0BX17
 - Modified controllers/webalizer.php to remove two cceClient->bye().
 
 * Sat Mar 04 2017 Michael Stauber <mstauber@solarspeed.net> 2.0-0BX16
 - Fixed ACLs for all sitestats Controllers as they were too restrictive.
 
-* Thu Feb 23 2017 Michael Stauber <mstauber@solarspeed.net> 2.0-0BX15
+* Mon Feb 20 2017 Michael Stauber <mstauber@solarspeed.net> 2.0-0BX15
 - Adjusted Controllers for base-alpine 2.0
 
 * Mon Mar 21 2016 Michael Stauber <mstauber@solarspeed.net> 2.0-0BX14

@@ -539,3 +539,67 @@ msgstr "Een systeem fout opgetreden tijdens het lezen van informatie. Neem conta
 msgid "cap_menuServerServerStats"
 msgstr "Toon gebruik informatie"
 
+#
+###
+#
+
+msgid "logconfig"
+msgstr "Bewaring van gegevens"
+
+msgid "logconfig_help"
+msgstr "Op deze pagina kunt u de opslag configureren van gebruiksgegevens die zijn geaggregeerd uit serverlogbestanden."
+
+msgid "DIV_USAGE_INFORMATION"
+msgstr "Retentie van informatie over het gebruik op de locatie:"
+
+msgid "GlobalSitestatsPurge"
+msgstr "Informatie over het gebruik van virtuele locaties"
+
+msgid "GlobalSitestatsPurge_help"
+msgstr "Deze server bewaart 14 dagen logbestanden. Daarna worden de logbestanden doorgeblazen. Dagelijks ontvangen de Virtuele Sites een kopie van de logbestandactiviteit die op hen betrekking heeft en deze logbestandfragmenten worden opgeslagen in de logbestandmap van de Virtuele Site. De IP-adressen in deze gekopieerde logbestandfragmenten zijn geanonimiseerd en mogen daarom niet langer worden beschouwd als gevoelige persoonlijke informatie. U kunt hier echter de maximale periode kiezen dat een virtuele site op deze server hun gebruiks- en logbestandfragmenten mag bewaren. Als er logbestanden worden gevonden die ouder zijn dan hier gespecificeerd, dan zullen deze worden verwijderd tijdens de volgende dagelijkse logrotate."
+
+msgid "DIV_Purge_Stats"
+msgstr "Alle geaggregeerde gebruiksstatistieken zuiveren:"
+
+msgid "internal"
+msgstr "Statistieken over spoelgebruik"
+
+msgid "internal_help"
+msgstr "Als dit selectievakje is aangevinkt, wordt de logbestandmap van alle virtuele sites gewist en worden alle geaggregeerde gebruiksstatistieken gewist. Dit kan niet ongedaan worden gemaakt."
+
+msgid "webalizer"
+msgstr "Webalizer zuiveren"
+
+msgid "webalizer_help"
+msgstr "Als dit selectievakje is aangevinkt, wordt de Webalizer-directory van alle Virtuele Sites gewist en worden alle geaggregeerde Webalizer-statistieken verwijderd. Dit kan niet ongedaan worden gemaakt."
+
+msgid "awstats"
+msgstr "Spoel AWStats"
+
+msgid "awstats_help"
+msgstr "Als dit selectievakje is aangevinkt, wordt de AWStats directory van alle Virtuele Sites gewist en worden alle geaggregeerde AWStats statistieken verwijderd. Dit kan niet ongedaan worden gemaakt."
+
+msgid "DIV_AVSPAM_EXPIRY"
+msgstr "AV-SPAM-gegevensbehandeling:"
+
+msgid "avspam"
+msgstr "AV-SPAM gegevens verlopen"
+
+msgid "avspam_help"
+msgstr "Uw server heeft de AV-SPAM geïnstalleerd. De AV-SPAM kan bijhouden hoeveel e-mail uw gebruikers verzenden of ontvangen. Dit geldt ook voor hun IP-adressen, die als persoonsgegevens worden beschouwd. Als u dit selectievakje inschakelt, wordt een mechanisme ingeschakeld dat ervoor zorgt dat gevoelige gegevens automatisch uit de AV-SPAM SQL-database worden verwijderd. De bewaartermijn voor deze gegevens is gelijk aan de waarde die u hebt geconfigureerd onder '[[base-sitestats.GlobalSitestatsPurge]]' hierboven."
+
+msgid "DIV_SendmailAnalyzer"
+msgstr "SendmailAnalyzer gegevens verstrijken"
+
+msgid "SA_anonymize"
+msgstr "Anonymizegegevens"
+
+msgid "SA_anonymize_help"
+msgstr "SendmailAnalyzer heeft een ingebouwde functie om afzenders en ontvangers van e-mails te anonimiseren. Schakel dit selectievakje in als u deze functie wilt inschakelen. Let op: SendmailAnalyzer respecteert de bewaarperiode voor gegevens die u hebt geconfigureerd onder '[[base-sitestats.GlobalSitestatsPurge]]' hierboven."
+
+msgid "sendmailanalyzer"
+msgstr "Spoel SendmailAnalyzer"
+
+msgid "sendmailanalyzer_help"
+msgstr "Als dit selectievakje is aangevinkt, wordt de SendmailAnalyzer-gegevensmap gewist en worden alle geaggregeerde SendmailAnalyzer-statistieken verwijderd. Dit kan niet ongedaan worden gemaakt."
+

@@ -540,3 +540,67 @@ msgid "cap_menuServerServerStats"
 msgstr "Mostra Informazioni di utilizzo"
 
 
+#
+###
+#
+
+msgid "logconfig"
+msgstr "Conservazione dati"
+
+msgid "logconfig_help"
+msgstr "Questa pagina consente di configurare la conservazione dei dati di utilizzo aggregati dai file di log del server."
+
+msgid "DIV_USAGE_INFORMATION"
+msgstr "Uso del sito V Conservazione delle informazioni:"
+
+msgid "GlobalSitestatsPurge"
+msgstr "Informazioni sull'utilizzo del sito virtuale"
+
+msgid "GlobalSitestatsPurge_help"
+msgstr "Questo server conserva 14 giorni di file di log. Successivamente i file di log vengono eliminati. Ogni giorno i Siti Virtuali ricevono una copia dell'attività del file di log che li riguarda e questi frammenti di file di log vengono memorizzati nella directory del Sito Virtuale. Gli indirizzi IP all'interno di questi frammenti di file di log copiati sono stati resi anonimi e pertanto non devono più essere considerati informazioni personali sensibili. Tuttavia, è possibile scegliere qui il periodo massimo di tempo che qualsiasi sito virtuale su questo server può conservare le loro informazioni di utilizzo e frammenti di file di log. Se vengono trovati file di log più vecchi di quelli qui specificati, verranno rimossi durante il successivo logrotate giornaliero."
+
+msgid "DIV_Purge_Stats"
+msgstr "Elimina tutte le statistiche aggregate sull'utilizzo:"
+
+msgid "internal"
+msgstr "Statistiche sull'uso dello spurgo"
+
+msgid "internal_help"
+msgstr "Se si seleziona questa casella di controllo, la directory del file di log di tutti i Siti Virtuali verrà eliminata e tutte le Statistiche d'Uso aggregate verranno cancellate. Questo non può essere annullato."
+
+msgid "webalizer"
+msgstr "Spurgo del Webalizer"
+
+msgid "webalizer_help"
+msgstr "Se si seleziona questa casella di controllo, la directory Webalizer di tutti i Siti Virtuali verrà eliminata e tutte le statistiche aggregate del Webalizer verranno eliminate. Questo non può essere annullato."
+
+msgid "awstats"
+msgstr "Spurgo del AWStats"
+
+msgid "awstats_help"
+msgstr "Se si seleziona questa casella di controllo, la directory AWStats di tutti i Siti Virtuali verrà eliminata e tutte le statistiche aggregate AWStats verranno cancellate. Questo non può essere annullato."
+
+msgid "DIV_AVSPAM_EXPIRY"
+msgstr "Gestione dati AV-SPAM:"
+
+msgid "avspam"
+msgstr "Scadenza dati AV-SPAM"
+
+msgid "avspam_help"
+msgstr "Il server ha l'AV-SPAM installato. AV-SPAM è in grado di tenere traccia del volume di e-mail inviate o ricevute dagli utenti. Ciò include i loro indirizzi IP, che sono considerati dati personali. Se si seleziona questa casella di controllo, verrà attivato un meccanismo che assicura che i dati sensibili siano automaticamente scaduti dal database SQL di AV-SPAM. Il periodo di conservazione per questi dati è uguale al valore configurato in '[[base-sitestats.GlobalSitestatsPurge]]' sopra."
+
+msgid "DIV_SendmailAnalyzer"
+msgstr "SendmailAnalyzer data expiry"
+
+msgid "SA_anonymize"
+msgstr "Dati anonimi"
+
+msgid "SA_anonymize_help"
+msgstr "SendmailAnalyzer è dotato di una funzione integrata per rendere anonimi mittenti e destinatari delle e-mail. Selezionare questa casella di controllo se si desidera attivare questa funzione. Si prega di notare che SendmailAnalyzer rispetta il periodo di conservazione dei dati che è stato configurato in '[[base-sitestats.GlobalSitestatsPurge]]' sopra."
+
+msgid "sendmailanalyzer"
+msgstr "Spurgo SendmailAnalyzer"
+
+msgid "sendmailanalyzer_help"
+msgstr "Se si seleziona questa casella di controllo, la directory dei dati SendmailAnalyzer verrà eliminata e tutte le statistiche aggregate di SendmailAnalyzer verranno eliminate. Questo non può essere annullato."
+

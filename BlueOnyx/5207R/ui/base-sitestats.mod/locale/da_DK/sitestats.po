@@ -622,3 +622,67 @@ msgstr "1 år"
 msgid "cap_menuServerServerStats"
 msgstr "Vis Brug Information"
 
+#
+###
+#
+
+msgid "logconfig"
+msgstr "Dataopbevaring"
+
+msgid "logconfig_help"
+msgstr "Denne side giver dig mulighed for at konfigurere lagring af brugsdata, der er aggregeret fra serverlogfiler."
+
+msgid "DIV_USAGE_INFORMATION"
+msgstr "Vsite Usage Information retention:"
+
+msgid "GlobalSitestatsPurge"
+msgstr "Vsite brugerinformation"
+
+msgid "GlobalSitestatsPurge_help"
+msgstr "Denne server holder 14 dages logfiler. Derefter ryddes logfilerne. Dagligt modtager virtuelle websteder en kopi af logfilaktiviteten, der er relateret til dem, og disse logfileuddrag er gemt i logfilkataloget på det virtuelle websted. adresser i disse kopierede logfile-uddrag er blevet anonymiseret og bør derfor ikke længere betragtes som følsomme personlige oplysninger. Du kan dog vælge den maksimale periode, som ethvert virtuelt websted på denne server kan beholde deres brugsinformations- og logfileuddrag. Hvis nogen logfiler ældre end angivet her findes, så fjernes de under det næste daglige logrotat. "
+
+msgid "DIV_Purge_Stats"
+msgstr "Ryd alle aggregerede brugsstatistikker:"
+
+msgid "internal"
+msgstr "Rensebrugsstatistik"
+
+msgid "internal_help"
+msgstr "Hvis dette afkrydsningsfelt er markeret, vil logfilkataloget for alle virtuelle websteder blive renset og al aggregeret brugsstatistik slettes. Dette kan ikke fortrydes."
+
+msgid "webalizer"
+msgstr "Rens webalizer"
+
+msgid "webalizer_help"
+msgstr "Hvis dette afkrydsningsfelt er markeret, vil Webalizer biblioteket på alle virtuelle websteder blive renset og alle aggregerede webalizer statistikker vil blive slettet. Dette kan ikke fortrydes."
+
+msgid "awstats"
+msgstr "Rens AWStats"
+
+msgid "awstats_help"
+msgstr "Hvis dette afkrydsningsfelt er markeret, vil AWStats-mappen for alle virtuelle websteder blive renset og alle aggregerede AWStats-statistikker slettes. Dette kan ikke fortrydes."
+
+msgid "DIV_AVSPAM_EXPIRY"
+msgstr "AV-SPAM datahåndtering:"
+
+msgid "avspam"
+msgstr "V-SPAM data udløber"
+
+msgid "avspam_help"
+msgstr "Din server har AV-SPAM installeret. AV-SPAM kan holde styr på mængden af ​​e-mail, som dine brugere sender eller modtager. Dette omfatter deres IP-adresser, der betragtes som personlige data. Hvis du markerer dette afkrydsningsfelt, så en mekanismen vil blive aktiveret, der sikrer, at følsomme data automatisk udløber fra AV-SPAM SQL-databasen. Retentionstiden for disse data svarer til den værdi, du har konfigureret under '[[base-sitestats.GlobalSitestatsPurge]]' ovenfor."
+
+msgid "DIV_SendmailAnalyzer"
+msgstr "SendmailAnalyzer data udløber:"
+
+msgid "SA_anonymize"
+msgstr "Anonymiser data"
+
+msgid "SA_anonymize_help"
+msgstr "SendmailAnalyzer har en indbygget funktion til anonymisering af afsendere og modtagere af e-mails. Marker dette afkrydsningsfelt, hvis du vil aktivere denne funktion. Bemærk, at SendmailAnalyzer hæder den datalagringsperiode, du har konfigureret under '[[base-sitestats.GlobalSitestatsPurge]]' ovenfor."
+
+msgid "sendmailanalyzer"
+msgstr "Rens SendmailAnalyzer"
+
+msgid "sendmailanalyzer_help"
+msgstr "Hvis dette afkrydsningsfelt er markeret, bliver SendmailAnalyzer datakataloget renset og alle aggregerede SendmailAnalyzer statistikker slettes. Dette kan ikke fortrydes."
+

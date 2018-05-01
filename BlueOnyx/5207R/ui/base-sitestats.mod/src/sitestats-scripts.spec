@@ -1,14 +1,14 @@
 Summary: Server and site statistics for web, ftp, email, and network traffic
 Name: base-sitestats-scripts
-Version: 1.0
-Release: 26BX33%{?dist}
+Version: 2.1
+Release: 1BX01%{?dist}
 Vendor: Project BlueOnyx
 License: Sun modified BSD
 Group: System Environment/BlueOnax
 Source: sitestats-scripts.tar.gz
 BuildRoot: /tmp/sitestats-scripts
 BuildArchitectures: noarch
-Requires: webalizer, tmpwatch
+Requires: webalizer, tmpwatch, httpd
 
 %description
 This package contains the scripts for processing logfiles
@@ -18,26 +18,115 @@ generating and viewing reports.
 %post
 
 if [ -f /bin/systemctl ]; then
-  # Check if CCEd is up:
-  if [ ! -S /usr/sausalito/cced.socket ]; then
-    # Not up - restarting:
-    /usr/sausalito/sbin/cced.init rehash &>/dev/null || :
-  fi
-
   ### Fix fucking RH Firewall shit:
   # Stop and disable firewalld:
-  systemctl stop firewalld.service
-  systemctl disable firewalld.service
-  # Turn module unload off for iptables:
-  /bin/sed -i -e 's@^IPTABLES_MODULES_UNLOAD="yes"@IPTABLES_MODULES_UNLOAD="no"@' /etc/sysconfig/iptables-config
+  systemctl stop firewalld.service &>/dev/null || :
+  systemctl disable firewalld.service &>/dev/null || :
+fi
+
+# Turn module unload off for iptables:
+/bin/sed -i -e 's@^IPTABLES_MODULES_UNLOAD="yes"@IPTABLES_MODULES_UNLOAD="no"@' /etc/sysconfig/iptables-config
+
+# Check if APF is present:
+if [ -d /etc/apf ];then
+
+  # APF present. Disable and stop iptables:
+  rm -f /etc/sysconfig/iptables
+  touch /etc/sysconfig/iptables
+  echo "# Empty, because APF is present" > /etc/sysconfig/iptables
+
   # Enable and start iptables:
-  /sbin/chkconfig iptables on
-  /sbin/service iptables restart &>/dev/null || :
-  # Flush previous iptables rules and load our standard rules:
-  /etc/cron.hourly/log_traffic clean
+  /sbin/chkconfig iptables off &>/dev/null || :
+  /sbin/service iptables stop &>/dev/null || :
+else
+  # Flush existing iptables rules:
+  iptables --flush
+
+  if [ $1 -eq 1 ]; then
+
+    # New Install
+
+    # Zap existing /etc/sysconfig/iptables
+    rm -f /etc/sysconfig/iptables
+    touch /etc/sysconfig/iptables
+    echo "# Empty, because log_traffic hasn't run yet." > /etc/sysconfig/iptables
+
+    rm -f /etc/sysconfig/ip6tables
+    touch /etc/sysconfig/ip6tables
+    echo "# Empty, because log_traffic hasn't run yet." > /etc/sysconfig/ip6tables
+
+    # Enable iptables:
+    /sbin/chkconfig iptables on &>/dev/null || :
+
+  else
+
+    # Upgrade of already installed RPM:
+
+    # Zap existing /etc/sysconfig/iptables
+    rm -f /etc/sysconfig/iptables
+    touch /etc/sysconfig/iptables
+    echo "# Empty, because log_traffic hasn't run yet." > /etc/sysconfig/iptables
+
+    rm -f /etc/sysconfig/ip6tables
+    touch /etc/sysconfig/ip6tables
+    echo "# Empty, because log_traffic hasn't run yet." > /etc/sysconfig/ip6tables
+
+    # Generate accounting rules for iptables:
+    /etc/cron.hourly/log_traffic &>/dev/null || :
+    
+    # Save new iptables rules:
+    iptables-save > /etc/sysconfig/iptables
+
+    # Enable iptables:
+    /sbin/chkconfig iptables on &>/dev/null || :
+
+    # Start iptables:
+    if [ $1 -gt 1 ]; then
+      # RPM upgrade
+      /sbin/service iptables restart &>/dev/null || :
+    fi
+
+  fi
+fi
+
+if [ -f /etc/logrotate.conf ];then
+	sed -i 's/rotate 4/rotate 2/g' /etc/logrotate.conf 
+	sed -i 's/keep 4/keep 2/g' /etc/logrotate.conf 
 fi
 
 %changelog
+
+* Sat Apr 28 2018 Michael Stauber <mstauber@solarspeed.net> 2.1-1BX01
+- Added anonip.py
+- Edited /etc/logrotate.d/apache to anonymize IPs before they are 
+  moved over to the Vsite logs directory.
+- Post now edits /etc/logrotate.conf to keep only two weeks of logs.
+- Added logrotate for Let's Encrypt
+- Added /etc/cron.daily/purge_avspam.sh
+- Added /etc/cron.daily/sa_purgeOmatic.pl
+
+* Tue Jan 06 2018 Michael Stauber <mstauber@solarspeed.net> 2.0-1BX04
+- Overhauled provisions for IPv6 and APF.
+
+* Fri Jun 10 2016 Michael Stauber <mstauber@solarspeed.net> 2.0-1BX03
+- Proper fix for preventing that the standard RHEL7 firewall rules
+  kick in. We now check if 'apf' is installed and deal with it accordingly.
+  Additionally we make sure in all cases and eventualities (CD install,
+  yum install, yum update) that /etc/sysconfig/iptables is present in a
+  way that 'iptables-services' will be forced to honor its 'config-noreplace'
+  option and wíll not replace it with one that contains stock firewall rules.
+- Modified cronjob src/sitestats-scripts/log_traffic with provisions for
+  'apf' again and to also make sure that the cronjob will wipe out and
+  leave a clean (empty of populated - depending on APF presence) 
+  /etc/sysconfig/iptables config file.
+
+* Thu Jun 09 2016 Michael Stauber <mstauber@solarspeed.net> 2.0-1BX02
+- Disabled iptables.
+
+* Thu Jun 09 2016 Michael Stauber <mstauber@solarspeed.net> 2.0-1BX01
+- Added requirement for 'iptables-services' as we need it on EL7.
+- Modified post-install routine to use systemctl to enable and restart
+  iptables.
 
 * Fri Dec 18 2015 Michael Stauber <mstauber@solarspeed.net> 1.0-26BX33
 - Fix in /etc/cron.hourly/log_traffic
@@ -246,13 +335,18 @@ rm -rf $RPM_BUILD_ROOT
 /etc/analog.cfg.tmpl
 /etc/cron.hourly/log_traffic
 /etc/cron.daily/tmpwatch_sitestats
+/etc/cron.daily/sa_purgeOmatic.pl
 /etc/cron.daily/sitestats_purgeOmatic.pl
+/etc/cron.daily/purge_avspam.sh
 /etc/logrotate.d/sitestats
 /etc/logrotate.d/apache
+/etc/logrotate.d/letsencrypt
 /usr/local/bin/generateGraph.pl
 /usr/local/sbin/split_logs
+/usr/local/sbin/anonip.py
 %attr(755,root,root) /usr/local/sbin/maillog2commonlog.pl
 %attr(755,root,root) /usr/local/sbin/ftplog2commonlog
 %attr(755,root,root) /usr/local/sbin/grab_logs.pl
 %attr(755,root,root) /usr/bin/webalizer.pl
+%attr(755,root,root) /usr/local/sbin/anonip.py
 

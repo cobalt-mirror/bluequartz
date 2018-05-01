@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# log_traffic,v 2.0.1 2015/12/13 07:36:00 gregk Exp $
+# log_traffic
 #  
 # This script maintains and logs the activity on the ip accounting rules.
 # It updates the accounting rules based on the currently running interfaces,
@@ -24,6 +24,19 @@ IPLISTBEFORE="/var/state/acct/iplist.before"	# Temp file - list of current ip ad
 # Disable error messages - Some IpTables commands we use to check status generate cosmetic errors. Lets suppress them
 exec 3>&2
 exec 2> /dev/null
+
+if [ -d "/etc/apf" ];then
+	# Wipe /etc/sysconfig/iptables clean. We do this so that an install/upgrade 
+	# of 'iptables-services' doesn't bring a default config back:
+	rm -f /etc/sysconfig/iptables
+	touch /etc/sysconfig/iptables
+	echo "# Empty, because APF is present" > /etc/sysconfig/iptables
+	rm -f /etc/sysconfig/ip6tables
+	touch /etc/sysconfig/ip6tables
+	echo "# Empty, because APF is present" > /etc/sysconfig/ip6tables
+	# We exit here. No point going further.
+	exit
+fi
 
 # Command line option clean - to reset all rules that we use
 if [ "$1" = "clean" ]; then
@@ -104,6 +117,12 @@ else
 			$IPTABLES -I OUTPUT -j acctout
 		fi
 	fi
+fi
+
+if [ ! -d "/etc/apf" ];then
+	# Save new iptables rules: We do this so that an install/upgrade 
+	# of 'iptables-services' doesn't bring a default config back:
+    iptables-save > /etc/sysconfig/iptables
 fi
 
 # Re-enable error messages

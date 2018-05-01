@@ -2,3 +2,4 @@
 
 $route['sitestats/webalizer'] = "webalizer";
 $route['sitestats/summaryEmail'] = "summaryEmail";
+$route['sitestats/logconfig'] = "logconfig";

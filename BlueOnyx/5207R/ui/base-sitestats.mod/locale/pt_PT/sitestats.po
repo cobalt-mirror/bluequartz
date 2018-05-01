@@ -540,3 +540,66 @@ msgid "cap_menuServerServerStats"
 msgstr "Mostrar Informações de Uso"
 
 
+#
+###
+#
+
+msgid "logconfig"
+msgstr "Retenção de Dados"
+
+msgid "logconfig_help"
+msgstr "Esta página permite configurar a retenção de dados de uso agregados dos arquivos de log do servidor."
+
+msgid "DIV_USAGE_INFORMATION"
+msgstr "Retenção de Informações de Uso do Site Virtual:"
+
+msgid "GlobalSitestatsPurge"
+msgstr "Informações de uso do site virtual"
+
+msgid "GlobalSitestatsPurge_help"
+msgstr "Este servidor mantém 14 dias de arquivos de log. Posteriormente, os arquivos de log são eliminados. Em uma base diária, os Sites Virtuais recebem uma cópia da atividade de arquivo de log relacionada a eles e esses fragmentos são armazenados no diretório logfile do Site Virtual. os endereços desses snippets de arquivo de log copiados foram anonimizados e, portanto, não devem mais ser considerados informações pessoais confidenciais. Entretanto, você pode escolher aqui o período máximo de tempo que qualquer Site Virtual neste servidor pode reter suas informações de uso e trechos de logfile. mais antigos do que o especificado aqui são encontrados, então eles serão removidos durante o próximo logrotate diário."
+
+msgid "DIV_Purge_Stats"
+msgstr "Limpar todas as estatísticas de uso agregadas:"
+
+msgid "internal"
+msgstr "Limpar estatísticas de uso"
+
+msgid "internal_help"
+msgstr "Se esta caixa de verificação estiver marcada, o diretório do arquivo de log de todos os Sites Virtuais será limpo e todas as Estatísticas de Uso agregadas serão excluídas. Isso não pode ser desfeito."
+
+msgid "webalizer"
+msgstr "Limpar Webalizer"
+
+msgid "webalizer_help"
+msgstr "Se esta caixa de verificação estiver marcada, o diretório Webalizer de todos os Sites Virtuais será limpo e todas as estatísticas Webalizer agregadas serão excluídas. Isso não pode ser desfeito."
+
+msgid "awstats"
+msgstr "Limpar AWStats"
+
+msgid "awstats_help"
+msgstr "Se esta caixa de verificação estiver marcada, o diretório AWStats de todos os Sites Virtuais será limpo e todas as estatísticas agregadas do AWStats serão excluídas. Isso não pode ser desfeito."
+
+msgid "DIV_AVSPAM_EXPIRY"
+msgstr "Tratamento de dados AV-SPAM:"
+
+msgid "avspam"
+msgstr "Expiração de dados AV-SPAM"
+
+msgid "avspam_help"
+msgstr "O seu servidor tem o AV-SPAM instalado. O AV-SPAM pode controlar o volume de e-mail que seus usuários enviam ou recebem. Isso inclui seus endereços IP, que são considerados dados pessoais. Se você marcar esta caixa de seleção, será ativado o mecanismo que garante que os dados confidenciais expirem automaticamente do banco de dados SQL do AV-SPAM.O período de retenção para esses dados é igual ao valor que você configurou em '[[base-sitestats.GlobalSitestatsPurge]]' acima."
+
+msgid "DIV_SendmailAnalyzer"
+msgstr "Expiração dos dados do SendmailAnalyzer:"
+
+msgid "SA_anonymize"
+msgstr "Anonimizar dados"
+
+msgid "SA_anonymize_help"
+msgstr "O SendmailAnalyzer foi construído para anonimizar remetentes e destinatários de e-mails. Marque esta caixa de seleção se você quiser habilitar este recurso. Observe que o SendmailAnalyzer honra o período de retenção de dados que você configurou em '[[base-sitestats.GlobalSitestatsPurge]]' acima."
+
+msgid "sendmailanalyzer"
+msgstr "Limpar SendmailAnalyzer"
+
+msgid "sendmailanalyzer_help"
+msgstr "Se esta opção estiver marcada, o diretório de dados do SendmailAnalyzer será removido e todas as estatísticas agregadas do SendmailAnalyzer serão apagadas. Isso não pode ser desfeito."

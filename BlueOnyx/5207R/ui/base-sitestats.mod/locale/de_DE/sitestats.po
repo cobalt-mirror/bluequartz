@@ -542,4 +542,67 @@ msgstr "Es ist ein Systemfehler aufgetreten, während versucht wurde, die gewün
 msgid "cap_menuServerServerStats"
 msgstr "Zeige Nutzungsdaten"
 
+#
+###
+#
+
+msgid "logconfig"
+msgstr "Vorratsdatenspeicherung"
+
+msgid "logconfig_help"
+msgstr "Auf dieser Seite können Sie die Speicherung von Nutzungsdaten aus Server-Logfiles konfigurieren."
+
+msgid "DIV_USAGE_INFORMATION"
+msgstr "Vsite Usage Information retention:"
+
+msgid "GlobalSitestatsPurge"
+msgstr "Vsite Logfiles:"
+
+msgid "GlobalSitestatsPurge_help"
+msgstr "Dieser Server speichert Logfiles der letzten 14 Tage. Anschließend werden die Logfiles gelöscht. Täglich erhalten Virtuelle Sites eine Kopie der sie betreffenden Logfile-Aktivität und diese Logfile-Schnipsel werden im Logfile-Verzeichnis der Virtuellen Sites gespeichert. Die IP-Adressen in diesen kopierten Logfile-Schnipseln sind dann bereits anonymisiert und sollten daher nicht mehr als sensible persönliche Informationen betrachtet werden. Sie können hier jedoch die maximale Aufbewahrungsfrist wählen, für welche diese Logfiles der Virtuellen Sites aufbewahrt werden dürfen. Logfiles jenseits des konfigurierten Aufbewahrungsdatums werden täglich von einem Cronjob automatisch gelöscht."
+
+msgid "DIV_Purge_Stats"
+msgstr "Gesammelte Nutzungsstatistiken löschen:"
+
+msgid "internal"
+msgstr "Vsite Logfiles löschen"
+
+msgid "internal_help"
+msgstr "Wenn dieses Kontrollkästchen markiert wird, so werden die Logfile-Verzeichnise aller Virtuellen Sites komplett gelöscht. Dieser Schritt kann nicht rückgängig gemacht werden."
+
+msgid "webalizer"
+msgstr "Webalizer zurücksetzen"
+
+msgid "webalizer_help"
+msgstr "Wenn dieses Kontrollkästchen markiert wird, so werden die Webalizer-Statistiken aller Virtuellen Sites komplett gelöscht. Dieser Schritt kann nicht rückgängig gemacht werden."
+
+msgid "awstats"
+msgstr "AWStats zurücksetzen"
+
+msgid "awstats_help"
+msgstr "Wenn dieses Kontrollkästchen markiert wird, so werden die AWStats-Statistiken aller Virtuellen Sites komplett gelöscht. Dieser Schritt kann nicht rückgängig gemacht werden."
+
+msgid "DIV_AVSPAM_EXPIRY"
+msgstr "AV-SPAM data handling:"
+
+msgid "avspam"
+msgstr "AV-SPAM Datenaufbewahrung:"
+
+msgid "avspam_help"
+msgstr "Auf Ihrem Server ist die AV-SPAM installiert. Die AV-SPAM kann (falls GeoIP aktiv ist) Daten über eingehende und ausgehende Emails erheben und speichert diese in MySQL. Unter diesen so gespeicherten Daten sind neben der Email-Addresse auch die IP-Addressen von Sender und Empfänger. Wenn Sie dieses Kontrollkästchen aktivieren, wird ein Mechanismus aktiviert, der sicherstellt, dass sensible Daten automatisch aus der AV-SPAM SQL-Datenbank gelöscht werden. Die Aufbewahrungsfrist für diese Daten entspricht dem Wert, den Sie unter '[[base-sitestats.GlobalSitestatsPurge]]' (siehe oben) konfiguriert haben."
+
+msgid "DIV_SendmailAnalyzer"
+msgstr "SendmailAnalyzer Datenaufbewahrung:"
+
+msgid "SA_anonymize"
+msgstr "Daten anonymisieren"
+
+msgid "SA_anonymize_help"
+msgstr "SendmailAnalyzer hat eine eingebaute Funktion, um Absender und Empfänger von E-Mails zu anonymisieren. Aktivieren Sie dieses Kontrollkästchen, wenn Sie diese Funktion aktivieren möchten. Bitte beachten Sie, dass SendmailAnalyzer die unter '[[base-sitestats.GlobalSitestatsPurge]]' oben konfigurierte Aufbewahrungsfrist einhält."
+
+msgid "sendmailanalyzer"
+msgstr "SendmailAnalyzer zurücksetzen"
+
+msgid "sendmailanalyzer_help"
+msgstr "Wenn dieses Kontrollkästchen markiert wird, so werden die SendmailAnalyzer-Statistiken aller Virtuellen Sites komplett gelöscht. Dieser Schritt kann nicht rückgängig gemacht werden."
 
