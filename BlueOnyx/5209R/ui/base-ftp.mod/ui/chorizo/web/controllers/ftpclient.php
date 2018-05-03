@@ -235,6 +235,10 @@ class Ftpclient extends MX_Controller {
         $BxPage->setErrors(array());
         $i18n = $factory->getI18n();
 
+        if ($user['capabilities'] == '') {
+            unset($group);
+        }
+
         // Set Menu items:
         if (!isset($group)) {
             $BxPage->setVerticalMenu('base_programsPersonal');
@@ -249,7 +253,6 @@ class Ftpclient extends MX_Controller {
                 $page_module = 'base_sysmanage';
             }
             else {
-                
                 $BxPage->setVerticalMenu('base_programsSite');
                 $BxPage->setVerticalMenuChild('ftpc_vsite');
                 $page_module = 'base_sitemanage';

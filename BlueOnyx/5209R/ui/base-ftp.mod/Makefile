@@ -20,8 +20,7 @@ BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=yes
 
-REQUIRES=proftpd GeoIP net2ftp
-REQUIRES= base-user-capstone >= 1.1.0-111BQ27
+REQUIRES=proftpd GeoIP net2ftp base-user-capstone
 
 #########
 # some useful defines

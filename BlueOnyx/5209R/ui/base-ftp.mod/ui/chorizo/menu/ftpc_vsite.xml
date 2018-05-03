@@ -1,7 +1,7 @@
 <item 
     id="ftpc_vsite"  
-    label="[[/ftp/ftpclient.connect]]"
-    description="[[/ftp/ftpclient.connect_help]]"
+    label="[[base-ftp.connect]]"
+    description="[[base-ftp.connect_help]]"
     url="/ftp/ftpclient?group=[[VAR.group]]"
     module="server"
 >
