@@ -148,8 +148,16 @@ class Logconfig extends MX_Controller {
                 $webalizer = time();
             }
             $awstats = '0';
-            if ($attributes['awstats'] == "1") {
-                $awstats = time();
+            if (isset($attributes['awstats'])) {
+                if ($attributes['awstats'] == "1") {
+                    $awstats = time();
+                }
+            }
+            $avspam = '0';
+            if (isset($attributes['avspam'])) {
+                if ($attributes['avspam'] == "1") {
+                    $avspam = time();
+                }
             }
             $sendmailanalyzer = '0';
             if ($attributes['sendmailanalyzer'] == "1") {
@@ -164,7 +172,7 @@ class Logconfig extends MX_Controller {
                                                         'awstats' => $awstats, 
                                                         'SA_anonymize' => $attributes['SA_anonymize'], 
                                                         'sendmailanalyzer' => $sendmailanalyzer, 
-                                                        'avspam' => $attributes['avspam']), 
+                                                        'avspam' => $avspam), 
                                                         'Sitestats');
 
             // CCE errors that might have happened during submit to CODB:
