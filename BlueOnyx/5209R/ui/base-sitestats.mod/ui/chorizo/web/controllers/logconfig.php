@@ -156,7 +156,7 @@ class Logconfig extends MX_Controller {
             $avspam = '0';
             if (isset($attributes['avspam'])) {
                 if ($attributes['avspam'] == "1") {
-                    $avspam = time();
+                    $avspam = '1';
                 }
             }
             $sendmailanalyzer = '0';
