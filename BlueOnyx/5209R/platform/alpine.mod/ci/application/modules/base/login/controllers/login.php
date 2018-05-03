@@ -518,6 +518,9 @@ class Login extends MX_Controller {
               }
 
               // Send cookies that expire at end of the browser session. 
+              $this->load->library('encrypt');
+              $encrypted_string = $this->encrypt->encode($form_data['password_field']);
+              setcookie("XSSkey", $encrypted_string, "0", "/");
               setcookie("loginName", $form_data['username_field'], time()+60*60*24*365, "/");
               setcookie("sessionId", $sessionId, "0", "/");
               setcookie("userip", $userip, "0", "/");
