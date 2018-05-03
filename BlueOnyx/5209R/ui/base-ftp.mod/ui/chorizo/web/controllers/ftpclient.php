@@ -179,7 +179,7 @@ class Ftpclient extends MX_Controller {
             $protocol = 'FTP-SSH';
             $port = $ServerSSH['Port'];
         }
-        elseif ((($User_Shell['enabled'] == '0') && ($FTP_Available == '1')) && ($Capabilities->getAllowed('systemAdministrator'))) {
+        elseif ((($SSH_Available == '0') && ($FTP_Available == '1')) && ($Capabilities->getAllowed('systemAdministrator'))) {
             $use_FTP = '1';
             $service_available = '1';
             $protocol = 'FTP';
@@ -202,6 +202,11 @@ class Ftpclient extends MX_Controller {
             $port = '21';
         }
         else {
+            $service_available = '0';
+        }
+
+        // In demo-mode we sure as hell ar disabled!
+        if (is_file('/etc/DEMO')) {
             $service_available = '0';
         }
 
