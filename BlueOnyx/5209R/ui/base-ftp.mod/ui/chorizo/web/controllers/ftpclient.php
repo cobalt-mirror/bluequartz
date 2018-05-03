@@ -257,12 +257,9 @@ class Ftpclient extends MX_Controller {
             $url_suffix = '?group=' . $group;
         }
 
-        // get web
-        $web = $CI->cceClient->get($system['OID'], "Ftp");
-
         $defaultPage = "basicSettingsTab";
 
-        $block =& $factory->getPagedBlock("ftpClient", array($defaultPage));
+        $block =& $factory->getPagedBlock("connect", array($defaultPage));
 
         $block->setToggle("#");
         $block->setSideTabs(FALSE);

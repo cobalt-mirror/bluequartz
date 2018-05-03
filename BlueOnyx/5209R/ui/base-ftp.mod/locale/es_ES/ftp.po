@@ -235,3 +235,19 @@ msgstr "Habilitar FTPS"
 msgid "enableSFTPserverField_help"
 msgstr "Gire FTPS (FTP con SSL/TLS) funcionalidad activada o desactivada. FTPS ejecuta en 990/TCP puerto y permite una conexión segura con el servidor FTP. Debe ser el método preferido para la conexión a FTP. Clientes FTP debe usar 'FTP sobre TLS explícito' para poder hacer uso de esta característica."
 
+#
+### Net2FTP:
+#
+
+msgid "connect"
+msgstr "Administrador de archivos"
+
+msgid "connect_help"
+msgstr "Esta página le permite cargar, descargar y administrar archivos a través de FTP o SSH si estas funciones están habilitadas para su cuenta."
+
+msgid "service_disabled"
+msgstr "Lo sentimos, su cuenta no tiene acceso FTP o Shell habilitado."
+
+msgid "info_text"
+msgstr "El Administrador de Archivos se abrirá en una nueva ventana del navegador. Por favor, asegúrese de que su navegador permite ventanas emergentes de este dominio."
+

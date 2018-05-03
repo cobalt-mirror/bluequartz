@@ -236,3 +236,20 @@ msgid "enableSFTPserverField_help"
 msgstr "Draai FTPS (FTP met SSL/TLS) functionaliteit in of uit. FTPS op poort 990/TCP en zorgt voor een veilige verbinding met de FTP-server. Het moet de voorkeursmethode voor aansluiting op FTP zijn. FTP-clients moet 'expliciet FTP over TLS' gebruiken om te kunnen gebruik maken van deze functie."
 
 
+#
+### Net2FTP:
+#
+
+msgid "connect"
+msgstr "Bestandsbeheer"
+
+msgid "connect_help"
+msgstr "Op deze pagina kunt u bestanden uploaden, downloaden en beheren via FTP of SSH als deze functies zijn ingeschakeld voor uw account."
+
+msgid "service_disabled"
+msgstr "Sorry, uw account heeft geen FTP- of Shell-toegang ingeschakeld."
+
+msgid "info_text"
+msgstr "De bestandsmanager wordt geopend in een nieuw browservenster. Zorg ervoor dat uw browser pop-ups van dit domein toestaat."
+
+

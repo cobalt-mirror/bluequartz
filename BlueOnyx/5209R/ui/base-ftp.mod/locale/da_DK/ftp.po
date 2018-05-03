@@ -310,3 +310,20 @@ msgstr "Aktiver FTPS"
 msgid "enableSFTPserverField_help"
 msgstr "Drej FTPS (FTP med SSL/TLS) funktionen til eller fra. FTPS kører på port 990/TCP og tillader en sikker forbindelse til FTP-serveren. Det bør være den foretrukne metode til at forbinde til FTP. FTP klienter skal bruge 'udtrykkeligt FTP over TLS' at være i stand til at gøre brug af denne funktion."
 
+#
+### Net2FTP:
+#
+
+msgid "connect"
+msgstr "Filhåndtering"
+
+msgid "connect_help"
+msgstr "Denne side giver dig mulighed for at uploade, downloade og administrere filer via FTP eller SSH, hvis disse funktioner er aktiveret til din konto.
+"
+
+msgid "service_disabled"
+msgstr "Beklager, din konto har ikke FTP- eller Shell-adgang aktiveret."
+
+msgid "info_text"
+msgstr "Filhåndteringen åbnes i et nyt browservindue. Sørg for, at din browser tillader pop-ups fra dette domæne."
+

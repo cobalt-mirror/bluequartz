@@ -246,4 +246,19 @@ msgid "enableSFTPserverField_help"
 msgstr "Tournez FTPS (FTP par SSL/TLS) ou désactiver la fonctionnalité. FTPS s'exécute sur le port 990/TCP et permet une connexion sécurisée avec le serveur FTP. Il devrait être la méthode préférée pour la connexion FTP. Les clients FTP doivent utiliser 'FTP sur TLS explicite' pour être en mesure de faire usage de cette fonctionnalité."
 
 
+#
+### Net2FTP:
+#
+
+msgid "connect"
+msgstr "Gestionnaire de fichiers"
+
+msgid "connect_help"
+msgstr "Cette page vous permet de télécharger, télécharger et gérer des fichiers via FTP ou SSH si ces fonctions sont activées pour votre compte."
+
+msgid "service_disabled"
+msgstr "Désolé, votre compte n'a pas l'accès FTP ou Shell activé."
+
+msgid "info_text"
+msgstr "Le gestionnaire de fichiers s'ouvrira dans une nouvelle fenêtre du navigateur. Veuillez vous assurer que votre navigateur autorise les fenêtres contextuelles à partir de ce domaine."
 
