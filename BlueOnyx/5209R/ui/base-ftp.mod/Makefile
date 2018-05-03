@@ -6,8 +6,8 @@ VENDOR=base
 VENDORNAME='Project BlueOnyx'
 SERVICE=ftp
 
-VERSION=1.4.0
-RELEASE=0BX02
+VERSION=1.5.0
+RELEASE=0BX01
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -20,7 +20,7 @@ BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=yes
 
-REQUIRES=proftpd GeoIP
+REQUIRES=proftpd GeoIP net2ftp
 REQUIRES= base-user-capstone >= 1.1.0-111BQ27
 
 #########

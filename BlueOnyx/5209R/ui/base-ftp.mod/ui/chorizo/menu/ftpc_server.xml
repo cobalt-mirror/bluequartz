@@ -1,0 +1,12 @@
+<item
+    id="ftpc_server"
+    label="[[base-ftp.connect]]"
+    description="[[base-ftp.connect_help]]"
+    url="/ftp/ftpclient?group=server"
+    module="user"
+>
+    <parent id="base_programs" order="13">
+        <access require="serverFTP"/>
+    </parent>
+</item>
+

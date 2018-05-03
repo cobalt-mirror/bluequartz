@@ -1,0 +1,11 @@
+<item 
+    id="ftpc_personal" 
+    label="[[base-ftp.connect]]" 
+    description="[[base-ftp.connect_help]]" 
+    url="/ftp/ftpclient"
+    module="user"
+>
+    <parent id="base_programsPersonal" order="22">
+    </parent>
+
+</item>
