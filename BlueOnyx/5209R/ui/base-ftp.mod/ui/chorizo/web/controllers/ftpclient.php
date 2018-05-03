@@ -54,6 +54,17 @@ class Ftpclient extends MX_Controller {
         if (isset($get_form_data['group'])) {
             // We have a group:
             $group = $get_form_data['group'];
+
+            // ACL checks:
+            if ((!$Capabilities->getAllowed('systemAdministrator')) && ($group == 'server')) {
+                // Not siteAdmin, but trying to reach 'System Management' entry:
+                Log403Error("/ftp/ftpclient");
+            }
+            if ((!$Capabilities->getGroupAdmin($group)) && ($group != 'server')) {
+                // Is Reseller, but tries to reach a Vsite that he doesn't own to.
+                Log403Error("/ftp/ftpclient");
+            }
+
         }
 
         $fullscreen = '0';
@@ -120,7 +131,7 @@ class Ftpclient extends MX_Controller {
             //-- User is systemAdministrator
             //
         }
-        elseif ((!$Capabilities->getAllowed('systemAdministrator')) && ($Capabilities->getAllowed('manageSite'))) {
+        elseif ((!$Capabilities->getAllowed('systemAdministrator')) && ($Capabilities->getAllowed('adminUser'))) {
             //
             //-- User is Reseller
             //
@@ -131,9 +142,7 @@ class Ftpclient extends MX_Controller {
             if (isset($get_form_data['group'])) {
                 if ($user["site"] != $get_form_data['group']) {
                     // Sneaky Bastard:
-                    $CI->cceClient->bye();
-                    $CI->serverScriptHelper->destructor();
-                    Log403Error("/gui/Forbidden403#1");
+                    Log403Error("/ftp/ftpclient");
                 }
             }
             //
@@ -145,9 +154,7 @@ class Ftpclient extends MX_Controller {
             if (isset($get_form_data['group'])) {
                 if ($user["site"] != $get_form_data['group']) {
                     // Sneaky Bastard:
-                    $CI->cceClient->bye();
-                    $CI->serverScriptHelper->destructor();
-                    Log403Error("/gui/Forbidden403#2");
+                    Log403Error("/ftp/ftpclient");
                 }
             }
             //
@@ -166,20 +173,36 @@ class Ftpclient extends MX_Controller {
 
         $use_SSH = '0';
         $use_FTP = '0';
-        if (($User_Shell['enabled'] == '1') && ($SSH_Available == '1')) {
+        if ((($User_Shell['enabled'] == '1') && ($SSH_Available == '1')) && ($Capabilities->getAllowed('systemAdministrator'))) {
             $use_SSH = '1';
             $service_available = '1';
             $protocol = 'FTP-SSH';
             $port = $ServerSSH['Port'];
         }
-        elseif (($Capabilities->getAllowed('siteAdmin')) && ($user['site'] == '')) {
-            $service_available = '0';
-        }
-        elseif (($FTP_Available == '1') && (($Capabilities->getAllowed('siteAdmin')) || ($Vsite_FTP['enabled'] == '1'))) {
+        elseif ((($User_Shell['enabled'] == '0') && ($FTP_Available == '1')) && ($Capabilities->getAllowed('systemAdministrator'))) {
             $use_FTP = '1';
             $service_available = '1';
             $protocol = 'FTP';
             $port = '21';
+        }
+        elseif (($Capabilities->getAllowed('manageSite')) || ($Capabilities->getAllowed('adminUser'))) {
+            // Reseller access or access of Admins w/o 'systemAdministrator' flag not allowed:
+            $service_available = '0';
+        }
+        elseif ($Capabilities->getAllowed('siteAdmin')) {
+            $use_FTP = '1';
+            $service_available = '1';
+            $protocol = 'FTP';
+            $port = '21';
+        }
+        elseif (($FTP_Available == '1') && ($Vsite_FTP['enabled'] == '1')) {
+            $use_FTP = '1';
+            $service_available = '1';
+            $protocol = 'FTP';
+            $port = '21';
+        }
+        else {
+            $service_available = '0';
         }
 
         $ftplangs = array(
@@ -235,7 +258,7 @@ class Ftpclient extends MX_Controller {
         $BxPage->setErrors(array());
         $i18n = $factory->getI18n();
 
-        if ($user['capabilities'] == '') {
+        if (($user['capabilities'] == '') && (!$Capabilities->getAllowed('reseller'))) {
             unset($group);
         }
 
@@ -287,7 +310,7 @@ class Ftpclient extends MX_Controller {
                 //
 
                 if (isset($get_form_data['group'])) {
-                    $block->setSelf("/ftp/ftpclient?group=$group&fullscreen=1");
+                    $block->setSelf("/ftp/ftpclient?group=" . $get_form_data['group'] . "&fullscreen=1");
                 }
                 else {
                     $block->setSelf("/ftp/ftpclient?fullscreen=1");
