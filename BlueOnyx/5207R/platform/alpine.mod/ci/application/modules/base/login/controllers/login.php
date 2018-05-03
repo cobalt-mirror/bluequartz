@@ -3,9 +3,8 @@
 class Login extends MX_Controller {
 
     /**
-     * Index Page for this controller and principal login page to the GUI.
+     * Index Page for this controller.
      */
-
     // XSS cleaner. 
     //
     // Please note: The regexp are taken from basetypes.schema for the corresponding inputs and conform 
@@ -30,7 +29,7 @@ class Login extends MX_Controller {
             }
         }
         else {
-            return htmlspecialchars($data,ENT_QUOTES | ENT_HTML401,$encoding);
+            return htmlspecialchars($data,ENT_QUOTES,$encoding);
         }
     }
 
@@ -137,36 +136,27 @@ class Login extends MX_Controller {
             $skin = 'skin_light.css';
         }
 
-        // Get 'System' object
-        $system = $CI->cceClient->getObject('System');
-
         // Make sure we have $_SERVER['HTTP_HOST']:
         if (!isset($_SERVER['HTTP_HOST'])) {
-            if (filter_var($_SERVER['SERVER_NAME'], FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) { 
-                // SERVER_NAME is an IPv6 IP! Need to escape the IPv6 IP before using it in an URL:
-                $https_url = 'https://[' . $_SERVER['SERVER_NAME'] . ']:81/login';
-            } 
-            else { 
-                // SERVER_NAME is an IPv4 IP or FQDN, so we can use it directly:
-                $https_url = 'https://' . $_SERVER['SERVER_NAME'] . ':81/login';
-            }
+            $https_url = 'https://' . $_SERVER['SERVER_NAME'] . ':81/login';
             header("Location: $https_url");
             exit;
         }
 
         // Set page title:
         $i18n = new I18n("base-alpine", $locale);
-        $servername = $system['hostname'] . '.' . $system['domainname'];
+        preg_match("/^([^:]+)/", $_SERVER['HTTP_HOST'], $matches);
+        $hostname = $matches[0];
 
         // Strip out the :444 or :81 from the hostname - if present:
-        if (preg_match('/:/', $servername)) {
-            $hn_pieces = explode(":", $servername);
-            $servername = $hn_pieces[0];
+        if (preg_match('/:/', $hostname)) {
+            $hn_pieces = explode(":", $hostname);
+            $hostname = $hn_pieces[0];
         }
-        $page_title = $i18n->getHtml("loginPageTitle", "base-alpine", array("hostname" => $servername));
+        $page_title = $i18n->getHtml("loginPageTitle", "base-alpine", array("hostname" => $hostname));
 
         // I18n for our text elements on the login page:
-        $WelcomeMsg = $i18n->getHtml("login","base-alpine",array("hostname" =>$servername));
+        $WelcomeMsg = $i18n->getHtml("login","base-alpine",array("hostname" =>$hostname));
         $login_text = $i18n->getHtml("loginPageLogin");
         $Username =  $i18n->getHtml("loginPageUsername");
         $Password =  $i18n->getHtml("loginPagePassword");
@@ -177,6 +167,8 @@ class Login extends MX_Controller {
         $my_no = $i18n->getHtml("[[base-swupdate.no]]");
         $noJS = $i18n->getHtml("[[base-alpine.loginNoJsMessage]]");
 
+        // Get 'System' object
+        $system = $CI->cceClient->getObject('System');
         if ((!$system['isLicenseAccepted']) && ($wizard == FALSE)) {
             // Use default password, which we pull from the product name in base-alpine. Special case for Aventurin{e}: Strip '{' and '}' from the product name:
             $default_pass = strtolower($i18n->get("[[base-alpine.osName]]"));
@@ -203,6 +195,7 @@ class Login extends MX_Controller {
         if ((isset($system['GUIaccessType'])) && (isset($system['GUIredirects']))) {
           if ($system['GUIredirects'] == "1") {
             // Redirect to FQDN of the server:
+            $servername = $system['hostname'] . '.' . $system['domainname'];
             $http_url = 'http://' . $servername . ':444/login';
             $https_url = 'https://' . $servername . ':81/login';
             if ($servername != $_SERVER['SERVER_NAME']) {
@@ -216,17 +209,9 @@ class Login extends MX_Controller {
             }
           }
           else {
-            if (filter_var($_SERVER['SERVER_NAME'], FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) {
-                // SERVER_NAME is an IPv6 IP!
-                $http_url = 'http://[' . $_SERVER['SERVER_NAME'] . ']:444/login';
-                $https_url = 'https://[' . $_SERVER['SERVER_NAME'] . ']:81/login';
-            }
-            else {
-                $http_url = 'http://' . $_SERVER['SERVER_NAME'] . ':444/login';
-                $https_url = 'https://' . $_SERVER['SERVER_NAME'] . ':81/login';
-            }
+            $http_url = 'http://' . $_SERVER['SERVER_NAME'] . ':444/login';
+            $https_url = 'https://' . $_SERVER['SERVER_NAME'] . ':81/login';  
           }
-
           if ((is_HTTPS() == FALSE) && ($system['GUIaccessType'] == "HTTPS")) {
             header("Location: $https_url");
             exit;
@@ -351,13 +336,13 @@ class Login extends MX_Controller {
         // If we're already on HTTPS, show the correct buttons ticked. Additionally insert the right onClick() 
         // redirect URL for toggling between secureConnect on and off:
         if (is_HTTPS() == TRUE) {
-            $url = " onclick=\"document.location.href='" . $http_url . "'\"";
+            $url = " onclick=\"document.location.href='" . 'http://' . $_SERVER['SERVER_NAME'] . ':444/login' . "'\"";
             $secureConnect = "1";
             $sc_yes_selected = ' checked="checked"';
             $sc_no_selected = '';           
         }
         else {
-            $url = " onclick=\"document.location.href='" . $https_url . "'\"";  
+            $url = " onclick=\"document.location.href='" . 'https://' . $_SERVER['SERVER_NAME'] . ':81/login' . "'\"";  
             $secureConnect = "0";
             $sc_yes_selected = '';
             $sc_no_selected = ' checked="checked"';
@@ -518,8 +503,8 @@ class Login extends MX_Controller {
               }
 
               // Send cookies that expire at end of the browser session. 
-              $this->load->library('encrypt');
-              $encrypted_string = $this->encrypt->encode($form_data['password_field']);
+              $this->load->library('encrypt'); 
+              $encrypted_string = $this->encrypt->encode($form_data['password_field']); 
               setcookie("XSSkey", $encrypted_string, "0", "/");
               setcookie("loginName", $form_data['username_field'], time()+60*60*24*365, "/");
               setcookie("sessionId", $sessionId, "0", "/");
@@ -583,11 +568,11 @@ class Login extends MX_Controller {
 
               // Redirect to the SSL port:
               if ((set_value('secureConnect') == "1") && ($_SERVER['SERVER_PORT'] != '81')) {
-                  header("Location: https://$servername:81/usessl/true");
+                  header("Location: https://$hostname:81/usessl/true");
                   exit;
               }
               if ((set_value('secureConnect') == "0") && ($_SERVER['SERVER_PORT'] != '444')) {
-                  header("Location: http://$servername:444/usessl/false");
+                  header("Location: http://$hostname:444/usessl/false");
                   exit;
               }
 
