@@ -79,6 +79,11 @@ if [ -d "/usr/sausalito/yumcce" ];then
   touch /usr/sausalito/yumcce/restart
 fi 
 
+# Restart AdmServ on upgrades:
+if [ $1 = 2 ]; then
+    systemctl restart admserv 2> /dev/null || :
+fi
+
 # Disabled for now. Reactivate on config changes:
 #
 #if [ $1 = 2 ]; then
@@ -139,6 +144,9 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Wed May 02 2018 Michael Stauber <mstauber@solarspeed.net> 1.5.0-0BX02
+- Added AdmServ restart.
 
 * Wed May 02 2018 Michael Stauber <mstauber@solarspeed.net> 1.5.0-0BX01
 - Added net2ftp support to the GUI.
