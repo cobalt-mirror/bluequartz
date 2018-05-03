@@ -239,3 +239,19 @@ msgstr "Enable FTPS"
 msgid "enableSFTPserverField_help"
 msgstr "Turn FTPS (FTP with SSL/TLS) functionality on or off. FTPS runs on port 990/TCP and allows a secure connection to the FTP server. It should be the preferred method for connecting to FTP. FTP clients should use 'explicit FTP over TLS' to be able to make use of this feature."
 
+#
+### Net2FTP:
+#
+
+msgid "connect"
+msgstr "File Manager"
+
+msgid "connect_help"
+msgstr "This page allows you to upload, download and manage files via FTP or SSH if these features are enabled for your account."
+
+msgid "service_disabled"
+msgstr "Sorry, your account does not have FTP or Shell access enabled."
+
+msgid "info_text"
+msgstr "The File Manager will open in a new browser window. Please make sure your browser allows pop-ups from this domain."
+

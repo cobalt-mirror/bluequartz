@@ -318,3 +318,21 @@ msgstr ""
 "report del utilizzo del server FTP. Senza questa funzionalita', solo gli "
 "indirizzi IP dei client vengono salvati nei report. ATTENZIONE: abilitando "
 "questa funzione il server potrebbe calare nelle prestazioni."
+
+
+#
+### Net2FTP:
+#
+
+msgid "connect"
+msgstr "File Manager"
+
+msgid "connect_help"
+msgstr "Questa pagina permette di caricare, scaricare e gestire i file via FTP o SSH se queste funzioni sono abilitate per il tuo account."
+
+msgid "service_disabled"
+msgstr "Spiacenti, il tuo account non ha accesso FTP o Shell abilitato."
+
+msgid "info_text"
+msgstr "Si aprirà File Manager in una nuova finestra del browser. Assicurati che il tuo browser consenta i pop-up da questo dominio."
+

@@ -81,6 +81,12 @@ if [ -d "/usr/sausalito/yumcce" ];then
   touch /usr/sausalito/yumcce/restart
 fi 
 
+# Restart AdmServ on upgrades:
+if [ $1 = 2 ]; then
+    /sbin/service admserv restart 2> /dev/null || :
+fi
+
+
 # Disabled for now. Reactivate on config changes:
 #
 #if [ $1 = 2 ]; then
@@ -147,6 +153,9 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Thu May 03 2018 Michael Stauber <mstauber@solarspeed.net> 1.3.2-0BX01
+- Backported net2ftp support from 5209R
 
 * Wed Feb 22 2017 Michael Stauber <mstauber@solarspeed.net> 1.3.1-0BX16
 - Adjusted Extensions and Controllers for base-alpine 2.0

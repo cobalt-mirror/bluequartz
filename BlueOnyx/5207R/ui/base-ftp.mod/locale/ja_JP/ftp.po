@@ -248,3 +248,21 @@ msgid "enableSFTPserverField_help"
 msgstr "FTPS（FTP with SSL/TLS）機能をオンにします。 FTPSは、ポート990/TCP上で動作し、FTPサーバへの安全な"
 "接続を可能にします。これは、FTPに接続するための好ましい方法です。 FTPクライアントは、この機能を利用する"
 "ことができるように 'FTP over TLS'を使用する必要があります。"
+
+
+#
+### Net2FTP:
+#
+
+msgid "connect"
+msgstr "ファイルマネージャー"
+
+msgid "connect_help"
+msgstr "このページでは、FTPやSSH経由でファイルをアップロード、ダウンロード、管理することができます（これらの機能がアカウントで有効になっている場合）。"
+
+msgid "service_disabled"
+msgstr "申し訳ありませんが、あなたのアカウントにはFTPまたはシェルアクセスが有効になっていません。"
+
+msgid "info_text"
+msgstr "ファイルマネージャが新しいブラウザウィンドウで開きます。 ブラウザがこのドメインのポップアップを許可していることを確認してください。"
+
