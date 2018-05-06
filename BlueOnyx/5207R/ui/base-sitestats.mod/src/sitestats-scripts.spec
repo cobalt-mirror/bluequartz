@@ -1,14 +1,14 @@
 Summary: Server and site statistics for web, ftp, email, and network traffic
 Name: base-sitestats-scripts
 Version: 2.1
-Release: 1BX01%{?dist}
+Release: 1BX02%{?dist}
 Vendor: Project BlueOnyx
 License: Sun modified BSD
 Group: System Environment/BlueOnax
 Source: sitestats-scripts.tar.gz
 BuildRoot: /tmp/sitestats-scripts
 BuildArchitectures: noarch
-Requires: webalizer, tmpwatch, httpd
+Requires: webalizer, tmpwatch, httpd, python-argparse
 
 %description
 This package contains the scripts for processing logfiles
@@ -95,6 +95,9 @@ if [ -f /etc/logrotate.conf ];then
 fi
 
 %changelog
+
+* Sat Apr 28 2018 Michael Stauber <mstauber@solarspeed.net> 2.1-1BX02
+- Added requirement for python-argparse
 
 * Sat Apr 28 2018 Michael Stauber <mstauber@solarspeed.net> 2.1-1BX01
 - Added anonip.py
