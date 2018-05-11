@@ -221,6 +221,9 @@ fi
 
 %changelog
 
+* Fri May 11 2018 Michael Stauber <mstauber@solarspeed.net> 0.99.3-1BX03
+- CentOS 7.5 version number bump
+
 * Sun Nov 05 2017 Michael Stauber <mstauber@solarspeed.net> 0.99.3-1BX02
 - Modified client/perl/CCE.pm to replace 'set' with 'update'. It works
   and it's considerably faster.
