@@ -41,7 +41,7 @@ information for [VENDOR]-[SERVICE].
 
 <begin glue>
 %config /etc/rc.d/init.d/*
-%config /etc/logrotate.d/admserv
+%config %attr(644,root,-) /etc/logrotate.d/admserv
 /etc/admserv
 /usr/sbin/httpd.admsrv
 /var/log/admserv
@@ -163,6 +163,9 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Mon May 14 2018 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX35
+- Fixed permissions of /etc/logrotate.d/admserv
 
 * Wed Mar 14 2018 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX34
 - Modified glue/etc/logrotate.d/admserv to only keep 14 days of logs.
