@@ -40,7 +40,7 @@ information for [VENDOR]-[SERVICE].
 
 <begin glue>
 %config /etc/rc.d/init.d/*
-%config /etc/logrotate.d/admserv
+%config %attr(644,root,-) /etc/logrotate.d/admserv
 /etc/admserv
 /usr/sbin/httpd.admsrv
 /var/log/admserv
