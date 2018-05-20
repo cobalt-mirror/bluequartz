@@ -179,6 +179,9 @@ if ($oids[0]) {
     $cce->update($oids[0], '', { 'locales' => $available_langs });
 }
 
+$serverName = $myhost . '.' . $mydomain;
+system("/usr/bin/hostnamectl set-hostname $serverName");
+
 $cce->bye();
 exit($errors);
 
