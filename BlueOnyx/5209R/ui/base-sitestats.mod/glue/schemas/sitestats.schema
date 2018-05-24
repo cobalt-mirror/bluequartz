@@ -38,6 +38,7 @@
 	 readacl="ruleAll" writeacl="ruleAll"/>
 
 	 <!-- Handle expiry of archived personal data -->
+	<property name="rotate" type="int" default="14" writeacl="ruleCapable(adminUser)"/>
 	<property name="internal" type="scalar" default="0" writeacl="ruleCapable(adminUser)"/>
 	<property name="webalizer" type="scalar" default="0" writeacl="ruleCapable(adminUser)"/>
 	<property name="awstats" type="scalar" default="0" writeacl="ruleCapable(adminUser)"/>
