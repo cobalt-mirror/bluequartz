@@ -69,6 +69,41 @@ class Logconfig extends MX_Controller {
                 '5year' =>      1827,
                 );
 
+        $rotateMap = array(
+                '1' =>          1,
+                '2' =>          2,
+                '3' =>          3,
+                '4' =>          4,
+                '5' =>          5,
+                '6' =>          6,
+                '7' =>          7,
+                '8' =>          8,
+                '9' =>          9,
+                '10' =>         10,
+                '11' =>         11,
+                '12' =>         12,
+                '13' =>         13,
+                '14' =>         14,
+                '15' =>         15,
+                '16' =>         16,
+                '17' =>         17,
+                '18' =>         18,
+                '19' =>         19,
+                '20' =>         20,
+                '21' =>         21,
+                '22' =>         22,
+                '23' =>         23,
+                '24' =>         24,
+                '25' =>         25,
+                '26' =>         26,
+                '27' =>         27,
+                '28' =>         28,
+                '29' =>         29,
+                '30' =>         30,
+                '60' =>         60,
+                '90' =>         90
+                );
+
         //
         //--- Handle form validation:
         //
@@ -136,6 +171,16 @@ class Logconfig extends MX_Controller {
         if ((count($errors) == "0") && ($CI->input->post(NULL, TRUE))) {
 
             $settings = array();
+            $Logrotate_purge = $attributes['GlobalLogRotate'];
+            $settings['rotate'] = $rotateMap[$Logrotate_purge];
+
+            if (!isset($settings['rotate'])) {
+                $settings['rotate'] = '14';
+            }
+            if ($settings['rotate'] == '0') {
+                $settings['rotate'] = '14';
+            }
+
             $Sitestats_purge = $attributes['GlobalSitestatsPurge'];
             $settings['purge'] = $purgeMap[$Sitestats_purge];
 
@@ -166,6 +211,7 @@ class Logconfig extends MX_Controller {
 
             // Actual submit to CODB:
             $CI->cceClient->setObject('System', array(
+                                                        'rotate' => $settings['rotate'], 
                                                         'purge' => $settings['purge'], 
                                                         'internal' => $internal, 
                                                         'webalizer' => $webalizer, 
@@ -241,6 +287,24 @@ class Logconfig extends MX_Controller {
                 $factory->getLabel("DIV_USAGE_INFORMATION", false),
                 $defaultPage
                 );
+
+        // Yet again:
+        $rotateLabels = array_keys($rotateMap);
+        $rotateDays = array_values($rotateMap);
+        $revrotateMap = array_flip($rotateMap);
+
+        // Some cleanup logic. It can be that $CODBDATA['purge'] is not
+        // set or set to something not matching our $revMap. In that case
+        // we need to set a default:
+        if (!array_key_exists($CODBDATA['rotate'], $revrotateMap)) {
+            $CODBDATA['rotate'] = '14';
+        }
+
+        $rotateSelect = $factory->getMultiChoice('GlobalLogRotate', $rotateLabels, array($revrotateMap[$CODBDATA['rotate']]), 'rw');
+        $rotateSelect->setSelected($revrotateMap[$CODBDATA['rotate']], true);
+
+        $block->addFormField($rotateSelect, $factory->getLabel("GlobalLogRotate"), $defaultPage);
+        $block->addFormField($factory->getTextField('save', 1, ''));
 
         // Yet again:
         $purgeLabels = array_keys($purgeMap);

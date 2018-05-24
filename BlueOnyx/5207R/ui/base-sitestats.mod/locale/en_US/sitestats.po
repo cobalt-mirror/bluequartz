@@ -603,3 +603,12 @@ msgstr "Purge SendmailAnalyzer"
 msgid "sendmailanalyzer_help"
 msgstr "If this checkbox is ticked, the SendmailAnalyzer data directory will be purged and all aggregated SendmailAnalyzer statistics will be deleted. This cannot be undone."
 
+# Second round of GDPR additions:
+
+msgid "GlobalLogRotate"
+msgstr "Server Logfile Retention"
+
+msgid "GlobalLogRotate_help"
+msgstr "This entry specifies how long server logfiles are retained. It defaults to keeping 14 days of logfiles. Logfiles older than that are expired automatically by Logrotate."
+
+

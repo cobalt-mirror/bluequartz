@@ -618,3 +618,10 @@ msgstr "パージSendmailAnalyzer"
 msgid "sendmailanalyzer_help"
 msgstr "このチェックボックスをオンにすると、SendmailAnalyzerデータディレクトリが削除され、すべてのSendmailAnalyzer統計情報が削除されます。元に戻すことはできません。"
 
+# Second round of GDPR additions:
+
+msgid "GlobalLogRotate"
+msgstr "サーバーログファイルの保持"
+
+msgid "GlobalLogRotate_help"
+msgstr "このエントリは、サーバーログファイルの保存期間を指定します。 デフォルトでは、14日間のログファイルが保存されます。 それより古いログファイルはLogrotateによって自動的に期限切れになります。"

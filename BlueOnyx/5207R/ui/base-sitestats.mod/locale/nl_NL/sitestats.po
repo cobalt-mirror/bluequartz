@@ -603,3 +603,11 @@ msgstr "Spoel SendmailAnalyzer"
 msgid "sendmailanalyzer_help"
 msgstr "Als dit selectievakje is aangevinkt, wordt de SendmailAnalyzer-gegevensmap gewist en worden alle geaggregeerde SendmailAnalyzer-statistieken verwijderd. Dit kan niet ongedaan worden gemaakt."
 
+# Second round of GDPR additions:
+
+msgid "GlobalLogRotate"
+msgstr "Server Logfile Retention"
+
+msgid "GlobalLogRotate_help"
+msgstr "Dit item specificeert hoe lang server logbestanden worden bewaard. Het is standaard ingesteld op het bijhouden van 14 dagen logbestanden. Logbestanden die ouder zijn dan dat, worden automatisch verlopen door Logrotate."
+

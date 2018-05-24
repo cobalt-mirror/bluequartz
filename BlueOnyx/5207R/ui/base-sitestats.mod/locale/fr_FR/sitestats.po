@@ -616,3 +616,10 @@ msgstr "Purge SendmailAnalyzer"
 msgid "sendmailanalyzer_help"
 msgstr "Si cette case est cochée, le répertoire de données de SendmailAnalyzer sera purgé et toutes les statistiques agrégées de SendmailAnalyzer seront supprimées. Cela ne peut pas être défait."
 
+# Second round of GDPR additions:
+
+msgid "GlobalLogRotate"
+msgstr "Conservation des fichiers journaux du serveur"
+
+msgid "GlobalLogRotate_help"
+msgstr "Cette entrée spécifie la durée de conservation des fichiers journaux du serveur. Par défaut, il conserve 14 jours de fichiers journaux. Les fichiers journaux plus anciens sont automatiquement expirés par Logrotate."
