@@ -604,3 +604,10 @@ msgstr "Spurgo SendmailAnalyzer"
 msgid "sendmailanalyzer_help"
 msgstr "Se si seleziona questa casella di controllo, la directory dei dati SendmailAnalyzer verrà eliminata e tutte le statistiche aggregate di SendmailAnalyzer verranno eliminate. Questo non può essere annullato."
 
+# Second round of GDPR additions:
+
+msgid "GlobalLogRotate"
+msgstr "Conservazione del file di registro del server"
+
+msgid "GlobalLogRotate_help"
+msgstr "Questa voce specifica per quanto tempo i file di log del server vengono conservati. Per impostazione predefinita, la conservazione dei file di log deve durare 14 giorni. I file di registro più vecchi di quelli scaduti vengono automaticamente ruotati da Logrotate."

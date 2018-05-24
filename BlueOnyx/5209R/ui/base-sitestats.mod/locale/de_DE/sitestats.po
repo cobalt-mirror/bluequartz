@@ -606,3 +606,10 @@ msgstr "SendmailAnalyzer zurücksetzen"
 msgid "sendmailanalyzer_help"
 msgstr "Wenn dieses Kontrollkästchen markiert wird, so werden die SendmailAnalyzer-Statistiken aller Virtuellen Sites komplett gelöscht. Dieser Schritt kann nicht rückgängig gemacht werden."
 
+# Second round of GDPR additions:
+
+msgid "GlobalLogRotate"
+msgstr "Aufbewahrung von Server-Logdateien"
+
+msgid "GlobalLogRotate_help"
+msgstr "Dieser Eintrag gibt an, wie lange Server-Logfiles in /var/log/ aufbewahrt werden. Standardmäßig werden 14 Tage Logfiles gespeichert. Logdateien, die älter als diese sind, werden von Logrotate automatisch gelöscht."

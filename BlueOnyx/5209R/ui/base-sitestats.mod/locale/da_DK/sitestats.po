@@ -686,3 +686,10 @@ msgstr "Rens SendmailAnalyzer"
 msgid "sendmailanalyzer_help"
 msgstr "Hvis dette afkrydsningsfelt er markeret, bliver SendmailAnalyzer datakataloget renset og alle aggregerede SendmailAnalyzer statistikker slettes. Dette kan ikke fortrydes."
 
+# Second round of GDPR additions:
+
+msgid "GlobalLogRotate"
+msgstr "Aufbewahrung von Server-Logdateien"
+
+msgid "GlobalLogRotate_help"
+msgstr "Denne post angiver, hvor længe serverlogfiler beholdes. Det er som standard at holde 14 dages logfiler. Logfiler ældre end det udløber automatisk af Logrotate."
