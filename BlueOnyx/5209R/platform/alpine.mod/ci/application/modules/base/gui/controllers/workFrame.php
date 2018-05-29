@@ -152,58 +152,84 @@ class WorkFrame extends MX_Controller {
         // If there are no more replays in the file after this, then we insert the header to redirect back to our desired URL:
 
         // Puzzle the redirect URL together:
-        if ($redirectType == 'ipv4') {
-            $our_redirect_URL = $redirectUrl;
-            $NIC = $CI->cceClient->getObject('Network', array('device' => 'eth0'));
-            if (isset($NIC['ipaddr'])) {
-                if (is_HTTPS() == FALSE) {
-                    $our_redirect_URL = 'http://' . $NIC['ipaddr'] . ':444' . $redirectUrl;
-                    $shorty = 'http://' . $NIC['ipaddr'] . ':444';
-                }
-                else {
-                    $our_redirect_URL = 'https://' . $NIC['ipaddr'] . ':81' . $redirectUrl;
-                    $shorty = 'https://' . $NIC['ipaddr'] . ':81';
-                }
-            }
-            else {
-                // Fallback:
-                $our_redirect_URL = $redirectUrl;
-            }
-        }
-        elseif ($redirectType == 'ipv6') {
-            $our_redirect_URL = $redirectUrl;
-            $NIC = $CI->cceClient->getObject('Network', array('device' => 'eth0'));
-            if (isset($NIC['ipaddr_IPv6'])) {
-                if (is_HTTPS() == FALSE) {
-                    $our_redirect_URL = 'http://[' . $NIC['ipaddr_IPv6'] . ']:444' . $redirectUrl;
-                    $shorty = 'http://[' . $NIC['ipaddr_IPv6'] . ']:444';
-                }
-                else {
-                    $our_redirect_URL = 'https://[' . $NIC['ipaddr_IPv6'] . ']:81' . $redirectUrl;
-                    $shorty = 'https://[' . $NIC['ipaddr_IPv6'] . ']:81';
-                }
-            }
-            else {
-                // Fallback:
-                $our_redirect_URL = $redirectUrl;
-            }
-        }
-        elseif (($redirectType == 'hn') || ($redirectType == 'standard')) {
-            $our_redirect_URL = $redirectUrl;
-            $servername = $system['hostname'] . '.' . $system['domainname'];
-            if (is_HTTPS() == FALSE) {
-                $our_redirect_URL = 'http://' . $servername . ':444' . $redirectUrl;
-                $shorty = 'http://' . $servername . ':444';
-            }
-            else {
-                $our_redirect_URL = 'https://' . $servername . ':81' . $redirectUrl;
-                $shorty = 'https://' . $servername . ':81';
-            }
+        //if ($redirectType == 'ipv4') {
+        //    $our_redirect_URL = $redirectUrl;
+        //    $NIC = $CI->cceClient->getObject('Network', array('device' => 'eth0'));
+        //    if (isset($NIC['ipaddr'])) {
+        //        if (is_HTTPS() == FALSE) {
+        //            $our_redirect_URL = 'http://' . $NIC['ipaddr'] . ':444' . $redirectUrl;
+        //            $shorty = 'http://' . $NIC['ipaddr'] . ':444';
+        //        }
+        //        else {
+        //            $our_redirect_URL = 'https://' . $NIC['ipaddr'] . ':81' . $redirectUrl;
+        //            $shorty = 'https://' . $NIC['ipaddr'] . ':81';
+        //        }
+        //    }
+        //    else {
+        //        // Fallback:
+        //        $our_redirect_URL = $redirectUrl;
+        //    }
+        //}
+        //elseif ($redirectType == 'ipv6') {
+        //    $our_redirect_URL = $redirectUrl;
+        //    $NIC = $CI->cceClient->getObject('Network', array('device' => 'eth0'));
+        //    if (isset($NIC['ipaddr_IPv6'])) {
+        //        if (is_HTTPS() == FALSE) {
+        //            $our_redirect_URL = 'http://[' . $NIC['ipaddr_IPv6'] . ']:444' . $redirectUrl;
+        //            $shorty = 'http://[' . $NIC['ipaddr_IPv6'] . ']:444';
+        //        }
+        //        else {
+        //            $our_redirect_URL = 'https://[' . $NIC['ipaddr_IPv6'] . ']:81' . $redirectUrl;
+        //            $shorty = 'https://[' . $NIC['ipaddr_IPv6'] . ']:81';
+        //        }
+        //    }
+        //    else {
+        //        // Fallback:
+        //        $our_redirect_URL = $redirectUrl;
+        //    }
+        //}
+        //elseif (($redirectType == 'hn') || ($redirectType == 'standard')) {
+        //    $our_redirect_URL = $redirectUrl;
+        //    $servername = $system['hostname'] . '.' . $system['domainname'];
+        //    if (is_HTTPS() == FALSE) {
+        //        $our_redirect_URL = 'http://' . $servername . ':444' . $redirectUrl;
+        //        $shorty = 'http://' . $servername . ':444';
+        //    }
+        //    else {
+        //        $our_redirect_URL = 'https://' . $servername . ':81' . $redirectUrl;
+        //        $shorty = 'https://' . $servername . ':81';
+        //    }
+        //}
+        //else {
+        //    // Default:
+        //    $our_redirect_URL = $redirectUrl;
+        //}
+
+        // New attempt:
+        $servername = $system['hostname'] . '.' . $system['domainname'];
+        $http_server_name = $_SERVER['SERVER_NAME'];
+        $http_server_name = preg_replace('/\[/', '', $http_server_name);
+        $http_server_name = preg_replace('/\]/', '', $http_server_name);
+
+        if ((filter_var($http_server_name, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) || (filter_var($http_server_name, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4))) {
+            // We're here by IP:
+            $target_hn_or_ip = $http_server_name;
         }
         else {
-            // Default:
-            $our_redirect_URL = $redirectUrl;
+            $target_hn_or_ip = $servername;
         }
+
+        if (is_HTTPS() == FALSE) {
+            $shorty = 'http://' . $target_hn_or_ip . ':444';
+            $our_redirect_URL = 'http://' . $target_hn_or_ip . ':444' . $redirectUrl;
+        }
+        else {
+            $shorty = 'https://' . $target_hn_or_ip . ':81';
+            $our_redirect_URL = 'https://' . $target_hn_or_ip . ':81' . $redirectUrl;
+        }
+
+        error_log("shorty: " . $shorty);
+        error_log("our_redirect_URL: " . $our_redirect_URL);
 
         $num_of_trans = $CI->cceClient->replayStatus();
         if (($num_of_trans <= '0') || (($ReplayType == 'full') && ($statusId == '2'))) {
