@@ -303,19 +303,9 @@ class Ethernet extends MX_Controller {
                     error_log("Redirect-Check: IPv4 possible");
                 }
                 else {
-                    if (($eth0_ipaddr == '' ) && ($eth0_ipaddr_IPV6 != '' )) {
-                        $targetProto = 'ipv6';
-                        error_log("Redirect-Check: IPv4 disabled, IPv6 possible, using IPv6");
-                    }
-                    elseif (($eth0_ipaddr_IPV6 == '' ) && ($eth0_ipaddr != '' )) {
-                        $targetProto = 'ipv4';
-                        error_log("Redirect-Check: IPv6 disabled, IPv4 possible, using IPv4");
-                    }
-                    else {
-                        // GUI is currently accessed via FQDN:
-                        error_log("Redirect-Check: Using 'standard'");
-                        $targetProto = 'standard';
-                    }
+                    // GUI is currently accessed via FQDN:
+                    error_log("Redirect-Check: Using 'standard'");
+                    $targetProto = 'standard';
                 }
             
                 if (!isset($ReplayType)) {
