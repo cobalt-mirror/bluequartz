@@ -50,6 +50,18 @@ if ((($system->{IPType} ne 'IPv6') && ($system->{IPType} ne 'BOTH') && ($system-
     exit(1);
 }
 
+if ((($system->{IPType} eq 'VZv4') || ($system->{IPType} eq 'IPv4')) && ($vsite_new->{ipaddr} eq '')) {
+    $cce->bye('FAIL', "[[base-vsite.IPValidation_ip_must_be_specified,fqdn='$vsite_old->{fqdn}']]");
+    &debug_msg("Fail: IPv4 IP Address empty and IPv6 IP empty. At least one must be set!\n");
+    exit(1);
+}
+
+if ((($system->{IPType} eq 'VZv6') || ($system->{IPType} eq 'IPv6')) && ($vsite_new->{ipaddrIPv6} eq '')) {
+    $cce->bye('FAIL', "[[base-vsite.IPValidation_ip_must_be_specified,fqdn='$vsite_old->{fqdn}']]");
+    &debug_msg("Fail: IPv4 IP Address empty and IPv6 IP empty. At least one must be set!\n");
+    exit(1);
+}
+
 if ((defined $vsite->{ipaddr}) || (defined $vsite->{ipaddrIPv6})) {
     &debug_msg("WARN: IP address change registered!\n");
 
@@ -80,6 +92,9 @@ if ((defined $vsite->{ipaddr}) || (defined $vsite->{ipaddrIPv6})) {
             exit(1);
         }
     }
+}
+else {
+    &debug_msg("WARN: Inside last 'else': IP address change registered!\n");
 }
 
 $cce->bye('SUCCESS');

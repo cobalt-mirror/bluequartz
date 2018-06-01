@@ -402,7 +402,12 @@ class vsiteMod extends MX_Controller {
 
         // IPv4 IP Address
         if ($show_IPv4) {
-            $ip_address->setOptional(TRUE);
+            if (in_array($system['IPType'], array('BOTH', 'VZBOTH'))) {
+                $ip_address->setOptional(TRUE);
+            }
+            else {
+                $ip_address->setOptional(FALSE);
+            }
             $block->addFormField(
                     $ip_address,
                     $factory->getLabel("ipAddr"),
@@ -435,7 +440,12 @@ class vsiteMod extends MX_Controller {
         // IPv6 IP Address, without ranges
         if ($show_IPv6) {
             $ipv6_address->setType("ipaddrIPv6");
-            $ipv6_address->setOptional(TRUE);
+            if (in_array($system['IPType'], array('BOTH', 'VZBOTH'))) {
+                $ipv6_address->setOptional(TRUE);
+            }
+            else {
+                $ipv6_address->setOptional(FALSE);
+            }
             $block->addFormField(
                     $ipv6_address,
                     $factory->getLabel("ipaddrIPv6"),
