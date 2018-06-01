@@ -60,6 +60,11 @@ else {
     $cce->connectfd();
 }
 
+####
+#    $cce->bye('SUCCESS');
+#    exit(0);
+####
+
 my $eo = $cce->event_object();
 my $eo_new = $cce->event_new();
 my $eo_old = $cce->event_old();
@@ -126,12 +131,14 @@ else {
     $pingTarget = "8.8.8.8";
 }
 
+&debug_msg("IPType: " . $System->{IPType} . "\n");
+
 # Get existing IPv6 default route:
 @ipv6_default_routes = split (/\n/, `LC_ALL=C /sbin/ip -6 route show default|awk -F "default via " '{print \$2}'|awk -F " dev" '{print \$1}'`);
 
 # Apply default IPv6 route in case we have IPv6:
 if (($System->{IPType} eq 'IPv6') || ($System->{IPType} eq 'BOTH') || ($System->{IPType} eq 'VZv6') || ($System->{IPType} eq 'VZBOTH')) {
-    $ovz6_def_route = `/sbin/ip -6 route show default|grep "^default dev venet0 metric 1 mtu 1500 hoplimit 255"|wc -l`;
+    $ovz6_def_route = `/sbin/ip -6 route show default|grep "^default dev venet0 metric 1 mtu 1500"|wc -l`;
     chomp($ovz6_def_route);
     if ((in_array(\@ipv6_default_routes, $gateway_IPv6)) || ($ovz6_def_route eq "1")) {
         # IPv6 default route already present.
@@ -139,7 +146,7 @@ if (($System->{IPType} eq 'IPv6') || ($System->{IPType} eq 'BOTH') || ($System->
     }
     else {
         if (($System->{IPType} eq 'VZv6') || ($System->{IPType} eq 'VZBOTH')) {
-            &debug_msg("Running: Adding default OpenVZ IPv6 route: /sbin/ip -6 route add default dev venet0 metric 1 mtu 1500 hoplimit 255\n");
+            &debug_msg("Running: Adding default OpenVZ IPv6 route: /sbin/ip -6 route add default dev venet0 metric 1 mtu 1500\n");
             system("/sbin/ip -6 route add default dev venet0 metric 1 mtu 1500 hoplimit 255");
         }
         else {
@@ -204,13 +211,14 @@ if ($ipv4_ip ne "") {
         &debug_msg("Route for primary IPv4 IP $ipv4_ip already exists.\n");
     }
     else {
-        &debug_msg("/sbin/ip route add " . $ipv4_ip. "/255.255.255.255 dev $device\n");
-        system("/sbin/ip route add " . $ipv4_ip. "/255.255.255.255 dev $device");
+        # We don't do this as this might cause outgoing traffic to flow through a random extra-IP.
+        #&debug_msg("/sbin/ip route add " . $ipv4_ip. "/255.255.255.255 dev $device\n");
+        #system("/sbin/ip route add " . $ipv4_ip. "/255.255.255.255 dev $device");
     }
     # Make sure we have the default route:
     $gw_defaut_ipv4_route = `/sbin/ip route show default | awk '/default/ {print \$3}'`;
     chomp($gw_defaut_ipv4_route);
-    if ($System->{gateway} ne $gw_defaut_ipv4_route) {
+    if (($System->{gateway} ne $gw_defaut_ipv4_route) && ($gw_defaut_ipv4_route ne 'venet0')) {
         &debug_msg("Default IPv4 route ($gw_defaut_ipv4_route - $System->{gateway}) is missing. Adding it: /sbin/ip route add default via " . $System->{gateway} . "\n");
         system("/sbin/ip route add default via " . $System->{gateway});
     }
@@ -227,23 +235,24 @@ if ($ipv6_ip ne "") {
     }
 }
 
-# Optional extra routes for IPv4 extra-IPs:
+# Extra routes for IPv4 extra-IPs:
 # 
 # Please note:
 #
 # We already *do* have netroutes that cover each and any extra-IPv4. So making these
-# <extra-IP>/255.255.255.255 routes as well seems to cause more grief than it is worth.
-# In fact it might also contribute to the issue that outgoing IPv4 traffic is occasionally
-# being sent from these alias-IPs. Hence we now make this optional with the default being
-# we do NOT create these rules. Unles the file /etc/sysconfig/ipv4_extra_routes is present.
+# <extra-IP>/255.255.255.255 routes as well servers the purpose to nail outgoing traffic
+# down to the primary IP. Unles the file /etc/sysconfig/ipv4_extra_routes is present.
 #
-if ( -f '/etc/sysconfig/ipv4_extra_routes' ) {
-    if (($System->{IPType} eq 'IPv4') || ($System->{IPType} eq 'BOTH') || ($System->{IPType} eq 'VZv4') || ($System->{IPType} eq 'VZBOTH')) {
+if ( !-f '/etc/sysconfig/ipv4_extra_routes' ) {
+    #if (($System->{IPType} eq 'IPv4') || ($System->{IPType} eq 'BOTH') || ($System->{IPType} eq 'VZv4') || ($System->{IPType} eq 'VZBOTH')) {
+    if (($System->{IPType} eq 'IPv4') || ($System->{IPType} eq 'BOTH')) {
         if ($System->{extra_ipaddr}) {
             @extra_ipaddr = $cce->scalar_to_array($System->{extra_ipaddr});
             #if ($ipv4_ip ne '') {
             #    push (@extra_ipaddr, $ipv4_ip);
             #}
+            #@extra_ipaddr = grep {!/^$ipv4_ip$/} @extra_ipaddr;
+
             foreach my $ip_extra (@extra_ipaddr) {
                 #&debug_msg("Running: Found extra IPv4 IP: $ip_extra ");
                 if (in_array(\@arr_assigned_ipv4, $ip_extra)) {
@@ -395,8 +404,9 @@ if ((-e "/proc/user_beancounters") && (! -f "/etc/vz/conf/0.conf")) {
     if ((!$my_gateway) || (!$my_gatewaydev)) {
         # At least either GATEWAY or GATEWAYDEV are undefined. Test network connectivity
         # to see if we can establish a network connection to the outside:
+        &debug_msg("Preparing to ping $pingTarget\n");
         $test2 = &pingtest($pingTarget);
-        &debug_msg("Ping-Test2: $test2\n");
+        &debug_msg("Ping-Test: $test2 (0 = OK | 1 = FAIL)\n");
         if (test2 eq "1") {
             # Network is dead. We need to fix it.
 
@@ -440,10 +450,12 @@ exit(0);
 sub pingtest($$) {
     my ($ping) = @_;
     if (($System->{IPType} eq 'IPv6') || ($System->{IPType} eq 'VZv6')) {
+        #&debug_msg("sprintf(\"ping6 -q -w 3 -c 1 \%s >/dev/null\", $ping)\n");
         system(sprintf("ping6 -q -w 3 -c 1 %s >/dev/null", $ping));
     }
     else {
-        system(sprintf("ping -q -w 3-c 1 %s >/dev/null", $ping));
+        #&debug_msg("sprintf(\"ping -q -w 3 -c 1 \%s >/dev/null\", $ping)\n");
+        system(sprintf("ping -q -w 3 -c 1 %s >/dev/null", $ping));
     }
     $retcode = $? >> 8;
     # ping returns 1 if unable to connect
