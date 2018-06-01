@@ -62,6 +62,12 @@ if ((($system->{IPType} eq 'VZv6') || ($system->{IPType} eq 'IPv6')) && ($vsite_
     exit(1);
 }
 
+if ((($system->{IPType} eq 'VZBOTH') || ($system->{IPType} eq 'BOTH')) && (($vsite_new->{ipaddr} eq '') && ($vsite_new->{ipaddrIPv6} eq ''))) {
+    $cce->bye('FAIL', "[[base-vsite.IPValidation_ip_must_be_specified,fqdn='$vsite_old->{fqdn}']]");
+    &debug_msg("Fail: IPv4 IP Address empty and IPv6 IP empty. At least one must be set!\n");
+    exit(1);
+}
+
 if ((defined $vsite->{ipaddr}) || (defined $vsite->{ipaddrIPv6})) {
     &debug_msg("WARN: IP address change registered!\n");
 
