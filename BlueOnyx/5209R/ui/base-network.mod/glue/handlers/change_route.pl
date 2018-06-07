@@ -326,8 +326,14 @@ foreach my $netroute (@unique_netroutes) {
     }
     else {
         if (($System->{IPType} eq 'IPv4') || ($System->{IPType} eq 'BOTH') || ($System->{IPType} eq 'VZv4') || ($System->{IPType} eq 'VZBOTH')) {
-            &debug_msg("/sbin/ip route add " . $netroute . "/" . $ipv4_nm . " dev $device\n");
-            system("/sbin/ip route add " . $netroute . "/" . $ipv4_nm . " dev $device");
+            $pri_ip_network = ippool_get_network($ipv4_ip, $ipv4_nm);
+            if ($pri_ip_network ne $netroute) {
+                &debug_msg("Netroute: $netroute -> /sbin/ip route add " . $netroute . "/" . $ipv4_nm . " dev $device\n");
+                system("/sbin/ip route add " . $netroute . "/" . $ipv4_nm . " dev $device");
+            }
+            else {
+                &debug_msg("Netroute: $netroute -> already exists, skipping\n");
+            }
         }
     }
     @arr_assigned_ipv4 = grep {!/^$netroute$/} @arr_assigned_ipv4;
@@ -338,6 +344,29 @@ foreach my $netroute (@unique_netroutes) {
 foreach my $ip_extra (@routes_existing_ipv4) {
     &debug_msg("Running: Removing route for $ip_extra: /sbin/ip route del " . $ip_extra . " dev $device\n");
     system("/sbin/ip route del " . $ip_extra . " dev $device");
+}
+
+# If not open OpenVZ VPS or Master-Node we check if we have the proper Netroute that includes the primary IP as source:
+if ((!-e "/proc/user_beancounters") && (!-f "/etc/vz/conf/0.conf") && (($System->{IPType} eq 'IPv4') || ($System->{IPType} eq 'BOTH'))) {
+    $master_netroute_priIP = `/sbin/ip -4 route show|grep "link src"|grep $ipv4_ip|wc -l`;
+    $master_netroute_priIP_result = `/sbin/ip -4 route show|grep "link src"`;
+    chomp($master_netroute_priIP);
+    chomp($master_netroute_priIP_result);
+
+    if ($master_netroute_priIP eq "1") {
+        &debug_msg("Netroute: Proper Netroute for primary IP present:\n$master_netroute_priIP_result\n");
+    }
+    else {
+        &debug_msg("Netroute: Proper Netroute for primary IP is missing.\n");
+        if ($master_netroute_priIP_result ne "") {
+            &debug_msg("Netroute: Incorrect Netroute for primary IP present, deleting:\n$master_netroute_priIP_result\n");
+            system("/sbin/ip route del " . $master_netroute_priIP_result);
+        }
+        $pri_ip_network = ippool_get_network($ipv4_ip, $ipv4_nm);
+        $new_priIP_netroute = "$pri_ip_network/$ipv4_nm dev $device proto kernel scope link src $ipv4_ip";
+        &debug_msg("Netroute: Adding proper Netroute for primary IP ($pri_ip_network/$ipv4_nm):\n$new_priIP_netroute\n");
+        system("/sbin/ip route add " . $new_priIP_netroute);
+    }
 }
 
 # IPv6: Removing routes for that we no longer have IPs:
@@ -446,6 +475,23 @@ exit(0);
 #
 ### Subroutines:
 #
+
+sub ippool_get_network
+# Returns the network address which would go with this IP and netmask
+# Arguments: IP address and netmask, in dotted quad notation
+# Return value: network address, in dotted quad notation
+{
+    my ($addr,$netmask) = @_;
+    my ($a1,$a2,$a3,$a4) = map(pack('C',$_),split(/\./o,$addr));
+    my ($m1,$m2,$m3,$m4) = map(pack('C',$_),split(/\./o,$netmask));
+    my ($n1,$n2,$n3,$n4,$network);
+    $n1 = unpack('C',($m1 & $a1));
+    $n2 = unpack('C',($m2 & $a2));
+    $n3 = unpack('C',($a3 & $m3));
+    $n4 = unpack('C',($a4 & $m4));
+    $network = "$n1.$n2.$n3.$n4";
+    return $network;
+}
 
 sub pingtest($$) {
     my ($ping) = @_;

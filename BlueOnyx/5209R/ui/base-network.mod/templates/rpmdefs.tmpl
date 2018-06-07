@@ -106,6 +106,13 @@ fi
 
 <begin $CHANGELOG>
 
+* Thu Jun 07 2018 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX15
+- Modified glue/handlers/change_route.pl again. Now it checks if we do
+  have 'network/mask dev eth0 proto kernel scope link src primary_ip'
+  as a source route. If we do have an incorrect source route, we delete
+  it and add the correct one. Only kicks in on non-AVE nodes, non-AVE VPSs
+  and if we actually use IPv4.
+
 * Fri Jun 01 2018 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX14
 - Modified glue/handlers/change_route.pl again to remove 255.255.255.255
   route from primary IP and to (again) add it to all extra IPs.
