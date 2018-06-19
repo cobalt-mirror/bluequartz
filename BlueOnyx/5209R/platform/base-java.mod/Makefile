@@ -7,7 +7,7 @@ VENDORNAME='Team BlueOnyx'
 SERVICE=java
 
 VERSION=5.0.0
-RELEASE=0BX05
+RELEASE=0BX06
 
 # add a buildarch if desired
 #BUILDARCH=noarch
