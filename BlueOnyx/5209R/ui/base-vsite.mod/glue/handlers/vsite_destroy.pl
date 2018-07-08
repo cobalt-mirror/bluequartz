@@ -101,6 +101,13 @@ my ($site_link, $link_target) = homedir_create_group_link($vsite->{name}, $vsite
 unlink($site_link);
 Sauce::Util::addrollbackcommand("umask 000; /bin/ln -sf \"$link_target\" \"$site_link\"");
 
+# Deal with Vsite's php.ini if present:
+my $php_ini = $base . "/php.ini";
+if (-f $php_ini) {
+    system("chattr -i $php_ini");
+    system("rm -f $php_ini");
+}
+
 # remove site directory: slightly redundant, but sometimes it does NOT get deleted by remove_site_dir.pl
 if ($base =~ /^\/.+/) {
     rmtree($base);
@@ -133,8 +140,8 @@ sub debug_msg {
 }
 
 # 
-# Copyright (c) 2015-2017 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015-2017 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015-2018 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015-2018 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 
