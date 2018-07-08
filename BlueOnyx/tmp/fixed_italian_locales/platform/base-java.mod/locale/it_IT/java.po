@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Last-Translator: Automatically generated\n"
+"Last-Translator: Simone Capra <capra@erweb.it>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -12,7 +12,7 @@ msgid "java"
 msgstr "Java"
 
 msgid "java_help"
-msgstr "Clicca qui per cambiare la configurazione JavaServer e impostazioni delle prestazioni."
+msgstr "Clicca qui per cambiare la configurazione JavaServer e le impostazioni delle prestazioni."
 
 msgid "warName"
 msgstr "Web Archive (.war)"
@@ -24,7 +24,7 @@ msgid "warNames_menu"
 msgstr "Web Archive (.war) Lista"
 
 msgid "warName_help"
-msgstr "Il nome dell'archivio del installato [[base-java.warName]]."
+msgstr "Il nome dell'archivio installato [[base-java.warName]]."
 
 msgid "enabledField"
 msgstr "Abilitare Server (Tomcat)"
@@ -39,7 +39,7 @@ msgid "maxClientsField_help"
 msgstr "Specificare il numero massimo di connessioni simultanee di applicazioni Java."
 
 msgid "maxClientsField_invalid"
-msgstr "Il numero massimo di sessioni di Java non è valido. Inserisci un numero intero entro l'intervallo specificato."
+msgstr "Il numero massimo di connessioni simultanee di Java non è valido. Inserisci un numero intero entro l'intervallo specificato."
 
 msgid "javaSettings"
 msgstr "Impostazioni Java"
@@ -81,7 +81,7 @@ msgid "locationFieldEnter"
 msgstr "Archivio File Web"
 
 msgid "locationFieldEnter_help"
-msgstr "Inserire la posizione da cui ottenere il file. Guerra. Immettere un URL che inizia con http:// o ftp:// per scaricare l'archivio da una posizione su internet, oppure inserire il percorso del file di un file. Guerra per caricare. Fare clic su Sfoglia per scegliere un file sul disco rigido locale. Se avete scaricato. Archivi di guerra alla radice web, la possibilità di scegliere uno di questi file sarà disponibile anche."
+msgstr "Inserire la posizione da cui ottenere il file .war. Immettere un URL che inizia con http:// o ftp:// per scaricare l'archivio da una posizione su internet, oppure inserire il percorso del file di un file .war per caricare. Fare clic su Sfoglia per scegliere un file sul disco rigido locale. Se avete scaricato. Archivi di guerra alla radice web, la possibilità di scegliere uno di questi file sarà disponibile anche."
 
 msgid "url"
 msgstr "URL"
@@ -114,19 +114,19 @@ msgid "targetName"
 msgstr "Luogo di installazione"
 
 msgid "targetName_help"
-msgstr "Il contenuto del [[base-java.warName]] saranno estratti a questa directory. La directory viene creata se necessario."
+msgstr "Il contenuto del [[base-java.warName]] sarà estratto in questa directory. La directory viene creata se necessario."
 
 msgid "targetName_missing"
-msgstr "Una directory di destinazione deve essere specificata. [[base-java.targetName_help]]"
+msgstr "Deve essere specificata una directory di destinazione. [[base-java.targetName_help]]"
 
 msgid "targetName_invalid"
-msgstr "Il specificato [[base-java.targetName]] contiene caratteri non validi. Si prega di rimuovere i caratteri estesi di questo campo."
+msgstr "Il [[base-java.targetName]] specificato contiene caratteri non validi. Si prega di rimuovere i caratteri non conformi di questo campo."
 
 msgid "targetField"
 msgstr "Luogo di installazione"
 
 msgid "targetField_empty"
-msgstr "Luogo di installazione è mancante. [[base-java.targetName_help]]"
+msgstr "Il luogo di installazione è mancante. [[base-java.targetName_help]]"
 
 msgid "confirm_archive_removal"
 msgstr "Sei sicuro di voler eliminare definitivamente la cartella [[VAR.path]] e tutti i suoi contenuti?"
@@ -141,7 +141,7 @@ msgid "amStatusOK"
 msgstr "JavaServer Pages e servlet funzionano normalmente."
 
 msgid "amNotRunning"
-msgstr "JavaServer Pages e servlet non sono in esecuzione e non possono essere riavviati. Nel [[base-apache.amAdmservNameTag]], provare a girare le pagine JSP e Servlet di servizio e riaccenderlo per vedere se questo risolve il problema. Se le JavaServer Pages e Servlet di servizio è ancora in grado di iniziare, provate a riavviare il server stesso cliccando il pulsante [[base-power.reboot]] nel [[base-power.power]] menu sotto [[base-alpino. ServerConfig]]. Se le JavaServer Pages e Servlet di servizio è ancora in grado di iniziare, vedere [[base-sauce-basic.techSupportURL]] per il supporto tecnico."
+msgstr "JavaServer Pages e servlet non sono in esecuzione e non possono essere riavviati. Nel [[base-apache.amAdmservNameTag]], provare a spegnere il servizio Pagine JSP e Servlet e riaccenderlo per vedere se questo risolve il problema. Se le JavaServer Pages e Servlet di servizio è ancora in grado di iniziare, provate a riavviare il server stesso cliccando il pulsante [[base-power.reboot]] nel [[base-power.power]] menu sotto [[base-alpino. ServerConfig]]. Se le JavaServer Pages e Servlet di servizio è ancora in grado di partire, vedere [[base-sauce-basic.techSupportURL]] per il supporto tecnico."
 
 msgid "javaName"
 msgstr "JavaServer Pages (JSP) e Servlet"
@@ -153,16 +153,16 @@ msgid "enableJava_help"
 msgstr "Abilita per consentire l'uso di JavaServer Pages (JSP) e Servlet."
 
 msgid "installStatus"
-msgstr "Installare di stato per [[VAR.fileName]]"
+msgstr "Stato di installazione per [[VAR.fileName]]"
 
 msgid "statusField"
 msgstr "Messaggio di stato"
 
 msgid "statusField_help"
-msgstr "Questo campo mostra lo stato attuale del [[base-java.warName]] in fase di installazione."
+msgstr "Questo campo mostra lo stato attuale del [[base-java.warName]] attualmente in fase di installazione."
 
 msgid "progressField"
-msgstr "Progress"
+msgstr "Progresso"
 
 msgid "progressField_help"
 msgstr "Questo è il progresso dell'installazione."
@@ -189,7 +189,7 @@ msgid "notInstalled"
 msgstr "Il software di [[base-java.warName]] non è stato installato."
 
 msgid "cannotDownloadUrl"
-msgstr "Siamo spiacenti, il [[base-java.warName]] file non può essere scaricato dall'URL specificato. Si prega di controllare l'indirizzo e riprovare. [[base-java.notInstalled]]"
+msgstr "Siamo spiacenti, il file [[base-java.warName]] non può essere scaricato dall'URL specificato. Si prega di controllare l'indirizzo e riprovare. [[base-java.notInstalled]]"
 
 msgid "badFileName"
 msgstr "Spiacenti, il nome del file della [[base-java.warName]] file non è valido. Controllare il nome e riprovare. [[base-java.notInstalled]]"
@@ -222,10 +222,10 @@ msgid "unknownFileFormat"
 msgstr "Il file caricato non è un formato supportato o è danneggiato."
 
 msgid "notToUserHome"
-msgstr "La guerra non può essere installato per la home directory di un utente."
+msgstr "Il WAR non può essere installato per la home directory di un utente."
 
 msgid "loadingWar"
-msgstr "Il [[base-java.warName]] viene caricata. Si prega di attendere."
+msgstr "Il war [[base-java.warName]] viene caricato. Si prega di attendere."
 
 msgid "connectionRefused"
 msgstr "Il tentativo di download è stato rifiutato dal server remoto."
@@ -246,22 +246,22 @@ msgid " "
 msgstr " "
 
 msgid "javaNotEnabled"
-msgstr "Supporto per JSP e Servlet non è attualmente abilitato. Si prega di avere il sistema amministratore di abilitazione JSP e Servlet supporto in Impostazioni Web prima di tentare di distribuire gli archivi Web (.war) i file."
+msgstr "Supporto per JSP e Servlet non è attualmente abilitato. Si prega di richiedere all'amministratore di sistema l'abilitazione di JSP e Servlet nelle Impostazioni Web prima di tentare di distribuire gli archivi Web (.war)."
 
 msgid "TomcatAdminInterface"
-msgstr "Tomcat Interface Admin"
+msgstr "Interfaccia Tomcat Admin"
 
 msgid "TomcatManagerInterface"
 msgstr "Interfaccia Tomcat Manager"
 
 msgid "TomcatHostManagerInterface"
-msgstr "Tomcat Interfaccia Host Manager"
+msgstr "Interfaccia Tomcat Host Manager"
 
 msgid "TomcatManagerStatus"
-msgstr "Tomcat Manager di stato"
+msgstr "Stato di Tomcat Manager"
 
 msgid "TomcatManager"
-msgstr "Tomcat"
+msgstr "Tomcat Manager"
 
 msgid "TomcatManager_desc"
 msgstr "Gestire le impostazioni del tuo server Tomcat."
@@ -270,7 +270,7 @@ msgid "TomcatManager_help"
 msgstr "[[base-java.TomcatManager_desc]]"
 
 msgid "TomcatAdminPassHeader"
-msgstr "Tomcat Admin Password"
+msgstr "Admin Password di Tomcat"
 
 msgid "AdminPassInformation"
 msgstr "Impostare la password per l'account admin di Tomcat:"
@@ -285,7 +285,7 @@ msgid "TomcatStausBox_header"
 msgstr "Si prega di notare: Tomcat viene arrestato"
 
 msgid "TomCatStatusBox_info"
-msgstr "Finché Tomcat è ferma, non sarete in grado di fare clic su uno qualsiasi dei tasti di gestione del menu in basso. Tomcat si avvierà automaticamente non appena almeno un sito virtuale ha la JSP servizio attivato."
+msgstr "Finché Tomcat è spento, non sarai in grado di fare clic su uno qualsiasi dei tasti di gestione del menu in basso. Tomcat si avvierà automaticamente non appena almeno un sito virtuale ha il servizio JSP attivato."
 
 ###
 
@@ -299,9 +299,9 @@ msgid "loaded_help"
 msgstr "Installare un file che attualmente risiede nella directory /web del tuo sito virtuale."
 
 msgid "removeConfirmQuestion"
-msgstr "Sei sicuro di voler eliminare l'articolo?"
+msgstr "Sei sicuro di voler eliminare questo elemento?"
 
 msgid "userRemoveConfirmInfo"
-msgstr "Si prega di confermare che si desidera rimuovere questa voce. Questo non può essere annullata."
+msgstr "Si prega di confermare che si desidera rimuovere questo elemento. Questa azione non può essere annullata."
 
 

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Last-Translator: Automatically generated\n"
+"Last-Translator: Simone Capra <capra@erweb.it>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,7 +21,7 @@ msgid "frontpageField"
 msgstr "Estensioni del server di FrontPage"
 
 msgid "frontpageField_help"
-msgstr "Girare le estensioni del server di FrontPage o disattivare."
+msgstr "Attiva o disattiva le estensioni del server di FrontPage."
 
 msgid "frontpageEnabled"
 msgstr "Attiva"
@@ -48,16 +48,16 @@ msgid "cgiAll"
 msgstr "Consentire l'accesso a tutti gli utenti"
 
 msgid "cgiNone"
-msgstr "Non consentono l'accesso a qualsiasi utente"
+msgstr "Non consentire l'accesso a nessuno"
 
 msgid "cgiSubset"
-msgstr "Consentire l'accesso a utenti specifici Solo"
+msgstr "Consentire l'accesso solo a utenti specifici"
 
 msgid "cgiUsersAllowed"
-msgstr "Utenti ammessi Accesso"
+msgstr "Utenti ammessi all'accesso"
 
 msgid "cgiUsersDisallowed"
-msgstr "Gli utenti non sono ammessi Accesso"
+msgstr "Gli utenti non sono ammessi all'accesso"
 
 msgid "cgiUsersField"
 msgstr ""
@@ -66,7 +66,7 @@ msgid "cgiUsersField_empty"
 msgstr "Siamo spiacenti, non è stato selezionato alcun utente per l'accesso CGI. Si prega di aggiungere gli utenti che hanno il permesso di accesso CGI o scegliere un'opzione di accesso diverso."
 
 msgid "cantConfigCgi"
-msgstr "Siamo spiacenti, Accesso CGI non poteva essere configurato correttamente in questo momento."
+msgstr "Siamo spiacenti, Accesso CGI non può essere configurato correttamente in questo momento."
 
 msgid "systemObjectNotFound"
 msgstr "Siamo spiacenti, la configurazione del server è temporaneamente non disponibile. Aspettare e riprovare."
@@ -78,7 +78,7 @@ msgid "amApacheDetails"
 msgstr "Dettagli del server Web"
 
 msgid "amNotRunning"
-msgstr "Il [[base-apache.amApacheNameTag]] non è in esecuzione e non poteva essere riavviato. Provare a riavviare il server facendo clic sul [[base-power.reboot]] nella [[base-power.power]] menu sotto [[base-alpine.serverconfig]]. Se non si riesce ancora ad accedere al [[base-apache.amApacheNameTag]], si prega di visitare [[base-sauce-basic.techSupportURL]] per il supporto tecnico."
+msgstr "Il [[base-apache.amApacheNameTag]] non è in esecuzione e non può essere riavviato. Provare a riavviare il server facendo clic sul [[base-power.reboot]] nella [[base-power.power]] menu sotto [[base-alpine.serverconfig]]. Se non si riesce ancora ad accedere al [[base-apache.amApacheNameTag]], si prega di visitare [[base-sauce-basic.techSupportURL]] per il supporto tecnico."
 
 msgid "amStatusOK"
 msgstr "Il web server funziona normalmente."
@@ -87,37 +87,37 @@ msgid "amAdmservNameTag"
 msgstr "Server Desktop"
 
 msgid "amAdmservDetails"
-msgstr "Server Dettagli per il desktop"
+msgstr "Dettagli del Server Desktop"
 
 msgid "amAdmservNotRunning"
-msgstr "Il [[base-apache.amAdmservNameTag]] non è in esecuzione e non poteva essere riavviato. Provare a riavviare il server facendo clic sul [[base-power.reboot]] nella [[base-power.power]] menu sotto [[base-alpine.serverconfig]]. Se non si riesce ancora ad accedere al [[base-apache.amAdmservNameTag]], si prega di visitare [[base-sauce-basic.techSupportURL]] per il supporto tecnico."
+msgstr "Il [[base-apache.amAdmservNameTag]] non è in esecuzione e non può essere riavviato. Provare a riavviare il server facendo clic sul [[base-power.reboot]] nella [[base-power.power]] menu sotto [[base-alpine.serverconfig]]. Se non si riesce ancora ad accedere al [[base-apache.amAdmservNameTag]], si prega di visitare [[base-sauce-basic.techSupportURL]] per il supporto tecnico."
 
 msgid "amAdmservStatusOK"
-msgstr "Il Desktop Server funziona normalmente."
+msgstr "Il Server Desktop funziona normalmente."
 
 msgid "maxServersRAM"
-msgstr "Il numero massimo di server web è limitata dalla quantità di RAM installata in questo server."
+msgstr "Il numero massimo di server web è limitato dalla quantità di RAM installata in questo server."
 
 msgid "minSpareField"
-msgstr "Pezzi di server minimi"
+msgstr "Numero minimo di processi server web"
 
 msgid "minSpareField_help"
-msgstr "Quando il server web inizia o è in uno stato di inattività, questo è il numero minimo di processi server web disponibili per servire richieste web. [[base-apache.maxServersRAM]]"
+msgstr "Quando il server web parte o è in uno stato di inattività, questo è il numero minimo di processi server web disponibili per servire richieste web. [[base-apache.maxServersRAM]]"
 
 msgid "minSpareField_empty"
 msgstr "Si prega di specificare il numero minimo di processi server web."
 
 msgid "minSpareField_invalid"
-msgstr "Il numero specificato di server web di ricambio non è valida. Si prega di specificare un numero intero entro l'intervallo specificato."
+msgstr "Il numero specificato di processi server web non è valida. Si prega di specificare un numero intero entro l'intervallo specificato."
 
 msgid "maxSpareField"
-msgstr "Massimo Pezzi di server"
+msgstr "Numero massimo di processi server web di scorta"
 
 msgid "maxSpareField_help"
-msgstr "Il web server avvierà processi aggiuntivi, se necessario, a servizio di carico supplementare. Questo numero è il numero massimo di processi del sistema di lancio. Siti ad alto traffico dovrebbe aumentare questo numero per ottenere prestazioni migliori. [[base-apache.maxServersRAM]]"
+msgstr "Per gestire il carico supplementare il web server avvierà processi aggiuntivi, se necessario. Questo numero è il numero massimo di processi aperti dal sistema. Per i siti ad alto traffico questo numero dovrebbe essere alto per ottenere prestazioni migliori. [[base-apache.maxServersRAM]]"
 
 msgid "maxSpareField_empty"
-msgstr "Si prega di specificare il numero massimo di processi del server web di ricambio."
+msgstr "Si prega di specificare il numero massimo di processi del server web di scorta."
 
 msgid "maxSpareField_invalid"
 msgstr "[[base-apache.minSpareField_invalid]]"
@@ -126,34 +126,34 @@ msgid "maxClientsField"
 msgstr "Numero massimo di connessioni simultanee"
 
 msgid "maxClientsField_help"
-msgstr "Questo è il numero massimo di richieste che possono essere fatte al server in qualsiasi istanza. Ogni connessione richiede un proprio web server. Se questo numero viene superato, i clienti riceveranno un messaggio che il server è occupato, e ha chiesto di riprovare più tardi. Questa impostazione è utile per controllare il carico sul server. [[base-apache.maxServersRAM]]"
+msgstr "Questo è il numero massimo di richieste che possono essere fatte al server in qualsiasi istanza. Ogni connessione richiede un proprio processo web server. Se questo numero viene superato, i client riceveranno un messaggio che il server è occupato, e viene richiesto di riprovare più tardi. Questa impostazione è utile per controllare il carico sul server. [[base-apache.maxServersRAM]]"
 
 msgid "maxClientsField_empty"
-msgstr "Si prega di specificare il numero massimo di connessioni al server web simultanee."
+msgstr "Si prega di specificare il numero massimo numero di connessioni simultanee al server web."
 
 msgid "maxClientsField_invalid"
-msgstr "Il numero massimo specificato di connessioni web simultanee non è valida. Si prega di specificare un numero intero entro l'intervallo specificato."
+msgstr "Il numero massimo specificato di connessioni web simultanee non è valido. Si prega di specificare un numero intero entro l'intervallo specificato."
 
 msgid "hostnameLookupsField"
-msgstr "Ricerche hostname"
+msgstr "Hostname Lookup"
 
 msgid "hostnameLookupsField_help"
-msgstr "Questo trasforma il lookup hostname per il server web. Questo fa sì che il server per fare una ricerca DNS sul IP del client quando si connette al server, e registrarlo nei file di registro. Questa informazione hostname è quindi disponibile nei rapporti di utilizzo del server web. Senza questa funzione, solo gli indirizzi IP dei client sono riportati nel rapporto di utilizzo del server di dominio web. ATTENZIONE: L'attivazione di questa opzione consente di ridurre le prestazioni del vostro web server."
+msgstr "Questa impostazione fa sì che il server effettui una ricerca DNS dell'IP del client quando questo si connette al server, e lo registra nei file di log. Questa informazione è quindi disponibile nei rapporti di utilizzo del server web. Senza questa funzione, solo gli indirizzi IP dei client sono riportati nel rapporto di utilizzo del server di dominio web. ATTENZIONE: L'attivazione di questa opzione riduce le prestazioni del web server."
 
 msgid "MinMaxError"
 msgstr "Il [[base-apache.maxSpareField]] deve essere maggiore o uguale alla [[base-apache.minSpareField]]."
 
 msgid "ClientMaxError"
-msgstr "Il valore immesso per [[base-apache.maxClientsField]] è inferiore al valore immesso per [[base-apache.maxSpareField]]. Anche se questo va bene, può avere un impatto le prestazioni del server. Si raccomanda che il valore di [[base-apache.maxClientsField]] essere maggiore o uguale al valore di [[base-apache.maxSpareField]]."
+msgstr "Il valore immesso per [[base-apache.maxClientsField]] è inferiore al valore immesso per [[base-apache.maxSpareField]]. Anche se questo va bene, può avere un impatto le prestazioni del server. Si raccomanda che il valore di [[base-apache.maxClientsField]] sia maggiore o uguale al valore di [[base-apache.maxSpareField]]."
 
 msgid "webScripting"
 msgstr "Web"
 
 msgid "webScriptingTitle"
-msgstr "Web Impostazioni di scripting per [[VAR.fqdn]]"
+msgstr "Impostazioni di scripting per [[VAR.fqdn]]"
 
 msgid "webScriptingDescription"
-msgstr "Configurare le opzioni di Web come linguaggi di scripting."
+msgstr "Configurare le opzioni dei linguaggi di scripting."
 
 msgid "cgi"
 msgstr "Abilitare Common Gateway Interface (CGI)"
@@ -162,7 +162,7 @@ msgid "cgi_help"
 msgstr "Abilitare l'uso di applicazioni CGI."
 
 msgid "ssi"
-msgstr "Enable Server-Side Includes (SSI)"
+msgstr "Abilitare Server-Side Includes (SSI)"
 
 msgid "ssi_help"
 msgstr "Abilitare l'uso di Server-Side Includes."
@@ -180,16 +180,16 @@ msgid "ssiI18nName"
 msgstr "Server-Side Includes (SSI)"
 
 msgid "userwebs"
-msgstr "Abilita ragnatele di proprietà dell'utente"
+msgstr "Abilita lo spazio web degli utenti"
 
 msgid "userwebs_help"
-msgstr "Se abilitato, quindi ogni utente ha il proprio spazio web, che è separata dal sito principale e spazio web raggiungibile tramite http://www.example.com/~nomeutente/. Gli utenti possono caricare le proprie pagine web tramite FTP nella loro directory proprio /web. NOTA BENE: Se suPHP è abilitato, l'utente di proprietà ragnatele non sono più supportate e questa funzione viene disattivata."
+msgstr "Se abilitato, quindi ogni utente ha il proprio spazio web, che è separata dal sito principale e raggiungibile tramite http://www.example.com/~nomeutente/. Gli utenti possono caricare le proprie pagine web tramite FTP nella loro directory proprio /web. NOTA BENE: Se suPHP è abilitato, questa funzione viene disattivata in quanto non supoportata."
 
 msgid "ftpnonadminI18nName"
-msgstr "FTP per gli amministratori del sito non abilitati"
+msgstr "FTP abilitato per gli utenti non amministratori del sito"
 
 msgid "userwebsI18nName"
-msgstr "Utente ragnatele di proprietà abilitati"
+msgstr "Spazio web degli utenti abilitato"
 
 msgid "Options_AllField"
 msgstr "Tutti"
@@ -201,7 +201,7 @@ msgid "Options_FollowSymLinksField"
 msgstr "FollowSymLinks"
 
 msgid "Options_FollowSymLinksField_help"
-msgstr "Il server seguire i link simbolici. (Impostazione predefinita: attivato)"
+msgstr "Il server web segue i link simbolici. (Impostazione predefinita: attivato)"
 
 msgid "Options_IncludesField"
 msgstr "Include"
@@ -213,55 +213,55 @@ msgid "Options_IndexesField"
 msgstr "Indici"
 
 msgid "Options_IndexesField_help"
-msgstr "Se viene richiesto un URL che esegue la mappatura di una directory, e la non vi è alcuna DirectoryIndex (per esempio index.html) in quella directory, il server restituirà un elenco formattato di directory. (Impostazione predefinita: attivato)"
+msgstr "Se viene richiesto un URL che esegue la mappatura di una directory, e è preente alcuna DirectoryIndex (per esempio index.html) in quella directory, il server restituirà una lista formattata del contenuto della directory. (Impostazione predefinita: attivato)"
 
 msgid "Options_MultiViewsField"
 msgstr "MultiViews"
 
 msgid "Options_MultiViewsField_help"
-msgstr "Sono ammessi contenuti MultiViews negoziate. Permette di visualizzare le pagine in lingue diverse sulla base di impostazioni internazionali del browser. (Impostazione predefinita: attivato)"
+msgstr "Sono ammessi contenuti MultiViews negoziati. Permette di visualizzare le pagine in lingue diverse sulla base di impostazioni internazionali del browser. (Impostazione predefinita: attivato)"
 
 msgid "Options_SymLinksIfOwnerMatchField"
 msgstr "SymLinksIfOwnerMatch"
 
 msgid "Options_SymLinksIfOwnerMatchField_help"
-msgstr "Il server sarà solo seguire i link simbolici per i quali il file o la directory di destinazione è di proprietà dello stesso ID utente del collegamento. (Impostazione predefinita: disattivato)"
+msgstr "Il server web seguirà i link simbolici per i quali il file o la directory di destinazione è di proprietà dello stesso ID utente del collegamento. (Impostazione predefinita: disattivato)"
 
 msgid "AllowOverride_AllField"
 msgstr "Tutti"
 
 msgid "AllowOverride_AllField_help"
-msgstr "Quando il server rileva un file. Htaccess ha bisogno di sapere che le direttive dichiarate in quel file possono ignorare in precedenza le informazioni di accesso. Se selezioni questa casella consente di ignorare tutte le impostazioni di Apache (pericoloso! default: Off)"
+msgstr "Le direttive contenute in un file .htaccess sovrascrivono le direttive dichiarate in precedenza nella configurazione del server. Se selezioni questa casella consenti di sovrascrivere tutte le impostazioni di Apache (pericoloso! default: Off)"
 
 msgid "AllowOverride_AuthConfigField"
 msgstr "AuthConfig"
 
 msgid "AllowOverride_AuthConfigField_help"
-msgstr "Consentire l'uso di direttive di autorizzazione (AuthDBMGroupFile, AuthDBMUserFile, AuthGroupFile, AuthName, AuthDigestRealmSeed, AuthType, AuthUserFile, Richiedi, ecc.) (Impostazione predefinita: attivato)"
+msgstr "Consentire l'uso di direttive di autorizzazione (AuthDBMGroupFile, AuthDBMUserFile, AuthGroupFile, AuthName, AuthDigestRealmSeed, AuthType, AuthUserFile, Require, ecc.) (Impostazione predefinita: attivato)"
 
 msgid "AllowOverride_FileInfoField"
 msgstr "FileInfo"
 
 msgid "AllowOverride_FileInfoField_help"
-msgstr "Consentire l'uso di direttive di controllo tipi di documenti (AddEncoding, AddLanguage, questa direttiva, DefaultType, ErrorDocument, LanguagePriority, ecc.) (Impostazione predefinita: disattivato)"
+msgstr "Consentire l'uso di direttive di controllo dei tipi di documenti (AddEncoding, AddLanguage, AddType, DefaultType, ErrorDocument, LanguagePriority, ecc.) (Impostazione predefinita: disattivato)"
 
 msgid "AllowOverride_IndexesField"
 msgstr "Indici"
 
 msgid "AllowOverride_IndexesField_help"
-msgstr "Consentire l'uso di direttive di controllo directory indicizzazione (AddDescription, AddIcon, AddIconByEncoding, AddIconByType, DefaultIcon, DirectoryIndex, FancyIndexing, HeaderName, IndexIgnore, IndexOptions, ReadmeName, ecc.) (Impostazione predefinita: attivato)"
+msgstr "Consentire l'uso di direttive di controllo dell'indicizzazione delle directory (AddDescription, AddIcon, AddIconByEncoding, AddIconByType, DefaultIcon, DirectoryIndex, FancyIndexing, HeaderName, IndexIgnore, IndexOptions, ReadmeName, ecc.) (Impostazione predefinita: attivato)"
 
 msgid "AllowOverride_LimitField"
-msgstr "Limitare"
+msgstr "Limiti"
 
 msgid "AllowOverride_LimitField_help"
-msgstr "Consentire l'uso di direttive di controllo accesso host (Consenti, Nega e Ordine). (Impostazione predefinita: attivato)"
+msgstr "Consentire l'uso di direttive di controllo dell'accesso da host (Allow, Deny e Order). (Impostazione predefinita: attivato)"
 
 msgid "AllowOverride_OptionsField"
 msgstr ""
 
 msgid "AllowOverride_OptionsField_help"
-msgstr "Consentire l'uso di direttive di controllo funzionalità di directory specifiche (Opzioni e XBitHack). (Impostazione predefinita: disattivato)"
+msgstr "Consentire l'uso di direttive di controllo di funzioni specifiche delle directory(Options e XBitHack). (Impostazione predefinita: disattivato)"
 
 msgid "DIVIDER_TOP"
 msgstr "Configurazione generale di Apache:"
@@ -270,10 +270,10 @@ msgid "DIVIDER_EXPLANATION"
 msgstr "Caratteristiche di Apache per le directory virtuali del sito:"
 
 msgid "BlueOnyx_Info_Text"
-msgstr "Una sezione in /etc/httpd/conf.d/blueonyx.conf definisce quali sono autorizzati 'Opzioni' e caratteristiche 'AllowOverride' per la directory (/home/.sites/) in cui tutti i siti virtuali risiedono. Questo limita l'utilizzo di. Htaccess e altre cose. Queste possono essere cambiate sotto."
+msgstr "Una sezione nel file /etc/httpd/conf.d/blueonyx.conf definisce quali impostazioni 'Options' e 'AllowOverride' sono ammesse per la directory (/home/.sites/) in cui tutti i siti virtuali risiedono. Questo limita l'utilizzo di file .htaccess e altre cose. Queste possono essere cambiate sotto."
 
 msgid "DIVIDER_OPTIONS"
-msgstr "Opzioni:"
+msgstr "Options:"
 
 msgid "DIVIDER_ALLOWOVERRIDE"
 msgstr "AllowOverride:"
@@ -299,25 +299,25 @@ msgid "httpPortField"
 msgstr "Porta HTTP"
 
 msgid "httpPortField_help"
-msgstr "L'Apache Webserver di solito va sulla porta 80 (HTTP). Se si vuole cambiare a una porta diversa, allora potete farlo qui. Questo è utile solo se si desidera utilizzare qualcos'altro di fronte Apache per filtrare, cache o reindirizzare il traffico. Come ad esempio un Varnish Cache, un proxy di inoltro o un bilanciatore di carico. Se si modifica questa impostazione, allora tutti i siti virtuali esistenti verranno spostati nel nuovo porto e verranno creati tutti i nuovi siti per utilizzare questa nuova porta. Indirizzi IP dei siti virtuali non verranno modificati."
+msgstr "Il Webserver Apache di solito usa la porta 80 per il traffico HTTP. Se si vuole impostare una porta diversa, puoi farlo qui. Questo è utile solo se si desidera utilizzare qualche altro software prima di Apache per filtrare, fare cache o reindirizzare il traffico, come ad esempio un Varnish Cache, un proxy di inoltro o un bilanciatore di carico. Se si modifica questa impostazione, allora tutti i siti virtuali esistenti e quelli che si creeranno in seguito utilizzeranno la nuova porta. Gli Indirizzi IP dei siti virtuali non verranno modificati."
 
 msgid "sslPortField"
-msgstr "HTTPS/SSL Port"
+msgstr "Porta HTTPS/SSL"
 
 msgid "sslPortField_help"
-msgstr "L'Apache Webserver di solito usa la porta 443 per il traffico HTTPS. Se si vuole cambiare a una porta diversa, allora potete farlo qui. Questo è utile solo se si desidera utilizzare qualcos'altro di fronte Apache per filtrare, cache o reindirizzare il traffico. Come ad esempio un Varnish Cache, un proxy di inoltro o un bilanciatore di carico. Se si modifica questa impostazione, allora tutti i siti virtuali esistenti con SSL abilitato passerà dalla porta 443 alla nuova porta per il traffico SSL. Indirizzi IP dei siti virtuali non verranno modificati."
+msgstr "Il Webserver Apache di solito usa la porta 443 per il traffico HTTPS. Se si vuole impostare una porta diversa, puoi farlo qui. Questo è utile solo se si desidera utilizzare qualche altro software prima di Apache per filtrare, fare cache o reindirizzare il traffico, come ad esempio un Varnish Cache, un proxy di inoltro o un bilanciatore di carico. Se si modifica questa impostazione, allora tutti i siti virtuali esistenti con SSL abilitato utilizzeranno la nuova porta per il traffico SSL. Gli Indirizzi IP dei siti virtuali non verranno modificati."
 
 msgid "httpPortInUse"
-msgstr "La porta specificata come nuova porta HTTP è già in uso da un altro servizio. Si prega di scegliere invece un'altra porta."
+msgstr "La porta specificata come nuova porta HTTP è già in uso da un altro servizio. Si prega di scegliere un'altra porta."
 
 msgid "SSLportInUse"
-msgstr "La porta specificata come nuova porta HTTPS/SSL è già in uso da un altro servizio. Si prega di scegliere invece un'altra porta."
+msgstr "La porta specificata come nuova porta HTTPS/SSL è già in uso da un altro servizio. Si prega di scegliere un'altra porta."
 
 msgid "HSTS"
 msgstr "HSTS"
 
 msgid "HSTS_help"
-msgstr "HTTP Strict Transport Security (HSTS) è un meccanismo di politica di sicurezza web in base al quale un server web dichiara che i programmi utente conformi (come un browser web) sono ad interagire con esso tramite connessioni HTTPS solo sicure (ossia HTTP stratificato su TLS / SSL). HSTS è un protocollo standard IETF traccia ed è specificato nella RFC 6797. Per maggiori informazioni si veda: http://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security"
+msgstr "HTTP Strict Transport Security (HSTS) è un meccanismo di sicurezza web in base al quale il server web dichiara che i programmi utente conformi (come i browser web) devono interagire con esso solo tramite connessioni HTTPS sicure (ossia HTTP stratificato su TLS / SSL). HSTS è un protocollo standard IETF ed è specificato nella RFC 6797. Per maggiori informazioni si veda: http://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security"
 
 ######### New for 5209R:
 
@@ -327,13 +327,13 @@ msgid "php"
 msgstr "PHP (DSO)"
 
 msgid "php_help"
-msgstr "Questa opzione fornisce PHP attraverso libphp5.so, che è anche conosciuto come mod_php. Questa opzione è di solito il modo più veloce per eseguire le richieste PHP. Tuttavia, questa opzione utilizza l'utente del sistema apache per servire tutte le richieste PHP. Questo può creare problemi quando script PHP creare file e cartelle, in quanto saranno poi essere di proprietà di apache, troppo."
+msgstr "Questa opzione fornisce PHP attraverso libphp5.so, che è anche conosciuto come mod_php. Questa opzione è di solito il modo più veloce per eseguire le richieste PHP. Tuttavia, questa opzione utilizza l'utente del sistema apache per servire tutte le richieste PHP. Questo può creare problemi quando script PHP creare file e cartelle, in quanto saranno poi essere di proprietà di apache."
 
 msgid "enableSuPHP"
 msgstr "suPHP"
 
 msgid "enableSuPHP_help"
-msgstr "Questa opzione fornisce PHP attraverso mod_suphp. E 'un modo molto flessibile e sicuro per servire le richieste PHP. Se si seleziona suPHP, poi gli script PHP verrà eseguito con l'UID e GID del proprietario del sito virtuale. Accertarsi di configurare un anonymous come proprietario della cartella /web attraverso il menu '[[base-vsite.fileOwnerMenu]]'!"
+msgstr "Questa opzione fornisce PHP attraverso mod_suphp. E 'un modo molto flessibile e sicuro per servire le richieste PHP. Se si seleziona suPHP, poi gli script PHP sono eseguiti con l'UID e GID del proprietario del sito virtuale. Accertarsi di configurare un amministratore di sito come proprietario della cartella /web attraverso il menu '[[base-vsite.fileOwnerMenu]]'!"
 
 # NEW:
 
@@ -341,13 +341,13 @@ msgid "enableModRUID"
 msgstr "PHP (DSO) + mod_ruid2"
 
 msgid "enableModRUID_help"
-msgstr "Questa opzione fornisce PHP attraverso libphp5.so e il modulo di Apache mod_ruid2.so. Questa opzione è di solito il modo più veloce per eseguire le richieste PHP in modo sicuro. Il modulo aggiuntivo mod_ruid2 saranno eseguire gli script PHP con l'UID e GID del proprietario del sito virtuale. Accertarsi di configurare un anonymous come proprietario della cartella /web attraverso il menu '[[base-vsite.fileOwnerMenu]]'!"
+msgstr "Questa opzione fornisce PHP attraverso libphp5.so e il modulo di Apache mod_ruid2.so. Questa opzione è di solito il modo più veloce per eseguire le richieste PHP in modo sicuro. Il modulo aggiuntivo mod_ruid2 esegue gli script PHP con l'UID e GID del proprietario del sito virtuale. Accertarsi di configurare un amministratore di sito come proprietario della cartella /web attraverso il menu '[[base-vsite.fileOwnerMenu]]'!"
 
 msgid "enableModFPM"
 msgstr "FPM/FastCGI"
 
 msgid "enableModFPM_help"
-msgstr "Questa opzione fornisce PHP tramite PHP-FPM e mod_fcgid. Questo è un modo veloce e sicuro per servire le richieste PHP. Gli script PHP possono essere eseguiti con l'UID e GID del proprietario del sito virtuale. Accertarsi di configurare un anonymous come proprietario della cartella /web attraverso il menu '[[base-vsite.fileOwnerMenu]]'!"
+msgstr "Questa opzione fornisce PHP tramite PHP-FPM e mod_fcgid. Questo è un modo veloce e sicuro per servire le richieste PHP. Gli script PHP sono eseguiti con l'UID e GID del proprietario del sito virtuale. Accertarsi di configurare un amministratore di sito come proprietario della cartella /web attraverso il menu '[[base-vsite.fileOwnerMenu]]'!"
 
 #
 #### PHP-FPM Active Monitor components:
@@ -363,35 +363,35 @@ msgid "amPHPFPMStatusOK"
 msgstr "Il servizio di PHP-FPM funziona normalmente."
 
 msgid "amPHPFPMNotRunning"
-msgstr "Il [[base-apache.amPHPFPMNameTag]] servizio non è in esecuzione e non può essere riavviato. Si prega di controllare i file di log per i messaggi di errore relativi a questo servizio ed eseguire 'systemctl status php-fpm.service ' come root dalla riga di comando per risolvere il problema. Se siete ancora in grado di accedere al [[base-apache.amPHPFPMNameTag]], si prega di visitare [[base-sauce-basic.techSupportURL]] per il supporto tecnico."
+msgstr "Il servizio [[base-apache.amPHPFPMNameTag]] non è in esecuzione e non può essere riavviato. Si prega di controllare i file di log per i messaggi di errore relativi a questo servizio ed eseguire 'systemctl status php-fpm.service ' come root dalla riga di comando per risolvere il problema. Se non si è ancora in grado di accedere al [[base-apache.amPHPFPMNameTag]], si prega di visitare [[base-sauce-basic.techSupportURL]] per il supporto tecnico."
 
 #
 ## Added for support of multiple extra-PHP versions:
 #
 
 msgid "setDefaultPHPVersion"
-msgstr "Predefinito PHP Version:"
+msgstr "Versione PHP Predefinito:"
 
 msgid "setDefaultPHPVersion_help"
-msgstr "Per impostazione predefinita, il server web Apache funziona con la versione di PHP fornita dal sistema operativo. Se si dispone di versioni di PHP aggiuntivi installati (disponibili nel BlueOnyx negozio), quindi è possibile scegliere un diverso versioni di PHP come predefinito per il server web Apache. Questa versione di PHP selezionato viene poi utilizzato su tutti i siti virtuali che utilizzano PHP come DSO o che utilizzano PHP tramite DSO e mod_ruid2."
+msgstr "Per impostazione predefinita, il server web Apache funziona con la versione di PHP fornita dal sistema operativo. Se si dispone di versioni di PHP aggiuntive installate (disponibili nel negozio BlueOnyx), è possibile scegliere una versione diversa di PHP come predefinito per il server web Apache. Questa versione di PHP selezionata viene poi utilizzata su tutti i siti virtuali che utilizzano PHP come DSO o che utilizzano PHP tramite DSO e mod_ruid2."
 
 msgid "extraPHPversions"
-msgstr "Versioni disponibili per i siti virtuali PHP:"
+msgstr "Versioni PHP disponibili per i siti virtuali:"
 
 msgid "extraPHPversions_help"
-msgstr "Se si dispone di più versioni di PHP installati, allora si può scegliere quali sono disponibili per l'utilizzo su siti virtuali. Se si dispone di una versione di PHP installata che non si desidera più utilizzare, allora si può passare al lato destro della tabella. Tutti i siti virtuali che attualmente utilizzano lo saranno poi annullate per il sistema operativo in dotazione versione di PHP. Inoltre, la versione di PHP disabile è quindi più selezionabili durante la creazione di nuovi siti virtuali."
+msgstr "Se si dispone di più versioni di PHP installate, allora si può scegliere quali sono disponibili per l'utilizzo su siti virtuali. Se si dispone di una versione di PHP installata che non si desidera più utilizzare, allora si può passare al lato destro della tabella. Tutti i siti virtuali che attualmente la utilizzano saranno reimpostati alla versione di PHP fornita dal sistema operativo in dotazione. Inoltre, la versione di PHP disabilata non è quindi più selezionabile durante la creazione di nuovi siti virtuali."
 
 msgid "register_globals_exception"
 msgstr "PHP-5.3 eccezione"
 
 msgid "register_globals_exception_help"
-msgstr "Dal PHP-5.4 la funzione 'Register Globals' è stato effettivamente rimosso da PHP. Pertanto, la GUI non permette di abilitare 'Register Globals' per PHP-5.4 e versioni successive. Tuttavia: Se avete il opzionale pacchetto PHP-5.3 installato e attivato, quindi è possibile barrare questa casella. Che vi permetterà di impostare 'Register Globals' a 'On' per i siti virtuali che utilizzano PHP-5.3."
+msgstr "Dal PHP-5.4 la funzione 'Register Globals' è stata effettivamente rimossa da PHP. Pertanto, la GUI non permette di abilitare 'Register Globals' per PHP-5.4 e versioni successive. Tuttavia: Se avete il pacchetto PHP-5.3 opzionale installato e attivato, è possibile barrare questa casella che vi permetterà di impostare 'Register Globals' a 'On' per i siti virtuali che utilizzano PHP-5.3."
 
 msgid "PHP_version_Field"
-msgstr "Vsite PHP Version:"
+msgstr "Version PHP per il sito virtuale:"
 
 msgid "PHP_version_Field_help"
-msgstr "Questo mostra la versione di PHP per questo sito virtuale. Se più versioni di PHP sono installati sul server e viene utilizzato sia suPHP o PHP-FPM, allora è possibile scegliere tra la versione del sistema operativo in dotazione di PHP, o una versione di PHP fornita tramite uno dei pacchetti PHP opzionali. Aggiornato pacchetti PHP supplementari sono disponibili nel BlueOnyx Store e diversa versione di PHP sono disponibili. Pacchetti PHP multipli possono essere installati allo stesso tempo. Per sito virtuale solo una versione PHP può essere usato, anche se diversi siti virtuali possono eseguire facilmente diverse versioni di PHP."
+msgstr "Questo mostra la versione di PHP per questo sito virtuale. Se più versioni di PHP sono installate sul server e viene utilizzato sia suPHP o PHP-FPM, allora è possibile scegliere tra la versione di PHP del sistema operativo in dotazione, o una versione di PHP fornita tramite uno dei pacchetti PHP opzionali. Pacchetti PHP supplementari sono disponibili nel BlueOnyx Store e sono disponibili diverse versioni di PHP. Pacchetti PHP multipli possono essere installati allo stesso tempo. Ogni sito virtuale può utilizzare solo una versione PHP, anche se diversi siti virtuali possono eseguire diverse versioni di PHP."
 
 msgid "amPHPFPMMASTERNameTag"
 msgstr "[[base-apache.amPHPFPMNameTag]] (OS)"
@@ -400,7 +400,7 @@ msgid "amPHPFPMMASTERStatusOK"
 msgstr "Il servizio di PHP-FPM (OS) sta funzionando normalmente."
 
 msgid "amPHPFPMMASTERNotRunning"
-msgstr "Il [[base-apache.amPHPFPMNameTag]] servizio non è in esecuzione e non può essere riavviato. Si prega di controllare i file di log per i messaggi di errore relativi a questo servizio ed eseguire 'stato php-fpm.service systemctl' come root dalla riga di comando per risolvere il problema. Se siete ancora in grado di accedere al [[base-apache.amPHPFPMNameTag]], si prega di visitare [[base-sauce-basic.techSupportURL]] per il supporto tecnico."
+msgstr "Il servizio [[base-apache.amPHPFPMNameTag]] non è in esecuzione e non può essere riavviato. Si prega di controllare i file di log per i messaggi di errore relativi a questo servizio ed eseguire 'systemctl status php-fpm.service' come root dalla riga di comando per risolvere il problema. Se non si è ancora in grado di accedere al [[base-apache.amPHPFPMNameTag]], si prega di visitare [[base-sauce-basic.techSupportURL]] per il supporto tecnico."
 
 msgid "amPHPFPM53NameTag"
 msgstr "[[base-apache.amPHPFPMNameTag]] 5.3"
@@ -409,7 +409,7 @@ msgid "amPHPFPM53StatusOK"
 msgstr "Il servizio di PHP-FPM (per PHP-5.3) funziona normalmente."
 
 msgid "amPHPFPM53NotRunning"
-msgstr "Il [[base-apache.amPHPFPM53NameTag]] servizio non è in esecuzione e non può essere riavviato. Si prega di controllare i file di log per i messaggi di errore relativi a questo servizio ed eseguire 'systemctl status php-FPM-5.3.service' come root dalla riga di comando per risolvere il problema. Se siete ancora in grado di accedere al [[base-apache.amPHPFPM53NameTag]], si prega di visitare [[base-sauce-basic.techSupportURL]] per il supporto tecnico."
+msgstr "Il servizio [[base-apache.amPHPFPM53NameTag]] non è in esecuzione e non può essere riavviato. Si prega di controllare i file di log per i messaggi di errore relativi a questo servizio ed eseguire 'systemctl status php-FPM-5.3.service' come root dalla riga di comando per risolvere il problema. Se non si è ancora in grado di accedere al [[base-apache.amPHPFPM53NameTag]], si prega di visitare [[base-sauce-basic.techSupportURL]] per il supporto tecnico."
 
 msgid "amPHPFPM54NameTag"
 msgstr "[[base-apache.amPHPFPMNameTag]] 5.4"
@@ -418,7 +418,7 @@ msgid "amPHPFPM54StatusOK"
 msgstr "Il servizio di PHP-FPM (per PHP-5.4) funziona normalmente."
 
 msgid "amPHPFPM54NotRunning"
-msgstr "Il [[base-apache.amPHPFPM54NameTag]] servizio non è in esecuzione e non può essere riavviato. Si prega di controllare i file di log per i messaggi di errore relativi a questo servizio ed eseguire 'systemctl status php-FPM-5.4.service' come root dalla riga di comando per risolvere il problema. Se siete ancora in grado di accedere al [[base-apache.amPHPFPM54NameTag]], si prega di visitare [[base-sauce-basic.techSupportURL]] per il supporto tecnico."
+msgstr "Il servizio [[base-apache.amPHPFPM54NameTag]] non è in esecuzione e non può essere riavviato. Si prega di controllare i file di log per i messaggi di errore relativi a questo servizio ed eseguire 'systemctl status php-FPM-5.4.service' come root dalla riga di comando per risolvere il problema. Se non si è ancora in grado di accedere al [[base-apache.amPHPFPM54NameTag]], si prega di visitare [[base-sauce-basic.techSupportURL]] per il supporto tecnico."
 
 msgid "amPHPFPM55NameTag"
 msgstr "[[base-apache.amPHPFPMNameTag]] 5.5"
@@ -427,7 +427,7 @@ msgid "amPHPFPM55StatusOK"
 msgstr "Il servizio di PHP-FPM (per PHP-5.5) funziona normalmente."
 
 msgid "amPHPFPM55NotRunning"
-msgstr "Il [[base-apache.amPHPFPM55NameTag]] servizio non è in esecuzione e non può essere riavviato. Si prega di controllare i file di log per i messaggi di errore relativi a questo servizio ed eseguire 'systemctl status php-FPM-5.5.service' come root dalla riga di comando per risolvere il problema. Se siete ancora in grado di accedere al [[base-apache.amPHPFPM55NameTag]], si prega di visitare [[base-sauce-basic.techSupportURL]] per il supporto tecnico."
+msgstr "Il servizio [[base-apache.amPHPFPM55NameTag]] non è in esecuzione e non può essere riavviato. Si prega di controllare i file di log per i messaggi di errore relativi a questo servizio ed eseguire 'systemctl status php-FPM-5.5.service' come root dalla riga di comando per risolvere il problema. Se non si è ancora in grado di accedere al [[base-apache.amPHPFPM55NameTag]], si prega di visitare [[base-sauce-basic.techSupportURL]] per il supporto tecnico."
 
 msgid "amPHPFPM56NameTag"
 msgstr "[[base-apache.amPHPFPMNameTag]] 5.6"
@@ -436,7 +436,7 @@ msgid "amPHPFPM56StatusOK"
 msgstr "Il servizio di PHP-FPM (per PHP-5.6) funziona normalmente."
 
 msgid "amPHPFPM56NotRunning"
-msgstr "Il [[base-apache.amPHPFPM56NameTag]] servizio non è in esecuzione e non può essere riavviato. Si prega di controllare i file di log per i messaggi di errore relativi a questo servizio ed eseguire 'systemctl status php-FPM-5.6.service' come root dalla riga di comando per risolvere il problema. Se siete ancora in grado di accedere al [[base-apache.amPHPFPM56NameTag]], si prega di visitare [[base-sauce-basic.techSupportURL]] per il supporto tecnico."
+msgstr "Il servizio [[base-apache.amPHPFPM56NameTag]] non è in esecuzione e non può essere riavviato. Si prega di controllare i file di log per i messaggi di errore relativi a questo servizio ed eseguire 'systemctl status php-FPM-5.6.service' come root dalla riga di comando per risolvere il problema. Se non si è ancora in grado di accedere al [[base-apache.amPHPFPM56NameTag]], si prega di visitare [[base-sauce-basic.techSupportURL]] per il supporto tecnico."
 
 ##
 
@@ -455,7 +455,7 @@ msgid "amPHPFPM70StatusOK"
 msgstr "Il servizio di PHP-FPM (per PHP-7.0) funziona normalmente."
 
 msgid "amPHPFPM70NotRunning"
-msgstr "Il [[base-apache.amPHPFPM70NameTag]] servizio non è in esecuzione e non può essere riavviato. Si prega di controllare i file di log per i messaggi di errore relativi a questo servizio ed eseguire 'systemctl status php-FPM-7.0.service' come root dalla riga di comando per risolvere il problema. Se siete ancora in grado di accedere al [[base-apache.amPHPFPM70NameTag]], si prega di visitare [[base-sauce-basic.techSupportURL]] per il supporto tecnico."
+msgstr "Il servizio [[base-apache.amPHPFPM70NameTag]] non è in esecuzione e non può essere riavviato. Si prega di controllare i file di log per i messaggi di errore relativi a questo servizio ed eseguire 'systemctl status php-FPM-7.0.service' come root dalla riga di comando per risolvere il problema. Se non si è ancora in grado di accedere al [[base-apache.amPHPFPM70NameTag]], si prega di visitare [[base-sauce-basic.techSupportURL]] per il supporto tecnico."
 
 #
 
@@ -466,7 +466,7 @@ msgid "amPHPFPM71StatusOK"
 msgstr "Il servizio di PHP-FPM (per PHP-7.1) funziona normalmente."
 
 msgid "amPHPFPM71NotRunning"
-msgstr "Il [[base-apache.amPHPFPM71NameTag]] servizio non è in esecuzione e non può essere riavviato. Si prega di controllare i file di log per i messaggi di errore relativi a questo servizio ed eseguire 'systemctl status php-FPM-7.1.service' come root dalla riga di comando per risolvere il problema. Se siete ancora in grado di accedere al [[base-apache.amPHPFPM71NameTag]], si prega di visitare [[base-sauce-basic.techSupportURL]] per il supporto tecnico."
+msgstr "Il [[base-apache.amPHPFPM71NameTag]] servizio non è in esecuzione e non può essere riavviato. Si prega di controllare i file di log per i messaggi di errore relativi a questo servizio ed eseguire 'systemctl status php-FPM-7.1.service' come root dalla riga di comando per risolvere il problema. Se non si è ancora in grado di accedere al [[base-apache.amPHPFPM71NameTag]], si prega di visitare [[base-sauce-basic.techSupportURL]] per il supporto tecnico."
 
 #
 
@@ -477,7 +477,7 @@ msgid "amPHPFPM72StatusOK"
 msgstr "Il servizio di PHP-FPM (per PHP-7.2) funziona normalmente."
 
 msgid "amPHPFPM72NotRunning"
-msgstr "Il [[base-apache.amPHPFPM72NameTag]] servizio non è in esecuzione e non può essere riavviato. Si prega di controllare i file di log per i messaggi di errore relativi a questo servizio ed eseguire 'systemctl status php-FPM-7.2.service' come root dalla riga di comando per risolvere il problema. Se siete ancora in grado di accedere al [[base-apache.amPHPFPM72NameTag]], si prega di visitare [[base-sauce-basic.techSupportURL]] per il supporto tecnico."
+msgstr "Il [[base-apache.amPHPFPM72NameTag]] servizio non è in esecuzione e non può essere riavviato. Si prega di controllare i file di log per i messaggi di errore relativi a questo servizio ed eseguire 'systemctl status php-FPM-7.2.service' come root dalla riga di comando per risolvere il problema. Se non si è ancora in grado di accedere al [[base-apache.amPHPFPM72NameTag]], si prega di visitare [[base-sauce-basic.techSupportURL]] per il supporto tecnico."
 
 #
 
@@ -488,7 +488,7 @@ msgid "amPHPFPM73StatusOK"
 msgstr "Il servizio di PHP-FPM (per PHP-7.3) funziona normalmente."
 
 msgid "amPHPFPM73NotRunning"
-msgstr "Il [[base-apache.amPHPFPM73NameTag]] servizio non è in esecuzione e non può essere riavviato. Si prega di controllare i file di log per i messaggi di errore relativi a questo servizio ed eseguire 'systemctl status php-FPM-7.3.service' come root dalla riga di comando per risolvere il problema. Se siete ancora in grado di accedere al [[base-apache.amPHPFPM73NameTag]], si prega di visitare [[base-sauce-basic.techSupportURL]] per il supporto tecnico."
+msgstr "Il [[base-apache.amPHPFPM73NameTag]] servizio non è in esecuzione e non può essere riavviato. Si prega di controllare i file di log per i messaggi di errore relativi a questo servizio ed eseguire 'systemctl status php-FPM-7.3.service' come root dalla riga di comando per risolvere il problema. Se non si è ancora in grado di accedere al [[base-apache.amPHPFPM73NameTag]], si prega di visitare [[base-sauce-basic.techSupportURL]] per il supporto tecnico."
 
 #### REDIRECT:
 
@@ -499,19 +499,19 @@ msgid "redirect_enabled"
 msgstr "Sito web Redirect"
 
 msgid "redirect_enabled_help"
-msgstr "Questa opzione consente di reindirizzare l' intero sito web di questo sito virtuale ad un altro URL. I reindirizzi possono essere temporanei (codice di stato HTTP 302) o permanenti (codice di stato HTTP 301)."
+msgstr "Questa opzione consente di reindirizzare tutte le chiamate web di questo sito virtuale ad un altro URL. I reindirizzi possono essere temporanei (codice di stato HTTP 302) o permanenti (codice di stato HTTP 301)."
 
 msgid "RedirectType"
 msgstr "Redirect Tipo"
 
 msgid "RedirectType_help"
-msgstr "Specifica lo Status Code HTTP con il quale ogni accesso web a qualsiasi URL di questo sito virtuale sarà reindirizzato all' URL specificato. I reindirizzi possono essere temporanei (codice di stato HTTP 302) o permanenti (codice di stato HTTP 301)."
+msgstr "Specifica lo Status Code HTTP con il quale ogni chiamata  web a qualsiasi URL di questo sito virtuale sarà reindirizzata all'URL specificato. I reindirizzi possono essere temporanei (codice di stato HTTP 302) o permanenti (codice di stato HTTP 301)."
 
 msgid "target"
 msgstr "URL target"
 
 msgid "target_help"
-msgstr "Inserire qui l' URL di destinazione. Qualsiasi accesso web a questo sito virtuale sarà reindirizzato all' URL specificato. Questo può essere un URL http:// o https://. Gli URL inseriti possono contenere sottodirectory, pagine e parametri URL. Se lo desideri puoi copiare e incollare l' URL di destinazione desiderato dal tuo browser e incollarlo qui."
+msgstr "Inserire qui l'URL di destinazione. Qualsiasi chiamata web a questo sito virtuale sarà reindirizzata all'URL specificato. Questo può essere un URL http:// o https://. Gli URL inseriti possono contenere sottodirectory, pagine e parametri URL. Se lo desideri puoi copiare l' URL di destinazione desiderato dal tuo browser e incollarlo qui."
 
 
 #
@@ -527,7 +527,7 @@ msgstr "[[base-apache.HSTS_help]]"
 #####
 
 msgid "possvals"
-msgstr "Valori possibili: Interger seguito da 's' (per i secondi), 'm' (per i minuti), 'h' (per le ore) o 'd' (per i giorni)."
+msgstr "Valori possibili: Intero seguito da 's' (per i secondi), 'm' (per i minuti), 'h' (per le ore) o 'd' (per i giorni)."
 
 msgid "basicSettingsTab"
 msgstr "Apache"
@@ -539,22 +539,22 @@ msgid "GENERAL_NGINX_DIVIDER"
 msgstr "Utilizzare Nginx come SSL-Proxy:"
 
 msgid "Nginx_Info_Text"
-msgstr "Il webserver Apache che viene fornito con BlueOnyx fa un buon lavoro nel servire le pagine HTTP tradizionali. Tuttavia, in termini di HTTPS presenta alcune carenze. Ad esempio, non può rispondere alle richieste HTTP/2 e anche i codici TLS supportati non sono la scelta migliore. Poiché HTTP/2 è un miglioramento notevole e vogliamo anche che le nostre connessioni TLS siano della migliore qualità e sicurezza possibile, ora offriamo la possibilità di lasciare che Apache continui a servire le richieste HTTP e instradare tutte le connessioni HTTPS attraverso un proxy di inoltro Nginx. Se si spunta la casella di controllo sotto questo server, verrà riconfigurato in modo che Apache perda l'autorità nel servire le pagine HTTPS e lasci a Nginx il compito di fare HTTPS. Questa funzione può essere invertita in qualsiasi momento semplicemente deselezionando nuovamente la casella di controllo."
+msgstr "Il webserver Apache che viene fornito con BlueOnyx fa un buon lavoro nel servire le pagine HTTP tradizionali. Tuttavia, in termini di HTTPS presenta alcune carenze. Ad esempio, non può rispondere alle richieste HTTP/2 e anche i codici TLS supportati non sono la scelta migliore. Poiché HTTP/2 è un miglioramento notevole e vogliamo anche che le nostre connessioni TLS siano della migliore qualità e sicurezza possibile, ora offriamo la possibilità di lasciare che Apache continui a servire le richieste HTTP e instradare tutte le connessioni HTTPS attraverso un proxy di inoltro Nginx. Se si spunta la casella di controllo sotto questo server, verrà riconfigurato in modo che Apache perda l'autorità nel servire le pagine HTTPS e lasci a Nginx il compito di fare HTTPS. Questa funzione può essere disabilitata in qualsiasi momento semplicemente deselezionando nuovamente la casella di controllo."
 
 msgid "NGINX_CFG_DIVIDER"
 msgstr "Configurazione Nginx:"
 
 msgid "worker_processes"
-msgstr "Processi operai"
+msgstr "Processi Worker"
 
 msgid "worker_processes_help"
-msgstr "Definisce il numero di processi lavorativi. Il valore ottimale dipende da molti fattori, tra cui (ma non solo) il numero di core della CPU, il numero di unità disco rigido che memorizzano i dati e il modello di carico. In caso di dubbio, impostare il numero di core della CPU disponibili sarebbe un buon inizio. Il valore 'auto' cercherà di rilevarlo automaticamente. Valori possibili: 'auto' o un intero."
+msgstr "Definisce il numero di Processi Worker. Il valore ottimale dipende da molti fattori, tra cui (ma non solo) il numero di core della CPU, il numero di unità disco rigido che memorizzano i dati e il modello di carico. In caso di dubbio, impostare il numero di core disponibili della CPU. Il valore 'auto' cercherà di rilevarlo automaticamente. Valori possibili: 'auto' o un intero."
 
 msgid "worker_connections"
-msgstr "Connessioni Lavoratore"
+msgstr "Connessioni Worker"
 
 msgid "worker_connections_help"
-msgstr "Imposta il numero massimo di connessioni simultanee che possono essere aperte da un processo di lavoro. Va tenuto presente che questo numero comprende tutte le connessioni (ad esempio quelle con server proxy), non solo quelle con i client. Un'altra considerazione è che il numero effettivo di connessioni simultanee non può superare il limite attuale sul numero massimo di file aperti."
+msgstr "Imposta il numero massimo di connessioni simultanee che possono essere aperte da un Processo Worker. Va tenuto presente che questo numero comprende tutte le connessioni (ad esempio quelle con server proxy), non solo quelle con i client. Un'altra considerazione è che il numero effettivo di connessioni simultanee non può superare il limite attuale sul numero massimo di file aperti."
 
 msgid "max_age"
 msgstr "Età massima"
@@ -566,7 +566,7 @@ msgid "include_subdomains"
 msgstr "Includi Sottodomini"
 
 msgid "include_subdomains_help"
-msgstr "Il parametro opzionale include i sottodomini indica al browser che la politica HSTS si applica anche a tutti i sottodomini del dominio corrente."
+msgstr "Il parametro opzionale Includi Sottodomini indica al browser che la politica HSTS si applica anche a tutti i sottodomini del dominio corrente."
 
 msgid "ssl_session_timeout"
 msgstr "Timeout sessione SSL"
@@ -575,7 +575,7 @@ msgid "ssl_session_timeout_help"
 msgstr "Specifica il tempo durante il quale un client può riutilizzare i parametri di sessione della sessione HTTPS in corso. [[base-apache.possvals]]"
 
 msgid "ssl_session_cache"
-msgstr "Biglietti di sessione SSL"
+msgstr "SSL Session Cache"
 
 msgid "ssl_session_cache_help"
 msgstr "Definisce per quanto tempo i dati della sessione SSL vengono messi in cache. [[base-apache.possvals]]"
