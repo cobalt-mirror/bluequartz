@@ -131,6 +131,8 @@ fi
 - Modified glue/schemas/ssh.schema to disable RSA Authentication.
 - Modified constructor/import_sshd_settings.pl to disable RSA 
   Authentication.
+- Modified glue/handlers/sshd_handler.pl to purge RSAAuthentication
+  from existing SSHD config files.
 
 * Sat Mar 31 2018 Michael Stauber <mstauber@solarspeed.net> 2.0-0BX16
 - Added ability to make AllowTcpForwarding configurable.

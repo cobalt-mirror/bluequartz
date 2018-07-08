@@ -117,13 +117,6 @@ sub edit_sshd_config {
         $sshd_settings->{"XPasswordAuthentication"} = "yes";
     }
     
-    if ($sshd_settings->{"RSAAuthentication"} eq "0") {
-        $sshd_settings->{"RSAAuthentication"} = "no";
-    }
-    else {
-        $sshd_settings->{"RSAAuthentication"} = "yes";
-    }
-
     if ($sshd_settings->{"PubkeyAuthentication"} eq "0") {
         $sshd_settings->{"PubkeyAuthentication"} = "no";
     }
@@ -163,7 +156,6 @@ sub edit_sshd_config {
     $server_sshd_settings_writeoff = { 
         'PermitRootLogin' => $sshd_settings->{"PermitRootLogin"}, 
         'PasswordAuthentication' => $sshd_settings->{"XPasswordAuthentication"}, 
-        'RSAAuthentication' => $sshd_settings->{"RSAAuthentication"}, 
         'PubkeyAuthentication' => $sshd_settings->{"PubkeyAuthentication"}, 
         'Port' => $sshd_settings->{"Port"}, 
         'Protocol' => $sshd_settings->{"Protocol"},
@@ -182,6 +174,14 @@ sub edit_sshd_config {
         '#',
         { 're' => '(\s*)', 'val' => ' ' },
         $server_sshd_settings_writeoff);
+
+    # Find and remove deprecated SSHD config option 'RSAAuthentication':
+    $checkRSA = `cat $sshd_config|grep ^RSAAuthentication|wc -l`;
+    chomp($checkRSA);
+    if ($checkRSA gt "0") {
+        system("cat $sshd_config|grep -v ^RSAAuthentication > /etc/ssh/sshd_config.bxnew");
+        system("mv /etc/ssh/sshd_config.bxnew $sshd_config");
+    }
 
     # Error handling:
     unless ($ok) {
