@@ -147,6 +147,26 @@ foreach $service (@services) {
             }
             $vsite_php_settings->{"safe_mode_allowed_env_vars"} = join(",", @safe_mode_allowed_env_vars);
 
+            # OpenBaseDir Fix:
+            my $mySystem = do {
+                my @sysoids = $cce->find('PHP');
+                my ($ok, $object) = $cce->get($sysoids[0]);
+                die unless $ok;
+                $object;
+            };
+            my @vsite_php_settings_temporary   = split(":", $vsite_php_settings->{"open_basedir"});
+            my @my_server_php_settings_temp    = split(":", $mySystem->{'open_basedir'});
+            my @vsite_php_settings_temp_joined = (@vsite_php_settings_temporary, @my_server_php_settings_temp);
+
+            # For debugging:
+            &debug_msg("mySystem settings for 'open_basedir': " . $mySystem->{'open_basedir'} . "\n");
+            &debug_msg("vsite_php_settings for 'open_basedir' : " . $vsite_php_settings->{"open_basedir"} . "\n");
+
+            my %obd_helper                     = map { $_ => 1 } @vsite_php_settings_temp_joined;
+            my @vsite_php_settings_temp        = keys %obd_helper;
+            $vsite_php_settings->{"open_basedir"} = join ":", @vsite_php_settings_temp;
+            &debug_msg("Final for 'open_basedir' : " . $vsite_php_settings->{'open_basedir'} . "\n");
+
             # Make sure that the path to the prepend file directory is allowed, too:
             unless ($vsite_php_settings->{"open_basedir"} =~ m/\/usr\/sausalito\/configs\/php\//) {
                 $vsite_php_settings->{"open_basedir"} .= $vsite_php_settings->{"open_basedir"} . ':/usr/sausalito/configs/php/';
