@@ -88,13 +88,14 @@ class SSHExtension extends UIExtension {
             $pageId
             );
 
-        // RSAAuthentication enabled or not:
-        $RSAAccess =& $factory->getBoolean('RSAAuthentication', $settings['RSAAuthentication']);
-        $enable->addFormField(
-            $RSAAccess,
-            $factory->getLabel('RSAAuthentication'),
-            $pageId
-            );
+        //// RSAAuthentication enabled or not:
+        // Deprecated
+        //$RSAAccess =& $factory->getBoolean('RSAAuthentication', $settings['RSAAuthentication']);
+        //$enable->addFormField(
+        //    $RSAAccess,
+        //    $factory->getLabel('RSAAuthentication'),
+        //    $pageId
+        //    );
 
         // PubkeyAuthentication enabled or not:
         $PKeyAccess =& $factory->getBoolean('PubkeyAuthentication', $settings['PubkeyAuthentication']);
@@ -137,7 +138,7 @@ class SSHExtension extends UIExtension {
                 	'Protocol' => $attributes['SSH_Proto'],
                     'PermitRootLogin' => ($attributes['SSHrootLogin'] ? 1 : 0),
                     'XPasswordAuthentication' => ($attributes['PasswordAuthentication'] ? 1 : 0),
-                    'RSAAuthentication' => ($attributes['RSAAuthentication'] ? 1 : 0),
+                    'RSAAuthentication' => '0',
                     'PubkeyAuthentication' => ($attributes['PubkeyAuthentication'] ? 1 : 0),
                 	'AllowTcpForwarding' => ($attributes['AllowTcpForwarding'] ? 1 : 0),
                 	'force_update' => time()

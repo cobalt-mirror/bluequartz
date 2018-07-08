@@ -179,7 +179,7 @@ sub feedthemonster {
             'Protocol' => $CONFIG{"Protocol"},   
             'PermitRootLogin' => $CONFIG{"PermitRootLogin"},
             'XPasswordAuthentication' => $CONFIG{"PasswordAuthentication"},
-            'RSAAuthentication' => $CONFIG{"RSAAuthentication"},
+            'RSAAuthentication' => '0',
             'PubkeyAuthentication' => $CONFIG{"PubkeyAuthentication"},
             'AllowTcpForwarding' => $CONFIG{"AllowTcpForwarding"},
             'force_update' => time()  

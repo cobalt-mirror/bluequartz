@@ -50,7 +50,7 @@
     />
 
     <property
-        name="RSAAuthentication" type="boolean" default="1"
+        name="RSAAuthentication" type="boolean" default="0"
         writeacl="ruleCapable(serverShell)"
     />
 
