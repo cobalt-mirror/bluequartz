@@ -1,7 +1,7 @@
 Summary: Perl modules that contain useful utility functions for handlers.
 Name: perl-handler-utils
 Version: 1.4.0
-Release: 0BX17%{?dist}
+Release: 0BX18%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -33,6 +33,12 @@ This package contains a number of perl modules that contain useful
 utility functions for writing cced event handler scripts.
 
 %changelog
+
+* Sun Jul 08 2018 Michael Stauber <mstauber@solarspeed.net> 1.4.0-0BX18
+- Modified Sauce/Service/Daemon.pm again to include improvements
+  suggested by Tomohiro Hosaka <bokutin@gmail.com>. Additionally added
+  check to not use pkill when the service is already dead, because a HUP
+  will then not bring it back.
 
 * Sun Mar 04 2018 Michael Stauber <mstauber@solarspeed.net> 1.4.0-0BX17
 - Extended src/perl-handler-utils/Sauce/Service/Daemon.pm to use
