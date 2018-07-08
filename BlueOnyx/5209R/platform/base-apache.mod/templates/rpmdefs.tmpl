@@ -227,6 +227,12 @@ fi
 
 <begin $CHANGELOG>
 
+* Sun Jul 08 2018 Michael Stauber <mstauber@solarspeed.net> 2.2.1-0BX07
+- Modified glue/handlers/virtual_host.pl to conditionally add proxy headers
+  to Apache config if Nginx is used as SSL proxy.
+- Modified glue/handlers/virtual_host.pl to add 'client_max_body_size' to
+  Nginx Vsite include files that matches PHP upload_max_filesize for Vsite.
+
 * Tue Jun 19 2018 Michael Stauber <mstauber@solarspeed.net> 2.2.1-0BX06
 - Better Itallian translation as provided by Simone Capra.
 

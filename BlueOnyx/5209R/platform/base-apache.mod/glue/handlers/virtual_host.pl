@@ -824,6 +824,19 @@ sub edit_vhost
         $ip_rewrite_cond_https .= 'RewriteCond %{HTTP_HOST}                !^' . $vhost->{ipaddr} . '(:' . $sslPort . ')?$';
     }
 
+my $apache_forwarded_for = '';
+if ($Nginx->{enabled} eq '1') {
+    $apache_forwarded_for .= "RemoteIPHeader X-Forwarded-For\n";
+    if ($vhost->{ipaddr} ne "") {
+        $apache_forwarded_for .= "RemoteIPInternalProxy $vhost->{ipaddr}\n";
+        $apache_forwarded_for .= "RemoteIPTrustedProxy $vhost->{ipaddr}\n";
+    }
+    if ($vhost->{ipaddrIPv6} ne "") {
+        $apache_forwarded_for .= "RemoteIPInternalProxy $vhost->{ipaddrIPv6}\n";
+        $apache_forwarded_for .= "RemoteIPTrustedProxy $vhost->{ipaddrIPv6}\n";
+    }
+}
+
     my $vhost_conf =<<END;
 # owned by VirtualHost
 #NameVirtualHost $http_ipline
@@ -859,6 +872,7 @@ Include $include_file
 $PHP_Config_Lines
 $WebScripting_Config_Lines
 $Java_Config_Lines
+$apache_forwarded_for
 </VirtualHost>
 END
 
@@ -1085,6 +1099,9 @@ server {
       proxy_set_header     X-Forwarded-Proto \$scheme;
       proxy_pass           http://$vhost->{fqdn}:80/;
       proxy_read_timeout   90;
+
+      client_max_body_size $PHP_Vsite->{"upload_max_filesize"};
+
     }
 }
 END
