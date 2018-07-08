@@ -1,0 +1,201 @@
+# --- Package text
+msgid "pkgVendor"
+msgstr "[[base-alpine.osName]]"
+
+msgid "pkgName"
+msgstr "Disk Mirroring"
+
+msgid "pkgDescription"
+msgstr "[[base-raid.pkgName]] provides enhanced reliability by actively mirroring content across a pair of hard drives."
+
+# --- Active Monitor
+
+msgid "amRAIDNameTag"
+msgstr "Redundant Array of Independent Disks (RAID) Status"
+
+msgid "raid_title"
+msgstr "Redundant Array of Independent Disks (RAID) Status Details"
+
+msgid "amClientStatus"
+msgstr "[[base-am.amClientStatus]]"
+
+msgid "amClientStatus_help"
+msgstr "[[base-am.amClientStatus_help]]"
+
+msgid "amClientLastChange"
+msgstr "[[base-am.amClientLastChange]]"
+
+msgid "amClientLastChange_help"
+msgstr "[[base-am.amClientLastChange_help]]"
+
+# --- Active Monitor status messages 
+
+msgid "raid_disabled"
+msgstr "RAID is disabled on this system."
+
+msgid "raid_working"
+msgstr "The RAID subsystem is operating normally."
+
+msgid "raid_sync_in_progress"
+msgstr "The system is resynchronizing the information on the disks."
+
+msgid "raid_sync_in_progress_email"
+msgstr "The system is resynchronizing the information on the disks. Please look at the [[base-raid.amDiskIntegrityNameTag]] entry in Active Monitor for more information."
+
+msgid "raid_sync_incomplete"
+msgstr "The system has paused when resynchronizing the information on the disks. Please wait a few minutes for synchronization to resume. If synchronization does not resume, please refer to [[base-sauce-basic.techSupportURL]] for assistance."
+
+msgid "raid_sync_incomplete_email"
+msgstr "The system has paused when resynchronizing the information on the disks. Please look at the [[base-raid.amDiskIntegrityNameTag]] entry in Active Monitor for more information."
+
+msgid "raid_completed"
+msgstr "completed"
+
+msgid "raid_minutes_remaining"
+msgstr "minute(s) remaining"
+
+msgid "raid_sync_delayed"
+msgstr "synchronization has been delayed"
+
+msgid "raid_less_than_one_remaining"
+msgstr "less than 1 minute remaining"
+
+msgid "raid_failure"
+msgstr "A hard drive has failed. Please shutdown the server appliance and replace the failed hard drive with a new one that is the same size as the remaining drive. Data will be restored to the replacement hard drive automatically."
+
+msgid "raid0_failure"
+msgstr "A hard drive has failed. Please shutdown the server appliance and replace the failed hard drive with a new one that is the same size as the remaining drive. Data will be restored to the replacement hard drive automatically."
+
+msgid "raid_failure_email"
+msgstr "A hard drive has failed. Please shutdown the server appliance and replace the failed hard drive with a new one that is the same size as the remaining drive. Data will be restored to the replacement hard drive automatically."
+
+msgid "raid0_failure_email"
+msgstr "A hard drive has failed in raid0 configuration. Please shutdown the server appliance and replace the failed hard drive with a new one that is the same size as the remaining drive. Then, restore the /home directory using your backups."
+
+msgid "raid_failure_email_Alpine_hda"
+msgstr "Drive 1 has failed. Please shutdown the server appliance and replace the failed hard drive with a new one that is the same size as the remaining drive. Data will be restored to the replacement hard drive automatically."
+
+msgid "raid0_failure_email_Alpine_hda"
+msgstr "Drive 1 has failed in raid0 configuration. Please shutdown the server appliance and replace the failed hard drive with a new one that is the same size as the remaining drive. Then, restore the /home directory using your backups."
+
+msgid "raid_failure_email_Alpine_hdc"
+msgstr "Drive 2 has failed. Please shutdown the server appliance and replace the failed hard drive with a new one that is the same size as the remaining drive. Data will be restored to the replacement hard drive automatically."
+
+msgid "raid0_failure_email_Alpine_hdc"
+msgstr "Drive 2 has failed in raid0 configuration. Please shutdown the server appliance and replace the failed hard drive with a new one that is the same size as the remaining drive. Then, restore the /home directory using your backups."
+
+msgid "raid_failure_hdc_raq"
+msgstr "The hard drive (hdc) has failed. Please shutdown the server appliance and replace this drive with a new drive of identical size."
+
+msgid "raid_failure_hda_raq"
+msgstr "The hard drive (hda) has failed. Please shutdown the server appliance and replace this drive with a new drive of identical size."
+
+msgid "raid_failure_qube"
+msgstr "A hard drive has failed. Please shutdown the server appliance and replace the failed hard drive with a new one that is the same size as the remaining drive. Data will be restored to the replacement hard drive automatically. Check the Active Monitor RAID details screen for more information."
+
+msgid "raid_failure_hdc_qube"
+msgstr "The secondary hard drive has failed. Please shutdown the server appliance and replace this drive with a new drive of identical size. The failed drive (labeled B) is located near the center of the server appliance. It is the hard drive on the right side when facing the the front of the server appliance."
+
+msgid "raid_failure_hda_qube"
+msgstr "The primary hard drive (hda) has failed. Please shutdown the server appliance and replace this drive with a new drive of identical size."
+
+# --- Handlers
+ 
+msgid "cantGetRAID"
+msgstr "Could not get RAID event object."
+
+msgid "RAIDLevelChangeFailed"
+msgstr "Execution of RAID level change script failed."
+
+# --- raid setup
+
+msgid "raidstatus"
+msgstr "RAID Setup"
+
+msgid "configuring"
+msgstr "Setting up RAID. This operation will take several minutes."
+
+msgid "raidstep1"
+msgstr "Preparing disk..."
+
+msgid "raidstep2"
+msgstr "Setting up quotas..."
+
+msgid "raidstep3"
+msgstr "Starting up services..."
+
+msgid "setupNoDiskSpace"
+msgstr "ERROR: Not enough disk space. You should not add data until RAID has been configured. If you have added files to the server already, you must remove them and try again. Contact technical support for more help if needed."
+
+msgid "setupNoUmountHome"
+msgstr "ERROR: Couldn't unmount /home. Make sure you are not logged in to the system or have started any programs."
+
+msgid "confirmRaid0"
+msgstr "Are you certain you want your system to use RAID striping to store data?\n\n This choice cannot be changed after completing the setup wizard."
+
+msgid "confirmRaid1"
+msgstr "Are you certain you want your system to use RAID mirroring to store data? \n\n This choice cannot be changed after completing the setup wizard."
+
+msgid "confirmRaid5"
+msgstr "Are you certain you want your system to use RAID striping with parity to store data? \n\nThis choice cannot be changed after completing the setup wizard."
+
+msgid "amDiskIntegrityNameTag"
+msgstr "Disk Integrity"
+
+msgid "integrityOK"
+msgstr "Disks are functioning normally."
+
+msgid "integrityProblem"
+msgstr "There is a problem with disk integrity."
+
+msgid "integritySevereProblem"
+msgstr "There is a severe problem with disk integrity."
+
+msgid "raid_working_raq"
+msgstr "Disk mirroring is enabled and currently active."
+
+msgid "raid_sync_in_progress_raq"
+msgstr "Server data is currently being duplicated to insure drive integrity. Disk mirroring will be enabled and active after this synchronization is complete."
+
+msgid "config_raid0"
+msgstr "Your system is configured for disk striping (RAID 0) using [[VAR.numdisks]] disk[[VAR.plural]]."
+
+msgid "config_raid1"
+msgstr "Your system is configured for disk mirroring (RAID 1) using [[VAR.numdisks]] disk[[VAR.plural]]."
+
+msgid "config_raid5"
+msgstr "Your system is configured for disk striping with parity (RAID 5) using [[VAR.numdisks]] disk[[VAR.plural]]."
+
+msgid "drives_ok"
+msgstr "All drives are functioning normally."
+
+msgid "drives_problem"
+msgstr "One or more of the disks is having a problem. The illustration below shows the location of the disks. Move the mouse over the disk image to see more details."
+
+msgid "drives_syncing_problem"
+msgstr "The system is resynchronizing the information on the disks. The illustration below shows the location of the disks. Move the mouse over the disk image to see more details."
+
+msgid "drives_severe_problem"
+msgstr "One or more of the disks is having a problem. The illustration below shows the location of the disks. Move the mouse over the disk image to see more details."
+
+msgid "per_drive_title"
+msgstr "Drive Status Details"
+
+msgid "drive_failed"
+msgstr "This drive has failed. Please shutdown the server appliance and replace the failed hard drive with a new one that is the same size as the remaining drive. Data will be restored to the replacement hard drive automatically."
+
+msgid "drive_failed_in_raid0"
+msgstr "This drive has failed. Please shutdown the server appliance and replace the failed hard drive with a new one that is the same size as the remaining drive. Then, restore the /home directory using your backups."
+
+msgid "drive_syncing"
+msgstr "Data on this drive is being synchronized."
+
+msgid "drive_ok"
+msgstr "This drive is operating normally."
+
+msgid "Alpine_dev_hda"
+msgstr "Drive 1"
+
+msgid "Alpine_dev_hdc"
+msgstr "Drive 2"
+

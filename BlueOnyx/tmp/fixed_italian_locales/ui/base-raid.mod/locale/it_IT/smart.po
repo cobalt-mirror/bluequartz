@@ -1,0 +1,52 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "SMARTnameTag"
+msgstr "Self-Monitoring Analysis e Reporting Technology (SMART) Dettagli dello stato di"
+
+msgid "noAMobject"
+msgstr "Impossibile trovare l'oggetto Monitor Attivo"
+
+msgid "errRefreshingSnapshot"
+msgstr "Snapshot registrazione Errore di stato SMART"
+
+msgid "errRegettingObject"
+msgstr "Errore nel ri-trovare oggetti Monitor Attivo"
+
+msgid "smartFailures"
+msgstr "Uno o più dischi ha un errore. Si prega di eseguire il backup del sistema e sostituire il disco danneggiato. (FIXME! quale disco devo sostituire??)"
+
+msgid "smartDeclining"
+msgstr "Le seguenti unità hanno cominciato a indebolirsi, ma attualmente sono in grado di eseguire senza perdere dati: [[VAR.display_names]]. Si prega di fare riferimento a [[base-sauce-basic.techSupportURL]] per un aiuto in sostituzione di un'unità indebolito."
+
+msgid "smartOK"
+msgstr "Monitoraggio self drive sta eseguendo normalmente su tutte le unità installate."
+
+msgid "turned_off_drives"
+msgstr "Le seguenti unità stanno cominciando a fallire e sono stati disabilitati: [[VAR.display_names]]. Si prega di fare riferimento a [[base-sauce-basic.techSupportURL]] per un aiuto su come eseguire il backup e sostituire le unità guaste."
+
+msgid "unsafe"
+msgstr "Le seguenti unità stanno cominciando a fallire, ma non possono essere disattivati ​​senza perdere informazioni: [[VAR.display_names]]. Si prega di fare riferimento a [[base-sauce-basic.techSupportURL]] per un aiuto su come eseguire il backup e sostituire le unità guaste."
+
+msgid "standalone"
+msgstr "Le seguenti unità stanno cominciando a fallire, ma non possono essere disattivati ​​senza perdere informazioni: [[VAR.display_names]]. Si prega di fare riferimento a [[base-sauce-basic.techSupportURL]] per un aiuto su come eseguire il backup e sostituire stand-alone unità guaste."
+
+msgid "drive_off"
+msgstr "Questa unità è stata spenta, perché è fallito. Si prega di fare riferimento a [[base-sauce-basic.techSupportURL]] per le istruzioni su come sostituire questa unità."
+
+msgid "unsafe_drive"
+msgstr "Questa unità ha fallito, ma non può essere spento senza perdere informazioni. Si prega di fare riferimento a [[base-sauce-basic.techSupportURL]] per le istruzioni su come sostituire l'unità."
+
+msgid "unsafe_drive_standalone"
+msgstr "Questa unità ha fallito, ma non può essere spento senza perdere informazioni. Si prega di fare riferimento a [[base-sauce-basic.techSupportURL]] per le istruzioni su come sostituire un'unità stand-alone."
+
+msgid "drive_declining"
+msgstr "Questa unità ha cominciato a indebolirsi, ma attualmente è in grado di eseguire senza perdere alcun dato. Si prega di fare riferimento a [[base-sauce-basic.techSupportURL]] per le istruzioni su come sostituire un disco in declino."
+

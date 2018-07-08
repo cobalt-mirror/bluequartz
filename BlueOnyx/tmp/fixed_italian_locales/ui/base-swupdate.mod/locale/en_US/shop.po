@@ -1,0 +1,72 @@
+msgid "swupdate_shopLabel"
+msgstr "BlueOnyx Shop"
+
+msgid "swupdate_shopLabelDesc"
+msgstr "See what extra software is available for your BlueOnyx server in the BlueOnyx Shop."
+
+msgid "ShopTitle"
+msgstr "BlueOnyx Shop"
+
+msgid "ErrorMSG"
+msgstr "Error:"
+
+msgid "ErrorMSGdesc"
+msgstr "This page would usually display the list of extra software available in the BlueOnyx Shop. However, your server apparently cannot resolve the domain name of the shop in question, or access to that domain is currently not possible for other reasons. This has no impact on the functionality of this server, although you also may be unable to get YUM updates as long as this problem persists."
+
+msgid "ShopSelector_General_head"
+msgstr "BlueOnyx Shop Setup"
+
+msgid "ShopSelector_General_configuration"
+msgstr "Choose your BlueOnyx Shop:"
+
+msgid "ShopSelector_Info"
+msgstr "Info:"
+
+msgid "ShopSelector_Info_help"
+msgstr "Shows more information."
+
+msgid "ShopSelector_Info_Text"
+msgstr "Commercially packaged and supported extra software for your BlueOnyx server appliance is available from various sources. Below you can choose the desired vendor to see which software is available."
+
+msgid "SHOP_SELECTOR"
+msgstr "Vendor:"
+
+msgid "SHOP_SELECTOR_help"
+msgstr "This pulldown allows you to choose your desired vendor for BlueOnyx extra software."
+
+msgid "CAT_SELECTOR"
+msgstr "Product Categories:"
+
+msgid "CAT_SELECTOR_help"
+msgstr "This pulldown allows you to choose your desired category of BlueOnyx extra software."
+
+msgid "product_name"
+msgstr "Product Name:"
+
+msgid "product_name_help"
+msgstr "Shows the name of the product in question."
+
+msgid "ErrorMSGNoProducts"
+msgstr "Please note:"
+
+msgid "ErrorMSGNoProducts_help"
+msgstr "Shows more information."
+
+msgid "ErrorNoProductsInCategory"
+msgstr "There are currently no products in this category. Please check another category."
+
+msgid "openURL"
+msgstr "URL"
+
+msgid "openURL_help"
+msgstr "Click on this icon to see the full product description and price in the shop selected above. The shop page will load inside the frameset of your GUI interface."
+
+#-----
+msgid "thx_bxUsage"
+msgstr "Thank you for using BlueOnyx!"
+
+msgid "bx_ffa"
+msgstr "BlueOnyx itself is open source and available free of charge."
+
+msgid "bx_comBlurb"
+msgstr "However, professional support and extra software is available in the <a href='http://shop.blueonyx.it/' target='_blank'>BlueOnyx Shop</a>."

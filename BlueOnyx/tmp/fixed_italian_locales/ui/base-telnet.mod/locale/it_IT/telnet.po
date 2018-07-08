@@ -1,0 +1,102 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "access"
+msgstr "Accesso"
+
+msgid "access_help"
+msgstr ""
+"Scegli il criterio per l'accesso telnet. Telnet è usato da utenti esperti o "
+"dall'amministratore del server per eseguire gli script di shell o utilizzare "
+"i comandi della shell. La disattivazione o la limitazione all'accesso telnet "
+"è suggerito per una maggiore sicurezza."
+
+msgid "advanced"
+msgstr "Avanzato"
+
+msgid "advanced_help"
+msgstr "I Parametri del server Telnet possono essere gestiti qui."
+
+msgid "amDetailsTitle"
+msgstr "Dettagli del server Telnet"
+
+msgid "amNotAccepting"
+msgstr ""
+"Il server telnet non è in esecuzione e non poteva essere riavviato. Nel "
+"[[base-apache.amAdmservNameTag]], provare a spegnere il server telnet e "
+"riaccenderlo per vedere se questo risolve il problema. Se il server telnet è "
+"non si avvia ancora, provate a riavviare il server stesso cliccando il "
+"[[base-power.reboot]] nel menu [[base-power.power]] sotto [[base-alpine."
+"serverconfig]]. Se il server telnet non parte ancora, fai riferimento a "
+"[[base-sauce-basic.techSupportURL]] per il supporto tecnico."
+
+msgid "amStatusOK"
+msgstr "Il server telnet funziona normalmente."
+
+msgid "amTelnetNameTag"
+msgstr "Server Telnet"
+
+msgid "basic"
+msgstr "Base"
+
+msgid "basic_help"
+msgstr "Il server Telnet può essere abilitato o disabilitato qui."
+
+msgid "connectRateField"
+msgstr "Velocità massima di connessione"
+
+msgid "connectRateField_help"
+msgstr ""
+"Immettere il numero massimo consentito di connessioni al minuto. Nuove "
+"richieste di connessione verranno negate se il numero di connessioni ha "
+"raggiunto questo limite."
+
+msgid "connectRateField_rule"
+msgstr ""
+"Inserisci un numero intero entro l'intervallo specificato. Il valore "
+"predefinito è 40."
+
+msgid "enableServer"
+msgstr "Abilita Server"
+
+msgid "enableServer_help"
+msgstr ""
+"Selezionare questa casella per abilitare l'accesso telnet al server. "
+"Inoltre, gli amministratori di server e del sito possono impostare i "
+"privilegi di accesso per ogni singolo account utente."
+
+msgid "enableTelnet"
+msgstr "Abilitare Server Telnet"
+
+msgid "enableTelnet_help"
+msgstr ""
+"L'abilitazione telnet consente agli utenti con accesso alla shell di "
+"connettersi a questo server utilizzando il software client telnet."
+
+msgid "none"
+msgstr "Off - Non Consentire Login"
+
+msgid "reg"
+msgstr "On - Consentire Tutti gli accessi utente"
+
+msgid "root"
+msgstr "On - Consenti solo l'accesso all'amministratore"
+
+msgid "telnetEnable"
+msgstr "Attiva"
+
+msgid "telnetMenu"
+msgstr "Telnet"
+
+msgid "telnetMenu_help"
+msgstr "Fare clic qui per configurare le impostazioni Telnet."
+
+msgid "telnetSettings"
+msgstr "Impostazioni Telnet"
