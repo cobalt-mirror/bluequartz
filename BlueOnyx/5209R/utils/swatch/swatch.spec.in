@@ -1,7 +1,7 @@
 Summary: System Watcher
 Name: swatch
 Version: XX_VER_XX
-Release: 0BX49%{?dist}
+Release: 0BX50%{?dist}
 Vendor: Project BlueOnyx
 License: BSD
 Group: System Environment/BlueOnyx
@@ -94,6 +94,10 @@ if [ -f /usr/bin/systemctl ]; then
 fi
 
 %changelog
+
+* Mon Jul 09 2018 Michael Stauber <mstauber@solarspeed.net> 4.0.0-0BX50
+- Rollback of hotfixes.sh to pull the fix for the DBUS issue.
+
 * Sun Jul 08 2018 Michael Stauber <mstauber@solarspeed.net> 4.0.0-0BX49
 - Amended hotfixes.sh with a fix for the DBUS issue.
 

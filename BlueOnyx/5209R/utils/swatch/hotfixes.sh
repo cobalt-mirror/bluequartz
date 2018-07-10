@@ -54,14 +54,14 @@ if [ -f /usr/sausalito/swatch/bin/am_support.pl ]; then
 fi
 
 # Fix DBUS issue if /var/run/dbus/system_bus_socket no longer is a Symlink:
-if [ -f /usr/bin/systemctl ];then
-    if [ ! -L /var/run/dbus/system_bus_socket ];then
-        systemctl stop dbus
-        rm /var/run/dbus/system_bus_socket
-        ln -s /run/dbus/system_bus_socket /var/run/dbus/system_bus_socket
-        systemctl start dbus
-    fi
-fi
+#if [ -f /usr/bin/systemctl ];then
+#    if [ ! -L /var/run/dbus/system_bus_socket ];then
+#        systemctl stop dbus
+#        rm /var/run/dbus/system_bus_socket
+#        ln -s /run/dbus/system_bus_socket /var/run/dbus/system_bus_socket
+#        systemctl start dbus
+#    fi
+#fi
 
 # Fix Imagetragick issue:
 if [ -f /etc/ImageMagick/policy.xml ];then
