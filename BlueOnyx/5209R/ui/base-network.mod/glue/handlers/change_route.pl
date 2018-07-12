@@ -366,6 +366,11 @@ if ((!-e "/proc/user_beancounters") && (!-f "/etc/vz/conf/0.conf") && (($System-
         $new_priIP_netroute = "$pri_ip_network/$ipv4_nm dev $device proto kernel scope link src $ipv4_ip";
         &debug_msg("Netroute: Adding proper Netroute for primary IP ($pri_ip_network/$ipv4_nm):\n$new_priIP_netroute\n");
         system("/sbin/ip route add " . $new_priIP_netroute);
+
+        # Restarting Network for good measure:
+        &debug_msg("Netroute: Restarting Network and calling /usr/sbin/ifup $device\n");
+        Sauce::Service::service_run_init('network', 'restart');
+        system("/usr/sbin/ifup $device");
     }
 }
 
