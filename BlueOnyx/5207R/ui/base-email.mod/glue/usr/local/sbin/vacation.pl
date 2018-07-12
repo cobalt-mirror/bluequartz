@@ -336,6 +336,13 @@ if ($is_overquota eq "0") {
     $subject = $i18n->get("[[base-email.vacationSubject]]");
     $format = $i18n->getProperty("vacationSubject", "base-email");
     %data = (NAME => "$fullname", EMAIL => "<$user_from>", MSG => $subject);
+
+    # At this point, if $locale eq "ja_JP"...
+    #        NAME(ascii or utf8)  EMAIL(ascii)             MSG(euc-jp)
+    eval { Encode::from_to($data{NAME}, "utf8", "euc-jp") } if $locale eq "ja_JP";
+    # At this point, if $locale eq "ja_JP"...
+    #        NAME(euc-jp)         EMAIL(ascii)             MSG(euc-jp)
+
     $format=~s/(NAME|EMAIL|MSG)/$data{$1}/g;
 
     # If the users locale preference is Japanese, then the Subject is now 
@@ -418,8 +425,8 @@ sub debug_msg {
 }
 
 # 
-# Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2016-2018 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2016-2018 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 
