@@ -162,21 +162,12 @@ sub _check_apache_state {
 
     # Traditional check polling the Init service:
     my $service = 'httpd';
-    my $service_status = '';
-    if (-f "/usr/bin/systemctl") { 
-        # Got Systemd: 
-        $service_status = `/usr/bin/systemctl status $service|$grep "Active:"|$grep -E "(running|exited)"|$wc -l`;
-        chomp($service_status);
-    }
-    else {
-        # Thank God, no Systemd: 
-        $service_status = `/sbin/service $service status|$grep running|$wc -l`;
-        chomp($service_status);
-    }
+    my $service_status = '0';
+    $service_status = system("/sbin/service $service status") == 0 ? 1 : 0;
 
     # Early return, because: 'It's dead, Jim!'
     if ($service_status eq '0') {
-        &_logmsg("_check_apache_state: Early return #1");
+        &_logmsg("_check_apache_state: Check #1: Init reports Apache is dead");
         return $service_status;
     }
 
@@ -191,7 +182,7 @@ sub _check_apache_state {
         # If status code is not '200' we have a problem - regardless of what Init says:
         $service_status = '0';
         # Early return, because: 'It's dead, Jim!'
-        &_logmsg("_check_apache_state: Early return #2");
+        &_logmsg("_check_apache_state: Check #2: Cannot connect to Apache:80");
         return $service_status;
     }
 
@@ -204,7 +195,7 @@ sub _check_apache_state {
     #   0   Apache dead
     #   1   Apache probably running OK
     #  >1   Childs have detached (bad)
-    &_logmsg("_check_apache_state: Final return");
+    &_logmsg("_check_apache_state: Final return: $apache_state");
     return $apache_state;
 }
 
@@ -219,7 +210,7 @@ sub _kill_and_restart_apache {
 
     &_logmsg("_kill_and_restart_apache: Apache state: $xchecker");
 
-    if ($xchecker > "1") {
+    if ($xchecker gt "1") {
         # Apache-Childs have detached from the master-process. Which is bad.
         # Kill httpd (but not AdmServ!):
         &_logmsg("xchecker reported: Killing $xchecker 'httpd' processes, but not killing admserv.\n");
@@ -241,12 +232,26 @@ sub _kill_and_restart_apache {
     }
     else {
         if (-f "/usr/bin/systemctl") { 
-            &_logmsg("_kill_and_restart_apache runs: /usr/bin/pkill -HUP -x -f " . "/usr/sbin/httpd -DFOREGROUND");
-            `$pkill -HUP -x -f "/usr/sbin/httpd -DFOREGROUND"`;
+            $xchecker = &_check_apache_state;
+            if ($xchecker eq "1") {
+                &_logmsg("_kill_and_restart_apache runs: /usr/bin/pkill -HUP -x -f " . "/usr/sbin/httpd -DFOREGROUND");
+                `$pkill -HUP -x -f "/usr/sbin/httpd -DFOREGROUND"`;
+            }
+            else {
+                &_logmsg("_kill_and_restart_apache runs: /usr/bin/systemctl --job-mode=flush restart httpd.service\n");
+                `/usr/bin/systemctl --job-mode=flush restart httpd.service`; 
+            }
         }
         else {
-            &_logmsg("_kill_and_restart_apache runs: /usr/bin/pkill -HUP -x -f /usr/sbin/httpd");
-            `$pkill -HUP -x -f /usr/sbin/httpd`;
+            $xchecker = &_check_apache_state;
+            if ($xchecker eq "1") {
+                &_logmsg("_kill_and_restart_apache runs: /usr/bin/pkill -HUP -x -f /usr/sbin/httpd");
+                `$pkill -HUP -x -f /usr/sbin/httpd`;
+            }
+            else {
+                &_logmsg("_kill_and_restart_apache runs: /sbin/service httpd restart");
+                `/sbin/service httpd restart`;
+            }
         }
     }
 }
@@ -355,7 +360,8 @@ sub _spawn_child
                 # Perform action again for other services than 'httpd':
                 if (-f "/usr/bin/systemctl") { 
                     # Got Systemd: 
-                    `/usr/bin/systemctl --job-mode=flush $action $service.service`;
+                    #`/usr/bin/systemctl --job-mode=flush $action $service.service`;
+                    `/usr/bin/systemctl $action $service.service`;
                 } 
                 else { 
                     # Thank God, no Systemd: 
