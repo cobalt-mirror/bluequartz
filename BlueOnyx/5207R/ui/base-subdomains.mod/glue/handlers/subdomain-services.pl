@@ -110,6 +110,26 @@ foreach $service (@services) {
             }
             $vsite_php_settings->{"safe_mode_allowed_env_vars"} = join(",", @safe_mode_allowed_env_vars);
 
+            # OpenBaseDir Fix:
+            my $mySystem = do {
+                my @sysoids = $cce->find('PHP');
+                my ($ok, $object) = $cce->get($sysoids[0]);
+                die unless $ok;
+                $object;
+            };
+            my @vsite_php_settings_temporary   = split(":", $vsite_php_settings->{"open_basedir"});
+            my @my_server_php_settings_temp    = split(":", $mySystem->{'open_basedir'});
+            my @vsite_php_settings_temp_joined = (@vsite_php_settings_temporary, @my_server_php_settings_temp);
+
+            # For debugging:
+            &debug_msg("mySystem settings for 'open_basedir': " . $mySystem->{'open_basedir'} . "\n");
+            &debug_msg("vsite_php_settings for 'open_basedir' : " . $vsite_php_settings->{"open_basedir"} . "\n");
+
+            my %obd_helper                     = map { $_ => 1 } @vsite_php_settings_temp_joined;
+            my @vsite_php_settings_temp        = keys %obd_helper;
+            $vsite_php_settings->{"open_basedir"} = join ":", @vsite_php_settings_temp;
+            &debug_msg("Final for 'open_basedir' : " . $vsite_php_settings->{'open_basedir'} . "\n");
+
             # Make sure that the path to the prepend file directory is allowed, too:
             unless ($vsite_php_settings->{"open_basedir"} =~ m/\/usr\/sausalito\/configs\/php\//) {
                 $vsite_php_settings->{"open_basedir"} .= $vsite_php_settings->{"open_basedir"} . ':/usr/sausalito/configs/php/';
@@ -252,3 +272,39 @@ sub debug_msg {
 
 $cce->bye('SUCCESS');
 exit(0);
+
+# 
+# Copyright (c) 2015-2018 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015-2018 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2008 NuOnce Networks, Inc.
+# All Rights Reserved.
+# 
+# 1. Redistributions of source code must retain the above copyright 
+#     notice, this list of conditions and the following disclaimer.
+# 
+# 2. Redistributions in binary form must reproduce the above copyright 
+#     notice, this list of conditions and the following disclaimer in 
+#     the documentation and/or other materials provided with the 
+#     distribution.
+# 
+# 3. Neither the name of the copyright holder nor the names of its 
+#     contributors may be used to endorse or promote products derived 
+#     from this software without specific prior written permission.
+# 
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
+# COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+# POSSIBILITY OF SUCH DAMAGE.
+# 
+# You acknowledge that this software is not designed or intended for 
+# use in the design, construction, operation or maintenance of any 
+# nuclear facility.
+# 
