@@ -177,6 +177,8 @@ class Ethernet extends MX_Controller {
                 $got_IPv4 = '0';
                 $got_IPv6 = '0';
                 $got_BOTH = '0';
+                // Assume a safe default:
+                $IPType = 'IPv4';
                 if ((isset($attributes['ipAddressFieldeth0'])) && (isset($attributes['netMaskFieldeth0'])) && (isset($attributes['gatewayField']))) {
                     if (($attributes['ipAddressFieldeth0'] != "") && ($attributes['netMaskFieldeth0'] != "") && ($attributes['gatewayField'] != "")) {
                         $got_IPv4 = '1';
