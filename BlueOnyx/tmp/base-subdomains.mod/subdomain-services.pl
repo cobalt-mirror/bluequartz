@@ -1,8 +1,6 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
-# Author: Brian N. Smith
-# Copyright 2008, NuOnce Networks, Inc.  All rights reserved.
-# Copyright 2010, Team BlueOnyx. All rights reserved.
-# $Id: subdomain-services.pl, v2.0 2008/12/30 13:14:00 Exp $
+# Initial Author: Brian N. Smith
+# $Id: subdomain-services.pl
 
 use CCE;
 use Switch;
@@ -42,7 +40,7 @@ foreach $service (@services) {
   switch ($service) {
     case "PHP" {
       if (( $$service->{'enabled'} ) || ( $$service->{'force_update'} )) {
-	    &debug_msg("Case: PHP \n");
+        &debug_msg("Case: PHP \n");
 
             # Get Object PHP from CODB to find out which PHP version we use:
             @sysoids = $cce->find('PHP');
@@ -61,27 +59,66 @@ foreach $service (@services) {
             $vgroup = $subdomain->{'group'};
             @vsiteoid = $cce->find('Vsite', { 'name' => $vgroup });
             ($ok, $vsite_php) = $cce->get($vsiteoid[0], "PHP");
-	    &debug_msg("1: vsiteoid[0]: $vsiteoid[0] \n");
 
             # Get PHPVsite:
             ($ok, $vsite_php_settings) = $cce->get($vsiteoid[0], "PHPVsite");
 
-	    &debug_msg("2: vsiteoid[0]: $vsiteoid[0] \n");
+            $serviceCFG .= "# created by subdomain-new.pl\n";
 
-            $serviceCFG .= "# created by subdomain-services.pl\n";
-
-	    &debug_msg("suPHP_enabled: $vsite_php->{'suPHP_enabled'} \n");
-
-            if ($vsite_php->{'suPHP_enabled'} == "1") {
-                $serviceCFG .= "  suPHP_Engine on\n";
-                $serviceCFG .= "  suPHP_ConfigPath $web_dir\n";
-                $serviceCFG .= "  suPHP_AddHandler x-httpd-suphp\n";
-                $serviceCFG .= "  AddHandler x-httpd-suphp .php\n";
+            # Get prefered_siteAdmin for ownerships:
+            ($ok, $Vsite) = $cce->get($vsiteoid[0], '');
+            if ($vsite_php->{prefered_siteAdmin} ne "") {
+                $prefered_siteAdmin = $vsite_php->{prefered_siteAdmin};
             }
             else {
-                $serviceCFG .= "  AddType application/x-httpd-php .php\n";
-                $serviceCFG .= "  AddType application/x-httpd-php .php4\n";
-                $serviceCFG .= "  AddType application/x-httpd-php .php5\n";
+                $prefered_siteAdmin = 'apache';
+            }
+
+            if ( $$service->{'suPHP_enabled'} ) {
+                # Handle suPHP:
+                $serviceCFG .= "#<IfModule mod_suphp.c>\n";
+                $serviceCFG .= "    suPHP_Engine on\n";
+                $serviceCFG .= "    suPHP_UserGroup $prefered_siteAdmin $Vsite->{name}\n";
+                $serviceCFG .= "    AddType application/x-httpd-suphp .php\n";
+                $serviceCFG .= "    AddHandler x-httpd-suphp .php .php5 .php4 .php3 .phtml\n";
+                $serviceCFG .= "    suPHP_AddHandler x-httpd-suphp\n";
+                $serviceCFG .= "    suPHP_ConfigPath $Vsite->{'basedir'}/\n";
+                $serviceCFG .= "#</IfModule>\n";
+            }
+            # Handle mod_ruid2:
+            elsif ($$service->{mod_ruid_enabled}) {
+                $serviceCFG .= "<FilesMatch \\.php\$>\n";
+                $serviceCFG .= "    SetHandler application/x-httpd-php\n";
+                $serviceCFG .= "</FilesMatch>\n";
+                $serviceCFG .= "<IfModule mod_ruid2.c>\n";
+                $serviceCFG .= "     RMode config\n";
+                $serviceCFG .= "     RUidGid $prefered_siteAdmin $Vsite->{name}\n";
+                $serviceCFG .= "</IfModule>\n";
+            }
+            # Handle FPM/FastCGI:
+            elsif ($$service->{fpm_enabled}) {
+                # Assign a port number based on the GID of the Vsite.
+                # Our GID's for siteX start at 1001, so we need to add
+                # 8000 to it to get above 9000.
+                ($_name, $_passwd, $gid, $_members) = getgrnam($Vsite->{name});
+                if ($gid ne "") {
+                    $fpmPort = $gid+8000;
+                }
+                else {
+                    # Fallback if we didn't get a port:
+                    $fpmPort = 9000;
+                }
+                # Double fallback:
+                if ($fpmPort < 9000) {
+                    $fpmPort = 9000;
+                }
+                $serviceCFG .= "ProxyPassMatch ^/(.*\\.php(/.*)?)\$ fcgi://127.0.0.1:$fpmPort$web_dir\n";
+            }
+            # Handle 'regular' PHP via DSO:
+            else { 
+                $serviceCFG .= "<FilesMatch \\.php\$>\n";
+                $serviceCFG .= "    SetHandler application/x-httpd-php\n";
+                $serviceCFG .= "</FilesMatch>\n";
             }
 
             # Making sure 'safe_mode_include_dir' has the bare minimum defaults:
@@ -109,6 +146,26 @@ foreach $service (@services) {
                 }
             }
             $vsite_php_settings->{"safe_mode_allowed_env_vars"} = join(",", @safe_mode_allowed_env_vars);
+
+            # OpenBaseDir Fix:
+            my $mySystem = do {
+                my @sysoids = $cce->find('PHP');
+                my ($ok, $object) = $cce->get($sysoids[0]);
+                die unless $ok;
+                $object;
+            };
+            my @vsite_php_settings_temporary   = split(":", $vsite_php_settings->{"open_basedir"});
+            my @my_server_php_settings_temp    = split(":", $mySystem->{'open_basedir'});
+            my @vsite_php_settings_temp_joined = (@vsite_php_settings_temporary, @my_server_php_settings_temp);
+
+            # For debugging:
+            &debug_msg("mySystem settings for 'open_basedir': " . $mySystem->{'open_basedir'} . "\n");
+            &debug_msg("vsite_php_settings for 'open_basedir' : " . $vsite_php_settings->{"open_basedir"} . "\n");
+
+            my %obd_helper                     = map { $_ => 1 } @vsite_php_settings_temp_joined;
+            my @vsite_php_settings_temp        = keys %obd_helper;
+            $vsite_php_settings->{"open_basedir"} = join ":", @vsite_php_settings_temp;
+            &debug_msg("Final for 'open_basedir' : " . $vsite_php_settings->{'open_basedir'} . "\n");
 
             # Make sure that the path to the prepend file directory is allowed, too:
             unless ($vsite_php_settings->{"open_basedir"} =~ m/\/usr\/sausalito\/configs\/php\//) {
@@ -208,10 +265,20 @@ foreach $service (@services) {
 
     case "CGI" {
       if ( $$service->{'enabled'} ) {
-        $serviceCFG .= "  AddHandler cgi-wrapper .pl\n";
-        $serviceCFG .= "  AddHandler cgi-wrapper .cgi\n";
-	$serviceCFG .= "  ScriptAlias /cgi-bin/ /usr/local/blueonyx/cgiwrap/cgiwrap/\n";
-        $serviceCFG .= "  Action cgi-wrapper /cgi-bin\n";
+        if (-f "/usr/bin/systemctl") {
+            # 5209R and therefore Apache 2.4:
+            # Note: This doesn't use CGI-Wrapper, as I can't get that to work in subdomains.
+            $serviceCFG .= "  <Directory $web_dir>\n";
+            $serviceCFG .= "      AddHandler cgi-script .cgi .pl\n";
+            $serviceCFG .= "      Options +ExecCGI\n";
+            $serviceCFG .= "  </Directory>\n";
+        }
+        else {
+            $serviceCFG .= "  AddHandler cgi-wrapper .pl\n";
+            $serviceCFG .= "  AddHandler cgi-wrapper .cgi\n";
+            $serviceCFG .= "  ScriptAlias /cgi-bin/ /usr/local/blueonyx/cgiwrap/cgiwrap/\n";
+            $serviceCFG .= "  Action cgi-wrapper /cgi-bin\n";
+        }
       }
     }
   
@@ -252,3 +319,39 @@ sub debug_msg {
 
 $cce->bye('SUCCESS');
 exit(0);
+
+# 
+# Copyright (c) 2015-2018 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015-2018 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2008 NuOnce Networks, Inc.
+# All Rights Reserved.
+# 
+# 1. Redistributions of source code must retain the above copyright 
+#     notice, this list of conditions and the following disclaimer.
+# 
+# 2. Redistributions in binary form must reproduce the above copyright 
+#     notice, this list of conditions and the following disclaimer in 
+#     the documentation and/or other materials provided with the 
+#     distribution.
+# 
+# 3. Neither the name of the copyright holder nor the names of its 
+#     contributors may be used to endorse or promote products derived 
+#     from this software without specific prior written permission.
+# 
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
+# COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+# POSSIBILITY OF SUCH DAMAGE.
+# 
+# You acknowledge that this software is not designed or intended for 
+# use in the design, construction, operation or maintenance of any 
+# nuclear facility.
+# 
