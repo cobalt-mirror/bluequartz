@@ -37,6 +37,21 @@ if ($DEBUG) {
         use Sys::Syslog qw( :DEFAULT setlogsock);
 }
 
+#
+### Start: Make sure only one instance of this script runs
+#
+
+use Fcntl qw(LOCK_EX LOCK_NB);
+use File::NFSLock;
+
+# Try to get an exclusive lock on myself.
+my $lock = File::NFSLock->new($0, LOCK_EX|LOCK_NB);
+die "$0 is already running.\n" unless $lock;
+
+#
+### end: Make sure only one instance of this script runs
+#
+
 use FileHandle;
 use Sauce::Config;
 use Sauce::Util;

@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=network
 
 VERSION=2.0.1
-RELEASE=1BX17
+RELEASE=1BX18
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -20,7 +20,7 @@ BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=yes
 
-REQUIRES=perl-Net-IP
+REQUIRES=perl-Net-IP perl-File-NFSLock
 
 #########
 # some useful defines
