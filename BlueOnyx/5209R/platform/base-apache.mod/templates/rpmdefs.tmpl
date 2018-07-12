@@ -227,6 +227,12 @@ fi
 
 <begin $CHANGELOG>
 
+* Thu Jul 12 2018 Michael Stauber <mstauber@solarspeed.net> 2.2.1-0BX08
+- Modified glue/handlers/virtual_host.pl to move include for siteX.include
+  to the bottom. This gives server admins more abilities to tweak Apache
+  in ways that the GUI doesn't allow. Please note: If you break it, you
+  get to keep the pieces.
+
 * Sun Jul 08 2018 Michael Stauber <mstauber@solarspeed.net> 2.2.1-0BX07
 - Modified glue/handlers/virtual_host.pl to conditionally add proxy headers
   to Apache config if Nginx is used as SSL proxy.

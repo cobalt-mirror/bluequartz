@@ -868,11 +868,11 @@ RewriteRule ^/(.*)                      http://$vhost->{fqdn}/\$1 [L,R=301]
 $redirect_line
 $conf_userwebs
 AliasMatch ^/~([^/]+)(/(.*))?           $user_root
-Include $include_file
 $PHP_Config_Lines
 $WebScripting_Config_Lines
 $Java_Config_Lines
 $apache_forwarded_for
+Include $include_file
 </VirtualHost>
 END
 
@@ -915,10 +915,10 @@ RewriteRule ^/(.*)                      https://$vhost->{fqdn}/\$1 [L,R=301]
 $redirect_line
 $conf_userwebs
 AliasMatch ^/~([^/]+)(/(.*))?           $user_root
-Include $include_file
 $PHP_Config_Lines
 $WebScripting_Config_Lines
 $Java_Config_Lines
+Include $include_file
 </VirtualHost>
 END
     }
