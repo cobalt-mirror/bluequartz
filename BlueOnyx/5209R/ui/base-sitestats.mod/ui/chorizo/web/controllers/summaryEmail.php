@@ -272,13 +272,21 @@ class SummaryEmail extends MX_Controller {
         if (isset($tmpStats[$this->getYear()][$this->getMonth()]['summary'])) {
             unset($tmpStats[$this->getYear()][$this->getMonth()]['summary']);
         }
-        $haveDays = array_keys($tmpStats[$this->getYear()][$this->getMonth()]);
+
+        if (isset($tmpStats[$this->getYear()][$this->getMonth()])) {
+            $haveDays = array_keys($tmpStats[$this->getYear()][$this->getMonth()]);
+        }
+        else {
+            $haveDays = array();
+        }
+
         if (!in_array($selectedDay, $haveDays)) {
             // We don't have this day. Set to today:
             $this->setMonth(date("m"));
             $this->setYear(date("Y"));
             $this->setDay(date("d"));
         }
+
         // Now check if we have stats for the individual hours of this day (Yay, finally!):
         if (isset($tmpStats[$this->getYear()][$this->getMonth()][$this->getDay()])) {
             $haveHours = array_keys($tmpStats[$this->getYear()][$this->getMonth()][$this->getDay()]);
