@@ -272,11 +272,22 @@ class PHPExtension extends UIExtension
         if (isset($this->attributes['PHP_version'])) {
             // Result from TextField. We are NOT allowed to change the version and use
             // the one that Apache is using:
-            $php_params['version'] = $all_php_versions_reverse[$Master_PHP['PHP_version']];
+            $Master_PHP['PHP_version'] = '';
+            if (isset($all_php_versions_reverse[$Master_PHP['PHP_version']])) {
+                $php_params['version'] = $all_php_versions_reverse[$Master_PHP['PHP_version']];
+            }
+            else {
+                $php_params['version'] = $Master_PHP['PHP_version'];
+            }
         }
 
         if (($php_params['fpm_enabled'] == "0") && ($php_params['suPHP_enabled'] == "0")) {
-            $php_params['version'] = $all_php_versions_reverse[$Master_PHP['PHP_version']];
+            if (isset($all_php_versions_reverse[$Master_PHP['PHP_version']])) {
+                $php_params['version'] = $all_php_versions_reverse[$Master_PHP['PHP_version']];
+            }
+            else {
+                $php_params['version'] = $Master_PHP['PHP_version'];
+            }
         }
 
         $cce->set($cce_info["CCE_OID"], 'PHP', $php_params); 
