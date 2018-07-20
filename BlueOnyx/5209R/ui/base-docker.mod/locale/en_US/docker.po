@@ -217,3 +217,15 @@ msgstr "An error occured while trying to download this image."
 
 msgid "docker_inspect"
 msgstr "Configuration of this docker container"
+
+msgid "ImageDownload"
+msgstr "Docker image download"
+
+msgid "DownLoadInProgress"
+msgstr "The chosen image is now being downloaded in the background. Depending on the size of the image it may take a while to complete the download. Please check the list of Docker images again in a moment to see if the new image is already present."
+
+msgid "OK"
+msgstr "Continue"
+
+msgid "OK_help"
+msgstr "Continue back to the list of Docker images."
