@@ -6,4 +6,6 @@ $route['docker/dockerImages/:any'] = "dockerImages";
 $route['docker/dockerList/:any'] = "dockerList";
 $route['docker/dockerParams/:any'] = "dockerParams";
 $route['docker/dockerInspect/:any'] = "dockerInspect";
+$route['docker/dockerImageLoad/:any'] = "dockerImageLoad";
+$route['docker/dockerImagePull/:any'] = "dockerImagePull";
 $route['docker/docker_amdetails'] = "docker_amdetails";
