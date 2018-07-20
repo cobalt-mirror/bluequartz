@@ -15,7 +15,7 @@ msgid "connect_help"
 msgstr "The Docker menu allows you to access your Docker configuration."
 
 msgid "header"
-msgstr "Docker Dashboard"
+msgstr "Docker Service"
 
 msgid "enabledField"
 msgstr "Docker Daemon"
@@ -42,7 +42,7 @@ msgid "dockerImageSearchButton"
 msgstr "Search online for Images"
 
 msgid "dockerImageSearchButton_help"
-msgstr "Use this button to search in the official Docker repository for Docker images."
+msgstr "Search online for Docker images."
 
 msgid "REPOSITORY"
 msgstr "Repository"
@@ -215,3 +215,5 @@ msgstr "An error occured while trying to prepare a container based on this image
 msgid "ErrorImageDownload"
 msgstr "An error occured while trying to download this image."
 
+msgid "docker_inspect"
+msgstr "Configuration of this docker container"
