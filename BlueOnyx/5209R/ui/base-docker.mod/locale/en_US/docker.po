@@ -12,19 +12,16 @@ msgid "connect"
 msgstr "Docker"
 
 msgid "connect_help"
-msgstr "The Docker dashboard allows you to access your Docker configuration."
+msgstr "The Docker menu allows you to access your Docker configuration."
 
 msgid "header"
 msgstr "Docker Dashboard"
 
 msgid "enabledField"
-msgstr "Docker Service"
+msgstr "Docker Daemon"
 
 msgid "enabledField_help"
-msgstr "In order to use the Docker dashboard you need to enable the service Docker first."
-
-msgid "service_disabled"
-msgstr "The service Docker is currently not enabled. Therefore the Docker dashboard is not accessible. Please enable the service Docker by ticking the checkbox above and by saving this page."
+msgstr "In order to use Docker the service 'docker' must be running. Please note: This requires Kernel 3.10.0 or better. Therefore Docker will not run in VPS's on OpenVZ 6 or 6108R."
 
 msgid "amDockerNameTag"
 msgstr "Docker Server"
@@ -34,4 +31,193 @@ msgstr "The service Docker is working normally."
 
 msgid "amNotAccepting"
 msgstr "The service Docker is currently not running and could not be restarted automatically."
+
+msgid "dockerImages"
+msgstr "Docker Images"
+
+msgid "dockerImages_help"
+msgstr "Docker Images allows you to download Docker Images from the Docker repository. You can also inspect local Docker Images and can create Docker containers using already downloaded images."
+
+msgid "dockerImageSearchButton"
+msgstr "Search online for Images"
+
+msgid "dockerImageSearchButton_help"
+msgstr "Use this button to search in the official Docker repository for Docker images."
+
+msgid "REPOSITORY"
+msgstr "Repository"
+
+msgid "REPOSITORY_help"
+msgstr "Name of the repository."
+
+msgid "TAG"
+msgstr "Tag"
+
+msgid "TAG_help"
+msgstr "Shows the tag info of this image."
+
+msgid "IMAGE_ID"
+msgstr "Image ID"
+
+msgid "IMAGE_ID_help"
+msgstr "Identifier of this image."
+
+msgid "CREATED"
+msgstr "Created"
+
+msgid "CREATED_help"
+msgstr "Show when this image was created."
+
+msgid "SIZE"
+msgstr "Size"
+
+msgid "SIZE_help"
+msgstr "Shows the file size of the image or container."
+
+msgid "Action"
+msgstr "Action"
+
+msgid "Action_help"
+msgstr "Defines what you can do with this item."
+
+msgid "Search"
+msgstr "Search"
+
+msgid "Search_help"
+msgstr "Specify a phrase that you want to search for in the online Docker image repository."
+
+msgid "NAME"
+msgstr "Name"
+
+msgid "NAME_help"
+msgstr "Name of the repository and image."
+
+msgid "DESCRIPTION"
+msgstr "Description"
+
+msgid "DESCRIPTION_help"
+msgstr "Description of the image."
+
+msgid "STARS"
+msgstr "Stars"
+
+msgid "STARS_help"
+msgstr "Shows how many stars reviewers have given this image."
+
+msgid "OFFICIAL"
+msgstr "Official"
+
+msgid "OFFICIAL_help"
+msgstr "Shows if this is an officially endorsed image or not."
+
+msgid "AUTO"
+msgstr "Auto"
+
+msgid "AUTO_help"
+msgstr "Shows if this image was automatically built."
+
+msgid "dockerDownloadImage_help"
+msgstr "Download Image"
+
+msgid "dockerLaunchImage_help"
+msgstr "Launch a new Docker container using this image."
+
+msgid "dockerDeleteImage_help"
+msgstr "Delete local copy of this image."
+
+msgid "dockerInstanceCreate"
+msgstr "Create a new Docker container"
+
+msgid "Image"
+msgstr "Image"
+
+msgid "Image_help"
+msgstr "Specifies which image is being used."
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Name_help"
+msgstr "Name of the Docker container."
+
+msgid "LaunchParameters"
+msgstr "Parameters"
+
+msgid "LaunchParameters_help"
+msgstr "Which command line parameters to pass to the docker run command."
+
+msgid "dockerList"
+msgstr "Docker Containers"
+
+msgid "dockerList_help"
+msgstr "List of Docker containers present on this server."
+
+msgid "CTID"
+msgstr "CTID"
+
+msgid "CTID_help"
+msgstr "Container Identification."
+
+msgid "COMMAND"
+msgstr "Command"
+
+msgid "COMMAND_help"
+msgstr "Shows which command the container is runing on startup."
+
+msgid "CREATED"
+msgstr "Created"
+
+msgid "CREATED_help"
+msgstr "Shows when this container was created."
+
+msgid "STATUS"
+msgstr "Status"
+
+msgid "STATUS_help"
+msgstr "Shows the status of this container."
+
+msgid "PORTS"
+msgstr "Ports"
+
+msgid "PORTS_help"
+msgstr "Shows which ports this container has bound to or what port mappings are active."
+
+msgid "NAMES"
+msgstr "Name"
+
+msgid "NAMES_help"
+msgstr "Shows the given name of this container."
+
+msgid "dockerInspect_help"
+msgstr "Inspect Docker container."
+
+msgid "dockerRestart_help"
+msgstr "Restart Docker container."
+
+msgid "dockerStop_help"
+msgstr "Stop Docker container."
+
+msgid "dockerDelete_help"
+msgstr "Delete Docker container."
+
+msgid "ErrorRestartInstance"
+msgstr "An error occured while trying to restart this container."
+
+msgid "ErrorStopInstance"
+msgstr "An error occured while trying to stop this container."
+
+msgid "ErrorDeleteInstance"
+msgstr "An error occured while trying to delete this container."
+
+msgid "ErrorImageDelete"
+msgstr "An error occured while trying to delete this image. Perhaps you are currently running containers that are based on this image? You need to stop and delete these containers first."
+
+msgid "ErrorImageRun"
+msgstr "An error occured while trying to run a container based on this image."
+
+msgid "ErrorImagePrep"
+msgstr "An error occured while trying to prepare a container based on this image."
+
+msgid "ErrorImageDownload"
+msgstr "An error occured while trying to download this image."
 
