@@ -1,0 +1,13 @@
+<item
+    id="docker_server"
+    label="[[base-docker.connect]]"
+    description="[[base-docker.connect_help]]"
+    url="/docker/docker"
+    module="user"
+>
+
+    <parent id="base_docker" order="10">
+        <access require="serverNetwork"/>
+    </parent>
+</item>
+

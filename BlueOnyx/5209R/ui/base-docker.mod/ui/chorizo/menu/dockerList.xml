@@ -1,0 +1,13 @@
+<item
+    id="docker_List"
+    label="[[base-docker.dockerList]]"
+    description="[[base-docker.dockerList_help]]"
+    url="/docker/dockerList"
+    module="user"
+>
+
+    <parent id="base_docker" order="30">
+        <access require="serverNetwork"/>
+    </parent>
+</item>
+

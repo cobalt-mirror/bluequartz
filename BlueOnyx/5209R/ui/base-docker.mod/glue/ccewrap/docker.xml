@@ -1,0 +1,9 @@
+<program name="/usr/bin/docker">
+	<capability requires="serverNetwork" user="root"/>
+</program>
+<program name="/usr/bin/uname">
+	<capability requires="serverNetwork" user="root"/>
+</program>
+<program name="/usr/bin/cut">
+	<capability requires="serverNetwork" user="root"/>
+</program>

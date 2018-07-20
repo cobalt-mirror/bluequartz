@@ -1,0 +1,19 @@
+<!-- This is the AM Namespace for monitoring Docker -->
+<class name="ActiveMonitor" namespace="Docker"     version="1.0">
+    <property name="enabled" type="boolean"  default="0"/>
+    <property name="monitor" writeACL="ruleCapable(serverActiveMonitor)" type="boolean"  default="0"/>
+    <property name="type"           type="scalar"   default="exec"/>
+    <property name="typeData"       type="scalar"   default="/usr/sausalito/swatch/bin/am_docker.pl"/>
+
+    <property name="greenMsg"       type="scalar"   default="[[base-docker.amStatusOK]]"/>
+    <property name="redMsg"         type="scalar"   default="[[base-docker.amNotAccepting]]"/>
+
+    <property name="currentState"   type="amstate"  default="N"/>
+    <property name="lastChange"     type="uint"     default="0"/>
+    <property name="lastRun"        type="uint"     default="0"/>
+    <property name="currentMessage" type="scalar"   default=""/>
+    <property name="nameTag"        type="scalar"   default="[[base-docker.amDockerNameTag]]"/>
+
+    <property name="URL"            type="scalar"   default="/base/docker/docker_amdetails.php"/>
+    <property name="UIGroup"        type="scalar"   default="service"/>
+</class>
