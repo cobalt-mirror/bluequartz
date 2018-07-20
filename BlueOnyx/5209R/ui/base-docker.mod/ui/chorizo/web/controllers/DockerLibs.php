@@ -51,7 +51,6 @@ class DockerLibs {
     public function GetDockerList($c_short = TRUE) {
 
         $columns = array('CONTAINER ID', 'IMAGE', 'COMMAND', 'CREATED', 'STATUS', 'PORTS', 'NAMES', 'SIZE');
-        //$ret = $this->serverScriptHelper->shell("/usr/bin/docker ps -a --no-trunc -s | sed 's/^[ \t]*//;s/[ \t]*\$//'", $dockerList_raw, 'root', $this->sessionId);
         $ret = $this->serverScriptHelper->shell("/usr/bin/docker ps -a -s | sed 's/^[ \t]*//;s/[ \t]*\$//'", $dockerList_raw, 'root', $this->sessionId);
 
         $dockerList = array();

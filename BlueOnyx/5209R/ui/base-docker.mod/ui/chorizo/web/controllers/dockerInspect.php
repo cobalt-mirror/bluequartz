@@ -144,7 +144,7 @@ class DockerInspect extends MX_Controller {
         //
 
         // Prepare Page:
-        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-docker", "/docker/dockerMod");
+        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-docker", "/docker/dockerInspect");
         $BxPage = $factory->getPage();
         $BxPage->setErrors($errors);
         $i18n = $factory->getI18n();
@@ -162,7 +162,7 @@ class DockerInspect extends MX_Controller {
         $block->setDefaultPage($defaultPage);
 
         if ($systemDocker['enabled'] == "0") {
-                $disabled_TEXT = "<div class='flat_area grid_16'><br>" . $i18n->getClean("[[base-docker.service_disabled]]") . "</div>";
+                $disabled_TEXT = "<div class='flat_area grid_16'><br>" . $i18n->getClean("[[base-docker.enabledField_help]]") . "</div>";
                 $disabledtext = $factory->getHtmlField("admin_text", $disabled_TEXT, 'r');
                 $disabledtext->setLabelType("nolabel");
                 $block->addFormField(
