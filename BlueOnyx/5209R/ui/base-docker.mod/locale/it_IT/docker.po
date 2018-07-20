@@ -12,220 +12,220 @@ msgid "connect"
 msgstr "Docker"
 
 msgid "connect_help"
-msgstr "The Docker menu allows you to access your Docker configuration."
+msgstr "Il menu Docker consente di accedere alla configurazione del Docker."
 
 msgid "header"
-msgstr "Docker Service"
+msgstr "Servizio Docker"
 
 msgid "enabledField"
-msgstr "Docker Daemon"
+msgstr "Daemon Docker"
 
 msgid "enabledField_help"
-msgstr "In order to use Docker the service 'docker' must be running. Please note: This requires Kernel 3.10.0 or better. Therefore Docker will not run in VPS's on OpenVZ 6 or 6108R."
+msgstr "Per poter usare Docker deve essere in esecuzione il servizio 'docker'. Nota bene: questo richiede il Kernel 3.10.0 o superiore. Pertanto Docker non funzionerà in VPS su OpenVZ 6 o 6108R."
 
 msgid "amDockerNameTag"
-msgstr "Docker Server"
+msgstr "Server Docker"
 
 msgid "amStatusOK"
-msgstr "The service Docker is working normally."
+msgstr "Il docker di servizio funziona normalmente."
 
 msgid "amNotAccepting"
-msgstr "The service Docker is currently not running and could not be restarted automatically."
+msgstr "Il service Docker non è attualmente in funzione e non è stato possibile riavviarlo automaticamente."
 
 msgid "dockerImages"
-msgstr "Docker Images"
+msgstr "Immagini Docker"
 
 msgid "dockerImages_help"
-msgstr "Docker Images allows you to download Docker Images from the Docker repository. You can also inspect local Docker Images and can create Docker containers using already downloaded images."
+msgstr "Docker Images consente di scaricare le immagini dal repository Docker. È inoltre possibile ispezionare le immagini Docker locali e creare i contenitori Docker utilizzando le immagini già scaricate."
 
 msgid "dockerImageSearchButton"
-msgstr "Search online for Images"
+msgstr "Ricerca immagini online"
 
 msgid "dockerImageSearchButton_help"
-msgstr "Search online for Docker images"
+msgstr "Ricerca online per immagini Docker"
 
 msgid "REPOSITORY"
-msgstr "Repository"
+msgstr "Deposito"
 
 msgid "REPOSITORY_help"
-msgstr "Name of the repository."
+msgstr "Nome del repository."
 
 msgid "TAG"
 msgstr "Tag"
 
 msgid "TAG_help"
-msgstr "Shows the tag info of this image."
+msgstr "Mostra le informazioni sui tag di questa immagine."
 
 msgid "IMAGE_ID"
-msgstr "Image ID"
+msgstr "ID immagine"
 
 msgid "IMAGE_ID_help"
-msgstr "Identifier of this image."
+msgstr "Identificatore di questa immagine."
 
 msgid "CREATED"
-msgstr "Created"
+msgstr "Creato"
 
 msgid "CREATED_help"
-msgstr "Show the time of creation."
+msgstr "Mostra l'ora di creazione."
 
 msgid "SIZE"
-msgstr "Size"
+msgstr "Dimensione"
 
 msgid "SIZE_help"
-msgstr "Shows the file size of the image or container."
+msgstr "Mostra la dimensione del file dell'immagine o del contenitore."
 
 msgid "Action"
-msgstr "Action"
+msgstr "Azione"
 
 msgid "Action_help"
-msgstr "Defines what you can do with this item."
+msgstr "Definisce cosa si può fare con questa voce."
 
 msgid "Search"
-msgstr "Search"
+msgstr "Ricerca"
 
 msgid "Search_help"
-msgstr "Specify a phrase that you want to search for in the online Docker image repository."
+msgstr "Specificare una frase che si desidera cercare nel repository immagini Docker online."
 
 msgid "NAME"
-msgstr "Name"
+msgstr "Nome"
 
 msgid "NAME_help"
-msgstr "Name of the repository and image."
+msgstr "Nome del repository e dell'immagine."
 
 msgid "DESCRIPTION"
-msgstr "Description"
+msgstr "Descrizione"
 
 msgid "DESCRIPTION_help"
-msgstr "Description of the image."
+msgstr "Descrizione dell'immagine."
 
 msgid "STARS"
-msgstr "Stars"
+msgstr "Stelle"
 
 msgid "STARS_help"
-msgstr "Shows how many stars reviewers have given this image."
+msgstr "Mostra quanti recensori di stelle hanno dato questa immagine."
 
 msgid "OFFICIAL"
-msgstr "Official"
+msgstr "Ufficiale"
 
 msgid "OFFICIAL_help"
-msgstr "Shows if this is an officially endorsed image or not."
+msgstr "Mostra se si tratta di un'immagine ufficialmente approvata o meno."
 
 msgid "AUTO"
 msgstr "Auto"
 
 msgid "AUTO_help"
-msgstr "Shows if this image was automatically built."
+msgstr "Mostra se questa immagine è stata creata automaticamente."
 
 msgid "dockerDownloadImage_help"
-msgstr "Download Image"
+msgstr "Scarica immagine"
 
 msgid "dockerLaunchImage_help"
-msgstr "Launch a new Docker container using this image."
+msgstr "Avviare un nuovo contenitore Docker utilizzando questa immagine."
 
 msgid "dockerDeleteImage_help"
-msgstr "Delete local copy of this image."
+msgstr "Elimina copia locale di questa immagine."
 
 msgid "dockerInstanceCreate"
-msgstr "Create a new Docker container"
+msgstr "Creare un nuovo contenitore Docker"
 
 msgid "Image"
-msgstr "Image"
+msgstr "Immagine"
 
 msgid "Image_help"
-msgstr "Specifies which image is being used."
+msgstr "Specifica quale immagine viene utilizzata."
 
 msgid "Name"
-msgstr "Name"
+msgstr "Nome"
 
 msgid "Name_help"
-msgstr "Name of the Docker container."
+msgstr "Nome del contenitore Docker."
 
 msgid "LaunchParameters"
-msgstr "Parameters"
+msgstr "Parametri"
 
 msgid "LaunchParameters_help"
-msgstr "Which command line parameters to pass to the docker run command."
+msgstr "Quali parametri della riga di comando devono essere passati al comando di marcia del docker."
 
 msgid "dockerList"
-msgstr "Docker Containers"
+msgstr "Contenitori per docker"
 
 msgid "dockerList_help"
-msgstr "List of Docker containers present on this server."
+msgstr "Elenco dei contenitori Docker presenti su questo server."
 
 msgid "CTID"
 msgstr "CTID"
 
 msgid "CTID_help"
-msgstr "Container Identification."
+msgstr "Identificazione del contenitore."
 
 msgid "COMMAND"
-msgstr "Command"
+msgstr "Comando"
 
 msgid "COMMAND_help"
-msgstr "Shows which command the container is runing on startup."
+msgstr "Mostra quale comando il contenitore sta eseguendo alla messa in servizio."
 
 msgid "STATUS"
-msgstr "Status"
+msgstr "Stato"
 
 msgid "STATUS_help"
-msgstr "Shows the status of this container."
+msgstr "Mostra lo stato di questo contenitore."
 
 msgid "PORTS"
-msgstr "Ports"
+msgstr "Porte"
 
 msgid "PORTS_help"
-msgstr "Shows which ports this container has bound to or what port mappings are active."
+msgstr "Mostra a quali porte questo contenitore è collegato o quali mappature di porte sono attive."
 
 msgid "NAMES"
-msgstr "Name"
+msgstr "Nome"
 
 msgid "NAMES_help"
-msgstr "Shows the given name of this container."
+msgstr "Mostra il nome dato a questo contenitore."
 
 msgid "dockerInspect_help"
-msgstr "Inspect Docker container."
+msgstr "Ispezionare il contenitore Docker."
 
 msgid "dockerRestart_help"
-msgstr "Restart Docker container."
+msgstr "Riavviare il contenitore Docker.."
 
 msgid "dockerStop_help"
-msgstr "Stop Docker container."
+msgstr "Arrestare il contenitore docker."
 
 msgid "dockerDelete_help"
-msgstr "Delete Docker container."
+msgstr "Elimina contenitore Docker."
 
 msgid "ErrorRestartInstance"
-msgstr "An error occured while trying to restart this container."
+msgstr "Si è verificato un errore durante il tentativo di riavviare questo contenitore."
 
 msgid "ErrorStopInstance"
-msgstr "An error occured while trying to stop this container."
+msgstr "Si è verificato un errore durante il tentativo di arrestare questo contenitore."
 
 msgid "ErrorDeleteInstance"
-msgstr "An error occured while trying to delete this container."
+msgstr "Si è verificato un errore durante l'eliminazione di questo contenitore."
 
 msgid "ErrorImageDelete"
-msgstr "An error occured while trying to delete this image. Perhaps you are currently running containers that are based on this image? You need to stop and delete these containers first."
+msgstr "Si è verificato un errore durante l'eliminazione dell'immagine. Forse state attualmente eseguendo dei contenitori basati su questa immagine? È necessario prima fermare e cancellare questi contenitori."
 
 msgid "ErrorImageRun"
-msgstr "An error occured while trying to run a container based on this image."
+msgstr "Si è verificato un errore durante il tentativo di eseguire un contenitore in base a questa immagine."
 
 msgid "ErrorImagePrep"
-msgstr "An error occured while trying to prepare a container based on this image."
+msgstr "Si è verificato un errore durante la preparazione di un contenitore in base a questa immagine."
 
 msgid "ErrorImageDownload"
-msgstr "An error occured while trying to download this image."
+msgstr "Si è verificato un errore durante il tentativo di scaricare questa immagine."
 
 msgid "docker_inspect"
-msgstr "Configuration of this docker container"
+msgstr "Si è verificato un errore durante la preparazione di un contenitore in base a questa immagine."
 
 msgid "ImageDownload"
-msgstr "Docker image download"
+msgstr "Scarica l'immagine del docker"
 
 msgid "DownLoadInProgress"
-msgstr "The chosen image is now being downloaded in the background. Depending on the size of the image it may take a while to complete the download. Please check the list of Docker images again in a moment to see if the new image is already present."
+msgstr "L'immagine scelta viene ora scaricata in background. A seconda delle dimensioni dell'immagine, potrebbe essere necessario un po' di tempo per completare il download. Controllare di nuovo l'elenco delle immagini Docker per vedere se la nuova immagine è già presente."
 
 msgid "OK"
-msgstr "Continue"
+msgstr "Continua"
 
 msgid "OK_help"
-msgstr "Continue back to the list of Docker images."
+msgstr "Tornare all'elenco delle immagini di Docker."

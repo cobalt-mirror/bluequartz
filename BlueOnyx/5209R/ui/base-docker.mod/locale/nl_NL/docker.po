@@ -12,7 +12,7 @@ msgid "connect"
 msgstr "Docker"
 
 msgid "connect_help"
-msgstr "The Docker menu allows you to access your Docker configuration."
+msgstr "Via het Docker-menu heeft u toegang tot uw Docker-configuratie."
 
 msgid "header"
 msgstr "Docker Service"
@@ -21,211 +21,211 @@ msgid "enabledField"
 msgstr "Docker Daemon"
 
 msgid "enabledField_help"
-msgstr "In order to use Docker the service 'docker' must be running. Please note: This requires Kernel 3.10.0 or better. Therefore Docker will not run in VPS's on OpenVZ 6 or 6108R."
+msgstr "Om Docker te kunnen gebruiken moet de service 'docker' draaien. NB: Hiervoor is Kernel 3.10.0 of hoger vereist. Daarom zal Docker niet draaien in VPS'en op OpenVZ 6 of 6108R."
 
 msgid "amDockerNameTag"
 msgstr "Docker Server"
 
 msgid "amStatusOK"
-msgstr "The service Docker is working normally."
+msgstr "De service docker werkt normaal."
 
 msgid "amNotAccepting"
-msgstr "The service Docker is currently not running and could not be restarted automatically."
+msgstr "De service docker draait momenteel niet en kon niet automatisch opnieuw worden gestart."
 
 msgid "dockerImages"
-msgstr "Docker Images"
+msgstr "Dockerafbeeldingen"
 
 msgid "dockerImages_help"
-msgstr "Docker Images allows you to download Docker Images from the Docker repository. You can also inspect local Docker Images and can create Docker containers using already downloaded images."
+msgstr "Docker Images (Dockerafbeeldingen) stelt u in staat om Dockerafbeeldingen te downloaden vanuit de Docker-repository. U kunt ook lokale Dockerafbeeldingen inspecteren en Docker-containers maken met behulp van reeds gedownloade afbeeldingen."
 
 msgid "dockerImageSearchButton"
-msgstr "Search online for Images"
+msgstr "Online naar afbeeldingen zoeken"
 
 msgid "dockerImageSearchButton_help"
-msgstr "Search online for Docker images"
+msgstr "Online zoeken naar Docker-afbeeldingen"
 
 msgid "REPOSITORY"
-msgstr "Repository"
+msgstr "Bewaarplaats"
 
 msgid "REPOSITORY_help"
-msgstr "Name of the repository."
+msgstr "Naam van het archief."
 
 msgid "TAG"
 msgstr "Tag"
 
 msgid "TAG_help"
-msgstr "Shows the tag info of this image."
+msgstr "Toont de tag info van deze afbeelding."
 
 msgid "IMAGE_ID"
 msgstr "Image ID"
 
 msgid "IMAGE_ID_help"
-msgstr "Identifier of this image."
+msgstr "Identificatie van deze afbeelding."
 
 msgid "CREATED"
-msgstr "Created"
+msgstr "Gemaakt"
 
 msgid "CREATED_help"
-msgstr "Show the time of creation."
+msgstr "Toon het tijdstip van de schepping."
 
 msgid "SIZE"
-msgstr "Size"
+msgstr "Grootte"
 
 msgid "SIZE_help"
-msgstr "Shows the file size of the image or container."
+msgstr "Toont de bestandsgrootte van de afbeelding of container."
 
 msgid "Action"
-msgstr "Action"
+msgstr "Actie"
 
 msgid "Action_help"
-msgstr "Defines what you can do with this item."
+msgstr "Bepaalt wat je met dit item kunt doen."
 
 msgid "Search"
-msgstr "Search"
+msgstr "Zoeken"
 
 msgid "Search_help"
-msgstr "Specify a phrase that you want to search for in the online Docker image repository."
+msgstr "Geef een zin op waarnaar u wilt zoeken in de online bewaarplaats voor Docker-afbeeldingen."
 
 msgid "NAME"
-msgstr "Name"
+msgstr "Naam"
 
 msgid "NAME_help"
-msgstr "Name of the repository and image."
+msgstr "Naam van de opslagplaats en afbeelding."
 
 msgid "DESCRIPTION"
-msgstr "Description"
+msgstr "Beschrijving"
 
 msgid "DESCRIPTION_help"
-msgstr "Description of the image."
+msgstr "Beschrijving van de afbeelding."
 
 msgid "STARS"
-msgstr "Stars"
+msgstr "Sterren"
 
 msgid "STARS_help"
-msgstr "Shows how many stars reviewers have given this image."
+msgstr "Geeft aan hoeveel sterrenreviewden dit beeld hebben gegeven."
 
 msgid "OFFICIAL"
-msgstr "Official"
+msgstr "Officieel"
 
 msgid "OFFICIAL_help"
-msgstr "Shows if this is an officially endorsed image or not."
+msgstr "Geeft aan of dit een officieel goedgekeurde afbeelding is of niet."
 
 msgid "AUTO"
 msgstr "Auto"
 
 msgid "AUTO_help"
-msgstr "Shows if this image was automatically built."
+msgstr "Toont als dit beeld automatisch is opgebouwd."
 
 msgid "dockerDownloadImage_help"
-msgstr "Download Image"
+msgstr "Beeld downloaden"
 
 msgid "dockerLaunchImage_help"
-msgstr "Launch a new Docker container using this image."
+msgstr "Een nieuwe Docker-container lanceren met behulp van deze afbeelding."
 
 msgid "dockerDeleteImage_help"
-msgstr "Delete local copy of this image."
+msgstr "Lokale kopie van deze afbeelding verwijderen."
 
 msgid "dockerInstanceCreate"
-msgstr "Create a new Docker container"
+msgstr "Creëer een nieuwe Docker container"
 
 msgid "Image"
-msgstr "Image"
+msgstr "Beeld"
 
 msgid "Image_help"
-msgstr "Specifies which image is being used."
+msgstr "Specificeert welke afbeelding wordt gebruikt.."
 
 msgid "Name"
-msgstr "Name"
+msgstr "Naam"
 
 msgid "Name_help"
-msgstr "Name of the Docker container."
+msgstr "Naam van de dokcontainer."
 
 msgid "LaunchParameters"
 msgstr "Parameters"
 
 msgid "LaunchParameters_help"
-msgstr "Which command line parameters to pass to the docker run command."
+msgstr "Welke parameters van de opdrachtregel moeten worden doorgegeven aan het commando voor het uitvoeren van de docker."
 
 msgid "dockerList"
 msgstr "Docker Containers"
 
 msgid "dockerList_help"
-msgstr "List of Docker containers present on this server."
+msgstr "Lijst van Docker-containers aanwezig op deze server."
 
 msgid "CTID"
 msgstr "CTID"
 
 msgid "CTID_help"
-msgstr "Container Identification."
+msgstr "Containeridentificatie."
 
 msgid "COMMAND"
-msgstr "Command"
+msgstr "Commando"
 
 msgid "COMMAND_help"
-msgstr "Shows which command the container is runing on startup."
+msgstr "Toont welke opdracht de container bij de inbedrijfstelling uitvoert."
 
 msgid "STATUS"
 msgstr "Status"
 
 msgid "STATUS_help"
-msgstr "Shows the status of this container."
+msgstr "Toont de status van deze container."
 
 msgid "PORTS"
-msgstr "Ports"
+msgstr "Poorten"
 
 msgid "PORTS_help"
-msgstr "Shows which ports this container has bound to or what port mappings are active."
+msgstr "Toont aan welke poorten deze container gebonden is of welke haventoewijzingen actief zijn."
 
 msgid "NAMES"
-msgstr "Name"
+msgstr "Naam"
 
 msgid "NAMES_help"
-msgstr "Shows the given name of this container."
+msgstr "Toont de naam van deze container."
 
 msgid "dockerInspect_help"
-msgstr "Inspect Docker container."
+msgstr "Inspecteer de container."
 
 msgid "dockerRestart_help"
-msgstr "Restart Docker container."
+msgstr "Dockercontainer opnieuw opstarten."
 
 msgid "dockerStop_help"
-msgstr "Stop Docker container."
+msgstr "Dockercontainer stoppen."
 
 msgid "dockerDelete_help"
-msgstr "Delete Docker container."
+msgstr "Verwijderen Dockercontainer."
 
 msgid "ErrorRestartInstance"
-msgstr "An error occured while trying to restart this container."
+msgstr "Tijdens het opnieuw starten van deze container is een fout opgetreden."
 
 msgid "ErrorStopInstance"
-msgstr "An error occured while trying to stop this container."
+msgstr "Er is een fout opgetreden bij het proberen stoppen van deze container."
 
 msgid "ErrorDeleteInstance"
-msgstr "An error occured while trying to delete this container."
+msgstr "Tijdens het wissen van deze container is een fout opgetreden."
 
 msgid "ErrorImageDelete"
-msgstr "An error occured while trying to delete this image. Perhaps you are currently running containers that are based on this image? You need to stop and delete these containers first."
+msgstr "Er is een fout opgetreden bij het verwijderen van deze afbeelding. Misschien draait u op dit moment containers die gebaseerd zijn op dit beeld? U moet deze containers eerst stoppen en verwijderen."
 
 msgid "ErrorImageRun"
-msgstr "An error occured while trying to run a container based on this image."
+msgstr "Er is een fout opgetreden bij het uitvoeren van een container op basis van deze afbeelding."
 
 msgid "ErrorImagePrep"
-msgstr "An error occured while trying to prepare a container based on this image."
+msgstr "Er is een fout opgetreden bij het voorbereiden van een container op basis van deze afbeelding."
 
 msgid "ErrorImageDownload"
-msgstr "An error occured while trying to download this image."
+msgstr "Tijdens het downloaden van deze afbeelding is een fout opgetreden."
 
 msgid "docker_inspect"
-msgstr "Configuration of this docker container"
+msgstr "Configuratie van deze dokcontainer"
 
 msgid "ImageDownload"
-msgstr "Docker image download"
+msgstr "Docker beeld downloaden"
 
 msgid "DownLoadInProgress"
-msgstr "The chosen image is now being downloaded in the background. Depending on the size of the image it may take a while to complete the download. Please check the list of Docker images again in a moment to see if the new image is already present."
+msgstr "De gekozen afbeelding wordt nu op de achtergrond gedownload. Afhankelijk van de grootte van de afbeelding kan het even duren om de download te voltooien. Controleer de lijst met Docker-afbeeldingen zo dadelijk nog eens om te zien of de nieuwe afbeelding al aanwezig is."
 
 msgid "OK"
-msgstr "Continue"
+msgstr "Verder"
 
 msgid "OK_help"
-msgstr "Continue back to the list of Docker images."
+msgstr "Ga terug naar de lijst met Docker-afbeeldingen."
