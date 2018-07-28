@@ -70,7 +70,7 @@ IPv6=$(/sbin/ip -6 route | awk '/default/ { print $3 }')
 # Determine Gateway:
 if [ -f /proc/user_beancounters ];then
     if [ `/sbin/ip -4 addr show |grep -v 127.0.0 |grep inet |wc -l` -gt 0 ]; then
-        if [ `cat /proc/user_beancounters | grep kmemsize | awk '{print $1}' | cut -d : -f1` -gt 0 ]; then
+        if [ `cat /proc/user_beancounters | grep kmemsize | awk '{print $1}' | cut -d : -f1 | wc -l` -gt 0 ]; then
             # Ping the IP of the master node instead of the Gateway:
             GATEWAY=`ping -t 1 -c 1 1.2.3.4 | grep "exceed\|Unreachable" | cut -d " " -f 2`
         fi
