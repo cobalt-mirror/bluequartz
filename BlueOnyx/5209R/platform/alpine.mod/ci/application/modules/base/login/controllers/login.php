@@ -141,17 +141,24 @@ class Login extends MX_Controller {
         $system = $CI->cceClient->getObject('System');
 
         // Make sure we have $_SERVER['HTTP_HOST']:
-        if (!isset($_SERVER['HTTP_HOST'])) {
-            if (filter_var($_SERVER['SERVER_NAME'], FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) { 
+        $my_host = $_SERVER['HTTP_HOST'];
+        if (preg_match('/:444$/', $_SERVER['HTTP_HOST'])) {
+            $my_host = preg_replace('/:444$/', '', $_SERVER['HTTP_HOST']);
+        }
+        if (preg_match('/:81$/', $_SERVER['HTTP_HOST'])) {
+            $my_host = preg_replace('/:81$/', '', $_SERVER['HTTP_HOST']);
+        }
+        if (isset($my_host)) {
+            if (filter_var($my_host, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) {
                 // SERVER_NAME is an IPv6 IP! Need to escape the IPv6 IP before using it in an URL:
-                $https_url = 'https://[' . $_SERVER['SERVER_NAME'] . ']:81/login';
-            } 
-            else { 
-                // SERVER_NAME is an IPv4 IP or FQDN, so we can use it directly:
-                $https_url = 'https://' . $_SERVER['SERVER_NAME'] . ':81/login';
+                $https_url = 'https://[' . $my_host . ']:81/login';
             }
-            header("Location: $https_url");
-            exit;
+            else {
+                // SERVER_NAME is an IPv4 IP or FQDN, so we can use it directly:
+                $https_url = 'https://' . $my_host . ':81/login';
+            }
+            //header("Location: $https_url");
+            //exit;
         }
 
         // Set page title:
