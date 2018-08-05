@@ -28,18 +28,18 @@ if ($vsite->{name} ne '') {
     if (-f $nginx_vhosts_file) {
         &debug_msg("Deleting $nginx_vhosts_file \n");
         system("rm -f $nginx_vhosts_file");
-    }
-}
 
-if ($Nginx->{enabled} eq "1") {
-    &debug_msg("Restarting Nginx\n");
-    Sauce::Service::service_set_init('nginx', 'on');
-    Sauce::Service::service_run_init('nginx', 'restart');
-}
-else {
-    &debug_msg("Stopping and disabling Nginx\n");
-    Sauce::Service::service_set_init('nginx', 'off');
-    Sauce::Service::service_run_init('nginx', 'stop');
+        if ($Nginx->{enabled} eq "1") {
+            &debug_msg("Restarting Nginx\n");
+            Sauce::Service::service_set_init('nginx', 'on');
+            Sauce::Service::service_run_init('nginx', 'restart');
+        }
+        else {
+            &debug_msg("Stopping and disabling Nginx\n");
+            Sauce::Service::service_set_init('nginx', 'off');
+            Sauce::Service::service_run_init('nginx', 'stop');
+        }
+    }
 }
 
 $cce->bye('SUCCESS');
