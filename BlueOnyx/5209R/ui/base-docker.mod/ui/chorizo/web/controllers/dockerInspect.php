@@ -151,8 +151,12 @@ class DockerInspect extends MX_Controller {
 
         // Set Menu items:
         $BxPage->setVerticalMenu('base_sysmanage');
-        $BxPage->setVerticalMenuChild('docker_List');
         $page_module = 'base_sysmanage';
+        if ($system['productBuild'] == "6109R") {
+            $BxPage->setVerticalMenu('base_sitemanageVSL');
+            $page_module = 'base_sitemanageVSL';
+        }
+        $BxPage->setVerticalMenuChild('docker_List');
         $defaultPage = "basicSettingsTab";
 
         $block =& $factory->getPagedBlock("docker_inspect", array($defaultPage));

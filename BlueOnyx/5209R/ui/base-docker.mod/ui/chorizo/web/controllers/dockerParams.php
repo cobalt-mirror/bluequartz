@@ -183,8 +183,12 @@ class DockerParams extends MX_Controller {
 
         // Set Menu items:
         $BxPage->setVerticalMenu('base_sysmanage');
-        $BxPage->setVerticalMenuChild('docker_Images');
         $page_module = 'base_sysmanage';
+        if ($system['productBuild'] == "6109R") {
+            $BxPage->setVerticalMenu('base_sitemanageVSL');
+            $page_module = 'base_sitemanageVSL';
+        }
+        $BxPage->setVerticalMenuChild('docker_Images');
         $defaultPage = "basicSettingsTab";
 
         $block =& $factory->getPagedBlock("dockerInstanceCreate", array($defaultPage));

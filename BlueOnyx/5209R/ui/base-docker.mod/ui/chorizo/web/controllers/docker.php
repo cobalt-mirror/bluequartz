@@ -161,8 +161,12 @@ class Docker extends MX_Controller {
 
         // Set Menu items:
         $BxPage->setVerticalMenu('base_sysmanage');
-        $BxPage->setVerticalMenuChild('docker_server');
         $page_module = 'base_sysmanage';
+        if ($system['productBuild'] == "6109R") {
+            $BxPage->setVerticalMenu('base_sitemanageVSL');
+            $page_module = 'base_sitemanageVSL';
+        }
+        $BxPage->setVerticalMenuChild('docker_server');
         $defaultPage = "basicSettingsTab";
 
         $block =& $factory->getPagedBlock("header", array($defaultPage));
