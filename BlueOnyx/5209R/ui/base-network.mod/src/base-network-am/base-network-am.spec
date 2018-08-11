@@ -1,7 +1,7 @@
 Summary: Binaries and scripts used by Active Monitor for base-network
 Name: base-network-am
 Version: 1.0.2
-Release: 6%{?dist}
+Release: 7%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -25,6 +25,9 @@ This package contains a number of binaries and scripts used by the Active
 Monitor subsystem to monitor services provided by the base-network module.  
 
 %changelog
+
+* Fri Aug 10 2018 Michael Stauber <mstauber@solarspeed.net> 1.0.2-7
+- Fix in am_network.sh for OpenVZ 7 again. IP of node not pingable.
 
 * Fri Jul 27 2018 Michael Stauber <mstauber@solarspeed.net> 1.0.2-6
 - Small fix in /usr/sausalito/swatch/bin/am_network.sh for OpenVZ 7

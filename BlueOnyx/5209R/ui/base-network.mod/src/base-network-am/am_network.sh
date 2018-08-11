@@ -72,12 +72,20 @@ if [ -f /proc/user_beancounters ];then
     if [ `/sbin/ip -4 addr show |grep -v 127.0.0 |grep inet |wc -l` -gt 0 ]; then
         if [ `cat /proc/user_beancounters | grep kmemsize | awk '{print $1}' | cut -d : -f1 | wc -l` -gt 0 ]; then
             # Ping the IP of the master node instead of the Gateway:
-            GATEWAY=`ping -t 1 -c 1 1.2.3.4 | grep "exceed\|Unreachable" | cut -d " " -f 2`
+            if [ `uname -r` == '3.10.0' ];then
+                # OpenVZ 7 VPS, which means IP of node is not pingable:
+                GATEWAY=8.8.8.8
+            else
+                # OpenVZ 6 VPS, which means node IP is pingable:
+                GATEWAY=`ping -t 1 -c 1 1.2.3.4 | grep "exceed\|Unreachable" | cut -d " " -f 2`
+            fi
+        else
+            # Not OpenVZ, so we can use the regular gateway:
+            GATEWAY=$IPv4
         fi
     else
         # Then we try IPv6 instead:
         GATEWAY=`ping6 -t 1 -c 1 2001:4860:4860::8888 | grep "exceed\|Unreachable" | cut -d " " -f 2`
-
     fi
 fi
 
