@@ -20,12 +20,8 @@ $cce->connectuds();
 ($sys_oid) = $cce->find('System');
 ($ok, $system) = $cce->get($sys_oid);
 
-# Get IP of venet0:0:
-($sys_oid) = $cce->find('Network', {'device' => 'eth0'});
-($ok, $network) = $cce->get($sys_oid);
-
-# Make sure there is no Vsite yet, that the license isn't accepted yet and that we know the primary IP:
-if ((not scalar($cce->find('Vsite'))) && ($network->{'ipaddr'} ne "") && ($system->{'isLicenseAccepted'} == "0")) {
+# Make sure there is no Vsite yet, that the license isn't accepted yet:
+if ((not scalar($cce->find('Vsite'))) && ($system->{'isLicenseAccepted'} == "0")) {
 
         # Create the dummy Vsite:
         ($ok) = $cce->create('Vsite', {
@@ -33,23 +29,23 @@ if ((not scalar($cce->find('Vsite'))) && ($network->{'ipaddr'} ne "") && ($syste
                 'webAliases' => '',
                 'site_preview' => '0',
                 'mailAliases' => '',
-                'domain' => 'blueonyx.it',
-                'ipaddr' => $network->{'ipaddr'},
+                'domain' => 'thisvsite.net',
+                'ipaddr' => '127.0.0.1',
                 'maxusers' => '25',
                 'prefix' => '',
                 'emailDisabled' => '0',
                 'volume' => '/home',
                 'dns_auto' => '0',
-                'fqdn' => 'dummy.blueonyx.it',
+                'fqdn' => 'delete.thisvsite.net',
                 'mailCatchAll' => '',
                 'webAliasRedirects' => '1',
-                'hostname' => 'dummy',
+                'hostname' => 'delete',
                 'name' => 'site1',
                 'basedir' => '/home/.sites/28/site1'
         });
 
         # Delete the dummy Vsite again:
-        ($sys_oid) = $cce->find('Vsite', {'name' => 'site1', 'fqdn' => 'dummy.blueonyx.it'});
+        ($sys_oid) = $cce->find('Vsite', {'name' => 'site1', 'fqdn' => 'delete.thisvsite.net'});
         if ($sys_oid) {
                 ($ok, $sys) = $cce->get($sys_oid);
                 ($ok) = $cce->destroy($sys_oid);
@@ -61,8 +57,8 @@ $cce->bye('SUCCESS');
 exit(0);
 
 # 
-# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015-2018 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015-2018 Team BlueOnyx, BLUEONYX.IT
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 
