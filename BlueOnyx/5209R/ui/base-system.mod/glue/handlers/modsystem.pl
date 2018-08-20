@@ -123,12 +123,12 @@ if (($IPType eq 'VZv4') || ($IPType eq 'VZv6') || ($IPType eq 'VZBOTH')) {
       if (defined($gateway)) { 
         $hash{GATEWAY} = $gateway; 
       }
+      $hash{IPV6_AUTOCONF} = 'no';
       if (defined($gateway_IPv6)) { 
         $hash{NETWORKING_IPV6} = 'yes';
         $hash{IPV6FORWARDING} = 'yes';
         $hash{IPV6_DEFAULTDEV} = 'eth0';
         $hash{IPV6_DEFAULTGW} = $gateway_IPv6;
-        $hash{IPV6_AUTOCONF} = 'no';
       }
     }
 
