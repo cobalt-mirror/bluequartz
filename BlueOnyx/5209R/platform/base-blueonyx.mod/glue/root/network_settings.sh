@@ -185,9 +185,9 @@ if [ "$GOTIPv4" == "1" ] || [ "$GOTIPv6" == "1" ]; then
     /bin/echo "NETWORKING=yes" >> /etc/sysconfig/network
   fi
   /bin/echo "HOSTNAME=localhost.localdomain" >> /etc/sysconfig/network
+  /bin/echo "IPV6_AUTOCONF=no" >> /etc/sysconfig/network
   if [ "$GOTIPv6" == "1" ] && [ $DEFAULTGWV6 != "" ];then
     /bin/echo "IPV6FORWARDING=yes" >> /etc/sysconfig/network
-    /bin/echo "IPV6_AUTOCONF=no" >> /etc/sysconfig/network
     /bin/echo "IPV6_DEFAULTDEV=eth0" >> /etc/sysconfig/network
     /bin/echo "IPV6_DEFAULTGW=$DEFAULTGWV6" >> /etc/sysconfig/network
     /bin/echo "NETWORKING_IPV6=yes" >> /etc/sysconfig/network
