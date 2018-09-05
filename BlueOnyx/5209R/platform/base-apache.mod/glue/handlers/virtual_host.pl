@@ -1516,6 +1516,14 @@ sub handle_fpm_pools {
         # Restart PHP-FPM:
         $VsitePhpVer = $vsite_php->{'version'};
         &debug_msg("Telling Sauce::Service to turn $known_php_services{$VsitePhpVer} on and to restart it.\n");
+
+        # Reload all PHP-FPM-Services to drop bindings to ports that are no longer active.
+        # Note: This will not start a service that should be disabled due to no Vsite using it.
+        for my $fpmKey (values %known_php_services) {
+            &debug_msg("FPM-Reload: $fpmKey \n");
+            service_run_init($fpmKey, 'condreload');
+        }
+
         service_set_init($known_php_services{$VsitePhpVer}, 'on');
         service_run_init($known_php_services{$VsitePhpVer}, 'restart');
     }
