@@ -171,6 +171,8 @@ class DockerParams extends MX_Controller {
             $prep_name = $prep_image;
         }
 
+        $prep_name = preg_replace('|/|', '_', $prep_name);
+
         $LaunchParameters = '';
         if (isset($attributes['LaunchParameters'])) {
             $LaunchParameters = $attributes['LaunchParameters'];

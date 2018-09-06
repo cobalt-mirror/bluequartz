@@ -237,7 +237,12 @@ class DockerList extends MX_Controller {
             // Add Buttons:
             $buttons = '<button title="' . $i18n->getWrapped("dockerInspect_help") . '" class="tiny icon_only div_icon tooltip hover right link_button" data-link="/docker/dockerInspect?show=' . urlencode($DockerList[$ctline]['CTID']) . '" target="_self" formtarget="_self"><div class="ui-icon ui-icon-search"></div></button>';
             $buttons .= ' <button title="' . $i18n->getWrapped("dockerRestart_help") . '" class="tiny icon_only div_icon tooltip hover right link_button" data-link="/docker/dockerList?restart=' . urlencode($DockerList[$ctline]['CTID']) . '" target="_self" formtarget="_self"><div class="ui-icon ui-icon-arrowrefresh-1-s"></div></button>';
-            $buttons .= ' <button title="' . $i18n->getWrapped("dockerStop_help") . '" class="tiny icon_only div_icon tooltip hover right link_button" data-link="/docker/dockerList?stop=' . urlencode($DockerList[$ctline]['CTID']) . '" target="_self" formtarget="_self"><div class="ui-icon ui-icon-stop"></div></button>';
+            if (preg_match('/^Up(.*)/', $DockerList[$ctline]['STATUS'])) {
+                $buttons .= ' <button title="' . $i18n->getWrapped("dockerStop_help") . '" class="tiny icon_only div_icon tooltip hover right link_button" data-link="/docker/dockerList?stop=' . urlencode($DockerList[$ctline]['CTID']) . '" target="_self" formtarget="_self"><div class="ui-icon ui-icon-stop"></div></button>';
+            }
+            else {
+                $buttons .= ' <button title="' . $i18n->getWrapped("dockerStop_help") . '" class="tiny icon_only div_icon tooltip hover right link_button" data-link="/docker/dockerList?restart=' . urlencode($DockerList[$ctline]['CTID']) . '" target="_self" formtarget="_self"><div class="ui-icon ui-icon-play"></div></button>';
+            }
             $buttons .= ' <button title="' . $i18n->getWrapped("dockerDelete_help") . '" class="tiny icon_only div_icon tooltip hover right link_button" data-link="/docker/dockerList?delete=' . urlencode($DockerList[$ctline]['CTID']) . '" target="_self" formtarget="_self"><div class="ui-icon ui-icon-trash"></div></button>';
 
             // Assemble the ScrollList-Entries:

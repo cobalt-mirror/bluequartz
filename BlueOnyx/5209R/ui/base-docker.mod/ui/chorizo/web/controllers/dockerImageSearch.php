@@ -192,12 +192,21 @@ class DockerImageSearch extends MX_Controller {
         $block->setDefaultPage($defaultPage);
 
         $query_field =& $factory->getTextField('Search', $query_string);
-        $query_field->setType('alphanum_plus_space');
+        $query_field->setType('');
         $block->addFormField(
             $query_field,
             $factory->getLabel('Search'),
             $defaultPage
             );
+
+        // Add in SearchButton to prevent using first search result button if someone presses return in the search field:
+        $searchButton = $factory->getSearchButton($BxPage->getSubmitAction());
+        $buttonContainer = $factory->getButtonContainer("dockerImages", $searchButton);
+        $block->addFormField(
+            $buttonContainer,
+            $factory->getLabel("dockerImageSearchButton"),
+            $defaultPage
+        );
 
         if ($systemDocker['enabled'] == "0") {
                 $disabled_TEXT = "<div class='flat_area grid_16'><br>" . $i18n->getClean("[[base-docker.enabledField_help]]") . "</div>";
