@@ -160,6 +160,15 @@ class HtmlComponentFactory {
     return $save_button;
   }
 
+  // description: manufacture a SearchButton object
+  // param: action: the string used within HREF attribute of the A tag
+  // returns: a SaveButton object
+  function getSearchButton($action, $demo_override = FALSE) {
+    include_once("uifc/SearchButton.php");
+    $search_button = new SearchButton($this->BxPage, $action, $demo_override);
+    return $search_button;
+  }
+
   // description: manufacture a FreeSaveButton object
   // param: action: the string used within HREF attribute of the A tag
   // returns: a FreeSaveButton object. Which is the same as a "SaveButton"
