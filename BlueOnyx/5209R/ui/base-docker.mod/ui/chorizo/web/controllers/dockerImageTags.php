@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class DockerParams extends MX_Controller {
+class DockerImageTags extends MX_Controller {
 
     /**
      * Index Page for this controller.
@@ -51,17 +51,16 @@ class DockerParams extends MX_Controller {
         // Get URL strings:
         $get_form_data = $CI->input->get(NULL, TRUE);
 
-        $prep_image = '';
-        if (isset($get_form_data['prep'])) {
-            $prep_image = urldecode($get_form_data['prep']);
+        $download_image = '';
+        if (isset($get_form_data['img'])) {
+            $download_image = urldecode($get_form_data['img']);
         }
-
-        $my_errors = array();
-        if (isset($get_form_data['error'])) {
-            $my_errors[] = ErrorMessage($i18n->get("[[base-docker.ErrorImagePrep]]"));
+        else {
+            header('Location: /docker/dockerImageSearch');
         }
 
         // Required array setup:
+        $errors = array();
         $extra_headers = array();
 
         //
@@ -70,15 +69,19 @@ class DockerParams extends MX_Controller {
 
         include_once('/usr/sausalito/ui/chorizo/ci/application/modules/base/docker/controllers/DockerLibs.php');
         $DockerLibs = new DockerLibs($CI->serverScriptHelper, $CI->cceClient, $CI->BX_SESSION['loginName'], $CI->BX_SESSION['sessionId']);
-        $DockerImages = $DockerLibs->GetDockerImages();
+        $DockerImages = array();
 
         //
         //--- Handle form validation:
         //
 
         // We start without any active errors:
-        $errors = array();
         $ci_errors = array();
+        $my_errors = array();
+
+        if (isset($get_form_data['error'])) {
+            $my_errors[] = ErrorMessage($i18n->get("[[base-docker.ErrorImageDownload]]"));
+        }
 
         // Shove submitted input into $form_data after passing it through the XSS filter:
         $form_data = $CI->input->post(NULL, TRUE);
@@ -127,9 +130,24 @@ class DockerParams extends MX_Controller {
         //--- Own error checks:
         //
 
-        if ($CI->input->post(NULL, TRUE)) {
+        $query_string = '';
 
+        if ($CI->input->post(NULL, TRUE)) {
+            if (isset($attributes['Search'])) {
+                if (strlen($attributes['Search']) > '0') {
+                    $query_string = $attributes['Search'];
+                }
+            }
         }
+        else {
+            $query_string = $download_image;
+        }
+
+        //
+        //-- Get Tag-Info for selected Image:
+        //
+
+        $DockerImages = $DockerLibs->SearchDockerImageTags($download_image);
 
         //
         //--- At this point all checks are done. If we have no errors, we can submit the data to CODB:
@@ -138,47 +156,8 @@ class DockerParams extends MX_Controller {
         // Join the various error messages:
         $errors = array_merge($ci_errors, $my_errors);
 
-        // If we have no errors and have POST data, we submit to CODB:
-        if ((count($errors) == "0") && ($CI->input->post(NULL, TRUE))) {
-            if ((isset($attributes['Image'])) && (isset($attributes['Name'])) && (isset($attributes['LaunchParameters']))) {
-                $DockerRun = $DockerLibs->RunDockerImage($attributes['Image'], $attributes['LaunchParameters'], $attributes['Name']);
-                if ($DockerRun != "0") {
-                    $errors[] = $DockerRun;
-                }
-                else {
-                    header('Location: /docker/dockerList');
-                }
-            }
-            $systemDocker = $CI->cceClient->get($system['OID'], "Docker");
-        }
-
-        //
-        //-- Generate page:
-        //
-
         // Prepare Page:
-        $url_params = '';
-        if (isset($attributes['Image'])) {
-            $url_params .= '?prep=' . $attributes['Image'];
-            $prep_image = $attributes['Image'];
-        }
-
-        $prep_name = '';
-        if (isset($attributes['Name'])) {
-            $prep_name = $attributes['Name'];
-        }
-        else {
-            $prep_name = $prep_image;
-        }
-
-        $prep_name = preg_replace('|/|', '_', $prep_name);
-
-        $LaunchParameters = '';
-        if (isset($attributes['LaunchParameters'])) {
-            $LaunchParameters = $attributes['LaunchParameters'];
-        }
-
-        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-docker", "/docker/dockerParams$url_params");
+        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-docker", "/docker/dockerImageTags?img=$query_string");
         $BxPage = $factory->getPage();
         $BxPage->setErrors($errors);
         $i18n = $factory->getI18n();
@@ -193,11 +172,28 @@ class DockerParams extends MX_Controller {
         $BxPage->setVerticalMenuChild('docker_Images');
         $defaultPage = "basicSettingsTab";
 
-        $block =& $factory->getPagedBlock("dockerInstanceCreate", array($defaultPage));
+        $block =& $factory->getPagedBlock("dockerImages", array($defaultPage));
 
         $block->setToggle("#");
         $block->setSideTabs(FALSE);
         $block->setDefaultPage($defaultPage);
+
+        $query_field =& $factory->getTextField('Search', $query_string);
+        $query_field->setType('');
+        $block->addFormField(
+            $query_field,
+            $factory->getLabel('Search'),
+            $defaultPage
+            );
+
+        // Add in SearchButton to prevent using first search result button if someone presses return in the search field:
+        $searchButton = $factory->getSearchButton($BxPage->getSubmitAction());
+        $buttonContainer = $factory->getButtonContainer("dockerImages", $searchButton);
+        $block->addFormField(
+            $buttonContainer,
+            $factory->getLabel("dockerImageSearchButton"),
+            $defaultPage
+        );
 
         if ($systemDocker['enabled'] == "0") {
                 $disabled_TEXT = "<div class='flat_area grid_16'><br>" . $i18n->getClean("[[base-docker.enabledField_help]]") . "</div>";
@@ -209,38 +205,50 @@ class DockerParams extends MX_Controller {
                   $defaultPage
                 );
         }
-        else {
 
-            $block->addFormField(
-                $factory->getTextField('Image', $prep_image, 'r'),
-                $factory->getLabel('Image'),
-                $defaultPage
-                );
+        $scrollList = $factory->getScrollList("DockerImageSearch", array("NAME", "DESCRIPTION", "STARS", "OFFICIAL", "AUTO", "Action"), array()); 
 
-            $prep_name = preg_replace('/:/', '-', $prep_name);
-            $set_name = $factory->getTextField('Name', $prep_name, 'rw');
-            $set_name->setOptional(TRUE);
-            $set_name->setType('');
-            $block->addFormField(
-                $set_name,
-                $factory->getLabel('Name'),
-                $defaultPage
-                );
+        $scrollList->setAlignments(array("left", "center", "center", "center", "center", "center"));
+        $scrollList->setDefaultSortedIndex('2');
+        $scrollList->setSortOrder('descending');
+        $scrollList->setSortDisabled(array('5'));
+        $scrollList->setPaginateDisabled(FALSE);
+        $scrollList->setSearchDisabled(FALSE);
+        $scrollList->setSelectorDisabled(FALSE);
+        $scrollList->enableAutoWidth(FALSE);
+        $scrollList->setInfoDisabled(FALSE);
+        $scrollList->setColumnWidths(array("140", "288", "50", "143", "73", "45")); // Max: 739px
 
-            $launch_params = $factory->getTextList("LaunchParameters", $LaunchParameters, 'rw');
-            $launch_params->setOptional(TRUE);
-            //$launch_params->setType('alphanum_plus_space_multiline');
-            $block->addFormField(
-                $launch_params,
-                $factory->getLabel("LaunchParameters"),
-                $defaultPage
-                );            
+        $v = '0';
+        foreach ($DockerImages as $ctline => $value) {
 
+            // Add Buttons:
+            $buttons = ' <button title="' . $i18n->getWrapped("dockerDownloadImage_help") . '" class="tiny icon_only div_icon tooltip hover right link_button" data-link="/docker/dockerImageLoad?dl=' . urlencode($DockerImages[$ctline]['NAME']) . '" target="_self" formtarget="_self"><div class="ui-icon ui-icon-arrowreturnthick-1-s"></div></button>';
+
+            // Assemble the ScrollList-Entries:
+            $scrollList->addEntry(
+                    array(
+                            $DockerImages[$ctline]['NAME'],
+                            $DockerImages[$ctline]['DESCRIPTION'],
+                            $DockerImages[$ctline]['STARS'],
+                            $DockerImages[$ctline]['OFFICIAL'],
+                            $DockerImages[$ctline]['AUTOMATED'],
+                            $buttons
+                    ),
+                    '', false, $v);
+            $v++;
         }
+
+        // Push out the Scrollist:
+        $block->addFormField(
+            $factory->getRawHTML("virtualServerList", $scrollList->toHtml()),
+            $factory->getLabel("virtualServerList"),
+            $defaultPage
+        );
 
         // Add the buttons
         $block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
-        $block->addButton($factory->getCancelButton("/docker/dockerImages"));
+        $block->addButton($factory->getCancelButton("/docker/dockerImageSearch"));
 
         $page_body[] = $block->toHtml();
 

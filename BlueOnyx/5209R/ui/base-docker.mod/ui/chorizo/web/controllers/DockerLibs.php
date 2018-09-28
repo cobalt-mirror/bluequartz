@@ -143,7 +143,7 @@ class DockerLibs {
     public function GetDockerImages($c_short = TRUE) {
 
         $columns = array('REPOSITORY', 'TAG', 'IMAGE ID', 'CREATED', 'SIZE');
-        $ret = $this->serverScriptHelper->shell("/usr/bin/docker images -a | sed 's/^[ \t]*//;s/[ \t]*\$//'", $dockerList_raw, 'root', $this->sessionId);
+        $ret = $this->serverScriptHelper->shell("/usr/bin/docker images | sed 's/^[ \t]*//;s/[ \t]*\$//'", $dockerList_raw, 'root', $this->sessionId);
 
         $dockerList = array();
         $dockerList_inst = explode(PHP_EOL, $dockerList_raw);
@@ -205,6 +205,45 @@ class DockerLibs {
             }
         }
         return $dockerList;
+    }
+
+    // description: SearchDockerImageTags() - get all TAGs for an image:
+    public function SearchDockerImageTags($Search = '') {
+        $url = 'https://registry.hub.docker.com/v1/repositories/' . $Search . '/tags';
+        $TagData = get_data($url, "45"); // 45 seconds timeout for download
+        $TagData = json_decode($TagData, TRUE);
+        $outTag = array();
+        $returnTag = array();
+
+        // Get Name and Description of toplevel image:
+        $x = $this->SearchDockerImages($Search);
+        if (isset($x['0'])) {
+            foreach ($x as $key => $value) {
+                if (isset($x[$key]['NAME'])) {
+                    if ($x[$key]['NAME'] == $Search) {
+                        $outTag = $x[$key];
+                    }
+                }
+            }
+        }
+
+        // Splice tags, name and desciption together into a new unified output:
+        foreach ($TagData as $key => $value) {
+            if (isset($value['name'])) {
+                $returnTag[$key]['NAME'] = $Search . ':' . $value['name'];
+                $returnTag[$key]['DESCRIPTION'] = $outTag['DESCRIPTION'];
+                $returnTag[$key]['STARS'] = $outTag['STARS'];
+                $returnTag[$key]['OFFICIAL'] = $outTag['OFFICIAL'];
+                $returnTag[$key]['AUTOMATED'] = $outTag['AUTOMATED'];
+            }
+        }
+
+        if (is_array($returnTag)) {
+            return $returnTag;
+        }
+        else {
+            return array();
+        }
     }
 
     // description: SearchDockerImages()
@@ -296,6 +335,9 @@ class DockerLibs {
     // description: DeleteDockerImage()
     public function DeleteDockerImage($del = '') {
         if (strlen($del) > '1') {
+            if (!preg_match('/:/', $del)) {
+                $del = $del . ':latest';
+            }
             $ret = $this->serverScriptHelper->shell("/usr/bin/docker rmi $del", $dockerList_raw, 'root', $this->sessionId);
         }
         return $ret;

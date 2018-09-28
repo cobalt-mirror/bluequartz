@@ -229,8 +229,8 @@ class DockerImages extends MX_Controller {
         foreach ($DockerImages as $ctline => $value) {
 
             // Add Buttons:
-            $buttons = ' <button title="' . $i18n->getWrapped("dockerLaunchImage_help") . '" class="tiny icon_only div_icon tooltip hover right link_button" data-link="/docker/dockerParams?prep=' . urlencode($DockerImages[$ctline]['REPOSITORY']) . '" target="_self" formtarget="_self"><div class="ui-icon ui-icon-arrowthick-1-ne"></div></button>';
-            $buttons .= ' <button title="' . $i18n->getWrapped("dockerDeleteImage_help") . '" class="tiny icon_only div_icon tooltip hover right link_button" data-link="/docker/dockerImages?del=' . urlencode($DockerImages[$ctline]['REPOSITORY']) . '" target="_self" formtarget="_self"><div class="ui-icon ui-icon-trash"></div></button>';
+            $buttons = ' <button title="' . $i18n->getWrapped("dockerLaunchImage_help") . '" class="tiny icon_only div_icon tooltip hover right link_button" data-link="/docker/dockerParams?prep=' . urlencode($DockerImages[$ctline]['REPOSITORY'] . ':' . $DockerImages[$ctline]['TAG']) . '" target="_self" formtarget="_self"><div class="ui-icon ui-icon-arrowthick-1-ne"></div></button>';
+            $buttons .= ' <button title="' . $i18n->getWrapped("dockerDeleteImage_help") . '" class="tiny icon_only div_icon tooltip hover right link_button" data-link="/docker/dockerImages?del=' . urlencode($DockerImages[$ctline]['REPOSITORY'] . ':' . $DockerImages[$ctline]['TAG']) . '" target="_self" formtarget="_self"><div class="ui-icon ui-icon-trash"></div></button>';
 
             // Assemble the ScrollList-Entries:
             $scrollList->addEntry(

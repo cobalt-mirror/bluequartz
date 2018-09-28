@@ -3,6 +3,7 @@
 
 $route['docker/docker/:any'] = "docker";
 $route['docker/dockerImages/:any'] = "dockerImages";
+$route['docker/dockerImageTags/:any'] = "dockerImageTags";
 $route['docker/dockerList/:any'] = "dockerList";
 $route['docker/dockerParams/:any'] = "dockerParams";
 $route['docker/dockerInspect/:any'] = "dockerInspect";

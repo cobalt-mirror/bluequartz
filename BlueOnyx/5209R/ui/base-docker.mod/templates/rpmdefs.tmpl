@@ -107,6 +107,18 @@ fi
 
 <begin $CHANGELOG>
 
+* Fri Sept 28 2018 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BX05
+- Added button to result page of Docker Image Search to poll a list of all
+  available tags and versions of said image.
+- Added function SearchDockerImageTags() to generate list of all versions
+  of an image and to return it in the same format as the general image list.
+- Modified Docker Create page to allow to create instances from other tags
+  than just latest.
+- Modified GetDockerImages() to no longer use the -a switch to prevent it
+  from showing local environments, too.
+- Modified DeleteDockerImage() to honor tags. If no tag is given, assume
+  latest.
+
 * Thu Sep 06 2018 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BX04
 - Fixed helptext on start button.
 

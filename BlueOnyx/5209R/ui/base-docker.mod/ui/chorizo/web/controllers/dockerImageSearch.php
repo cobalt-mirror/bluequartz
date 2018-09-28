@@ -236,7 +236,8 @@ class DockerImageSearch extends MX_Controller {
         foreach ($DockerImages as $ctline => $value) {
 
             // Add Buttons:
-            $buttons = ' <button title="' . $i18n->getWrapped("dockerDownloadImage_help") . '" class="tiny icon_only div_icon tooltip hover right link_button" data-link="/docker/dockerImageLoad?dl=' . urlencode($DockerImages[$ctline]['NAME']) . '" target="_self" formtarget="_self"><div class="ui-icon ui-icon-arrowreturnthick-1-s"></div></button>';
+            $buttons = ' <button title="' . $i18n->getWrapped("dockerTagInspectImage_help") . '" class="tiny icon_only div_icon tooltip hover right link_button" data-link="/docker/dockerImageTags?img=' . urlencode($DockerImages[$ctline]['NAME']) . '" target="_self" formtarget="_self"><div class="ui-icon ui-icon-search"></div></button>';
+            $buttons .= ' <button title="' . $i18n->getWrapped("dockerDownloadImage_help") . '" class="tiny icon_only div_icon tooltip hover right link_button" data-link="/docker/dockerImageLoad?dl=' . urlencode($DockerImages[$ctline]['NAME']) . '" target="_self" formtarget="_self"><div class="ui-icon ui-icon-arrowreturnthick-1-s"></div></button>';
 
             // Assemble the ScrollList-Entries:
             $scrollList->addEntry(
