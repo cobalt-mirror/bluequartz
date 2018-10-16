@@ -141,7 +141,7 @@ class DockerParams extends MX_Controller {
         // If we have no errors and have POST data, we submit to CODB:
         if ((count($errors) == "0") && ($CI->input->post(NULL, TRUE))) {
             if ((isset($attributes['Image'])) && (isset($attributes['Name'])) && (isset($attributes['LaunchParameters']))) {
-                $DockerRun = $DockerLibs->RunDockerImage($attributes['Image'], $attributes['LaunchParameters'], $attributes['Name']);
+                $DockerRun = $DockerLibs->RunDockerImage($attributes['Image'], $attributes['LaunchParameters'], $attributes['Name'], $attributes['Autostart']);
                 if ($DockerRun != "0") {
                     $errors[] = $DockerRun;
                 }
@@ -235,6 +235,15 @@ class DockerParams extends MX_Controller {
                 $factory->getLabel("LaunchParameters"),
                 $defaultPage
                 );            
+
+            // Autostart:
+            $block->addFormField(
+                $factory->getBoolean('Autostart', '0', 'rw'),
+                $factory->getLabel('Autostart', false),
+                $defaultPage
+            );
+            // Superstituosly set help-text manually - just in case:
+            $BxPage->setLabel('Autostart', 'Autostart', $i18n->get("[[base-docker.Autostart_help]]"));
 
         }
 

@@ -134,9 +134,14 @@ class DockerInspect extends MX_Controller {
         // Join the various error messages:
         $errors = array_merge($ci_errors, $my_errors);
 
-        // If we have no errors and have POST data, we submit to CODB:
+        // If we have no errors and have POST data, then we modify the 'Autostart' settings of this Container:
         if ((count($errors) == "0") && ($CI->input->post(NULL, TRUE))) {
-            $systemDocker = $CI->cceClient->get($system['OID'], "Docker");
+            if ((isset($attributes['Autostart'])) && (isset($attributes['Autostart']))) {
+                $ret = $DockerLibs->DockerCTautostart($attributes['Id'], $attributes['Autostart']);
+                if ($ret != '0') {
+                    $errors[] = ErrorMessage($i18n->get("[[base-docker.AutoStart_UnableToSet]]"));
+                }
+            }
         }
 
         //
@@ -144,7 +149,7 @@ class DockerInspect extends MX_Controller {
         //
 
         // Prepare Page:
-        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-docker", "/docker/dockerInspect");
+        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-docker", "/docker/dockerInspect?show=$inspect_instance");
         $BxPage = $factory->getPage();
         $BxPage->setErrors($errors);
         $i18n = $factory->getI18n();
@@ -179,21 +184,29 @@ class DockerInspect extends MX_Controller {
         //--- Start: Auto-Generate FormFields based on result of "docker inspect <instance>":
         if (strlen($inspect_instance) > "1") {
             $instanceData = $DockerLibs->DockerInspect($inspect_instance);
-
             if ((is_array($instanceData)) && (isset($instanceData[0]))) {
 
                foreach ($instanceData[0] as $key => $value) {
                     if ((!is_object($value)) && (!is_array($value))) {
-
-                        $block->addFormField(
-                            $factory->getTextField($key, $value, 'r'),
-                            $factory->getLabel($key),
-                            $defaultPage
+                        if ($key == 'Autostart') {
+                            $block->addFormField(
+                                $factory->getBoolean($key, $value, 'rw'),
+                                $factory->getLabel($key, false),
+                                $defaultPage
                             );
+                            // Superstituosly set help-text manually - just in case:
+                            $BxPage->setLabel($key, $key, $i18n->get("[[base-docker.Autostart_help]]"));
+                        }
+                        else {
+                            $block->addFormField(
+                                $factory->getTextField($key, $value, 'r'),
+                                $factory->getLabel($key),
+                                $defaultPage
+                                );
 
-                        // Wipe out help-text:
-                        $BxPage->setLabel($key, $key, $key);
-
+                            // Wipe out help-text:
+                            $BxPage->setLabel($key, $key, $key);
+                        }
                     }
                     elseif ((is_object($value)) && (!is_array($value))) {
 
@@ -252,6 +265,7 @@ class DockerInspect extends MX_Controller {
         //--- End: Auto-Generate FormFields
 
         // Add the buttons
+        $block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
         $block->addButton($factory->getCancelButton("/docker/dockerList"));
 
         $page_body[] = $block->toHtml();

@@ -7,3 +7,16 @@
 <program name="/usr/bin/cut">
 	<capability requires="serverNetwork" user="root"/>
 </program>
+<program name="/usr/bin/ls">
+	<capability requires="serverNetwork" user="root"/>
+</program>
+<program name="/usr/bin/wc">
+	<capability requires="serverNetwork" user="root"/>
+</program>
+<program name="/usr/bin/rm">
+	<capability requires="serverNetwork" user="root"/>
+</program>
+<program name="/usr/bin/touch">
+	<capability requires="serverNetwork" user="root"/>
+</program>
+

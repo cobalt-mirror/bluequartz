@@ -235,3 +235,15 @@ msgstr "Continue back to the list of Docker images."
 msgid "dockerTagInspectImage_help"
 msgstr "See available versions."
 
+###
+
+msgid "AutoStart_UnableToSet"
+msgstr "Unable to modify 'Autostart' behaviour of this Docker Container."
+
+msgid "Autostart_help"
+msgstr "If this checkbox is ticked, then this Docker container will be automatically started upon server reboot. Additionally 'Active Monitor' will monitor this Docker Container and if it finds it stopped, it will restart it again. PLEASE NOTE: Not all 
+Docker Container are designed to run continously. Some have 'one-shot' processes that run, do their job and terminate. If you enable 'Autostart' for such a 'one-shot' container, then 'Active Monitor' will run the process every 15 minutes and might warn you 
+that the container has failed to stay alive and needed to be restarted. So please use this feature with caution."
+
+
+

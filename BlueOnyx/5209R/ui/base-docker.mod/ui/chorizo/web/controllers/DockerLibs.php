@@ -370,7 +370,7 @@ class DockerLibs {
     }
 
     // description: RunDockerImage()
-    public function RunDockerImage($instance = '', $params = '', $name = '') {
+    public function RunDockerImage($instance = '', $params = '', $name = '', $autostart = '0') {
 
         $params = implode(' ', $this->cceClient->scalar_to_array($params));
         $params = escapeshellcmd($params);
@@ -388,6 +388,14 @@ class DockerLibs {
             return $error;
         }
         else {
+
+            //
+            //--- Handle Autostart:
+            //
+            $instanceData = $this->DockerInspect($name);
+            if (isset($instanceData[0]->Id)) {
+                $this->DockerCTautostart($instanceData[0]->Id, $autostart);
+            }
             return $ret;
         }
     }
@@ -400,6 +408,24 @@ class DockerLibs {
         $decoded = json_decode($dockerList_raw);
         if (isset($decoded[0])) {
             if (is_object($decoded[0])) {
+
+                // Get Autostart:
+                if (isset($decoded[0]->Id)) {
+                    $ct_Path = '/var/lib/docker/containers/' . $decoded[0]->Id . '/autostart';
+                    $autostart = '';
+                    $ret = $this->serverScriptHelper->shell("/usr/bin/ls -k1 $ct_Path | /usr/bin/wc -l", $autostart, 'root', $this->sessionId);
+                    $autostart = rtrim($autostart);
+                    $objHelper = new stdClass();
+                    $objHelper->Autostart = $autostart;
+                    $new_decoded[0] = (object) array_merge((array) $objHelper, (array) $decoded[0]);
+                    $decoded[0] = $new_decoded[0];
+                }
+                else {
+                    $objHelper = new stdClass();
+                    $objHelper->Autostart = '0';
+                    $new_decoded[0] = (object) array_merge((array) $objHelper, (array) $decoded[0]);
+                    $decoded[0] = $new_decoded[0];
+                }
                 return $decoded;
             }
             else {
@@ -409,6 +435,21 @@ class DockerLibs {
         else {
             return '-1';
         }
+    }
+
+    // description: DockerCTautostart()
+    public function DockerCTautostart($instance = '', $autostart='0') {
+        if (($instance != '') && (($autostart == '0') || ($autostart == '1'))) {
+            $ct_Path = '/var/lib/docker/containers/' . $instance . '/autostart';
+            $X_autostart = '';
+            if ($autostart == '1') {
+                $ret = $this->serverScriptHelper->shell("/usr/bin/touch $ct_Path", $X_autostart, 'root', $this->sessionId);
+            }
+            else {
+                $ret = $this->serverScriptHelper->shell("/usr/bin/rm -f $ct_Path", $X_autostart, 'root', $this->sessionId);
+            }
+        }
+        return $ret;
     }
 
     // description: KernelVersion()
