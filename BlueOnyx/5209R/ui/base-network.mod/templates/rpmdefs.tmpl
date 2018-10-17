@@ -106,6 +106,10 @@ fi
 
 <begin $CHANGELOG>
 
+* Wed Oct 17 2018 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX20
+- Modified constructor/01_setIPType.pl to force Network monitoring off
+  if this is a VPS on OpenVZ.
+
 * Sat Jul 28 2018 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX19
 - Added constructor 01_setIPType.pl as we cannot only rely on the 
   Anaconda setup scripts to set the IPType but also need a way to set

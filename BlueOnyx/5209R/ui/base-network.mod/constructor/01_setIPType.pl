@@ -88,6 +88,12 @@ else {
 # Set IPType:
 my ($ok) = $cce->set($sysoid, '', {'IPType' => $IPType});
 
+if (($IPType eq 'VZv4') || ($IPType eq 'VZv6') || ($IPType eq 'VZBOTH')) {
+     my ($AMoid) = $cce->find('ActiveMonitor');
+     my ($ok, $AM) = $cce->get($AMoid);
+     my ($ok) = $cce->update($AMoid, 'Network', {'monitor' => '0'});
+}
+
 $cce->bye('SUCCESS');
 exit(0);
 
