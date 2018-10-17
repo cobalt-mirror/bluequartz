@@ -58,6 +58,11 @@ else {
     my ($ok, $sysobj) = $cce->get($sysoid);
     my $locale = $sysobj->{'productLanguage'};
 
+    my $homeDir = $Base::HomeDir::HOME_ROOT;
+    if ($homeDir eq '/') {
+        $homeDir = '/home';
+    }
+
     # add
     # create with systemAdministrator set at first
     ($success) = $cce->create('User', 
@@ -68,7 +73,7 @@ else {
                 'password' => 'blueonyx',
                 'stylePreference' => 'BlueOnyx',
                 'systemAdministrator' => 1,
-                'volume' => $Base::HomeDir::HOME_ROOT
+                'volume' => $homeDir
             });
 
     # turn on telnet and su access by default
