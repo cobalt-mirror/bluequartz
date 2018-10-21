@@ -43,6 +43,21 @@ if ($ServiceSettings->{'enabled'} eq "1") {
         &debug_msg("Service $service was not enabled. But it is enabled now and has been started.\n");
     }
 
+    # Check for Containers with enabled AutoStart:
+    $rawAutoStartCTs = `/usr/bin/ls -k1 /var/lib/docker/containers/*/autostart|/usr/bin/cut -d / -f6`;
+    chomp($rawAutoStartCTs);
+    @AutoStartCTs = split /\n/, $rawAutoStartCTs;
+    my $CTstate = '0';
+    foreach my $x (@AutoStartCTs) {
+        $CTstate = `/usr/bin/docker inspect $x |grep Running|grep false|wc -l`;
+        chomp($CTstate);
+        if ($CTstate eq "1") {
+            # AutoStart is on, but CT is stopped. Restart CT:
+            &debug_msg("Docker CT $x has autostart enabled, but was stopped. Restarting CT.\n");
+            system("/usr/bin/docker start $x >/dev/null 2>&1 || :");
+        }
+    }
+
     # Check Status:
     $status = `pidof /usr/bin/dockerd|wc -l`;
     chomp($status);
