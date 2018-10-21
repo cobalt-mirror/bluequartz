@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=docker
 
 VERSION=1.0.0
-RELEASE=0BX06
+RELEASE=0BX07
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -19,7 +19,7 @@ BUILDUI=new
 BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=yes
-REQUIRES= base-docker-am docker-yumconf base-docker-icon yum-utils device-mapper-persistent-data lvm2 docker-ce
+REQUIRES= base-docker-am docker-yumconf base-docker-icon yum-utils device-mapper-persistent-data lvm2 docker-ce base-docker-systemd docker-compose
 
 #########
 # some useful defines

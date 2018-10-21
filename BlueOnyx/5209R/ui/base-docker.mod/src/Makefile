@@ -6,7 +6,7 @@ endif
 
 include $(CCETOPDIR)/devel/defines.mk
 
-DIRS=base-docker-am docker-yumconf base-docker-icon
+DIRS=base-docker-am docker-yumconf base-docker-icon base-docker-systemd docker-compose
 TMPDIR=/tmp
 
 all:
