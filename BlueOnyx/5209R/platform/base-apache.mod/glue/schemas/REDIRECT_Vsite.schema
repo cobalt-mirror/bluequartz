@@ -1,11 +1,11 @@
 <!--
  $Id: mysql.schema
- Copyright (c) 2017 Michael Stauber, SOLARSPEED.NET
- Copyright (c) 2017 Team BlueOnyx, BLUEONYX.IT
+ Copyright (c) 2017-2018 Michael Stauber, SOLARSPEED.NET
+ Copyright (c) 2017-2018 Team BlueOnyx, BLUEONYX.IT
  All Rights Reserved.
 -->
 
-<typedef name="REDIRECT" type="re"   data="^(302|permanent)$"/>
+<typedef name="REDIRECT" type="re"   data="^(302|permanent|proxy)$"/>
 
 <typedef name="URL" type="re"   data="^(http:\\/\\/[a-z0-9]{1,}\\.[a-z0-9]{1,}(.*))|(https:\\/\\/[a-z0-9]{1,}\\.[a-z0-9]{1,}(.*))$"/>
 

@@ -510,10 +510,10 @@ msgid "REDIRECTI18nName"
 msgstr "[[base-apache.redirect_enabled]]"
 
 msgid "redirect_enabled"
-msgstr "リダイレクトウェブサイト"
+msgstr "リダイレクト/プロキシウェブサイト"
 
 msgid "redirect_enabled_help"
-msgstr "このオプションを使用すると、この仮想サイトのWebサイト全体を別のURLにリダイレクトできます。 リダイレクトは、一時的（HTTPステータスコード302）または永続的（HTTPステータスコード301）のいずれかです。"
+msgstr "このオプションを使用すると、この仮想サイトのWebサイト全体を別のURLにリダイレクトまたはプロキシすることができます。 リダイレクトは、一時的（HTTPステータスコード302）または永続的（HTTPステータスコード301）のいずれかです。 プロキシが使用されている場合、このWebサーバーは指定されたリモートURLへのすべての要求をプロキシします。"
 
 msgid "RedirectType"
 msgstr "リダイレクトタイプ"
@@ -629,4 +629,13 @@ msgstr "Nginx SSLプロキシ"
 
 msgid "enabled_help"
 msgstr "Nginx SSLプロキシを有効にします。すべてのHTTPSリクエストは、Apacheと訪問Webブラウザの間のプロキシとして機能するNginxによって応答されます。"
+
+#####
+
+msgid "ProxyPass_worker_hostname_too_long"
+msgstr "入力されたURLが長すぎてプロキシできません。 プロキシを選択した場合、URLは96文字を超えてはなりません。"
+
+msgid "https_proxy_not_supported"
+msgstr "指定したプロキシURLはHTTPSを使用しますが、プロキシできません。 代わりにHTTP URLを指定してください。"
+
 

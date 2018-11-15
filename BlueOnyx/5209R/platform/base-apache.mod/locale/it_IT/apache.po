@@ -496,10 +496,10 @@ msgid "REDIRECTI18nName"
 msgstr "[[base-apache.redirect_enabled]]"
 
 msgid "redirect_enabled"
-msgstr "Sito web Redirect"
+msgstr "Redirect/Proxy Website"
 
 msgid "redirect_enabled_help"
-msgstr "Questa opzione consente di reindirizzare tutte le chiamate web di questo sito virtuale ad un altro URL. I reindirizzi possono essere temporanei (codice di stato HTTP 302) o permanenti (codice di stato HTTP 301)."
+msgstr "Questa opzione consente di reindirizzare o delegare l'intero sito web di questo sito virtuale ad un altro URL. I reindirizzamenti possono essere temporanei (HTTP Status Code 302) o permanenti (HTTP Status Code 301). Se si utilizza il proxy, questo server web invierà tutte le richieste all'URL remoto specificato."
 
 msgid "RedirectType"
 msgstr "Redirect Tipo"
@@ -615,4 +615,13 @@ msgstr "Proxy SSL Nginx"
 
 msgid "enabled_help"
 msgstr "Abilita il proxy SSL Nginx. A tutte le richieste HTTPS verrà quindi data risposta da Nginx, che funge da proxy tra Apache e i browser in visita."
+
+#####
+
+msgid "ProxyPass_worker_hostname_too_long"
+msgstr "L'URL inserito è troppo lungo per essere proxied. Se si sceglie il proxy, l'URL non deve essere più lungo di 96 caratteri."
+
+msgid "https_proxy_not_supported"
+msgstr "L'URL proxy specificato utilizza HTTPS, che non possiamo proxy. Si prega di specificare invece un URL HTTP."
+
 

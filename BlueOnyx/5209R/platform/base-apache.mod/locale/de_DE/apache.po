@@ -524,10 +524,10 @@ msgid "REDIRECTI18nName"
 msgstr "[[base-apache.redirect_enabled]]"
 
 msgid "redirect_enabled"
-msgstr "Webseite umleiten"
+msgstr "Vsite Umleitung/Proxy"
 
 msgid "redirect_enabled_help"
-msgstr "Diese Option ermöglicht es Ihnen, die gesamte Webseite dieser virtuellen Seite auf eine andere URL umzuleiten. Umleitungen können entweder temporär (HTTP-Statuscode 302) oder permanent (HTTP-Statuscode 301) sein."
+msgstr "Mit dieser Option können Sie die gesamte Website dieser virtuellen Website auf eine andere URL umleiten oder eine reverse-Proxy einrichten. Umleitungen können entweder temporär (HTTP Status Code 302) oder permanent (HTTP Status Code 301) sein. Wenn ein Proxy verwendet wird, dann wird dieser Webserver alle Anfragen an die angegebene Remote-URL weiterleiten und die Ergebnisse von dort an Besucher weiterleiten."
 
 msgid "RedirectType"
 msgstr "Umleitungstyp"
@@ -642,3 +642,11 @@ msgstr "Nginx SSL-Proxy"
 
 msgid "enabled_help"
 msgstr "Aktiviert die Nginx SSL-Proxy. Alle HTTPS-Anfragen werden dann von Nginx beantwortet, welcher als Proxy oder Vermittler zwischen dem Browser des Besuchers und dem Apache Webserver agiert."
+
+#####
+
+msgid "ProxyPass_worker_hostname_too_long"
+msgstr "Die eingegebene URL ist zu lang, um als Proxy-Ziel verwendet zu werden. Wenn Sie sich für Proxy entscheiden, darf die URL nicht länger als 96 Zeichen sein."
+
+msgid "https_proxy_not_supported"
+msgstr "Die von Ihnen angegebene Proxy-URL verwendet HTTPS und wir können leider keine HTTPS Reverse-Proxy einrichten. Bitte geben Sie stattdessen eine reine HTTP-URL an."

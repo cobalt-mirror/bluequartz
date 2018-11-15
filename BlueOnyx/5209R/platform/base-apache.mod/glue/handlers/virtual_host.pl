@@ -688,14 +688,28 @@ sub edit_vhost
         $prefered_siteAdmin = 'apache';
     }
 
-    if (($redirect->{enabled}) && (($redirect->{type} eq "302") || ($redirect->{type} eq "permanent")) && ($redirect->{target} ne "")) {
+    if (($redirect->{enabled}) && (($redirect->{type} eq "302") || ($redirect->{type} eq "permanent") || ($redirect->{type} eq "proxy")) && ($redirect->{target} ne "")) {
         if ($redirect->{type} eq "permanent") {
             $redirect->{type} = '301';
         }
-        $redirect_line = "RewriteOptions inherit\n";
-        $redirect_line .= "### START REDIRECT ###\n";
-        $redirect_line .= 'RewriteRule ^(.*)$ ' . $redirect->{target} . ' [DPI,L,R=' . $redirect->{type} . "]\n";
-        $redirect_line .= "### END REDIRECT ###\n";
+        if ($redirect->{type} eq 'proxy') {
+            $redirect_line = "RewriteOptions inherit\n";
+            $redirect_line .= "ProxyRequests off\n";
+            $redirect_line .= "SSLProxyEngine on\n";
+            $redirect_line .= "ProxyPreserveHost On\n";
+            $redirect_line .= "<Location />\n";
+            $redirect_line .= "    ProxyPass " . $redirect->{target} . "\n";
+            $redirect_line .= "    ProxyPassReverse " . $redirect->{target} . "\n";
+            $redirect_line .= "    Order allow,deny\n";
+            $redirect_line .= "    Allow from all\n";
+            $redirect_line .= "</Location>\n";
+        }
+        else {
+            $redirect_line = "RewriteOptions inherit\n";
+            $redirect_line .= "### START REDIRECT ###\n";
+            $redirect_line .= 'RewriteRule ^(.*)$ ' . $redirect->{target} . ' [DPI,L,R=' . $redirect->{type} . "]\n";
+            $redirect_line .= "### END REDIRECT ###\n";
+        }
     }
     else {
         $redirect_line = "RewriteOptions inherit\n";

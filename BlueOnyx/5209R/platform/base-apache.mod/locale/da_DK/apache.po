@@ -541,10 +541,10 @@ msgid "REDIRECTI18nName"
 msgstr "[[base-apache.redirect_enabled]]"
 
 msgid "redirect_enabled"
-msgstr "Omdirigere websted"
+msgstr "Omdirigere/Proxy websted"
 
 msgid "redirect_enabled_help"
-msgstr "Denne mulighed giver dig mulighed for at omdirigere hele webstedet for dette virtuelle websted til en anden webadresse. Omdirigeringer kan enten være midlertidige (HTTP Status Code 302) eller permanent (HTTP Status Code 301)."
+msgstr "Denne mulighed giver dig mulighed for at omdirigere eller proxy hele webstedet for dette virtuelle websted til en anden webadresse. Omdirigeringer kan enten være midlertidige (HTTP Status Code 302) eller permanent (HTTP Status Code 301). Hvis proxy anvendes, vil denne webserver proxy alle anmodninger til den angivne fjernwebadresse."
 
 msgid "RedirectType"
 msgstr "Omdirigeringstype"
@@ -660,3 +660,10 @@ msgstr "Nginx SSL Proxy"
 msgid "enabled_help"
 msgstr "Aktiverer Nginx SSL Proxy. Alle HTTPS anmodninger besvares derefter af Nginx, som fungerer som en proxy mellem Apache og besøger web browsere."
 
+#####
+
+msgid "ProxyPass_worker_hostname_too_long"
+msgstr "Den indtastede URL er for lang til at være proxied. Hvis du vælger at proxy, må webadressen ikke være længere end 96 tegn."
+
+msgid "https_proxy_not_supported"
+msgstr "Den proxy-webadresse, du angav, bruger HTTPS, som vi ikke kan proxy. Angiv venligst en HTTP-URL i stedet."

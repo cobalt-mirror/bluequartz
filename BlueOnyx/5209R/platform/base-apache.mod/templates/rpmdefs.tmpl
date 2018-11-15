@@ -227,6 +227,14 @@ fi
 
 <begin $CHANGELOG>
 
+* Wed Nov 14 2018 Michael Stauber <mstauber@solarspeed.net> 2.2.1-0BX12
+- Modified glue/handlers/virtual_host.pl to allow reverse proxy as well
+  in the featured that previously only handled redirects.
+- Extended glue/schemas/REDIRECT_Vsite.schema
+- Extended ui/chorizo/extensions/52_REDIRECT.php.create.Vsite
+- Extended ui/chorizo/extensions/52_REDIRECT.php.modifyWeb.Vsite
+- Locales updated
+
 * Tue Sep 04 2018 Michael Stauber <mstauber@solarspeed.net> 2.2.1-0BX11
 - Modified glue/handlers/virtual_host.pl to condreload all FPM services
   whenever a Vsite pool file is written in order to drop port bindings.

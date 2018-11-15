@@ -1,8 +1,8 @@
 <?php
 // $Id: 51_REDIRECT.php
 //
-// Copyright (c) 2017 Michael Stauber, SOLARSPEED.NET
-// Copyright (c) 2017 Team BlueOnyx, BLUEONYX.IT
+// Copyright (c) 2017-2018 Michael Stauber, SOLARSPEED.NET
+// Copyright (c) 2017-2018 Team BlueOnyx, BLUEONYX.IT
 //
 
 include_once('UIExtension.php');
@@ -80,13 +80,27 @@ class REDIRECTEXTENSION extends UIExtension {
         $VsiteObject = $cce->get($parameters['CCE_OID']);
         $REDIRECT_Vsite = $cce->get($parameters['CCE_OID'], 'REDIRECT');
 
-        $cce->set($parameters['CCE_OID'], 'REDIRECT', array(
-                            'enabled' => $this->attributes['redirect_enabled'],
-                            'type' => $this->attributes['RedirectType'],
-                            'target' => $this->attributes['target']
-                            ));
-        $errors = array_merge($errors, $cce->errors());
-
+        // Special case: 'ProxyPass worker hostname too long' error is generated, if URL is longer than 96 characters:
+        if (($this->attributes['RedirectType'] == 'proxy') && (strlen($this->attributes['target']) > '96') && ($this->attributes['redirect_enabled'] == '1')) {
+            $CI =& get_instance();
+            $i18n = new I18n("base-apache", $CI->BX_SESSION['loginUser']['localePreference']);
+            $errors[] = ErrorMessage($i18n->get("base-apache.ProxyPass_worker_hostname_too_long") . '<br>&nbsp;');
+        }
+        // Special case: We cannot proxy HTTPS without Apache falling flat on its face. Hence we only allow Proxy-URLs that don't start with 'https://':
+        elseif (($this->attributes['RedirectType'] == 'proxy') && (preg_match('/^https:(.*)$/', $this->attributes['target'])) && ($this->attributes['redirect_enabled'] == '1')) {
+            $CI =& get_instance();
+            $i18n = new I18n("base-apache", $CI->BX_SESSION['loginUser']['localePreference']); 
+            $errors[] = ErrorMessage($i18n->get("base-apache.https_proxy_not_supported") . '<br>&nbsp;');
+        }
+        // No errors: Update CODB with the new settings:
+        else {
+            $cce->set($parameters['CCE_OID'], 'REDIRECT', array(
+                                'enabled' => $this->attributes['redirect_enabled'],
+                                'type' => $this->attributes['RedirectType'],
+                                'target' => $this->attributes['target']
+                                ));
+            $errors = array_merge($errors, $cce->errors());
+        }
     }
 }
 

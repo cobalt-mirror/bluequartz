@@ -495,10 +495,10 @@ msgid "REDIRECTI18nName"
 msgstr "[[base-apache.redirect_enabled]]"
 
 msgid "redirect_enabled"
-msgstr "Omgekeerde website"
+msgstr "Redirect/Proxy website"
 
 msgid "redirect_enabled_help"
-msgstr "Met deze optie kunt u de gehele website van deze virtuele site doorsturen naar een andere URL. Heroriëntering kan tijdelijk zijn (HTTP Status Code 302) of permanent (HTTP Status Code 301)."
+msgstr "Met deze optie kunt u de gehele website van deze virtuele site doorverwijzen naar een andere URL. Redirects kunnen tijdelijk (HTTP-statuscode 302) of permanent (HTTP-statuscode 301) zijn. Als er een proxy wordt gebruikt, dan zal deze webserver alle aanvragen naar de opgegeven externe URL proxy."
 
 msgid "RedirectType"
 msgstr "Herdirecte type"
@@ -614,4 +614,12 @@ msgstr "Nginx SSL Proxy"
 
 msgid "enabled_help"
 msgstr "Schakelt de Nginx SSL-proxy in. Alle HTTPS-verzoeken worden dan beantwoord door Nginx, die als proxy fungeert tussen Apache en de bezoekende webbrowser."
+
+#####
+
+msgid "ProxyPass_worker_hostname_too_long"
+msgstr "De ingevoerde URL is te lang om geproxied te worden. Als u kiest voor een proxy, mag de URL niet langer zijn dan 96 tekens."
+
+msgid "https_proxy_not_supported"
+msgstr "De door u opgegeven proxy URL maakt gebruik van HTTPS, die wij niet kunnen proxiëren. Geef in plaats daarvan een HTTP-URL op."
 
