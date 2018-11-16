@@ -1,0 +1,43 @@
+msgid "cceErrorSentence"
+msgstr "Sorry, an internal server error occurred."
+
+msgid "cceHandlerErrorSentence"
+msgstr "Sorry, an internal server error occurred. [[base-sauce-basic.contactTechSupport]]"
+
+msgid "unknownAttr"
+msgstr "[[base-cce.cceErrorSentence]]  The attribute [[VAR.key]] is unknown. [[base-sauce-basic.contactTechSupport]]"
+
+msgid "unknownClass"
+msgstr "[[base-cce.cceErrorSentence]]  The class [[VAR.key]] is unknown. [[base-sauce-basic.contactTechSupport]]"
+
+msgid "unknownNs"
+msgstr "[[base-cce.cceErrorSentence]]  The namespace [[VAR.key]] is unknown. [[base-sauce-basic.contactTechSupport]]"
+
+msgid "unknownOid"
+msgstr "[[base-cce.cceErrorSentence]]  The object [[VAR.oid]] is unknown. [[base-sauce-basic.contactTechSupport]]"
+
+msgid "permissionDenied"
+msgstr "[[base-cce.cceErrorSentence]]  Permission for [[VAR.key]] is denied. [[base-sauce-basic.contactTechSupport]]"
+
+msgid "unknownErrorCode"
+msgstr "[[base-cce.cceErrorSentence]]  An unknown error occurred. [[base-sauce-basic.contactTechSupport]]"
+
+msgid "invalidType"
+msgstr "[[base-cce.cceErrorSentence]]  The type [[VAR.key]] is invalid. [[base-sauce-basic.contactTechSupport]]"
+
+	# User input invalid but validation fell through
+msgid "invalidData"
+msgstr "Sorry, the data entered in the field [[VAR.key]] is invalid. Please check your input and try again."
+
+msgid "outOfMemory"
+msgstr "[[base-cce.cceErrorSentence]]  The system is not able to allocate enough memory to continue."
+
+msgid "badRegex"
+msgstr "[[base-cce.cceErrorSentence]]  The regular expression [[VAR.key]] is invalid."
+
+msgid "suspended"
+msgstr "The Server Desktop is currently locked.  Modifications are not allowed at this time.  [[VAR.key]]"
+
+msgid "fq_email_address_or_username_errmsg"
+msgstr "Enter a username or email-address."
+

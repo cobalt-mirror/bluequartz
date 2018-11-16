@@ -1,0 +1,103 @@
+<?php
+// $Id: 51_REDIRECT.php
+//
+// Copyright (c) 2017-2018 Michael Stauber, SOLARSPEED.NET
+// Copyright (c) 2017-2018 Team BlueOnyx, BLUEONYX.IT
+//
+
+include_once('UIExtension.php');
+include_once("ServerScriptHelper.php");
+
+if (defined("REDIRECT_EXTENSION_CREATE_VSITE")) {
+    return 1;
+}
+define("REDIRECT_EXTENSION_CREATE_VSITE", 1);
+
+class REDIRECTEXTENSION extends UIExtension {
+
+    function display(&$ServerScriptHelper, &$container, $parameters) {
+        $CI =& get_instance();
+        $group = $parameters['group'];
+
+        $factory = $ServerScriptHelper->getHtmlComponentFactory("base-apache");
+        $cce = $ServerScriptHelper->getCceClient();
+
+        $system = $CI->getSystem();
+        $db_rights = $cce->get($system['OID'], "REDIRECT_DEFAULTS");
+
+        // will assume the container is a PagedBlock for the time being
+        $page_id = $parameters['PAGED_BLOCK_DEFAULT_PAGE'];
+
+        $featureREDIRECT = $cce->get($parameters['CCE_OID'], 'REDIRECT');
+
+        $Vsite = $cce->get($parameters['CCE_OID'], '');
+        $VsiteOwnerObj = $cce->getObject("User", array("name" => $Vsite['createdUser']));
+        $access = "rw";
+
+        $redirectField =& $factory->getMultiChoice('redirect_enabled');
+        $enable =& $factory->getOption('enabled', $featureREDIRECT['enabled'], $access);
+        $enable->setLabel($factory->getLabel('enable', false));
+        $redirectField->addOption($enable);
+
+        $redirect_types = array(
+                                '302' => '302',
+                                'permanent' => 'permanent',
+                                'proxy' => 'proxy'
+                                );
+
+        $Redirect_Field_select = $factory->getMultiChoice("RedirectType", array_values($redirect_types));
+        $Redirect_Field_select->setSelected($redirect_types[$featureREDIRECT['type']], true);
+        $enable->addFormField($Redirect_Field_select, $factory->getLabel('RedirectType'));
+
+        $redirectTarget = $factory->getTextField('target', $featureREDIRECT['target'], $access);
+        $redirectTarget->setMaxLength("255");
+        $redirectTarget->setType('URL');
+        $redirectTarget->setOptional(FALSE);
+        $redirectTarget->setPreserveData(false);
+        $enable->addFormField($redirectTarget, $factory->getLabel('target'));
+
+        $container->addFormField($redirectField, $factory->getLabel('redirectFullText'), $page_id);
+    }
+
+    function handle(&$ServerScriptHelper, &$errors, $parameters, &$attributes) {
+
+        $cce = $ServerScriptHelper->getCceClient();
+
+        // Get POST attributes:
+        $this->attributes = $attributes;
+
+        // Is this a Vsite create procedure?
+        $freshly_created_vsite = '0';
+        if (!isset($this->attributes['group'])) {
+            $freshly_created_vsite = '1';
+        }
+
+        // Get items of interest:
+        $VsiteObject = $cce->get($parameters['CCE_OID']);
+        $REDIRECT_Vsite = $cce->get($parameters['CCE_OID'], 'REDIRECT');
+
+        // Special case: 'ProxyPass worker hostname too long' error is generated, if URL is longer than 96 characters:
+        if (($this->attributes['RedirectType'] == 'proxy') && (strlen($this->attributes['target']) > '96') && ($this->attributes['redirect_enabled'] == '1')) {
+            $CI =& get_instance();
+            $i18n = new I18n("base-apache", $CI->BX_SESSION['loginUser']['localePreference']);
+            $errors[] = ErrorMessage($i18n->get("base-apache.ProxyPass_worker_hostname_too_long") . '<br>&nbsp;');
+        }
+        // Special case: We cannot proxy HTTPS without Apache falling flat on its face. Hence we only allow Proxy-URLs that don't start with 'https://':
+        elseif (($this->attributes['RedirectType'] == 'proxy') && (preg_match('/^https:(.*)$/', $this->attributes['target'])) && ($this->attributes['redirect_enabled'] == '1')) {
+            $CI =& get_instance();
+            $i18n = new I18n("base-apache", $CI->BX_SESSION['loginUser']['localePreference']); 
+            $errors[] = ErrorMessage($i18n->get("base-apache.https_proxy_not_supported") . '<br>&nbsp;');
+        }
+        // No errors: Update CODB with the new settings:
+        else {
+            $cce->set($parameters['CCE_OID'], 'REDIRECT', array(
+                                'enabled' => $this->attributes['redirect_enabled'],
+                                'type' => $this->attributes['RedirectType'],
+                                'target' => $this->attributes['target']
+                                ));
+            $errors = array_merge($errors, $cce->errors());
+        }
+    }
+}
+
+?>

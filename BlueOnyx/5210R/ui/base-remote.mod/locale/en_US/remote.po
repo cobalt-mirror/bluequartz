@@ -1,0 +1,47 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "header"
+msgstr "Connect to Server"
+
+msgid "connect"
+msgstr "Console Login"
+
+msgid "connect_help"
+msgstr "Connect to the console of this server via 'Shellinabox' to open a shell."
+
+msgid "info_text"
+msgstr "This GUI page allows you to login to the console of this server. For that it doesn't use SSH, but a true console connection through 'Shellinabox'.<br><br>Access to 'Shellinabox' is only granted if the service is accessed via the GUI by an authenticated user which has shell access enabled."
+
+msgid "admin_text"
+msgstr "<b>Please note:</b><br><br>User 'admin' can login, but he cannot use 'su -' to gain root access. If you require root access, login as another 'Server Administrator' with enabled 'Root-Access' and then use 'su root-username' to gain 'root' access."
+
+msgid "ShellinaboxEnabled"
+msgstr "Shellinabox Console Access"
+
+msgid "ShellinaboxEnabled_help"
+msgstr "This enables the service 'Shellinabox' which is needed if you want to use '[[base-remote.connect]]' via 'Personal Profile' / 'Programs' / '[[base-remote.connect]]'."
+
+msgid "service_disabled"
+msgstr "The Service 'Shellinabox' is not enabled. Console Login is therefore not possible at this time."
+
+##### --- Active monitor
+
+msgid "amRemoteNameTag"
+msgstr "Shellinabox Server"
+
+msgid "amDetailsTitle"
+msgstr "Shellinabox Server Details"
+
+msgid "amStatusOK"
+msgstr "The Shellinabox server is operating normally."
+
+msgid "amNotAccepting"
+msgstr "The Shellinabox server is not running and could not be restarted. Try turning the Shellinabox server off then on again to see if this corrects the problem."

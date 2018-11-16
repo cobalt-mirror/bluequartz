@@ -1,0 +1,8 @@
+<item id="base_mysql_vsite" label="[[base-mysql.vsiteMySQLMenu]]" 
+	description="[[base-mysql.vsiteMySQLMenuDesc]]" 
+	url="/mysql/vsiteMySQL?group=[[VAR.group]]"
+>
+    <parent id="base_siteservices" order="14">
+        <access require="siteAdmin"/>
+    </parent>
+</item>

@@ -1,0 +1,237 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "connect"
+msgstr "Docker"
+
+msgid "connect_help"
+msgstr "Le menu Docker vous permet d'accéder à la configuration de votre Docker."
+
+msgid "header"
+msgstr "Docker Service"
+
+msgid "enabledField"
+msgstr "Docker Daemon"
+
+msgid "enabledField_help"
+msgstr "Pour utiliser Docker, le service 'docker' doit être en cours d'exécution. Veuillez noter : Ceci requiert le noyau 3.10.0 ou mieux. Par conséquent, Docker ne fonctionnera pas dans les VPS sur OpenVZ 6 ou 6108R."
+
+msgid "amDockerNameTag"
+msgstr "Docker Server"
+
+msgid "amStatusOK"
+msgstr "Le Docker de service fonctionne normalement."
+
+msgid "amNotAccepting"
+msgstr "Le service Docker n'est pas en cours d'exécution et n'a pas pu être redémarré automatiquement."
+
+msgid "dockerImages"
+msgstr "Docker Images"
+
+msgid "dockerImages_help"
+msgstr "Docker Images vous permet de télécharger des images Docker à partir du dépôt Docker. Vous pouvez également inspecter les images Docker locales et créer des conteneurs Docker en utilisant des images déjà téléchargées."
+
+msgid "dockerImageSearchButton"
+msgstr "Recherche d'images en ligne"
+
+msgid "dockerImageSearchButton_help"
+msgstr "Recherche en ligne d'images Docker"
+
+msgid "REPOSITORY"
+msgstr "Référentiel"
+
+msgid "REPOSITORY_help"
+msgstr "Nom du référentiel."
+
+msgid "TAG"
+msgstr "Tag"
+
+msgid "TAG_help"
+msgstr "Affiche les informations de l'étiquette de cette image."
+
+msgid "IMAGE_ID"
+msgstr "Image ID"
+
+msgid "IMAGE_ID_help"
+msgstr "Identificateur de cette image."
+
+msgid "CREATED"
+msgstr "Créé"
+
+msgid "CREATED_help"
+msgstr "Montrer le temps de la création."
+
+msgid "Taille"
+msgstr "Size"
+
+msgid "SIZE_help"
+msgstr "Affiche la taille du fichier de l'image ou du conteneur."
+
+msgid "Action"
+msgstr "Action"
+
+msgid "Action_help"
+msgstr "Définit ce que vous pouvez faire avec cet objet."
+
+msgid "Search"
+msgstr "Recherche"
+
+msgid "Search_help"
+msgstr "Spécifiez une phrase que vous voulez rechercher dans le référentiel d'images du Docker en ligne."
+
+msgid "NAME"
+msgstr "Nom"
+
+msgid "NAME_help"
+msgstr "Nom du dépôt et image."
+
+msgid "DESCRIPTION"
+msgstr "Description"
+
+msgid "DESCRIPTION_help"
+msgstr "Description de l'image."
+
+msgid "STARS"
+msgstr "Étoiles"
+
+msgid "STARS_help"
+msgstr "Montre combien d'étoiles les critiques ont donné cette image."
+
+msgid "OFFICIAL"
+msgstr "Officiel"
+
+msgid "OFFICIAL_help"
+msgstr "Indique s'il s'agit d'une image officiellement approuvée ou non."
+
+msgid "AUTO"
+msgstr "Auto"
+
+msgid "AUTO_help"
+msgstr "Indique si cette image a été construite automatiquement."
+
+msgid "dockerDownloadImage_help"
+msgstr "Télécharger l'image"
+
+msgid "dockerLaunchImage_help"
+msgstr "Lancer un nouveau conteneur Docker en utilisant cette image."
+
+msgid "dockerDeleteImage_help"
+msgstr "Supprimer la copie locale de cette image."
+
+msgid "dockerInstanceCreate"
+msgstr "Créer un nouveau conteneur Docker"
+
+msgid "Image"
+msgstr "Image"
+
+msgid "Image_help"
+msgstr "Spécifie quelle image est utilisée."
+
+msgid "Name"
+msgstr "Nom"
+
+msgid "Name_help"
+msgstr "Nom du conteneur Docker."
+
+msgid "LaunchParameters"
+msgstr "Paramètres"
+
+msgid "LaunchParameters_help"
+msgstr "Which command line parameters to pass to the docker run command."
+
+msgid "dockerList"
+msgstr "Docker Containers"
+
+msgid "dockerList_help"
+msgstr "Quels paramètres de ligne de commande à transmettre à l'ordre d'exécution du docker."
+
+msgid "CTID"
+msgstr "CTID"
+
+msgid "CTID_help"
+msgstr "Identification du conteneur."
+
+msgid "COMMAND"
+msgstr "Commande"
+
+msgid "COMMAND_help"
+msgstr "Affiche quelle commande le conteneur est en cours d'exécution au démarrage."
+
+msgid "STATUS"
+msgstr "État"
+
+msgid "STATUS_help"
+msgstr "Indique l'état de ce conteneur.."
+
+msgid "PORTS"
+msgstr "Ports"
+
+msgid "PORTS_help"
+msgstr "Indique les ports auxquels ce conteneur est lié ou les mappings de ports actifs.."
+
+msgid "NAMES"
+msgstr "Nom"
+
+msgid "NAMES_help"
+msgstr "Indique le nom de ce conteneur.."
+
+msgid "dockerInspect_help"
+msgstr "Inspecter le conteneur Docker."
+
+msgid "dockerRestart_help"
+msgstr "Redémarrer le conteneur Docker.."
+
+msgid "dockerStop_help"
+msgstr "Arrêter le conteneur Docker."
+
+msgid "dockerDelete_help"
+msgstr "Supprimer le conteneur Docker."
+
+msgid "ErrorRestartInstance"
+msgstr "Une erreur s'est produite en essayant de redémarrer ce conteneur."
+
+msgid "ErrorStopInstance"
+msgstr "Une erreur s'est produite en essayant d'arrêter ce conteneur."
+
+msgid "ErrorDeleteInstance"
+msgstr "Une erreur s'est produite en essayant d'effacer ce conteneur."
+
+msgid "ErrorImageDelete"
+msgstr "Une erreur s'est produite en essayant d'effacer cette image. Peut-être utilisez-vous actuellement des conteneurs qui sont basés sur cette image ? Vous devez d'abord arrêter et effacer ces conteneurs."
+
+msgid "ErrorImageRun"
+msgstr "Une erreur s'est produite lors de l'exécution d'un conteneur basé sur cette image."
+
+msgid "ErrorImagePrep"
+msgstr "Une erreur s'est produite lors de la préparation d'un conteneur basé sur cette image."
+
+msgid "ErrorImageDownload"
+msgstr "Une erreur s'est produite en essayant de télécharger cette image."
+
+msgid "docker_inspect"
+msgstr "Configuration de ce conteneur docker"
+
+msgid "ImageDownload"
+msgstr "Téléchargement de l'image du docker"
+
+msgid "DownLoadInProgress"
+msgstr "L'image choisie est maintenant téléchargée en arrière-plan. Selon la taille de l'image, le téléchargement peut prendre un certain temps. Veuillez vérifier la liste des images du Docker dans un instant pour voir si la nouvelle image est déjà présente."
+
+msgid "OK"
+msgstr "Continuer"
+
+msgid "OK_help"
+msgstr "Revenez à la liste des images du Docker."
+
+####
+
+msgid "dockerTagInspectImage_help"
+msgstr "Voir les versions disponibles."
+

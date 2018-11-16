@@ -1,0 +1,14 @@
+[Unit]
+Description = Swatch - Service Watcher
+After = cced.init.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sausalito/sbin/swatch.sh
+ExecStop=/usr/bin/true
+ExecReload=/usr/sausalito/sbin/swatch.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+

@@ -1,0 +1,56 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "shellMenu"
+msgstr "Concha"
+
+msgid "shellMenuDescription"
+msgstr "Configurar os serviços, tais como telnet e SSH, que os usuários com acesso a shell pode usar para se conectar a esse servidor."
+
+msgid "shell"
+msgstr "[[base-shell.shellMenu]]"
+
+msgid "shellName"
+msgstr "Shell Access"
+
+msgid "enableShell"
+msgstr "Habilitar Shell Access"
+
+msgid "enableShell_help"
+msgstr "Permitir o acesso shell para permitir a criação de usuários que podem se conectar ao servidor usando serviços como telnet e SSH."
+
+msgid "userEnableShell"
+msgstr "[[base-shell.enableShell]]"
+
+msgid "userEnableShell_help"
+msgstr "Permitir o acesso shell para permitir que o usuário seja capaz de se conectar ao servidor usando serviços como telnet e SSH."
+
+msgid "shellIsEnabled"
+msgstr "Shell Access"
+
+msgid "shellIsEnabled_help"
+msgstr "Acesso Shell está habilitado para este usuário."
+
+msgid "cantEnableNoVsiteShell"
+msgstr "Acesso Shell não pode ser habilitado para este usuário, porque o site virtual que eles são um membro da não tem acesso shell habilitado."
+
+msgid "siteshell"
+msgstr "Concha"
+
+msgid "siteshell_help"
+msgstr "Clique aqui para configurar o acesso shell para este site."
+
+msgid "siteShellSettings"
+msgstr "Configurações Shell para [[VAR.fqdn]]"
+
+msgid "cap_serverShell"
+msgstr "Configurações da Shell"
+
+

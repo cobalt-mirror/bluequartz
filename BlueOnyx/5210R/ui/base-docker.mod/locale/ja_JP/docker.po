@@ -1,0 +1,236 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "connect"
+msgstr "ドッカー"
+
+msgid "connect_help"
+msgstr "Dockerメニューを使用すると、Dockerの設定にアクセスできます。"
+
+msgid "header"
+msgstr "ドッカーサービス"
+
+msgid "enabledField"
+msgstr "ドッカーデーモン"
+
+msgid "enabledField_help"
+msgstr "Dockerを使用するには、サービス 'docker'が動作していなければなりません。注意：これにはKernel 3.10.0以上が必要ですので、DockerはVPSのOpenVZ 6または6108Rで動作しません。"
+
+msgid "amDockerNameTag"
+msgstr "ドッカーサーバー"
+
+msgid "amStatusOK"
+msgstr "サービスDockerは正常に動作しています。"
+
+msgid "amNotAccepting"
+msgstr "サービスDockerは現在動作しておらず、自動的に再起動できませんでした。"
+
+msgid "dockerImages"
+msgstr "ドッカー画像"
+
+msgid "dockerImages_help"
+msgstr "DockerイメージはDockerリポジトリからDockerイメージをダウンロードすることができます。また、ローカルDockerイメージを検査したり、既にダウンロードしたイメージを使用してDockerコンテナを作成することもできます。"
+
+msgid "dockerImageSearchButton"
+msgstr "オンラインで画像検索"
+
+msgid "dockerImageSearchButton_help"
+msgstr "オンラインでDockerイメージを検索する"
+
+msgid "REPOSITORY"
+msgstr "リポジトリ"
+
+msgid "REPOSITORY_help"
+msgstr "リポジトリの名前です。"
+
+msgid "TAG"
+msgstr "タグ"
+
+msgid "TAG_help"
+msgstr "この画像のタグ情報を表示します。"
+
+msgid "IMAGE_ID"
+msgstr "イメージID"
+
+msgid "IMAGE_ID_help"
+msgstr "この画像の識別子。"
+
+msgid "CREATED"
+msgstr "作成済み"
+
+msgid "CREATED_help"
+msgstr "作成時刻を表示します。"
+
+msgid "SIZE"
+msgstr "サイズ"
+
+msgid "SIZE_help"
+msgstr "イメージまたはコンテナのファイルサイズを表示します。"
+
+msgid "Action"
+msgstr "アクション"
+
+msgid "Action_help"
+msgstr "このアイテムでできることを定義します。"
+
+msgid "Search"
+msgstr "サーチ"
+
+msgid "Search_help"
+msgstr "オンラインDockerイメージリポジトリで検索するフレーズを指定してください。"
+
+msgid "NAME"
+msgstr "名前"
+
+msgid "NAME_help"
+msgstr "リポジトリとイメージの名前です。"
+
+msgid "DESCRIPTION"
+msgstr "説明"
+
+msgid "DESCRIPTION_help"
+msgstr "画像の説明。"
+
+msgid "STARS"
+msgstr "星"
+
+msgid "STARS_help"
+msgstr "このレビュアーがこの画像を与えた人の数を表示します。"
+
+msgid "OFFICIAL"
+msgstr "公式"
+
+msgid "OFFICIAL_help"
+msgstr "これが正式に承認された画像かどうかを示します。"
+
+msgid "AUTO"
+msgstr "自動"
+
+msgid "AUTO_help"
+msgstr "この画像が自動的に作成されたかどうかを示します。"
+
+msgid "dockerDownloadImage_help"
+msgstr "イメージをダウンロード"
+
+msgid "dockerLaunchImage_help"
+msgstr "この画像を使って新しいDockerコンテナを起動します。"
+
+msgid "dockerDeleteImage_help"
+msgstr "この画像のローカルコピーを削除してください。"
+
+msgid "dockerInstanceCreate"
+msgstr "新しいDockerコンテナを作成する"
+
+msgid "Image"
+msgstr "イメージ"
+
+msgid "Image_help"
+msgstr "使用中の画像を指定します。"
+
+msgid "Name"
+msgstr "名前"
+
+msgid "Name_help"
+msgstr "Dockerコンテナの名前。"
+
+msgid "LaunchParameters"
+msgstr "パラメーター"
+
+msgid "LaunchParameters_help"
+msgstr "ドッカー実行コマンドに渡すコマンドラインパラメータを指定してください。"
+
+msgid "dockerList"
+msgstr "ドッカーコンテナ"
+
+msgid "dockerList_help"
+msgstr "このサーバ上に存在するDockerコンテナのリスト"
+
+msgid "CTID"
+msgstr "CTID"
+
+msgid "CTID_help"
+msgstr "コンテナの識別"
+
+msgid "COMMAND"
+msgstr "コマンド"
+
+msgid "COMMAND_help"
+msgstr "起動時にコンテナが実行されているコマンドを表示します。"
+
+msgid "STATUS"
+msgstr "状態"
+
+msgid "STATUS_help"
+msgstr "このコンテナのステータスを表示します。"
+
+msgid "PORTS"
+msgstr "ポート"
+
+msgid "PORTS_help"
+msgstr "このコンテナがバインドされているポート、またはアクティブなポートマッピングを表示します。"
+
+msgid "NAMES"
+msgstr "名前"
+
+msgid "NAMES_help"
+msgstr "このコンテナの名前を表示します。"
+
+msgid "dockerInspect_help"
+msgstr "Dockerコンテナを検査してください。"
+
+msgid "dockerRestart_help"
+msgstr "Dockerコンテナを再起動します。"
+
+msgid "dockerStop_help"
+msgstr "ドッカーコンテナを止めてください。"
+
+msgid "dockerDelete_help"
+msgstr "Dockerコンテナを削除します。"
+
+msgid "ErrorRestartInstance"
+msgstr "このコンテナを再起動しようとしてエラーが発生しました。"
+
+msgid "ErrorStopInstance"
+msgstr "このコンテナを停止しようとしてエラーが発生しました。"
+
+msgid "ErrorDeleteInstance"
+msgstr "このコンテナを削除しようとしてエラーが発生しました。"
+
+msgid "ErrorImageDelete"
+msgstr "この画像を削除しようとした際にエラーが発生しました。現在、この画像に基づいたコンテナを実行していますか？まず、これらのコンテナを停止して削除する必要があります。"
+
+msgid "ErrorImageRun"
+msgstr "このイメージに基づいてコンテナを実行しようとしてエラーが発生しました。"
+
+msgid "ErrorImagePrep"
+msgstr "このイメージに基づいてコンテナを準備しようとしてエラーが発生しました。"
+
+msgid "ErrorImageDownload"
+msgstr "この画像をダウンロードしようとしてエラーが発生しました。"
+
+msgid "docker_inspect"
+msgstr "このドッカーコンテナの設定"
+
+msgid "ImageDownload"
+msgstr "ドッカー画像のダウンロード"
+
+msgid "DownLoadInProgress"
+msgstr "現在選択されている画像はバックグラウンドでダウンロードされていますが、画像のサイズによってはダウンロードが完了するまでに時間がかかることがありますので、もう一度Docker画像のリストを確認してください"
+
+msgid "OK"
+msgstr "続ける"
+
+msgid "OK_help"
+msgstr "Dockerイメージのリストに戻ります。"
+
+####
+
+msgid "dockerTagInspectImage_help"
+msgstr "利用可能なバージョンを参照してください。"

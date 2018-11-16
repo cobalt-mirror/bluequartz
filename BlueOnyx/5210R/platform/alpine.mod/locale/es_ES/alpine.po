@@ -1,0 +1,228 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "osName"
+msgstr "BlueOnyx"
+
+msgid "osVendor"
+msgstr "Proyecto BlueOnyx"
+
+msgid "osDescription"
+msgstr "El [[base-alpine.osName]] es el software de base para el [[base-product.productName]]. Este paquete es necesario software para que su dispositivo de servidor para funcionar."
+
+msgid "vendorSite"
+msgstr "http://BlueOnyx.it/"
+
+msgid "sysmanage"
+msgstr "Management Server"
+
+msgid "sysmanageDescription"
+msgstr "Servidor de Administración. Haga clic aquí para administrar el servidor."
+
+msgid "security"
+msgstr "Seguridad"
+
+msgid "securityDescription"
+msgstr "Haga clic aquí para administrar los certificados y la seguridad del servidor."
+
+msgid "sitemanage"
+msgstr "Gestión del sitio"
+
+msgid "sitemanageDescription"
+msgstr "Haz clic aquí para crear, editar y gestionar un servidor virtual (es decir, el sitio) configuración, cuentas de usuarios y copias de seguridad."
+
+msgid "controlpanel"
+msgstr "Servicios de red"
+
+msgid "controlpanelDescription"
+msgstr "Haga clic aquí para controlar los servicios del servidor."
+
+msgid "serverconfig"
+msgstr "Configuración"
+
+msgid "serverconfigDescription"
+msgstr "Haga clic aquí para configurar la red del servidor, ancho de banda y la configuración de la hora."
+
+msgid "cpservicesDescription"
+msgstr "Haga clic aquí para administrar sitios virtuales y cuentas de usuario."
+
+msgid "sysmaintenance"
+msgstr "Mantenimiento"
+
+msgid "sysmaintenanceDescription"
+msgstr "Haga clic aquí para realizar el mantenimiento del servidor, tales como copia de seguridad del sistema de control de almacenamiento, y reiniciar el sistema."
+
+msgid "serverusage"
+msgstr "Uso del servidor"
+
+msgid "serverusageDescription"
+msgstr "Haga clic aquí para ver las estadísticas generales de uso de este dispositivo de servidor."
+
+msgid "siteusage"
+msgstr "Estadísticas de uso"
+
+msgid "siteusageDescription"
+msgstr "Haga clic aquí para ver las estadísticas de uso de este sitio."
+
+msgid "netusage"
+msgstr "Red"
+
+msgid "netusageDescription"
+msgstr "Haga clic aquí para ver el uso total de la red de este servidor."
+
+msgid "webusage"
+msgstr "Web"
+
+msgid "webusageDescription"
+msgstr "Haga clic aquí para ver las estadísticas de uso de Internet."
+
+msgid "ftpusage"
+msgstr "FTP"
+
+msgid "ftpusageDescription"
+msgstr "Haga clic aquí para ver las estadísticas de uso de FTP."
+
+msgid "mailusage"
+msgstr "Correo"
+
+msgid "mailusageDescription"
+msgstr "Haga clic aquí para ver las estadísticas de uso de correo electrónico."
+
+msgid "sysinfo"
+msgstr "Información del sistema"
+
+msgid "sysinfoDescription"
+msgstr "Haga clic aquí para ver la información de configuración del servidor."
+
+msgid "sysbackuprestore"
+msgstr "Copia de seguridad y restauración"
+
+msgid "sysbackuprestoreDescription"
+msgstr "Haga clic aquí para una copia de seguridad o restaurar los datos del servidor."
+
+msgid "usermgmt"
+msgstr "Gestión de usuarios"
+
+msgid "usermgmtDescription"
+msgstr "Haga clic aquí para añadir, modificar o eliminar usuarios."
+
+msgid "base-programs"
+msgstr "Programas"
+
+msgid "base-programs_description"
+msgstr "La sección de Programas le permite acceder a los programas instalados."
+
+msgid "splashProgramsMessage"
+msgstr "La sección de Programas le permite acceder a las herramientas y aplicaciones de productividad útiles."
+
+msgid "splashPersonalMessage"
+msgstr "La sección Perfil personal le permite ver y editar los ajustes de su cuenta de usuario."
+
+msgid "base-personalProfile"
+msgstr "Perfil Personal"
+
+msgid "base-personalProfile_description"
+msgstr "La sección Perfil personal le permite ver la información de su cuenta de usuario."
+
+msgid "wizardSysSettings"
+msgstr "Configuración del sistema"
+
+msgid "wizardSysSettings_help"
+msgstr ""
+
+msgid "wizardRaid"
+msgstr "Configuración Raid"
+
+msgid "wizardRaid_help"
+msgstr ""
+
+msgid "wizardRaidBuild"
+msgstr "Configuración Raid"
+
+msgid "wizardRaidBuild_help"
+msgstr ""
+
+msgid "wizardRegister"
+msgstr "Registro"
+
+msgid "wizardRegister_help"
+msgstr ""
+
+msgid "wizardFinish"
+msgstr ""
+
+msgid "wizardFinish_help"
+msgstr ""
+
+msgid "loginPageTitle"
+msgstr "Login - [[base-product.productName]] - [[VAR.hostname]]"
+
+msgid "login"
+msgstr "Login - [[VAR.hostname]]"
+
+msgid "loginMissingCookies"
+msgstr "Antes de intentar iniciar sesión, compruebe si el navegador soporta la funcionalidad de cookies."
+
+msgid "loginExpiredMessage"
+msgstr "Su sesión ha expirado. Para iniciar sesión de nuevo, por favor introduzca su nombre de usuario y contraseña."
+
+msgid "loginByeMessage"
+msgstr "Gracias por utilizar el [[base-product.productName]]."
+
+msgid "loginOkMessage"
+msgstr "Para iniciar sesión, ingrese su nombre de usuario y contraseña."
+
+msgid "loginAuthFailed"
+msgstr "No ha ingresado un nombre de usuario correcto y / o contraseña. Por favor, inténtelo de nuevo."
+
+msgid "loginNoCssMessage"
+msgstr "Antes de intentar iniciar sesión, compruebe si el navegador soporta la funcionalidad de conexión en cascada Hojas de estilo."
+
+msgid "loginNoJsMessage"
+msgstr "Antes de intentar iniciar sesión, compruebe si el navegador soporta la funcionalidad de JavaScript."
+
+msgid "loginPageUsername"
+msgstr "Nombre de Usuario:"
+
+msgid "loginPagePassword"
+msgstr "Contraseña:"
+
+msgid "loginPageSecurity"
+msgstr "Asegure conexion:"
+
+msgid "loginPageLogin"
+msgstr "Login"
+
+msgid "documentation"
+msgstr "Documentación"
+
+msgid "documentation_help"
+msgstr "Haga clic aquí para ver los manuales en línea para este dispositivo de servidor."
+
+msgid "pdfDescen"
+msgstr "BlueOnyx Manual Edición Hosting (Inglés)"
+
+msgid "pdfDescja"
+msgstr "BlueOnyx Manual Edición Hosting (japonés)"
+
+msgid "pdfDescen_US"
+msgstr "BlueOnyx Manual Edición Hosting (Inglés)"
+
+msgid "errorFormfields"
+msgstr "La forma no podría presentarse ya que contenía uno o más errores. Por favor revise todas las pestañas de este formulario para ver si alguno de sus comentarios plantearon un mensaje de error."
+
+msgid "pw_illegal_chars"
+msgstr "Contraseña contiene caracteres no válidos."
+
+msgid "search"
+msgstr "Buscar"
+
+msgid "search_help"
+msgstr "Haga clic aquí para buscar el término de búsqueda especificado."

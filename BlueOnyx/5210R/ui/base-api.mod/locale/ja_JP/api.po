@@ -1,0 +1,40 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "APImenu"
+msgstr "API"
+
+msgid "APImenu_help"
+msgstr "BlueOnyx APIを設定します。これは、リモートプロビジョニングと、このサーバーのリモート管理を可能にします。 WHMCS（http://www.whmcs.com/）としたり、独自のAPIコールを介して例えば。"
+
+msgid "apiSettings"
+msgstr "APIの設定"
+
+msgid "API_info"
+msgstr "BlueOnyx APIはVsitesとユーザーといくつかの関連するサーバー管理機能のリモートプロビジョニングを可能にします。 API呼び出しがBlueOnyxのAdmServにHTTP（S）を介して行われています。 WHMCSモジュールが利用可能です。詳細情報については参照してください。 <a href='http://www.blueonyx.it/api/'>APIドキュメントを</a> 。"
+
+msgid "enableServerField"
+msgstr "APIを有効にする"
+
+msgid "enableServerField_help"
+msgstr "あなたは、APIを有効または無効にすることができます。"
+
+msgid "forceHTTPSField"
+msgstr "フォースHTTPS"
+
+msgid "forceHTTPSField_help"
+msgstr "のみHTTPS接続のみを受け入れることで、APIへのSSL暗号化されたアクセスを許可します。セキュリティ上の理由で、このがターンオンされるべきである。"
+
+msgid "apiHosts"
+msgstr "APIのホスト（複数可）"
+
+msgid "apiHosts_help"
+msgstr "このサーバーへのAPI呼び出しを行うために許可されているホストのIPアドレス。セキュリティ上の理由だけ信頼できるソースからのAPI呼び出しを許可する必要があります。"
+

@@ -1,0 +1,95 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Meaulnes Legler <blue@waveweb.ch>\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "snmpSettings"
+msgstr "Paramètres SNMP (Simple Network Management Protocol)"
+
+# --- Menu
+
+msgid "snmp"
+msgstr "SNMP"
+
+msgid "snmp_help"
+msgstr "Les [[base-snmp.snmpSettings]] peuvent être changés ici."
+
+# --- SNMP page
+
+msgid "enableServer"
+msgstr "Activer le serveur"
+
+msgid "enableServer_help"
+msgstr "Activer ou désactiver le serveur Simple Network Management Protocol (SNMP). SNMP est un protocole de gestion de réseau ; il fournit un moyen de surveiller et de contrôler les périphériques réseau, leur performance, la sécurité, la configuration et de créer des statistiques."
+
+msgid "readSnmpCommunityField"
+msgstr "Communauté SNMP en lecture seule"
+
+msgid "readSnmpCommunityField_rule"
+msgstr "La « [[base-snmp.readSnmpCommunityField]] » ne peut contenir que des caractères alphanumériques ainsi que le point « . », le tiret « - » et le sous-trait « _ »."
+
+msgid "readSnmpCommunityField_help"
+msgstr "Joindre la « [[base-snmp.readSnmpCommunityField]] » à laquelle appartient ce serveur. [[base-snmp.readSnmpCommunityField_rule]]"
+
+msgid "readSnmpCommunityField_invalid"
+msgstr "Désolé, [[VAR.invalidValue]] est une valeur incorrecte pour « [[base-snmp.readSnmpCommunityField]] ». [[base-snmp.readSnmpCommunityField_rule]]"
+
+msgid "readWriteSnmpCommunityField"
+msgstr "Communauté SNMP en lecture et écriture"
+
+msgid "readWriteSnmpCommunityField_rule"
+msgstr "La « [[base-snmp.readWriteSnmpCommunityField]] » ne peut contenir que des caractères alphanumériques ainsi que le point « . », le tiret « - » et le sous-trait « _ »."
+
+msgid "readWriteSnmpCommunityField_help"
+msgstr "Joindre la « [[base-snmp.readWriteSnmpCommunityField]] » à laquelle appartient ce serveur. [[base-snmp.readWriteSnmpCommunityField_rule]]"
+
+msgid "readWriteSnmpCommunityField_invalid"
+msgstr "Désolé, [[VAR.invalidValue]] est une valeur incorrecte pour [[base-snmp.readWriteSnmpCommunityField]]. [[base-snmp.readWriteSnmpCommunityField_rule]]"
+
+# --- Other handler messages
+
+msgid "readNorWriteSet"
+msgstr "Désolé, vous devez joindre une des deux communautés « lecture seule » ou « lecture et écriture » afin de permettre SNMP."
+
+msgid "readEqualWrite"
+msgstr "Pour joindre une communauté « lecture et écriture », il suffit de la saisir dans le champ « [[base-snmp.readWriteSnmpCommunityField]] ». Votre « [[base-snmp.readSnmpCommunityField]] » a été modifiée pour tenir compte de ces exigences."
+
+	# --- These won't be shown in UI
+
+msgid "cannotFork"
+msgstr "Erreur de bifurcation « forking » : [[VAR.msg]]"
+
+msgid "cannotCreateSynlink"
+msgstr "Erreur de création « Symlink » : [[VAR.msg]]"
+
+msgid "cannotStartSnmpServer"
+msgstr "Erreur en démarrant le service SNMP : [[VAR.msg]]"
+
+msgid "cannotStopSnmpService"
+msgstr "Erreur lors de l'arrêt du service SNMP : [[VAR.msg]]"
+
+msgid "cannotBreakLink"
+msgstr "Erreur lors de la rupture « Symlink » : [[VAR.msg]]"
+
+# --- Active Monitor
+
+msgid "amSNMPNameTag"
+msgstr "Serveur SNMP (Simple Network Management Protocol)"
+
+msgid "amDetailsTitle"
+msgstr "Détails du serveur SNMP (Simple Network Management Protocol) "
+
+msgid "amSNMPNotRunning"
+msgstr "Le serveur SNMP ne fonctionne pas et ne peut pas être redémarré. Dans le [[base-apache.amAdmservNameTag]], essayez de désactiver et de réactiver le serveur SNMP pour voir si cela résout le problème. Si le serveur SNMP ne démarre toujours pas, essayez de redémarrer le serveur lui-même en cliquant sur le [[base-power.reboot]] dans le menu [[base-power.power]] sous [[base-alpine.serverconfig]]. Si le serveur SNMP est toujours pas à démarrer, veuillez vous référer support technique [[base-sauce-basic.techSupportURL]]."
+
+msgid "amSNMPStatusOK"
+msgstr "Le serveur SNMP fonctionne normalement."
+
+msgid "cap_serverSNMP"
+msgstr "Paramètres SNMP"
+

@@ -1,0 +1,347 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n" 
+
+msgid "procsMenu"
+msgstr "プロセス"
+
+msgid "procsMenu_help"
+msgstr "あなたは、プロセスがあなたのサーバー上で実行されているかを確認することができます。 'PS auxwf'の出力を複製します。また、プロセスを終了することができます。"
+
+msgid "vserver_processlist"
+msgstr "サーバープロセス一覧"
+
+msgid "PID_help"
+msgstr "IDを処理します。"
+
+msgid "USER_help"
+msgstr "プロセス所有者のユーザー名。"
+
+msgid "CPU_help"
+msgstr "'XX.X'形式でプロセスのCPU使用率。これは、プロセスがパーセンテージで表さ、（CPUTIME /リアルタイム比）を実行された時間で割った使用されたCPU時間である。運がない限り、それは100％まで追加されません。"
+
+msgid "MEM_help"
+msgstr "メモリ使用率。マシン上の物理メモリーに対する、プロセスの常駐セットサイズの比率は、パーセンテージで表さ。"
+
+msgid "VSZ_help"
+msgstr "全体のプロセスの仮想メモリ使用量。"
+
+msgid "RSS_help"
+msgstr "常駐セットサイズ、非スワップタスクは（キロバイト単位）を使用していることを物理メモリ。"
+
+msgid "TTY_help"
+msgstr "端末（端末）を制御する。"
+
+msgid "STAT_help"
+msgstr "複数文字のプロセス状態。"
+
+msgid "START_help"
+msgstr "プロセスの時間または日付を起動。そうでなければ：それは同じ日、または 'MM HH'が開始されていない場合、プロセスが同じPSが起動された年、または 'mmmdd'が開始されなかった場合にのみ年が表示されます。"
+
+msgid "TIME_help"
+msgstr "累積CPU時間、 '[DD-] HH：MM：SS'形式。"
+
+msgid "COMMAND_help"
+msgstr "文字列として、そのすべての引数を持つコマンド。必要に応じて切ることがあります。引数への修正が示されていない。この列の出力には、スペースを含めることができます。"
+
+msgid "KILL_help"
+msgstr "'kill -9 pidを'でそれを殺すために、問題のプロセスの横にあるアイコンをクリックします。重要プロセスを強制終了しないように注意してください！"
+
+msgid "loginsMenu"
+msgstr "ログイン"
+
+msgid "loginsMenu_help"
+msgstr "あなたのサーバーへの最後のログインを参照してくださいすることができますし、Linuxのコマンド '最後'の出力を再現。"
+
+msgid "vserver_loginlist"
+msgstr "このサーバへのログイン"
+
+msgid "LUSER"
+msgstr "ユーザー名"
+
+msgid "LUSER_help"
+msgstr "問題になっているユーザーのユーザー名を表示します。"
+
+msgid "CONSOLE"
+msgstr "コンソール"
+
+msgid "CONSOLE_help"
+msgstr "この列は、ユーザーがログインに使用されたコンソール、またはネットワークサービスを示しています。"
+
+msgid "HOST"
+msgstr "ホスト"
+
+msgid "HOST_help"
+msgstr "ログインしたユーザーのホスト名またはIP"
+
+msgid "START_DATE"
+msgstr "日付を起動しログイン"
+
+msgid "START_DATE_help"
+msgstr "問題のログインが開始された日付を表示します。"
+
+msgid "STIME"
+msgstr "S-タイム"
+
+msgid "STIME_help"
+msgstr "問題のログインが開始した時刻を示します。"
+
+msgid "ETIME"
+msgstr "E-タイム"
+
+msgid "ETIME_help"
+msgstr "問題のログインが終了している時間を表示します。"
+
+msgid "DURATION"
+msgstr "デュレーション"
+
+msgid "DURATION_help"
+msgstr "ログインが続いたどのくらいの時間を示して - またはそれはまだ起こっている場合。"
+
+msgid "UKILL"
+msgstr "殺す"
+
+msgid "UKILL_help"
+msgstr "あなたは（彼がまだログインしている場合！）システムからユーザーを起動することができます。それだけでは、しかし、再度ログインから彼を防ぐことはできません。そのためにも、問題のサイトやユーザーを中断する必要があります。"
+
+msgid "logfilesMenu"
+msgstr "ログファイル"
+
+msgid "logfilesMenu_help"
+msgstr "サーバーのログファイルを調べることができます。"
+
+msgid "sol_view"
+msgstr "ログファイル："
+
+msgid "sol_view_help"
+msgstr "調べたいことをログファイルを選択してください。"
+
+msgid "pam_ablMenu"
+msgstr "ログインマネージャ"
+
+msgid "pam_ablMenu_help"
+msgstr "'ログインマネージャは、'あなたは、ブルートフォースのパスワード推測を試みに対する保護を設定することができます。あなたは、アカウントまたは攻撃ホストは全くのログインを防止する方法を多くの失敗したログイン後に設定することができます。彼は最終的に有効なユーザー名とパスワードを使用している場合でも。あなたは今まで自分をブロックした場合：あなたはいつも封鎖をリセットするために '管理者'としてGUIにログインすることができます。"
+
+msgid "pam_abl_head"
+msgstr "ログインマネージャ"
+
+msgid "pam_abl_location"
+msgstr "設定ファイル："
+
+msgid "pam_abl_location_help"
+msgstr "pam_abl設定ファイルの場所。"
+
+msgid "user_purge"
+msgstr "ユーザーパージ："
+
+msgid "user_purge_help"
+msgstr "ユーザーのための失敗したログインがユーザデータベースに保持される時間を定義します。失敗したログインはまだ一時的なブロッキングの有効期限が切れた後でも、データベースに格納されます。"
+
+msgid "host_purge"
+msgstr "ホストパージ："
+
+msgid "host_purge_help"
+msgstr "ホストのための失敗したログインは、ホスト?データベースに保持されているどのくらいの時間を定義します。失敗したログインはまだ一時的なブロッキングの有効期限が切れた後でも、データベースに格納されます。"
+
+msgid "user_rule"
+msgstr "ユーザールール："
+
+msgid "user_rule_help"
+msgstr "ユーザーアカウントまで毎時ログイン失敗の量は誰もが有効なパスワードであっても、そのアカウントにログインすることを防止、ブラックリストに登録されます。ご注意：あなたはそうしないと、誰かがあなたに対して攻撃 'サービス拒否'を実行する可能性があるため、 '身体障害者'でこれを残すべきでさえ（一時的に）ブロックの自分のアカウントを使用してから正当なユーザー。"
+
+msgid "host_rule"
+msgstr "ホストのルール："
+
+msgid "host_rule_help"
+msgstr "元ホストがblackistedされるまで、時間当たり失敗したログインの量。問題のあるIPから正しいユーザー名とパスワードでさえログインはその後ブロックされます。例外：ユーザー 'adminが'まだそのIPからGUIにログインすることができます - 彼は正しいパスワードを知っていれば。"
+
+msgid "pam_abl_statusMenu"
+msgstr "失敗したログイン"
+
+msgid "pam_abl_statusMenu_help"
+msgstr "あなたの登録したログイン試行を失敗したIPアドレスのリストを表示します。また、ユーザー名が使用されたを示しています。このページでは、autenticationの封鎖をリセットすることができます。 IPまたはユーザー名の横の赤いステータスランプがホスト（またはユーザー！）もうログインが許可されていないことを意味します。"
+
+msgid "pam_abl_blocked_users_and_hosts"
+msgstr "失敗したログイン履歴"
+
+msgid "blocked_hosts"
+msgstr "ブロックされたホスト"
+
+msgid "blocked_users"
+msgstr "ブロックされたユーザー"
+
+msgid "pam_abl_blocked_hosts"
+msgstr "失敗したログイン活性を持つホスト："
+
+msgid "host_ip"
+msgstr "IPアドレス"
+
+msgid "host_ip_help"
+msgstr "ログイン試行に失敗し、そこからIPアドレスを記録した。"
+
+msgid "failcnt"
+msgstr "失敗する"
+
+msgid "failcnt_help"
+msgstr "記録されたどのように多くの失敗したログインを示しています。"
+
+msgid "access"
+msgstr "アクセス"
+
+msgid "access_help"
+msgstr "アクセスであればショーはまだ許可されているか、それがブロックされている場合。緑色のステータスランプの意味： - 許可されたアクセス（または再びまだ）です。赤の意味：アクセスがブロックされます。"
+
+msgid "Action"
+msgstr "ブロックを解除"
+
+msgid "Action_help"
+msgstr "ボタンをクリックすると、問題になっているホストまたはアカウントのアクティブなブロックを削除することができます。ボタンがグレーアウトされている場合は、このホストまたはアカウントは現在ブロックされません。"
+
+msgid "reset_hosts_button"
+msgstr "すべてのホストブロックをリセット"
+
+msgid "reset_hosts_button_help"
+msgstr "あなたはすべてのホストブロックをリセットすることができ、また、ホスト?データベースからすべてのホストのイベント?アクティビティを削除します。"
+
+msgid "reset_users_button"
+msgstr "すべてのユーザーのブロックをリセット"
+
+msgid "reset_users_button_help"
+msgstr "あなたはすべてのユーザーのブロックをリセットすることができ、また、ユーザデータベースからすべてのユーザーイベント?アクティビティを削除します。"
+
+msgid "reset_all_button"
+msgstr "すべてのブロックをリセット"
+
+msgid "reset_all_button_help"
+msgstr "あなたはすべてのホストやユーザーのブロックをリセットすることができます。また、データベースからすべての失敗したログインイベント?アクティビティを削除します。"
+
+msgid "purge_button"
+msgstr "パージイベント"
+
+msgid "purge_button_help"
+msgstr "手動でそれらの有効期限を過ぎているユーザーとホスト?データベースからイベントを期限切れにすることができます。"
+
+msgid "pam_abl_blocked_users"
+msgstr "失敗したログイン活性を持つアカウント："
+
+msgid "username"
+msgstr "アカウント"
+
+msgid "username_help"
+msgstr "ログインアクティビティを失敗したユーザ名が登録されました。これらのユーザー名は、このサーバ上の有効なアカウントではないないかもしれませんが、誰かがそれにもかかわらず、それらを使用してログインしようとした。"
+
+msgid "blocked_hosts_help"
+msgstr "ログインアクティビティを失敗したからホストのリストは、それらがまだブロックされている場合、彼らは正しく認証するために失敗し、どのくらいの頻度で、登録されたことが示されます。緑色のステータスランプの意味： - 許可されたアクセス（または再びまだ）です。赤の意味：アクセスがブロックされます。"
+
+msgid "blocked_users_help"
+msgstr "認証が失敗し、アカウントがまだブロックされている場合どのくらいの頻度で、ログイン?アクティビティーを失敗したユーザアカウントのリストが登録されたを示しています。緑色のステータスランプの意味： - 許可されたアクセス（または再びまだ）です。赤の意味：アクセスがブロックされます。"
+
+msgid "whois"
+msgstr "フーイズ"
+
+msgid "whois_help"
+msgstr "問題のIPについて 'のwhoisの情報を表示します。"
+
+msgid "host_fqdn"
+msgstr "ホスト名"
+
+msgid "host_fqdn_help"
+msgstr "ホスト名、失敗したから、ログイン試行を記録した。それが表示されている場合 '-n/a-'それは、ホストが有効な逆引きDNSを持っていなかったことを意味します。それは 'localhostの'を示している場合、それは必ずしも攻撃があなたのサーバーから来たという意味ではありません。 'localhost'のへのネットワークのDNSの逆引きを設定してISPの多くの（主にアジア）があります。"
+
+msgid "/var/log/cron"
+msgstr "/var/log/cron"
+
+msgid "/var/log/cron_help"
+msgstr "/var/log/cron"
+
+msgid "/var/log/maillog"
+msgstr "/var/log/maillog"
+
+msgid "/var/log/maillog_help"
+msgstr "/var/log/maillog"
+
+msgid "/var/log/messages"
+msgstr "/var/log/messages"
+
+msgid "/var/log/messages_help"
+msgstr "/var/log/messages"
+
+msgid "/var/log/secure"
+msgstr "/var/log/secure"
+
+msgid "/var/log/secure_help"
+msgstr "/var/log/secure"
+
+msgid "/var/log/httpd/access_log"
+msgstr "/var/log/httpd/access_log"
+
+msgid "/var/log/httpd/access_log_help"
+msgstr "/var/log/httpd/access_log"
+
+msgid "/var/log/httpd/error_log"
+msgstr "/var/log/httpd/error_log"
+
+msgid "/var/log/httpd/error_log_help"
+msgstr "/var/log/httpd/error_log"
+
+msgid "/var/log/admserv/adm_access"
+msgstr "/var/log/admserv/adm_access"
+
+msgid "/var/log/admserv/adm_access_help"
+msgstr "/var/log/admserv/adm_access"
+
+msgid "/var/log/admserv/adm_error"
+msgstr "/var/log/admserv/adm_error"
+
+msgid "/var/log/admserv/adm_error_help"
+msgstr "/var/log/admserv/adm_error"
+
+#------------
+
+msgid "cap_menuServerSecurity"
+msgstr "サーバーのセキュリティ"
+
+#------------
+
+msgid "events"
+msgstr "イベント"
+
+msgid "events_help"
+msgstr "このボタンをクリックすると、あなたは、このIPアドレスからのログイン失敗の詳細を確認することができます。"
+
+msgid "service"
+msgstr "サービス"
+
+msgid "service_help"
+msgstr "これは失敗したログイン試行時に使用されたサービスを示しています。"
+
+msgid "user"
+msgstr "ユーザー"
+
+msgid "user_help"
+msgstr "失敗したログイン試行時に使用されたユーザー名が表示されます。"
+
+msgid "type"
+msgstr "タイプ"
+
+msgid "type_help"
+msgstr "失敗したログイン試行時に使用された認証方法を表示します。"
+
+msgid "date"
+msgstr "期日"
+
+msgid "date_help"
+msgstr "失敗したログイン試行の日付と時刻を表示します。"
+
+msgid "host_whitelist"
+msgstr "ホワイトリスト"
+
+msgid "host_whitelist_help"
+msgstr "IPアドレスを入力して、PAM_ABLによってブロックされたくないことの範囲です。有効な入力：IPアドレスとネットマスク、1行に1つのエントリ。例：192.168.0.0/16。単一のIPアドレスを許可するには、最後に/32でIPアドレスを入力してください。例：10.1.128.1/32"
+

@@ -1,0 +1,39 @@
+<!-- Package class -->
+
+<class name="Capabilities" namespace="createPackage" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(createPackage)"/>
+	<property name="nameTag" type="scalar" default="[[base-swupdate.cap_createPackage]]"/>
+</class>
+<class name="Capabilities" namespace="destroyPackage" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(destroyPackage)"/>
+	<property name="nameTag" type="scalar" default="[[base-swupdate.cap_destroyPackage]]"/>
+</class>
+<class name="Capabilities" namespace="managePackage" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(managePackage)"/>
+	<property name="nameTag" type="scalar" default="[[base-swupdate.cap_managePackage]]"/>
+</class>
+
+
+<!-- SWUpdateServer class -->
+
+<class name="Capabilities" namespace="createSWUpdateServer" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(createSWUpdateServer)"/>
+	<property name="nameTag" type="scalar" default="[[base-swupdate.cap_createSWUpdateServer]]"/>
+</class>
+<class name="Capabilities" namespace="destroySWUpdateServer" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(destroySWUpdateServer)"/>
+	<property name="nameTag" type="scalar" default="[[base-swupdate.cap_destroySWUpdateServer]]"/>
+</class>
+<class name="Capabilities" namespace="modifySWUpdateServer" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(modifySWUpdateServer)"/>
+	<property name="nameTag" type="scalar" default="[[base-swupdate.cap_modifySWUpdateServer]]"/>
+</class>
+
+
+<!-- Server.SWUpdate namespace -->
+<class name="Capabilities" namespace="modifyServerSWUpdate" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(modifyServerSWUpdate)"/>
+	<property name="nameTag" type="scalar" default="[[base-swupdate.cap_modifyServerSWUpdate]]"/>
+</class>
+
+

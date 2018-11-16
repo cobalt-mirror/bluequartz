@@ -1,0 +1,118 @@
+<! --
+	$Id: ftp.schema
+	Copyright 2000, 2001 Sun Microsystems, Inc.  All rights reserved.
+	Author: asun@cobalt.com
+	
+	This provides the schema for ftp.
+-->
+
+<class name="System" namespace="Ftp" version="1.0">
+	<property 
+        name="enabled" type="boolean" default="0"
+        writeacl="ruleCapable(serverFTP)"
+    />
+    <property 
+        name="ftpsEnabled" type="boolean" default="0"
+        writeacl="ruleCapable(serverFTP)"
+    />
+	<property
+        name="useReverseDNS" type="boolean" default="0"
+        writeacl="ruleCapable(serverFTP)"
+    />
+	<property 
+        name="maxConnections" type="int" default="100000"
+        writeacl="ruleCapable(serverFTP)"
+    />
+	<property 
+        name="connectRate" type="int" default="80"
+        writeacl="ruleCapable(serverFTP)"
+    />
+</class>
+
+<!-- register FTPNONADMIN as a feature available to Vsites -->
+<class
+    name="VsiteServices" namespace="FTPNONADMIN" version="1.0"
+>
+    <property name="featureEnabled" type="boolean" default="0"/>
+
+    <property
+        name="i18nName" type="scalar" default="[[base-apache.ftpnonadminI18nName]]"
+    />
+
+    <property
+        name="enabled" type="boolean" default="0"
+        writeacl="ruleCapable(adminUser)"
+    />
+</class>
+
+
+<class
+    name="Vsite" namespace="FTPNONADMIN" version="1.0"
+    createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)"
+>
+    <property
+        name="enabled" type="boolean" default="1"
+        writeacl="ruleCapable(adminUser)"
+    />
+</class>
+
+<!-- This Class can me removed after a transitional phase as it is no longer used. -->
+<class 
+    name="FtpSite" version="1.0"
+    createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)"
+>
+	<property 
+        name="ipaddr" type="ipaddr"
+        writeacl="ruleCapable(adminUser)"
+    />
+	<property 
+        name="enabled" type="boolean" default="0"
+        writeacl="ruleCapable(adminUser)"
+    />
+	<property 
+        name="maxConnections" type="int" optional="yes"
+        writeacl="ruleCapable(adminUser)"
+    />
+	<property 
+        name="anonymous" type="boolean" default="0"
+        writeacl="ruleCapable(adminUser)"
+    />
+	<property 
+        name="quota" type="int" optional="yes"
+        writeacl="ruleCapable(adminUser)"
+    />
+	<property 
+        name="commit" type="int" optional="yes"
+        writeacl="ruleCapable(adminUser)"
+    />
+
+    <!--
+        denyGroups and denyUsers can be used to disallow access
+        to members of certain groups and to certain users
+    -->
+    <property
+        name="denyGroups" type="accountname" optional="yes" array="yes"
+        writeacl="ruleCapable(adminUser)"
+    />
+    <property
+        name="denyUsers" type="accountname" optional="yes" array="yes"
+        writeacl="ruleCapable(adminUser)"
+    />
+
+	<!-- 
+		specify the group or vsite that is using the anonymous ftp
+		capability for this ip address
+	-->
+	<property 
+        name="anonymousOwner" type="accountname" optional="yes"
+        writeacl="ruleCapable(adminUser)"
+    />
+    <!--
+        which directory the anonymous ftp dir should live under
+    -->
+    <property
+        name="anonBasedir" type="scalar" optional="yes"
+        writeacl="ruleCapable(adminUser)"
+    />
+</class>
+

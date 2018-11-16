@@ -1,0 +1,67 @@
+#!/usr/bin/perl -I/usr/sausalito/perl
+#
+# Copyright 2000, 2001 Sun Microsystems, Inc.  All rights reserved.
+# $Id: ip_forwarding 259 2004-01-03 06:28:40Z shibuya $
+# ip_forwarding
+# enable/disable ip forwarding
+
+use Sauce::Util;
+use CCE;
+
+my $DEBUG = 0;
+
+my $cce = new CCE;
+$cce->connectfd();
+
+my $sysoid = $cce->event_oid();
+my ($ok, $sys) = $cce->get($sysoid, 'Network');
+
+if (!$ok) 
+{ 
+    $DEBUG && print STDERR "$0: could not get system object $sysoid\n";
+    $cce->bye('FAIL', '[[base-network.cantReadSystem]]');
+    exit(1);
+}
+
+my $enabled = $sys->{ipForwarding} || 0;
+
+# 1. update /etc/sysconfig/network: 
+sub edit_network_conf 
+{
+    my ($fin, $fout) = (shift, shift);
+
+    my $output_line = 'FORWARD_IPV4=' . ($enabled ? 'true' : 'false') 
+                        . '   # changed on ' . scalar(localtime()) . "\n";
+    while (<$fin>) 
+    {
+        if (m/^\s*FORWARD_IPV4\s*=/) 
+        {
+            print $fout $output_line;
+        }
+        else
+        {
+            print $fout $_;
+        }
+    }
+    return 1;
+}
+
+Sauce::Util::editfile('/etc/sysconfig/network', \&edit_network_conf);
+Sauce::Util::chmodfile(0644, '/etc/sysconfig/network');
+
+# 2. write the appropriate value into the right proc subsystem.
+Sauce::Util::addrollbackcommand('echo '.($enabled ? '0' : '1').'>/proc/sys/net/ipv4/ip_forward');
+use FileHandle;
+my $fh = new FileHandle('>/proc/sys/net/ipv4/ip_forward');
+if (defined($fh)) 
+{
+    print $fh ($enabled ? '1' : '0'), "\n";
+    $fh->close();
+} 
+else 
+{
+    $DEBUG && print STDERR "$0: unable to write to /proc/sys/net/ipv4/ip_forward: $!\n";
+}
+
+$cce->bye('SUCCESS');
+exit(0);

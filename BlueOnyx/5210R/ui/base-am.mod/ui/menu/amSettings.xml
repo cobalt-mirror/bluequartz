@@ -1,0 +1,10 @@
+<item 
+ id="base_amSettings" 
+ label="[[base-am.amSettingsMenuName]]" 
+ description="[[base-am.amSettingsMenuDesc]]"
+ url="/base/am/amSettings.php"
+> 
+	<parent id="base_monitor" order="20">
+        <access require="serverActiveMonitor"/>
+    </parent>
+</item>

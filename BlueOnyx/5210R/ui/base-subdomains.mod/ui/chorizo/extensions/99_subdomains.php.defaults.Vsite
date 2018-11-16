@@ -1,0 +1,68 @@
+<?php
+	// Author: Brian N. Smith
+	// Copyright 2006, NuOnce Networks.All rights reserved.
+	// Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
+	// Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+	// $Id: 99_subdomains.php
+	// ui extension to set settings for subdomain Vsite creation
+
+	include_once("UIExtension.php");
+
+	class subdomainsExtension extends UIExtension {
+
+		function display(&$ServerScriptHelper, &$container, &$parameters) {
+			$CI =& get_instance();
+			$factory = $ServerScriptHelper->getHtmlComponentFactory("base-subdomains");
+			$cceClient = $ServerScriptHelper->getCceClient();
+
+			$pageId = $parameters['PAGED_BLOCK_DEFAULT_PAGE'];
+
+			$system = $CI->getSystem();
+			$site = $cceClient->get($system['OID'], "subdomains");
+
+			// Add Divider:
+			$container->addFormField(
+				$factory->addBXDivider("divider_subdomains", "divider_subdomains"),
+				$factory->getLabel("divider_subdomains"),
+				$pageId
+				);
+
+            $subdomainField =& $factory->getMultiChoice('vsite_enabled');
+            $enable =& $factory->getOption('vsite_enabled', $site["vsite_enabled"], 'rw');
+            $enable->setLabel($factory->getLabel('vsite_enabled', false));
+            $subdomainField->addOption($enable);
+
+            $max_subdomains = $factory->getInteger("max_subdomains", $site["default_max_subdomains"], 1, 1000);
+			$max_subdomains->showBounds(1);
+			$max_subdomains->setWidth(4);
+			$max_subdomains->setMaxLength("4");
+            $enable->addFormField($max_subdomains, $factory->getLabel("max_subdomains"));
+
+			$container->addFormField($subdomainField, $factory->getLabel('vsite_enabled'), $pageId);
+		}
+
+		function handle(&$ServerScriptHelper, &$errors, &$parameters, &$attributes) {
+
+			//global $subdomains_enabled, $subdomains_max_subdomains;
+			$this->attributes = $attributes;
+
+			$cceClient =& $ServerScriptHelper->getCceClient();
+
+			$vsite_enabled = "0";
+			if (isset($this->attributes['vsite_enabled'])) {
+				if ($this->attributes['vsite_enabled'] == "1") {
+					$vsite_enabled = "1";
+				}
+			}
+
+			$cfg = array(
+				"vsite_enabled" => $vsite_enabled,
+				"default_max_subdomains" => $this->attributes['max_subdomains']);
+
+			$cceClient->setObject("System", $cfg, "subdomains");
+
+			$errors = array_merge($errors, $cceClient->errors());
+
+		}
+	}
+?>

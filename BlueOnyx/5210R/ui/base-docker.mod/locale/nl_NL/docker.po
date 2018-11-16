@@ -1,0 +1,236 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "connect"
+msgstr "Docker"
+
+msgid "connect_help"
+msgstr "Via het Docker-menu heeft u toegang tot uw Docker-configuratie."
+
+msgid "header"
+msgstr "Docker Service"
+
+msgid "enabledField"
+msgstr "Docker Daemon"
+
+msgid "enabledField_help"
+msgstr "Om Docker te kunnen gebruiken moet de service 'docker' draaien. NB: Hiervoor is Kernel 3.10.0 of hoger vereist. Daarom zal Docker niet draaien in VPS'en op OpenVZ 6 of 6108R."
+
+msgid "amDockerNameTag"
+msgstr "Docker Server"
+
+msgid "amStatusOK"
+msgstr "De service docker werkt normaal."
+
+msgid "amNotAccepting"
+msgstr "De service docker draait momenteel niet en kon niet automatisch opnieuw worden gestart."
+
+msgid "dockerImages"
+msgstr "Dockerafbeeldingen"
+
+msgid "dockerImages_help"
+msgstr "Docker Images (Dockerafbeeldingen) stelt u in staat om Dockerafbeeldingen te downloaden vanuit de Docker-repository. U kunt ook lokale Dockerafbeeldingen inspecteren en Docker-containers maken met behulp van reeds gedownloade afbeeldingen."
+
+msgid "dockerImageSearchButton"
+msgstr "Online naar afbeeldingen zoeken"
+
+msgid "dockerImageSearchButton_help"
+msgstr "Online zoeken naar Docker-afbeeldingen"
+
+msgid "REPOSITORY"
+msgstr "Bewaarplaats"
+
+msgid "REPOSITORY_help"
+msgstr "Naam van het archief."
+
+msgid "TAG"
+msgstr "Tag"
+
+msgid "TAG_help"
+msgstr "Toont de tag info van deze afbeelding."
+
+msgid "IMAGE_ID"
+msgstr "Image ID"
+
+msgid "IMAGE_ID_help"
+msgstr "Identificatie van deze afbeelding."
+
+msgid "CREATED"
+msgstr "Gemaakt"
+
+msgid "CREATED_help"
+msgstr "Toon het tijdstip van de schepping."
+
+msgid "SIZE"
+msgstr "Grootte"
+
+msgid "SIZE_help"
+msgstr "Toont de bestandsgrootte van de afbeelding of container."
+
+msgid "Action"
+msgstr "Actie"
+
+msgid "Action_help"
+msgstr "Bepaalt wat je met dit item kunt doen."
+
+msgid "Search"
+msgstr "Zoeken"
+
+msgid "Search_help"
+msgstr "Geef een zin op waarnaar u wilt zoeken in de online bewaarplaats voor Docker-afbeeldingen."
+
+msgid "NAME"
+msgstr "Naam"
+
+msgid "NAME_help"
+msgstr "Naam van de opslagplaats en afbeelding."
+
+msgid "DESCRIPTION"
+msgstr "Beschrijving"
+
+msgid "DESCRIPTION_help"
+msgstr "Beschrijving van de afbeelding."
+
+msgid "STARS"
+msgstr "Sterren"
+
+msgid "STARS_help"
+msgstr "Geeft aan hoeveel sterrenreviewden dit beeld hebben gegeven."
+
+msgid "OFFICIAL"
+msgstr "Officieel"
+
+msgid "OFFICIAL_help"
+msgstr "Geeft aan of dit een officieel goedgekeurde afbeelding is of niet."
+
+msgid "AUTO"
+msgstr "Auto"
+
+msgid "AUTO_help"
+msgstr "Toont als dit beeld automatisch is opgebouwd."
+
+msgid "dockerDownloadImage_help"
+msgstr "Beeld downloaden"
+
+msgid "dockerLaunchImage_help"
+msgstr "Een nieuwe Docker-container lanceren met behulp van deze afbeelding."
+
+msgid "dockerDeleteImage_help"
+msgstr "Lokale kopie van deze afbeelding verwijderen."
+
+msgid "dockerInstanceCreate"
+msgstr "Creëer een nieuwe Docker container"
+
+msgid "Image"
+msgstr "Beeld"
+
+msgid "Image_help"
+msgstr "Specificeert welke afbeelding wordt gebruikt.."
+
+msgid "Name"
+msgstr "Naam"
+
+msgid "Name_help"
+msgstr "Naam van de dokcontainer."
+
+msgid "LaunchParameters"
+msgstr "Parameters"
+
+msgid "LaunchParameters_help"
+msgstr "Welke parameters van de opdrachtregel moeten worden doorgegeven aan het commando voor het uitvoeren van de docker."
+
+msgid "dockerList"
+msgstr "Docker Containers"
+
+msgid "dockerList_help"
+msgstr "Lijst van Docker-containers aanwezig op deze server."
+
+msgid "CTID"
+msgstr "CTID"
+
+msgid "CTID_help"
+msgstr "Containeridentificatie."
+
+msgid "COMMAND"
+msgstr "Commando"
+
+msgid "COMMAND_help"
+msgstr "Toont welke opdracht de container bij de inbedrijfstelling uitvoert."
+
+msgid "STATUS"
+msgstr "Status"
+
+msgid "STATUS_help"
+msgstr "Toont de status van deze container."
+
+msgid "PORTS"
+msgstr "Poorten"
+
+msgid "PORTS_help"
+msgstr "Toont aan welke poorten deze container gebonden is of welke haventoewijzingen actief zijn."
+
+msgid "NAMES"
+msgstr "Naam"
+
+msgid "NAMES_help"
+msgstr "Toont de naam van deze container."
+
+msgid "dockerInspect_help"
+msgstr "Inspecteer de container."
+
+msgid "dockerRestart_help"
+msgstr "Dockercontainer opnieuw opstarten."
+
+msgid "dockerStop_help"
+msgstr "Dockercontainer stoppen."
+
+msgid "dockerDelete_help"
+msgstr "Verwijderen Dockercontainer."
+
+msgid "ErrorRestartInstance"
+msgstr "Tijdens het opnieuw starten van deze container is een fout opgetreden."
+
+msgid "ErrorStopInstance"
+msgstr "Er is een fout opgetreden bij het proberen stoppen van deze container."
+
+msgid "ErrorDeleteInstance"
+msgstr "Tijdens het wissen van deze container is een fout opgetreden."
+
+msgid "ErrorImageDelete"
+msgstr "Er is een fout opgetreden bij het verwijderen van deze afbeelding. Misschien draait u op dit moment containers die gebaseerd zijn op dit beeld? U moet deze containers eerst stoppen en verwijderen."
+
+msgid "ErrorImageRun"
+msgstr "Er is een fout opgetreden bij het uitvoeren van een container op basis van deze afbeelding."
+
+msgid "ErrorImagePrep"
+msgstr "Er is een fout opgetreden bij het voorbereiden van een container op basis van deze afbeelding."
+
+msgid "ErrorImageDownload"
+msgstr "Tijdens het downloaden van deze afbeelding is een fout opgetreden."
+
+msgid "docker_inspect"
+msgstr "Configuratie van deze dokcontainer"
+
+msgid "ImageDownload"
+msgstr "Docker beeld downloaden"
+
+msgid "DownLoadInProgress"
+msgstr "De gekozen afbeelding wordt nu op de achtergrond gedownload. Afhankelijk van de grootte van de afbeelding kan het even duren om de download te voltooien. Controleer de lijst met Docker-afbeeldingen zo dadelijk nog eens om te zien of de nieuwe afbeelding al aanwezig is."
+
+msgid "OK"
+msgstr "Verder"
+
+msgid "OK_help"
+msgstr "Ga terug naar de lijst met Docker-afbeeldingen."
+
+####
+
+msgid "dockerTagInspectImage_help"
+msgstr "Zie de beschikbare versies."

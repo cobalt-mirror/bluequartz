@@ -1,0 +1,147 @@
+# configuration bits for mod_rpmize
+# syntax:
+# <begin [x]section>
+# <end [x]section>
+#
+# x an be $ for a string or % for a hash.
+# if a hash is being used, you can add sub-sections with
+# <begin sub-section>
+# <end sub-section>
+
+
+<begin $DESCRIPTION>
+%package [LABEL]
+Group: System Environment/Aventurin
+Summary: [LABEL] for [VENDOR]-[SERVICE].
+[AUTOFILL]
+[BUILDARCH]
+
+%description [LABEL]
+The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
+information for [VENDOR]-[SERVICE].
+
+<end $DESCRIPTION>
+
+<begin %PREP>
+<end %PREP>
+
+<begin %SETUP>
+<end %SETUP>
+
+<begin %BUILD>
+<end %BUILD>
+
+<begin %INSTALL>
+<end %INSTALL>
+
+<begin %FILES>
+<begin HEADER>
+%files [LABEL]
+%defattr(-,root,root)
+<end HEADER>
+
+<begin locale>
+[AUTOFILL]
+
+<end locale>
+
+<begin glue>
+[AUTOFILL]
+<end glue>
+
+
+<begin ui>
+[AUTOFILL]
+
+<end ui>
+
+<begin capstone>
+%{RootDir}/capstone/%{Vendor}-%{Service}.cap
+[AUTOFILL]
+
+<end capstone>
+<end %FILES>
+
+<begin %POST-INSTALL>
+<begin HEADER>
+%post [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-install
+
+# Restart CCEd:
+if [ -d "/usr/sausalito/yumcce" ];then
+  touch /usr/sausalito/yumcce/restart
+fi
+
+<end glue>
+<begin ui>
+# ui post-install
+
+<end ui>
+<begin locale>
+# locale post-install
+
+<end locale>
+<end %POST-INSTALL>
+
+<begin %POST-UNINSTALL>
+<begin HEADER>
+%postun [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-uninstall
+
+<end glue>
+<begin ui>
+# ui post-uninstall
+
+<end ui>
+<begin locale>
+# locale post-uninstall
+
+<end locale>
+<end %POST-UNINSTALL>
+
+<begin $CHANGELOG>
+
+* Sun Oct 21 2018 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BX07
+- Added src/base-docker-systemd with Systemd components to autostart CTs
+- Added src/docker-compose
+
+* Mon Oct 15 2018 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BX06
+- Extended GUI to set 'Autostart' for Docker Containers.
+- Modified glue/ccewrap/docker.xml
+- Modified locale/en_US/docker.po
+- Modified ui/chorizo/web/controllers/DockerLibs.php
+- Modified ui/chorizo/web/controllers/dockerInspect.php
+- Modified ui/chorizo/web/controllers/dockerParams.php
+
+* Fri Sep 28 2018 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BX05
+- Added button to result page of Docker Image Search to poll a list of all
+  available tags and versions of said image.
+- Added function SearchDockerImageTags() to generate list of all versions
+  of an image and to return it in the same format as the general image list.
+- Modified Docker Create page to allow to create instances from other tags
+  than just latest.
+- Modified GetDockerImages() to no longer use the -a switch to prevent it
+  from showing local environments, too.
+- Modified DeleteDockerImage() to honor tags. If no tag is given, assume
+  latest.
+
+* Thu Sep 06 2018 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BX04
+- Fixed helptext on start button.
+
+* Thu Sep 06 2018 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BX03
+- Various fixes and improvements.
+
+* Sat Jul 21 2018 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BX02
+- Moved menu for 6109R.
+- Extended GUI to recognize 6109R
+
+* Tue Jul 17 2018 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BX01
+- Initial build.
+
+<end $CHANGELOG>

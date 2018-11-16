@@ -1,0 +1,666 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "software"
+msgstr "Atualizações"
+
+msgid "software_help"
+msgstr "O [[base-swupdate.software]] seção permite-lhe procurar e instalar pacotes de software novos ou atualizados."
+
+msgid "softwareNew"
+msgstr "Software de Terceiros"
+
+msgid "softwareNew_help"
+msgstr "Clique aqui para procurar e instalar um novo software disponível a partir de terceiros."
+
+msgid "softwareNewSun"
+msgstr "[[base-alpine.osName]] Software"
+
+msgid "softwareNewSun_help"
+msgstr "Clique aqui para procurar e instalar um novo software disponível a partir de [[base-alpine.osVendor]]."
+
+msgid "softwareUpdate"
+msgstr "Terceiro Atualizações"
+
+msgid "softwareUpdate_help"
+msgstr "Clique aqui para verificar e instalar atualizações de software disponíveis a terceiros."
+
+msgid "softwareUpdateSun"
+msgstr "[[base-alpine.osName]] Updates"
+
+msgid "softwareUpdateSun_help"
+msgstr "Clique aqui para verificar e instalar atualizações de software disponíveis a partir de [[base-alpine.osVendor]]."
+
+msgid "softwareInstalled"
+msgstr "Software instalado"
+
+msgid "softwareInstalled_help"
+msgstr "Clique aqui para ver uma lista de pacotes de software que estão instalados atualmente no sistema."
+
+msgid "softwareSettings"
+msgstr "Configurações"
+
+msgid "softwareSettings_help"
+msgstr "Clique aqui para mudar [[base-swupdate.software]] Configurações."
+
+msgid "splashSoftwareMessage"
+msgstr "O [[base-swupdate.software]] seção permite que você gerencie os aplicativos de software instalados no sistema."
+
+msgid "install"
+msgstr "Instalar"
+
+msgid "install_help"
+msgstr "Clique aqui para instalar o pacote de software específico."
+
+msgid "installField"
+msgstr "Instale detalhes"
+
+msgid "installField_help"
+msgstr "Clique no ícone para mostrar mais informações sobre como obter e instalar este pacote."
+
+msgid "prepare"
+msgstr "Preparar"
+
+msgid "prepare_help"
+msgstr "Clique aqui para preparar o pacote de software para a instalação."
+
+msgid "nameField"
+msgstr "Nome"
+
+msgid "nameField_help"
+msgstr "Isto mostra o nome do pacote de software."
+
+msgid "versionField"
+msgstr "Versão"
+
+msgid "versionField_help"
+msgstr "Isto mostra a versão de pacote de software."
+
+msgid "vendorField"
+msgstr "Vendedor"
+
+msgid "vendorField_help"
+msgstr "Isto mostra o fornecedor do pacote de software."
+
+msgid "copyrightField"
+msgstr "Direitos autorais"
+
+msgid "copyrightField_help"
+msgstr "Isto mostra o autor associado com o pacote de software."
+
+msgid "descriptionField"
+msgstr "Descrição"
+
+msgid "descriptionField_help"
+msgstr "Isto mostra uma descrição do pacote de software."
+
+msgid "licenseField"
+msgstr "Licença"
+
+msgid "licenseField_help"
+msgstr "Isso mostra o contrato de licença do pacote."
+
+msgid "accept"
+msgstr "Aceitar"
+
+msgid "accept_help"
+msgstr "Clique aqui para aceitar os termos do contrato de licença."
+
+msgid "decline"
+msgstr "Recusar"
+
+msgid "decline_help"
+msgstr "Clique aqui para baixar o contrato de licença."
+
+msgid "typeField"
+msgstr "Tipo"
+
+msgid "typeField_help"
+msgstr "Isto mostra o tipo de pacote."
+
+msgid "New"
+msgstr "Novo"
+
+msgid "Update"
+msgstr "Atualizar"
+
+msgid "complete"
+msgstr "completar"
+
+msgid "locationField"
+msgstr "Localização"
+
+msgid "locationField_help"
+msgstr "Este é o local a partir do qual o pacote de software será baixado durante a instalação."
+
+msgid "locationLocal"
+msgstr "Este aparelho servidor"
+
+msgid "sizeField"
+msgstr "Tamanho (MB)"
+
+msgid "sizeField_help"
+msgstr "Este é o tamanho do pacote."
+
+msgid "uninstallableField"
+msgstr "Instalável"
+
+msgid "uninstallableField_help"
+msgstr "Este campo indica se o pacote pode ser desinstalada depois de ter sido instalado."
+
+msgid "yes"
+msgstr "Sim"
+
+msgid "no"
+msgstr "Não"
+
+msgid "none"
+msgstr "Nenhum"
+
+msgid "packagesNeededField"
+msgstr "Pacotes dependentes"
+
+msgid "packagesNeededField_help"
+msgstr "Os pacotes listados aqui deve ser instalado no sistema antes que este pacote pode ser instalado de forma segura."
+
+msgid "locationFieldEnter"
+msgstr "Localização"
+
+msgid "locationFieldEnter_help"
+msgstr "Digite o local a partir do qual deve ser obtido o pacote de software. Digite uma URL que começa com http:// ou ftp:// para baixar o pacote a partir de um local na Internet, ou inserir a localização de um pacote para fazer o upload do arquivo. Clique em Procurar para selecionar um arquivo em seu disco rígido local. Se você tiver baixado os pacotes para o diretório /home/packages em seu aparelho de servidor, a opção de escolher um destes pacotes também estará disponível."
+
+msgid "invalidUrl"
+msgstr "O URL especificado é inválido. [[base-swupdate.urlField_rule]]"
+
+msgid "availableListNew"
+msgstr "Disponível Lista Nova Software"
+
+msgid "checkNow"
+msgstr "Verifique a disponibilidade agora"
+
+msgid "checkNow_help"
+msgstr "Clique aqui para verificar se os novos pacotes de software estão disponíveis."
+
+msgid "manualInstall"
+msgstr "Instalar manualmente"
+
+msgid "manualInstall_help"
+msgstr "Clique aqui para executar uma instalação manual de pacotes de software."
+
+msgid "removePackage"
+msgstr "Você realmente deseja remover o '[[VAR.packageName]]' pacote do sistema? Este pacote ainda não foi instalado."
+
+msgid "checkNowUpdate"
+msgstr "[[base-swupdate.checkNow]]"
+
+msgid "checkNowUpdate_help"
+msgstr "Clique aqui para verificar se há atualizações de software estão disponíveis."
+
+msgid "manualInstallUpdate"
+msgstr "Instalar manualmente"
+
+msgid "manualInstallUpdate_help"
+msgstr "Clique aqui para executar uma instalação manual de atualizações de software."
+
+msgid "availableListUpdates"
+msgstr "Disponível lista de atualizações de software"
+
+msgid "downloadSoftware"
+msgstr "Instalar software"
+
+msgid "unknownSize"
+msgstr "Desconhecido"
+
+msgid "rebootpopup"
+msgstr "O seu aparelho servidor precisará reiniciar depois de instalar este pacote. Você deseja continuar?"
+
+msgid "url"
+msgstr "URL"
+
+msgid "urlField"
+msgstr "[[base-swupdate.url]]"
+
+msgid "urlField_rule"
+msgstr "Digite uma URL que começa com http:// ou ftp:// para baixar o pacote a partir de um local na Internet."
+
+msgid "upload"
+msgstr "Carregar"
+
+msgid "loaded"
+msgstr "Pacotes em /home/packages"
+
+msgid "fileField"
+msgstr "Envie local do arquivo"
+
+msgid "fileField_empty"
+msgstr "Desculpe, você não tiver inserido uma localização de um pacote para fazer o upload do arquivo. Clique em Procurar para selecionar um arquivo em seu disco rígido local."
+
+msgid "fileField_invalid"
+msgstr "[[base-swupdate.fileField_empty]]"
+
+msgid "invalidUpload"
+msgstr "O arquivo especificado não pôde ser carregado com sucesso."
+
+msgid "installStatus"
+msgstr "Status - [[VAR.fileName]]"
+
+msgid "statusField"
+msgstr "Mensagem de Status"
+
+msgid "statusField_help"
+msgstr "Este campo mostra o status atual do pacote que está sendo instalado ou removido."
+
+msgid "progressField"
+msgstr "Progresso"
+
+msgid "progressField_help"
+msgstr "Este é o progresso da instalação ou remoção."
+
+msgid "dlPercent"
+msgstr "Arquivo de download [[VAR.file]]: [[VAR.percent]]% feito"
+
+msgid "initializing"
+msgstr "Inicialização ..."
+
+msgid "downloading"
+msgstr "Baixando pacote ..."
+
+msgid "installing"
+msgstr "Instalando o pacote de ..."
+
+msgid "executingPreInstallScript"
+msgstr "Executar o script de pré-instalação (s) ..."
+
+msgid "executingPostInstallScript"
+msgstr "Executar o script de pós-instalação (s) ..."
+
+msgid "installingRpm"
+msgstr "Instalando o componente [[VAR.rpm]] ..."
+
+msgid "fail"
+msgstr "Fracassado"
+
+msgid "success"
+msgstr "Sucesso"
+
+msgid "currentlyUninstalling"
+msgstr "Pacote está sendo desinstalado."
+
+msgid "cantUninstall"
+msgstr "A embalagem não pode ser removido uma vez que não é marcado como instalável."
+
+msgid "dependent"
+msgstr "O pacote não pode ser removido porque os seguintes pacotes de software exigem que seja instalado: [[VAR.depend]]"
+
+msgid "removingRPM"
+msgstr "Remoção de RPMs de pacotes."
+
+msgid "runningUninstallScript"
+msgstr "Escrita Corrida Uninstall."
+
+msgid "uninstalled"
+msgstr "Desinstalação completa."
+
+msgid "notUninstalled"
+msgstr "A desinstalação falhou porque não havia nada que pudesse ser removido."
+
+msgid "packageInstallSuccess"
+msgstr "Instalação do pacote de sucesso."
+
+msgid "notInstalled"
+msgstr "O pacote de software não foi instalado."
+
+msgid "cannotDownloadUrl"
+msgstr "Lamentamos, mas o arquivo de pacote não pode ser descarregado a partir do URL especificado. Por favor verifique a URL e tente novamente. [[base-swupdate.notInstalled]]"
+
+msgid "badFileName"
+msgstr "Desculpe, o nome do arquivo do pacote do arquivo é inválido. Por favor, verifique o nome e tente novamente. [[base-swupdate.notInstalled]]"
+
+msgid "packageAlreadyInstalled"
+msgstr "O pacote de software já está instalado."
+
+msgid "verifyingPackage"
+msgstr "Verificando pacote ..."
+
+msgid "badPackage"
+msgstr "O arquivo do pacote é incompleto. O packing_list é inválido ou inexistente. [[base-swupdate.notInstalled]]"
+
+msgid "badFormat"
+msgstr "Houve um erro ao verificar o arquivo de pacote. Ele pode ser corrompido, ou pode não ter as informações de autenticação correta. [[base-swupdate.notInstalled]]"
+
+msgid "CCEsetError"
+msgstr "Houve um erro na adição do pacote para o banco de dados CCE. O packing_list pacote pode ser inválido. [[base-swupdate.notInstalled]]"
+
+msgid "failedDep"
+msgstr "O pacote de software precisa de outro pacote de software (s) a ser instalado pela primeira vez. Por favor, instale o seguinte pacote (s): [[VAR.dep]]."
+
+msgid "installLock"
+msgstr "Outro pacote está sendo instalado ou desinstalado. Por favor, tente novamente mais tarde."
+
+msgid "obsoletePkg"
+msgstr "O [[VAR.name]] pacote não foi instalado porque não é mais atual."
+
+msgid "badProduct"
+msgstr "O [[VAR.name]] pacote não foi instalado porque não é compatível com esta versão do [[base-alpine.osName]]."
+
+msgid "hostNotFound"
+msgstr "O host especificado na URL para [[VAR.file]] não foi encontrado. [[base-swupdate.notInstalled]]"
+
+msgid "fileNotFound"
+msgstr "O pacote de [[VAR.file]] não foi encontrado no local especificado."
+
+msgid "hostRefused"
+msgstr "O host especificado na URL para [[VAR.file]] se recusou a conexão."
+
+msgid "notDownloaded"
+msgstr "O pacote de [[VAR.file]] não conseguiu baixar corretamente, possivelmente porque o servidor onde o pacote está localizado está com problemas."
+
+msgid "noLocation"
+msgstr "No local especificado para obter o pacote."
+
+msgid "missingRPM"
+msgstr "O arquivo do pacote é incompleto. Um ou mais RPM (s) estão ausentes."
+
+msgid "missingSRPM"
+msgstr "O arquivo do pacote é incompleto. Um ou mais SRPM (s) estão ausentes."
+
+msgid "preInstallFailed"
+msgstr "Houve um problema com o arquivo do pacote. O script de pré-instalação falhou."
+
+msgid "postInstallFailed"
+msgstr "Houve um problema com o arquivo do pacote. O script de pós-instalação falhou."
+
+msgid "rpmInstallError"
+msgstr "Houve um problema com o arquivo do pacote. Ocorreu um erro durante a instalação do RPM [[VAR.rpm]]."
+
+msgid "errorWGET"
+msgstr "Desculpe, ocorreu um erro ao tentar executar o wget."
+
+msgid "rebooting"
+msgstr "O aparelho servidor está agora a reinicialização. Deve estar disponível novamente em poucos minutos."
+
+msgid "uninstallrefresh"
+msgstr "O pacote desinstalado com êxito. Em um momento, a interface do usuário irá atualizar, a fim de remover os serviços prestados pelo pacote."
+
+msgid "installrefresh"
+msgstr "O pacote instalado com sucesso. Em um momento, a interface do usuário irá atualizar, a fim de lhe proporcionar acesso a novos serviços."
+
+msgid "installedList"
+msgstr "Lista de Software Instalado"
+
+msgid "uninstall"
+msgstr "Desinstalar"
+
+msgid "uninstall_help"
+msgstr "Se o pacote de software pode ser desinstalado, clique no botão Uninstall para o pacote irá removê-lo do sistema."
+
+msgid "uninstallConfirm"
+msgstr "Tem certeza de que deseja desinstalar '[[VAR.packageName]]?"
+
+msgid "softwareInstallSettings"
+msgstr "[[base-swupdate.software]] Configurações"
+
+msgid "basic"
+msgstr "Básico"
+
+msgid "basic_help"
+msgstr "As configurações mais usadas podem ser encontrados aqui."
+
+msgid "advanced"
+msgstr "Avançado"
+
+msgid "advanced_help"
+msgstr "Configurações menos utilizadas podem ser encontrados aqui."
+
+msgid "scheduleField"
+msgstr "Query Schedule"
+
+msgid "scheduleField_help"
+msgstr "Altere a frequência com a [[base-swupdate.software]] servidor está marcada para pacotes de software novos ou atualizados."
+
+msgid "hourly"
+msgstr "De hora em hora"
+
+msgid "daily"
+msgstr "Diariamente"
+
+msgid "weekly"
+msgstr "Semanal"
+
+msgid "monthly"
+msgstr "Mensal"
+
+msgid "never"
+msgstr "Nunca"
+
+msgid "emailField"
+msgstr "Os e-mails de notificação"
+
+msgid "emailField_help"
+msgstr "Digite o endereço de e-mail (s) para que a notificação de pacotes de software ou erros em consultas de atualização de software novas ou atualizadas devem ser enviados. A opção selecionada para luz de notificação Software determina quando as notificações de e-mail são enviadas. Deixe este campo em branco se você não quiser receber essas notificações."
+
+msgid "pkgOIDmissing"
+msgstr "Houve um problema obter informações sobre o pacote. O pacote já pode ter sido excluído. Se este não é o caso, por favor, tente novamente. Se o problema persistir, entre em contato com o suporte técnico ([[base-sauce-basic.techSupportEmail]])."
+
+msgid "serverField"
+msgstr "[[base-swupdate.software]] Servers"
+
+msgid "defaultServer"
+msgstr "newlinq.blueonyx.it"
+
+msgid "serverField_help"
+msgstr "Insira os URLs de locais de servidores para consultar o novo software e atualizações. A URL da localização do servidor padrão é [[base-swupdate.defaultServer]]."
+
+msgid "serverFieldInvalid"
+msgstr "[[base-swupdate.software]] não pôde contatar o servidor especificado. Por favor, certifica-se de que ela é acessível a partir do seu aparelho servidor."
+
+msgid "httpProxyField"
+msgstr "HTTP Proxy: Porto"
+
+msgid "httpProxyField_help"
+msgstr "Digite o servidor proxy ea porta para consultas HTTP se um servidor proxy é necessário para chegar fora do seu firewall. Exemplo: proxy.example.com: 8080."
+
+msgid "httpProxyInvalid"
+msgstr "[[base-swupdate.software]] não pôde contatar o servidor proxy HTTP. Por favor, certifique-se de que é acessível a partir de seu aparelho servidor."
+
+msgid "ftpProxyField"
+msgstr "FTP Proxy: Porto"
+
+msgid "ftpProxyField_help"
+msgstr "Digite o servidor proxy ea porta para consultas FTP se um servidor proxy é necessário para chegar fora do seu firewall. Exemplo: proxy.example.com: 8080."
+
+msgid "ftpProxyInvalid"
+msgstr "[[base-swupdate.software]] não pôde contatar o servidor proxy FTP. Por favor, certifique-se de que é acessível a partir de seu aparelho servidor."
+
+msgid "autoField"
+msgstr "Instalar atualizações automaticamente"
+
+msgid "autoField_help"
+msgstr "Se ativado, [[base-swupdate.software]] irá instalar automaticamente os pacotes autenticados."
+
+msgid "requireSignatureField"
+msgstr "Pacotes devem ser autenticados"
+
+msgid "requireSignatureField_help"
+msgstr "Se ativado, [[base-swupdate.software]] só vai instalar os pacotes que passaram uma verificação de autenticação."
+
+msgid "checkSetField"
+msgstr "Software para verificar se"
+
+msgid "checkSetField_help"
+msgstr "Escolha o tipo de software que irá ser verificado para cada consulta em Atualização de Software."
+
+msgid "all"
+msgstr "Todos os programas"
+
+msgid "updates"
+msgstr "Apenas atualizações"
+
+msgid "notificationLightField"
+msgstr "Luz Notificação Software"
+
+msgid "notificationLightField_help"
+msgstr "Alterar o tipo de um novo software irá ativar a luz de notificação Software, e se for o caso, que tipo de novo software irá aparecer nos e-mails de notificação."
+
+msgid "update"
+msgstr "Atualizar"
+
+msgid "update_help"
+msgstr "Clique aqui para procurar e instalar pacotes de software novos ou atualizados. Esse ícone muda de cor quando os pacotes de software novos ou atualizados estão disponíveis."
+
+msgid "QueryErrorSubject"
+msgstr "Houve um problema consultando o [[base-swupdate.software]] servidor."
+
+msgid "NoProductInfoBody"
+msgstr "O [[base-swupdate.software]] servidor não reconheceu o seu produto. [[base-sauce-basic.contactTechSupport]]"
+
+msgid "NoSWUpdateServerSubject"
+msgstr "No URL especificada para o [[base-swupdate.software]] servidor."
+
+msgid "NoSWUpdateServerBody"
+msgstr "A localização para o [[base-swupdate.software]] servidor não pôde ser determinada. Por favor, vá para a página Configurações [[base-swupdate.software]] e especifique uma URL para o [[base-swupdate.software]] servidor."
+
+msgid "NoSystemInfoSubject"
+msgstr "[[base-swupdate.software]] é incapaz de determinar as informações do sistema."
+
+msgid "NoSystemInfoBody"
+msgstr "O servidor foi incapaz de determinar as informações do sistema necessário para a [[base-swupdate.software]] servidor. [[base-sauce-basic.contactTechSupport]]"
+
+msgid "NoPackageListBody"
+msgstr "[[base-swupdate.software]] não foi capaz de obter uma lista de pacotes do [[base-swupdate.software]] servidor localizado em [[VAR.location]]. Por favor, certifique-se de que [[VAR.location]] é um [[base-swupdate.software]] servidor válido e que você pode consultá-lo a partir do seu navegador."
+
+msgid "BadPackageFmtBody"
+msgstr "O servidor retornou informações sobre o pacote que [[base-swupdate.software]] não entendeu. [[base-sauce-basic.contactTechSupport]]"
+
+msgid "NoPackagesBody"
+msgstr "Não há novos pacotes disponíveis para download."
+
+msgid "UnknownErrorBody"
+msgstr "[[base-swupdate.software]] recebeu um erro desconhecido ([[VAR.error]]) ao tentar entrar em contato com o servidor localizado em [[VAR.location]]."
+
+msgid "NewUpdatesSubject"
+msgstr "Novo software está disponível para o seu dispositivo de servidor"
+
+msgid "NewUpdatesBody"
+msgstr "Por favor verifique o menu [[base-swupdate.software]] se você deseja instalar qualquer um dos seguintes pacotes:"
+
+msgid "capgroup_adminBlueLinq"
+msgstr "Gerenciar BlueLinQ"
+
+msgid "capgroup_adminBlueLinq_help"
+msgstr "Este direito administrativo permite ao usuário gerenciar BlueLinQ. Isso permite que um usuário para instalar um novo software e atualizar o software existente."
+
+msgid "3rdpartypkg_warning"
+msgstr "ATENÇÃO: A instalação de um pacote de terceiros ou atualização pode fazer com que o servidor ao mau funcionamento, falha, ou tornar-se instável. Além disso, os pacotes a partir de fontes não confiáveis ​​pode permitir que um usuário malicioso ou editora para assumir o controle do servidor. Por favor, só instalar os pacotes a partir de uma fonte de terceiros de confiança."
+
+msgid "warning_header"
+msgstr "Atenção!"
+
+msgid "cap_managePackage"
+msgstr "Gestão Software Updates"
+
+# ---
+
+msgid "urlField_help"
+msgstr "[[base-swupdate.urlField]]"
+
+msgid "fileField_help"
+msgstr "[[base-swupdate.fileField]]"
+
+msgid "loaded_help"
+msgstr "[[base-swupdate.loaded]]"
+
+msgid "BXnewpkg"
+msgstr "Nova PKG"
+
+msgid "BXnewpkg_help"
+msgstr "Este é um novo pacote."
+
+msgid "BXnewupdate"
+msgstr "Nova Atualização"
+
+msgid "BXnewupdate_help"
+msgstr "Esta é uma nova atualização para um pacote que você já tem instalado."
+
+msgid "BXpkg"
+msgstr "PKG"
+
+msgid "BXpkg_help"
+msgstr "Este pacote está disponível para a instalação."
+
+msgid "BXupdate"
+msgstr "Atualizar"
+
+msgid "BXupdate_help"
+msgstr "Esta é uma atualização para um pacote que você já tem instalado."
+
+# ---
+
+msgid "UpdatesAvailablePackagesBody"
+msgstr "Não há atualizações disponíveis para os pacotes que você já tem instalado."
+
+msgid "AutoUpdate"
+msgstr "Pkgs Atualizar Auto"
+
+msgid "AutoUpdate_help"
+msgstr "Se esse recurso é habilitado atualizações selecionadas serão instalados automaticamente. Assim que um novo pacote para um dos aplicativos selecionados se torna disponível, então a atualização será instalada automaticamente. Por favor, note que alguns pacotes são atualizações automáticas bastante complexas e não observadas podem quebrar as coisas. Nós desencorajamos usar isso para atualizar automaticamente os pacotes PHP, pois isso pode quebrar o uso do PHP em sites virtuais. Utilize este recurso em sua própria conta e risco."
+
+msgid "AutoUpdateList"
+msgstr "Pacotes de Atualização Automática"
+
+msgid "AutoUpdateList_help"
+msgstr "Lista de pacotes que devem ser automaticamente atualizado para a versão mais recente. Todos os pacotes listados na coluna da esquerda será atualizado automaticamente quando novas versões estiverem disponíveis. Alguns pacotes serão sempre atualizar automaticamente e não pode ser desmarcado. Por favor, note que alguns pacotes são atualizações automáticas bastante complexas e não observadas podem quebrar as coisas. Nós desencorajamos usar isso para atualizar automaticamente os pacotes PHP, pois isso pode quebrar o uso do PHP em sites virtuais. Utilize este recurso em sua própria conta e risco."
+
+msgid "amUpdatesNameTag"
+msgstr "Atualizações de Software"
+
+msgid "amUpdatesGreen"
+msgstr "Todos os pacotes instalados são totalmente atualizado."
+
+msgid "amUpdatesYellow"
+msgstr "Um certo pacote que você instalou está disponível em diferentes versões off NewLinQ. Você tem a versão mais antiga deste Package instalado. Por favor, considere atualizar os pacotes instalados para as últimas versões disponíveis."
+
+msgid "amUpdatesRed"
+msgstr "Há pacotes atualizados disponíveis para os pacotes que você já tem instalado. Por favor, atualize os pacotes instalados para as últimas versões disponíveis."
+
+msgid "AutoEmailSubject"
+msgstr "Pacote de instalação notificação"
+
+msgid "autoinstallEmail_desc"
+msgstr "Os seguintes pacotes foram instalados automaticamente no seu servidor BlueOnyx:"
+
+msgid "autoupdateEmail_desc"
+msgstr "Os seguintes pacotes foram automaticamente atualizados para as versões mais recentes disponíveis no NewLinQ:"
+
+msgid "autoEmail_finalwords"
+msgstr "Por favor, revise o status do seu servidor e certifique-se de que os pacotes instalados executar sem problemas."
+
+###
+
+msgid "autoinstallMenu"
+msgstr "Instale Pkgs"
+
+msgid "autoinstallMenu_help"
+msgstr "Através desta página você pode instalar os pacotes a partir da loja de BlueOnyx. Você precisa de um login válido a partir da loja BlueOnyx para realizar esta etapa."
+
+msgid "AutoInstallPKGheader"
+msgstr "Insira suas BlueOnyx Loja detalhes de login:"
+
+msgid "ShopEmail"
+msgstr "Loja E-mail"
+
+msgid "ShopEmail_help"
+msgstr "Por favor insira o endereço de e-mail com o qual você está registrado no BlueOnyx Shop."
+
+msgid "ShopPass"
+msgstr "Loja de senha"
+
+msgid "ShopPass_help"
+msgstr "Por favor, digite a senha que você está usando para acessar o BlueOnyx Shop."

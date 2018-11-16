@@ -1,0 +1,10 @@
+<item 
+    id="base_admin_ssl" 
+    label="[[base-ssl.ssl]]" 
+    description="[[base-ssl.adminSslDescription]]" 
+    url="/ssl/siteSSL"
+>
+    <parent id="base_security" order="60">
+        <access require="serverSSL"/>
+    </parent>
+</item>

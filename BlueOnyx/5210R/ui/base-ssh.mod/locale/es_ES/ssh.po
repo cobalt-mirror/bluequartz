@@ -1,0 +1,185 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "enableSSH"
+msgstr "Habilitar SSH Servidor"
+
+msgid "enableSSH_help"
+msgstr "La activación de SSH permite a los usuarios con acceso a una consola para conectarse a este servidor con el software cliente de ssh. Uso de ssh generalmente se considera más seguro que el uso de telnet desde ssh encripta todos los datos incluyendo contraseñas que se envían entre el cliente y el servidor."
+
+msgid "SSH_Port"
+msgstr "SSH puerto:"
+
+msgid "SSH_Port_help"
+msgstr "Por defecto SSH ejecuta en el puerto 22/tcp. Sin embargo, se puede configurar para que se ejecute en otro puerto en vez con el fin de tratar de evadir los ataques de fuerza bruta de inicio de sesión automático."
+
+msgid "SSH_Proto"
+msgstr "Protocolo SSH:"
+
+msgid "SSH_Proto_help"
+msgstr "SSH admite dos protocolos: Protocolo versión 1 y versión 2. Dos es más avanzado y seguro. Si es posible, se debe utilizar sólo el protocolo 2. Pero también se puede configurar para &#39;2, 1 &#39;, en el que las aplicaciones de casos que apoyan el protocolo 2 va a usar, mientras que las aplicaciones antiguas que sólo admiten el protocolo 1 puede caer de nuevo a ese lugar."
+
+msgid "SSHrootLogin"
+msgstr "SSH Root Login:"
+
+msgid "SSHrootLogin_help"
+msgstr "De forma predeterminada, y por motivos de seguridad de inicio de sesión SSH directo como usuario &#39;root&#39; no es normalmente permitido. Si es necesario, puede permitir aquí."
+
+##
+
+msgid "basicSettingsTab"
+msgstr "Ajustes básicos"
+
+msgid "advancedSettingsTab"
+msgstr "Gestión de llave/certificado"
+
+msgid "PasswordAuthentication"
+msgstr "Autenticación de contraseña"
+
+msgid "PasswordAuthentication_help"
+msgstr "Especifica si se permite la autenticación de contraseña de SSH. El valor por defecto es 'sí'. Si ha establecido las claves SSH o certificados, se puede desactivar la autenticación de contraseña para mayor seguridad. Sólo permitir conexiones SSH basado llave / certificado es la forma más segura."
+
+msgid "RSAAuthentication"
+msgstr "RSA Authentication"
+
+msgid "RSAAuthentication_help"
+msgstr "Especifica si se permite la autenticación RSA pura. El valor predeterminado es 'no', ya que normalmente permitimos versión del protocolo SSH sólo 2 y esta opción sólo se aplica a sólo versión 1 del protocolo."
+
+msgid "PubkeyAuthentication"
+msgstr "Autentificación de clave pública"
+
+msgid "PubkeyAuthentication_help"
+msgstr "Especifica si se permite la autenticación de clave pública. El valor por defecto es 'sí'. Tenga en cuenta que esta opción sólo se aplica a la versión 2."
+
+msgid "key_present"
+msgstr "Claves SSH"
+
+msgid "key_present_help"
+msgstr "Indica si las claves públicas y privadas SSH están presentes. Si no, usted puede marcar la casilla de verificación y hacer que se crearon."
+
+msgid "cert_present"
+msgstr "Certificados PEM"
+
+msgid "cert_present_help"
+msgstr "Muestra si los certificados públicos y privados SSH PEM están presentes. Si no, usted puede marcar la casilla de verificación y hacer que se crearon."
+
+msgid "keys_present_msg"
+msgstr "[[VAR.bits]] bit presente la clave privada y pública."
+
+msgid "certs_present_msg"
+msgstr "[[VAR.bits]] bit certificados PEM privado y público presentes."
+
+msgid "but_needs_root_access"
+msgstr " Pero con el fin de iniciar sesión mediante SSH como root le debe permitir el acceso de root por SSH."
+
+msgid "AuthKeyList"
+msgstr "Sostiene de: [[VAR.authkey_file]]"
+
+msgid "key_type"
+msgstr "Tipo"
+
+msgid "key_type_help"
+msgstr "Muestra el tipo de la clave pública."
+
+msgid "key_payload"
+msgstr "Clave"
+
+msgid "key_payload_help"
+msgstr "Muestra los primeros 15 y los últimos 15 caracteres de la clave pública instalada."
+
+msgid "key_userhost"
+msgstr "Usuario y el host"
+
+msgid "key_userhost_help"
+msgstr "Muestra al usuario y el host para el que esta clave pública es válida. Mientras se instala esta clave pública, cualquier persona con la clave privada correspondiente (o certificado) se puede acceder a este servidor por SSH."
+
+msgid "bits"
+msgstr "Bits"
+
+msgid "bits_help"
+msgstr "Muestra la longitud de bits de la clave pública o certificado instalado. Las llaves o certificados con más bits de longitud son generalmente considerados más seguros."
+
+msgid "listAction"
+msgstr "Acción"
+
+msgid "listAction_help"
+msgstr "Le permite borrar una clave pública instalada. El usuario y el host es entonces ya no les permite iniciar sesión con esa clave o certificado. Por favor, tenga en cuenta: Si ese usuario ha iniciado una sesión, entonces esto no va a terminar su relación. Pero él no se le permitirá volver a iniciar sesión con esa clave o certificado."
+
+msgid "AKRemove"
+msgstr "Quite la clave pública seleccionada desde authorized_keys"
+
+msgid "AKRemoveConfirmNeutral"
+msgstr "Confirme la eliminación de clave pública:"
+
+msgid "removeConfirmInfo"
+msgstr "¿Realmente desea eliminar esta clave pública de llaves autorizadas? Esto evitará que el usuario y el host desde acceder de nuevo con la llave o certificado otorgado."
+
+msgid "UploadPubKeyHead"
+msgstr "Subir una clave pública y añadirla a [[VAR.authkey_file]]"
+
+msgid "UploadPubkey"
+msgstr "Subir Clave Pública"
+
+msgid "UploadPubkey_help"
+msgstr "Esto le permite cargar una clave pública. Que se añadirá al authorized_keys automáticamente."
+
+msgid "keyDownloadHeader"
+msgstr "Descarga de claves públicas y / o Certificado PEM:"
+
+msgid "export_id_rsa_pub"
+msgstr "Descarga de Clave Pública"
+
+msgid "export_id_rsa_pub_help"
+msgstr "Esto le permite descargar la clave pública de este servidor, de modo que usted puede agregar a authorized_keys en otro servidor."
+
+msgid "export_root_pem"
+msgstr "Descargar certificado PEM"
+
+msgid "export_root_pem_help"
+msgstr "Esto le permite descargar el certificado PEM de este servidor. A continuación, podrá utilizarlo en su cliente SSH para establecer una conexión de SSH en este servidor."
+
+##
+
+msgid "pers_shell_menu"
+msgstr "Acceso SSH"
+
+msgid "pers_shell_menu_help"
+msgstr "Permite crear y administrar sus claves SSH y certificados PEM para sus conexiones SSH."
+
+###
+
+msgid "SSH_keylength"
+msgstr "SSH Key bits"
+
+msgid "SSH_keylength_help"
+msgstr "Especifica el número de bits en la clave para las llaves o certificados de nueva creación. El valor predeterminado es 2048 bits. En general, de 2048 bits se considera suficiente, pero puede crear las claves con más bits. Por favor, tenga en cuenta que las claves más largas crean más en crearse. Las claves más largas también tienen un impacto negativo en el rendimiento de SSH."
+
+##### --- Active monitor
+
+msgid "amSSHNameTag"
+msgstr "SSHd Server"
+
+msgid "amDetailsTitle"
+msgstr "Detalles SSHd Server"
+
+msgid "amStatusOK"
+msgstr "El servidor SSHd está funcionando normalmente."
+
+msgid "amNotAccepting"
+msgstr "El servidor SSHd no está en ejecución y no podía ser reiniciado. En el [[base-apache.amAdmservNameTag]], intente girar el servidor SSHd y luego encenderlo de nuevo para ver si se ha solucionado el problema."
+
+####
+
+msgid "AllowTcpForwarding"
+msgstr "Permitir reenvío TCP"
+
+msgid "AllowTcpForwarding_help"
+msgstr "Especifica si se permite el reenvío TCP. Predeterminado: No habilitado. Tenga en cuenta que la habilitación del reenvío TCP puede suponer un riesgo para la seguridad, ya que puede utilizarse para eludir el cortafuegos o las reglas de control de acceso."
+

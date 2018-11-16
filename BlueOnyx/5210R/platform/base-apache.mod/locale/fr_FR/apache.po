@@ -1,0 +1,644 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Meaulnes Legler <blue@waveweb.ch>\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+# --- Menu
+
+msgid "apache"
+msgstr "Serveur-Web"
+
+msgid "apache_help"
+msgstr "Les [[base-apache.apacheSettings]] peuvent être changés ici."
+
+# --- Web Settings page
+
+msgid "apacheSettings"
+msgstr "Options Serveur-Web"
+
+msgid "frontpageField"
+msgstr "Extensions Serveur FrontPage"
+
+msgid "frontpageField_help"
+msgstr "Activer ou désactiver les extensions du serveur FrontPage."
+
+msgid "frontpageEnabled"
+msgstr "activé"
+
+msgid "passwordWebmasterField"
+msgstr "Mot de passe du webmaster"
+
+msgid "passwordWebmasterField_help"
+msgstr "Entrez un mot de passe pour le webmaster de FrontPage. Le site web du foyer de groupe peut être consulté en sélectionnant Open Web dans FrontPage. Connectez-vous en utilisant le nom de login webmaster et son mot de passe que vous spécifiez ici. Une fois authentifié, les utilisateurs FrontPage supplémentaires seront gérés par le serveur FrontPage."
+
+msgid "passwordWebmasterField_rule"
+msgstr "Le mot de passe doit contenir entre 3 et 16 caractères. Un bon mot de passe doit inclure au moins 5 caractères avec un mélange de lettres majuscules et minuscules ainsi que des chiffres et signes de ponctuation. Il ne devrait pas contenir des mots trouvés dans le dictionnaire. Les mots de passe sont sensibles à la casse."
+
+msgid "passwordWebmasterField_invalid"
+msgstr "Désolé, vous n'avez pas tapé le même mot de passe dans les deux champs. Le même mot de passe doit être inséré dans les deux champs pour se protéger contre les erreurs de frappe. Veuillez essayez à nouveau."
+
+msgid "cgiAccessField"
+msgstr "Accès CGI"
+
+msgid "cgiAccessField_help"
+msgstr "Activez ou désactivez l'accès CGI. Vous pouvez définir les droits d'accès CGI de sorte que seul l'administrateur du serveur, certains ou tous les utilisateurs puissent ajouter des programmes CGI (appelés aussi fichiers script CGI)."
+
+msgid "cgiAll"
+msgstr "Autoriser l'accès à tous les utilisateurs"
+
+msgid "cgiNone"
+msgstr "N'autoriser l'accès à aucun utilisateur"
+
+msgid "cgiSubset"
+msgstr "Autoriser l'accès à certains utilisateurs seulement"
+
+msgid "cgiUsersAllowed"
+msgstr "Utilisateurs autorisés au CGI"
+
+msgid "cgiUsersDisallowed"
+msgstr "Utilisateurs sans autorisation CGI"
+
+	# Don't want a label here, so space
+msgid "cgiUsersField"
+msgstr " "
+
+msgid "cgiUsersField_empty"
+msgstr "Désolé, vous n'avez pas sélectionné d'utilisateur pour l'accès CGI. Veuillez ajouter des utilisateurs autorisés à utiliser CGI ou choisissez une option d'accès différente."
+
+# --- Handlers
+
+msgid "cantConfigCgi"
+msgstr "Désolé, l'accès CGI n'a actuellement pas pu être configuré correctement."
+
+msgid "systemObjectNotFound"
+msgstr "Désolé, la configuration du serveur est momentanément indisponible. Veuillez patienter et essayer à nouveau."
+
+# --- Active Monitor
+
+msgid "amApacheNameTag"
+msgstr "Serveur-Web"
+
+msgid "amApacheDetails"
+msgstr "Détails du serveur-web"
+
+msgid "amNotRunning"
+msgstr "Le [[base-apache.amApacheNameTag]] ne fonctionne pas et ne pouvait pas être redémarré. Essayez de redémarrer le serveur en cliquant sur le [[base-power.reboot]] dans le menu [[base-power.power]] sous [[base-alpine.serverconfig]]. Si vous ne parvenez toujours pas à accéder au [[base-apache.amApacheNameTag]], veuillez consulter le support technique au [[base-sauce-basic.techSupportURL]]."
+
+msgid "amStatusOK"
+msgstr "Le serveur-web fonctionne normalement."
+
+	# "Server Desktop" is difficult to translate, an admin interface is assumed: "Bureau du Serveur" or "Desktop du Serveur"
+msgid "amAdmservNameTag"
+msgstr "Desktop du serveur"
+
+msgid "amAdmservDetails"
+msgstr "Détails sur le [[base-apache.amAdmservNameTag]]"
+
+msgid "amAdmservNotRunning"
+msgstr "Le [[base-apache.amAdmservNameTag]] ne fonctionne pas et ne pouvait pas être redémarré. Essayez de redémarrer le serveur en cliquant sur le [[base-power.reboot]] dans le [[base-power.power]] menu sous [[base-alpine.serverconfig]]. Si vous ne parvenez toujours pas à accéder à la [[base-apache.amAdmservNameTag]], s'il vous plaît visitez [[base-sauce-basic.techSupportURL]] pour le support technique."
+
+msgid "amAdmservStatusOK"
+msgstr "Le [[base-apache.amAdmservNameTag]] fonctionne normalement."
+
+msgid "maxServersRAM"
+msgstr "Le nombre maximum de serveurs web est limité par la quantité de RAM installée sur ce serveur."
+
+msgid "minSpareField"
+msgstr "Minimum de processus du serveur-web"
+
+msgid "minSpareField_help"
+msgstr "Le nombre minimal de processus disponibles au serveur pour soutenir les requêtes web lorsque celui-ci démarre ou tourne au ralenti. [[base-apache.maxServersRAM]]"
+
+msgid "minSpareField_empty"
+msgstr "Veuillez spécifier un nombre minimum de processus disponibles au serveur-web."
+
+msgid "minSpareField_invalid"
+msgstr "Le nombre de processus spécifié n'est pas valide. Veuillez spécifier un nombre entier compris dans les limites spécifiées."
+
+msgid "maxSpareField"
+msgstr "Maximum de processus du serveur-web"
+
+msgid "maxSpareField_help"
+msgstr "Le serveur-web va lancer des processus supplémentaires pour desservir une éventuelle charge additionnelle. Ceci est le nombre maximal de processus que le système démarrera. Il faut augmenter ce nombre pour une meilleure performance des sites à trafic intense. [[base-apache.maxServersRAM]]"
+
+msgid "maxSpareField_empty"
+msgstr "Veuillez spécifier un nombre maximum de processus disponibles au serveur-web."
+
+msgid "maxSpareField_invalid"
+msgstr "[[base-apache.minSpareField_invalid]]"
+
+msgid "maxClientsField"
+msgstr "Maximun de connexions simultanées"
+
+msgid "maxClientsField_help"
+msgstr "C'est le nombre maximal de demandes qui peuvent être faites au le serveur à tout instant. Chaque connexion nécessite son propre processus au serveur-web. Si ce nombre est dépassé, les clients recevront un message indiquant que le serveur est occupé et seront demandés d'essayer à nouveau plus tard. Ce paramètre est utile pour contrôler la charge de votre serveur. [[base-apache.maxServersRAM]]"
+
+msgid "maxClientsField_empty"
+msgstr "Veuillez spécifier le nombre maximal de connexions simultanées au serveur-web."
+
+msgid "maxClientsField_invalid"
+msgstr "Le nombre maximal spécifié de connexions simultanées n'est pas valide. Veuillez spécifier un nombre entier dans la plage spécifiée."
+
+msgid "hostnameLookupsField"
+msgstr "Hostname Lookups"
+
+msgid "hostnameLookupsField_help"
+msgstr "Ceci active la recherche du nom de domaine (hostname) du serveur-web. Le serveur-web effectuera une recherche DNS sur l'IP du client qui se connecte au serveur et l'inscrira dans les fichiers-journal. Cette information sera ensuite disponible dans les comptes-rendu de l'utilisation du serveur-web. Sans cette fonction, seulement l'adresse IP des clients sans leurs hostnames y seront inscrits. ATTENTION&nbsp;: L'activation de cette option diminuera les performances de votre serveur-web."
+
+msgid "MinMaxError"
+msgstr "Le nombre [[base-apache.maxSpareField]] doit être supérieure ou égale au nombre [[base-apache.minSpareField]]."
+
+msgid "ClientMaxError"
+msgstr "La valeur saisie pour [[base-apache.maxClientsField]] est inférieure au nombre [[base-apache.maxSpareField]]. Alors que ce n'est pas grave, ça peut influer sur les performances du serveur. Il est recommandé que la valeur pour [[base-apache.maxClientsField]] soit supérieure ou égale au nombre [[base-apache.maxSpareField]]."
+
+# strings for UI extenstions
+
+msgid "webScripting"
+msgstr "WebScript"
+
+msgid "webScriptingTitle"
+msgstr "Options langage script web pour [[VAR.fqdn]]"
+
+msgid "webScriptingDescription"
+msgstr "Configurer les options des langages script pour web."
+
+msgid "cgi"
+msgstr "Activer Common Gateway Interface (CGI)"
+
+msgid "cgi_help"
+msgstr "Permettre l'utilisation des applications CGI."
+
+msgid "ssi"
+msgstr "Activer Server Side Includes (SSI)"
+
+msgid "ssi_help"
+msgstr "Permettre l'utilisation de Server Side Includes."
+
+msgid "webScripting_help"
+msgstr "[[base-apache.webScriptingDescription]]"
+
+msgid "phpI18nName"
+msgstr "PHP Scripting"
+
+msgid "cgiI18nName"
+msgstr "Common Gateway Interface (CGI)"
+
+msgid "ssiI18nName"
+msgstr "Server Side Includes (SSI)"
+
+msgid "userwebs"
+msgstr "[[base-vsite.userwebs]]"
+
+msgid "userwebs_help"
+msgstr "[[base-vsite.userwebs_help]] ATTENTION&nbsp;: Si suPHP est activé, cette fonction ne sera pas prise en compte et les utilisateurs n'auront pas d'espace web privé."
+
+msgid "ftpnonadminI18nName"
+msgstr "FTP autorisé aux utilisateurs"
+
+msgid "userwebsI18nName"
+msgstr "Espaces web privés autorisés"
+
+#
+## BlueOnyx.conf editing additions:
+#
+
+msgid "Options_AllField"
+msgstr "Tout"
+
+msgid "Options_AllField_help"
+msgstr "Toutes les options sauf MultiViews. (désactivé par défaut)"
+
+msgid "Options_FollowSymLinksField"
+msgstr "FollowSymLinks"
+
+msgid "Options_FollowSymLinksField_help"
+msgstr "Le serveur va suivre les liens symboliques. (activé par défaut)"
+
+msgid "Options_IncludesField"
+msgstr "SSI"
+
+msgid "Options_IncludesField_help"
+msgstr "Le langage de programmation Server Side Includes est autorisé. (activé par défaut)"
+
+msgid "Options_IndexesField"
+msgstr "Indexes"
+
+msgid "Options_IndexesField_help"
+msgstr "Si une URL mène à un répertoire existant et qu'il n'y a pas de fichier DirectoryIndex (par exemple index.html) dans ce répertoire, le serveur renverra une liste formatée du contenu du répertoire. (activé par défaut)"
+
+msgid "Options_MultiViewsField"
+msgstr "MultiViews"
+
+msgid "Options_MultiViewsField_help"
+msgstr "La négociation de contenu MultiViews est autorisée. Celle-ci permet d'afficher des pages dans des langues différentes grâce aux paramètres régionaux du navigateur utilisé. (activé par défaut)"
+
+msgid "Options_SymLinksIfOwnerMatchField"
+msgstr "SymLinksIfOwnerMatch"
+
+msgid "Options_SymLinksIfOwnerMatchField_help"
+msgstr "Le serveur ne suivra les liens symboliques aux fichiers ou répertoires adressés que si ceux-ci appartiennent au même utilisateur que le lien lui-même. (désactivé par défaut)"
+
+msgid "AllowOverride_AllField"
+msgstr "OverrideAll"
+
+msgid "AllowOverride_AllField_help"
+msgstr "Lorsque le serveur trouve un fichier .htaccess, il doit savoir si les directives Apache spécifiées dans ce fichier auront le droit d'outrepasser les directives déclarées auparavant par défault. En cochant cette case, TOUTES les directives définies dans le fichier .htaccess seront prioritaires. (DANGEREUX&nbsp;! désactivé par défaut)"
+
+msgid "AllowOverride_AuthConfigField"
+msgstr "AuthConfig"
+
+msgid "AllowOverride_AuthConfigField_help"
+msgstr "Permet l'utilisation des directives Apache réglementant de l'autorisation d'accès comme AuthDBMGroupFile, AuthDBMUserFile, AuthGroupFile, AuthName, AuthDigestRealmSeed, AuthType, AuthUserFile, Require etc. (activé par défaut)"
+
+msgid "AllowOverride_FileInfoField"
+msgstr "FileInfo"
+
+msgid "AllowOverride_FileInfoField_help"
+msgstr "Permet l'utilisation des directives Apache contrôlant les types de documents comme AddEncoding, AddLanguage, AddType, DefaultType, ErrorDocument, LanguagePriority etc. (désactivé par défaut)"
+
+msgid "AllowOverride_IndexesField"
+msgstr "Indexes"
+
+msgid "AllowOverride_IndexesField_help"
+msgstr "Permet l'utilisation des directives Apache contrôlant l'indexation des répertoires comme AddDescription, AddIcon, AddIconByEncoding, AddIconByType, DefaultIcon, DirectoryIndex, FancyIndexing, HeaderName, IndexIgnore, IndexOptions, ReadmeName etc. (activé par défaut)"
+
+msgid "AllowOverride_LimitField"
+msgstr "Limit"
+
+msgid "AllowOverride_LimitField_help"
+msgstr "Permet l'utilisation des directives Apache Allow, Deny, Order réglementant l'accès des hôtes. (activé par défaut)"
+
+msgid "AllowOverride_OptionsField"
+msgstr "Options"
+
+msgid "AllowOverride_OptionsField_help"
+msgstr "Permet l'utilisation des directives Apache Options et XBitHack contrôlant les fonctionnalités spécifiques d'un répertoire. (désactivé par défaut)"
+
+msgid "DIVIDER_TOP"
+msgstr "Configuration générale Apache&nbsp;:"
+
+msgid "DIVIDER_EXPLANATION"
+msgstr "Caractéristiques Apache pour les répertoires de sites virtuels&nbsp;:"
+
+msgid "BlueOnyx_Info_Text"
+msgstr "Une part du fichier de configuration /etc/httpd/conf.d/blueonyx.conf définit quelles fonctions «&nbsp;Options&nbsp;» et  «&nbsp;AllowOverride&nbsp;» sont autorisées pour le répertoire (/home/.sites/) dans lequel tous les sites virtuels résident. Ceci limite l'utilisation des fichiers .htaccess entre autres. Ces caractéristiques peuvent être modifiées ci-dessous."
+
+msgid "DIVIDER_OPTIONS"
+msgstr "Options&nbsp;:"
+
+msgid "DIVIDER_ALLOWOVERRIDE"
+msgstr "AllowOverride&nbsp;:"
+
+# suPHP:
+
+msgid "PHP_enabled"
+msgstr "PHP Scripting activé"
+
+msgid "PHP_enabled_help"
+msgstr "L'utilisation de scripts PHP est autorisée."
+
+msgid "disabled"
+msgstr "Désactivé"
+
+msgid "disabled_help"
+msgstr "[[palette.disabled]]"
+
+msgid "cap_serverHttpd"
+msgstr "Paramètres Apache"
+
+###
+
+msgid "httpPortField"
+msgstr "Port HTTP"
+
+msgid "httpPortField_help"
+msgstr "Le serveur-web Apache utilise généralement le port 80 (HTTP). Si vous souhaitez utiliser un autre port, vous pouvez le faire ici. Cela n'est utile que si vous voulez devancer Apache avec un autre service comme un Varnish Cache, une redirection de proxy ou un équilibreur de charge pour filtrer, cacher ou rediriger le trafic. Si vous modifiez ce paramètre, tous les sites virtuels existants seront déplacés vers le nouveau port et tous les nouveaux sites créés utiliseront ce nouveau port. Les adresses IP des sites virtuels ne seront pas modifiés."
+
+msgid "sslPortField"
+msgstr "Port HTTPS/SSL"
+
+msgid "sslPortField_help"
+msgstr "Le serveur-web Apache utilise généralement le port 443 pour le trafic HTTPS. Si vous souhaitez le changer pour un autre port, alors vous pouvez le faire ici. Cela n'est utile que si vous voulez devancer Apache avec un autre service comme un Varnish Cache, une redirection de proxy ou un équilibreur de charge pour filtrer, cacher ou rediriger le trafic. Si vous modifiez ce paramètre, tous les sites virtuels existants utilisant SSL passeront par le nouveau port au lieu du port 443 au pour le trafic SSL. Les adresses IP des sites virtuels ne seront pas modifiés."
+
+msgid "httpPortInUse"
+msgstr "Le port que vous avez spécifié comme nouveau port HTTP est déjà utilisé par un autre service. Veuillez en choisir un différent."
+
+msgid "SSLportInUse"
+msgstr "Le port que vous avez spécifié comme nouveau port HTTPS/SSL est déjà utilisé par un autre service. Veuillez choisir un port différent."
+
+msgid "HSTS"
+msgstr "HSTS:"
+
+msgid "HSTS_help"
+msgstr "HTTP Strict Transport Security (HSTS) est un mécanisme de politique de sécurité Web par lequel un serveur web déclare que conformes agents utilisateurs (comme un navigateur Web) sont d'interagir avec lui en utilisant des connexions HTTPS ne sécurisées (ie HTTP couches sur TLS / SSL). Gares TGV est une des normes voie de protocole IETF et est spécifié dans la RFC 6797. Pour plus d'informations, voir: http://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security"
+
+######### New for 5209R:
+
+# CHANGED:
+
+msgid "php"
+msgstr "PHP (DSO)"
+
+msgid "php_help"
+msgstr "Cette option permet par libphp5.so PHP, qui est également connu comme mod_php. Cette option est généralement le moyen le plus rapide pour exécuter les demandes de PHP. Toutefois, cette option utilise l'utilisateur du système d'Apache pour servir toutes les demandes de PHP. Cela peut créer des problèmes lors de son exécution PHP créer des fichiers et des dossiers, car ils seront alors détenues par apache, aussi."
+
+msgid "enableSuPHP"
+msgstr "suPHP"
+
+msgid "enableSuPHP_help"
+msgstr "Cette option fournit PHP travers mod_suphp. Ce est une façon très souple et sécuritaire pour servir les requêtes PHP. Si vous sélectionnez suPHP, les scripts PHP se exécutent avec l'UID et le GID du propriétaire du site virtuel. Ne oubliez pas de configurer un Siteadmin en tant que propriétaire de votre dossier /web travers le menu '[[base-vsite.fileOwnerMenu]]'!"
+
+# NEW:
+
+msgid "enableModRUID"
+msgstr "PHP (DSO) + mod_ruid2"
+
+msgid "enableModRUID_help"
+msgstr "Cette option fournit PHP travers libphp5.so et module Apache mod_ruid2.so. Cette option est généralement le moyen le plus rapide pour exécuter les demandes PHP de manière sécurisée. Le module supplémentaire mod_ruid2 va exécuter les scripts PHP avec l'UID et le GID du propriétaire du site virtuel. Ne oubliez pas de configurer un Siteadmin en tant que propriétaire de votre dossier /web travers le menu '[[base-vsite.fileOwnerMenu]]'!"
+
+msgid "enableModFPM"
+msgstr "FPM/FastCGI"
+
+msgid "enableModFPM_help"
+msgstr "Cette option fournit PHP-FPM travers et mod_fcgid. Ce est une façon rapide et sécurisée pour mieux servir les requêtes PHP. Les scripts PHP peuvent être exécutées avec l'UID et le GID du propriétaire du site virtuel. Ne oubliez pas de configurer un Siteadmin en tant que propriétaire de votre dossier /web travers le menu '[[base-vsite.fileOwnerMenu]]'!"
+
+#
+#### PHP-FPM Active Monitor components:
+#
+
+msgid "amPHPFPMNameTag"
+msgstr "PHP-FPM"
+
+msgid "amPHPFPMDetails"
+msgstr "[[base-apache.amPHPFPMNameTag]]"
+
+msgid "amPHPFPMStatusOK"
+msgstr "Le service PHP-FPM fonctionne normalement."
+
+msgid "amPHPFPMNotRunning"
+msgstr "Le [[base-apache.amPHPFPMNameTag]] de service ne fonctionne pas et ne peut être redémarré. Se il vous plaît vérifier les fichiers de log pour les messages d'erreur liés à ce service et exécuter 'systemctl status php-fpm.service' en tant que root à partir de la ligne de commande pour résoudre le problème. Si vous ne parvenez toujours pas à accéder à la [[base-apache.amPHPFPMNameTag]], se il vous plaît visitez [[base-sauce-basic.techSupportURL]] pour le support technique."
+
+#
+## Added for support of multiple extra-PHP versions:
+#
+
+msgid "setDefaultPHPVersion"
+msgstr "Défaut version de PHP:"
+
+msgid "setDefaultPHPVersion_help"
+msgstr "Par défaut, votre serveur web Apache fonctionne avec la version de PHP fournie par le système d'exploitation. Si vous avez les versions de PHP supplémentaires installée (disponible dans la boutique BlueOnyx), alors vous pouvez choisir un autre versions de PHP pour être le défaut pour le serveur Web Apache. Cette version de PHP sélectionné est ensuite utilisé sur tous les sites virtuels qui utilisent PHP comme DSO ou qui utilisent PHP via DSO et mod_ruid2."
+
+msgid "extraPHPversions"
+msgstr "Versions PHP disponibles pour les sites virtuels:"
+
+msgid "extraPHPversions_help"
+msgstr "Si vous avez plusieurs versions de PHP installés, alors vous pouvez choisir celles qui sont disponibles pour une utilisation sur des sites virtuels. Si vous avez une version de PHP installé que vous ne souhaitez plus utiliser, alors vous pouvez le déplacer vers le côté droit de la table ci-dessous. Tous les sites virtuels qui utilisent actuellement ce seront alors revenus à la version de PHP OS fourni. En outre, la version de PHP handicapés ne est alors plus sélectionnable lors de la création de nouveaux sites virtuels."
+
+msgid "register_globals_exception"
+msgstr "PHP-5,3 exception"
+
+msgid "register_globals_exception_help"
+msgstr "Depuis PHP-5.4 la fonction 'Register Globals' a effectivement été retirée de PHP. Par conséquent, l'interface graphique ne permet d'activer 'Register Globals' pour PHP-5.4 et plus tard. Toutefois: Si vous avez le PHP-5.3 paquet disponible en option installé et activé, vous pouvez cocher cette case. Cela vous permettra de définir 'Register Globals' à 'On' pour les sites virtuels qui utilisent PHP-5.3."
+
+msgid "PHP_version_Field"
+msgstr "Vsite PHP version:"
+
+msgid "PHP_version_Field_help"
+msgstr "Cela montre la version de PHP pour ce site virtuel. Si plusieurs versions de PHP sont installés sur le serveur et soit suPHP ou PHP-FPM est utilisé, il est possible de choisir la version du système d'exploitation fourni de PHP, ou une version de PHP fournie via l'un des paquets PHP disponibles en option. Paquets PHP supplémentaires mises à jour sont disponibles dans le magasin et BlueOnyx version différente de PHP sont disponibles. Plusieurs packages PHP peuvent être installés en même temps. Par site virtuel seule version de PHP peut être utilisé, bien que différents sites virtuels peuvent facilement exécuter des versions différentes de PHP."
+
+msgid "amPHPFPMMASTERNameTag"
+msgstr "[[base-apache.amPHPFPMNameTag]] (OS)"
+
+msgid "amPHPFPMMASTERStatusOK"
+msgstr "Le PHP-FPM de service (OS) fonctionne normalement."
+
+msgid "amPHPFPMMASTERNotRunning"
+msgstr "Le [[base-apache.amPHPFPMNameTag]] de service ne fonctionne pas et ne peut être redémarré. Se il vous plaît vérifier les fichiers de log pour les messages d'erreur liés à ce service et exécuter 'systemctl status php-fpm.service' en tant que root à partir de la ligne de commande pour résoudre le problème. Si vous ne parvenez toujours pas à accéder à la [[base-apache.amPHPFPMNameTag]], se il vous plaît visitez [[base-sauce-basic.techSupportURL]] pour le support technique."
+
+msgid "amPHPFPM53NameTag"
+msgstr "[[base-apache.amPHPFPMNameTag]] 5.3"
+
+msgid "amPHPFPM53StatusOK"
+msgstr "Le PHP-FPM de service (pour PHP-5.3) fonctionne normalement."
+
+msgid "amPHPFPM53NotRunning"
+msgstr "Le [[base-apache.amPHPFPM53NameTag]] de service ne fonctionne pas et ne peut être redémarré. Se il vous plaît vérifier les fichiers de log pour les messages d'erreur liés à ce service et terme 'systemctl status php-fpm-5.3.service' en tant que root à partir de la ligne de commande pour résoudre le problème. Si vous ne parvenez toujours pas à accéder à la [[base-apache.amPHPFPM53NameTag]], se il vous plaît visitez [[base-sauce-basic.techSupportURL]] pour le support technique."
+
+msgid "amPHPFPM54NameTag"
+msgstr "[[base-apache.amPHPFPMNameTag]] 5.4"
+
+msgid "amPHPFPM54StatusOK"
+msgstr "Le PHP-FPM de service (pour PHP-5.4) fonctionne normalement."
+
+msgid "amPHPFPM54NotRunning"
+msgstr "Le [[base-apache.amPHPFPM54NameTag]] de service ne fonctionne pas et ne peut être redémarré. Se il vous plaît vérifier les fichiers de log pour les messages d'erreur liés à ce service et terme 'systemctl status php-fpm-5.4.service' en tant que root à partir de la ligne de commande pour résoudre le problème. Si vous ne parvenez toujours pas à accéder à la [[base-apache.amPHPFPM54NameTag]], se il vous plaît visitez [[base-sauce-basic.techSupportURL]] pour le support technique."
+
+msgid "amPHPFPM55NameTag"
+msgstr "[[base-apache.amPHPFPMNameTag]] 5.5"
+
+msgid "amPHPFPM55StatusOK"
+msgstr "Le PHP-FPM de service (pour PHP-5.5) fonctionne normalement."
+
+msgid "amPHPFPM55NotRunning"
+msgstr "Le [[base-apache.amPHPFPM55NameTag]] de service ne fonctionne pas et ne peut être redémarré. Se il vous plaît vérifier les fichiers de log pour les messages d'erreur liés à ce service et terme 'systemctl status php-fpm-5.5.service' en tant que root à partir de la ligne de commande pour résoudre le problème. Si vous ne parvenez toujours pas à accéder à la [[base-apache.amPHPFPM55NameTag]], se il vous plaît visitez [[base-sauce-basic.techSupportURL]] pour le support technique."
+
+msgid "amPHPFPM56NameTag"
+msgstr "[[base-apache.amPHPFPMNameTag]] 5.6"
+
+msgid "amPHPFPM56StatusOK"
+msgstr "Le PHP-FPM de service (pour PHP-5.6) fonctionne normalement."
+
+msgid "amPHPFPM56NotRunning"
+msgstr "Le [[base-apache.amPHPFPM56NameTag]] de service ne fonctionne pas et ne peut être redémarré. Se il vous plaît vérifier les fichiers de log pour les messages d'erreur liés à ce service et terme 'systemctl status php-fpm-5.6.service' en tant que root à partir de la ligne de commande pour résoudre le problème. Si vous ne parvenez toujours pas à accéder à la [[base-apache.amPHPFPM56NameTag]], se il vous plaît visitez [[base-sauce-basic.techSupportURL]] pour le support technique."
+
+##
+
+msgid "PHP_version"
+msgstr "[[base-apache.PHP_version_Field]]"
+
+msgid "PHP_version_help"
+msgstr "[[base-apache.PHP_version_Field_help]]"
+
+### PHP7:
+
+msgid "amPHPFPM70NameTag"
+msgstr "[[base-apache.amPHPFPMNameTag]] 7.0"
+
+msgid "amPHPFPM70StatusOK"
+msgstr "Le PHP-FPM de service (pour PHP-7.0) fonctionne normalement."
+
+msgid "amPHPFPM70NotRunning"
+msgstr "Le [[base-apache.amPHPFPM70NameTag]] de service ne fonctionne pas et ne peut être redémarré. Se il vous plaît vérifier les fichiers de log pour les messages d'erreur liés à ce service et terme 'systemctl status php-fpm-7.0.service' en tant que root à partir de la ligne de commande pour résoudre le problème. Si vous ne parvenez toujours pas à accéder à la [[base-apache.amPHPFPM70NameTag]], se il vous plaît visitez [[base-sauce-basic.techSupportURL]] pour le support technique."
+
+#
+
+msgid "amPHPFPM71NameTag"
+msgstr "[[base-apache.amPHPFPMNameTag]] 7.1"
+
+msgid "amPHPFPM71StatusOK"
+msgstr "Le PHP-FPM de service (pour PHP-7.1) fonctionne normalement."
+
+msgid "amPHPFPM71NotRunning"
+msgstr "Le [[base-apache.amPHPFPM71NameTag]] de service ne fonctionne pas et ne peut être redémarré. Se il vous plaît vérifier les fichiers de log pour les messages d'erreur liés à ce service et terme 'systemctl status php-fpm-7.1.service' en tant que root à partir de la ligne de commande pour résoudre le problème. Si vous ne parvenez toujours pas à accéder à la [[base-apache.amPHPFPM71NameTag]], se il vous plaît visitez [[base-sauce-basic.techSupportURL]] pour le support technique."
+
+#
+
+msgid "amPHPFPM72NameTag"
+msgstr "[[base-apache.amPHPFPMNameTag]] 7.2"
+
+msgid "amPHPFPM72StatusOK"
+msgstr "Le PHP-FPM de service (pour PHP-7.2) fonctionne normalement."
+
+msgid "amPHPFPM72NotRunning"
+msgstr "Le [[base-apache.amPHPFPM72NameTag]] de service ne fonctionne pas et ne peut être redémarré. Se il vous plaît vérifier les fichiers de log pour les messages d'erreur liés à ce service et terme 'systemctl status php-fpm-7.2.service' en tant que root à partir de la ligne de commande pour résoudre le problème. Si vous ne parvenez toujours pas à accéder à la [[base-apache.amPHPFPM72NameTag]], se il vous plaît visitez [[base-sauce-basic.techSupportURL]] pour le support technique."
+
+#
+
+msgid "amPHPFPM73NameTag"
+msgstr "[[base-apache.amPHPFPMNameTag]] 7.3"
+
+msgid "amPHPFPM73StatusOK"
+msgstr "Le PHP-FPM de service (pour PHP-7.3) fonctionne normalement."
+
+msgid "amPHPFPM73NotRunning"
+msgstr "Le [[base-apache.amPHPFPM73NameTag]] de service ne fonctionne pas et ne peut être redémarré. Se il vous plaît vérifier les fichiers de log pour les messages d'erreur liés à ce service et terme 'systemctl status php-fpm-7.3.service' en tant que root à partir de la ligne de commande pour résoudre le problème. Si vous ne parvenez toujours pas à accéder à la [[base-apache.amPHPFPM73NameTag]], se il vous plaît visitez [[base-sauce-basic.techSupportURL]] pour le support technique."
+
+#### REDIRECT:
+
+msgid "REDIRECTI18nName"
+msgstr "[[base-apache.redirect_enabled]]"
+
+msgid "redirect_enabled"
+msgstr "Rediriger/Proxy le site Web"
+
+msgid "redirect_enabled_help"
+msgstr "Cette option vous permet de rediriger ou de proxyer l'ensemble du site Web de ce site virtuel vers une autre URL. Les redirections peuvent être temporaires (code de statut HTTP 302) ou permanentes (code de statut HTTP 301). Si un proxy est utilisé, alors ce serveur web proxy proxy toutes les requêtes vers l'URL distante spécifiée."
+
+msgid "RedirectType"
+msgstr "Type de redirection"
+
+msgid "RedirectType_help"
+msgstr "Ceci spécifie le code de statut HTTP avec lequel tout accès web à une URL de ce site virtuel sera redirigé vers l'URL spécifiée. Les redirections peuvent être temporaires (code de statut HTTP 302) ou permanentes (code de statut HTTP 301)."
+
+msgid "target"
+msgstr "URL cible"
+
+msgid "target_help"
+msgstr "Veuillez entrer l'URL cible ici. Tout accès web à ce site virtuel sera redirigé vers l'URL indiquée. Il peut s'agir d'une URL http:// ou https:// Les URLs entrés peuvent contenir des sous-répertoires, des pages et des paramètres URL. Si vous le souhaitez, vous pouvez copier et coller l'URL cible désirée depuis votre navigateur et la coller ici."
+
+
+#
+### Nginx related
+#
+
+msgid "HSTS_Nginx_enabled"
+msgstr "[[base-apache.HSTS]]"
+
+msgid "HSTS_Nginx_enabled_help"
+msgstr "[[base-apache.HSTS_help]]"
+
+#####
+
+msgid "possvals"
+msgstr "Valeurs possibles : Interger suivi de 's' (pour les secondes), 'm' (pour les minutes), 'h' (pour les heures) ou 'd' (pour les jours)."
+
+msgid "basicSettingsTab"
+msgstr "Apache"
+
+msgid "nginxSettingsTab"
+msgstr "Nginx"
+
+msgid "GENERAL_NGINX_DIVIDER"
+msgstr "Nginx comme un SSL-Proxy:"
+
+msgid "Nginx_Info_Text"
+msgstr "Le serveur web Apache qui vient avec BlueOnyx fait un bon travail pour servir les pages HTTP traditionnelles. Mais en termes de HTTPS, il a quelques défauts. Par exemple, il ne peut pas répondre aux requêtes HTTP/2 et les chiffrement TLS supportés ne sont pas non plus les meilleurs choix possibles. Comme HTTP/2 est une amélioration considérable et comme nous voulons aussi que nos connexions TLS soient de la meilleure qualité et sécurité possible, nous offrons maintenant la possibilité de laisser Apache continuer à servir les requêtes HTTP et à acheminer toutes les connexions HTTPS par l'intermédiaire d'un proxy de redirection Nginx. Si vous cochez la case ci-dessous, ce serveur sera reconfiguré pour qu'Apache perde son autorité sur les pages HTTPS et laisse Nginx s'en charger. Cette fonction peut être inversée à tout moment en décochant simplement la case à cocher à nouveau."
+
+msgid "NGINX_CFG_DIVIDER"
+msgstr "Configuration Nginx:"
+
+msgid "worker_processes"
+msgstr "Processus de travail"
+
+msgid "worker_processes_help"
+msgstr "Définit le nombre de processus de travailleurs. La valeur optimale dépend de nombreux facteurs, y compris (mais sans s'y limiter) le nombre de cœurs de CPU, le nombre de disques durs qui stockent les données et le modèle de charge. En cas de doute, le régler sur le nombre de cœurs CPU disponibles serait un bon début. La valeur'auto' essaiera de l'autodétecter. Valeurs possibles:'auto' ou un entier."
+
+msgid "worker_connections"
+msgstr "Connexions avec les travailleurs"
+
+msgid "worker_connections_help"
+msgstr "Définit le nombre maximum de connexions simultanées qui peuvent être ouvertes par un processus ouvrier. Il faut garder à l'esprit que ce nombre inclut toutes les connexions (par exemple, les connexions avec les serveurs proxy, entre autres), et pas seulement les connexions avec les clients. Une autre considération est que le nombre réel de connexions simultanées ne peut pas dépasser la limite actuelle du nombre maximum de fichiers ouverts."
+
+msgid "max_age"
+msgstr "Ages maximaux"
+
+msgid "max_age_help"
+msgstr "Lorsqu'un navigateur voit l'en-tête HSTS à partir d'un site Web HTTPS, il apprend que ce domaine ne doit être accessible qu'en HTTPS (SSL ou TLS). Il cache ces informations pour la période d'âge maximum (typiquement 31,536,000 secondes, ce qui équivaut à environ 1 an)."
+
+msgid "include_subdomains"
+msgstr "Inclure les sous-domaines"
+
+msgid "include_subdomains_help"
+msgstr "Le paramètre optionnel include subdomains indique au navigateur que la politique HSTS s'applique également à tous les sous-domaines du domaine courant."
+
+msgid "ssl_session_timeout"
+msgstr "Délai d'attente de la session SSL"
+
+msgid "ssl_session_timeout_help"
+msgstr "Spécifie une période pendant laquelle un client peut réutiliser les paramètres de session de la session HTTPS en cours. [[base-apache.possvals]]"
+
+msgid "ssl_session_cache"
+msgstr "Cache de session SSL"
+
+msgid "ssl_session_cache_help"
+msgstr "Définit la durée pendant laquelle les données de session SSL sont mises en cache. [[base-apache.possvals]]"
+
+msgid "ssl_session_tickets"
+msgstr "Billets de session SSL"
+
+msgid "ssl_session_tickets_help"
+msgstr "Active ou désactive la reprise de la session via les tickets de session TLS."
+
+msgid "resolver_valid"
+msgstr "OCSP Resolver Validité"
+
+msgid "resolver_valid_help"
+msgstr "Pour que l'agrafage OCSP fonctionne, Nginx doit utiliser des résolveurs DNS pour se connecter aux serveurs OCSP. Ce paramètre définit la fréquence à laquelle Nginx vérifie la validité des résolveurs OCSP."
+
+msgid "resolver_timeout"
+msgstr "Délai d'attente du résolveur OCSP"
+
+msgid "resolver_timeout_help"
+msgstr "Définit combien de temps Nginx attend une réponse d'un résolveur OCSP avant de décider que la connexion ne fonctionne pas. [[base-apache.possvals]]"
+
+msgid "ssl_stapling"
+msgstr "Agrafage SSL OCSP"
+
+msgid "ssl_stapling_help"
+msgstr "Active ou désactive l'agrafage des réponses OCSP par le serveur. L'agrafage OCSP, officiellement connu sous le nom d'extension TLS Certificate Status Request, permet au présentateur d'un certificat de supporter le coût des ressources nécessaires pour fournir des réponses OCSP en ajoutant ('agrafage') une réponse OCSP horodatée signée par l'autorité de certification à la poignée de main TLS initiale, éliminant ainsi le besoin pour les clients de contacter l'autorité de certification"
+
+msgid "ssl_stapling_verify"
+msgstr "Vérification OSCP"
+
+msgid "ssl_stapling_verify_help"
+msgstr "Active ou désactive la vérification des réponses OCSP par le serveur. La valeur par défaut est : Non activé. La raison en est qu'après un redémarrage de Nginx, il peut s'écouler plusieurs minutes avant que le statut OSCP de tous les certificats soit à nouveau établi. Pendant ce temps, les réponses du PCOS seront signifiées, mais avec la note ci-jointe indiquant qu'elles n'ont pas été vérifiées. Ne l'allumez que si vous savez ce que vous faites."
+
+msgid "enabled"
+msgstr "Nginx SSL Proxy"
+
+msgid "enabled_help"
+msgstr "Active le proxy SSL Nginx. Toutes les requêtes HTTPS seront alors répondues par Nginx, qui agit comme un proxy entre Apache et les navigateurs web en visite."
+
+#####
+
+msgid "ProxyPass_worker_hostname_too_long"
+msgstr "L'URL saisie est trop longue pour être proxiée. Si vous choisissez le proxy, l'URL ne doit pas dépasser 96 caractères."
+
+msgid "https_proxy_not_supported"
+msgstr "L'URL proxy que vous avez spécifié utilise HTTPS, que nous ne pouvons pas proxy. Veuillez spécifier une URL HTTP à la place."
+

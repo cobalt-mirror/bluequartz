@@ -1,0 +1,9 @@
+<item
+    id="support_settings"
+    label="[[base-support.support_settingsMenu]]"
+    description="[[base-support.support_settingsMenu_help]]"
+    url="/support/supportSettings">
+    <parent id="base_support" order="500">
+        <access require="managePackage"/>
+    </parent>
+</item>

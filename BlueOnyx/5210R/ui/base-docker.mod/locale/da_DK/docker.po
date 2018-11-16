@@ -1,0 +1,237 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "connect"
+msgstr "Docker"
+
+msgid "connect_help"
+msgstr "Docker-menuen giver dig adgang til din Docker-konfiguration."
+
+msgid "header"
+msgstr "Docker Service"
+
+msgid "enabledField"
+msgstr "Docker Daemon"
+
+msgid "enabledField_help"
+msgstr "For at bruge Docker skal tjenesten 'docker' køres. Bemærk: Dette kræver Kernel 3.10.0 eller bedre. Derfor kører Docker ikke i VPS på OpenVZ 6 eller 6108R."
+
+msgid "amDockerNameTag"
+msgstr "Docker Server"
+
+msgid "amStatusOK"
+msgstr "Service Docker fungerer normalt."
+
+msgid "amNotAccepting"
+msgstr "Service Docker kører i øjeblikket ikke og kunne ikke genstartes automatisk."
+
+msgid "dockerImages"
+msgstr "Dockerbilleder"
+
+msgid "dockerImages_help"
+msgstr "Docker-billeder giver dig mulighed for at downloade Docker-billeder fra Docker-depotet. Du kan også inspicere lokale Docker-billeder og kan oprette Docker-containere ved hjælp af allerede downloadede billeder."
+
+msgid "dockerImageSearchButton"
+msgstr "Søg online for billeder"
+
+msgid "dockerImageSearchButton_help"
+msgstr "Søg online for Docker-billeder"
+
+msgid "REPOSITORY"
+msgstr "Depotet"
+
+msgid "REPOSITORY_help"
+msgstr "Navnet på depotet."
+
+msgid "TAG"
+msgstr "Tag"
+
+msgid "TAG_help"
+msgstr "Viser taginfo for dette billede."
+
+msgid "IMAGE_ID"
+msgstr "Billed ID"
+
+msgid "IMAGE_ID_help"
+msgstr "Identifikator for dette billede."
+
+msgid "CREATED"
+msgstr "Opret"
+
+msgid "CREATED_help"
+msgstr "Vis tidspunktet for oprettelsen."
+
+msgid "SIZE"
+msgstr "Størrelse"
+
+msgid "SIZE_help"
+msgstr "Viser filstørrelsen for billedet eller beholderen."
+
+msgid "Action"
+msgstr "Handling"
+
+msgid "Action_help"
+msgstr "Definerer, hvad du kan gøre med dette element."
+
+msgid "Search"
+msgstr "Søg"
+
+msgid "Search_help"
+msgstr "Angiv en sætning, som du vil søge efter i online Docker image repository."
+
+msgid "NAME"
+msgstr "Navn"
+
+msgid "NAME_help"
+msgstr "Navn på lageret og billedet."
+
+msgid "DESCRIPTION"
+msgstr "Beskrivelse"
+
+msgid "DESCRIPTION_help"
+msgstr "Beskrivelse af billedet."
+
+msgid "STARS"
+msgstr "Stjerner"
+
+msgid "STARS_help"
+msgstr "Viser hvor mange stjerner korrekturlæsere har givet dette billede."
+
+msgid "OFFICIAL"
+msgstr "Officiel"
+
+msgid "OFFICIAL_help"
+msgstr "Viser, om dette er et officielt godkendt billede eller ej."
+
+msgid "AUTO"
+msgstr "Auto"
+
+msgid "AUTO_help"
+msgstr "Viser, om dette billede blev bygget automatisk."
+
+msgid "dockerDownloadImage_help"
+msgstr "Download Billede"
+
+msgid "dockerLaunchImage_help"
+msgstr "Start en ny dockerbeholder med dette billede."
+
+msgid "dockerDeleteImage_help"
+msgstr "Slet lokal kopi af dette billede."
+
+msgid "dockerInstanceCreate"
+msgstr "Opret en ny dockerbeholder"
+
+msgid "Image"
+msgstr "Billede"
+
+msgid "Image_help"
+msgstr "Angiver hvilket billede der skal bruges."
+
+msgid "Name"
+msgstr "Navn"
+
+msgid "Name_help"
+msgstr "Dockerbeholderens navn."
+
+msgid "LaunchParameters"
+msgstr "Parametre"
+
+msgid "LaunchParameters_help"
+msgstr "Hvilke kommandolinjeparametre, der skal overføres til docker-run-kommandoen."
+
+msgid "dockerList"
+msgstr "Docker Container"
+
+msgid "dockerList_help"
+msgstr "Liste over Dockerbeholdere til stede på denne server."
+
+msgid "CTID"
+msgstr "CTID"
+
+msgid "CTID_help"
+msgstr "Containeridentifikation."
+
+msgid "COMMAND"
+msgstr "Kommando"
+
+msgid "COMMAND_help"
+msgstr "Viser hvilken kommando beholderen kører ved opstart."
+
+msgid "STATUS"
+msgstr "Status"
+
+msgid "STATUS_help"
+msgstr "Viser status for denne container."
+
+msgid "PORTS"
+msgstr "Porte"
+
+msgid "PORTS_help"
+msgstr "Viser hvilke porte denne container har bundet til eller hvilke portmappninger der er aktive."
+
+msgid "NAMES"
+msgstr "Navn"
+
+msgid "NAMES_help"
+msgstr "Viser navnet på denne container."
+
+msgid "dockerInspect_help"
+msgstr "Inspicer dockerbeholder."
+
+msgid "dockerRestart_help"
+msgstr "Genstart dockerbeholder."
+
+msgid "dockerStop_help"
+msgstr "Stop dockerbeholderen."
+
+msgid "dockerDelete_help"
+msgstr "Slet Dockerbeholder."
+
+msgid "ErrorRestartInstance"
+msgstr "Der opstod en fejl under forsøg på at genstarte denne container."
+
+msgid "ErrorStopInstance"
+msgstr "Der opstod en fejl under forsøg på at stoppe denne container."
+
+msgid "ErrorDeleteInstance"
+msgstr "En fejl opstod under forsøg på at slette denne container."
+
+msgid "ErrorImageDelete"
+msgstr "En fejl opstod under forsøg på at slette dette billede. Måske kører du i øjeblikket containere, der er baseret på dette billede? Du skal stoppe og slette disse beholdere først."
+
+msgid "ErrorImageRun"
+msgstr "En fejl opstod under forsøg på at køre en container baseret på dette billede."
+
+msgid "ErrorImagePrep"
+msgstr "En fejl opstod under forsøg på at forberede en container baseret på dette billede."
+
+msgid "ErrorImageDownload"
+msgstr "Der opstod en fejl under forsøg på at downloade dette billede."
+
+msgid "docker_inspect"
+msgstr "Konfiguration af denne dockerbeholder"
+
+msgid "ImageDownload"
+msgstr "Docker image download"
+
+msgid "DownLoadInProgress"
+msgstr "Det valgte billede downloades nu i baggrunden. Afhængigt af billedets størrelse kan det tage et stykke tid at afslutte downloaden. Se venligst listen over Dockerbilleder igen om et øjeblik for at se om det nye billede allerede er til stede."
+
+msgid "OK"
+msgstr "Fortsæt"
+
+msgid "OK_help"
+msgstr "Fortsæt tilbage til listen over Docker-billeder."
+
+####
+
+msgid "dockerTagInspectImage_help"
+msgstr "Se tilgængelige versioner."
+

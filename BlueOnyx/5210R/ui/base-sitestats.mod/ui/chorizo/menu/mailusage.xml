@@ -1,0 +1,10 @@
+<item 
+    id="base_mailusage" 
+    label="[[base-sitestats.mailusage]]" 
+    description="[[base-sitestats.mailusageDescription]]" 
+    url="/sitestats/summaryEmail?type=mail&amp;group=[[VAR.group]]"
+>
+    <parent id="base_siteusage" order="40">
+        <access require="siteAdmin"/>
+    </parent>
+</item>

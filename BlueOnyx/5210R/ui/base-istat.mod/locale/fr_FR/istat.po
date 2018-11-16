@@ -1,0 +1,43 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Meaulnes Legler <blue@waveweb.ch>\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "istat"
+msgstr "iStat"
+
+msgid "istat_help"
+msgstr "Configurer le service iStat"
+
+msgid "iStatSettings"
+msgstr "Paramètres iStat"
+
+msgid "enableiStatField"
+msgstr "Activer le serveur"
+
+msgid "enableiStatField_help"
+msgstr "Activer ou désactiver iStat. iStat recueille des données sur l'activité CPU, la mémoire, le réseau et l'utilisation du disque et enregistre l'historique. iStat livre des statistiques à votre app iStat sur iPhone/iPad."
+
+msgid "serverCodeField"
+msgstr "Code du serveur"
+
+msgid "serverCodeField_help"
+msgstr "Taper le code d'accès à cinq chiffres pour se connecter de ce serveur. Le code d'accès que vous définissez ne peut contenir que des caractères numériques."
+
+msgid "networkPortField"
+msgstr "Numéro de port"
+
+msgid "networkPortField_help"
+msgstr "Taper le numéro de port que le serveur sera utilisé. Le numéro de port par défaut est 5109."
+
+msgid "errorWritingConfFile"
+msgstr "Impossible d'enregistrer le fichier de configuration."
+
+msgid "cap_serveriStat"
+msgstr "Paramètres iStat"
+

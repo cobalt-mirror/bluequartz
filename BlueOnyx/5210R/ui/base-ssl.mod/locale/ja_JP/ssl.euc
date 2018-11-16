@@ -1,0 +1,1043 @@
+# menu items
+msgid "ssl"
+msgstr "SSL"
+
+msgid "sslDescription"
+msgstr "ポート 443 で https を使ってサイトへのセキュアなアクセスを提供する SSL 証明書に関するアクセス情報です。たとえば、SSL を使うと、ユーザは https://www.example.com:443 へ行くことによりサイトにアクセスできるようになります。"
+
+msgid "adminSslDescription"
+msgstr "サーバデスクトップへのセキュアアクセスに使う SSL 証明書に関するアクセス情報です。"
+
+# siteSSL button strings
+msgid "createCert"
+msgstr "自己署名ディジタル証明書の作成"
+
+msgid "createCert_help"
+msgstr "新規の自己署名 SSL 証明書を作成できます。"
+
+msgid "request"
+msgstr "署名リクエストの作成"
+
+msgid "request_help"
+msgstr "証明書署名リクエストを作成できます。証明書署名リクエストを認証機関に提出すると、ウェブブラウザによって認知される署名ディジタル証明書を作成できます。"
+
+msgid "request_disabledHelp"
+msgstr "署名リクエストを作成するには、その前に証明書を作成する必要があります。"
+
+msgid "manageCAs"
+msgstr "認証機関の管理"
+
+msgid "manageCAs_help"
+msgstr "このサイトの第２の認証機関を追加または削除できます。第２の認証機関は通常は必要ありませんが、一部の機関では、ほとんどの認証機関が発行する通常のサーバ証明書に加えて、クライアント認証に使う別の証明書を発行します。"
+
+msgid "import"
+msgstr "インポート"
+
+msgid "import_help"
+msgstr "署名ディジタル証明書をインポートできます。"
+
+msgid "cert_empty"
+msgstr "インポートするファイルが指定されていません。インポートする SSL 証明書が含まれているファイルを指定してください。"
+
+msgid "export"
+msgstr "エクスポート"
+
+msgid "export_help"
+msgstr "現在のプライベートキーと証明書をダウンロードし、証明書を別のサーバへ転送できるようにします。"
+
+msgid "export_disabledHelp"
+msgstr "エクスポートする前に、証明書を作成またはインポートする必要があります。"
+
+# siteSSL page information strings
+msgid "serverDesktop"
+msgstr "サーバデスクトップ"
+
+msgid "sslCertInfo"
+msgstr "証明書情報 - [[VAR.fqdn]]"
+
+# doesn't show up for the admin server
+msgid "enabled"
+msgstr "SSL を有効にする"
+
+msgid "enabled_help"
+msgstr "このサイトのウェブサーバへのセキュアアクセスを可能にする SSL  が有効になります。"
+
+msgid "importantNote"
+msgstr "この情報は、正確で、かつ国や地方自治体または正式な機関が認知できる必要があります。"
+
+msgid "location"
+msgstr "所在地"
+
+msgid "city"
+msgstr "市町村区"
+
+msgid "city_help"
+msgstr "会社／団体が存在または登録している市町村区を入力してください。[[base-ssl.importantNote]]"
+
+msgid "state"
+msgstr "都道府県"
+
+msgid "state_help"
+msgstr "会社／団体が存在または登録している都道府県を入力してください。[[base-ssl.importantNote]]"
+
+msgid "country"
+msgstr "国"
+
+msgid "country_help"
+msgstr "この証明書を使用する会社／団体が存在または登録している国を指定してください。[[base-ssl.importantNote]]"
+
+msgid "country_invalid"
+msgstr "国が指定されていません。会社／団体が存在または登録している国を指定してください。"
+
+msgid "orgInfo"
+msgstr "証明書の対象に関する情報"
+
+msgid "orgInfo_help"
+msgstr "この証明書を所有する会社／団体に関する情報です。"
+
+msgid "orgName"
+msgstr "会社／団体"
+
+msgid "orgName_help"
+msgstr "この証明書を所有する会社／団体の正式名称を入力してください。認証機関から署名ディジタル証明書を入手するには、国や地方自治体または正式な機関が会社／団体の名称または所在地を確認する必要があります。また、証明書発行機関は、証明書をリクエストしている当人が、対象の会社／団体の所有者または従業員であることを確認する必要もあります。"
+
+msgid "orgUnit"
+msgstr "部署名"
+
+msgid "orgUnit_help"
+msgstr "この証明書を使用する会社／団体の部署名を入力してください。これは省略可能ですが、署名ディジタル証明書をリクエストしている当人が、大きな会社／団体の子会社の従業員である場合には、有用な情報になります。"
+
+msgid "otherInfo"
+msgstr "その他の情報"
+
+msgid "otherInfo_help"
+msgstr "この証明書に関するその他の情報です。"
+
+msgid "email"
+msgstr "連絡先電子メール"
+
+msgid "email_help"
+msgstr "この証明書に関する情報を送信する電子メールアドレスを入力してください。"
+
+msgid "expires"
+msgstr "証明書の有効期限"
+
+msgid "expires_help"
+msgstr "この証明書が、このサーバに接続しようとするクライアントソフトウェアに対して有効性を失う日付です。"
+
+# show this if they haven't created or imported a cert
+msgid "noCertInfo"
+msgstr "このサイトには現在証明書はありません。証明書を作成またはインポートして、証明書に関する情報を表示してください。"
+
+msgid "daysValid"
+msgstr "有効な期間"
+
+msgid "daysValid_help"
+msgstr "作成した証明書の有効期間を指定してください。有効期間は、2038 年の 1 月より前に終了するよう設定しないと、証明書を作成できません。"
+
+msgid "365"
+msgstr "年"
+
+msgid "30"
+msgstr "月"
+
+msgid "7"
+msgstr "週"
+
+msgid "1"
+msgstr "日"
+
+msgid "requestInformation"
+msgstr "署名リクエスト情報 - [[VAR.fqdn]]"
+
+msgid "enterCertInformation"
+msgstr "証明書情報 - [[VAR.fqdn]]"
+
+msgid "certInstructions"
+msgstr "[[base-ssl.createCert]] をクリックすると、このウェブサイトの自己署名ディジタル証明書が作成されます。ブラウザがこのサイトにアクセスすると、自己署名ディジタル証明書から警告メッセージが送信されます。この警告を削除するには、証明書認証機関に署名リクエストを提出して、署名ディジタル証明書を入手してください。"
+
+msgid "genSSCert"
+msgstr "新規の自己署名ディジタル証明書を発行"
+
+msgid "genSSCert_help"
+msgstr "署名リクエストと共に自己署名ディジタル証明書が作成されます。自己署名ディジタル証明書は、提出した署名リクエストを証明書認証機関が処理している間、一時的に使用するためのものです。"
+
+msgid "certReqInstructions"
+msgstr "所在地と対象に関する情報は、正確で、かつ国や地方自治体または正式な機関が認知できる必要があります。証明書認証機関がこの情報を確認できないと、署名リクエストが遅れたり、拒否される可能性があります。"
+
+# strings for uploadCert page
+msgid "importCert"
+msgstr "証明書のインポート - [[VAR.fqdn]]"
+
+msgid "certUpload"
+msgstr "証明書"
+
+msgid "certUpload_help"
+msgstr "[参照] をクリックして、インポートする証明書を含むテキストファイルをお選びください。証明書ファイルを別のサーバから転送している場合には、プライベートキーと証明書セクションの両方が含まれている必要があります。このサーバの作成した証明書署名リクエストを提出した認証機関から直接証明書を受け取る場合には、証明書だけで十分ですが、署名ディジタル証明書にプライベートキーが含まれていても構いません。"
+
+# helper script error messages
+# ssl_import.pl
+msgid "sslImportError1"
+msgstr "新規証明書をアップロードできません。."
+
+msgid "sslImportError2"
+msgstr "指定されたサイトは存在しません。"
+
+msgid "sslImportError3"
+msgstr "サイト情報を入手できませんでした。もう一度お試しください。"
+
+msgid "sslImportError4"
+msgstr "アップロードした証明書を読みこめませんでした。もう一度お試しください。"
+
+msgid "sslImportError5"
+msgstr "この証明書は有効な SSL 証明書ではありません。"
+
+msgid "sslImportError6"
+msgstr "インポートされた証明書に関する証明書署名リクエストを作成できません。"
+
+msgid "sslImportError7"
+msgstr "表示する証明書情報をアップデートできません。"
+
+msgid "sslImportError8"
+msgstr "インポートされた証明書には、この証明書のプライベートキーが含まれていません。また、このサーバに現在存在するプライベートキーは、この証明書には一致しません。このサーバ以外で作成された証明書をインポートする場合には、インポートした証明書ファイルに RSA プライベートキーが含まれている必要があります。"
+
+msgid "sslImportError10"
+msgstr "[[base-ssl.caIdent]] に指定された値は一意ではありません。"
+
+msgid "sslImportError11"
+msgstr "インポートされたファイルには、SSL 証明書が含まれていませんでした。ファイルを確認してから、もう一度インポートしてください。"
+
+msgid "sslImportError12"
+msgstr "インポートされたファイルには複数の証明書が含まれています。インポートファイルには、SSL 証明書が 1 つとプライベートキーが 1 つ（なくても構いません）だけが含まれている必要があります。"
+
+msgid "sslImportError13"
+msgstr "証明書認証機関ファイルに証明書認証機関を追加できませんでした。"
+
+# handler error messages
+# common see ssl.pl, gen_cert.pl, and SSL.pm
+msgid "cantSetExpires"
+msgstr "証明書は作成されましたが、有効期限情報を更新できませんでした。"
+
+msgid "nonExistentCertDir"
+msgstr "指定された証明書ディレクトリ [[VAR.dir]] は存在しません。"
+
+msgid "cantGenerateKey"
+msgstr "Openssl は、このサーバのプライベートキーを作成できませんでした。"
+
+msgid "cantGenerateSigningRequest"
+msgstr "Openssl は、署名リクエストを作成できませんでした。"
+
+msgid "cantGenerateCert"
+msgstr "Openssl は、証明書を作成できませんでした。"
+
+msgid "generatedCertInvalid"
+msgstr "Openssl の作成した証明書は有効ではありません。"
+
+msgid "2038bug"
+msgstr "[[base-ssl.daysValid]] に入力した値は、有効期限が 2038 年 1 月になるため、証明書の有効期限を正しい日付に設定できません。SSL 作成ツールは、2038 年 1 月半ば以降の有効期限を受け付けられません。2038 年 1 月以前に終了する値を入力してください。"
+
+msgid "fqdnTooLongForCsr"
+msgstr "[[VAR.fqdn]] というホスト名は長すぎるため、証明書署名リクエストの生成に使えません。証明書署名リクエストの生成に使うホスト名には、64 文字以内の名前を指定してください。この名前でも自己署名ディジタル証明書を作成することはできますが、64 文字以降が削除されたホスト名を持つ署名証明書が作成されます。"
+
+msgid "fqdnTooLongOkay"
+msgstr "自己署名ディジタル証明書は正常に作成されましたが、[[VAR.fqdn]] というホスト名は、SSL 証明書のホスト名の上限である 64 文字より長いため、ホスト名の最後の部分は削除されました。"
+
+# vsite_ssl.pl
+msgid "sslAlreadyUsedByIP"
+msgstr "SSL は、このサイトと同じ IP アドレス、[[VAR.ipaddr]] を持つ [[VAR.fqdn]] がすでに使用しています。SSL は、同じ IP アドレスを持つ複数のサイトのいずれか 1 つのサイトでしか有効にできません。このサイトの SSL を有効にするには、このサイトの IP アドレスを変更するか、[[VAR.fqdn]] の SSL を無効にしてください。"
+
+msgid "noCertificateOrKey"
+msgstr "このサーバの証明書またはプライベートキーがないため、SSL を有効にできませんでした。"
+
+msgid "cantEditSslConf"
+msgstr "サーバの SSL 設定ファイルを更新できません。"
+
+msgid "cantUpdateApacheConf"
+msgstr "このサイトの SSL 設定をサーバの設定に含めることができません。"
+
+# gen_cert.pl
+msgid "cantMakeDirectory"
+msgstr "[[VAR.dir]] ディレクトリを作成できません。"
+
+# these messages not shown in UI
+msgid "couldntRunOpenssl"
+msgstr "openssl コマンドを実行できません。"
+
+msgid "certDirMissing"
+msgstr "証明書ディレクトリが見つからないため、証明書を生成できません。"
+
+# vsite_change_ip.pl
+msgid "sslMigrationConflict"
+msgstr "IP アドレスを [[VAR.ipaddr]] に変更できません。このサイトの SSL は有効になっていますが、指定された IP アドレスを持つ別のサイトでも SSL が有効になっています。どちらかのサイトの SSL を無効にしてください。"
+
+# list of available countries for SSL, in other words all ISO codes for any
+# country that has one
+msgid "foocountry"
+msgstr "国を指定してください..."
+
+msgid "AF"
+msgstr "アフガニスタン"
+
+msgid "AL"
+msgstr "アルバニア"
+
+msgid "DZ"
+msgstr "アルジェリア"
+
+msgid "AS"
+msgstr "アメリカ領サモア"
+
+msgid "AD"
+msgstr "アンドラ"
+
+msgid "AO"
+msgstr "アンゴラ"
+
+msgid "AI"
+msgstr "アンギラ"
+
+msgid "AQ"
+msgstr "南極"
+
+msgid "AG"
+msgstr "アンティグア‐バーブーダ"
+
+msgid "AR"
+msgstr "アルゼンチン"
+
+msgid "AM"
+msgstr "アルメニア"
+
+msgid "AW"
+msgstr "アルーバ"
+
+msgid "AU"
+msgstr "オーストラリア"
+
+msgid "AT"
+msgstr "オーストリア"
+
+msgid "AZ"
+msgstr "アゼルバイジャン"
+
+msgid "BS"
+msgstr "バハマ"
+
+msgid "BH"
+msgstr "バーレーン"
+
+msgid "BD"
+msgstr "バングラデシュ"
+
+msgid "BB"
+msgstr "バルバドス"
+
+msgid "BY"
+msgstr "ベラルーシ"
+
+msgid "BE"
+msgstr "ベルギー"
+
+msgid "BZ"
+msgstr "ベリーズ"
+
+msgid "BJ"
+msgstr "ベニン"
+
+msgid "BM"
+msgstr "バミューダ"
+
+msgid "BT"
+msgstr "ブータン"
+
+msgid "BO"
+msgstr "ボリビア"
+
+msgid "BA"
+msgstr "ボスニア・ヘルツェゴビナ"
+
+msgid "BW"
+msgstr "ボツワナ"
+
+msgid "BV"
+msgstr "ブーベ島"
+
+msgid "BR"
+msgstr "ブラジル"
+
+msgid "IO"
+msgstr "インド洋英国領"
+
+msgid "BN"
+msgstr "ブルネイ・ダルサラーム"
+
+msgid "BG"
+msgstr "ブルガリア"
+
+msgid "BF"
+msgstr "ブルキナファソ"
+
+msgid "BI"
+msgstr "ブルンジ"
+
+msgid "KH"
+msgstr "カンボジア"
+
+msgid "CM"
+msgstr "カメルーン"
+
+msgid "CA"
+msgstr "カナダ"
+
+msgid "CV"
+msgstr "カーボベルデ"
+
+msgid "KY"
+msgstr "ケイマン諸島"
+
+msgid "CF"
+msgstr "中央アフリカ共和国"
+
+msgid "TD"
+msgstr "チャド"
+
+msgid "CL"
+msgstr "チリ"
+
+msgid "CN"
+msgstr "中国"
+
+msgid "CX"
+msgstr "クリスマス島"
+
+msgid "CC"
+msgstr "ココス (キーリング) 諸島"
+
+msgid "CO"
+msgstr "コロンビア"
+
+msgid "KM"
+msgstr "コモロ"
+
+msgid "CG"
+msgstr "コンゴ民主共和国"
+
+msgid "CK"
+msgstr "クック諸島"
+
+msgid "CR"
+msgstr "コスタリカ"
+
+msgid "CI"
+msgstr "コートジボアール"
+
+msgid "HR"
+msgstr "クロアチア"
+
+msgid "CU"
+msgstr "キューバ"
+
+msgid "CY"
+msgstr "キプロス"
+
+msgid "CZ"
+msgstr "チェコ共和国"
+
+msgid "DK"
+msgstr "デンマーク"
+
+msgid "DJ"
+msgstr "ジブチ"
+
+msgid "DM"
+msgstr "ドミニカ"
+
+msgid "DO"
+msgstr "ドミニカ共和国"
+
+msgid "TP"
+msgstr "東ティモール"
+
+msgid "EC"
+msgstr "エクアドル"
+
+msgid "EG"
+msgstr "エジプト"
+
+msgid "SV"
+msgstr "エルサルバドル"
+
+msgid "GQ"
+msgstr "赤道ギニア"
+
+msgid "ER"
+msgstr "エリトリア"
+
+msgid "EE"
+msgstr "エストニア"
+
+msgid "ET"
+msgstr "エチオピア"
+
+msgid "FK"
+msgstr "フォークランド諸島 (マルビナス)"
+
+msgid "FO"
+msgstr "フェロー諸島"
+
+msgid "FJ"
+msgstr "フィジー"
+
+msgid "FI"
+msgstr "フィンランド"
+
+msgid "FR"
+msgstr "フランス"
+
+msgid "GF"
+msgstr "フランス領ギアナ"
+
+msgid "PF"
+msgstr "フランス領ポリネシア"
+
+msgid "TF"
+msgstr "インド洋南部フランス領"
+
+msgid "GA"
+msgstr "ガボン"
+
+msgid "GM"
+msgstr "ガンビア"
+
+msgid "GE"
+msgstr "グルジア"
+
+msgid "DE"
+msgstr "ドイツ"
+
+msgid "GH"
+msgstr "ガーナ"
+
+msgid "GI"
+msgstr "ジブラルタル"
+
+msgid "GR"
+msgstr "ギリシャ"
+
+msgid "GL"
+msgstr "グリーンランド"
+
+msgid "GD"
+msgstr "グレナダ"
+
+msgid "GP"
+msgstr "グアドループ島"
+
+msgid "GU"
+msgstr "グアム"
+
+msgid "GT"
+msgstr "グアテマラ"
+
+msgid "GN"
+msgstr "ギニア"
+
+msgid "GW"
+msgstr "ギニア・ビサウ"
+
+msgid "GY"
+msgstr "ギアナ"
+
+msgid "HT"
+msgstr "ハイチ"
+
+msgid "HM"
+msgstr "ハード・マクドナルド諸島"
+
+msgid "HN"
+msgstr "ホンジュラス"
+
+msgid "HK"
+msgstr "香港"
+
+msgid "HU"
+msgstr "ハンガリー"
+
+msgid "IS"
+msgstr "アイスランド"
+
+msgid "IN"
+msgstr "インド"
+
+msgid "ID"
+msgstr "インドネシア"
+
+msgid "IR"
+msgstr "イランイスラム共和国"
+
+msgid "IQ"
+msgstr "イラク"
+
+msgid "IE"
+msgstr "アイルランド"
+
+msgid "IL"
+msgstr "イスラエル"
+
+msgid "IT"
+msgstr "イタリア"
+
+msgid "JM"
+msgstr "ジャマイカ"
+
+msgid "JP"
+msgstr "日本"
+
+msgid "JO"
+msgstr "ヨルダン"
+
+msgid "KZ"
+msgstr "カザフスタン"
+
+msgid "KE"
+msgstr "ケニア"
+
+msgid "KI"
+msgstr "キリバス"
+
+msgid "KP"
+msgstr "朝鮮民主主義人民共和国"
+
+msgid "KR"
+msgstr "大韓民国"
+
+msgid "KW"
+msgstr "クウェート"
+
+msgid "KG"
+msgstr "キルギスタン"
+
+msgid "LA"
+msgstr "ラオス人民民主共和国"
+
+msgid "LV"
+msgstr "ラトビア"
+
+msgid "LB"
+msgstr "レバノン"
+
+msgid "LS"
+msgstr "レソト"
+
+msgid "LR"
+msgstr "リベリア"
+
+msgid "LY"
+msgstr "リビア・アラブ国"
+
+msgid "LI"
+msgstr "リヒテンシュタイン"
+
+msgid "LT"
+msgstr "リトアニア"
+
+msgid "LU"
+msgstr "ルクセンブルク"
+
+msgid "MO"
+msgstr "マカオ"
+
+msgid "MK"
+msgstr "マケドニア (旧ユーゴスラビア共和国)"
+
+msgid "MG"
+msgstr "マダガスカル"
+
+msgid "MW"
+msgstr "マラウイ"
+
+msgid "MY"
+msgstr "マレーシア"
+
+msgid "MV"
+msgstr "モルジブ"
+
+msgid "ML"
+msgstr "マリ"
+
+msgid "MT"
+msgstr "マルタ"
+
+msgid "MH"
+msgstr "マーシャル諸島"
+
+msgid "MQ"
+msgstr "マルチニーク島"
+
+msgid "MR"
+msgstr "モーリタニア"
+
+msgid "MU"
+msgstr "モーリシャス"
+
+msgid "YT"
+msgstr "マヨット島"
+
+msgid "MX"
+msgstr "メキシコ"
+
+msgid "FM"
+msgstr "ミクロネシア連邦"
+
+msgid "MD"
+msgstr "モルドバ共和国"
+
+msgid "MC"
+msgstr "モナコ"
+
+msgid "MN"
+msgstr "モンゴル"
+
+msgid "MS"
+msgstr "モンセラット"
+
+msgid "MA"
+msgstr "モロッコ"
+
+msgid "MZ"
+msgstr "モザンビーク"
+
+msgid "MM"
+msgstr "ミャンマー"
+
+msgid "NA"
+msgstr "ナミビア"
+
+msgid "NR"
+msgstr "ナウル"
+
+msgid "NP"
+msgstr "ネパール"
+
+msgid "NL"
+msgstr "オランダ"
+
+msgid "AN"
+msgstr "オランダ領アンチル諸島"
+
+msgid "NC"
+msgstr "ニューカレドニア"
+
+msgid "NZ"
+msgstr "ニュージーランド"
+
+msgid "NI"
+msgstr "ニカラグア"
+
+msgid "NE"
+msgstr "ニジェール"
+
+msgid "NG"
+msgstr "ナイジェリア"
+
+msgid "NU"
+msgstr "ニウエ"
+
+msgid "NF"
+msgstr "ノーフォーク島"
+
+msgid "MP"
+msgstr "北マリアナ諸島"
+
+msgid "NO"
+msgstr "ノルウェー"
+
+msgid "OM"
+msgstr "オマーン"
+
+msgid "PK"
+msgstr "パキスタン"
+
+msgid "PW"
+msgstr "パラウ"
+
+msgid "PS"
+msgstr "パレスチナ領"
+
+msgid "PA"
+msgstr "パナマ"
+
+msgid "PG"
+msgstr "パプアニューギニア"
+
+msgid "PY"
+msgstr "パラグアイ"
+
+msgid "PE"
+msgstr "ペルー"
+
+msgid "PH"
+msgstr "フィリピン"
+
+msgid "PN"
+msgstr "ピトケアン"
+
+msgid "PL"
+msgstr "ポーランド"
+
+msgid "PT"
+msgstr "ポルトガル"
+
+msgid "PR"
+msgstr "プエルトリコ"
+
+msgid "QA"
+msgstr "カタール"
+
+msgid "RE"
+msgstr "レニユオン島"
+
+msgid "RO"
+msgstr "ルーマニア"
+
+msgid "RU"
+msgstr "ロシア連邦"
+
+msgid "RW"
+msgstr "ルワンダ"
+
+msgid "SH"
+msgstr "セントヘレナ"
+
+msgid "KN"
+msgstr "セントキッツ・ネイビス"
+
+msgid "LC"
+msgstr "セントルシア"
+
+msgid "PM"
+msgstr "サンピエール・エ・ミクロン島"
+
+msgid "VC"
+msgstr "セントビンセント／グレナディーン諸島"
+
+msgid "WS"
+msgstr "サモア"
+
+msgid "SM"
+msgstr "サンマリノ"
+
+msgid "ST"
+msgstr "サントーメ・プリンシペ"
+
+msgid "SA"
+msgstr "サウジアラビア"
+
+msgid "SN"
+msgstr "セネガル"
+
+msgid "SC"
+msgstr "セーシェル"
+
+msgid "SL"
+msgstr "シエラレオーネ"
+
+msgid "SG"
+msgstr "シンガポール"
+
+msgid "SK"
+msgstr "スロバキア"
+
+msgid "SI"
+msgstr "スロベニア"
+
+msgid "SB"
+msgstr "ソロモン諸島"
+
+msgid "SO"
+msgstr "ソマリア"
+
+msgid "ZA"
+msgstr "南アフリカ共和国"
+
+msgid "GS"
+msgstr "南ジョージア島・南サンドイッチ諸島"
+
+msgid "ES"
+msgstr "スペイン"
+
+msgid "LK"
+msgstr "スリランカ"
+
+msgid "SD"
+msgstr "スーダン"
+
+msgid "SR"
+msgstr "スリナム"
+
+msgid "SJ"
+msgstr "スバールバル／ヤンマイエン諸島"
+
+msgid "SZ"
+msgstr "スワジランド"
+
+msgid "SE"
+msgstr "スウェーデン"
+
+msgid "CH"
+msgstr "スイス"
+
+msgid "SY"
+msgstr "シリア・アラブ共和国"
+
+msgid "TW"
+msgstr "台湾"
+
+msgid "TJ"
+msgstr "タジキスタン"
+
+msgid "TZ"
+msgstr "タンザニア連合共和国"
+
+msgid "TH"
+msgstr "タイ"
+
+msgid "TG"
+msgstr "トーゴ"
+
+msgid "TK"
+msgstr "トケラウ"
+
+msgid "TO"
+msgstr "トンガ"
+
+msgid "TT"
+msgstr "トリニダード・トバゴ"
+
+msgid "TN"
+msgstr "チュニジア"
+
+msgid "TR"
+msgstr "トルコ"
+
+msgid "TM"
+msgstr "トルクメニスタン"
+
+msgid "TC"
+msgstr "タークス／カイコス諸島"
+
+msgid "TV"
+msgstr "ツバル"
+
+msgid "UG"
+msgstr "ウガンダ"
+
+msgid "UA"
+msgstr "ウクライナ"
+
+msgid "AE"
+msgstr "アラブ首長国連邦"
+
+msgid "GB"
+msgstr "英国"
+
+msgid "US"
+msgstr "米国"
+
+msgid "UM"
+msgstr "米国領のその他の諸島"
+
+msgid "UY"
+msgstr "ウルグアイ"
+
+msgid "UZ"
+msgstr "ウズベキスタン"
+
+msgid "VU"
+msgstr "バヌアツ"
+
+msgid "VA"
+msgstr "バチカン市国 (聖座)"
+
+msgid "VE"
+msgstr "ベネズエラ"
+
+msgid "VN"
+msgstr "ベトナム"
+
+msgid "VG"
+msgstr "バージン諸島 (英領)"
+
+msgid "VI"
+msgstr "バージン諸島 (米領)"
+
+msgid "WF"
+msgstr "ウォリス・フトゥーナ諸島"
+
+msgid "EH"
+msgstr "西サハラ"
+
+msgid "YE"
+msgstr "イエメン"
+
+msgid "YU"
+msgstr "ユーゴスラビア"
+
+msgid "ZM"
+msgstr "ザンビア"
+
+msgid "ZW"
+msgstr "ジンバブエ"
+
+# cert authority management page
+msgid "caManager"
+msgstr "証明書認証機関の管理 - [[VAR.fqdn]]"
+
+msgid "caAction"
+msgstr "管理操作"
+
+msgid "caAction_help"
+msgstr "このサイトの第２の認証機関に実行する操作を指定してください。"
+
+msgid "addCA"
+msgstr "追加"
+
+msgid "caIdent"
+msgstr "証明書認証機関の名称"
+
+msgid "caIdent_help"
+msgstr "第２の認証機関を識別する一意の名称を入力してください。"
+
+msgid "addCaIdent_empty"
+msgstr "新規の認証機関を追加するには、[[base-ssl.caIdent]] に名称を入力してください。"
+
+msgid "caCert"
+msgstr "証明書を選択"
+
+msgid "caCert_help"
+msgstr "[参照] をクリックして、証明書認証機関の証明書を含むファイルを指定してください。証明書が 1 つだけ含まれているファイルを指定する必要があります。"
+
+msgid "caCert_empty"
+msgstr "アップロードする証明書が指定されていません。新規の認証機関を追加するには、アップロードする証明書を指定してください。"
+
+msgid "removeCA"
+msgstr "削除"
+
+msgid "removeCAIdent"
+msgstr "現在の証明書認証機関"
+
+msgid "removeCAIdent_help"
+msgstr "このサイトから削除したい証明を発行した第２の認証機関を指定してください。"
+
+# ia5string_check.pl
+msgid "nonAsciiCharacter"
+msgstr "[[VAR.property]] フィールドには、半角英数字しか入力できません。"
+
+msgid "SSL_enabled"
+msgstr "[[base-ssl.enabled]]"
+
+msgid "SSL_enabled_help"
+msgstr "[[base-ssl.enabled_help]]"
+
+msgid "sslGetFailed"
+msgstr "コマンド '/usr/sausalito/sbin/ssl_get.pl' が期待される結果を返しませんでした。多分ない証明書が存在がありません？"

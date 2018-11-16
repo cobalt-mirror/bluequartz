@@ -1,0 +1,45 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "istat"
+msgstr "iStat"
+
+msgid "istat_help"
+msgstr "Der Dienst iStat kann hier konfiguriert werden."
+
+msgid "iStatSettings"
+msgstr "iStat Einstellungen"
+
+msgid "enableiStatField"
+msgstr "Server aktivieren"
+
+msgid "enableiStatField_help"
+msgstr "Hier können Sie den iStat-Dienst aktivieren oder deaktivieren. iStat sammelt Daten wie CPU-, Speicher-, Netzwerk- und Festplattennutzung. Diese Daten können dann über eine esprechende iPhone / iPad Applikation (erhältlich im Apple Appstore) visualisiert werden."
+
+msgid "serverCodeField"
+msgstr "Server-Code"
+
+msgid "serverCodeField_help"
+msgstr "Geben Sie hier einen Passcode mit fünf Stellen ein. Dieser Passcode wird von der iStat Applikation verwendet, um auf diesen Dienst zugreifen zu können. Der Passcode darf nur Nummern beinhalten."
+
+msgid "networkPortField"
+msgstr "Port-Nummer"
+
+msgid "networkPortField_help"
+msgstr "Geben Sie hier die Nummer des Ports ein, über den der Dienst iStat von außen zu erreichen sein soll. Der Standard-Port für den Dienst iStat ist 5109."
+
+msgid "errorWritingConfFile"
+msgstr "Fehler beim Schreiben der iStat Konfigurations-Datei."
+
+msgid "cap_serveriStat"
+msgstr "iStat Einstellungen"
+
+msgid "NetworkPortInUse"
+msgstr "Der spezifizierte neue Port wird bereits von einem anderen Dienst verwendet. Bitte wählen Sie einen anderen Port aus."

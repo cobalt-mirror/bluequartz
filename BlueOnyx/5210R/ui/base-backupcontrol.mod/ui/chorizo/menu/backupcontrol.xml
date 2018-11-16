@@ -1,0 +1,10 @@
+<item 
+    id="base_backupcontrol" 
+    label="[[base-backupcontrol.desktop_control]]" 
+    description="[[base-backupcontrol.description]]" 
+    url="/backupcontrol/desktopcontrol"
+>
+    <parent id="base_sysmaintenance" order="10">
+        <access require="serverServerDesktop"/>
+    </parent>
+</item>

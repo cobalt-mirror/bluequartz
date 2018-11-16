@@ -1,0 +1,119 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Meaulnes Legler <blue@waveweb.ch>\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+# --- Menu
+
+msgid "systemInfo"
+msgstr "Informations"
+
+msgid "systemInformation"
+msgstr "Informations sur le système"
+
+msgid "systemInfo_help"
+msgstr "[[base-system.systemInformation]] peuvent être consultées ici."
+
+# --- System Info page
+
+msgid "serialUninitialized"
+msgstr "Non initialisé"
+
+msgid "productNameField"
+msgstr "Nom du produit"
+
+msgid "productNameField_help"
+msgstr "Le nom du produit de votre appareil serveur."
+
+msgid "productBuildField"
+msgstr "Numéro de construction"
+
+msgid "productBuildField_help"
+msgstr "Le numéro de construction du serveur."
+
+msgid "serialNumberField"
+msgstr "Numéro de série matériel"
+
+msgid "serialNumberField_help"
+msgstr "Le numéro de série matériel du serveur."
+
+msgid "productSerialNumberField"
+msgstr "Numéro de série du produit"
+
+msgid "productSerialNumberField_help"
+msgstr "Le numéro de série du produit du serveur."
+
+msgid "mac0Field"
+msgstr "Interface primaire adresse MAC"
+
+msgid "mac0Field_help"
+msgstr "Il s'agit du numéro de série matériel de la carte d'interface réseau primaire du serveur."
+
+msgid "mac1Field"
+msgstr "Interface secondaire adresse MAC"
+
+msgid "mac1Field_help"
+msgstr "Il s'agit du numéro de série matériel de la carte d'interface réseau secondaire du serveur."
+
+msgid "memoryField"
+msgstr "Taille de la mémoire (MB)"
+
+msgid "memoryField_help"
+msgstr "La quantité totale de mémoire réelle disponible sur le serveur."
+
+msgid "diskField"
+msgstr "Taille du disque dur (GO)"
+
+msgid "diskField_help"
+msgstr "La quantité totale d'espace disque disponible sur le serveur."
+
+msgid "register"
+msgstr "Inscrivez-vous maintenant"
+
+msgid "register_help"
+msgstr "Cliquer ici pour enregistrer ce serveur."
+
+msgid "webLinkText"
+msgstr "Site Web de [[base-alpine.osVendor]]"
+
+msgid "webLink"
+msgstr "[[base-alpine.vendorSite]]"
+
+msgid "webLinkText_help"
+msgstr "Cliquer ici pour aller à [[base-system.webLinkText]]."
+
+msgid "creditsAcknoledgements"
+msgstr "Crédits et Remerciements"
+
+msgid "creditsAcknoledgements_help"
+msgstr "Cliquer ici pour voir les [[base-system.creditsAcknoledgements]]"
+
+msgid "copyright"
+msgstr "[[base-product.longNoticeEnglish]] <BR><P><P><BR> [[base-product.longNoticeFrench]]"
+
+msgid "codeNotice"
+msgstr "Les logiciels [[base-alpine.osName]] sont librement redistribuables. La majorité des composants logiciels de ce serveur sont distribuables sous la <A HREF=bsdlicense.php>licence BSD</a> et la <A HREF=gnulicense.php>licence publique GNU</a>. Le code source complet de [[base-alpine.osName]] est disponible au [[base-alpine.vendorSite]]."
+
+msgid "rsaNotice"
+msgstr "Inclut le protocole cryptographique BSAFE ou le logiciel de sécurité RSA Security"
+
+msgid "bsdTitle"
+msgstr "Le droit d'auteur et de la licence BSD"
+
+msgid "bsdLicense"
+msgstr ""
+
+msgid "gnuTitle"
+msgstr "License Publique GNU"
+
+msgid "gnuLicense"
+msgstr ""
+
+msgid "cap_serverInformation"
+msgstr "Afficher les informations du système"
+

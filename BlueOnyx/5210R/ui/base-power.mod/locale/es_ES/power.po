@@ -1,0 +1,196 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "power"
+msgstr "Potencia"
+
+msgid "powerHelp"
+msgstr "Haga clic aquí para reiniciar el dispositivo de servidor."
+
+msgid "shutdownMessage"
+msgstr "Por razones de seguridad, este aparato servidor no puede ser apagado a través de la interfaz de usuario web. <BR> Por favor, cierre manualmente."
+
+msgid "shutdownInstructions"
+msgstr "Para apagar el dispositivo de servidor, consulte el manual de hardware del servidor."
+
+msgid "shutdownInstructions_softpower"
+msgstr "Para apagar el dispositivo de servidor, consulte el manual de hardware del servidor."
+
+msgid "acpi_power_subject"
+msgstr "Energía apagado Error"
+
+msgid "acpi_power_shutdown"
+msgstr "La tensión de alimentación está fuera de rango. Por razones de seguridad, el dispositivo de servidor se está cerrando. Si el problema persiste, llame al servicio técnico."
+
+msgid "rebootMessage"
+msgstr "Haga clic en el botón de abajo para reiniciar el sistema. El sistema no estará disponible durante varios minutos, ya que se apaga y reinicia todos los servicios. Después de que el sistema se haya reiniciado, el Escritorio del servidor volverá a estar disponible."
+
+msgid "reboot_title"
+msgstr "Reinicio del sistema"
+
+msgid "shutdown_title"
+msgstr "Apagado del sistema"
+
+msgid "reboot_menu"
+msgstr "Reinicio / Apagado"
+
+msgid "reboot_menu_help"
+msgstr "Haga clic aquí para obtener instrucciones sobre cómo apagar y reiniciar el dispositivo de servidor."
+
+msgid "reboot"
+msgstr "Reiniciar ahora"
+
+msgid "reboot_help"
+msgstr "Haga clic aquí para reiniciar el dispositivo de servidor."
+
+msgid "askRebootConfirmation"
+msgstr "¿Está seguro que desea reiniciar el dispositivo de servidor?"
+
+msgid "rebooting"
+msgstr "El dispositivo de servidor está reiniciando. Debe estar disponible de nuevo en unos minutos."
+
+msgid "poweroptions_menu"
+msgstr "Potencia"
+
+msgid "poweroptions_menu_help"
+msgstr "Esta página le permite reiniciar o apagar el servidor."
+
+msgid "powerOptions_block"
+msgstr "Opciones de energía"
+
+msgid "powermode"
+msgstr "Medidas tomadas cuando se restablece después de un apagón"
+
+msgid "powermode_help"
+msgstr "Esto establece el comportamiento del sistema cuando se restablece la alimentación después de un corte de energía."
+
+msgid "same"
+msgstr "Devolver el sistema al mismo estado que antes de la falla de energía"
+
+msgid "on"
+msgstr "Encienda el sistema"
+
+msgid "off"
+msgstr "Deje el sistema apagado"
+
+msgid "controlPower"
+msgstr "Control de Potencia"
+
+msgid "wakeOnlan"
+msgstr "Wake On LAN"
+
+msgid "wakeoptions_menu"
+msgstr "Opciones Wake"
+
+msgid "wakeoptions_menu_help"
+msgstr "Haga clic aquí para configurar el Wake On LAN comportamiento del sistema."
+
+msgid "wakeMode_block"
+msgstr "Modo de Wake"
+
+msgid "wakemode"
+msgstr "Remotamente encender el sistema (Wake On LAN)"
+
+msgid "wakemode_help"
+msgstr "Esto establece Wake del sistema de la capacidad Wi-Fi, lo que le permite encender remotamente el sistema desde la red."
+
+msgid "none"
+msgstr "Nunca"
+
+msgid "magic"
+msgstr "Tras la recepción de Magic Packet"
+
+msgid "activity"
+msgstr "Actividad"
+
+msgid "wakenow_menu"
+msgstr "Despierta ahora"
+
+msgid "wakenow_menu_help"
+msgstr "Haga clic aquí para despertar a otras máquinas en la red."
+
+msgid "wakeNow_block"
+msgstr "Despierta ahora"
+
+msgid "mac_addresses"
+msgstr "Direcciones MAC para despertar"
+
+msgid "mac_addresses_help"
+msgstr "Introduzca las direcciones MAC de los equipos que desea despertarse."
+
+msgid "wakenow_button"
+msgstr "Despierta ya"
+
+msgid "wakenow_button_help"
+msgstr "Haga clic aquí para despertar a los equipos con las direcciones MAC listadas."
+
+msgid "shutdown_menu"
+msgstr "Cierre"
+
+msgid "shutdown_menu_help"
+msgstr "Haga clic aquí para apagar el servidor. Este se apagará el servidor y tendrá acceso físico a él para ponerlo en marcha de nuevo. Esto podría no ser la mejor de las ideas. En serio."
+
+msgid "couldNotWakeMachine"
+msgstr "No se ha podido reactivar el equipo con la dirección MAC [[VAR.address]]."
+
+msgid "willPowerUp1"
+msgstr "Will Power On"
+
+msgid "willPowerUp2"
+msgstr "Cuando Powered"
+
+msgid "remainOff1"
+msgstr "Permanecerá apagada"
+
+msgid "remainOff2"
+msgstr "Cuando Powered"
+
+msgid "samePower1"
+msgstr "Will Power On Si"
+
+msgid "samePower2"
+msgstr "A antes de la pérdida"
+
+msgid "powerName"
+msgstr "Power System"
+
+msgid "powerOK"
+msgstr "La fuente de alimentación y la batería están funcionando normalmente."
+
+msgid "powerLow"
+msgstr "El suministro de energía se está agotando."
+
+msgid "batteryCritical"
+msgstr "El voltaje de la batería está funcionando extremadamente bajo. Esto puede ser una señal de una batería que falla. Por favor, consulte [[base-salsa-basic.techSupportURL]] para obtener asistencia técnica."
+
+msgid "batteryCriticalSubject"
+msgstr "Sistema de baja tensión de batería"
+
+msgid "powerCritical"
+msgstr "La fuente de alimentación no está funcionando a su tensión especificada. Esto puede ser una señal de una fuente de alimentación defectuosa. Por favor, consulte [[base-salsa-basic.techSupportURL]] para obtener asistencia técnica."
+
+msgid "amPowerDetails"
+msgstr "Detalles del sistema de potencia"
+
+msgid "errSettingWakeMode"
+msgstr "El sistema falló en establecer la configuración estela solicitadas. Por favor, consulte [[base-salsa-basic.techSupportURL]] para obtener asistencia técnica."
+
+msgid "cant_get_power_info"
+msgstr "No se pudo obtener información sobre los valores de la potencia del sistema."
+
+msgid "askShutdownConfirmation"
+msgstr "¿Está seguro que desea cerrar el dispositivo de servidor?"
+
+msgid "shutting-down"
+msgstr "El dispositivo de servidor está cerrando."
+
+msgid "cap_serverPower"
+msgstr "Configuración de energía"
+

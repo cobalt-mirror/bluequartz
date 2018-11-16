@@ -1,0 +1,237 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "connect"
+msgstr "Docker"
+
+msgid "connect_help"
+msgstr "O menu Docker permite que você acesse sua configuração do Docker."
+
+msgid "header"
+msgstr "Serviço Docker"
+
+msgid "enabledField"
+msgstr "Daemon do Docker"
+
+msgid "enabledField_help"
+msgstr "A fim de usar o Docker, o 'docker' de serviço deve estar rodando. Por favor note: Isto requer o Kernel 3.10.0 ou melhor. Portanto, o Docker não rodará em VPS's no OpenVZ 6 ou 6108R."
+
+msgid "amDockerNameTag"
+msgstr "Servidor Docker"
+
+msgid "amStatusOK"
+msgstr "O Docker de serviço está funcionando normalmente."
+
+msgid "amNotAccepting"
+msgstr "O Docker de serviço não está atualmente em execução e não pôde ser reiniciado automaticamente."
+
+msgid "dockerImages"
+msgstr "Imagens Docker"
+
+msgid "dockerImages_help"
+msgstr "O Docker Images permite que você baixe imagens do Docker a partir do repositório do Docker. Você também pode inspecionar imagens do Docker local e criar contêineres do Docker usando imagens já baixadas."
+
+msgid "dockerImageSearchButton"
+msgstr "Pesquisar online por imagens"
+
+msgid "dockerImageSearchButton_help"
+msgstr "Pesquisar on-line por imagens do Docker"
+
+msgid "REPOSITORY"
+msgstr "Repositório"
+
+msgid "REPOSITORY_help"
+msgstr "Nome do repositório."
+
+msgid "TAG"
+msgstr "Tag"
+
+msgid "TAG_help"
+msgstr "Mostra a informação da tag desta imagem."
+
+msgid "IMAGE_ID"
+msgstr "Imagem ID"
+
+msgid "IMAGE_ID_help"
+msgstr "Identificador desta imagem."
+
+msgid "CREATED"
+msgstr "Criado"
+
+msgid "CREATED_help"
+msgstr "Mostrar a hora da criação."
+
+msgid "SIZE"
+msgstr "Tamanho"
+
+msgid "SIZE_help"
+msgstr "Mostra o tamanho do arquivo da imagem ou container."
+
+msgid "Action"
+msgstr "Açao"
+
+msgid "Action_help"
+msgstr "Define o que você pode fazer com este item."
+
+msgid "Search"
+msgstr "Pesquisa"
+
+msgid "Search_help"
+msgstr "Especifique uma frase que você deseja procurar no repositório de imagens do Docker online."
+
+msgid "NAME"
+msgstr "Nome"
+
+msgid "NAME_help"
+msgstr "Nome do repositório e imagem."
+
+msgid "DESCRIPTION"
+msgstr "Descrição"
+
+msgid "DESCRIPTION_help"
+msgstr "Descrição da imagem."
+
+msgid "STARS"
+msgstr "Estrelas"
+
+msgid "STARS_help"
+msgstr "Mostra quantas estrelas os revisores deram esta imagem."
+
+msgid "OFFICIAL"
+msgstr "Oficial"
+
+msgid "OFFICIAL_help"
+msgstr "Mostra se esta é uma imagem oficialmente endossada ou não."
+
+msgid "AUTO"
+msgstr "Auto"
+
+msgid "AUTO_help"
+msgstr "Mostra se esta imagem foi criada automaticamente."
+
+msgid "dockerDownloadImage_help"
+msgstr "Baixar imagem"
+
+msgid "dockerLaunchImage_help"
+msgstr "Lançar um novo contêiner Docker usando esta imagem."
+
+msgid "dockerDeleteImage_help"
+msgstr "Excluir cópia local desta imagem."
+
+msgid "dockerInstanceCreate"
+msgstr "Criar um novo contêiner do Docker"
+
+msgid "Image"
+msgstr "Imagem"
+
+msgid "Image_help"
+msgstr "Especifica qual imagem está sendo usada."
+
+msgid "Name"
+msgstr "Nome"
+
+msgid "Name_help"
+msgstr "Nome do contêiner do Docker."
+
+msgid "LaunchParameters"
+msgstr "Parâmetros"
+
+msgid "LaunchParameters_help"
+msgstr "Que parâmetros da linha de comando passar para o comando docker run."
+
+msgid "dockerList"
+msgstr "Contêineres do Docker"
+
+msgid "dockerList_help"
+msgstr "Lista de contêineres do Docker presentes neste servidor."
+
+msgid "CTID"
+msgstr "CTID"
+
+msgid "CTID_help"
+msgstr "Identificação do contêiner."
+
+msgid "COMMAND"
+msgstr "Comando"
+
+msgid "COMMAND_help"
+msgstr "Mostra qual comando o contêiner está executando na inicialização."
+
+msgid "STATUS"
+msgstr "Status"
+
+msgid "STATUS_help"
+msgstr "Mostra o status deste contêiner."
+
+msgid "PORTS"
+msgstr "Portos"
+
+msgid "PORTS_help"
+msgstr "Mostra a quais portas este contêiner está vinculado ou quais mapeamentos de porta estão ativos."
+
+msgid "NAMES"
+msgstr "Nome"
+
+msgid "NAMES_help"
+msgstr "Mostra o nome deste contêiner."
+
+msgid "dockerInspect_help"
+msgstr "Inspecionar contêiner do Docker."
+
+msgid "dockerRestart_help"
+msgstr "Reinicie o contêiner do Docker."
+
+msgid "dockerStop_help"
+msgstr "Pare o contêiner Docker."
+
+msgid "dockerDelete_help"
+msgstr "Exclua o contêiner do Docker."
+
+msgid "ErrorRestartInstance"
+msgstr "Ocorreu um erro ao tentar reiniciar este contêiner."
+
+msgid "ErrorStopInstance"
+msgstr "Ocorreu um erro ao tentar parar este contêiner."
+
+msgid "ErrorDeleteInstance"
+msgstr "Ocorreu um erro ao tentar excluir este contêiner."
+
+msgid "ErrorImageDelete"
+msgstr "Ocorreu um erro ao tentar excluir esta imagem. Talvez você esteja atualmente executando contêineres baseados nesta imagem? É necessário parar e excluir esses contêineres primeiro."
+
+msgid "ErrorImageRun"
+msgstr "Ocorreu um erro ao tentar executar um contêiner baseado nesta imagem."
+
+msgid "ErrorImagePrep"
+msgstr "Ocorreu um erro ao tentar preparar um contêiner baseado nesta imagem."
+
+msgid "ErrorImageDownload"
+msgstr "Ocorreu um erro ao tentar baixar esta imagem."
+
+msgid "docker_inspect"
+msgstr "Configuração deste contêiner docker"
+
+msgid "ImageDownload"
+msgstr "Docker image download"
+
+msgid "DownLoadInProgress"
+msgstr "A imagem escolhida está sendo baixada em segundo plano. Dependendo do tamanho da imagem, pode levar algum tempo para concluir o download. Verifique a lista de imagens do Docker novamente em um momento para ver se a nova imagem já está presente."
+
+msgid "OK"
+msgstr "Continuar"
+
+msgid "OK_help"
+msgstr "Continue de volta para a lista de imagens do Docker."
+
+####
+
+msgid "dockerTagInspectImage_help"
+msgstr "Veja as versões disponíveis."
+

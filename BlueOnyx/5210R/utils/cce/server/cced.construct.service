@@ -1,0 +1,17 @@
+[Unit]
+Description = cced.construct - The Cobalt Configuration Engine Daemon Constructors
+After=nss-lookup.target network.target cced.init.service
+
+[Service]
+Type=oneshot
+
+ExecStart=/usr/sausalito/bin/cce_construct
+ExecStartPost=/usr/sausalito/sbin/final_constructor.sh
+RemainAfterExit=yes
+TimeoutSec=900
+TimeoutStartSec=900
+TimeoutStopSec=900
+
+[Install]
+WantedBy = multi-user.target
+Alias=cced_construct

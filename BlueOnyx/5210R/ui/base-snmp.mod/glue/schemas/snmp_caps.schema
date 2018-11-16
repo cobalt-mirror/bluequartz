@@ -1,0 +1,17 @@
+<!--
+    Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+    $Id: snmp_caps.schema
+
+    Capabilities associated with configuring SNMP.
+-->
+<class
+    name="Capabilities" namespace="serverSNMP" version="1.0"
+>
+    <property
+        name="capable" type="boolean" default="1"
+        readacl="ruleCapable(serverSNMP)"
+    />
+    <property
+	name="nameTag" type="scalar" default="[[base-snmp.cap_serverSNMP]]"
+    />
+</class>

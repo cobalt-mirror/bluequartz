@@ -1,0 +1,12 @@
+<class name="mx2" namespace="" version="1.0"
+	createacl="ruleCapable(serverEmail)" destroyacl="ruleCapable(serverEmail)">
+
+	<property 
+        	name="domain" type="domainname" default=""
+        	writeacl="ruleCapable(serverEmail)"
+    	/>
+	<property 
+        	name="mapto" type="fqdn" default=""
+        	writeacl="ruleCapable(serverEmail)"
+    	/>
+</class>

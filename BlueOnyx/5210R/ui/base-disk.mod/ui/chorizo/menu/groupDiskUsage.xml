@@ -1,0 +1,11 @@
+<item 
+    id="base_groupDiskUsage" 
+    label="[[base-disk.groupDiskUsage_menu]]" 
+    description="[[base-disk.groupDiskUsage_menu_help]]"
+    icon="chart_8"
+    url="/disk/groupDiskUsage?group=[[VAR.group]]"
+>
+    <parent id="base_siteusage" order="50">
+        <access require="siteAdmin"/>
+    </parent>
+</item>

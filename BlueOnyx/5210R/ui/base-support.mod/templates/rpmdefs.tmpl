@@ -1,0 +1,168 @@
+# COnfiguration bits for mod_rpmize
+# syntax:
+# <begin [x]section>
+# <end [x]section>
+#
+# x an be $ for a string or % for a hash.
+# if a hash is being used, you can add sub-sections with
+# <begin sub-section>
+# <end sub-section>
+
+
+<begin $DESCRIPTION>
+%package [LABEL]
+Group: System Environment/BlueOnyx
+Summary: [LABEL] for [VENDOR]-[SERVICE].
+[AUTOFILL]
+[BUILDARCH]
+
+%description [LABEL]
+The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
+information for [VENDOR]-[SERVICE].
+
+<end $DESCRIPTION>
+
+<begin %PREP>
+<end %PREP>
+
+<begin %SETUP>
+<end %SETUP>
+
+<begin %BUILD>
+<end %BUILD>
+
+<begin %INSTALL>
+<end %INSTALL>
+
+<begin %FILES>
+<begin HEADER>
+%files [LABEL]
+%defattr(-,root,root)
+<end HEADER>
+
+<begin locale>
+[AUTOFILL]
+
+<end locale>
+
+<begin glue>
+%attr(0755,root,root)%{RootDir}/sbin/sosreport-helper.pl
+%attr(0755,root,root)%{RootDir}/sbin/sosreport.sh
+%attr(0755,root,root)%{RootDir}/swatch/bin/am_support.pl
+[AUTOFILL]
+
+<end glue>
+
+<begin ui>
+[AUTOFILL]
+
+<end ui>
+
+<begin capstone>
+%{RootDir}/capstone/%{Vendor}-%{Service}.cap
+[AUTOFILL]
+
+<end capstone>
+<end %FILES>
+
+<begin %POST-INSTALL>
+<begin HEADER>
+%post [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-install
+
+<end glue>
+<begin ui>
+# ui post-install
+
+<end ui>
+<begin locale>
+# locale post-install
+
+<end locale>
+<end %POST-INSTALL>
+
+<begin %POST-UNINSTALL>
+<begin HEADER>
+%postun [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-uninstall
+
+<end glue>
+<begin ui>
+# ui post-uninstall
+
+<end ui>
+<begin locale>
+# locale post-uninstall
+
+<end locale>
+<end %POST-UNINSTALL>
+
+<begin $CHANGELOG>
+
+* Thu Apr 12 2018 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX18
+- Better error checking in handlers that do the submissions.
+
+* Mon Jan 29 2018 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX17
+- Modified ui/chorizo/web/controllers/ticket.php to add IPv6 IP.
+
+* Thu Feb 23 2017 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX16
+- Adjusted Controllers for base-alpine 2.0
+
+* Tue Jul 19 2016 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX15
+- Added requirement for perl-JSON
+- Modified handlers to no longer SSL-check validity of SSL cert.
+
+* Thu Dec 24 2015 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX14
+- Removed requirement for perl-LWP-Protocol-https as it's EL7 specific.
+
+* Thu Dec 24 2015 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX13
+- Added requirement for perl-LWP-Protocol-https
+
+* Mon Dec 13 2015 Greg Kuhnert <gkuhnert@compassnetworks.com.au> 2.0.0-0BX12
+- Fixed: Sosreport was not generating data on 5209R
+
+* Wed Dec 03 2015 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX11
+- Added constructor/mod_cache_perms.pl to fix cache dir perms.
+
+* Fri Jul 10 2015 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX10
+- Another fix in ui/chorizo/web/controllers/ticket.php to rip out ticket
+  number support.
+
+* Wed Jul 03 2015 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX09
+- Modified ui/chorizo/web/controllers/ticket.php to add error check to
+  online ticket number parsing.
+- Converted UI indentations to spaces.
+
+* Tue Jan 03 2015 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX08
+- Added perl-libwww-perl and sos to requirements.
+
+* Thu Dec 04 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX07
+- Removed CCEd restart from post-install.
+
+* Tue Jul 15 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX06
+- Another bugfix in ui/chorizo/web/controllers/ticket.php
+
+* Tue Jul 15 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX05
+- Small bugfix in ui/chorizo/web/controllers/ticket.php
+
+* Sun Jul 13 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX04
+- Modified glue/sbin/sosreport.sh to allow report generation w/o serial.
+
+* Fri Jul 11 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX03
+- Chorizo GUI added. Note: Old GUI not present. This is 520XR only.
+- Modified glue/handlers/sos-delete.pl to turn off debugging switch.
+- Various locale related fixes.
+
+* Mon Jul 07 2014 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BX02
+- Various locale related fixes.
+
+* Mon Jul 07 2014 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BX01
+- Initial build.
+
+<end $CHANGELOG>

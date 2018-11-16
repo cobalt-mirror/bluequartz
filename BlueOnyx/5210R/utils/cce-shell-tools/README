@@ -1,0 +1,21 @@
+shell-tools
+
+The rpm installs all scripts into /usr/sbin/
+
+cadduser -  utility for adding a single user to a virtual site.  
+
+caddvsite - adding a virtual site 
+
+cdeluser - deletes a user 
+
+cdelvsite  - deletes a virtual site
+
+clistuser - lists all users
+
+clistvsite - lists all virtual sites
+
+cmoduser - modify a user
+
+cmodvsite - modify a virtual site
+
+The usage for these commands can be found by giving --help arg.

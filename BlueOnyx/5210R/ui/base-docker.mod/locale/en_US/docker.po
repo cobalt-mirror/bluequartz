@@ -1,0 +1,247 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "connect"
+msgstr "Docker"
+
+msgid "connect_help"
+msgstr "The Docker menu allows you to access your Docker configuration."
+
+msgid "header"
+msgstr "Docker Service"
+
+msgid "enabledField"
+msgstr "Docker Daemon"
+
+msgid "enabledField_help"
+msgstr "In order to use Docker the service 'docker' must be running. Please note: This requires Kernel 3.10.0 or better. Therefore Docker will not run in VPS's on OpenVZ 6 or 6108R."
+
+msgid "amDockerNameTag"
+msgstr "Docker Server"
+
+msgid "amStatusOK"
+msgstr "The service Docker is working normally."
+
+msgid "amNotAccepting"
+msgstr "The service Docker is currently not running and could not be restarted automatically."
+
+msgid "dockerImages"
+msgstr "Docker Images"
+
+msgid "dockerImages_help"
+msgstr "Docker Images allows you to download Docker Images from the Docker repository. You can also inspect local Docker Images and can create Docker containers using already downloaded images."
+
+msgid "dockerImageSearchButton"
+msgstr "Search online for Images"
+
+msgid "dockerImageSearchButton_help"
+msgstr "Search online for Docker images"
+
+msgid "REPOSITORY"
+msgstr "Repository"
+
+msgid "REPOSITORY_help"
+msgstr "Name of the repository."
+
+msgid "TAG"
+msgstr "Tag"
+
+msgid "TAG_help"
+msgstr "Shows the tag info of this image."
+
+msgid "IMAGE_ID"
+msgstr "Image ID"
+
+msgid "IMAGE_ID_help"
+msgstr "Identifier of this image."
+
+msgid "CREATED"
+msgstr "Created"
+
+msgid "CREATED_help"
+msgstr "Show the time of creation."
+
+msgid "SIZE"
+msgstr "Size"
+
+msgid "SIZE_help"
+msgstr "Shows the file size of the image or container."
+
+msgid "Action"
+msgstr "Action"
+
+msgid "Action_help"
+msgstr "Defines what you can do with this item."
+
+msgid "Search"
+msgstr "Search"
+
+msgid "Search_help"
+msgstr "Specify a phrase that you want to search for in the online Docker image repository."
+
+msgid "NAME"
+msgstr "Name"
+
+msgid "NAME_help"
+msgstr "Name of the repository and image."
+
+msgid "DESCRIPTION"
+msgstr "Description"
+
+msgid "DESCRIPTION_help"
+msgstr "Description of the image."
+
+msgid "STARS"
+msgstr "Stars"
+
+msgid "STARS_help"
+msgstr "Shows how many stars reviewers have given this image."
+
+msgid "OFFICIAL"
+msgstr "Official"
+
+msgid "OFFICIAL_help"
+msgstr "Shows if this is an officially endorsed image or not."
+
+msgid "AUTO"
+msgstr "Auto"
+
+msgid "AUTO_help"
+msgstr "Shows if this image was automatically built."
+
+msgid "dockerDownloadImage_help"
+msgstr "Download Image"
+
+msgid "dockerLaunchImage_help"
+msgstr "Launch a new Docker container using this image."
+
+msgid "dockerDeleteImage_help"
+msgstr "Delete local copy of this image."
+
+msgid "dockerInstanceCreate"
+msgstr "Create a new Docker container"
+
+msgid "Image"
+msgstr "Image"
+
+msgid "Image_help"
+msgstr "Specifies which image is being used."
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Name_help"
+msgstr "Name of the Docker container."
+
+msgid "LaunchParameters"
+msgstr "Parameters"
+
+msgid "LaunchParameters_help"
+msgstr "Which command line parameters to pass to the docker run command."
+
+msgid "dockerList"
+msgstr "Docker Containers"
+
+msgid "dockerList_help"
+msgstr "List of Docker containers present on this server."
+
+msgid "CTID"
+msgstr "CTID"
+
+msgid "CTID_help"
+msgstr "Container Identification."
+
+msgid "COMMAND"
+msgstr "Command"
+
+msgid "COMMAND_help"
+msgstr "Shows which command the container is runing on startup."
+
+msgid "STATUS"
+msgstr "Status"
+
+msgid "STATUS_help"
+msgstr "Shows the status of this container."
+
+msgid "PORTS"
+msgstr "Ports"
+
+msgid "PORTS_help"
+msgstr "Shows which ports this container has bound to or what port mappings are active."
+
+msgid "NAMES"
+msgstr "Name"
+
+msgid "NAMES_help"
+msgstr "Shows the given name of this container."
+
+msgid "dockerInspect_help"
+msgstr "Inspect Docker container."
+
+msgid "dockerRestart_help"
+msgstr "Restart Docker container."
+
+msgid "dockerStop_help"
+msgstr "Stop Docker container."
+
+msgid "dockerDelete_help"
+msgstr "Delete Docker container."
+
+msgid "ErrorRestartInstance"
+msgstr "An error occured while trying to restart this container."
+
+msgid "ErrorStopInstance"
+msgstr "An error occured while trying to stop this container."
+
+msgid "ErrorDeleteInstance"
+msgstr "An error occured while trying to delete this container."
+
+msgid "ErrorImageDelete"
+msgstr "An error occured while trying to delete this image. Perhaps you are currently running containers that are based on this image? You need to stop and delete these containers first."
+
+msgid "ErrorImageRun"
+msgstr "An error occured while trying to run a container based on this image."
+
+msgid "ErrorImagePrep"
+msgstr "An error occured while trying to prepare a container based on this image."
+
+msgid "ErrorImageDownload"
+msgstr "An error occured while trying to download this image."
+
+msgid "docker_inspect"
+msgstr "Configuration of this docker container"
+
+msgid "ImageDownload"
+msgstr "Docker image download"
+
+msgid "DownLoadInProgress"
+msgstr "The chosen image is now being downloaded in the background. Depending on the size of the image it may take a while to complete the download. Please check the list of Docker images again in a moment to see if the new image is already present."
+
+msgid "OK"
+msgstr "Continue"
+
+msgid "OK_help"
+msgstr "Continue back to the list of Docker images."
+
+####
+
+msgid "dockerTagInspectImage_help"
+msgstr "See available versions."
+
+###
+
+msgid "AutoStart_UnableToSet"
+msgstr "Unable to modify 'Autostart' behaviour of this Docker Container."
+
+msgid "Autostart_help"
+msgstr "If this checkbox is ticked, then this Docker container will be automatically started upon server reboot. Additionally 'Active Monitor' will monitor this Docker Container and if it finds it stopped, it will restart it again. PLEASE NOTE: Not all Docker Container are designed to run continously. Some have 'one-shot' processes that run, do their job and terminate. If you enable 'Autostart' for such a 'one-shot' container, then 'Active Monitor' will run the process every 15 minutes and might warn you that the container has failed to stay alive and needed to be restarted. So please use this feature with caution."
+
+
+

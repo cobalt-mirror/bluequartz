@@ -1,0 +1,13 @@
+<item
+    id="docker_Images"
+    label="[[base-docker.dockerImages]]"
+    description="[[base-docker.dockerImages_help]]"
+    url="/docker/dockerImages"
+    module="user"
+>
+
+    <parent id="base_docker" order="20">
+        <access require="serverNetwork"/>
+    </parent>
+</item>
+

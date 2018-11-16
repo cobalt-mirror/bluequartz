@@ -1,0 +1,13 @@
+<item 
+	id="base_monitorLight" 
+	label="[[base-am.monitorLight]]" 
+	description="[[base-am.monitorLight_help]]" 
+	url="/am/amStatus" 
+	icon="alert"
+	icononly="TRUE" 
+	type="monitorOff"
+>
+  	<parent id="root" order="900">
+        <access require="serverShowActiveMonitor"/>
+  	</parent>
+</item>

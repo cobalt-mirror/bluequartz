@@ -1,0 +1,441 @@
+# configuration bits for mod_rpmize
+# syntax:
+# <begin [x]section>
+# <end [x]section>
+#
+# x an be $ for a string or % for a hash.
+# if a hash is being used, you can add sub-sections with
+# <begin sub-section>
+# <end sub-section>
+
+
+<begin $DESCRIPTION>
+%package [LABEL]
+Group: System Environment/BlueOnyx
+Summary: [LABEL] for [VENDOR]-[SERVICE].
+[AUTOFILL]
+[BUILDARCH]
+
+%description [LABEL]
+The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
+information for [VENDOR]-[SERVICE].
+
+<end $DESCRIPTION>
+
+<begin %PREP>
+<end %PREP>
+
+<begin %SETUP>
+<end %SETUP>
+
+<begin %BUILD>
+<end %BUILD>
+
+<begin %INSTALL>
+<end %INSTALL>
+
+<begin %FILES>
+<begin HEADER>
+%files [LABEL]
+%defattr(-,root,root)
+<end HEADER>
+
+<begin locale>
+[AUTOFILL]
+
+<end locale>
+
+<begin glue>
+[AUTOFILL]
+
+<end glue>
+
+<begin ui>
+[AUTOFILL]
+
+<end ui>
+
+<begin capstone>
+%{RootDir}/capstone/%{Vendor}-%{Service}.cap
+[AUTOFILL]
+
+<end capstone>
+<end %FILES>
+
+<begin %POST-INSTALL>
+<begin HEADER>
+%post [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-install
+
+if [ -f /usr/sausalito/constructor/base/vsite/fixhosts.pl ];then
+	/usr/sausalito/constructor/base/vsite/fixhosts.pl
+fi
+
+<end glue>
+<begin ui>
+# ui post-install
+
+<end ui>
+<begin locale>
+# locale post-install
+
+<end locale>
+<end %POST-INSTALL>
+
+<begin %POST-UNINSTALL>
+<begin HEADER>
+%postun [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-uninstall
+
+<end glue>
+<begin ui>
+# ui post-uninstall
+
+<end ui>
+<begin locale>
+# locale post-uninstall
+
+<end locale>
+<end %POST-UNINSTALL>
+
+<begin $CHANGELOG>
+
+* Wed Oct 17 2018 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX20
+- Modified constructor/01_setIPType.pl to force Network monitoring off
+  if this is a VPS on OpenVZ.
+
+* Sat Jul 28 2018 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX19
+- Added constructor 01_setIPType.pl as we cannot only rely on the 
+  Anaconda setup scripts to set the IPType but also need a way to set
+  it during YUM based installs.
+
+* Thu Jul 12 2018 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX18
+- Modified glue/handlers/change_route.pl to use File::NFSLock to prevent 
+  looped execution during /usr/sbin/ifup calls.
+- Added requirement for File::NFSLock
+
+* Thu Jul 12 2018 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX17
+- Modified ui/chorizo/web/controllers/ethernet.php to assume a default
+  for 'IPType'.
+
+* Thu Jul 12 2018 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX16
+- Modified glue/handlers/change_route.pl again to add a network restart
+  and /usr/sbin/ifup to the procedure that detects and fixes faulty
+  Netroutes.
+
+* Thu Jun 07 2018 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX15
+- Modified glue/handlers/change_route.pl again. Now it checks if we do
+  have 'network/mask dev eth0 proto kernel scope link src primary_ip'
+  as a source route. If we do have an incorrect source route, we delete
+  it and add the correct one. Only kicks in on non-AVE nodes, non-AVE VPSs
+  and if we actually use IPv4.
+
+* Fri Jun 01 2018 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX14
+- Modified glue/handlers/change_route.pl again to remove 255.255.255.255
+  route from primary IP and to (again) add it to all extra IPs.
+- Note: The 255.255.255.255 routes for extra-IPs are *not* set on OpenVZ.
+
+* Tue May 29 2018 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX13
+- Modified ui/chorizo/web/controllers/ethernet.php to address redirects
+  on CODB-replays.
+
+* Sat Apr 21 2018 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX12
+- Modified glue/handlers/change_route.pl to make extra-IPv4 routes optional.
+
+* Tue Feb 06 2018 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX11
+- Small fix in glue/handlers/change_route.pl
+
+* Mon Feb 05 2018 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX10
+- Modified glue/conf/base-network.conf to call etchosts.pl on Vsite changes.
+- Fixed glue/handlers/etchosts.pl and added IPv6 support.
+
+* Sun Feb 04 2018 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX09
+- Small fix in constructor/40_addGateway.pl as some OpenVZ VPS's may not
+  have the gatewaydev specified in /etc/sysconfig/network.
+
+* Sun Feb 04 2018 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX08
+- After the great IPv6-calypse on my workstation got sorted I could apply
+  some more fixes for the IPv6 implementation.
+- Modified constructor/10_fix_ifup.pl
+- Modified constructor/40_addGateway.pl
+- Modified glue/handlers/change_route.pl
+- Modified glue/handlers/rewrite-ifcfg.pl
+- Modified ui/chorizo/web/controllers/ethernet.php
+
+* Fri Feb 02 2018 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX07
+- Massive code cleanup on 'My stuipd idea of 2018', whereas I started
+  the IPv6 port of BlueOnyx on a real server instead of under OpenVZ.
+  And paid dearly for that because I had to fix a lot of shit in more
+  places than I dared to imagine. Well, it's done now.
+- Modified constructor/30_addNetwork.pl
+- Modified constructor/40_addGateway.pl
+- Modified constructor/checkInterfaceConfigure.pl
+- Modified glue/handlers/IpPooling.pm
+- Modified glue/handlers/Network.pm
+- Modified glue/handlers/change_route.pl
+- Modified glue/handlers/rewrite-ifcfg.pl
+- Modified glue/handlers/validate_pool.pl
+- Modified src/base-network-am/am_network.sh
+- Modified src/base-network-am/base-network-am.spec
+- Modified ui/chorizo/web/controllers/ethernet.php
+- Modified ui/chorizo/web/controllers/poolingModify.php
+
+* Wed Jan 31 2018 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX06
+- Concept change in IPv6 implementation for compliance with standards.
+- Modified constructor/10_fix_ifup.pl
+- Modified constructor/30_addNetwork.pl
+- Modified glue/conf/base-network.conf
+- Modified glue/handlers/IpPooling.pm
+- Modified glue/handlers/change_route.pl
+- Modified glue/handlers/check_pool.pl
+- Modified glue/handlers/check_pool_admin.pl
+- Modified glue/handlers/rewrite-ifcfg.pl
+
+* Mon Jan 29 2018 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX05
+- Fixes in glue/handlers/change_route.pl                                                                                                                                                                                                                                    
+- Fixes in glue/handlers/rewrite-ifcfg.pl
+
+* Sun Jan 28 2018 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX04
+- Pulled fix_ifup out of constructor/40_addGateway.pl to make it stand alone.
+- Added constructor/10_fix_ifup.pl
+
+* Sat Jan 27 2018 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX03
+- Several fixes related to IP-Pooling.
+
+* Mon Nov 05 2017 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX02
+- Modified constructors to use cce->update() instead of cce->set().
+- Modified IP-Pooling to work with IPv4 and IPv6. Needs Net::IP.
+
+* Sat Nov 04 2017 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX01
+- IPv6 implementation for BlueOnyx and large rewrite of the network stack.
+  We only deal with REAL interfaces now. Screw Interface Aliases. We add
+  any extra IP on the fly that's not the primary IPv4 or IPv6 IP.
+- Modified glue/handlers/change_route.pl to dynamically add/remove extra
+  IPs and routes. This is run on every network restart, as we tie it also
+  into /etc/sysconfig/network-scripts/ifup-routes on the OS level.
+- Modified constructor/30_addNetwork.pl to detect and update NICs in CODB,
+  but this time only real interfaces. And we only update CODB if something
+  has changed.
+- Modified constructor/31_handle_aws_dhcp.pl
+- Modified constructor/40_addGateway.pl
+- Disabled constructor/updateMac.pl as 30_addNetwork.pl now does the MAC.
+- Modified glue/conf/base-network.conf
+- Modified glue/handlers/Network.pm to disable dependency on ifconfig.
+- Modified glue/handlers/rewrite-ifcfg.pl to deal with IPv6
+- Modified constructor/checkInterfaceConfigure.pl - needs more work
+- Modified glue/handlers/cleanup_aliases.pl - needs more work
+- Modified glue/handlers/etchosts.pl - needs more work
+- Modified glue/handlers/no_duplicates.pl - needs more work
+- Modified glue/handlers/set_imode.pl - needs more work
+- Modified glue/schemas/network.schema
+- Modified ui/chorizo/web/config/routes.php - now disabled anyway
+- Modified ui/chorizo/web/controllers/ethernet.php
+- Added ui/chorizo/web/controllers/ethernetDeploy.php - not really used
+- Added ui/chorizo/web/controllers/ethernetIframe.php - not really used
+
+* Mon Mar 06 2017 Michael Stauber <mstauber@solarspeed.net> 2.0.0-1BX22
+- Added redirect in ui/chorizo/web/controllers/pooling.php on error-free save.
+
+* Wed Feb 22 2017 Michael Stauber <mstauber@solarspeed.net> 2.0.0-1BX21
+- Adjusted Controllers for base-alpine 2.0
+
+* Fri Nov 11 2016 Michael Stauber <mstauber@solarspeed.net> 2.0.0-1BX20
+- Small fix in ui/chorizo/web/controllers/network_details.php
+
+* Sat Jul 16 2016 Michael Stauber <mstauber@solarspeed.net> 2.0.0-1BX19
+- Modified 5207R/ui/base-network.mod/glue/handlers/etchosts.pl to set hostname
+  on Systemd servers with hostnamectl command.
+
+* Thu Jun 16 2016 Greg Kuhnert <gkuhnert@compassnetworks.com.au> 2.0.0-1BX18
+- Fixed checkInterfaceConfigure.pl so that it works on OpenVZ / Aventurine
+- or AWS.
+
+* Fri Sep 25 2015 Michael Stauber <mstauber@solarspeed.net> 2.0.0-1BX17
+- Added glue POST-INSTALL call to fixhosts.pl (if present) to get around
+  the fact that our capstone does not have post-install scripts.
+
+* Fri Sep 25 2015 Michael Stauber <mstauber@solarspeed.net> 2.0.0-1BX16
+- Replaced glue/handlers/etchosts.pl with the routines from base-vsite
+  glue/handlers/fixhosts.pl to make it more consistent.
+
+* Thu Jun 25 2015 Michael Stauber <mstauber@solarspeed.net> 2.0.0-1BX15
+- Modified ACLs in ui/chorizo/web/controllers/network_details.php
+
+* Mon Mar 16 2015 Michael Stauber <mstauber@solarspeed.net> 2.0.0-1BX14
+- Modified constructor/updateMac.pl with provisions to obtain the MAC on
+  EL7 systems as ifconfig has a new output format.
+
+* Fri Mar 13 2015 Michael Stauber <mstauber@solarspeed.net> 2.0.0-1BX13
+- Modified glue/handlers/change_range.pl to exclude venet0 from checks.
+
+* Mon Feb 02 2015 Michael Stauber <mstauber@solarspeed.net> 2.0.0-1BX12
+- Modified glue/handlers/Network.pm as the regular expression wasn't
+  firing correctly on ifconfig parsing on EL7. There is now a colon where
+  used to be none after the network interface name.
+
+* Thu Jan 29 2015 Michael Stauber <mstauber@solarspeed.net> 2.0.0-1BX11
+- Extended glue/handlers/check_pool_admin.pl with debugging.
+
+* Wed Jan 07 2015 Michael Stauber <mstauber@solarspeed.net> 2.0.0-1BX10
+- If /etc/sysconfig/network doesn't contain a Gateway, or if CODBs System
+  object doesn't yet contain one, we get an undefined index in a GUI page.
+  Modified ui/chorizo/web/controllers/ethernet.php to fix this.
+- Some minor clean up in constructors.
+
+* Fri Dec 19 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-1BX09
+- Various fixes in ui/chorizo/web/controllers/aliasModify.php to get around
+  incorrect error handling and reporting and undefined indexes.
+- Extended ui/chorizo/web/controllers/ethernet.php with proper error display.
+
+* Thu Dec 04 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-1BX08
+- Systemd related fixes in constructor/40_addGateway.pl
+- Systemd related fixes in glue/handlers/change_route.pl
+
+* Sat Nov 22 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-1BX07
+- Modified constructor/30_addNetwork.pl and glue/handlers/Network.pm to handle
+  5209R ifconfig parsing as well. Requires hardwired CCEd locales at 'en_US'.
+  Updates IP/Netmask/MAC in CODB now as well.
+
+* Fri Jul 11 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-1BX06
+- Chorizo GUI added, old GUI disabled.
+- Added improved French locale as provided by Meaulnes Legler.
+
+* Thu Feb 13 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-1BX05
+- Fixed ui/web/pooling.php. Without any server admins set up it threw an error.
+  Also added ability to add admin to the list of admins who own an IP.
+
+* Sat Dec 14 2013 Michael Stauber <mstauber@solarspeed.net> 2.0.0-1BX04
+- Merged in locales for the Netherlands ('nl_NL').
+
+* Tue Dec 03 2013 Michael Stauber <mstauber@solarspeed.net> 2.0.0-1BX03
+- Modified glue/handlers/check_pool.pl to exit nicely if pooling is enabled, but no pooling range has yet been configured.
+
+* Tue Dec 03 2013 Michael Stauber <mstauber@solarspeed.net> 2.0.0-1BX02
+- Modified glue/schemas/network.schema to re-add venet to the list of allowed network devices.
+
+* Tue Dec 03 2013 Michael Stauber <mstauber@solarspeed.net> 2.0.0-1BX01
+- Preparational build for 5207R/5208R. Doesn't include new GUI yet.
+- Merged in new locales from 5207R ("es_ES", "fr_FR", "it_IT", "pt_PT").
+- Dropped all two character locales.
+- Converted "ja_JP" from EUC-JP to UTF-8.
+- Merged in new capabilities from Hisao Shibuya's 5200R code branch.
+
+* Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BX36
+- Converted locale encoding from UTF-8 to ISO-8859-1.
+
+* Fri Mar 02 2012 Greg Kuhnert 1.1.0-82BX35
+- Updated constructor/30_addNetwork.pl to correctly set mac address in ethernet objects
+
+* Sun Oct 16 2011 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BX34
+- Added some more provisions to deal with the special network considerations under OpenVZ:
+- Modified constructor/40_addGateway.pl and glue/handlers/change_route.pl to parse 
+  /etc/sysconfig/network for the GATEWAY and GATEWAYDEV lines. If missing, they will be
+  added. When that's done, the network is restarted to regain network connectivity.
+  Additionally a line is added to /etc/sysconfig/network-scripts/ifup-routes to make
+  sure that the routing table is rebuilt correctly.
+
+* Sun Aug 14 2011 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BX33
+- Added constructor/31_handle_aws_dhcp.pl to automatically update the stored IP of sites 
+  with the IP obtained from DHCP. Also updates DNS (within reasons) and ProFTPd.
+
+* Sun Aug 14 2011 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BX32
+- Added rudimentary AWS support to cope with single IP and DHCP obtained network settings:
+- Modified constructor/30_addNetwork.pl to not drop DHCP settings from ifcfg files
+- Modified glue/handlers/rewrite-ifcfg.pl to support bootproto=DHCP in ifcfg files
+- Modified glue/handlers/change_route.pl to not create eth0:X files as AWS supports
+  only a single IP per instance anyway. Makes our live a bit easier here.
+- Modified ui/web/ethernet.php to disallow change of network settings if AWS support 
+  is enabled.
+
+* Sat Jun 25 2011 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BX31
+- Modified constructor/40_addGateway.pl. Restart Network under OpenVZ if unreachable
+
+* Sun Jun 06 2010 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BX30
+- Various PHP-5.3 related fixes.
+
+* Sat Jun 05 2010 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BX29
+- Copied 'en' locale to 'en_US'
+
+* Fri Jun 04 2010 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BX28
+- Version number bump
+
+* Mon Aug 10 2009 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BQ27
+- Modified ui/web/ethernet.php to fix JavaScript issue if you have more than 2 NICs.
+
+* Wed Feb 11 2009 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BQ26
+- Modified ui/web/ethernet.php to hide Interface Aliases if in a VPS.
+
+* Tue Feb 03 2009 Rickard Osser <rickard.osser@bluapp.com> 1.1.0-82BQ25
+- Re-implemented Interface Aliases to solve bug ticket #12.
+
+* Tue Dec 30 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BQ24
+- Fixed glue/handlers/rewrite-ifcfg.pl to solve bug ticket #4.
+- Was not rewriting ifcfg's on stand alone installs.
+
+* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BQ23
+- Rebuilt for BlueOnyx.
+
+* Thu Nov 27 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BQ22
+- Fixed '-usage in English locale. Fixes JavaScript issue as reported by Stephanie Sullivan.
+
+* Wed Nov 19 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BQ21
+- Fixed RW access to FQDN and DNS fields in ui/web/ethernet.php for stand alone installs.
+
+* Thu Nov 13 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BQ20
+- Removed wiz_warn block in ui/web/ethernet.php - was left over from 6105R.
+- Made all relevant blocks in ui/web/ethernet.php read only if 5106R runs in a VPS.
+
+* Sun Jun 29 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BQ19
+- Reworked OpenVZ provisions in constructor/40_addGateway.pl to set default OpenVZ gateway if it's missing.
+
+* Sat Jun 07 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BQ18
+- Reworked OpenVZ provisions in constructor/30_addNetwork.pl constructor/40_addGateway.pl
+
+* Fri Jun 06 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BQ17
+- Fixed handler rewrite-ifcfg.pl to not rewrite ifcfg-venet0 at all
+
+* Tue Jun 02 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BQ16
+- Fully added OpenVZ provisions to all constructors, handlers, schemas and PHP pages.
+
+* Tue Apr 15 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BQ15 
+- Disabled Network monitoring in Active Monitor by default. 
+
+* Sat Mar 01 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BQ14 
+- Fixed 30_addNetwork.pl to make venet0:0 real to prevent its deletion
+
+* Sun Jan 27 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BQ13
+- German locales added.
+
+* Tue Jan 22 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BQ12
+- Danish locales added. Thanks to Jes Klittum!
+
+* Mon Jun 25 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1.0-82BQ11
+- Fixed duplicate include issue.
+
+* Fri Dec 23 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-82BQ10
+- modified 40_gateway.pl constructor to disable debug.
+
+* Tue Nov 29 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-82BQ9
+- rebuild with devel-tools 0.5.1-0BQ7.
+
+* Tue Oct 18 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-82BQ8
+- rebuild with devel-tools 0.5.1
+
+* Mon Sep 05 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-82BQ7
+- get gateway from netstat -r command, if /etc/sysconfig/network isn't exist.
+
+* Tue Aug 16 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-82BQ6
+- modified pooling.xml to fix menu order.
+
+* Thu Aug 11 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-82BQ5
+- clean up spec file.
+
+* Thu Aug 11 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-82BQ4
+- fix security problem that can be accessed unauthorized function.
+<end $CHANGELOG>

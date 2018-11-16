@@ -1,0 +1,1101 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "ethernet"
+msgstr "TCP/IP"
+
+msgid "ethernet_help"
+msgstr "Haga clic aquí para cambiar la configuración TCP/IP."
+
+msgid "tcpIpSettings"
+msgstr "Configuración TCP/IP"
+
+msgid "wan"
+msgstr "Internet"
+
+msgid "wan_help"
+msgstr "Haga clic aquí para cambiar la configuración de Internet."
+
+msgid "primarySettings"
+msgstr "Ajustes primarios"
+
+msgid "primarySettings_help"
+msgstr "Ajustes de los puertos Ethernet reales del servidor, además de la configuración de servidores DNS y de acogida y los nombres de dominio."
+
+msgid "aliasSettings"
+msgstr "Los nombres de interfaz"
+
+msgid "aliasSettings_help"
+msgstr "Configuración de direcciones IP adicionales para los que este servidor debe responder."
+
+msgid "enterFqdn"
+msgstr "Host y nombres de dominio"
+
+msgid "enterFqdn_help"
+msgstr "Introduzca el nombre de host del servidor en el primer campo y el nombre de dominio en el segundo campo. Por ejemplo, www es un nombre de host válido, y example.com es un nombre de dominio válido. Introduzca solamente minúsculas caracteres alfanuméricos, guiones o puntos."
+
+msgid "hostNameField"
+msgstr "Nombre del Host"
+
+msgid "hostNameField_rule"
+msgstr "Introduzca solamente minúsculas caracteres alfanuméricos, guiones o puntos. Por ejemplo, www es una entrada válida."
+
+msgid "hostNameField_help"
+msgstr "Introduzca el nombre de host del servidor de este aparato. El nombre de host y el nombre de dominio combinados deben identificar de forma exclusiva el aparato servidor. [[base-network.hostNameField_rule]]"
+
+msgid "domainNameField"
+msgstr "Nombre de Dominio"
+
+msgid "domainNameField_rule"
+msgstr "Introduzca solamente minúsculas caracteres alfanuméricos, guiones o puntos. El primer carácter debe ser una letra, y el último carácter debe ser una letra o un número. Por ejemplo, example.com es una entrada válida."
+
+msgid "domainNameField_help"
+msgstr "Introduzca el nombre de dominio de este dispositivo de servidor. El nombre de host y el nombre de dominio combinados deben identificar de forma exclusiva el aparato servidor. [[base-network.domainNameField_rule]]"
+
+msgid "dnsAddressesField"
+msgstr "Servidores DNS"
+
+msgid "dnsAddressesField_rule"
+msgstr "Por favor introduzca una serie de cuatro números entre 0 y 255 separados por puntos. Por ejemplo, 192.168.1.1 es una entrada válida. Si deja este campo vacío evitará que la máquina de búsqueda de otras máquinas por su nombre de host o dominio y hará que las dificultades de redes."
+
+msgid "dnsAddressesField_help"
+msgstr "Introduzca la dirección o direcciones IP de su servidor de nombre de dominio local o servidores. Un servidor de nombres de dominio traduce los nombres textuales de host y nombres de dominio en direcciones IP numéricas, y viceversa. [[base-network.dnsAddressesField_rule]]"
+
+msgid "interfaceeth0"
+msgstr "Interfaz principal"
+
+msgid "interfaceeth1"
+msgstr "Interface Secundaria"
+
+msgid "interfaceeth2"
+msgstr "En tercer lugar Interfaz"
+
+msgid "helpeth2"
+msgstr "tercera interfaz"
+
+msgid "interfaceeth3"
+msgstr "Cuarto Interface"
+
+msgid "helpeth3"
+msgstr "cuarta interfaz"
+
+msgid "interfaceeth4"
+msgstr "Quinto Interface"
+
+msgid "helpeth4"
+msgstr "quinto interfaz"
+
+msgid "interfaceeth5"
+msgstr "Sexto Interface"
+
+msgid "helpeth5"
+msgstr "sexta interfaz"
+
+msgid "interfaceeth6"
+msgstr "Séptimo Interface"
+
+msgid "helpeth6"
+msgstr "séptimo interfaz"
+
+msgid "interfaceeth7"
+msgstr "Octava Interface"
+
+msgid "helpeth7"
+msgstr "octavo interfaz"
+
+msgid "interfaceeth8"
+msgstr "Novena Interface"
+
+msgid "helpeth8"
+msgstr "noveno interfaz"
+
+msgid "interfaceeth9"
+msgstr "Décimo Interface"
+
+msgid "helpeth9"
+msgstr "décimo interfaz"
+
+msgid "primaryInterface"
+msgstr "Interfaz principal"
+
+msgid "secondaryInterface"
+msgstr "Interface Secundaria"
+
+msgid "ipAddressNetMaskMismatch"
+msgstr "Lo sentimos, se requiere que la máscara de red IP si el campo Dirección IP, se llena [[base-network.netMaskField_rule]]"
+
+msgid "netMaskIpAddressMismatch"
+msgstr "Lo sentimos, la [[base-network.ipAddressField]] se requiere si el [[base-network.netMaskField]] campo se llena pulg [[base-network.ipAddressField_rule]]"
+
+msgid "macAddressField"
+msgstr "MAC Address"
+
+msgid "macAddressField_help"
+msgstr "La dirección de control de acceso al medio (MAC) es la dirección de hardware de la tarjeta de interfaz de red. Esta dirección de hardware es un identificador único y no se puede cambiar después de la fabricación."
+
+msgid "addAliasButton"
+msgstr "Añadir Alias"
+
+msgid "addAliasButton_help"
+msgstr "Añadir un nuevo alias para este servidor."
+
+msgid "aliasName"
+msgstr "Alias ​​interfaz"
+
+msgid "aliasName_help"
+msgstr "La interfaz y el número de alias con la que este alias se asocia con."
+
+msgid "aliasIpaddr"
+msgstr "[[base-network.ipAddressField]]"
+
+msgid "aliasIpaddr_help"
+msgstr "La dirección IP en la que este alias está escuchando."
+
+msgid "aliasNetmask"
+msgstr "Máscara de red"
+
+msgid "aliasNetmask_empty"
+msgstr "Lo sentimos, no ha entrado en una máscara de red para este alias. [[base-network.route_form_netmask_rule]]"
+
+msgid "aliasNetmask_invalid"
+msgstr "Lo sentimos, [[VAR.invalidValue]] no es una máscara de red válida. [[base-network.route_form_netmask_rule]]"
+
+msgid "aliasNetmask_help"
+msgstr "La máscara de red para este alias."
+
+msgid "aliasActions"
+msgstr "Acciones"
+
+msgid "aliasActions_help"
+msgstr "Haga clic en el icono Modificar para cambiar la configuración de este alias. Haga clic en el icono Eliminar para eliminar este alias."
+
+msgid "aliaseth0"
+msgstr "Alias ​​interfaz principal [[VAR.num]]"
+
+msgid "aliaseth1"
+msgstr "Alias ​​interfaz secundaria [[VAR.num]]"
+
+msgid "aliaseth2"
+msgstr "Alias ​​tercera interfaz [[VAR.num]]"
+
+msgid "aliaseth3"
+msgstr "En cuarto lugar Alias ​​interfaz [[VAR.num]]"
+
+msgid "aliaseth4"
+msgstr "Quinto Alias ​​interfaz [[VAR.num]]"
+
+msgid "aliaseth5"
+msgstr "Alias ​​interfaz Sexta [[VAR.num]]"
+
+msgid "aliaseth6"
+msgstr "Alias ​​interfaz Séptimo [[VAR.num]]"
+
+msgid "aliaseth7"
+msgstr "Alias ​​interfaz octavo [[VAR.num]]"
+
+msgid "aliaseth8"
+msgstr "Alias ​​interfaz Novena [[VAR.num]]"
+
+msgid "aliaseth9"
+msgstr "Alias ​​interfaz Décima [[VAR.num]]"
+
+msgid "addAlias"
+msgstr "Añadir Alias"
+
+msgid "modAlias"
+msgstr "Modificar Alias"
+
+msgid "assocIface"
+msgstr "Interfaz"
+
+msgid "assocIface_help"
+msgstr "La interfaz real para que este alias se asocie."
+
+msgid "aliasModIpaddr"
+msgstr "[[base-network.ipAddressField]]"
+
+msgid "aliasModIpaddr_empty"
+msgstr "Lo sentimos, no se ha introducido la dirección IP en la que este alias deben escuchar. [[base-network.ipAddressField_rule]]"
+
+msgid "aliasModIpaddr_invalid"
+msgstr "Lo sentimos, [[VAR.invalidValue]] no es una dirección IP válida. [[base-network.ipAddressField_rule]]"
+
+msgid "aliasModIpaddr_help"
+msgstr "La dirección IP en la que este alias deben escuchar."
+
+msgid "routes"
+msgstr "Modificar rutas estáticas"
+
+msgid "routes_help"
+msgstr "Haz clic aquí para crear rutas estáticas de este dispositivo de servidor a otras subredes."
+
+msgid "routeList-list-title"
+msgstr "Lista de rutas estáticas"
+
+msgid "createRoute"
+msgstr "Añadir ruta estática"
+
+msgid "route-target"
+msgstr "Target Dirección IP Network"
+
+msgid "route-target_help"
+msgstr "Esta es la dirección IP de la subred a la que se refiere la ruta estática en la lista."
+
+msgid "route-netmask"
+msgstr "Red de destino Máscara de subred"
+
+msgid "route-netmask_help"
+msgstr "Esta es la máscara de red de la subred a la que se refiere la ruta estática en la lista."
+
+msgid "route-gateway"
+msgstr "Entrada"
+
+msgid "route-gateway_help"
+msgstr "Esta es la puerta de entrada de la red a través del cual se encamina el tráfico de red de la subred de destino."
+
+msgid "route-device"
+msgstr "Dispositivo"
+
+msgid "route-device_help"
+msgstr "Esta es la interfaz de red a través del cual se encamina todo el tráfico de la ruta estática."
+
+msgid "modifyRoute"
+msgstr "Cambiar ruta estática"
+
+msgid "verify_delete"
+msgstr "¿Está seguro que desea eliminar la ruta estática [[VAR.route]]?"
+
+msgid "route_form_target"
+msgstr "Subred de destino"
+
+msgid "route_form_target_help"
+msgstr "Introduzca la dirección IP de la subred que ser re-enrutado. [[base-network.route_form_target_rule]]"
+
+msgid "route_form_target_rule"
+msgstr "Por favor introduzca una serie de cuatro números entre 0 y 255 separados por puntos. Por ejemplo, 192.168.1.0 es una entrada válida."
+
+msgid "route_form_target_empty"
+msgstr "Lo sentimos, no se ha introducido un valor para [[base-network.route_form_target]]. [[base-network.route_form_target_rule]]"
+
+msgid "route_form_target_invalid"
+msgstr "Lo sentimos, [[VAR.invalidValue]] es un valor no válido para [[base-network.route_form_target]]. [[base-network.route_form_target_rule]]"
+
+msgid "route_form_netmask"
+msgstr "Target máscara de red"
+
+msgid "route_form_netmask_help"
+msgstr "Introduzca la máscara de red de la subred que ser re-enrutado. [[base-network.route_form_netmask_rule]]"
+
+msgid "route_form_netmask_rule"
+msgstr "Por favor introduzca una serie de cuatro números entre 0 y 255 separados por puntos. Por ejemplo, 255.255.255.0 es una entrada válida."
+
+msgid "route_form_netmask_empty"
+msgstr "Lo sentimos, no se ha introducido un valor para [[base-network.route_form_netmask]]. [[base-network.route_form_netmask_rule]]"
+
+msgid "route_form_netmask_invalid"
+msgstr "Lo sentimos, [[VAR.invalidValue]] es un valor no válido para [[base-network.route_form_netmask]]. [[base-network.route_form_netmask_rule]]"
+
+msgid "route_form_gateway"
+msgstr "Entrada"
+
+msgid "route_form_gateway_help"
+msgstr "Introduzca la dirección IP de la puerta de enlace de red de la subred de este servidor a través del cual los paquetes con destino a la subred de destino serán redirigidos. [[base-network.route_form_gateway_rule]]"
+
+msgid "route_form_gateway_rule"
+msgstr "Por favor introduzca una serie de cuatro números entre 0 y 255 separados por puntos. Por ejemplo, 192.168.1.1 es una entrada válida."
+
+msgid "route_form_gateway_empty"
+msgstr "Lo sentimos, no se ha introducido un valor para [[base-network.route_form_gateway]]. [[base-network.route_form_gateway_rule]]"
+
+msgid "route_form_gateway_invalid"
+msgstr "Lo sentimos, [[VAR.invalidValue]] es un valor no válido para [[base-network.route_form_gateway]]. [[base-network.route_form_gateway_rule]]"
+
+msgid "route_form_device"
+msgstr "Interfaz de Red"
+
+msgid "route_form_device_help"
+msgstr "Seleccione la interfaz de red a través de la que los paquetes con destino a la subred de destino serán redirigidos. Si no se especifica ningún dispositivo, se seleccionará un dispositivo basado en la dirección IP de la puerta de enlace de la red."
+
+msgid "route_form_device-eth0"
+msgstr "Interfaz Ethernet primaria (eth0)"
+
+msgid "route_form_device-eth1"
+msgstr "Interfaz Ethernet secundaria (eth1)"
+
+msgid "route_form_device-eth2"
+msgstr "Interfaz Ethernet (eth2)"
+
+msgid "route_form_device-eth3"
+msgstr "Interfaz Ethernet (eth3)"
+
+msgid "route_form_device-eth4"
+msgstr "Interfaz Ethernet (eth4)"
+
+msgid "route_form_device-eth5"
+msgstr "Interfaz Ethernet (eth5)"
+
+msgid "route_form_device-eth6"
+msgstr "Interfaz Ethernet (eth6)"
+
+msgid "route_form_device-eth7"
+msgstr "Interfaz Ethernet (eth7)"
+
+msgid "route_form_device-eth8"
+msgstr "Interfaz Ethernet (eth8)"
+
+msgid "route_form_device-eth9"
+msgstr "Interfaz Ethernet (eth9)"
+
+msgid "route_form_device-ppp0"
+msgstr "Point-to-Point Protocolo de interfaz (ppp0)"
+
+msgid "routeList_action_header"
+msgstr "Acciones"
+
+msgid "routeList_action_header_help"
+msgstr "Haga clic en el icono Modificar para cambiar los ajustes de una ruta o haga clic en el icono Eliminar para eliminar una ruta."
+
+msgid "changeMode"
+msgstr "Cambie la conexión a Internet a ..."
+
+msgid "none"
+msgstr "Ninguna o Intranet Usar Sólo"
+
+msgid "broadband"
+msgstr "Cable Modem o DSL"
+
+msgid "lan"
+msgstr "Gateway en la red de área local (LAN)"
+
+msgid "narrowband"
+msgstr "Módem analógico o RDSI"
+
+msgid "lanSettings"
+msgstr "Configuración de Internet - Gateway en la red de área local (LAN)"
+
+msgid "gatewayField"
+msgstr "Gateway del servidor"
+
+msgid "gatewayField_rule"
+msgstr "Por favor introduzca una serie de cuatro números entre 0 y 255 separados por puntos. Por ejemplo, 192.168.1.1 es una entrada válida."
+
+msgid "gatewayField_help"
+msgstr "Introduzca la dirección IP de la puerta de enlace de la red local para este dispositivo de servidor. Esta es la puerta de enlace para las interfaces primarias y secundarias. Los portales de red le permite a su servidor para conectarse con el mundo exterior de su red de área local. [[base-network.gatewayField_rule]]"
+
+msgid "forwardField"
+msgstr "Reenvío IP y enmascaramiento"
+
+msgid "forwardField_help"
+msgstr "Seleccione el método de reenvío de paquetes a través del dispositivo de servidor. Elegir el reenvío de paquetes con enmascaramiento permite la traducción de direcciones de red. Esto permite a su organización para compartir el acceso a Internet mediante la traducción de todo el tráfico de red entre una dirección IP de acceso público, y muchas direcciones IP privadas a través de este dispositivo de servidor. La elección de sólo el reenvío de paquetes sin enmascaramiento permite sólo el transporte entre una interfaz de red y el otro sin proporcionar traducción de direcciones de red. La elección de no reenvío de paquetes no permite el tráfico entre una interfaz de red y el otro."
+
+msgid "forward"
+msgstr "Los paquetes IP Forward Only"
+
+msgid "forwardNat"
+msgstr "Los paquetes IP con el delantero enmascarado"
+
+msgid "forwardOff"
+msgstr "No No reenviar paquetes IP"
+
+msgid "broadbandSettings"
+msgstr "Configuración de Internet - Cable Modem o DSL"
+
+msgid "networkField"
+msgstr "Interface Secundaria"
+
+msgid "networkField_help"
+msgstr "Seleccione la configuración de red adecuado para la interfaz secundario de este dispositivo de servidor."
+
+msgid "dhcp"
+msgstr "Obtener automáticamente Protocolo de configuración dinámica de host (DHCP)"
+
+msgid "dhcpHostNameField"
+msgstr "Nombre de host del cliente"
+
+msgid "dhcpHostNameField_rule"
+msgstr "Introduzca solamente minúsculas caracteres alfanuméricos, guiones o puntos. Por ejemplo, www es una entrada válida."
+
+msgid "dhcpHostNameField_help"
+msgstr "Introduzca el nombre de host que identifica a este servidor como un cliente de Protocolo de configuración dinámica de host (DHCP). [[base-network.dhcpHostNameField_rule]]"
+
+msgid "dhcpHostNameField_invalid"
+msgstr "Lo sentimos, [[VAR.invalidValue]] es un valor no válido para [[base-network.dhcpHostNameField]]. [[base-network.dhcpHostNameField_rule]]"
+
+msgid "dhcpClientIdField"
+msgstr "Identificador de cliente"
+
+msgid "dhcpClientIdField_help"
+msgstr "Introduzca el texto de identificación que identifica a este servidor como un cliente de Protocolo de configuración dinámica de host (DHCP)."
+
+msgid "pppoe"
+msgstr "Obtener automáticamente utilizando el protocolo punto a punto sobre Ethernet (PPPoE)"
+
+msgid "pppUserNameField"
+msgstr "Nombre de usuario"
+
+msgid "pppUserNameField_help"
+msgstr "Introduzca el nombre de usuario utilizado para acceder a su proveedor de servicios de Internet."
+
+msgid "pppUserNameField_empty"
+msgstr "Lo sentimos, no se ha introducido un valor para [[base-network.pppUserNameField]]."
+
+msgid "pppPasswordField"
+msgstr "Contraseña"
+
+msgid "pppPasswordField_help"
+msgstr "Introduzca la contraseña utilizada para acceder a su proveedor de servicios de Internet."
+
+msgid "pppPasswordField_invalid"
+msgstr "Lo sentimos, no se ha ingresado la misma contraseña en ambos campos. La misma contraseña se introduce en ambos campos de protección contra errores de escritura. Por favor, inténtelo de nuevo."
+
+msgid "static"
+msgstr "Especifique manualmente"
+
+msgid "ipAddressField"
+msgstr "Dirección IP"
+
+msgid "ipAddressField_rule"
+msgstr "Por favor introduzca una serie de cuatro números entre 0 y 255 separados por puntos. Por ejemplo, 192.168.1.1 es una entrada válida."
+
+msgid "ipAddressField_help"
+msgstr "Introduzca la dirección IP de la [[VAR.name]]. Si utiliza sólo una conexión de interfaz de red al dispositivo servidor, utilice la interfaz principal y deje las otras interfaces vacía. [[base-network.ipAddressField_rule]]"
+
+msgid "ipAddressField_invalid"
+msgstr "Lo sentimos, el valor introducido por [[base-network.ipAddressField]] no es una dirección IP. [[base-network.ipAddressField_rule]]"
+
+msgid "netMaskField"
+msgstr "Máscara de red IP"
+
+msgid "netMaskField_rule"
+msgstr "Por favor introduzca una serie de cuatro números entre 0 y 255 separados por puntos. Por ejemplo, 255.255.255.0 es una entrada válida."
+
+msgid "netMaskField_help"
+msgstr "Introduzca la máscara de red de la [[VAR.name]]. Si utiliza sólo una conexión de interfaz de red al dispositivo servidor, utilice la interfaz principal y deje las otras interfaces vacía. [[base-network.netMaskField_rule]]"
+
+msgid "netMaskField_invalid"
+msgstr "Lo sentimos, el valor introducido por [[base-network.netMaskField]] no es una máscara de red IP. [[base-network.netMaskField_rule]]"
+
+msgid "ipAddressField1"
+msgstr "[[base-network.ipAddressField]]"
+
+msgid "ipAddressFieldeth0_empty"
+msgstr "Lo sentimos, no se ha introducido la dirección IP de la interfaz principal, que está normalmente conectado al lado de Intranet. [[base-network.ipAddressField_rule]]"
+
+msgid "ipAddressField_empty"
+msgstr "Lo sentimos, no se ha introducido la dirección IP de la [[VAR.interface]]. [[base-network.ipAddressField_rule]]"
+
+msgid "ipAddressField1_help"
+msgstr "Introduzca la dirección IP de la interfaz principal, que está normalmente conectado al lado de Intranet. Si utiliza sólo una conexión de interfaz de red al dispositivo servidor, utilice la interfaz principal y deje vacía la interfaz secundaria. [[base-network.ipAddressField_rule]]"
+
+msgid "ipAddressField2"
+msgstr "[[base-network.ipAddressField]]"
+
+msgid "ipAddressField2_help"
+msgstr "Introduzca la dirección IP de la interfaz secundaria, que está conectado típicamente con el lado de Internet. Si utiliza sólo una conexión de interfaz de red al dispositivo servidor, utilice la interfaz principal y deje vacía la interfaz secundaria. [[base-network.ipAddressField_rule]]"
+
+msgid "netMaskField1"
+msgstr "[[base-network.netMaskField]]"
+
+msgid "netMaskFieldeth0_empty"
+msgstr "Lo sentimos, no ha entrado en la máscara de red de la interfaz principal. [[base-network.netMaskField_rule]]"
+
+msgid "netMaskField_empty"
+msgstr "Lo sentimos, no ha entrado en la máscara de red de la [[VAR.interface]]. [[base-network.netMaskField_rule]]"
+
+msgid "netMaskField1_help"
+msgstr "Introduzca la máscara de red de la interfaz principal. Si utiliza sólo una conexión de interfaz de red al dispositivo servidor, utilice la interfaz principal y deje vacía la interfaz secundaria. [[base-network.netMaskField_rule]]"
+
+msgid "netMaskField2"
+msgstr "[[base-network.netMaskField]]"
+
+msgid "netMaskField2_help"
+msgstr "Introduzca la máscara de red de la interfaz secundaria. Si utiliza sólo una conexión de interfaz de red al dispositivo servidor, utilice la interfaz principal y deje vacía la interfaz secundaria. [[base-network.netMaskField_rule]]"
+
+msgid "ifaceUsedByRoute"
+msgstr "La interfaz no puede ser desactivado, debido a que es utilizado por una ruta estática (s). Por favor, elimine las rutas estáticas utilizando esta interfaz antes de deshabilitar la interfaz."
+
+msgid "ifaceUsedByAlias"
+msgstr "La interfaz no puede ser desactivado, ya que es necesario para un alias de interfaz (es). Todos los alias de interfaz para la interfaz deben ser borrados antes de que se puede desactivar."
+
+msgid "natField"
+msgstr "El enmascaramiento IP"
+
+msgid "natField_help"
+msgstr "Seleccione si desea que el dispositivo de servidor realice enmascaramiento IP. Enmascaramiento de IP permite la traducción de direcciones de red que permite a la organización para compartir el acceso a Internet mediante la traducción a través de este dispositivo de servidor de todo el tráfico de red entre una dirección IP de acceso público y sus muchas direcciones IP privadas accesibles."
+
+msgid "wanNoneMessage"
+msgstr "No hay conexión a internet."
+
+msgid "wanNoneConfirm"
+msgstr "¿Seguro que no desea especificar un tipo de conexión a Internet?"
+
+msgid "modemAuthModeField"
+msgstr "Modo de autenticación"
+
+msgid "modemAuthModeField_help"
+msgstr "Existen dos modos de autenticación comunes para su uso con conexiones de red de acceso telefónico. Consulte a su proveedor de servicios para el modo de autenticación que se utilizará."
+
+msgid "pap"
+msgstr "PAP"
+
+msgid "chap"
+msgstr "CHAP"
+
+msgid "modemAuthHostField"
+msgstr "Nombre de host del servidor"
+
+msgid "modemAuthHostField_help"
+msgstr "Es necesario el servidor de acceso telefónico a nombre de host para la autenticación CHAP de acceso telefónico. Consulte a su proveedor de servicios para el host del servidor si se utiliza la autenticación CHAP."
+
+msgid "modemAuthHostField_invalid"
+msgstr "Lo sentimos, [[VAR.invalidValue]] es un valor no válido para [[base-network.modemAuthHostField]]."
+
+msgid "modemConnStatus"
+msgstr "Estado de la conexión"
+
+msgid "modemConnStatus_help"
+msgstr "Esto muestra el estado de la conexión actual y se indica si el módem está conectado a su proveedor de servicios de Internet."
+
+msgid "modemSettings"
+msgstr "Configuración de Internet - Módem analógico o RDSI"
+
+msgid "modemConnModeField"
+msgstr "Modo de conexión"
+
+msgid "modemConnModeField_help"
+msgstr "Seleccione si desea que siempre se debe establecer la conexión módem, debe establecerse sólo cuando sea necesario para una conexión saliente, o nunca se debe establecer."
+
+msgid "demand"
+msgstr "Conexión On Demand Sólo"
+
+msgid "on"
+msgstr "Conexión Siempre encendido"
+
+msgid "off"
+msgstr "Conexión Siempre Apagado"
+
+msgid "modemUserNameField"
+msgstr "Dial-Up de cuenta Nombre de usuario"
+
+msgid "modemUserNameField_help"
+msgstr "Introduzca el nombre de usuario de la cuenta de acceso telefónico utilizado para acceder a su proveedor de servicios de Internet."
+
+msgid "modemUserNameField_empty"
+msgstr "Lo sentimos, no se ha introducido un valor para [[base-network.modemUserNameField]]. Por favor, introduzca el nombre de usuario de la cuenta de acceso telefónico utilizado para acceder a su proveedor de servicios de Internet."
+
+msgid "modemPasswordField"
+msgstr "Dial-Up Account Password"
+
+msgid "modemPasswordField_help"
+msgstr "Introduzca la contraseña de la cuenta de acceso telefónico utilizado para acceder a su proveedor de servicios de Internet. La misma contraseña se introduce en ambos campos de protección contra errores de escritura."
+
+msgid "modemPasswordField_empty"
+msgstr "Lo sentimos, no se ha introducido un valor para [[base-network.modemPasswordField]]. Por favor, introduzca la contraseña de la cuenta de acceso telefónico utilizado para acceder a su proveedor de servicios de Internet."
+
+msgid "modemPasswordField_invalid"
+msgstr "Lo sentimos, no se ha ingresado la misma contraseña en ambos campos. La misma contraseña se introduce en ambos campos de protección contra errores de escritura. Por favor, inténtelo de nuevo."
+
+msgid "modemPhoneField"
+msgstr "Número de teléfono"
+
+msgid "modemPhoneField_help"
+msgstr "Introduzca el número de teléfono de su proveedor de servicios de Internet."
+
+msgid "modemPhoneField_empty"
+msgstr "Lo sentimos, no se ha introducido un valor para [[base-network.modemPhoneField]]. Por favor, introduzca el número de teléfono de su proveedor de servicios de Internet."
+
+msgid "modemInitStrField"
+msgstr "Cadena de inicialización del módem"
+
+msgid "modemInitStrField_help"
+msgstr "Introduzca la cadena de inicialización del módem que se pasa al módem antes de marcar. Es necesario introducir una cadena de inicialización o el servidor no será capaz de utilizar el módem. Si usted no sabe su módem cadena de inicialización correcta, intente con &quot;ATZ&quot; o consulte la documentación del módem."
+
+msgid "modemInitStrField_empty"
+msgstr "Lo sentimos, no se ha introducido un valor para [[base-network.modemInitStrField]]. Es necesario introducir una cadena de inicialización o el servidor no será capaz de utilizar el módem. Si usted no sabe su módem cadena de inicialización correcta, intente con &quot;ATZ&quot; o consulte la documentación del módem."
+
+msgid "modemIpField"
+msgstr "Dirección IP local"
+
+msgid "modemIpField_help"
+msgstr "Introduzca la dirección IP local en este extremo de la conexión del módem sólo si se ha asignado estáticamente por su proveedor de servicio de Internet."
+
+msgid "modemIpField_invalid"
+msgstr "Lo sentimos, [[VAR.invalidValue]] es un valor no válido para [[base-network.modemIpField]]."
+
+msgid "modemSpeedField"
+msgstr "Velocidad del módem (baudios)"
+
+msgid "modemSpeedField_help"
+msgstr "Seleccionar la velocidad de la conexión de la línea serie para el módem. El valor predeterminado es 115200."
+
+msgid "modemPulseField"
+msgstr "Activar Pulso"
+
+msgid "modemPulseField_help"
+msgstr "Gire marcación por pulsos o desactivar. Al activar esta función se utiliza la marcación por pulsos en vez de marcación por tonos. El valor predeterminado es dejar de marcación por pulsos fuera."
+
+msgid "saveTest"
+msgstr "Guardar y probar"
+
+msgid "saveTest_help"
+msgstr "Esto guardará la configuración actual e intentar una conexión de prueba con su proveedor de servicios de Internet para comprobar la configuración."
+
+msgid "confirmNoDhcp"
+msgstr "Su [[VAR.interface]] ajustes fueron obtenidos de un servidor de Protocolo de configuración dinámica de host (DHCP).\nChanging estos ajustes se apagarán búsquedas DHCP en la [[VAR.interface]]. ¿Desea continuar?"
+
+msgid "ethernetChanged"
+msgstr "La configuración de la red han cambiado. En unos momentos, el sistema intentará conectarse a la nueva dirección IP.\nSi la página de inicio de sesión no aparece, por favor conectarse al dispositivo de servidor, escriba la nueva dirección en su navegador web."
+
+msgid "confirmMigrateAliases"
+msgstr "El [[VAR.interface]] tiene alias de interfaz que dependen de ella. Deshabilitar la interfaz hará que los alias de interfaz para ser trasladados a la interfaz principal. Los alias se pueden mover a otra interfaz después del cambio, modificando cada alias.\n\n¿Está seguro de que desea desactivar la [[VAR.interface]]?"
+
+msgid "adminRedirect"
+msgstr "En unos pocos segundos, usted debe ser redirigido a la nueva dirección IP. Si usted no es dirigido, por favor haga clic en el [[base-network.reconnect]] botón de abajo para intentar conectar con la nueva dirección IP. Si eso no funciona, cambiar la dirección IP puede haber fallado, y usted debe hacer clic en el [[base-network.oldIPReconnect]] para intentar volver a conectarse a la dirección IP anterior servidores."
+
+msgid "reconnect"
+msgstr "Conectar a la nueva dirección"
+
+msgid "reconnect_help"
+msgstr "Haga clic aquí para conectarse a los servidores nueva dirección IP."
+
+msgid "oldIPReconnect"
+msgstr "Conectar a Old Dirección"
+
+msgid "oldIPReconnect_help"
+msgstr "Haga clic aquí para tratar de volver a conectarse a la dirección IP antigua servidores. Esto sólo se debe utilizar si se conecta a la nueva dirección IP con el botón [[base-network.reconnect]] ha fallado."
+
+msgid "netUsage"
+msgstr "Red"
+
+msgid "netUsage_help"
+msgstr "Estadísticas de uso de la red se pueden encontrar aquí."
+
+msgid "amNetUsage"
+msgstr "Uso de la red"
+
+msgid "eth0"
+msgstr "Interfaz principal (eth0)"
+
+msgid "eth0_help"
+msgstr "Las estadísticas de la interfaz de red principal"
+
+msgid "eth1"
+msgstr "Interface Secundaria (eth1)"
+
+msgid "eth1_help"
+msgstr "Las estadísticas de la interfaz de red secundaria"
+
+msgid "eth2"
+msgstr "Network Interface (eth2)"
+
+msgid "eth3"
+msgstr "Network Interface (eth3)"
+
+msgid "eth4"
+msgstr "Network Interface (eth4)"
+
+msgid "eth5"
+msgstr "Network Interface (eth5)"
+
+msgid "eth6"
+msgstr "Network Interface (eth6)"
+
+msgid "eth7"
+msgstr "Network Interface (eth7)"
+
+msgid "eth8"
+msgstr "Network Interface (eth8)"
+
+msgid "eth9"
+msgstr "Network Interface (eth9)"
+
+msgid "ppp0"
+msgstr "Point-to-Point Protocolo de interfaz (ppp0)"
+
+msgid "amIface"
+msgstr "Interfaz de Red"
+
+msgid "amIface_help"
+msgstr "Este es el identificador de interfaz de red."
+
+msgid "amSentB"
+msgstr "Enviados (Bytes)"
+
+msgid "amSentB_help"
+msgstr "Este es el número total de bytes enviados en esta interfaz de red."
+
+msgid "amRcvdB"
+msgstr "Recibido (Bytes)"
+
+msgid "amRcvdB_help"
+msgstr "Este es el número total de bytes recibidos en esta interfaz de red."
+
+msgid "amErrors"
+msgstr "Errores"
+
+msgid "amErrors_help"
+msgstr "Este es el número total de errores enviados o recibidos en esta interfaz de red."
+
+msgid "amColls"
+msgstr "Colisiones"
+
+msgid "amColls_help"
+msgstr "Este es el número total de colisiones detectadas en esta interfaz de red."
+
+msgid "amNetworkNameTag"
+msgstr "Estado de la red"
+
+msgid "amNetDetails"
+msgstr "Detalles del estado de la red"
+
+msgid "amIfaceIsDown"
+msgstr "La interfaz de red [[VAR.iface]] se ha reducido."
+
+msgid "amGatewayIsUnreachable"
+msgstr "La puerta de enlace de la red no es accesible. Por favor, compruebe que el cable de red esté bien conectado y que la configuración de red están configurados correctamente. Puede configurar los ajustes de red a través de la [[base-apache.amAdmservNameTag]], oa través de la pantalla LCD del panel frontal. Compruebe también que la propia red funciona correctamente."
+
+msgid "amNetworkOK"
+msgstr "La red funciona con normalidad."
+
+msgid "dialoutWindowing"
+msgstr "Período de conexión"
+
+msgid "dialoutWindowing_help"
+msgstr "Modem uso puede estar restringido a ciertas horas del día. Por defecto, el módem se permite llamar a cualquier hora del día."
+
+msgid "dialTimes"
+msgstr "Conecte tiempos"
+
+msgid "noDialTimes"
+msgstr "No conecte"
+
+msgid "modem_hour_0"
+msgstr "00:00 - 00:59"
+
+msgid "modem_hour_1"
+msgstr "1:00-1:59"
+
+msgid "modem_hour_2"
+msgstr "02:00-02:59"
+
+msgid "modem_hour_3"
+msgstr "03:00-03:59"
+
+msgid "modem_hour_4"
+msgstr "4:00-04:59"
+
+msgid "modem_hour_5"
+msgstr "05:00-05:59"
+
+msgid "modem_hour_6"
+msgstr "6:00-06:59"
+
+msgid "modem_hour_7"
+msgstr "07:00-07:59"
+
+msgid "modem_hour_8"
+msgstr "8:00-8:59"
+
+msgid "modem_hour_9"
+msgstr "9:00-09:59"
+
+msgid "modem_hour_10"
+msgstr "10:00-10:59"
+
+msgid "modem_hour_11"
+msgstr "11:00-11:59"
+
+msgid "modem_hour_12"
+msgstr "12:00-12:59"
+
+msgid "modem_hour_13"
+msgstr "13:00-13:59"
+
+msgid "modem_hour_14"
+msgstr "14:00-14:59"
+
+msgid "modem_hour_15"
+msgstr "15:00-15:59"
+
+msgid "modem_hour_16"
+msgstr "16:00-16:59"
+
+msgid "modem_hour_17"
+msgstr "17:00-17:59"
+
+msgid "modem_hour_18"
+msgstr "18:00-18:59"
+
+msgid "modem_hour_19"
+msgstr "19:00-19:59"
+
+msgid "modem_hour_20"
+msgstr "20:00-20:59"
+
+msgid "modem_hour_21"
+msgstr "21:00-21:59"
+
+msgid "modem_hour_22"
+msgstr "22:00-22:59"
+
+msgid "modem_hour_23"
+msgstr "23:00-23:59"
+
+msgid "cantGetModem"
+msgstr "[[base-modem.cantGetModem]]"
+
+msgid "modemProblem"
+msgstr "[[base-modem.modemProblem]]"
+
+msgid "offNow"
+msgstr "[[base-modem.offNow]]"
+
+msgid "onNow"
+msgstr "[[base-modem.onNow]]"
+
+msgid "gateway-not-reachable"
+msgstr "La puerta de enlace especificado no se pudo llegar. Compruebe para asegurarse de que su puerta de entrada se encuentra dentro de una sub-red accesible. Es posible que también desee comprobar sus reglas de enrutamiento directo."
+
+msgid "gatewayWithinOwnTargetSubnet"
+msgstr "Lo sentimos, esta ruta no puede ser añadido a la tabla de enrutamiento. La puerta de enlace ([[VAR.gateway]]) no puede estar dentro de la subred de destino ([[VAR.target]])."
+
+msgid "invalid-route"
+msgstr "Lo sentimos, la ruta a [[VAR.network]] no pudo ser añadido a la tabla de enrutamiento. Es posible que la pasarela especificada, [[VAR.gateway]], es inalcanzable. El objetivo es [[VAR.network]], que debe ser accesible a través de la puerta de enlace, [[VAR.gateway]], y la ruta se añade a la interfaz, [[VAR.device]]."
+
+msgid "badDefaultGateway"
+msgstr "Lo sentimos, la puerta de enlace predeterminada, [[VAR.gateway]], no se puede alcanzar con la configuración actual. Por favor, compruebe la configuración de red para asegurarse de que al menos una de las interfaces de red se encuentra en la misma red que la puerta de enlace predeterminada."
+
+msgid "disable-interface-first"
+msgstr "Lo sentimos, no se puede quitar la configuración de una interfaz de red habilitada. Desactive la interfaz antes de intentar quitar la configuración."
+
+msgid "amNetStats"
+msgstr "Estadísticas de la red"
+
+msgid "activity"
+msgstr "Actividad"
+
+msgid "recv_bytes"
+msgstr "Bytes recibidos"
+
+msgid "recv_bytes_help"
+msgstr "El número de bytes recibidos en la interfaz de red."
+
+msgid "recv_packets"
+msgstr "Paquetes recibidos"
+
+msgid "recv_packets_help"
+msgstr "El número de paquetes recibidos en la interfaz de red."
+
+msgid "sent_bytes"
+msgstr "Bytes enviados"
+
+msgid "sent_bytes_help"
+msgstr "El número de bytes enviados en la interfaz de red."
+
+msgid "sent_packets"
+msgstr "Los paquetes enviados"
+
+msgid "sent_packets_help"
+msgstr "El número de paquetes enviados en la interfaz de red."
+
+msgid "errors"
+msgstr "Errores"
+
+msgid "errors_help"
+msgstr "El número de errores de transmisión y recepción en la interfaz de red. Un gran número de errores puede ser indicativa de problemas de la red."
+
+msgid "collisions"
+msgstr "Colisiones"
+
+msgid "collisions_help"
+msgstr "El número de colisiones de la red. Un gran número de colisiones puede ser indicativa de problemas de la red."
+
+msgid "stats_disabled"
+msgstr "Interface deshabilitado"
+
+msgid "pooling_block"
+msgstr "[[base-network.sitepooling]]"
+
+msgid "enabledField"
+msgstr "Activado"
+
+msgid "enabledField_help"
+msgstr "Habilitar [[base-network.sitepooling]]. Sólo las direcciones IP dentro de los rangos indicados a continuación serán permitidos para el uso de sitios virtuales."
+
+msgid "rangeList"
+msgstr "Rangos aceptables"
+
+msgid "min"
+msgstr "A partir de Rango"
+
+msgid "min_help"
+msgstr "Esta es la dirección IP a partir del intervalo."
+
+msgid "max"
+msgstr "Fin del Rango"
+
+msgid "max_help"
+msgstr "Esta es la dirección IP final del rango."
+
+msgid "add"
+msgstr "Añadir"
+
+msgid "add_help"
+msgstr "Haz clic aquí para agregar el rango de la lista."
+
+msgid "save"
+msgstr "Guardar"
+
+msgid "save_help"
+msgstr "Haga clic aquí para guardar los cambios realizados en la gama."
+
+msgid "saveEnabled"
+msgstr "Guardar"
+
+msgid "saveEnabled_help"
+msgstr "Haga clic aquí para guardar el estado Habilitado."
+
+msgid "sitepooling"
+msgstr "Asignación de direcciones IP"
+
+msgid "sitepoolingDescription"
+msgstr "Haga clic aquí para especificar los rangos de direcciones IP aceptables para este servidor."
+
+msgid "restricted"
+msgstr "El acceso a esta página se ha restringido."
+
+msgid "cant_enable_pooling"
+msgstr "La dirección IP siguiente (s) no están en ninguno de los rangos permitidos: [[VAR.ips_not_covered]]. Por favor, cree una gama que incluye estos dirección (es) antes de activar [[base-network.sitepooling]]."
+
+msgid "missing_part_of_range"
+msgstr "Ha introducido un intervalo no válido. Por favor, introduzca la vez un principio y la dirección IP final. Si desea introducir un rango que abarca una única dirección IP, por favor, introduzca la dirección IP como el principio y el final del rango."
+
+msgid "minGreaterThanMax"
+msgstr "El comienzo IP [[VAR.range_min]] de la gama es más alto que el IP final [[VAR.range_max]]. Por favor, introduzca una dirección IP inicial que es menor que o igual que el extremo de la gama."
+
+msgid "ip_not_in_range"
+msgstr "La dirección IP [[VAR.ipaddr]] no está en ninguno de los rangos válidos. Por favor elija otra dirección IP."
+
+msgid "cant_change_range"
+msgstr "Lo siento, no puedo cambiar el rango especificado. La dirección IP siguiente (s) están dentro de ese rango: [[VAR.affected_ips]]."
+
+msgid "ip_restricted"
+msgstr "La dirección IP [[VAR.ipaddr]] no está permitido. Por favor elija otra dirección IP."
+
+msgid "cant_delete_range"
+msgstr "Lo siento, no puedo borrar el rango especificado. La dirección IP siguiente (s) están dentro de ese rango: [[VAR.affected_ips]]."
+
+msgid "cancel"
+msgstr "Cancelar"
+
+msgid "cancel_help"
+msgstr "Clic para cancelar los cambios realizados en la gama."
+
+msgid "valid_ranges"
+msgstr "Márgenes válidos:"
+
+msgid "valid_ranges_help"
+msgstr "Sólo las direcciones IP dentro de los intervalos citados se permite para el uso en el sistema."
+
+msgid "noDuplicateDevices"
+msgstr "Otra interfaz o alias ya se le asigna el nombre del dispositivo, [[VAR.device]]. El nombre del dispositivo para cada interfaz y alias debe ser único."
+
+msgid "noDuplicateIPsAllowed"
+msgstr "Otra interfaz o alias con la dirección IP, [[VAR.ipaddr]], que ya existe. La dirección IP de cada interfaz y el alias debe ser único."
+
+msgid "invalidNetmaskReal"
+msgstr "Lo sentimos, el valor introducido para la máscara de red [[VAR.netmask]], la [[VAR.device]] no es una máscara de red utilizable. [[base-network.validNetmaskHelp]]"
+
+msgid "invalidNetmaskAlias"
+msgstr "Lo sentimos, el valor introducido para la máscara de red [[VAR.netmask]], no es una máscara de red utilizable. [[base-network.validNetmaskHelp]]"
+
+msgid "validNetmaskHelp"
+msgstr "Máscaras de red utilizables deberán consistir en una serie de cuatro números entre 0 y 255 separados por puntos. Si desea especificar una subred, los números principales deben ser 255 y el número de sub-red deben ser 128, 192, 224, 240, 248, 252, o 254. Por ejemplo, 255.255.0.0 y 255.128.0.0 son máscaras de red utilizables."
+
+msgid "openvz_vps"
+msgstr "Este es un VPS OpenVZ. Configuración de la red (por ejemplo, nombre de host, nombre de dominio, servidores DNS y puerta de enlace) sólo se pueden cambiar en el nodo maestro. No en el propio VPS. A continuación puedes consultar los valores configurados actualmente para este VPS."
+
+msgid "cap_serverIpPooling"
+msgstr "Configuración de la asignación de direcciones IP"
+
+msgid "cap_serverNetwork"
+msgstr "Configuración TCP / IP"
+
+msgid "admin"
+msgstr "Administradores de servidores"
+
+msgid "admin_help"
+msgstr "Estos son los administradores de servidores para este rango de direcciones IP."
+
+#####
+# IPv6 Additions - Do not translate
+#####
+
+msgid "IPv6_ipAddressField1"
+msgstr "[[base-network.IPv6_ipAddressField]]"
+
+msgid "IPv6_ipAddressField2"
+msgstr "[[base-network.IPv6_ipAddressField]]"
+
+msgid "IPv6_ipAddressField2_help"
+msgstr "[[base-network.IPv6_ipAddressField1_help]]"
+
+msgid "IPv6_ipAddressField3"
+msgstr "[[base-network.IPv6_ipAddressField]]"
+
+msgid "IPv6_ipAddressField3_help"
+msgstr "[[base-network.IPv6_ipAddressField1_help]]"
+
+msgid "IPv6_ipAddressField4"
+msgstr "[[base-network.IPv6_ipAddressField]]"
+
+msgid "IPv6_ipAddressField4_help"
+msgstr "[[base-network.IPv6_ipAddressField1_help]]"
+
+#####
+# IPv6 Additions - Translate
+#####
+
+msgid "both_ips_must_be_ipv4_or_ipv6"
+msgstr "El IP inicial [[VAR.range_min]] y el IP final [[VAR.range_max]] no son del mismo protocolo IP. Por favor, no mezcle direcciones IPv4 e IPv6 en rangos."
+
+msgid "IPValidation_ipv4_specified_but_not_allowed"
+msgstr "Ha introducido una dirección IPv4, pero las direcciones IPv4 IP no están permitidas."
+
+msgid "IPValidation_ipv6_specified_but_not_allowed"
+msgstr "Ha introducido una dirección IPv6, pero las direcciones IPv6 no están permitidas."
+
+msgid "IPValidation_ip_must_be_specified"
+msgstr "Por favor, introduzca una dirección IP para el sitio virtual [[VAR.fqdn]]"
+
+msgid "gatewayField_IPv6"
+msgstr "IPv6 Gateway del servidor"
+
+msgid "gatewayField_IPv6_rule"
+msgstr "Por ejemplo, 2001:550:1f0e:1da::1 podría ser una entrada válida."
+
+msgid "gatewayField_IPv6_help"
+msgstr "Introduzca la dirección IPv6 IPv6 de la pasarela de red local para este dispositivo de servidor. Esta es la puerta de enlace para las interfaces primaria y secundaria. Un gateway de red permite a su servidor conectarse con el mundo fuera de su área de red local. [[base-network.gatewayField_IPv6_rule]]"
+
+msgid "IPv6_ipAddressField"
+msgstr "Dirección IP IPv6"
+
+msgid "IPv6_ipAddressField_rule"
+msgstr "Por favor, introduzca la dirección IPv6. Por ejemplo, 2001:550:1f0e:1da::10 podría ser una entrada válida."
+
+msgid "IPv6_ipAddressField_help"
+msgstr "Introduzca la dirección IPv6 de [[VAR.name]]. Si está utilizando sólo una conexión de interfaz de red con el dispositivo del servidor, utilice la interfaz principal y deje las otras interfaces vacías. [[base-network.IPv6_ipAddressField_rule]]"
+
+msgid "IPv6_ipAddressField_invalid"
+msgstr "Lo sentimos, el valor introducido para [[base-network.IPv6_ipAddressField]] no es una dirección IPv6. [[base-network.IPv6_ipAddressField_rule]]"
+
+msgid "IPv6_ipAddressField1_help"
+msgstr "Introduzca la dirección IPv6 de la interfaz principal, que normalmente está conectada al lado de la Intranet. Si está utilizando sólo una conexión de interfaz de red con el dispositivo del servidor, utilice la interfaz principal y deje la interfaz secundaria vacía. [[base-network.IPv6_ipAddressField_rule]]"
+

@@ -1,0 +1,106 @@
+<!-- Author: Michael Stauber mstauber@solarspeed.net -->
+<!-- Copyright 2006-2015, Team BlueOnyx. All rights reserved. -->
+
+<class name="Vsite" namespace="PHPVsite" version="3.2" createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)">
+       <property name="applicable"
+            type="scalar"
+            default=""
+            writeacl="ruleCapable(adminUser)"
+        />
+       <property name="register_globals"
+            type="scalar"
+            default="Off"
+            writeacl="ruleCapable(adminUser)"
+        />
+       <property name="safe_mode"
+            type="scalar"
+            default="On"
+            writeacl="ruleCapable(adminUser)"
+        />
+        <property name="safe_mode_gid"
+            type="scalar"
+            default="Off"
+            writeacl="ruleCapable(adminUser)"
+        />
+        <property name="safe_mode_include_dir"
+            type="scalar"
+            default="/usr/sausalito/configs/php/"
+            writeacl="ruleCapable(adminUser)"
+        />
+       <property name="safe_mode_exec_dir"
+            type="scalar"
+            default="."
+            optional="true"
+            writeacl="ruleCapable(adminUser)"
+        />
+       <property name="safe_mode_allowed_env_vars"
+            type="scalar"
+            default="PHP_,_HTTP_HOST,_SCRIPT_NAME,_SCRIPT_FILENAME,_DOCUMENT_ROOT,_REMOTE_ADDR,_SOWNER"
+            writeacl="ruleCapable(adminUser)"
+        />
+       <property name="safe_mode_protected_env_vars"
+            type="scalar"
+            default="LD_LIBRARY_PATH"
+            writeacl="ruleCapable(adminUser)"
+        />
+       <property name="open_basedir"
+            type="scalar"
+            default="/tmp/:/var/lib/php/session/:/usr/sausalito/configs/php/"
+            optional="true"
+            writeacl="ruleCapable(adminUser)"
+        />
+       <property name="allow_url_fopen"
+            type="scalar"
+            default="Off"
+            optional="true"
+            writeacl="ruleCapable(adminUser)"
+        />
+       <property name="allow_url_include"
+            type="scalar"
+            default="Off"
+            optional="true"
+            writeacl="ruleCapable(adminUser)"
+        />
+       <property name="upload_max_filesize"
+            type="scalar"
+            default="2M"
+            optional="true"
+            writeacl="ruleCapable(adminUser)"
+        />
+       <property name="post_max_size"
+            type="scalar"
+            default="8M"
+            optional="true"
+            writeacl="ruleCapable(adminUser)"
+        />
+       <property name="max_execution_time"
+            type="scalar"
+            default="30"
+            optional="true"
+            writeacl="ruleCapable(adminUser)"
+        />
+       <property name="max_input_time"
+            type="scalar"
+            default="60"
+            optional="true"
+            writeacl="ruleCapable(adminUser)"
+        />
+       <property name="max_input_vars"
+            type="int"
+            default="1000"
+            optional="false"
+            writeacl="ruleCapable(adminUser)"
+        />
+       <property name="memory_limit"
+            type="scalar"
+            default="16M"
+            optional="true"
+            writeacl="ruleCapable(adminUser)"
+	/>
+       <property name="force_update"
+            type="scalar"
+            default=""
+            optional="true"
+            writeacl="ruleCapable(adminUser)"
+        />
+</class>

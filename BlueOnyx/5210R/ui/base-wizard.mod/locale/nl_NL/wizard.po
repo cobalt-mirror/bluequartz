@@ -1,0 +1,634 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "wizardLicense"
+msgstr "Binaire Code License"
+
+msgid "wizardLicense_help"
+msgstr ""
+
+msgid "wizardAdmin"
+msgstr "Administrator Settings"
+
+msgid "wizardAdmin_help"
+msgstr ""
+
+msgid "adminSettings"
+msgstr "Administrator Settings"
+
+msgid "adminMessage"
+msgstr "De [[base-product.productName]] een beheerder om taken zoals het toevoegen van gebruikers en groepen, alsmede configureren van de instellingen omgaan vereist. De gebruikersnaam van de beheerder is admin. Voer een moeilijk te raden wachtwoord voor de beheerder. Vergeet niet het wachtwoord voor toekomstig gebruik."
+
+msgid "adminNameField"
+msgstr "Gebruikers Naam"
+
+msgid "adminNameField_help"
+msgstr "Dit is de naam die door het systeem aan de beheerder identificeren en kan niet worden gewijzigd."
+
+msgid "alteradminField"
+msgstr "Alteradmin Account"
+
+msgid "alteradminField_help"
+msgstr "De alteradmin rekening kan worden gebruikt om de bevoegdheidsverdeling tussen meerdere partijen met unieke wachtwoorden te delen. Indien ingeschakeld, kunnen zowel admin en alteradmin authenticeren om deze administratieve interface. Eenmaal ingeschakeld, kan alleen de alteradmin het wachtwoord te wijzigen of de account uit te schakelen."
+
+msgid "alteradminEnabled"
+msgstr "In staat stellen"
+
+msgid "alteradminPassword"
+msgstr "alteradmin Wachtwoord"
+
+msgid "alteradminPassword_help"
+msgstr "Dit is het wachtwoord van de alteradmin gebruiker zal gebruiken voor verificatie. Als de alteradmin account is ingeschakeld, dient dit wachtwoord anders dan degene die gebruikt wordt voor de admin gebruiker."
+
+msgid "passwordField"
+msgstr "Wachtwoord"
+
+msgid "passwordField_rule"
+msgstr "Het wachtwoord moet tussen de 3 en 16 tekens lang zijn. Een goed wachtwoord moet minimaal 5 karakters met een mix van hoofdletters en kleine letters en cijfers en leestekens bevatten. Het moet niet precies welke woorden in het woordenboek. Wachtwoorden zijn hoofdlettergevoelig."
+
+msgid "passwordField_help"
+msgstr "Voer het wachtwoord voor het systeem om de beheerder te identificeren. [[base-wizard.passwordField_rule]]"
+
+msgid "passwordField_invalid"
+msgstr "Sorry, je hebt niet hetzelfde wachtwoord in beide velden ingevoerd. Hetzelfde wachtwoord in beide velden ingevoerd ter bescherming tegen typefouten. Probeer het opnieuw."
+
+msgid "passwordField_empty"
+msgstr "Sorry, je hebt niet opgegeven en een waarde voor [[base-wizard.passwordField]]. [[base-wizard.passwordField_rule]]"
+
+msgid "newPasswordField"
+msgstr "Nieuw wachtwoord"
+
+msgid "newPasswordField_help"
+msgstr "Voer het wachtwoord voor het systeem om de beheerder te identificeren. [[base-wizard.passwordField_rule]]"
+
+msgid "wizardTime"
+msgstr "Time Settings"
+
+msgid "wizardTime_help"
+msgstr ""
+
+msgid "timeSettings"
+msgstr "Time Settings"
+
+msgid "timeMessage"
+msgstr "De [[base-product.productName]] vereist de juiste datum en tijd om goed te functioneren. Vul de huidige datum en tijd, alsmede de juiste tijdzone."
+
+msgid "dateField"
+msgstr "Datum"
+
+msgid "dateField_help"
+msgstr "Stel de huidige datum."
+
+msgid "timeField"
+msgstr "Tijd"
+
+msgid "timeField_help"
+msgstr "Stel de huidige tijd."
+
+msgid "timeZoneField"
+msgstr "Time Zone"
+
+msgid "timeZoneField_help"
+msgstr "Stel de tijdzone waarin deze server apparaat zich bevindt."
+
+msgid "wizardUsers"
+msgstr "Gebruikersinstellingen"
+
+msgid "wizardUsers_help"
+msgstr ""
+
+msgid "wizardWorkgroups"
+msgstr "Groepsinstellingen"
+
+msgid "wizardWorkgroups_help"
+msgstr ""
+
+msgid "wizardNetwork"
+msgstr "Network Integration"
+
+msgid "wizardNetwork_help"
+msgstr ""
+
+msgid "networkSettings"
+msgstr "Netwerkinstellingen"
+
+msgid "networkMessage"
+msgstr "De [[base-product.productName]] kan worden ingesteld toegankelijk op een intranet binnen uw organisatie en op het internet in het algemeen te zijn. Vul de hostnaam en de domeinnaam van deze server apparaat evenals een bereikbaar domein server en een methode van netwerkconnectiviteit."
+
+msgid "enterFqdn"
+msgstr "Host en Domain Name"
+
+msgid "enterFqdn_help"
+msgstr "Voer de hostnaam van de server in het eerste veld en de domeinnaam in het tweede veld. Bijvoorbeeld, www is een geldige hostnaam, en example.com is een geldige domeinnaam. Vul alleen kleine alfanumerieke tekens, streepjes of periodes."
+
+msgid "hostNameField"
+msgstr "Hostnaam"
+
+msgid "hostNameField_rule"
+msgstr "Vul alleen kleine alfanumerieke tekens, streepjes of periodes. Bijvoorbeeld, www is een geldige invoer."
+
+msgid "hostNameField_help"
+msgstr "Geef de naam van deze server apparaat gastheer. De hostnaam en de domeinnaam in combinatie met elkaar moeten een unieke deze server apparaat te identificeren. [[base-wizard.hostNameField_rule]]"
+
+msgid "domainNameField"
+msgstr "Domeinnaam"
+
+msgid "domainNameField_rule"
+msgstr "Vul alleen kleine alfanumerieke tekens, streepjes of periodes. Bijvoorbeeld example.com een ​​geldige invoer."
+
+msgid "domainNameField_help"
+msgstr "Voer de domeinnaam van deze server apparaat. De hostnaam en de domeinnaam in combinatie met elkaar moeten een unieke deze server apparaat te identificeren. [[base-wizard.domainNameField_rule]]"
+
+msgid "dnsAddressesField"
+msgstr "DNS-servers"
+
+msgid "dnsAddressesField_rule"
+msgstr "Vul een reeks van vier getallen tussen 0 en 255, gescheiden door punten. Bijvoorbeeld, 192.168.1.1 een geldige invoer. Het verlaten van dit veld leeg wordt voorkomen dat deze machine van het vinden van andere machines door hostnaam of domeinnaam en zal leiden tot een netwerk problemen."
+
+msgid "dnsAddressesField_help"
+msgstr "Voer het IP-adres of de adressen van uw lokale DNS server of servers, een adres per regel. Een domeinnaam server vertaalt host-en domeinnamen naar IP-adressen en vice-versa. [[base-wizard.dnsAddressesField_rule]]"
+
+msgid "dnsAddressesField_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is een ongeldige waarde in [[base-wizard.dnsAddressesField]]. [[base-wizard.dnsAddressesField_rule]]"
+
+msgid "internetField"
+msgstr "Internetverbinding"
+
+msgid "internetField_help"
+msgstr "Selecteer het type internetverbinding dat zal worden gebruikt met deze server apparaat."
+
+msgid "none"
+msgstr "Geen of intranet Use Only"
+
+msgid "broadband"
+msgstr "Kabelmodem of DSL"
+
+msgid "lan"
+msgstr "Gateway op Local Area Network (LAN)"
+
+msgid "narrowband"
+msgstr "Analoge modem of ISDN"
+
+msgid "wizardBroadband"
+msgstr "Breedband Instellingen"
+
+msgid "wizardBroadband_help"
+msgstr ""
+
+msgid "broadbandSettings"
+msgstr "Breedband Instellingen"
+
+msgid "broadbandMessage"
+msgstr "Uw kabelmodem of DSL-verbinding moet worden aangesloten op de secundaire interface van de [[base-product.productName]]. Vul de juiste configuratie-instellingen die u van uw Internet Service Provider."
+
+msgid "networkField"
+msgstr "Secundaire Interface"
+
+msgid "networkField_help"
+msgstr "Selecteer de juiste netwerk configuratie voor de secundaire interface van deze server apparaat. Uw Internet Service Provider moet u voorzien van de informatie die nodig is om deze stap te voltooien."
+
+msgid "dhcp"
+msgstr "Krijgen automatisch met behulp van Dynamic Host Configuration Protocol (DHCP)"
+
+msgid "dhcpHostNameField"
+msgstr "Client hostnaam"
+
+msgid "dhcpHostNameField_rule"
+msgstr "Vul alleen kleine alfanumerieke tekens, streepjes of periodes. Bijvoorbeeld, www is een geldige invoer."
+
+msgid "dhcpHostNameField_help"
+msgstr "Voer de hostnaam die deze server identificeert als een Dynamic Host Configuration Protocol (DHCP) client. [[base-wizard.dhcpHostNameField_rule]]"
+
+msgid "dhcpClientIdField"
+msgstr "Client Identifier"
+
+msgid "dhcpClientIdField_help"
+msgstr "Voer de identificatie string die deze server identificeert als een Dynamic Host Configuration Protocol (DHCP) client."
+
+msgid "pppoe"
+msgstr "Krijgen automatisch met behulp van Point-to-Point Protocol over Ethernet (PPPoE)"
+
+msgid "pppUserNameField"
+msgstr "Gebruikers Naam"
+
+msgid "pppUserNameField_help"
+msgstr "Voer de gebruikersnaam die wordt gebruikt om in te loggen met uw Internet Service Provider."
+
+msgid "pppPasswordField"
+msgstr "Wachtwoord"
+
+msgid "pppPasswordField_help"
+msgstr "Sorry, je hebt niet opgegeven en een waarde voor [[base-wizard.pppPasswordField]]."
+
+msgid "static"
+msgstr "Geef handmatig"
+
+msgid "ipAddressField"
+msgstr "IP-adres"
+
+msgid "ipAddressField_rule"
+msgstr "Vul een reeks van vier getallen tussen 0 en 255, gescheiden door punten. Bijvoorbeeld, 192.168.1.1 een geldige invoer."
+
+msgid "ipAddressField_help"
+msgstr "Het IP-adres van de secundaire interface, die kenmerkend is verbonden met internet kant. Als u slechts een netwerkinterface verbinding met de server apparaat, gebruikt u de primaire interface en laat de secondaire interface leeg. [[base-wizard.ipAddressField_rule]]"
+
+msgid "netMaskField"
+msgstr "Subnetmasker"
+
+msgid "netMaskField_rule"
+msgstr "Vul een reeks van vier getallen tussen 0 en 255, gescheiden door punten. Bijvoorbeeld 255.255.255.0 een geldige invoer."
+
+msgid "netMaskField_help"
+msgstr "Voer het netwerk masker van de primaire interface. Als u slechts een netwerkinterface verbinding met de server apparaat, gebruikt u de primaire interface en laat de secondaire interface leeg. [[base-wizard.netMaskField_rule]]"
+
+msgid "gatewayField"
+msgstr "Poort"
+
+msgid "gatewayField_rule"
+msgstr "Vul een reeks van vier getallen tussen 0 en 255, gescheiden door punten. Bijvoorbeeld, 192.168.1.1 een geldige invoer."
+
+msgid "gatewayField_help"
+msgstr "Voer het IP-adres van uw lokale netwerk gateway. Een netwerk gateway, soms aangeduid als een router, kunt u verbinding met de wereld buiten uw lokale netwerk omgeving. [[base-wizard.gatewayField_rule]]"
+
+msgid "secondaryInterface"
+msgstr "Secundaire Interface"
+
+msgid "ipAddressField2"
+msgstr "IP-adres"
+
+msgid "ipAddressField2_help"
+msgstr "Het IP-adres van de secundaire interface, die kenmerkend is verbonden met internet kant. Als u slechts een netwerkinterface verbinding met de server apparaat, gebruikt u de primaire interface en laat de secondaire interface leeg. [[base-network.ipAddressField1_rule]]"
+
+msgid "ipAddressNetMaskMismatch"
+msgstr "Zowel het IP-adres en IP Network Mask velden moeten, hetzij tezamen worden ingevuld of samen leeg gelaten."
+
+msgid "netMaskField2"
+msgstr "[[base-network.netMaskField1]]"
+
+msgid "netMaskField2_help"
+msgstr "Voer het netwerk masker van de secundaire interface. Als u slechts een netwerkinterface verbinding met de server apparaat, gebruikt u de primaire interface en laat de secondaire interface leeg. [[base-network.netMaskField1_rule]]"
+
+msgid "macAddressField"
+msgstr "MAC-adres"
+
+msgid "macAddressField_help"
+msgstr "Het Media Access Control (MAC)-adres is het hardware-adres van de netwerkkaart. Deze hardware-adres is een unieke identificatie en kan niet na de fabricage worden gewijzigd."
+
+msgid "wizardLan"
+msgstr "Local Area Network (LAN)-instellingen"
+
+msgid "wizardLan_help"
+msgstr ""
+
+msgid "lanMessage"
+msgstr "Voer de standaard gateway voor deze server apparaat. Als de gateway op het netwerk is aangesloten op de secundaire interface, voert u de gegevens van de interface ook."
+
+msgid "lanSettings"
+msgstr "Local Area Network (LAN)-instellingen"
+
+msgid "wizardModem"
+msgstr "Modem Settings"
+
+msgid "wizardModem_help"
+msgstr ""
+
+msgid "modemMessage"
+msgstr "Uw analoge modem of ISDN-verbinding moet worden aangesloten op de seriële poort interface van de [[base-product.productName]]. Vul de juiste configuratie-instellingen in die u van uw Internet Service Provider."
+
+msgid "modemSettings"
+msgstr "Modem Settings"
+
+msgid "connModeField"
+msgstr "Connection Mode"
+
+msgid "connModeField_help"
+msgstr "Selecteer of de modem verbinding moet worden vastgesteld wanneer dat echt nodig voor een uitgaande verbinding, altijd moet worden vastgesteld, of mag nooit worden vastgesteld."
+
+msgid "demand"
+msgstr "Aansluiting On Demand Alleen"
+
+msgid "on"
+msgstr "Aansluiting Always On"
+
+msgid "off"
+msgstr "Aansluiting Altijd uit"
+
+msgid "userNameField"
+msgstr "Dial-Up account Gebruikersnaam"
+
+msgid "userNameField_help"
+msgstr "Geef de gebruikersnaam van de inbelaccount gebruikt om in te loggen met uw Internet Service Provider."
+
+msgid "userNameField_empty"
+msgstr "Sorry, je hebt niet opgegeven en een waarde voor [[base-wizard.userNameField]]. [[base-wizard.userNameField_help]]"
+
+msgid "modemPasswordField"
+msgstr "Dial-Up Account Wachtwoord"
+
+msgid "modemPasswordField_help"
+msgstr "Voer het wachtwoord van de account dial-up gebruikt voor aanmelding bij de uw Internet Service Provider."
+
+msgid "modemPasswordField_empty"
+msgstr "Sorry, je hebt niet opgegeven en een waarde voor [[base-wizard.modemPasswordField]]. Vul het wachtwoord van de account dial-up gebruikt voor aanmelding bij de uw Internet Service Provider."
+
+msgid "modemPasswordField_invalid"
+msgstr "Sorry, je hebt niet hetzelfde wachtwoord in beide velden ingevoerd. Hetzelfde wachtwoord in beide velden ingevoerd ter bescherming tegen typefouten. Probeer het opnieuw."
+
+msgid "modemPhoneField"
+msgstr "Dial-Up Telefoonnummer"
+
+msgid "modemPhoneField_help"
+msgstr "Voer het telefoonnummer gebruikt om dial-up van uw Internet Service Provider."
+
+msgid "initStringField"
+msgstr "Modeminitialisatiereeks"
+
+msgid "initStringField_help"
+msgstr "Voer de modeminitialisatiereeks die zal worden doorgegeven aan de modem voor het kiezen."
+
+msgid "initStringField_empty"
+msgstr "U heeft nog geen waarde voor [[base-wizard.initStringField]] ingevoerd. U moet een initialisatie regel invoeren of uw server niet in staat zijn om uw modem te gebruiken. Als je niet weet van uw modem standaard initialisatiestring, probeert u 'ATZ' of raadpleeg uw modem documentatie."
+
+msgid "localIpField"
+msgstr "Local IP Address"
+
+msgid "localIpField_help"
+msgstr "Voer het lokale IP-adres aan deze kant van de modem alleen als er een is toegewezen door de Internet Service Provider."
+
+msgid "pulseField"
+msgstr "Enable Pulskiezen"
+
+msgid "pulseField_help"
+msgstr "Zet pulskiezen in-of uitschakelen. Deze functie inschakelt, zal puls in plaats van toonkiezen te gebruiken. De standaardwaarde is om pulskiezen off vertrekken."
+
+msgid "wizardRegistration"
+msgstr "Productverantwoordelijkheid"
+
+msgid "wizardRegistration_help"
+msgstr ""
+
+msgid "registration"
+msgstr "Productverantwoordelijkheid"
+
+msgid "regRightArrow"
+msgstr "de pijl naar rechts"
+
+msgid "regSubmit"
+msgstr "Voorleggen"
+
+msgid "regSubmit_help"
+msgstr "[[base-product.productName]] wordt verspreid als open source."
+
+msgid "regCancel"
+msgstr "Er is geen registratie"
+
+msgid "regCancel_help"
+msgstr "[[base-product.productName]] wordt verspreid als open source."
+
+msgid "regText"
+msgstr "De registratin is niet effectief door het gebruik van onderstaande formulier."
+
+msgid "regTextOffline"
+msgstr "Er is geen registratie en garantie omdat [[base-product.productName]] wordt gedistribueerd als een open source."
+
+msgid "empty_reg"
+msgstr "Deze registratie is niet effectief, wordt [[base-product.productName]] verspreid als open source.\nVoer overslaan."
+
+msgid "fullNameField"
+msgstr "Volledige Naam"
+
+msgid "fullNameField_help"
+msgstr "Vul uw volledige naam."
+
+msgid "fullNameField_rule"
+msgstr "Vul alle tekens behalve dubbele punten. Bijvoorbeeld, John Doe is een geldige invoer."
+
+msgid "titleField"
+msgstr "Vacature titel"
+
+msgid "titleField_help"
+msgstr "Voer uw functie."
+
+msgid "companyField"
+msgstr "Bedrijfsnaam"
+
+msgid "companyField_help"
+msgstr "Voer uw bedrijfsnaam."
+
+msgid "addressField"
+msgstr "Volledig adres"
+
+msgid "addressField_help"
+msgstr "Voer uw volledige adres."
+
+msgid "countryField"
+msgstr "Land"
+
+msgid "countryField_help"
+msgstr "Voer uw land."
+
+msgid "emailField"
+msgstr "E-mailadres"
+
+msgid "emailField_help"
+msgstr "Vul uw e-mailadres."
+
+msgid "emailField_rule"
+msgstr "Vul een geldig e-mailadres in de vorm user@example.com."
+
+msgid "phoneField"
+msgstr "Telefoonnummer"
+
+msgid "phoneField_help"
+msgstr "Voer uw telefoonnummer."
+
+msgid "faxField"
+msgstr "Faxnummer"
+
+msgid "faxField_help"
+msgstr "Voer uw faxnummer."
+
+msgid "wizardLocale"
+msgstr "Gewenste taal te"
+
+msgid "wizardLocale_help"
+msgstr ""
+
+msgid "localeMessage"
+msgstr "Selecteer de gewenste taal voor het beheer van deze server. De web-interface kan worden gebladerd met behulp van een taal, maar Actief e-Monitor gegenereerd zal de Preferred taal te gebruiken."
+
+msgid "localeField"
+msgstr "Selecteer de gewenste taal"
+
+msgid "localeField_help"
+msgstr "De voorkeurstaal wordt gebruikt door Active Monitor bij het verzenden van e-mail notificatie, en de administratieve webinterface als een geprefereerde browser taal is niet gevonden."
+
+msgid "localeSettings"
+msgstr "Gewenste taal te"
+
+msgid "wizardRaid"
+msgstr "RAID Setup"
+
+msgid "wizardRaid_help"
+msgstr ""
+
+msgid "raidMessage"
+msgstr "Uw [[base-alpine.osName]] server RAID-opslagcapaciteit. Deze server heeft een set van [[VAR.numdisk]] interne schijven die setup op twee verschillende manieren, afhankelijk van uw behoeften kunnen zijn. Een oplossing biedt een hogere schijfcapaciteit, terwijl de andere levert hogere betrouwbaarheid ten koste van de capaciteit. Kies een RAID-configuratie van de onderstaande opties. WAARSCHUWING: Deze beslissing kan niet worden teruggedraaid zonder verlies van gegevens. Wees zeker dat u de gevolgen van uw keuze voordat u verder gaat begrijpen."
+
+msgid "raidAlreadyConfigured"
+msgstr "RAID al is geconfigureerd en kan niet meer worden gewijzigd."
+
+msgid "raidOption"
+msgstr "RAID-niveau"
+
+msgid "raidOption_help"
+msgstr "RAID opslag kunnen meerdere schijven tegelijk worden gebruikt als een. Lees de opties en selecteer hoe u wilt de schijven te gebruiken."
+
+msgid "raidSettings"
+msgstr "RAID Setup"
+
+msgid "raid0"
+msgstr "RAID 0-modus - Ook bekend als striping, RAID 0 groepen alle interne schijven samen in een enkele logische schijf. Alle ruimte is bruikbaar voor het opslaan van gegevens, maar de gegevens zullen verloren gaan als elke schijf uitvalt."
+
+msgid "raid1"
+msgstr "RAID 1-modus - Ook bekend als mirroring, RAID 1 handhaaft identieke gegevens op beide interne schijven. Als een van beide schijven defect uw gegevens zullen beschikbaar zijn vanaf de overgebleven schijf zijn, maar slechts de helft van de ruimte ruwe schijf beschikbaar voor de opslag van informatie zijn."
+
+msgid "raid5"
+msgstr "RAID 5-modus - Ook bekend als striping met parity, RAID 5 onderhoudt pariteit informatie voor data naar de schijf geschreven. Als een schijf uitvalt, kan uw gegevens gereconstrueerd worden uit de pariteit informatie beschikbaar is op de overlevende schijven. Opslag van de pariteit gegevens vermindert de totale hoeveelheid beschikbare opslagruimte. Gegevens gaan verloren als meerdere schijven niet tegelijkertijd."
+
+msgid "onepageSettings"
+msgstr "Systeeminstellingen"
+
+msgid "wizardOnepage"
+msgstr "Systeeminstellingen"
+
+msgid "wizardOnepage_help"
+msgstr ""
+
+msgid "onepageMessage"
+msgstr "De volgende informatie is nodig om deze server apparaat te configureren. U kunt de muis over de woorden op de linkerkant van het formulier voor hulp bij de afzonderlijke velden. Als u niet weet wat u moet invoeren, neemt u contact op met uw systeembeheerder."
+
+msgid "mustSelectLicense"
+msgstr "Je moet accepteren of weigeren de licentieovereenkomst door een van de opties aan de onderkant van de overeenkomst. Zorg ervoor dat u naar beneden scrollen als je het accepteren en weigeren opties niet kunnen zien."
+
+msgid "accept"
+msgstr "Accepteren"
+
+msgid "accept_help"
+msgstr "Druk op Opnemen, wanneer u hebt gelezen en ga akkoord met de voorwaarden van de licentieovereenkomst en zijn klaar om verder te gaan."
+
+msgid "decline"
+msgstr "Achteruitgang"
+
+msgid "decline_help"
+msgstr "Als u weigert de voorwaarden van het gebruik van open source software die u niet in staat zijn om de [[base-product.productName]] gebruiken."
+
+msgid "licenseClick"
+msgstr "Om de voorwaarden van het gebruik van open source software zich onder Accepteren of Afwijzen, moet u aan het einde van het document te bladeren."
+
+msgid "mustAcceptToUse"
+msgstr "U moet de voorwaarden van het gebruik van open source software om [[base-alpine.osName]] gebruik accepteren."
+
+msgid "license"
+msgstr "[[base-product.productLicense]]"
+
+msgid "addVirtualsiteSettings"
+msgstr "Voeg Virtual Site-instellingen"
+
+msgid "enterVsiteFqdn"
+msgstr "Host en Domain Name"
+
+msgid "enterVsiteFqdn_help"
+msgstr "Voer de hostnaam van de site in het eerste veld en de domeinnaam in het tweede veld. Zo kon de hostnaam www, mail, etc. zijn De domeinnaam zou kunnen zijn example.com, blueonyx.it, etc."
+
+msgid "vsite_hostNameField"
+msgstr "Hostnaam"
+
+msgid "vsite_hostNameField_rule"
+msgstr "Vul alleen kleine alfanumerieke tekens, streepjes of periodes. Bijvoorbeeld, www is een geldige invoer."
+
+msgid "vsite_hostNameField_help"
+msgstr "Geef de naam van deze server apparaat gastheer. De hostnaam en de domeinnaam in combinatie met elkaar moeten een unieke deze server apparaat te identificeren. [[base-wizard.vsite_hostNameField_rule]]"
+
+msgid "vsite_domainNameField"
+msgstr "Domeinnaam"
+
+msgid "vsite_domainNameField_rule"
+msgstr "Vul alleen kleine alfanumerieke tekens, streepjes of periodes. Bijvoorbeeld example.com een ​​geldige invoer."
+
+msgid "vsite_domainNameField_help"
+msgstr "Voer de domeinnaam van deze server apparaat. De hostnaam en de domeinnaam in combinatie met elkaar moeten een unieke deze server apparaat te identificeren. [[base-wizard.vsite_domainNameField_rule]]"
+
+###
+
+msgid "wiz_with_no_pass"
+msgstr "Welkom bij uw nieuwe BlueOnx server. Vul het admin wachtwoord in om de webgebaseerde installatiewizard te starten."
+
+msgid "license_acceptance"
+msgstr "Licentie Acceptatie"
+
+msgid "license_acceptance_help"
+msgstr "[[base-wizard.mustAcceptToUse]]"
+
+msgid "iso_wizard_title"
+msgstr "[[base-product.productName]] Setup-Wizard"
+
+msgid "wizard_locale_header"
+msgstr "Taal"
+
+msgid "wizard_locale_header_sub"
+msgstr "Taal instellen"
+
+msgid "wizard_license_header"
+msgstr "Licentie"
+
+msgid "wizard_license_header_sub"
+msgstr "BlueOnyx License"
+
+msgid "wiz_finalize"
+msgstr "Finaliseren"
+
+msgid "wiz_finalize_help"
+msgstr "Voltooi de setup"
+
+msgid "finalize_blurb_header"
+msgstr "Voltooi de eerste installatie:"
+
+msgid "finalize_blurb_text"
+msgstr "Klik op de onderstaande knop om de eerste configuratie van uw [[base-product.productName]] af te ronden."
+
+msgid "finalize_help_us"
+msgstr "BlueOnyx is gratis beschikbaar. Voor alle doeleinden, kunnen ze persoonlijke, commerciële, educatieve of wat je zou willen gebruiken voor. Echter: Keeping BlueOnyx bijgewerkt, het toevoegen van nieuwe functies aan het en het vrijgeven van bijgewerkte ISO-images is een hoop werk. Als je van BlueOnyx, dan kunt u overwegen iets te doneren aan het project of overwegen de aankoop van add-on modules voor uw [[base-product.productName]] in de <a href=\"http://shop.blueonyx.it/\" target=\"_blank\">BlueOnyx Shop</a>. Bedankt en veel plezier met BlueOnyx!"
+
+msgid "wizardSysSettings_help"
+msgstr "Netwerk en wachtwoord."
+
+###
+
+msgid "wizardMySQLpassHeader"
+msgstr "[[base-mysql.mysql_header]]"
+
+msgid "sql_rootpassword"
+msgstr "[[base-mysql.password]]"
+
+msgid "sql_rootpassword_help"
+msgstr "[[base-mysql.password_help]]"
+
+#
+### New for Wizard Startup Page:
+#
+
+msgid "wizard_refresh_header"
+msgstr "BlueOnyx Setup Wizard: Een ogenblik geduld aub."
+
+msgid "wizard_refresh_text"
+msgstr "Een cruciaal onderdeel in uw systeem (CCEd) bezig is met opstarten en is nog niet klaar met alle setup-gerelateerde taken.<br><br>Hebt u al inloggen als gebruiker 'root' en geconfigureerd de netwerkinstellingen? Zo niet, dan kunt u dat nu doen. Als een shell login maakt je niet automatisch wordt omgeleid naar de setup-programma om de netwerkinstellingen te configureren, dan kunt u dat programma handmatig uitvoeren. U kunt deze vinden op deze locatie: /root/network_settings.sh<br><br>Als de netwerkinstellingen al zijn geconfigureerd en u dit bericht nog steeds te zien, dan kunt u wachten tot de CCEd constructeurs hun setup gerelateerde taken te voltooien. <br><br>Deze pagina wordt automatisch elke 10 seconden vernieuwen totdat CCEd klaar is met het uitvoeren van de setup-gerelateerde taken."
+
+

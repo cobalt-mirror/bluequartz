@@ -1,0 +1,11 @@
+<item 
+  id="base_personalShell" 
+  label="[[base-ssh.pers_shell_menu]]" 
+  description="[[base-ssh.pers_shell_menu_help]]" 
+  url="/shell/personalSSH" 
+  icon="linux"
+  module="user">
+    <parent id="base_personalProfile" order="40">
+        <access require="shellAccessEnabled"/>
+    </parent>
+</item>

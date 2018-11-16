@@ -1,0 +1,23 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+# --- Active Monitor:
+
+msgid "amNginxNameTag"
+msgstr "Nginx SSL-Proxy"
+
+msgid "amNginxDetails"
+msgstr "Detalhes do servidor Nginx"
+
+msgid "amNotRunning"
+msgstr "O Nginx não está em execução e não pôde ser reiniciado. Por favor, tente reiniciar o Nginx manualmente e veja se isso ajuda. Além disso, verifique se há mensagens de erro ou outras acusações que você possa obter enquanto reinicia o Nginx manualmente."
+
+msgid "amStatusOK"
+msgstr "O servidor da web Nginx está operando normalmente."

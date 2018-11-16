@@ -1,0 +1,18 @@
+// $Id: config.w32 195260 2005-09-06 14:49:57Z skettler $
+// vim:ft=javascript
+
+ARG_WITH("crack", "for cracklib support", "no");
+
+if (PHP_CRACK != "no") {
+	if (PHP_CRACK != "yes") {
+		ERROR("Only the bundled library is supported right now");
+	}
+	else {
+		// Use bundled library
+		
+		EXTENSION("crack", "crack.c", null, "-I" + configure_module_dirname + "/libcrack/src");
+		ADD_SOURCES(configure_module_dirname + "/libcrack/src", "fascist.c packlib.c rules.c", "crack");
+		AC_DEFINE("HAVE_CRACK", 1, "Define to 1 if we are building with the crack library.");
+		AC_DEFINE("HAVE_CRACK_BUNDLED", 1, "Define to 1 to build against the bundled crack library.");
+	}
+}

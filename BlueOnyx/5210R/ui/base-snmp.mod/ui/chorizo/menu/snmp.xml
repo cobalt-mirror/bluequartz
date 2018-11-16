@@ -1,0 +1,10 @@
+<item 
+    id="base_snmp" 
+    label="[[base-snmp.snmp]]" 
+    description="[[base-snmp.snmp_help]]" 
+    url="/snmp/snmpconfig"
+>
+    <parent id="base_controlpanel" order="50">
+        <access require="serverSNMP"/>
+    </parent>
+</item>

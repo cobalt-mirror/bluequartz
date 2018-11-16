@@ -1,0 +1,46 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Simone Capra <capra@erweb.it>\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "techSupportUSPhone"
+msgstr "(Non disponibile)"
+
+msgid "techSupportIntlPhone"
+msgstr "(Non disponibile)"
+
+msgid "techSupportEmail"
+msgstr "(Non disponibile)"
+
+msgid "contactTechSupport"
+msgstr "Si prega di visitare [[base-sauce-basic.techSupportURL]] per le informazioni tecniche."
+
+msgid "techSupportURL"
+msgstr "[[Base-alpine.vendorSite]]"
+
+msgid "kill_dhclient_failed"
+msgstr "Impossibile determinare se il dhclient ha smesso di girare."
+
+msgid "Invalid-object"
+msgstr "Errore interno: Tentativo di eliminare un oggetto non valido. [[Base-salsa-basic.contactTechSupport]]"
+
+msgid "Already-Destroyed"
+msgstr "Siamo spiacenti, si è verificato un errore. L'utente [[VAR.name]] è già stato cancellato."
+
+msgid "failed-to-add-user"
+msgstr "Errore interno: Impossibile creare il nuovo utente $name. [[Base-salsa-basic.contactTechSupport]]"
+
+msgid "excessivelyLargeQuota"
+msgstr "Siamo spiacenti, il valore specificato per quota è troppo grande. La quota massima consentita del disco è [[VAR.max]]."
+
+msgid "hostname-too-long"
+msgstr "Spiacenti, il nome host specificato è troppo lungo. La lunghezza massima di un nome host è di 40 caratteri."
+
+msgid "descReadOnly"
+msgstr "La descrizione utente è di sola lettura."
+

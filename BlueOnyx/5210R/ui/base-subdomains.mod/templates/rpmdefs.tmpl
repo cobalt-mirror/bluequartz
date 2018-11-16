@@ -1,0 +1,274 @@
+# configuration bits for mod_rpmize
+# syntax:
+# <begin [x]section>
+# <end [x]section>
+#
+# x an be $ for a string or % for a hash.
+# if a hash is being used, you can add sub-sections with
+# <begin sub-section>
+# <end sub-section>
+
+
+<begin $DESCRIPTION>
+%package [LABEL]
+Group: System Environment/BlueQuartz
+Summary: [LABEL] for [VENDOR]-[SERVICE].
+[AUTOFILL]
+[BUILDARCH]
+[PROVIDES]
+
+%description [LABEL]
+The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
+information for [VENDOR]-[SERVICE].
+
+<end $DESCRIPTION>
+
+<begin %PREP>
+<end %PREP>
+
+<begin %SETUP>
+<end %SETUP>
+
+<begin %BUILD>
+<end %BUILD>
+
+<begin %INSTALL>
+<end %INSTALL>
+
+<begin %FILES>
+<begin HEADER>
+%files [LABEL]
+%defattr(-,root,root)
+<end HEADER>
+
+<begin locale>
+[AUTOFILL]
+
+<end locale>
+
+<begin glue>
+[AUTOFILL]
+<end glue>
+
+<begin ui>
+[AUTOFILL]
+
+<end ui>
+
+<begin capstone>
+%{RootDir}/capstone/%{Vendor}-%{Service}.cap
+[AUTOFILL]
+
+<end capstone>
+<end %FILES>
+
+<begin %POST-INSTALL>
+<begin HEADER>
+%post [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-install
+
+if [ -S /usr/sausalito/cced.socket ]; then
+    /usr/sausalito/sbin/php_settings_convert.pl >/dev/null 2>&1
+fi
+
+<end glue>
+<begin ui>
+# ui post-install
+# this is somewhat nasty, but it always makes sure that there's a
+# default .html file in case the browser doesn't specify a locale
+if [ x"[DEFLOCALE]" != x ]; then
+	for dir in `find [CCEWEB] -type d`; do 
+		(cd $dir; 
+		if [ x"`ls *.htm[l].[DEFLOCALE] 2> /dev/null`" != x ]; then
+			for file in `ls *.htm[l].[DEFLOCALE]`; do
+				base=`basename $file .[DEFLOCALE]`
+				if [ ! -f $base ]; then
+					ln -s $file $base
+ 				fi
+			done
+		fi)
+	done
+fi
+
+<end ui>
+<begin locale>
+# locale post-install
+
+<end locale>
+<end %POST-INSTALL>
+
+<begin %POST-UNINSTALL>
+<begin HEADER>
+%postun [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-uninstall
+<end glue>
+<begin ui>
+# ui post-uninstall
+
+<end ui>
+<begin locale>
+# locale post-uninstall
+
+<end locale>
+<end %POST-UNINSTALL>
+
+<begin $CHANGELOG>
+
+* Sun Jul 08 2018 Michael Stauber <mstauber@solarspeed.net> 2.4.0-0BX02
+- Modified handlers subdomain-new.pl and subdomain-services.pl to add
+  open_basedir fixes as supplied by Tomohiro Hosaka <bokutin@gmail.com>.
+  Many thanks.
+
+* Sat Jan 27 2018 Michael Stauber <mstauber@solarspeed.net> 2.4.0-0BX01
+- IPv6-Support added.
+- Modified glue/handlers/subdomain-new.pl
+- Modified glue/handlers/subdomain-services.pl
+
+* Sat Nov 11 2017 Michael Stauber <mstauber@solarspeed.net> 2.3.0-0BX06
+- Small conf update
+
+* Tue May 02 2017 Michael Stauber <mstauber@solarspeed.net> 2.3.0-0BX05
+- Modified glue/handlers/subdomain-new.pl to fix CGI problem.
+- Modified glue/handlers/subdomain-services.pl to fix CGI problem.
+
+* Mon Feb 20 2017 Michael Stauber <mstauber@solarspeed.net> 2.3.0-0BX04
+- Adjusted Extensions and Controllers for base-alpine 2.0
+
+* Mon Mar 21 2016 Michael Stauber <mstauber@solarspeed.net> 2.3.0-0BX03
+- Updated Italian locales added as provided by Simone Capra.
+
+* Sat Jan 31 2015 Michael Stauber <mstauber@solarspeed.net> 2.3.0-0BX02
+- Modified the handlers to use the PHP-FPM port based on the numerical
+  GID of the parent Vsite. That way they run off the separate PHP-FPM 
+  pool of that Vsite with all the relevant and correct PHP related
+  settings.
+- Modified glue/handlers/subdomain-new.pl
+- Modified glue/handlers/subdomain-services.pl
+
+* Fri Jan 30 2015 Michael Stauber <mstauber@solarspeed.net> 2.3.0-0BX01
+- Removed separate suPHP php.ini for subdomains as we don't need it anymore.
+- Updated all handlers to support our new PHP options for 5209R.
+
+* Wed Jan 21 2015 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX11
+- Modified glue/schemas/subdomainsVsite.schema to allow hostnames for
+  subdomains of type alphanum_plus instead of just alphanum.
+- Modified glue/handlers/subdomain-new.pl to create the symbolic link
+  in the subdomains web path to the Vsite's php.ini if suPHP is active.
+
+* Fri Jul 11 2014 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX10
+- Chorizo GUI added, old GUI disabled.
+- Added improved French translation as provided my Meaulnes Legler.
+
+* Thu Apr 03 2014 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX09
+- Updated locales with another string for 520XR.
+
+* Thu Apr 03 2014 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX08
+- Updated locales with new strings for 520XR.
+
+* Sat Dec 14 2013 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX07
+- Merged in locales for the Netherlands ('nl_NL').
+
+* Thu Dec 12 2013 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX06
+- Set debugging switch to off.
+
+* Thu Dec 12 2013 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX05
+- Added glue/handlers/subdomain-change.pl to modify port on port changes.
+- Modified glue/conf/subdomains.conf to let above handler kick in at port change times.
+
+* Thu Dec 12 2013 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX04
+- Fixes all around.
+
+* Thu Dec 12 2013 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX03
+- Modified glue/handlers/subdomain-new.pl to obtain the port number of the HTTP port from CODB and to use that one instead of a hardcoded port 80.
+
+* Sun Dec 08 2013 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX02
+- Changed required capabilities on system.php to 'serverServerDesktop' to prevent resellers from using the Subdomain settings.
+
+* Sat Dec 07 2013 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX01
+- Preparational build for 5207R/5208R. Doesn't include new GUI yet.
+- Merged in new locales from 5207R ("es_ES", "fr_FR", "it_IT", "pt_PT").
+- Dropped all two character locales.
+- Converted "ja_JP" from EUC-JP to UTF-8.
+
+* Mon Dec 17 2012 Michael Stauber <mstauber@solarspeed.net> 2.1.0-19
+- Changed various include() calls to include_once()
+
+* Fri Apr 20 2012 Michael Stauber <mstauber@solarspeed.net> 2.1.0-18
+- Updated glue/conf/subdomains.conf to trigger glue/handlers/subdomain-services.pl on 'PHPVsite' changes.
+- Modified glue/handlers/subdomain-new.pl to add new PHP flags.
+- Modified glue/handlers/subdomain-services.pl a lot to make it also trigger the right stuff on PHPVsite' changes.
+- Modified glue post-install to also trigger /usr/sausalito/sbin/php_settings_convert.pl for conversions.
+
+* Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 2.1.0-17
+- Converted locale encoding from UTF-8 to ISO-8859-1.
+
+* Sat Nov 26 2011 Michael Stauber <mstauber@blueonyx.it> 2.1.0-16
+- Updated ACL's in glue/schemas/subdomainsVsite.schema to allow siteAdmin's to create subdomains again.
+
+* Sun Jul 04 2010 Michael Stauber <mstauber@blueonyx.it> 2.1.0-15
+- Switched handlers from platform related checks to 'PHP_version' check:
+- Updated glue/handlers/subdomain-new.pl and glue/handlers/subdomain-services.pl
+
+* Sun Jul 04 2010 Michael Stauber <mstauber@blueonyx.it> 2.1.0-14
+- Updated glue/handlers/subdomain-new.pl and glue/handlers/subdomain-services.pl
+- They didn't set the PHP flags in a way compatible with the PHP security settings.
+- While at it, also added the suPHP support to it.
+- Remaining bug: On change of Vsite PHP settings subdomain-services.pl ought to run, but it doesn't.
+- Hence PHP settings are never updated after subdomain creation.
+
+* Tue Jun 08 2010 Michael Stauber <mstauber@solarspeed.net> 2.0.0-13
+- Various PHP-5.3 related fixes
+
+* Sat Jun 05 2010 Michael Stauber <mstauber@solarspeed.net> 2.0.0-12
+- Copied 'en' locales to 'en_US'
+
+* Fri Jun 04 2010 Michael Stauber <mstauber@solarspeed.net> 2.0.0-11
+- Changed requirement from blueonyx-cgiwrap to cgiwrap
+- Not sure why we had a separate instance of the same cgiwrap around.
+
+* Wed Feb 25 2009 Michael Stauber <mstauber@solarspeed.net> 2.0.0-10
+- Updated ui/extensions/subdomains.php.modify.User
+- Needed to set sane default for subdomain enabled. Otherwise user modification through GUI may throw errors.
+
+* Wed Feb 25 2009 Michael Stauber <mstauber@solarspeed.net> 2.0.0-9
+- ACL's were still a bit fubar, giving siteAdmins and serverAdmins grief.
+- Modified ACLs in glue/schemas/subdomainsUser.schema and glue/schemas/subdomainsVsite.schema to sort this out.
+
+* Sat Jan 03 2009 Michael Stauber <mstauber@solarspeed.net> 2.0.0-8
+- Added missing create and destroy ACL's to glue/schemas/subdomainsUser.schema
+
+* Fri Jan 01 2009 Michael Stauber <mstauber@solarspeed.net> 2.0.0-7
+- Repaired German locales.
+
+* Wed Dec 31 2008 Brian Smith <brian@nuonce.net>> 2.0.0-6
+- Resolved bug for "new_sub" on display
+
+* Wed Dec 31 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.0-5
+- German locales added.
+- Stub for Danish locales added.
+- i18n'ed the menu entries.
+- Fixed display bug in ui/web/vsite.php which pops up when using non-English locales (empty string in scroll-list).
+
+* Wed Dec 31 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.0-4
+- Added dependency blueonyx-cgiwrap to Makefile
+
+* Mon Dec 29 2008 Brian N. Smith <brian@nuonce.net> 2.0.0-1
+- Lots of changes, but new v2 to be brought into BlueOnyx
+
+* Tue Aug 08 2006 Brian N. Smith <brian@nuonce.net> 1.0.0-1
+- Rebuilt using "BQ" style of RPMS
+
+* Sun Jul 16 2006 Brian N. Smith <brian@nuonce.net>
+- Fixed problem with showing more then 25 on scroll.  Will scroll through
+- all virtual sites now!
+
+* Sat Jul 8 2006 Brian N. Smith <brian@nuonce.net>
+- Inital Installer Build
+
+<end $CHANGELOG>

@@ -1,0 +1,31 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "cceDown"
+msgstr "Il motore di configurazione di Cobalto (CCE) non è in esecuzione. Active Monitor non può funzionare senza il Configuration Engine Cobalt. Provare a riavviare il servizio 'cced.init' o riavvio ther server tramite SSH. Se Active monitor continua a non funzionare, si prega di fare riferimento a [[base-salsa-basic.techSupportURL]] per il supporto tecnico."
+
+msgid "defGreenMsg"
+msgstr "Questo componente è normale"
+
+msgid "defRedMsg"
+msgstr "Vi è un grave problema con questo componente"
+
+msgid "defUnknownMsg"
+msgstr "Lo stato è sconosciuto per questo componente"
+
+msgid "defYellowMsg"
+msgstr "C'è un problema con questo componente"
+
+msgid "emailBody"
+msgstr ". Active Monitor ha rilevato recenti cambiamenti nello stato del vostro apparecchio server\nPer ulteriori informazioni, si prega di consultare la sezione Monitor attivo del desktop del server\n\nSummary di cambiamenti.:"
+
+msgid "emailSubject"
+msgstr "Cambiamenti di stato Active Monitor"
+

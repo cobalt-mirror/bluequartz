@@ -1,0 +1,183 @@
+# configuration bits for mod_rpmize
+# syntax:
+# <begin [x]section>
+# <end [x]section>
+#
+# x an be $ for a string or % for a hash.
+# if a hash is being used, you can add sub-sections with
+# <begin sub-section>
+# <end sub-section>
+
+
+<begin $DESCRIPTION>
+%package [LABEL]
+Group: CCE/[VENDOR]
+Summary: [LABEL] for [VENDOR]-[SERVICE].
+[AUTOFILL]
+[BUILDARCH]
+OBSOLETES: mod_jk
+OBSOLETES: mod_jk-ap20
+
+%description [LABEL]
+The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
+information for [VENDOR]-[SERVICE].
+
+<end $DESCRIPTION>
+
+<begin %PREP>
+<end %PREP>
+
+<begin %SETUP>
+<end %SETUP>
+
+<begin %BUILD>
+<end %BUILD>
+
+<begin %INSTALL>
+<end %INSTALL>
+
+<begin %FILES>
+<begin HEADER>
+%files [LABEL]
+%defattr(-,root,root)
+<end HEADER>
+
+<begin locale>
+[AUTOFILL]
+
+<end locale>
+
+<begin glue>
+%config /etc/profile.d/java.sh
+%config /etc/httpd/conf.d/mod_jk.conf
+%config /etc/tomcat/jk/workers.properties
+%config(noreplace)/etc/tomcat/tomcat-users.xml.dist
+%config(noreplace)/etc/tomcat/tomcat.logrotate.dist
+%attr(0755,root,root)%{RootDir}/sbin/java_load_war.pl
+
+%ifarch %ix86
+%attr(0755,root,root)/usr/lib/httpd/modules/mod_jk.so
+%endif
+%ifarch x86_64
+%attr(0755,root,root)/usr/lib64/httpd/modules/mod_jk.so
+%endif
+
+[AUTOFILL]
+<end glue>
+
+<begin ui>
+[AUTOFILL]
+
+<end ui>
+
+<begin capstone>
+%{RootDir}/capstone/%{Vendor}-%{Service}.cap
+[AUTOFILL]
+
+<end capstone>
+<end %FILES>
+
+<begin %POST-INSTALL>
+<begin HEADER>
+%post [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-install
+
+<end glue>
+<begin ui>
+# ui post-install
+
+<end ui>
+<begin locale>
+# locale post-install
+
+<end locale>
+<end %POST-INSTALL>
+
+<begin %POST-UNINSTALL>
+<begin HEADER>
+%postun [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-uninstall
+
+<end glue>
+<begin ui>
+# ui post-uninstall
+
+<end ui>
+<begin locale>
+# locale post-uninstall
+
+<end locale>
+<end %POST-UNINSTALL>
+
+<begin $CHANGELOG>
+
+* Tue Jun 19 2018 Michael Stauber <mstauber@solarspeed.net> 5.0.0-0BX05
+- Better Itallian translation as provided by Simone Capra.
+
+* Thu Nov 09 2017 Michael Stauber <mstauber@solarspeed.net> 5.0.0-0BX04
+- Massive handler overhaul to keep Apache restarts down and to 
+  consolidate edit/modify of VirtualHost cfgs into apache/virtual_host.pl
+- Modified glue/conf/java.conf
+- Modified glue/handlers/jsp-vsite.pl
+- Modified glue/handlers/servlet.pl
+
+* Mon Feb 20 2017 Michael Stauber <mstauber@solarspeed.net> 5.0.0-0BX04
+- Modified Controllers and Extensions for base-alpine 2.0
+
+* Thu Jan 05 2015 Michael Stauber <mstauber@solarspeed.net> 5.0.0-0BX03
+- Modified database field for Java Admin Pass to type 'alphanum_plus' in
+  glue/schemas/java.schema.
+
+* Mon Dec 22 2014 Michael Stauber <mstauber@solarspeed.net> 5.0.0-0BX02
+- Edited glue/etc/httpd/conf.d/mod_jk.conf to define JkShmFile for logging.
+
+* Sat Dec 20 2014 Michael Stauber <mstauber@solarspeed.net> 5.0.0-0BX01
+- Rebuild for 5209R on EL7. Which means Tomcat 7 and Apache 2.4.
+- Updated all dependencies to ensure that everything needed gets installed.
+- Updated mod_jk to pre-built v1.2.40 in module directory.
+- Updated mod_jk configuration. Might need some work.
+- Changed all code references and paths from 'tomcat6' to 'tomcat'.
+- Removed UI of old GUI entirely. Just Chorizo from now on.
+- General cleanup of module tree.
+- This needs further work, as it's just a rough draft.
+
+* Mon Dec 08 2014 Michael Stauber <mstauber@solarspeed.net> 4.0.0-0BX04
+- Some Systemd love for El7. This module still needs a lot of work in 
+  order to function with Tomcat7.
+
+* Sun Jul 13 2014 Michael Stauber <mstauber@solarspeed.net> 4.0.0-0BX03
+- Chorizo GUI added, old GUI disabled.
+- Added improved French translation as provided my Meaulnes Legler.
+
+* Thu Apr 24 2014 Michael Stauber <mstauber@solarspeed.net> 4.0.0-0BX02
+- Updated locales with a few new strings for 520XR.
+
+* Thu Apr 24 2014 Michael Stauber <mstauber@solarspeed.net> 4.0.0-0BX01
+- New major version for 520XR.
+- Updated Japanese locale as provided by Hiroyuki Sasahide.
+
+* Mon Apr 21 2014 Michael Stauber <mstauber@solarspeed.net> 3.0.1-0BX05
+- Updated dependency list.
+
+* Wed Feb 26 2014 Michael Stauber <mstauber@solarspeed.net> 3.0.1-0BX04
+- Merged in better locales for Japanese as provided by Hiroyuki Sasahide.
+
+* Sat Dec 15 2013 Michael Stauber <mstauber@solarspeed.net> 3.0.1-0BX03
+- Merged in locales for the Netherlands ('nl_NL').
+
+* Tue Dec 10 2013 Michael Stauber <mstauber@solarspeed.net> 3.0.1-0BX02
+- Changed required Capability for Java related transactions to 'adminUser'.
+
+* Fri Dec 06 2013 Michael Stauber <mstauber@solarspeed.net> 3.0.1-0BX01
+- Preparational build for 5207R/5208R. Doesn't include new GUI yet.
+- Merged in new locales from 5207R ("es_ES", "fr_FR", "it_IT", "pt_PT").
+- Dropped all two character locales.
+- Converted "ja_JP" from EUC-JP to UTF-8.
+
+<end $CHANGELOG>

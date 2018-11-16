@@ -1,0 +1,11 @@
+<item 
+    id="ftpc_vsite"  
+    label="[[base-ftp.connect]]"
+    description="[[base-ftp.connect_help]]"
+    url="/ftp/ftpclient?group=[[VAR.group]]"
+    module="server"
+>
+    <parent id="base_programsSite" order="13">
+        <access require="siteAdmin"/>
+    </parent>
+</item>

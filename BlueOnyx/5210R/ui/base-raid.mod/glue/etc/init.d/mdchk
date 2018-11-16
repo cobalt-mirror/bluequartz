@@ -1,0 +1,546 @@
+#!/bin/sh
+#
+# chkconfig: 2345 20 80
+# description: Saves and restores system entropy pool for higher quality \
+#              random number generation.
+# securlevel: 80 
+
+# See [BlueOnyx:14349] MBR loss on software RAID1:
+exit 0
+
+## For local RAID equipped configuration only
+egrep -q "md[0-9]+" /etc/fstab || exit 0
+test -e /etc/cobalt/ha-config  && exit 0
+
+PATH="/sbin:$PATH"
+DOMAIN="base-sys"
+
+[ -e /etc/rc.d/init.d/functions ] && . /etc/rc.d/init.d/functions
+
+raidtab=/etc/raidtab
+mdstat=/proc/mdstat
+partitions=/proc/partitions
+ptemp=/etc/locks/.ptable_temp
+psave=/etc/locks/ptable_save
+kver=$(uname -r | cut -f1,2 -d.)
+
+# global source/target variables
+unset GSOURCE GTARGET
+
+# Check if RAID was enabled:
+MD=`/bin/cat /proc/mdstat | /bin/grep ^md | /usr/bin/wc -l`
+if [ "$MD" != "0" ]; then
+    # Check if /etc/raidtab is empty:
+    FTL=`/bin/cat /etc/raidtab | /usr/bin/wc -l`
+    if [ "$FTL" -lt "10" ]; then
+	# Fix /etc/raidtab:
+	/sbin/lsraid  > /etc/raidtab
+    fi
+fi
+
+function raid_status
+# purpose: check a raid-device for active disks
+#          this tries to re-add partitions on the fly if necessary.
+# options: raid-disk (optional)
+# example: raid_status
+#          raid_status /dev/md2
+{
+    local result
+    result=$(cat $mdstat | awk '
+	BEGIN {}
+	
+	func read_raidtab(RAIDTAB,     Lmd,Lnum) {
+	    Lnum=0
+	    while (getline <RAIDTAB > 0) {
+		if ($1=="raiddev") {
+		    ++Lnum
+		    Lmd=$2
+		}
+		else if ($1=="device")
+		    _raidtab[Lmd]=sprintf("%s%s", _raidtab[Lmd] ? _raidtab[Lmd]"," : "", $2)
+		else if ($1=="raid-level")
+		    _raidtab_type[Lmd]=sprintf("raid%d", $2)
+	    }
+	    return Lnum
+	}
+
+	func read_mdstat_2_2(MDSTAT,     Lmd,Lnum,f,g) {
+	    Lnum=0
+	    while (getline <MDSTAT > 0) {
+		if ($1 !~ /^md[0-9]/) continue
+		++Lnum
+		Lmd="/dev/"$1
+		for (f=4; f<=NF; f++) {
+		    if ($f ~ /^raid[015]$/)
+			_mdstat_type[Lmd]=$f
+		    if ($f ~ /^recovery=/)
+			sync[Lmd]=substr($f,10)
+		    if ($f ~ /^finish=/)
+			finish[Lmd]=substr($f,8)
+		    if ($f ~ /^[hs]d[a-z][0-9]\[[0-9]\]/) {
+			_mdstat[Lmd]=sprintf("%s/dev/%s",
+			     _mdstat[Lmd] ? _mdstat[Lmd]"," : "",
+			     substr($f,1,4))
+			if ($f ~ /(F)/)
+			    faulty[Lmd]=sprintf("%s/dev/%s",
+				faulty[Lmd] ? faulty[Lmd]"," : "",
+				substr($f,1,4))
+		    }
+		    if ($f ~ /^\[[U_]+\]$/)
+			for (g=2; g<length($f); g++)
+			    if (substr($f, g, 1)=="_")
+				bad[Lmd]=g-1
+		}
+	    }
+	    return Lnum
+	}
+
+	func read_mdstat_2_4(MDSTAT,     Line,Lmd,Lnum,f,g) {
+	    Line=0
+	    Lnum=0
+	    while (getline <MDSTAT > 0) {
+		if (Line==1)
+		    Line=2
+		else if (Line==2)
+		    Line=0
+		else if ($1 !~ /^md[0-9]/)
+		    continue
+		else {
+		    Line=1
+		    ++Lnum
+		    Lmd="/dev/"$1
+		}
+		for (f=1; f<=NF; f++) {
+		    if ($f ~ /^recovery/) {
+			f+=2
+			sync[Lmd]=$f
+		    }
+		    if ($f ~ /^raid[015]$/)
+			_mdstat_type[Lmd]=$f
+		    if ($f ~ /^finish=/)
+			finish[Lmd]=substr($f,8)
+		    if ($f ~ /^[hs]d[a-z][0-9]\[[0-9]\]/) {
+			_mdstat[Lmd]=sprintf("%s/dev/%s",
+					     _mdstat[Lmd] ? _mdstat[Lmd]"," : "",
+					     substr($f,1,4))
+                        if ($f ~ /(F)/)
+			    faulty[Lmd]=sprintf("%s/dev/%s",
+					        faulty[Lmd] ? faulty[Lmd]"," : "",
+						substr($f,1,4))
+		    }
+		    if ($f ~ /^\[[U_]+\]$/)
+			for (g=2; g<length($f); g++)
+			    if (substr($f, g, 1)=="_")
+				bad[Lmd]=g-1
+		}
+	    }
+	    return Lnum
+	}
+
+	END {
+	    fatal=0
+	    failcount=0
+	    inactive=0
+
+	    confcount=read_raidtab(raidtab)
+
+	    if (kver=="2.2")
+		livecount=read_mdstat_2_2(mdstat)
+	    else if (kver=="2.4" || kver=="2.6")
+		livecount=read_mdstat_2_4(mdstat)
+	    else
+		exit 1
+
+	    printf("\n-- Reading system configuration from %s\n", raidtab) >"/dev/stderr"
+	    for (raiddev in _raidtab) {
+		if (!(raiddev in _mdstat)) {
+		    inactive++
+		    raid_missing[raiddev]=_raidtab[raiddev]
+		    printf("   %s [%s]:", raiddev, _raidtab_type[raiddev]) >"/dev/stderr"
+		    split(_raidtab[raiddev], raidcfg, ",")
+		    for (device in raidcfg)
+		        printf(" <%s>", substr(raidcfg[device],6)) >"/dev/stderr"
+		    printf("\n") >"/dev/stderr"
+		    continue
+		}
+
+		printf("   %s [%s]:", raiddev, _raidtab_type[raiddev]) >"/dev/stderr"
+		split(_raidtab[raiddev],raidcfg,",")
+		for (device in raidcfg)	{
+
+		    printf(" <%s>", substr(raidcfg[device],6)) >"/dev/stderr"
+		    split(_mdstat[raiddev], current, ",")
+
+		    found=0
+		    for (xdev in current)
+			if (current[xdev]==raidcfg[device])
+			    found=1
+		    if (found==0) {
+			blank[raiddev]=raidcfg[device]
+			++fatal
+		    }
+
+		    _part_total[raidcfg[device]]++
+		    _disk_total[substr(raidcfg[device],1,8)]++
+		}
+		printf("\n") >"/dev/stderr"
+	    }
+
+	    printf("\n-- Reading current status from %s\n", mdstat) >"/dev/stderr"
+
+	    for (raiddev in _mdstat) {
+		lcd1=sprintf("%s [%s]", raiddev, _mdstat_type[raiddev])
+		
+		split(_mdstat[raiddev],raidcfg,",")
+		printf(" %s %s [%s]:", (raiddev in sync) ? "+" : (raiddev in bad) ? "!" : " ",
+		       raiddev, _mdstat_type[raiddev]) >"/dev/stderr"
+
+		for (device in raidcfg) {
+		    printf(" <%s>", substr(raidcfg[device],6)) >"/dev/stderr"
+		    _part_ok[raidcfg[device]]++
+		    _disk_ok[substr(raidcfg[device],1,8)]++
+		}
+
+		if (raiddev in sync) {
+		    printf("  (RECOVERY: %s, %s)\n", sync[raiddev],
+			   finish[raiddev]) >"/dev/stderr"
+		    lcd2=sprintf(" RECOVERY: %s", sync[raiddev])
+		}
+		else if (raiddev in bad) {
+		    printf("  (FAIL)\n") >"/dev/stderr"
+		    lcd2=" FAIL"
+		    failcount++
+		}
+		else {
+		    printf("  (ACTIVE)\n") >"/dev/stderr"
+		    lcd2=" ACTIVE"
+		}
+
+	    }
+
+            if ( system("test -s /sbin/lilo") == 0 ) {
+              if (system("grep -q ^boot=/dev/md /etc/lilo.conf") == 0) {  
+                system(sprintf("/sbin/lilo > /dev/stderr"));
+              }
+            }
+
+            if ( system("test -s /sbin/grub") == 0 ) {
+              if (system("cat /etc/grub.conf | grep -v \"#\" | grep -q \"/dev/md[0-9]\"") == 0) {
+                for (disk in _disk_ok) {
+                  # See [BlueOnyx:14349] MBR loss on software RAID1:
+                  #system(sprintf("ms-sys -s %s > /dev/stderr", disk));
+                }
+              }
+            }
+
+	    if (inactive>0) {
+	        printf("-- Inactive RAID device(s): ") >"/dev/stderr"
+		for (disk in raid_missing) {
+		    lcd1=sprintf("%s (%s)", disk, _raidtab_type[disk])
+		    lcd2=" INACTIVE"
+		    printf("[%s] ", disk) >"/dev/stderr"
+		}
+		printf("\n") >"/dev/stderr"
+	    }
+
+	    if (fatal > 0) {
+		printf("-- Failed RAID device(s): ") >"/dev/stderr"
+		for (part in blank) {
+		    printf("%s ", blank[part]) >"/dev/stderr"
+		    _part_fail[blank[part]]++
+		    _disk_fail[substr(blank[part],1,8)]++
+		}
+		printf("\n") >"/dev/stderr"
+
+		for (part in _part_fail) {
+		    disk=substr(part,1,8)
+		    if (_disk_fail[disk] == _disk_total[disk]) {
+			for (md in _raidtab) {
+			    split(_raidtab[md],plist,",")
+			    found=0
+			    okpart=""
+			    for (p in plist) {
+				if (plist[p] == part)
+				    found=1
+				else
+				    okpart=plist[p]
+			    }
+			    if (found==1 && okpart!="") {
+				print substr(okpart,1,8) " " disk
+				exit 1
+			    }
+			}
+		    }
+		} 
+	    }
+
+	    if (failcount > 0) {
+		for (part in faulty) {
+		    printf("-- Fixing failed partition: %s\n", faulty[part]) >"/dev/stderr"
+		    hot_remove=sprintf("mdadm %s %s",
+ 				       part, faulty[part])
+		    hot_add=sprintf("mdadm %s %s",
+				    part, faulty[part])
+                    system(hot_remove)				    
+                    system(hot_add)
+		}
+		for (part in blank) {
+		    printf("-- Adding missing partition: %s\n", blank[part]) >"/dev/stderr"
+		    hot_add=sprintf("mdadm %s %s",
+				    part, blank[part])
+                    system(hot_add)
+		}
+	    }
+
+	    exit 0
+	}' mdstat=$mdstat raidtab=$raidtab kver=$kver
+    )
+
+    local exitcode=$?
+
+    echo -n "-- RAID status: "
+    if [ $exitcode -eq 0 ]; then
+	echo "OK"
+	return 0
+    else
+	GTARGET=${result#* }
+	GSOURCE=${result%% *}
+	echo "[${GTARGET}]: FAIL"
+	return 1
+    fi
+}
+
+function raid_remove
+# purpose: set raid disk faulty then hot-remove it
+# options: raid-device, target-disk
+# example: raid_remove /dev/md1 /dev/hda1
+{
+    if [ $# -ne 2 ]; then
+	echo
+	echo "example: raid_remove /dev/md4 /dev/hdc4"
+	echo
+	return 7
+    fi
+
+    local mdev=$1
+    local hdev=$2
+    local md=$(echo $mdev | cut -f3 -d'/')
+
+    test -b $mdev -a -b $hdev || return 9
+
+    echo "-- Remove RAID disk: [$md] $hdev "
+
+    mdadm --manage --set-faulty $mdev $hdev &>/dev/null
+    mdadm --manage $mdev -r $hdev &>/dev/null
+
+    grep $md $mdstat | grep -q _ && return 0 || return 1
+}
+
+function raid_add
+# purpose: hot-add specified physical-disk ($2) to raid set ($1)
+# options: raid-device, target-disk
+# example: raid_add /dev/md4 /dev/hdc4
+{
+    if [ $# -ne 2 ]; then
+	echo
+	echo "example: raid_add /dev/md4 /dev/hdc4"
+	echo
+	return 7
+    fi
+
+    local mdev=$1
+    local hdev=$2
+    local md=$(echo $mdev | cut -f3 -d'/')
+
+    test -b $mdev -a -b $hdev || return 9
+
+    echo "-- Add RAID disk: [$md] $hdev "
+
+    mdadm --manage $mdev -r $hdev &>/dev/null
+    mdadm --manage $mdev -a $hdev &>/dev/null
+
+    grep $md $mdstat | grep -q _ && return 0 || return 1
+}
+
+function raid_sync_percent
+# purpose: display percent raid sync complete
+# options: raid disk device
+# example: percent=$(raid_sync_percent /dev/md1)
+{
+    if [ $# -ne 1 ]; then
+	echo
+	echo "example: raid_sync_percent /dev/md1"
+	echo
+	return 7
+    fi
+    
+    local mdev=$1
+    local md=$(echo $mdev | cut -f3 -d'/')
+
+    test -b $mdev || return 9
+    grep $md $mdstat | grep -q "recovery=" || return 10
+
+    local pct=$(grep $md $mdstat |
+		sed -e "s/^$md : active .* recovery=\([0-9][0-9]*%\) .*$/\1/")
+
+    echo ${pct:="0%"}
+
+    return 0
+}
+
+function raid_conf
+# purpose: parse raid config file and return raid->physical map
+# options: target-disk
+# example: raid_conf /dev/hdc
+{
+    if [ $# -ne 1 ]; then
+	echo
+	echo "example: raid_conf /dev/hdc"
+	echo
+	return 7
+    fi
+
+    local md
+    local rest
+
+    grep "^md[0-9]" $mdstat | while read md rest
+        do cat $raidtab | awk '
+	    BEGIN {
+		mark=0
+	    }
+            /raiddev/,/^$/ {
+		if ($2 ~ rdisk) mark=1
+                if (mark==1 && $1=="device") devlist[++i]=$2
+            }{
+                if (mark==1 && ($0 ~ /^$/ || ($0 ~ /raiddev/ && $2 !~ rdisk))) exit
+            }
+            END {
+                for (x=1; x<=i; ++x)
+		    if (devlist[x] ~ target)
+                        print rdisk, devlist[x]
+            }' rdisk="/dev/$md" target=$(echo $1 | cut -f3 -d'/')
+	done
+
+    return 0
+}
+
+function raid_setup
+# purpose: copy partition table from 2 partitions or md devices
+# options: source disk, target disk
+# example: raid_setup /dev/hda /dev/hdc
+{
+    if [ $# -ne 2 ]; then
+	echo
+	echo "example: raid_setup /dev/hda /dev/hdc"
+	echo
+	return 7
+    fi
+
+    local sourcedev=$1
+    local source=$(echo $sourcedev | cut -f3 -d'/')
+    local sourcesize=0
+
+    local targetdev=$2
+    local target=$(echo $targetdev | cut -f3 -d'/')
+    local targetsize=0
+
+    echo -n "-- Setup partition table: $source->$target "
+    if [ $source = $target ]; then
+	echo "- ERROR: source==target"
+	return 7
+    fi
+    echo
+
+    # check source disk
+    echo -n "-- Check source device: [$sourcedev] "
+
+    # get size
+    sourcesize=0
+    egrep "$source\$" $partitions |
+        while read maj min blk dev ; do
+	    sourcesize=$blk
+	    echo -n "$((sourcesize/2)) MB "
+	done
+    if [ $sourcesize -gt 0 ]; then
+	echo "- ERROR: invalid source device!"
+	return 8
+    fi
+    echo "- OK"
+
+    # check target disk
+    echo -n "-- Check target device: [$targetdev] "
+
+    # get size
+    targetsize=0
+    egrep "$target\$" $partitions |
+        while read maj min blk dev ; do
+	    targetsize=$blk
+	    echo -n "$((targetsize/2)) MB "
+	done
+    if [ $targetsize -gt 0 ]; then
+	echo "- ERROR: invalid target device!"
+	return 8
+    fi
+
+    # check to make sure target disk is
+    # larger than source disk
+    if [ $sourcesize -gt $targetsize ]; then
+	echo "- ERROR: target is too small!"
+	return 11
+    fi
+    echo "- OK"
+
+    raid_conf $targetdev | while read raidtgt raidsrc; do
+	raid_remove $raidtgt $raidsrc
+    done
+
+    echo "-- Check partition table: $sourcedev"
+    echo
+    ptemp="$ptemp.$target"
+    [ -e $ptemp ] && rm -f $ptemp
+    sfdisk -d $sourcedev | tee $ptemp | grep -v "^#" | grep "/dev/"
+    echo
+
+    echo "-- Build partition table: $targetdev"
+
+    psave="$psave.$target"
+    [ -e $psave ] && rm -f $psave
+    
+    if [ -e $ptemp ]; then
+	sfdisk -L -q -O $psave $targetdev < $ptemp
+    fi
+
+    echo "-- Sync hard drive."
+    sync
+    sync
+
+    raid_conf $targetdev | while read raidtgt raidsrc; do
+	raid_add $raidtgt $raidsrc
+    done
+
+    echo "-- RAID setup complete."
+
+    sleep 1
+    echo
+
+    return 0
+}
+
+function raid_auto
+{
+    local PREVTARGET
+
+    while ! raid_status; do
+        [ "$GTARGET" = "$PREVTARGET" ] && return 0
+        PREVTARGET=$GTARGET
+	raid_setup $GSOURCE $GTARGET
+    done
+}
+
+test -d /etc/locks || mkdir -m 755 /etc/locks
+
+lcdstop &> /dev/null
+
+# just run raid_auto to do things automatically
+raid_auto
+

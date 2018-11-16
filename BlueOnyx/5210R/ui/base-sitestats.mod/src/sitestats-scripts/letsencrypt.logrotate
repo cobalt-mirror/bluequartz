@@ -1,0 +1,11 @@
+/var/log/letsencrypt/*.log {
+        daily
+        missingok
+        rotate 14
+        prerotate
+      	  rm -rf /var/log/letsencrypt/letsencrypt.log.*
+	endscript
+        compress
+        notifempty
+}
+

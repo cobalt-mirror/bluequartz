@@ -1,0 +1,187 @@
+<?php
+// $Id: 20_SSH.php.shell.System 
+
+include_once('UIExtension.php');
+
+class SSHExtension extends UIExtension {
+    function display(&$helper, &$container, $prams) {
+        $factory = $helper->getHtmlComponentFactory('base-ssh');
+        $cce = $helper->getCceClient();
+
+        $settings = $cce->get($prams['CCE_OID'], 'SSH');
+
+    	$pageId = $prams['PAGED_BLOCK_DEFAULT_PAGE'];
+
+        // SSH enabled or not:
+        $sshField =& $factory->getBoolean('SSH_enabled', $settings['enabled']);
+
+        $sshToggleBox =& $factory->getMultiChoice('enableSSH');
+        $enable =& $factory->getOption('SSH_enabled', $settings['enabled']);
+        $enable->setLabel($factory->getLabel('enableSSH', false));
+
+        // Port:
+        // List of ports that we allow SSHd to run on:
+        $portlist = array (
+            '22',
+            '222',
+            '303',
+            '333',
+            '691',
+            '768',
+            '769',
+            '900',
+            '901',
+            '902',
+            '903',
+            '904',
+            '905',
+            '906',
+            '907',
+            '908',
+            '909',
+            '909',
+            '2002'
+        );
+        sort($portlist);
+
+    	// If we're currently using a port that's not in that array, we add it to the array:
+    	if (!in_array($settings['Port'], $portlist)) {
+    		$portlist[] = $settings['Port'];
+    	}
+
+        $SSHPort = $factory->getMultiChoice("SSH_Port", array_values($portlist));
+        $SSHPort->setSelected($settings['Port'], true);
+        $SSHPort->setOptional(false);
+        $enable->addFormField(
+    		$SSHPort, 
+    		$factory->getLabel("SSH_Port"), 
+    		$pageId);
+
+    	$sshToggleBox->addOption($enable);
+
+        // Protocols:
+        $protolist = array (
+            '2',
+            '2,1',
+            '1,2',
+            '1'
+        );
+
+        $SSHProto = $factory->getMultiChoice("SSH_Proto", array_values($protolist));
+        $SSHProto->setSelected($settings['Protocol'], true);
+        $SSHProto->setOptional(false);
+        $enable->addFormField($SSHProto, $factory->getLabel("SSH_Proto"), $pageId);
+
+        // Root Access enabled or not:
+        $sshRoot =& $factory->getBoolean('SSHrootLogin', $settings['PermitRootLogin']);
+        $enable->addFormField(
+            $sshRoot,
+            $factory->getLabel('SSHrootLogin'),
+            $pageId
+            );
+
+        // PasswordAuthentication enabled or not:
+        $pwAccess =& $factory->getBoolean('PasswordAuthentication', $settings['XPasswordAuthentication']);
+        $enable->addFormField(
+            $pwAccess,
+            $factory->getLabel('PasswordAuthentication'),
+            $pageId
+            );
+
+        //// RSAAuthentication enabled or not:
+        // Deprecated
+        //$RSAAccess =& $factory->getBoolean('RSAAuthentication', $settings['RSAAuthentication']);
+        //$enable->addFormField(
+        //    $RSAAccess,
+        //    $factory->getLabel('RSAAuthentication'),
+        //    $pageId
+        //    );
+
+        // PubkeyAuthentication enabled or not:
+        $PKeyAccess =& $factory->getBoolean('PubkeyAuthentication', $settings['PubkeyAuthentication']);
+        $enable->addFormField(
+            $PKeyAccess,
+            $factory->getLabel('PubkeyAuthentication'),
+            $pageId
+            );
+
+        // AllowTcpForwarding enabled or not:
+        $TCPForwardingAccess =& $factory->getBoolean('AllowTcpForwarding', $settings['AllowTcpForwarding']);
+        $enable->addFormField(
+            $TCPForwardingAccess,
+            $factory->getLabel('AllowTcpForwarding'),
+            $pageId
+            );
+
+        // Out with the container:
+        $container->addFormField($sshToggleBox, $factory->getLabel('enableSSH'), $pageId);
+
+    }
+
+    function handle(&$helper, &$errors, $prams) {
+
+        $cce = $helper->getCceClient();
+
+        // Make CI instance available:
+        $CI =& get_instance();
+
+        // Get form data:
+        $form_data = $CI->input->post(NULL, TRUE);
+
+        // Sanitize form data:
+        $attributes = GetFormAttributes("", $form_data);
+
+        $cce->set($prams['CCE_OID'], 'SSH',
+                    array(
+                	'enabled' => ($attributes['enableSSH'] ? 1 : 0),
+                	'Port' => $attributes['SSH_Port'],
+                	'Protocol' => $attributes['SSH_Proto'],
+                    'PermitRootLogin' => ($attributes['SSHrootLogin'] ? 1 : 0),
+                    'XPasswordAuthentication' => ($attributes['PasswordAuthentication'] ? 1 : 0),
+                    'RSAAuthentication' => '0',
+                    'PubkeyAuthentication' => ($attributes['PubkeyAuthentication'] ? 1 : 0),
+                	'AllowTcpForwarding' => ($attributes['AllowTcpForwarding'] ? 1 : 0),
+                	'force_update' => time()
+                	));
+
+        $errors = array_merge($errors, $cce->errors());
+    }
+}
+
+/*
+Copyright (c) 2014-2018 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2014-2018 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2008 Brian Smith, NuOnce Networks, Inc.
+All Rights Reserved.
+
+1. Redistributions of source code must retain the above copyright 
+   notice, this list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright 
+   notice, this list of conditions and the following disclaimer in 
+   the documentation and/or other materials provided with the 
+   distribution.
+
+3. Neither the name of the copyright holder nor the names of its 
+   contributors may be used to endorse or promote products derived 
+   from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
+COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+POSSIBILITY OF SUCH DAMAGE.
+
+You acknowledge that this software is not designed or intended for 
+use in the design, construction, operation or maintenance of any 
+nuclear facility.
+
+*/
+?>

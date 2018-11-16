@@ -1,0 +1,11 @@
+<item 
+    id="base_console_logins" 
+    label="[[base-console.loginsMenu]]" 
+    description="[[base-console.loginsMenu_help]]" 
+    url="/console/consolelogins"
+>
+
+    <parent id="base_security" order="101">
+        <access require="serverConfig"/>
+    </parent>
+</item>

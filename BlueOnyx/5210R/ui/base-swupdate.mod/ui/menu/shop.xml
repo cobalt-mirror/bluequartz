@@ -1,0 +1,9 @@
+<item
+    id="swupdate_shop"
+    label="[[base-shop.swupdate_shopLabel]]"
+    description="[[base-shop.swupdate_shopLabelDesc]]"
+    url="/base/swupdate/shop/index.php">
+    <parent id="base_software" order="1">
+        <access require="managePackage"/>
+    </parent>
+</item>

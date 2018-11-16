@@ -1,0 +1,188 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "enableSSH"
+msgstr "SSH Server einschalten"
+
+msgid "enableSSH_help"
+msgstr "Ist SSH eingeschaltet, so können Benutzer, für die Shellzugang aktiviert ist, sich mit SSH-Clients auf dem Server einloggen. Die Nutzung von SSH wird grundsätzlich als sicherer angesehen als die Benutzung von Telnet, da SSH alle Daten (auch Passwörter) verschlüsselt, die zwischen dem Client und dem Server gesendet werden."
+
+msgid "amSSHDetails"
+msgstr "SSH Server"
+
+msgid "SSH_Port"
+msgstr "SSH Port:"
+
+msgid "SSH_Port_help"
+msgstr "Normalerweise ist SSH and Port 22/TCP gebunden. Jedoch können Sie SSHD so umkonfigurieren, dass es an einen anderen Port gebunden wird. Damit lassen sich ggf. automatisierte Attacken gegen SSH umgehen."
+
+msgid "SSH_Proto"
+msgstr "SSH Protokoll:"
+
+msgid "SSH_Proto_help"
+msgstr "SSH unterstützt zwei Protokolle: Protokoll Version 1 und Version 2. Version 2 ist neuer und sicherer, daher sollten Sie nach Möglichkeit nur Protokoll 2 verwenden. Falls Sie jedoch SSH-Zugang mit Applikationen brauchen, die nur Protokoll 1 unterstützen, so stellen Sie den Wert auf '2,1'. Damit bleibt Protokoll 2 die bevorzugte Variante, aber Protokoll 1 steht nach wie vor für ältere Applikationen zur Verfügung."
+
+msgid "SSHrootLogin"
+msgstr "SSH Root-Zugang:"
+
+msgid "SSHrootLogin_help"
+msgstr "Normalerweise darf sich Benutzer 'root' aus Sicherheitsgründen nicht direkt per SSH einloggen. Falls Sie es wünschen, können Sie dieses Verhalten hier ändern."
+
+###
+
+msgid "basicSettingsTab"
+msgstr "Grundeinstellungen"
+
+msgid "advancedSettingsTab"
+msgstr "SSH Schlüssel- & Zertifikat-Verwaltung"
+
+msgid "PasswordAuthentication"
+msgstr "Kennwort-Authentifizierung"
+
+msgid "PasswordAuthentication_help"
+msgstr "Gibt an, ob Passwort-Authentifizierung von SSH erlaubt ist. Der Standardwert ist 'Ja'. Wenn Sie SSH-Schlüssel oder Zertifikate eingerichtet haben, können Sie die Passwort-Authentifizierung für zusätzliche Sicherheit deaktivieren. Die sicherste Methode, SSH zu verwenden ist es, nur Schlüssel oder Zertifikate zu verwenden und passwort basierte SSH-Logins zu deaktivieren."
+
+msgid "RSAAuthentication"
+msgstr "RSA Authentifizierung"
+
+msgid "RSAAuthentication_help"
+msgstr "Gibt an, ob reine RSA-Authentifizierung erlaubt ist. Der Standardwert ist 'Nein', da wir in der Regel nur SSH-Protokoll Version 2 erlauben und RSA-Schlüssel nur für Protokollversion 1 Verwendung finden."
+
+msgid "PubkeyAuthentication"
+msgstr "Public-Key-Authentifizierung"
+
+msgid "PubkeyAuthentication_help"
+msgstr "Gibt an, ob Public-Key-Authentifizierung erlaubt ist. Der Standardwert ist 'Ja'. Beachten Sie, dass diese Option nur für SSH-Protokoll Version 2 gilt."
+
+msgid "key_present"
+msgstr "SSH-Schlüssel"
+
+msgid "key_present_help"
+msgstr "Zeigt an, ob öffentlicher und privater SSH-Schlüssel vorhanden sind. Wenn nicht, können Sie das Kontrollkästchen ankreuzen und das Schlüssel-Paar wird automatisch erzeugt."
+
+msgid "cert_present"
+msgstr "PEM-Zertifikat"
+
+msgid "cert_present_help"
+msgstr "Zeigt an, ob öffentliches und privates PEM-Zertifikat vorhanden sind. Wenn nicht, können Sie das Kontrollkästchen ankreuzen und das Zertifikat-Paar wird automatisch angelegt."
+
+msgid "keys_present_msg"
+msgstr "[[VAR.bits]] Bit privater und öffentlicher Schlüssel vorhanden."
+
+msgid "certs_present_msg"
+msgstr "[[VAR.bits]] Bit privates und öffentliches PEM-Zertifikat vorhanden."
+
+msgid "but_needs_root_access"
+msgstr " Aber um sich als 'root' per SSH einzuloggen müssen Sie 'root'-Zugang per SSH ermöglichen."
+
+msgid "AuthKeyList"
+msgstr "Inhalt von: [[VAR.authkey_file]]"
+
+msgid "key_type"
+msgstr "Typ"
+
+msgid "key_type_help"
+msgstr "Zeigt den Typ des öffentlichen Schlüssels an."
+
+msgid "key_payload"
+msgstr "Schlüssel"
+
+msgid "key_payload_help"
+msgstr "Zeigt die ersten 15 und die letzten 15 Zeichen des installierten öffentlichen Schlüssels an."
+
+msgid "key_userhost"
+msgstr "Benutzer und Host"
+
+msgid "key_userhost_help"
+msgstr "Zeigt die Benutzer und Host an, für welche dieser öffentlichen Schlüssel gültig ist. Solange dieser öffentlichen Schlüssel installiert ist, kann man sich mit dem passenden privaten Schlüssel (oder Zertifikat) auf diesen Server per SSH einloggen."
+
+msgid "bits"
+msgstr "Bits"
+
+msgid "bits_help"
+msgstr "Zeigt die Bit-Länge der installierten öffentliche Schlüssel oder Zertifikate an. Schlüssel oder Zertifikate mit längerer Bit-Länge werden im Allgemeinen als sicherer angesehen."
+
+msgid "listAction"
+msgstr "Aktion"
+
+msgid "listAction_help"
+msgstr "Hier können Sie einen oder mehrer installierte öffentlichen Schlüssel löschen. Dem Benutzer und Host wird dann nicht mehr erlaubt, sich mit diesem Schlüssel oder Zertifikat anzumelden. Bitte beachten Sie: Wenn dieser Benutzer gerade eingeloggt sind, wird dieser Vorgang nicht die Verbindung beenden. Jedoch nehmen Sie ihm die Möglichkeit, sich mit diesem Schlüssel oder Zertifikat erneut anzumelden."
+
+msgid "AKRemove"
+msgstr "Entfernt den ausgewählten öffentlichen Schlüssel aus authorized_keys"
+
+msgid "AKRemoveConfirmNeutral"
+msgstr "Bestätigen Sie das Entfernen dieses öffentlichen Schlüssels:"
+
+msgid "removeConfirmInfo"
+msgstr "Bitte bestätigen Sie, dass Sie diesen öffentlichen Schlüssen aus authorized_keys entfernen möchten. Dem Benutzer und Host wird dann nicht mehr erlaubt, sich mit diesem Schlüssel oder Zertifikat anzumelden."
+
+msgid "UploadPubKeyHead"
+msgstr "Öffentlichen Schlüssel hochladen und zu [[VAR.authkey_file]] hinzufügen:"
+
+msgid "UploadPubkey"
+msgstr "Schlüssel hochladen"
+
+msgid "UploadPubkey_help"
+msgstr "Dies ermöglicht Ihnen, einen öffentlichen Schlüssel hochzuladen. Es wird dann automatisch zu authorized_keys hinzugefügt."
+
+msgid "keyDownloadHeader"
+msgstr "Öffentlichen Schüssel oder PEM-Zertifikat herunterladen:"
+
+msgid "export_id_rsa_pub"
+msgstr "Öffentlicher Schlüssel"
+
+msgid "export_id_rsa_pub_help"
+msgstr "Hiermit können Sie den öffentlichen Schlüssel von diesem Server herunterladen, damit Sie ihn auf einem anderen Server zu authorized_keys hinzufügen können."
+
+msgid "export_root_pem"
+msgstr "PEM-Zertifikat"
+
+msgid "export_root_pem_help"
+msgstr "Hiermit können Sie das PEM-Zertifikat von diesem Server herunterladen. Anschließend können Sie es in Ihrem SSH-Client verwenden, um eine sichere Verbindung per SSH zu diesem Server aufzubauen."
+
+###
+
+msgid "pers_shell_menu"
+msgstr "SSH-Zugriff"
+
+msgid "pers_shell_menu_help"
+msgstr "Hier können Sie Ihre SSH-Schlüssel und PEM-Zertifikate für Ihre SSH-Logins erstellen und zu verwalten."
+
+##
+
+msgid "SSH_keylength"
+msgstr "SSH-Schlüssellänge"
+
+msgid "SSH_keylength_help"
+msgstr "Hier können Sie die Bit-Länge für neu zu erstellende Schlüssel und Zertifikate festlegen. Der Standardwert ist 2048 Bit. Im Allgemeinen wird 2048 Bit als ausreichend angesehen, aber Sie können Schlüssel mit größerer Bitlänge erstellen. Bitte beachten Sie, dass die Rechenzeit bei der Erstellung längere Schlüssel entsprechend größer ist und länger braucht. Längere Schlüssel haben auch einen negativen Einfluss auf die Performanz von SSH."
+
+##### --- Active monitor
+
+msgid "amSSHNameTag"
+msgstr "SSHd Server"
+
+msgid "amDetailsTitle"
+msgstr "SSHd Server Details"
+
+msgid "amStatusOK"
+msgstr "Der SSHd Server arbeitet einwandfrei."
+
+msgid "amNotAccepting"
+msgstr "The SSHd Server läuft nicht und konnte auch nicht wieder neu gestartet werden. Bitte versuchen Sie den SSHd Server über die GUI zu deaktivieren und neu zu aktivieren."
+
+####
+
+msgid "AllowTcpForwarding"
+msgstr "TCP-Weiterleitung zulassen"
+
+msgid "AllowTcpForwarding_help"
+msgstr "Gibt an, ob TCP-Weiterleitung erlaubt ist. Standard: Nicht aktiviert. Hinweis: Die Aktivierung der TCP-Weiterleitung kann ein Sicherheitsrisiko darstellen, da sie verwendet werden kann, um die Firewall oder Zugriffskontrollregeln zu umgehen."
+

@@ -1,0 +1,47 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "header"
+msgstr "Connessione al server"
+
+msgid "connect"
+msgstr "Console Accesso"
+
+msgid "connect_help"
+msgstr "Connettersi alla console di questo server via 'Shellinabox' per aprire una shell."
+
+msgid "info_text"
+msgstr "Questa pagina GUI consente di aprire sessione alla console di questo server. Per che non fa uso di SSH, ma una vera e propria connessione alla console attraverso 'Shellinabox'.<br><br>Accesso a 'Shellinabox' è concessa solo se il servizio è accessibile tramite la GUI da un utente autenticato che ha permesso l'accesso alla shell ."
+
+msgid "admin_text"
+msgstr "<b>Nota:</b><br>Utente 'admin' in grado di effettuare il login, ma non può usare 'su -' per ottenere l'accesso root. Se avete bisogno di un accesso root, esegui il login come un altro 'Server Administrator' con enabled 'Root-Access' e poi usare 'su root-username' per ottenere l'accesso 'root'."
+
+msgid "ShellinaboxEnabled"
+msgstr "Accesso Shellinabox Console"
+
+msgid "ShellinaboxEnabled_help"
+msgstr "In questo modo il servizio 'Shellinabox' che è necessaria se si desidera utilizzare '[[base-remote.connect]]' via 'Personali Profilo' / 'Programmi' / '[[base-remote.connect]]'."
+
+msgid "service_disabled"
+msgstr "Il servizio 'Shellinabox' non è abilitato. Accesso alla console non è dunque possibile in questo momento."
+
+##### --- Active monitor
+
+msgid "amRemoteNameTag"
+msgstr "Shellinabox Server"
+
+msgid "amDetailsTitle"
+msgstr "Shellinabox Dettagli Server"
+
+msgid "amStatusOK"
+msgstr "Il server Shellinabox funziona normalmente."
+
+msgid "amNotAccepting"
+msgstr "Il server Shellinabox non è in esecuzione e non poteva essere riavviato. Provare a girare il server Shellinabox off riaccendere per vedere se questo risolve il problema."

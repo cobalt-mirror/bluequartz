@@ -1,0 +1,13 @@
+[Unit]
+Description = Docker CT starter
+After = network.target docker.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sausalito/sbin/dockercts.pl -start
+ExecReload=/usr/sausalito/sbin/dockercts.pl -restart
+ExecStop=/usr/sausalito/sbin/dockercts.pl -stop
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

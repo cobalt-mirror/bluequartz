@@ -1,0 +1,195 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "enableSSH"
+msgstr "SSHサーバを有効にする"
+
+msgid "enableSSH_help"
+msgstr "シェルアクセスを有効に設定されたユーザは、SSHクライアントソフトウェアを"
+"使用して、このサーバに接続することができます。SSHはクライアントとサーバの間で"
+"送信されるパスワードを含むすべてのデータを暗号化するので、一般的にTelnetを使用"
+"するよりも安全と考えられています。"
+
+msgid "SSH_Port"
+msgstr "SSH Port:"
+
+msgid "SSH_Port_help"
+msgstr "デフォルトでは、SSHはポート22/TCP上で実行されます。自動化されたブルート"
+"フォースログイン攻撃を回避しようとするために、代わりに別のポートで実行する"
+"ように設定することができます。"
+
+msgid "SSH_Proto"
+msgstr "SSH Protocol:"
+
+msgid "SSH_Proto_help"
+msgstr "SSHは、プロトコル1と2の2つのプロトコルをサポートします: プロトコル2は、"
+"より高度で安全であり、可能であればプロトコル2のみ使用するべきです。"
+"プロトコル1にしか対応していないアプリケーションを使用する必要がある場合は"
+"'2,1' を設定する事で、自動的にフォールバックされた接続が可能となります。"
+
+
+msgid "SSHrootLogin"
+msgstr "SSH Root Login:"
+
+msgid "SSHrootLogin_help"
+msgstr "セキュリティ上の理由から'root'ユーザが直接SSHでアクセスする事"
+"は許可されていません。必要に応じて、ここで許可する事ができます。"
+
+###
+
+msgid "basicSettingsTab"
+msgstr "基本設定"
+
+msgid "advancedSettingsTab"
+msgstr "SSH鍵/証明書管理"
+
+msgid "PasswordAuthentication"
+msgstr "パスワード認証"
+
+msgid "PasswordAuthentication_help"
+msgstr "SSHのパスワード認証が許可されているかどうかを指定します。デフォルトは「はい」です。あなたはSSH鍵や証明書を設定している場合は、セキュリティ強化のため、パスワード認証をオフにすることができます。唯一の鍵/証明書ベースのSSHログインを許可することは、より安全な方法です。"
+
+msgid "RSAAuthentication"
+msgstr "RSA認証"
+
+msgid "RSAAuthentication_help"
+msgstr "純粋なRSA認証を許可するかどうかを指定します。デフォルトでは、我々は通常、SSHプロトコルバージョン2を許可し、このオプションはプロトコルバージョン1のみに適用されるように、「NO」である。"
+
+msgid "PubkeyAuthentication"
+msgstr "公開鍵認証"
+
+msgid "PubkeyAuthentication_help"
+msgstr "公開鍵認証が許可されているかどうかを指定します。デフォルトは「はい」です。このオプションはプロトコルバージョン2のみに適用されます。"
+
+msgid "key_present"
+msgstr "SSHキー"
+
+msgid "key_present_help"
+msgstr "SSHの公開鍵と秘密鍵が存在する場合を示しています。そうでない場合は、チェックボックスにチェックを入れ、それらを作成することができます。"
+
+msgid "cert_present"
+msgstr "PEM証明書"
+
+msgid "cert_present_help"
+msgstr "SSHの公開鍵と秘密のPEM証明書が存在する場合を示しています。そうでない場合は、チェックボックスにチェックを入れ、それらを作成することができます。"
+
+msgid "keys_present_msg"
+msgstr "[[VAR.bits]]は秘密鍵と公開鍵存在ビット。"
+
+msgid "certs_present_msg"
+msgstr "[[VAR.bits]]は現在、プライベートとパブリックのPEM証明書のビット。"
+
+msgid "but_needs_root_access"
+msgstr " しかし、rootとしてSSHでログインするためには、SSHで「ルート」へのアクセスを許可する必要があります。"
+
+msgid "AuthKeyList"
+msgstr "の主張：[[VAR.authkey_file]]"
+
+msgid "key_type"
+msgstr "タイプ"
+
+msgid "key_type_help"
+msgstr "公開鍵のタイプが表示されます。"
+
+msgid "key_payload"
+msgstr "キー"
+
+msgid "key_payload_help"
+msgstr "インストールされた公開鍵の最初の15と最後の15文字が表示されます。"
+
+msgid "key_userhost"
+msgstr "ユーザとホスト"
+
+msgid "key_userhost_help"
+msgstr "この公開鍵が有効であるユーザーとホストを表示します。限り、この公開鍵がインストールされているように、一致する秘密鍵（または証明書）を持つ人は、SSHにより、このサーバにログインすることができます。"
+
+msgid "bits"
+msgstr "ビット"
+
+msgid "bits_help"
+msgstr "インストールされた公開鍵または証明書のビット長を示しています。長いビット長の鍵や証明書は、一般的に安全であると考えている。"
+
+msgid "listAction"
+msgstr "アクション"
+
+msgid "listAction_help"
+msgstr "あなたがインストールされた公開鍵を削除できます。ユーザとホストが、もはやそのキーまたは証明書を使ってログインを許可されていません。ご注意：このユーザが現在ログインしている場合、これは彼の接続を終了しません。しかし、彼はそのキーや証明書を使用して再度ログインを許可されません。"
+
+msgid "AKRemove"
+msgstr "authorized_keysにから選択された公開鍵を削除する"
+
+msgid "AKRemoveConfirmNeutral"
+msgstr "公開鍵削除を確認します。"
+
+msgid "removeConfirmInfo"
+msgstr "あなたが本当に許可された鍵から公開鍵を削除しますか？これは、指定されたキーまたは証明書を使用して再度ログインからそのユーザとホストを防ぐことができます。"
+
+msgid "UploadPubKeyHead"
+msgstr "公開鍵をアップロードして[[VAR.authkey_file]]に追加"
+
+msgid "UploadPubkey"
+msgstr "公開鍵をアップロードする"
+
+msgid "UploadPubkey_help"
+msgstr "これは、公開鍵をアップロードすることができます。それは自動的にauthorized_keysに追加されます。"
+
+msgid "keyDownloadHeader"
+msgstr "公開鍵と/またはPEM証明書をダウンロードしてください。"
+
+msgid "export_id_rsa_pub"
+msgstr "公開鍵をダウンロード"
+
+msgid "export_id_rsa_pub_help"
+msgstr "これは、別のサーバー上のauthorized_keysに追加できるように、このサーバーから公開鍵をダウンロードすることができます。"
+
+msgid "export_root_pem"
+msgstr "PEM証明書のダウンロード"
+
+msgid "export_root_pem_help"
+msgstr "これは、このサーバーからのPEM証明書をダウンロードすることができます。その後、このサーバー上のSSHへの接続を確立するために、SSHクライアントで使用することができます。"
+
+##
+
+msgid "pers_shell_menu"
+msgstr "SSHアクセス"
+
+msgid "pers_shell_menu_help"
+msgstr "あなたのSSHログインのためのあなたのSSHキーとPEM証明書を作成し、管理することができます。"
+
+##
+
+msgid "SSH_keylength"
+msgstr "SSHキーの長さ"
+
+msgid "SSH_keylength_help"
+msgstr "新しく作成されたキーや証明書の鍵のビット数を指定します。デフォルトは2048ビットです。一般的には、2048ビットが十分であると考えているが、あなたはより多くのビットでキーを作成することができます。長いキーの作成に時間を作ることに注意してください。長いキーはまた、SSHのパフォーマンスに悪影響を与える。"
+
+##### --- Active monitor
+
+msgid "amSSHNameTag"
+msgstr "SSHDサーバ"
+
+msgid "amDetailsTitle"
+msgstr "SSHDサーバ詳細"
+
+msgid "amStatusOK"
+msgstr "SSHDサーバが正常に動作しています。"
+
+msgid "amNotAccepting"
+msgstr "SSHDサーバが稼働していないし、再起動することができませんでした。 [[base-apache.amAdmservNameTag]] では、これが問題を修正するかどうかを確認するために、その後に再びオフSSHDサーバを回してみてください。"
+
+####
+
+msgid "AllowTcpForwarding"
+msgstr "TCP転送を許可する"
+
+msgid "AllowTcpForwarding_help"
+msgstr "TCP転送を許可するかどうかを指定します。 デフォルト：有効になっていません。 注意：TCP転送を有効にすると、ファイアウォールやアクセス制御ルールをバイパスするためにセキュリティリスクが発生する可能性があります。"
+

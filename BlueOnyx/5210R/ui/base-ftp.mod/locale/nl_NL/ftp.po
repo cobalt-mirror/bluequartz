@@ -1,0 +1,255 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "ftp"
+msgstr "FTP"
+
+msgid "anonFtp"
+msgstr "Anonieme FTP"
+
+msgid "anonFtp_help"
+msgstr "Enable anonymous FTP-service voor de site."
+
+msgid "ftp_help"
+msgstr "Klik hier om [[base-ftp.ftpSettings]] veranderen."
+
+msgid "ftpSettings"
+msgstr "File Transfer Protocol (FTP) instellingen"
+
+msgid "enableServerField"
+msgstr "Enable Server"
+
+msgid "enableServerField_help"
+msgstr "Beurt File Transfer Protocol (FTP)-functionaliteit aan of uit. Anonieme FTP toegang voor een bepaalde plek kan worden geconfigureerd door naar [[base-ftp.anonFtp]] in de [[base-vsite.services]] menu onder [[base-alpine.sitemanage]] voor de site."
+
+msgid "maxUserField"
+msgstr "Maximum gelijktijdige gebruikers"
+
+msgid "maxUserField_rule"
+msgstr "Geef een nummer binnen het opgegeven bereik. De standaardwaarde is 25."
+
+msgid "maxUserField_help"
+msgstr "Het maximum aantal gebruikers dat kan worden aangesloten op de FTP server tegelijk. [[base-ftp.maxUserField_rule]]"
+
+msgid "useReverseDNSField"
+msgstr "Hostnaam lookups"
+
+msgid "useReverseDNSField_help"
+msgstr "Dit zet hostnaam lookups voor de FTP-server. Dit zorgt ervoor dat de server een DNS lookup te doen op de client IP wanneer het aansluit op de server, en neem het in de logbestanden. Deze hostnaam informatie is dan beschikbaar in het gebruik server FTP rapporten. Zonder deze functie, zijn enige klant IP-adressen vermeld in de FTP-server gebruik domein rapport. WAARSCHUWING: deze optie inschakelt, zal de prestaties van uw FTP-server te verlagen."
+
+msgid "connectRateField"
+msgstr "Maximale verbindingssnelheid"
+
+msgid "connectRateField_help"
+msgstr "Voer het maximum aantal toegestane verbindingen per minuut. Nieuwe verbindingen wordt geweigerd, indien de verbindingssnelheid deze limiet heeft bereikt."
+
+msgid "connectRateField_rule"
+msgstr "Geef een nummer binnen het opgegeven bereik. De standaardwaarde is 80."
+
+msgid "basic"
+msgstr "Basisch"
+
+msgid "advanced"
+msgstr "Vergevorderd"
+
+msgid "basic_help"
+msgstr "De FTP-server kan worden in-of uitgeschakeld hier."
+
+msgid "advanced_help"
+msgstr "FTP-server parameters kunnen hier worden beheerd."
+
+msgid "amFTPNameTag"
+msgstr "File Transfer Protocol (FTP) Server"
+
+msgid "amDetailsTitle"
+msgstr "File Transfer Protocol (FTP) Server Details"
+
+msgid "amNotResponding"
+msgstr "De FTP-server is niet actief en kon niet worden opgestart. In de [[base-apache.amAdmservNameTag]], probeer dan uit te schakelen de FTP-server weer aan om te zien of dit corrigeert het probleem. Als de FTP-server is nog steeds niet in staat om te beginnen, probeer dan het rebooten van de server zelf door te klikken op de [[base-power.reboot]] knop in het menu onder [[base-power.power]] [[base-alpine.serverconfig]]. Als de FTP-server is nog steeds niet in staat om te beginnen, zie [[base-sauce-basic.techSupportURL]] voor technische ondersteuning."
+
+msgid "base-ftp.amBadResponse"
+msgstr "De FTP-server gaf een slechte reactie."
+
+msgid "amStatusOK"
+msgstr "De FTP-server werkt normaal."
+
+msgid "badUser"
+msgstr "Als server configuratie bestanden zijn verwijderd of handmatig gewijzigd, herstelt u de oorspronkelijke versie en probeer het opnieuw."
+
+msgid "cantConfigFile"
+msgstr "Er is een fout opgetreden bij de FTP-configuratie bestanden aan te passen. [[base-ftp.badUser]]"
+
+msgid "quoteExceedsSorry"
+msgstr "Sorry, het quotum voor anonieme FTP is hoger dan het quotum voor de site, [[VAR.quota]] MB."
+
+msgid "quotaExceedsSiteQuota"
+msgstr "[[base-ftp.quoteExceedsSorry]] Gelieve een waarde van minder dan of gelijk aan MB [[VAR.quota]] voor de anonieme FTP-quota."
+
+msgid "quotaExceedsSiteQuotaEnabled"
+msgstr "[[base-ftp.quotaExceedsSorry]] Anonieme FTP werd niet ingeschakeld. Anonieme FTP kan ingeschakeld worden door aanpassing van de Site-instellingen voor de nieuwe site."
+
+msgid "siteQuotaLessThanFtpQuota"
+msgstr "De maximaal toegestane schijfruimte is dan de maximum toegestane upload schijfruimte anonieme FTP die momenteel [[VAR.quota]] MB. Schakel anonieme FTP of de waarde voor maximale upload schijfruimte voor anonieme FTP verlagen, dus is het minder dan of gelijk aan de gewenste maximum schijfruimte voor de site."
+
+msgid "modAnonFtp"
+msgstr "[[base-ftp.anonFtp]] Instellingen voor [[VAR.fqdn]]"
+
+msgid "ftpFullText"
+msgstr "Enable [[base-ftp.anonFtp]]"
+
+msgid "ftpFullText_help"
+msgstr "Klik dit aan om anonieme FTP-service voor de site mogelijk te maken."
+
+msgid "uploadDiskSpace"
+msgstr "Upload Disk Space"
+
+msgid "ftpQuota"
+msgstr "Maximaal toegestaan ​​[[base-ftp.uploadDiskSpace]] (MB)"
+
+msgid "ftpQuota_help"
+msgstr "De limiet in megabytes (MB) voor anonieme FTP upload."
+
+msgid "ftpquota_invalid"
+msgstr "Helaas, de aangegeven voor [[base-ftp.ftpQuota]] waarde ofwel geen getal indien in de opgegeven naast het bereik. Geef een nummer dat binnen het opgegeven bereik."
+
+msgid "ftpquota_empty"
+msgstr "Sorry, je hebt niet opgegeven en een waarde voor [[base-ftp.ftpQuota]]."
+
+msgid "AnonFtp_quota_invalid"
+msgstr "Helaas, de aangegeven voor [[base-ftp.ftpQuota]] waarde ofwel geen getal of minder dan een. Vul een getal groter dan of gelijk aan een."
+
+msgid "AnonFtp_quota_empty"
+msgstr "[[base-ftp.ftpquota_empty]]"
+
+msgid "ftpUsers"
+msgstr "Maximum gelijktijdige verbindingen"
+
+msgid "ftpUsers_help"
+msgstr "Het maximum aantal anonieme FTP gebruikers die kunnen worden aangesloten op de server tegelijk."
+
+msgid "ftpusers_invalid"
+msgstr "Sorry, de ingevoerde voor [[base-ftp.ftpUsers]] waarde is ofwel niet een nummer of minder dan een. Vul een getal groter dan of gelijk aan een."
+
+msgid "ftpusers_empty"
+msgstr "Sorry, je hebt niet opgegeven en een waarde voor [[base-ftp.ftpUsers]]. Vul een getal groter dan of gelijk aan een."
+
+msgid "AnonFtp_maxConnections_invalid"
+msgstr "[[base-ftp.ftpusers_invalid]]"
+
+msgid "AnonFtp_maxConnections_empty"
+msgstr "[[base-ftp.ftpusers_empty]]"
+
+msgid "ftpTabName"
+msgstr "[[base-ftp.anonFtp]]"
+
+msgid "ftpTabName_help"
+msgstr "Instellingen voor anonieme FTP te wijzigen."
+
+msgid "anonEnable"
+msgstr "In staat stellen"
+
+msgid "anonymousFtpInUse"
+msgstr "Anonieme FTP kan niet worden ingeschakeld, omdat een andere site met hetzelfde IP-adres, [[VAR.ipaddr]], wordt al gebruik anonieme FTP."
+
+msgid "cantSuspendFtpSite"
+msgstr "De virtuele locatie kon niet worden opgeschort omdat FTP voor de site niet kon worden uitgeschakeld."
+
+msgid "cantSuspendFtp"
+msgstr "De site kan niet worden opgeschort omdat FTP-toegang voor de site niet kon worden uitgeschakeld."
+
+msgid "cantUnsuspendFtpSite"
+msgstr "De virtuele site zou niet ongeveerde zijn omdat FTP-toegang voor de site niet kon worden hersteld."
+
+msgid "unsuspendAnonFtpInUse"
+msgstr "De site die is verend werd met behulp van anonieme FTP toen het werd opgeschort, maar een andere site met hetzelfde IP-adres wordt nu met behulp van anonieme FTP. Anonymous FTP voor deze website is uitgeschakeld."
+
+msgid "cantUnsuspendFtp"
+msgstr "De site kan niet worden verend, omdat FTP toegang niet kon worden hersteld voor deze site."
+
+msgid "cantDetermineHomeDir"
+msgstr "In staat om de home directory van de site met de naam, [[VAR.site]] bepalen."
+
+msgid "anonServiceQuota"
+msgstr "Anonieme FTP"
+
+msgid "couldNotSetFtpQuotaMon"
+msgstr "Anonieme FTP quota bewaking kon niet goed geconfigureerd."
+
+msgid "couldNotUpdateFtpQuotaMon"
+msgstr "[[base-ftp.couldNotSetFtpQuotaMon]]"
+
+msgid "couldNotClearFtpQuotaMon"
+msgstr "[[base-ftp.couldNotSetFtpQuotaMon]]"
+
+msgid "cantReadAnonFtp"
+msgstr "Niet in staat om anonieme FTP instellingen van deze site te lezen."
+
+msgid "cantUpdateFtpSite"
+msgstr "Anonieme FTP instellingen konden niet worden bijgewerkt."
+
+msgid "createFtpSiteFailed"
+msgstr "Niet in staat om de FTP-server configuratie voor [[VAR.ipaddr]] creëren."
+
+msgid "migrateAnonFtpImpossible"
+msgstr "Het IP-adres kan niet worden gewijzigd in [[VAR.ipaddr]]. Anonieme FTP voor deze website is ingeschakeld, maar er is een site met het gespecificeerde IP adres dat ook anonieme FTP. Het uitschakelen van anonieme FTP voor zowel site zal dit probleem te verhelpen."
+
+msgid "migrateAnonFtpFailed"
+msgstr "Niet in staat om de anonieme FTP voor deze website te migreren."
+
+msgid "ftpnonadmin"
+msgstr "Laat Gebruiker (s) de toegang tot FTP"
+
+msgid "ftpnonadmin_help"
+msgstr "Gebruikers die SiteAdministrators kunnen FTP verzend altijd naar de server - zolang de FTP-service in het algemeen is ingeschakeld. Als u ook wilt dat regelmatige gebruikers toegang tot hun bestandsruimten door FTP, dan een vinkje zetten."
+
+msgid "siteFtp"
+msgstr "FTP"
+
+msgid "siteFtp_help"
+msgstr "Beheer FTP toegang voor deze website - inclusief anonieme FTP-service."
+
+msgid "ChangeSiteFtp"
+msgstr "FTP-instellingen voor [[VAR.fqdn]]"
+
+msgid "cap_serverFTP"
+msgstr "FTP-instellingen"
+
+# sftpd addition:
+
+msgid "enableServerFieldNew"
+msgstr "FTP inschakelen"
+
+msgid "enableServerFieldNew_help"
+msgstr "[[base-ftp.enableServerField_help]]"
+
+msgid "enableSFTPserverField"
+msgstr "Enable FTPS"
+
+msgid "enableSFTPserverField_help"
+msgstr "Draai FTPS (FTP met SSL/TLS) functionaliteit in of uit. FTPS op poort 990/TCP en zorgt voor een veilige verbinding met de FTP-server. Het moet de voorkeursmethode voor aansluiting op FTP zijn. FTP-clients moet 'expliciet FTP over TLS' gebruiken om te kunnen gebruik maken van deze functie."
+
+
+#
+### Net2FTP:
+#
+
+msgid "connect"
+msgstr "Bestandsbeheer"
+
+msgid "connect_help"
+msgstr "Op deze pagina kunt u bestanden uploaden, downloaden en beheren via FTP of SSH als deze functies zijn ingeschakeld voor uw account."
+
+msgid "service_disabled"
+msgstr "Sorry, uw account heeft geen FTP- of Shell-toegang ingeschakeld."
+
+msgid "info_text"
+msgstr "De bestandsmanager wordt geopend in een nieuw browservenster. Zorg ervoor dat uw browser pop-ups van dit domein toestaat."
+
+

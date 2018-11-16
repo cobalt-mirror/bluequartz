@@ -1,0 +1,51 @@
+<?php
+// $Id: 30_Java.php.create.Vsite
+// Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
+// Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+// Java.php.create.Vsite
+
+include_once('UIExtension.php');
+
+class JavaExtension extends UIExtension
+{
+	function display(&$ServerScriptHelper, &$container, $parameters)
+	{
+		$CI =& get_instance();
+		$factory = $ServerScriptHelper->getHtmlComponentFactory("base-java");
+		$cce = $ServerScriptHelper->getCceClient();
+		
+		$defaults = $cce->get($parameters["CCE_SERVICES_OID"], "Java");
+
+        //
+        //-- Reseller: Can the reseller that owns this Vsite modify this?
+        //
+		$VsiteOwnerObj = $CI->BX_SESSION['loginUser'];
+		$access = "rw";
+        if ($VsiteOwnerObj['name'] != "admin") {
+            $resellerCaps = $cce->scalar_to_array($VsiteOwnerObj['capabilities']);
+            if (!in_array('resellerJSP', $resellerCaps)) {
+                $defaults["enabled"] = '0';
+                $access = 'r';
+            }
+        }
+
+        //-- 
+	
+		$javaEnable = $factory->getBoolean("enableJava", $defaults["enabled"], $access);
+		
+		// assume PagedBlock because that is most likely going to be it
+		$page_id = $parameters['PAGED_BLOCK_DEFAULT_PAGE'];
+		$container->addFormField($javaEnable, $factory->getLabel("enableJava"), $page_id);
+	}
+
+	function handle(&$ServerScriptHelper, &$errors, &$parameters, &$attributes)
+	{
+		$this->attributes = $attributes;
+
+		$cce = $ServerScriptHelper->getCceClient();
+		
+		$cce->set($parameters["CCE_OID"], "Java", array("enabled" => $this->attributes['enableJava']));
+		$errors = array_merge($errors, $cce->errors());
+	}
+}
+?>

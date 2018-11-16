@@ -1,0 +1,614 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "selectStat"
+msgstr "Ver Uso detalhada ..."
+
+msgid "summary"
+msgstr "Resumo"
+
+msgid "downloadBut"
+msgstr "Baixar Entrar"
+
+msgid "downloadBut_help"
+msgstr "Clique para baixar o log de uso para este serviço. O arquivo de log contém atividade de serviço início à meia-noite da data da primeira atividade até o final do dia, a data da última atividade para as datas especificadas, quando este relatório foi gerado para. Se os arquivos de log foram removidos, não podem faltar as datas no arquivo de log de saída."
+
+msgid "serverusage"
+msgstr "Informações de Uso"
+
+msgid "serverusageDescription"
+msgstr "Clique aqui para ver as estatísticas de uso de serviços de rede e servidor."
+
+msgid "netusage"
+msgstr "Rede"
+
+msgid "netusageDescription"
+msgstr "Estatísticas de utilização da rede"
+
+msgid "webusage"
+msgstr "Teia"
+
+msgid "webusageDescription"
+msgstr "Estatísticas de utilização da Web"
+
+msgid "ftpusage"
+msgstr "FTP"
+
+msgid "ftpusageDescription"
+msgstr "FTP estatísticas de uso"
+
+msgid "mailusage"
+msgstr "Email"
+
+msgid "mailusageDescription"
+msgstr "Estatísticas de utilização de e-mail"
+
+msgid "generateSettings"
+msgstr "Configure [[VAR.type]] Opções de Relatório"
+
+msgid "generateSettingsVsite"
+msgstr "Configure [[VAR.type]] Reportagem opções de [[VAR.fqdn]]"
+
+msgid "customizeBut"
+msgstr "Gerar Novo Relatório"
+
+msgid "customizeBut_help"
+msgstr "Personalizar um relatório de uso por data."
+
+msgid "generateBut"
+msgstr "Gerar Relatório"
+
+msgid "generateBut_help"
+msgstr "Gerar relatórios usando as opções especificadas."
+
+msgid "generate"
+msgstr "Gerar relatórios"
+
+msgid "reportGenerated"
+msgstr "Relatório gerado"
+
+msgid "reportGenerated_help"
+msgstr "Esta é a data ea hora em que este relatório foi gerado."
+
+msgid "startDate"
+msgstr "A partir de"
+
+msgid "startDate_help"
+msgstr "Esta é a data da primeira acção, que serão incluídos no relatório."
+
+msgid "endDate"
+msgstr "Findos em"
+
+msgid "endDate_help"
+msgstr "Esta é a data da última actividade, que serão incluídos no relatório."
+
+msgid "requestCoverageHint"
+msgstr "Note-se que as datas cobertas pelo relatório pode ser menor do que os dias que você selecionou se não havia atividade em toda a gama seleccionada."
+
+msgid "bytesTransfered"
+msgstr "Os dados transferidos"
+
+msgid "bytesTransfered_help"
+msgstr "A quantidade total de dados transferidos por este serviço durante o período especificado."
+
+msgid "vsitesReportBut"
+msgstr "Use pelo site Virtual"
+
+msgid "vsitesReportBut_help"
+msgstr "Obter um relatório de uso com base em sites virtuais."
+
+msgid "periodicReportBut"
+msgstr "Relatórios Periódicos"
+
+msgid "periodicReportBut_help"
+msgstr "Obtenha relatórios que mostram a atividade por dia ou hora."
+
+msgid "historicalReportBut"
+msgstr "Uso histórico por dia, semana ou mês."
+
+msgid "historicalReportBut_help"
+msgstr "Relatórios de uso diário, semanal ou mensal."
+
+msgid "requestReportButweb"
+msgstr "Arquivos solicitados"
+
+msgid "requestReportButweb_help"
+msgstr "Categoriza os pedidos dos arquivos solicitados."
+
+msgid "requestReportButftp"
+msgstr "[[base-sitestats.requestReportButweb]]"
+
+msgid "requestReportButftp_help"
+msgstr "[[base-sitestats.requestReportButweb_help]]"
+
+msgid "requestReportButmail"
+msgstr "Remetentes e destinatários"
+
+msgid "requestReportButmail_help"
+msgstr "Categoriza serviço de correio dos remetentes e destinatários."
+
+msgid "requestReportBut"
+msgstr "Top arquivos solicitados"
+
+msgid "requestReportBut_help"
+msgstr "Categoriza os pedidos dos arquivos solicitados."
+
+msgid "downloadLogBut"
+msgstr "Baixar arquivo de log (Todas as datas)"
+
+msgid "downloadLogBut_help"
+msgstr "Este link permite que você baixe o arquivo de log-prima para a sua máquina local."
+
+msgid "bytes_help"
+msgstr "O número de bytes transferidos."
+
+msgid "pbytes"
+msgstr "Porcentagem de Bytes"
+
+msgid "pbytes_help"
+msgstr "A percentagem do total de bytes transferidos."
+
+msgid "ipAddr"
+msgstr "Endereço IP"
+
+msgid "ipAddr_help"
+msgstr "Os endereços IP para este servidor. O endereço IP 127.0.0.1, é que o tráfego da rede local não recebeu um endereço IP externo."
+
+msgid "site"
+msgstr "Local"
+
+msgid "site_help"
+msgstr "O nome do local virtual. 'Servidor' representa o tráfego que não é afiliado com qualquer site."
+
+msgid "iDomain"
+msgstr "Domínios do destinatário"
+
+msgid "iDomain_help"
+msgstr "Os domínios do endereço de e-mail do destinatário para o correio tratado por este servidor. 'Servidor' representa destinatários locais sem domínio especificado."
+
+msgid "oDomain"
+msgstr "Domínios Sender"
+
+msgid "oDomain_help"
+msgstr "Os domínios de e-mail de remetente dirige para o correio tratado por este servidor. 'Servidor' representa remetentes locais sem domínio especificado."
+
+msgid "Home"
+msgstr "Servidor"
+
+msgid "requests"
+msgstr "Pedidos"
+
+msgid "domain"
+msgstr "Domínio"
+
+msgid "domain_help"
+msgstr "O domínio a partir do qual se originou a solicitação. Os clientes que não têm nomes de domínio são classificados como \"[[endereços numéricos base-sitestats.unresolved]]\". Note-se que as somas de linhas recuadas estão incluídos nos totais para suas respectivas linhas pai. Por exemplo, o tráfego de todos os hosts que terminam em \".com\" será refletido na linha que lista \".com\" na coluna de Domínio."
+
+msgid "dailyHistory"
+msgstr "História diária"
+
+msgid "weeklyHistory"
+msgstr "História da Semana"
+
+msgid "monthlyHistory"
+msgstr "História mensal"
+
+msgid "dailyHistory_help"
+msgstr "Clique aqui para ver a atividade histórica em uma base diária."
+
+msgid "weeklyHistory_help"
+msgstr "Clique aqui para ver a atividade histórica em uma base semanal."
+
+msgid "monthlyHistory_help"
+msgstr "Clique aqui para ver a atividade histórica em uma base mensal."
+
+msgid "daily"
+msgstr "Uso Diário"
+
+msgid "hourly"
+msgstr "Use por hora do dia"
+
+msgid "useByDayOfWeek"
+msgstr "Use por dia da semana"
+
+msgid "weekly"
+msgstr "Uso semanal"
+
+msgid "monthly"
+msgstr "Uso mensal"
+
+msgid "filetype"
+msgstr "Tipo de Arquivo"
+
+msgid "filetype_help"
+msgstr "O tipo de arquivo solicitado com base na extensão do arquivo. Por exemplo, um arquivo com extensão. Jpg seria um gráfico JPEG."
+
+msgid "requestFile"
+msgstr "Arquivo"
+
+msgid "requestFile_help"
+msgstr "O nome do arquivo solicitado."
+
+msgid "requestNumber"
+msgstr "Pedidos"
+
+msgid "requestNumber_help"
+msgstr "O número de pedidos para este arquivo."
+
+msgid "noDataError"
+msgstr "Não foram encontrados dados para a atividade durante o período especificado. Você pode querer experimentar um outro conjunto de datas."
+
+msgid "fullDailyDesc"
+msgstr "Este relatório mostra a atividade acumulada para cada dia incluído no relatório."
+
+msgid "fullWeeklyDesc"
+msgstr "Este relatório mostra a atividade acumulada para cada semana incluído no relatório."
+
+msgid "fullMonthlyDesc"
+msgstr "Este relatório mostra a atividade cumulativa para cada mês incluído no relatório."
+
+msgid "hourlySummaryDesc"
+msgstr "Este relatório mostra a distribuição horária da atividade cumulativa."
+
+msgid "dailySummaryDesc"
+msgstr "Este relatório mostra a distribuição diária da atividade cumulativa."
+
+msgid "gigabyte_abbr"
+msgstr "GB"
+
+msgid "megabyte_abbr"
+msgstr "MB"
+
+msgid "kilobyte_abbr"
+msgstr "KB"
+
+msgid "sitestatsTabName"
+msgstr "Informações de Uso"
+
+msgid "sitestatsTabName_help"
+msgstr "Configurar Virtual uso do site estatísticas geração e preservação histórico de uso."
+
+msgid "sitestatsEnable"
+msgstr "Ativar Geração Estatísticas"
+
+msgid "sitestatsEnable_help"
+msgstr "Marque para habilitar Virtual Web Site, FTP, e as estatísticas de uso de e-mail."
+
+msgid "sitestatsConsolidate"
+msgstr "Nível de detalhe"
+
+msgid "sitestatsConsolidate_help"
+msgstr "O nível de detalhe determina se arquivos de informações estatísticas diárias são combinados em um único arquivo de informação estatística mensal por mês. Isso não afeta as informações estatísticas para o mês atual. Se diário é selecionado, você pode gerar relatórios com pena de as estatísticas de menos de um mês para os meses anteriores ao mês atual. Se Mensal for selecionada, você só pode gerar relatórios contendo as estatísticas para meses inteiros para meses anteriores ao mês atual. Combinação estatísticas não pode ser desfeita por meses que já foram combinados. Seleção Mensal vai consumir menos espaço em disco em relação ao Daily."
+
+msgid "sitestatsConsolidateDaily"
+msgstr "Diariamente"
+
+msgid "sitestatsConsolidateMonthly"
+msgstr "Mensal"
+
+msgid "sitestatsPurge"
+msgstr "História Estatísticas"
+
+msgid "sitestatsPurge_help"
+msgstr "Esta opção determina o quão longe no tempo, você será capaz de cobrir em relatórios estatísticos. Um longo período de tempo permite gerar relatórios com uma história mais longa em detrimento de espaço em disco."
+
+msgid "bytes"
+msgstr "Bytes"
+
+msgid "never"
+msgstr "Para sempre"
+
+msgid "month"
+msgstr "1 Mês"
+
+msgid "2month"
+msgstr "2 meses"
+
+msgid "3month"
+msgstr "3 Meses"
+
+msgid "6month"
+msgstr "6 Meses"
+
+msgid "year"
+msgstr "1 ano"
+
+msgid "2year"
+msgstr "2 Anos"
+
+msgid "3year"
+msgstr "3 Anos"
+
+msgid "4year"
+msgstr "4 Anos"
+
+msgid "5year"
+msgstr "5 Anos"
+
+msgid "byIP"
+msgstr "Use por endereço IP"
+
+msgid "sendReceiveByDomain"
+msgstr "Envio e recebimento de Domínios"
+
+msgid "referringSite"
+msgstr "Referindo Relatório do Site"
+
+msgid "typesReportBut"
+msgstr "Tipos de Arquivo"
+
+msgid "requestorDomain"
+msgstr "Domínios cliente"
+
+msgid "summaryStats"
+msgstr "[[VAR.type]] Statistics Summary"
+
+msgid "summaryStatsVsite"
+msgstr "[[VAR.type]] Estatísticas Resumo para [[VAR.fqdn]]"
+
+msgid "otherStatistics"
+msgstr "Estatísticas detalhadas"
+
+msgid "view"
+msgstr "Ver"
+
+msgid "view_help"
+msgstr "Clique para ver um relatório de uso detalhado."
+
+msgid "reportType"
+msgstr "Relatório"
+
+msgid "reportType_help"
+msgstr "As seguintes estatísticas detalhadas estão disponíveis."
+
+msgid "firstRequest"
+msgstr "Primeira Atividade"
+
+msgid "firstRequest_help"
+msgstr "A data da primeira atividade abordados neste relatório. Note-se que as datas cobertas pelo relatório pode ser menor do que os dias que você selecionou se não havia atividade em toda a gama seleccionada."
+
+msgid "lastRequest"
+msgstr "Última Atividade"
+
+msgid "lastRequest_help"
+msgstr "A data da última atividade abordados neste relatório. Note-se que as datas cobertas pelo relatório pode ser menor do que os dias que você selecionou se não havia atividade em toda a gama seleccionada."
+
+msgid "successfulRequests"
+msgstr "Total de Solicitações"
+
+msgid "successfulRequests_help"
+msgstr "O número de transações individuais, este serviço tem feito."
+
+msgid "totalSent"
+msgstr "Total enviado"
+
+msgid "totalSent_help"
+msgstr "O número de solicitações de serviço de saída."
+
+msgid "totalReceived"
+msgstr "Total recebido"
+
+msgid "totalReceived_help"
+msgstr "O número de solicitações de serviços recebidas."
+
+msgid "distinctFiles"
+msgstr "Arquivos distintos"
+
+msgid "distinctFiles_help"
+msgstr "O número de arquivos com serviços exclusivos."
+
+msgid "uniqueHosts"
+msgstr "Os clientes exclusivos"
+
+msgid "uniqueHosts_help"
+msgstr "O número de computadores únicas que fizeram solicitações de serviço."
+
+msgid "pageRequests"
+msgstr "Pedidos de sucesso"
+
+msgid "pageRequests_help"
+msgstr "Este é o número total de solicitações de serviço de sucesso."
+
+msgid "failedRequests"
+msgstr "Solicitações falhas"
+
+msgid "failedRequests_help"
+msgstr "Este é o número total de solicitações de serviços que falharam."
+
+msgid "vsiteStatsIn"
+msgstr "Correio destinatários por Domínio"
+
+msgid "vsiteStatsOut"
+msgstr "Correio Remetentes por Domínio"
+
+msgid "Site"
+msgstr "Site virtual do host"
+
+msgid "Site_help"
+msgstr "O nome de domínio totalmente qualificado do site virtual ativa. 'Servidor' representa solicitações de serviços que não estão associados a qualquer site virtual."
+
+msgid "requests_help"
+msgstr "O número total de solicitações de serviço pelo Site Virtual adjacente."
+
+msgid "vsites_in"
+msgstr "Destinatários de correio"
+
+msgid "vsites_in_help"
+msgstr "Clique para ver os domínios do destinatário para o correio tratado por este servidor."
+
+msgid "vsites_out"
+msgstr "Remetentes de correio"
+
+msgid "vsites_out_help"
+msgstr "Clique para ver os domínios do remetente para o correio manipulados por esse servidor."
+
+msgid "vsiteStats"
+msgstr "[[VAR.type]] Uso pelo site Virtual"
+
+msgid "domainStats"
+msgstr "[[VAR.type]] Uso de Domínio"
+
+msgid "vsiteStatsVsite"
+msgstr "[[VAR.type]] Uso pelo site virtual para [[VAR.fqdn]]"
+
+msgid "domainStatsVsite"
+msgstr "[[VAR.type]] Uso pelo domínio de [[VAR.fqdn]]"
+
+msgid "requestStats"
+msgstr "Solicitadas [[VAR.type]] Dados"
+
+msgid "requestStatsVsite"
+msgstr "Solicitadas [[VAR.type]] Dados para [[VAR.fqdn]]"
+
+msgid "typeStats"
+msgstr "[[VAR.type]] Uso por tipo de arquivo"
+
+msgid "typeStatsVsite"
+msgstr "[[VAR.type]] Uso por tipo de arquivo para [[VAR.fqdn]]"
+
+msgid "requestStatsOut"
+msgstr "Outgoing Email"
+
+msgid "requestStatsIn"
+msgstr "E-mail recebido"
+
+msgid "requestStatsOutVsite"
+msgstr "Remetentes de correio através de [[VAR.fqdn]]"
+
+msgid "requestStatsInVsite"
+msgstr "Destinatários mail via [[VAR.fqdn]]"
+
+msgid "requestInBut"
+msgstr "Ver destinatários de correio"
+
+msgid "requestInBut_help"
+msgstr "Clique para ver os destinatários de correio de mensagens tratadas por este servidor."
+
+msgid "requestOutBut"
+msgstr "Ver remetentes de correio"
+
+msgid "requestOutBut_help"
+msgstr "Clique para ver os remetentes de correio de mensagens tratadas por este servidor."
+
+msgid "requestFileIn"
+msgstr "Mail Sender"
+
+msgid "requestFileIn_help"
+msgstr "Estes são os endereços de e-mail do remetente. Estas incluem e-mails enviados por usuários que são membros do site e e-mails a partir de endereços de e-mail externos enviados para membros do site."
+
+msgid "requestFileOut"
+msgstr "Destinatário de Correio"
+
+msgid "requestFileOut_help"
+msgstr "Estes são os endereços de destinatários. Estas incluem e-mail recebido por usuários que são membros deste site, bem como e-mail enviado para os endereços de e-mail externas dos usuários deste site."
+
+msgid "sitestatsSettingsButton"
+msgstr "Configurações"
+
+msgid "sitestatsSettingsButtonHelp"
+msgstr "Clique para configurar as informações de uso e geração de estatísticas para este site."
+
+msgid "sitestatsSettings"
+msgstr "Uso Configurações informação para [[VAR.fqdn]]"
+
+msgid "statsQuota"
+msgstr "Logs de utilização"
+
+msgid "unresolved numerical addresses"
+msgstr "Desconhecido"
+
+msgid "serviceName"
+msgstr "Informações de Uso"
+
+msgid "directories"
+msgstr "Arquivos de índice"
+
+msgid "cantEnableLogrotate"
+msgstr "Incapaz de permitir a rotação do arquivo de log para este site."
+
+msgid "systemError"
+msgstr "Um erro do sistema ocorreu durante a leitura de informações. Entre em contato com o suporte técnico."
+
+msgid "cap_menuServerServerStats"
+msgstr "Mostrar Informações de Uso"
+
+
+#
+###
+#
+
+msgid "logconfig"
+msgstr "Retenção de Dados"
+
+msgid "logconfig_help"
+msgstr "Esta página permite configurar a retenção de dados de uso agregados dos arquivos de log do servidor."
+
+msgid "DIV_USAGE_INFORMATION"
+msgstr "Retenção de Informações de Uso do Site Virtual:"
+
+msgid "GlobalSitestatsPurge"
+msgstr "Informações de uso do site virtual"
+
+msgid "GlobalSitestatsPurge_help"
+msgstr "Este servidor mantém 14 dias de arquivos de log. Posteriormente, os arquivos de log são eliminados. Em uma base diária, os Sites Virtuais recebem uma cópia da atividade de arquivo de log relacionada a eles e esses fragmentos são armazenados no diretório logfile do Site Virtual. os endereços desses snippets de arquivo de log copiados foram anonimizados e, portanto, não devem mais ser considerados informações pessoais confidenciais. Entretanto, você pode escolher aqui o período máximo de tempo que qualquer Site Virtual neste servidor pode reter suas informações de uso e trechos de logfile. mais antigos do que o especificado aqui são encontrados, então eles serão removidos durante o próximo logrotate diário."
+
+msgid "DIV_Purge_Stats"
+msgstr "Limpar todas as estatísticas de uso agregadas:"
+
+msgid "internal"
+msgstr "Limpar estatísticas de uso"
+
+msgid "internal_help"
+msgstr "Se esta caixa de verificação estiver marcada, o diretório do arquivo de log de todos os Sites Virtuais será limpo e todas as Estatísticas de Uso agregadas serão excluídas. Isso não pode ser desfeito."
+
+msgid "webalizer"
+msgstr "Limpar Webalizer"
+
+msgid "webalizer_help"
+msgstr "Se esta caixa de verificação estiver marcada, o diretório Webalizer de todos os Sites Virtuais será limpo e todas as estatísticas Webalizer agregadas serão excluídas. Isso não pode ser desfeito."
+
+msgid "awstats"
+msgstr "Limpar AWStats"
+
+msgid "awstats_help"
+msgstr "Se esta caixa de verificação estiver marcada, o diretório AWStats de todos os Sites Virtuais será limpo e todas as estatísticas agregadas do AWStats serão excluídas. Isso não pode ser desfeito."
+
+msgid "DIV_AVSPAM_EXPIRY"
+msgstr "Tratamento de dados AV-SPAM:"
+
+msgid "avspam"
+msgstr "Expiração de dados AV-SPAM"
+
+msgid "avspam_help"
+msgstr "O seu servidor tem o AV-SPAM instalado. O AV-SPAM pode controlar o volume de e-mail que seus usuários enviam ou recebem. Isso inclui seus endereços IP, que são considerados dados pessoais. Se você marcar esta caixa de seleção, será ativado o mecanismo que garante que os dados confidenciais expirem automaticamente do banco de dados SQL do AV-SPAM.O período de retenção para esses dados é igual ao valor que você configurou em '[[base-sitestats.GlobalSitestatsPurge]]' acima."
+
+msgid "DIV_SendmailAnalyzer"
+msgstr "Expiração dos dados do SendmailAnalyzer:"
+
+msgid "SA_anonymize"
+msgstr "Anonimizar dados"
+
+msgid "SA_anonymize_help"
+msgstr "O SendmailAnalyzer foi construído para anonimizar remetentes e destinatários de e-mails. Marque esta caixa de seleção se você quiser habilitar este recurso. Observe que o SendmailAnalyzer honra o período de retenção de dados que você configurou em '[[base-sitestats.GlobalSitestatsPurge]]' acima."
+
+msgid "sendmailanalyzer"
+msgstr "Limpar SendmailAnalyzer"
+
+msgid "sendmailanalyzer_help"
+msgstr "Se esta opção estiver marcada, o diretório de dados do SendmailAnalyzer será removido e todas as estatísticas agregadas do SendmailAnalyzer serão apagadas. Isso não pode ser desfeito."
+
+# Second round of GDPR additions:
+
+msgid "GlobalLogRotate"
+msgstr "Retenção do Arquivo de Log do Servidor"
+
+msgid "GlobalLogRotate_help"
+msgstr "Esta entrada especifica por quanto tempo os arquivos de log do servidor são retidos. O padrão é manter 14 dias de arquivos de log. Os arquivos de log mais antigos são expirados automaticamente pelo Logrotate."
+

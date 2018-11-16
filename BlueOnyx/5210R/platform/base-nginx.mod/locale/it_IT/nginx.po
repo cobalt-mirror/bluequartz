@@ -1,0 +1,23 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Simone Capra <capra@erweb.it>\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+# --- Active Monitor:
+
+msgid "amNginxNameTag"
+msgstr "Nginx SSL-Proxy"
+
+msgid "amNginxDetails"
+msgstr "Dettagli server Nginx"
+
+msgid "amNotRunning"
+msgstr "Nginx non è in esecuzione e non è stato possibile riavviarlo. Provare a riavviare Nginx manualmente e verificare se ciò è utile. Controllare anche se ci sono messaggi di errore o altre indicazioni che potrebbero essere visualizzate durante il riavvio manuale di Nginx."
+
+msgid "amStatusOK"
+msgstr "Il server web Nginx funziona normalmente."

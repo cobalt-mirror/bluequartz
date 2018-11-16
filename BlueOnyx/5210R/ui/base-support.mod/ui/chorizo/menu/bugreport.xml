@@ -1,0 +1,9 @@
+<item
+    id="bugreport"
+    label="[[base-support.bugreportTitle]]"
+    description="[[base-support.bugreportTitle_help]]"
+    url="/support/bugreport">
+    <parent id="base_support" order="30">
+        <access require="managePackage"/>
+    </parent>
+</item>

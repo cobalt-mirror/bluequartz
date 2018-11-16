@@ -1,0 +1,87 @@
+#!/usr/bin/perl -w
+
+use lib qw(/home/cpr/perl_modules  /usr/sausalito/perl);
+use CCE;
+use TreeXml;
+use MIME::Base64;
+
+my $xml = "/tmp/cmu.xml";
+
+my $tree = readXml($xml, 0, 0 );
+
+my $cce = new CCE;
+$cce->connectuds();
+
+my @userAttr =      ( 'fullName',
+              'sortName',
+              'description',
+              'localePreference',
+              'stylePreference' );
+
+foreach my $user (keys ( %{$tree->{users}} )) {
+	my $userRef = {};
+    $userRef->{name} = $user;
+	warn "INFO: importing user $user\n";
+    
+    foreach my $attr (@userAttr) {
+	$userRef->{$attr} = $tree->{users}->{$user}->{$attr}
+		if defined($tree->{users}->{$user}->{$attr});
+    }
+
+    $userRef->{fullName} = decode_base64($userRef->{fullName})
+		if ($userRef->{fullName});
+    $userRef->{sortName} = decode_base64($userRef->{sortName})
+		if ($userRef->{sortName});
+    $userRef->{description} = decode_base64($userRef->{description})
+		if ($userRef->{description});
+	$userRef->{password} = $glbConf->{userPasswd} 
+		if($glbConf->{noPasswd});
+	if($glbConf->{noPasswd}) {
+		$userRef->{password} = $glbConf->{userPasswd};
+	}
+    
+    my ($ok, $badkeys, @info) = $cce->create('User', $userRef);
+    warn "User $userRef->{name} OK=$ok \n"; 
+    # remove user from tree if not imported so we do not write over /etc/shadow
+    # for an existing user
+    # die unless ($ok eq 1);
+ 
+    my $oid = $cce->oid();
+	if(defined($tree->{users}->{$user}->{crypt_password})) {
+		($ok, $badkeys, @info) = $cce->set($oid, '', { crypt_password => $tree->{users}->{$user}->{crypt_password} });
+		warn "User $userRef->{name} set cyrpt passwd OK=$ok\n";
+		printReturn($cce, $badkeys, @info);
+	}
+	if(defined($tree->{users}->{$user}->{md5_password})) {
+		($ok, $badkeys, @info) = $cce->set($oid, 'User', { md5_password => $tree->{users}->{$user}->{md5_password} });
+		warn "User $userRef->{name} set md5 passwd OK=$ok\n";
+	}
+
+
+}
+exit 0;
+
+sub printReturn
+# take error and warning output from CCE and print it
+{
+	require I18n;
+	my $cce = shift;
+	my $badkeys = shift;
+	my @info = @_;
+	
+	# set the locale 
+	my $i18n = new I18n();
+    $i18n->setLocale(I18n::i18n_getSystemLocale($cce));
+
+	if ($badkeys) {
+		foreach my $m (keys %{ $badkeys }) {
+		foreach my $k (keys %{ $badkeys->{$m} }) {
+			warn $i18n->get($badkeys->{$m}->{$k}), "\n";
+		}
+		}
+	}
+	if (scalar(@info)) { foreach my $m (@info) { warn $i18n->get($m) } }
+	return;	
+}
+
+

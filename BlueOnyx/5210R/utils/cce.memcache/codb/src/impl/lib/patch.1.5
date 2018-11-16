@@ -1,0 +1,11 @@
+--- PORT/linux/Makefile.orig	Fri Sep  7 12:16:59 2001
++++ PORT/linux/Makefile	Fri Sep  7 12:18:50 2001
+@@ -11,7 +11,7 @@
+ OBJ5=	rec_close.o rec_delete.o rec_get.o rec_open.o rec_put.o rec_search.o \
+ 	rec_seq.o rec_utils.o
+ 
+-MISC=	snprintf.o
++MISC=
+ 
+ ${LIBDB}: ${OBJ1} ${OBJ2} ${OBJ3} ${OBJ4} ${OBJ5} ${MISC}
+ 	rm -f $@

@@ -1,0 +1,116 @@
+#!/usr/bin/perl
+# $Id: cmuStats
+
+# If you are not toor, go away :)
+die "You must run this script as root\n" if ($< != 0);
+
+require Getopt::Std;
+my $opts = {};
+Getopt::Std::getopts('f:l:h', $opts);
+
+# Do this b4 use and require to save time
+if(defined($opts->{h})) { printUsage(); }
+
+use lib "/usr/cmu/perl";
+require CmuCfg;
+use TreeXml;
+use strict;
+
+my $conf = CmuCfg::mapOpts('stats', $opts);
+if(!defined($conf->{cmuConfig})) {
+    $conf->{cmuConfig} = "/etc/cmu/cmuConfig.xml";
+}
+
+
+my @stats;
+
+
+@stats = getStats("/home/cmu/cmu.log");
+foreach my $stat (@stats) {
+    use Data::Dumper;
+    print Dumper($stat);
+}
+
+exit 0;
+
+sub getStats
+{
+    my $file = shift || return;
+    my $data = {};
+    my @arr;
+
+    open(FH, "< $file") || die "Cannont open log file: $file:$!\n";
+    my $phase = 0;
+    while(my $line = <FH>) {
+        if($line =~ /INFO: (\S+) started on (.*)$/) {
+            if($phase eq 1) {
+                warn "Incomplete run detected, ignoring\n";
+                $data = {};
+            }   
+            my $name = `basename $1`;
+            chomp($name);
+            $data->{type} = $name;
+            $data->{start} = $2;
+            $phase = 1;
+        } elsif($line =~ /INFO: (\S+) end at (.*)$/) {
+            $data->{end} = $2;
+            push(@arr, $data);
+            $data = {};
+            $phase = 0;
+        } elsif($line =~ /INFO: We imported (.*)$/) {
+            $data->{exported} = $1;
+        }
+            
+    }
+    close(FH);
+
+    return @arr;
+}
+
+sub printUsage
+# Print the help message
+# Side Effect: exists the program in an error state
+{
+    print <<EOF;
+usage:   cmuStats [OPTION]
+         -f File to print the stats to
+         -l Location of the log file, default is /home/cmu/cmu.log
+         -h help, this help text
+EOF
+    exit 1;
+}
+# 
+# Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2003 Sun Microsystems, Inc. 
+# All Rights Reserved.
+# 
+# 1. Redistributions of source code must retain the above copyright 
+#     notice, this list of conditions and the following disclaimer.
+# 
+# 2. Redistributions in binary form must reproduce the above copyright 
+#     notice, this list of conditions and the following disclaimer in 
+#     the documentation and/or other materials provided with the 
+#     distribution.
+# 
+# 3. Neither the name of the copyright holder nor the names of its 
+#     contributors may be used to endorse or promote products derived 
+#     from this software without specific prior written permission.
+# 
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
+# COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+# POSSIBILITY OF SUCH DAMAGE.
+# 
+# You acknowledge that this software is not designed or intended for 
+# use in the design, construction, operation or maintenance of any 
+# nuclear facility.
+# 
