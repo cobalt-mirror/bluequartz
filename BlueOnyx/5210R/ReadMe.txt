@@ -10,3 +10,4 @@ There is a lot of work to be done and until that is finished the code in this
 part of SVN will be a disaster zone. Or like they say: "There will be dragons!"
 
 Base of 5210R is the 5209R SVN code tree as of 2018-11-16.
+That's SVN Revision 3205 or thereabouts.
