@@ -1,8 +1,0 @@
-<item id="base_siteshell" label="[[base-shell.siteshell]]" 
-	description="[[base-shell.siteshell_help]]" 
-	url="/shell/vsiteShell?group=[[VAR.group]]"
->
-    <parent id="base_siteservices" order="40">
-        <access require="siteShell"/>
-    </parent>
-</item>

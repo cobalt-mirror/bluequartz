@@ -1,9 +1,0 @@
-<item
-    id="ticket"
-    label="[[base-support.ticket]]"
-    description="[[base-support.ticket_help]]"
-    url="/support/ticket">
-    <parent id="base_support" order="40">
-        <access require="managePackage"/>
-    </parent>
-</item>

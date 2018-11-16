@@ -1,8 +1,0 @@
-<item id="base_emailServers" label="[[base-email.emailServers_menu]]" 
-    description="[[base-email.emailServers_help]]" 
-    url="/email/emailsettings"
->
-    <parent id="base_controlpanel" order="30">
-        <access require="serverEmail"/>
-    </parent>
-</item>

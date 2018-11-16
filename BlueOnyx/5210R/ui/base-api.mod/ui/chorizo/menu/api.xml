@@ -1,8 +1,0 @@
-<item id="base_api" label="[[base-api.APImenu]]" 
-    description="[[base-api.APImenu_help]]" 
-    url="/api/apiconfig"
->
-    <parent id="base_sysmaintenance" order="1">
-    	<access require="serverServerDesktop"/>
-    </parent>
-</item>

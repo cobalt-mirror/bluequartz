@@ -1,7 +1,0 @@
-/var/log/dbrecover.log
-{
-	rotate 2
-	size 100k
-	compress
-	nomail
-}

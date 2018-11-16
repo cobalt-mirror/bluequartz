@@ -1,9 +1,0 @@
-<item id="base_server_disk_usage" label="[[base-disk.serverDiskUsage_menu]]" 
-    description="[[base-disk.serverDiskUsageDesc_menu]]"
-    icon="chart_8"
-    url="/disk/serverDiskUsage?serverDiskUsage=1"
->
-    <parent id="base_serverusage" order="60">
-        <access require="serverStatsServerDisk"/>
-    </parent>
-</item>

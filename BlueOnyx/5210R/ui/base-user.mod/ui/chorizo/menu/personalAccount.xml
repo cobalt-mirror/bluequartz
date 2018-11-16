@@ -1,9 +1,0 @@
-<item 
-  id="base_personalAccount" 
-  label="[[base-user.personalAccount]]" 
-  description="[[base-user.personalAccount_help]]" 
-  url="/user/personalAccount" 
-  icon="admin_user"
-  module="user">
-  <parent id="base_personalProfile" order="10"/>
-</item>

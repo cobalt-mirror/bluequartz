@@ -1,8 +1,0 @@
-<item
-   id="base_telnet"
-   label="[[base-telnet.telnetMenu]]"
-   description="[[base-telnet.telnetMenu_help]]"
-   url="/telnet/telnetAccess"
->
-    <parent id="base_networkServices" order="50"/>
-</item>

@@ -1,8 +1,0 @@
-#%PAM-1.0
-auth       requisite    /lib/security/pam_abl.so config=/etc/security/pam_abl.conf
-auth       required     pam_listfile.so item=user sense=deny file=/etc/ftpusers onerr=succeed
-auth       required     /lib/security/pam_unix.so shadow nullok
-account    required     /lib/security/pam_unix.so
-session    required     /lib/security/pam_unix.so
-auth       sufficient   /lib/security/pam_unix.so nullok_secure likeauth
-auth       optional     pam_abl.so config=/etc/security/pam_abl.conf record_attempt

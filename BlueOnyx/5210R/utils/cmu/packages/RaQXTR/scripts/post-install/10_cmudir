@@ -1,7 +1,0 @@
-#!/bin/bash
-
-if [ -d "/home/cmu" ]; then
-    /bin/chown root.admin /home/cmu
-    /bin/chmod 755 /home/cmu
-fi
-

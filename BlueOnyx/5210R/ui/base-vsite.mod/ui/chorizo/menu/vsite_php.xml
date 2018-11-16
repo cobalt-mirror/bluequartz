@@ -1,8 +1,0 @@
-<item id="base_vsite_php" label="[[base-vsite.vsitephpMenu]]" 
-	description="[[base-vsite.vsitephpMenuDesc]]" 
-	url="/vsite/vsitePHP?group=[[VAR.group]]"
->
-    <parent id="base_siteservices" order="12">
-        <access require="siteAdmin"/>
-    </parent>
-</item>

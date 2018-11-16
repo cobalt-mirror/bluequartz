@@ -1,8 +1,0 @@
-<item id="base_siteList1" label="[[base-vsite.virtualSiteList]]" 
-    description="[[base-vsite.virtualSiteList_help]]"
-    icon="frames"
-    url="/vsite/vsiteList">
-    <parent id="base_sitemanageVSL" order="1">
-    	<access require="manageSite"/>
-    </parent>
-</item>

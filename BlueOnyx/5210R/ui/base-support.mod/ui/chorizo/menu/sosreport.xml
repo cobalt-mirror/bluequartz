@@ -1,9 +1,0 @@
-<item
-    id="sos_report"
-    label="[[base-support.sos_reportMenu]]"
-    description="[[base-support.sos_reportMenu_help]]"
-    url="/support/SOSReport">
-    <parent id="base_support" order="10">
-        <access require="managePackage"/>
-    </parent>
-</item>

@@ -1,9 +1,0 @@
-<item
-    id="base_webalizer"
-    label="Webalizer"
-    description="Webalizer Statistics."
-    url="/sitestats/webalizer?group=[[VAR.group]]" >
-    <parent id="base_siteusage" order="10">
-        <access require="siteAdmin"/>
-    </parent>
-</item>

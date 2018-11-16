@@ -1,13 +1,12 @@
-5210R:
-======
+BlueOnyx 5210R:
+===============
 
-Please note: 5210R is just the working title of BlueOnyx 5209R with IPv6 support
-while said IPv6 support is in development. As that development might take some 
-time it's safer to temporarily fork the 5209R code tree into an unstable devel
-tree. As that tree needs a name, it temporarily gets the 5210R moniker.
+This is the development tree for BlueOnyx 5210R for CentOS 8.
 
-BlueOnyx on CentOS 7 with IPv6 support  will not be released as 5210R but as 
-regular 5209R YUM update. Said update will retain the the 5209R moniker after 
-said release is completed, tested and deemed production ready.
+As CentOS 8 isn't out yet, we're using the RHEL8 Beta as a base in order to port
+our code from 5209R to 5210R.
 
+There is a lot of work to be done and until that is finished the code in this
+part of SVN will be a disaster zone. Or like they say: "There will be dragons!"
 
+Base of 5210R is the 5209R SVN code tree as of 2018-11-16.
