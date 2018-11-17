@@ -3,7 +3,7 @@
 Summary: Cobalt i18n library
 Name: sausalito-i18n
 Version: 0.81.2
-Release: 0BX03%{?dist}
+Release: 0BX04%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -43,16 +43,16 @@ rm -f $RPM_BUILD_ROOT/usr/sausalito/ui/web/test_i18n.php
 /usr/sausalito/bin/i18n_translate
 /usr/sausalito/bin/i18n_locales
 #/usr/sausalito/ui/libPhp/*
-%{extension_dir}/*
+#%{extension_dir}/*
 /usr/sausalito/perl/I18n.pm
 /usr/sausalito/perl/SendEmail.pm
 /usr/sausalito/perl/I18nMail.pm
 /usr/sausalito/perl/JConv.pl
 /usr/sausalito/bin/i18nmail.pl
-/usr/share/dict/cracklib-words 
-/usr/share/dict/pw_dict.hwm 
-/usr/share/dict/pw_dict.pwd 
-/usr/share/dict/pw_dict.pwi 
+#/usr/share/dict/cracklib-words 
+#/usr/share/dict/pw_dict.hwm 
+#/usr/share/dict/pw_dict.pwd 
+#/usr/share/dict/pw_dict.pwi 
 
 %files devel
 %defattr(-,root,root)
@@ -94,9 +94,17 @@ fi
 
 %changelog
 
+* Fri Nov 16 2018 Michael Stauber <mstauber@solarspeed.net> 0.81.2-0BX04
+- First build attempt for 5210R on RHEL8 Beta.
+- Neither cracklib nor i18n build against PHP-7.2.11
+- Modified Makefile to not build cracklib and php
+- Modified sausalito-i18n.spec.in to comment out %{extension_dir}/*
+- Modified sausalito-i18n.spec.in to comment out /usr/share/dict/
+
 * Sun Jul 19 2015 Michael Stauber <mstauber@solarspeed.net> 0.81.2-0BX03
 - Modified php/i18n.c to make it PHP-5.4 compatible again.
 - This was largely done with the help from Greg Kuhnert.
+- Self explanatory: This module only works on EL7 BlueOnyx.
 
 * Thu Feb 05 2015 Michael Stauber <mstauber@solarspeed.net> 0.81.2-0BX02
 - Finally got cracklib to work. Yay.
