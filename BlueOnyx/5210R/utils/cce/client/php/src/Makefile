@@ -16,6 +16,7 @@ CCEPHPCLASSDIR=$(CCE_INSTALLDIR)/ui/libPhp
 
 #CFLAGS += -Dbool=char -DHAS_BOOL -fPIC -D_REENTRANT 
 CFLAGS = -ggdb -Werror  -D_GNU_SOURCE -I/usr/include/glib-2.0/ -I/usr/$(LIBARCH)/glib-2.0/include -I/root/cce/include -I../include -I../../include -I../../../include `php-config --includes` -fPIC -Dbool=char -DHAS_BOOL -fPIC -D_REENTRANT
+#CFLAGS = -ggdb -D_GNU_SOURCE -I/usr/include/glib-2.0/ -I/usr/$(LIBARCH)/glib-2.0/include -I/root/cce/include -I../include -I../../include -I../../../include `php-config --includes` -fPIC -Dbool=char -DHAS_BOOL -fPIC -D_REENTRANT
 SHCFLAGS = -shared -rdynamic  -Wl,-rpath,$(CCE_LIBDIR)
 INCLUDES += -I../include -I../../include \
 	`php-config --includes`

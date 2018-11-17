@@ -12,13 +12,15 @@ include ../../dynamic.mk
 CCEMODULE = cce-libcce
 
 all:
-	make -C src
+	#make -C src
+	echo ""
 
 clean:
-	make -C src clean
+	#make -C src clean
+	echo ""
 
 depend:
 
 install:
-	make -C src install
+	#make -C src install
 	make -C class install

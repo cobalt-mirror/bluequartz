@@ -3,9 +3,12 @@ Building requires the following RPMs to be installed:
 BuildRequires: glib-devel, pam-devel
 BuildRequires: glib-ghash
 BuildRequires: flex, bison
-BuildRequires: php4-devel
-BuildRequires: php4
+BuildRequires: php-devel
+BuildRequires: php
 BuildRequires: db4-devel (for pam_abl)
 
 NEW:
 BuildRequires: flex-devel (for server!)
+
+Use:
+yum install glib-devel pam-devel glib-ghash flex bison php php-devel db4-devel flex-devel
