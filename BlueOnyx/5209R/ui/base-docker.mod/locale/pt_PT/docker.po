@@ -238,10 +238,10 @@ msgstr "Veja as versões disponíveis."
 ###
 
 msgid "AutoStart_UnableToSet"
-msgstr "Não é possível modificar o comportamento 'Autostart' deste contêiner do Docker."
+msgstr "Não é possível modificar o comportamento de inicialização automática deste contêiner do Docker."
 
 msgid "Autostart_help"
-msgstr "Se esta caixa de verificação estiver marcada, este contêiner do Docker será iniciado automaticamente na reinicialização do servidor. Além disso, o 'Active Monitor' monitorará este contêiner do Docker e, se ele parar, ele será reiniciado novamente. ATENÇÃO: Nem todos os contêineres Docker são projetados para serem executados continuamente. Alguns têm processos "únicos" que são executados, fazem seu trabalho e terminam. Se você habilitar 'Autostart' para esse contêiner 'one-shot', o 'Active Monitor' executará o processo a cada 15 minutos e poderá avisá-lo que o contêiner não conseguiu permanecer ativo e precisou ser reiniciado. Então, por favor, use este recurso com cautela."
+msgstr "Se esta caixa de verificação estiver marcada, este contêiner do Docker será iniciado automaticamente na reinicialização do servidor. Além disso, o Monitor Ativo monitorará esse Contêiner do Docker e, caso ele pare, ele será reiniciado novamente. ATENÇÃO: Nem todos os contêineres Docker são projetados para serem executados continuamente. Alguns têm processos únicos que são executados, fazem seu trabalho e terminam. Se você ativar a inicialização automática para um contêiner único, o Active Monitor executará o processo a cada 15 minutos e poderá avisá-lo de que o contêiner não conseguiu permanecer ativo e precisou ser reiniciado. Então, por favor, use este recurso com cautela."
 
 
 #
