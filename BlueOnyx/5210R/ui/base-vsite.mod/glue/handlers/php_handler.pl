@@ -535,13 +535,13 @@ sub handle_fpm_master_pool {
     &debug_msg("Updating PHP-FPM pool config $pool_file through php_vsite_handler.pl \n");
 
     # Logic check for fpm_max_children: 
-    if (($PHP->{'fpm_max_children'} lt "1") || ($PHP->{'fpm_max_children'} gt "255")) {
+    if (($PHP->{'fpm_max_children'} < "1") || ($PHP->{'fpm_max_children'} > "255")) {
         $fpm_max_children = "15";
     }
     else {
         $fpm_max_children = $PHP->{'fpm_max_children'};
     }
-    
+
     #
     ### Define Pool config file contends:
     #
