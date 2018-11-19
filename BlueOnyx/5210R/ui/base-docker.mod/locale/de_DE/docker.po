@@ -235,3 +235,75 @@ msgstr "Zurück zur Liste der Docker-Images."
 msgid "dockerTagInspectImage_help"
 msgstr "Alle verfügbaren Versionen anzeigen lassen."
 
+###
+
+msgid "AutoStart_UnableToSet"
+msgstr "Das 'Autostart'-Verhalten dieses Docker-Containers konnte nicht geändert werden."
+
+msgid "Autostart_help"
+msgstr "Wenn dieses Kontrollkästchen aktiviert ist, wird dieser Docker-Container beim Neustart des Servers automatisch gestartet. Zusätzlich überwacht 'Active Monitor' diesen Docker Container und wenn er feststellt, dass er gestoppt ist, wird er erneut gestartet. BITTE BEACHTEN SIE: Nicht alle Docker Container sind für den Dauerbetrieb ausgelegt. Einige haben One-Shot-Prozesse, die laufen, ihren Job erledigen und enden. Wenn Sie 'Autostart' für einen solchen'One-Shot'-Container aktivieren, wird 'Active Monitor' den Prozess alle 15 Minuten ausführen und Sie möglicherweise warnen, dass der Container nicht am Leben geblieben ist und neu gestartet werden musste. Verwenden Sie diese Funktion daher bitte mit Vorsicht."
+
+#
+### Docker-Compose-Additions
+#
+
+msgid "dockerCompose"
+msgstr "Docker-Compose"
+
+msgid "dockerCompose_help"
+msgstr "Docker-Compose ist ein Werkzeug zur Definition und Ausführung von Multi-Container-Docker-Anwendungen. Für weitere Informationen siehe https://docs.docker.com/compose/"
+
+msgid "CNAME"
+msgstr "Name"
+
+msgid "CNAME_help"
+msgstr "Name dieser Docker-Compose Einheit."
+
+msgid "FILE"
+msgstr "Projekt-Datei"
+
+msgid "FILE_help"
+msgstr "Pfad zur *.yml-Datei. Geben Sie auch den vollständigen Pfad zum Projektverzeichnis an. Der Dateiname muss die Erweiterung *.yml haben."
+
+msgid "DIR"
+msgstr "Projekt-Verzeichnis"
+
+msgid "DIR_help"
+msgstr "Projektverzeichnis. Muss sich auf /home/ befinden und der abschließende Schrägstrich muss ebenfalls eingegeben werden."
+
+msgid "DockerComposeExists"
+msgstr "Ein Element mit diesem Namen existiert bereits. Bitte wählen Sie einen anderen Namen für diesen Artikel."
+
+msgid "Docker_CPdir_notHome"
+msgstr "Der eingegebene Pfad des Projekt-Verzeichnisses endet nicht mit dem zwingend erforderlichen abschließenden Schrägstrich."
+
+msgid "Docker_CPdir_notThere"
+msgstr "Das angegebene Projektverzeichnis existiert nicht."
+
+msgid "Docker_CPdir_notPartOfFilePath"
+msgstr "Der Pfad des Projektverzeichnisses und der Pfad der *.yml-Datei stimmen nicht überein."
+
+msgid "Docker_CP_file_notThere"
+msgstr "Der für die Projektdatei angegebene Pfad und Dateiname scheint falsch zu sein. Es konnte keine Datei mit diesem Namen an dieser Stelle gefunden werden."
+
+msgid "Docker_CP_file_not_yml_extension"
+msgstr "Die Projektdatei hat nicht die Erweiterung *.yml."
+
+msgid "composeBUILD"
+msgstr "Container und Dienste erstellen"
+
+msgid "composeUP"
+msgstr "Container und Dienste erstellen und starten"
+
+msgid "composeDOWN"
+msgstr "Stoppen und entfernen Sie Container, Netzwerke, Images und Volumes. Die *.yml-Datei bleibt erhalten."
+
+msgid "composeRESTART"
+msgstr "Dienste neu starten"
+
+msgid "composeDELCTS"
+msgstr "Stoppen und entfernen Sie Container, Netzwerke, Images und Volumes - auf die harte Tour. Die *.yml-Datei bleibt erhalten."
+
+msgid "composeDELALL"
+msgstr "Stoppen und entfernen Sie Container, Netzwerke, Images und Volumes. Entfernt auch die *.yml-Datei."
+

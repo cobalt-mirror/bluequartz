@@ -1,0 +1,13 @@
+<item
+    id="docker_Compose"
+    label="[[base-docker.dockerCompose]]"
+    description="[[base-docker.dockerCompose_help]]"
+    url="/docker/dockerCompose"
+    module="user"
+>
+
+    <parent id="base_docker" order="40">
+        <access require="serverNetwork"/>
+    </parent>
+</item>
+

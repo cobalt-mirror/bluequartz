@@ -1,0 +1,2 @@
+#!/bin/bash 
+/bin/yes | /usr/local/bin/docker-compose $@

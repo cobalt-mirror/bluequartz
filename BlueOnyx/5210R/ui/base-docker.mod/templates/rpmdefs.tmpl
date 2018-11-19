@@ -70,6 +70,15 @@ information for [VENDOR]-[SERVICE].
 <begin glue>
 # glue post-install
 
+# Make /tmp executable again if it is not:
+if [ -f /etc/fstab ];then
+    TMPISEXEC=$(cat /etc/fstab|grep /tmp|grep noexec|wc -l);
+    if [ "$TMPISEXEC" -eq "1" ];then
+        sed -i 's/noexec,/exec,/g' /etc/fstab 
+        mount /tmp -o remount,exec
+    fi
+fi
+
 # Restart CCEd:
 if [ -d "/usr/sausalito/yumcce" ];then
   touch /usr/sausalito/yumcce/restart
@@ -106,6 +115,19 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Sun Nov 18 2018 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BX09
+- Release version number bump
+
+* Sun Nov 18 2018 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BX08
+- Bloody docker-compose needs /tmp with exec. Post-install for that added.
+- Added ui/chorizo/web/controllers/dockerCompose.php
+- Extended ui/chorizo/web/config/routes.php
+- Extended glue/ccewrap/docker.xml
+- Added glue/schemas/dockercompose.schema
+- Added ui/chorizo/menu/dockerCompose.xml
+- Added src/docker-compose/docker-compose/docker-compose-wrapper
+- Updated src/docker-compose/docker-compose.spec
 
 * Sun Oct 21 2018 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BX07
 - Added src/base-docker-systemd with Systemd components to autostart CTs

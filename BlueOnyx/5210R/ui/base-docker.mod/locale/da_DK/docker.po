@@ -235,3 +235,74 @@ msgstr "Fortsæt tilbage til listen over Docker-billeder."
 msgid "dockerTagInspectImage_help"
 msgstr "Se tilgængelige versioner."
 
+###
+
+msgid "AutoStart_UnableToSet"
+msgstr "Kunne ikke ændre 'Autostart'-adfærd for denne Docker Container."
+
+msgid "Autostart_help"
+msgstr "Hvis dette afkrydsningsfelt er markeret, bliver denne Docker-beholder automatisk startet ved genstart af serveren. Desuden vil 'Active Monitor' overvåge denne Docker Container, og hvis den finder det stoppet, genstarter den den igen. BEMÆRK: Ikke alle Docker Container er designet til at køre kontinuerligt. Nogle har 'one-shot' processer, der kører, gør deres job og afslutter. Hvis du aktiverer 'Autostart' for en sådan 'one-shot'-beholder, vil' Active Monitor 'køre processen hvert 15. minut og muligvis advare dig om, at beholderen ikke har levet til live og skulle genstartes. Så brug venligst denne funktion med forsigtighed."
+
+#
+### Docker-Compose-Additions
+#
+
+msgid "dockerCompose"
+msgstr "Docker-Compose"
+
+msgid "dockerCompose_help"
+msgstr "Docker-Compose er et værktøj til at definere og køre multi-container Docker applikationer. For mere information se https://docs.docker.com/compose/"
+
+msgid "CNAME"
+msgstr "Navn"
+
+msgid "CNAME_help"
+msgstr "Navnet på Docker-Compose-elementet."
+
+msgid "FILE"
+msgstr "Projekt-fil"
+
+msgid "FILE_help"
+msgstr "Sti til *.yml-filen. Indtast også den fulde sti til projektmappen. Filnavnet skal have udvidelsen *.yml."
+
+msgid "DIR"
+msgstr "Projekt-Register"
+
+msgid "DIR_help"
+msgstr "Projektmappe. Skal opholde sig på / hjem / og den efterfølgende skråstreg skal også indtastes."
+
+msgid "DockerComposeExists"
+msgstr "Et emne med det navn eksisterer allerede. Vælg venligst et andet navn til denne vare."
+
+msgid "Docker_CPdir_notHome"
+msgstr "Projektkatalogbanen slutter ikke med et skråstreg."
+
+msgid "Docker_CPdir_notThere"
+msgstr "Den indtastede projektmappe eksisterer ikke."
+
+msgid "Docker_CPdir_notPartOfFilePath"
+msgstr "Stien til projektmappen og *.yml-filen stemmer ikke overens."
+
+msgid "Docker_CP_file_notThere"
+msgstr "Stien og filnavnet, der er angivet for projektfilen, synes at være forkert. Ingen fil af det navn kunne findes på den pågældende placering."
+
+msgid "Docker_CP_file_not_yml_extension"
+msgstr "Projektfilen har ikke udvidelsen *.yml"
+
+msgid "composeBUILD"
+msgstr "Byg eller genopbygge tjenester"
+
+msgid "composeUP"
+msgstr "Opret og start containere"
+
+msgid "composeDOWN"
+msgstr "Stop og fjern containere, netværk, billeder og volumener. Lader den nuværende *.yml-fil."
+
+msgid "composeRESTART"
+msgstr "Genstart tjenester"
+
+msgid "composeDELCTS"
+msgstr "Stop og fjern containere, netværk, billeder og volumener - den hårde vej. Lader den nuværende *.yml-fil."
+
+msgid "composeDELALL"
+msgstr "Stop og fjern containere, netværk, billeder og volumener. Fjerner også *.yml filen."

@@ -243,5 +243,67 @@ msgstr "Unable to modify 'Autostart' behaviour of this Docker Container."
 msgid "Autostart_help"
 msgstr "If this checkbox is ticked, then this Docker container will be automatically started upon server reboot. Additionally 'Active Monitor' will monitor this Docker Container and if it finds it stopped, it will restart it again. PLEASE NOTE: Not all Docker Container are designed to run continously. Some have 'one-shot' processes that run, do their job and terminate. If you enable 'Autostart' for such a 'one-shot' container, then 'Active Monitor' will run the process every 15 minutes and might warn you that the container has failed to stay alive and needed to be restarted. So please use this feature with caution."
 
+#
+### Docker-Compose-Additions
+#
 
+msgid "dockerCompose"
+msgstr "Docker-Compose"
+
+msgid "dockerCompose_help"
+msgstr "Docker-Compose is a tool for defining and running multi-container Docker applications. For more info see https://docs.docker.com/compose/"
+
+msgid "CNAME"
+msgstr "Name"
+
+msgid "CNAME_help"
+msgstr "Name of the Docker-Compose item."
+
+msgid "FILE"
+msgstr "Project-File"
+
+msgid "FILE_help"
+msgstr "Path to the *.yml file. Enter the full path to the project directory as well. The filename must have the *.yml extension."
+
+msgid "DIR"
+msgstr "Project-Directory"
+
+msgid "DIR_help"
+msgstr "Project directory. Must reside on /home/ and the trailing slash must be entered as well."
+
+msgid "DockerComposeExists"
+msgstr "An item with that name already exists. Please choose another name for this item."
+
+msgid "Docker_CPdir_notHome"
+msgstr "The project directory path doesn't end with a trailing slash."
+
+msgid "Docker_CPdir_notThere"
+msgstr "The entered project directory doesn't exist."
+
+msgid "Docker_CPdir_notPartOfFilePath"
+msgstr "The path of the project directory and the *.yml file don't match."
+
+msgid "Docker_CP_file_notThere"
+msgstr "The path and filename specified for the project file seem to be incorrect. No file of that name could be found at that location."
+
+msgid "Docker_CP_file_not_yml_extension"
+msgstr "The project file does not have the extension *.yml"
+
+msgid "composeBUILD"
+msgstr "Build or rebuild services"
+
+msgid "composeUP"
+msgstr "Create and start containers"
+
+msgid "composeDOWN"
+msgstr "Stop and remove containers, networks, images, and volumes. Leaves the *.yml file present."
+
+msgid "composeRESTART"
+msgstr "Restart services"
+
+msgid "composeDELCTS"
+msgstr "Stop and remove containers, networks, images, and volumes - the hard way. Leaves the *.yml file present."
+
+msgid "composeDELALL"
+msgstr "Stop and remove containers, networks, images, and volumes. Removes the *.yml file as well."
 
