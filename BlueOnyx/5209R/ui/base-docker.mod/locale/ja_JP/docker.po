@@ -234,3 +234,77 @@ msgstr "Dockerイメージのリストに戻ります。"
 
 msgid "dockerTagInspectImage_help"
 msgstr "利用可能なバージョンを参照してください。"
+
+###
+
+msgid "AutoStart_UnableToSet"
+msgstr "このDocker Containerの 'Autostart'動作を変更できません。"
+
+msgid "Autostart_help"
+msgstr "このチェックボックスをオンにすると、サーバーの再起動時にこのDockerコンテナが自動的に起動されます。さらに、「Active Monitor」がこのDocker Containerを監視し、停止していることがわかった場合は、再びDocker Containerを再起動します。ご注意：すべてのドッカーコンテナが連続して動作するように設計されているわけではありません。ある人は、実行して仕事をして終了する「ワンショット」プロセスを持っています。このような「ワンショット」コンテナで「自動スタート」を有効にすると、「アクティブモニター」は15分ごとにプロセスを実行し、コンテナが停止して再起動する必要があることを警告することがあります。だから、この機能は慎重に使用してください。"
+
+
+#
+### Docker-Compose-Additions
+#
+
+msgid "dockerCompose"
+msgstr "Docker-Compose"
+
+msgid "dockerCompose_help"
+msgstr "Docker-Composeは、マルチコンテナDockerアプリケーションを定義して実行するためのツールです。詳細はhttps://docs.docker.com/compose/をご覧ください。"
+
+msgid "CNAME"
+msgstr "名"
+
+msgid "CNAME_help"
+msgstr "Docker-Compose項目の名前。"
+
+msgid "FILE"
+msgstr "プロジェクトファイル"
+
+msgid "FILE_help"
+msgstr "* .ymlファイルへのパス。プロジェクトディレクトリのフルパスも入力します。ファイル名の拡張子は* .ymlでなければなりません。"
+
+msgid "DIR"
+msgstr "プロジェクトディレクトリ"
+
+msgid "DIR_help"
+msgstr "プロジェクトディレクトリ。 / home /になければならず、末尾のスラッシュも入力する必要があります。"
+
+msgid "DockerComposeExists"
+msgstr "その名前のアイテムは既に存在します。このアイテムの別の名前を選択してください。"
+
+msgid "Docker_CPdir_notHome"
+msgstr "プロジェクトのディレクトリパスの末尾にスラッシュが付きません。"
+
+msgid "Docker_CPdir_notThere"
+msgstr "入力されたプロジェクトディレクトリは存在しません。"
+
+msgid "Docker_CPdir_notPartOfFilePath"
+msgstr "プロジェクトディレクトリと* .ymlファイルのパスが一致しません。"
+
+msgid "Docker_CP_file_notThere"
+msgstr "プロジェクトファイルに指定されたパスとファイル名が正しくないようです。その場所にその名前のファイルが見つかりませんでした。"
+
+msgid "Docker_CP_file_not_yml_extension"
+msgstr "プロジェクトファイルの拡張子は* .ymlではありません"
+
+msgid "composeBUILD"
+msgstr "サービスの構築または再構築"
+
+msgid "composeUP"
+msgstr "コンテナの作成と起動"
+
+msgid "composeDOWN"
+msgstr "コンテナ、ネットワーク、イメージ、ボリュームを停止して削除します。 * .ymlファイルを残します。"
+
+msgid "composeRESTART"
+msgstr "サービスを再開する"
+
+msgid "composeDELCTS"
+msgstr "コンテナ、ネットワーク、イメージ、ボリュームを停止して取り除く - 難しい方法です。 * .ymlファイルを残します。"
+
+msgid "composeDELALL"
+msgstr "コンテナ、ネットワーク、イメージ、ボリュームを停止して削除します。 * .ymlファイルも削除します。"
+

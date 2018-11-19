@@ -234,3 +234,76 @@ msgstr "Ga terug naar de lijst met Docker-afbeeldingen."
 
 msgid "dockerTagInspectImage_help"
 msgstr "Zie de beschikbare versies."
+
+###
+
+msgid "AutoStart_UnableToSet"
+msgstr "Niet in staat om 'Autostart' gedrag van deze Docker Container te wijzigen."
+
+msgid "Autostart_help"
+msgstr "Als dit selectievakje is aangevinkt, dan wordt deze Docker Container automatisch gestart bij het herstarten van de server. Daarnaast zal 'Active Monitor' deze Docker Container monitoren en als deze wordt gestopt, wordt deze opnieuw opgestart. LET OP: Niet alle Docker Container zijn ontworpen om continu te draaien. Sommige hebben 'one-shot' processen die draaien, hun werk doen en eindigen. Als u 'Autostart' inschakelt voor zo'n 'one-shot' container, dan zal 'Active Monitor' het proces elke 15 minuten uitvoeren en u mogelijk waarschuwen dat de container niet in leven is gebleven en opnieuw gestart moest worden. Gebruik deze functie dus met de nodige voorzichtigheid."
+
+#
+### Docker-Compose-Additions
+#
+
+msgid "dockerCompose"
+msgstr "Docker-Compose"
+
+msgid "dockerCompose_help"
+msgstr "Docker-Compose is een hulpmiddel voor het definiëren en uitvoeren van multi-container Docker toepassingen. Voor meer informatie zie https://docs.docker.com/compose/"
+
+msgid "CNAME"
+msgstr "Naam"
+
+msgid "CNAME_help"
+msgstr "Naam van het Docker-Composite-item."
+
+msgid "FILE"
+msgstr "Project-bestand"
+
+msgid "FILE_help"
+msgstr "Pad naar het *.yml bestand. Voer ook het volledige pad naar de projectdirectory in. De bestandsnaam moet de extensie *.yml hebben."
+
+msgid "DIR"
+msgstr "Projectdirectory"
+
+msgid "DIR_help"
+msgstr "Projectmap. Moet zich op /home/ bevinden en de slepende schuine streep moet ook worden ingevoerd."
+
+msgid "DockerComposeExists"
+msgstr "Een item met die naam bestaat al. Kies een andere naam voor dit item."
+
+msgid "Docker_CPdir_notHome"
+msgstr "Het pad van de projectdirectory eindigt niet met een slepende schuine streep."
+
+msgid "Docker_CPdir_notThere"
+msgstr "De ingevoerde projectdirectory bestaat niet."
+
+msgid "Docker_CPdir_notPartOfFilePath"
+msgstr "Het pad van de projectdirectory en het *.yml bestand komen niet overeen."
+
+msgid "Docker_CP_file_notThere"
+msgstr "Het pad en de bestandsnaam van het projectbestand lijken onjuist te zijn. Op die locatie kon geen bestand met die naam worden gevonden."
+
+msgid "Docker_CP_file_not_yml_extension"
+msgstr "Het projectbestand heeft niet de extensie *.yml"
+
+msgid "composeBUILD"
+msgstr "Bouwen of verbouwen van diensten"
+
+msgid "composeUP"
+msgstr "Containers maken en starten"
+
+msgid "composeDOWN"
+msgstr "Stop en verwijder containers, netwerken, afbeeldingen en volumes. Laat het *.yml bestand aanwezig."
+
+msgid "composeRESTART"
+msgstr "Diensten opnieuw starten"
+
+msgid "composeDELCTS"
+msgstr "Stop en verwijder containers, netwerken, afbeeldingen en volumes - de harde manier. Laat het *.yml bestand aanwezig."
+
+msgid "composeDELALL"
+msgstr "Stop en verwijder containers, netwerken, afbeeldingen en volumes. Verwijdert ook het *.yml bestand."
+

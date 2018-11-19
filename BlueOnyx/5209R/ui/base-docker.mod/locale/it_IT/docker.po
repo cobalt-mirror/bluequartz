@@ -235,3 +235,75 @@ msgstr "Tornare all'elenco delle immagini di Docker."
 msgid "dockerTagInspectImage_help"
 msgstr "Vedere le versioni disponibili."
 
+###
+
+msgid "AutoStart_UnableToSet"
+msgstr "Impossibile modificare il comportamento di Autostart di questo contenitore Docker."
+
+msgid "Autostart_help"
+msgstr "Se questa casella di controllo è spuntata, il contenitore Docker verrà avviato automaticamente al riavvio del server. Inoltre Active Monitor monitorerà questo contenitore Docker e se lo trova fermo, lo riavvierà nuovamente. NOTA BENE: non tutti i contenitori Docker sono progettati per funzionare in modo continuo. Alcuni hanno processi one-shot che eseguono, fanno il loro lavoro e terminano. Se si abilita l'avvio automatico per un contenitore a scatto unico, Active Monitor eseguirà il processo ogni 15 minuti e potrebbe avvertirvi che il contenitore non è riuscito a rimanere in vita e doveva essere riavviato. Si prega quindi di utilizzare questa funzione con cautela."
+
+#
+### Docker-Compose-Additions
+#
+
+msgid "dockerCompose"
+msgstr "Docker-Compose"
+
+msgid "dockerCompose_help"
+msgstr "Docker-Compose è uno strumento per definire ed eseguire applicazioni Docker multi-container. Per maggiori informazioni si veda https://docs.docker.com/compose/"
+
+msgid "CNAME"
+msgstr "Nome"
+
+msgid "CNAME_help"
+msgstr "Nome dell'elemento Docker-Compose."
+
+msgid "FILE"
+msgstr "File del progetto"
+
+msgid "FILE_help"
+msgstr "Percorso al file *.yml. Inserire anche il percorso completo della directory del progetto. Il nome del file deve avere l'estensione *.yml."
+
+msgid "DIR"
+msgstr "Cartella del progetto"
+
+msgid "DIR_help"
+msgstr "Elenco dei progetti. Deve risiedere su /home/ e deve essere inserita anche la barra di trascinamento."
+
+msgid "DockerComposeExists"
+msgstr "Un elemento con quel nome esiste già. Scegliere un altro nome per questo elemento."
+
+msgid "Docker_CPdir_notHome"
+msgstr "Il percorso della directory del progetto non termina con una barra trailing slash."
+
+msgid "Docker_CPdir_notThere"
+msgstr "La directory di progetto inserita non esiste."
+
+msgid "Docker_CPdir_notPartOfFilePath"
+msgstr "Il percorso della directory di progetto e il file *.yml non corrispondono."
+
+msgid "Docker_CP_file_notThere"
+msgstr "Il percorso e il nome del file specificato per il file di progetto sembrano non essere corretti. Nessun file con quel nome potrebbe essere trovato in quella posizione."
+
+msgid "Docker_CP_file_not_yml_extension"
+msgstr "Il file di progetto non ha l'estensione *.yml"
+
+msgid "composeBUILD"
+msgstr "Costruire o ricostruire servizi"
+
+msgid "composeUP"
+msgstr "Creare e avviare i contenitori"
+
+msgid "composeDOWN"
+msgstr "Fermare e rimuovere contenitori, reti, immagini e volumi. Lascia presente il file *.yml."
+
+msgid "composeRESTART"
+msgstr "Servizi di riavvio"
+
+msgid "composeDELCTS"
+msgstr "Fermare e rimuovere contenitori, reti, immagini e volumi - in modo difficile. Lascia presente il file *.yml."
+
+msgid "composeDELALL"
+msgstr "Ferma e rimuovi contenitori, reti, immagini e volumi. Rimuove anche il file *.yml."
+
