@@ -1,0 +1,49 @@
+<!--
+    $Id: dockercompose.schema
+    Copyright (c) 2018 Michael Stauber, SOLARSPEED.NET
+    Copyright (c) 2018 Team BlueOnyx, BLUEONYX.IT
+    All Rights Reserved.
+-->
+
+<!-- EmailAlias for email aliases -->
+<class 
+    name="DockerCompose" namespace="" version="1.0"
+    createacl="ruleModifyUser"
+    destroyacl="ruleModifyUser"
+>
+    <!--
+        Name of the compose set
+    -->
+    <property
+        name="name" type="alphanum_plus" optional="0"
+        writeacl="ruleCapable(adminUser)"
+        readacl="ruleAll"
+    />
+    <!--
+        File path to the .yml
+    -->
+    <property
+        name="file" type="scalar" optional="0" default=""
+        writeacl="ruleCapable(adminUser)"
+        readacl="ruleAll"
+    />
+
+    <!--
+        Project Directory:
+    -->
+    <property
+        name="dir" type="scalar" optional="0" default=""
+        writeacl="ruleCapable(adminUser)"
+        readacl="ruleAll"
+    />
+
+    <!--
+        Trigger
+    -->
+    <property
+        name="action" type="scalar"
+        writeacl="ruleCapable(adminUser)"
+        readacl="ruleAll"
+    />
+</class>
+

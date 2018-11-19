@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=docker
 
 VERSION=1.0.0
-RELEASE=0BX07
+RELEASE=0BX08
 
 # add a buildarch if desired
 BUILDARCH=noarch

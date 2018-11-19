@@ -19,4 +19,9 @@
 <program name="/usr/bin/touch">
 	<capability requires="serverNetwork" user="root"/>
 </program>
-
+<program name="/usr/local/bin/docker-compose">
+	<capability requires="serverNetwork" user="root"/>
+</program>
+<program name="/usr/local/bin/docker-compose-wrapper">
+	<capability requires="serverNetwork" user="root"/>
+</program>
