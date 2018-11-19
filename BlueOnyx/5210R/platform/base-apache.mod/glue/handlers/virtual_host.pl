@@ -1376,11 +1376,11 @@ sub handle_fpm_pools {
     }
 
     # Logic check for fpm_max_children: 
-    if (($PHP->{'fpm_max_children'} lt "1") || ($PHP->{'fpm_max_children'} gt "255")) {
+    if (($PHP_server->{'fpm_max_children'} < "1") || ($PHP_server->{'fpm_max_children'} > "255")) {
         $fpm_max_children = "15";
     }
     else {
-        $fpm_max_children = $PHP->{'fpm_max_children'};
+        $fpm_max_children = $PHP_server->{'fpm_max_children'};
     }
 
     # Location of the PHP-FPM pool file:
