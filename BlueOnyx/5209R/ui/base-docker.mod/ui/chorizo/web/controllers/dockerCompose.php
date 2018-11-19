@@ -201,6 +201,11 @@ class DockerCompose extends MX_Controller {
             }
 
         }
+        else {
+            $attributes['CNAME'] = '';
+            $attributes['DIR'] = '';
+            $attributes['FILE'] = '';
+        }
 
         //
         //--- At this point all checks are done. If we have no errors, we can submit the data to CODB:
@@ -221,6 +226,12 @@ class DockerCompose extends MX_Controller {
                                                     )
                                                 );
 
+            // Nice people say goodbye, or CCEd waits forever:
+            $CI->cceClient->bye();
+            $CI->serverScriptHelper->destructor();
+            header("Location: /docker/dockerCompose");
+            exit;
+
         }
 
         //
@@ -228,7 +239,7 @@ class DockerCompose extends MX_Controller {
         //
 
         // Prepare Page:
-        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-docker", "/docker/dockerCompose");
+        $factory = $CI->serverScriptHelper->getHtmlComponentFactory("base-docker", "/docker/dockerCompose?add=true");
         $BxPage = $factory->getPage();
         $BxPage->setErrors($errors);
         $i18n = $factory->getI18n();
@@ -243,7 +254,7 @@ class DockerCompose extends MX_Controller {
         $BxPage->setVerticalMenuChild('docker_Compose');
         $defaultPage = "basicSettingsTab";
 
-        $block =& $factory->getPagedBlock("DockerCompose", array($defaultPage));
+        $block =& $factory->getPagedBlock("dockerCompose", array($defaultPage));
 
         $block->setToggle("#");
         $block->setSideTabs(FALSE);
@@ -266,7 +277,7 @@ class DockerCompose extends MX_Controller {
             //--- Show list:
             //
 
-            $scrollList = $factory->getScrollList("DockerCompose", array("CNAME", "FILE", "Action"), array()); 
+            $scrollList = $factory->getScrollList("dockerCompose", array("CNAME", "FILE", "Action"), array()); 
 
             $scrollList->setAlignments(array("left", "left", "center"));
             $scrollList->setDefaultSortedIndex('0');
@@ -304,7 +315,7 @@ class DockerCompose extends MX_Controller {
 
             // Generate +Add button:
             $addbutton = $factory->getAddButton("/docker/dockerCompose?add=true");
-            $buttonContainer = $factory->getButtonContainer("DockerCompose", $addbutton);
+            $buttonContainer = $factory->getButtonContainer("dockerCompose", $addbutton);
             $block->addFormField(
                 $buttonContainer,
                 $factory->getLabel("dockerComposeAdd"),
@@ -374,7 +385,7 @@ class DockerCompose extends MX_Controller {
             //
 
             // Name:
-            $NAME = $factory->getTextField("CNAME", "", "rw");
+            $NAME = $factory->getTextField("CNAME", $attributes['CNAME'], "rw");
             $NAME->setType('alphanum_plus');
             $NAME->setOptional(false);
             $block->addFormField(
@@ -384,7 +395,7 @@ class DockerCompose extends MX_Controller {
                     );
 
             // Dir:
-            $DIR = $factory->getTextField("DIR", "", "rw");
+            $DIR = $factory->getTextField("DIR", $attributes['DIR'], "rw");
             $DIR->setType('');
             $DIR->setOptional(false);
             $block->addFormField(
@@ -394,7 +405,7 @@ class DockerCompose extends MX_Controller {
                     );
 
             // File:
-            $FILE = $factory->getTextField("FILE", "", "rw");
+            $FILE = $factory->getTextField("FILE", $attributes['FILE'], "rw");
             $FILE->setType('');
             $FILE->setOptional(false);
             $block->addFormField(
