@@ -38,7 +38,7 @@ Docker-CE YUM configuration file.
 
 %changelog
 
-* Tue Nov 2017 2018 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BX02
+* Tue Nov 20 2018 2018 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BX02
 - Disabled Docker repo by default, so that we get a version that works
   under OpenVZ as well.
 
