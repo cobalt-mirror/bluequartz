@@ -8,6 +8,9 @@
 
 use CCE;
 use Base::User::Capabilities;
+use Base::HomeDir qw(
+		homedir_get_user_dir homedir_create_user_link
+		homedir_setup_admin_home homedir_setup_user_home);
 
 # Debugging switch:
 $DEBUG = "0";
@@ -73,10 +76,29 @@ else {
 	if ($enabled == "0") {
 		# Lock account:
 		system("/usr/sbin/usermod -L $user->{name}");
+		&debug_msg("Locking account of User " . $reserve_user->{name} . " \n");
 	}
 	else {
 		# Unlock account:
 		system("/usr/sbin/usermod -U $user->{name}");
+		&debug_msg("Unlocking account of User " . $reserve_user->{name} . " \n");
+	}
+}
+
+# Get home directory of User:
+$homedir = homedir_get_user_dir($reserve_user->{name}, $reserve_user->{site}, $reserve_user->{volume});
+if (($homedir ne "") && ($homedir ne "/") && ($homedir ne "/home")) {
+	&debug_msg("User " . $reserve_user->{name} . " of vsite " . $reserve_user->{site} . " on volume " . $alt_root . " has homedirectory: " . $homedir . "\n");	
+
+	if ($enabled == "0") {
+		# Lock home directory:
+		&debug_msg("Locking Directory of User " . $reserve_user->{name} . " via '" . "chmod 0000 $homedir" .  "' \n");
+		system("/bin/chmod 0000 $homedir");
+	}
+	else {
+		# Unlock home directory:
+		&debug_msg("Unlocking Directory of User " . $reserve_user->{name} . " via '" . "chmod 0000 $homedir" .  "' \n");
+		system("/bin/chmod 2771 $homedir");
 	}
 }
 
@@ -120,8 +142,8 @@ sub debug_msg {
 }
 
 # 
-# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2014-2018 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2014-2018 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 
