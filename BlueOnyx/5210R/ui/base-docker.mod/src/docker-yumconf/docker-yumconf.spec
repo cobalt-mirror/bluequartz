@@ -1,6 +1,6 @@
 Name: docker-yumconf
 Version: 1.0.0
-Release: 0BX01%{dist}
+Release: 0BX02%{dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -37,6 +37,10 @@ rm -rf $RPM_BUILD_ROOT
 Docker-CE YUM configuration file.
 
 %changelog
+
+* Tue Nov 20 2018 2018 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BX02
+- Disabled Docker repo by default, so that we get a version that works
+  under OpenVZ as well.
 
 * Tue Jul 17 2018 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BX01
 - Initial build.

@@ -658,7 +658,7 @@ sub _gen_private_key
     my $cert_dir = shift;
 
     Sauce::Util::modifyfile("$cert_dir/key");
-    system($OPENSSL, 'genrsa', '-out', "$cert_dir/key", '2048', '-sha256');
+    system($OPENSSL, 'genrsa', '-out', "$cert_dir/key", '4096', '-sha256');
     Sauce::Util::chmodfile(0640, "$cert_dir/key");
     
     return ($? ? 0 : 1);
@@ -667,8 +667,8 @@ sub _gen_private_key
 1;
 
 # 
-# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2014-2018 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2014-2018 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 

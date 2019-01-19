@@ -116,10 +116,16 @@ class VsiteList extends MX_Controller {
                 // Get Vsite settings:
                 $vsiteSettings = $CI->cceClient->get($site);
                 $vsiteSettings['FEATURE'] = array();
+
                 foreach ($AutoFeaturesList as $key => $value) {
                     $featureOID = $CI->cceClient->get($site, $value);
                     if ($value == "PHP") {
-                        $vsiteSettings['PHP_version'] = $featureOID['version'];
+                        if ($featureOID['version'] == '') {
+                            $vsiteSettings['PHP_version'] = 'PHPOS';
+                        }
+                        else {
+                            $vsiteSettings['PHP_version'] = $featureOID['version'];
+                        }
                         if ($featureOID['mod_ruid_enabled'] == "1") {
                             $vsiteSettings['FEATURE']['RUID'] = $featureOID['mod_ruid_enabled'];
                         }
@@ -208,10 +214,17 @@ class VsiteList extends MX_Controller {
 
                     // Expose the used PHP version:
                     $php_suffix = "";
+
                     if (isset($vsiteSettings['PHP_version'])) {
-                        if ($vsiteSettings['PHP_version'] != "") {
+                        if (in_array($vsiteSettings['PHP_version'], array_keys($known_php_versions))) {
                             $php_suffix = " " . $known_php_versions[$vsiteSettings['PHP_version']];
                         }
+                        else {
+                            $php_suffix = $known_php_versions['PHPOS'];
+                        }
+                    }
+                    else {
+                        $php_suffix = $known_php_versions['PHPOS'];
                     }
 
                     if ($key == "SSL") { $F_text = "SSL"; $F_tooltip = "SSL"; }
