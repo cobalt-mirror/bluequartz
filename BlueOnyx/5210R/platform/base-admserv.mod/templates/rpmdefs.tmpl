@@ -87,7 +87,8 @@ if [ "$1" = 1 ]; then
 fi
 
 if [ ! -f /etc/admserv/certs/certificate ] ; then
-	/usr/bin/openssl genrsa -rand /proc/apm:/proc/cpuinfo:/proc/dma:/proc/filesystems:/proc/interrupts:/proc/ioports:/proc/pci:/proc/rtc:/proc/uptime 2048 > /etc/admserv/certs/key 2> /dev/null
+	#/usr/bin/openssl genrsa -rand /proc/apm:/proc/cpuinfo:/proc/dma:/proc/filesystems:/proc/interrupts:/proc/ioports:/proc/pci:/proc/rtc:/proc/uptime 2048 > /etc/admserv/certs/key 2> /dev/null
+	/usr/bin/openssl genrsa -out 4096 -out /etc/admserv/certs/key 2> /dev/null
 fi
 
 FQDN=`hostname`
@@ -163,6 +164,12 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Sat Jan 19 2019 Michael Stauber <mstauber@solarspeed.net> 2.3.0-0BX01
+- First build for 5210R.
+- Updated generation method for GUI cert key. 4096 bit this time.
+- Adjusted glue/etc/admserv/conf.d/ssl.conf for TLSv1.3
+- Adjusted glue/etc/admserv/conf.d/php.conf for PHP 7.2
 
 * Mon May 14 2018 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX35
 - Fixed permissions of /etc/logrotate.d/admserv
