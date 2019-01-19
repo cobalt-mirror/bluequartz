@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-/* $Id: php_crack.h,v 1.7 2005/09/05 12:27:12 skettler Exp $ */
+/* $Id$ */
 
 #ifndef PHP_CRACK_H
 #define PHP_CRACK_H
@@ -38,6 +38,8 @@ extern zend_module_entry crack_module_entry;
 
 #define crack_module_ptr &crack_module_entry
 
+#define PHP_CRACK_VERSION "0.5.0-dev"
+
 PHP_MINIT_FUNCTION(crack);
 PHP_MSHUTDOWN_FUNCTION(crack);
 PHP_RINIT_FUNCTION(crack);
@@ -52,7 +54,11 @@ PHP_FUNCTION(crack_getlastmessage);
 ZEND_BEGIN_MODULE_GLOBALS(crack)
     char *default_dictionary;
 	char *last_message;
+#if PHP_VERSION_ID >= 70000
+	zend_resource *default_dict;
+#else
 	int default_dict;
+#endif
 ZEND_END_MODULE_GLOBALS(crack)
 
 #ifdef ZTS

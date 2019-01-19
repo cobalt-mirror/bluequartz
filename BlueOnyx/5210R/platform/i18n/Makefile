@@ -6,13 +6,12 @@ endif
 
 CCEMODULE=sausalito-i18n
 CCERPMSPEC=$(CCEMODULE).spec
-#DIRS=src perl cracklib php
-DIRS=src perl
+DIRS=src perl cracklib php
 
 V_MAJ=0
 V_MIN=81
 VERSION=$(V_MAJ).$(V_MIN).2
-RELEASE=0BX04
+RELEASE=0BX05
 
 .PHONY: $(CCERPMSPEC)
 

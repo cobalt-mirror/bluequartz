@@ -94,6 +94,9 @@ fi
 
 %changelog
 
+* Sat Jan 19 2019 Michael Stauber <mstauber@solarspeed.net> 0.81.2-0BX05
+- Second build for 5210R with fixed cracklib from Brian Evans.
+
 * Fri Nov 16 2018 Michael Stauber <mstauber@solarspeed.net> 0.81.2-0BX04
 - First build attempt for 5210R on RHEL8 Beta.
 - Neither cracklib nor i18n build against PHP-7.2.11
