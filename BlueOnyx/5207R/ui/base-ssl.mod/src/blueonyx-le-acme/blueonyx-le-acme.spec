@@ -17,7 +17,7 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-root
 BuildArch:      noarch
 Distribution:   BlueOnyx
 Source:         %{name}.tar.gz
-Requires:       socat
+#Requires:       socat
 Requires:       git
 Requires:       redhat-rpm-config
 Obsoletes:	blueonyx-letsencrypt
@@ -105,6 +105,7 @@ rm -R -f $RPM_BUILD_ROOT
 
 * Wed Jan 23 2019 Michael Stauber <mstauber@blueonyx.it>
 - [2.8.0-2] EL6 uses /bin/bash and not /usr/bin/bash
+- Removed socat requirement
 
 * Tue Jan 22 2019 Michael Stauber <mstauber@blueonyx.it>
 - [2.8.0-1] Initial build.
