@@ -13,7 +13,7 @@ install: blueonyx-letsencrypt-rpm
 rpm: blueonyx-letsencrypt-rpm
 
 blueonyx-letsencrypt-rpm:
-	tar --exclude='.svn' -zcvf /tmp/blueonyx-letsencrypt.tar.gz blueonyx-letsencrypt &> /dev/null
-	$(RPMBUILD) -ta /tmp/blueonyx-letsencrypt.tar.gz &> /tmp/rpm.log
-	/bin/rm -f /tmp/blueonyx-letsencrypt.tar.gz
+	tar --exclude='.svn' -zcvf /tmp/blueonyx-le-acme.tar.gz blueonyx-le-acme &> /dev/null
+	$(RPMBUILD) -ta /tmp/blueonyx-le-acme.tar.gz &> /tmp/rpm.log
+	/bin/rm -f /tmp/blueonyx-le-acme.tar.gz
 

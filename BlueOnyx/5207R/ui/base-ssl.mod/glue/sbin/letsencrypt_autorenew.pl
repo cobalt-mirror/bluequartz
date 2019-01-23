@@ -106,6 +106,54 @@ if ($options{n}) {
 &header;
 
 #
+### Check which Vsites have Let's Encryp SSL certificates created with CertBot:
+#
+
+# Check AdmServ:
+if ($do_admserv eq "1") {
+    # Find and get System Object:
+    ($sysoid) = $cce->find('System');
+    ($ok, $System_SSL) = $cce->get($sysoid, 'SSL');
+    if (($System_SSL->{uses_letsencrypt} eq "1") && ($System_SSL->{ACME} eq '0')) {
+        &debug_msg("Renewing SSL certificate for 'AdmServ'\n\n");
+        $cce->set($sysoid, 'SSL', { 'uses_letsencrypt' => $uses_letsencrypt, 'performLEinstall' => time() });
+    }
+    elsif (($System_SSL->{uses_letsencrypt} eq "1") && ($System_SSL->{ACME} eq '1')) {
+        &debug_msg("LE SSL certificate for 'AdmServ' is already managed by ACME.\n\n");
+    }
+    else {
+        &debug_msg("SSL certificate for 'AdmServ' is not using Let's Encrypt.\n\n");
+    }
+}
+
+# Check all Vsites:
+@vhosts = ();
+(@vhosts) = $cce->findx('Vsite');
+foreach  $vsiteOID (@vhosts) {
+    ($ok, $vsite) = $cce->get($vsiteOID);
+    ($ok, $vsite_SSL) = $cce->get($vsiteOID , 'SSL');
+
+    # We skip Vsites that don't have SSL enabled:
+    if ($vsite_SSL->{enabled} ne "1") {
+        next;
+    }
+
+    if (($vsite_SSL->{uses_letsencrypt} eq "1") && ($vsite_SSL->{ACME} eq '0')) {
+        &debug_msg("Renewing SSL certificate for '$vsite->{fqdn}'\n\n");
+        $cce->set($vsite->{'OID'}, 'SSL', { 'uses_letsencrypt' => $uses_letsencrypt, 'performLEinstall' => time() });
+    }
+    elsif (($vsite_SSL->{uses_letsencrypt} eq "1") && ($vsite_SSL->{ACME} eq '1')) {
+        &debug_msg("LE SSL certificate for '$vsite->{fqdn}' is already managed by ACME.\n\n");
+    }
+    else {
+        &debug_msg("SSL certificate for '$vsite->{fqdn}' is not using Let's Encrypt.\n\n");
+    }
+}
+
+&debug_msg("\nTransfer to ACME-renewals: Done!\n\n");
+&debug_msg("==========================================\n\n");
+
+#
 ### Check which Vsites have Let's Encryp SSL certificates:
 #
 
@@ -228,7 +276,7 @@ foreach  $vsiteOID (@vhosts) {
                     $ed = Net::SSL::ExpireDate->new( file  => $cert_dir . '/certificate' );
 
                     # How many days before expiry do we need to renew?
-                    $ex_d = 90-$System_SSL->{autoRenewDays} . ' days';
+                    $ex_d = 90-$vsite_SSL->{autoRenewDays} . ' days';
 
                     # Check expiration date:
                     if (defined $ed->expire_date) {
@@ -321,7 +369,8 @@ if (($enabled eq "true") && ($ok_count > '0')) {
     }
 }
 
-&debug_msg("\nDone!\n\n");
+&debug_msg("\nRenewal Checks: Done!\n\n");
+&debug_msg("==========================================\n\n");
 
 $cce->bye("SUCCESS");
 exit(0);
@@ -375,8 +424,8 @@ sub debug_msg {
 }
 
 # 
-# Copyright (c) 2017-2018 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2017-2018 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2017-2019 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2017-2019 Team BlueOnyx, BLUEONYX.IT
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 

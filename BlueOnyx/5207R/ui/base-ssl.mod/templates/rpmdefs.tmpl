@@ -136,6 +136,24 @@ fi
 
 <begin $CHANGELOG>
 
+* Wed Jan 23 2019 Michael Stauber <mstauber@solarspeed.net> 1.3.2-0BX02
+- Modified glue/handlers/le_install.pl to disable 'webaliasRedirects'
+  if one or more aliases should be included in the cert request.
+- Extended glue/sbin/letsencrypt_autorenew.pl to handle auto-renews
+  again in the odd case that the ACME cronjob doesn't do the job.
+  Better safe than sorry.
+
+* Tue Jan 22 2019 Michael Stauber <mstauber@solarspeed.net> 1.3.2-0BX01
+- Deprecated blueonyx-letsencrypt and the CertBot within.
+- Added src/blueonyx-le-acme containing ACME from Neil Pang.
+- Modified glue/handlers/le_install.pl to use ACME.
+- Modified glue/sbin/letsencrypt_autorenew.pl to do a one time conversion
+  of LE certs present from CertBot to ACME.
+- Modified glue/schemas/ssl.schema to add ACME flag for certs to know if
+  a cert had been done via CertBot or ACME.
+- base-ssl now requires blueonyx-le-acme
+- blueonyx-le-acme obsoletes blueonyx-letsencrypt
+
 * Tue Nov 20 2018 Michael Stauber <mstauber@solarspeed.net> 1.3.0-0BX28
 - Modified glue/handlers/SSL.pm to change SSL key length to 4096 bytes
 

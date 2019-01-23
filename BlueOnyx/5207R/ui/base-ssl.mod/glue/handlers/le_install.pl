@@ -8,6 +8,7 @@
 $DEBUG = "0";
 if ($DEBUG) {
     use Sys::Syslog qw( :DEFAULT setlogsock);
+    use Data::Dumper;
 }
 
 use CCE;
@@ -16,7 +17,7 @@ use Sauce::Service;
 use Base::Vsite qw(vsite_update_site_admin_caps);
 use Base::HomeDir qw(homedir_get_group_dir);
 use SSL qw(ssl_get_cert_info ssl_create_directory);
-use Data::Dumper;
+
 
 my $cce = new CCE('Domain' => 'base-ssl');
 $cce->connectfd();
@@ -64,12 +65,23 @@ if (($vsite->{'CLASS'} eq "Vsite") || ($vsite->{'CLASS'} eq "System")) {
     $alias_line = '';
     if ($vsite->{'CLASS'} eq "Vsite") {
         @webAliases = $cce->scalar_to_array($ssl_info->{LEwantedAliases});
+        $numAliases = '0';
         foreach $alias (@webAliases) {
             if ($alias ne "") {
                 $alias_line .= '-d ' . $alias . ' ';
+                $numAliases++;
             }
         }
         chop($alias_line);
+
+        # Special Case: If 'Web Alias Redirects' is ticked and we request cert validity for more
+        # than the primary FQDN, then the validation will fail due to the redirects. Hence:
+        # If someone requests validity for more than just FQDN, then we turn 'Web Alias Redirects'
+        # off:
+        if ($numAliases gt '0') {
+            $cce->set($vsite->{'OID'}, '', { 'webAliasRedirects' => '0', 'force_update' => time() });
+            &debug_msg("Web-Aliases: Multiple aliases requested. Turning 'webAliasRedirects' off.\n");
+        }
     }
     &debug_msg("Web-Aliases: $alias_line\n");
 
@@ -86,15 +98,18 @@ if (($vsite->{'CLASS'} eq "Vsite") || ($vsite->{'CLASS'} eq "System")) {
     }
 
     # Auto-Renew:
-    $autoRenew = '';
+    $autoRenew = '0';
     if ($ssl_info->{'autoRenew'} eq "1") {
-        $autoRenew = ' --renew-by-default';
+        $autoRenew = '1';
     }
 
+    # After how many days do we renew?
+    $autoRenewDays = $ssl_info->{'autoRenewDays'};
+
     # Email:
-    $email = ' --register-unsafely-without-email';
+    $email = '';
     if ($ssl_info->{'LEemail'} ne "") {
-        $email = ' --email ' . $ssl_info->{'LEemail'};
+        $email = ' --accountemail ' . $ssl_info->{'LEemail'};
     }
 
     $well_known_location = $webroot . '/.well-known';
@@ -102,115 +117,66 @@ if (($vsite->{'CLASS'} eq "Vsite") || ($vsite->{'CLASS'} eq "System")) {
     system("mkdir -p $well_known_location");
     system("chmod 755 $well_known_location");
 
-    # Obtain SSL cert:
-    # --duplicate
-    $dry_run = '';
-    #$dry_run = '--dry-run';
-    &debug_msg("Running: /usr/sausalito/letsencrypt/letsencrypt-auto $dry_run --text --no-self-upgrade certonly -a webroot --webroot-path $webroot -d $fqdn $alias_line $email --rsa-key-size 4096 --agree-tos $autoRenew --user-agent BlueOnyx.it\n");
-    $result = `/usr/sausalito/letsencrypt/letsencrypt-auto $dry_run --text --no-self-upgrade certonly -a webroot --webroot-path $webroot -d $fqdn $alias_line $email --rsa-key-size 4096 --agree-tos $autoRenew --user-agent BlueOnyx.it 
-2>&1`;
-    &debug_msg("Result: $result\n");
-    $result =~ s/^Updating letsencrypt(.*)\n//g;
-    $result =~ s/^Running with virtualenv:(.*)\n//g;
-    $result =~ s/\n/<br>/g;
-    $cce->set($vsite->{'OID'}, 'SSL', { 'LEclientRet' => $result }); 
-
-    # Make sure the $well_known_location directory is gone:
-    if (-d $well_known_location) {
-        system("rm -R $well_known_location");
+    # Get certificate directory:
+    if ($vsite->{'CLASS'} eq "Vsite") {
+        if ($vsite->{basedir}) {
+            $cert_dir = "$vsite->{basedir}/$SSL::CERT_DIR";
+            &debug_msg("Cert-Directory: $vsite->{basedir}/$SSL::CERT_DIR \n");
+        }
+        else {
+            $cert_dir = homedir_get_group_dir($vsite->{name}, $vsite->{volume}) . '/' . $SSL::CERT_DIR;
+        }
+    }
+    else {
+        $cert_dir = '/etc/admserv/certs';
+        &debug_msg("Cert-Directory: $cert_dir \n");
+    }
+    if ($vsite->{'CLASS'} eq "Vsite") {
+        if (!-d $cert_dir) {
+            if (!ssl_create_directory(02770, scalar(getgrnam($vsite->{name})), $cert_dir)) {
+                &debug_msg("Couldn't create $cert_dir!\n");
+                $cce->bye('FAIL', "[[base-ssl.CouldnotCreateCertDir]]");
+                exit(1);
+            }
+        }
     }
 
-    # Handle errors:
-    if (($result =~ /Error:/) || ($result =~ /An unexpected error occurred:/)) {
+    # Obtain SSL cert:
+    $dry_run = '';
+    #$dry_run = "--staging";
+    &debug_msg("Running: /usr/sausalito/acme/acme.sh $dry_run --apache --issue -d $fqdn $alias_line -w $webroot --keylength 4096 --days $autoRenewDays --cert-file $cert_dir/certificate --key-file $cert_dir/key  --fullchain-file $cert_dir/nginx_cert_ca_combined --ca-file $cert_dir/ca-certs --auto-upgrade 1 $email --force\n");
+    $result = `/usr/sausalito/acme/acme.sh $dry_run --apache --issue -d $fqdn $alias_line -w $webroot --keylength 4096 --days $autoRenewDays --cert-file $cert_dir/certificate --key-file $cert_dir/key  --fullchain-file $cert_dir/nginx_cert_ca_combined --ca-file $cert_dir/ca-certs --auto-upgrade $autoRenew $email --force`;
+
+    &debug_msg("Result: $result\n");
+    $cce->set($vsite->{'OID'}, 'SSL', { 'LEclientRet' => $result }); 
+
+    if ($result =~ /NXDOMAIN/) {
         &debug_msg("WARNING: Error during SSL cert request!\n");
         $cce->bye('FAIL', "[[base-ssl.LE_CA_Request_Error,msg=\"$result\"]]"); 
         exit(1); 
     }
 
-    # Find out where the certs were stored:
-    if ($result =~ /\/etc\/letsencrypt\/live\/(.*)\/fullchain\.pem/) {
-        $cert_path = '/etc/letsencrypt/live/' . $1;
-        &debug_msg("Path to cert-directory: $cert_path\n");
-    }
-    elsif ($result =~ /The dry run was successful/) {
-        $cert_path = '/etc/letsencrypt/live/' . $fqdn;
-        &debug_msg("Path to cert-directory: $cert_path\n");
+    if ($result =~ /Cert success./) {
+        &debug_msg("Certificate request successful!\n");
     }
     else {
-        $cce->bye('FAIL', "[[base-ssl.LE_CA_Request_Error_noPathFound]]"); 
-        exit(1); 
+        &debug_msg("WARNING: Error during SSL cert request!\n");
+        $cce->bye('FAIL', "[[base-ssl.LE_CA_Request_Error,msg=\"$result\"]]"); 
+        exit(1);
     }
 
-    # Check if we got an expiry date:
-    if ($result =~ /will expire on (.*). To obtain/) {
-        $expiryDate = $1;
-        &debug_msg("Expiry Date: $expiryDate\n");
-    }
-
-    if ((-d $cert_path) && ($cert_path ne "")) {
-        # Cleanup CA-Cert and disable SSL:
-        if ($vsite->{'CLASS'} eq "Vsite") {
-            $cce->set($vsite->{'OID'}, 'SSL', { 'caCerts' => '', 'enabled' => '0', 'uses_letsencrypt' => '0' });
-        }
-        else {
-            # Don't you dare to turn off SSL for AdmServ!
-            $cce->set($vsite->{'OID'}, 'SSL', { 'caCerts' => '', 'uses_letsencrypt' => '0' });
-        }
-
-        # Create cert directory for Vsite:
-        if ($vsite->{'CLASS'} eq "Vsite") {
-            if ($vsite->{basedir}) {
-                $cert_dir = "$vsite->{basedir}/$SSL::CERT_DIR";
-                &debug_msg("Cert-Directory: $vsite->{basedir}/$SSL::CERT_DIR \n");
-            }
-            else {
-                $cert_dir = homedir_get_group_dir($vsite->{name}, $vsite->{volume}) . '/' . $SSL::CERT_DIR;
-            }
-        }
-        else {
-            $cert_dir = '/etc/admserv/certs';
-            &debug_msg("Cert-Directory: $cert_dir \n");
-        }
-        if ($vsite->{'CLASS'} eq "Vsite") {
-            if (!-d $cert_dir) {
-                if (!ssl_create_directory(02770, scalar(getgrnam($vsite->{name})), $cert_dir)) {
-                    &debug_msg("Couldn't create $cert_dir!\n");
-                    $cce->bye('FAIL', "[[base-ssl.CouldnotCreateCertDir]]");
-                    exit(1);
-                }
-            }
-        }
-
-        # Import Intermediate:
-        $intermediate_path = $cert_path . '/chain.pem';
-        $intermediate_target = $cert_dir . '/ca-certs';
-        system("cp $intermediate_path $intermediate_target");
-        $cce->set($vsite->{'OID'}, 'SSL', { 'caCerts' => '&LetsEncrypt&' });
-
-        # Convert PKCS#8 key to PKCS#1:
-        $privkey_in_path = $cert_path . '/' . 'privkey.pem';
-        $privkey_out_path = $cert_path . '/' . 'privkey_new.pem';
-        &debug_msg("Running: openssl rsa -in $privkey_in_path -out $privkey_out_path\n");
-        system("openssl rsa -in $privkey_in_path -out $privkey_out_path");
-
-        # Move key:
-        system("mv $privkey_out_path $cert_dir/key");
-
-        # Copy cert:
-        $ssl_cert_path = $cert_path . '/' . 'cert.pem';
-        system("cp $ssl_cert_path $cert_dir/certificate");
-
-        # Delete request (if present):
-        if (-f "$cert_dir/request") {
-            system("rm -f $cert_dir/request");
-        }
-
+    &debug_msg("Checking cert dir: $cert_dir\n");
+    if ((-d $cert_dir) && ($cert_dir ne "")) {
         # Check if we have a good cert:
         ($subject, $issuer, $expires) = ssl_get_cert_info($cert_dir);
 
+        &debug_msg("Cert info (subject): "  . Dumper($subject) . "\n");
+        &debug_msg("Cert info (Issuer): " . Dumper($issuer) . "\n");
+        &debug_msg("Cert info (expires): $expires\n");
+
         # Make sure this is really a Let's Encrypt cert:
         $uses_letsencrypt = '0';
-        if ($issuer->{'O'} eq 'Let\'s Encrypt') {
+        if (($issuer->{'O'} eq 'Let\'s Encrypt') || ($issuer->{'CN'} eq 'Fake LE Intermediate X1')) {
             &debug_msg("SSL issuer: Let's Encrypt\n");
             $uses_letsencrypt = '1';
         }
@@ -221,7 +187,7 @@ if (($vsite->{'CLASS'} eq "Vsite") || ($vsite->{'CLASS'} eq "System")) {
             &debug_msg("expires: $expires\n");
 
             # Update CODB to activate the whole shebang:
-            $cce->set($vsite->{'OID'}, 'SSL', { 'uses_letsencrypt' => $uses_letsencrypt, 'country' => 'US', 'state' => 'Other', 'expires' => $expires, 'enabled' => '1', 'email' => $ssl_info->{'LEemail'}, 'orgName' => "Let's Encrypt", 'LEcreationDate' => time() });
+            $cce->set($vsite->{'OID'}, 'SSL', { 'uses_letsencrypt' => $uses_letsencrypt, 'country' => 'US', 'state' => 'Other', 'expires' => $expires, 'enabled' => '1', 'email' => $ssl_info->{'LEemail'}, 'orgName' => "Let's Encrypt", 'ACME' => '1', 'LEcreationDate' => time() });
         }
         else {
             # Turn off the 'uses_letsencrypt' flag and fail:
@@ -233,10 +199,20 @@ if (($vsite->{'CLASS'} eq "Vsite") || ($vsite->{'CLASS'} eq "System")) {
 
         if ($vsite->{'CLASS'} eq "Vsite") {
             # Reload httpd:
+            &debug_msg("Reloading Apache\n");
             service_run_init('httpd', 'reload');
+
+            # Find and get System Object:
+            ($sysoid) = $cce->find('System');
+            ($ok, $System_Nginx) = $cce->get($sysoid, 'Nginx');
+            if ($System_Nginx->{enabled} eq "1") {
+                &debug_msg("Reloading Nginx\n");
+                service_run_init('nginx', 'reload');
+            }
         }
         else {
             # Reload admserv:
+            &debug_msg("Reloading Admserv\n");
             service_run_init('admserv', 'reload');
         }
     }
@@ -261,8 +237,8 @@ sub debug_msg {
 }
 
 # 
-# Copyright (c) 2017 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2017 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2017-2019 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2017-2019 Team BlueOnyx, BLUEONYX.IT
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 
