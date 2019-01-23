@@ -7,7 +7,7 @@
 
 Name:           %{pkgname}
 Version:        2.8.0
-Release:        2
+Release:        3
 Packager:       Michael Stauber <mstauber@blueonyx.it>
 Vendor:         Neil Pang
 URL:            https://github.com/Neilpang/acme.sh
@@ -92,7 +92,7 @@ if [ "$CCRON" -eq "0" ];then
 fi
 
 %preun
-/usr/sausalito/acme/acme.sh --uninstall
+#/usr/sausalito/acme/acme.sh --uninstall
 
 %postun
 
@@ -102,6 +102,10 @@ rm -R -f $RPM_BUILD_ROOT
 %files -f solFile.list
 
 %changelog
+
+* Wed Jan 23 2019 Michael Stauber <mstauber@blueonyx.it>
+- [2.8.0-3] More EL6 related fixed and addition of acme_wrapper.sh
+  Also fixes to acme.sh itself to chmod written files to 644.
 
 * Wed Jan 23 2019 Michael Stauber <mstauber@blueonyx.it>
 - [2.8.0-2] EL6 uses /bin/bash and not /usr/bin/bash

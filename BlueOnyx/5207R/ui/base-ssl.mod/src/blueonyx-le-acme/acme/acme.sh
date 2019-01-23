@@ -1935,6 +1935,7 @@ _setopt() {
     fi
     text="$(cat "$__conf")"
     printf -- "%s\n" "$text" | sed "s|^$__opt$__sep.*$|$__opt$__sep$__val$__end|" >"$__conf"
+    chmod 644 "$__conf"
 
   elif grep -n "^#$__opt$__sep" "$__conf" >/dev/null; then
     if _contains "$__val" "&"; then
@@ -1942,10 +1943,12 @@ _setopt() {
     fi
     text="$(cat "$__conf")"
     printf -- "%s\n" "$text" | sed "s|^#$__opt$__sep.*$|$__opt$__sep$__val$__end|" >"$__conf"
+    chmod 644 "$__conf"
 
   else
     _debug3 APP
     echo "$__opt$__sep$__val$__end" >>"$__conf"
+    chmod 644 "$__conf"
   fi
   _debug3 "$(grep -n "^$__opt$__sep" "$__conf")"
 }
