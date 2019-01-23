@@ -65,12 +65,23 @@ if (($vsite->{'CLASS'} eq "Vsite") || ($vsite->{'CLASS'} eq "System")) {
     $alias_line = '';
     if ($vsite->{'CLASS'} eq "Vsite") {
         @webAliases = $cce->scalar_to_array($ssl_info->{LEwantedAliases});
+        $numAliases = '0';
         foreach $alias (@webAliases) {
             if ($alias ne "") {
                 $alias_line .= '-d ' . $alias . ' ';
+                $numAliases++;
             }
         }
         chop($alias_line);
+
+        # Special Case: If 'Web Alias Redirects' is ticked and we request cert validity for more
+        # than the primary FQDN, then the validation will fail due to the redirects. Hence:
+        # If someone requests validity for more than just FQDN, then we turn 'Web Alias Redirects'
+        # off:
+        if ($numAliases gt '0') {
+            $cce->set($vsite->{'OID'}, '', { 'webAliasRedirects' => '0', 'force_update' => time() });
+            &debug_msg("Web-Aliases: Multiple aliases requested. Turning 'webAliasRedirects' off.\n");
+        }
     }
     &debug_msg("Web-Aliases: $alias_line\n");
 
@@ -226,8 +237,8 @@ sub debug_msg {
 }
 
 # 
-# Copyright (c) 2017 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2017 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2017-2019 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2017-2019 Team BlueOnyx, BLUEONYX.IT
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 
