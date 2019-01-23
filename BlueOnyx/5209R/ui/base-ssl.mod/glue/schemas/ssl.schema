@@ -113,6 +113,12 @@
         writeacl="ruleCapable(adminUser)"
     />
 
+    <!-- If set to '1' it means ACME and not CertBot handles renewals: -->
+    <property 
+        name="ACME" type="boolean" default="0" optional="true" 
+        writeacl="ruleCapable(adminUser)"
+    />
+
     <!-- Keep track of aliases that we need to request for: -->
     <property
         name="LEwantedAliases" type="scalar" array="yes" optional="yes"
@@ -252,6 +258,12 @@
     <property 
         name="LEcreationDate" type="scalar" default="" optional="true" 
         writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleSiteSSL )"
+    />
+
+    <!-- If set to '1' it means ACME and not CertBot handles renewals: -->
+    <property 
+        name="ACME" type="boolean" default="0" optional="true" 
+        writeacl="ruleCapable(adminUser)"
     />
 
     <!-- Keep track of aliases that we need to request for: -->

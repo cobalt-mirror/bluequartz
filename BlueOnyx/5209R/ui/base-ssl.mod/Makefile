@@ -6,8 +6,8 @@ VENDOR=base
 VENDORNAME='Project BlueOnyx'
 SERVICE=ssl
 
-VERSION=1.3.1
-RELEASE=0BX03
+VERSION=1.3.2
+RELEASE=0BX01
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -19,7 +19,7 @@ BUILDUI=new
 BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=yes
-REQUIRES=blueonyx-letsencrypt perl-Net-SSL-ExpireDate perl-MIME-Lite
+REQUIRES=blueonyx-le-acme perl-Net-SSL-ExpireDate perl-MIME-Lite
 
 #########
 # some useful defines

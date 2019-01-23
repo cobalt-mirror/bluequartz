@@ -114,64 +114,15 @@ if ($do_admserv eq "1") {
     # Find and get System Object:
     ($sysoid) = $cce->find('System');
     ($ok, $System_SSL) = $cce->get($sysoid, 'SSL');
-    if ($System_SSL->{uses_letsencrypt} eq "1") {
-        $cert_dir = '/etc/admserv/certs';
-        # Check if we have an LE cert::
-        ($subject, $issuer, $expires) = ssl_get_cert_info($cert_dir);
-
-        # Munge date because they changed the strtotime function in php:
-        $expires =~ s/(\d{1,2}:\d{2}:\d{2})(\s+)(\d{4,})/$3$2$1/;
-
-        # Make sure this is really a Let's Encrypt cert:
-        $uses_letsencrypt = '0';
-        if ($issuer->{'O'} eq 'Let\'s Encrypt') {
-            $uses_letsencrypt = '1';
-
-            # Get Expiry Date from SSL certificate:
-            $ed = Net::SSL::ExpireDate->new( file  => '/etc/admserv/certs/certificate' );
-
-            # How many days before expiry do we need to renew?
-            $ex_d = 90-$System_SSL->{autoRenewDays} . ' days';
-
-            # Check expiration date:
-            if (defined $ed->expire_date) {
-                $expire_date = $ed->expire_date;
-
-                # Check if cert is already expired or expires within the period during which we do renewals:
-                if (($ed->is_expired) || ($ed->is_expired($ex_d))) {
-                    &debug_msg("Renewing SSL certificate for 'AdmServ' (expiration date: $expire_date)\n\n");
-                    $cce->set($sysoid, 'SSL', { 'uses_letsencrypt' => $uses_letsencrypt, 'performLEinstall' => time() });
-
-                    # Check if the new cert now has a good expiration date:
-                    $ed = Net::SSL::ExpireDate->new( file  => '/etc/admserv/certs/certificate' );
-
-                    # How many days before expiry do we need to renew?
-                    $ex_d = 90-$System_SSL->{autoRenewDays} . ' days';
-
-                    # Check expiration date:
-                    if (defined $ed->expire_date) {
-                        $expire_date = $ed->expire_date;
-                        if (($ed->is_expired) || ($ed->is_expired($ex_d))) {
-                            &debug_msg("WARNING: SSL certificate for 'AdmServ' still has bad expiration date: $expire_date\n\n");
-                            push @failed_list, "* 'AdmServ' (Expiry date: $expire_date)\n";
-                        }
-                        else {
-                            push @success_list, "* 'AdmServ' (New expiry date: $expire_date)\n";
-                            &debug_msg("INFO: SSL certificate for 'AdmServ' has new expiration date: $expire_date\n\n");
-                        }
-                    }
-                }
-                else {
-                    &debug_msg("NOT renewing SSL certificate for 'AdmServ' as it's still good. (expiration date: $expire_date)\n\n");
-                }
-            }
-        }
-        else {
-            # We should not have the 'uses_letsencrypt' set. Resetting it:
-            $uses_letsencrypt = '0';
-            &debug_msg("'AdmServ' is not using a Let's Encrypt certificate. Skipping.\n\n");
-            $cce->set($sysoid, 'SSL', { 'uses_letsencrypt' => $uses_letsencrypt});
-        }
+    if (($System_SSL->{uses_letsencrypt} eq "1") && ($System_SSL->{ACME} eq '0')) {
+        &debug_msg("Renewing SSL certificate for 'AdmServ'\n\n");
+        $cce->set($sysoid, 'SSL', { 'uses_letsencrypt' => $uses_letsencrypt, 'performLEinstall' => time() });
+    }
+    elsif (($System_SSL->{uses_letsencrypt} eq "1") && ($System_SSL->{ACME} eq '1')) {
+        &debug_msg("LE SSL certificate for 'AdmServ' is already managed by ACME.\n\n");
+    }
+    else {
+        &debug_msg("SSL certificate for 'AdmServ' is not using Let's Encrypt.\n\n");
     }
 }
 
@@ -187,137 +138,15 @@ foreach  $vsiteOID (@vhosts) {
         next;
     }
 
-    # Get cert_dir:
-    if ($vsite->{basedir}) {
-        $cert_dir = "$vsite->{basedir}/$SSL::CERT_DIR";
+    if (($vsite_SSL->{uses_letsencrypt} eq "1") && ($vsite_SSL->{ACME} eq '0')) {
+        &debug_msg("Renewing SSL certificate for '$vsite->{fqdn}'\n\n");
+        $cce->set($vsite->{'OID'}, 'SSL', { 'uses_letsencrypt' => $uses_letsencrypt, 'performLEinstall' => time() });
+    }
+    elsif (($vsite_SSL->{uses_letsencrypt} eq "1") && ($vsite_SSL->{ACME} eq '1')) {
+        &debug_msg("LE SSL certificate for '$vsite->{fqdn}' is already managed by ACME.\n\n");
     }
     else {
-        $cert_dir = homedir_get_group_dir($group, $vsite->{volume}) . '/' . $SSL::CERT_DIR;
-    }
-
-    # Is 'autorenew' on?
-    if (($vsite_SSL->{autoRenew} eq "1") && (-d $cert_dir)) {
-
-        # Check if we have a good cert:
-        ($subject, $issuer, $expires) = ssl_get_cert_info($cert_dir);
-
-        # Munge date because they changed the strtotime function in php:
-        $expires =~ s/(\d{1,2}:\d{2}:\d{2})(\s+)(\d{4,})/$3$2$1/;
-
-        # Make sure this is really a Let's Encrypt cert:
-        $uses_letsencrypt = '0';
-        if ($issuer->{'O'} eq 'Let\'s Encrypt') {
-            $uses_letsencrypt = '1';
-
-            # Get Expiry Date from SSL certificate:
-            $ed = Net::SSL::ExpireDate->new( file  => $cert_dir . '/certificate' );
-
-            # How many days before expiry do we need to renew?
-            $ex_d = 90-$vsite_SSL->{autoRenewDays} . ' days';
-
-            # Check expiration date:
-            if (defined $ed->expire_date) {
-                $expire_date = $ed->expire_date;
-
-                # Check if cert is already expired or expires within the period during which we do renewals:
-                if (($ed->is_expired) || ($ed->is_expired($ex_d))) {
-                    &debug_msg("Renewing SSL certificate for '$vsite->{fqdn}' (expiration date: $expire_date)\n\n");
-                    $cce->set($vsite->{'OID'}, 'SSL', { 'uses_letsencrypt' => $uses_letsencrypt, 'performLEinstall' => time() });
-
-                    # Check if the new cert now has a good expiration date:
-                    $ed = Net::SSL::ExpireDate->new( file  => $cert_dir . '/certificate' );
-
-                    # How many days before expiry do we need to renew?
-                    $ex_d = 90-$System_SSL->{autoRenewDays} . ' days';
-
-                    # Check expiration date:
-                    if (defined $ed->expire_date) {
-                        $expire_date = $ed->expire_date;
-                        if (($ed->is_expired) || ($ed->is_expired($ex_d))) {
-                            &debug_msg("WARNING: SSL certificate for '$vsite->{fqdn}' still has bad expiration date: $expire_date\n");
-                            push @failed_list, "* '$vsite->{fqdn}' (Expiry date: $expire_date)\n";
-                        }
-                        else {
-                            push @success_list, "* '$vsite->{fqdn}' (New expiry date: $expire_date)\n";
-                            &debug_msg("INFO: SSL certificate for '$vsite->{fqdn}' has new expiration date: $expire_date\n");
-                        }
-                    }
-                }
-                else {
-                    &debug_msg("NOT renewing SSL certificate for '$vsite->{fqdn}' as it's still good. (expiration date: $expire_date)\n");
-                }
-            }
-        }
-        else {
-            # We should not have the 'uses_letsencrypt' set. Resetting it:
-            $uses_letsencrypt = '0';
-            &debug_msg("Vsite '$vsite->{fqdn}' is not using a Let's Encrypt certificate. Skipping.\n");
-            $cce->set($vsite->{'OID'}, 'SSL', { 'uses_letsencrypt' => $uses_letsencrypt});
-        }
-    }
-}
-
-# Swatch is enabled:
-$rep_count = scalar @failed_list;
-$ok_count = scalar @success_list;
-if (($enabled eq "true") && ($rep_count > '0')) {
-    $body = "\nAutomatic renewal of the following Let's Encrypt certificates has failed:\n\n";
-    foreach my $x (@failed_list) {
-        $body .= $x;
-    }
-    $body .= "\nPlease check /var/log/letsencrypt/letsencrypt.log for more information.\n\n";
-
-    # Need to convert to UTF-8. Ain'that funny. The source *IS* UTF-8:
-    from_to($body, "windows-1252", "utf-8");
-
-    my $subject = $host . ": " . Encode::encode("MIME-B", "Let's Encrypt: Certificate auto-renewal failed");
-    my $to;
-    foreach $to (@email_list) {
-        # Build the message using MIME::Lite instead:
-        my $send_msg = MIME::Lite->new(
-            From     => "root",
-            To       => $to,
-            Subject  => $subject,
-            Data     => $body,
-            Charset => 'utf-8'
-        );
-        
-        # Set content type:
-        $send_msg->attr("content-type"         => 'text/plain');
-        $send_msg->attr("content-type.charset" => "utf-8");
-        
-        # Out with the email:
-        $send_msg->send;
-    }
-}
-if (($enabled eq "true") && ($ok_count > '0')) {
-    $body = "\nAutomatic renewal of the following Let's Encrypt certificates was performed:\n\n";
-    foreach my $y (@success_list) {
-        $body .= $y;
-    }
-    $body .= "\nPlease check /var/log/letsencrypt/letsencrypt.log for more information.\n\n";
-
-    # Need to convert to UTF-8. Ain'that funny. The source *IS* UTF-8:
-    from_to($body, "windows-1252", "utf-8");
-
-    my $subject = $host . ": " . Encode::encode("MIME-B", "Let's Encrypt: Certificate auto-renewal completed");
-    my $to;
-    foreach $to (@email_list) {
-        # Build the message using MIME::Lite instead:
-        my $send_msg = MIME::Lite->new(
-            From     => "root",
-            To       => $to,
-            Subject  => $subject,
-            Data     => $body,
-            Charset => 'utf-8'
-        );
-        
-        # Set content type:
-        $send_msg->attr("content-type"         => 'text/plain');
-        $send_msg->attr("content-type.charset" => "utf-8");
-        
-        # Out with the email:
-        $send_msg->send;
+        &debug_msg("SSL certificate for '$vsite->{fqdn}' is not using Let's Encrypt.\n\n");
     }
 }
 
