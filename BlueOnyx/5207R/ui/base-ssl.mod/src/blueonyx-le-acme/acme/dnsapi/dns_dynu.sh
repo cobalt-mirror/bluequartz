@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 #Client ID
 #Dynu_ClientId="0b71cae7-a099-4f6b-8ddf-94571cdb760d"

@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 #Original Author: Philipp Grosswiler <philipp.grosswiler@swiss-design.net>
 #v4 Update Author: Aaron W. Swenson <aaron@grandmasfridge.org>

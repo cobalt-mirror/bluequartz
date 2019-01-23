@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 #Author: RaidenII
 #Created 06/28/2017

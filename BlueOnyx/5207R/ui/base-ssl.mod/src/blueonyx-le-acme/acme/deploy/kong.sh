@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 # If certificate already exist it will update only cert and key not touching other parameter
 # If certificate  doesn't exist it will only upload cert and key and not set other parameter
 # Note that we deploy full chain

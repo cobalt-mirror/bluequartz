@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 #Created by RaidenII, to use DuckDNS's API to add/remove text records
 #06/27/2017

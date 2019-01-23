@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 Zilore_API="https://api.zilore.com/dns/v1"
 # Zilore_Key="YOUR-ZILORE-API-KEY"

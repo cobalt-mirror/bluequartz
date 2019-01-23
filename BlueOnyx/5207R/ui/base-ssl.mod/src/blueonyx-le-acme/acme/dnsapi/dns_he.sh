@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 ########################################################################
 # Hurricane Electric hook script for acme.sh

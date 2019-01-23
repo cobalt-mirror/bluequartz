@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 # Gandi LiveDNS v5 API
 # http://doc.livedns.gandi.net/

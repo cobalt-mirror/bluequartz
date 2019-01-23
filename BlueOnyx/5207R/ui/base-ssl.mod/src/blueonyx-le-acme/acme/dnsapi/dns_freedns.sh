@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 #This file name is "dns_freedns.sh"
 #So, here must be a method dns_freedns_add()

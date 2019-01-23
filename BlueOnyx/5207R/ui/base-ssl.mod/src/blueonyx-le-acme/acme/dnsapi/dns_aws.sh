@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 #
 #AWS_ACCESS_KEY_ID="sdfsdfsdfljlbjkljlkjsdfoiwje"

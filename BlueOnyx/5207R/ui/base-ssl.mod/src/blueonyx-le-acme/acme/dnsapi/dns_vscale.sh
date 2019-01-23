@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 #This is the vscale.io api wrapper for acme.sh
 #

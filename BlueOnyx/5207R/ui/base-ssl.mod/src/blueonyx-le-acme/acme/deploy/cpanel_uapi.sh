@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 # Here is the script to deploy the cert to your cpanel using the cpanel API.
 # Uses command line uapi.  --user option is needed only if run as root.
 # Returns 0 when success.

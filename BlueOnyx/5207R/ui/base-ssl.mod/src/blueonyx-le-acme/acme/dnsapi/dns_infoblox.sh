@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 ## Infoblox API integration by Jason Keller and Elijah Tenai
 ##

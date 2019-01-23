@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 CONOHA_DNS_EP_PREFIX_REGEXP="https://dns-service\."
 

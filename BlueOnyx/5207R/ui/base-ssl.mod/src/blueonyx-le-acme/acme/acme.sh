@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 VER=2.8.0
 

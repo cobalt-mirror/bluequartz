@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 #Author: Herman Sletteng
 #Report Bugs here: https://github.com/loial/acme.sh
 #

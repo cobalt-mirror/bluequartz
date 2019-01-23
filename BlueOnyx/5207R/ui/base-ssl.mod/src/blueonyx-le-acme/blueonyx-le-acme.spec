@@ -7,7 +7,7 @@
 
 Name:           %{pkgname}
 Version:        2.8.0
-Release:        1
+Release:        2
 Packager:       Michael Stauber <mstauber@blueonyx.it>
 Vendor:         Neil Pang
 URL:            https://github.com/Neilpang/acme.sh
@@ -102,6 +102,9 @@ rm -R -f $RPM_BUILD_ROOT
 %files -f solFile.list
 
 %changelog
+
+* Wed Jan 23 2019 Michael Stauber <mstauber@blueonyx.it>
+- [2.8.0-2] EL6 uses /bin/bash and not /usr/bin/bash
 
 * Tue Jan 22 2019 Michael Stauber <mstauber@blueonyx.it>
 - [2.8.0-1] Initial build.
