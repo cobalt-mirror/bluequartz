@@ -86,13 +86,16 @@ if [ "$CTCSH" -eq "0" ];then
      echo "source /usr/sausalito/acme/acme.sh.csh" >> /root/.tcshrc
 fi
 
-CCRON=$(crontab -l|grep /usr/sausalito/acme/acme.sh|wc -l)
-if [ "$CCRON" -eq "0" ];then
-     crontab /usr/sausalito/acme/crontab.cron
-fi
+rm -f /root/crontabs.txt
+crontab -l|grep -v /usr/sausalito/acme/acme.sh > /root/crontabs.txt
+cat /usr/sausalito/acme/crontab.cron >> /root/crontabs.txt
+crontab /root/crontabs.txt
 
 %preun
 #/usr/sausalito/acme/acme.sh --uninstall
+crontab -l|grep -v /usr/sausalito/acme/acme.sh > /root/crontabs.txt
+cat /usr/sausalito/acme/crontab.cron >> /root/crontabs.txt
+crontab /root/crontabs.txt
 
 %postun
 
