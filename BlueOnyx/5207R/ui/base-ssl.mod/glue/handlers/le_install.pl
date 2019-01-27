@@ -150,7 +150,7 @@ if (($vsite->{'CLASS'} eq "Vsite") || ($vsite->{'CLASS'} eq "System")) {
 
     # Obtain SSL cert:
     $dry_run = '';
-    #$dry_run = "--staging --debug";
+    #$dry_run = "--staging";
     &debug_msg("Running: $acme_bin $dry_run --apache --issue -d $fqdn $alias_line -w /home/.acme/ --keylength 4096 --days $autoRenewDays --cert-file $cert_dir/certificate --key-file $cert_dir/key --fullchain-file $cert_dir/nginx_cert_ca_combined --ca-file $cert_dir/ca-certs --auto-upgrade 1 $email --force --debug --log /var/log/letsencrypt/letsencrypt.log\n"); 
     $result = `$acme_bin $dry_run --apache --issue -d $fqdn $alias_line -w /home/.acme/ --keylength 4096 --days $autoRenewDays --cert-file $cert_dir/certificate --key-file $cert_dir/key --fullchain-file $cert_dir/nginx_cert_ca_combined --ca-file $cert_dir/ca-certs --auto-upgrade $autoRenew $email --force --debug --log /var/log/letsencrypt/letsencrypt.log`; 
 

@@ -7,7 +7,7 @@
 
 Name:           %{pkgname}
 Version:        2.8.0
-Release:        3
+Release:        4
 Packager:       Michael Stauber <mstauber@blueonyx.it>
 Vendor:         Neil Pang
 URL:            https://github.com/Neilpang/acme.sh
@@ -105,6 +105,9 @@ rm -R -f $RPM_BUILD_ROOT
 %files -f solFile.list
 
 %changelog
+
+* Sun Jan 27 2019 Michael Stauber <mstauber@blueonyx.it>
+- [2.8.0-4] More EL6 related fixes.
 
 * Wed Jan 23 2019 Michael Stauber <mstauber@blueonyx.it>
 - [2.8.0-3] More EL6 related fixed and addition of acme_wrapper.sh

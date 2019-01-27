@@ -1961,6 +1961,7 @@ _save_conf() {
   _sdvalue="$3"
   if [ "$_s_c_f" ]; then
     _setopt "$_s_c_f" "$_sdkey" "=" "'$_sdvalue'"
+    chmod 644 "$_s_c_f"
   else
     _err "config file is empty, can not save $_sdkey=$_sdvalue"
   fi
@@ -3977,6 +3978,8 @@ $_authorizations_map"
           _on_issue_err "$_post_hook" "$vlist"
           return 1
         fi
+
+        chmod 644 "$wellknown_path/$token"
 
         if [ ! "$usingApache" ]; then
           if webroot_owner=$(_stat "$_currentRoot"); then
