@@ -52,6 +52,7 @@ information for [VENDOR]-[SERVICE].
 %attr(0755,root,root) /usr/sausalito/sbin/letsencrypt_autorenew.pl
 %attr(0755,root,root) /usr/sausalito/sbin/LE_SSL_fixer.pl
 %attr(0755,root,root) /etc/cron.daily/letsencrypt.cron
+%attr(0755,root,root) /etc/httpd/conf.d/acme_sh.conf
 
 [AUTOFILL]
 
@@ -76,6 +77,13 @@ information for [VENDOR]-[SERVICE].
 
 <begin glue>
 # glue post-install
+
+# Not nice, but we need to HUP Apache for the config change:
+killall -HUP /usr/sbin/httpd >/dev/null 2>&1 || :
+
+# But we're nice and run swatch:
+/usr/sbin/swatch >/dev/null 2>&1 || :
+
 # Rehash CCEd once YUM is done:
 if [ -d /usr/sausalito/yumcce ];then 
 	touch /usr/sausalito/yumcce/rehash
@@ -88,6 +96,18 @@ fi
 #  # Run fixer:
 #	/usr/sausalito/sbin/LE_SSL_fixer.pl
 #fi
+
+if [ ! -d /home/.acme/.well-known/ ];then
+	mkdir -p /home/.acme/.well-known/
+fi
+
+if [ ! -L /home/.acme/.well-known/acme-challenge ];then
+	ln -s /home/.acme/ /home/.acme/.well-known/acme-challenge
+fi
+
+if [ ! -d /var/log/letsencrypt/ ];then
+	mkdir -p /var/log/letsencrypt/
+fi
 
 <end glue>
 <begin ui>
@@ -135,6 +155,14 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Sun Jan 27 2019 Michael Stauber <mstauber@solarspeed.net> 1.3.2-0BX03
+- Added glue/httpd/acme_sh.conf to Alias LE API calls to /home/.acme/
+- Modified glue/handlers/le_install.pl to change acme.sh parameters.
+- We now log again into /var/log/letsencrypt/letsencrypt.log
+- Logfile dir is created if missing.
+- Directory /home/.acme/.well-known/ is created if missing.
+- Symlink /home/.acme/.well-known/acme-challenge is created if missing.
 
 * Wed Jan 23 2019 Michael Stauber <mstauber@solarspeed.net> 1.3.2-0BX02
 - Modified glue/handlers/le_install.pl to disable 'webaliasRedirects'
