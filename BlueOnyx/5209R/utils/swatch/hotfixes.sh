@@ -88,6 +88,10 @@ if [ ! -f /var/lib/dovecot/ssl-parameters.dat ]; then
     /usr/libexec/dovecot/ssl-params &>/dev/null
 fi
 
+if [ ! -f /usr/sausalito/acme/acme.sh ];then
+    yum reinstall blueonyx-le-acme >/dev/null 2>&1 || :
+fi
+
 # End:
 exit
 
