@@ -7,7 +7,7 @@
 
 Name:           %{pkgname}
 Version:        2.8.0
-Release:        1
+Release:        4
 Packager:       Michael Stauber <mstauber@blueonyx.it>
 Vendor:         Neil Pang
 URL:            https://github.com/Neilpang/acme.sh
@@ -17,8 +17,9 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-root
 BuildArch:      noarch
 Distribution:   BlueOnyx
 Source:         %{name}.tar.gz
-Requires:       socat
+#Requires:       socat
 Requires:       git
+Requires:       socat
 Requires:       redhat-rpm-config
 Obsoletes:	blueonyx-letsencrypt
 Summary:        A pure Unix shell script implementing ACME client protocol
@@ -88,7 +89,7 @@ fi
 
 rm -f /root/crontabs.txt
 crontab -l|grep -v /usr/sausalito/acme/acme.sh > /root/crontabs.txt
-cat /usr/sausalito/acme/crontab.cron >> /root/crontabs.txt 
+cat /usr/sausalito/acme/crontab.cron >> /root/crontabs.txt
 crontab /root/crontabs.txt
 
 %preun
@@ -106,5 +107,17 @@ rm -R -f $RPM_BUILD_ROOT
 
 %changelog
 
+* Sun Jan 27 2019 Michael Stauber <mstauber@blueonyx.it>
+- [2.8.0-4] More EL6 related fixes.
+
+* Wed Jan 23 2019 Michael Stauber <mstauber@blueonyx.it>
+- [2.8.0-3] More EL6 related fixed and addition of acme_wrapper.sh
+  Also fixes to acme.sh itself to chmod written files to 644.
+
+* Wed Jan 23 2019 Michael Stauber <mstauber@blueonyx.it>
+- [2.8.0-2] EL6 uses /bin/bash and not /usr/bin/bash
+- Removed socat requirement
+
 * Tue Jan 22 2019 Michael Stauber <mstauber@blueonyx.it>
 - [2.8.0-1] Initial build.
+
