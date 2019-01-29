@@ -156,6 +156,14 @@ fi
 
 <begin $CHANGELOG>
 
+* Tue Jan 29 2019 Michael Stauber <mstauber@solarspeed.net> 1.3.2-0BX06
+- Hopefulle the final round of fixes for ACME integration:
+- blueonyx-le-acme now unconditionally uses the acme_wrapper.sh in order
+  to avoid that an incorrect home directory for the ACME configs is used.
+- glue/handlers/le_install.pl now deletes the /.well-known directories
+- If cert action for Vsite is requested, we force_update PHPVsite to
+  make sure that PHP-Settings are updated before Apache is restarted.
+
 * Sun Jan 27 2019 Michael Stauber <mstauber@solarspeed.net> 1.3.2-0BX05
 - Config fix
 

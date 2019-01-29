@@ -112,10 +112,8 @@ if (($vsite->{'CLASS'} eq "Vsite") || ($vsite->{'CLASS'} eq "System")) {
         $email = ' --accountemail ' . $ssl_info->{'LEemail'};
     }
 
+    # Old location of the ./well-known directory (we now use '/home/.acme/' instead:)
     $well_known_location = $webroot . '/.well-known';
-    # Make sure acme dir gets right perms, because on EL6 this will not work well otherwise:
-    system("mkdir -p $well_known_location");
-    system("chmod 755 $well_known_location");
 
     # Get certificate directory:
     if ($vsite->{'CLASS'} eq "Vsite") {
@@ -141,31 +139,25 @@ if (($vsite->{'CLASS'} eq "Vsite") || ($vsite->{'CLASS'} eq "System")) {
         }
     }
 
-    if (-f "/usr/sausalito/acme/acme_wrapper.sh") { 
-        $acme_bin = "/usr/sausalito/acme/acme_wrapper.sh" 
-    } 
-    else { 
-        $acme_bin = "/usr/sausalito/acme/acme.sh" 
-    } 
+    if (-f "/usr/sausalito/acme/acme_wrapper.sh") {
+        $acme_bin = "/usr/sausalito/acme/acme_wrapper.sh"
+    }
+    else {
+        $acme_bin = "/usr/sausalito/acme/acme.sh"
+    }
 
     # Obtain SSL cert:
     $dry_run = '';
     #$dry_run = "--staging";
-    &debug_msg("Running: $acme_bin $dry_run --apache --issue -d $fqdn $alias_line -w /home/.acme/ --keylength 4096 --days $autoRenewDays --cert-file $cert_dir/certificate --key-file $cert_dir/key --fullchain-file $cert_dir/nginx_cert_ca_combined --ca-file $cert_dir/ca-certs --auto-upgrade 1 $email --force --debug --log /var/log/letsencrypt/letsencrypt.log\n"); 
-    $result = `$acme_bin $dry_run --apache --issue -d $fqdn $alias_line -w /home/.acme/ --keylength 4096 --days $autoRenewDays --cert-file $cert_dir/certificate --key-file $cert_dir/key --fullchain-file $cert_dir/nginx_cert_ca_combined --ca-file $cert_dir/ca-certs --auto-upgrade $autoRenew $email --force --debug --log /var/log/letsencrypt/letsencrypt.log`; 
+    &debug_msg("Running: $acme_bin $dry_run --apache --issue -d $fqdn $alias_line -w /home/.acme/ --keylength 4096 --days $autoRenewDays --cert-file $cert_dir/certificate --key-file $cert_dir/key --fullchain-file $cert_dir/nginx_cert_ca_combined --ca-file $cert_dir/ca-certs --auto-upgrade 1 $email --force --debug --log /var/log/letsencrypt/letsencrypt.log\n");
+    $result = `$acme_bin $dry_run --apache --issue -d $fqdn $alias_line -w /home/.acme/ --keylength 4096 --days $autoRenewDays --cert-file $cert_dir/certificate --key-file $cert_dir/key --fullchain-file $cert_dir/nginx_cert_ca_combined --ca-file $cert_dir/ca-certs --auto-upgrade $autoRenew $email --force --debug --log /var/log/letsencrypt/letsencrypt.log`;
 
     &debug_msg("Result: $result\n");
-
-    if ($DEBUG) {
-        open(my $fh, '>', '/tmp/acme_report.txt');
-        print $fh "$result\n";
-        close $fh;
-    }
-
     $cce->set($vsite->{'OID'}, 'SSL', { 'LEclientRet' => $result }); 
 
     if ($result =~ /NXDOMAIN/) {
-        &debug_msg("WARNING: Error during SSL cert request: NXDOMAIN!\n");
+        &clean_well_known;
+        &debug_msg("WARNING: Error during SSL cert request!\n");
         $cce->bye('FAIL', "[[base-ssl.LE_CA_Request_Error,msg=\"$result\"]]"); 
         exit(1); 
     }
@@ -174,7 +166,8 @@ if (($vsite->{'CLASS'} eq "Vsite") || ($vsite->{'CLASS'} eq "System")) {
         &debug_msg("Certificate request successful!\n");
     }
     else {
-        &debug_msg("WARNING: Error during SSL cert request: No 'Cert success.' messsage!\n");
+        &clean_well_known;
+        &debug_msg("WARNING: Error during SSL cert request!\n");
         $cce->bye('FAIL', "[[base-ssl.LE_CA_Request_Error,msg=\"$result\"]]"); 
         exit(1);
     }
@@ -206,15 +199,20 @@ if (($vsite->{'CLASS'} eq "Vsite") || ($vsite->{'CLASS'} eq "System")) {
         else {
             # Turn off the 'uses_letsencrypt' flag and fail:
             $cce->set($vsite->{'OID'}, 'SSL', { 'uses_letsencrypt' => $uses_letsencrypt });
+            &clean_well_known;
             &debug_msg("Did not get a valid certificate back!\n");
             $cce->bye('FAIL', "[[base-ssl.doNotHaveValidLECert]]");
             exit(1);
         }
 
         if ($vsite->{'CLASS'} eq "Vsite") {
+
+            # Update PHP settings:
+            $cce->set($vsite->{'OID'}, 'PHPVsite', { 'force_update' => time() });
+
             # Reload httpd:
-            &debug_msg("Reloading Apache\n");
-            service_run_init('httpd', 'reload');
+            #&debug_msg("Reloading Apache\n");
+            #service_run_init('httpd', 'reload');
 
             # Find and get System Object:
             ($sysoid) = $cce->find('System');
@@ -232,6 +230,9 @@ if (($vsite->{'CLASS'} eq "Vsite") || ($vsite->{'CLASS'} eq "System")) {
     }
 }
 
+# Cleanup:
+&clean_well_known;
+
 $cce->bye('SUCCESS');
 exit(0);
 
@@ -247,6 +248,22 @@ sub debug_msg {
         openlog($0,'','user');
         syslog('info', "$ARGV[0]: $msg");
         closelog;
+    }
+}
+
+sub clean_well_known {
+    &debug_msg("Request logged to delete $well_known_location\n");
+    if (-d "$well_known_location") {
+        if (($well_known_location ne '') || ($well_known_location ne '/')) {
+            &debug_msg("Deleting $well_known_location\n");
+            system("rm -Rf $well_known_location");
+        }
+        else {
+            &debug_msg("Not deleting $well_known_location!\n");
+        }
+    }
+    else {
+        &debug_msg("Directory $well_known_location no present. Good.\n");
     }
 }
 
