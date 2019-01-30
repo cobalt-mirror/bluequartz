@@ -17,9 +17,8 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-root
 BuildArch:      noarch
 Distribution:   BlueOnyx
 Source:         %{name}.tar.gz
-#Requires:       socat
-Requires:       git
 Requires:       socat
+Requires:       git
 Requires:       redhat-rpm-config
 Obsoletes:	blueonyx-letsencrypt
 Summary:        A pure Unix shell script implementing ACME client protocol
