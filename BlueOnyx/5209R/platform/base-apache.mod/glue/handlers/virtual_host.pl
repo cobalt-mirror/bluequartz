@@ -198,15 +198,6 @@ if (!-e $include_file) {
     Sauce::Util::chmodfile(0644, $include_file);
 }
 
-### @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@q
-if (! -f $pool_file) {
-    &debug_msg("EXIT WARN: PHP-FPM pool config $pool_file NOT PRESENT!!! \n");
-}
-else {
-    &debug_msg("EXIT INFO: PHP-FPM pool config $pool_file IS PRESENT!!! \n");
-}
-### @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@q
-
 $cce->bye('SUCCESS');
 exit(0);
 
@@ -1535,15 +1526,6 @@ sub handle_fpm_pools {
             $cce->bye('FAIL', '[[base-apache.cantEditVhost]]');
             exit(1);
         }
-
-        ### @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@q
-        if (! -f $pool_file) {
-            &debug_msg("WARN: PHP-FPM pool config $pool_file NOT PRESENT!!! \n");
-        }
-        else {
-            &debug_msg("INFO: PHP-FPM pool config $pool_file IS PRESENT!!! \n");
-        }
-        ### @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@q
 
         system("/usr/bin/chmod 644 $pool_file");
 
