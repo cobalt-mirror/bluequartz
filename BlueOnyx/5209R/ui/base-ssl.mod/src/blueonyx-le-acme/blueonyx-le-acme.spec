@@ -17,7 +17,7 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-root
 BuildArch:      noarch
 Distribution:   BlueOnyx
 Source:         %{name}.tar.gz
-Requires:       socat
+#Requires:       socat
 Requires:       git
 Requires:       redhat-rpm-config
 Obsoletes:	blueonyx-letsencrypt
