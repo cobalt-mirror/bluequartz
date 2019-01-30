@@ -156,6 +156,24 @@ fi
 
 <begin $CHANGELOG>
 
+* Tue Jan 29 2019 Michael Stauber <mstauber@solarspeed.net> 1.3.2-0BX07
+- And another fix. This time not ACME related, but dealing with PHP-FPM.
+- If handler le_install.pl fails to create/renew a cert, then by that
+  time the Apache handler virtual_host.pl has already made irrevocable
+  changes when the CCE rollback happens. That rollback does NOT restore 
+  the PHP-FPM siteX file, so PHP-FPM for that Vsite stops working. 
+- Redid the whole error-handling between sbin/letsencrypt_autorenew.pl,
+  handler le_install.pl and the GUI page controller letsencryptCert.php
+- glue/handlers/le_install.pl now does not exit(1). Instead it writes
+  a JSON encoded Hash containing 'Status' (0|1), 'Error' (i18n) and 
+  'ErrMsg' (logfile-snippet) into CODB as 'LEclientRet'-entry.
+- ui/chorizo/web/controllers/letsencryptCert.php now doesn't only
+  trigger an Error-Insert on CI->cceClient->errors(), but also when
+  the Json-Encoded hash in 'LEclientRet' has 'Status' set to '1'. In
+  that case it localizes the i18n string from 'Error' and inserts the
+  logfile snippet from 'ErrMsg' to give us a full, detailed and more
+  or less clean and useful error report about the failure.
+
 * Tue Jan 29 2019 Michael Stauber <mstauber@solarspeed.net> 1.3.2-0BX06
 - Hopefulle the final round of fixes for ACME integration:
 - blueonyx-le-acme now unconditionally uses the acme_wrapper.sh in order
