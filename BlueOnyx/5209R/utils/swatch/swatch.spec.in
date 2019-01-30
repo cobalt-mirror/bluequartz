@@ -1,7 +1,7 @@
 Summary: System Watcher
 Name: swatch
 Version: XX_VER_XX
-Release: 0BX51%{?dist}
+Release: 0BX52%{?dist}
 Vendor: Project BlueOnyx
 License: BSD
 Group: System Environment/BlueOnyx
@@ -94,6 +94,9 @@ if [ -f /usr/bin/systemctl ]; then
 fi
 
 %changelog
+
+* Tue Jan 29 2019 Michael Stauber <mstauber@solarspeed.net> 4.0.0-0BX52
+- Small fix to hotfixes.sh
 
 * Tue Jan 29 2019 Michael Stauber <mstauber@solarspeed.net> 4.0.0-0BX51
 - Added ACME provisions to hotfixes.sh to fix RPM uninstall/upgrade issue

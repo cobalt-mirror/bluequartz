@@ -89,7 +89,10 @@ if [ ! -f /var/lib/dovecot/ssl-parameters.dat ]; then
 fi
 
 if [ ! -f /usr/sausalito/acme/acme.sh ];then
-    yum reinstall blueonyx-le-acme >/dev/null 2>&1 || :
+    YUMGOING=$(ps axf|grep /usr/bin/yum|grep -v grep|wc -l)
+    if [ "$YUMGOING" -eq "0" ];then
+        yum reinstall -y blueonyx-le-acme >/dev/null 2>&1 || :
+    fi
 fi
 
 # End:
