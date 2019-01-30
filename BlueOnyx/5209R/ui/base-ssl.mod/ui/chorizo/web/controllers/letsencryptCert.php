@@ -214,8 +214,7 @@ class LetsencryptCert extends MX_Controller {
                         }
                     }
                     else {
-                        // Should not happen. We didn't get a proper result back. So we assume a big barf happened.
-                        $errors[] = ErrorMessage($i18n->get($LEclientRet['Error']));
+                        // We didn't get a JSON back, so all ought to be good. If not: We have no error to show anyway.
                     }
 
                     if ((count($errors) == "0")) {
