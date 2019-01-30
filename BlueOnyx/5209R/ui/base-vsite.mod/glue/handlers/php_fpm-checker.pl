@@ -37,7 +37,6 @@ use FileHandle;
 use File::Copy;
 
 my $cce = new CCE;
-my $conf = '/var/lib/cobalt';
 
 if ($whatami eq "handler") {
     $cce->connectfd();
@@ -120,22 +119,27 @@ if ($whatami eq "handler") {
             $xcheck = `ls -k1 $xcheck_file|wc -l`;
             chomp($xcheck);
             if ($xcheck eq '0') {
-                &debug_msg("Stopping PHP-FPM ($known_php_services{$phpVer}) and turning it off as no Vsite is using it.\n");
-                if (($ActiveMonitor->{enabled} ne "0") && ($ServiceStatus eq "1")) {
-                    ($ok) = $cce->set($AMOID[0], "$am_NameSpace", { 'enabled' => '0' });
-                    &debug_msg("Telling Sauce::Service to turn $known_php_services{$phpVer} off and to stop it.\n");
+                $new_ServiceStatus = '0';
+                ($ok, $AMNS) = $cce->get($AMOID[0], "$am_NameSpace");
+                &debug_msg("$am_NameSpace enabled = $AMNS->{'enabled'}\n");
+                if ($AMNS->{'enabled'} ne $new_ServiceStatus) {
+                    ($ok) = $cce->update($AMOID[0], "$am_NameSpace", { 'enabled' => $new_ServiceStatus });
+                    &debug_msg("Stopping PHP-FPM ($known_php_services{$phpVer}) and turning it off as no Vsite is using it.\n");
                     service_set_init($known_php_services{$phpVer}, 'off');
                     service_run_init($known_php_services{$phpVer}, 'stop');
                 }
             }
             else {
-                &debug_msg("Restarting PHP-FPM ($known_php_services{$phpVer}) and making sure it is enabled as Vsites are using it.\n");
-                if (($ActiveMonitor->{enabled} ne "0") && ($ServiceStatus eq "1")) {
-                    ($ok) = $cce->set($AMOID[0], "$am_NameSpace", { 'enabled' => '1' });
-                    &debug_msg("Telling Sauce::Service to turn $known_php_services{$phpVer} on and to restart it.\n");
+                $new_ServiceStatus = '1';
+                ($ok, $AMNS) = $cce->get($AMOID[0], "$am_NameSpace");
+                &debug_msg("$am_NameSpace enabled = $AMNS->{'enabled'}\n");
+                if ($AMNS->{'enabled'} ne $new_ServiceStatus) {
+                    &debug_msg("Restarting PHP-FPM ($known_php_services{$phpVer}) and making sure it is enabled as Vsites are using it.\n");
+                    ($ok) = $cce->update($AMOID[0], "$am_NameSpace", { 'enabled' => $new_ServiceStatus });
                     service_set_init($known_php_services{$phpVer}, 'on');
                     service_run_init($known_php_services{$phpVer}, 'restart');
                 }
+
                 # Note to self:
                 # =============
                 # condreload:   Not reloading if service is stopped
@@ -147,9 +151,12 @@ if ($whatami eq "handler") {
         }
         else {
             &debug_msg("Service Status for: " . $known_php_services{$phpVer} . " is: $ServiceStatus\n");
-            if (($ActiveMonitor->{enabled} ne "0") && ($ServiceStatus eq "1")) {
+            $new_ServiceStatus = '0';
+            ($ok, $AMNS) = $cce->get($AMOID[0], "$am_NameSpace");
+            &debug_msg("$am_NameSpace enabled = $AMNS->{'enabled'}\n");
+            if ($AMNS->{'enabled'} ne $new_ServiceStatus) {
                 &debug_msg("Stopping PHP-FPM ($known_php_services{$phpVer}) and turning it off as this PKG is not installed!\n");
-                ($ok) = $cce->set($AMOID[0], "$am_NameSpace", { 'enabled' => '0' });
+                ($ok) = $cce->update($AMOID[0], "$am_NameSpace", { 'enabled' => $new_ServiceStatus });
                 service_set_init($known_php_services{$phpVer}, 'off');
                 service_run_init($known_php_services{$phpVer}, 'stop');
             }
@@ -202,8 +209,8 @@ $cce->bye('SUCCESS');
 exit(0);
 
 # 
-# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015-2019 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015-2019 Team BlueOnyx, BLUEONYX.IT
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 
