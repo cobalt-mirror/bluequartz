@@ -17,7 +17,7 @@ use Sauce::Service;
 use Base::Vsite qw(vsite_update_site_admin_caps);
 use Base::HomeDir qw(homedir_get_group_dir);
 use SSL qw(ssl_get_cert_info ssl_create_directory);
-
+use JSON;
 
 my $cce = new CCE('Domain' => 'base-ssl');
 $cce->connectfd();
@@ -48,7 +48,7 @@ else {
 if (($vsite->{'CLASS'} eq "Vsite") || ($vsite->{'CLASS'} eq "System")) {
 
     if ($vsite->{'CLASS'} eq "Vsite") {
-        $fqdn = $vsite->{'fqdn'}
+        $fqdn = $vsite->{'fqdn'};
     }
     elsif ($vsite->{'CLASS'} eq "System") {
         $fqdn = $vsite->{'hostname'} . '.' . $vsite->{'domainname'};
@@ -150,16 +150,16 @@ if (($vsite->{'CLASS'} eq "Vsite") || ($vsite->{'CLASS'} eq "System")) {
     $dry_run = '';
     #$dry_run = "--staging";
     &debug_msg("Running: $acme_bin $dry_run --apache --issue -d $fqdn $alias_line -w /home/.acme/ --keylength 4096 --days $autoRenewDays --cert-file $cert_dir/certificate --key-file $cert_dir/key --fullchain-file $cert_dir/nginx_cert_ca_combined --ca-file $cert_dir/ca-certs --auto-upgrade 1 $email --force --debug --log /var/log/letsencrypt/letsencrypt.log\n");
-    $result = `$acme_bin $dry_run --apache --issue -d $fqdn $alias_line -w /home/.acme/ --keylength 4096 --days $autoRenewDays --cert-file $cert_dir/certificate --key-file $cert_dir/key --fullchain-file $cert_dir/nginx_cert_ca_combined --ca-file $cert_dir/ca-certs --auto-upgrade $autoRenew $email --force --debug --log /var/log/letsencrypt/letsencrypt.log`;
+    $result = `$acme_bin $dry_run --apache --issue -d $fqdn $alias_line -w /home/.acme/ --keylength 4096 --days $autoRenewDays --cert-file $cert_dir/certificate --key-file $cert_dir/key --fullchain-file $cert_dir/nginx_cert_ca_combined --ca-file $cert_dir/ca-certs --auto-upgrade $autoRenew $email --force --debug --log /var/log/letsencrypt/letsencrypt.log 2>&1`;
 
-    &debug_msg("Result: $result\n");
-    $cce->set($vsite->{'OID'}, 'SSL', { 'LEclientRet' => $result }); 
+    $CertFail = '0';
 
     if ($result =~ /NXDOMAIN/) {
         &clean_well_known;
+        &deal_with_services;
         &debug_msg("WARNING: Error during SSL cert request!\n");
-        $cce->bye('FAIL', "[[base-ssl.LE_CA_Request_Error,msg=\"$result\"]]"); 
-        exit(1); 
+        $CertFail = '1';
+        $FailMsg = "[[base-ssl.LE_CA_Request_Error]]";
     }
 
     if ($result =~ /Cert success./) {
@@ -167,9 +167,10 @@ if (($vsite->{'CLASS'} eq "Vsite") || ($vsite->{'CLASS'} eq "System")) {
     }
     else {
         &clean_well_known;
+        &deal_with_services;
         &debug_msg("WARNING: Error during SSL cert request!\n");
-        $cce->bye('FAIL', "[[base-ssl.LE_CA_Request_Error,msg=\"$result\"]]"); 
-        exit(1);
+        $CertFail = '1';
+        $FailMsg = "[[base-ssl.LE_CA_Request_Error]]";
     }
 
     &debug_msg("Checking cert dir: $cert_dir\n");
@@ -200,37 +201,38 @@ if (($vsite->{'CLASS'} eq "Vsite") || ($vsite->{'CLASS'} eq "System")) {
             # Turn off the 'uses_letsencrypt' flag and fail:
             $cce->set($vsite->{'OID'}, 'SSL', { 'uses_letsencrypt' => $uses_letsencrypt });
             &clean_well_known;
+            &deal_with_services;
             &debug_msg("Did not get a valid certificate back!\n");
-            $cce->bye('FAIL', "[[base-ssl.doNotHaveValidLECert]]");
-            exit(1);
-        }
-
-        if ($vsite->{'CLASS'} eq "Vsite") {
-
-            # Update PHP settings:
-            $cce->set($vsite->{'OID'}, 'PHPVsite', { 'force_update' => time() });
-
-            # Reload httpd:
-            #&debug_msg("Reloading Apache\n");
-            #service_run_init('httpd', 'reload');
-
-            # Find and get System Object:
-            ($sysoid) = $cce->find('System');
-            ($ok, $System_Nginx) = $cce->get($sysoid, 'Nginx');
-            if ($System_Nginx->{enabled} eq "1") {
-                &debug_msg("Reloading Nginx\n");
-                service_run_init('nginx', 'reload');
-            }
-        }
-        else {
-            # Reload admserv:
-            &debug_msg("Reloading Admserv\n");
-            service_run_init('admserv', 'reload');
+            $CertFail = '1';
+            $FailMsg = "[[base-ssl.doNotHaveValidLECert]]";
         }
     }
+
+    ### Start: To CCE ####
+    $Z = '0';
+    $cleanedResult = '';
+    @ResArray = split("\n",$result);
+    foreach my $x (@ResArray) {
+        if (($x =~ /^(.*)_(.*)$/) || ($x =~ /(.*)estore(.*)$/) || ($x =~ /^(.*)\] httpd(.*)$/) || ($x =~ /(.*)httpd\.conf(.*)$/)) {
+            next;
+        }
+        if (($Z eq '0') && ($x =~ /^\[(.*)\](.*)$/)) {
+            $cleanedResult .= $x . "\n";
+        }
+        if ($x =~ /(.*)Please check log file for more details(.*)$/) {
+            $Z = '1';
+        }
+    }
+    %TheResult = ('Status' => $CertFail, 'Error' => $FailMsg, 'ErrMsg' => $cleanedResult);
+    $json_result = encode_json(\%TheResult);
+
+    $cce->set($vsite->{'OID'}, 'SSL', { 'LEclientRet' => $json_result }); 
+
+    ### End: To CCE ####
 }
 
 # Cleanup:
+&deal_with_services;
 &clean_well_known;
 
 $cce->bye('SUCCESS');
@@ -248,6 +250,14 @@ sub debug_msg {
         openlog($0,'','user');
         syslog('info', "$ARGV[0]: $msg");
         closelog;
+    }
+}
+
+sub deal_with_services {
+    if ($vsite->{'CLASS'} eq "System") {
+        # Reload admserv:
+        &debug_msg("Reloading Admserv\n");
+        service_run_init('admserv', 'reload');
     }
 }
 

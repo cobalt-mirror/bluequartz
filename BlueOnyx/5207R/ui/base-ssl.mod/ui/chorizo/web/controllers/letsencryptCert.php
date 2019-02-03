@@ -171,6 +171,7 @@ class LetsencryptCert extends MX_Controller {
                             'LEemail' => strtolower($attributes['LEemail']),
                             'autoRenew' => $attributes['autoRenew'],
                             'autoRenewDays' => $attributes['autoRenewDays'],
+                            'LEclientRet' => ''
                             );
 
                 // Set 'LEwantedAliases' if we have it:
@@ -189,23 +190,52 @@ class LetsencryptCert extends MX_Controller {
 
                 $ok = $CI->cceClient->set($vsite, 'SSL', $settings);
                 if ($ok) {
-                    // Redirect the web browser
-                    if ($attributes['type'] == 'csr') {
-                        //$url = "/ssl/siteSSL?group=" . $attributes['group'] . "&export=csr";
-                        $url = "/ssl/siteSSL?group=" . $attributes['group'] . "&action=export&type=csr";
+
+                    // Poll the freshly set Object/Namespace and check 'LEclientRet' for errors:
+                    $CODBDATA = $CI->cceClient->get($vsite, "SSL");
+                    $LEclientRet = (array) json_decode($CODBDATA['LEclientRet'], true);
+
+                    if ((isset($LEclientRet['Error'])) && (isset($LEclientRet['Status'])) && (isset($LEclientRet['ErrMsg']))) {
+                        if ($LEclientRet['Status'] == '1') {
+                            // Encountered an error during LE transaction:
+                            $errorMsgFromFile = $LEclientRet['ErrMsg'];
+                            $errorMsgFromFile = htmlspecialchars($errorMsgFromFile);
+                            $errorMsgFromFile = nl2br($errorMsgFromFile);
+                            if (isset($errorMsgFromFile)) {
+                                if (preg_match('/LE_CA_Request_Error/', $LEclientRet['Error'])) {
+                                    $errors[] = ErrorMessage($i18n->get("[[base-ssl.LE_CA_Request_Error,msg=\"$errorMsgFromFile\"]]"));
+                                }
+                                if (preg_match('/doNotHaveValidLECert/', $LEclientRet['Error'])) {
+                                    $errors[] = ErrorMessage($i18n->get("[[base-ssl.LE_CA_Request_Error,msg=\"$errorMsgFromFile\"]]"));
+                                }
+                            }
+                            else {
+                                $errors[] = ErrorMessage($i18n->get("[[base-ssl.LE_CA_Request_Error,msg=\"Unknown Error: Please check /var/log/letsencrypt/letsencrypt.log\"]]"));
+                            }
+                        }
                     }
                     else {
-                        if ($attributes['group'] == '') {
-                            $url = '/ssl/siteSSL';
+                        // We didn't get a JSON back, so all ought to be good. If not: We have no error to show anyway.
+                    }
+
+                    if ((count($errors) == "0")) {
+                        // Redirect the web browser
+                        if ($attributes['type'] == 'csr') {
+                            $url = "/ssl/siteSSL?group=" . $attributes['group'] . "&action=export&type=csr";
                         }
                         else {
-                            $url = '/ssl/siteSSL?group=' . $attributes['group'];
+                            if ($attributes['group'] == '') {
+                                $url = '/ssl/siteSSL';
+                            }
+                            else {
+                                $url = '/ssl/siteSSL?group=' . $attributes['group'];
+                            }
                         }
+                        $CI->cceClient->bye();
+                        $CI->serverScriptHelper->destructor();
+                        header("location: $url");
+                        exit;
                     }
-                    $CI->cceClient->bye();
-                    $CI->serverScriptHelper->destructor();
-                    header("location: $url");
-                    exit;           
                 }
             }
 
@@ -448,8 +478,8 @@ class LetsencryptCert extends MX_Controller {
     }       
 }
 /*
-Copyright (c) 2017 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2017 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2017-2019 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2017-2019 Team BlueOnyx, BLUEONYX.IT
 All Rights Reserved.
 
 1. Redistributions of source code must retain the above copyright 
