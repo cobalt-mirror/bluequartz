@@ -205,7 +205,7 @@ class LetsencryptCert extends MX_Controller {
                                     $errors[] = ErrorMessage($i18n->get("[[base-ssl.LE_CA_Request_Error,msg=\"$errorMsgFromFile\"]]"));
                                 }
                                 if (preg_match('/doNotHaveValidLECert/', $LEclientRet['Error'])) {
-                                    $errors[] = ErrorMessage($i18n->get("[[base-ssl.doNotHaveValidLECert,msg=\"$errorMsgFromFile\"]]"));
+                                    $errors[] = ErrorMessage($i18n->get("[[base-ssl.LE_CA_Request_Error,msg=\"$errorMsgFromFile\"]]"));
                                 }
                             }
                             else {
