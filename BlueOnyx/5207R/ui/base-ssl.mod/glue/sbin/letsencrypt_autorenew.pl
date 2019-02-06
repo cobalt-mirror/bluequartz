@@ -53,7 +53,7 @@ my $host = hostname();
 #
 
 %options = ();
-getopts("ahn:", \%options);
+getopts("ah:", \%options);
 
 # Handle display of help text:
 if ($options{h}) {
@@ -87,21 +87,6 @@ while (<CONF>) {
 }
 close(CONF);
 
-# Only do Vsites specified on CLI:
-$do_all = "1";
-@do_Vsites = ();
-if ($options{n}) {
-    $do_all = "0";
-    if ($options{n} =~ /,/) {
-        @do_Vsites = split(',', $options{n});
-        @do_Vsites = uniq(@do_Vsites);
-    }
-    else {
-        push @do_Vsites, $options{n};
-        @do_Vsites = uniq(@do_Vsites);
-    }
-}
-
 # Show header:
 &header;
 
@@ -116,7 +101,7 @@ if ($do_admserv eq "1") {
     ($ok, $System_SSL) = $cce->get($sysoid, 'SSL');
     if (($System_SSL->{uses_letsencrypt} eq "1") && ($System_SSL->{ACME} eq '0')) {
         &debug_msg("Renewing SSL certificate for 'AdmServ'\n\n");
-        $cce->set($sysoid, 'SSL', { 'uses_letsencrypt' => $uses_letsencrypt, 'performLEinstall' => time() });
+        $cce->set($sysoid, 'SSL', { 'uses_letsencrypt' => $uses_letsencrypt, 'LEclientRet' => '', 'performLEinstall' => time() });
     }
     elsif (($System_SSL->{uses_letsencrypt} eq "1") && ($System_SSL->{ACME} eq '1')) {
         &debug_msg("LE SSL certificate for 'AdmServ' is already managed by ACME.\n\n");
@@ -140,7 +125,7 @@ foreach  $vsiteOID (@vhosts) {
 
     if (($vsite_SSL->{uses_letsencrypt} eq "1") && ($vsite_SSL->{ACME} eq '0')) {
         &debug_msg("Renewing SSL certificate for '$vsite->{fqdn}'\n\n");
-        $cce->set($vsite->{'OID'}, 'SSL', { 'uses_letsencrypt' => $uses_letsencrypt, 'performLEinstall' => time() });
+        $cce->set($vsite->{'OID'}, 'SSL', { 'uses_letsencrypt' => $uses_letsencrypt, 'LEclientRet' => '', 'performLEinstall' => time() });
     }
     elsif (($vsite_SSL->{uses_letsencrypt} eq "1") && ($vsite_SSL->{ACME} eq '1')) {
         &debug_msg("LE SSL certificate for '$vsite->{fqdn}' is already managed by ACME.\n\n");
@@ -188,7 +173,7 @@ if ($do_admserv eq "1") {
                 # Check if cert is already expired or expires within the period during which we do renewals:
                 if (($ed->is_expired) || ($ed->is_expired($ex_d))) {
                     &debug_msg("Renewing SSL certificate for 'AdmServ' (expiration date: $expire_date)\n\n");
-                    $cce->set($sysoid, 'SSL', { 'uses_letsencrypt' => $uses_letsencrypt, 'performLEinstall' => time() });
+                    $cce->set($sysoid, 'SSL', { 'uses_letsencrypt' => $uses_letsencrypt, 'LEclientRet' => '', 'performLEinstall' => time() });
 
                     # Check if the new cert now has a good expiration date:
                     $ed = Net::SSL::ExpireDate->new( file  => '/etc/admserv/certs/certificate' );
@@ -270,7 +255,7 @@ foreach  $vsiteOID (@vhosts) {
                 # Check if cert is already expired or expires within the period during which we do renewals:
                 if (($ed->is_expired) || ($ed->is_expired($ex_d))) {
                     &debug_msg("Renewing SSL certificate for '$vsite->{fqdn}' (expiration date: $expire_date)\n\n");
-                    $cce->set($vsite->{'OID'}, 'SSL', { 'uses_letsencrypt' => $uses_letsencrypt, 'performLEinstall' => time() });
+                    $cce->set($vsite->{'OID'}, 'SSL', { 'uses_letsencrypt' => $uses_letsencrypt,  'LEclientRet' => '', 'performLEinstall' => time() });
 
                     # Check if the new cert now has a good expiration date:
                     $ed = Net::SSL::ExpireDate->new( file  => $cert_dir . '/certificate' );
@@ -393,7 +378,6 @@ sub help {
     }
     print "usage:   letsencrypt_autorenew.pl [OPTION]\n";
     print "         -a renew AdmServ SSL as well\n";
-    print "         -n only renew SSL only these sites ie -n \"ftp.foo.com,www.bar.com\"\n";
     print "         -h help, this help text\n\n";
     $cce->bye("SUCCESS");
     exit(0);
