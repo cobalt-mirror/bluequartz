@@ -53,7 +53,7 @@ my $host = hostname();
 #
 
 %options = ();
-getopts("ahn:", \%options);
+getopts("ah:", \%options);
 
 # Handle display of help text:
 if ($options{h}) {
@@ -86,21 +86,6 @@ while (<CONF>) {
   }
 }
 close(CONF);
-
-# Only do Vsites specified on CLI:
-$do_all = "1";
-@do_Vsites = ();
-if ($options{n}) {
-    $do_all = "0";
-    if ($options{n} =~ /,/) {
-        @do_Vsites = split(',', $options{n});
-        @do_Vsites = uniq(@do_Vsites);
-    }
-    else {
-        push @do_Vsites, $options{n};
-        @do_Vsites = uniq(@do_Vsites);
-    }
-}
 
 # Show header:
 &header;
@@ -393,7 +378,6 @@ sub help {
     }
     print "usage:   letsencrypt_autorenew.pl [OPTION]\n";
     print "         -a renew AdmServ SSL as well\n";
-    print "         -n only renew SSL only these sites ie -n \"ftp.foo.com,www.bar.com\"\n";
     print "         -h help, this help text\n\n";
     $cce->bye("SUCCESS");
     exit(0);
