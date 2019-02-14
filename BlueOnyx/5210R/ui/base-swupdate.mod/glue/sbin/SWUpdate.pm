@@ -318,7 +318,7 @@ sub swupdate_verifyuntar
     # untar the file now 
     `mkdir -p $destdir`;
     `chmod -R 700 $destdir`;
-    `$tar_cmd xf $local -C $destdir 2>/dev/null`;
+    `$tar_cmd xfo $local -C $destdir 2>/dev/null`;
     $err = $?;
     unlink($local);
     if ($err) {
@@ -447,19 +447,19 @@ sub swupdate_normal_download
     while (<WGET>) {
         if (/Host\s+not\s+found/i) {
             close(WGET);
-            &debug_msg("WGET download of PKG failed. Reasin given: 'hostnotfound'. \n");
+            &debug_msg("WGET download of PKG failed. Reason given: 'hostnotfound'. \n");
             return (-1, 'down', 'hostnotfound', \%error);
         }
             
         if (/404\s+Not\s+Found/i) {
             close(WGET);
-            &debug_msg("WGET download of PKG failed. Reasin given: 'filenotfound'. \n");
+            &debug_msg("WGET download of PKG failed. Reason given: 'filenotfound'. \n");
             return (-1, 'down', 'filenotfound', \%error);
         }
           
         if (/refused/i) {
             close(WGET);
-            &debug_msg("WGET download of PKG failed. Reasin given: 'refusedconnect'. \n");
+            &debug_msg("WGET download of PKG failed. Reason given: 'refusedconnect'. \n");
             return (-1, 'down', 'refusedconnect', \%error);
         }
         
@@ -473,7 +473,7 @@ sub swupdate_normal_download
 
     # we didn't get a file. error out.
     unless (-f $file and -s $file) {
-        &debug_msg("WGET download of PKG failed. Reasin given: 'queryerror'. We did not get a file.\n");
+        &debug_msg("WGET download of PKG failed. Reason given: 'queryerror'. We did not get a file.\n");
         return (-1, 'down', 'queryerror', \%error);
     }
 
@@ -484,12 +484,12 @@ sub swupdate_normal_download
             while (<FILE>) {
                 if (/No packages available/i) {
                     close(FILE);
-                    &debug_msg("WGET download of PKG failed. Reasin given: 'nopkgavail'.\n");
+                    &debug_msg("WGET download of PKG failed. Reason given: 'nopkgavail'.\n");
                     return (-1, 'up', 'nopkgavail', \%error);
                 }
                 elsif (/^ERROR/) {
                     close(FILE);
-                    &debug_msg("WGET download of PKG failed. Reasin given: 'queryerror'.\n");
+                    &debug_msg("WGET download of PKG failed. Reason given: 'queryerror'.\n");
                     return (-1, 'down', 'queryerror', \%error);
                 }
             }
