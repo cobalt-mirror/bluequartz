@@ -201,6 +201,9 @@ if (!-e $include_file) {
 $cce->bye('SUCCESS');
 exit(0);
 
+#
+### Subs:
+#
 
 sub edit_vhost
 {
@@ -262,7 +265,7 @@ sub edit_vhost
     ## PHP Application related extra-settings:
     #
 
-    my $platform = $PHP_server->{'PHP_version'};
+    $platform = $PHP_server->{'PHP_version'};
     if ($platform >= "5.3") {
         # More modern PHP found:
         $legacy_php = "0";
@@ -1131,7 +1134,6 @@ END
             system("/usr/bin/chmod 644 $nginx_vhosts_file");
         }
     }
-
     return 1;
 }
 
@@ -1165,7 +1167,7 @@ sub in_array {
 sub thirdparty_check {
     # Check for presence of third party config file:
     $php_ini = $known_php_inis{$seen_php_versions{$platform}};
-    &debug_msg("Using php.ini $php_ini " . " for platform " . $seen_php_versions{$platform} . "\n");
+    &debug_msg("Using php.ini $php_ini " . " for platform " . $seen_php_versions{$platform} . " - Platform: $platform" . "\n");
 }
 
 sub open_basedir_handling {
@@ -1395,7 +1397,7 @@ sub handle_fpm_pools {
     if ($vsite_php->{'fpm_enabled'} == "0") {
         &debug_msg("Deleting PHP-FPM pool config $pool_file_wildcard$pool_group.conf through php_vsite_handler.pl \n");
         # Delete Pool file from all pools:
-        system("/bin/rm -f $pool_file_wildcard$pool_group.conf");
+        #system("/bin/rm -f $pool_file_wildcard$pool_group.conf");
     }
     else {
 
@@ -1550,8 +1552,8 @@ sub nginx_printer {
 }
 
 # 
-# Copyright (c) 2018 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2018 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2018-2019 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2018-2019 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 
