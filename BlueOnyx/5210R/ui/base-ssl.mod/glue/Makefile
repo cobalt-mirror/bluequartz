@@ -20,7 +20,7 @@ INSTALL = /usr/bin/install -m 0755 -o root
 SBIN_SCRIPTS = ssl_get.pl ssl_import.pl letsencrypt_autorenew.pl LE_SSL_fixer.pl
 CRON_DAILY = letsencrypt.cron
 
-install: install_sbin install_crondaily
+install: install_sbin install_crondaily install_httpdconf
 
 install_etc: 
 	tar -C etc . --exclude .svn -cf - | tar -C /etc -xf -
@@ -43,3 +43,8 @@ install_crondaily:
 # used during development: installs symlinks instead of code.
 install_links:
 	make install INSTALL="ln -sf "
+
+install_httpdconf:
+	mkdir -p $(PREFIX)/etc/httpd/conf.d
+	install -o root -g root -m 644 httpd/acme_sh.conf $(PREFIX)/etc/httpd/conf.d
+
