@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 # $Id: server.py 259 2004-01-03 06:28:40Z shibuya $
 # Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 

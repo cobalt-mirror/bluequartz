@@ -221,6 +221,10 @@ fi
 
 %changelog
 
+* Thu Feb 14 2018 Michael Stauber <mstauber@solarspeed.net> 0.99.3-1BX05
+- Modified client/src/test/server.py to point it to python2
+- Added useradd for admserv into Makefile
+
 * Fri Nov 16 2018 Michael Stauber <mstauber@solarspeed.net> 0.99.3-1BX04
 - First build attempt for 5210R on RHEL8.
 - Of course client/php/src/cce.c doesn't compile yet. It's for PHP-5.4.16
