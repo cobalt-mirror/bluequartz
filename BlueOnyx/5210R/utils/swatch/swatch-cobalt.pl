@@ -8,7 +8,7 @@ use Getopt::Long;
 use I18n;
 use SendEmail;
 use Sys::Hostname;
-use POSIX qw(isalpha);
+use POSIX;
 use MIME::Lite;
 use Encode::Encoder;
 use Encode qw(from_to);

@@ -97,6 +97,8 @@ fi
 
 * Thu Feb 14 2019 Michael Stauber <mstauber@solarspeed.net> 4.0.0-0BX53
 - Version number bump because we're skipping the ACME hotfixes for 5209R.
+- Modified swatch-cobalt.pl as POSIX(isalpha) is no longer supported.
+  See http://perl11.org/cperl/perldeprecation.html
 
 * Mon Jul 09 2018 Michael Stauber <mstauber@solarspeed.net> 4.0.0-0BX50
 - Rollback of hotfixes.sh to pull the fix for the DBUS issue.
@@ -172,7 +174,7 @@ fi
 - See: https://imagetragick.com/
 
 * Tue May 03 2016 Michael Stauber <mstauber@solarspeed.net> 4.0.0-0BX30
-- Added provisions to automatically fix the Imagetragick bug CVE-2016–3714
+- Added provisions to automatically fix the Imagetragick bug CVE-2016???3714
 - Added hotfixes/policy.xml
 - Modified hotfixes.sh to check for and if need be deploy the fixed policy.xml
 
