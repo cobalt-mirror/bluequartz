@@ -3,7 +3,7 @@
 Summary: Cobalt i18n library
 Name: sausalito-i18n
 Version: 0.81.2
-Release: 0BX04%{?dist}
+Release: 0BX05%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -43,16 +43,16 @@ rm -f $RPM_BUILD_ROOT/usr/sausalito/ui/web/test_i18n.php
 /usr/sausalito/bin/i18n_translate
 /usr/sausalito/bin/i18n_locales
 #/usr/sausalito/ui/libPhp/*
-#%{extension_dir}/*
+%{extension_dir}/*
 /usr/sausalito/perl/I18n.pm
 /usr/sausalito/perl/SendEmail.pm
 /usr/sausalito/perl/I18nMail.pm
 /usr/sausalito/perl/JConv.pl
 /usr/sausalito/bin/i18nmail.pl
-#/usr/share/dict/cracklib-words 
-#/usr/share/dict/pw_dict.hwm 
-#/usr/share/dict/pw_dict.pwd 
-#/usr/share/dict/pw_dict.pwi 
+/usr/share/dict/cracklib-words 
+/usr/share/dict/pw_dict.hwm 
+/usr/share/dict/pw_dict.pwd 
+/usr/share/dict/pw_dict.pwi 
 
 %files devel
 %defattr(-,root,root)
@@ -93,6 +93,9 @@ if [ -d "/usr/share/locale/ja_JP.utf8" ]; then
 fi
 
 %changelog
+
+* Sat Jan 19 2019 Michael Stauber <mstauber@solarspeed.net> 0.81.2-0BX05
+- Second build for 5210R with fixed cracklib from Brian Evans.
 
 * Fri Nov 16 2018 Michael Stauber <mstauber@solarspeed.net> 0.81.2-0BX04
 - First build attempt for 5210R on RHEL8 Beta.
