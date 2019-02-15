@@ -26,7 +26,7 @@ subsystem for base-telnet-am.
 
 %changelog
 
-* Thu Dec 04 2013 Michael Stauber <mstauber@solarspeed.net> 1.0.3-1BX03
+* Thu Dec 04 2014 Michael Stauber <mstauber@solarspeed.net> 1.0.3-1BX03
 - Systemd related fixes.
 
 * Sun Dec 08 2013 Michael Stauber <mstauber@solarspeed.net> 1.0.3-1BX02
