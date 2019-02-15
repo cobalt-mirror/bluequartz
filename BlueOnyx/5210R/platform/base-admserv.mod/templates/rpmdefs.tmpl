@@ -40,7 +40,7 @@ information for [VENDOR]-[SERVICE].
 <end locale>
 
 <begin glue>
-%config /etc/rc.d/init.d/*
+%attr(644,root,root) /usr/lib/systemd/system/admserv.service
 %config %attr(644,root,-) /etc/logrotate.d/admserv
 /etc/admserv
 /usr/sbin/httpd.admsrv
@@ -77,13 +77,8 @@ information for [VENDOR]-[SERVICE].
 # glue post-install
 
 if [ -f /usr/bin/systemctl ];then
-  /usr/bin/systemctl daemon-reload
-fi
-
-if [ "$1" = 1 ]; then
-        for file in admserv; do
-                /sbin/chkconfig --add $file
-        done
+  /usr/bin/systemctl daemon-reload 2> /dev/null || :
+  /usr/bin/systemctl enable admserv 2> /dev/null || :
 fi
 
 if [ ! -f /etc/admserv/certs/certificate ] ; then
@@ -164,6 +159,9 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Thu Feb 14 2019 Michael Stauber <mstauber@solarspeed.net> 2.3.0-0BX02
+- Added Systemd Unit-File for AdmServ and removed InitV script provisions
 
 * Sat Jan 19 2019 Michael Stauber <mstauber@solarspeed.net> 2.3.0-0BX01
 - First build for 5210R.
