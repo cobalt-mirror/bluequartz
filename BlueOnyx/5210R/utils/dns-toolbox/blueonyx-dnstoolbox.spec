@@ -1,19 +1,22 @@
+%define pkgname blueonyx-dnstoolbox
+%define instdir blueonyx-dnstoolbox
+
 Name:           blueonyx-dnstoolbox
-Version: 	1.0.7
-Release: 	1%{?dist}
+Version: 	      1.0.8
+Release: 	      1%{?dist}
 Packager:       'Project BlueOnyx'
 Vendor:         'Project BlueOnyx'
 URL:            http://www.blueonyx.it
 License:        Sun modified BSD
 Group:          System
-BuildRoot:      %{_tmppath}/%{name}-root
+BuildRoot:      %{_tmppath}/%{name}-%{version}-root
 BuildArch:      noarch
 Distribution:   BlueOnyx
 Source:         %{name}.tar.gz
 Summary:        Shell tools for importing, deleting and modyfing DNS.
 Requires:       perl
-Obsoletes:	nuonce-dnsImport
-Obsoletes:	blueonyx-dnsImport
+Obsoletes:	    nuonce-dnsImport
+Obsoletes:	    blueonyx-dnsImport
 AutoReq         : yes
 AutoProv        : yes
 
@@ -22,37 +25,23 @@ nuonce-dnsImport repackaged and modified for BlueOnyx and extended with
 functionality to delete and modify DNS records.
 
 %prep
-%setup -q -n %{name}
+%setup -n %{name}
 
 %build
-
-rm -R -f $RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT
-mv * $RPM_BUILD_ROOT/
+echo "Working on $RPM_BUILD_ROOT"
 
 %install
-  [ -x /usr/lib/rpm/brp-compress ] && /usr/lib/rpm/brp-compress
+%{__rm} -rf %{buildroot}
+mkdir %{buildroot}/
+mv * %{buildroot}/
 
-# Symlinks:
-# Recreates source tarball if need be - with dereferenced symlinks.
+echo -n "Build-root: "
+echo %{buildroot}
 
-    find $RPM_BUILD_ROOT/ -type l -print | \
-    sed "s@^$RPM_BUILD_ROOT@@g" > solSymLinks.list
-    if [ "$(cat solSymLinks.list)X" = "X" ] ; then
-        pwd
-    fi
+echo -n "RPM_BUILD_ROOT: "
+echo $RPM_BUILD_ROOT
 
-# Files:
-
-  find $RPM_BUILD_ROOT/ -type f -print | \
-    sed "s@^$RPM_BUILD_ROOT@@g" | \
-    grep -v perllocal.pod | \
-    grep -v "\.packlist" > solFile.list
-
-  if [ "$(cat solFile.list)X" = "X" ] ; then
-    echo "ERROR: EMPTY FILE LIST"
-    exit 1
-  fi
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/sbin
 
 %pre
 
@@ -65,10 +54,19 @@ mv * $RPM_BUILD_ROOT/
 %clean
 rm -R -f $RPM_BUILD_ROOT
 
-%files -f solFile.list
+%files
 %defattr(-,root,root)
+/usr/sausalito/sbin/dns-import-slavezones.pl
+/usr/sausalito/sbin/dns-slavezones.pl
+/usr/sausalito/sbin/dnsDeleteAllRecords.pl
+/usr/sausalito/sbin/dnsImport.pl
+/usr/sausalito/sbin/dnsMXmassChange.pl
+/usr/sausalito/sbin/dnsMassChange.pl
 
 %changelog
+
+* Fri Feb 15 2019 Michael Stauber <mstauber@solarspeed.net> [1.0.8-1]
+- Specfile and Makefile cleanup
 
 * Thu Sep 11 2014 Michael Stauber <mstauber@solarspeed.net> [1.0.7-1]
 - Import of PTR records got the netmask wrong. Hardwired to '255.255.255.0' for now
