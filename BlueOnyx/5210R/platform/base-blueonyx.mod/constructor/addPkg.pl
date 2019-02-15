@@ -32,7 +32,7 @@ if ($#oids < 0) {
 
     $rpmlist = $cce->array_to_scalar(keys %rpms);
     $cce->create('Package', { 'name' => 'OS',
-                  'version' => "v5.$build",
+                  'version' => "v6.$build",
                   'vendor' => 'BlueOnyx',
                   'nameTag' => '[[base-alpine.osName]]',
                   'vendorTag' => '[[base-alpine.osVendor]]',
@@ -48,7 +48,7 @@ if ($#oids == 0) {
         # Object already present in CCE. Updating it with current version information:
         ($sys_oid) = $cce->find('Package', {'name' => 'OS' });
         ($ok, $sys) = $cce->get($sys_oid);
-        ($ok) = $cce->update($sys_oid, '',{ 'version' => "v5.$build" });
+        ($ok) = $cce->update($sys_oid, '',{ 'version' => "v6.$build" });
 }
 
 $cce->bye();

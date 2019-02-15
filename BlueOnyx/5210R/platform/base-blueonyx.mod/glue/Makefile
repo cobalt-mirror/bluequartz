@@ -1,6 +1,6 @@
 BUILD=$(shell date --rfc-3339=date | sed s/-//g)
 #PRODUCT=$(shell if [ `uname -m` = "x86_64" ]; then  echo -n "5208"; else  echo -n "5207"; fi)
-PRODUCT=$(shell if [ `uname -m` = "x86_64" ]; then if [ `cat /etc/build |grep 5209R|wc -l` = "1" ]; then echo -n "5209"; else echo -n "5208"; fi else echo -n "5207"; fi)
+PRODUCT=$(shell if [ `uname -m` = "x86_64" ]; then if [ `cat /etc/build |grep 5210R|wc -l` = "1" ]; then echo -n "5210"; else echo -n "5210"; fi else echo -n "5210"; fi)
 
 all:
 
