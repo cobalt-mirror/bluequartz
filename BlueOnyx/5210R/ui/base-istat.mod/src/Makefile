@@ -15,6 +15,6 @@ install:
 rpm: istatd-rpm
 
 istatd-rpm:
-	tar --exclude='.svn' -zcvf /tmp/istatd.tar.gz istatd &> /dev/null
+	tar zcvf /tmp/istatd.tar.gz --exclude='.svn' istatd &> /dev/null
 	$(RPMBUILD) -ta /tmp/istatd.tar.gz &> /tmp/rpm.log
 	/bin/rm -f /tmp/istatd.tar.gz

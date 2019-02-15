@@ -12,12 +12,7 @@ Source0: istatd.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 BuildRequires: libxml2-devel
 
-%ifarch64
 BuildArch:      x86_64
-%endif
-%ifarch32
-BuildArch:      i386
-%endif
 
 %description
 iStat Server is a daemon serving statistics to your iStat iPhone application
