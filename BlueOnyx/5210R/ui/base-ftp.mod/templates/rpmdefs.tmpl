@@ -16,7 +16,6 @@ Summary: [LABEL] for [VENDOR]-[SERVICE].
 [AUTOFILL]
 [BUILDARCH]
 [PROVIDES]
-Requires: proftpd
 
 %description [LABEL]
 The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
@@ -144,6 +143,9 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Tue Feb 26 2019 Michael Stauber <mstauber@solarspeed.net> 1.5.0-0BX04
+- Small requirement update.
 
 * Wed May 02 2018 Michael Stauber <mstauber@solarspeed.net> 1.5.0-0BX03
 - Fixes for Demo mode and systemAdministrator w/o SSH.
