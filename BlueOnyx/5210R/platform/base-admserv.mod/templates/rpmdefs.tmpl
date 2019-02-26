@@ -40,7 +40,8 @@ information for [VENDOR]-[SERVICE].
 <end locale>
 
 <begin glue>
-%attr(644,root,root) /usr/lib/systemd/system/admserv.service
+#%attr(644,root,root) /usr/lib/systemd/system/admserv.service
+%config /etc/rc.d/init.d/*
 %config %attr(644,root,-) /etc/logrotate.d/admserv
 /etc/admserv
 /usr/sbin/httpd.admsrv
@@ -159,6 +160,12 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Thu Feb 26 2019 Michael Stauber <mstauber@solarspeed.net> 2.3.0-0BX03
+- Reverted back to InitV-Init-File. In essence we need the preparatorial
+  commands that the old Init-V script does. Such as preparing the locales,
+  pointing Apache to /etc/admserv/ for the php.ini and amending the 
+  path to the Perl libraries of ours.
 
 * Thu Feb 14 2019 Michael Stauber <mstauber@solarspeed.net> 2.3.0-0BX02
 - Added Systemd Unit-File for AdmServ and removed InitV script provisions
