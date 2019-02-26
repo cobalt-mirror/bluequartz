@@ -20,7 +20,7 @@ BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=yes
 
-REQUIRES= base-vsite-am base-email-capstone sausalito-i18n sausalito-cce-server base-admserv-capstone perl-handler-utils mod_suphp mod_authnz_external icu libicu-devel libmcrypt libmhash libmhash-devel libssh2 libssh2-devel libssh2-docs aspell freetds freetds-doc libdb4-utils perl-LWP-Protocol-https e2fsprogs
+REQUIRES= base-vsite-am base-email-capstone sausalito-i18n sausalito-cce-server base-admserv-capstone perl-handler-utils mod_suphp mod_authnz_external icu libicu-devel libmcrypt libmhash libmhash-devel libssh2 libssh2-devel libssh2-docs aspell freetds freetds-doc libdb4 libdb4-utils perl-LWP-Protocol-https e2fsprogs
 OBSOLETES= nuonce-hostsfix
 
 #########
