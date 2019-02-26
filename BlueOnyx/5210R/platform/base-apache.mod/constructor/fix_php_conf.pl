@@ -70,10 +70,14 @@ if (-s $stage) {
 
 # List of PEAR modules that we *need* to install:
 %required_modules = (
+
+
+                      'Net_Socket', 
+                      'Net_IMAP', 
+                      'Mail', 
                       'Net_IDNA2', 
                       'Net_SMTP', 
                       'Net_Sieve', 
-                      'Net_Socket', 
                       'Mail_Mime', 
                       'Auth_SASL' 
                     );
@@ -154,8 +158,8 @@ else {
 exit(0);
 
 # 
-# Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2016-2019 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2016-2019 Team BlueOnyx, BLUEONYX.IT
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 

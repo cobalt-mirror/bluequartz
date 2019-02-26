@@ -227,6 +227,12 @@ fi
 
 <begin $CHANGELOG>
 
+* Tue Feb 26 2019 Michael Stauber <mstauber@solarspeed.net> 2.2.1-0BX15
+- Modified constructor/fix_php_conf.pl to update list of PEAR modules we
+  need to install. This allows us to drop the requirements for the RPMs
+  php-pear-Net-Socket php-pear-Mail php-pear-Net-SMTP php-pear-Auth-SASL 
+  from various BlueOnyx modules.
+
 * Tue Jan 29 2019 Michael Stauber <mstauber@solarspeed.net> 2.2.1-0BX14
 - Another PHP-FPM fix in glue/handlers/virtual_host.pl
 
