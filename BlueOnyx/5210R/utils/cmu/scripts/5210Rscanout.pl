@@ -1,0 +1,252 @@
+#!/usr/bin/perl
+# $Id: 5210Rscanout.pl
+use strict;
+
+use lib "/usr/cmu/perl";
+use lib "/usr/sausalito/perl";
+require CmuCfg;
+
+my $cfg = CmuCfg->new(type => 'scanout');
+$cfg->parseOpts();
+
+use cmuCCE;
+use I18n;
+use TreeXml;
+require Archive; 
+
+if(!-d $cfg->destDir) {
+    warn "ERROR: destination directory does not exsist: ", $cfg->destDir, "\n";
+    exit 1;
+}
+if(!$cfg->glb('outFile')) { $cfg->putGlb('outFile', $cfg->cmuXml) }
+
+my %defaultUsers  = ('admin' => 1);
+
+my %encodeAttr = (
+    fullName => 1,
+    sortName => 1,
+    description => 1,
+    apop_password => 1,
+    vacationMsg => 1
+);
+
+my %arrayVal = (
+    aliases => 'alias',
+    capabilities => 'cap',
+    capLevels => 'cap',
+    siteAdminCaps => 'cap',
+    mailAliases => 'domain',
+    webAliases => 'domain',
+    forwardEmail => 'forward',
+    local_recips => 'recip',
+    remote_recips => 'recip',
+    dns => 'dns',
+    locales => 'locale',
+    acceptFor => 'accept',
+    relayFor => 'relay',
+);
+
+my %classes = (
+    DnsRecord => [qw()],
+    DnsSlaveZone => [qw()],
+
+    #System => [qw(serialNumber SWUpdate productSerialNumber RAID)],
+    #Network => [qw(mac)],
+);
+
+
+my $cce = new cmuCCE;
+$cce->connectuds();
+
+my $i18n = new I18n;
+$i18n->setLocale(I18n::i18n_getSystemLocale($cce));
+
+%{ $cce->{_arrayVal} } = %arrayVal;
+%{ $cce->{_encodeAttr} } = %encodeAttr;
+%{ $cce->{_classes} } = %classes;
+
+
+# data structure to build 
+my $tree = {}; 
+my ($ok, @oids, $cceRef, $fqdn);
+
+$tree->{migrate}->{exportPlatform} = "5210R";
+$tree->{migrate}->{adjustPlatform} = "5210R";
+$tree->{migrate}->{cmuVersion} = $VERSION;
+$tree->{migrate}->{cmuDate} = time();
+
+my $baseFqdn = `/bin/uname -n`;
+chomp($baseFqdn);
+$tree->{migrate}->{baseHost} = $baseFqdn;
+
+
+# first we get vsites
+@oids = $cce->find("Vsite");
+foreach my $oid (@oids) {
+    ($ok, $cceRef) = $cce->get($oid);
+    if($ok == 0) { warn "cannot get oid $oid\n";next; }
+    my $key = $cceRef->{fqdn};
+    warn "INFO: exporting vsite $key\n";
+
+    if($cfg->isSubSet) { next unless($cfg->isSubSet($key)) }
+    if($cfg->isIpaddr) { $cceRef->{ipaddr} = $cfg->ipaddr }
+
+    my $vobj = $cce->loadHash($cceRef);
+    $cce->loadNamespace($vobj, $oid);
+    $vobj->{id} = $key;
+
+    #warn "obj baseDir is: ", $vobj->{basedir}, "\n";
+
+    if($cfg->confOnly eq 'f') {
+        warn "INFO: building archive for $key\n";
+        my $arch = Archive->new(type => 'groups', 
+            baseDir => $vobj->{basedir}, name => $key, 
+            destDir => $cfg->destDir);
+        $arch->buildTar();
+        $vobj->{archives} = $arch->archives;
+    }
+    if(defined $vobj->{SSL}->{importCert}) {
+        delete $vobj->{SSL}->{importCert};
+    }
+
+    push @{ $tree->{migrate}->{vsite} }, $vobj;
+}
+
+@oids = $cce->find("User");
+foreach my $oid (@oids) {
+    ($ok, $cceRef) = $cce->get($oid);
+    if($ok == 0) { warn "bad find on User\n";next; }
+    # skip admin for now
+    if($cceRef->{name} eq 'admin') { next; }
+
+    my $key = $cceRef->{name};
+    # check adminUser
+    my $admin;
+    if ($cceRef->{capLevels} =~ /&adminUser&/) {
+        $admin = 1;
+    }
+
+    warn "INFO: exporting user $key\n";
+    ($fqdn) = $cce->findMember("Vsite", 
+        { name => $cceRef->{site} }, 
+        undef, 
+        'fqdn'
+    );
+    if(!$fqdn && !$admin) {
+        warn "ERROR: cannot retrieve virtual site for user ",
+            $cceRef->{name}, "\n";
+    }
+    
+    if($cfg->isSubSet) { next unless($cfg->isSubSet($fqdn)) }
+
+    my $uobj = $cce->loadHash($cceRef);
+    $cce->loadNamespace($uobj, $oid);
+    if($cfg->noPasswd eq 't') {
+        delete($uobj->{crypt_password}) if(defined $uobj->{crypt_password});
+        delete($uobj->{md5_password}) if(defined $uobj->{md5_password});
+        delete($uobj->{APOP}->{apop_password}) 
+            if(defined $uobj->{APOP}->{apop_password});
+    } 
+    $uobj->{id} = $key;
+    $uobj->{fqdn} = $fqdn;
+
+    if($cfg->confOnly eq 'f') {
+        warn "INFO: building archive for $key\n";
+        my $arch = Archive->new( type => 'users',
+            name => $key, destDir => $cfg->destDir);
+        $arch->buildTar();
+        $uobj->{archives} = $arch->archives;
+    }
+    push @{ $tree->{migrate}->{user} }, $uobj;
+}
+# handle admin's files
+if($cfg->confOnly eq 'f' && $cfg->adminFiles eq 't') {
+    my $arch = Archive->new( type => 'users', name => 'admin',
+        destDir => $cfg->destDir);
+    $arch->buildTar();
+}
+
+@oids = $cce->find("MailList");
+foreach my $oid (@oids) {
+    ($ok, $cceRef) = $cce->get($oid);
+    if($ok == 0) { warn "bad find on mailList\n";next; }
+    unless(defined $cceRef->{site}) {
+        warn "ERROR: mailing list $cceRef->{name} does not have a site group\n";
+        next;
+    }
+    ($fqdn) = $cce->findMember("Vsite", { name => $cceRef->{site} }, undef, 'fqdn');
+    unless($fqdn) {
+        warn "ERROR: cannot retrieve virtual site for mailing list $cceRef->{name}\n";
+        next;
+    }
+    if($cfg->isSubSet) { next unless($cfg->isSubSet($fqdn)) }
+    
+    my $key = $fqdn."-".$cceRef->{name};
+    my $mobj = $cce->loadHash($cceRef);
+    $cce->loadNamespace($mobj, $oid);
+
+    # remove some unwanted stuff
+    if($cfg->noPasswd eq 't') {
+        delete($mobj->{apassword}) if(defined $mobj->{apassword});
+    } 
+    delete($mobj->{internal_name}) if(defined $mobj->{internal_name});
+    delete($mobj->{site}) if(defined $mobj->{site});
+
+    $mobj->{id} = $key;
+    $mobj->{fqdn} = $fqdn;
+    push @{ $tree->{migrate}->{list} }, $mobj;
+}
+
+
+# for all other classes
+foreach my $cl (keys %classes) {
+    $cce->exportClass($tree,$cl);
+}
+
+$cce->bye("bye bye american pie");
+
+warn "INFO: We exported", TreeXml::getStats($tree->{migrate});
+if($cfg->isGlb('outFile')) {
+    TreeXml::writeXml($tree, $cfg->glb('outFile'));
+} else {
+    # this is needed for open3
+    close(STDERR);
+    print TreeXml::writeXml($tree);
+} 
+
+exit 0;
+# 
+# Copyright (c) 2016 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2016 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2003 Sun Microsystems, Inc. 
+# All Rights Reserved.
+# 
+# 1. Redistributions of source code must retain the above copyright 
+#     notice, this list of conditions and the following disclaimer.
+# 
+# 2. Redistributions in binary form must reproduce the above copyright 
+#     notice, this list of conditions and the following disclaimer in 
+#     the documentation and/or other materials provided with the 
+#     distribution.
+# 
+# 3. Neither the name of the copyright holder nor the names of its 
+#     contributors may be used to endorse or promote products derived 
+#     from this software without specific prior written permission.
+# 
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
+# COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+# POSSIBILITY OF SUCH DAMAGE.
+# 
+# You acknowledge that this software is not designed or intended for 
+# use in the design, construction, operation or maintenance of any 
+# nuclear facility.
+# 

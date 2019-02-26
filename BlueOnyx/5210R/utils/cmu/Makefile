@@ -10,25 +10,25 @@ CWD = `pwd`
 # Some definitions
 INSTALL = /usr/bin/install
 
-VERSION   =   2.94
+VERSION   =   2.95
 
 BUILD_DIR =   /tmp/cmu
 TMP_DIR   =   $(BUILD_DIR)/cpr
 TMPTAR    =   $(BUILD_DIR)/cpr.tar.gz
-PKG_DIR	  =	  $(TMP_DIR)/packages
+PKG_DIR	  =   $(TMP_DIR)/packages
 CMUUSER   =   $(shell id -u)
 PERLDIR   =   $(TMP_DIR)/perl
 SCRIPTDIR =   $(TMP_DIR)/scripts
 CONFDIR   =   $(TMP_DIR)/etc/cmu
 
 SPEC_FILE =   $(TMP_DIR)/cobalt-cmu.spec
-SPEC_IN  =   cobalt-cmu.spec.in
+SPEC_IN  =    cobalt-cmu.spec.in
 MAKE_FILE =   $(TMP_DIR)/Makefile
-MAKE_IN  =   Makefile.in
+MAKE_IN  =    Makefile.in
 
 RPMBUILD=$(shell which rpmbuild>/dev/null 2>&1&&echo rpmbuild||echo rpm)
 
-CP		= /bin/cp
+C	  = /bin/cp
 
 BASE_CONF =   $(TMP_DIR)/conf/cobaltBase.xml
 
@@ -112,6 +112,12 @@ RAQ550_LIBS = \
 	$(wildcard scripts/5209R*.pl)
 
 5209R_LIBS = \
+	RaQUtil.pm
+
+5210R_SCRIPTS = \
+	$(wildcard scripts/5210R*.pl)
+
+5210R_LIBS = \
 	RaQUtil.pm
 
 5160R_SCRIPTS = \
@@ -403,6 +409,22 @@ raq550:: cmu base adjust
 	perl -pi -e 's#\[VERSION\]#$(VERSION)#' $(PKG_DIR)/5209R/packing_list
 	(cd $(PKG_DIR)/5209R;make)
 
+5210r:: cmu base adjust
+	for t in $(5210R_SCRIPTS) ; do \
+	 $(INSTALL) -o $(CMUUSER) -m0700 $$t $(TMP_DIR)/$$t ; \
+    done
+	for t in $(5210R_LIBS) ; do \
+	 $(INSTALL) -o $(CMUUSER) -m0600 lib/$$t $(PERLDIR)/$$t ; \
+    done
+	sed -e 's/\[PRODUCT\]/5210R/' < $(SPEC_IN) > $(SPEC_FILE)
+	sed -e 's/\[PRODUCT\]/5210R/' < $(MAKE_IN) > $(MAKE_FILE)
+	$(CP) conf/5210R.cobaltBase.xml $(BASE_CONF)
+	perl -pi -e 's#\[VERSION\]#$(VERSION)#' $(SPEC_FILE) $(MAKE_FILE) $(BASE_CONF)
+	/bin/tar -X $(TMP_DIR)/ignore -C $(BUILD_DIR) -czvf $(TMPTAR) cpr
+	$(RPMBUILD) -ta $(TMPTAR)
+	perl -pi -e 's#\[VERSION\]#$(VERSION)#' $(PKG_DIR)/5210R/packing_list
+	(cd $(PKG_DIR)/5210R;make)
+
 5160r:: cmu base adjust
 	for t in $(5160R_SCRIPTS) ; do \
 	 $(INSTALL) -o $(CMUUSER) -m0700 $$t $(TMP_DIR)/$$t ; \
@@ -497,7 +519,7 @@ qube3:: cmu base
 	perl -pi -e 's#\[VERSION\]#$(VERSION)#' $(PKG_DIR)/Qube3/packing_list
 	(cd $(PKG_DIR)/Qube3;make)
 
-all:: raq2 raq3 raq4 raqxtr raq550 5100r 5106r 5107r 5108r 5207r 5208r 5209r 5160r 5161r 5200r tlas1he tlas2 qube2 qube3
+all:: raq2 raq3 raq4 raqxtr raq550 5100r 5106r 5107r 5108r 5207r 5208r 5209r 5210r 5160r 5161r 5200r tlas1he tlas2 qube2 qube3
 
 raq1:: cmu
 	(cd $(TMP_DIR);sed -e 's/\[PRODUCT\]/RaQ1/' < $(SPEC_FILE) > $(SPEC_NEW))

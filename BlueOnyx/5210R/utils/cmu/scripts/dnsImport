@@ -9,7 +9,7 @@ use Global;
 require cmuCCE;
 
 my $build = Global::getBuild();
-if($build ne "RaQ550" && $build ne "5100R" && $build ne "5106R" && $build ne "5107R" && $build ne "5108R" && $build ne "5207R" && $build ne "5208R" && $build ne "5209R" && $build ne "5160R" && $build ne "5161R" && $build ne "TLAS1HE" && $build ne "TLAS2") {
+if($build ne "RaQ550" && $build ne "5100R" && $build ne "5106R" && $build ne "5107R" && $build ne "5108R" && $build ne "5207R" && $build ne "5208R" && $build ne "5209R" && $build ne "5210R" && $build ne "5160R" && $build ne "5161R" && $build ne "TLAS1HE" && $build ne "TLAS2") {
     print "This can only be run on a RaQ550, BlueQuartz 5100R, BlueOnyx (5106R, 5107R, 5108R, 5207R, 5208R or 5209R), BluOS 5160R, BluOS 5161R or the TLAS HE series\n";
     exit 1;
 }

@@ -36,6 +36,7 @@ $validExport = {
     '5207R' =>  1,
     '5208R' =>  1,
     '5209R' =>  1,
+    '5210R' =>  1,
     '5200R' =>  1,
     TLAS1HE =>  1,
     TLAS2   =>  1
@@ -55,6 +56,7 @@ $validImport = {
     '5207R' =>  1,
     '5208R' =>  1,
     '5209R' =>  1,
+    '5210R' =>  1,
     '5200R' =>  1,
     TLAS1HE =>  1,
     TLAS2   =>  1
@@ -82,15 +84,16 @@ $validImport = {
                '5108R' => '5207R',
                '5207R' => '5208R',
                '5208R' => '5209R',
-               '5209R' => '5209R'
+               '5209R' => '5210R'
+               '5210R' => '5210R'
                );
         
     # Note: The adjustPath isfrom the oldest model to the newest. This is for
     # a reason. The last entry is:
     #
-    # '5209R' => '5209R'
+    # '5210R' => '5210R'
     #
-    # This allows migrations from 5209R to 5209R w/o loosing config options
+    # This allows migrations from 5210R to 5210R w/o loosing config options
     # such as the PHP-FPM stuff.
 
 1;
@@ -160,6 +163,7 @@ sub getBuild
         "5207R",            "5207R",
         "5208R",            "5208R",
         "5209R",            "5209R",
+        "5210R",            "5210R",
         "5200R",            "5200R",
         # TLAS
         "TLAS1HE",          "TLAS1HE",
