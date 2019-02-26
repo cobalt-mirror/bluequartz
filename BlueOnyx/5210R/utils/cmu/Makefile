@@ -28,7 +28,7 @@ MAKE_IN  =    Makefile.in
 
 RPMBUILD=$(shell which rpmbuild>/dev/null 2>&1&&echo rpmbuild||echo rpm)
 
-C	  = /bin/cp
+CP	  = /bin/cp
 
 BASE_CONF =   $(TMP_DIR)/conf/cobaltBase.xml
 
