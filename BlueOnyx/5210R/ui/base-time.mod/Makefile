@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=time
 
 VERSION=1.1.0
-RELEASE=0BX14
+RELEASE=0BX13
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -20,7 +20,7 @@ BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=yes
 
-REQUIRES=ntpd
+REQUIRES=ntp
 
 #########
 # some useful defines
