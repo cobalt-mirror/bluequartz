@@ -53,7 +53,7 @@ SUBSTVARS_CMD=$(CCEBIN)/makePackageVars
 # Get Product version:
 #
 # All instances of XXX_PRODUCT_VERSION_XXX in locales will be replaced with this:
-PRODUCT=$(echo -n "5210R"; fi)
+PRODUCT=$(shell echo -n "5210R")
 
 # Find out if we're using MySQL or MariaDB:
 #

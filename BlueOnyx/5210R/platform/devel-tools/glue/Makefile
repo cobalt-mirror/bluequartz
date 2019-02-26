@@ -1,5 +1,5 @@
 BUILD=$(shell date --rfc-3339=date | sed s/-//g)
-PRODUCT=$(echo -n "5210")
+PRODUCT=$(shell echo -n "5210")
 
 all:
 
