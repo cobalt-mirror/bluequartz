@@ -1,7 +1,7 @@
 Summary: Cobalt development tools
 Name: sausalito-devel-tools
 Version: 0.6.0
-Release: 0BX13%{?dist}
+Release: 0BX14%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -57,6 +57,9 @@ done
 /etc/rpm/macros.blueonyx
 
 %changelog
+
+* Mon Feb 25 2019 Michael Stauber <mstauber@solarspeed.net> 0.6.0-0BX14
+- Product set to 5210R.
 
 * Thu Feb 14 2019 Michael Stauber <mstauber@solarspeed.net> 0.6.0-0BX13
 - Added requirements for cmake flex-devel php-devel libdb-devel and

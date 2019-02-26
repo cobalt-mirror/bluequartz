@@ -53,12 +53,12 @@ SUBSTVARS_CMD=$(CCEBIN)/makePackageVars
 # Get Product version:
 #
 # All instances of XXX_PRODUCT_VERSION_XXX in locales will be replaced with this:
-PRODUCT=$(shell if [ `uname -m` = "x86_64" ]; then if [ `cat /etc/build |grep 5209R|wc -l` = "1" ]; then echo -n "5209R"; else echo -n "5208R"; fi else echo -n "5207R"; fi)
+PRODUCT=$(echo -n "5210R"; fi)
 
 # Find out if we're using MySQL or MariaDB:
 #
 # All instances of XXX_DBTYPE_XXX in locales will be replaced with this:
-DBTYPE=$(shell if [ $(PRODUCT) = "5209R" ]; then echo -n "MariaDB"; else echo -n "MySQL"; fi)
+DBTYPE=$(shell if [ $(PRODUCT) = "5210R" ]; then echo -n "MariaDB"; else echo -n "MySQL"; fi)
 
 # bleah
 LOCALES=$(shell if [ -d "locale/$(VENDORNAME)" ]; then \
