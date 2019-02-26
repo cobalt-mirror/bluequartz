@@ -78,8 +78,13 @@ information for [VENDOR]-[SERVICE].
 # glue post-install
 
 if [ -f /usr/bin/systemctl ];then
-  /usr/bin/systemctl daemon-reload 2> /dev/null || :
-  /usr/bin/systemctl enable admserv 2> /dev/null || :
+  /usr/bin/systemctl daemon-reload
+fi
+
+if [ "$1" = 1 ]; then
+        for file in admserv; do
+                /sbin/chkconfig --add $file
+        done
 fi
 
 if [ ! -f /etc/admserv/certs/certificate ] ; then

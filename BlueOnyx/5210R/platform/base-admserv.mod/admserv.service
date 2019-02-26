@@ -1,0 +1,21 @@
+[Unit]
+Description=BlueOnyx AdmServ HTTP Server
+After=network.target remote-fs.target nss-lookup.target
+Documentation=man:httpd(8)
+Documentation=man:apachectl(8)
+
+[Service]
+Type=notify
+ExecStart=/usr/sbin/httpd.admsrv -f /etc/admserv/conf/httpd.conf -DFOREGROUND
+ExecReload=/usr/sbin/httpd.admsev -f /etc/admserv/conf/httpd.conf -k graceful
+ExecStop=/bin/kill -WINCH ${MAINPID}
+# We want systemd to give admserv some time to finish gracefully, but still want
+# it to kill admserv after TimeoutStopSec if something went wrong during the
+# graceful stop. Normally, Systemd sends SIGTERM signal right after the
+# ExecStop, which would kill admserv. We are sending useless SIGCONT here to give
+# httpd time to finish.
+KillSignal=SIGCONT
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
