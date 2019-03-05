@@ -7,7 +7,7 @@
 
 Name:           %{pkgname}
 Version:        2.8.0
-Release:        4
+Release:        5
 Packager:       Michael Stauber <mstauber@blueonyx.it>
 Vendor:         Neil Pang
 URL:            https://github.com/Neilpang/acme.sh
@@ -105,6 +105,12 @@ rm -R -f $RPM_BUILD_ROOT
 %files -f solFile.list
 
 %changelog
+
+* Tue Mar 05 2019 Michael Stauber <mstauber@blueonyx.it>
+- [2.8.0-5] Updated wrapper acme_wrapper.sh with 
+  --auto-upgrade 0 to prevent it from upgrading acme.
+  Otherwise we loose the custom chmod commands of the 
+  verification files.
 
 * Sun Jan 27 2019 Michael Stauber <mstauber@blueonyx.it>
 - [2.8.0-4] More EL6 related fixes.
