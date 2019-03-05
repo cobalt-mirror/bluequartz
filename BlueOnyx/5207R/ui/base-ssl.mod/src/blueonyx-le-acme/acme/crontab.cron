@@ -1,1 +1,1 @@
-30 0 * * * /usr/sausalito/acme/acme.sh --cron --home /usr/sausalito/acme --config-home /usr/sausalito/acme/data > /dev/null
+30 0 * * * /usr/sausalito/acme/acme.sh --auto-upgrade 0 --cron --home /usr/sausalito/acme --config-home /usr/sausalito/acme/data > /dev/null
