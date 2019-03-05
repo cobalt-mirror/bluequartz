@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 # Namecheap API
 # https://www.namecheap.com/support/api/intro.aspx

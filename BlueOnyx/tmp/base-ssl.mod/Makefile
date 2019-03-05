@@ -19,7 +19,7 @@ BUILDUI=new
 BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=yes
-REQUIRES=blueonyx-le-acme perl-Net-SSL-ExpireDate perl-MIME-Lite
+REQUIRES=blueonyx-le-acme perl-Net-SSL-ExpireDate perl-MIME-Lite perl-DateTime
 
 #########
 # some useful defines

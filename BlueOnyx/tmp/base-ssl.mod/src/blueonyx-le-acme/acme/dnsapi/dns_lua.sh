@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 # bug reports to dev@1e.ca
 

@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 # hosting.de API
 

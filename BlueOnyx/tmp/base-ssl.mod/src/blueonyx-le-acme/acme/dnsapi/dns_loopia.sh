@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 #
 #LOOPIA_User="username"

@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 # Author: non7top@gmail.com
 # 07 Jul 2017
 # report bugs at https://github.com/non7top/acme.sh

@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 EXOSCALE_API=https://api.exoscale.com/dns/v1
 

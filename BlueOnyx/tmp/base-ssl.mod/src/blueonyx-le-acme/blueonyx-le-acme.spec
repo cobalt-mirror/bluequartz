@@ -119,4 +119,3 @@ rm -R -f $RPM_BUILD_ROOT
 
 * Tue Jan 22 2019 Michael Stauber <mstauber@blueonyx.it>
 - [2.8.0-1] Initial build.
-

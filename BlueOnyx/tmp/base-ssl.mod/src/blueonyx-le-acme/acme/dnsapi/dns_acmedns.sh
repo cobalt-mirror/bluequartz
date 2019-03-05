@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 #
 #Author: Wolfgang Ebner
 #Report Bugs here: https://github.com/webner/acme.sh

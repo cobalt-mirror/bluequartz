@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 #Author: RhinoLance
 #Report Bugs here: https://github.com/RhinoLance/acme.sh

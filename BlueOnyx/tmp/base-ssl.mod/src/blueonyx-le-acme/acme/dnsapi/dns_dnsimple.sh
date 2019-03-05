@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 # DNSimple domain api
 # https://github.com/pho3nixf1re/acme.sh/issues

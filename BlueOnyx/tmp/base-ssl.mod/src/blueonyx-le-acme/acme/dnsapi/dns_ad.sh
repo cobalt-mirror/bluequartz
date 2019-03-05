@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 #
 #AD_API_KEY="sdfsdfsdfljlbjkljlkjsdfoiwje"

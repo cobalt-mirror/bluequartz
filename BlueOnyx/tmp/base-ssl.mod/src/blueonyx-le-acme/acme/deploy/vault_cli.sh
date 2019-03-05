@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 # Here is a script to deploy cert to hashicorp vault
 # (https://www.vaultproject.io/)

@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 # -*- mode: sh; tab-width: 2; indent-tabs-mode: s; coding: utf-8 -*-
 # vim: et ts=2 sw=2
 #

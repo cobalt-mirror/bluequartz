@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 #PowerDNS Embedded API
 #https://doc.powerdns.com/md/httpapi/api_spec/

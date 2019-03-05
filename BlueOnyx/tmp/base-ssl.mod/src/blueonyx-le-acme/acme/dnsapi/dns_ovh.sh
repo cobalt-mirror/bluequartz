@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 #Application Key
 #OVH_AK="sdfsdfsdfljlbjkljlkjsdfoiwje"

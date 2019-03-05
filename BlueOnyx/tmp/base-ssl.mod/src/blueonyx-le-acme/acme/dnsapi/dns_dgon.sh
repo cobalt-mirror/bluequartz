@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 ## Will be called by acme.sh to add the txt record to your api system.
 ## returns 0 means success, otherwise error.

@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 WIKI="https://github.com/Neilpang/acme.sh/wiki/How-to-use-Azure-DNS"
 

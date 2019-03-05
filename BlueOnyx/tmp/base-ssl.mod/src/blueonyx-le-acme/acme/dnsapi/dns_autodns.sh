@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 # -*- mode: sh; tab-width: 2; indent-tabs-mode: s; coding: utf-8 -*-
 
 # This is the InternetX autoDNS xml api wrapper for acme.sh

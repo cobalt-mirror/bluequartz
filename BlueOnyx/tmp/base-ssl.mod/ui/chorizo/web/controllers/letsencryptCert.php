@@ -199,7 +199,8 @@ class LetsencryptCert extends MX_Controller {
                         if ($LEclientRet['Status'] == '1') {
                             // Encountered an error during LE transaction:
                             $errorMsgFromFile = $LEclientRet['ErrMsg'];
-                            $errorMsgFromFile = nl2br(htmlspecialchars($errorMsgFromFile));
+                            $errorMsgFromFile = htmlspecialchars($errorMsgFromFile);
+                            $errorMsgFromFile = nl2br($errorMsgFromFile);
                             if (isset($errorMsgFromFile)) {
                                 if (preg_match('/LE_CA_Request_Error/', $LEclientRet['Error'])) {
                                     $errors[] = ErrorMessage($i18n->get("[[base-ssl.LE_CA_Request_Error,msg=\"$errorMsgFromFile\"]]"));

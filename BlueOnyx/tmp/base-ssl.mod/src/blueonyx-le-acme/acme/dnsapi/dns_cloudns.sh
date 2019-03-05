@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 # Author: Boyan Peychev <boyan at cloudns dot net>
 # Repository: https://github.com/ClouDNS/acme.sh/

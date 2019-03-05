@@ -44,7 +44,6 @@ install_crondaily:
 install_links:
 	make install INSTALL="ln -sf "
 
-install_httpdconf:
-	mkdir -p $(PREFIX)/etc/httpd/conf.d
-	install -o root -g root -m 644 httpd/acme_sh.conf $(PREFIX)/etc/httpd/conf.d
-
+install_httpdconf: 
+	mkdir -p $(PREFIX)/etc/httpd/conf.d 
+	install -o root -g root -m 644 httpd/acme_sh.conf $(PREFIX)/etc/httpd/conf.d 

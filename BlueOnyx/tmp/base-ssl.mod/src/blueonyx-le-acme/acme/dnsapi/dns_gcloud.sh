@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 # Author: Janos Lenart <janos@lenart.io>
 

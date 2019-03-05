@@ -1102,25 +1102,3 @@ msgstr "SSL alias de domaine"
 
 msgid "LEwantedAliases_help"
 msgstr "Un certificat SSL est valide pour le nom de domaine complet du site virtuel. Mais vous pouvez également demander la validité des alias du nom de domaine. Déplacer les alias de la droite vers la gauche pour les inclure dans le certificat SSL lors des demandes et les renouvellements."
-
-#
-### Nginx related:
-#
-
-msgid "HSTS_Nginx_enabled"
-msgstr "[[base-apache.nginxSettingsTab]] [[base-apache.HSTS]]"
-
-msgid "HSTS_Nginx_enabled_help"
-msgstr "[[base-apache.nginxSettingsTab]]: [[base-apache.HSTS_Nginx_enabled_help]]"
-
-msgid "max_age"
-msgstr "[[base-apache.max_age]]"
-
-msgid "max_age_help"
-msgstr "[[base-apache.max_age_help]]"
-
-msgid "include_subdomains"
-msgstr "[[base-apache.include_subdomains]]"
-
-msgid "include_subdomains_help"
-msgstr "[[base-apache.include_subdomains_help]]"

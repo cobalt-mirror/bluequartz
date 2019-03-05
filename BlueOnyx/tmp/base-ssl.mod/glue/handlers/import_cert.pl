@@ -80,7 +80,7 @@ if ($type eq 'server') {
         exit(1);
     }
     elsif ($ret == -1) {
-        &debug_msg("private key does not match certificate\n");
+        &debug_msg("private key does not match cerificate\n");
         $cce->bye('FAIL', 8);
         exit(1);
     }

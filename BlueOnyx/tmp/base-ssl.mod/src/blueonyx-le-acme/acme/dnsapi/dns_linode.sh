@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 #Author: Philipp Grosswiler <philipp.grosswiler@swiss-design.net>
 
