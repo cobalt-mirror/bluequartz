@@ -1,0 +1,35 @@
+<?php
+// $Id: SSL.php.defaults.Vsite,v 1.1 2001/11/04 22:52:30 pbaltz Exp $
+// Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+
+include_once('UIExtension.php');
+
+class SSLExtension extends UIExtension
+{
+    function display(&$helper, &$container, $prams)
+    {
+        $factory = $helper->getHtmlComponentFactory('base-ssl');
+        $cce = $helper->getCceClient();
+
+        $defaults =& $cce->get($prams['CCE_SERVICES_OID'], 'SSL');
+
+        $page_id = $prams['PAGED_BLOCK_DEFAULT_PAGE'];
+        $container->addFormField(
+            $factory->getBoolean('SSL_enabled', $defaults['enabled']),
+            $factory->getLabel('enabled'),
+            $page_id);
+    }
+
+    function handle(&$helper, &$errors, $prams)
+    {
+        global $SSL_enabled;
+        $cce = $helper->getCceClient();
+
+        // set the new default
+        $cce->set($prams['CCE_SERVICES_OID'], 'SSL',
+            array('enabled' => $SSL_enabled));
+
+        $errors = array_merge($errors, $cce->errors());
+    }
+}
+?>
