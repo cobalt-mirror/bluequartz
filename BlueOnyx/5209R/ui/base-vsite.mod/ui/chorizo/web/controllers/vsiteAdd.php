@@ -97,7 +97,30 @@ class VsiteAdd extends MX_Controller {
 
         // Get $errors from ServerScriptHandler POST vars:
         if (isset($form_data['_serialized_errors'])) {
-            $TMPerrors = array_merge($errors, unserialize($form_data['_serialized_errors']));
+            if (!is_array($form_data['_serialized_errors'])) {
+                if (preg_match('/<div(.*)<\/div>/', $form_data['_serialized_errors'], $sematches, PREG_OFFSET_CAPTURE)) {
+                    if (is_array($sematches)) {
+                        foreach ($sematches as $key => $value) {
+                            if (is_array($value)) {
+                                foreach ($value as $vkey => $vvalue) {
+                                    if (preg_match('/<(.*)>/', $vvalue)) {
+                                        $form_data['_serialized_errors'] = array($vkey => '<div' . $vvalue . '</div>');
+                                    }
+                                }
+                            }
+                            else {
+                                if (preg_match('/<(.*)>/', $vvalue)) {
+                                    $form_data['_serialized_errors'] = array($key => '<div' . $value . '</div>');
+                                }
+                            }
+                        }
+                    }
+                }
+                $TMPerrors = array_merge($errors, $form_data['_serialized_errors']);
+            }
+            else {
+                $TMPerrors = array_merge($errors, unserialize($form_data['_serialized_errors']));
+            }
             foreach ($TMPerrors as $errNum => $errMsg) {
                 if (!is_object($errMsg)) {
                     // Error message is not an Object. We urldecode() it and use it as is:
@@ -994,8 +1017,8 @@ class VsiteAdd extends MX_Controller {
     }
 }
 /*
-Copyright (c) 2015-2018 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2015-2018 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2015-2019 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2015-2019 Team BlueOnyx, BLUEONYX.IT
 All Rights Reserved.
 
 1. Redistributions of source code must retain the above copyright 
