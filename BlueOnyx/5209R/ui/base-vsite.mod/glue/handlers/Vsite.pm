@@ -53,12 +53,8 @@ use vars qw(
         %DefaultAliases);
 
 # globals used here
-if ((-e "/proc/user_beancounters") && (-f "/etc/vz/conf/0.conf")) {
+if (-e "/proc/user_beancounters") {
     $DEFAULT_INTERFACE = 'venet0';
-}
-elsif ((-e "/proc/user_beancounters") && (!-f "/etc/vz/conf/0.conf")) {
-    # No, we're in an OpenVZ VPS:
-    $device = 'venet0';
 }
 else {
     $DEFAULT_INTERFACE = 'eth0';
@@ -534,8 +530,8 @@ sub debug_msg {
 1;
 
 # 
-# Copyright (c) 2015-2018 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2015-2018 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015-2019 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015-2019 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 
